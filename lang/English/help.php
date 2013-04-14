@@ -28,7 +28,7 @@ $lang_help = array(
 'This help page'		=>	'This help page',
 'My email address'		=>	'My email address',
 'Images info'			=>	'If you want to display an image you can use the img tag. The text appearing after the "=" sign in the opening tag is used for the alt attribute and should be included whenever possible.',
-'FluxBB bbcode test'	=>	'FluxBB bbcode test',
+'ModernBB bbcode test'	=>	'ModernBB bbcode test',
 
 'Test topic'			=>	'Test topic',
 'Test post'				=>	'Test post',

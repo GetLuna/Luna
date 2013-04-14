@@ -140,7 +140,7 @@ if (!isset($_POST['form_sent']))
 
 	$db_type = $db_name = $db_username = $db_prefix = $username = $email = '';
 	$db_host = 'localhost';
-	$title = $lang_install['My FluxBB Forum'];
+	$title = $lang_install['My ModernBB Forum'];
 	$description = '<p><span>'.$lang_install['Description'].'</span></p>';
 	$default_lang = $install_lang;
 	$default_style = 'Air';
@@ -250,7 +250,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $lang_install['FluxBB Installation'] ?></title>
+<title><?php echo $lang_install['ModernBB Installation'] ?></title>
 <link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
 <script type="text/javascript">
 /* <![CDATA[ */
@@ -294,7 +294,7 @@ function process_form(the_form)
 <div id="brdheader" class="block">
 	<div class="box">
 		<div id="brdtitle" class="inbox">
-			<h1><span><?php echo $lang_install['FluxBB Installation'] ?></span></h1>
+			<h1><span><?php echo $lang_install['ModernBB Installation'] ?></span></h1>
 			<div id="brddesc"><p><?php echo $lang_install['Install message'] ?></p><p><?php echo $lang_install['Welcome'] ?></p></div>
 		</div>
 	</div>
@@ -1730,7 +1730,7 @@ else
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $lang_install['FluxBB Installation'] ?></title>
+<title><?php echo $lang_install['ModernBB Installation'] ?></title>
 <link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
 </head>
 <body>
@@ -1742,8 +1742,8 @@ else
 <div id="brdheader" class="block">
 	<div class="box">
 		<div id="brdtitle" class="inbox">
-			<h1><span><?php echo $lang_install['FluxBB Installation'] ?></span></h1>
-			<div id="brddesc"><p><?php echo $lang_install['FluxBB has been installed'] ?></p></div>
+			<h1><span><?php echo $lang_install['ModernBB Installation'] ?></span></h1>
+			<div id="brddesc"><p><?php echo $lang_install['ModernBB has been installed'] ?></p></div>
 		</div>
 	</div>
 </div>
@@ -1798,7 +1798,7 @@ else
 		<div class="fakeform">
 			<div class="inform">
 				<div class="forminfo">
-					<p><?php echo $lang_install['FluxBB fully installed'] ?></p>
+					<p><?php echo $lang_install['ModernBB fully installed'] ?></p>
 				</div>
 			</div>
 		</div>
