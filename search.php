@@ -1,9 +1,10 @@
 <?php
 
 /**
- * Copyright (C) 2008-2012 FluxBB
- * based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
+ * Copyright (C) 2013 ModernBB
+ * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
+ * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
 // The contents of this file are very much inspired by the file search.php
