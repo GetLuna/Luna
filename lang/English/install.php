@@ -13,7 +13,7 @@ $lang_install = array(
 'Already installed'				=>	'It seems like ModernBB is already installed. You should go <a href="index.php">here</a> instead.',
 'You are running error'			=>	'You are running %1$s version %2$s. ModernBB %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.',
 'My ModernBB Forum'				=>	'My ModernBB Forum',
-'Description'					=>	'Unfortunately no one can be told what ModernBB is - you have to see it for yourself.',
+'Description'					=>	'Modern. Light. Simple.',
 'Username 1'					=>	'Usernames must be at least 2 characters long.',
 'Username 2'					=>	'Usernames must not be more than 25 characters long.',
 'Username 3'					=>	'The username guest is reserved.',
