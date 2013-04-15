@@ -8,9 +8,9 @@
  */
 
 // The FluxBB version this script installs
-define('FORUM_VERSION', '1.4.9');
+define('FORUM_VERSION', '1.6-dev');
 
-define('FORUM_DB_REVISION', 15);
+define('FORUM_DB_REVISION', 19);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 2);
 
@@ -1594,7 +1594,7 @@ else
 		'o_timeout_visit'			=> 1800,
 		'o_timeout_online'			=> 300,
 		'o_redirect_delay'			=> 1,
-		'o_show_version'			=> 0,
+		'o_show_version'			=> 1,
 		'o_show_user_info'			=> 1,
 		'o_show_post_count'			=> 1,
 		'o_signatures'				=> 1,
@@ -1648,6 +1648,7 @@ else
 		'o_default_dst'				=> 0,
 		'o_feed_type'				=> 2,
 		'o_feed_ttl'				=> 0,
+		'o_admin_ids'				=> 2,
 		'p_message_bbcode'			=> 1,
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,

@@ -44,6 +44,10 @@ if (($pun_user['g_edit_posts'] == '0' ||
 	$cur_post['closed'] == '1') &&
 	!$is_admmod)
 	message($lang_common['No permission'], false, '403 Forbidden');
+	
+if ($is_admmod && $pun_user['g_id'] != PUN_ADMIN && in_array($cur_post['poster_id'], explode(',', $pun_config['o_admin_ids'])))  
+	message($lang_common['No permission'], false, '403 Forbidden');  
+
 
 // Load the post.php/edit.php language file
 require PUN_ROOT.'lang/'.$pun_user['language'].'/post.php';
