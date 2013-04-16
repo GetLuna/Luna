@@ -7,6 +7,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
+include PUN_ROOT.'include/srand.php'; 
 
 //
 // Return current timestamp (with microseconds) as a float
@@ -1014,23 +1015,13 @@ function forum_number_format($number, $decimals = 0)
 //
 function random_key($len, $readable = false, $hash = false)
 {
-	$key = '';
+	$key = secure_random_bytes($len); 
 
-	if ($hash)
-		$key = substr(pun_hash(uniqid(rand(), true)), 0, $len);
-	else if ($readable)
-	{
-		$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-		for ($i = 0; $i < $len; ++$i)
-			$key .= substr($chars, (mt_rand() % strlen($chars)), 1);
-	}
-	else
-	{
-		for ($i = 0; $i < $len; ++$i)
-			$key .= chr(mt_rand(33, 126));
-	}
-
+	if ($hash)  
+		$key = substr(bin2hex($key), 0, $len);  
+	else if ($readable)  
+		$key = substr(base64_encode($key), 0, $len);  
+		
 	return $key;
 }
 
