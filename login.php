@@ -85,7 +85,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(htmlspecialchars($_POST['redirect_url']), $lang_login['Login redirect']);
+	redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang_login['Login redirect']);
 }
 
 
@@ -113,7 +113,10 @@ else if ($action == 'out')
 else if ($action == 'forget' || $action == 'forget_2')
 {
 	if (!$pun_user['is_guest'])
+	{
 		header('Location: index.php');
+		exit;
+	}
 
 	if (isset($_POST['form_sent']))
 	{
@@ -229,7 +232,10 @@ if (!empty($errors))
 
 
 if (!$pun_user['is_guest'])
-	header('Location: index.php');
+	{
+		header('Location: index.php');
+		exit;
+	}
 
 // Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to index.php after login)
 if (!empty($_SERVER['HTTP_REFERER']))
