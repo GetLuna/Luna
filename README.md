@@ -12,9 +12,9 @@ ModernBB 1.6 will be a 'Long Term Support' release. This means that we will supp
 ##Requirements
  - A webserver
  - PHP 4.4.0 or later
- - A database 
- -- MySQL 4.1.2 or later
- -- PostgreSQL 7.0 or later
+ - A database <br />
+ -- MySQL 4.1.2 or later <br />
+ -- PostgreSQL 7.0 or later <br />
  -- SQLite 2
 
 ##Recommendations
