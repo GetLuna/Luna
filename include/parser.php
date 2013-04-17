@@ -107,6 +107,13 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 	if ($pun_config['o_make_links'] == '1')
 		$text = do_clickable($text);
 
+	$temp_text = false;
+	if (empty($errors))
+		$temp_text = preparse_tags($text, $errors, $is_signature);
+
+	if ($temp_text !== false)
+		$text = $temp_text;
+
 	// If we split up the message before we have to concatenate it together again (code tags)
 	if (isset($inside))
 	{
@@ -123,13 +130,6 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 
 		unset($inside);
 	}
-
-	$temp_text = false;
-	if (empty($errors))
-		$temp_text = preparse_tags($text, $errors, $is_signature);
-
-	if ($temp_text !== false)
-		$text = $temp_text;
 
 	// Remove empty tags
 	while (($new_text = strip_empty_bbcode($text)) !== false)
