@@ -7,7 +7,6 @@ $lang_admin_index = array(
 'Upgrade check failed message'		=>	'Check for upgrade failed for unknown reasons.',
 'Running latest version message'	=>	'You are running the latest version of ModernBB.',
 'New version available message'		=>	'A new version of ModernBB has been released. You can download the latest version at %s.',
-'PHPinfo disabled message'			=>	'The PHP function phpinfo() has been disabled on this server.',
 'Not available'						=>	'Not available',
 'Forum admin head'					=>	'Forum administration',
 'NA'								=>	'N/A',
@@ -18,13 +17,22 @@ $lang_admin_index = array(
 'Welcome 4'							=>	'View IP statistics for users.',
 'Welcome 5'							=>	'Ban users.',
 'Welcome 6'							=>	'Censor words.',
-'Welcome 7'							=>	'Set up user ranks.',
+'Welcome 7'							=>	'Set up user groups and promotions.',
 'Welcome 8'							=>	'Prune old posts.',
 'Welcome 9'							=>	'Handle post reports.',
-'Statistics head'					=>	'Statistics',
+'About head'						=>	'About ModernBB',
 'ModernBB version label'				=>	'ModernBB version',
 'Check for upgrade'					=>	'Check for upgrade',
 'ModernBB version data'				=>	'v%s - %s',
+'Server statistics label'			=>	'Server statistics',
+'View server statistics'			=>	'View server statistics',
+'Support label'						=>	'Support',
+'Forum label'						=>	'Forum',
+'IRC label'							=>	'IRC channel',
+
+// Language definitions used in admin_statistics.php
+'PHPinfo disabled message'			=>	'The PHP function phpinfo() has been disabled on this server.',
+'Server statistics head'			=>	'Server statistics',
 'Server load label'					=>	'Server load',
 'Server load data'					=>	'%s - %s user(s) online',
 'Environment label'					=>	'Environment',
@@ -47,5 +55,4 @@ $lang_admin_index = array(
 'Database label'					=>	'Database',
 'Database data rows'				=>	'Rows: %s',
 'Database data size'				=>	'Size: %s',
-
 );
