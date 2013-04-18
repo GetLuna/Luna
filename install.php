@@ -7,7 +7,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-// The FluxBB version this script installs
+// The ModernBB version this script installs
 define('FORUM_VERSION', '1.6-dev');
 
 define('FORUM_DB_REVISION', 19);
@@ -74,7 +74,7 @@ require PUN_ROOT.'lang/'.$install_lang.'/install.php';
 
 if (file_exists(PUN_ROOT.'config.php'))
 {
-	// Check to see whether FluxBB is already installed
+	// Check to see whether ModernBB is already installed
 	include PUN_ROOT.'config.php';
 
 	// If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
@@ -563,7 +563,7 @@ else
 	}
 
 
-	// Make sure FluxBB isn't already installed
+	// Make sure ModernBB isn't already installed
 	$result = $db->query('SELECT 1 FROM '.$db_prefix.'users WHERE id=1');
 	if ($db->num_rows($result))
 		error(sprintf($lang_install['Existing table error'], $db_prefix, $db_name));
