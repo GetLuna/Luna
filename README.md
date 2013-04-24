@@ -22,5 +22,5 @@ ModernBB 1.6 will be a 'Long Term Support' release. This means that we will supp
  - Make sure PHP has the zlib module installed to allow ModernBB to gzip output
 
 ##Links
- - Homepage: http://studio384.be/modernbb/
+ - Homepage: http://modernbb.be
  - Development: http://github.com/modernbb/modernbb/
