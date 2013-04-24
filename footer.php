@@ -115,7 +115,7 @@ else if ($footer_style == 'viewtopic')
 }
 
 ?>
-				<p id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.org/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></p>
+				<p id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></p>
 			</div>
 			<div class="clearer"></div>
 		</div>
