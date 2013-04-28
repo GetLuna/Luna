@@ -683,7 +683,7 @@ function delete_avatar($user_id)
 
 
 //
-// Delete a topic and all of it's posts
+// Delete a topic and all of its posts
 //
 function delete_topic($topic_id)
 {
