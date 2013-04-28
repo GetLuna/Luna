@@ -29,7 +29,7 @@ if ($action != 'change_pass' || !isset($_GET['key']))
 		message($lang_common['No permission'], false, '403 Forbidden');
 }
 
-// Load the profile.php/register.php language file
+// Load the prof_reg.php language file
 require PUN_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
 
 // Load the profile.php language file
