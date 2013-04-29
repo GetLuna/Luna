@@ -112,7 +112,7 @@ else if (isset($_GET['email']))
 			message($lang_misc['Too long email message']);
 
 		if ($pun_user['last_email_sent'] != '' && (time() - $pun_user['last_email_sent']) < $pun_user['g_email_flood'] && (time() - $pun_user['last_email_sent']) >= 0)
-			message(sprintf($lang_misc['Email flood'], $pun_user['g_email_flood'], $pun_user['g_report_flood'] - (time() - $pun_user['last_report_sent'])));
+			message(sprintf($lang_misc['Email flood'], $pun_user['g_email_flood'], $pun_user['g_email_flood'] - (time() - $pun_user['last_email_sent'])));
 
 		// Load the "form email" template
 		$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/form_email.tpl'));
@@ -134,7 +134,7 @@ else if (isset($_GET['email']))
 
 		$db->query('UPDATE '.$db->prefix.'users SET last_email_sent='.time().' WHERE id='.$pun_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-		redirect(htmlspecialchars($_POST['redirect_url']), $lang_misc['Email sent redirect']);
+		redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang_misc['Email sent redirect']);
 	}
 
 
@@ -165,7 +165,7 @@ else if (isset($_GET['email']))
 
 	if (!isset($redirect_url))
 		$redirect_url = 'profile.php?id='.$recipient_id;
-	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))  
+	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Send email to'].' '.pun_htmlspecialchars($recipient));
