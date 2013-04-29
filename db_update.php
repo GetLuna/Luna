@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '1.6-beta');
+define('UPDATE_TO', '1.6.0');
 
 define('UPDATE_TO_DB_REVISION', 19);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -513,7 +513,7 @@ if (empty($stage))
 <title><?php echo $lang_update['Update'] ?></title>
 <link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
 </head>
-<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
+<body onLoad="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
 
 <div id="pundb_update" class="pun">
 <div class="top-box"><div><!-- Top Corners --></div></div>
