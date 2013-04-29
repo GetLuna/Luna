@@ -32,7 +32,7 @@ if ($action != 'change_pass' || !isset($_GET['key']))
 // Load the prof_reg.php language file
 require PUN_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
 
-// Load the profile.php language files
+// Load the profile.php language file
 require PUN_ROOT.'lang/'.$pun_user['language'].'/profile.php';
 
 
@@ -1799,7 +1799,7 @@ else
 						if ($cur_category != 0)
 							echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
 
-						echo "\t\t\t\t\t\t\t".'<div class="conl">'."\n\t\t\t\t\t\t\t\t".'<p><strong>'.$cur_forum['cat_name'].'</strong></p>'."\n\t\t\t\t\t\t\t\t".'<div class="rbox">';
+						echo "\t\t\t\t\t\t\t".'<div class="conl">'."\n\t\t\t\t\t\t\t\t".'<p><strong>'.pun_htmlspecialchars($cur_forum['cat_name']).'</strong></p>'."\n\t\t\t\t\t\t\t\t".'<div class="rbox">';
 						$cur_category = $cur_forum['cid'];
 					}
 
