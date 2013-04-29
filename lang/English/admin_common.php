@@ -20,6 +20,7 @@ $lang_admin_common = array(
 'Prune'					=>	'Prune',
 'Maintenance'			=>	'Maintenance',
 'Reports'				=>	'Reports',
+'Server statistics'		=>  'Server statistics', 
 
 'Admin'					=>	'Admin',
 'Go back'				=>	'Go back',
