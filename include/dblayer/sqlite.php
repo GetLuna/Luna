@@ -350,23 +350,33 @@ class DBLayer
 	}
 
 
-	function rename_table($old_name, $new_name, $no_prefix = false)
+	function rename_table($old_table, $new_table, $no_prefix = false)
 	{
-		// If the new table exists and the old one doesn't, then we're happy
-		if ($this->table_exists($new_table, $no_prefix) && !$this->table_exists($old_table, $no_prefix))
+		// If the old table does not exist
+		if (!$this->table_exists($old_table, $no_prefix))
+			return false;
+		// If the table names are the same
+		else if ($old_table == $new_table)
 			return true;
+		// If the new table already exists
+		else if ($this->table_exists($new_table, $no_prefix))
+			return false;
 
-		$table = $this->get_table_info($old_name, $no_prefix);
+		$table = $this->get_table_info($old_table, $no_prefix);
 
 		// Create new table
-		$newtable = str_replace('CREATE TABLE '.($no_prefix ? '' : $this->prefix).$this->escape($old_name).' (', 'CREATE TABLE '.($no_prefix ? '' : $this->prefix).$this->escape($new_name).' (', $table['sql']);
-		$result = $this->query($newtable) ? true : false;
+		$query = str_replace('CREATE TABLE '.($no_prefix ? '' : $this->prefix).$this->escape($old_table).' (', 'CREATE TABLE '.($no_prefix ? '' : $this->prefix).$this->escape($new_table).' (', $table['sql']);
+		$result = $this->query($query) ? true : false;
 
 		// Recreate indexes
 		if (!empty($table['indices']))
 		{
 			foreach ($table['indices'] as $cur_index)
-				$result &= $this->query($cur_index) ? true : false;
+			{
+				$query = str_replace('CREATE INDEX '.($no_prefix ? '' : $this->prefix).$this->escape($old_table), 'CREATE INDEX '.($no_prefix ? '' : $this->prefix).$this->escape($new_table), $cur_index);
+				$query = str_replace('ON '.($no_prefix ? '' : $this->prefix).$this->escape($old_table), 'ON '.($no_prefix ? '' : $this->prefix).$this->escape($new_table), $query);
+				$result &= $this->query($query) ? true : false;
+			}
 		}
 
 		// Copy content across
@@ -421,7 +431,8 @@ class DBLayer
 	}
 
 
-	function add_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = null, $no_prefix = false) 	{
+	function add_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = null, $no_prefix = false)
+	{
 		if ($this->field_exists($table_name, $field_name, $no_prefix))
 			return true;
 
@@ -436,21 +447,25 @@ class DBLayer
 		// Create new table sql
 		$field_type = preg_replace(array_keys($this->datatype_transformations), array_values($this->datatype_transformations), $field_type);
 		$query = $field_type;
+
 		if (!$allow_null)
 			$query .= ' NOT NULL';
-		if (is_null($default_value) || $default_value === '')
+		
+		if ($default_value === '')
 			$default_value = '\'\'';
 
-		$query .= ' DEFAULT '.$default_value;
+		if (!is_null($default_value))
+			$query .= ' DEFAULT '.$default_value;
 
 		$old_columns = array_keys($table['columns']);
-		// Determine the proper offset  
-		if (!is_null($after_field))  
-			$offset = array_search($after_field, array_keys($table['columns']), true) + 1;  
-		else  
-			$offset = count($table['columns']);  
 
-		// Out of bounds checks  
+		// Determine the proper offset
+		if (!is_null($after_field))
+			$offset = array_search($after_field, array_keys($table['columns']), true) + 1;
+		else
+			$offset = count($table['columns']);
+
+		// Out of bounds checks
 		if ($offset > count($table['columns']))
 			$offset = count($table['columns']);
 		else if ($offset < 0)
@@ -495,7 +510,7 @@ class DBLayer
 	}
 
 
-	function alter_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = 0, $no_prefix = false)
+	function alter_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = null, $no_prefix = false)
 	{
 		// Unneeded for SQLite
 		return true;
