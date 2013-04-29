@@ -79,7 +79,7 @@ generate_admin_menu('index');
 					</dd>
 					<dt><?php echo $lang_admin_index['Support label'] ?></dt>
 					<dd>
-						<a href="http://modernbb.org/forums/index.php"><?php echo $lang_admin_index['Forum label'] ?></a>
+						<a href="http://modernbb.be/forum/index.php"><?php echo $lang_admin_index['Forum label'] ?></a>
 					</dd>
 				</dl>
 			</div>
