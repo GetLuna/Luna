@@ -85,7 +85,7 @@ if (isset($_GET['ip_stats']))
 ?>
 				<tr>
 					<td class="tcl"><a href="moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
-					<td class="tc2"><?php echo format_time($cur_ip['last_used']) ?></td>
+ 					<td class="tc2"><?php echo format_time($cur_ip['last_used']) ?></td>
 					<td class="tc3"><?php echo $cur_ip['used_times'] ?></td>
 					<td class="tcr"><a href="admin_users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_admin_users['Results find more link'] ?></a></td>
 				</tr>
@@ -184,22 +184,22 @@ if (isset($_GET['show_users']))
 
 	if ($num_posts)
 	{
-		$posters = $poster_ids = array();  
+		$posters = $poster_ids = array();
 		while ($cur_poster = $db->fetch_assoc($result))
-		{ 
-			$posters[] = $cur_poster;  
-			$poster_ids[] = $cur_poster['poster_id'];  
-		}  
+		{
+			$posters[] = $cur_poster;
+			$poster_ids[] = $cur_poster['poster_id'];
+		}
 
 		$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1 AND u.id IN('.implode(',', $poster_ids).')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-		$user_data = array();  
-		while ($cur_user = $db->fetch_assoc($result))  
-			$user_data[$cur_user['id']] = $cur_user;  
+		$user_data = array();
+		while ($cur_user = $db->fetch_assoc($result))
+			$user_data[$cur_user['id']] = $cur_user;
 
-			// Loop through users and print out some info  
-			foreach ($posters as $cur_poster)
-			{
-				if (isset($user_data[$cur_poster['poster_id']]))  
+		// Loop through users and print out some info
+		foreach ($posters as $cur_poster)
+		{
+			if (isset($user_data[$cur_poster['poster_id']]))
 			{
 				$user_title = get_title($user_data[$cur_poster['poster_id']]);
 

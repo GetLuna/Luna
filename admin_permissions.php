@@ -142,14 +142,14 @@ generate_admin_menu('permissions');
 									<th scope="row"><?php echo $lang_admin_permissions['Max sig length label'] ?></th>
 									<td>
 										<input type="text" name="form[sig_length]" size="5" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
-										<span><?php echo $lang_admin_permissions['Max sig length help'] ?></span>
+										<span class="clearb"><?php echo $lang_admin_permissions['Max sig length help'] ?></span>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row"><?php echo $lang_admin_permissions['Max sig lines label'] ?></th>
 									<td>
 										<input type="text" name="form[sig_lines]" size="3" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
-										<span><?php echo $lang_admin_permissions['Max sig lines help'] ?></span>
+										<span class="clearb"><?php echo $lang_admin_permissions['Max sig lines help'] ?></span>
 									</td>
 								</tr>
 							</table>

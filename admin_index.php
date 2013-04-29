@@ -36,7 +36,7 @@ if ($action == 'check_upgrade')
 	if (version_compare($pun_config['o_cur_version'], $latest_version, '>='))
 		message($lang_admin_index['Running latest version message']);
 	else
-		message(sprintf($lang_admin_index['New version available message'], '<a href="http://modernbb.be/">ModernBB.org</a>'));
+		message(sprintf($lang_admin_index['New version available message'], '<a href="http://modernbb.be/">ModernBB.be</a>'));
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Index']);
@@ -79,7 +79,7 @@ generate_admin_menu('index');
 					</dd>
 					<dt><?php echo $lang_admin_index['Support label'] ?></dt>
 					<dd>
-						<a href="http://modernbb.org/forums/index.php"><?php echo $lang_admin_index['Forum label'] ?></a>
+						<a href="http://modernbb.be/forum/index.php"><?php echo $lang_admin_index['Forum label'] ?></a>
 					</dd>
 				</dl>
 			</div>
