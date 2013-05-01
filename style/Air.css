@@ -181,32 +181,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	padding: 18px;
 }
 
-.pun .top-box {
-	height: 18px;
-	margin-bottom: -18px;
-	position: relative;
-	background: url(Air/img/main_top.png) top left no-repeat;
-}
-
-.pun .top-box div {
-	height: 18px;
-	margin-left: 50%;
-	background: url(Air/img/main_top.png) top right no-repeat;
-}
-
-.pun .end-box {
-	margin-top: -17px;
-	height: 18px;
-	position: relative;
-	background: url(Air/img/main_end.png) bottom left no-repeat;
-}
-
-.pun .end-box div {
-	height: 18px;
-	margin-left: 50%;
-	background: url(Air/img/main_end.png) bottom right no-repeat;
-}
-
 #punredirect h2, #punmaint h2 {
 	border-bottom-style: dotted;
 	border-bottom-width: 1px;
@@ -945,8 +919,7 @@ MAIN POSTS
 }
 
 .pun .quotebox {
-	border-style: solid;
-	border-width: 1px 1px 1px 3px;
+	border-left: solid 3px;
 	margin: 0.75em 1em;
 	padding: 0 0.75em;
 }
@@ -1458,7 +1431,7 @@ html, body, .pun {
 #brdmenu a, #brdmenu a:link, #brdmenu a:visited {
 	background: #44699c;
 	border-color: #fff;
-	color: #d4dae2;
+	color: #fff;
 }
 
 #brdmenu a:hover, #brdmenu a:active, #brdmenu a:focus {
@@ -1472,7 +1445,7 @@ html, body, .pun {
 
 .pun .blocktable .box {
 	background: #fcfdfe;
-	border-color: #b9c5ce #d9e1e7;
+	border: none;
 }
 
 #punindex .blocktable h2, .pun #vf h2 {
@@ -1494,7 +1467,7 @@ html, body, .pun {
 
 .pun .blocktable th {
 	background: #ebf1f5;
-	border-color: #cad7e1;
+	border: none;
 	color: #357082;
 }
 
@@ -1534,7 +1507,7 @@ html, body, .pun {
 }
 
 .pun .quotebox {
-	background: #f8f9f0;
+	background: #e9f1f6;
 	border-color: #7aadbd;
 	color: #566579;
 }
