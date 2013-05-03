@@ -27,12 +27,12 @@
 <div id="brdmain">
 <pun_main>
 </div>
+</div>
 
 <pun_footer>
 
 </div>
 <div class="end-box"><div><!-- Bottom corners --></div></div>
-</div>
 
 </body>
 </html>

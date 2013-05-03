@@ -192,14 +192,11 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 ----------------------------------------------------------------*/
 
 #brdmain {
-	border-style: solid none;
-	border-width: 2px 0;
-	margin-bottom: 12px;
-	padding: 12px 0;
+	margin-bottom: -10px;
 }
 
 #punindex #brdmain {
-	padding-top: 24px;
+	padding-top: 2px;
 }
 
 #punredirect #brdmain, #punmaint #brdmain {
@@ -224,6 +221,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 #announce {
 	margin-top: -10px;
+	margin-bottom: 5px;
 }
 
 /*****************************************************************
@@ -1395,7 +1393,7 @@ html, body, .pun {
 
 .pun .punwrap {
 	background: #fff;
-	border-color: #cad7e1;
+	border-color: #fff;
 	color: #566579;
 }
 
