@@ -165,7 +165,8 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 ----------------------------------------------------------------*/
 
 .pun {
-	padding: 30px 40px;
+	margin: 15px auto;
+	width: 1100px;
 }
 
 #punredirect, #punmaint {
@@ -222,9 +223,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 #announce {
-	border-style: solid none none none;
-	border-width: 2px 0 0 0;
-	padding-top: 3px;
+	margin-top: -10px;
 }
 
 /*****************************************************************
@@ -1430,13 +1429,13 @@ html, body, .pun {
 
 #brdmenu a, #brdmenu a:link, #brdmenu a:visited {
 	background: #44699c;
-	border-color: #fff;
+	border-color: #f6f9fc;
 	color: #fff;
 }
 
 #brdmenu a:hover, #brdmenu a:active, #brdmenu a:focus {
 	background: #b50000;
-	border-color: #fff;
+	border-color: #f6f9fc;
 	color: #fff;
 }
 
