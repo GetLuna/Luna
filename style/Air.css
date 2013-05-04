@@ -99,7 +99,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun a:hover, .pun a:active, .pun a:focus {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 .pun .actions span {
@@ -234,10 +234,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 #brdtitle h1 {
 	padding: 0 0 10px 0;
 	display: inline-block;
-}
-
-#brdtitle h1 a:hover {
-	text-decoration: none;
 }
 
 #brddesc {
@@ -1391,8 +1387,8 @@ COLOUR SCHEME
 ----------------------------------------------------------------*/
 
 html, body, .pun {
-	background: #f6f9fc;
-	color: #333;
+	background: #3f3f3f;
+	color: #fff;
 }
 
 .pun .punwrap {
@@ -1407,11 +1403,12 @@ html, body, .pun {
 }
 
 .pun a, .pun a:link, .pun a:visited {
-	color: #2365B0;
+	color: #00b4ff;
 }
 
 .pun a:hover, .pun a:active, .pun a:focus {
-	color: #b50000;
+	color: #db2900;
+	text-decoration: none;
 }
 
 .pun .postmsg .postimg a:link img, .pun .postmsg .postimg a:visited img {
@@ -1419,25 +1416,25 @@ html, body, .pun {
 }
 
 .pun .postmsg .postimg a:hover img, .pun .postmsg .postimg a:active img, .pun .postmsg .postimg a:focus img {
-	border-color: #b50000;
+	border-color: #db2900;
 }
 
 /* Primary Navigation
 ----------------------------------------------------------------*/
 
 #brdmenu {
-	background: #44699c;
+	background: #00b4ff;
 }
 
 #brdmenu a, #brdmenu a:link, #brdmenu a:visited {
-	background: #44699c;
-	border-color: #f6f9fc;
+	background: #00b4ff;
+	border-color: #3f3f3f;
 	color: #fff;
 }
 
 #brdmenu a:hover, #brdmenu a:active, #brdmenu a:focus {
-	background: #b50000;
-	border-color: #f6f9fc;
+	background: #db2900;
+	border-color: #3f3f3f;
 	color: #fff;
 }
 
@@ -1555,7 +1552,7 @@ html, body, .pun {
 }
 
 #puninstall form#install .forminfo {
-	background: #44699c;
+	background: #00b4ff;
 	color: #fff;
 }
 
@@ -1626,7 +1623,8 @@ html, body, .pun {
 ----------------------------------------------------------------*/
 
 .pun .icon {
-	border-color: #e8ecf1 #d4d9dd #dfe3e8 #e8ecf1;
+	border-color: #cff1ff #c0ecff #b4e9ff #cff1ff;
+	border-radius: 999px;
 }
 
 .pun .iredirect .icon {
@@ -1636,5 +1634,6 @@ html, body, .pun {
 }
 
 .pun .inew .icon {
-	border-color: #91b3d9 #87a8d1 #6c85bb #7292c3;
+	border-color: #91d4ff #87d4ff #6cd4ff #72d4ff;
+	border-radius: 999px;
 }
