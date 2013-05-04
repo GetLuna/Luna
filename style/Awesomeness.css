@@ -366,7 +366,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #brdfooter #modcontrols dd span {
-	background: url(Awesomeness/img/bull.png) center left no-repeat;
 	display: inline-block;
 	line-height: normal;
 	padding-left: 18px;

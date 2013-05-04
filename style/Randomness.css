@@ -61,12 +61,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 .pun h2, .pun .hd h2 {
 	font: 1.462em/1em "Trebuchet MS", Arial, Helvetica, sans-serif;
-	padding: 0 0 7px 0;
-}
-
-.pun .block h2.block2, .pun .brdmain #idx2 .blocktable h2 span {
-	font: 1.462em/1em "Trebuchet MS", Arial, Helvetica, sans-serif;
-	padding: 7px 0 !important;
+	padding: 6px 0;
 }
 
 .pun h3 {
@@ -343,10 +338,8 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #brdfooter #modcontrols dd span {
-	background: url(Randomness/img/bull.png) center left no-repeat;
 	display: inline-block;
 	line-height: normal;
-	padding-left: 18px;
 	white-space: nowrap;
 }
 
@@ -1099,7 +1092,7 @@ MAIN FORMS
 }
 
 .pun fieldset label {
-	display: block;
+	display: inline;
 	padding: 0 0 7px 0;
 }
 
@@ -1725,7 +1718,7 @@ html, body, .pun {
 	vertical-align: middle;
 }
 
-.pun input, .pun .uneditable-input {
+.pun .uneditable-input {
 	width: 400px;
 	margin-left: 0;
 }
