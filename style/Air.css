@@ -1713,8 +1713,13 @@ html, body, .pun {
 	vertical-align: middle;
 }
 
-.pun input, textarea, .uneditable-input {
-	width: 206px;
+.pun input, .pun .uneditable-input {
+	width: 400px;
+	margin-left: 0;
+}
+
+.pun textarea {
+	width: 500px;
 	margin-left: 0;
 }
 

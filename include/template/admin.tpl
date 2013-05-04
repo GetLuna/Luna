@@ -21,9 +21,6 @@
 	</div>
 </div>
 <div class="punwrap">
-
-<pun_announcement>
-
 <div id="brdmain">
 <pun_main>
 </div>
