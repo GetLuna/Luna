@@ -409,6 +409,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 
 
+
 .pun .linkst .crumbs {
 	font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
 	font-size: 1.462em;
@@ -1674,6 +1675,11 @@ html, body, .pun {
 .pun #brdfooter #qjump input[type="submit"] {
 	margin-top: -6px;
 	margin-left: -8px;
+}
+
+.pun #brdfooter #qjump select {
+    width: 175px;
+    height: 27px;
 }
 
 .pun input[type="submit"]:hover, .pun input[type="button"]:hover, .pun input[type="submit"]:focus, .pun input[type="button"]:focus {
