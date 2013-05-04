@@ -405,6 +405,10 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	position: relative;
 }
 
+
+
+
+
 .pun .linkst .crumbs {
 	font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
 	font-size: 1.462em;
@@ -640,6 +644,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #vf td.tcl span a {
+
 	font-weight: normal;
 }
 
@@ -1636,4 +1641,149 @@ html, body, .pun {
 .pun .inew .icon {
 	border-color: #91d4ff #87d4ff #6cd4ff #72d4ff;
 	border-radius: 999px;
+}
+
+/* Forms and buttons
+----------------------------------------------------------------*/
+
+.pun input[type="submit"], .pun input[type="button"] {
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	background-color: #00bde6;
+	background-image: linear-gradient(to bottom,#19d6ff,#00bde6);
+	background-repeat: repeat-x;
+	border-color: #00aacf !important;
+	*background-color: #04c;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding: 3px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	*border: 0;
+	border-bottom-color: #008dab;
+	*margin-left: 0;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);
+}
+
+.pun #brdfooter #qjump input[type="submit"] {
+	margin-top: -6px;
+	margin-left: -8px;
+}
+
+.pun input[type="submit"]:hover, .pun input[type="button"]:hover, .pun input[type="submit"]:focus, .pun input[type="button"]:focus {
+	text-decoration: none;
+	background-image: linear-gradient(to bottom,#00bde6,#00b0d6);
+	-webkit-transition: background-image 0.25s linear;
+	-moz-transition: background-image 0.25s linear;
+	-o-transition: background-image 0.25s linear;
+	transition: background-image 0.25s linear;
+}
+
+.pun select {
+	display: inline-block;
+	height: 26px;
+	width: 300px;
+	padding: 3px 6px;
+	margin-bottom: 10px;
+	line-height: 20px;
+	color: #555;
+	vertical-align: middle;
+}
+
+.pun input[type="text"], .pun input[type="password"], .pun input[type="datetime"], .pun input[type="datetime-local"], .pun input[type="date"], .pun input[type="month"], .pun input[type="time"], .pun input[type="week"], .pun input[type="number"], .pun input[type="email"], .pun input[type="url"], .pun input[type="search"], .pun input[type="tel"], .pun input[type="color"], .uneditable-input {
+	display: inline-block;
+	height: 20px;
+	width: 400px;
+	padding: 3px 6px;
+	margin-bottom: 3px;
+	line-height: 20px;
+	color: #555;
+	vertical-align: middle;
+}
+
+.pun input, textarea, .uneditable-input {
+	width: 206px;
+	margin-left: 0;
+}
+
+textarea, select[multiple], select[size] {
+	height: auto;
+}
+
+textarea, .pun input[type="text"], .pun input[type="password"], .pun input[type="datetime"], .pun input[type="datetime-local"], .pun input[type="date"], .pun input[type="month"], .pun input[type="time"], .pun input[type="week"], .pun input[type="number"], .pun input[type="email"], .pun input[type="url"], .pun input[type="search"], .pun input[type="tel"], .pun input[type="color"], select, .uneditable-input {
+	background: #fff;
+	border: 1px solid #ccc;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border linear .2s,box-shadow linear .2s;
+	-moz-transition: border linear .2s,box-shadow linear .2s;
+	-o-transition: border linear .2s,box-shadow linear .2s;
+	transition: border linear .2s,box-shadow linear .2s;
+}
+
+textarea:focus, .pun input[type="text"]:focus, .pun input[type="password"]:focus, .pun input[type="datetime"]:focus, .pun input[type="datetime-local"]:focus, .pun input[type="date"]:focus, .pun input[type="month"]:focus, .pun input[type="time"]:focus, .pun input[type="week"]:focus, .pun input[type="number"]:focus, .pun input[type="email"]:focus, .pun input[type="url"]:focus, .pun input[type="search"]:focus, .pun input[type="tel"]:focus, .pun input[type="color"]:focus, select:hover, .uneditable-input:focus {
+	border-color: rgba(82,168,236,0.8);
+	outline: thin dotted 9;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
+}
+
+.pun input[type="radio"], .pun input[type="checkbox"] {
+	margin: 4px 0 0;
+	*margin-top: 0;
+	margin-top: 1px 9;
+	line-height: normal;
+}
+
+.pun input[type="file"], .pun input[type="image"], .pun input[type="submit"], .pun input[type="reset"], .pun input[type="button"], .pun input[type="radio"], .pun input[type="checkbox"] {
+	width: auto;
+}
+
+select, .pun input[type="file"] {
+	height: 30px;
+	*margin-top: 4px;
+	line-height: 30px;
+}
+
+select {
+	width: 220px;
+	border: 1px solid #ccc;
+	background: #fff;
+}
+
+select:focus, .pun input[type="radio"]:focus, .pun input[type="checkbox"]:focus {
+	outline: 5px auto;
+	outline-offset: -2px;
+}
+
+.uneditable-input, .uneditable-textarea {
+	color: #999;
+	background: #fcfcfc;
+	border-color: #ccc;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
+	cursor: not-allowed;
+}
+
+.uneditable-input {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.uneditable-textarea {
+	width: auto;
+	height: auto;
+}
+
+.pun input:-moz-placeholder, textarea:-moz-placeholder, .pun input:-ms-input-placeholder, textarea:-ms-input-placeholder, .pun input:, textarea: {
+	color: #999;
 }
