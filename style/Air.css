@@ -1673,13 +1673,13 @@ html, body, .pun {
 }
 
 .pun #brdfooter #qjump input[type="submit"] {
-	margin-top: -6px;
-	margin-left: -8px;
+	margin-top: -8px;
+	margin-left: -6px;
 }
 
 .pun #brdfooter #qjump select {
     width: 175px;
-    height: 27px;
+    height: 28px;
 }
 
 .pun input[type="submit"]:hover, .pun input[type="button"]:hover, .pun input[type="submit"]:focus, .pun input[type="button"]:focus {
