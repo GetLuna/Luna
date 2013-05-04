@@ -233,11 +233,15 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 #brdtitle h1 {
 	padding: 0 0 10px 0;
+	display: inline-block;
+}
+
+#brdtitle h1 a:hover {
+	text-decoration: none;
 }
 
 #brddesc {
-	border-top-style: dotted;
-	border-top-width: 1px;
+	display: inline-block;
 	padding: 10px 0;
 }
 
