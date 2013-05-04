@@ -61,7 +61,12 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 .pun h2, .pun .hd h2 {
 	font: 1.462em/1em "Trebuchet MS", Arial, Helvetica, sans-serif;
-	padding: 7px 0;
+	padding: 0 0 7px 0;
+}
+
+.pun .block h2.block2, .pun .brdmain #idx2 .blocktable h2 span {
+	font: 1.462em/1em "Trebuchet MS", Arial, Helvetica, sans-serif;
+	padding: 7px 0 !important;
 }
 
 .pun h3 {
@@ -196,7 +201,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 #punindex #brdmain {
-	padding-top: 2px;
+	padding-top: 0;
 }
 
 #punredirect #brdmain, #punmaint #brdmain {
@@ -408,17 +413,11 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	clear: both;
 	position: relative;
 }
-
-
-
-
-
-
 .pun .linkst .crumbs {
 	font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
 	font-size: 1.462em;
 	line-height: 1.211em;
-	padding: 7px 0;
+	padding: 0 0 7px 0;
 }
 
 .pun .linksb .crumbs, .pun .postlinksb .crumbs {
@@ -1682,6 +1681,14 @@ html, body, .pun {
 	margin-left: -6px;
 }
 
+.pun #categoryedit tbody tr td input, .pun td.tc2 input {
+	width: 40px;
+}
+
+.pun #categoryedit tbody tr td.tcl input {
+	width: 400px;
+}
+
 .pun #brdfooter #qjump select {
     width: 175px;
     height: 28px;
@@ -1752,14 +1759,7 @@ textarea:focus, .pun input[type="text"]:focus, .pun input[type="password"]:focus
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
 }
 
-.pun input[type="radio"], .pun input[type="checkbox"] {
-	margin: 4px 0 0;
-	*margin-top: 0;
-	margin-top: 1px 9;
-	line-height: normal;
-}
-
-.pun input[type="file"], .pun input[type="image"], .pun input[type="submit"], .pun input[type="reset"], .pun input[type="button"], .pun input[type="radio"], .pun input[type="checkbox"] {
+.pun input[type="file"], .pun input[type="image"], .pun input[type="submit"], .pun input[type="reset"], .pun input[type="button"] {
 	width: auto;
 }
 
@@ -1773,11 +1773,6 @@ select {
 	width: 220px;
 	border: 1px solid #ccc;
 	background: #fff;
-}
-
-select:focus, .pun input[type="radio"]:focus, .pun input[type="checkbox"]:focus {
-	outline: 5px auto;
-	outline-offset: -2px;
 }
 
 .uneditable-input, .uneditable-textarea {
