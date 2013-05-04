@@ -363,6 +363,10 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	padding-top: 5px;
 }
 
+.pun #qjump label {
+	color: #fff !important;
+}
+
 .pun #brdfooter #qjump * {
 	white-space: nowrap;
 }
@@ -922,7 +926,7 @@ MAIN POSTS
 }
 
 .pun .quotebox {
-	border-left: solid 3px;
+	border-left: solid 4px;
 	margin: 0.75em 1em;
 	padding: 0 0.75em;
 }
@@ -1405,7 +1409,7 @@ html, body, .pun {
 
 #brdtitle #brddesc, .pun .pagepost, #brdstats #onlinelist, #brdfooter #searchlinks, #brdfooter #modcontrols,
 #punmaint h2, #punredirect h2, #adminconsole .submittop, .pun #debugtime, .pun .pagelink a, .pun .pagelink * {
-	border-color: #b9c5ce;
+	border-color: #00b4ff;
 }
 
 .pun a, .pun a:link, .pun a:visited {
@@ -1453,7 +1457,7 @@ html, body, .pun {
 }
 
 #punindex .blocktable h2, .pun #vf h2 {
-	color: #357082;
+	color: #fff;
 }
 
 #adminconsole fieldset th, #adminconsole fieldset td {
@@ -1470,9 +1474,9 @@ html, body, .pun {
 }
 
 .pun .blocktable th {
-	background: #ebf1f5;
+	background: #00b4ff;
 	border: none;
-	color: #357082;
+	color: #fff;
 }
 
 .pun .blocktable td.tcl span.stickytext {
@@ -1483,19 +1487,20 @@ html, body, .pun {
 ----------------------------------------------------------------*/
 
 .pun .blockpost {
-	background: #f6f9fc;
-	border-color: #b9c5ce #d9e1e7;
+	background: #e8f8ff;
+	border: none;
 }
 
 .pun .blockpost h2 {
-	background: #ebf1f5;
-	border-color: #cad7e1;
-	color: #357082;
+	background: #e8f8ff;
+	border-top: #00b4ff 4px solid;
+	border-bottom: none;
+	color: #00b4ff;
 }
 
 .pun .blockpost .postbody, .pun .blockpost .postfoot {
 	background: #fcfdfe;
-	border-color: #dfe6ee;
+	border: none;
 }
 
 .pun .blockpost .postfootright li {
@@ -1511,8 +1516,8 @@ html, body, .pun {
 }
 
 .pun .quotebox {
-	background: #e9f1f6;
-	border-color: #7aadbd;
+	background: #ecf9ff;
+	border-color: #00b4ff;
 	color: #566579;
 }
 
@@ -1597,7 +1602,7 @@ html, body, .pun {
 .pun .blockmenu .isactive a:link, .pun .blockmenu .isactive a:visited {
 	color: #333;
 	background: #f6f9fc;
-	}
+}
 
 .pun #viewprofile .box {
 	border-color: #b9c5ce #d9e1e7;
