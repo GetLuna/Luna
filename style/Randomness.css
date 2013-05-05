@@ -1144,7 +1144,7 @@ MAIN FORMS
 }
 
 .pun .rbox input {
-	margin: 3px 0.75em 3px -1.75em;
+	margin: 2px -0.75em 3px 0;
 	float: left;
 	position: relative;
 	vertical-align: middle;
