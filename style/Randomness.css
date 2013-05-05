@@ -1092,7 +1092,7 @@ MAIN FORMS
 }
 
 .pun fieldset label {
-	display: inline;
+	display: block;
 	padding: 0 0 7px 0;
 }
 
@@ -1133,7 +1133,7 @@ MAIN FORMS
 }
 
 .pun .rbox label {
-	padding: 3px 0 3px 1.75em;
+	padding: 3px 0 3px 0;
 	position: relative;
 	min-height: 1px;
 }
@@ -1144,7 +1144,7 @@ MAIN FORMS
 }
 
 .pun .rbox input {
-	margin: 2px -0.75em 3px 0;
+	margin: 2px 0.75em 3px 0;
 	float: left;
 	position: relative;
 	vertical-align: middle;
