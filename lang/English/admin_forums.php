@@ -18,6 +18,7 @@ $lang_admin_forums = array(
 'Add forum label'			=>	'Add forum to category',
 'Add forum help'			=>	'Select the category to which you wish to add a new forum and give it a name.',
 'Add forum'					=>	'Add forum',
+'Forum name PH'				=>	'Forum name',
 'No categories exist'		=>	'No categories exist',
 'Edit forums head'			=>	'Edit forums',
 'Category subhead'			=>	'Category:',

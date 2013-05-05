@@ -1795,5 +1795,5 @@ select {
 }
 
 .pun input:-moz-placeholder, textarea:-moz-placeholder, .pun input:-ms-input-placeholder, textarea:-ms-input-placeholder, .pun input:, textarea: {
-	color: #999;
+	color: #bbb;
 }

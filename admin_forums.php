@@ -395,7 +395,7 @@ generate_admin_menu('forums');
 
 ?>
 										</select>
-										<input type="text" name="new_forum" size="30" maxlength="80" />
+										<input type="text" name="new_forum" size="30" maxlength="80" placeholder="<?php echo $lang_admin_forums['Forum name PH'] ?>" />
 										<span><?php echo $lang_admin_forums['Add forum help'] ?></span>
 									</td>
 								</tr>
