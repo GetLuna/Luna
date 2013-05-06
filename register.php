@@ -297,11 +297,6 @@ if (!empty($errors))
 	<div class="box">
 		<form id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
 			<div class="inform">
-				<div class="forminfo">
-					<h3><?php echo $lang_common['Important information'] ?></h3>
-					<p><?php echo $lang_register['Desc 1'] ?></p>
-					<p><?php echo $lang_register['Desc 2'] ?></p>
-				</div>
 				<fieldset>
 					<legend><?php echo $lang_register['Username legend'] ?></legend>
 					<div class="infldset">
