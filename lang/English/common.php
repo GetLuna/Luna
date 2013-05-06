@@ -73,6 +73,9 @@ $lang_common = array(
 'Previous'							=>	'Previous',
 'Next'								=>	'Next',
 'Spacer'							=>	'…', // Ellipsis for paginate
+'Sub forums'						=>	'Sub forums',
+'Parent forum'						=>	'Parent forum',
+'No parent forum'					=>	'No parent forum',
 
 // Title
 'Title'								=>	'Title',

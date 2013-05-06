@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '1.6.0');
 
-define('UPDATE_TO_DB_REVISION', 19);
+define('UPDATE_TO_DB_REVISION', 20);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 2);
 
@@ -722,6 +722,9 @@ switch ($stage)
 
 		// Add the last_search column to the users table
 		$db->add_field('users', 'last_search', 'INT(10) UNSIGNED', true, null, 'last_post') or error('Unable to add last_search field', __FILE__, __LINE__, $db->error());
+		
+		// Add the parent_forum_id column to support sub forums
+		$db->add_field('forums', 'parent_forum_id', 'INT', true, 0);
 
 		// Drop use_avatar column from users table
 		$db->drop_field('users', 'use_avatar') or error('Unable to drop use_avatar field', __FILE__, __LINE__, $db->error());
