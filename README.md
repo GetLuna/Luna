@@ -1,5 +1,5 @@
-ModernBB 1.7 unstable Readme
-============================
+ModernBB 1.7 dev Readme
+=======================
 
 ##About
 ModernBB is an open source forum application released under the GNU General Public Licence. It is free to download and use and will remain so. ModernBB was conceived and designed to be fast and light with less of the "not so essential" features that some of the other forums have whilst not sacrificing essential functionality or usability.
