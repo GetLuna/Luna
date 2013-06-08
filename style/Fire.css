@@ -61,7 +61,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 .pun h2, .pun .hd h2 {
 	font: 1.462em/1em "Trebuchet MS", Arial, Helvetica, sans-serif;
-	padding: 6px 0;
+	padding: 7px 0;
 }
 
 .pun h3 {
@@ -99,13 +99,13 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun a:hover, .pun a:active, .pun a:focus {
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 .pun .actions span {
 	padding-left: 16px;
 	padding-right: 8px;
-	background: url(Randomness/img/bull.png) center left no-repeat;
+	background: url(Fire/img/bull.png) center left no-repeat;
 	display: inline-block;
 	line-height: normal;
 }
@@ -156,7 +156,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	clear: left;
 }
 
-
 /*****************************************************************
 2. COMMON STYLES
 *****************************************************************/
@@ -165,12 +164,11 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 ----------------------------------------------------------------*/
 
 .pun {
-	margin: 15px auto;
-	width: 1100px;
+	padding: 30px 40px;
 }
 
 #punredirect, #punmaint {
-	padding: 100px 0 12px 0;
+	padding: 60px 20% 12px 20%;
 }
 
 #puninstall, #pundb_update {
@@ -180,6 +178,32 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 .pun .punwrap {
 	border: 1px solid;
 	padding: 18px;
+}
+
+.pun .top-box {
+	height: 18px;
+	margin-bottom: -18px;
+	position: relative;
+	background: url(Fire/img/main_top.png) top left no-repeat;
+}
+
+.pun .top-box div {
+	height: 18px;
+	margin-left: 50%;
+	background: url(Fire/img/main_top.png) top right no-repeat;
+}
+
+.pun .end-box {
+	margin-top: -17px;
+	height: 18px;
+	position: relative;
+	background: url(Fire/img/main_end.png) bottom left no-repeat;
+}
+
+.pun .end-box div {
+	height: 18px;
+	margin-left: 50%;
+	background: url(Fire/img/main_end.png) bottom right no-repeat;
 }
 
 #punredirect h2, #punmaint h2 {
@@ -192,11 +216,14 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 ----------------------------------------------------------------*/
 
 #brdmain {
-	margin-bottom: -10px;
+	border-style: solid none;
+	border-width: 2px 0;
+	margin-bottom: 12px;
+	padding: 12px 0;
 }
 
 #punindex #brdmain {
-	padding-top: 0;
+	padding-top: 24px;
 }
 
 #punredirect #brdmain, #punmaint #brdmain {
@@ -220,8 +247,9 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 #announce {
-	margin-top: -10px;
-	margin-bottom: 5px;
+	border-style: solid none none none;
+	border-width: 2px 0 0 0;
+	padding-top: 3px;
 }
 
 /*****************************************************************
@@ -233,11 +261,11 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 #brdtitle h1 {
 	padding: 0 0 10px 0;
-	display: inline-block;
 }
 
 #brddesc {
-	display: inline-block;
+	border-top-style: dotted;
+	border-top-width: 1px;
 	padding: 10px 0;
 }
 
@@ -287,7 +315,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 #brdwelcome li span {
-	background: url(Randomness/img/bull.png) center left no-repeat;
+	background: url(Fire/img/bull.png) center left no-repeat;
 	padding-left: 18px;
 	margin-right: 3px;
 	display: inline-block;
@@ -338,8 +366,10 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #brdfooter #modcontrols dd span {
+	background: url(Fire/img/bull.png) center left no-repeat;
 	display: inline-block;
 	line-height: normal;
+	padding-left: 18px;
 	white-space: nowrap;
 }
 
@@ -361,16 +391,12 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	padding-top: 5px;
 }
 
-.pun #qjump label {
-	color: #fff !important;
-}
-
 .pun #brdfooter #qjump * {
 	white-space: nowrap;
 }
 
 .pun #brdfooter #searchlinks dd span {
-	background: url(Randomness/img/bull.png) center left no-repeat;
+	background: url(Fire/img/bull.png) center left no-repeat;
 	display: inline-block;
 	line-height: normal;
 	padding-left: 18px;
@@ -382,7 +408,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #brdfooter #feedlinks span {
-	background: url(Randomness/img/feed.png) center left no-repeat;
+	background: url(Fire/img/feed.png) center left no-repeat;
 	display: inline-block;
 	padding-left: 18px;
 	white-space: nowrap;
@@ -406,11 +432,12 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	clear: both;
 	position: relative;
 }
+
 .pun .linkst .crumbs {
 	font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
 	font-size: 1.462em;
 	line-height: 1.211em;
-	padding: 0 0 7px 0;
+	padding: 7px 0;
 }
 
 .pun .linksb .crumbs, .pun .postlinksb .crumbs {
@@ -501,7 +528,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	position: relative;
 }
 
-#punindex #brdmain .blocktable h2, #punindex.subforumlist .blocktable h2, #punsearch #vf h2 {
+#punindex #brdmain .blocktable h2, #punsearch #vf h2 {
 	font: 1em/1.462em Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	margin: 1px 1px 0 1px;
@@ -546,7 +573,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	line-height: 1.3077em;
 	border-style: none none solid none;
 	border-width: 1px;
-	color: #aaa !important;
 	text-align: left;
 }
 
@@ -817,7 +843,7 @@ MAIN POSTS
 	padding-left: 16px;
 	margin-left: 8px;
 	line-height: normal;
-	background: url(Randomness/img/bull.png) center left no-repeat;
+	background: url(Fire/img/bull.png) center left no-repeat;
 }
 
 .pun .blockpost .usercontacts {
@@ -825,7 +851,7 @@ MAIN POSTS
 }
 
 .pun .blockpost .usercontacts .email {
-	background: url(Randomness/img/email.png) left 65% no-repeat;
+	background: url(Fire/img/email.png) left 65% no-repeat;
 	margin-right: 5px;
 	padding-left: 21px;
 	display: inline-block;
@@ -833,7 +859,7 @@ MAIN POSTS
 }
 
 .pun .blockpost .usercontacts .website {
-	background: url(Randomness/img/ext.png) left 65% no-repeat;
+	background: url(Fire/img/ext.png) left 65% no-repeat;
 	padding-left: 18px;
 	display: inline-block;
 	line-height: normal;
@@ -918,7 +944,8 @@ MAIN POSTS
 }
 
 .pun .quotebox {
-	border-left: solid 4px;
+	border-style: solid;
+	border-width: 1px 1px 1px 3px;
 	margin: 0.75em 1em;
 	padding: 0 0.75em;
 }
@@ -1007,7 +1034,7 @@ MAIN FORMS
 
 .pun #quickpost legend, #punpost legend, #punedit legend {
 	width: 25em;
-	color: #e5e5e5;
+	overflow: hidden;
 	white-space: nowrap;
 }
 
@@ -1051,7 +1078,7 @@ MAIN FORMS
 
 .pun .error-list li {
 	padding-left: 24px;
-	background: url(Randomness/img/exclaim.png) center left no-repeat;
+	background: url(Fire/img/exclaim.png) center left no-repeat;
 }
 
 .pun .inform {
@@ -1101,7 +1128,7 @@ MAIN FORMS
 }
 
 .pun .required strong {
-	background: url(Randomness/img/asterisk.png) center right no-repeat;
+	background: url(Fire/img/asterisk.png) center right no-repeat;
 	font-weight: normal;
 	padding-right: 14px;
 	white-space: pre;
@@ -1132,7 +1159,7 @@ MAIN FORMS
 }
 
 .pun .rbox label {
-	padding: 3px 0 3px 0;
+	padding: 3px 0 3px 1.75em;
 	position: relative;
 	min-height: 1px;
 }
@@ -1143,7 +1170,7 @@ MAIN FORMS
 }
 
 .pun .rbox input {
-	margin: 2px 0.75em 3px 0;
+	margin: 3px 0.75em 3px -1.75em;
 	float: left;
 	position: relative;
 	vertical-align: middle;
@@ -1174,7 +1201,7 @@ MAIN FORMS
 }
 
 .pun .blockform .bblinks li span {
-	background: url(Randomness/img/help.png) center left no-repeat;
+	background: url(Fire/img/help.png) center left no-repeat;
 	margin-right: 8px;
 	padding-left: 20px;
 	display: inline-block;
@@ -1225,7 +1252,7 @@ MAIN FORMS
 }
 
 .pun span.email {
-	background: url(Randomness/img/email.png) left 65% no-repeat;
+	background: url(Fire/img/email.png) left 65% no-repeat;
 	margin-right: 5px;
 	padding-left: 21px;
 	display: inline-block;
@@ -1233,7 +1260,7 @@ MAIN FORMS
 }
 
 .pun span.website {
-	background: url(Randomness/img/ext.png) left 65% no-repeat;
+	background: url(Fire/img/ext.png) left 65% no-repeat;
 	padding-left: 18px;
 	display: inline-block;
 	line-height: normal;
@@ -1358,7 +1385,7 @@ PROFILES (+ ADMIN MENU)
 	padding-left: 16px;
 	margin-left: 8px;
 	line-height: normal;
-	background: url(Randomness/img/bull.png) center left no-repeat;
+	background: url(Fire/img/bull.png) center left no-repeat;
 }
 
 #adstats .inbox, #adintro .inbox {
@@ -1388,54 +1415,53 @@ COLOUR SCHEME
 ----------------------------------------------------------------*/
 
 html, body, .pun {
-	background: #3f3f3f;
-	color: #fff;
+	background: #eeedea;
+	color: #333;
 }
 
 .pun .punwrap {
 	background: #fff;
-	border-color: #fff;
-	color: #566579;
+	border-color: #e1d9ca;
+	color: #665858;
 }
 
 #brdtitle #brddesc, .pun .pagepost, #brdstats #onlinelist, #brdfooter #searchlinks, #brdfooter #modcontrols,
-#punmaint h2, #punredirect h2, #adminconsole .submittop, .pun #debugtime, .pun .pagelink a, .pun .pagelink * {
-	border-color: #00b4ff;
+#punmaint h2, #punredirect h2, #adminconsole .submittop, .pun #debugtime, .pun .pagelink * {
+	border-color: #cec7b9;
 }
 
 .pun a, .pun a:link, .pun a:visited {
-	color: #00b4ff;
+	color: #990000;
 }
 
 .pun a:hover, .pun a:active, .pun a:focus {
-	color: #db2900;
-	text-decoration: none;
+	color: #f60;
 }
 
 .pun .postmsg .postimg a:link img, .pun .postmsg .postimg a:visited img {
-	border-color: #22538a;
+	border-color: #990000;
 }
 
 .pun .postmsg .postimg a:hover img, .pun .postmsg .postimg a:active img, .pun .postmsg .postimg a:focus img {
-	border-color: #db2900;
+	border-color: #f60;
 }
 
 /* Primary Navigation
 ----------------------------------------------------------------*/
 
 #brdmenu {
-	background: #00b4ff;
+	background: #990000;
 }
 
 #brdmenu a, #brdmenu a:link, #brdmenu a:visited {
-	background: #00b4ff;
-	border-color: #3f3f3f;
-	color: #fff;
+	background: #990000;
+	border-color: #fff;
+	color: #ddd;
 }
 
 #brdmenu a:hover, #brdmenu a:active, #brdmenu a:focus {
-	background: #db2900;
-	border-color: #3f3f3f;
+	background: #f60;
+	border-color: #fff;
 	color: #fff;
 }
 
@@ -1443,17 +1469,17 @@ html, body, .pun {
 ----------------------------------------------------------------*/
 
 .pun .blocktable .box {
-	background: #fcfdfe;
-	border: none;
+	background: #fbfaf5;
+	border-color: #cec7b9 #e7e2d9;
 }
 
 #punindex .blocktable h2, .pun #vf h2 {
-	color: #fff;
+	color: #836359;
 }
 
 #adminconsole fieldset th, #adminconsole fieldset td {
-	background: #f4f4f4;
-	border: none;
+	background: #f3f2ed;
+	border-color: #ebe0dc;
 }
 
 .pun #users1 h2 {
@@ -1461,42 +1487,40 @@ html, body, .pun {
 }
 
 .pun .blocktable td {
-	border-color: #aaa;
+	border-color: #ebe0dc;
 }
 
 .pun .blocktable th {
-	background: #00b4ff;
-	border: none;
-	color: #fff;
+	background: #ecebe7;
+	border-color: #e1d9ca;
+	color: #836359;
 }
 
 .pun .blocktable td.tcl span.stickytext {
-	color: #3399CC;
+	color: #000;
 }
 
 /* Main Posts
 ----------------------------------------------------------------*/
 
 .pun .blockpost {
-	background: #f4f4f4;
-	border: none;
-	margin-bottom: 10px;
-	border-radius: 0 0 5px 5px;
+	background: #f3f2ed;
+	border-color: #cec7b9 #e7e2d9;
 }
 
 .pun .blockpost h2 {
-	background: #f4f4f4;
-	border-top: #00b4ff 4px solid;
-	border-bottom: none;
+	background: #ecebe7;
+	border-color: #e1d9ca;
+	color: #836359;
 }
 
 .pun .blockpost .postbody, .pun .blockpost .postfoot {
-	background: #fcfdfe;
-	border: none;
+	background: #fbfaf5;
+	border-color: #ebe0dc;
 }
 
 .pun .blockpost .postfootright li {
-	color: #fcfdfe;
+	color: #fbfaf5;
 }
 
 .pun .postmsg, #punhelp code, #punhelp samp {
@@ -1504,17 +1528,17 @@ html, body, .pun {
 }
 
 .pun .postsignature, .pun .postmsg .postedit {
-	color: #566579;
+	color: #665858;
 }
 
 .pun .quotebox {
-	background: #ecf9ff;
-	border-color: #00b4ff;
-	color: #566579;
+	background: #f4f4e8;
+	border-color: #ccc;
+	color: #665858;
 }
 
 .pun .quotebox cite {
-	color: #3e3e3e;
+	color: #836359;
 }
 
 .pun .codebox, #punhelp .codebox code {
@@ -1523,7 +1547,7 @@ html, body, .pun {
 }
 
 .pun .postmsg hr {
-	background: #b9c5ce;
+	background: #cec7b9;
 }
 
 .pun .postmsg ins, #punhelp samp ins {
@@ -1534,28 +1558,28 @@ html, body, .pun {
 ----------------------------------------------------------------*/
 
 .pun .blockform .box, #adstats, #adintro, #postpreview, #posterror {
-
-	border: none;
-	background: #e5e5e5;
+	border-color: #cec7b9 #e7e2d9;
+	background: #ecebe7;
 }
 
 #punmisc #rules .box, #punhelp .box {
-	border: none;
-	background: #f4f4f4;
+	border-color: #cec7b9 #e7e2d9;
+	background: #f3f2ed;
 }
 
 .pun #quickpost h2, #punpost .blockform h2, #punedit .blockform h2, #posterror h2,
 #pundelete .blockform h2 {
-	color: #333;
+	background: #ecebe7;
+	color: #836359;
 }
 
 .pun .forminfo {
 	background: #fff;
-	border-color: #dfe6ee;
+	border-color: #ebe0dc;
 }
 
 #puninstall form#install .forminfo {
-	background: #00b4ff;
+	background: #990000;
 	color: #fff;
 }
 
@@ -1571,21 +1595,20 @@ html, body, .pun {
 }
 
 .pun .infldset, #adintro .inbox, #adstats .inbox {
-	background: #f4f4f4;
-	border: none;
+	background: #f3f2ed;
+	border-color: #ebe0dc;
 }
 
-.pun label, .pun legend, #adminconsole fieldset th, #adminconsole fieldset td {
-	color: #3e3e3e;
-	border-color: #e5e5e5;
+.pun label, .pun legend, #adminconsole fieldset th {
+	color: #836359;
 }
 
 .pun fieldset p {
-	border-color: #b9c5ce;
+	border-color: #cec7b9;
 }
 
 .pun .blockmenu ul, .pun .blockmenu li {
-	border-color: #b9c5ce;
+	border-color: #cec7b9;
 }
 
 .pun .blockmenu a:hover, .pun .blockmenu a:active, .pun .blockmenu a:focus {
@@ -1594,20 +1617,20 @@ html, body, .pun {
 
 .pun .blockmenu .isactive a:link, .pun .blockmenu .isactive a:visited {
 	color: #333;
-	background: #f4f4f4;
-}
+	background: #f3f2ed;
+	}
 
 .pun #viewprofile .box {
-	border-color: #b9c5ce #d9e1e7;
-	background: #ebf1f5;
+	border-color: #cec7b9 #e7e2d9;
+	background: #ecebe7;
 }
 
 .pun #viewprofile dt, #adstats dt {
-	color: #3e3e3e;
+	color: #836359;
 }
 
 .pun #viewprofile dl, .pun #viewprofile dd, #adstats dl, #adstats dd {
-	border-color: #dfe6ee;
+	border-color: #ebe0dc;
 }
 
 #adminconsole fieldset td.nodefault {
@@ -1615,7 +1638,7 @@ html, body, .pun {
 }
 
 .pun .multiselect {
-	color: #3e3e3e;
+	color: #836359;
 }
 
 .pun .checklist {
@@ -1627,172 +1650,15 @@ html, body, .pun {
 ----------------------------------------------------------------*/
 
 .pun .icon {
-	border-color: #cff1ff #c0ecff #b4e9ff #cff1ff;
-	border-radius: 999px;
+	border-color: #f1eee8 #dddad4 #e8e5df #f1efe8;
 }
 
 .pun .iredirect .icon {
-	border-color: #b9c5ce;
+	border-color: #cec7b9;
 	border-width: 1px;
 	padding: 7px;
 }
 
 .pun .inew .icon {
-	border-color: #91d4ff #87d4ff #6cd4ff #72d4ff;
-	border-radius: 999px;
-}
-
-/* Forms and buttons
-----------------------------------------------------------------*/
-
-.pun input[type="submit"], .pun input[type="button"] {
-	color: #fff;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-	background-color: #00bde6;
-	background-image: linear-gradient(to bottom,#19d6ff,#00bde6);
-	background-repeat: repeat-x;
-	border-color: #00aacf !important;
-	*background-color: #04c;
-	display: inline-block;
-	*display: inline;
-	*zoom: 1;
-	padding: 3px 12px;
-	margin-bottom: 0;
-	font-size: 14px;
-	line-height: 20px;
-	text-align: center;
-	vertical-align: middle;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	*border: 0;
-	border-bottom-color: #008dab;
-	*margin-left: 0;
-	box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 1px 2px rgba(0,0,0,.05);
-}
-
-.pun #brdfooter #qjump input[type="submit"] {
-	margin-top: -8px;
-	margin-left: -6px;
-}
-
-.pun tr {
-	border-bottom: #999;
-}
-
-.pun #categoryedit tbody tr td input, .pun td.tc2 input {
-	width: 40px;
-}
-
-.pun #categoryedit tbody tr td.tcl input {
-	width: 400px;
-}
-
-.pun #brdfooter #qjump select {
-    width: 175px;
-    height: 28px;
-}
-
-.pun input[type="submit"]:hover, .pun input[type="button"]:hover, .pun input[type="submit"]:focus, .pun input[type="button"]:focus {
-	text-decoration: none;
-	background-image: linear-gradient(to bottom,#00bde6,#00b0d6);
-	-webkit-transition: background-image 0.25s linear;
-	-moz-transition: background-image 0.25s linear;
-	-o-transition: background-image 0.25s linear;
-	transition: background-image 0.25s linear;
-}
-
-.pun select {
-	display: inline-block;
-	height: 26px;
-	width: 300px;
-	padding: 3px 6px;
-	margin-bottom: 10px;
-	line-height: 20px;
-	color: #555;
-	vertical-align: middle;
-}
-
-.pun input[type="text"], .pun input[type="password"], .pun input[type="datetime"], .pun input[type="datetime-local"], .pun input[type="date"], .pun input[type="month"], .pun input[type="time"], .pun input[type="week"], .pun input[type="number"], .pun input[type="email"], .pun input[type="url"], .pun input[type="search"], .pun input[type="tel"], .pun input[type="color"], .uneditable-input {
-	display: inline-block;
-	height: 20px;
-	width: 400px;
-	padding: 3px 6px;
-	margin-bottom: 3px;
-	line-height: 20px;
-	color: #555;
-	vertical-align: middle;
-}
-
-.pun .uneditable-input {
-	width: 400px;
-	margin-left: 0;
-}
-
-.pun textarea {
-	width: 500px;
-	margin-left: 0;
-}
-
-textarea, select[multiple], select[size] {
-	height: auto;
-}
-
-textarea, .pun input[type="text"], .pun input[type="password"], .pun input[type="datetime"], .pun input[type="datetime-local"], .pun input[type="date"], .pun input[type="month"], .pun input[type="time"], .pun input[type="week"], .pun input[type="number"], .pun input[type="email"], .pun input[type="url"], .pun input[type="search"], .pun input[type="tel"], .pun input[type="color"], select, .uneditable-input {
-	background: #fff;
-	border: 1px solid #ccc;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-	-webkit-transition: border linear .2s,box-shadow linear .2s;
-	-moz-transition: border linear .2s,box-shadow linear .2s;
-	-o-transition: border linear .2s,box-shadow linear .2s;
-	transition: border linear .2s,box-shadow linear .2s;
-}
-
-textarea:focus, .pun input[type="text"]:focus, .pun input[type="password"]:focus, .pun input[type="datetime"]:focus, .pun input[type="datetime-local"]:focus, .pun input[type="date"]:focus, .pun input[type="month"]:focus, .pun input[type="time"]:focus, .pun input[type="week"]:focus, .pun input[type="number"]:focus, .pun input[type="email"]:focus, .pun input[type="url"]:focus, .pun input[type="search"]:focus, .pun input[type="tel"]:focus, .pun input[type="color"]:focus, select:hover, .uneditable-input:focus {
-	border-color: rgba(82,168,236,0.8);
-	outline: thin dotted 9;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(82,168,236,.6);
-}
-
-.pun input[type="file"], .pun input[type="image"], .pun input[type="submit"], .pun input[type="reset"], .pun input[type="button"] {
-	width: auto;
-}
-
-select, .pun input[type="file"] {
-	height: 30px;
-	*margin-top: 4px;
-	line-height: 30px;
-}
-
-select {
-	width: 220px;
-	border: 1px solid #ccc;
-	background: #fff;
-}
-
-.uneditable-input, .uneditable-textarea {
-	color: #999;
-	background: #fcfcfc;
-	border-color: #ccc;
-	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
-	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
-	box-shadow: inset 0 1px 2px rgba(0,0,0,0.025);
-	cursor: not-allowed;
-}
-
-.uneditable-input {
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-.uneditable-textarea {
-	width: auto;
-	height: auto;
-}
-
-.pun input:-moz-placeholder, textarea:-moz-placeholder, .pun input:-ms-input-placeholder, textarea:-ms-input-placeholder, .pun input:, textarea: {
-	color: #bbb;
+	border-color: #ca0000 #ab0000 #bb0000 #d30000;
 }
