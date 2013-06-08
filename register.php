@@ -327,19 +327,6 @@ if (!empty($errors))
 <?php endif; ?>					</div>
 				</fieldset>
 			</div>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_prof_reg['Privacy options legend'] ?></legend>
-					<div class="infldset">
-						<p><?php echo $lang_prof_reg['Email setting info'] ?></p>
-						<div class="rbox">
-							<label><input type="radio" name="email_setting" value="0"<?php if ($email_setting == '0') echo ' checked="checked"' ?> /><?php echo $lang_prof_reg['Email setting 1'] ?><br /></label>
-							<label><input type="radio" name="email_setting" value="1"<?php if ($email_setting == '1') echo ' checked="checked"' ?> /><?php echo $lang_prof_reg['Email setting 2'] ?><br /></label>
-							<label><input type="radio" name="email_setting" value="2"<?php if ($email_setting == '2') echo ' checked="checked"' ?> /><?php echo $lang_prof_reg['Email setting 3'] ?><br /></label>
-						</div>
-					</div>
-				</fieldset>
-			</div>
 			<p class="buttons"><input type="submit" name="register" value="<?php echo $lang_register['Register'] ?>" /></p>
 		</form>
 	</div>
