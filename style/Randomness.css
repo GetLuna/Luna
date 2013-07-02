@@ -232,17 +232,20 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 ----------------------------------------------------------------*/
 
 #brdtitle h1 {
-	padding: 0 0 10px 0;
-	display: inline-block;
+	padding: 0 0 5px 0;
 }
 
 #brddesc {
-	display: inline-block;
-	padding: 10px 0;
+	padding: 0 0 10px 0;
 }
 
 #brddesc p {
 	padding: 0;
+}
+
+#brdmenu {
+	float: right;
+	margin-top: -55px;
 }
 
 #brdmenu ul {
@@ -1422,10 +1425,6 @@ html, body, .pun {
 
 /* Primary Navigation
 ----------------------------------------------------------------*/
-
-#brdmenu {
-	background: #00b4ff;
-}
 
 #brdmenu a, #brdmenu a:link, #brdmenu a:visited {
 	background: #00b4ff;
