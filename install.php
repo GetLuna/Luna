@@ -10,7 +10,7 @@
 // The ModernBB version this script installs
 define('FORUM_VERSION', '1.6.1');
 
-define('FORUM_DB_REVISION', 20);
+define('FORUM_DB_REVISION', 19);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 2);
 
@@ -146,7 +146,7 @@ if (!isset($_POST['form_sent']))
 	$title = $lang_install['My ModernBB Forum'];
 	$description = '<p><span>'.$lang_install['Description'].'</span></p>';
 	$default_lang = $install_lang;
-	$default_style = 'Randomness';
+	$default_style = 'Air';
 }
 else
 {
@@ -786,11 +786,6 @@ else
 			'cat_id'		=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
 				'allow_null'	=> false,
-				'default'		=>	'0'
-			),
-			'parent_forum_id'	=> array(
-				'datatype'		=> 'INT',
-				'allow_null'	=>	true,
 				'default'		=>	'0'
 			)
 		),

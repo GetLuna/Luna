@@ -9,6 +9,7 @@
 
 <div id="punadmin" class="pun">
 <div class="top-box"><div><!-- Top Corners --></div></div>
+<div class="punwrap">
 
 <div id="brdheader" class="block">
 	<div class="box">
@@ -20,16 +21,18 @@
 		<pun_status>
 	</div>
 </div>
-<div class="punwrap">
+
+<pun_announcement>
+
 <div id="brdmain">
 <pun_main>
-</div>
 </div>
 
 <pun_footer>
 
 </div>
 <div class="end-box"><div><!-- Bottom Corners --></div></div>
+</div>
 
 </body>
 </html>

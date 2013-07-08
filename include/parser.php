@@ -161,7 +161,7 @@ function strip_empty_bbcode($text)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|video|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -205,7 +205,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'video', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
+	$tags = array('quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
 	// List of tags that we need to check are open (You could not put b,i,u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -217,9 +217,9 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
 	$tags_block = array('quote', 'code', 'list', 'h', '*');
 	// Inline tags, we do not allow new lines in these
-	$tags_inline = array('b', 'video', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'h', 'topic', 'post', 'forum', 'user');
+	$tags_inline = array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'h', 'topic', 'post', 'forum', 'user');
 	// Tags we trim interior space
-	$tags_trim = array('img', 'video');
+	$tags_trim = array('img');
 	// Tags we remove quotes from the argument
 	$tags_quotes = array('url', 'email', 'img', 'topic', 'post', 'forum', 'user');
 	// Tags we limit bbcode in
@@ -233,7 +233,6 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		'forum' => array('img'),
 		'user'  => array('img'),
 		'img' 	=> array(),
-		'video' => array('url'),
 		'h'		=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'topic', 'post', 'forum', 'user'),
 	);
 	// Tags we can automatically fix bad nesting
@@ -764,16 +763,6 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[em\](.*?)\[/em\]%ms';
 	$pattern[] = '%\[colou?r=([a-zA-Z]{3,20}|\#[0-9a-fA-F]{6}|\#[0-9a-fA-F]{3})](.*?)\[/colou?r\]%ms';
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
-	
-	// DailyMotion Videos
-	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
-	$pattern[] = '%\[video=([0-9]+),([0-9]+)\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
-	// Youtube Videos
-	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/(youtu\.be/|watch\?v=)([^\[<]*?)(\[/url\])?\[/video\]%ms';
-	$pattern[] = '%\[video=([0-9]+),([0-9]+)\](\[url\])?([^\[<]*?)/(youtu\.be/|watch\?v=)([^\[<]*?)(\[/url\])?\[/video\]%ms';
-	// Vimeo videos
-	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/(vimeo\.com/)([^\[<]*?)(\[/url\])?\[/video\]%ms';
-	$pattern[] = '%\[video=([0-9]+),([0-9]+)\](\[url\])?([^\[<]*?)/(vimeo\.com/)([^\[<]*?)(\[/url\])?\[/video\]%ms';
 
 	$replace[] = '<strong>$1</strong>';
 	$replace[] = '<em>$1</em>';
@@ -784,16 +773,6 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<em>$1</em>';
 	$replace[] = '<span style="color: $1">$2</span>';
 	$replace[] = '</p><h5>$1</h5><p>';
-	
-	// DailyMotion videos
-	$replace[] = '<iframe width="480" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';	
-	$replace[] = '<iframe width="$1" height="$2" src="http://www.dailymotion.com/embed/video/$5"></iframe>';
-	// Youtube Videos
-	$replace[] = '<iframe width="480" height="360" src="http://www.youtube.com/embed/$4"></iframe>';
-	$replace[] = '<iframe width="$1" height="$2" src="http://www.youtube.com/embed/$6"></iframe>';
-	// Vimeo Videos
-	$replace[] = '<iframe width="480" height="360" src="http://player.vimeo.com/video/$4"></iframe>';
-	$replace[] = '<iframe width="$1" height="$2" src="http://player.vimeo.com/video/$6"></iframe>';
 
 	if (($is_signature && $pun_config['p_sig_img_tag'] == '1') || (!$is_signature && $pun_config['p_message_img_tag'] == '1'))
 	{

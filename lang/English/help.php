@@ -23,14 +23,13 @@ $lang_help = array(
 'Inserted text'			=>	'Inserted text',
 'Emphasised text'		=>	'Emphasised text',
 
-'Links, images and video'	=>	'Links, images and video',
+'Links and images'		=>	'Links and images',
 'Links info'			=>	'You can create links to other documents or to email addresses using the following tags:',
 'This help page'		=>	'This help page',
 'My email address'		=>	'My email address',
 'Images info'			=>	'If you want to display an image you can use the img tag. The text appearing after the "=" sign in the opening tag is used for the alt attribute and should be included whenever possible.',
-'ModernBB bbcode test'	=>	'ModernBB BBCode Test',
-'Video info'			=>	'ModernBB supports embedding from DailyMotion, Vimeo and YouTube. With the structure as seen below, you can embed a video from one of those platforms. "(x,y)" represents width and heigth.',
-'Video link'			=>	'Put the link to the video here',
+'ModernBB bbcode test'	=>	'ModernBB bbcode test',
+
 'Test topic'			=>	'Test topic',
 'Test post'				=>	'Test post',
 'Test forum'			=>	'Test forum',
