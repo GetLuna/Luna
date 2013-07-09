@@ -10,9 +10,9 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if (!$pun_user['is_admmod'])
@@ -29,7 +29,7 @@ if ($pun_user['g_moderator'] == '1' && $prefix == 'AP')
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Make sure the file actually exists
-if (!file_exists(PUN_ROOT.'plugins/'.$plugin))
+if (!file_exists(FORUM_ROOT.'plugins/'.$plugin))
 	message(sprintf($lang_admin_common['No plugin message'], $plugin));
 
 // Construct REQUEST_URI if it isn't set
@@ -38,12 +38,12 @@ if (!isset($_SERVER['REQUEST_URI']))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Admin'], str_replace('_', ' ', substr($plugin, strpos($plugin, '_') + 1, -4)));
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 // Attempt to load the plugin. We don't use @ here to suppress error messages,
 // because if we did and a parse error occurred in the plugin, we would only
 // get the "blank page of death"
-include PUN_ROOT.'plugins/'.$plugin;
+include FORUM_ROOT.'plugins/'.$plugin;
 if (!defined('PUN_PLUGIN_LOADED'))
 	message(sprintf($lang_admin_common['Plugin failed message'], $plugin));
 
@@ -53,4 +53,4 @@ if (!defined('PUN_PLUGIN_LOADED'))
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

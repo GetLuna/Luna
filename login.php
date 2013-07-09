@@ -10,12 +10,12 @@
 if (isset($_GET['action']))
 	define('PUN_QUIET_VISIT', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 // Load the login.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/login.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/login.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -71,7 +71,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 
 		// Regenerate the users info cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 	}
@@ -123,7 +123,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 		// Start with a clean slate
 		$errors = array();
 
-		require PUN_ROOT.'include/email.php';
+		require FORUM_ROOT.'include/email.php';
 
 		// Validate the email address
 		$email = strtolower(pun_trim($_POST['req_email']));
@@ -138,7 +138,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 			if ($db->num_rows($result))
 			{
 				// Load the "activate password" template
-				$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/activate_password.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/activate_password.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -180,7 +180,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 	$required_fields = array('req_email' => $lang_common['Email']);
 	$focus_element = array('request_pass', 'req_email');
 	define ('PUN_ACTIVE_PAGE', 'login');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 // If there are errors, we display them
 if (!empty($errors))
@@ -227,7 +227,7 @@ if (!empty($errors))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -271,7 +271,7 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_co
 $required_fields = array('req_username' => $lang_common['Username'], 'req_password' => $lang_common['Password']);
 $focus_element = array('login', 'req_username');
 define('PUN_ACTIVE_PAGE', 'login');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -302,4 +302,4 @@ require PUN_ROOT.'header.php';
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

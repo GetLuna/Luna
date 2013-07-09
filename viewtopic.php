@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -22,7 +22,7 @@ if ($id < 1 && $pid < 1)
 	message($lang_common['Bad request'], false, '404 Not Found');
 
 // Load the viewtopic.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/topic.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/topic.php';
 
 
 // If a post ID is specified we determine topic ID and page number so we can redirect to the correct message
@@ -143,7 +143,7 @@ if ($pun_config['o_quickpost'] == '1' &&
 	($cur_topic['closed'] == '0' || $is_admmod))
 {
 	// Load the post.php language file
-	require PUN_ROOT.'lang/'.$pun_user['language'].'/post.php';
+	require FORUM_ROOT.'lang/'.$pun_user['language'].'/post.php';
 
 	$required_fields = array('req_message' => $lang_common['Message']);
 	if ($pun_user['is_guest'])
@@ -174,7 +174,7 @@ else if ($pun_config['o_feed_type'] == '2')
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
 define('PUN_ALLOW_INDEX', 1);
 define('PUN_ACTIVE_PAGE', 'index');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -195,7 +195,7 @@ require PUN_ROOT.'header.php';
 <?php
 
 
-require PUN_ROOT.'include/parser.php';
+require FORUM_ROOT.'include/parser.php';
 
 $post_count = 0; // Keep track of post numbers
 
@@ -460,4 +460,4 @@ if ($pun_config['o_topic_views'] == '1')
 
 $forum_id = $cur_topic['forum_id'];
 $footer_style = 'viewtopic';
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

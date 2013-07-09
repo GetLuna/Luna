@@ -10,16 +10,16 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if (!$pun_user['is_admmod'])
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_index.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_index.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_index.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -41,7 +41,7 @@ if ($action == 'check_upgrade')
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Index']);
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 generate_admin_menu('index');
 
@@ -89,4 +89,4 @@ generate_admin_menu('index');
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

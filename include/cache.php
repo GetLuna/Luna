@@ -210,14 +210,14 @@ function generate_stopwords_cache()
 {
 	$stopwords = array();
 
-	$d = dir(PUN_ROOT.'lang');
+	$d = dir(FORUM_ROOT.'lang');
 	while (($entry = $d->read()) !== false)
 	{
 		if ($entry{0} == '.')
 			continue;
 
-		if (is_dir(PUN_ROOT.'lang/'.$entry) && file_exists(PUN_ROOT.'lang/'.$entry.'/stopwords.txt'))
-			$stopwords = array_merge($stopwords, file(PUN_ROOT.'lang/'.$entry.'/stopwords.txt'));
+		if (is_dir(FORUM_ROOT.'lang/'.$entry) && file_exists(FORUM_ROOT.'lang/'.$entry.'/stopwords.txt'))
+			$stopwords = array_merge($stopwords, file(FORUM_ROOT.'lang/'.$entry.'/stopwords.txt'));
 	}
 	$d->close();
 

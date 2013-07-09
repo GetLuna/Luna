@@ -10,16 +10,16 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if ($pun_user['g_id'] != PUN_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_bans.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_bans.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_bans.php';
 
 // Add/edit a ban (stage 1)
 if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
@@ -102,7 +102,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 	$focus_element = array('bans2', 'ban_user');
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 	generate_admin_menu('bans');
 
@@ -175,7 +175,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 // Add/edit a ban (stage 2)
@@ -257,7 +257,7 @@ else if (isset($_POST['add_edit_ban']))
 		$ban_ip = implode(' ', $addresses);
 	}
 
-	require PUN_ROOT.'include/email.php';
+	require FORUM_ROOT.'include/email.php';
 	if ($ban_email != '' && !is_valid_email($ban_email))
 	{
 		if (!preg_match('%^[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$%', $ban_email))
@@ -292,7 +292,7 @@ else if (isset($_POST['add_edit_ban']))
 
 	// Regenerate the bans cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_bans_cache();
 
@@ -315,7 +315,7 @@ else if (isset($_GET['del_ban']))
 
 	// Regenerate the bans cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_bans_cache();
 
@@ -386,7 +386,7 @@ else if (isset($_GET['find_ban']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans'], $lang_admin_bans['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -471,13 +471,13 @@ else if (isset($_GET['find_ban']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 $focus_element = array('bans', 'new_ban_user');
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 generate_admin_menu('bans');
 
@@ -567,4 +567,4 @@ generate_admin_menu('bans');
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

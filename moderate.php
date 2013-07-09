@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 // This particular function doesn't require forum-based moderator access. It can be used
@@ -35,7 +35,7 @@ if (isset($_GET['get_host']))
 	}
 
 	// Load the misc.php language file
-	require PUN_ROOT.'lang/'.$pun_user['language'].'/misc.php';
+	require FORUM_ROOT.'lang/'.$pun_user['language'].'/misc.php';
 
 	message(sprintf($lang_misc['Host info 1'], $ip).'<br />'.sprintf($lang_misc['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a href="admin_users.php?show_users='.$ip.'">'.$lang_misc['Show more users'].'</a>');
 }
@@ -59,7 +59,7 @@ if (!$pun_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
 
 // Load the misc.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/misc.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/misc.php';
 
 
 // All other topic moderation features require a topic ID in GET
@@ -100,7 +100,7 @@ if (isset($_GET['tid']))
 			// Delete the posts
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
 
-			require PUN_ROOT.'include/search_idx.php';
+			require FORUM_ROOT.'include/search_idx.php';
 			strip_search_index($posts);
 
 			// Get last_post, last_post_id, and last_poster for the topic after deletion
@@ -121,7 +121,7 @@ if (isset($_GET['tid']))
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
 		define('PUN_ACTIVE_PAGE', 'index');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -143,7 +143,7 @@ if (isset($_GET['tid']))
 </div>
 <?php
 
-		require PUN_ROOT.'footer.php';
+		require FORUM_ROOT.'footer.php';
 	}
 	else if (isset($_POST['split_posts']) || isset($_POST['split_posts_comply']))
 	{
@@ -176,7 +176,7 @@ if (isset($_GET['tid']))
 				message($lang_common['Bad request']);
 
 			// Load the post.php language file
-			require PUN_ROOT.'lang/'.$pun_user['language'].'/post.php';
+			require FORUM_ROOT.'lang/'.$pun_user['language'].'/post.php';
 
 			// Check subject
 			$new_subject = isset($_POST['new_subject']) ? pun_trim($_POST['new_subject']) : '';
@@ -221,7 +221,7 @@ if (isset($_GET['tid']))
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
 		$focus_element = array('subject','new_subject');
 		define('PUN_ACTIVE_PAGE', 'index');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -267,14 +267,14 @@ if (isset($_GET['tid']))
 </div>
 <?php
 
-		require PUN_ROOT.'footer.php';
+		require FORUM_ROOT.'footer.php';
 	}
 
 
 	// Show the moderate posts view
 
 	// Load the viewtopic.php language file
-	require PUN_ROOT.'lang/'.$pun_user['language'].'/topic.php';
+	require FORUM_ROOT.'lang/'.$pun_user['language'].'/topic.php';
 
 	// Used to disable the Move and Delete buttons if there are no replies to this topic
 	$button_status = ($cur_topic['num_replies'] == 0) ? ' disabled="disabled"' : '';
@@ -296,7 +296,7 @@ if (isset($_GET['tid']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
 	define('PUN_ACTIVE_PAGE', 'index');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -317,7 +317,7 @@ if (isset($_GET['tid']))
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
 
-	require PUN_ROOT.'include/parser.php';
+	require FORUM_ROOT.'include/parser.php';
 
 	$post_count = 0; // Keep track of post numbers
 
@@ -414,7 +414,7 @@ if (isset($_GET['tid']))
 </form>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -495,7 +495,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
 	define('PUN_ACTIVE_PAGE', 'index');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -543,7 +543,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 // Merge two or more topics
@@ -619,7 +619,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
 	define('PUN_ACTIVE_PAGE', 'index');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -643,7 +643,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 // Delete one or more topics
@@ -660,7 +660,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 		if (@preg_match('%[^0-9,]%', $topics))
 			message($lang_common['Bad request']);
 
-		require PUN_ROOT.'include/search_idx.php';
+		require FORUM_ROOT.'include/search_idx.php';
 
 		// Verify that the topic IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.$topics.') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
@@ -705,7 +705,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
 	define('PUN_ACTIVE_PAGE', 'index');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -727,7 +727,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -800,7 +800,7 @@ else if (isset($_GET['unstick']))
 // No specific forum moderation action was specified in the query string, so we'll display the moderator forum
 
 // Load the viewforum.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/forum.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/forum.php';
 
 // Fetch some info about the forum
 $result = $db->query('SELECT f.forum_name, f.redirect_url, f.num_topics, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
@@ -840,7 +840,7 @@ $paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.pa
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_forum['forum_name']));
 define('PUN_ACTIVE_PAGE', 'index');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -1012,4 +1012,4 @@ else
 </form>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

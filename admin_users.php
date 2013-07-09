@@ -10,16 +10,16 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if (!$pun_user['is_admmod'])
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_users.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_users.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_users.php';
 
 // Show IP statistics for a certain user ID
 if (isset($_GET['ip_stats']))
@@ -43,7 +43,7 @@ if (isset($_GET['ip_stats']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -118,7 +118,7 @@ if (isset($_GET['ip_stats']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -144,7 +144,7 @@ if (isset($_GET['show_users']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -257,7 +257,7 @@ if (isset($_GET['show_users']))
 	</div>
 </div>
 <?php
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -346,7 +346,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Move users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 	generate_admin_menu('users');
 
@@ -383,7 +383,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -459,7 +459,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 		// Should we delete all posts made by these users?
 		if (isset($_POST['delete_posts']))
 		{
-			require PUN_ROOT.'include/search_idx.php';
+			require FORUM_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all posts made by this user
@@ -493,7 +493,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 		// Regenerate the users info cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 
@@ -502,7 +502,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Delete users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 	generate_admin_menu('users');
 
@@ -532,7 +532,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -618,7 +618,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 
 		// Regenerate the bans cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_bans_cache();
 
@@ -628,7 +628,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 	$focus_element = array('bans2', 'ban_message');
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 	generate_admin_menu('users');
 
@@ -677,7 +677,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -815,7 +815,7 @@ else if (isset($_GET['find_user']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -910,7 +910,7 @@ else if (isset($_GET['find_user']))
 </form>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -919,7 +919,7 @@ else
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users']);
 	$focus_element = array('find_user', 'form[username]');
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 	generate_admin_menu('users');
 
@@ -1090,5 +1090,5 @@ else
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }

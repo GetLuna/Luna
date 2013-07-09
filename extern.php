@@ -57,9 +57,9 @@
 
 define('PUN_QUIET_VISIT', 1);
 
-if (!defined('PUN_ROOT'))
-	define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+if (!defined('FORUM_ROOT'))
+	define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 // The length at which topic subjects will be truncated (for HTML output)
 if (!defined('FORUM_EXTERN_MAX_SUBJECT_LENGTH'))
@@ -278,7 +278,7 @@ function output_html($feed)
 // Show recent discussions
 if ($action == 'feed')
 {
-	require PUN_ROOT.'include/parser.php';
+	require FORUM_ROOT.'include/parser.php';
 
 	// Determine what type of feed to output
 	$type = isset($_GET['type']) ? strtolower($_GET['type']) : 'html';
@@ -478,7 +478,7 @@ if ($action == 'feed')
 else if ($action == 'online' || $action == 'online_full')
 {
 	// Load the index.php language file
-	require PUN_ROOT.'lang/'.$pun_config['o_default_lang'].'/index.php';
+	require FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/index.php';
 
 	// Fetch users online info and generate strings for output
 	$num_guests = $num_users = 0;
@@ -517,7 +517,7 @@ else if ($action == 'online' || $action == 'online_full')
 else if ($action == 'stats')
 {
 	// Load the index.php language file
-	require PUN_ROOT.'lang/'.$pun_config['o_default_lang'].'/index.php';
+	require FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/index.php';
 
 	// Collect some statistics from the database
 	if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
@@ -526,7 +526,7 @@ else if ($action == 'stats')
 	if (!defined('PUN_USERS_INFO_LOADED'))
 	{
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 		require FORUM_CACHE_DIR.'cache_users_info.php';

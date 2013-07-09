@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -48,7 +48,7 @@ if ($is_admmod && $pun_user['g_id'] != PUN_ADMIN && in_array($cur_post['poster_i
 
 
 // Load the delete.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/delete.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/delete.php';
 
 
 if (isset($_POST['delete']))
@@ -56,7 +56,7 @@ if (isset($_POST['delete']))
 	if ($is_admmod)
 		confirm_referrer('delete.php');
 
-	require PUN_ROOT.'include/search_idx.php';
+	require FORUM_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post)
 	{
@@ -83,9 +83,9 @@ if (isset($_POST['delete']))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_delete['Delete post']);
 define ('PUN_ACTIVE_PAGE', 'index');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
-require PUN_ROOT.'include/parser.php';
+require FORUM_ROOT.'include/parser.php';
 $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
 ?>
@@ -139,4 +139,4 @@ $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smili
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

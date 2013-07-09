@@ -21,16 +21,16 @@ define('PUN_SEARCH_MIN_WORD', 3);
 define('PUN_SEARCH_MAX_WORD', 20);
 
 
-define('PUN_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', dirname(__FILE__).'/');
 
 // Send the Content-type header in case the web server is setup to send something else  
 header('Content-type: text/html; charset=utf-8');  
 
 // Load the functions script
-require PUN_ROOT.'include/functions.php';
+require FORUM_ROOT.'include/functions.php';
 
 // Load UTF-8 functions
-require PUN_ROOT.'include/utf8/utf8.php';
+require FORUM_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
@@ -70,15 +70,15 @@ if (get_magic_quotes_gpc())
 $install_lang = isset($_REQUEST['install_lang']) ? pun_trim($_REQUEST['install_lang']) : 'English';
 
 // If such a language pack doesn't exist, or isn't up-to-date enough to translate this page, default to English
-if (!file_exists(PUN_ROOT.'lang/'.$install_lang.'/install.php'))
+if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/install.php'))
 	$install_lang = 'English';
 
-require PUN_ROOT.'lang/'.$install_lang.'/install.php';
+require FORUM_ROOT.'lang/'.$install_lang.'/install.php';
 
-if (file_exists(PUN_ROOT.'config.php'))
+if (file_exists(FORUM_ROOT.'config.php'))
 {
 	// Check to see whether ModernBB is already installed
-	include PUN_ROOT.'config.php';
+	include FORUM_ROOT.'config.php';
 
 	// If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
 	if (defined('FORUM'))
@@ -94,7 +94,7 @@ define('PUN', 1);
 
 // If the cache directory is not specified, we use the default setting
 if (!defined('FORUM_CACHE_DIR'))
-	define('FORUM_CACHE_DIR', PUN_ROOT.'cache/');
+	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
 
 // Make sure we are running at least MIN_PHP_VERSION
 if (!function_exists('version_compare') || version_compare(PHP_VERSION, MIN_PHP_VERSION, '<'))
@@ -191,7 +191,7 @@ else
 		$alerts[] = $lang_install['Passwords not match'];
 
 	// Validate email
-	require PUN_ROOT.'include/email.php';
+	require FORUM_ROOT.'include/email.php';
 
 	if (!is_valid_email($email))
 		$alerts[] = $lang_install['Wrong email'];
@@ -213,8 +213,8 @@ if (!forum_is_writable(FORUM_CACHE_DIR))
 	$alerts[] = sprintf($lang_install['Alert cache'], FORUM_CACHE_DIR);
 
 // Check if default avatar directory is writable
-if (!forum_is_writable(PUN_ROOT.'img/avatars/'))
-	$alerts[] = sprintf($lang_install['Alert avatar'], PUN_ROOT.'img/avatars/');
+if (!forum_is_writable(FORUM_ROOT.'img/avatars/'))
+	$alerts[] = sprintf($lang_install['Alert avatar'], FORUM_ROOT.'img/avatars/');
 
 if (!isset($_POST['form_sent']) || !empty($alerts))
 {
@@ -507,27 +507,27 @@ else
 	switch ($db_type)
 	{
 		case 'mysql':
-			require PUN_ROOT.'include/dblayer/mysql.php';
+			require FORUM_ROOT.'include/dblayer/mysql.php';
 			break;
 
 		case 'mysql_innodb':
-			require PUN_ROOT.'include/dblayer/mysql_innodb.php';
+			require FORUM_ROOT.'include/dblayer/mysql_innodb.php';
 			break;
 
 		case 'mysqli':
-			require PUN_ROOT.'include/dblayer/mysqli.php';
+			require FORUM_ROOT.'include/dblayer/mysqli.php';
 			break;
 
 		case 'mysqli_innodb':
-			require PUN_ROOT.'include/dblayer/mysqli_innodb.php';
+			require FORUM_ROOT.'include/dblayer/mysqli_innodb.php';
 			break;
 
 		case 'pgsql':
-			require PUN_ROOT.'include/dblayer/pgsql.php';
+			require FORUM_ROOT.'include/dblayer/pgsql.php';
 			break;
 
 		case 'sqlite':
-			require PUN_ROOT.'include/dblayer/sqlite.php';
+			require FORUM_ROOT.'include/dblayer/sqlite.php';
 			break;
 
 		default:
@@ -1652,7 +1652,7 @@ else
 		or error('Unable to insert into table '.$db_prefix.'posts. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Index the test post so searching for it works
-	require PUN_ROOT.'include/search_idx.php';
+	require FORUM_ROOT.'include/search_idx.php';
 	update_search_index('post', 1, $message, $subject);
 
 	$db->end_transaction();
@@ -1672,9 +1672,9 @@ else
 
 	// Attempt to write config.php and serve it up for download if writing fails
 	$written = false;
-	if (forum_is_writable(PUN_ROOT))
+	if (forum_is_writable(FORUM_ROOT))
 	{
-		$fh = @fopen(PUN_ROOT.'config.php', 'wb');
+		$fh = @fopen(FORUM_ROOT.'config.php', 'wb');
 		if ($fh)
 		{
 			fwrite($fh, $config);

@@ -28,15 +28,15 @@ else if (defined('PUN_HELP'))
 else
 	$tpl_file = 'main.tpl';
 
-if (file_exists(PUN_ROOT.'style/'.$pun_user['style'].'/'.$tpl_file))
+if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/'.$tpl_file))
 {
-	$tpl_file = PUN_ROOT.'style/'.$pun_user['style'].'/'.$tpl_file;
-	$tpl_inc_dir = PUN_ROOT.'style/'.$pun_user['style'].'/';
+	$tpl_file = FORUM_ROOT.'style/'.$pun_user['style'].'/'.$tpl_file;
+	$tpl_inc_dir = FORUM_ROOT.'style/'.$pun_user['style'].'/';
 }
 else
 {
-	$tpl_file = PUN_ROOT.'include/template/'.$tpl_file;
-	$tpl_inc_dir = PUN_ROOT.'include/user/';
+	$tpl_file = FORUM_ROOT.'include/template/'.$tpl_file;
+	$tpl_inc_dir = FORUM_ROOT.'include/user/';
 }
 
 $tpl_main = file_get_contents($tpl_file);
@@ -58,8 +58,8 @@ foreach ($pun_includes as $cur_include)
 	// Allow for overriding user includes, too.
 	if (file_exists($tpl_inc_dir.$cur_include[1]))  
 		require $tpl_inc_dir.$cur_include[1];  
-	else if (file_exists(PUN_ROOT.'include/user/'.$cur_include[1]))  
-		require PUN_ROOT.'include/user/'.$cur_include[1];  
+	else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1]))  
+		require FORUM_ROOT.'include/user/'.$cur_include[1];  
 	else
 		error(sprintf($lang_common['Pun include error'], pun_htmlspecialchars($cur_include[0]), basename($tpl_file)));
 
@@ -97,7 +97,7 @@ if (!defined('PUN_ALLOW_INDEX'))
 
 if (defined('PUN_ADMIN_CONSOLE'))
 {
-	if (file_exists(PUN_ROOT.'style/'.$pun_user['style'].'/base_admin.css'))
+	if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/base_admin.css'))
 		echo '<link rel="stylesheet" type="text/css" href="style/'.$pun_user['style'].'/base_admin.css" />'."\n";
 	else
 		echo '<link rel="stylesheet" type="text/css" href="style/imports/base_admin.css" />'."\n";

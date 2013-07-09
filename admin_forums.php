@@ -10,16 +10,16 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if ($pun_user['g_id'] != PUN_ADMIN)
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_forums.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_forums.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_forums.php';
 
 // Add a "default" forum
 if (isset($_POST['add_forum']))
@@ -35,7 +35,7 @@ if (isset($_POST['add_forum']))
 
 	// Regenerate the quick jump cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_quickjump_cache();
 
@@ -79,7 +79,7 @@ else if (isset($_GET['del_forum']))
 
 		// Regenerate the quick jump cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_quickjump_cache();
 
@@ -92,7 +92,7 @@ else if (isset($_GET['del_forum']))
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 		define('PUN_ACTIVE_PAGE', 'admin');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_admin_menu('forums');
 
@@ -118,7 +118,7 @@ else if (isset($_GET['del_forum']))
 </div>
 <?php
 
-		require PUN_ROOT.'footer.php';
+		require FORUM_ROOT.'footer.php';
 	}
 }
 
@@ -138,7 +138,7 @@ else if (isset($_POST['update_positions']))
 
 	// Regenerate the quick jump cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_quickjump_cache();
 
@@ -203,7 +203,7 @@ else if (isset($_GET['edit_forum']))
 
 		// Regenerate the quick jump cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_quickjump_cache();
 
@@ -217,7 +217,7 @@ else if (isset($_GET['edit_forum']))
 
 		// Regenerate the quick jump cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_quickjump_cache();
 
@@ -233,7 +233,7 @@ else if (isset($_GET['edit_forum']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 	generate_admin_menu('forums');
 
@@ -359,12 +359,12 @@ else if (isset($_GET['edit_forum']))
 
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 generate_admin_menu('forums');
 
@@ -478,4 +478,4 @@ while ($cur_forum = $db->fetch_assoc($result))
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

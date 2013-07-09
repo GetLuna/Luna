@@ -11,7 +11,7 @@
 if (!defined('PUN'))
 	exit;
 
-require PUN_ROOT.'include/utf8/utils/ascii.php';
+require FORUM_ROOT.'include/utf8/utils/ascii.php';
 
 //
 // Validate an email address

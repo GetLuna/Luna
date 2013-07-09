@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 // If we are logged in, we shouldn't be here
@@ -19,10 +19,10 @@ if (!$pun_user['is_guest'])
 }
 
 // Load the register.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/register.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
 
 // Load the register.php/profile.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
 
 if ($pun_config['o_regs_allow'] == '0')
 	message($lang_register['No new regs']);
@@ -37,7 +37,7 @@ else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
 {
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_register['Register'], $lang_register['Forum rules']);
 	define('PUN_ACTIVE_PAGE', 'register');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div id="rules" class="blockform">
@@ -58,7 +58,7 @@ else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 // Start with a clean slate
@@ -98,7 +98,7 @@ if (isset($_POST['form_sent']))
 		$errors[] = $lang_prof_reg['Pass not match'];
 
 	// Validate email
-	require PUN_ROOT.'include/email.php';
+	require FORUM_ROOT.'include/email.php';
 
 	if (!is_valid_email($email1))
 		$errors[] = $lang_common['Invalid email'];
@@ -133,7 +133,7 @@ if (isset($_POST['form_sent']))
 	if (isset($_POST['language']))
 	{
 		$language = preg_replace('%[\.\\\/]%', '', $_POST['language']);
-		if (!file_exists(PUN_ROOT.'lang/'.$language.'/common.php'))
+		if (!file_exists(FORUM_ROOT.'lang/'.$language.'/common.php'))
 			message($lang_common['Bad request']);
 	}
 	else
@@ -167,7 +167,7 @@ if (isset($_POST['form_sent']))
 			if ($banned_email)
 			{
 				// Load the "banned email register" template
-				$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_register.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_register.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -186,7 +186,7 @@ if (isset($_POST['form_sent']))
 			if (!empty($dupe_list))
 			{
 				// Load the "dupe email register" template
-				$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/dupe_email_register.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/dupe_email_register.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -205,7 +205,7 @@ if (isset($_POST['form_sent']))
 			if ($pun_config['o_regs_report'] == '1')
 			{
 				// Load the "new user" template
-				$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/new_user.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/new_user.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -225,7 +225,7 @@ if (isset($_POST['form_sent']))
 		if ($pun_config['o_regs_verify'] == '1')
 		{
 			// Load the "welcome" template
-			$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/welcome.tpl'));
+			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/welcome.tpl'));
 
 			// The first row contains the subject
 			$first_crlf = strpos($mail_tpl, "\n");
@@ -246,7 +246,7 @@ if (isset($_POST['form_sent']))
 
 		// Regenerate the users info cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 
@@ -261,7 +261,7 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_re
 $required_fields = array('req_user' => $lang_common['Username'], 'req_password1' => $lang_common['Password'], 'req_password2' => $lang_prof_reg['Confirm pass'], 'req_email1' => $lang_common['Email'], 'req_email2' => $lang_common['Email'].' 2');
 $focus_element = array('register', 'req_user');
 define('PUN_ACTIVE_PAGE', 'register');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 $timezone = isset($timezone) ? $timezone : $pun_config['o_default_timezone'];
 $dst = isset($dst) ? $dst : $pun_config['o_default_dst'];
@@ -434,4 +434,4 @@ if (!empty($errors))
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

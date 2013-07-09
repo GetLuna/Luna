@@ -35,11 +35,11 @@ define('FORUM_NO_SET_NAMES', 1);
 if (!function_exists('version_compare') || version_compare(PHP_VERSION, MIN_PHP_VERSION, '<'))
 	exit('You are running PHP version '.PHP_VERSION.'. ModernBB '.UPDATE_TO.' requires at least PHP '.MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
 
-define('PUN_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', dirname(__FILE__).'/');
 
 // Attempt to load the configuration file config.php
-if (file_exists(PUN_ROOT.'config.php'))
-	include PUN_ROOT.'config.php';
+if (file_exists(FORUM_ROOT.'config.php'))
+	include FORUM_ROOT.'config.php';
 
 // If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
 if (defined('FORUM'))
@@ -57,10 +57,10 @@ if (!defined('PUN_DEBUG'))
 	define('PUN_DEBUG', 1);
 
 // Load the functions script
-require PUN_ROOT.'include/functions.php';
+require FORUM_ROOT.'include/functions.php';
 
 // Load UTF-8 functions
-require PUN_ROOT.'include/utf8/utf8.php';
+require FORUM_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
@@ -98,7 +98,7 @@ if (empty($cookie_name))
 
 // If the cache directory is not specified, we use the default setting
 if (!defined('FORUM_CACHE_DIR'))
-	define('FORUM_CACHE_DIR', PUN_ROOT.'cache/');
+	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
 
 // Turn off PHP time limit
 @set_time_limit(0);
@@ -111,7 +111,7 @@ define('PUN_GUEST', 3);
 define('PUN_MEMBER', 4);
 
 // Load DB abstraction layer and try to connect
-require PUN_ROOT.'include/dblayer/common_db.php';
+require FORUM_ROOT.'include/dblayer/common_db.php';
 
 // Check what the default character set is - since 1.2 didn't specify any we will use whatever the default was (usually latin1)
 $old_connection_charset = defined('FORUM_DEFAULT_CHARSET') ? FORUM_DEFAULT_CHARSET : $db->get_names();
@@ -127,11 +127,11 @@ while ($cur_config_item = $db->fetch_row($result))
 // Load language file
 $default_lang = $pun_config['o_default_lang'];
 
-if (!file_exists(PUN_ROOT.'lang/'.$default_lang.'/update.php'))
+if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/update.php'))
 	$default_lang = 'English';
 
-require PUN_ROOT.'lang/'.$default_lang.'/common.php';
-require PUN_ROOT.'lang/'.$default_lang.'/update.php';
+require FORUM_ROOT.'lang/'.$default_lang.'/common.php';
+require FORUM_ROOT.'lang/'.$default_lang.'/update.php';
 
 // Check current version
 $cur_version = $pun_config['o_cur_version'];
@@ -170,7 +170,7 @@ if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revisio
 	error($lang_update['No update error']);
 
 $default_style = $pun_config['o_default_style'];
-if (!file_exists(PUN_ROOT.'style/'.$default_style.'.css'))
+if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
 	$default_style = 'Air';
 
 // Start a session, used to queue up errors if duplicate users occur when converting from FluxBB v1.2.
@@ -659,7 +659,7 @@ if (isset($_POST['req_db_pass']))
 		else
 		{
 			// Load the admin_options.php language file
-			require PUN_ROOT.'lang/'.$default_lang.'/admin_options.php';
+			require FORUM_ROOT.'lang/'.$default_lang.'/admin_options.php';
 
 			$maintenance_message = $lang_admin_options['Default maintenance message'];
 		}
@@ -668,7 +668,7 @@ if (isset($_POST['req_db_pass']))
 
 		// Regenerate the config cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_config_cache();
 	}
@@ -1533,7 +1533,7 @@ switch ($stage)
 		{
 			$errors = array();
 
-			require PUN_ROOT.'include/email.php';
+			require FORUM_ROOT.'include/email.php';
 
 			foreach ($_SESSION['dupe_users'] as $id => $cur_user)
 			{
@@ -1608,12 +1608,12 @@ switch ($stage)
 					}
 
 					// Email the user alerting them of the change
-					if (file_exists(PUN_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'))
-						$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'));
-					else if (file_exists(PUN_ROOT.'lang/'.$pun_config['o_default_lang'].'/mail_templates/rename.tpl'))
-						$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_config['o_default_lang'].'/mail_templates/rename.tpl'));
+					if (file_exists(FORUM_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'))
+						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'));
+					else if (file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/mail_templates/rename.tpl'))
+						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/mail_templates/rename.tpl'));
 					else
-						$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/English/mail_templates/rename.tpl'));
+						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/English/mail_templates/rename.tpl'));
 
 					// The first row contains the subject
 					$first_crlf = strpos($mail_tpl, "\n");
@@ -1718,7 +1718,7 @@ foreach ($errors[$id] as $cur_error)
 		if (isset($pun_config['o_parser_revision']) && $pun_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
 			break;
 
-		require PUN_ROOT.'include/parser.php';
+		require FORUM_ROOT.'include/parser.php';
 
 		// Fetch posts to process this cycle
 		$result = $db->query('SELECT id, message FROM '.$db->prefix.'posts WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
@@ -1753,7 +1753,7 @@ foreach ($errors[$id] as $cur_error)
 		if (isset($pun_config['o_parser_revision']) && $pun_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
 			break;
 
-		require PUN_ROOT.'include/parser.php';
+		require FORUM_ROOT.'include/parser.php';
 
 		// Fetch users to process this cycle
 		$result = $db->query('SELECT id, signature FROM '.$db->prefix.'users WHERE id > '.$start_at.' ORDER BY id ASC LIMIT '.PER_PAGE) or error('Unable to fetch users', __FILE__, __LINE__, $db->error());
@@ -1810,7 +1810,7 @@ foreach ($errors[$id] as $cur_error)
 			}
 		}
 
-		require PUN_ROOT.'include/search_idx.php';
+		require FORUM_ROOT.'include/search_idx.php';
 
 		// Fetch posts to process this cycle
 		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
@@ -1855,11 +1855,11 @@ foreach ($errors[$id] as $cur_error)
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.UPDATE_TO_PARSER_REVISION.'\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
 
 		// Check the default language still exists!
-		if (!file_exists(PUN_ROOT.'lang/'.$pun_config['o_default_lang'].'/common.php'))
+		if (!file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/common.php'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'English\' WHERE conf_name = \'o_default_lang\'') or error('Unable to update default language', __FILE__, __LINE__, $db->error());
 
 		// Check the default style still exists!
-		if (!file_exists(PUN_ROOT.'style/'.$pun_config['o_default_style'].'.css'))
+		if (!file_exists(FORUM_ROOT.'style/'.$pun_config['o_default_style'].'.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Air\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 
 		// This feels like a good time to synchronize the forums

@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -51,7 +51,7 @@ if ((($tid && (($cur_posting['post_replies'] == '' && $pun_user['g_post_replies'
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the post.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/post.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/post.php';
 
 // Start with a clean slate
 $errors = array();
@@ -96,15 +96,15 @@ if (isset($_POST['form_sent']))
 		$banned_email = false;
 
 		// Load the register.php/prof_reg.php language files
-		require PUN_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
-		require PUN_ROOT.'lang/'.$pun_user['language'].'/register.php';
+		require FORUM_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
+		require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
 
 		// It's a guest, so we have to validate the username
 		check_username($username);
 
 		if ($pun_config['p_force_guest_email'] == '1' || $email != '')
 		{
-			require PUN_ROOT.'include/email.php';
+			require FORUM_ROOT.'include/email.php';
 			if (!is_valid_email($email))
 				$errors[] = $lang_common['Invalid email'];
 
@@ -132,7 +132,7 @@ if (isset($_POST['form_sent']))
 	// Validate BBCode syntax
 	if ($pun_config['p_message_bbcode'] == '1')
 	{
-		require PUN_ROOT.'include/parser.php';
+		require FORUM_ROOT.'include/parser.php';
 		$message = preparse_bbcode($message, $errors);
 	}
 
@@ -162,7 +162,7 @@ if (isset($_POST['form_sent']))
 	// Did everything go according to plan?
 	if (empty($errors) && !isset($_POST['preview']))
 	{
-		require PUN_ROOT.'include/search_idx.php';
+		require FORUM_ROOT.'include/search_idx.php';
 
 		// If it's a reply
 		if ($tid)
@@ -210,7 +210,7 @@ if (isset($_POST['form_sent']))
 				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$pun_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
 				{
-					require_once PUN_ROOT.'include/email.php';
+					require_once FORUM_ROOT.'include/email.php';
 
 					$notification_emails = array();
 
@@ -225,13 +225,13 @@ if (isset($_POST['form_sent']))
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']]))
 						{
-							if (file_exists(PUN_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply.tpl'))
+							if (file_exists(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply.tpl'))
 							{
 								// Load the "new reply" template
-								$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply.tpl'));
+								$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply.tpl'));
 
 								// Load the "new reply full" template (with post included)
-								$mail_tpl_full = trim(file_get_contents(PUN_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply_full.tpl'));
+								$mail_tpl_full = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply_full.tpl'));
 
 								// The first row contains the subject (it also starts with "Subject:")
 								$first_crlf = strpos($mail_tpl, "\n");
@@ -318,7 +318,7 @@ if (isset($_POST['form_sent']))
 				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['id'].' AND u.id!='.$pun_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
 				{
-					require_once PUN_ROOT.'include/email.php';
+					require_once FORUM_ROOT.'include/email.php';
 
 					$notification_emails = array();
 
@@ -333,13 +333,13 @@ if (isset($_POST['form_sent']))
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']]))
 						{
-							if (file_exists(PUN_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic.tpl'))
+							if (file_exists(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic.tpl'))
 							{
 								// Load the "new topic" template
-								$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic.tpl'));
+								$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic.tpl'));
 
 								// Load the "new topic full" template (with post included)
-								$mail_tpl_full = trim(file_get_contents(PUN_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic_full.tpl'));
+								$mail_tpl_full = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic_full.tpl'));
 
 								// The first row contains the subject (it also starts with "Subject:")
 								$first_crlf = strpos($mail_tpl, "\n");
@@ -395,7 +395,7 @@ if (isset($_POST['form_sent']))
 		if ($pun_user['is_guest'] && $banned_email && $pun_config['o_mailing_list'] != '')
 		{
 			// Load the "banned email post" template
-			$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_post.tpl'));
+			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_post.tpl'));
 
 			// The first row contains the subject
 			$first_crlf = strpos($mail_tpl, "\n");
@@ -532,7 +532,7 @@ else
 }
 
 define('PUN_ACTIVE_PAGE', 'index');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -574,7 +574,7 @@ if (!empty($errors))
 }
 else if (isset($_POST['preview']))
 {
-	require_once PUN_ROOT.'include/parser.php';
+	require_once FORUM_ROOT.'include/parser.php';
 	$preview_message = parse_message($message, $hide_smilies);
 
 ?>
@@ -697,7 +697,7 @@ if (!empty($checkboxes))
 // Check to see if the topic review is to be displayed
 if ($tid && $pun_config['o_topic_review'] != '0')
 {
-	require_once PUN_ROOT.'include/parser.php';
+	require_once FORUM_ROOT.'include/parser.php';
 
 	$result = $db->query('SELECT poster, message, hide_smilies, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT '.$pun_config['o_topic_review']) or error('Unable to fetch topic review', __FILE__, __LINE__, $db->error());
 
@@ -747,4 +747,4 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 
 }
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

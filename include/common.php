@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-if (!defined('PUN_ROOT'))
-	exit('The constant PUN_ROOT must be defined and point to a valid FluxBB installation root directory.');
+if (!defined('FORUM_ROOT'))
+	exit('The constant FORUM_ROOT must be defined and point to a valid FluxBB installation root directory.');
 
 // Define the version and database revision that this code was written for
 define('FORUM_VERSION', '2.0-dev');
@@ -32,18 +32,18 @@ if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
 }
 
 // Attempt to load the configuration file config.php
-if (file_exists(PUN_ROOT.'config.php'))
-	require PUN_ROOT.'config.php';
+if (file_exists(FORUM_ROOT.'config.php'))
+	require FORUM_ROOT.'config.php';
 
 // If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
 if (defined('FORUM'))
 	define('PUN', FORUM);
 
 // Load the functions script
-require PUN_ROOT.'include/functions.php';
+require FORUM_ROOT.'include/functions.php';
 
 // Load UTF-8 functions
-require PUN_ROOT.'include/utf8/utf8.php';
+require FORUM_ROOT.'include/utf8/utf8.php';
 
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
@@ -98,7 +98,7 @@ if (empty($cookie_name))
 
 // If the cache directory is not specified, we use the default setting
 if (!defined('FORUM_CACHE_DIR'))
-	define('FORUM_CACHE_DIR', PUN_ROOT.'cache/');
+	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
 
 // Define a few commonly used constants
 define('PUN_UNVERIFIED', 0);
@@ -108,7 +108,7 @@ define('PUN_GUEST', 3);
 define('PUN_MEMBER', 4);
 
 // Load DB abstraction layer and connect
-require PUN_ROOT.'include/dblayer/common_db.php';
+require FORUM_ROOT.'include/dblayer/common_db.php';
 
 // Start a transaction
 $db->start_transaction();
@@ -120,7 +120,7 @@ if (file_exists(FORUM_CACHE_DIR.'cache_config.php'))
 if (!defined('PUN_CONFIG_LOADED'))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	require FORUM_CACHE_DIR.'cache_config.php';
@@ -155,8 +155,8 @@ $pun_user = array();
 check_cookie($pun_user);
 
 // Attempt to load the common language file
-if (file_exists(PUN_ROOT.'lang/'.$pun_user['language'].'/common.php'))
-	include PUN_ROOT.'lang/'.$pun_user['language'].'/common.php';
+if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/common.php'))
+	include FORUM_ROOT.'lang/'.$pun_user['language'].'/common.php';
 else
 	error('There is no valid language pack \''.pun_htmlspecialchars($pun_user['language']).'\' installed. Please reinstall a language of that name');
 
@@ -171,7 +171,7 @@ if (file_exists(FORUM_CACHE_DIR.'cache_bans.php'))
 if (!defined('PUN_BANS_LOADED'))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_bans_cache();
 	require FORUM_CACHE_DIR.'cache_bans.php';

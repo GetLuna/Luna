@@ -10,12 +10,12 @@
 // The contents of this file are very much inspired by the file search.php
 // from the phpBB Group forum software phpBB2 (http://www.phpbb.com)
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 // Load the search.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/search.php';
-require PUN_ROOT.'lang/'.$pun_user['language'].'/forum.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/search.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/forum.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -23,7 +23,7 @@ if ($pun_user['g_read_board'] == '0')
 else if ($pun_user['g_search'] == '0')
 	message($lang_search['No search permission'], false, '403 Forbidden');
 
-require PUN_ROOT.'include/search_idx.php';
+require FORUM_ROOT.'include/search_idx.php';
 
 // Figure out what to do :-)
 if (isset($_GET['action']) || isset($_GET['search_id']))
@@ -550,7 +550,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_search['Search results']);
 		define('PUN_ACTIVE_PAGE', 'search');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -593,9 +593,9 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		}
 		else if ($show_as == 'posts')
 		{
-			require PUN_ROOT.'lang/'.$pun_user['language'].'/topic.php';
+			require FORUM_ROOT.'lang/'.$pun_user['language'].'/topic.php';
 
-			require PUN_ROOT.'include/parser.php';
+			require FORUM_ROOT.'include/parser.php';
 
 			$post_count = 0;
 		}
@@ -767,7 +767,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 </div>
 <?php
 
-		require PUN_ROOT.'footer.php';
+		require FORUM_ROOT.'footer.php';
 	}
 	else
 		message($lang_search['No hits']);
@@ -777,7 +777,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_search['Search']);
 $focus_element = array('search', 'keywords');
 define('PUN_ACTIVE_PAGE', 'search');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <div id="searchform" class="blockform">
@@ -911,4 +911,4 @@ else
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

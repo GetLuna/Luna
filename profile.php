@@ -7,13 +7,13 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 // Include UTF-8 function
-require PUN_ROOT.'include/utf8/substr_replace.php';
-require PUN_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
-require PUN_ROOT.'include/utf8/strcasecmp.php';
+require FORUM_ROOT.'include/utf8/substr_replace.php';
+require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
+require FORUM_ROOT.'include/utf8/strcasecmp.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $section = isset($_GET['section']) ? $_GET['section'] : null;
@@ -30,10 +30,10 @@ if ($action != 'change_pass' || !isset($_GET['key']))
 }
 
 // Load the prof_reg.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
 
 // Load the profile.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/profile.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/profile.php';
 
 
 if ($action == 'change_pass')
@@ -124,7 +124,7 @@ if ($action == 'change_pass')
 	$required_fields = array('req_old_password' => $lang_profile['Old pass'], 'req_new_password1' => $lang_profile['New pass'], 'req_new_password2' => $lang_profile['Confirm new pass']);
 	$focus_element = array('change_pass', ((!$pun_user['is_admmod']) ? 'req_old_password' : 'req_new_password1'));
 	define('PUN_ACTIVE_PAGE', 'profile');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -152,7 +152,7 @@ if ($action == 'change_pass')
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -197,7 +197,7 @@ else if ($action == 'change_email')
 		if (pun_hash($_POST['req_password']) !== $pun_user['password'])
 			message($lang_profile['Wrong pass']);
 
-		require PUN_ROOT.'include/email.php';
+		require FORUM_ROOT.'include/email.php';
 
 		// Validate the email address
 		$new_email = strtolower(pun_trim($_POST['req_new_email']));
@@ -212,7 +212,7 @@ else if ($action == 'change_email')
 			else if ($pun_config['o_mailing_list'] != '')
 			{
 				// Load the "banned email change" template
-				$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_change.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_change.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -240,7 +240,7 @@ else if ($action == 'change_email')
 					$dupe_list[] = $cur_dupe['username'];
 
 				// Load the "dupe email change" template
-				$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/dupe_email_change.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/dupe_email_change.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -262,7 +262,7 @@ else if ($action == 'change_email')
 		$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($new_email).'\', activate_key=\''.$new_email_key.'\' WHERE id='.$id) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 		// Load the "activate email" template
-		$mail_tpl = trim(file_get_contents(PUN_ROOT.'lang/'.$pun_user['language'].'/mail_templates/activate_email.tpl'));
+		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/activate_email.tpl'));
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");
@@ -283,7 +283,7 @@ else if ($action == 'change_email')
 	$required_fields = array('req_new_email' => $lang_profile['New email'], 'req_password' => $lang_common['Password']);
 	$focus_element = array('change_email', 'req_new_email');
 	define('PUN_ACTIVE_PAGE', 'profile');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -307,7 +307,7 @@ else if ($action == 'change_email')
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -368,10 +368,10 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 				message($lang_profile['Too large'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang_profile['bytes'].'.');
 
 			// Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
-			if (!@move_uploaded_file($uploaded_file['tmp_name'], PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp'))
+			if (!@move_uploaded_file($uploaded_file['tmp_name'], FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp'))
 				message($lang_profile['Move failed'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.');
 
-			list($width, $height, $type,) = @getimagesize(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
+			list($width, $height, $type,) = @getimagesize(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
 
 			// Determine type
 			if ($type == IMAGETYPE_GIF)
@@ -383,21 +383,21 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 			else
 			{
 				// Invalid type
-				@unlink(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
+				@unlink(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
 				message($lang_profile['Bad type']);
 			}
 
 			// Now check the width/height
 			if (empty($width) || empty($height) || $width > $pun_config['o_avatars_width'] || $height > $pun_config['o_avatars_height'])
 			{
-				@unlink(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
+				@unlink(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
 				message($lang_profile['Too wide or high'].' '.$pun_config['o_avatars_width'].'x'.$pun_config['o_avatars_height'].' '.$lang_profile['pixels'].'.');
 			}
 
 			// Delete any old avatars and put the new one in place
 			delete_avatar($id);
-			@rename(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp', PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension);
-			@chmod(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension, 0644);
+			@rename(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension);
+			@chmod(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension, 0644);
 		}
 		else
 			message($lang_profile['Unknown failure']);
@@ -409,7 +409,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	$required_fields = array('req_file' => $lang_profile['File']);
 	$focus_element = array('upload_avatar', 'req_file');
 	define('PUN_ACTIVE_PAGE', 'profile');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -433,7 +433,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -466,7 +466,7 @@ else if (isset($_POST['update_group_membership']))
 
 	// Regenerate the users info cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
 	
@@ -619,7 +619,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 		// Should we delete all posts made by this user?
 		if (isset($_POST['delete_posts']))
 		{
-			require PUN_ROOT.'include/search_idx.php';
+			require FORUM_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all posts made by this user
@@ -652,7 +652,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 
 		// Regenerate the users info cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 		
@@ -673,7 +673,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Confirm delete user']);
 	define('PUN_ACTIVE_PAGE', 'profile');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -698,7 +698,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 
 
@@ -757,7 +757,7 @@ else if (isset($_POST['form_sent']))
 					if ($form['username'] != $old_username)
 					{
 						// Check username
-						require PUN_ROOT.'lang/'.$pun_user['language'].'/register.php';
+						require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
 
 						$errors = array();
 						check_username($form['username'], $id);
@@ -775,7 +775,7 @@ else if (isset($_POST['form_sent']))
 
 			if ($pun_config['o_regs_verify'] == '0' || $pun_user['is_admmod'])
 			{
-				require PUN_ROOT.'include/email.php';
+				require FORUM_ROOT.'include/email.php';
 
 				// Validate the email address
 				$form['email'] = strtolower(pun_trim($_POST['req_email']));
@@ -862,7 +862,7 @@ else if (isset($_POST['form_sent']))
 				// Validate BBCode syntax
 				if ($pun_config['p_sig_bbcode'] == '1')
 				{
-					require PUN_ROOT.'include/parser.php';
+					require FORUM_ROOT.'include/parser.php';
 
 					$errors = array();
 
@@ -994,7 +994,7 @@ else if (isset($_POST['form_sent']))
 
 		// Regenerate the users info cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 
@@ -1017,7 +1017,7 @@ $last_post = format_time($user['last_post']);
 
 if ($user['signature'] != '')
 {
-	require PUN_ROOT.'include/parser.php';
+	require FORUM_ROOT.'include/parser.php';
 	$parsed_signature = parse_signature($user['signature']);
 }
 
@@ -1160,7 +1160,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), sprintf($lang_profile['Users profile'], pun_htmlspecialchars($user['username'])));
 	define('PUN_ALLOW_INDEX', 1);
 	define('PUN_ACTIVE_PAGE', 'index');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 ?>
 <div id="viewprofile" class="block">
@@ -1217,7 +1217,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }
 else
 {
@@ -1265,7 +1265,7 @@ else
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section essentials']);
 		$required_fields = array('req_username' => $lang_common['Username'], 'req_email' => $lang_common['Email']);
 		define('PUN_ACTIVE_PAGE', 'profile');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('essentials');
 
@@ -1438,7 +1438,7 @@ else
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section personal']);
 		define('PUN_ACTIVE_PAGE', 'profile');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('personal');
 
@@ -1471,7 +1471,7 @@ else
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section messaging']);
 		define('PUN_ACTIVE_PAGE', 'profile');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('messaging');
 
@@ -1520,7 +1520,7 @@ else
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section personality']);
 		define('PUN_ACTIVE_PAGE', 'profile');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('personality');
 
@@ -1570,7 +1570,7 @@ else
 	{
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section display']);
 		define('PUN_ACTIVE_PAGE', 'profile');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('display');
 
@@ -1657,7 +1657,7 @@ else
 	{
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section privacy']);
 		define('PUN_ACTIVE_PAGE', 'profile');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('privacy');
 
@@ -1706,7 +1706,7 @@ else
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section admin']);
 		define('PUN_ACTIVE_PAGE', 'profile');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('admin');
 
@@ -1835,5 +1835,5 @@ else
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 }

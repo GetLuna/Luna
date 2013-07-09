@@ -76,7 +76,7 @@ if ($pun_config['o_quickjump'] == '1')
 	if (!defined('PUN_QJ_LOADED'))
 	{
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_quickjump_cache($pun_user['g_id']);
 		require FORUM_CACHE_DIR.'cache_quickjump_'.$pun_user['g_id'].'.php';

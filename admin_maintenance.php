@@ -12,16 +12,16 @@ define('PUN_ADMIN_CONSOLE', 1);
 // Tell common.php that we don't want output buffering
 define('PUN_DISABLE_BUFFERING', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if ($pun_user['g_id'] != PUN_ADMIN)
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_maintenance.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_maintenance.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_maintenance.php';
 
 $action = isset($_REQUEST['action']) ? pun_trim($_REQUEST['action']) : '';
 
@@ -91,7 +91,7 @@ h1 {
 
 	$query_str = '';
 
-	require PUN_ROOT.'include/search_idx.php';
+	require FORUM_ROOT.'include/search_idx.php';
 
 	// Fetch posts to process this cycle
 	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
@@ -206,7 +206,7 @@ if ($action == 'prune')
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Prune']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require PUN_ROOT.'header.php';
+	require FORUM_ROOT.'header.php';
 
 	generate_admin_menu('maintenance');
 
@@ -236,7 +236,7 @@ if ($action == 'prune')
 </div>
 <?php
 
-	require PUN_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
 	exit;
 }
 
@@ -248,7 +248,7 @@ if ($db->num_rows($result))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Maintenance']);
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 generate_admin_menu('maintenance');
 
@@ -357,4 +357,4 @@ generate_admin_menu('maintenance');
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

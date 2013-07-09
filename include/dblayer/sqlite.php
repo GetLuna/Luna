@@ -35,7 +35,7 @@ class DBLayer
 	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect)
 	{
 		// Prepend $db_name with the path to the forum root directory
-		$db_name = PUN_ROOT.$db_name;
+		$db_name = FORUM_ROOT.$db_name;
 
 		$this->prefix = $db_prefix;
 

@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -17,10 +17,10 @@ else if ($pun_user['g_view_users'] == '0')
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the userlist.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/userlist.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/userlist.php';
 
 // Load the search.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/search.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/search.php';
 
 
 // Determine if we are allowed to view post counts
@@ -60,7 +60,7 @@ $paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.pa
 
 define('PUN_ALLOW_INDEX', 1);
 define('PUN_ACTIVE_PAGE', 'userlist');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
@@ -181,4 +181,4 @@ else
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

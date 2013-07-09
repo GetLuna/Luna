@@ -10,16 +10,16 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if (!$pun_user['is_admmod'])
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_reports.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_reports.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_reports.php';
 
 // Zap a report
 if (isset($_POST['zap_id']))
@@ -48,7 +48,7 @@ if (isset($_POST['zap_id']))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Reports']);
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 generate_admin_menu('reports');
 
@@ -182,4 +182,4 @@ else
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

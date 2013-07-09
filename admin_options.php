@@ -10,16 +10,16 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if ($pun_user['g_id'] != PUN_ADMIN)
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_options.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_options.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_options.php';
 
 if (isset($_POST['form_sent']))
 {
@@ -110,7 +110,7 @@ if (isset($_POST['form_sent']))
 		$form['date_format'] = 'Y-m-d';
 
 
-	require PUN_ROOT.'include/email.php';
+	require FORUM_ROOT.'include/email.php';
 
 	if (!is_valid_email($form['admin_email']))
 		message($lang_admin_options['Invalid e-mail message']);
@@ -206,7 +206,7 @@ if (isset($_POST['form_sent']))
 
 	// Regenerate the config cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -216,7 +216,7 @@ if (isset($_POST['form_sent']))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 generate_admin_menu('options');
 
@@ -881,4 +881,4 @@ generate_admin_menu('options');
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

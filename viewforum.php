@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -20,7 +20,7 @@ if ($id < 1)
 	message($lang_common['Bad request'], false, '404 Not Found');
 
 // Load the viewforum.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/forum.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/forum.php';
 
 // Fetch some info about the forum
 if (!$pun_user['is_guest'])
@@ -102,7 +102,7 @@ if (!$pun_user['is_guest'])
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_forum['forum_name']));
 define('PUN_ALLOW_INDEX', 1);
 define('PUN_ACTIVE_PAGE', 'index');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <div class="linkst">
@@ -298,4 +298,4 @@ else
 
 $forum_id = $id;
 $footer_style = 'viewforum';
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

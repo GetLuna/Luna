@@ -10,8 +10,8 @@
 // Tell header.php to use the help template
 define('PUN_HELP', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -19,12 +19,12 @@ if ($pun_user['g_read_board'] == '0')
 
 
 // Load the help.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/help.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/help.php';
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_help['Help']);
 define('PUN_ACTIVE_PAGE', 'help');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 ?>
 <h2><span><?php echo $lang_help['BBCode'] ?></span></h2>
@@ -137,7 +137,7 @@ require PUN_ROOT.'header.php';
 <?php
 
 // Display the smiley set
-require PUN_ROOT.'include/parser.php';
+require FORUM_ROOT.'include/parser.php';
 
 $smiley_groups = array();
 
@@ -152,4 +152,4 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

@@ -7,8 +7,8 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
@@ -49,7 +49,7 @@ if ($is_admmod && $pun_user['g_id'] != PUN_ADMIN && in_array($cur_post['poster_i
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the post.php language file
-require PUN_ROOT.'lang/'.$pun_user['language'].'/post.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/post.php';
 
 // Start with a clean slate
 $errors = array();
@@ -90,7 +90,7 @@ if (isset($_POST['form_sent']))
 	// Validate BBCode syntax
 	if ($pun_config['p_message_bbcode'] == '1')
 	{
-		require PUN_ROOT.'include/parser.php';
+		require FORUM_ROOT.'include/parser.php';
 		$message = preparse_bbcode($message, $errors);
 	}
 
@@ -121,7 +121,7 @@ if (isset($_POST['form_sent']))
 	{
 		$edited_sql = (!isset($_POST['silent']) || !$is_admmod) ? ', edited='.time().', edited_by=\''.$db->escape($pun_user['username']).'\'' : '';
 
-		require PUN_ROOT.'include/search_idx.php';
+		require FORUM_ROOT.'include/search_idx.php';
 
 		if ($can_edit_subject)
 		{
@@ -147,7 +147,7 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_po
 $required_fields = array('req_subject' => $lang_common['Subject'], 'req_message' => $lang_common['Message']);
 $focus_element = array('edit', 'req_message');
 define('PUN_ACTIVE_PAGE', 'index');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 $cur_index = 1;
 
@@ -191,7 +191,7 @@ if (!empty($errors))
 }
 else if (isset($_POST['preview']))
 {
-	require_once PUN_ROOT.'include/parser.php';
+	require_once FORUM_ROOT.'include/parser.php';
 	$preview_message = parse_message($message, $hide_smilies);
 
 ?>
@@ -288,4 +288,4 @@ if (!empty($checkboxes))
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

@@ -10,16 +10,16 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('PUN_ROOT', dirname(__FILE__).'/');
-require PUN_ROOT.'include/common.php';
-require PUN_ROOT.'include/common_admin.php';
+define('FORUM_ROOT', dirname(__FILE__).'/');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if ($pun_user['g_id'] != PUN_ADMIN)
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_categories.php language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_categories.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_categories.php';
 
 // Add a new category
 if (isset($_POST['add_cat']))
@@ -79,7 +79,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		// Regenerate the quick jump cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
+			require FORUM_ROOT.'include/cache.php';
 
 		generate_quickjump_cache();
 
@@ -92,7 +92,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
 		define('PUN_ACTIVE_PAGE', 'admin');
-		require PUN_ROOT.'header.php';
+		require FORUM_ROOT.'header.php';
 
 		generate_admin_menu('categories');
 
@@ -119,7 +119,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 </div>
 <?php
 
-		require PUN_ROOT.'footer.php';
+		require FORUM_ROOT.'footer.php';
 	}
 }
 
@@ -147,7 +147,7 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 
 	// Regenerate the quick jump cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
+		require FORUM_ROOT.'include/cache.php';
 
 	generate_quickjump_cache();
 
@@ -163,7 +163,7 @@ for ($i = 0; $i < $num_cats; ++$i)
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
 define('PUN_ACTIVE_PAGE', 'admin');
-require PUN_ROOT.'header.php';
+require FORUM_ROOT.'header.php';
 
 generate_admin_menu('categories');
 
@@ -264,4 +264,4 @@ generate_admin_menu('categories');
 </div>
 <?php
 
-require PUN_ROOT.'footer.php';
+require FORUM_ROOT.'footer.php';

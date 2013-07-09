@@ -12,15 +12,15 @@ if (!defined('PUN'))
 	exit;
 
 // Make sure we have a usable language pack for admin.
-if (file_exists(PUN_ROOT.'lang/'.$pun_user['language'].'/admin_common.php'))
+if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/admin_common.php'))
 	$admin_language = $pun_user['language'];
-else if (file_exists(PUN_ROOT.'lang/'.$pun_config['o_default_lang'].'/admin_common.php'))
+else if (file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/admin_common.php'))
 	$admin_language = $pun_config['o_default_lang'];
 else
 	$admin_language = 'English';
 
 // Attempt to load the admin_common language file
-require PUN_ROOT.'lang/'.$admin_language.'/admin_common.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_common.php';
 
 //
 // Display the admin navigation menu
@@ -141,7 +141,7 @@ function prune($forum_id, $prune_sticky, $prune_date)
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$post_ids.')') or error('Unable to prune posts', __FILE__, __LINE__, $db->error());
 
 			// We removed a bunch of posts, so now we have to update the search index
-			require_once PUN_ROOT.'include/search_idx.php';
+			require_once FORUM_ROOT.'include/search_idx.php';
 			strip_search_index($post_ids);
 		}
 	}
