@@ -1,0 +1,8 @@
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+}
+
+.navbar-content {
+	width: 960px;
+	margin: 0 auto;
+}
