@@ -160,9 +160,12 @@ if (isset($focus_element))
 }
 // END SUBST - <body>
 
+$is_admin = $pun_user['g_id'] == PUN_ADMIN ? true : false;
+
 ?>
 <div class="navbar navbar-static-top">
   <div class="navbar-inner">
+  <div class="container">
     <a class="brand" href="admin_index.php">ModernBB</a>
     <ul class="nav">
       <li><a href="admin_index.php">Dashboard</a></li>
@@ -171,9 +174,9 @@ if (isset($focus_element))
 		  Content <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <li><a href="admin_forums.php">Forums</a></li>
-		  <li><a href="admin_categories.php">Categories</a></li>
-		  <li><a href="admin_censoring.php">Censoring</a></li>
+		  <?php if ($is_admin) { ?><li><a href="admin_forums.php">Forums</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_categories.php">Categories</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_censoring.php">Censoring</a></li><?php }; ?>
 		  <li><a href="admin_reports.php">Reports</a></li>
 		</ul>
 	  </li>
@@ -183,13 +186,13 @@ if (isset($focus_element))
 		</a>
 		<ul class="dropdown-menu">
 		  <li><a href="admin_users.php">Users</a></li>
-		  <li><a href="admin_ranks.php">Ranks</a></li>
-		  <li><a href="admin_groups.php">Groups</a></li>
-		  <li><a href="admin_permissions.php">Permissions</a></li>
+		  <?php if ($is_admin) { ?><li><a href="admin_ranks.php">Ranks</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_groups.php">Groups</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_permissions.php">Permissions</a></li><?php }; ?>
 		  <li><a href="admin_bans.php">Bans</a></li>
 		</ul>
 	  </li>
-      <li class="dropdown">
+      <?php if ($is_admin) { ?><li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		  Settings <b class="caret"></b>
 		</a>
@@ -198,68 +201,52 @@ if (isset($focus_element))
 		  <li><a href="admin_email.php">Email</a></li>
 		  <li><a href="admin_maintenance.php">Maintenance</a></li>
 		</ul>
-	  </li>
-      <li><a href="admin_extensions.php">Extensions</a></li>
-    </ul>
+	  </li><?php }; ?>
+      <?php if ($is_admin) { ?><li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Extensions <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+<?php
+
+	// See if there are any plugins
+	$plugins = forum_list_plugins($is_admin);
+
+	// Did we find any plugins?
+	if (!empty($plugins))
+	{
+
+		foreach ($plugins as $plugin_name => $plugin)
+			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="admin_loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
+
+	} else {
+		echo '<li class="nav-header">No plugins</li>';
+	}
+}; ?>
+        </ul>
+      </li>
+      </ul>
+    </div>
   </div>
 </div>
 <?php
+//Update checking
+$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/version2.0/version.txt'));
+if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
+	if (FORUM_VERSION < $latest_version) { ?>
+		<div class="alert alert-info">
+          <h4>ModernBB v<?php echo $latest_version ?> available</h4>
+          We found a new version of ModernBB on the web. Your board is out-of-date and we recommend you to update right away!<br />
+          <a class="btn btn-success">Download v<?php echo $latest_version ?></a>
+          <a class="btn btn-success">Changelog</a>
+        </div>
+<?php
+	}
+}
 
 // START SUBST - <pun_page>
 $tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
 // END SUBST - <pun_page>
-
-
-// Generate all that jazz
-$tpl_temp = '<div id="brdwelcome" class="inbox">';
-
-// The status information
-if (is_array($page_statusinfo))
-{
-	$tpl_temp .= "\n\t\t\t".'<ul class="conl">';
-	$tpl_temp .= "\n\t\t\t\t".implode("\n\t\t\t\t", $page_statusinfo);
-	$tpl_temp .= "\n\t\t\t".'</ul>';
-}
-else
-	$tpl_temp .= "\n\t\t\t".$page_statusinfo;
-
-// Generate quicklinks
-if (!empty($page_topicsearches))
-{
-	$tpl_temp .= "\n\t\t\t".'<ul class="conr">';
-	$tpl_temp .= "\n\t\t\t\t".'<li><span>'.$lang_common['Topic searches'].' '.implode(' | ', $page_topicsearches).'</span></li>';
-	$tpl_temp .= "\n\t\t\t".'</ul>';
-}
-
-$tpl_temp .= "\n\t\t\t".'<div class="clearer"></div>'."\n\t\t".'</div>';
-
-$tpl_main = str_replace('<pun_status>', $tpl_temp, $tpl_main);
-// END SUBST - <pun_status>
-
-
-// START SUBST - <pun_announcement>
-if ($pun_user['g_read_board'] == '1' && $pun_config['o_announcement'] == '1')
-{
-	ob_start();
-
-?>
-<div id="announce" class="block">
-	<div class="hd"><h2><span><?php echo $lang_common['Announcement'] ?></span></h2></div>
-	<div class="box">
-		<div id="announce-block" class="inbox">
-			<div class="usercontent"><?php echo $pun_config['o_announcement_message'] ?></div>
-		</div>
-	</div>
-</div>
-<?php
-
-	$tpl_temp = trim(ob_get_contents());
-	$tpl_main = str_replace('<pun_announcement>', $tpl_temp, $tpl_main);
-	ob_end_clean();
-}
-else
-	$tpl_main = str_replace('<pun_announcement>', '', $tpl_main);
-// END SUBST - <pun_announcement>
 
 
 // START SUBST - <pun_main>

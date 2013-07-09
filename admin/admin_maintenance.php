@@ -209,8 +209,6 @@ if ($action == 'prune')
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 
-	generate_admin_menu('maintenance');
-
 ?>
 	<div class="blockform">
 		<h2><span><?php echo $lang_admin_maintenance['Prune head'] ?></span></h2>
@@ -250,8 +248,6 @@ if ($db->num_rows($result))
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Maintenance']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
-
-generate_admin_menu('maintenance');
 
 ?>
 	<div class="blockform">

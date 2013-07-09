@@ -109,8 +109,6 @@ $focus_element = array('ranks', 'new_rank');
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 
-generate_admin_menu('ranks');
-
 ?>
 	<div class="blockform">
 		<h2><span><?php echo $lang_admin_ranks['Ranks head'] ?></span></h2>

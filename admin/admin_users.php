@@ -505,8 +505,6 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 
-	generate_admin_menu('users');
-
 ?>
 	<div class="blockform">
 		<h2><span><?php echo $lang_admin_users['Delete users'] ?></span></h2>
@@ -630,8 +628,6 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	$focus_element = array('bans2', 'ban_message');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-
-	generate_admin_menu('users');
 
 ?>
 	<div class="blockform">
@@ -921,8 +917,6 @@ else
 	$focus_element = array('find_user', 'form[username]');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-
-	generate_admin_menu('users');
 
 ?>
 	<div class="blockform">

@@ -105,8 +105,6 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'header.php';
 
-	generate_admin_menu('bans');
-
 ?>
 	<div class="blockform">
 		<h2><span><?php echo $lang_admin_bans['Ban advanced head'] ?></span></h2>
@@ -479,8 +477,6 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_ad
 $focus_element = array('bans', 'new_ban_user');
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'header.php';
-
-generate_admin_menu('bans');
 
 ?>
 	<div class="blockform">

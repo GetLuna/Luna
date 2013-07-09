@@ -23,28 +23,8 @@ if (!$pun_user['is_admmod'])
 require FORUM_ROOT.'lang/'.$admin_language.'/admin_index.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-
-// Check for upgrade
-if ($action == 'check_upgrade')
-{
-	if (!ini_get('allow_url_fopen'))
-		message($lang_admin_index['fopen disabled message']);
-
-	$latest_version = trim(@file_get_contents('http://modernbb.be/latest_version'));
-	if (empty($latest_version))
-		message($lang_admin_index['Upgrade check failed message']);
-
-	if (version_compare($pun_config['o_cur_version'], $latest_version, '>='))
-		message($lang_admin_index['Running latest version message']);
-	else
-		message(sprintf($lang_admin_index['New version available message'], '<a href="http://modernbb.be/">ModernBB.be</a>'));
-}
-
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Index']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
-
-generate_admin_menu('index');
 
 ?>
 	<div class="block">
@@ -64,17 +44,9 @@ generate_admin_menu('index');
 
 		<h2 class="block2"><span><?php echo $lang_admin_index['About head'] ?></span></h2>
         <dl>
-            <dt><?php echo $lang_admin_index['ModernBB version label'] ?></dt>
-            <dd>
-                <?php printf($lang_admin_index['ModernBB version data']."\n", $pun_config['o_cur_version'], '<a href="admin_index.php?action=check_upgrade">'.$lang_admin_index['Check for upgrade'].'</a>') ?>
-            </dd>
             <dt><?php echo $lang_admin_index['Server statistics label'] ?></dt>
             <dd>
                 <a href="admin_statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
-            </dd>
-            <dt><?php echo $lang_admin_index['Support label'] ?></dt>
-            <dd>
-                <a href="http://modernbb.be/forum/index.php"><?php echo $lang_admin_index['Forum label'] ?></a>
             </dd>
         </dl>
 	</div>

@@ -50,9 +50,6 @@ if (isset($_POST['zap_id']))
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Reports']);
 define('PUN_ACTIVE_PAGE', 'admin');
 
-
-generate_admin_menu('reports');
-
 ?>
 	<div class="blockform">
 		<h2><span><?php echo $lang_admin_reports['New reports head'] ?></span></h2>

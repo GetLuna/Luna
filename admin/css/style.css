@@ -1,3 +1,31 @@
+body {
+	background: #f7f7f7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Segoe UI";
+	font-weight: 100 !important;
+	color: #2ca0e9;
+}
+
+.container {
+	width: 980px !important;
+}
+
+.alert {
+	width: 930px;
+	margin: 10px auto 0 auto;
+}
+
+.content {
+	width: 960px;
+	margin: 10px auto 0 auto;
+	background: #fff;
+	padding: 0 10px;
+	border: solid #eee 1px;
+	border-radius: 3px;
+}
+
 ul.nav li.dropdown:hover > ul.dropdown-menu{
     display: block;    
 }

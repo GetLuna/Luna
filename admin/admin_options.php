@@ -219,8 +219,6 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_ad
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 
-generate_admin_menu('options');
-
 ?>
 	<div class="blockform">
 		<h2><span><?php echo $lang_admin_options['Options head'] ?></span></h2>

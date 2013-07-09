@@ -91,8 +91,6 @@ $focus_element = array('censoring', 'new_search_for');
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 
-generate_admin_menu('censoring');
-
 ?>
 	<div class="blockform">
 		<h2><span><?php echo $lang_admin_censoring['Censoring head'] ?></span></h2>
