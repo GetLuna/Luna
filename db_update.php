@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.0-dev');
+define('UPDATE_TO', '1.9.0');
 
-define('UPDATE_TO_DB_REVISION', 19);
+define('UPDATE_TO_DB_REVISION', 20);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 2);
 
@@ -466,7 +466,7 @@ if (empty($stage))
 		// Deal with newlines, tabs and multiple spaces
 		$pattern = array("\t", '  ', '  ');
 		$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
-		$message = str_replace($pattern, $replace, $pun_config['o_maintenance_message']);
+		$message = str_replace($pattern, $replace, $lang_update['Down']);
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang_common['lang_identifier'] ?>" lang="<?php echo $lang_common['lang_identifier'] ?>" dir="<?php echo $lang_common['lang_direction'] ?>">
@@ -486,7 +486,7 @@ if (empty($stage))
 	<h2><?php echo $lang_update['Maintenance'] ?></h2>
 	<div class="box">
 		<div class="inbox">
-			<p><?php echo $message ?></p>
+			<p><?php echo $lang_update['Down'] ?></p>
 		</div>
 	</div>
 </div>
@@ -541,11 +541,6 @@ if (empty($stage))
 						<p><?php echo $lang_update['Database password info'] ?></p>
 						<p><strong><?php echo $lang_update['Note']; ?></strong> <?php echo $lang_update['Database password note'] ?></p>
 						<label class="required"><strong><?php echo $lang_update['Database password'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br /><input type="password" id="req_db_pass" name="req_db_pass" /><br /></label>
-						<p><?php echo $lang_update['Maintenance message info'] ?></p>
-						<div class="txtarea">
-							<label class="required"><strong><?php echo $lang_update['Maintenance message'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br />
-							<textarea name="req_maintenance_message" rows="4" cols="65"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea><br /></label>
-						</div>
 					</div>
 				</fieldset>
 			</div>
@@ -653,19 +648,6 @@ if (isset($_POST['req_db_pass']))
 		fwrite($fh, $uid);
 		fclose($fh);
 
-		// Update maintenance message
-		if ($_POST['req_maintenance_message'] != '')
-			$maintenance_message = pun_trim(pun_linebreaks($_POST['req_maintenance_message']));
-		else
-		{
-			// Load the admin_options.php language file
-			require FORUM_ROOT.'lang/'.$default_lang.'/admin_options.php';
-
-			$maintenance_message = $lang_admin_options['Default maintenance message'];
-		}
-
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.$db->escape($maintenance_message).'\' WHERE conf_name=\'o_maintenance_message\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
-
 		// Regenerate the config cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 			require FORUM_ROOT.'include/cache.php';
@@ -722,6 +704,9 @@ switch ($stage)
 
 		// Add the last_search column to the users table
 		$db->add_field('users', 'last_search', 'INT(10) UNSIGNED', true, null, 'last_post') or error('Unable to add last_search field', __FILE__, __LINE__, $db->error());
+		
+		// Add the marked column to the posts table
+		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
 		// Drop use_avatar column from users table
 		$db->drop_field('users', 'use_avatar') or error('Unable to drop use_avatar field', __FILE__, __LINE__, $db->error());

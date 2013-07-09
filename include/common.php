@@ -11,9 +11,9 @@ if (!defined('FORUM_ROOT'))
 	exit('The constant FORUM_ROOT must be defined and point to a valid FluxBB installation root directory.');
 
 // Define the version and database revision that this code was written for
-define('FORUM_VERSION', '2.0-dev');
+define('FORUM_VERSION', '1.9.0');
 
-define('FORUM_DB_REVISION', 19);
+define('FORUM_DB_REVISION', 20);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 2);
 

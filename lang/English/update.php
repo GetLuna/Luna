@@ -13,9 +13,8 @@ $lang_update = array(
 'Database password note'		=>	'If you are running SQLite (and hence have no database password) please use the database file name instead. This must exactly match the database file name given in your configuration file.',
 'Database password'				=>	'Database password',
 'Maintenance'					=>	'Maintenance',
-'Maintenance message info'		=>	'The message that will be displayed to users during the updating process. This text will not be parsed like regular posts and thus may contain HTML.',
-'Maintenance message'		    =>	'Maintenance message',
 'Next'							=>	'Next',
+'Down'							=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 
 'You are running error'			=>	'You are running %1$s version %2$s. ModernBB %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.',
 'Version mismatch error'		=>	'Version mismatch. The database \'%s\' doesn\'t seem to be running a ModernBB database schema supported by this update script.',
