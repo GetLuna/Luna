@@ -47,34 +47,21 @@ if (isset($_GET['ip_stats']))
 	require FORUM_ROOT.'admin/header.php';
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="admin_index.php"><?php echo $lang_admin_common['Admin'].' '.$lang_admin_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_admin_users['Results head'] ?></strong></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-		</div>
-		<div class="clearer"></div>
-	</div>
+<h2><?php echo $lang_admin_users['Results head'] ?></h2>
+<div class="pagepost">
+    <p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 
-<div id="users1" class="blocktable">
-	<h2><span><?php echo $lang_admin_users['Results head'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_admin_users['Results IP address head'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_admin_users['Results last used head'] ?></th>
-					<th class="tc3" scope="col"><?php echo $lang_admin_users['Results times found head'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang_admin_users['Results action head'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+    <table class="table" cellspacing="0">
+    <thead>
+        <tr>
+            <th class="tcl" scope="col"><?php echo $lang_admin_users['Results IP address head'] ?></th>
+            <th class="tc2" scope="col"><?php echo $lang_admin_users['Results last used head'] ?></th>
+            <th class="tc3" scope="col"><?php echo $lang_admin_users['Results times found head'] ?></th>
+            <th class="tcr" scope="col"><?php echo $lang_admin_users['Results action head'] ?></th>
+        </tr>
+    </thead>
+    <tbody>
 <?php
 
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -84,12 +71,12 @@ if (isset($_GET['ip_stats']))
 		{
 
 ?>
-				<tr>
-					<td class="tcl"><a href="moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
- 					<td class="tc2"><?php echo format_time($cur_ip['last_used']) ?></td>
-					<td class="tc3"><?php echo $cur_ip['used_times'] ?></td>
-					<td class="tcr"><a href="admin_users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_admin_users['Results find more link'] ?></a></td>
-				</tr>
+        <tr>
+            <td class="tcl"><a href="moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+            <td class="tc2"><?php echo format_time($cur_ip['last_used']) ?></td>
+            <td class="tc3"><?php echo $cur_ip['used_times'] ?></td>
+            <td class="tcr"><a href="admin_users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_admin_users['Results find more link'] ?></a></td>
+        </tr>
 <?php
 
 		}
@@ -98,24 +85,12 @@ if (isset($_GET['ip_stats']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="4">'.$lang_admin_users['Results no posts found'].'</td></tr>'."\n";
 
 ?>
-			</tbody>
-			</table>
-		</div>
-	</div>
+    </tbody>
+    </table>
 </div>
 
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-		</div>
-		<ul class="crumbs">
-			<li><a href="admin_index.php"><?php echo $lang_admin_common['Admin'].' '.$lang_admin_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_admin_users['Results head'] ?></strong></li>
-		</ul>
-		<div class="clearer"></div>
-	</div>
+<div class="pagepost">
+    <p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 <?php
 
@@ -148,36 +123,23 @@ if (isset($_GET['show_users']))
 	require FORUM_ROOT.'admin/header.php';
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="admin_index.php"><?php echo $lang_admin_common['Admin'].' '.$lang_admin_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_admin_users['Results head'] ?></strong></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-		</div>
-		<div class="clearer"></div>
-	</div>
+<h2><?php echo $lang_admin_users['Results head'] ?></h2>
+<div class="pagepost">
+    <p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 
-<div id="users2" class="blocktable">
-	<h2><span><?php echo $lang_admin_users['Results head'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
-					<th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
-					<th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
-					<th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+    <table class="table" cellspacing="0">
+    <thead>
+        <tr>
+            <th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
+            <th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
+            <th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
+            <th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
+            <th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
+            <th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
+        </tr>
+    </thead>
+    <tbody>
 <?php
 
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -206,14 +168,14 @@ if (isset($_GET['show_users']))
 
 			$actions = '<a href="admin_users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_admin_users['Results view IP link'].'</a> | <a href="search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_admin_users['Results show posts link'].'</a>';
 ?>
-				<tr>
-					<td class="tcl"><?php echo '<a href="profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-					<td class="tc2"><a href="mailto:<?php echo $user_data[$cur_poster['poster_id']]['email'] ?>"><?php echo $user_data[$cur_poster['poster_id']]['email'] ?></a></td>
-					<td class="tc3"><?php echo $user_title ?></td>
-					<td class="tc4"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-					<td class="tc5"><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
-					<td class="tcr"><?php echo $actions ?></td>
-				</tr>
+        <tr>
+            <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
+            <td class="tc2"><a href="mailto:<?php echo $user_data[$cur_poster['poster_id']]['email'] ?>"><?php echo $user_data[$cur_poster['poster_id']]['email'] ?></a></td>
+            <td class="tc3"><?php echo $user_title ?></td>
+            <td class="tc4"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
+            <td class="tc5"><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+            <td class="tcr"><?php echo $actions ?></td>
+        </tr>
 <?php
 
 			}
@@ -221,14 +183,14 @@ if (isset($_GET['show_users']))
 			{
 
 ?>
-				<tr>
-					<td class="tcl"><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
-					<td class="tc2">&#160;</td>
-					<td class="tc3"><?php echo $lang_admin_users['Results guest'] ?></td>
-					<td class="tc4">&#160;</td>
-					<td class="tc5">&#160;</td>
-					<td class="tcr">&#160;</td>
-				</tr>
+        <tr>
+            <td class="tcl"><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
+            <td class="tc2">&#160;</td>
+            <td class="tc3"><?php echo $lang_admin_users['Results guest'] ?></td>
+            <td class="tc4">&#160;</td>
+            <td class="tc5">&#160;</td>
+            <td class="tcr">&#160;</td>
+        </tr>
 <?php
 
 			}
@@ -238,24 +200,12 @@ if (isset($_GET['show_users']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="6">'.$lang_admin_users['Results no IP found'].'</td></tr>'."\n";
 
 ?>
-			</tbody>
-			</table>
-		</div>
-	</div>
+    </tbody>
+    </table>
 </div>
 
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-		</div>
-		<ul class="crumbs">
-			<li><a href="admin_index.php"><?php echo $lang_admin_common['Admin'].' '.$lang_admin_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_admin_users['Results head'] ?></strong></li>
-		</ul>
-		<div class="clearer"></div>
-	</div>
+<div class="pagepost">
+    <p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 <?php
 	require FORUM_ROOT.'admin/footer.php';
@@ -352,36 +302,27 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-	<div class="blockform">
 		<h2><span><?php echo $lang_admin_users['Move users'] ?></span></h2>
-		<div class="box">
-			<form name="confirm_move_users" method="post" action="admin_users.php">
-				<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_users['Move users subhead'] ?></legend>
-						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['New group label'] ?></th>
-									<td>
-										<select name="new_group" tabindex="1">
+        <form name="confirm_move_users" method="post" action="admin_users.php">
+            <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+            <fieldset>
+                <h3><?php echo $lang_admin_users['Move users subhead'] ?></h3>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <th scope="row"><?php echo $lang_admin_users['New group label'] ?></th>
+                        <td>
+                            <select name="new_group" tabindex="1">
 <?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo pun_htmlspecialchars($group) ?></option>
 <?php endforeach; ?>
-										</select>
-										<span><?php echo $lang_admin_users['New group help'] ?></span>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
-				<p class="submitend"><input type="submit" name="move_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="2" /></p>
-			</form>
-		</div>
-	</div>
-	<div class="clearer"></div>
-</div>
+                            </select>
+                            <span><?php echo $lang_admin_users['New group help'] ?></span>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <p class="control-group"><input class="btn btn-success" type="submit" name="move_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="2" /></p>
+        </form>
+    </div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -506,29 +447,19 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	require FORUM_ROOT.'admin/header.php';
 
 ?>
-	<div class="blockform">
-		<h2><span><?php echo $lang_admin_users['Delete users'] ?></span></h2>
-		<div class="box">
-			<form name="confirm_del_users" method="post" action="admin_users.php">
-				<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_users['Confirm delete legend'] ?></legend>
-						<div class="infldset">
-							<p><?php echo $lang_admin_users['Confirm delete info'] ?></p>
-							<div class="rbox">
-								<label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang_admin_users['Delete posts'] ?><br /></label>
-							</div>
-							<p class="warntext"><strong><?php echo $lang_admin_users['Delete warning'] ?></strong></p>
-						</div>
-					</fieldset>
-				</div>
-				<p class="buttons"><input type="submit" name="delete_users_comply" value="<?php echo $lang_admin_users['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a></p>
-			</form>
-		</div>
-	</div>
-	<div class="clearer"></div>
-</div>
+		<h2><?php echo $lang_admin_users['Delete users'] ?></h2>
+        <form name="confirm_del_users" method="post" action="admin_users.php">
+            <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+                <fieldset>
+                    <label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang_admin_users['Delete posts'] ?><br /></label>
+                    <div class="alert alert-danger"><?php echo $lang_admin_users['Delete warning'] ?></div>
+                </fieldset>
+            <div class="control-group">
+            	<input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang_admin_users['Delete'] ?>" />
+                <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a>
+            </div>
+        </form>
+    </div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -630,47 +561,37 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	require FORUM_ROOT.'admin/header.php';
 
 ?>
-	<div class="blockform">
-		<h2><span><?php echo $lang_admin_users['Ban users'] ?></span></h2>
-		<div class="box">
-			<form id="bans2" name="confirm_ban_users" method="post" action="admin_users.php">
-				<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_users['Message expiry subhead'] ?></legend>
-						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Ban message label'] ?></th>
-									<td>
-										<input type="text" name="ban_message" size="50" maxlength="255" tabindex="1" />
-										<span><?php echo $lang_admin_users['Ban message help'] ?></span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Expire date label'] ?></th>
-									<td>
-										<input type="text" name="ban_expire" size="17" maxlength="10" tabindex="2" />
-										<span><?php echo $lang_admin_users['Expire date help'] ?></span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Ban IP label'] ?></th>
-									<td>
-										<label class="conl"><input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-										<label class="conl"><input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-										<span class="clearb"><?php echo $lang_admin_users['Ban IP help'] ?></span>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
-				<p class="submitend"><input type="submit" name="ban_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="3" /></p>
-			</form>
-		</div>
-	</div>
-	<div class="clearer"></div>
+    <h2><?php echo $lang_admin_users['Ban users'] ?></h2>
+    <form id="bans2" name="confirm_ban_users" method="post" action="admin_users.php">
+        <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+        <fieldset>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Ban message label'] ?></th>
+                    <td>
+                        <input type="text" name="ban_message" size="50" maxlength="255" tabindex="1" />
+                        <p><?php echo $lang_admin_users['Ban message help'] ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Expire date label'] ?></th>
+                    <td>
+                        <input type="text" name="ban_expire" size="17" maxlength="10" tabindex="2" />
+                        <p><?php echo $lang_admin_users['Expire date help'] ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Ban IP label'] ?></th>
+                    <td>
+                        <label class="conl"><input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
+                        <label class="conl"><input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
+                        <p class="clearb"><?php echo $lang_admin_users['Ban IP help'] ?></p>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <p class="control-group"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="3" /></p>
+    </form>
 </div>
 <?php
 
@@ -815,40 +736,28 @@ else if (isset($_GET['find_user']))
 	require FORUM_ROOT.'admin/header.php';
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="admin_index.php"><?php echo $lang_admin_common['Admin'].' '.$lang_admin_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_admin_users['Results head'] ?></strong></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-		</div>
-		<div class="clearer"></div>
-	</div>
+
+<h2><?php echo $lang_admin_users['Results head'] ?></h2>
+<div class="pagepost">
+    <p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 
 
 <form id="search-users-form" action="admin_users.php" method="post">
-<div id="users2" class="blocktable">
-	<h2><span><?php echo $lang_admin_users['Results head'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
-					<th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
-					<th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
-					<th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
+    <table class="table" cellspacing="0">
+    <thead>
+        <tr>
+            <th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
+            <th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
+            <th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
+            <th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
+            <th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
+            <th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
 <?php if ($can_action): ?>					<th class="tcmod" scope="col"><?php echo $lang_admin_users['Select'] ?></th>
 <?php endif; ?>
-				</tr>
-			</thead>
-			<tbody>
+        </tr>
+    </thead>
+    <tbody>
 <?php
 
 	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -865,16 +774,16 @@ else if (isset($_GET['find_user']))
 			$actions = '<a href="admin_users.php?ip_stats='.$user_data['id'].'">'.$lang_admin_users['Results view IP link'].'</a> | <a href="search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang_admin_users['Results show posts link'].'</a>';
 
 ?>
-				<tr>
-					<td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
-					<td class="tc2"><a href="mailto:<?php echo $user_data['email'] ?>"><?php echo $user_data['email'] ?></a></td>
-					<td class="tc3"><?php echo $user_title ?></td>
-					<td class="tc4"><?php echo forum_number_format($user_data['num_posts']) ?></td>
-					<td class="tc5"><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
-					<td class="tcr"><?php echo $actions ?></td>
+        <tr>
+            <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+            <td class="tc2"><a href="mailto:<?php echo $user_data['email'] ?>"><?php echo $user_data['email'] ?></a></td>
+            <td class="tc3"><?php echo $user_title ?></td>
+            <td class="tc4"><?php echo forum_number_format($user_data['num_posts']) ?></td>
+            <td class="tc5"><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+            <td class="tcr"><?php echo $actions ?></td>
 <?php if ($can_action): ?>					<td class="tcmod"><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
 <?php endif; ?>
-				</tr>
+        </tr>
 <?php
 
 		}
@@ -883,26 +792,13 @@ else if (isset($_GET['find_user']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="6">'.$lang_admin_users['No match'].'</td></tr>'."\n";
 
 ?>
-			</tbody>
-			</table>
-		</div>
-	</div>
-</div>
+    </tbody>
+    </table>
 
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-<?php if ($can_action): ?>			<p class="conr modbuttons"><a href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
+<div class="pagepost">
+    <p class="pagelink"><?php echo $paging_links ?></p>
+<?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-danger" type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
 <?php endif; ?>
-		</div>
-		<ul class="crumbs">
-			<li><a href="admin_index.php"><?php echo $lang_admin_common['Admin'].' '.$lang_admin_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_admin_users['Results head'] ?></strong></li>
-		</ul>
-		<div class="clearer"></div>
-	</div>
 </div>
 </form>
 <?php
@@ -919,129 +815,86 @@ else
 	require FORUM_ROOT.'admin/header.php';
 
 ?>
-	<div class="blockform">
-		<h2><span><?php echo $lang_admin_users['User search head'] ?></span></h2>
-		<div class="box">
-			<form id="find_user" method="get" action="admin_users.php">
-				<p class="submittop"><input type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="1" /></p>
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_users['User search subhead'] ?></legend>
-						<div class="infldset">
-							<p><?php echo $lang_admin_users['User search info'] ?></p>
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Username label'] ?></th>
-									<td><input type="text" name="form[username]" size="25" maxlength="25" tabindex="2" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['E-mail address label'] ?></th>
-									<td><input type="text" name="form[email]" size="30" maxlength="80" tabindex="3" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Title label'] ?></th>
-									<td><input type="text" name="form[title]" size="30" maxlength="50" tabindex="4" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Real name label'] ?></th>
-									<td><input type="text" name="form[realname]" size="30" maxlength="40" tabindex="5" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Website label'] ?></th>
-									<td><input type="text" name="form[url]" size="35" maxlength="100" tabindex="6" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Jabber label'] ?></th>
-									<td><input type="text" name="form[jabber]" size="30" maxlength="75" tabindex="7" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['ICQ label'] ?></th>
-									<td><input type="text" name="form[icq]" size="12" maxlength="12" tabindex="8" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['MSN label'] ?></th>
-									<td><input type="text" name="form[msn]" size="30" maxlength="50" tabindex="9" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['AOL label'] ?></th>
-									<td><input type="text" name="form[aim]" size="20" maxlength="20" tabindex="10" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Yahoo label'] ?></th>
-									<td><input type="text" name="form[yahoo]" size="20" maxlength="20" tabindex="11" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Location label'] ?></th>
-									<td><input type="text" name="form[location]" size="30" maxlength="30" tabindex="12" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Signature label'] ?></th>
-									<td><input type="text" name="form[signature]" size="35" maxlength="512" tabindex="13" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Admin note label'] ?></th>
-									<td><input type="text" name="form[admin_note]" size="30" maxlength="30" tabindex="14" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Posts more than label'] ?></th>
-									<td><input type="text" name="posts_greater" size="5" maxlength="8" tabindex="15" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Posts less than label'] ?></th>
-									<td><input type="text" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Last post after label'] ?></th>
-									<td><input type="text" name="last_post_after" size="24" maxlength="19" tabindex="17" />
-									<span><?php echo $lang_admin_users['Date help'] ?></span></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Last post before label'] ?></th>
-									<td><input type="text" name="last_post_before" size="24" maxlength="19" tabindex="18" />
-									<span><?php echo $lang_admin_users['Date help'] ?></span></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Last visit after label'] ?></th>
-									<td><input type="text" name="last_visit_after" size="24" maxlength="19" tabindex="17" />
-									<span><?php echo $lang_admin_users['Date help'] ?></span></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Last visit before label'] ?></th>
-									<td><input type="text" name="last_visit_before" size="24" maxlength="19" tabindex="18" />
-									<span><?php echo $lang_admin_users['Date help'] ?></span></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Registered after label'] ?></th>
-									<td><input type="text" name="registered_after" size="24" maxlength="19" tabindex="19" />
-									<span><?php echo $lang_admin_users['Date help'] ?></span></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Registered before label'] ?></th>
-									<td><input type="text" name="registered_before" size="24" maxlength="19" tabindex="20" />
-									<span><?php echo $lang_admin_users['Date help'] ?></span></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['Order by label'] ?></th>
-									<td>
-										<select name="order_by" tabindex="21">
-											<option value="username" selected="selected"><?php echo $lang_admin_users['Order by username'] ?></option>
-											<option value="email"><?php echo $lang_admin_users['Order by e-mail'] ?></option>
-											<option value="num_posts"><?php echo $lang_admin_users['Order by posts'] ?></option>
-											<option value="last_post"><?php echo $lang_admin_users['Order by last post'] ?></option>
-											<option value="last_visit"><?php echo $lang_admin_users['Order by last visit'] ?></option>
-											<option value="registered"><?php echo $lang_admin_users['Order by registered'] ?></option>
-										</select>&#160;&#160;&#160;<select name="direction" tabindex="22">
-											<option value="ASC" selected="selected"><?php echo $lang_admin_users['Ascending'] ?></option>
-											<option value="DESC"><?php echo $lang_admin_users['Descending'] ?></option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['User group label'] ?></th>
-									<td>
-										<select name="user_group" tabindex="23">
-											<option value="-1" selected="selected"><?php echo $lang_admin_users['All groups'] ?></option>
-											<option value="0"><?php echo $lang_admin_users['Unverified users'] ?></option>
+    <h2><?php echo $lang_admin_users['User search head'] ?></h2>
+    <form id="find_user" method="get" action="admin_users.php">
+        <p><input class="btn btn-success" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="1" /></p>
+        <fieldset>
+            <p><?php echo $lang_admin_users['User search info'] ?></p>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Username label'] ?></th>
+                    <td><input type="text" name="form[username]" size="25" maxlength="25" tabindex="2" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['E-mail address label'] ?></th>
+                    <td><input type="text" name="form[email]" size="30" maxlength="80" tabindex="3" /></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Title label'] ?></th>
+                    <td><input type="text" name="form[title]" size="30" maxlength="50" tabindex="4" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['Real name label'] ?></th>
+                    <td><input type="text" name="form[realname]" size="30" maxlength="40" tabindex="5" /></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Website label'] ?></th>
+                    <td><input type="text" name="form[url]" size="35" maxlength="100" tabindex="6" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['Jabber label'] ?></th>
+                    <td><input type="text" name="form[jabber]" size="30" maxlength="75" tabindex="7" /></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['ICQ label'] ?></th>
+                    <td><input type="text" name="form[icq]" size="12" maxlength="12" tabindex="8" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['MSN label'] ?></th>
+                    <td><input type="text" name="form[msn]" size="30" maxlength="50" tabindex="9" /></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['AOL label'] ?></th>
+                    <td><input type="text" name="form[aim]" size="20" maxlength="20" tabindex="10" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['Yahoo label'] ?></th>
+                    <td><input type="text" name="form[yahoo]" size="20" maxlength="20" tabindex="11" /></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Location label'] ?></th>
+                    <td><input type="text" name="form[location]" size="30" maxlength="30" tabindex="12" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['Signature label'] ?></th>
+                    <td><input type="text" name="form[signature]" size="35" maxlength="512" tabindex="13" /></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Admin note label'] ?></th>
+                    <td><input type="text" name="form[admin_note]" size="30" maxlength="30" tabindex="14" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['Posts more than label'] ?></th>
+                    <td><input type="text" name="posts_greater" size="5" maxlength="8" tabindex="15" /></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Posts less than label'] ?></th>
+                    <td><input type="text" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
+                    <th scope="row"><?php echo $lang_admin_users['Last post after label'] ?></th>
+                    <td><input type="text" name="last_post_after" size="24" maxlength="19" tabindex="17" />
+                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Last post before label'] ?></th>
+                    <td><input type="text" name="last_post_before" size="24" maxlength="19" tabindex="18" />
+                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <th scope="row"><?php echo $lang_admin_users['Last visit after label'] ?></th>
+                    <td><input type="text" name="last_visit_after" size="24" maxlength="19" tabindex="17" />
+                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Last visit before label'] ?></th>
+                    <td><input type="text" name="last_visit_before" size="24" maxlength="19" tabindex="18" />
+                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <th scope="row"><?php echo $lang_admin_users['Registered after label'] ?></th>
+                    <td><input type="text" name="registered_after" size="24" maxlength="19" tabindex="19" />
+                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Registered before label'] ?></th>
+                    <td><input type="text" name="registered_before" size="24" maxlength="19" tabindex="20" />
+                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <th scope="row"><?php echo $lang_admin_users['User group label'] ?></th>
+                    <td>
+                        <select name="user_group" tabindex="23">
+                            <option value="-1" selected="selected"><?php echo $lang_admin_users['All groups'] ?></option>
+                            <option value="0"><?php echo $lang_admin_users['Unverified users'] ?></option>
 <?php
 
 	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.PUN_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -1050,38 +903,43 @@ else
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 
 ?>
-										</select>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
-				<p class="submitend"><input type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="25" /></p>
-			</form>
-		</div>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_users['Order by label'] ?></th>
+                    <td colspan="3">
+                        <select name="order_by" tabindex="21">
+                            <option value="username" selected="selected"><?php echo $lang_admin_users['Order by username'] ?></option>
+                            <option value="email"><?php echo $lang_admin_users['Order by e-mail'] ?></option>
+                            <option value="num_posts"><?php echo $lang_admin_users['Order by posts'] ?></option>
+                            <option value="last_post"><?php echo $lang_admin_users['Order by last post'] ?></option>
+                            <option value="last_visit"><?php echo $lang_admin_users['Order by last visit'] ?></option>
+                            <option value="registered"><?php echo $lang_admin_users['Order by registered'] ?></option>
+                        </select>&#160;&#160;&#160;<select name="direction" tabindex="22">
+                            <option value="ASC" selected="selected"><?php echo $lang_admin_users['Ascending'] ?></option>
+                            <option value="DESC"><?php echo $lang_admin_users['Descending'] ?></option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <p class="control-group"><input class="btn btn-success" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="25" /></p>
+    </form>
 
-		<h2 class="block2"><span><?php echo $lang_admin_users['IP search head'] ?></span></h2>
-		<div class="box">
-			<form method="get" action="admin_users.php">
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_users['IP search subhead'] ?></legend>
-						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php echo $lang_admin_users['IP address label'] ?><div><input type="submit" value="<?php echo $lang_admin_users['Find IP address'] ?>" tabindex="26" /></div></th>
-									<td><input type="text" name="show_users" size="18" maxlength="15" tabindex="24" />
-									<span><?php echo $lang_admin_users['IP address help'] ?></span></td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
-			</form>
-		</div>
-	</div>
-	<div class="clearer"></div>
+    <h2><?php echo $lang_admin_users['IP search head'] ?></h2>
+    <form method="get" action="admin_users.php">
+        <fieldset>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <th scope="row"><?php echo $lang_admin_users['IP address label'] ?></th>
+                        <td><input type="text" name="show_users" size="18" maxlength="15" tabindex="24" />
+                        <input class="btn btn-success" type="submit" value="<?php echo $lang_admin_users['Find IP address'] ?>" tabindex="26" />
+                        <br /><span><?php echo $lang_admin_users['IP address help'] ?></span></td>
+                    </tr>
+                </table>
+        </fieldset>
+    </form>
 </div>
 <?php
 

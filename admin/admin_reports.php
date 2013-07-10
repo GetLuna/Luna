@@ -49,12 +49,22 @@ if (isset($_POST['zap_id']))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Reports']);
 define('PUN_ACTIVE_PAGE', 'admin');
+require FORUM_ROOT.'admin/header.php';
 
 ?>
-	<div class="blockform">
-		<h2><span><?php echo $lang_admin_reports['New reports head'] ?></span></h2>
-		<div class="box">
-			<form method="post" action="admin_reports.php?action=zap">
+    <h2><?php echo $lang_admin_reports['New reports head'] ?></h2>
+    <form method="post" action="admin_reports.php?action=zap">
+        <fieldset>
+            <table class="table" cellspacing="0">
+                <thead>
+                <tr>
+                    <th><?php echo $lang_admin_reports['Reported by'] ?></th>
+                    <th><?php echo $lang_admin_reports['Date and time'] ?></th>
+                    <th><?php echo $lang_admin_reports['Message'] ?></th>
+                    <th><?php echo $lang_admin_reports['Actions'] ?></th>
+                </tr>
+                </thead>
+                <tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'topics AS t ON r.topic_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -71,23 +81,15 @@ if ($db->num_rows($result))
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
-				<div class="inform">
-					<fieldset>
-						<legend><?php printf($lang_admin_reports['Report subhead'], format_time($cur_report['created'])) ?></legend>
-						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php printf($lang_admin_reports['Reported by'], $reporter) ?></th>
-									<td class="location"><?php echo implode(' ', $report_location) ?></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_reports['Reason'] ?><div><input type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]" value="<?php echo $lang_admin_reports['Zap'] ?>" /></div></th>
-									<td><?php echo $post ?></td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
+                <tr>
+                    <td><?php printf($reporter) ?></td>
+                    <td><?php printf(format_time($cur_report['created'])) ?></td>
+                    <td>
+                        <div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
+                        <?php echo $post ?>
+                    </td>
+                    <td><input class="btn btn-success" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]" value="<?php echo $lang_admin_reports['Zap'] ?>" /></td>
+                </tr>
 <?php
 
 	}
@@ -96,27 +98,32 @@ else
 {
 
 ?>
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_common['None'] ?></legend>
-						<div class="infldset">
-							<p><?php echo $lang_admin_reports['No new reports'] ?></p>
-						</div>
-					</fieldset>
-				</div>
+        <tr>
+        	<td colspan="4"><p><?php echo $lang_admin_reports['No new reports'] ?></p></td>
+        </tr>
 <?php
 
 }
 
 ?>
-			</form>
-		</div>
-	</div>
-
-	<div class="blockform block2">
-		<h2><span><?php echo $lang_admin_reports['Last 10 head'] ?></span></h2>
-		<div class="box">
-			<div class="fakeform">
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+</div></div></div>
+<div id="punadmin" class="content">
+<div class="punwrap">
+    <h2><span><?php echo $lang_admin_reports['Last 10 head'] ?></span></h2>
+    <table class="table" cellspacing="0">
+        <thead>
+        <tr>
+            <th><?php echo $lang_admin_reports['Reported by'] ?></th>
+            <th><?php echo $lang_admin_reports['Readed by'] ?></th>
+            <th><?php echo $lang_admin_reports['Date and time'] ?></th>
+            <th><?php echo $lang_admin_reports['Message'] ?></th>
+        </tr>
+        </thead>
+        <tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.message, r.zapped, r.zapped_by AS zapped_by_id, p.id AS pid, t.subject, f.forum_name, u.username AS reporter, u2.username AS zapped_by FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'topics AS t ON r.topic_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id LEFT JOIN '.$db->prefix.'users AS u2 ON r.zapped_by=u2.id WHERE r.zapped IS NOT NULL ORDER BY zapped DESC LIMIT 10') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -135,23 +142,17 @@ if ($db->num_rows($result))
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
-				<div class="inform">
-					<fieldset>
-						<legend><?php printf($lang_admin_reports['Zapped subhead'], format_time($cur_report['zapped']), $zapped_by) ?></legend>
-						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php printf($lang_admin_reports['Reported by'], $reporter) ?></th>
-									<td class="location"><?php echo implode(' ', $report_location) ?></td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_reports['Reason'] ?></th>
-									<td><?php echo $post ?></td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
+        <fieldset>
+            <h3><?php printf($lang_admin_reports['Zapped subhead'], format_time($cur_report['zapped']), $zapped_by) ?></h3>
+                <tr>
+                    <td><?php printf($reporter) ?></td>
+                    <td><?php printf($zapped_by) ?></td>
+                    <td><?php printf(format_time($cur_report['zapped'])) ?></td>
+                    <td>
+                        <div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
+                        <?php echo $post ?>
+                    </td>
+                </tr>
 <?php
 
 	}
@@ -160,24 +161,10 @@ else
 {
 
 ?>
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_common['None'] ?></legend>
-						<div class="infldset">
-							<p><?php echo $lang_admin_reports['No zapped reports'] ?></p>
-						</div>
-					</fieldset>
-				</div>
+                <tr>
+                    <td colspan="4"><?php echo $lang_admin_reports['No zapped reports'] ?></td>
+                </tr>
 <?php
 
-}
-
-?>
-			</div>
-		</div>
-	</div>
-	<div class="clearer"></div>
-</div>
-<?php
-
+} ?></fieldset></tbody></table><?php
 require FORUM_ROOT.'admin/footer.php';

@@ -234,7 +234,7 @@ $is_admin = $pun_user['g_id'] == PUN_ADMIN ? true : false;
 $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/version2.0/version.txt'));
 if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	if (FORUM_VERSION < $latest_version) { ?>
-		<div class="alert alert-info">
+		<div class="alert alert-info alert-update">
           <h4>ModernBB v<?php echo $latest_version ?> available</h4>
           We found a new version of ModernBB on the web. Your board is out-of-date and we recommend you to update right away!<br />
           <a class="btn btn-success">Download v<?php echo $latest_version ?></a>

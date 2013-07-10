@@ -5,7 +5,7 @@
 /* Limited Reset
 ----------------------------------------------------------------*/
 
-html, body, table, div, form, p, h1, h2, h3, h4, h5, pre, blockquote,
+html, body, div, form, p, h1, h2, h3, h4, h5, pre, blockquote,
 ul, ol, li, dl, dt, dd, th, td, fieldset, legend img,
 abbr, cite {
 	border: 0;
@@ -32,7 +32,7 @@ select {
 	font: 81.25%/1.462em Arial, Helvetica, sans-serif;
 }
 
-table, td, th, select, optgroup, textarea, legend {
+td, th, select, optgroup, textarea, legend {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1em;
 }
@@ -44,14 +44,6 @@ pre, code {
 
 pre code {
 	font-size: 1em;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	border: 0;
-	empty-cells: show;
-	width: 100%;
 }
 
 /* Hidden Elements
@@ -332,100 +324,6 @@ table {
 	height: 12px;
 }
 
-/*****************************************************************
-4. MAIN TABLES
-*****************************************************************/
-
-#brdmain .blocktable {
-	position: relative;
-}
-
-#punindex #brdmain .blocktable h2, #punsearch #vf h2 {
-	font: 1em/1.462em Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	margin: 1px 1px 0 1px;
-	padding-left: 8px;
-	position: absolute;
-	left: 0;
-	white-space: nowrap;
-	z-index: 100;
-}
-
-#punindex .blocktable th.tcl, #punsearch #vf th.tcl {
-	font-size: 0;
-	text-indent: -9999em;
-}
-
-.blocktable .box {
-	border-style: solid;
-	border-width: 1px;
-	margin-bottom: -1px;
-	overflow: hidden;
-	position: relative;
-}
-
-* html .blocktable .box {
-	display: inline-block;
-}
-
-.blocktable table {
-	table-layout: fixed;
-	margin-bottom: -1px;
-}
-
-.blocktable th {
-	padding: 7px 8px;
-	border-style: none none solid none;
-	border-width: 1px;
-	text-align: left;
-}
-
-.blocktable td {
-	padding: 7px 8px;
-	line-height: 1.3077em;
-	border-style: none none solid none;
-	border-width: 1px;
-	text-align: left;
-}
-
-.blocktable h3 {
-	font-size: 1.077em;
-	font-weight: bold;
-	padding: 0;
-}
-
-.blocktable p {
-	padding: 0;
-}
-
-.blocktable .tcl p {
-	padding: 5px 0 0 0;
-}
-
-.blocktable .tcl {
-	width: auto;
-}
-
-.blocktable .tc2, .blocktable .tc3, .blocktable .tcmod {
-	padding-left: 0;
-	padding-right: 0;
-	text-align: center;
-	width: 11%;
-}
-
-.blocktable .tcr {
-	width: 30%;
-}
-
-.blocktable td .newtext, .blocktable td .pagestext, .blocktable td .byuser {
-	white-space: nowrap;
-}
-
-.blocktable .tcl h3 span.newtext {
-	font-size: 0.929em;
-	font-weight: normal;
-}
-
 #vf td.tcl span.stickytext, #vf td.tcl span.closedtext {
 	font-size: 1em;
 	font-weight: bold;
@@ -481,19 +379,6 @@ table {
 
 #vf td.tcl span a {
 	font-weight: normal;
-}
-
-.blocktable .tclcon {
-	height: 1%;
-	min-height: 1px;
-	overflow: hidden;
-	padding: 0 11px 0 12px;
-	position: relative;
-}
-
-.blocktable .tclcon div {
-	width: 100%;
-	overflow: hidden;
 }
 
 .icon {

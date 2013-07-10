@@ -10,7 +10,8 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+if (!defined('FORUM_ROOT'))
+	define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
