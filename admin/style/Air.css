@@ -32,7 +32,7 @@ select {
 	font: 81.25%/1.462em Arial, Helvetica, sans-serif;
 }
 
-table, td, th, input, select, optgroup, textarea, legend {
+table, td, th, select, optgroup, textarea, legend {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1em;
 }

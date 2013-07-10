@@ -96,25 +96,18 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		require FORUM_ROOT.'admin/header.php';
 
 ?>
-	<div class="blockform">
-		<h2><span><?php echo $lang_admin_categories['Delete category head'] ?></span></h2>
-		<div class="box">
-			<form method="post" action="admin_categories.php">
-				<div class="inform">
-				<input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
-					<fieldset>
-						<legend><?php echo $lang_admin_categories['Confirm delete subhead'] ?></legend>
-						<div class="infldset">
-							<p><?php printf($lang_admin_categories['Confirm delete info'], pun_htmlspecialchars($cat_name)) ?></p>
-							<p class="warntext"><?php echo $lang_admin_categories['Delete category warn'] ?></p>
-						</div>
-					</fieldset>
-				</div>
-				<p class="buttons"><input type="submit" name="del_cat_comply" value="<?php echo $lang_admin_common['Delete'] ?>" /><a href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a></p>
-			</form>
-		</div>
-	</div>
-	<div class="clearer"></div>
+    <form method="post" action="admin_categories.php">
+        <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
+        <fieldset>
+            <h2><?php echo $lang_admin_categories['Confirm delete subhead'] ?></h2>
+            <p><?php printf($lang_admin_categories['Confirm delete info'], pun_htmlspecialchars($cat_name)) ?></p>
+            <p class="warntext"><?php echo $lang_admin_categories['Delete category warn'] ?></p>
+        </fieldset>
+        <p class="control-group">
+        	<input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang_admin_common['Delete'] ?>" />
+            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a>
+        </p>
+    </form>
 </div>
 <?php
 
@@ -166,99 +159,87 @@ require FORUM_ROOT.'admin/header.php';
 
 ?>
 	<div class="blockform">
-		<h2><span><?php echo $lang_admin_categories['Add categories head'] ?></span></h2>
-		<div class="box">
-			<form method="post" action="admin_categories.php">
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_categories['Add categories subhead'] ?></legend>
-						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php echo $lang_admin_categories['Add category label'] ?><div><input type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" /></div></th>
-									<td>
-										<input type="text" name="new_cat_name" size="35" maxlength="80" tabindex="1" />
-										<span><?php printf($lang_admin_categories['Add category help'], '<a href="admin_forums.php">'.$lang_admin_common['Forums'].'</a>') ?></span>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
-			</form>
-		</div>
-
-<?php if ($num_cats): ?>		<h2 class="block2"><span><?php echo $lang_admin_categories['Delete categories head'] ?></span></h2>
-		<div class="box">
-			<form method="post" action="admin_categories.php">
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_categories['Delete categories subhead'] ?></legend>
-						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
-								<tr>
-									<th scope="row"><?php echo $lang_admin_categories['Delete category label'] ?><div><input type="submit" name="del_cat" value="<?php echo $lang_admin_common['Delete'] ?>" tabindex="4" /></div></th>
-									<td>
-										<select name="cat_to_delete" tabindex="3">
+		<h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
+        <form method="post" action="admin_categories.php">
+            <fieldset>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <th scope="row"><?php echo $lang_admin_categories['Add category label'] ?></th>
+                        <td>
+                            <input type="text" name="new_cat_name" size="35" maxlength="80" tabindex="1" />
+                            <input class="btn btn-success" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
+                            <br /><?php printf($lang_admin_categories['Add category help'], '<a href="admin_forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+</div></div>
+</div></div>
+<div id="punadmin" class="content">
+<div class="punwrap">
+<?php if ($num_cats): ?>
+		<h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
+        <form method="post" action="admin_categories.php">
+            <fieldset>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <th scope="row"><?php echo $lang_admin_categories['Delete category label'] ?></th>
+                        <td>
+                            <select name="cat_to_delete" tabindex="3">
 <?php
 
-	foreach ($cat_list as $cur_cat)
-		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+foreach ($cat_list as $cur_cat)
+echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 
 ?>
-										</select>
-										<span><?php echo $lang_admin_categories['Delete category help'] ?></span>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</fieldset>
-				</div>
-			</form>
-		</div>
+                            </select>
+                            <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_admin_common['Delete'] ?>" tabindex="4" />
+                            <br /><?php echo $lang_admin_categories['Delete category help'] ?>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
 <?php endif; ?>
+</div></div>
+<div id="punadmin" class="content">
+<div class="punwrap">
 
-<?php if ($num_cats): ?>		<h2 class="block2"><span><?php echo $lang_admin_categories['Edit categories head'] ?></span></h2>
-		<div class="box">
-			<form method="post" action="admin_categories.php">
-				<div class="inform">
-					<fieldset>
-						<legend><?php echo $lang_admin_categories['Edit categories subhead'] ?></legend>
-						<div class="infldset">
-							<table id="categoryedit" cellspacing="0" >
-							<thead>
-								<tr>
-									<th class="tcl" scope="col"><?php echo $lang_admin_categories['Category name label'] ?></th>
-									<th scope="col"><?php echo $lang_admin_categories['Category position label'] ?></th>
-								</tr>
-							</thead>
-							<tbody>
+<?php if ($num_cats): ?>
+		<h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
+        <form method="post" action="admin_categories.php">
+            <fieldset>
+                <table class="table" cellspacing="0" >
+                <thead>
+                    <tr>
+                        <th class="tcl" scope="col"><?php echo $lang_admin_categories['Category name label'] ?></th>
+                        <th scope="col"><?php echo $lang_admin_categories['Category position label'] ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
-	foreach ($cat_list as $cur_cat)
-	{
+foreach ($cat_list as $cur_cat)
+{
 
 ?>
-								<tr>
-									<td class="tcl"><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
-									<td><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
-								</tr>
+                    <tr>
+                        <td class="tcl"><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
+                        <td><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
+                    </tr>
 <?php
 
-	}
+}
 
 ?>
-							</tbody>
-							</table>
-							<div class="fsetsubmit"><input type="submit" name="update" value="<?php echo $lang_admin_common['Update'] ?>" /></div>
-						</div>
-					</fieldset>
-				</div>
-			</form>
-		</div>
-<?php endif; ?>	</div>
-	<div class="clearer"></div>
-</div>
-<?php
+                </tbody>
+                </table>
+                <div class="control-group">
+                	<input class="btn btn-success" type="submit" name="update" value="<?php echo $lang_admin_common['Update'] ?>" />
+                </div>
+            </fieldset>
+        </form>
+<?php endif; 
 
 require FORUM_ROOT.'admin/footer.php';
