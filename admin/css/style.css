@@ -26,6 +26,12 @@ h1, h2, h3, h4, h5, h6 {
 	border-radius: 3px;
 }
 
+footer {
+	width: 960px;
+	margin: 10px auto 20px auto;
+	padding-bottom: 20px;
+}
+
 ul.nav li.dropdown:hover > ul.dropdown-menu{
     display: block;    
 }

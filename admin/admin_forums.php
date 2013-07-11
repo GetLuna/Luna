@@ -373,7 +373,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_adm
 
 ?>
                         </select>
-                        <input type="text" name="new_forum" size="30" maxlength="80" placeholder="Forum name" /> 
+                        <input type="text" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" /> 
                         <input class="btn btn-success" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
                         <br /><span><?php echo $lang_admin_forums['Add forum help'] ?></span>
                     </td>
@@ -382,7 +382,6 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_adm
         </fieldset>
     </form>
 </div>
-</div></div>
 <div class="content">
 <?php
 
@@ -442,6 +441,7 @@ $cur_category = $cur_forum['cid'];
         	<input class="btn btn-success" type="submit" name="update_positions" value="<?php echo $lang_admin_forums['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" />
         </div>
     </form>
+</div>
 <?php
 
 }

@@ -12,8 +12,8 @@ define('PUN_ADMIN_CONSOLE', 1);
 
 if (!defined('FORUM_ROOT'))
 	define('FORUM_ROOT', '../');
-require FORUM_ROOT.'admin/include/common.php';
-require FORUM_ROOT.'admin/include/common_admin.php';
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
 
 if (!$pun_user['is_admmod'])
@@ -51,7 +51,7 @@ require FORUM_ROOT.'admin/header.php';
             <a href="admin_statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
         </dd>
     </dl>
-    
+</div>
 <?php
 
 require FORUM_ROOT.'admin/footer.php';

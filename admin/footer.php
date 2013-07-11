@@ -21,17 +21,24 @@ ob_end_clean();
 ob_start();
 
 ?>
-<div id="brdfooter" class="block">
-	<h2><span><?php echo $lang_common['Board footer'] ?></span></h2>
-	<div class="box"
-		<div id="brdfooternav" class="inbox">
-			<div class="conr"
-				<p id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(' '.$pun_config['o_cur_version'])) ?></p>
-			</div>
-			<div class="clearer"></div>
-		</div>
-	</div>
-</div>
+<footer>
+	<p class="pull-right"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(' '.$pun_config['o_cur_version'])) ?></p>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/bootstrap-affix.js"></script>
+</footer>
 <?php
 
 // Display debug info (if enabled/defined)

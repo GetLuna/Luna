@@ -112,7 +112,7 @@ else
             </table>
         </fieldset>
     </form>
-</div></div>
+</div>
 <div class="content">
     <h2><span><?php echo $lang_admin_reports['Last 10 head'] ?></span></h2>
     <table class="table" cellspacing="0">
@@ -167,5 +167,7 @@ else
                 </tr>
 <?php
 
-} ?></fieldset></tbody></table><?php
+} ?></fieldset></tbody></table>
+</div>
+<?php
 require FORUM_ROOT.'admin/footer.php';

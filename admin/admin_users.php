@@ -306,26 +306,26 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 
 ?>
 <div class="content">
-		<h2><span><?php echo $lang_admin_users['Move users'] ?></span></h2>
-        <form name="confirm_move_users" method="post" action="admin_users.php">
-            <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-            <fieldset>
-                <table class="table" cellspacing="0">
-                    <tr>
-                        <th><?php echo $lang_admin_users['New group label'] ?></th>
-                        <td>
-                            <select name="new_group" tabindex="1">
+    <h2><span><?php echo $lang_admin_users['Move users'] ?></span></h2>
+    <form name="confirm_move_users" method="post" action="admin_users.php">
+        <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+        <fieldset>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <th><?php echo $lang_admin_users['New group label'] ?></th>
+                    <td>
+                        <select name="new_group" tabindex="1">
 <?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo pun_htmlspecialchars($group) ?></option>
 <?php endforeach; ?>
-                            </select>
-                            <br /><span><?php echo $lang_admin_users['New group help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            <p class="control-group"><input class="btn btn-success" type="submit" name="move_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="2" /></p>
-        </form>
-    </div>
+                        </select>
+                        <br /><span><?php echo $lang_admin_users['New group help'] ?></span>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <div class="control-group"><input class="btn btn-success" type="submit" name="move_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="2" /></div>
+    </form>
+</div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -803,7 +803,7 @@ else if (isset($_GET['find_user']))
 
 <div class="pagepost">
     <p class="pagelink"><?php echo $paging_links ?></p>
-<?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-danger" type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
+<?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-success" type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
 <?php endif; ?>
 </div>
 </form>
@@ -934,7 +934,8 @@ else
         </fieldset>
         <p class="control-group"><input class="btn btn-success" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="25" /></p>
     </form>
-
+</div>
+<div class="content">
     <h2><?php echo $lang_admin_users['IP search head'] ?></h2>
     <form method="get" action="admin_users.php">
         <fieldset>
@@ -948,6 +949,7 @@ else
                 </table>
         </fieldset>
     </form>
+</div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';

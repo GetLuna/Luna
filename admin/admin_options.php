@@ -70,13 +70,6 @@ if (isset($_POST['form_sent']))
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
-		'admin_email'			=> strtolower(pun_trim($_POST['form']['admin_email'])),
-		'webmaster_email'		=> strtolower(pun_trim($_POST['form']['webmaster_email'])),
-		'forum_subscriptions'	=> $_POST['form']['forum_subscriptions'] != '1' ? '0' : '1',
-		'topic_subscriptions'	=> $_POST['form']['topic_subscriptions'] != '1' ? '0' : '1',
-		'smtp_host'				=> pun_trim($_POST['form']['smtp_host']),
-		'smtp_user'				=> pun_trim($_POST['form']['smtp_user']),
-		'smtp_ssl'				=> $_POST['form']['smtp_ssl'] != '1' ? '0' : '1',
 		'regs_allow'			=> $_POST['form']['regs_allow'] != '1' ? '0' : '1',
 		'regs_verify'			=> $_POST['form']['regs_verify'] != '1' ? '0' : '1',
 		'regs_report'			=> $_POST['form']['regs_report'] != '1' ? '0' : '1',
@@ -128,18 +121,6 @@ if (isset($_POST['form_sent']))
 
 	if ($form['additional_navlinks'] != '')
 		$form['additional_navlinks'] = pun_trim(pun_linebreaks($form['additional_navlinks']));
-
-	// Change or enter a SMTP password
-	if (isset($_POST['form']['smtp_change_pass']))
-	{
-		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? pun_trim($_POST['form']['smtp_pass1']) : '';
-		$smtp_pass2 = isset($_POST['form']['smtp_pass2']) ? pun_trim($_POST['form']['smtp_pass2']) : '';
-
-		if ($smtp_pass1 == $smtp_pass2)
-			$form['smtp_pass'] = $smtp_pass1;
-		else
-			message($lang_admin_options['SMTP passwords did not match']);
-	}
 
 	if ($form['announcement_message'] != '')
 		$form['announcement_message'] = pun_linebreaks($form['announcement_message']);
@@ -224,7 +205,7 @@ generate_admin_menu('');
 <div class="content">
     <h2><?php echo $lang_admin_options['Options head'] ?></h2>
     <form method="post" action="admin_options.php">
-        <input type="hidden" name="form_sent" value="1" />
+        <input type="hidden" name="form_sent" value="1" /><!-- 
         <div class="tabbable tabs-left">
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#essentials" data-toggle="tab"><?php echo $lang_admin_options['Essentials subhead'] ?></a></li>
@@ -249,7 +230,52 @@ generate_admin_menu('');
 					<p>I'm in Section 2.</p>
 				</div>
 			</div>
-		</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="display">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="features">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="feed">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="reports">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="avatars">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="email">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="registration">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="announcements">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+            <div class="tab-content">
+				<div class="tab-pane" id="maintenance">
+					<p>I'm in Section 2.</p>
+				</div>
+			</div>
+		</div> -->
         <fieldset>
             <h3><?php echo $lang_admin_options['Essentials subhead'] ?></h3>
             <table class="table">
@@ -693,73 +719,6 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_t
 			</table>
         </fieldset>
         <fieldset>
-            <h3><?php echo $lang_admin_options['E-mail subhead'] ?></h3>
-            <table class="table">
-                <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Admin e-mail label'] ?></th>
-                    <td>
-                        <input type="text" name="form[admin_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
-                        <br /><span><?php echo $lang_admin_options['Admin e-mail help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Webmaster e-mail label'] ?></th>
-                    <td>
-                        <input type="text" name="form[webmaster_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_webmaster_email'] ?>" />
-                        <br /><span><?php echo $lang_admin_options['Webmaster e-mail help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Forum subscriptions label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[forum_subscriptions]" value="1"<?php if ($pun_config['o_forum_subscriptions'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[forum_subscriptions]" value="0"<?php if ($pun_config['o_forum_subscriptions'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Forum subscriptions help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Topic subscriptions label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[topic_subscriptions]" value="1"<?php if ($pun_config['o_topic_subscriptions'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[topic_subscriptions]" value="0"<?php if ($pun_config['o_topic_subscriptions'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Topic subscriptions help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['SMTP address label'] ?></th>
-                    <td>
-                        <input type="text" name="form[smtp_host]" size="30" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_host']) ?>" />
-                        <br /><span><?php echo $lang_admin_options['SMTP address help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['SMTP username label'] ?></th>
-                    <td>
-                        <input type="text" name="form[smtp_user]" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
-                        <br /><span><?php echo $lang_admin_options['SMTP username help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['SMTP password label'] ?></th>
-                    <td>
-                        <br /><span><input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />&#160;&#160;<label class="conl" for="form_smtp_change_pass"><?php echo $lang_admin_options['SMTP change password help'] ?></label></span>
-<?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
-                        <input type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                        <input type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                        <br /><span><?php echo $lang_admin_options['SMTP password help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['SMTP SSL label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[smtp_ssl]" value="1"<?php if ($pun_config['o_smtp_ssl'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[smtp_ssl]" value="0"<?php if ($pun_config['o_smtp_ssl'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['SMTP SSL help'] ?></span>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-        <fieldset>
             <h3><?php echo $lang_admin_options['Registration subhead'] ?></h3>
             <table class="table">
                 <tr>
@@ -854,6 +813,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_t
         </fieldset>
         <p class="control-group"><input class="btn btn-success" type="submit" name="save" value="<?php echo $lang_admin_common['Save changes'] ?>" /></p>
     </form>
+</div>
 <?php
 
 require FORUM_ROOT.'admin/footer.php';

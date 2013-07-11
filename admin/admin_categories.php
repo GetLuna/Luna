@@ -162,85 +162,84 @@ require FORUM_ROOT.'admin/header.php';
 
 ?>
 <div class="content">
-		<h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
-        <form method="post" action="admin_categories.php">
-            <fieldset>
-                <table class="table" cellspacing="0">
-                    <tr>
-                        <th scope="row"><?php echo $lang_admin_categories['Add category label'] ?></th>
-                        <td>
-                            <input type="text" name="new_cat_name" size="35" maxlength="80" tabindex="1" />
-                            <input class="btn btn-success" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
-                            <br /><?php printf($lang_admin_categories['Add category help'], '<a href="admin_forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-        </form>
-</div></div>
-</div></div>
+    <h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
+    <form method="post" action="admin_categories.php">
+        <fieldset>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_categories['Add category label'] ?></th>
+                    <td>
+                        <input type="text" name="new_cat_name" size="35" maxlength="80" tabindex="1" />
+                        <input class="btn btn-success" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
+                        <br /><?php printf($lang_admin_categories['Add category help'], '<a href="admin_forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
 <div class="content">
 <?php if ($num_cats): ?>
-		<h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
-        <form method="post" action="admin_categories.php">
-            <fieldset>
-                <table class="table" cellspacing="0">
-                    <tr>
-                        <th scope="row"><?php echo $lang_admin_categories['Delete category label'] ?></th>
-                        <td>
-                            <select name="cat_to_delete" tabindex="3">
+    <h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
+    <form method="post" action="admin_categories.php">
+        <fieldset>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <th scope="row"><?php echo $lang_admin_categories['Delete category label'] ?></th>
+                    <td>
+                        <select name="cat_to_delete" tabindex="3">
 <?php
 
 foreach ($cat_list as $cur_cat)
 echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 
 ?>
-                            </select>
-                            <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_admin_common['Delete'] ?>" tabindex="4" />
-                            <br /><?php echo $lang_admin_categories['Delete category help'] ?>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-        </form>
+                        </select>
+                        <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_admin_common['Delete'] ?>" tabindex="4" />
+                        <br /><?php echo $lang_admin_categories['Delete category help'] ?>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 <?php endif; ?>
 </div>
 <div class="content">
-
 <?php if ($num_cats): ?>
-		<h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
-        <form method="post" action="admin_categories.php">
-            <fieldset>
-                <table class="table" cellspacing="0" >
-                <thead>
-                    <tr>
-                        <th class="tcl" scope="col"><?php echo $lang_admin_categories['Category name label'] ?></th>
-                        <th scope="col"><?php echo $lang_admin_categories['Category position label'] ?></th>
-                    </tr>
-                </thead>
-                <tbody>
+    <h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
+    <form method="post" action="admin_categories.php">
+        <fieldset>
+            <table class="table" cellspacing="0" >
+            <thead>
+                <tr>
+                    <th class="tcl" scope="col"><?php echo $lang_admin_categories['Category name label'] ?></th>
+                    <th scope="col"><?php echo $lang_admin_categories['Category position label'] ?></th>
+                </tr>
+            </thead>
+            <tbody>
 <?php
 
 foreach ($cat_list as $cur_cat)
 {
 
 ?>
-                    <tr>
-                        <td class="tcl"><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
-                        <td><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
-                    </tr>
+                <tr>
+                    <td class="tcl"><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
+                    <td><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
+                </tr>
 <?php
 
 }
 
 ?>
-                </tbody>
-                </table>
-                <div class="control-group">
-                	<input class="btn btn-success" type="submit" name="update" value="<?php echo $lang_admin_common['Update'] ?>" />
-                </div>
-            </fieldset>
-        </form>
+            </tbody>
+            </table>
+            <div class="control-group">
+                <input class="btn btn-success" type="submit" name="update" value="<?php echo $lang_admin_common['Update'] ?>" />
+            </div>
+        </fieldset>
+    </form>
+</div>
 <?php endif; 
 
 require FORUM_ROOT.'admin/footer.php';
