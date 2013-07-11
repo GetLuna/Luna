@@ -43,7 +43,7 @@ if (isset($_GET['ip_stats']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'header.php';
+	require FORUM_ROOT.'admin/header.php';
 
 ?>
 <div class="linkst">
@@ -64,7 +64,7 @@ if (isset($_GET['ip_stats']))
 	<h2><span><?php echo $lang_admin_users['Results head'] ?></span></h2>
 	<div class="box">
 		<div class="inbox">
-			<table cellspacing="0">
+			<table class="table" classs="table" cellspacing="0">
 			<thead>
 				<tr>
 					<th class="tcl" scope="col"><?php echo $lang_admin_users['Results IP address head'] ?></th>
@@ -118,7 +118,7 @@ if (isset($_GET['ip_stats']))
 </div>
 <?php
 
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'admin/footer.php';
 }
 
 
@@ -144,7 +144,7 @@ if (isset($_GET['show_users']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'header.php';
+	require FORUM_ROOT.'addmin/header.php';
 
 ?>
 <div class="linkst">
@@ -165,7 +165,7 @@ if (isset($_GET['show_users']))
 	<h2><span><?php echo $lang_admin_users['Results head'] ?></span></h2>
 	<div class="box">
 		<div class="inbox">
-			<table cellspacing="0">
+			<table class="table" cellspacing="0">
 			<thead>
 				<tr>
 					<th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
@@ -257,7 +257,7 @@ if (isset($_GET['show_users']))
 	</div>
 </div>
 <?php
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'admin/footer.php';
 }
 
 
@@ -346,9 +346,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Move users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'header.php';
-
-	generate_admin_menu('users');
+	require FORUM_ROOT.'admin/header.php';
 
 ?>
 	<div class="blockform">
@@ -360,7 +358,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 					<fieldset>
 						<legend><?php echo $lang_admin_users['Move users subhead'] ?></legend>
 						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
+							<table class="table" cellspacing="0">
 								<tr>
 									<th scope="row"><?php echo $lang_admin_users['New group label'] ?></th>
 									<td>
@@ -383,7 +381,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 </div>
 <?php
 
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'admin/footer.php';
 }
 
 
@@ -502,9 +500,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Delete users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'header.php';
-
-	generate_admin_menu('users');
+	require FORUM_ROOT.'admin/header.php';
 
 ?>
 	<div class="blockform">
@@ -532,7 +528,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 </div>
 <?php
 
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'admin/footer.php';
 }
 
 
@@ -628,9 +624,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 	$focus_element = array('bans2', 'ban_message');
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'header.php';
-
-	generate_admin_menu('users');
+	require FORUM_ROOT.'admin/header.php';
 
 ?>
 	<div class="blockform">
@@ -642,7 +636,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 					<fieldset>
 						<legend><?php echo $lang_admin_users['Message expiry subhead'] ?></legend>
 						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
+							<table class="table" cellspacing="0">
 								<tr>
 									<th scope="row"><?php echo $lang_admin_users['Ban message label'] ?></th>
 									<td>
@@ -677,7 +671,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 </div>
 <?php
 
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'admin/footer.php';
 }
 
 
@@ -815,7 +809,7 @@ else if (isset($_GET['find_user']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'header.php';
+	require FORUM_ROOT.'admin/header.php';
 
 ?>
 <div class="linkst">
@@ -838,7 +832,7 @@ else if (isset($_GET['find_user']))
 	<h2><span><?php echo $lang_admin_users['Results head'] ?></span></h2>
 	<div class="box">
 		<div class="inbox">
-			<table cellspacing="0">
+			<table class="table" cellspacing="0">
 			<thead>
 				<tr>
 					<th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
@@ -910,7 +904,7 @@ else if (isset($_GET['find_user']))
 </form>
 <?php
 
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'admin/footer.php';
 }
 
 
@@ -919,9 +913,7 @@ else
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users']);
 	$focus_element = array('find_user', 'form[username]');
 	define('PUN_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'header.php';
-
-	generate_admin_menu('users');
+	require FORUM_ROOT.'admin/header.php';
 
 ?>
 	<div class="blockform">
@@ -934,7 +926,7 @@ else
 						<legend><?php echo $lang_admin_users['User search subhead'] ?></legend>
 						<div class="infldset">
 							<p><?php echo $lang_admin_users['User search info'] ?></p>
-							<table class="aligntop" cellspacing="0">
+							<table class="table" cellspacing="0">
 								<tr>
 									<th scope="row"><?php echo $lang_admin_users['Username label'] ?></th>
 									<td><input type="text" name="form[username]" size="25" maxlength="25" tabindex="2" /></td>
@@ -1073,7 +1065,7 @@ else
 					<fieldset>
 						<legend><?php echo $lang_admin_users['IP search subhead'] ?></legend>
 						<div class="infldset">
-							<table class="aligntop" cellspacing="0">
+							<table class="table" cellspacing="0">
 								<tr>
 									<th scope="row"><?php echo $lang_admin_users['IP address label'] ?><div><input type="submit" value="<?php echo $lang_admin_users['Find IP address'] ?>" tabindex="26" /></div></th>
 									<td><input type="text" name="show_users" size="18" maxlength="15" tabindex="24" />
@@ -1090,5 +1082,5 @@ else
 </div>
 <?php
 
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'admin/footer.php';
 }

@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '1.9.0');
+define('UPDATE_TO', '1.9.1');
 
 define('UPDATE_TO_DB_REVISION', 20);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -716,6 +716,9 @@ switch ($stage)
 
 		// Drop g_edit_subjects_interval column from groups table
 		$db->drop_field('groups', 'g_edit_subjects_interval');
+
+		// Drop o_maintenance_message column from config table
+		$db->drop_field('config', 'o_maintenance_message');
 
 		// Add database revision number
 		if (!array_key_exists('o_database_revision', $pun_config))
