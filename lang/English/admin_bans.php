@@ -17,7 +17,7 @@ $lang_admin_bans = array(
 'Ban edited redirect'		=>	'Ban edited. Redirecting …',
 'Ban removed redirect'		=>	'Ban removed. Redirecting …',
 
-'New ban head'				=>	'New ban',
+'New ban head'				=>	'Add ban',
 'Add ban subhead'			=>	'Add ban',
 'Username label'			=>	'Username',
 'Username help'				=>	'The username to ban (case-insensitive).',

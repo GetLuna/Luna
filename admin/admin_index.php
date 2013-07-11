@@ -26,32 +26,32 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Index']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
-	<div class="block">
-		<h2><span><?php echo $lang_admin_index['Forum admin head'] ?></span></h2>
-        <p><?php echo $lang_admin_index['Welcome to admin'] ?></p>
-        <ul>
-            <li><span><?php echo $lang_admin_index['Welcome 1'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 2'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 3'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 4'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 5'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 6'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 7'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 8'] ?></span></li>
-            <li><span><?php echo $lang_admin_index['Welcome 9'] ?></span></li>
-        </ul>
+<div class="content">
+    <h2><span><?php echo $lang_admin_index['Forum admin head'] ?></span></h2>
+    <p><?php echo $lang_admin_index['Welcome to admin'] ?></p>
+    <ul>
+        <li><span><?php echo $lang_admin_index['Welcome 1'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 2'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 3'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 4'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 5'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 6'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 7'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 8'] ?></span></li>
+        <li><span><?php echo $lang_admin_index['Welcome 9'] ?></span></li>
+    </ul>
 
-		<h2 class="block2"><span><?php echo $lang_admin_index['About head'] ?></span></h2>
-        <dl>
-            <dt><?php echo $lang_admin_index['Server statistics label'] ?></dt>
-            <dd>
-                <a href="admin_statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
-            </dd>
-        </dl>
-	</div>
-</div>
+    <h2><span><?php echo $lang_admin_index['About head'] ?></span></h2>
+    <dl>
+        <dt><?php echo $lang_admin_index['Server statistics label'] ?></dt>
+        <dd>
+            <a href="admin_statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
+        </dd>
+    </dl>
+    
 <?php
 
 require FORUM_ROOT.'admin/footer.php';

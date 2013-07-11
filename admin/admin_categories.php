@@ -94,8 +94,10 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
 		define('PUN_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
     <form method="post" action="admin_categories.php">
         <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
         <fieldset>
@@ -156,9 +158,10 @@ for ($i = 0; $i < $num_cats; ++$i)
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
-	<div class="blockform">
+<div class="content">
 		<h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
         <form method="post" action="admin_categories.php">
             <fieldset>
@@ -176,8 +179,7 @@ require FORUM_ROOT.'admin/header.php';
         </form>
 </div></div>
 </div></div>
-<div id="punadmin" class="content">
-<div class="punwrap">
+<div class="content">
 <?php if ($num_cats): ?>
 		<h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
         <form method="post" action="admin_categories.php">
@@ -202,9 +204,8 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
             </fieldset>
         </form>
 <?php endif; ?>
-</div></div>
-<div id="punadmin" class="content">
-<div class="punwrap">
+</div>
+<div class="content">
 
 <?php if ($num_cats): ?>
 		<h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>

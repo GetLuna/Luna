@@ -1,23 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<pun_language>" lang="<pun_language>" dir="<pun_content_direction>">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<pun_head>
-</head>
-
-<body>
-
-<div id="punadmin" class="pun">
-<div class="punwrap">
-
-<div id="brdmain">
-<pun_main>
-</div>
-
-<pun_footer>
-
-</div>
-</div>
-
-</body>
+<!doctype html>
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="style/Air.css" />
+        <link rel="stylesheet" type="text/css" href="style/base_admin.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="js/bootstrap.js"></script>
+	</head>
+	<body>
+        <div id="punadmin">
+            <div class="punwrap">
+                <div id="brdmain">
+                    <pun_main>
+              		<pun_footer>
+                </div>
+            </div>
+        </div>
+	</body>
 </html>

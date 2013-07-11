@@ -1238,7 +1238,7 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: 30px;
+  height: 20px;
   padding: 4px 6px;
   margin-bottom: 10px;
   font-size: 14px;

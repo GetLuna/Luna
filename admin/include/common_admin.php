@@ -23,6 +23,88 @@ else
 require FORUM_ROOT.'lang/'.$admin_language.'/admin_common.php';
 
 //
+// Display the admin navigation menu
+//
+function generate_admin_menu($page = '')
+{
+	global $pun_config, $pun_user, $lang_admin_common;
+
+	$is_admin = $pun_user['g_id'] == PUN_ADMIN ? true : false;
+
+?>
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+  <div class="container">
+    <a class="brand" href="admin_index.php">ModernBB</a>
+    <ul class="nav">
+      <li><a href="admin_index.php">Dashboard</a></li>
+      <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Content <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <?php if ($is_admin) { ?><li><a href="admin_forums.php">Forums</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_categories.php">Categories</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_censoring.php">Censoring</a></li><?php }; ?>
+		  <li><a href="admin_reports.php">Reports</a></li>
+		</ul>
+	  </li>
+      <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Users <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="admin_users.php">Users</a></li>
+		  <?php if ($is_admin) { ?><li><a href="admin_ranks.php">Ranks</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_groups.php">Groups</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_permissions.php">Permissions</a></li><?php }; ?>
+		  <li><a href="admin_bans.php">Bans</a></li>
+		</ul>
+	  </li>
+      <?php if ($is_admin) { ?><li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Settings <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="admin_options.php">Global</a></li>
+		  <li><a href="admin_email.php">Email</a></li>
+		  <li><a href="admin_maintenance.php">Maintenance</a></li>
+		</ul>
+	  </li><?php }; ?>
+      <?php if ($is_admin) { ?><li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Extensions <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+<?php
+
+	// See if there are any plugins
+	$plugins = forum_list_plugins($is_admin);
+
+	// Did we find any plugins?
+	if (!empty($plugins))
+	{
+
+		foreach ($plugins as $plugin_name => $plugin)
+			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="admin_loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
+
+	} else {
+		echo '<li class="nav-header">No plugins</li>';
+	}
+}; ?>
+        </ul>
+      </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<?php
+
+}
+
+
+//
 // Delete topics from $forum_id that are "older than" $prune_date (if $prune_sticky is 1, sticky topics will also be deleted)
 //
 function prune($forum_id, $prune_sticky, $prune_date)

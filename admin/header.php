@@ -92,12 +92,16 @@ if (!defined('PUN_ALLOW_INDEX'))
 
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
-<link rel="stylesheet" type="text/css" href="style/Air.css" />
-<link rel="stylesheet" type="text/css" href="style/base_admin.css" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="style/<?php echo $pun_user['style'].'.css' ?>" />
 <?php
+
+if (defined('PUN_ADMIN_CONSOLE'))
+{
+	if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/base_admin.css'))
+		echo '<link rel="stylesheet" type="text/css" href="style/'.$pun_user['style'].'/base_admin.css" />'."\n";
+	else
+		echo '<link rel="stylesheet" type="text/css" href="style/imports/base_admin.css" />'."\n";
+}
 
 if (isset($required_fields))
 {
@@ -160,93 +164,158 @@ if (isset($focus_element))
 }
 // END SUBST - <body>
 
-$is_admin = $pun_user['g_id'] == PUN_ADMIN ? true : false;
-
-?>
-<div class="navbar navbar-static-top">
-  <div class="navbar-inner">
-  <div class="container">
-    <a class="brand" href="admin_index.php">ModernBB</a>
-    <ul class="nav">
-      <li><a href="admin_index.php">Dashboard</a></li>
-      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Content <b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
-		  <?php if ($is_admin) { ?><li><a href="admin_forums.php">Forums</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_categories.php">Categories</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_censoring.php">Censoring</a></li><?php }; ?>
-		  <li><a href="admin_reports.php">Reports</a></li>
-		</ul>
-	  </li>
-      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Users <b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
-		  <li><a href="admin_users.php">Users</a></li>
-		  <?php if ($is_admin) { ?><li><a href="admin_ranks.php">Ranks</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_groups.php">Groups</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_permissions.php">Permissions</a></li><?php }; ?>
-		  <li><a href="admin_bans.php">Bans</a></li>
-		</ul>
-	  </li>
-      <?php if ($is_admin) { ?><li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Settings <b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
-		  <li><a href="admin_options.php">Global</a></li>
-		  <li><a href="admin_email.php">Email</a></li>
-		  <li><a href="admin_maintenance.php">Maintenance</a></li>
-		</ul>
-	  </li><?php }; ?>
-      <?php if ($is_admin) { ?><li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Extensions <b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
-<?php
-
-	// See if there are any plugins
-	$plugins = forum_list_plugins($is_admin);
-
-	// Did we find any plugins?
-	if (!empty($plugins))
-	{
-
-		foreach ($plugins as $plugin_name => $plugin)
-			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="admin_loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
-
-	} else {
-		echo '<li class="nav-header">No plugins</li>';
-	}
-}; ?>
-        </ul>
-      </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<?php
-//Update checking
-$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/version2.0/version.txt'));
-if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
-	if (FORUM_VERSION < $latest_version) { ?>
-		<div class="alert alert-info alert-update">
-          <h4>ModernBB v<?php echo $latest_version ?> available</h4>
-          We found a new version of ModernBB on the web. Your board is out-of-date and we recommend you to update right away!<br />
-          <a class="btn btn-success">Download v<?php echo $latest_version ?></a>
-          <a class="btn btn-success">Changelog</a>
-        </div>
-<?php
-	}
-}
 
 // START SUBST - <pun_page>
 $tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
 // END SUBST - <pun_page>
+
+
+// START SUBST - <pun_title>
+$tpl_main = str_replace('<pun_title>', '<h1><a href="index.php">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a></h1>', $tpl_main);
+// END SUBST - <pun_title>
+
+
+// START SUBST - <pun_desc>
+$tpl_main = str_replace('<pun_desc>', '<div id="brddesc">'.$pun_config['o_board_desc'].'</div>', $tpl_main);
+// END SUBST - <pun_desc>
+
+
+// START SUBST - <pun_navlinks>
+$links = array();
+
+// Index should always be displayed
+$links[] = '<li id="navindex"'.((PUN_ACTIVE_PAGE == 'index') ? ' class="isactive"' : '').'><a href="index.php">'.$lang_common['Index'].'</a></li>';
+
+if ($pun_user['g_read_board'] == '1' && $pun_user['g_view_users'] == '1')
+	$links[] = '<li id="navuserlist"'.((PUN_ACTIVE_PAGE == 'userlist') ? ' class="isactive"' : '').'><a href="userlist.php">'.$lang_common['User list'].'</a></li>';
+
+if ($pun_config['o_rules'] == '1' && (!$pun_user['is_guest'] || $pun_user['g_read_board'] == '1' || $pun_config['o_regs_allow'] == '1'))
+	$links[] = '<li id="navrules"'.((PUN_ACTIVE_PAGE == 'rules') ? ' class="isactive"' : '').'><a href="misc.php?action=rules">'.$lang_common['Rules'].'</a></li>';
+
+if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
+	$links[] = '<li id="navsearch"'.((PUN_ACTIVE_PAGE == 'search') ? ' class="isactive"' : '').'><a href="search.php">'.$lang_common['Search'].'</a></li>';
+
+if ($pun_user['is_guest'])
+{
+	$links[] = '<li id="navregister"'.((PUN_ACTIVE_PAGE == 'register') ? ' class="isactive"' : '').'><a href="register.php">'.$lang_common['Register'].'</a></li>';
+	$links[] = '<li id="navlogin"'.((PUN_ACTIVE_PAGE == 'login') ? ' class="isactive"' : '').'><a href="login.php">'.$lang_common['Login'].'</a></li>';
+}
+else
+{
+	$links[] = '<li id="navprofile"'.((PUN_ACTIVE_PAGE == 'profile') ? ' class="isactive"' : '').'><a href="profile.php?id='.$pun_user['id'].'">'.$lang_common['Profile'].'</a></li>';
+
+	if ($pun_user['is_admmod'])
+		$links[] = '<li id="navadmin"'.((PUN_ACTIVE_PAGE == 'admin') ? ' class="isactive"' : '').'><a href="admin_index.php">'.$lang_common['Admin'].'</a></li>';
+
+	$links[] = '<li id="navlogout"><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang_common['Logout'].'</a></li>';
+}
+
+// Are there any additional navlinks we should insert into the array before imploding it?
+if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != '')
+{
+	if (preg_match_all('%([0-9]+)\s*=\s*(.*?)\n%s', $pun_config['o_additional_navlinks']."\n", $extra_links))
+	{
+		// Insert any additional links into the $links array (at the correct index)
+		$num_links = count($extra_links[1]);
+		for ($i = 0; $i < $num_links; ++$i)
+			array_splice($links, $extra_links[1][$i], 0, array('<li id="navextra'.($i + 1).'">'.$extra_links[2][$i].'</li>'));
+	}
+}
+
+$tpl_temp = '<div id="brdmenu" class="inbox">'."\n\t\t\t".'<ul>'."\n\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t".'</ul>'."\n\t\t".'</div>';
+$tpl_main = str_replace('<pun_navlinks>', $tpl_temp, $tpl_main);
+// END SUBST - <pun_navlinks>
+
+
+// START SUBST - <pun_status>
+$page_statusinfo = $page_topicsearches = array();
+
+if ($pun_user['is_guest'])
+	$page_statusinfo = '<p class="conl">'.$lang_common['Not logged in'].'</p>';
+else
+{
+	$page_statusinfo[] = '<li><span>'.$lang_common['Logged in as'].' <strong>'.pun_htmlspecialchars($pun_user['username']).'</strong></span></li>';
+	$page_statusinfo[] = '<li><span>'.sprintf($lang_common['Last visit'], format_time($pun_user['last_visit'])).'</span></li>';
+
+	if ($pun_user['is_admmod'])
+	{
+		if ($pun_config['o_report_method'] == '0' || $pun_config['o_report_method'] == '2')
+		{
+			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
+
+			if ($db->result($result_header))
+				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="admin_reports.php">'.$lang_common['New reports'].'</a></strong></span></li>';
+		}
+
+		if ($pun_config['o_maintenance'] == '1')
+			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="admin_options.php#maintenance">'.$lang_common['Maintenance mode enabled'].'</a></strong></span></li>';
+	}
+
+	if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
+	{
+		$page_topicsearches[] = '<a href="search.php?action=show_replies" title="'.$lang_common['Show posted topics'].'">'.$lang_common['Posted topics'].'</a>';
+		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang_common['Show new posts'].'">'.$lang_common['New posts header'].'</a>';
+	}
+}
+
+// Quick searches
+if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
+{
+	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang_common['Show active topics'].'">'.$lang_common['Active topics'].'</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang_common['Show unanswered topics'].'">'.$lang_common['Unanswered topics'].'</a>';
+}
+
+
+// Generate all that jazz
+$tpl_temp = '<div id="brdwelcome" class="inbox">';
+
+// The status information
+if (is_array($page_statusinfo))
+{
+	$tpl_temp .= "\n\t\t\t".'<ul class="conl">';
+	$tpl_temp .= "\n\t\t\t\t".implode("\n\t\t\t\t", $page_statusinfo);
+	$tpl_temp .= "\n\t\t\t".'</ul>';
+}
+else
+	$tpl_temp .= "\n\t\t\t".$page_statusinfo;
+
+// Generate quicklinks
+if (!empty($page_topicsearches))
+{
+	$tpl_temp .= "\n\t\t\t".'<ul class="conr">';
+	$tpl_temp .= "\n\t\t\t\t".'<li><span>'.$lang_common['Topic searches'].' '.implode(' | ', $page_topicsearches).'</span></li>';
+	$tpl_temp .= "\n\t\t\t".'</ul>';
+}
+
+$tpl_temp .= "\n\t\t\t".'<div class="clearer"></div>'."\n\t\t".'</div>';
+
+$tpl_main = str_replace('<pun_status>', $tpl_temp, $tpl_main);
+// END SUBST - <pun_status>
+
+
+// START SUBST - <pun_announcement>
+if ($pun_user['g_read_board'] == '1' && $pun_config['o_announcement'] == '1')
+{
+	ob_start();
+
+?>
+<div id="announce" class="block">
+	<div class="hd"><h2><span><?php echo $lang_common['Announcement'] ?></span></h2></div>
+	<div class="box">
+		<div id="announce-block" class="inbox">
+			<div class="usercontent"><?php echo $pun_config['o_announcement_message'] ?></div>
+		</div>
+	</div>
+</div>
+<?php
+
+	$tpl_temp = trim(ob_get_contents());
+	$tpl_main = str_replace('<pun_announcement>', $tpl_temp, $tpl_main);
+	ob_end_clean();
+}
+else
+	$tpl_main = str_replace('<pun_announcement>', '', $tpl_main);
+// END SUBST - <pun_announcement>
 
 
 // START SUBST - <pun_main>

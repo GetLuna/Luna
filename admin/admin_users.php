@@ -45,8 +45,10 @@ if (isset($_GET['ip_stats']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
 <h2><?php echo $lang_admin_users['Results head'] ?></h2>
 <div class="pagepost">
     <p class="pagelink"><?php echo $paging_links ?></p>
@@ -121,8 +123,10 @@ if (isset($_GET['show_users']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
 <h2><?php echo $lang_admin_users['Results head'] ?></h2>
 <div class="pagepost">
     <p class="pagelink"><?php echo $paging_links ?></p>
@@ -298,24 +302,23 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Move users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-
-	generate_admin_menu('users');
+	generate_admin_menu('');
 
 ?>
+<div class="content">
 		<h2><span><?php echo $lang_admin_users['Move users'] ?></span></h2>
         <form name="confirm_move_users" method="post" action="admin_users.php">
             <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
             <fieldset>
-                <h3><?php echo $lang_admin_users['Move users subhead'] ?></h3>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th scope="row"><?php echo $lang_admin_users['New group label'] ?></th>
+                        <th><?php echo $lang_admin_users['New group label'] ?></th>
                         <td>
                             <select name="new_group" tabindex="1">
 <?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo pun_htmlspecialchars($group) ?></option>
 <?php endforeach; ?>
                             </select>
-                            <span><?php echo $lang_admin_users['New group help'] ?></span>
+                            <br /><span><?php echo $lang_admin_users['New group help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -445,21 +448,22 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Delete users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
-		<h2><?php echo $lang_admin_users['Delete users'] ?></h2>
-        <form name="confirm_del_users" method="post" action="admin_users.php">
-            <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-                <fieldset>
-                    <label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang_admin_users['Delete posts'] ?><br /></label>
-                    <div class="alert alert-danger"><?php echo $lang_admin_users['Delete warning'] ?></div>
-                </fieldset>
-            <div class="control-group">
-            	<input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang_admin_users['Delete'] ?>" />
-                <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a>
-            </div>
-        </form>
-    </div>
+<div class="content">
+    <h2><?php echo $lang_admin_users['Delete users'] ?></h2>
+    <form name="confirm_del_users" method="post" action="admin_users.php">
+        <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+            <fieldset>
+                <label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang_admin_users['Delete posts'] ?><br /></label>
+                <div class="alert alert-danger"><?php echo $lang_admin_users['Delete warning'] ?></div>
+            </fieldset>
+        <div class="control-group">
+            <input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang_admin_users['Delete'] ?>" />
+            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a>
+        </div>
+    </form>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -559,8 +563,10 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	$focus_element = array('bans2', 'ban_message');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
     <h2><?php echo $lang_admin_users['Ban users'] ?></h2>
     <form id="bans2" name="confirm_ban_users" method="post" action="admin_users.php">
         <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
@@ -592,7 +598,6 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
         </fieldset>
         <p class="control-group"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="3" /></p>
     </form>
-</div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -734,9 +739,10 @@ else if (isset($_GET['find_user']))
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
-
+<div class="content">
 <h2><?php echo $lang_admin_users['Results head'] ?></h2>
 <div class="pagepost">
     <p class="pagelink"><?php echo $paging_links ?></p>
@@ -813,8 +819,10 @@ else
 	$focus_element = array('find_user', 'form[username]');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
     <h2><?php echo $lang_admin_users['User search head'] ?></h2>
     <form id="find_user" method="get" action="admin_users.php">
         <p><input class="btn btn-success" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="1" /></p>
@@ -940,7 +948,6 @@ else
                 </table>
         </fieldset>
     </form>
-</div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';

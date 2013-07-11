@@ -90,8 +90,10 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_ad
 $focus_element = array('censoring', 'new_search_for');
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
     <h2><?php echo $lang_admin_censoring['Censoring head'] ?></h2>
     <form id="censoring" method="post" action="admin_censoring.php">
         <fieldset>

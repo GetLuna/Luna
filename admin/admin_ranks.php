@@ -108,8 +108,10 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_ad
 $focus_element = array('ranks', 'new_rank');
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
     <h2><?php echo $lang_admin_ranks['Ranks head'] ?></h2>
     <form id="ranks" method="post" action="admin_ranks.php">
         <fieldset>

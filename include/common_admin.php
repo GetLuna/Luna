@@ -32,43 +32,51 @@ function generate_admin_menu($page = '')
 	$is_admin = $pun_user['g_id'] == PUN_ADMIN ? true : false;
 
 ?>
-<div id="adminconsole" class="block2col">
-	<div id="adminmenu" class="blockmenu">
-		<h2><span><?php echo $lang_admin_common['Moderator menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li<?php if ($page == 'index') echo ' class="isactive"'; ?>><a href="admin_index.php"><?php echo $lang_admin_common['Index'] ?></a></li>
-					<li<?php if ($page == 'users') echo ' class="isactive"'; ?>><a href="admin_users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
-<?php if ($is_admin || $pun_user['g_mod_ban_users'] == '1'): ?>					<li<?php if ($page == 'bans') echo ' class="isactive"'; ?>><a href="admin_bans.php"><?php echo $lang_admin_common['Bans'] ?></a></li>
-<?php endif; if ($is_admin || $pun_config['o_report_method'] == '0' || $pun_config['o_report_method'] == '2'): ?>					<li<?php if ($page == 'reports') echo ' class="isactive"'; ?>><a href="admin_reports.php"><?php echo $lang_admin_common['Reports'] ?></a></li>
-<?php endif; ?>				</ul>
-			</div>
-		</div>
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+  <div class="container">
+    <a class="brand" href="admin_index.php">ModernBB</a>
+    <ul class="nav">
+      <li><a href="admin_index.php">Dashboard</a></li>
+      <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Content <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <?php if ($is_admin) { ?><li><a href="admin_forums.php">Forums</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_categories.php">Categories</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_censoring.php">Censoring</a></li><?php }; ?>
+		  <li><a href="admin_reports.php">Reports</a></li>
+		</ul>
+	  </li>
+      <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Users <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="admin_users.php">Users</a></li>
+		  <?php if ($is_admin) { ?><li><a href="admin_ranks.php">Ranks</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_groups.php">Groups</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="admin_permissions.php">Permissions</a></li><?php }; ?>
+		  <li><a href="admin_bans.php">Bans</a></li>
+		</ul>
+	  </li>
+      <?php if ($is_admin) { ?><li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Settings <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="admin_options.php">Global</a></li>
+		  <li><a href="admin_email.php">Email</a></li>
+		  <li><a href="admin_maintenance.php">Maintenance</a></li>
+		</ul>
+	  </li><?php }; ?>
+      <?php if ($is_admin) { ?><li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  Extensions <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
 <?php
-
-	if ($is_admin)
-	{
-
-?>
-		<h2 class="block2"><span><?php echo $lang_admin_common['Admin menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li<?php if ($page == 'options') echo ' class="isactive"'; ?>><a href="admin_options.php"><?php echo $lang_admin_common['Options'] ?></a></li>
-					<li<?php if ($page == 'permissions') echo ' class="isactive"'; ?>><a href="admin_permissions.php"><?php echo $lang_admin_common['Permissions'] ?></a></li>
-					<li<?php if ($page == 'categories') echo ' class="isactive"'; ?>><a href="admin_categories.php"><?php echo $lang_admin_common['Categories'] ?></a></li>
-					<li<?php if ($page == 'forums') echo ' class="isactive"'; ?>><a href="admin_forums.php"><?php echo $lang_admin_common['Forums'] ?></a></li>
-					<li<?php if ($page == 'groups') echo ' class="isactive"'; ?>><a href="admin_groups.php"><?php echo $lang_admin_common['User groups'] ?></a></li>
-					<li<?php if ($page == 'censoring') echo ' class="isactive"'; ?>><a href="admin_censoring.php"><?php echo $lang_admin_common['Censoring'] ?></a></li>
-					<li<?php if ($page == 'ranks') echo ' class="isactive"'; ?>><a href="admin_ranks.php"><?php echo $lang_admin_common['Ranks'] ?></a></li>
-					<li<?php if ($page == 'maintenance') echo ' class="isactive"'; ?>><a href="admin_maintenance.php"><?php echo $lang_admin_common['Maintenance'] ?></a></li>
-				</ul>
-			</div>
-		</div>
-<?php
-
-	}
 
 	// See if there are any plugins
 	$plugins = forum_list_plugins($is_admin);
@@ -77,26 +85,19 @@ function generate_admin_menu($page = '')
 	if (!empty($plugins))
 	{
 
-?>
-		<h2 class="block2"><span><?php echo $lang_admin_common['Plugins menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-<?php
-
 		foreach ($plugins as $plugin_name => $plugin)
-			echo "\t\t\t\t\t".'<li'.(($page == $plugin_name) ? ' class="isactive"' : '').'><a href="admin_loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
+			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="admin_loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
 
-?>
-				</ul>
-			</div>
-		</div>
-<?php
-
+	} else {
+		echo '<li class="nav-header">No plugins</li>';
 	}
-
-?>
-	</div>
+}; ?>
+        </ul>
+      </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <?php
 

@@ -94,9 +94,10 @@ else if (isset($_GET['del_forum']))
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 		define('PUN_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
-
+<div class="content">
     <h2><span><?php echo $lang_admin_forums['Confirm delete head'] ?></span></h2>
     <form method="post" action="admin_forums.php?del_forum=<?php echo $forum_id ?>">
         <fieldset>
@@ -227,8 +228,10 @@ else if (isset($_GET['edit_forum']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
     <h2><span><?php echo $lang_admin_forums['Edit forum head'] ?></span></h2>
     <form id="edit_forum" method="post" action="admin_forums.php?edit_forum=<?php echo $forum_id ?>">
         <fieldset>
@@ -344,8 +347,10 @@ $post_topics_def = (($post_topics && $cur_perm['g_post_topics'] == '0') || (!$po
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
+	generate_admin_menu('');
 
 ?>
+<div class="content">
     <h2><span><?php echo $lang_admin_forums['Add forum head'] ?></span></h2>
     <form method="post" action="admin_forums.php?action=adddel">
         <fieldset>
@@ -378,8 +383,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_adm
     </form>
 </div>
 </div></div>
-<div id="punadmin" class="content">
-<div class="punwrap">
+<div class="content">
 <?php
 
 // Display all the categories and forums
