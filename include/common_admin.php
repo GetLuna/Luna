@@ -35,18 +35,18 @@ function generate_admin_menu($page = '')
 <div class="navbar navbar-static-top">
   <div class="navbar-inner">
   <div class="container">
-    <a class="brand" href="admin_index.php">ModernBB</a>
+    <a class="brand" href="index.php">ModernBB</a>
     <ul class="nav">
-      <li><a href="admin_index.php">Dashboard</a></li>
+      <li><a href="index.php">Dashboard</a></li>
       <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		  Content <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <?php if ($is_admin) { ?><li><a href="admin_forums.php">Forums</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_categories.php">Categories</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_censoring.php">Censoring</a></li><?php }; ?>
-		  <li><a href="admin_reports.php">Reports</a></li>
+		  <?php if ($is_admin) { ?><li><a href="forums.php">Forums</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="categories.php">Categories</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="censoring.php">Censoring</a></li><?php }; ?>
+		  <li><a href="reports.php">Reports</a></li>
 		</ul>
 	  </li>
       <li class="dropdown">
@@ -54,11 +54,11 @@ function generate_admin_menu($page = '')
 		  Users <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <li><a href="admin_users.php">Users</a></li>
-		  <?php if ($is_admin) { ?><li><a href="admin_ranks.php">Ranks</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_groups.php">Groups</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="admin_permissions.php">Permissions</a></li><?php }; ?>
-		  <li><a href="admin_bans.php">Bans</a></li>
+		  <li><a href="users.php">Users</a></li>
+		  <?php if ($is_admin) { ?><li><a href="ranks.php">Ranks</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="groups.php">Groups</a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="permissions.php">Permissions</a></li><?php }; ?>
+		  <li><a href="bans.php">Bans</a></li>
 		</ul>
 	  </li>
       <?php if ($is_admin) { ?><li class="dropdown">
@@ -66,9 +66,9 @@ function generate_admin_menu($page = '')
 		  Settings <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <li><a href="admin_options.php">Global</a></li>
-		  <li><a href="admin_email.php">Email</a></li>
-		  <li><a href="admin_maintenance.php">Maintenance</a></li>
+		  <li><a href="options.php">Global</a></li>
+		  <li><a href="email.php">Email</a></li>
+		  <li><a href="maintenance.php">Maintenance</a></li>
 		</ul>
 	  </li><?php }; ?>
       <?php if ($is_admin) { ?><li class="dropdown">
@@ -86,7 +86,7 @@ function generate_admin_menu($page = '')
 	{
 
 		foreach ($plugins as $plugin_name => $plugin)
-			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="admin_loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
+			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
 
 	} else {
 		echo '<li class="nav-header">No plugins</li>';

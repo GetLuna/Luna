@@ -25,7 +25,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_censoring.php';
 // Add a censor word
 if (isset($_POST['add_word']))
 {
-	confirm_referrer('admin_censoring.php');
+	confirm_referrer('censoring.php');
 
 	$search_for = pun_trim($_POST['new_search_for']);
 	$replace_with = pun_trim($_POST['new_replace_with']);
@@ -41,13 +41,13 @@ if (isset($_POST['add_word']))
 
 	generate_censoring_cache();
 
-	redirect('admin_censoring.php', $lang_admin_censoring['Word added redirect']);
+	redirect('censoring.php', $lang_admin_censoring['Word added redirect']);
 }
 
 // Update a censor word
 else if (isset($_POST['update']))
 {
-	confirm_referrer('admin_censoring.php');
+	confirm_referrer('censoring.php');
 
 	$id = intval(key($_POST['update']));
 
@@ -65,13 +65,13 @@ else if (isset($_POST['update']))
 
 	generate_censoring_cache();
 
-	redirect('admin_censoring.php', $lang_admin_censoring['Word updated redirect']);
+	redirect('censoring.php', $lang_admin_censoring['Word updated redirect']);
 }
 
 // Remove a censor word
 else if (isset($_POST['remove']))
 {
-	confirm_referrer('admin_censoring.php');
+	confirm_referrer('censoring.php');
 
 	$id = intval(key($_POST['remove']));
 
@@ -83,7 +83,7 @@ else if (isset($_POST['remove']))
 
 	generate_censoring_cache();
 
-	redirect('admin_censoring.php',  $lang_admin_censoring['Word removed redirect']);
+	redirect('censoring.php',  $lang_admin_censoring['Word removed redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Censoring']);
@@ -95,10 +95,10 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_censoring['Censoring head'] ?></h2>
-    <form id="censoring" method="post" action="admin_censoring.php">
+    <form id="censoring" method="post" action="censoring.php">
         <fieldset>
             <h3><?php echo $lang_admin_censoring['Add word subhead'] ?></h3>
-            <p><?php echo $lang_admin_censoring['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang_admin_censoring['Censoring enabled'], '<a href="admin_options.php#censoring">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_censoring['Censoring disabled'], '<a href="admin_options.php#censoring">'.$lang_admin_common['Options'].'</a>')) ?></p>
+            <p><?php echo $lang_admin_censoring['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang_admin_censoring['Censoring enabled'], '<a href="options.php#censoring">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_censoring['Censoring disabled'], '<a href="options.php#censoring">'.$lang_admin_common['Options'].'</a>')) ?></p>
             <table class="table" cellspacing="0">
             <thead>
                 <tr>

@@ -41,7 +41,7 @@ if ($action == 'rebuild')
 	if (isset($_GET['i_empty_index']))
 	{
 		// This is the only potentially "dangerous" thing we can do here, so we check the referer
-		confirm_referrer('admin_maintenance.php');
+		confirm_referrer('maintenance.php');
 
 		$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
 		$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
@@ -122,7 +122,7 @@ h1 {
 	$db->end_transaction();
 	$db->close();
 
-	exit('<script type="text/javascript">window.location="admin_maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf($lang_admin_maintenance['Javascript redirect failed'], '<a href="admin_maintenance.php'.$query_str.'">'.$lang_admin_maintenance['Click here'].'</a>').'</p>');
+	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf($lang_admin_maintenance['Javascript redirect failed'], '<a href="maintenance.php'.$query_str.'">'.$lang_admin_maintenance['Click here'].'</a>').'</p>');
 }
 
 if ($action == 'prune')
@@ -132,7 +132,7 @@ if ($action == 'prune')
 
 	if (isset($_POST['prune_comply']))
 	{
-		confirm_referrer('admin_maintenance.php');
+		confirm_referrer('maintenance.php');
 
 		$prune_days = intval($_POST['prune_days']);
 		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
@@ -171,7 +171,7 @@ if ($action == 'prune')
 			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
-		redirect('admin_maintenance.php', $lang_admin_maintenance['Posts pruned redirect']);
+		redirect('maintenance.php', $lang_admin_maintenance['Posts pruned redirect']);
 	}
 
 	$prune_days = pun_trim($_POST['req_prune_days']);
@@ -213,7 +213,7 @@ if ($action == 'prune')
 ?>
 <div class="content">
 	<h2><?php echo $lang_admin_maintenance['Prune head'] ?></h2>
-    <form method="post" action="admin_maintenance.php">
+    <form method="post" action="maintenance.php">
         <input type="hidden" name="action" value="prune" />
         <input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
         <input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
@@ -246,11 +246,11 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_maintenance['Maintenance head'] ?></h2>
-    <form method="get" action="admin_maintenance.php">
+    <form method="get" action="maintenance.php">
         <input type="hidden" name="action" value="rebuild" />
         <fieldset>
             <h3><?php echo $lang_admin_maintenance['Rebuild index subhead'] ?></h3>
-            <p><?php printf($lang_admin_maintenance['Rebuild index info'], '<a href="admin_options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
+            <p><?php printf($lang_admin_maintenance['Rebuild index info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="16%"><?php echo $lang_admin_maintenance['Posts per cycle label'] ?></th>
@@ -278,7 +278,7 @@ require FORUM_ROOT.'admin/header.php';
         </fieldset>
     </form>
 
-    <form method="post" action="admin_maintenance.php" onsubmit="return process_form(this)">
+    <form method="post" action="maintenance.php" onsubmit="return process_form(this)">
         <input type="hidden" name="action" value="prune" />
         <fieldset>
             <h3><?php echo $lang_admin_maintenance['Prune subhead'] ?></h3>
@@ -329,7 +329,7 @@ require FORUM_ROOT.'admin/header.php';
                     </td>
                 </tr>
             </table>
-            <p class="topspace"><?php printf($lang_admin_maintenance['Prune info'], '<a href="admin_options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
+            <p class="topspace"><?php printf($lang_admin_maintenance['Prune info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
             <div class="control-group"><input class="btn btn-danger" type="submit" name="prune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="8" /></div>
         </fieldset>
     </form>

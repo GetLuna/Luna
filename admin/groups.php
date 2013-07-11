@@ -60,7 +60,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_groups['Group settings head'] ?></h2>
-    <form id="groups2" method="post" action="admin_groups.php" onsubmit="return process_form(this)">
+    <form id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
         <input type="hidden" name="mode" value="<?php echo $mode ?>" />
 <?php if ($mode == 'edit'): ?>					<input type="hidden" name="group_id" value="<?php echo $group_id ?>" />
 <?php endif; ?><?php if ($mode == 'add'): ?>					<input type="hidden" name="base_group" value="<?php echo $base_group ?>" />
@@ -257,7 +257,7 @@ if ($group['g_id'] != PUN_GUEST): ?>								<tr>
 // Add/edit a group (stage 2)
 else if (isset($_POST['add_edit_group']))
 {
-	confirm_referrer('admin_groups.php');
+	confirm_referrer('groups.php');
 
 	// Is this the admin group? (special rules apply)
 	$is_admin_group = (isset($_POST['group_id']) && $_POST['group_id'] == PUN_ADMIN) ? true : false;
@@ -321,16 +321,16 @@ else if (isset($_POST['add_edit_group']))
 	generate_quickjump_cache($group_id);
 
 	if ($_POST['mode'] == 'edit')
-		redirect('admin_groups.php', $lang_admin_groups['Group edited redirect']);
+		redirect('groups.php', $lang_admin_groups['Group edited redirect']);
 	else
-		redirect('admin_groups.php', $lang_admin_groups['Group added redirect']);
+		redirect('groups.php', $lang_admin_groups['Group added redirect']);
 }
 
 
 // Set default group
 else if (isset($_POST['set_default_group']))
 {
-	confirm_referrer('admin_groups.php');
+	confirm_referrer('groups.php');
 
 	$group_id = intval($_POST['default_group']);
 
@@ -351,14 +351,14 @@ else if (isset($_POST['set_default_group']))
 
 	generate_config_cache();
 
-	redirect('admin_groups.php', $lang_admin_groups['Default group redirect']);
+	redirect('groups.php', $lang_admin_groups['Default group redirect']);
 }
 
 
 // Remove a group
 else if (isset($_GET['del_group']))
 {
-	confirm_referrer('admin_groups.php');
+	confirm_referrer('groups.php');
 
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
@@ -386,7 +386,7 @@ else if (isset($_GET['del_group']))
 			$db->query('DELETE FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to delete group', __FILE__, __LINE__, $db->error());
 			$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$group_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
-			redirect('admin_groups.php', $lang_admin_groups['Group removed redirect']);
+			redirect('groups.php', $lang_admin_groups['Group removed redirect']);
 		}
 		else
 		{
@@ -401,7 +401,7 @@ else if (isset($_GET['del_group']))
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_groups['Group delete head'] ?></h2>
-    <form method="post" action="admin_groups.php?del_group=<?php echo $group_id ?>">
+    <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
         <input type="hidden" name="group_to_delete" value="<?php echo $group_id ?>" />
             <fieldset>
                 <p><?php printf($lang_admin_groups['Confirm delete info'], pun_htmlspecialchars($group_title)) ?></p>
@@ -427,7 +427,7 @@ else if (isset($_GET['del_group']))
 
 ?>
 <h2><span><?php echo $lang_admin_groups['Delete group head'] ?></span></h2>
-    <form id="groups" method="post" action="admin_groups.php?del_group=<?php echo $group_id ?>">
+    <form id="groups" method="post" action="groups.php?del_group=<?php echo $group_id ?>">
         <fieldset>
             <p><?php printf($lang_admin_groups['Move users info'], pun_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
             <label><?php echo $lang_admin_groups['Move users label'] ?>
@@ -468,7 +468,7 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
 	<h2><?php echo $lang_admin_groups['Add groups head'] ?></h2>
-    <form id="groups" method="post" action="admin_groups.php">
+    <form id="groups" method="post" action="groups.php">
         <fieldset>
             <h3><?php echo $lang_admin_groups['Add group subhead'] ?></h3>
             <table class="table" cellspacing="0">
@@ -524,11 +524,12 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
             </table>
         </fieldset>
     </form>
-
-		<h2><?php echo $lang_admin_groups['Existing groups head'] ?></h2>
-        <fieldset>
-            <p><?php echo $lang_admin_groups['Edit groups info'] ?></p>
-            <table class="table">
+</div>
+<div class="content">
+    <h2><?php echo $lang_admin_groups['Existing groups head'] ?></h2>
+    <fieldset>
+        <p><?php echo $lang_admin_groups['Edit groups info'] ?></p>
+        <table class="table">
 <?php
 
 $cur_index = 5;
@@ -536,7 +537,7 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><th scope="row"><a class="btn btn-success btn-mini" href="admin_groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Edit link'].'</a>'.(($cur_group['g_id'] > PUN_MEMBER) ? ' <a class="btn btn-danger btn-mini" href="admin_groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Delete link'].'</a>' : '').'</th><td>'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><th scope="row"><a class="btn btn-success btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Edit link'].'</a>'.(($cur_group['g_id'] > PUN_MEMBER) ? ' <a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Delete link'].'</a>' : '').'</th><td>'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
 
 ?>
                 </table>

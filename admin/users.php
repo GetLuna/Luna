@@ -40,7 +40,7 @@ if (isset($_GET['ip_stats']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'admin_users.php?ip_stats='.$ip_stats );
+	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?ip_stats='.$ip_stats );
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
@@ -49,21 +49,21 @@ if (isset($_GET['ip_stats']))
 
 ?>
 <div class="content">
-<h2><?php echo $lang_admin_users['Results head'] ?></h2>
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
-</div>
-
-    <table class="table" cellspacing="0">
-    <thead>
-        <tr>
-            <th class="tcl" scope="col"><?php echo $lang_admin_users['Results IP address head'] ?></th>
-            <th class="tc2" scope="col"><?php echo $lang_admin_users['Results last used head'] ?></th>
-            <th class="tc3" scope="col"><?php echo $lang_admin_users['Results times found head'] ?></th>
-            <th class="tcr" scope="col"><?php echo $lang_admin_users['Results action head'] ?></th>
-        </tr>
-    </thead>
-    <tbody>
+    <h2><?php echo $lang_admin_users['Results head'] ?></h2>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
+    
+        <table class="table" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="tcl" scope="col"><?php echo $lang_admin_users['Results IP address head'] ?></th>
+                <th class="tc2" scope="col"><?php echo $lang_admin_users['Results last used head'] ?></th>
+                <th class="tc3" scope="col"><?php echo $lang_admin_users['Results times found head'] ?></th>
+                <th class="tcr" scope="col"><?php echo $lang_admin_users['Results action head'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -73,12 +73,12 @@ if (isset($_GET['ip_stats']))
 		{
 
 ?>
-        <tr>
-            <td class="tcl"><a href="moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
-            <td class="tc2"><?php echo format_time($cur_ip['last_used']) ?></td>
-            <td class="tc3"><?php echo $cur_ip['used_times'] ?></td>
-            <td class="tcr"><a href="admin_users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_admin_users['Results find more link'] ?></a></td>
-        </tr>
+            <tr>
+                <td class="tcl"><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+                <td class="tc2"><?php echo format_time($cur_ip['last_used']) ?></td>
+                <td class="tc3"><?php echo $cur_ip['used_times'] ?></td>
+                <td class="tcr"><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_admin_users['Results find more link'] ?></a></td>
+            </tr>
 <?php
 
 		}
@@ -87,12 +87,13 @@ if (isset($_GET['ip_stats']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="4">'.$lang_admin_users['Results no posts found'].'</td></tr>'."\n";
 
 ?>
-    </tbody>
-    </table>
-</div>
-
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
+        </tbody>
+        </table>
+    </div>
+    
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
 </div>
 <?php
 
@@ -118,7 +119,7 @@ if (isset($_GET['show_users']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'admin_users.php?show_users='.$ip);
+	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?show_users='.$ip);
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
@@ -127,23 +128,23 @@ if (isset($_GET['show_users']))
 
 ?>
 <div class="content">
-<h2><?php echo $lang_admin_users['Results head'] ?></h2>
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
-</div>
-
-    <table class="table" cellspacing="0">
-    <thead>
-        <tr>
-            <th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
-            <th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
-            <th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
-            <th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
-            <th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
-            <th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
-        </tr>
-    </thead>
-    <tbody>
+    <h2><?php echo $lang_admin_users['Results head'] ?></h2>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
+    
+        <table class="table" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
+                <th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
+                <th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
+                <th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
+                <th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
+                <th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -170,16 +171,16 @@ if (isset($_GET['show_users']))
 			{
 				$user_title = get_title($user_data[$cur_poster['poster_id']]);
 
-			$actions = '<a href="admin_users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_admin_users['Results view IP link'].'</a> | <a href="search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_admin_users['Results show posts link'].'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_admin_users['Results view IP link'].'</a> | <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_admin_users['Results show posts link'].'</a>';
 ?>
-        <tr>
-            <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-            <td class="tc2"><a href="mailto:<?php echo $user_data[$cur_poster['poster_id']]['email'] ?>"><?php echo $user_data[$cur_poster['poster_id']]['email'] ?></a></td>
-            <td class="tc3"><?php echo $user_title ?></td>
-            <td class="tc4"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-            <td class="tc5"><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
-            <td class="tcr"><?php echo $actions ?></td>
-        </tr>
+        	<tr>
+                <td class="tcl"><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
+                <td class="tc2"><a href="mailto:<?php echo $user_data[$cur_poster['poster_id']]['email'] ?>"><?php echo $user_data[$cur_poster['poster_id']]['email'] ?></a></td>
+                <td class="tc3"><?php echo $user_title ?></td>
+                <td class="tc4"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
+                <td class="tc5"><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+                <td class="tcr"><?php echo $actions ?></td>
+            </tr>
 <?php
 
 			}
@@ -187,14 +188,14 @@ if (isset($_GET['show_users']))
 			{
 
 ?>
-        <tr>
-            <td class="tcl"><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
-            <td class="tc2">&#160;</td>
-            <td class="tc3"><?php echo $lang_admin_users['Results guest'] ?></td>
-            <td class="tc4">&#160;</td>
-            <td class="tc5">&#160;</td>
-            <td class="tcr">&#160;</td>
-        </tr>
+            <tr>
+                <td class="tcl"><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
+                <td class="tc2">&#160;</td>
+                <td class="tc3"><?php echo $lang_admin_users['Results guest'] ?></td>
+                <td class="tc4">&#160;</td>
+                <td class="tc5">&#160;</td>
+                <td class="tcr">&#160;</td>
+            </tr>
 <?php
 
 			}
@@ -204,12 +205,13 @@ if (isset($_GET['show_users']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="6">'.$lang_admin_users['Results no IP found'].'</td></tr>'."\n";
 
 ?>
-    </tbody>
-    </table>
-</div>
-
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
+        </tbody>
+        </table>
+    </div>
+    
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
 </div>
 <?php
 	require FORUM_ROOT.'admin/footer.php';
@@ -222,7 +224,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	if ($pun_user['g_id'] > PUN_ADMIN)
 		message($lang_common['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('admin_users.php');
+	confirm_referrer('users.php');
 
 	if (isset($_POST['users']))
 	{
@@ -296,7 +298,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 		// Change user group
 		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$new_group.' WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to change user group', __FILE__, __LINE__, $db->error());
 
-		redirect('admin_users.php', $lang_admin_users['Users move redirect']);
+		redirect('users.php', $lang_admin_users['Users move redirect']);
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Move users']);
@@ -307,7 +309,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 ?>
 <div class="content">
     <h2><span><?php echo $lang_admin_users['Move users'] ?></span></h2>
-    <form name="confirm_move_users" method="post" action="admin_users.php">
+    <form name="confirm_move_users" method="post" action="users.php">
         <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
         <fieldset>
             <table class="table" cellspacing="0">
@@ -338,7 +340,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	if ($pun_user['g_id'] > PUN_ADMIN)
 		message($lang_common['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('admin_users.php');
+	confirm_referrer('users.php');
 
 	if (isset($_POST['users']))
 	{
@@ -442,7 +444,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 		generate_users_info_cache();
 
-		redirect('admin_users.php', $lang_admin_users['Users delete redirect']);
+		redirect('users.php', $lang_admin_users['Users delete redirect']);
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Delete users']);
@@ -453,7 +455,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_users['Delete users'] ?></h2>
-    <form name="confirm_del_users" method="post" action="admin_users.php">
+    <form name="confirm_del_users" method="post" action="users.php">
         <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
             <fieldset>
                 <label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang_admin_users['Delete posts'] ?><br /></label>
@@ -464,6 +466,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
             <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a>
         </div>
     </form>
+</div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -476,7 +479,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	if ($pun_user['g_id'] != PUN_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
 		message($lang_common['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('admin_users.php');
+	confirm_referrer('users.php');
 
 	if (isset($_POST['users']))
 	{
@@ -556,7 +559,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 
 		generate_bans_cache();
 
-		redirect('admin_users.php', $lang_admin_users['Users banned redirect']);
+		redirect('users.php', $lang_admin_users['Users banned redirect']);
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
@@ -568,7 +571,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_users['Ban users'] ?></h2>
-    <form id="bans2" name="confirm_ban_users" method="post" action="admin_users.php">
+    <form id="bans2" name="confirm_ban_users" method="post" action="users.php">
         <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
         <fieldset>
             <table class="table" cellspacing="0">
@@ -598,6 +601,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
         </fieldset>
         <p class="control-group"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="3" /></p>
     </form>
+</div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -728,7 +732,7 @@ else if (isset($_GET['find_user']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'admin_users.php?find_user=&amp;'.implode('&amp;', $query_str));
+	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
 
 	// Some helper variables for permissions
 	$can_delete = $can_move = $pun_user['g_id'] == PUN_ADMIN;
@@ -743,27 +747,27 @@ else if (isset($_GET['find_user']))
 
 ?>
 <div class="content">
-<h2><?php echo $lang_admin_users['Results head'] ?></h2>
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
-</div>
-
-
-<form id="search-users-form" action="admin_users.php" method="post">
-    <table class="table" cellspacing="0">
-    <thead>
-        <tr>
-            <th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
-            <th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
-            <th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
-            <th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
-            <th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
-            <th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
-<?php if ($can_action): ?>					<th class="tcmod" scope="col"><?php echo $lang_admin_users['Select'] ?></th>
-<?php endif; ?>
-        </tr>
-    </thead>
-    <tbody>
+    <h2><?php echo $lang_admin_users['Results head'] ?></h2>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
+    
+    
+    <form id="search-users-form" action="users.php" method="post">
+        <table class="table" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="tcl" scope="col"><?php echo $lang_admin_users['Results username head'] ?></th>
+                <th class="tc2" scope="col"><?php echo $lang_admin_users['Results e-mail head'] ?></th>
+                <th class="tc3" scope="col"><?php echo $lang_admin_users['Results title head'] ?></th>
+                <th class="tc4" scope="col"><?php echo $lang_admin_users['Results posts head'] ?></th>
+                <th class="tc5" scope="col"><?php echo $lang_admin_users['Results admin note head'] ?></th>
+                <th class="tcr" scope="col"><?php echo $lang_admin_users['Results actions head'] ?></th>
+    <?php if ($can_action): ?>					<th class="tcmod" scope="col"><?php echo $lang_admin_users['Select'] ?></th>
+    <?php endif; ?>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 
 	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -777,19 +781,19 @@ else if (isset($_GET['find_user']))
 			if (($user_data['g_id'] == '' || $user_data['g_id'] == PUN_UNVERIFIED) && $user_title != $lang_common['Banned'])
 				$user_title = '<span class="warntext">'.$lang_admin_users['Not verified'].'</span>';
 
-			$actions = '<a href="admin_users.php?ip_stats='.$user_data['id'].'">'.$lang_admin_users['Results view IP link'].'</a> | <a href="search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang_admin_users['Results show posts link'].'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang_admin_users['Results view IP link'].'</a> | <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang_admin_users['Results show posts link'].'</a>';
 
 ?>
-        <tr>
-            <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
-            <td class="tc2"><a href="mailto:<?php echo $user_data['email'] ?>"><?php echo $user_data['email'] ?></a></td>
-            <td class="tc3"><?php echo $user_title ?></td>
-            <td class="tc4"><?php echo forum_number_format($user_data['num_posts']) ?></td>
-            <td class="tc5"><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
-            <td class="tcr"><?php echo $actions ?></td>
-<?php if ($can_action): ?>					<td class="tcmod"><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
-<?php endif; ?>
-        </tr>
+            <tr>
+                <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+                <td class="tc2"><a href="mailto:<?php echo $user_data['email'] ?>"><?php echo $user_data['email'] ?></a></td>
+                <td class="tc3"><?php echo $user_title ?></td>
+                <td class="tc4"><?php echo forum_number_format($user_data['num_posts']) ?></td>
+                <td class="tc5"><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+                <td class="tcr"><?php echo $actions ?></td>
+    <?php if ($can_action): ?>					<td class="tcmod"><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
+    <?php endif; ?>
+            </tr>
 <?php
 
 		}
@@ -798,15 +802,16 @@ else if (isset($_GET['find_user']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="6">'.$lang_admin_users['No match'].'</td></tr>'."\n";
 
 ?>
-    </tbody>
-    </table>
+        </tbody>
+        </table>
 
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
-<?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-success" type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
-<?php endif; ?>
+        <div class="pagepost">
+            <p class="pagelink"><?php echo $paging_links ?></p>
+        <?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-success" type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
+        <?php endif; ?>
+        </div>
+    </form>
 </div>
-</form>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -824,7 +829,7 @@ else
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_users['User search head'] ?></h2>
-    <form id="find_user" method="get" action="admin_users.php">
+    <form id="find_user" method="get" action="users.php">
         <p><input class="btn btn-success" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="1" /></p>
         <fieldset>
             <p><?php echo $lang_admin_users['User search info'] ?></p>
@@ -937,7 +942,7 @@ else
 </div>
 <div class="content">
     <h2><?php echo $lang_admin_users['IP search head'] ?></h2>
-    <form method="get" action="admin_users.php">
+    <form method="get" action="users.php">
         <fieldset>
                 <table class="table" cellspacing="0">
                     <tr>

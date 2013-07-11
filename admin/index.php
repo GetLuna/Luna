@@ -28,6 +28,19 @@ define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('');
 
+//Update checking
+$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/version2.0/version.txt'));
+if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
+	if (FORUM_VERSION < $latest_version) { ?>
+		<div class="alert alert-info alert-update">
+          <h4>ModernBB v<?php echo $latest_version ?> available</h4>
+          We found a new version of ModernBB on the web. Your board is out-of-date and we recommend you to update right away!<br />
+          <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>" class="btn btn-primary">Download v<?php echo $latest_version ?></a>
+          <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary">Changelog</a>
+          <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>" class="btn">Download v<?php echo FORUM_VERSION ?></a>
+        </div>
+    <?php }
+}
 ?>
 <div class="content">
     <h2><span><?php echo $lang_admin_index['Forum admin head'] ?></span></h2>
@@ -43,12 +56,17 @@ require FORUM_ROOT.'admin/header.php';
         <li><span><?php echo $lang_admin_index['Welcome 8'] ?></span></li>
         <li><span><?php echo $lang_admin_index['Welcome 9'] ?></span></li>
     </ul>
-
+</div>
+<div class="content">
     <h2><span><?php echo $lang_admin_index['About head'] ?></span></h2>
     <dl>
+        <dt><?php echo $lang_admin_index['ModernBB version label'] ?></dt>
+        <dd>
+            <?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?>
+        </dd>
         <dt><?php echo $lang_admin_index['Server statistics label'] ?></dt>
         <dd>
-            <a href="admin_statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
+            <a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
         </dd>
     </dl>
 </div>

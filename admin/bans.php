@@ -27,7 +27,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 {
 	if (isset($_GET['add_ban']) || isset($_POST['add_ban']))
 	{
-		// If the ID of the user to ban was provided through GET (a link from profile.php)
+		// If the ID of the user to ban was provided through GET (a link from ../profile.php)
 		if (isset($_GET['add_ban']))
 		{
 			$user_id = intval($_GET['add_ban']);
@@ -109,7 +109,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_bans['Ban advanced head'] ?></h2>
-    <form id="bans2" method="post" action="admin_bans.php">
+    <form id="bans2" method="post" action="bans.php">
         <input type="hidden" name="mode" value="<?php echo $mode ?>" />
 <?php if ($mode == 'edit'): ?>				<input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" />
 <?php endif; ?>				<fieldset>
@@ -126,7 +126,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                     <th><?php echo $lang_admin_bans['IP label'] ?></th>
                     <td>
                         <input type="text" name="ban_ip" size="45" maxlength="255" value="<?php if (isset($ban_ip)) echo pun_htmlspecialchars($ban_ip); ?>" tabindex="2" />
-                        <br /><span><?php echo $lang_admin_bans['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang_admin_bans['IP help link'], '<a href="admin_users.php?ip_stats='.$user_id.'">'.$lang_admin_common['here'].'</a>') ?></span>
+                        <br /><span><?php echo $lang_admin_bans['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang_admin_bans['IP help link'], '<a href="../users.php?ip_stats='.$user_id.'">'.$lang_admin_common['here'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -169,7 +169,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 // Add/edit a ban (stage 2)
 else if (isset($_POST['add_edit_ban']))
 {
-	confirm_referrer('admin_bans.php');
+	confirm_referrer('bans.php');
 
 	$ban_user = pun_trim($_POST['ban_user']);
 	$ban_ip = pun_trim($_POST['ban_ip']);
@@ -285,15 +285,15 @@ else if (isset($_POST['add_edit_ban']))
 	generate_bans_cache();
 
 	if ($_POST['mode'] == 'edit')
-		redirect('admin_bans.php', $lang_admin_bans['Ban edited redirect']);
+		redirect('bans.php', $lang_admin_bans['Ban edited redirect']);
 	else
-		redirect('admin_bans.php', $lang_admin_bans['Ban added redirect']);
+		redirect('bans.php', $lang_admin_bans['Ban added redirect']);
 }
 
 // Remove a ban
 else if (isset($_GET['del_ban']))
 {
-	confirm_referrer('admin_bans.php');
+	confirm_referrer('bans.php');
 
 	$ban_id = intval($_GET['del_ban']);
 	if ($ban_id < 1)
@@ -307,7 +307,7 @@ else if (isset($_GET['del_ban']))
 
 	generate_bans_cache();
 
-	redirect('admin_bans.php', $lang_admin_bans['Ban removed redirect']);
+	redirect('bans.php', $lang_admin_bans['Ban removed redirect']);
 }
 
 // Find bans
@@ -370,7 +370,7 @@ else if (isset($_GET['find_ban']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'admin_bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
+	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans'], $lang_admin_bans['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
@@ -405,7 +405,7 @@ else if (isset($_GET['find_ban']))
 		while ($ban_data = $db->fetch_assoc($result))
 		{
 
-			$actions = '<a href="admin_bans.php?edit_ban='.$ban_data['id'].'">'.$lang_admin_common['Edit'].'</a> | <a href="admin_bans.php?del_ban='.$ban_data['id'].'">'.$lang_admin_common['Remove'].'</a>';
+			$actions = '<a href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang_admin_common['Edit'].'</a> | <a href="bans.php?del_ban='.$ban_data['id'].'">'.$lang_admin_common['Remove'].'</a>';
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
@@ -415,7 +415,7 @@ else if (isset($_GET['find_ban']))
             <td class="tc3"><?php echo ($ban_data['ip'] != '') ? pun_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
             <td class="tc4"><?php echo $expire ?></td>
             <td class="tc5"><?php echo ($ban_data['message'] != '') ? pun_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-            <td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang_admin_bans['Unknown'] ?></td>
+            <td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang_admin_bans['Unknown'] ?></td>
             <td class="tcr"><?php echo $actions ?></td>
         </tr>
 <?php
@@ -446,7 +446,7 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_bans['New ban head'] ?></h2>
-    <form id="bans" method="post" action="admin_bans.php?action=more">
+    <form id="bans" method="post" action="bans.php?action=more">
         <fieldset>
             <table class="table" cellspacing="0">
                 <tr>
@@ -463,7 +463,7 @@ require FORUM_ROOT.'admin/header.php';
 </div>
 <div class="content">
     <h2><?php echo $lang_admin_bans['Ban search head'] ?></h2>
-    <form id="find_bans" method="get" action="admin_bans.php">
+    <form id="find_bans" method="get" action="bans.php">
         <fieldset>
             <p><?php echo $lang_admin_bans['Ban search info'] ?></p>
             <table class="table" cellspacing="0">

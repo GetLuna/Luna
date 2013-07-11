@@ -119,7 +119,7 @@ require FORUM_ROOT.'admin/header.php';
             <th><?php echo $lang_admin_index['Environment label'] ?></th>
             <td>
                 <?php printf($lang_admin_index['Environment data OS'], PHP_OS) ?><br />
-                <?php printf($lang_admin_index['Environment data version'], phpversion(), '<a href="admin_statistics.php?action=phpinfo">'.$lang_admin_index['Show info'].'</a>') ?><br />
+                <?php printf($lang_admin_index['Environment data version'], phpversion(), '<a href="statistics.php?action=phpinfo">'.$lang_admin_index['Show info'].'</a>') ?><br />
                 <?php printf($lang_admin_index['Environment data acc']."\n", $php_accelerator) ?>
             </td>
         </tr>

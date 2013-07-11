@@ -25,7 +25,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_forums.php';
 // Add a "default" forum
 if (isset($_POST['add_forum']))
 {
-	confirm_referrer('admin_forums.php');
+	confirm_referrer('forums.php');
 
 	$forum_name = pun_trim($_POST['new_forum']); 
 	$add_to_cat = intval($_POST['add_to_cat']);
@@ -40,13 +40,13 @@ if (isset($_POST['add_forum']))
 
 	generate_quickjump_cache();
 
-	redirect('admin_forums.php', $lang_admin_forums['Forum added redirect']);
+	redirect('forums.php', $lang_admin_forums['Forum added redirect']);
 }
 
 // Delete a forum
 else if (isset($_GET['del_forum']))
 {
-	confirm_referrer('admin_forums.php');
+	confirm_referrer('forums.php');
 
 	$forum_id = intval($_GET['del_forum']);
 	if ($forum_id < 1)
@@ -84,7 +84,7 @@ else if (isset($_GET['del_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_forums.php', $lang_admin_forums['Forum deleted redirect']);
+		redirect('forums.php', $lang_admin_forums['Forum deleted redirect']);
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -99,7 +99,7 @@ else if (isset($_GET['del_forum']))
 ?>
 <div class="content">
     <h2><span><?php echo $lang_admin_forums['Confirm delete head'] ?></span></h2>
-    <form method="post" action="admin_forums.php?del_forum=<?php echo $forum_id ?>">
+    <form method="post" action="forums.php?del_forum=<?php echo $forum_id ?>">
         <fieldset>
             <p><?php printf($lang_admin_forums['Confirm delete info'], $forum_name) ?></p>
             <p class="warntext"><?php echo $lang_admin_forums['Confirm delete warn'] ?></p>
@@ -119,7 +119,7 @@ else if (isset($_GET['del_forum']))
 // Update forum positions
 else if (isset($_POST['update_positions']))
 {
-	confirm_referrer('admin_forums.php');
+	confirm_referrer('forums.php');
 
 	foreach ($_POST['position'] as $forum_id => $disp_position)
 	{
@@ -136,7 +136,7 @@ else if (isset($_POST['update_positions']))
 
 	generate_quickjump_cache();
 
-	redirect('admin_forums.php', $lang_admin_forums['Forums updated redirect']);
+	redirect('forums.php', $lang_admin_forums['Forums updated redirect']);
 }
 
 else if (isset($_GET['edit_forum']))
@@ -148,7 +148,7 @@ else if (isset($_GET['edit_forum']))
 	// Update group permissions for $forum_id
 	if (isset($_POST['save']))
 	{
-		confirm_referrer('admin_forums.php');
+		confirm_referrer('forums.php');
 
 		// Start with the forum details
 		$forum_name = pun_trim($_POST['forum_name']);
@@ -201,11 +201,11 @@ else if (isset($_GET['edit_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_forums.php', $lang_admin_forums['Forum updated redirect']);
+		redirect('forums.php', $lang_admin_forums['Forum updated redirect']);
 	}
 	else if (isset($_POST['revert_perms']))
 	{
-		confirm_referrer('admin_forums.php');
+		confirm_referrer('forums.php');
 
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
@@ -215,7 +215,7 @@ else if (isset($_GET['edit_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_forums.php?edit_forum='.$forum_id, $lang_admin_forums['Perms reverted redirect']);
+		redirect('forums.php?edit_forum='.$forum_id, $lang_admin_forums['Perms reverted redirect']);
 	}
 
 	// Fetch forum info
@@ -233,7 +233,7 @@ else if (isset($_GET['edit_forum']))
 ?>
 <div class="content">
     <h2><span><?php echo $lang_admin_forums['Edit forum head'] ?></span></h2>
-    <form id="edit_forum" method="post" action="admin_forums.php?edit_forum=<?php echo $forum_id ?>">
+    <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
         <fieldset>
             <h3><?php echo $lang_admin_forums['Edit details subhead'] ?></h3>
             <table class="table" cellspacing="0">
@@ -280,7 +280,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_forums['Group permissions subhead'] ?></h3>
-            <p><?php printf($lang_admin_forums['Group permissions info'], '<a href="admin_groups.php">'.$lang_admin_common['User groups'].'</a>') ?></p>
+            <p><?php printf($lang_admin_forums['Group permissions info'], '<a href="groups.php">'.$lang_admin_common['User groups'].'</a>') ?></p>
 			<div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php echo $lang_admin_forums['Revert to default'] ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
             <table class="table table-condensed" cellspacing="0">
             <thead>
@@ -352,7 +352,7 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
     <h2><span><?php echo $lang_admin_forums['Add forum head'] ?></span></h2>
-    <form method="post" action="admin_forums.php?action=adddel">
+    <form method="post" action="forums.php?action=adddel">
         <fieldset>
             <h3><?php echo $lang_admin_forums['Create new subhead'] ?></h3>
             <table class="table" cellspacing="0">
@@ -393,7 +393,7 @@ if ($db->num_rows($result) > 0)
 
 ?>
 <h2><?php echo $lang_admin_forums['Edit forums head'] ?></h2>
-    <form id="edforum" method="post" action="admin_forums.php?action=edit">
+    <form id="edforum" method="post" action="forums.php?action=edit">
 <?php
 
 $cur_index = 4;
@@ -425,7 +425,7 @@ $cur_category = $cur_forum['cid'];
 
 ?>
                 <tr>
-                    <td class="tcl"><a href="admin_forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> or <a href="admin_forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
+                    <td class="tcl"><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> or <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
                     <td class="tc2"><input type="text" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
                     <td class="tcr"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
                 </tr>

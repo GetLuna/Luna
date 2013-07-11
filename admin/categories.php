@@ -25,7 +25,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_categories.php';
 // Add a new category
 if (isset($_POST['add_cat']))
 {
-	confirm_referrer('admin_categories.php');
+	confirm_referrer('categories.php');
 
 	$new_cat_name = pun_trim($_POST['new_cat_name']);
 	if ($new_cat_name == '')
@@ -33,13 +33,13 @@ if (isset($_POST['add_cat']))
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
-	redirect('admin_categories.php', $lang_admin_categories['Category added redirect']);
+	redirect('categories.php', $lang_admin_categories['Category added redirect']);
 }
 
 // Delete a category
 else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 {
-	confirm_referrer('admin_categories.php');
+	confirm_referrer('categories.php');
 
 	$cat_to_delete = intval($_POST['cat_to_delete']);
 	if ($cat_to_delete < 1)
@@ -84,7 +84,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_categories.php', $lang_admin_categories['Category deleted redirect']);
+		redirect('categories.php', $lang_admin_categories['Category deleted redirect']);
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -98,7 +98,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 ?>
 <div class="content">
-    <form method="post" action="admin_categories.php">
+    <form method="post" action="categories.php">
         <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
         <fieldset>
             <h2><?php echo $lang_admin_categories['Confirm delete subhead'] ?></h2>
@@ -119,7 +119,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 else if (isset($_POST['update'])) // Change position and name of the categories
 {
-	confirm_referrer('admin_categories.php');
+	confirm_referrer('categories.php');
 
 	$categories = $_POST['cat'];
 	if (empty($categories))
@@ -145,7 +145,7 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 
 	generate_quickjump_cache();
 
-	redirect('admin_categories.php', $lang_admin_categories['Categories updated redirect']);
+	redirect('categories.php', $lang_admin_categories['Categories updated redirect']);
 }
 
 // Generate an array with all categories
@@ -163,7 +163,7 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
-    <form method="post" action="admin_categories.php">
+    <form method="post" action="categories.php">
         <fieldset>
             <table class="table" cellspacing="0">
                 <tr>
@@ -171,7 +171,7 @@ require FORUM_ROOT.'admin/header.php';
                     <td>
                         <input type="text" name="new_cat_name" size="35" maxlength="80" tabindex="1" />
                         <input class="btn btn-success" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
-                        <br /><?php printf($lang_admin_categories['Add category help'], '<a href="admin_forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
+                        <br /><?php printf($lang_admin_categories['Add category help'], '<a href="forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
                     </td>
                 </tr>
             </table>
@@ -181,7 +181,7 @@ require FORUM_ROOT.'admin/header.php';
 <div class="content">
 <?php if ($num_cats): ?>
     <h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
-    <form method="post" action="admin_categories.php">
+    <form method="post" action="categories.php">
         <fieldset>
             <table class="table" cellspacing="0">
                 <tr>
@@ -207,7 +207,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
 <div class="content">
 <?php if ($num_cats): ?>
     <h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
-    <form method="post" action="admin_categories.php">
+    <form method="post" action="categories.php">
         <fieldset>
             <table class="table" cellspacing="0" >
             <thead>

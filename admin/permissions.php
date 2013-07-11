@@ -24,7 +24,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_permissions.php';
 
 if (isset($_POST['form_sent']))
 {
-	confirm_referrer('admin_permissions.php');
+	confirm_referrer('permissions.php');
 
 	$form = array_map('intval', $_POST['form']);
 
@@ -45,7 +45,7 @@ if (isset($_POST['form_sent']))
 
 	generate_config_cache();
 
-	redirect('admin_permissions.php', $lang_admin_permissions['Perms updated redirect']);
+	redirect('permissions.php', $lang_admin_permissions['Perms updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Permissions']);
@@ -56,7 +56,7 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
     <h2><span><?php echo $lang_admin_permissions['Permissions head'] ?></span></h2>
-    <form method="post" action="admin_permissions.php">
+    <form method="post" action="permissions.php">
         <input type="hidden" name="form_sent" value="1" />
         <fieldset>
             <h3><?php echo $lang_admin_permissions['Posting subhead'] ?></h3>

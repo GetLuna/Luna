@@ -25,7 +25,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_ranks.php';
 // Add a rank
 if (isset($_POST['add_rank']))
 {
-	confirm_referrer('admin_ranks.php');
+	confirm_referrer('ranks.php');
 
 	$rank = pun_trim($_POST['new_rank']);
 	$min_posts = pun_trim($_POST['new_min_posts']);
@@ -49,14 +49,14 @@ if (isset($_POST['add_rank']))
 
 	generate_ranks_cache();
 
-	redirect('admin_ranks.php', $lang_admin_ranks['Rank added redirect']);
+	redirect('ranks.php', $lang_admin_ranks['Rank added redirect']);
 }
 
 
 // Update a rank
 else if (isset($_POST['update']))
 {
-	confirm_referrer('admin_ranks.php');
+	confirm_referrer('ranks.php');
 
 	$id = intval(key($_POST['update']));
 
@@ -82,14 +82,14 @@ else if (isset($_POST['update']))
 
 	generate_ranks_cache();
 
-	redirect('admin_ranks.php', $lang_admin_ranks['Rank updated redirect']);
+	redirect('ranks.php', $lang_admin_ranks['Rank updated redirect']);
 }
 
 
 // Remove a rank
 else if (isset($_POST['remove']))
 {
-	confirm_referrer('admin_ranks.php');
+	confirm_referrer('ranks.php');
 
 	$id = intval(key($_POST['remove']));
 
@@ -101,7 +101,7 @@ else if (isset($_POST['remove']))
 
 	generate_ranks_cache();
 
-	redirect('admin_ranks.php', $lang_admin_ranks['Rank removed redirect']);
+	redirect('ranks.php', $lang_admin_ranks['Rank removed redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Ranks']);
@@ -113,10 +113,10 @@ require FORUM_ROOT.'admin/header.php';
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_ranks['Ranks head'] ?></h2>
-    <form id="ranks" method="post" action="admin_ranks.php">
+    <form id="ranks" method="post" action="ranks.php">
         <fieldset>
             <h3><?php echo $lang_admin_ranks['Add rank subhead'] ?></h3>
-            <p><?php echo $lang_admin_ranks['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_admin_ranks['Ranks enabled'], '<a href="admin_options.php#ranks">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_ranks['Ranks disabled'], '<a href="admin_options.php#ranks">'.$lang_admin_common['Options'].'</a>')) ?></p>
+            <p><?php echo $lang_admin_ranks['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_admin_ranks['Ranks enabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_ranks['Ranks disabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>')) ?></p>
             <table class="table" cellspacing="0">
             <thead>
                 <tr>

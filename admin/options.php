@@ -24,7 +24,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_options.php';
 
 if (isset($_POST['form_sent']))
 {
-	confirm_referrer('admin_options.php', $lang_admin_options['Bad HTTP Referer message']);
+	confirm_referrer('options.php', $lang_admin_options['Bad HTTP Referer message']);
 
 	$form = array(
 		'board_title'			=> pun_trim($_POST['form']['board_title']),
@@ -193,7 +193,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('admin_options.php', $lang_admin_options['Options updated redirect']);
+	redirect('options.php', $lang_admin_options['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
@@ -204,7 +204,7 @@ generate_admin_menu('');
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_options['Options head'] ?></h2>
-    <form method="post" action="admin_options.php">
+    <form method="post" action="options.php">
         <input type="hidden" name="form_sent" value="1" /><!-- 
         <div class="tabbable tabs-left">
 			<ul class="nav nav-tabs">
@@ -557,7 +557,7 @@ $timestamp = time() + $diff;
                     <td>
                         <label class="conl"><input type="radio" name="form[censoring]" value="1"<?php if ($pun_config['o_censoring'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[censoring]" value="0"<?php if ($pun_config['o_censoring'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php printf($lang_admin_options['Censor words help'], '<a href="admin_censoring.php">'.$lang_admin_common['Censoring'].'</a>') ?></span>
+                        <span class="clearb"><?php printf($lang_admin_options['Censor words help'], '<a href="censoring.php">'.$lang_admin_common['Censoring'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -573,7 +573,7 @@ $timestamp = time() + $diff;
                     <td>
                         <label class="conl"><input type="radio" name="form[ranks]" value="1"<?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[ranks]" value="0"<?php if ($pun_config['o_ranks'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php printf($lang_admin_options['User ranks help'], '<a href="admin_ranks.php">'.$lang_admin_common['Ranks'].'</a>') ?></span>
+                        <span class="clearb"><?php printf($lang_admin_options['User ranks help'], '<a href="ranks.php">'.$lang_admin_common['Ranks'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
