@@ -55,9 +55,15 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
       <div class="span6"><p><b>Make it your own.</b><br />The new dashboard gives you the posebility to costumize it as much as you want with Bootstap themes.</p></div>
       <p><b>Modern standards. Not dust. More features.</b><br />The revamped dashboard is HTML5 and CSS3 based, instead of XHTML1.1, and doesn't affect the front-end of your forums anymore. We improved lots of features, like creating new forums. But we also added new features, it's now possible to create back-ups out-of-the-box. We use more placeholders and we say "goodby" to not-functional HTML.</p>
 	</div>
-  <h3>Checks for updates, always</h3>
+	<h3>Checks for updates, always</h3>
     <img src="admin/img/update.png" width="981" height="89" alt="The new update" />
 	<p>With the new update system, we moved to a more simple system. It now compares your version with the GitHub repository and warns you for new updates. The update message can't be disabled and is only visible on the index and about page of the dashboard.</p>
+    <h3>Other small improvements</h3>
+	<div class="row-fluid">
+      <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 stap.</p></div>
+      <div class="span4"><p><b>Replace PUN_ variables.</b><br />We have replaced some of the PUN_ variables with FORUM_. With this step, we want to get improve the user experience and development. This should break plugins for the 1.x branch, but that doesn't matter, most won't work anyway.</p></div>
+      <div class="span4"><p><b>Make it your own.</b><br />The new dashboard gives you the posebility to costumize it as much as you want with Bootstap themes.</p></div>
+	</div>
 </div>
 <?php
 

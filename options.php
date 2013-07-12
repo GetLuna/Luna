@@ -531,7 +531,7 @@ generate_admin_menu('');
                 </tr>
             </table>
         </fieldset>
-        <p class="control-group"><input class="btn btn-success" type="submit" name="save" value="<?php echo $lang_admin_common['Save changes'] ?>" /></p>
+        <p class="control-group"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_admin_common['Save changes'] ?>" /></p>
     </form>
 </div>
 <?php

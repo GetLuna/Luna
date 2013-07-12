@@ -324,7 +324,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
                 </tr>
             </table>
         </fieldset>
-        <div class="control-group"><input class="btn btn-success" type="submit" name="move_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="2" /></div>
+        <div class="control-group"><input class="btn btn-primary" type="submit" name="move_users_comply" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="2" /></div>
     </form>
 </div>
 <?php
@@ -806,7 +806,7 @@ else if (isset($_GET['find_user']))
 
         <div class="pagepost">
             <p class="pagelink"><?php echo $paging_links ?></p>
-        <?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-success" type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
+        <?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_admin_users['Unselect all'] ?>')"><?php echo $lang_admin_users['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_admin_users['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_admin_users['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang_admin_users['Change group'] ?>" /><?php endif; ?></p>
         <?php endif; ?>
         </div>
     </form>
@@ -829,7 +829,7 @@ else
 <div class="content">
     <h2><?php echo $lang_admin_users['User search head'] ?></h2>
     <form id="find_user" method="get" action="users.php">
-        <p><input class="btn btn-success" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="1" /></p>
+        <p><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="1" /></p>
         <fieldset>
             <p><?php echo $lang_admin_users['User search info'] ?></p>
             <table class="table" cellspacing="0">
@@ -936,7 +936,7 @@ else
                 </tr>
             </table>
         </fieldset>
-        <p class="control-group"><input class="btn btn-success" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="25" /></p>
+        <p class="control-group"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="25" /></p>
     </form>
 </div>
 <div class="content">
@@ -947,7 +947,7 @@ else
                     <tr>
                         <th scope="row"><?php echo $lang_admin_users['IP address label'] ?></th>
                         <td><input type="text" name="show_users" size="18" maxlength="15" tabindex="24" />
-                        <input class="btn btn-success" type="submit" value="<?php echo $lang_admin_users['Find IP address'] ?>" tabindex="26" />
+                        <input class="btn btn-primary" type="submit" value="<?php echo $lang_admin_users['Find IP address'] ?>" tabindex="26" />
                         <br /><span><?php echo $lang_admin_users['IP address help'] ?></span></td>
                     </tr>
                 </table>

@@ -222,7 +222,7 @@ if ($action == 'prune')
             <p><?php printf($lang_admin_maintenance['Confirm prune info'], $prune_days, $forum, forum_number_format($num_topics)) ?></p>
             <p class="warntext"><?php echo $lang_admin_maintenance['Confirm prune warn'] ?></p>
         </fieldset>
-        <div class="control-group"><input class="btn btn-danger" type="submit" name="prune_comply" value="<?php echo $lang_admin_common['Prune'] ?>" />
+        <div class="control-group"><input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang_admin_common['Prune'] ?>" />
         <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a></div>
     </form>
 <?php
@@ -273,7 +273,7 @@ require FORUM_ROOT.'admin/header.php';
                 </tr>
             </table>
             <p class="topspace"><?php echo $lang_admin_maintenance['Rebuild completed info'] ?></p>
-            <div class="control-group"><input class="btn btn-danger" type="submit" name="rebuild_index" value="<?php echo $lang_admin_maintenance['Rebuild index'] ?>" tabindex="4" /></div>
+            <div class="control-group"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang_admin_maintenance['Rebuild index'] ?>" tabindex="4" /></div>
         </fieldset>
     </form>
 
@@ -329,7 +329,7 @@ require FORUM_ROOT.'admin/header.php';
                 </tr>
             </table>
             <p class="topspace"><?php printf($lang_admin_maintenance['Prune info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
-            <div class="control-group"><input class="btn btn-danger" type="submit" name="prune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="8" /></div>
+            <div class="control-group"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="8" /></div>
         </fieldset>
     </form>
 </div>

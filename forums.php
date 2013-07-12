@@ -333,7 +333,7 @@ $post_topics_def = (($post_topics && $cur_perm['g_post_topics'] == '0') || (!$po
             </table>
         </fieldset>
         <p class="control-group">
-        	<input class="btn btn-success" type="submit" name="save" value="<?php echo $lang_admin_common['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" />
+        	<input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_admin_common['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" />
        	</p>
     </form>
 </div>
@@ -373,7 +373,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_adm
 ?>
                         </select>
                         <input type="text" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" /> 
-                        <input class="btn btn-success" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
+                        <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
                         <br /><span><?php echo $lang_admin_forums['Add forum help'] ?></span>
                     </td>
                 </tr>
@@ -437,7 +437,7 @@ $cur_category = $cur_forum['cid'];
             </table>
         </fieldset>
         <div class="control-group">
-        	<input class="btn btn-success" type="submit" name="update_positions" value="<?php echo $lang_admin_forums['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" />
+        	<input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang_admin_forums['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" />
         </div>
     </form>
 </div>

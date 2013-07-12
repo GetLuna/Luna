@@ -169,7 +169,7 @@ require FORUM_ROOT.'admin/header.php';
                     <th scope="row"><?php echo $lang_admin_categories['Add category label'] ?></th>
                     <td>
                         <input type="text" name="new_cat_name" size="35" maxlength="80" tabindex="1" />
-                        <input class="btn btn-success" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
+                        <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
                         <br /><?php printf($lang_admin_categories['Add category help'], '<a href="forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
                     </td>
                 </tr>
@@ -234,7 +234,7 @@ foreach ($cat_list as $cur_cat)
             </tbody>
             </table>
             <div class="control-group">
-                <input class="btn btn-success" type="submit" name="update" value="<?php echo $lang_admin_common['Update'] ?>" />
+                <input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang_admin_common['Update'] ?>" />
             </div>
         </fieldset>
     </form>

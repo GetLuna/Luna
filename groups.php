@@ -244,7 +244,7 @@ if ($group['g_id'] != PUN_GUEST): ?>								<tr>
         </fieldset>
     </div>
     <div class="control-group">
-        <input class="btn btn-success" type="submit" name="add_edit_group" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="39" />
+        <input class="btn btn-primary" type="submit" name="add_edit_group" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="39" />
     </div>
 </form>
 <?php
@@ -489,7 +489,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 
 ?>
                         </select>
-                        <input class="btn btn-success" type="submit" name="add_group" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="2" />
+                        <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="2" />
                         <br /><span><?php echo $lang_admin_groups['New group help'] ?></span>
                     </td>
                 </tr>
@@ -516,7 +516,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 
 ?>
                         </select>
-                        <input class="btn btn-success" type="submit" name="set_default_group" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="4" />
+                        <input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="4" />
                         <br /><span><?php echo $lang_admin_groups['Default group help'] ?></span>
                     </td>
                 </tr>

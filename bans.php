@@ -157,7 +157,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                 </tr>
             </table>
         </fieldset>
-        <p class"control-group"><input class="btn btn-success" type="submit" name="add_edit_ban" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="6" /></p>
+        <p class"control-group"><input class="btn btn-primary" type="submit" name="add_edit_ban" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="6" /></p>
     </form>
 </div>
 <?php
@@ -502,7 +502,7 @@ require FORUM_ROOT.'admin/header.php';
                 </tr>
             </table>
         </fieldset>
-        <p class="control-group"><input class="btn btn-success" type="submit" name="find_ban" value="<?php echo $lang_admin_bans['Submit search'] ?>" tabindex="12" /></p>
+        <p class="control-group"><input class="btn btn-primary" type="submit" name="find_ban" value="<?php echo $lang_admin_bans['Submit search'] ?>" tabindex="12" /></p>
     </form>
 </div>
 <?php
