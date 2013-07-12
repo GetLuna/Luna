@@ -37,7 +37,7 @@ function generate_admin_menu($page = '')
   <div class="container">
     <a class="brand" href="index.php">ModernBB</a>
     <ul class="nav">
-      <li><a href="index.php">Dashboard</a></li>
+      <li><a href="aindex.php">Dashboard</a></li>
       <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		  Content <b class="caret"></b>
