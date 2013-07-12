@@ -67,6 +67,8 @@ function generate_admin_menu($page = '')
 		</a>
 		<ul class="dropdown-menu">
 		  <li><a href="options.php">Global</a></li>
+		  <li><a href="display.php">Display</a></li>
+		  <li><a href="features.php">Features</a></li>
 		  <li><a href="email.php">Email</a></li>
 		  <li><a href="maintenance.php">Maintenance</a></li>
 		</ul>

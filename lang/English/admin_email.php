@@ -15,7 +15,6 @@ $lang_admin_email = array(
 'Options updated redirect'			=>	'Options updated. Redirecting …',
 'E-mail head'						=>	'Email settings',
 
-'E-mail subhead'					=>	'Email',
 'Admin e-mail label'				=>	'Admin email',
 'Admin e-mail help'					=>	'The email address of the board administrator.',
 'Webmaster e-mail label'			=>	'Webmaster email',

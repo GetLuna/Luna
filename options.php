@@ -23,7 +23,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_options.php';
 
 if (isset($_POST['form_sent']))
 {
-	confirm_referrer(FORUM_ROOT.'options.php', $lang_admin_options['Bad HTTP Referer message']);
+	confirm_referrer('options.php', $lang_admin_options['Bad HTTP Referer message']);
 
 	$form = array(
 		'board_title'			=> pun_trim($_POST['form']['board_title']),
@@ -38,28 +38,6 @@ if (isset($_POST['form_sent']))
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
 		'timeout_online'		=> (intval($_POST['form']['timeout_online']) > 0) ? intval($_POST['form']['timeout_online']) : 1,
 		'redirect_delay'		=> (intval($_POST['form']['redirect_delay']) >= 0) ? intval($_POST['form']['redirect_delay']) : 0,
-		'show_version'			=> $_POST['form']['show_version'] != '1' ? '0' : '1',
-		'show_user_info'		=> $_POST['form']['show_user_info'] != '1' ? '0' : '1',
-		'show_post_count'		=> $_POST['form']['show_post_count'] != '1' ? '0' : '1',
-		'smilies'				=> $_POST['form']['smilies'] != '1' ? '0' : '1',
-		'smilies_sig'			=> $_POST['form']['smilies_sig'] != '1' ? '0' : '1',
-		'make_links'			=> $_POST['form']['make_links'] != '1' ? '0' : '1',
-		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
-		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
-		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
-		'indent_num_spaces'		=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
-		'quote_depth'			=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
-		'quickpost'				=> $_POST['form']['quickpost'] != '1' ? '0' : '1',
-		'users_online'			=> $_POST['form']['users_online'] != '1' ? '0' : '1',
-		'censoring'				=> $_POST['form']['censoring'] != '1' ? '0' : '1',
-		'signatures'			=> $_POST['form']['signatures'] != '1' ? '0' : '1',
-		'ranks'					=> $_POST['form']['ranks'] != '1' ? '0' : '1',
-		'show_dot'				=> $_POST['form']['show_dot'] != '1' ? '0' : '1',
-		'topic_views'			=> $_POST['form']['topic_views'] != '1' ? '0' : '1',
-		'quickjump'				=> $_POST['form']['quickjump'] != '1' ? '0' : '1',
-		'gzip'					=> $_POST['form']['gzip'] != '1' ? '0' : '1',
-		'search_all_forums'		=> $_POST['form']['search_all_forums'] != '1' ? '0' : '1',
-		'additional_navlinks'	=> pun_trim($_POST['form']['additional_navlinks']),
 		'feed_type'				=> intval($_POST['form']['feed_type']),
 		'feed_ttl'				=> intval($_POST['form']['feed_ttl']),
 		'report_method'			=> intval($_POST['form']['report_method']),
@@ -69,8 +47,6 @@ if (isset($_POST['form_sent']))
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
-		'admin_email'			=> strtolower(pun_trim($_POST['form']['admin_email'])),
-		'webmaster_email'		=> strtolower(pun_trim($_POST['form']['webmaster_email'])),
 		'regs_allow'			=> $_POST['form']['regs_allow'] != '1' ? '0' : '1',
 		'regs_verify'			=> $_POST['form']['regs_verify'] != '1' ? '0' : '1',
 		'regs_report'			=> $_POST['form']['regs_report'] != '1' ? '0' : '1',
@@ -107,21 +83,12 @@ if (isset($_POST['form_sent']))
 
 	require FORUM_ROOT.'include/email.php';
 
-	if (!is_valid_email($form['admin_email']))
-		message($lang_admin_options['Invalid e-mail message']);
-
-	if (!is_valid_email($form['webmaster_email']))
-		message($lang_admin_options['Invalid webmaster e-mail message']);
-
 	if ($form['mailing_list'] != '')
 		$form['mailing_list'] = strtolower(preg_replace('%\s%S', '', $form['mailing_list']));
 
 	// Make sure avatars_dir doesn't end with a slash
 	if (substr($form['avatars_dir'], -1) == '/')
 		$form['avatars_dir'] = substr($form['avatars_dir'], 0, -1);
-
-	if ($form['additional_navlinks'] != '')
-		$form['additional_navlinks'] = pun_trim(pun_linebreaks($form['additional_navlinks']));
 
 	// Change or enter a SMTP password
 	if (isset($_POST['form']['smtp_change_pass']))
@@ -159,17 +126,6 @@ if (isset($_POST['form_sent']))
 		$form['maintenance'] = '0';
 	}
 
-	// Make sure the number of displayed topics and posts is between 3 and 75
-	if ($form['disp_topics_default'] < 3)
-		$form['disp_topics_default'] = 3;
-	else if ($form['disp_topics_default'] > 75)
-		$form['disp_topics_default'] = 75;
-
-	if ($form['disp_posts_default'] < 3)
-		$form['disp_posts_default'] = 3;
-	else if ($form['disp_posts_default'] > 75)
-		$form['disp_posts_default'] = 75;
-
 	if ($form['feed_type'] < 0 || $form['feed_type'] > 2)
 		message($lang_common['Bad request']);
 
@@ -206,19 +162,18 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect(FORUM_ROOT.'options.php', $lang_admin_options['Options updated redirect']);
+	redirect('options.php', $lang_admin_options['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
-
 generate_admin_menu('');
 
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_options['Options head'] ?></h2>
-    <form method="post" action="<?php FORUM_ROOT.'options.php' ?>">
+    <form method="post" action="options.php">
         <input type="hidden" name="form_sent" value="1" />
         <fieldset>
             <h3><?php echo $lang_admin_options['Essentials subhead'] ?></h3>
@@ -386,185 +341,6 @@ generate_admin_menu('');
                     <td>
                         <input type="text" name="form[redirect_delay]" size="3" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
                         <br /><span><?php echo $lang_admin_options['Redirect time help'] ?></span>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-        <fieldset>
-            <h3><?php echo $lang_admin_options['Display subhead'] ?></h3>
-            <table class="table" cellspacing="0">
-                <tr>
-                    <th class="span2"><?php echo $lang_admin_options['Version number label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[show_version]" value="1"<?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[show_version]" value="0"<?php if ($pun_config['o_show_version'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Version number help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Info in posts label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[show_user_info]" value="1"<?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[show_user_info]" value="0"<?php if ($pun_config['o_show_user_info'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Info in posts help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Post count label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[show_post_count]" value="1"<?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[show_post_count]" value="0"<?php if ($pun_config['o_show_post_count'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Post count help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Smilies label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[smilies]" value="1"<?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[smilies]" value="0"<?php if ($pun_config['o_smilies'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Smilies help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Smilies sigs label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[smilies_sig]" value="1"<?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[smilies_sig]" value="0"<?php if ($pun_config['o_smilies_sig'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Smilies sigs help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Clickable links label'] ?></th>
-                    <td>
-                        <input type="radio" name="form[make_links]" id="form_make_links_1" value="1"<?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> />&#160;<label class="conl" for="form_make_links_1"><strong><?php echo $lang_admin_common['Yes'] ?></strong></label>&#160;&#160;&#160;<input type="radio" name="form[make_links]" id="form_make_links_0" value="0"<?php if ($pun_config['o_make_links'] == '0') echo ' checked="checked"' ?> />&#160;<label class="conl" for="form_make_links_0"><strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <br /><span><?php echo $lang_admin_options['Clickable links help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Topic review label'] ?></th>
-                    <td>
-                        <input type="text" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
-                        <br /><span><?php echo $lang_admin_options['Topic review help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Topics per page label'] ?></th>
-                    <td>
-                        <input type="text" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
-                        <br /><span><?php echo $lang_admin_options['Topics per page help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Posts per page label'] ?></th>
-                    <td>
-                        <input type="text" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
-                        <br /><span><?php echo $lang_admin_options['Posts per page help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Indent label'] ?></th>
-                    <td>
-                        <input type="text" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
-                        <br /><span><?php echo $lang_admin_options['Indent help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Quote depth label'] ?></th>
-                    <td>
-                        <input type="text" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
-                        <br /><span><?php echo $lang_admin_options['Quote depth help'] ?></span>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-        <fieldset>
-            <h3><?php echo $lang_admin_options['Features subhead'] ?></h3>
-            <table class="table" cellspacing="0">
-                <tr>
-                    <th class="span2"><?php echo $lang_admin_options['Quick post label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[quickpost]" value="1"<?php if ($pun_config['o_quickpost'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[quickpost]" value="0"<?php if ($pun_config['o_quickpost'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Quick post help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Users online label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[users_online]" value="1"<?php if ($pun_config['o_users_online'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[users_online]" value="0"<?php if ($pun_config['o_users_online'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Users online help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><a name="censoring"></a><?php echo $lang_admin_options['Censor words label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[censoring]" value="1"<?php if ($pun_config['o_censoring'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[censoring]" value="0"<?php if ($pun_config['o_censoring'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php printf($lang_admin_options['Censor words help'], '<a href="admin_censoring.php">'.$lang_admin_common['Censoring'].'</a>') ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><a name="signatures"></a><?php echo $lang_admin_options['Signatures label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[signatures]" value="1"<?php if ($pun_config['o_signatures'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[signatures]" value="0"<?php if ($pun_config['o_signatures'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Signatures help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><a name="ranks"></a><?php echo $lang_admin_options['User ranks label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[ranks]" value="1"<?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[ranks]" value="0"<?php if ($pun_config['o_ranks'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php printf($lang_admin_options['User ranks help'], '<a href="admin_ranks.php">'.$lang_admin_common['Ranks'].'</a>') ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['User has posted label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[show_dot]" value="1"<?php if ($pun_config['o_show_dot'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[show_dot]" value="0"<?php if ($pun_config['o_show_dot'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['User has posted help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Topic views label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[topic_views]" value="1"<?php if ($pun_config['o_topic_views'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[topic_views]" value="0"<?php if ($pun_config['o_topic_views'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Topic views help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Quick jump label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[quickjump]" value="1"<?php if ($pun_config['o_quickjump'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[quickjump]" value="0"<?php if ($pun_config['o_quickjump'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Quick jump help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['GZip label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[gzip]" value="1"<?php if ($pun_config['o_gzip'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[gzip]" value="0"<?php if ($pun_config['o_gzip'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['GZip help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Search all label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="form[search_all_forums]" value="1"<?php if ($pun_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="form[search_all_forums]" value="0"<?php if ($pun_config['o_search_all_forums'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_options['Search all help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Menu items label'] ?></th>
-                    <td>
-                        <textarea name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
-                        <br /><span><?php echo $lang_admin_options['Menu items help'] ?></span>
                     </td>
                 </tr>
             </table>
