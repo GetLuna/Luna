@@ -10,8 +10,7 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-if (!defined('FORUM_ROOT'))
-	define('FORUM_ROOT', '../');
+define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -24,7 +23,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_options.php';
 
 if (isset($_POST['form_sent']))
 {
-	confirm_referrer('options.php', $lang_admin_options['Bad HTTP Referer message']);
+	confirm_referrer(FORUM_ROOT.'options.php', $lang_admin_options['Bad HTTP Referer message']);
 
 	$form = array(
 		'board_title'			=> pun_trim($_POST['form']['board_title']),
@@ -70,6 +69,8 @@ if (isset($_POST['form_sent']))
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
+		'admin_email'			=> strtolower(pun_trim($_POST['form']['admin_email'])),
+		'webmaster_email'		=> strtolower(pun_trim($_POST['form']['webmaster_email'])),
 		'regs_allow'			=> $_POST['form']['regs_allow'] != '1' ? '0' : '1',
 		'regs_verify'			=> $_POST['form']['regs_verify'] != '1' ? '0' : '1',
 		'regs_report'			=> $_POST['form']['regs_report'] != '1' ? '0' : '1',
@@ -121,6 +122,18 @@ if (isset($_POST['form_sent']))
 
 	if ($form['additional_navlinks'] != '')
 		$form['additional_navlinks'] = pun_trim(pun_linebreaks($form['additional_navlinks']));
+
+	// Change or enter a SMTP password
+	if (isset($_POST['form']['smtp_change_pass']))
+	{
+		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? pun_trim($_POST['form']['smtp_pass1']) : '';
+		$smtp_pass2 = isset($_POST['form']['smtp_pass2']) ? pun_trim($_POST['form']['smtp_pass2']) : '';
+
+		if ($smtp_pass1 == $smtp_pass2)
+			$form['smtp_pass'] = $smtp_pass1;
+		else
+			message($lang_admin_options['SMTP passwords did not match']);
+	}
 
 	if ($form['announcement_message'] != '')
 		$form['announcement_message'] = pun_linebreaks($form['announcement_message']);
@@ -193,94 +206,25 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('options.php', $lang_admin_options['Options updated redirect']);
+	redirect(FORUM_ROOT.'options.php', $lang_admin_options['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
+
 generate_admin_menu('');
 
 ?>
 <div class="content">
     <h2><?php echo $lang_admin_options['Options head'] ?></h2>
-    <form method="post" action="options.php">
-        <input type="hidden" name="form_sent" value="1" /><!-- 
-        <div class="tabbable tabs-left">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="#essentials" data-toggle="tab"><?php echo $lang_admin_options['Essentials subhead'] ?></a></li>
-				<li><a href="#time" data-toggle="tab"><?php echo $lang_admin_options['Timeouts subhead'] ?></a></li>
-				<li><a href="#display" data-toggle="tab"><?php echo $lang_admin_options['Display subhead'] ?></a></li>
-				<li><a href="#features" data-toggle="tab"><?php echo $lang_admin_options['Features subhead'] ?></a></li>
-				<li><a href="#feed" data-toggle="tab"><?php echo $lang_admin_options['Feed subhead'] ?></a></li>
-				<li><a href="#reports" data-toggle="tab"><?php echo $lang_admin_options['Reports subhead'] ?></a></li>
-				<li><a href="#avatars" data-toggle="tab"><?php echo $lang_admin_options['Avatars subhead'] ?></a></li>
-				<li><a href="#email" data-toggle="tab"><?php echo $lang_admin_options['E-mail subhead'] ?></a></li>
-				<li><a href="#registration" data-toggle="tab"><?php echo $lang_admin_options['Registration subhead'] ?></a></li>
-				<li><a href="#announcements" data-toggle="tab"><?php echo $lang_admin_options['Announcement subhead'] ?></a></li>
-				<li><a href="#maintenance" data-toggle="tab"><?php echo $lang_admin_options['Maintenance subhead'] ?></a></li>
-			</ul>
-            <div class="tab-content">
-				<div class="tab-pane active" id="essentials">
-					<p>I'm in Section 1.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="time">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="display">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="features">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="feed">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="reports">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="avatars">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="email">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="registration">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="announcements">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-            <div class="tab-content">
-				<div class="tab-pane" id="maintenance">
-					<p>I'm in Section 2.</p>
-				</div>
-			</div>
-		</div> -->
+    <form method="post" action="<?php FORUM_ROOT.'options.php' ?>">
+        <input type="hidden" name="form_sent" value="1" />
         <fieldset>
             <h3><?php echo $lang_admin_options['Essentials subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Board title label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Board title label'] ?></th>
                     <td>
                         <input type="text" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
                         <br /><span><?php echo $lang_admin_options['Board title help'] ?></span>
@@ -362,55 +306,55 @@ generate_admin_menu('');
                         <select name="form[default_lang]">
 <?php
 
-$languages = forum_list_langs();
+		$languages = forum_list_langs();
 
-foreach ($languages as $temp)
-{
-    if ($pun_config['o_default_lang'] == $temp)
-        echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
-    else
-        echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
-}
+		foreach ($languages as $temp)
+		{
+			if ($pun_config['o_default_lang'] == $temp)
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
+		}
 
 ?>
-                        </select>
-                        <br /><span><?php echo $lang_admin_options['Language help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_options['Default style label'] ?></th>
-                    <td>
-                        <select name="form[default_style]">
+                            </select>
+                            <br /><span><?php echo $lang_admin_options['Language help'] ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_admin_options['Default style label'] ?></th>
+                        <td>
+                            <select name="form[default_style]">
 <?php
 
-$styles = forum_list_styles();
+		$styles = forum_list_styles();
 
-foreach ($styles as $temp)
-{
-    if ($pun_config['o_default_style'] == $temp)
-        echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
-    else
-        echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-}
+		foreach ($styles as $temp)
+		{
+			if ($pun_config['o_default_style'] == $temp)
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
+		}
 
 ?>
-                        </select>
-                        <br /><span><?php echo $lang_admin_options['Default style help'] ?></span>
-                    </td>
-                </tr>
-            </table>
+                            </select>
+                            <br /><span><?php echo $lang_admin_options['Default style help'] ?></span>
+                        </td>
+                    </tr>
+                </table>
         </fieldset>
 <?php
 
-$diff = ($pun_user['timezone'] + $pun_user['dst']) * 3600;
-$timestamp = time() + $diff;
+	$diff = ($pun_user['timezone'] + $pun_user['dst']) * 3600;
+	$timestamp = time() + $diff;
 
 ?>
-        <fieldset>
+    <fieldset>
             <h3><?php echo $lang_admin_options['Timeouts subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Time format label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Time format label'] ?></th>
                     <td>
                         <input type="text" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
                         <br /><span><?php printf($lang_admin_options['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
@@ -448,9 +392,9 @@ $timestamp = time() + $diff;
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Display subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Version number label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Version number label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[show_version]" value="1"<?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[show_version]" value="0"<?php if ($pun_config['o_show_version'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -535,9 +479,9 @@ $timestamp = time() + $diff;
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Features subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Quick post label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Quick post label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[quickpost]" value="1"<?php if ($pun_config['o_quickpost'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[quickpost]" value="0"<?php if ($pun_config['o_quickpost'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -557,7 +501,7 @@ $timestamp = time() + $diff;
                     <td>
                         <label class="conl"><input type="radio" name="form[censoring]" value="1"<?php if ($pun_config['o_censoring'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[censoring]" value="0"<?php if ($pun_config['o_censoring'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php printf($lang_admin_options['Censor words help'], '<a href="censoring.php">'.$lang_admin_common['Censoring'].'</a>') ?></span>
+                        <span class="clearb"><?php printf($lang_admin_options['Censor words help'], '<a href="admin_censoring.php">'.$lang_admin_common['Censoring'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -573,7 +517,7 @@ $timestamp = time() + $diff;
                     <td>
                         <label class="conl"><input type="radio" name="form[ranks]" value="1"<?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[ranks]" value="0"<?php if ($pun_config['o_ranks'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php printf($lang_admin_options['User ranks help'], '<a href="ranks.php">'.$lang_admin_common['Ranks'].'</a>') ?></span>
+                        <span class="clearb"><?php printf($lang_admin_options['User ranks help'], '<a href="admin_ranks.php">'.$lang_admin_common['Ranks'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -627,9 +571,9 @@ $timestamp = time() + $diff;
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Feed subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Default feed label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Default feed label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['None'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['RSS'] ?></strong></label>
@@ -644,10 +588,10 @@ $timestamp = time() + $diff;
                             <option value="0"<?php if ($pun_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang_admin_options['No cache'] ?></option>
 <?php
 
-$times = array(5, 15, 30, 60);
+		$times = array(5, 15, 30, 60);
 
-foreach ($times as $time)
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_ttl'] == $time ? ' selected="selected"' : '').'>'.sprintf($lang_admin_options['Minutes'], $time).'</option>'."\n";
+		foreach ($times as $time)
+			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_ttl'] == $time ? ' selected="selected"' : '').'>'.sprintf($lang_admin_options['Minutes'], $time).'</option>'."\n";
 
 ?>
                         </select>
@@ -658,9 +602,9 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_t
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Reports subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Reporting method label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Reporting method label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['Internal'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['By e-mail'] ?></strong></label>
@@ -679,9 +623,9 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_t
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Avatars subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Use avatars label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Use avatars label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[avatars]" value="1"<?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[avatars]" value="0"<?php if ($pun_config['o_avatars'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -716,13 +660,13 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_t
                         <br /><span><?php echo $lang_admin_options['Max size help'] ?></span>
                     </td>
                 </tr>
-			</table>
+            </table>
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Registration subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Allow new label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Allow new label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[regs_allow]" value="1"<?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[regs_allow]" value="0"<?php if ($pun_config['o_regs_allow'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -773,9 +717,9 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_t
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Announcement subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><?php echo $lang_admin_options['Display announcement label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_options['Display announcement label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[announcement]" value="1"<?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[announcement]" value="0"<?php if ($pun_config['o_announcement'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -793,9 +737,9 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_t
         </fieldset>
         <fieldset>
             <h3><?php echo $lang_admin_options['Maintenance subhead'] ?></h3>
-            <table class="table">
+            <table class="table" cellspacing="0">
                 <tr>
-                    <th width="18%"><a name="maintenance"></a><?php echo $lang_admin_options['Maintenance mode label'] ?></th>
+                    <th class="span2"><a name="maintenance"></a><?php echo $lang_admin_options['Maintenance mode label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="form[maintenance]" value="1"<?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[maintenance]" value="0"<?php if ($pun_config['o_maintenance'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>

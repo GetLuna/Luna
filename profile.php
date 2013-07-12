@@ -564,10 +564,10 @@ else if (isset($_POST['ban']))
 	if ($db->num_rows($result))
 	{
 		$ban_id = $db->result($result);
-		redirect('admin_bans.php?edit_ban='.$ban_id.'&amp;exists', $lang_profile['Ban redirect']);
+		redirect('bans.php?edit_ban='.$ban_id.'&amp;exists', $lang_profile['Ban redirect']);
 	}
 	else
-		redirect('admin_bans.php?add_ban='.$id, $lang_profile['Ban redirect']);
+		redirect('bans.php?add_ban='.$id, $lang_profile['Ban redirect']);
 }
 
 

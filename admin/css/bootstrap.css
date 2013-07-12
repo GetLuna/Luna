@@ -4148,7 +4148,8 @@ a.thumbnail:focus {
   color: #dd5600;
 }
 
-.alert h4 {
+.alert h4,
+.alert h2 {
   margin: 0;
 }
 

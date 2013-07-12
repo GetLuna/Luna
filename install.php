@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '1.9.1');
+define('FORUM_VERSION', '1.9.3');
 
-define('FORUM_DB_REVISION', 20);
+define('FORUM_DB_REVISION', 22);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 2);
 
@@ -268,7 +268,7 @@ function process_form(the_form)
 		"req_password2": "<?php echo $lang_install['Administrator password 2'] ?>",
 		"req_email": "<?php echo $lang_install['Administrator email'] ?>",
 		"req_title": "<?php echo $lang_install['Board title'] ?>",
-		"req_base_url": "<?php echo $lang_install['Base URL'] ?>"
+		"req_base_url": "<?php echo $lang_install['Base URL'] ?>",
 	};
 	if (document.all || document.getElementById)
 	{

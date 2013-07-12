@@ -10,8 +10,7 @@
 // Tell header.php to use the admin template
 define('PUN_ADMIN_CONSOLE', 1);
 
-if (!defined('FORUM_ROOT'))
-	define('FORUM_ROOT', '../');
+define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -42,33 +41,23 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
     <?php }
 }
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_index['Forum admin head'] ?></span></h2>
-    <p><?php echo $lang_admin_index['Welcome to admin'] ?></p>
-    <ul>
-        <li><span><?php echo $lang_admin_index['Welcome 1'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 2'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 3'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 4'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 5'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 6'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 7'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 8'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 9'] ?></span></li>
-    </ul>
+<div class="alert alert-update alert-info">
+    <h2>Welcome to ModernBB <?php echo FORUM_VERSION ?></h2>
+    <a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary">Changelog</a>
+	<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>" class="btn btn-primary">Download v<?php echo FORUM_VERSION ?></a>
 </div>
 <div class="content">
-    <h2><span><?php echo $lang_admin_index['About head'] ?></span></h2>
-    <dl>
-        <dt><?php echo $lang_admin_index['ModernBB version label'] ?></dt>
-        <dd>
-            <?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?>
-        </dd>
-        <dt><?php echo $lang_admin_index['Server statistics label'] ?></dt>
-        <dd>
-            <a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
-        </dd>
-    </dl>
+    <h2>What's new in version 2.0-beta.1?</h2>
+    <h3>Brand new Dashboard</h3>
+    <img src="admin/img/dashboard.png" width="1065" height="240" alt="The new dashboard design" />
+	<div class="row-fluid">
+      <div class="span6"><p><b>Modern design.</b><br />The dashboard has a brand new Bootstrap-based design, making ModernBB easier to use.</p></div>
+      <div class="span6"><p><b>Make it your own.</b><br />The new dashboard gives you the posebility to costumize it as much as you want with Bootstap themes.</p></div>
+      <p><b>Modern standards. Not dust. More features.</b><br />The revamped dashboard is HTML5 and CSS3 based, instead of XHTML1.1, and doesn't affect the front-end of your forums anymore. We improved lots of features, like creating new forums. But we also added new features, it's now possible to create back-ups out-of-the-box. We use more placeholders and we say "goodby" to not-functional HTML.</p>
+	</div>
+  <h3>Checks for updates, always</h3>
+    <img src="admin/img/update.png" width="981" height="89" alt="The new update" />
+	<p>With the new update system, we moved to a more simple system. It now compares your version with the GitHub repository and warns you for new updates. The update message can't be disabled and is only visible on the index and about page of the dashboard.</p>
 </div>
 <?php
 

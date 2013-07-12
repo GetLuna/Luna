@@ -67,7 +67,7 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 echo "\t\t\t".'<div class="conl">'."\n";
 
 // Display the "Jump to" drop list
-if ($pun_config['o_quickjump'] == '1' and PUN_ADMIN_CONSOLE == '0')
+if ($pun_config['o_quickjump'] == '1')
 {
 	// Load cached quick jump
 	if (file_exists(FORUM_CACHE_DIR.'cache_quickjump_'.$pun_user['g_id'].'.php'))
