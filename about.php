@@ -66,6 +66,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	</div>
 	<div class="row-fluid">
       <div class="span4"><p><b>Clean registration.</b><br />ModernBB 2 also improves the registration for new users. With a simplified registration form, your future users will be able to start using your forum faster without unneeded information.</p></div>
+      <div class="span4"><p><b>Super subscript.</b><br />The new parser supports, beside video embedding, also the use of subscript and superscript text. This makes it easier for your boards users to write down maths and more.</p></div>
 	</div>
 </div>
 <?php

@@ -161,7 +161,7 @@ function strip_empty_bbcode($text)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|colou?r|quote|img|video|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|sub|sup|colou?r|quote|img|video|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -205,7 +205,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'video', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
+	$tags = array('quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'sub', 'sup', 'color', 'colour', 'url', 'email', 'video', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user');
 	// List of tags that we need to check are open (You could not put b,i,u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -224,7 +224,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	$tags_quotes = array('url', 'email', 'video', 'img', 'topic', 'post', 'forum', 'user');
 	// Tags we limit bbcode in
 	$tags_limit_bbcode = array(
-		'*' 	=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'list', 'img', 'code', 'topic', 'post', 'forum', 'user'),
+		'*' 	=> array('b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'del', 'em', 'color', 'colour', 'url', 'email', 'list', 'img', 'code', 'topic', 'post', 'forum', 'user'),
 		'list' 	=> array('*'),
 		'url' 	=> array('img'),
 		'email' => array('img'),
@@ -234,10 +234,10 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		'user'  => array('img'),
 		'img' 	=> array(),
 		'video' => array('url'),
-		'h'		=> array('b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'topic', 'post', 'forum', 'user'),
+		'h'		=> array('b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'del', 'em', 'color', 'colour', 'url', 'email', 'topic', 'post', 'forum', 'user'),
 	);
 	// Tags we can automatically fix bad nesting
-	$tags_fix = array('quote', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'h', 'topic', 'post', 'forum', 'user');
+	$tags_fix = array('quote', 'b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'del', 'em', 'color', 'colour', 'url', 'email', 'h', 'topic', 'post', 'forum', 'user');
 
 	$split_text = preg_split('%(\[[\*a-zA-Z0-9-/]*?(?:=.*?)?\])%', $text, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 
@@ -764,6 +764,8 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[em\](.*?)\[/em\]%ms';
 	$pattern[] = '%\[colou?r=([a-zA-Z]{3,20}|\#[0-9a-fA-F]{6}|\#[0-9a-fA-F]{3})](.*?)\[/colou?r\]%ms';
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
+	$pattern[] = '%\[sub\](.*?)\[/sub\]%ms';
+	$pattern[] = '%\[sup\](.*?)\[/sup\]%ms';
 	
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
@@ -784,6 +786,8 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<em>$1</em>';
 	$replace[] = '<span style="color: $1">$2</span>';
 	$replace[] = '</p><h5>$1</h5><p>';
+	$replace[] = '<span class="sub">$1</span>';
+	$replace[] = '<span class="sup">$1</span>';
 	
 	// DailyMotion videos
 	$replace[] = '<iframe width="480" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';  

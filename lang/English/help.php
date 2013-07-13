@@ -21,6 +21,8 @@ $lang_help = array(
 'Heading text'			=>	'Heading text',
 'Deleted text'			=>	'Deleted text',
 'Inserted text'			=>	'Inserted text',
+'Sub text'				=>	'Subscript text',
+'Sup text'				=>	'Superscript text',
 'Emphasised text'		=>	'Emphasised text',
 
 'Links, images and video'  =>  'Links, images and video',

@@ -110,6 +110,19 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	line-height: normal;
 }
 
+.sup {
+	position: relative;
+	bottom: 0.5em;
+	font-size: 0.8em;
+}
+
+.sub {
+	position: relative;
+	top: 0.3em;
+	font-size: 0.8em;
+}
+
+
 /* Hidden Elements
 ----------------------------------------------------------------*/
 

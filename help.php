@@ -47,6 +47,8 @@ require FORUM_ROOT.'header.php';
 		<p><code>[em]<?php echo $lang_help['Emphasised text'] ?>[/em]</code> <?php echo $lang_help['produces'] ?> <samp><em><?php echo $lang_help['Emphasised text'] ?></em></samp></p>
 		<p><code>[color=#FF0000]<?php echo $lang_help['Red text'] ?>[/color]</code> <?php echo $lang_help['produces'] ?> <samp><span style="color: #ff0000"><?php echo $lang_help['Red text'] ?></span></samp></p>
 		<p><code>[color=blue]<?php echo $lang_help['Blue text'] ?>[/color]</code> <?php echo $lang_help['produces'] ?> <samp><span style="color: blue"><?php echo $lang_help['Blue text'] ?></span></samp></p>
+		<p><code>[sub]<?php echo $lang_help['Sub text'] ?>[/sub]</code> <?php echo $lang_help['produces'] ?> <samp><span class="sub"><?php echo $lang_help['Sub text'] ?></span></p>
+		<p><code>[sup]<?php echo $lang_help['Sup text'] ?>[/sup]</code> <?php echo $lang_help['produces'] ?> <samp><span class="sup"><?php echo $lang_help['Sup text'] ?></span></p>
 		<p><code>[h]<?php echo $lang_help['Heading text'] ?>[/h]</code> <?php echo $lang_help['produces'] ?></p> <div class="postmsg"><h5><?php echo $lang_help['Heading text'] ?></h5></div>
 	</div>
 </div>
