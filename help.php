@@ -50,7 +50,7 @@ require FORUM_ROOT.'header.php';
 		<p><code>[h]<?php echo $lang_help['Heading text'] ?>[/h]</code> <?php echo $lang_help['produces'] ?></p> <div class="postmsg"><h5><?php echo $lang_help['Heading text'] ?></h5></div>
 	</div>
 </div>
-<h2><span><?php echo $lang_help['Links and images'] ?></span></h2>
+<h2><span><?php echo $lang_help['Links, images and video'] ?></span></h2>
 <div class="box">
 	<div class="inbox">
 		<p><?php echo $lang_help['Links info'] ?></p>
@@ -72,6 +72,10 @@ require FORUM_ROOT.'header.php';
 		<p><a name="img"></a><?php echo $lang_help['Images info'] ?></p>
 		<p><code>[img=<?php echo $lang_help['ModernBB bbcode test'] ?>]<?php echo pun_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php echo $lang_help['produces'] ?> <samp><img style="height: 21px" src="<?php echo pun_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php echo $lang_help['ModernBB bbcode test'] ?>" /></samp></p>
 	</div>
+    <div class="inbox">
+		<p><a name="img"></a><?php echo $lang_help['Video info'] ?></p>
+		<p><code>[video=(x,y)][url]<?php echo $lang_help['Video link'] ?>[/url][/video]</code>
+	</div> 
 </div>
 <h2><span><?php echo $lang_help['Quotes'] ?></span></h2>
 <div class="box">
