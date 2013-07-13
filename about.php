@@ -49,7 +49,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 <div class="content">
     <h2>What's new in version 2.0-beta.1?</h2>
     <h3>Brand new Dashboard</h3>
-    <img src="admin/img/dashboard.png" width="1065" height="240" alt="The new dashboard design" />
+    <img src="admin/img/dashboard.png" width="1065" height="250" alt="The new dashboard design" />
 	<div class="row-fluid">
       <div class="span6"><p><b>Modern design.</b><br />The dashboard has a brand new Bootstrap-based design, making ModernBB easier to use.</p></div>
       <div class="span6"><p><b>Make it your own.</b><br />The new dashboard gives you the posebility to costumize it as much as you want with Bootstap themes.</p></div>
