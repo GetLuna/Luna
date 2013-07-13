@@ -14,9 +14,9 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-
-if ($pun_user['g_id'] != PUN_ADMIN)
-	message($lang_common['No permission'], false, '403 Forbidden');
+if (!$pun_user['is_admmod']) {
+    header("Location: login.php");
+}
 
 // Load the admin_ranks.php language file
 require FORUM_ROOT.'lang/'.$admin_language.'/admin_ranks.php';
