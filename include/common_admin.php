@@ -94,8 +94,23 @@ function generate_admin_menu($page = '')
 		echo '<li class="nav-header">No plugins</li>';
 	}
 }; ?>
-        </ul>
-      </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
+        <li class="dropdown">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		    Welcome, <?php print(pun_htmlspecialchars($pun_user['username'])) ?> <b class="caret"></b>
+		  </a>
+		  <ul class="dropdown-menu">
+		    <li><?php echo '<a href="profile.php?id='.$pun_user['id'].'">' ?>Profile</a></li>
+		    <li><a href="index.php">Forum</a></li>
+            <li class="divider"></li>
+		    <li><a href="http://modernbb.be">Support</a></li>
+            <li class="divider"></li>
+		    <li><?php echo '<a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">' ?>Logout</a></li>
+		  </ul>
+	    </li>
       </ul>
     </div>
   </div>

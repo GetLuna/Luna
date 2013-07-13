@@ -3413,11 +3413,12 @@ input[type="submit"].btn.btn-mini {
   overflow: visible;
 }
 .navbar .brand {
+  text-transform: lowercase;
   float: left;
   display: block;
   padding: 15px 20px 15px;
   font-size: 20px;
-  font-weight: 200;
+  font-weight: 100;
   color: #777777;
   text-shadow: 0 1px 0 #ffffff;
   color: #ffffff !important;

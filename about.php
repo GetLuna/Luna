@@ -62,7 +62,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	<div class="row-fluid">
       <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 stap.</p></div>
       <div class="span4"><p><b>Replace PUN_ variables.</b><br />We have replaced some of the PUN_ variables with FORUM_. With this step, we want to get improve the user experience and development. This should break plugins for the 1.x branch, but that doesn't matter, most won't work anyway.</p></div>
-      <div class="span4"><p><b>Make it your own.</b><br />The new dashboard gives you the posebility to costumize it as much as you want with Bootstap themes.</p></div>
+      <div class="span4"><p><b>Embed videos.</b><br />We introduce also a new parser. One of the improvements we made is the support for video embedding. This new features supports DaiyMotion, Vimeo and YouTube.</p></div>
 	</div>
 </div>
 <?php

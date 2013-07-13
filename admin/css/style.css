@@ -68,20 +68,3 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   background-repeat: repeat-x;
   border: none;
 }
-
-.brand {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  background-color: #0072ca;
-  background-image: -moz-linear-gradient(top, #0072ca, #006dc1);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0072ca), to(#006dc1));
-  background-image: -webkit-linear-gradient(top, #0072ca, #006dc1);
-  background-image: -o-linear-gradient(top, #0072ca, #006dc1);
-  background-image: linear-gradient(to bottom, #0072ca, #006dc1);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0072ca', endColorstr='#006dc1', GradientType=0);
-  border: none;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-}
