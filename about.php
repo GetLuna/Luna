@@ -53,7 +53,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	<div class="row-fluid">
       <div class="span6"><p><b>Modern design.</b><br />The dashboard has a brand new Bootstrap-based design, making ModernBB easier to use.</p></div>
       <div class="span6"><p><b>Make it your own.</b><br />The new dashboard gives you the posebility to costumize it as much as you want with Bootstap themes.</p></div>
-      <p><b>Modern standards. Not dust. More features.</b><br />The revamped dashboard is HTML5 and CSS3 based, instead of XHTML1.1, and doesn't affect the front-end of your forums anymore. We improved lots of features, like creating new forums. But we also added new features, it's now possible to create back-ups out-of-the-box. We use more placeholders and we say "goodby" to not-functional HTML.</p>
+      <p><b>Modern standards. No dust. More features.</b><br />The revamped dashboard is HTML5 and CSS3 based, instead of XHTML1.1, and doesn't affect the front-end of your forums anymore. We improved lots of features, like creating new forums. But we also added new features, it's now possible to create back-ups out-of-the-box. We use more placeholders and we say "goodbye" to not-functional HTML.</p>
 	</div>
 	<h3>Checks for updates, always</h3>
     <img src="admin/img/update.png" width="981" height="89" alt="The new update" />
@@ -63,6 +63,9 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
       <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 stap.</p></div>
       <div class="span4"><p><b>Replace PUN_ variables.</b><br />We have replaced some of the PUN_ variables with FORUM_. With this step, we want to get improve the user experience and development. This should break plugins for the 1.x branch, but that doesn't matter, most won't work anyway.</p></div>
       <div class="span4"><p><b>Embed videos.</b><br />We introduce also a new parser. One of the improvements we made is the support for video embedding. This new features supports DaiyMotion, Vimeo and YouTube.</p></div>
+	</div>
+	<div class="row-fluid">
+      <div class="span4"><p><b>Clean registration.</b><br />ModernBB 2 also improves the registration for new users. With a simplified registration form, your future users will be able to start using your forum faster without unneeded information.</p></div>
 	</div>
 </div>
 <?php
