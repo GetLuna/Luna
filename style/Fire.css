@@ -190,32 +190,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 .pun .punwrap {
 	border: 1px solid;
 	padding: 18px;
-}
-
-.pun .top-box {
-	height: 18px;
-	margin-bottom: -18px;
-	position: relative;
-	background: url(Fire/img/main_top.png) top left no-repeat;
-}
-
-.pun .top-box div {
-	height: 18px;
-	margin-left: 50%;
-	background: url(Fire/img/main_top.png) top right no-repeat;
-}
-
-.pun .end-box {
-	margin-top: -17px;
-	height: 18px;
-	position: relative;
-	background: url(Fire/img/main_end.png) bottom left no-repeat;
-}
-
-.pun .end-box div {
-	height: 18px;
-	margin-left: 50%;
-	background: url(Fire/img/main_end.png) bottom right no-repeat;
+	border-radius: 9px;
 }
 
 #punredirect h2, #punmaint h2 {
@@ -723,11 +698,11 @@ MAIN POSTS
 ----------------------------------------------------------------*/
 
 .pun .blockpost {
-	border-style: solid;
-	border-width: 1px;
-	margin-bottom: -1px;
+	border-width: 0;
+	margin-bottom: 10px;
 	overflow: hidden;
 	position: relative;
+	border-bottom-left-radius: 7px;
 }
 
 * html .pun .blockpost {
@@ -737,8 +712,7 @@ MAIN POSTS
 .pun .blockpost h2 {
 	font: 1em/1.462em Arial, Helvetica, sans-serif;
 	white-space: nowrap;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
+	border-bottom-width: 0;
 	height: 1.462em;
 	padding: 0.538em 8px 0.538em 236px;
 	font-weight: normal;
@@ -1482,7 +1456,7 @@ html, body, .pun {
 
 .pun .blocktable .box {
 	background: #fbfaf5;
-	border-color: #cec7b9 #e7e2d9;
+	border-color: #fff;
 }
 
 #punindex .blocktable h2, .pun #vf h2 {
@@ -1504,7 +1478,7 @@ html, body, .pun {
 
 .pun .blocktable th {
 	background: #ecebe7;
-	border-color: #e1d9ca;
+	border-color: #fff;
 	color: #836359;
 }
 
@@ -1517,18 +1491,18 @@ html, body, .pun {
 
 .pun .blockpost {
 	background: #f3f2ed;
-	border-color: #cec7b9 #e7e2d9;
+	border-color: #fff;
 }
 
 .pun .blockpost h2 {
 	background: #ecebe7;
-	border-color: #e1d9ca;
+	border-color: #fff;
 	color: #836359;
 }
 
 .pun .blockpost .postbody, .pun .blockpost .postfoot {
 	background: #fbfaf5;
-	border-color: #ebe0dc;
+	border-color: #fff;
 }
 
 .pun .blockpost .postfootright li {
@@ -1662,7 +1636,7 @@ html, body, .pun {
 ----------------------------------------------------------------*/
 
 .pun .icon {
-	border-color: #f1eee8 #dddad4 #e8e5df #f1efe8;
+	border-color: #f1eee8;
 }
 
 .pun .iredirect .icon {
@@ -1672,5 +1646,5 @@ html, body, .pun {
 }
 
 .pun .inew .icon {
-	border-color: #ca0000 #ab0000 #bb0000 #d30000;
+	border-color: #ca0000;
 }

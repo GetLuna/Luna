@@ -95,14 +95,6 @@ if (!defined('PUN_ALLOW_INDEX'))
 <link rel="stylesheet" type="text/css" href="style/<?php echo $pun_user['style'].'.css' ?>" />
 <?php
 
-if (defined('PUN_ADMIN_CONSOLE'))
-{
-	if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/base_admin.css'))
-		echo '<link rel="stylesheet" type="text/css" href="style/'.$pun_user['style'].'/base_admin.css" />'."\n";
-	else
-		echo '<link rel="stylesheet" type="text/css" href="style/imports/base_admin.css" />'."\n";
-}
-
 if (isset($required_fields))
 {
 	// Output JavaScript to validate form (make sure required fields are filled out)
