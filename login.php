@@ -284,7 +284,7 @@ define('PUN_ACTIVE_PAGE', 'login');
         <link href="admin/css/style.css" type="text/css" rel="stylesheet">
         <style type="text/css">
         body {
-            padding-top: 40px;
+            padding-top: 60px;
             padding-bottom: 40px;
             background-color: #f5f5f5;
         }
@@ -310,7 +310,7 @@ define('PUN_ACTIVE_PAGE', 'login');
 			text-transform: lowercase;
 		}
         .btn {
-            margin-top: -30px;
+            margin-top: -33px;
         }
         </style>
         <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
@@ -327,19 +327,19 @@ define('PUN_ACTIVE_PAGE', 'login');
                             <div class"control-group">
                                 <label class="control-label"><?php echo $lang_common['Username'] ?></label>
 								<div class="controls">
-                                	<input class="control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" />
+                                	<input class="control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label"><?php echo $lang_common['Password'] ?></label>
 								<div class="controls">
-                                	<input type="password" name="req_password" size="25" tabindex="2" />
+                                	<input type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
                                 </div>
                             </div>
 							<p class="actions"><span><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a></span></p>
                             <div class="control-group">
                             	<div class="controls">
-                                	<label><input type="checkbox" name="save_pass" value="1" tabindex="3" /><?php echo $lang_login['Remember me'] ?></label>
+                                	<label><input type="checkbox" name="save_pass" value="1" tabindex="3" /> <?php echo $lang_login['Remember me'] ?></label>
                                 </div>
                             </div>
                 			<input class="btn btn-primary pull-right" type="submit" name="login" value="<?php echo $lang_common['Login'] ?>" tabindex="4" />
