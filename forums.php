@@ -293,20 +293,20 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
             <tbody>
 <?php
 
-$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_post_replies, g.g_post_topics, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.PUN_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_post_replies, g.g_post_topics, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.PUN_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
 
-$cur_index = 7;
+	$cur_index = 7;
 
-while ($cur_perm = $db->fetch_assoc($result))
-{
-$read_forum = ($cur_perm['read_forum'] != '0') ? true : false;
-$post_replies = (($cur_perm['g_post_replies'] == '0' && $cur_perm['post_replies'] == '1') || ($cur_perm['g_post_replies'] == '1' && $cur_perm['post_replies'] != '0')) ? true : false;
-$post_topics = (($cur_perm['g_post_topics'] == '0' && $cur_perm['post_topics'] == '1') || ($cur_perm['g_post_topics'] == '1' && $cur_perm['post_topics'] != '0')) ? true : false;
+	while ($cur_perm = $db->fetch_assoc($result))
+	{
+		$read_forum = ($cur_perm['read_forum'] != '0') ? true : false;
+		$post_replies = (($cur_perm['g_post_replies'] == '0' && $cur_perm['post_replies'] == '1') || ($cur_perm['g_post_replies'] == '1' && $cur_perm['post_replies'] != '0')) ? true : false;
+		$post_topics = (($cur_perm['g_post_topics'] == '0' && $cur_perm['post_topics'] == '1') || ($cur_perm['g_post_topics'] == '1' && $cur_perm['post_topics'] != '0')) ? true : false;
 
-// Determine if the current settings differ from the default or not
-$read_forum_def = ($cur_perm['read_forum'] == '0') ? false : true;
-$post_replies_def = (($post_replies && $cur_perm['g_post_replies'] == '0') || (!$post_replies && ($cur_perm['g_post_replies'] == '' || $cur_perm['g_post_replies'] == '1'))) ? false : true;
-$post_topics_def = (($post_topics && $cur_perm['g_post_topics'] == '0') || (!$post_topics && ($cur_perm['g_post_topics'] == '' || $cur_perm['g_post_topics'] == '1'))) ? false : true;
+		// Determine if the current settings differ from the default or not
+		$read_forum_def = ($cur_perm['read_forum'] == '0') ? false : true;
+		$post_replies_def = (($post_replies && $cur_perm['g_post_replies'] == '0') || (!$post_replies && ($cur_perm['g_post_replies'] == '' || $cur_perm['g_post_replies'] == '1'))) ? false : true;
+		$post_topics_def = (($post_topics && $cur_perm['g_post_topics'] == '0') || (!$post_topics && ($cur_perm['g_post_topics'] == '' || $cur_perm['g_post_topics'] == '1'))) ? false : true;
 
 ?>
                 <tr>
@@ -361,14 +361,14 @@ require FORUM_ROOT.'admin/header.php';
                         <select name="add_to_cat" tabindex="1">
 <?php
 
-$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
-if ($db->num_rows($result) > 0)
-{
-while ($cur_cat = $db->fetch_assoc($result))
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
-}
-else
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_admin_forums['No categories exist'].'</option>'."\n";
+	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
+	if ($db->num_rows($result) > 0)
+	{
+		while ($cur_cat = $db->fetch_assoc($result))
+			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+	}
+	else
+		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_admin_forums['No categories exist'].'</option>'."\n";
 
 ?>
                         </select>
@@ -393,6 +393,7 @@ if ($db->num_rows($result) > 0)
 ?>
 <h2><?php echo $lang_admin_forums['Edit forums head'] ?></h2>
     <form id="edforum" method="post" action="forums.php?action=edit">
+        <fieldset>
 <?php
 
 $cur_index = 4;
@@ -400,33 +401,32 @@ $cur_index = 4;
 $cur_category = 0;
 while ($cur_forum = $db->fetch_assoc($result))
 {
-if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-{
-if ($cur_category != 0)
-    echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n\t\t\t\t\t\t".'</div>'."\n\t\t\t\t\t".'</fieldset>'."\n\t\t\t\t".'</div>'."\n";
+	if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
+	{
+		if ($cur_category != 0)
+			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-        <fieldset>
             <h4><?php echo $lang_admin_forums['Category subhead'] ?> <?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
             <table class="table" cellspacing="0">
             <thead>
                 <tr>
-                    <th class="tcl"><?php echo $lang_admin_common['Action'] ?></th>
-                    <th class="tc2"><?php echo $lang_admin_forums['Position label'] ?></th>
-                    <th class="tcr"><?php echo $lang_admin_forums['Forum label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_common['Action'] ?></th>
+                    <th class="span4"><?php echo $lang_admin_forums['Position label'] ?></th>
+                    <th><?php echo $lang_admin_forums['Forum label'] ?></th>
                 </tr>
             </thead>
             <tbody>
 <?php
 
-$cur_category = $cur_forum['cid'];
-}
+		$cur_category = $cur_forum['cid'];
+	}
 
 ?>
                 <tr>
-                    <td class="tcl"><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> or <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
-                    <td class="tc2"><input type="text" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
-                    <td class="tcr"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+                    <td><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> | <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
+                    <td><input type="text" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+                    <td><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
                 </tr>
 <?php
 
@@ -435,6 +435,11 @@ $cur_category = $cur_forum['cid'];
 ?>
             </tbody>
             </table>
+<?php
+
+}
+
+?>
         </fieldset>
         <div class="control-group">
         	<input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang_admin_forums['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" />
@@ -442,7 +447,5 @@ $cur_category = $cur_forum['cid'];
     </form>
 </div>
 <?php
-
-}
 
 require FORUM_ROOT.'admin/footer.php';
