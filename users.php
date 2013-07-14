@@ -44,7 +44,7 @@ if (isset($_GET['ip_stats']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('users');
 
 ?>
 <div class="content">
@@ -123,7 +123,7 @@ if (isset($_GET['show_users']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('users');
 
 ?>
 <div class="content">
@@ -303,7 +303,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Move users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('users');
 
 ?>
 <div class="content">
@@ -449,7 +449,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Delete users']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('users');
 
 ?>
 <div class="content">
@@ -565,7 +565,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	$focus_element = array('bans2', 'ban_message');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('users');
 
 ?>
 <div class="content">
@@ -742,7 +742,7 @@ else if (isset($_GET['find_user']))
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('users');
 
 ?>
 <div class="content">
@@ -823,7 +823,7 @@ else
 	$focus_element = array('find_user', 'form[username]');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('users');
 
 ?>
 <div class="content">

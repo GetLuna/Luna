@@ -37,8 +37,8 @@ function generate_admin_menu($page = '')
   <div class="container">
     <a class="brand" href="index.php">ModernBB</a>
     <ul class="nav">
-      <li><a href="aindex.php">Dashboard</a></li>
-      <li class="dropdown">
+      <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="aindex.php">Dashboard</a></li>
+      <li class="dropdown <?php if ($page == 'forums' || $page == 'categories' || $page == 'censoring' || $page == 'reports') echo 'active'; ?>">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		  Content <b class="caret"></b>
 		</a>
@@ -49,7 +49,7 @@ function generate_admin_menu($page = '')
 		  <li><a href="reports.php">Reports</a></li>
 		</ul>
 	  </li>
-      <li class="dropdown">
+      <li class="dropdown <?php if ($page == 'users' || $page == 'ranks' || $page == 'groups' || $page == 'permissions' || $page == 'bans') echo 'active'; ?>">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		  Users <b class="caret"></b>
 		</a>
@@ -61,12 +61,12 @@ function generate_admin_menu($page = '')
 		  <li><a href="bans.php">Bans</a></li>
 		</ul>
 	  </li>
-      <?php if ($is_admin) { ?><li class="dropdown">
+      <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'email' || $page == 'maintenance') echo 'active'; ?>">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		  Settings <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <li><a href="options.php">Global</a></li>
+		  <li><a href="options.php">Global settings</a></li>
 		  <li><a href="display.php">Display</a></li>
 		  <li><a href="features.php">Features</a></li>
 		  <li><a href="email.php">Email</a></li>

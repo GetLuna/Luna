@@ -103,7 +103,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	$focus_element = array('bans2', 'ban_user');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('bans');
 
 ?>
 <div class="content">
@@ -374,7 +374,7 @@ else if (isset($_GET['find_ban']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans'], $lang_admin_bans['Results head']);
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('bans');
 
 ?>
 <div class="content">
@@ -440,7 +440,7 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_ad
 $focus_element = array('bans', 'new_ban_user');
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('bans');
 
 ?>
 <div class="content">

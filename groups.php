@@ -54,7 +54,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	$focus_element = array('groups2', 'req_title');
 	define('PUN_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('groups');
 
 ?>
 <div class="content">
@@ -395,7 +395,7 @@ else if (isset($_GET['del_group']))
 			$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
 			define('PUN_ACTIVE_PAGE', 'admin');
 			require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('groups');
 
 ?>
 <div class="content">
@@ -462,7 +462,7 @@ else if (isset($_GET['del_group']))
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
-	generate_admin_menu('');
+	generate_admin_menu('groups');
 
 ?>
 <div class="content">
