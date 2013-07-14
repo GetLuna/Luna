@@ -1,5 +1,5 @@
 body {
-	background: #f7f7f7;
+	background: #f2f2f2;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,8 +29,8 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 10px auto 0 auto;
 	background: #fff;
 	padding: 0 10px;
-	border: solid #eee 1px;
-	border-radius: 3px;
+	border: solid #e8e8e8 1px;
+	border-radius: .3em;
 }
 
 footer {
