@@ -58,15 +58,23 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	<h3>Checks for updates, always</h3>
     <img src="admin/img/update.png" width="981" height="89" alt="The new update" />
 	<p>With the new update system, we moved to a more simple system. It now compares your version with the GitHub repository and warns you for new updates. The update message can't be disabled and is only visible on the index and about page of the dashboard.</p>
+    <h3>More improvements</h3>
+    <div class="row-fluid">
+    	<div class="span4">
+        	<p><b>Login with style.</b></p>
+        	<img src="admin/img/login.png" width="366" height="318" alt="Login form" />
+            <p>ModernBB features a brand new login form. With less clutter, it's straight to the point. A true login experience.</p>
+        </div>
+    </div>
     <h3>Other small improvements</h3>
 	<div class="row-fluid">
-      <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 stap.</p></div>
+      <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 step.</p></div>
       <div class="span4"><p><b>Replace PUN_ variables.</b><br />We have replaced some of the PUN_ variables with FORUM_. With this step, we want to get improve the user experience and development. This should break plugins for the 1.x branch, but that doesn't matter, most won't work anyway.</p></div>
       <div class="span4"><p><b>Embed videos.</b><br />We introduce also a new parser. One of the improvements we made is the support for video embedding. This new features supports DaiyMotion, Vimeo and YouTube.</p></div>
 	</div>
 	<div class="row-fluid">
       <div class="span4"><p><b>Clean registration.</b><br />ModernBB 2 also improves the registration for new users. With a simplified registration form, your future users will be able to start using your forum faster without unneeded information.</p></div>
-      <div class="span4"><p><b>Super subscript.</b><br />The new parser supports, beside video embedding, also the use of subscript and superscript text. This makes it easier for your boards users to write down maths and more.</p></div>
+      <div class="span4"><p><b>Super subscript.</b><br />The new parser supports, beside video embedding, also the use of subscript and superscript text. This makes it easier for your boards users to write to mathematical formulas and more.</p></div>
 	</div>
 </div>
 <?php
