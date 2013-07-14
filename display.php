@@ -130,7 +130,7 @@ generate_admin_menu('');
                     <th><?php echo $lang_admin_display['Clickable links label'] ?></th>
                     <td>
                         <input type="radio" name="form[make_links]" id="form_make_links_1" value="1"<?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> />&#160;<label class="conl" for="form_make_links_1"><strong><?php echo $lang_admin_common['Yes'] ?></strong></label>&#160;&#160;&#160;<input type="radio" name="form[make_links]" id="form_make_links_0" value="0"<?php if ($pun_config['o_make_links'] == '0') echo ' checked="checked"' ?> />&#160;<label class="conl" for="form_make_links_0"><strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <br /><span><?php echo $lang_admin_display['Clickable links help'] ?></span>
+                        <span><?php echo $lang_admin_display['Clickable links help'] ?></span>
                     </td>
                 </tr>
                 <tr>
