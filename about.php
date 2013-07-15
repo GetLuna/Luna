@@ -65,6 +65,11 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
         	<img src="admin/img/login.png" width="366" height="318" alt="Login form" />
             <p>ModernBB features a brand new login form. With less clutter, it's straight to the point. A true login experience.</p>
         </div>
+    	<div class="span4">
+        	<p><b>Modernized styles.</b></p>
+        	<img src="admin/img/styles.png" width="366" height="318" alt="Style preview" />
+            <p>It was time to modernize the standard themes of ModernBB. We removed unneeded borders, use border-radius instead of images and improved the templates that handel the pages.</p>
+        </div>
     </div>
     <h3>Other small improvements</h3>
 	<div class="row-fluid">
