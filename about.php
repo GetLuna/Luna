@@ -22,7 +22,7 @@ if (!$pun_user['is_admmod']) {
 require FORUM_ROOT.'lang/'.$admin_language.'/admin_index.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Index']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['About']);
 define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('about');

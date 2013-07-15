@@ -3,25 +3,40 @@
 // Language definitions used in admin_common.php
 $lang_admin_common = array(
 
-// The menu
-'Admin menu'			=>	'Admin menu',
-'Plugins menu'			=>	'Plugins menu',
-'Moderator menu'		=>	'Moderator menu',
-'Index'					=>	'Index',
-'Categories'			=>	'Categories',
+// Main menu
+'Dashboard'				=>	'Dashboard',
+'Content'				=>	'Content',
 'Forums'				=>	'Forums',
-'Users'					=>	'Users',
-'User groups'			=>	'User groups',
-'Options'				=>	'Options',
-'Permissions'			=>	'Permissions',
+'Categories'			=>	'Categories',
 'Censoring'				=>	'Censoring',
-'Ranks'					=>	'Ranks',
-'Bans'					=>	'Bans',
-'Prune'					=>	'Prune',
-'Maintenance'			=>	'Maintenance',
 'Reports'				=>	'Reports',
+'Users'					=>	'Users',
+'Ranks'					=>	'Ranks',
+'Groups'				=>	'Groups',
+'Permissions'			=>	'Permissions',
+'Bans'					=>	'Bans',
+'Settings'				=>	'Settings',
+'Global'				=>	'Global settings',
+'Display'				=>	'Display',
+'Features'				=>	'Features',
+'Email'					=>	'Email',
+'Maintenance'			=>	'Maintenance',
+'Database'				=>	'Database management',
+'Extensions'			=>	'Extensions',
+
+// User menu
+'Welcome'				=>	'Welcome',
+'Profile'				=>	'Profile',
+'Forum'					=>	'Forum',
+'Support'				=>	'Support',
+'About'					=>	'About ModernBB',
+'Logout'				=>	'Logout',
+
+// Others
+'Prune'					=>	'Prune',
 'Server statistics'		=>  'Server statistics', 
 
+// General actions and more
 'Admin'					=>	'Admin',
 'Go back'				=>	'Go back',
 'Delete'				=>	'Delete',

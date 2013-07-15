@@ -37,45 +37,46 @@ function generate_admin_menu($page = '')
   <div class="container">
     <a class="brand" href="index.php">ModernBB</a>
     <ul class="nav">
-      <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="aindex.php">Dashboard</a></li>
+      <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="aindex.php"><?php echo $lang_admin_common['Dashboard'] ?></a></li>
       <li class="dropdown <?php if ($page == 'forums' || $page == 'categories' || $page == 'censoring' || $page == 'reports') echo 'active'; ?>">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Content <b class="caret"></b>
+		  <?php echo $lang_admin_common['Content'] ?> <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <?php if ($is_admin) { ?><li><a href="forums.php">Forums</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="categories.php">Categories</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="censoring.php">Censoring</a></li><?php }; ?>
-		  <li><a href="reports.php">Reports</a></li>
+		  <?php if ($is_admin) { ?><li><a href="forums.php"><?php echo $lang_admin_common['Forums'] ?></a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="categories.php"><?php echo $lang_admin_common['Categories'] ?></a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="censoring.php"><?php echo $lang_admin_common['Censoring'] ?></a></li><?php }; ?>
+		  <li><a href="reports.php"><?php echo $lang_admin_common['Reports'] ?></a></li>
 		</ul>
 	  </li>
       <li class="dropdown <?php if ($page == 'users' || $page == 'ranks' || $page == 'groups' || $page == 'permissions' || $page == 'bans') echo 'active'; ?>">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Users <b class="caret"></b>
+		  <?php echo $lang_admin_common['Users'] ?> <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <li><a href="users.php">Users</a></li>
-		  <?php if ($is_admin) { ?><li><a href="ranks.php">Ranks</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="groups.php">Groups</a></li><?php }; ?>
-		  <?php if ($is_admin) { ?><li><a href="permissions.php">Permissions</a></li><?php }; ?>
-		  <li><a href="bans.php">Bans</a></li>
+		  <li><a href="users.php"><?php echo $lang_admin_common['Users'] ?></a></li>
+		  <?php if ($is_admin) { ?><li><a href="ranks.php"><?php echo $lang_admin_common['Ranks'] ?></a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="groups.php"><?php echo $lang_admin_common['Groups'] ?></a></li><?php }; ?>
+		  <?php if ($is_admin) { ?><li><a href="permissions.php"><?php echo $lang_admin_common['Permissions'] ?></a></li><?php }; ?>
+		  <li><a href="bans.php"><?php echo $lang_admin_common['Bans'] ?></a></li>
 		</ul>
 	  </li>
       <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'email' || $page == 'maintenance') echo 'active'; ?>">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Settings <b class="caret"></b>
+		  <?php echo $lang_admin_common['Settings'] ?> <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
-		  <li><a href="options.php">Global settings</a></li>
-		  <li><a href="display.php">Display</a></li>
-		  <li><a href="features.php">Features</a></li>
-		  <li><a href="email.php">Email</a></li>
-		  <li><a href="maintenance.php">Maintenance</a></li>
+		  <li><a href="options.php"><?php echo $lang_admin_common['Global'] ?></a></li>
+		  <li><a href="display.php"><?php echo $lang_admin_common['Display'] ?></a></li>
+		  <li><a href="features.php"><?php echo $lang_admin_common['Features'] ?></a></li>
+		  <li><a href="email.php"><?php echo $lang_admin_common['Email'] ?></a></li>
+		  <li><a href="maintenance.php"><?php echo $lang_admin_common['Maintenance'] ?></a></li>
+		  <li><a href="database.php"><?php echo $lang_admin_common['Database'] ?></a></li>
 		</ul>
 	  </li><?php }; ?>
       <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  Extensions <b class="caret"></b>
+		  <?php echo $lang_admin_common['Extensions'] ?> <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
 <?php
@@ -91,7 +92,7 @@ function generate_admin_menu($page = '')
 			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
 
 	} else {
-		echo '<li class="nav-header">No plugins</li>';
+		echo '<li class="nav-header">'.$lang_admin_common['No plugins'].'</li>';
 	}
 ?>
           </ul>
@@ -100,15 +101,16 @@ function generate_admin_menu($page = '')
       <ul class="nav pull-right">
         <li class="dropdown">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		    Welcome, <?php print(pun_htmlspecialchars($pun_user['username'])) ?> <b class="caret"></b>
+		    <?php echo $lang_admin_common['Welcome'] ?>, <?php print(pun_htmlspecialchars($pun_user['username'])) ?> <b class="caret"></b>
 		  </a>
 		  <ul class="dropdown-menu">
-		    <li><?php echo '<a href="profile.php?id='.$pun_user['id'].'">' ?>Profile</a></li>
-		    <li><a href="index.php">Forum</a></li>
+		    <li><?php echo '<a href="profile.php?id='.$pun_user['id'].'">' ?><?php echo $lang_admin_common['Profile'] ?></a></li>
+		    <li><a href="index.php"><?php echo $lang_admin_common['Forum'] ?></a></li>
             <li class="divider"></li>
-		    <li><a href="http://modernbb.be">Support</a></li>
+		    <li><a href="http://modernbb.be"><?php echo $lang_admin_common['Support'] ?></a></li>
+            <li><a href="about.php"><?php echo $lang_admin_common['About'] ?></a></li>
             <li class="divider"></li>
-		    <li><?php echo '<a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">' ?>Logout</a></li>
+		    <li><?php echo '<a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">' ?><?php echo $lang_admin_common['Logout'] ?></a></li>
 		  </ul>
 	    </li>
       </ul>
