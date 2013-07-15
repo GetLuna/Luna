@@ -73,7 +73,7 @@ function generate_admin_menu($page = '')
 		  <li><a href="maintenance.php">Maintenance</a></li>
 		</ul>
 	  </li><?php }; ?>
-      <?php if ($is_admin) { ?><li class="dropdown">
+      <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		  Extensions <b class="caret"></b>
 		</a>
@@ -93,7 +93,7 @@ function generate_admin_menu($page = '')
 	} else {
 		echo '<li class="nav-header">No plugins</li>';
 	}
-}; ?>
+?>
           </ul>
         </li>
       </ul>
