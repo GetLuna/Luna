@@ -237,10 +237,12 @@ else if (isset($_GET['report']))
 			message($lang_common['Bad request']);
 
 		list($subject, $forum_id) = $db->fetch_row($result);
+		define('MARKED', '1');
 
 		// Should we use the internal report handling?
 		if ($pun_config['o_report_method'] == '0' || $pun_config['o_report_method'] == '2')
 			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, topic_id, forum_id, reported_by, created, message) VALUES('.$post_id.', '.$topic_id.', '.$forum_id.', '.$pun_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'posts SET marked = 1 WHERE id='.$post_id) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 
 		// Should we email the report?
 		if ($pun_config['o_report_method'] == '1' || $pun_config['o_report_method'] == '2')
