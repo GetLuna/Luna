@@ -723,10 +723,6 @@ define('PUN_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('database');
 ?>
-<div class="alert alert-update">
-	<h4>Warning: critical features</h4>
-    <p>This page contains features that are highly critical. It's recommended to use them only if you know what you're doing.</p>
-</div>
 <div class="content">
     <h2>Backup and restore</h2>
     <form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
@@ -769,6 +765,10 @@ require FORUM_ROOT.'admin/header.php';
 </div>
 <div class="content">
     <h2>Additional options</h2>
+    <div class="alert alert-danger">
+        <h4>Warning: critical features</h4>
+        <p>This page contains features that are highly critical. It's recommended to use them only if you know what you're doing.</p>
+    </div>
     <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
         <fieldset>
             <h3>Run SQL query</h3>
