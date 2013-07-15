@@ -70,6 +70,11 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
         	<img src="admin/img/styles.png" width="366" height="318" alt="Style preview" />
             <p>It was time to modernize the standard themes of ModernBB. We removed unneeded borders, use border-radius instead of images and improved the templates that handel the pages.</p>
         </div>
+    	<div class="span4">
+        	<p><b>Database control.</b></p>
+        	<img src="admin/img/database.png" width="366" height="318" alt="Database control" />
+            <p>ModernBB 2 adds a brand new way to manage your database: back-up, restore, SQL, etc. It's now all build-in to improve your experience with ModernBB and making managing and updating your board more easy.</p>
+        </div>
     </div>
     <h3>Other small improvements</h3>
 	<div class="row-fluid">
