@@ -310,7 +310,7 @@ define('PUN_ACTIVE_PAGE', 'login');
 			text-transform: lowercase;
 		}
         .btn {
-            margin-top: -33px;
+            margin-top: -60px;
         }
         </style>
         <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
@@ -342,7 +342,9 @@ define('PUN_ACTIVE_PAGE', 'login');
                                 	<label><input type="checkbox" name="save_pass" value="1" tabindex="3" /> <?php echo $lang_login['Remember me'] ?></label>
                                 </div>
                             </div>
-                			<input class="btn btn-primary pull-right" type="submit" name="login" value="<?php echo $lang_common['Login'] ?>" tabindex="4" />
+                            <div class="control-group pull-right">
+                				<a class="btn" href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a><input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang_common['Login'] ?>" tabindex="4" />
+                            </div>
                         </div>
                     </fieldset>
                 </div>
