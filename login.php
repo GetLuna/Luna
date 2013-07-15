@@ -337,7 +337,7 @@ define('PUN_ACTIVE_PAGE', 'login');
                                 	<input type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
                                 </div>
                             </div>
-							<p class="actions"><span><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a></span></p>
+							<p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a></span></p>
                             <div class="control-group">
                             	<div class="controls">
                                 	<label><input type="checkbox" name="save_pass" value="1" tabindex="3" /> <?php echo $lang_login['Remember me'] ?></label>
