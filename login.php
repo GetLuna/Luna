@@ -289,7 +289,8 @@ define('PUN_ACTIVE_PAGE', 'login');
             background-color: #f5f5f5;
         }
         .form-signin {
-            max-width: 300px;
+            max-width: 275px;
+			max-height: 250px;
             padding: 19px 29px 29px;
             margin: 0 auto 20px;
             background-color: #fff;
@@ -310,7 +311,7 @@ define('PUN_ACTIVE_PAGE', 'login');
 			text-transform: lowercase;
 		}
         .btn {
-            margin-top: -60px;
+            margin-top: -64px;
         }
         </style>
         <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
@@ -320,7 +321,7 @@ define('PUN_ACTIVE_PAGE', 'login');
         <div class="container">
             <form class="form-signin" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
                     <fieldset>
-					<h2 class="form-signin-heading">ModernBB</h2>
+					<h1 class="form-signin-heading">ModernBB</h1>
                         <div class="infldset">
                             <input type="hidden" name="form_sent" value="1" />
                             <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
