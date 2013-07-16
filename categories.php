@@ -168,7 +168,7 @@ require FORUM_ROOT.'admin/header.php';
                 <tr>
                     <th scope="row"><?php echo $lang_admin_categories['Add category label'] ?></th>
                     <td>
-                        <input type="text" name="new_cat_name" size="35" maxlength="80" tabindex="1" />
+                        <input type="text" name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
                         <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
                         <br /><?php printf($lang_admin_categories['Add category help'], '<a href="forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
                     </td>
