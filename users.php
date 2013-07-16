@@ -1006,29 +1006,23 @@ else
                     <th scope="row"><?php echo $lang_admin_users['Posts less than label'] ?></th>
                     <td><input type="text" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
                     <th scope="row"><?php echo $lang_admin_users['Last post after label'] ?></th>
-                    <td><input type="text" name="last_post_after" size="24" maxlength="19" tabindex="17" />
-                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <td><input type="text" name="last_post_after" size="24" placeholder="<?php echo $lang_admin_users['Date help'] ?>" maxlength="19" tabindex="17" /></td>
                 </tr>
                 <tr>
                     <th scope="row"><?php echo $lang_admin_users['Last post before label'] ?></th>
-                    <td><input type="text" name="last_post_before" size="24" maxlength="19" tabindex="18" />
-                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <td><input type="text" name="last_post_before" size="24" placeholder="<?php echo $lang_admin_users['Date help'] ?>" maxlength="19" tabindex="18" /></td>
                     <th scope="row"><?php echo $lang_admin_users['Last visit after label'] ?></th>
-                    <td><input type="text" name="last_visit_after" size="24" maxlength="19" tabindex="17" />
-                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <td><input type="text" name="last_visit_after" size="24" placeholder="<?php echo $lang_admin_users['Date help'] ?>" maxlength="19" tabindex="17" /></td>
                 </tr>
                 <tr>
                     <th scope="row"><?php echo $lang_admin_users['Last visit before label'] ?></th>
-                    <td><input type="text" name="last_visit_before" size="24" maxlength="19" tabindex="18" />
-                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <td><input type="text" name="last_visit_before" size="24" placeholder="<?php echo $lang_admin_users['Date help'] ?>" maxlength="19" tabindex="18" /></td>
                     <th scope="row"><?php echo $lang_admin_users['Registered after label'] ?></th>
-                    <td><input type="text" name="registered_after" size="24" maxlength="19" tabindex="19" />
-                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <td><input type="text" name="registered_after" size="24" placeholder="<?php echo $lang_admin_users['Date help'] ?>" maxlength="19" tabindex="19" /></td>
                 </tr>
                 <tr>
                     <th scope="row"><?php echo $lang_admin_users['Registered before label'] ?></th>
-                    <td><input type="text" name="registered_before" size="24" maxlength="19" tabindex="20" />
-                    <br /><span><?php echo $lang_admin_users['Date help'] ?></span></td>
+                    <td><input type="text" name="registered_before" size="24" placeholder="<?php echo $lang_admin_users['Date help'] ?>" maxlength="19" tabindex="20" /></td>
                     <th scope="row"><?php echo $lang_admin_users['User group label'] ?></th>
                     <td>
                         <select name="user_group" tabindex="23">
