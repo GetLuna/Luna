@@ -231,6 +231,50 @@ if ($action == 'prune')
 	exit;
 }
 
+if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+	require FORUM_ROOT.'include/cache.php';
+
+if (isset($_POST['userprune']))
+{
+	// Make sure something something was entered
+	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
+		message('You need to set all settings!');
+	if ($_POST['admods_delete']) {
+		$admod_delete = 'group_id > 0';
+	}
+	else {
+		$admod_delete = 'group_id > 3';
+	}
+
+	if ($_POST['verified'] == 1)
+		$verified = '';
+	elseif ($_POST['verified'] == 0)
+		$verified = 'AND (group_id < 32000)';
+	else
+		$verified = 'AND (group_id = 32000)';
+
+	$prune = ($_POST['prune_by'] == 1) ? 'registered' : 'last_visit';
+
+	$user_time = time() - ($_POST['days'] * 86400);
+	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE (num_posts < '.intval($_POST['posts']).') AND ('.$prune.' < '.intval($user_time).') AND (id > 2) AND ('.$admod_delete.')'.$verified, true) or error('Unable to fetch users to prune', __FILE__, __LINE__, $db->error());
+	
+	$user_ids = array();
+	while ($id = $db->result($result))
+		$user_ids[] = $id;
+	
+	if (!empty($user_ids))
+	{
+		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark posts as guest posts', __FILE__, __LINE__, $db->error());
+	}
+	
+	// Regenerate the users info cache
+	generate_users_info_cache();
+
+	$users_pruned = count($user_ids);
+	message('Pruning complete. Users pruned '.$users_pruned.'.');
+}
+
 
 // Get the first post ID from the db
 $result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 1') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
@@ -244,11 +288,10 @@ require FORUM_ROOT.'admin/header.php';
 
 ?>
 <div class="content">
-    <h2><?php echo $lang_admin_maintenance['Maintenance head'] ?></h2>
+    <h2><?php echo $lang_admin_maintenance['Rebuild index subhead'] ?></h2>
     <form method="get" action="maintenance.php">
         <input type="hidden" name="action" value="rebuild" />
         <fieldset>
-            <h3><?php echo $lang_admin_maintenance['Rebuild index subhead'] ?></h3>
             <p><?php printf($lang_admin_maintenance['Rebuild index info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
             <table class="table" cellspacing="0">
                 <tr>
@@ -276,11 +319,12 @@ require FORUM_ROOT.'admin/header.php';
             <div class="control-group"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang_admin_maintenance['Rebuild index'] ?>" tabindex="4" /></div>
         </fieldset>
     </form>
-
+</div>
+<div class="content">
+	<h2><?php echo $lang_admin_maintenance['Prune subhead'] ?></h2>
     <form method="post" action="maintenance.php" onsubmit="return process_form(this)">
         <input type="hidden" name="action" value="prune" />
         <fieldset>
-            <h3><?php echo $lang_admin_maintenance['Prune subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="16%"><?php echo $lang_admin_maintenance['Days old label'] ?></th>
@@ -331,6 +375,51 @@ require FORUM_ROOT.'admin/header.php';
             <p class="topspace"><?php printf($lang_admin_maintenance['Prune info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
             <div class="control-group"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="8" /></div>
         </fieldset>
+    </form>
+</div>
+<div class="content">
+    <h2>Prune users</h2>
+    <form id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+        <fieldset>
+            <table class="table" cellspacing="0">
+                <tr>
+                    <th class="span3">Prune by</th>
+                    <td>
+                        <input type="radio" name="prune_by" value="1" checked="checked" />&nbsp;<strong>Registed date</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="prune_by" value="0" />&nbsp;<strong>Last Login</strong>
+                        <br /><span>This decides if the minimum number of days is calculated since the last login or the registered date.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Minimum days since registration/last login</th>
+                    <td>
+                        <input type="text" name="days" value="28" size="25" tabindex="1" />
+                        <br /><span>The minimum number of days before users are pruned by the setting specified above.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Maximum number of posts</th>
+                    <td>
+                        <input type="text" name="posts" value="1"  size="25" tabindex="1" />
+                        <br /><span>Users with a postcount equal of higher than this won't be pruned. E.g. a value of 1 will remove users with no posts.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Delete admins and mods?</th>
+                    <td>
+                        <input type="radio" name="admods_delete" value="1" />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="admods_delete" value="0" checked="checked" />&nbsp;<strong>No</strong>
+                        <br /><span>If Yes, any affected Moderators and Admins will also be pruned.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>User status</th>
+                    <td>
+                        <input type="radio" name="verified" value="1" />&nbsp;<strong>Delete any</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="0" checked="checked" />&nbsp;<strong>Delete only verified</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="2" />&nbsp;<strong>Delete only unverified</strong>
+                        <br /><span>Decides if (un)verified users should be deleted.</span>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    <p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="2" /></p>
     </form>
 </div>
 <?php
