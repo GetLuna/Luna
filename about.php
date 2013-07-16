@@ -76,6 +76,9 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
             <p>ModernBB 2 adds a brand new way to manage your database: back-up, restore, SQL, etc. It's now all build-in to improve your experience with ModernBB and making managing and updating your board more easy.</p>
         </div>
     </div>
+	<div class="row-fluid">
+      <div class="span4"><p><b>Keep your userbase clean.</b><br />The <a href="maintenance.php">Maintenance</a> page now features an user prune feature. Making it more easy to clean up old users and users without posts or activation.</p></div>
+	</div>
     <h3>Other small improvements</h3>
 	<div class="row-fluid">
       <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 step.</p></div>

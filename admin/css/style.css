@@ -55,16 +55,5 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .navbar-inner {
   color: #ffffff !important;
   text-shadow: none !important;
-  min-height: 50px !important;
-  padding-left: 20px;
-  padding-right: 20px;
-  background: #47a9f5;
-  background: -moz-linear-gradient(top,  #47a9f5 0%, #2690e1 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#47a9f5), color-stop(100%,#2690e1));
-  background: -webkit-linear-gradient(top,  #47a9f5 0%,#2690e1 100%);
-  background: -o-linear-gradient(top,  #47a9f5 0%,#2690e1 100%);
-  background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47a9f5', endColorstr='#2690e1',GradientType=0 );
-  background-repeat: repeat-x;
   border: none;
 }
