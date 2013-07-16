@@ -84,7 +84,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	<div class="row-fluid">
       <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 step.</p></div>
       <div class="span4"><p><b>Replace PUN_ variables.</b><br />We have replaced some of the PUN_ variables with FORUM_. With this step, we want to get improve the user experience and development. This should break plugins for the 1.x branch, but that doesn't matter, most won't work anyway.</p></div>
-      <div class="span4"><p><b>Create users from the dashboard.</b><br />At the "USers"-page, we've added a nice little feature that allows you to create a new user quickly without going trough the registration.</p></div>
+      <div class="span4"><p><b>Create users from the dashboard.</b><br />At the <a href="users.php">Users</a> page, we've added a nice little feature that allows you to create a new user quickly without going trough the registration.</p></div>
 	</div>
 	<div class="row-fluid">
       <div class="span4"><p><b>Clean registration.</b><br />ModernBB 2 also improves the registration for new users. With a simplified registration form, your future users will be able to start using your forum faster without unneeded information.</p></div>
