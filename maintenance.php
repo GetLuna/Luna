@@ -418,8 +418,9 @@ require FORUM_ROOT.'admin/header.php';
                     </td>
                 </tr>
             </table>
+        <p class="topspace"><?php printf($lang_admin_maintenance['Prune users info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
+        <p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="2" /></p>
         </fieldset>
-    <p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="2" /></p>
     </form>
 </div>
 <?php
