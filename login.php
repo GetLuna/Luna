@@ -7,6 +7,9 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
+// Tell header.php to use the admin template
+define('FORUM_FORM', 1);
+
 if (isset($_GET['action']))
 	define('PUN_QUIET_VISIT', 1);
 
@@ -207,24 +210,17 @@ if (!empty($errors))
 
 }
 ?>
-<div class="blockform">
-	<h2><span><?php echo $lang_login['Request pass'] ?></span></h2>
-	<div class="box">
-		<form id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_login['Request pass legend'] ?></legend>
-					<div class="infldset">
-						<input type="hidden" name="form_sent" value="1" />
-						<label class="required"><strong><?php echo $lang_common['Email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input id="req_email" type="text" name="req_email" size="50" maxlength="80" /><br /></label>
-						<p><?php echo $lang_login['Request pass info'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="request_pass" value="<?php echo $lang_common['Submit'] ?>" /><?php if (empty($errors)): ?> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a><?php endif; ?></p>
-		</form>
-	</div>
-</div>
+<form class="form-signin form-pass" id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">
+    <h1 class="form-signin-heading"><?php echo $lang_login['Request pass'] ?></h1>
+    <fieldset>
+        <h4><?php echo $lang_common['Email'] ?> <?php echo $lang_common['Required'] ?></h4>
+        <input type="hidden" name="form_sent" value="1" />
+        <label class="required"><input id="req_email input-large" type="text" name="req_email" size="50" maxlength="80" placeholder="<?php echo $lang_common['Email'] ?> <?php echo $lang_common['Required'] ?>" /><br /></label>
+        <div class="control-group pull-right" style="margin-top: 60px;">
+            <?php if (empty($errors)): ?><a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a><?php endif; ?><input class="btn btn-primary" type="submit" name="request_pass" value="<?php echo $lang_common['Submit'] ?>" />
+        </div>
+    </fieldset>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
@@ -271,95 +267,37 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_co
 $required_fields = array('req_username' => $lang_common['Username'], 'req_password' => $lang_common['Password']);
 $focus_element = array('login', 'req_username');
 define('PUN_ACTIVE_PAGE', 'login');
+require FORUM_ROOT.'header.php';
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>ModernBB &middot; Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="noindex, nofollow">
-        <link href="admin/css/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="admin/css/style.css" type="text/css" rel="stylesheet">
-        <style type="text/css">
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-            background-color: #f5f5f5;
-        }
-        .form-signin {
-            max-width: 275px;
-			max-height: 250px;
-            padding: 19px 29px 29px;
-            margin: 0 auto 20px;
-            background-color: #fff;
-            border: 1px solid #e5e5e5;
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-			border-radius: .3em;
-        }
-        .form-signin .form-signin-heading, .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-        .form-signin input[type="text"], .form-signin input[type="password"] {
-            font-size: 16px;
-            height: auto;
-            margin-bottom: 5px;
-            padding: 7px 9px;
-        }
-		.form-signin-heading {
-			color: #2ca0e9;
-			text-transform: lowercase;
-		}
-        .btn {
-            margin-top: -64px;
-        }
-        </style>
-        <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
-	</head>
-	<body>
-		<!-- Content start -->
-        <div class="container">
-            <form class="form-signin" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
-                    <fieldset>
-					<h1 class="form-signin-heading">ModernBB</h1>
-                        <div class="infldset">
-                            <input type="hidden" name="form_sent" value="1" />
-                            <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
-                            <div class"control-group">
-                                <label class="control-label"><?php echo $lang_common['Username'] ?></label>
-								<div class="controls">
-                                	<input class="control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label"><?php echo $lang_common['Password'] ?></label>
-								<div class="controls">
-                                	<input type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
-                                </div>
-                            </div>
-							<p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a></span></p>
-                            <div class="control-group">
-                            	<div class="controls">
-                                	<label><input type="checkbox" name="save_pass" value="1" tabindex="3" /> <?php echo $lang_login['Remember me'] ?></label>
-                                </div>
-                            </div>
-                            <div class="control-group pull-right">
-                				<a class="btn" href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a><input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang_common['Login'] ?>" tabindex="4" />
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </form>
-		</div>
-        <!-- Content end -->
-        <!-- Javascript start -->
-        <script src="admin/js/bootstrap.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            $("#user").focus();
-        });
-        </script>
-        <!-- Javascript end -->
-	</body>
-</html>
+<form class="form-signin" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
+    <fieldset>
+    <h1 class="form-signin-heading">ModernBB</h1>
+        <input type="hidden" name="form_sent" value="1" />
+        <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
+        <div class"control-group">
+            <label class="control-label"><?php echo $lang_common['Username'] ?></label>
+            <div class="controls">
+                <input class="control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><?php echo $lang_common['Password'] ?></label>
+            <div class="controls">
+                <input type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
+            </div>
+        </div>
+        <p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a></span></p>
+        <div class="control-group">
+            <div class="controls">
+                <label><input type="checkbox" name="save_pass" value="1" tabindex="3" /> <?php echo $lang_login['Remember me'] ?></label>
+            </div>
+        </div>
+        <div class="control-group pull-right">
+            <a class="btn" href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a><input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang_common['Login'] ?>" tabindex="4" />
+        </div>
+    </fieldset>
+</form>
+<?php
+
+require FORUM_ROOT.'footer.php';

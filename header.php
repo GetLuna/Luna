@@ -23,6 +23,8 @@ header('Content-type: text/html; charset=utf-8');
 // Load the template
 if (defined('PUN_ADMIN_CONSOLE'))
 	$tpl_file = 'admin.tpl';
+else if (defined ('FORUM_FORM'))
+	$tpl_file = 'form.tpl';
 else if (defined('PUN_HELP'))
 	$tpl_file = 'help.tpl';
 else
