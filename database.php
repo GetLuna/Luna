@@ -18,6 +18,9 @@ if (!$pun_user['is_admmod']) {
     header("Location: login.php");
 }
 
+// Load the admin_database.php language file
+require FORUM_ROOT.'lang/'.$admin_language.'/admin_database.php';
+
 //
 // Increase maximum execution time, but don't complain about it if it isn't
 // allowed.
@@ -553,11 +556,11 @@ elseif ( isset($_POST['restore_start']) ) {
 	{
 ?>
 	<div class="block">
-	<h2 class="block2"><span>Restore complete</span></h2>
+	<h2 class="block2"><span><?php echo $lang_admin_database['Restore complete'] ?></span></h2>
 		<div class="box">
 			<div class="inbox">
 				<p>
-					<a href="admin_loader.php?plugin=AP_DB_management.php">Back</a>
+					<a href="database.php"><?php echo $lang_common['Go back'] ?></a>
 				</p>
 			</div>
 		</div>
@@ -724,39 +727,44 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('database');
 ?>
 <div class="content">
-    <h2>Backup and restore</h2>
+    <h2><?php echo $lang_admin_database['Backup and restore'] ?></h2>
     <form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <fieldset>
-            <h3>Backup options</h3>
+            <h3><?php echo $lang_admin_database['Backup options'] ?></h3>
             <div class="infldset">
-                <p>Here you can back up your ModernBB database. If your server supports it you may also gzip-compress the file to reduce its size before download.</p>
+                <p><?php echo $lang_admin_database['Backup info 1'] ?></p>
                 <table class="table">
                     <tr>
-                        <th class="span2">Backup type</th>
+                        <th class="span2"><?php echo $lang_admin_database['Backup type'] ?></th>
                         <td>
-                            <input type="radio" name="backup_type" value="full" checked="checked" />&nbsp;Full&nbsp;&nbsp;&nbsp;<input type="radio" name="backup_type" value="structure" />&nbsp;Structure Only&nbsp;&nbsp;&nbsp;<input type="radio" name="backup_type" value="data" />&nbsp;Data Only
-                            <br /><span>The type of backup, full will backup all of the data and table structure, whereas structure only and data only will only backup structure or data, a full backup is recommended.</span>
+                            <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang_admin_database['Full'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang_admin_database['Structure only'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang_admin_database['Data only'] ?></strong></label>
+                            <br /><span><?php echo $lang_admin_database['Backup info 2'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th>Gzip compression</th>
-                        <td><input type="radio" name="gzipcompress" value="1" />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="gzipcompress" value="0" checked="checked" />&nbsp;<strong>No</strong></td>
+                        <th><?php echo $lang_admin_database['Gzip compression'] ?></th>
+                        <td>
+                            <label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
+                        </td>
                     </tr>
                 </table>
             </div>
         </fieldset>
-    <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="Start backup" class="mainoption" /></p>
+    <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang_admin_database['Start backup'] ?>" class="mainoption" /></p>
     </form>
     <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <fieldset>
-            <h3>Restore options</h3>
+            <h3><?php echo $lang_admin_database['Restore options'] ?></h3>
             <div class="infldset">
-                <p>This will perform a full restore of all ModernBB tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. <b>WARNING</b>: This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.</p>
+                <p><?php echo $lang_admin_database['Restore info 1'] ?></p>
                 <table class="table">
                     <tr>
-                        <th class="span2">Restore from file</th>
+                        <th class="span2"><?php echo $lang_admin_database['Restore from file'] ?></th>
                         <td><input type="file" name="backup_file" />
-                        <input class="btn btn-primary" type="submit" name="restore_start" value="Start restore" class="mainoption" /></td>
+                        <input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_admin_database['Start restore'] ?>" class="mainoption" /></td>
                     </tr>
                 </table>
             </div>
@@ -764,22 +772,22 @@ require FORUM_ROOT.'admin/header.php';
     </form>
 </div>
 <div class="content">
-    <h2>Additional options</h2>
+    <h2><?php echo $lang_admin_database['Advanced options'] ?></h2>
     <div class="alert alert-danger">
-        <h4>Warning: critical features</h4>
-        <p>This page contains features that are highly critical. It's recommended to use them only if you know what you're doing.</p>
+        <h4><?php echo $lang_admin_database['Warning'] ?></h4>
+        <p><?php echo $lang_admin_database['Warning info'] ?></p>
     </div>
     <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
         <fieldset>
-            <h3>Run SQL query</h3>
-            <p>This allows you to run basically any command you want on the database (useful for fixing things you messed up), use #__ for your database prefix (e.g. "SELECT * FROM #__online") also use a ; at the end of each query when running multiple queries, linebreaks are irrelevant. WARNING: only use this if you know what you are doing, messing with it could trash your database!</p>
-            <textarea placeholder="SQL Query" name="this_query" rows="5" cols="50"></textarea>
+            <h3><?php echo $lang_admin_database['Run SQL query'] ?></h3>
+            <p><?php echo $lang_admin_database['Run info 1'] ?></p>
+            <textarea placeholder="<?php echo $lang_admin_database['SQL Query'] ?>" name="this_query" rows="5" cols="50"></textarea>
         </fieldset>
-        <div class="control-group"><input class="btn btn-primary" type="submit" name="submit" value="Run query" /></div>
+        <div class="control-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_admin_database['Run query'] ?>" /></div>
         <fieldset>
-            <h3>Additional Functions</h3>
-            <p>Additional features to help run a database, optimise and repair both do what they say.</p>
-            <input class="btn btn-primary" type="submit" name="repairall" value="Repair all tables" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="Optimise all tables" />
+            <h3><?php echo $lang_admin_database['Additional functions'] ?></h3>
+            <p><?php echo $lang_admin_database['Additional info 1'] ?></p>
+            <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang_admin_database['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang_admin_database['Optimise all tables'] ?>" />
         </fieldset>
     </form>
 </div>
