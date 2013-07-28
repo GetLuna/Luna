@@ -34,7 +34,13 @@ $lang_admin_common = array(
 
 // Others
 'Prune'					=>	'Prune',
-'Server statistics'		=>  'Server statistics', 
+'Server statistics'		=>  'Server statistics',
+
+// Update service
+'Available'				=>	'ModernBB v%s available',
+'Update info'			=>	'We\'ve found a new version of ModernBB on the web. Your board is out-of-date and we recommend you to update right away!',
+'Download'				=>	'Download v%s',
+'Changelog'				=>	'Changelog',
 
 // General actions and more
 'Admin'					=>	'Admin',
