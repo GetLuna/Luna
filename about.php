@@ -79,6 +79,8 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	<div class="row-fluid">
       <div class="span4"><p><b>Keep your userbase clean.</b><br />The <a href="maintenance.php">Maintenance</a> page now features an user prune feature. Making it more easy to clean up old users and users without posts or activation.</p></div>
       <div class="span4"><p><b>Embed videos.</b><br />We introduce also a new parser. One of the improvements we made is the support for video embedding. This new features supports DaiyMotion, Vimeo and YouTube.</p></div>
+      <div class="span4"><p><b>Sub forum support.</b><br />
+      We do realize that sub forum support is an essential feature these days. That's why ModernBB 2 does support sub forums natively, making your forum structure better.</p></div>
 	</div>
     <h3>Other small improvements</h3>
 	<div class="row-fluid">
