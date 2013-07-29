@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '1.9.7');
+define('UPDATE_TO', '1.9.8');
 
-define('UPDATE_TO_DB_REVISION', 22);
+define('UPDATE_TO_DB_REVISION', 23);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 3);
 
@@ -705,6 +705,9 @@ switch ($stage)
 		// Add the last_search column to the users table
 		$db->add_field('users', 'last_search', 'INT(10) UNSIGNED', true, null, 'last_post') or error('Unable to add last_search field', __FILE__, __LINE__, $db->error());
 		
+		// Add the parent_forum_id column to support sub forums
+		$db->add_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to add parent_forum_id field', __FILE__, __LINE__, $db->error());
+		
 		// Add the marked column to the posts table
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
@@ -716,9 +719,6 @@ switch ($stage)
 
 		// Drop g_edit_subjects_interval column from groups table
 		$db->drop_field('groups', 'g_edit_subjects_interval');
-
-		// Drop o_maintenance_message column from config table
-		$db->drop_field('config', 'o_maintenance_message');
 
 		// Add database revision number
 		if (!array_key_exists('o_database_revision', $pun_config))

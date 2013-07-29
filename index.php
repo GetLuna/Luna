@@ -46,8 +46,21 @@ define('PUN_ALLOW_INDEX', 1);
 define('PUN_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
+// Subforum
+$sfdb = array();
+
+$forums_info = $db->query('SELECT f.num_topics, f.num_posts, f.parent_forum_id, f.last_post_id, f.last_poster, f.last_post, f.id, f.forum_name FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.parent_forum_id <> 0 ORDER BY f.disp_position') or error('Unable to fetch subforum list', __FILE__, __LINE__, $db->error());
+
+while ($current = $db->fetch_assoc($forums_info))
+{
+	if (!isset($sfdb[$current['parent_forum_id']]))
+		$sfdb[$current['parent_forum_id']] = array();
+
+	$sfdb[$current['parent_forum_id']][] = $current;
+}
+
 // Print the categories and forums
-$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.redirect_url, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.redirect_url, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster, f.parent_forum_id FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND (f.parent_forum_id IS NULL OR f.parent_forum_id=0) ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 $cur_category = 0;
 $cat_count = 0;
@@ -119,6 +132,20 @@ while ($cur_forum = $db->fetch_assoc($result))
 		$forum_field = '<h3><a href="viewforum.php?id='.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '').'</h3>';
 		$num_topics = $cur_forum['num_topics'];
 		$num_posts = $cur_forum['num_posts'];
+		if (isset($sfdb[$cur_forum['fid']]))
+		{
+			foreach ($sfdb[$cur_forum['fid']] as $cur_subforum)
+			{
+				$num_topics += $cur_subforum['num_topics'];
+				$num_posts += $cur_subforum['num_posts'];
+				if ($cur_forum['last_post'] < $cur_subforum['last_post'])
+				{
+					$cur_forum['last_post_id'] = $cur_subforum['last_post_id'];
+					$cur_forum['last_poster'] = $cur_subforum['last_poster'];
+					$cur_forum['last_post'] = $cur_subforum['last_post'];
+				}
+			}
+		}
 	}
 
 	if ($cur_forum['forum_desc'] != '')
@@ -131,6 +158,29 @@ while ($cur_forum = $db->fetch_assoc($result))
 		$last_post = '- - -';
 	else
 		$last_post = $lang_common['Never'];
+		
+	// Are there new posts since our last visit?
+	if (!empty($sfdb) && isset($sfdb[$cur_forum['fid']]))
+	{
+		foreach ($sfdb[$cur_forum['fid']] as $cur_subforum)
+		{
+			if (!$pun_user['is_guest'] && $cur_subforum['last_post'] > $pun_user['last_visit'] && (empty($tracked_topics['forums'][$cur_subforum['id']]) || $cur_forum['last_post'] > $tracked_topics['forums'][$cur_subforum['id']]))
+			{
+				// There are new posts in this forum, but have we read all of them already?
+				foreach ($new_topics[$cur_subforum['id']] as $check_topic_id => $check_last_post)
+				{
+					if ((empty($tracked_topics['topics'][$check_topic_id]) || $tracked_topics['topics'][$check_topic_id] < $check_last_post) && (empty($tracked_topics['forums'][$cur_subforum['id']]) || $tracked_topics['forums'][$cur_subforum['id']] < $check_last_post))
+					{
+						$item_status .= ' inew';
+						$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang_common['New posts'].'</a> ]</span>';
+						$icon_type = 'icon icon-new';
+
+						break;
+					}
+				}
+			}
+		}
+	}
 
 	if ($cur_forum['moderators'] != '')
 	{
@@ -155,6 +205,31 @@ while ($cur_forum = $db->fetch_assoc($result))
 						<div class="tclcon">
 							<div>
 								<?php echo $forum_field."\n".$moderators ?>
+<?php
+				$sub_forums_list = array();
+				if (!empty($sfdb) && isset($sfdb[$cur_forum['fid']]))
+				{
+					foreach ($sfdb[$cur_forum['fid']] as $cur_subforum)
+						$sub_forums_list[] = '<a class="subforum_name" href="viewforum.php?id='.$cur_subforum['id'].'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a>';
+
+					// EDIT THIS FOR THE DISPLAY STYLE OF THE SUBFORUMS ON MAIN PAGE
+					if(!empty($sub_forums_list))
+					{
+						// Leave one $sub_forums_list commented out to use the other (between the ###..)
+						################################
+						// This is Single Line Wrap Style
+						$sub_forums_list = "\t\t\t\t\t\t\t\t".'<span class="subforum">'.$lang_common['Sub forums'].':</span> '.implode(', ', $sub_forums_list)."\n";
+						// This is List Style
+						//$sub_forums_list = "\n".'<b><em>'.$lang_common['Sub forums'].':</em></b><br />&nbsp; -- &nbsp;'.implode('<br />&nbsp; -- &nbsp;', $sub_forums_list)."\n";
+						################################
+						/* if ($cur_forum['forum_desc'] != NULL)
+						echo "<br />";
+						*/
+						// TO TURN OFF DISPLAY OF SUBFORUMS ON INDEX PAGE, COMMENT OUT THE FOLLOWING LINE
+						echo $sub_forums_list;
+					}
+				}
+?>
 							</div>
 						</div>
 					</td>
