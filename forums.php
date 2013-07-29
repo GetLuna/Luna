@@ -394,7 +394,6 @@ require FORUM_ROOT.'admin/header.php';
     <h2><span><?php echo $lang_admin_forums['Add forum head'] ?></span></h2>
     <form method="post" action="forums.php?action=adddel">
         <fieldset>
-            <h3><?php echo $lang_admin_forums['Create new subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th><?php echo $lang_admin_forums['Add forum label'] ?><div></div></th>
