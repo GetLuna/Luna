@@ -34,9 +34,9 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 		<div class="alert alert-info alert-update">
           <h4><?php echo sprintf($lang_admin_common['Available'], $latest_version) ?></h4>
           <?php echo $lang_admin_common['Update info'] ?><br />
-          <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>" class="btn btn-primary"><?php echo sprintf($lang_admin_common['Download'], $latest_version) ?></a>
+          <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_admin_common['Download'], $latest_version) ?></a>
           <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang_admin_common['Changelog'] ?></a>
-          <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>" class="btn"><?php echo sprintf($lang_admin_common['Download'], FORUM_VERSION) ?></a>
+          <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn"><?php echo sprintf($lang_admin_common['Download'], FORUM_VERSION) ?></a>
         </div>
     <?php }
 }
@@ -44,7 +44,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 <div class="alert alert-update alert-info">
     <h2>Welcome to ModernBB <?php echo FORUM_VERSION ?></h2>
     <a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary">Changelog</a>
-	<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>" class="btn btn-primary">Download v<?php echo FORUM_VERSION ?></a>
+	<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary">Download v<?php echo FORUM_VERSION ?></a>
 </div>
 <div class="content">
     <h2>What's new in version 2.0-beta.1?</h2>

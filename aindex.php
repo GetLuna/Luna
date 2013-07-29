@@ -34,9 +34,9 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 		<div class="alert alert-info alert-update">
           <h4><?php echo sprintf($lang_admin_common['Available'], $latest_version) ?></h4>
           <?php echo $lang_admin_common['Update info'] ?><br />
-          <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>" class="btn btn-primary"><?php echo sprintf($lang_admin_common['Download'], $latest_version) ?></a>
+          <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_admin_common['Download'], $latest_version) ?></a>
           <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang_admin_common['Changelog'] ?></a>
-          <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>" class="btn"><?php echo sprintf($lang_admin_common['Download'], FORUM_VERSION) ?></a>
+          <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn"><?php echo sprintf($lang_admin_common['Download'], FORUM_VERSION) ?></a>
         </div>
     <?php }
 }
