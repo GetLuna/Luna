@@ -1614,6 +1614,7 @@ else
 		'o_rules'					=> 0,
 		'o_rules_message'			=> $lang_install['Rules'],
 		'o_maintenance'				=> 0,
+		'o_maintenance_message'		=> $lang_install['Maintenance message'],
 		'o_default_dst'				=> 0,
 		'o_feed_type'				=> 2,
 		'o_feed_ttl'				=> 0,
