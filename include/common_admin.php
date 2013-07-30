@@ -74,11 +74,6 @@ function generate_admin_menu($page = '')
 		  <li><a href="database.php"><?php echo $lang_admin_common['Database'] ?></a></li>
 		</ul>
 	  </li><?php }; ?>
-      <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		  <?php echo $lang_admin_common['Extensions'] ?> <b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
 <?php
 
 	// See if there are any plugins
@@ -86,17 +81,19 @@ function generate_admin_menu($page = '')
 
 	// Did we find any plugins?
 	if (!empty($plugins))
-	{
-
+	{ ?>
+      <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		  <?php echo $lang_admin_common['Extensions'] ?> <b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+<?php
 		foreach ($plugins as $plugin_name => $plugin)
 			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
-
-	} else {
-		echo '<li class="nav-header">'.$lang_admin_common['No plugins'].'</li>';
-	}
 ?>
           </ul>
         </li>
+<?php } ?>
       </ul>
       <ul class="nav pull-right">
         <li class="dropdown">
