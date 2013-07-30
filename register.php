@@ -73,7 +73,7 @@ if (isset($_POST['form_sent']))
 		message($lang_register['Registration flood']);
 
 
-	$username = pun_trim($_POST['req_user']);
+	$username = pun_trim($_POST['req_honeypot']);
 	$email1 = strtolower(pun_trim($_POST['req_email1']));
 
 	if ($pun_config['o_regs_verify'] == '1')
@@ -138,6 +138,18 @@ if (isset($_POST['form_sent']))
 	}
 	else
 		$language = $pun_config['o_default_lang'];
+
+  	// Include the antispam library
+  	require FORUM_ROOT.'include/nospam.php';
+
+	$req_username = empty($username) ? pun_trim($_POST['req_username']) : $username;
+	if (!empty($_POST['req_username']) || stopforumspam_check(get_remote_address(), $email1, $req_username))
+  	{
+  		// Since we found a spammer, lets report the bastard!
+  		stopforumspam_report(get_remote_address(), $email1, $req_username);
+
+  		message($lang_register['Spam catch'].' <a href="mailto:'.$pun_config['o_admin_email'].'">'.$pun_config['o_admin_email'].'</a>.');
+  	}
 
 	// Did everything go according to plan?
 	if (empty($errors))
@@ -252,6 +264,7 @@ if (isset($_POST['form_sent']))
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_register['Register']);
 $required_fields = array('req_user' => $lang_common['Username'], 'req_password1' => $lang_common['Password'], 'req_password2' => $lang_prof_reg['Confirm pass'], 'req_email1' => $lang_common['Email'], 'req_email2' => $lang_common['Email'].' 2');
 $focus_element = array('register', 'req_user');
+$page_head = array('<style type="text/css">#register label.usernamefield { display: none }</style>');
 define('PUN_ACTIVE_PAGE', 'register');
 require FORUM_ROOT.'header.php';
 
@@ -293,6 +306,7 @@ if (!empty($errors))
 					<legend><?php echo $lang_register['Username legend'] ?></legend>
 					<div class="infldset">
 						<input type="hidden" name="form_sent" value="1" />
+						<label class="required usernamefield"><strong><?php echo $lang_register['If human'] ?></strong><br /><input type="text" name="req_username" value="" size="25" maxlength="25" /><br /></label>
 						<label class="required"><strong><?php echo $lang_common['Username'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" size="25" maxlength="25" /><br /></label>
 					</div>
 				</fieldset>

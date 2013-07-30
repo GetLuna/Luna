@@ -52,6 +52,7 @@ if (isset($_POST['form_sent']))
 		'regs_report'			=> $_POST['form']['regs_report'] != '1' ? '0' : '1',
 		'rules'					=> $_POST['form']['rules'] != '1' ? '0' : '1',
 		'rules_message'			=> pun_trim($_POST['form']['rules_message']),
+		'antispam_api'			=> pun_trim($_POST['form']['antispam_api']),
 		'default_email_setting'	=> intval($_POST['form']['default_email_setting']),
 		'announcement'			=> $_POST['form']['announcement'] != '1' ? '0' : '1',
 		'announcement_message'	=> pun_trim($_POST['form']['announcement_message']),
@@ -487,6 +488,13 @@ generate_admin_menu('global');
                         <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />&#160;<?php echo $lang_admin_options['Display e-mail label'] ?></label>
                         <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($pun_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />&#160;<?php echo $lang_admin_options['Hide allow form label'] ?></label>
                         <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($pun_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />&#160;<?php echo $lang_admin_options['Hide both label'] ?></label>
+                    </td>
+                </tr>
+                <tr>
+                    <th><?php echo $lang_admin_options['Antispam API label'] ?></th>
+                    <td>
+                        <input type="text" name="form[antispam_api]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
+                        <br /><span><?php printf($lang_admin_options['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                     </td>
                 </tr>
             </table>

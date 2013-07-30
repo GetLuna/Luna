@@ -140,6 +140,8 @@ $lang_admin_options = array(
 'Display e-mail label'				=>	'Display email address to other users.',
 'Hide allow form label'				=>	'Hide email address but allow form e-mail.',
 'Hide both label'					=>	'Hide email address and disallow form email.',
+'Antispam API label'				=>	'Antispam API',
+'Antispam API help'					=>	'Your StopForumSpam API Key, when this field contains a valid API key, it will be able to protect your forum. You can request an API key at %s.',
 
 // Announcement Section
 'Announcement subhead'				=>	'Announcements',

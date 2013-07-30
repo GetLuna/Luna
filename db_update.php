@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.0-beta.1');
 
-define('UPDATE_TO_DB_REVISION', 23);
+define('UPDATE_TO_DB_REVISION', 24);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 3);
 
@@ -767,6 +767,10 @@ switch ($stage)
 		// Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
+
+		// Insert new config option o_antispam_api
+		if (!array_key_exists('o_antispam_api', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_antispam_api\', NULL)') or error('Unable to insert config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
 			
 		// Insert new config option o_admin_ids  
 		if (!array_key_exists('o_admin_ids', $pun_config))  
