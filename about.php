@@ -89,6 +89,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
       <div class="span4"><p><b>Create users from the dashboard.</b><br />At the <a href="users.php">Users</a> page, we've added a nice little feature that allows you to create a new user quickly without going trough the registration.</p></div>
 	</div>
 	<div class="row-fluid">
+      <div class="span4"><p><b>Stop forum spam with StopForumSpam.</b><br />We've added a new feature that fights against forum spam, spambots to be exact. You need only an API Key from StopForumSpam.com for this feature to work.</p></div>
       <div class="span4"><p><b>Clean registration.</b><br />ModernBB 2 also improves the registration for new users. With a simplified registration form, your future users will be able to start using your forum faster without unneeded information.</p></div>
       <div class="span4"><p><b>Super subscript.</b><br />The new parser supports, beside video embedding, also the use of subscript and superscript text. This makes it easier for your boards users to write to mathematical formulas and more.</p></div>
 	</div>
