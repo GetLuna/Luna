@@ -164,9 +164,9 @@ require FORUM_ROOT.'admin/header.php';
     <h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
     <form method="post" action="categories.php">
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
-                    <th scope="row"><?php echo $lang_admin_categories['Add category label'] ?></th>
+                    <th class="span2"><?php echo $lang_admin_categories['Add category label'] ?></th>
                     <td>
                         <input type="text" name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
                         <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
@@ -182,11 +182,13 @@ require FORUM_ROOT.'admin/header.php';
     <h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
     <form method="post" action="categories.php">
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
-                    <th scope="row"><?php echo $lang_admin_categories['Delete category label'] ?></th>
+                    <th class="span2">
+						<?php echo $lang_admin_categories['Delete category label'] ?>
+                    </th>
                     <td>
-                        <select name="cat_to_delete" tabindex="3">
+                    	<select name="cat_to_delete" tabindex="3">
 <?php
 
 foreach ($cat_list as $cur_cat)
@@ -208,7 +210,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
     <h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
     <form method="post" action="categories.php">
         <fieldset>
-            <table class="table" cellspacing="0" >
+            <table class="table" >
             <thead>
                 <tr>
                     <th class="tcl" scope="col"><?php echo $lang_admin_categories['Category name label'] ?></th>
