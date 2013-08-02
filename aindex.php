@@ -42,32 +42,21 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 }
 ?>
 <div class="content">
-    <h2><span><?php echo $lang_admin_index['Forum admin head'] ?></span></h2>
-    <p><?php echo $lang_admin_index['Welcome to admin'] ?></p>
-    <ul>
-        <li><span><?php echo $lang_admin_index['Welcome 1'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 2'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 3'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 4'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 5'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 6'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 7'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 8'] ?></span></li>
-        <li><span><?php echo $lang_admin_index['Welcome 9'] ?></span></li>
-    </ul>
+    <h2>Welcome to Backstage</h2>
+    <p>Welcome to the ModernBB dashboard: Backstage. This is where you control your forums while thinking "yay".</p>
 </div>
 <div class="content">
-    <h2><span><?php echo $lang_admin_index['About head'] ?></span></h2>
-    <dl>
-        <dt><?php echo $lang_admin_index['ModernBB version label'] ?></dt>
-        <dd>
-            <?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?>
-        </dd>
-        <dt><?php echo $lang_admin_index['Server statistics label'] ?></dt>
-        <dd>
-            <a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a>
-        </dd>
-    </dl>
+    <h2><?php echo $lang_admin_index['About head'] ?></h2>
+    <table class="table">
+    	<tr>
+        	<th class="span3"><?php echo $lang_admin_index['ModernBB version label'] ?></th>
+        	<td><?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
+        </tr>
+        <tr>
+        	<th><?php echo $lang_admin_index['Server statistics label'] ?></th>
+        	<td><a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a></td>
+        </tr>
+    </table>
 </div>
 <?php
 
