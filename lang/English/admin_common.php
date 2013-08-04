@@ -4,7 +4,7 @@
 $lang_admin_common = array(
 
 // Main menu
-'Dashboard'				=>	'Dashboard',
+'Dashboard'				=>	'Backstage',
 'Content'				=>	'Content',
 'Forums'				=>	'Forums',
 'Categories'			=>	'Categories',
