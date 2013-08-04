@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.0-beta.1');
+define('UPDATE_TO', '2.0-beta.1.1');
 
 define('UPDATE_TO_DB_REVISION', 24);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -505,101 +505,70 @@ if (empty($stage))
 	{
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang_common['lang_identifier'] ?>" lang="<?php echo $lang_common['lang_identifier'] ?>" dir="<?php echo $lang_common['lang_direction'] ?>">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $lang_update['Update'] ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
-</head>
-<body onLoad="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
-
-<div id="pundb_update" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
-<div class="punwrap">
-
-<div id="brdheader" class="block">
-	<div class="box">
-		<div id="brdtitle" class="inbox">
-			<h1><span><?php echo $lang_update['Update'] ?></span></h1>
-			<div id="brddesc"><p><?php echo $lang_update['Update message'] ?></p><p><strong><?php echo $lang_update['Note']; ?></strong> <?php echo $lang_update['Members message']; ?></p></div>
-		</div>
-	</div>
-</div>
-
-<div id="brdmain">
-<div class="blockform">
-	<h2><span><?php echo $lang_update['Update'] ?></span></h2>
-	<div class="box">
-		<form id="install" method="post" action="db_update.php">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>ModernBB &middot; <?php echo $lang_update['Update'] ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, nofollow">
+        <link href="admin/css/bootstrap.css" type="text/css" rel="stylesheet">
+        <link href="admin/css/style.css" type="text/css" rel="stylesheet">
+        <style type="text/css">
+		body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+			border-radius: .3em;
+        }
+		input {
+			width: 280px;
+		}
+        .form-pass {
+            padding: 19px 29px 4px;
+        }
+        .form-signin .form-signin-heading, .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"], .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 5px;
+            padding: 7px 9px;
+        }
+		.form-signin-heading {
+			color: #2ca0e9;
+			text-transform: lowercase;
+		}
+        </style>
+        <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+	</head>
+	<body onLoad="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
+		<!-- Content start -->
+        <form class="form-signin" id="install" method="post" action="db_update.php">
+            <h1 class="form-signin-heading"><?php echo $lang_update['Update'] ?></h1>
+            <fieldset>
 			<input type="hidden" name="stage" value="start" />
 			<div class="inform">
 				<fieldset>
-				<legend><?php echo $lang_update['Administrator only'] ?></legend>
 					<div class="infldset">
-						<p><?php echo $lang_update['Database password info'] ?></p>
-						<p><strong><?php echo $lang_update['Note']; ?></strong> <?php echo $lang_update['Database password note'] ?></p>
-						<label class="required"><strong><?php echo $lang_update['Database password'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br /><input type="password" id="req_db_pass" name="req_db_pass" /><br /></label>
+						<label class="required">
+                            <p>You're almost ready to update to ModernBB v<?php echo UPDATE_TO ?>. To perform the database update, please give up your database password and hit 'Start update' to start the update.</p>
+                            <input type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" /><br /></label>
 					</div>
 				</fieldset>
 			</div>
-			<div class="inform">
-				<div class="forminfo">
-					<p><?php echo $lang_update['Intro 1'] ?></p>
-					<p><?php echo $lang_update['Intro 2'] ?></p>
-<?php
-
-	if (strpos($cur_version, '1.2') === 0)
-	{
-		if (!function_exists('iconv') && !function_exists('mb_convert_encoding'))
-		{
-
-?>
-					<p><?php echo $lang_update['No charset conversion'] ?></p>
-<?php
-
-		}
-
-?>
-				</div>
-			</div>
-			<div class="inform">
-				<div class="forminfo">
-					<p><?php echo $lang_update['Enable conversion'] ?></p>
-					<p><?php echo $lang_update['Current character set'] ?></p>
-				</div>
-				<fieldset>
-					<legend><?php echo $lang_update['Charset conversion'] ?></legend>
-					<div class="infldset">
-						<div class="rbox">
-							<label><input type="checkbox" name="convert_charset" value="1" checked="checked" /><?php echo $lang_update['Enable conversion label'] ?><br /></label>
-						</div>
-						<label>
-							<strong><?php echo $lang_update['Current character set label'] ?></strong><br /><?php echo $lang_update['Current character set info'] ?><br />
-							<input type="text" name="req_old_charset" size="12" maxlength="20" value="<?php echo $old_charset ?>" /><br />
-						</label>
-					</div>
-				</fieldset>
-<?php
-
-	}
-	else
-		echo "\t\t\t\t".'</div>'."\n";
-
-?>
-			</div>
-			<p class="buttons"><input type="submit" name="start" value="<?php echo $lang_update['Start update'] ?>" /></p>
+			<div><input class="btn btn-primary btn-block" type="submit" name="start" value="<?php echo $lang_update['Start update'] ?>" /></div>
 		</form>
-	</div>
-</div>
-</div>
-
-</div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
-</div>
-
-</body>
+	</body>
 </html>
 <?php
 
