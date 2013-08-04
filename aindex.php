@@ -71,35 +71,50 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 			<a class="btn btn-primary" href="#">Download</a>
 		</div>
 		<div class="span9"><h6>New reports - <a href="reports.php">view all</a></h6>
-			<table class="table">
-            	<thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>By</th>
-                        <th>Message</th>
-                    </tr>
+            <table class="table" cellspacing="0">
+                <thead>
+                <tr>
+                    <th><?php echo $lang_admin_index['Reported by'] ?></th>
+                    <th><?php echo $lang_admin_index['Date and time'] ?></th>
+                    <th><?php echo $lang_admin_index['Message'] ?></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>04.08.2013</td>
-                        <td>Person</td>
-                        <td>This is spam! Do something...</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>02.08.2013</td>
-                        <td>Fisher</td>
-                        <td>Reclame about stuff.</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>01.08.2013</td>
-                        <td>Baz</td>
-                        <td>'Cuz I'm not the spammer. Get I kudo's?</td>
-                    </tr>
-                <tbody>
+<?php
+
+$result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'topics AS t ON r.topic_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
+
+if ($db->num_rows($result))
+{
+	while ($cur_report = $db->fetch_assoc($result))
+	{
+		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.pun_htmlspecialchars($cur_report['reporter']).'</a>' : $lang_admin_reports['Deleted user'];
+		$post = str_replace("\n", '<br />', pun_htmlspecialchars($cur_report['message']));
+		$report_location = array($forum, $topic, $post_id);
+
+?>
+                <tr>
+                    <td><?php printf($reporter) ?></td>
+                    <td><?php printf(format_time($cur_report['created'])) ?></td>
+                    <td><?php echo $post ?></td>
+                </tr>
+<?php
+
+	}
+}
+else
+{
+
+?>
+                <tr>
+                    <td colspan="4"><p><?php echo $lang_admin_reports['No new reports'] ?></p></td>
+                </tr>
+<?php
+
+}
+
+?>
+                </tbody>
             </table>
         </div>
 	</div>

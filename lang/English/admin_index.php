@@ -30,6 +30,11 @@ $lang_admin_index = array(
 'Forum label'						=>	'Forum',
 'IRC label'							=>	'IRC channel',
 
+// Reports
+'Reported by'						=>	'By',
+'Date and time'						=>	'Date and time',
+'Message'							=>	'Message',
+
 // Language definitions used in admin_statistics.php
 'PHPinfo disabled message'			=>	'The PHP function phpinfo() has been disabled on this server.',
 'Server statistics head'			=>	'Server statistics',
