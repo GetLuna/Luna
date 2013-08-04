@@ -57,3 +57,13 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
   text-shadow: none !important;
   border: none;
 }
+
+h6 {
+	color: #585858;
+	font-size: 18px;
+	font-weight: 600 !important;
+	margin-bottom: 1px;
+	text-transform: uppercase;
+	border-bottom: #eee 1px solid;
+	width: 100%;
+}
