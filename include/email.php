@@ -8,7 +8,7 @@
  */
 
 // Make sure no one attempts to run this script "directly"
-if (!defined('PUN'))
+if (!defined('FORUM'))
 	exit;
 
 require FORUM_ROOT.'include/utf8/utils/ascii.php';

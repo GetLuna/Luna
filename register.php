@@ -36,7 +36,7 @@ if (isset($_GET['cancel']))
 else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent']))
 {
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_register['Register'], $lang_register['Forum rules']);
-	define('PUN_ACTIVE_PAGE', 'register');
+	define('FORUM_ACTIVE_PAGE', 'register');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -157,7 +157,7 @@ if (isset($_POST['form_sent']))
 		// Insert the new user into the database. We do this now to get the last inserted ID for later use
 		$now = time();
 
-		$intial_group_id = ($pun_config['o_regs_verify'] == '0') ? $pun_config['o_default_user_group'] : PUN_UNVERIFIED;
+		$intial_group_id = ($pun_config['o_regs_verify'] == '0') ? $pun_config['o_default_user_group'] : FORUM_UNVERIFIED;
 		$password_hash = pun_hash($password1);
 
 		// Add the user
@@ -265,7 +265,7 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_re
 $required_fields = array('req_user' => $lang_common['Username'], 'req_password1' => $lang_common['Password'], 'req_password2' => $lang_prof_reg['Confirm pass'], 'req_email1' => $lang_common['Email'], 'req_email2' => $lang_common['Email'].' 2');
 $focus_element = array('register', 'req_user');
 $page_head = array('<style type="text/css">#register label.usernamefield { display: none }</style>');
-define('PUN_ACTIVE_PAGE', 'register');
+define('FORUM_ACTIVE_PAGE', 'register');
 require FORUM_ROOT.'header.php';
 
 // If there are errors, we display them

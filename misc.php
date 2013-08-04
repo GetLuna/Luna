@@ -8,7 +8,7 @@
  */
 
 if (isset($_GET['action']))
-	define('PUN_QUIET_VISIT', 1);
+	define('FORUM_QUIET_VISIT', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -29,7 +29,7 @@ if ($action == 'rules')
 	require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_register['Forum rules']);
-	define('PUN_ACTIVE_PAGE', 'rules');
+	define('FORUM_ACTIVE_PAGE', 'rules');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -108,7 +108,7 @@ else if (isset($_GET['email']))
 			message($lang_misc['No email subject']);
 		else if ($message == '')
 			message($lang_misc['No email message']);
-		else if (pun_strlen($message) > PUN_MAX_POSTSIZE)
+		else if (pun_strlen($message) > FORUM_MAX_POSTSIZE)
 			message($lang_misc['Too long email message']);
 
 		if ($pun_user['last_email_sent'] != '' && (time() - $pun_user['last_email_sent']) < $pun_user['g_email_flood'] && (time() - $pun_user['last_email_sent']) >= 0)
@@ -171,7 +171,7 @@ else if (isset($_GET['email']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Send email to'].' '.pun_htmlspecialchars($recipient));
 	$required_fields = array('req_subject' => $lang_misc['Email subject'], 'req_message' => $lang_misc['Email message']);
 	$focus_element = array('email', 'req_subject');
-	define('PUN_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -289,7 +289,7 @@ else if (isset($_GET['report']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Report post']);
 	$required_fields = array('req_reason' => $lang_misc['Reason']);
 	$focus_element = array('report', 'req_reason');
-	define('PUN_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>

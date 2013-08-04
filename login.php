@@ -11,7 +11,7 @@
 define('FORUM_FORM', 1);
 
 if (isset($_GET['action']))
-	define('PUN_QUIET_VISIT', 1);
+	define('FORUM_QUIET_VISIT', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -68,7 +68,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 		message($lang_login['Wrong user/pass'].' <a href="login.php?action=forget">'.$lang_login['Forgotten pass'].'</a>');
 
 	// Update the status if this is the first time the user logged in
-	if ($cur_user['group_id'] == PUN_UNVERIFIED)
+	if ($cur_user['group_id'] == FORUM_UNVERIFIED)
 	{
 		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$pun_config['o_default_user_group'].' WHERE id='.$cur_user['id']) or error('Unable to update user status', __FILE__, __LINE__, $db->error());
 
@@ -182,7 +182,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_login['Request pass']);
 	$required_fields = array('req_email' => $lang_common['Email']);
 	$focus_element = array('request_pass', 'req_email');
-	define ('PUN_ACTIVE_PAGE', 'login');
+	define ('FORUM_ACTIVE_PAGE', 'login');
 	require FORUM_ROOT.'header.php';
 
 // If there are errors, we display them
@@ -266,7 +266,7 @@ else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Login']);
 $required_fields = array('req_username' => $lang_common['Username'], 'req_password' => $lang_common['Password']);
 $focus_element = array('login', 'req_username');
-define('PUN_ACTIVE_PAGE', 'login');
+define('FORUM_ACTIVE_PAGE', 'login');
 require FORUM_ROOT.'header.php';
 
 ?>

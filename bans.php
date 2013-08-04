@@ -8,13 +8,13 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if ($pun_user['g_id'] != PUN_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0')) {
+if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0')) {
     header("Location: login.php");
 }
 
@@ -56,7 +56,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 		// Make sure we're not banning an admin or moderator
 		if (isset($group_id))
 		{
-			if ($group_id == PUN_ADMIN)
+			if ($group_id == FORUM_ADMIN)
 				message(sprintf($lang_admin_bans['User is admin message'], pun_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -101,7 +101,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 	$focus_element = array('bans2', 'ban_user');
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('bans');
 
@@ -189,7 +189,7 @@ else if (isset($_POST['add_edit_ban']))
 		{
 			$group_id = $db->result($result);
 
-			if ($group_id == PUN_ADMIN)
+			if ($group_id == FORUM_ADMIN)
 				message(sprintf($lang_admin_bans['User is admin message'], pun_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -372,7 +372,7 @@ else if (isset($_GET['find_ban']))
 	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans'], $lang_admin_bans['Results head']);
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('bans');
 
@@ -438,7 +438,7 @@ else if (isset($_GET['find_ban']))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 $focus_element = array('bans', 'new_ban_user');
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('bans');
 

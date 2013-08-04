@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -25,7 +25,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 
 // Show phpinfo() output
-if ($action == 'phpinfo' && $pun_user['g_id'] == PUN_ADMIN)
+if ($action == 'phpinfo' && $pun_user['g_id'] == FORUM_ADMIN)
 {
 	// Is phpinfo() a disabled function?
 	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
@@ -101,7 +101,7 @@ else
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Server statistics']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('stats');
 
@@ -114,7 +114,7 @@ require FORUM_ROOT.'admin/header.php';
             <td><?php printf($lang_admin_index['Server load data']."\n", $server_load, $num_online) ?></td>
         </tr>
         <tr>
-            <?php if ($pun_user['g_id'] == PUN_ADMIN): ?>
+            <?php if ($pun_user['g_id'] == FORUM_ADMIN): ?>
             <th><?php echo $lang_admin_index['Environment label'] ?></th>
             <td>
                 <?php printf($lang_admin_index['Environment data OS'], PHP_OS) ?><br />

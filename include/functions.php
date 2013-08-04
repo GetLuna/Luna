@@ -83,7 +83,7 @@ function check_cookie(&$pun_user)
 			$pun_user['disp_posts'] = $pun_config['o_disp_posts_default'];
 
 		// Define this if you want this visit to affect the online list and the users last visit data
-		if (!defined('PUN_QUIET_VISIT'))
+		if (!defined('FORUM_QUIET_VISIT'))
 		{
 			// Update the online list
 			if (!$pun_user['logged'])
@@ -133,7 +133,7 @@ function check_cookie(&$pun_user)
 		}
 
 		$pun_user['is_guest'] = false;
-		$pun_user['is_admmod'] = $pun_user['g_id'] == PUN_ADMIN || $pun_user['g_moderator'] == '1';
+		$pun_user['is_admmod'] = $pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_moderator'] == '1';
 	}
 	else
 		set_default_user();
@@ -524,7 +524,7 @@ function generate_profile_menu($page = '')
 <?php if ($pun_config['o_avatars'] == '1' || $pun_config['o_signatures'] == '1'): ?>					<li<?php if ($page == 'personality') echo ' class="isactive"'; ?>><a href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personality'] ?></a></li>
 <?php endif; ?>					<li<?php if ($page == 'display') echo ' class="isactive"'; ?>><a href="profile.php?section=display&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section display'] ?></a></li>
 					<li<?php if ($page == 'privacy') echo ' class="isactive"'; ?>><a href="profile.php?section=privacy&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section privacy'] ?></a></li>
-<?php if ($pun_user['g_id'] == PUN_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>					<li<?php if ($page == 'admin') echo ' class="isactive"'; ?>><a href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section admin'] ?></a></li>
+<?php if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>					<li<?php if ($page == 'admin') echo ' class="isactive"'; ?>><a href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section admin'] ?></a></li>
 <?php endif; ?>				</ul>
 			</div>
 		</div>
@@ -777,7 +777,7 @@ function censor_words($text)
 		if (file_exists(FORUM_CACHE_DIR.'cache_censoring.php'))
 			include FORUM_CACHE_DIR.'cache_censoring.php';
 
-		if (!defined('PUN_CENSOR_LOADED'))
+		if (!defined('FORUM_CENSOR_LOADED'))
 		{
 			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 				require FORUM_ROOT.'include/cache.php';
@@ -813,12 +813,12 @@ function get_title($user)
 	}
 
 	// If not already loaded in a previous call, load the cached ranks
-	if ($pun_config['o_ranks'] == '1' && !defined('PUN_RANKS_LOADED'))
+	if ($pun_config['o_ranks'] == '1' && !defined('FORUM_RANKS_LOADED'))
 	{
 		if (file_exists(FORUM_CACHE_DIR.'cache_ranks.php'))
 			include FORUM_CACHE_DIR.'cache_ranks.php';
 
-		if (!defined('PUN_RANKS_LOADED'))
+		if (!defined('FORUM_RANKS_LOADED'))
 		{
 			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 				require FORUM_ROOT.'include/cache.php';
@@ -838,7 +838,7 @@ function get_title($user)
 	else if ($user['g_user_title'] != '')
 		$user_title = pun_htmlspecialchars($user['g_user_title']);
 	// If the user is a guest
-	else if ($user['g_id'] == PUN_GUEST)
+	else if ($user['g_id'] == FORUM_GUEST)
 		$user_title = $lang_common['Guest'];
 	else
 	{
@@ -934,10 +934,10 @@ function message($message, $no_back_link = false, $http_status = null)
 		header('HTTP/1.1 ' . $http_status);
 	}
 
-	if (!defined('PUN_HEADER'))
+	if (!defined('FORUM_HEADER'))
 	{
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Info']);
-		define('PUN_ACTIVE_PAGE', 'index');
+		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 	}
 
@@ -1424,7 +1424,7 @@ function redirect($destination_url, $message)
 	$db->end_transaction();
 
 	// Display executed queries (if enabled)
-	if (defined('PUN_SHOW_QUERIES'))
+	if (defined('FORUM_SHOW_QUERIES'))
 		display_saved_queries();
 
 	$tpl_temp = trim(ob_get_contents());
@@ -1504,7 +1504,7 @@ H2 {MARGIN: 0; COLOR: #FFFFFF; BACKGROUND-COLOR: #B84623; FONT-SIZE: 1.1em; PADD
 	<div>
 <?php
 
-	if (defined('PUN_DEBUG') && !is_null($file) && !is_null($line))
+	if (defined('FORUM_DEBUG') && !is_null($file) && !is_null($line))
 	{
 		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>FluxBB reported</strong>: '.$message."\n";
 
@@ -1619,7 +1619,7 @@ function remove_bad_characters($array)
 			"\xe2\x80\x85"	=> ' ',		// FOUR-PER-EM SPACE					2005	*
 			"\xe2\x80\x86"	=> ' ',		// SIX-PER-EM SPACE						2006	*
 			"\xe2\x80\x87"	=> ' ',		// FIGURE SPACE							2007	*
-			"\xe2\x80\x88"	=> ' ',		// PUNCTUATION SPACE					2008	*
+			"\xe2\x80\x88"	=> ' ',		// FORUMCTUATION SPACE					2008	*
 			"\xe2\x80\x89"	=> ' ',		// THIN SPACE							2009	*
 			"\xe2\x80\x8a"	=> ' ',		// HAIR SPACE							200A	*
 			"\xE3\x80\x80"	=> ' ',		// IDEOGRAPHIC SPACE					3000	*

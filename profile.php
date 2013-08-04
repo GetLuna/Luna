@@ -75,7 +75,7 @@ if ($action == 'change_pass')
 
 			list($group_id, $is_moderator) = $db->fetch_row($result);
 
-			if ($pun_user['g_mod_edit_users'] == '0' || $pun_user['g_mod_change_passwords'] == '0' || $group_id == PUN_ADMIN || $is_moderator == '1')
+			if ($pun_user['g_mod_edit_users'] == '0' || $pun_user['g_mod_change_passwords'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
 				message($lang_common['No permission'], false, '403 Forbidden');
 		}
 	}
@@ -123,7 +123,7 @@ if ($action == 'change_pass')
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Change pass']);
 	$required_fields = array('req_old_password' => $lang_profile['Old pass'], 'req_new_password1' => $lang_profile['New pass'], 'req_new_password2' => $lang_profile['Confirm new pass']);
 	$focus_element = array('change_pass', ((!$pun_user['is_admmod']) ? 'req_old_password' : 'req_new_password1'));
-	define('PUN_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -171,7 +171,7 @@ else if ($action == 'change_email')
 
 			list($group_id, $is_moderator) = $db->fetch_row($result);
 
-			if ($pun_user['g_mod_edit_users'] == '0' || $group_id == PUN_ADMIN || $is_moderator == '1')
+			if ($pun_user['g_mod_edit_users'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
 				message($lang_common['No permission'], false, '403 Forbidden');
 		}
 	}
@@ -282,7 +282,7 @@ else if ($action == 'change_email')
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Change email']);
 	$required_fields = array('req_new_email' => $lang_profile['New email'], 'req_password' => $lang_common['Password']);
 	$focus_element = array('change_email', 'req_new_email');
-	define('PUN_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -408,7 +408,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Upload avatar']);
 	$required_fields = array('req_file' => $lang_profile['File']);
 	$focus_element = array('upload_avatar', 'req_file');
-	define('PUN_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -452,7 +452,7 @@ else if ($action == 'delete_avatar')
 
 else if (isset($_POST['update_group_membership']))
 {
-	if ($pun_user['g_id'] > PUN_ADMIN)
+	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang_common['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
@@ -470,9 +470,9 @@ else if (isset($_POST['update_group_membership']))
 
 	generate_users_info_cache();
 	
-	if ($old_group_id == PUN_ADMIN || $new_group_id == PUN_ADMIN)  
+	if ($old_group_id == FORUM_ADMIN || $new_group_id == FORUM_ADMIN)  
 	{  
-		$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.PUN_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());  
+		$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.FORUM_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());  
 		$admin_ids = array();  
 		for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)  
 			$admin_ids[] = $cur_user_id;  
@@ -486,7 +486,7 @@ else if (isset($_POST['update_group_membership']))
 	$new_group_mod = $db->result($result);
 
 	// If the user was a moderator or an administrator, we remove him/her from the moderator list in all forums as well
-	if ($new_group_id != PUN_ADMIN && $new_group_mod != '1')
+	if ($new_group_id != FORUM_ADMIN && $new_group_mod != '1')
 	{
 		$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
@@ -511,7 +511,7 @@ else if (isset($_POST['update_group_membership']))
 
 else if (isset($_POST['update_forums']))
 {
-	if ($pun_user['g_id'] > PUN_ADMIN)
+	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang_common['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
@@ -552,7 +552,7 @@ else if (isset($_POST['update_forums']))
 
 else if (isset($_POST['ban']))
 {
-	if ($pun_user['g_id'] != PUN_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
+	if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
 		message($lang_common['No permission'], false, '403 Forbidden');
 
 	// Get the username of the user we are banning
@@ -573,7 +573,7 @@ else if (isset($_POST['ban']))
 
 else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 {
-	if ($pun_user['g_id'] > PUN_ADMIN)
+	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang_common['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
@@ -582,7 +582,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	$result = $db->query('SELECT group_id, username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	list($group_id, $username) = $db->fetch_row($result);
 
-	if ($group_id == PUN_ADMIN)
+	if ($group_id == FORUM_ADMIN)
 		message($lang_profile['No delete admin message']);
 
 	if (isset($_POST['delete_user_comply']))
@@ -591,7 +591,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 		$group_mod = $db->result($result);
 
-		if ($group_id == PUN_ADMIN || $group_mod == '1')
+		if ($group_id == FORUM_ADMIN || $group_mod == '1')
 		{
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
@@ -656,9 +656,9 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 
 		generate_users_info_cache();
 		
-		if ($group_id == PUN_ADMIN)  
+		if ($group_id == FORUM_ADMIN)  
 		{  
-			$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.PUN_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());  
+			$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.FORUM_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());  
 			$admin_ids = array();  
 			for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)  
 				$admin_ids[] = $cur_user_id;  
@@ -672,7 +672,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Confirm delete user']);
-	define('PUN_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -713,9 +713,9 @@ else if (isset($_POST['form_sent']))
 
 	if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
 		(!$pun_user['is_admmod'] ||																	// and we are not an admin or mod
-		($pun_user['g_id'] != PUN_ADMIN &&															// or we aren't an admin and ...
+		($pun_user['g_id'] != FORUM_ADMIN &&															// or we aren't an admin and ...
 		($pun_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
-		$group_id == PUN_ADMIN ||																	// or the user is an admin
+		$group_id == FORUM_ADMIN ||																	// or the user is an admin
 		$is_moderator))))																			// or the user is another mod
 		message($lang_common['No permission'], false, '403 Forbidden');
 
@@ -750,7 +750,7 @@ else if (isset($_POST['form_sent']))
 				$form['admin_note'] = pun_trim($_POST['admin_note']);
 
 				// Are we allowed to change usernames?
-				if ($pun_user['g_id'] == PUN_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_rename_users'] == '1'))
+				if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_rename_users'] == '1'))
 				{
 					$form['username'] = pun_trim($_POST['req_username']);
 
@@ -769,7 +769,7 @@ else if (isset($_POST['form_sent']))
 				}
 
 				// We only allow administrators to update the post count
-				if ($pun_user['g_id'] == PUN_ADMIN)
+				if ($pun_user['g_id'] == FORUM_ADMIN)
 					$form['num_posts'] = intval($_POST['num_posts']);
 			}
 
@@ -805,7 +805,7 @@ else if (isset($_POST['form_sent']))
 				$form['url'] = $url['url'];
 			}
 
-			if ($pun_user['g_id'] == PUN_ADMIN)
+			if ($pun_user['g_id'] == FORUM_ADMIN)
 				$form['title'] = pun_trim($_POST['title']);
 			else if ($pun_user['g_set_title'] == '1')
 			{
@@ -973,7 +973,7 @@ else if (isset($_POST['form_sent']))
 		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 		$group_mod = $db->result($result);
 
-		if ($group_id == PUN_ADMIN || $group_mod == '1')
+		if ($group_id == FORUM_ADMIN || $group_mod == '1')
 		{
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
@@ -1025,9 +1025,9 @@ if ($user['signature'] != '')
 // View or edit?
 if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
 	(!$pun_user['is_admmod'] ||																	// and we are not an admin or mod
-	($pun_user['g_id'] != PUN_ADMIN &&															// or we aren't an admin and ...
+	($pun_user['g_id'] != FORUM_ADMIN &&															// or we aren't an admin and ...
 	($pun_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
-	$user['g_id'] == PUN_ADMIN ||																// or the user is an admin
+	$user['g_id'] == FORUM_ADMIN ||																// or the user is an admin
 	$user['g_moderator'] == '1'))))																// or the user is another mod
 {
 	$user_personal = array();
@@ -1158,8 +1158,8 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	$user_activity[] = '<dd>'.format_time($user['registered'], true).'</dd>';
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), sprintf($lang_profile['Users profile'], pun_htmlspecialchars($user['username'])));
-	define('PUN_ALLOW_INDEX', 1);
-	define('PUN_ACTIVE_PAGE', 'index');
+	define('FORUM_ALLOW_INDEX', 1);
+	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -1225,7 +1225,7 @@ else
 	{
 		if ($pun_user['is_admmod'])
 		{
-			if ($pun_user['g_id'] == PUN_ADMIN || $pun_user['g_mod_rename_users'] == '1')
+			if ($pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_mod_rename_users'] == '1')
 				$username_field = '<label class="required"><strong>'.$lang_common['Username'].' <span>'.$lang_common['Required'].'</span></strong><br /><input type="text" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /><br /></label>'."\n";
 			else
 				$username_field = '<p>'.sprintf($lang_profile['Username info'], pun_htmlspecialchars($user['username'])).'</p>'."\n";
@@ -1245,12 +1245,12 @@ else
 		$posts_field = '';
 		$posts_actions = array();
 
-		if ($pun_user['g_id'] == PUN_ADMIN)
+		if ($pun_user['g_id'] == FORUM_ADMIN)
 			$posts_field .= '<label>'.$lang_common['Posts'].'<br /><input type="text" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /><br /></label>';
 		else if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
 			$posts_actions[] = sprintf($lang_profile['Posts info'], forum_number_format($user['num_posts']));
 
-		if ($pun_user['g_search'] == '1' || $pun_user['g_id'] == PUN_ADMIN)
+		if ($pun_user['g_search'] == '1' || $pun_user['g_id'] == FORUM_ADMIN)
 		{
 			$posts_actions[] = '<a href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang_profile['Show topics'].'</a>';
 			$posts_actions[] = '<a href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang_profile['Show posts'].'</a>';
@@ -1264,7 +1264,7 @@ else
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section essentials']);
 		$required_fields = array('req_username' => $lang_common['Username'], 'req_email' => $lang_common['Email']);
-		define('PUN_ACTIVE_PAGE', 'profile');
+		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('essentials');
@@ -1280,7 +1280,7 @@ else
 						<div class="infldset">
 							<input type="hidden" name="form_sent" value="1" />
 							<?php echo $username_field ?>
-<?php if ($pun_user['id'] == $id || $pun_user['g_id'] == PUN_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>							<p class="actions"><span><a href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Change pass'] ?></a></span></p>
+<?php if ($pun_user['id'] == $id || $pun_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>							<p class="actions"><span><a href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Change pass'] ?></a></span></p>
 <?php endif; ?>						</div>
 					</fieldset>
 				</div>
@@ -1437,7 +1437,7 @@ else
 			$title_field = '<label>'.$lang_common['Title'].' <em>('.$lang_profile['Leave blank'].')</em><br /><input type="text" name="title" value="'.pun_htmlspecialchars($user['title']).'" size="30" maxlength="50" /><br /></label>'."\n";
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section personal']);
-		define('PUN_ACTIVE_PAGE', 'profile');
+		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('personal');
@@ -1470,7 +1470,7 @@ else
 	{
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section messaging']);
-		define('PUN_ACTIVE_PAGE', 'profile');
+		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('messaging');
@@ -1519,7 +1519,7 @@ else
 			$signature_preview = '<p>'.$lang_profile['No sig'].'</p>'."\n";
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section personality']);
-		define('PUN_ACTIVE_PAGE', 'profile');
+		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('personality');
@@ -1569,7 +1569,7 @@ else
 	else if ($section == 'display')
 	{
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section display']);
-		define('PUN_ACTIVE_PAGE', 'profile');
+		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('display');
@@ -1656,7 +1656,7 @@ else
 	else if ($section == 'privacy')
 	{
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section privacy']);
-		define('PUN_ACTIVE_PAGE', 'profile');
+		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('privacy');
@@ -1705,7 +1705,7 @@ else
 			message($lang_common['Bad request'], false, '403 Forbidden');
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Section admin']);
-		define('PUN_ACTIVE_PAGE', 'profile');
+		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
 		generate_profile_menu('admin');
@@ -1744,7 +1744,7 @@ else
 							<select id="group_id" name="group_id">
 <?php
 
-				$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.PUN_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 				while ($cur_group = $db->fetch_assoc($result))
 				{
@@ -1775,7 +1775,7 @@ else
 				</div>
 <?php
 
-			if ($user['g_moderator'] == '1' || $user['g_id'] == PUN_ADMIN)
+			if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN)
 			{
 
 ?>

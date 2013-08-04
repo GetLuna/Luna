@@ -38,7 +38,7 @@ if ($cur_posting['redirect_url'] != '')
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_posting['moderators'] != '') ? unserialize($cur_posting['moderators']) : array();
-$is_admmod = ($pun_user['g_id'] == PUN_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
 
 if ($tid && $pun_config['o_censoring'] == '1')
 	$cur_posting['subject'] = censor_words($cur_posting['subject']);
@@ -123,9 +123,9 @@ if (isset($_POST['form_sent']))
 	// Clean up message from POST
 	$orig_message = $message = pun_linebreaks(pun_trim($_POST['req_message']));
 
-	// Here we use strlen() not pun_strlen() as we want to limit the post to PUN_MAX_POSTSIZE bytes, not characters
-	if (strlen($message) > PUN_MAX_POSTSIZE)
-		$errors[] = sprintf($lang_post['Too long message'], forum_number_format(PUN_MAX_POSTSIZE));
+	// Here we use strlen() not pun_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+	if (strlen($message) > FORUM_MAX_POSTSIZE)
+		$errors[] = sprintf($lang_post['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
 	else if ($pun_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$pun_user['is_admmod'])
 		$errors[] = $lang_post['All caps message'];
 
@@ -531,7 +531,7 @@ else
 	$focus_element[] = 'req_username';
 }
 
-define('PUN_ACTIVE_PAGE', 'index');
+define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>

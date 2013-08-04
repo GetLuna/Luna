@@ -42,8 +42,8 @@ if (!$pun_user['is_guest'])
 	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang_common['Mark all as read'].'</a>';
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']));
-define('PUN_ALLOW_INDEX', 1);
-define('PUN_ACTIVE_PAGE', 'index');
+define('FORUM_ALLOW_INDEX', 1);
+define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 // Subforum
@@ -251,7 +251,7 @@ else
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 	include FORUM_CACHE_DIR.'cache_users_info.php';
 
-if (!defined('PUN_USERS_INFO_LOADED'))
+if (!defined('FORUM_USERS_INFO_LOADED'))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';

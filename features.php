@@ -8,14 +8,14 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
 
-if ($pun_user['g_id'] != PUN_ADMIN)
+if ($pun_user['g_id'] != FORUM_ADMIN)
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the admin_features.php language file
@@ -67,7 +67,7 @@ if (isset($_POST['form_sent']))
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 generate_admin_menu('features');
 

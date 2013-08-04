@@ -28,7 +28,7 @@ $cur_post = $db->fetch_assoc($result);
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_post['moderators'] != '') ? unserialize($cur_post['moderators']) : array();
-$is_admmod = ($pun_user['g_id'] == PUN_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
 
 $can_edit_subject = $id == $cur_post['first_post_id'];
 
@@ -45,7 +45,7 @@ if (($pun_user['g_edit_posts'] == '0' ||
 	!$is_admmod)
 	message($lang_common['No permission'], false, '403 Forbidden');
 	
-if ($is_admmod && $pun_user['g_id'] != PUN_ADMIN && in_array($cur_post['poster_id'], explode(',', $pun_config['o_admin_ids'])))
+if ($is_admmod && $pun_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], explode(',', $pun_config['o_admin_ids'])))
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Load the post.php language file
@@ -81,9 +81,9 @@ if (isset($_POST['form_sent']))
 	// Clean up message from POST
 	$message = pun_linebreaks(pun_trim($_POST['req_message']));
 
-	// Here we use strlen() not pun_strlen() as we want to limit the post to PUN_MAX_POSTSIZE bytes, not characters
-	if (strlen($message) > PUN_MAX_POSTSIZE)
-		$errors[] = sprintf($lang_post['Too long message'], forum_number_format(PUN_MAX_POSTSIZE));
+	// Here we use strlen() not pun_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+	if (strlen($message) > FORUM_MAX_POSTSIZE)
+		$errors[] = sprintf($lang_post['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
 	else if ($pun_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$pun_user['is_admmod'])
 		$errors[] = $lang_post['All caps message'];
 
@@ -146,7 +146,7 @@ if (isset($_POST['form_sent']))
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_post['Edit post']);
 $required_fields = array('req_subject' => $lang_common['Subject'], 'req_message' => $lang_common['Message']);
 $focus_element = array('edit', 'req_message');
-define('PUN_ACTIVE_PAGE', 'index');
+define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 $cur_index = 1;

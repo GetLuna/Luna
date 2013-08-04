@@ -8,7 +8,7 @@
  */
 
 // Make sure no one attempts to run this script "directly"
-if (!defined('PUN'))
+if (!defined('FORUM'))
 	exit;
 
 $tpl_temp = trim(ob_get_contents());
@@ -41,7 +41,7 @@ ob_start();
 <?php
 
 // Display debug info (if enabled/defined)
-if (defined('PUN_DEBUG'))
+if (defined('FORUM_DEBUG'))
 {
 	echo '<p id="debugtime">[ ';
 
@@ -65,7 +65,7 @@ if (defined('PUN_DEBUG'))
 $db->end_transaction();
 
 // Display executed queries (if enabled)
-if (defined('PUN_SHOW_QUERIES'))
+if (defined('FORUM_SHOW_QUERIES'))
 	display_saved_queries();
 
 $tpl_temp = trim(ob_get_contents());

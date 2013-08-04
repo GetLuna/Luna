@@ -35,9 +35,9 @@ if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
 if (file_exists(FORUM_ROOT.'config.php'))
 	require FORUM_ROOT.'config.php';
 
-// If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
-if (defined('FORUM'))
-	define('PUN', FORUM);
+// This fixes incorrect defined PUN, from PunBB 1.1 and 1.2, FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
+if (defined('PUN'))
+	define('FORUM', PUN);
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
@@ -51,8 +51,8 @@ forum_remove_bad_characters();
 // Reverse the effect of register_globals
 forum_unregister_globals();
 
-// If PUN isn't defined, config.php is missing or corrupt
-if (!defined('PUN'))
+// If FORUM isn't defined, config.php is missing or corrupt
+if (!defined('FORUM'))
 {
 	header('Location: install.php');
 	exit;
@@ -101,11 +101,11 @@ if (!defined('FORUM_CACHE_DIR'))
 	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
 
 // Define a few commonly used constants
-define('PUN_UNVERIFIED', 0);
-define('PUN_ADMIN', 1);
-define('PUN_MOD', 2);
-define('PUN_GUEST', 3);
-define('PUN_MEMBER', 4);
+define('FORUM_UNVERIFIED', 0);
+define('FORUM_ADMIN', 1);
+define('FORUM_MOD', 2);
+define('FORUM_GUEST', 3);
+define('FORUM_MEMBER', 4);
 
 // Load DB abstraction layer and connect
 require FORUM_ROOT.'include/dblayer/common_db.php';
@@ -117,7 +117,7 @@ $db->start_transaction();
 if (file_exists(FORUM_CACHE_DIR.'cache_config.php'))
 	include FORUM_CACHE_DIR.'cache_config.php';
 
-if (!defined('PUN_CONFIG_LOADED'))
+if (!defined('FORUM_CONFIG_LOADED'))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
@@ -137,7 +137,7 @@ if (!isset($pun_config['o_database_revision']) || $pun_config['o_database_revisi
 }
 
 // Enable output buffering
-if (!defined('PUN_DISABLE_BUFFERING'))
+if (!defined('FORUM_DISABLE_BUFFERING'))
 {
 	// Should we use gzip output compression?
 	if ($pun_config['o_gzip'] && extension_loaded('zlib'))
@@ -161,14 +161,14 @@ else
 	error('There is no valid language pack \''.pun_htmlspecialchars($pun_user['language']).'\' installed. Please reinstall a language of that name');
 
 // Check if we are to display a maintenance message
-if ($pun_config['o_maintenance'] && $pun_user['g_id'] > PUN_ADMIN && !defined('PUN_TURN_OFF_MAINT'))
+if ($pun_config['o_maintenance'] && $pun_user['g_id'] > FORUM_ADMIN && !defined('FORUM_TURN_OFF_MAINT'))
 	maintenance_message();
 
 // Load cached bans
 if (file_exists(FORUM_CACHE_DIR.'cache_bans.php'))
 	include FORUM_CACHE_DIR.'cache_bans.php';
 
-if (!defined('PUN_BANS_LOADED'))
+if (!defined('FORUM_BANS_LOADED'))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
@@ -188,13 +188,13 @@ if ($pun_user['is_guest'] && isset($_GET['login']))
 	message($lang_common['No cookie']);
 
 // The maximum size of a post, in bytes, since the field is now MEDIUMTEXT this allows ~16MB but lets cap at 1MB...
-if (!defined('PUN_MAX_POSTSIZE'))
-	define('PUN_MAX_POSTSIZE', 1048576);
+if (!defined('FORUM_MAX_POSTSIZE'))
+	define('FORUM_MAX_POSTSIZE', 1048576);
 
-if (!defined('PUN_SEARCH_MIN_WORD'))
-	define('PUN_SEARCH_MIN_WORD', 3);
-if (!defined('PUN_SEARCH_MAX_WORD'))
-	define('PUN_SEARCH_MAX_WORD', 20);
+if (!defined('FORUM_SEARCH_MIN_WORD'))
+	define('FORUM_SEARCH_MIN_WORD', 3);
+if (!defined('FORUM_SEARCH_MAX_WORD'))
+	define('FORUM_SEARCH_MAX_WORD', 20);
 
 if (!defined('FORUM_MAX_COOKIE_SIZE'))
 	define('FORUM_MAX_COOKIE_SIZE', 4048);

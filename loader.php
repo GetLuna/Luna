@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -37,14 +37,14 @@ if (!isset($_SERVER['REQUEST_URI']))
 	$_SERVER['REQUEST_URI'] = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').'?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '');
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Admin'], str_replace('_', ' ', substr($plugin, strpos($plugin, '_') + 1, -4)));
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 
 // Attempt to load the plugin. We don't use @ here to suppress error messages,
 // because if we did and a parse error occurred in the plugin, we would only
 // get the "blank page of death"
 include FORUM_ROOT.'plugins/'.$plugin;
-if (!defined('PUN_PLUGIN_LOADED'))
+if (!defined('FORUM_PLUGIN_LOADED'))
 	message(sprintf($lang_admin_common['Plugin failed message'], $plugin));
 
 // Output the clearer div

@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -91,7 +91,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		$cat_name = $db->result($result);
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
-		define('PUN_ACTIVE_PAGE', 'admin');
+		define('FORUM_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('categories');
 
@@ -155,7 +155,7 @@ for ($i = 0; $i < $num_cats; ++$i)
 	$cat_list[] = $db->fetch_assoc($result);
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('categories');
 

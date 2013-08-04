@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the help template
-define('PUN_HELP', 1);
+define('FORUM_HELP', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -23,7 +23,7 @@ require FORUM_ROOT.'lang/'.$pun_user['language'].'/help.php';
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_help['Help']);
-define('PUN_ACTIVE_PAGE', 'help');
+define('FORUM_ACTIVE_PAGE', 'help');
 require FORUM_ROOT.'header.php';
 
 ?>

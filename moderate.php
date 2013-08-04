@@ -51,7 +51,7 @@ $result = $db->query('SELECT moderators FROM '.$db->prefix.'forums WHERE id='.$f
 $moderators = $db->result($result);
 $mods_array = ($moderators != '') ? unserialize($moderators) : array();
 
-if ($pun_user['g_id'] != PUN_ADMIN && ($pun_user['g_moderator'] == '0' || !array_key_exists($pun_user['username'], $mods_array)))
+if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] == '0' || !array_key_exists($pun_user['username'], $mods_array)))
 	message($lang_common['No permission'], false, '403 Forbidden');
 
 // Get topic/forum tracking data
@@ -91,7 +91,7 @@ if (isset($_GET['tid']))
 				message($lang_common['Bad request']);
 
 			// Verify that the post IDs are valid
-			$check_admin_ids = ($pun_user['g_id'] != PUN_ADMIN) ? ' AND poster_id NOT IN('.$pun_config['o_admin_ids'].')' : '';
+			$check_admin_ids = ($pun_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.$pun_config['o_admin_ids'].')' : '';
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$check_admin_ids) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
@@ -120,7 +120,7 @@ if (isset($_GET['tid']))
 
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
-		define('PUN_ACTIVE_PAGE', 'index');
+		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
 ?>
@@ -220,7 +220,7 @@ if (isset($_GET['tid']))
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
 		$focus_element = array('subject','new_subject');
-		define('PUN_ACTIVE_PAGE', 'index');
+		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
 ?>
@@ -295,7 +295,7 @@ if (isset($_GET['tid']))
 
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
-	define('PUN_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -494,7 +494,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 		message($lang_misc['Nowhere to move']);
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
-	define('PUN_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -618,7 +618,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 		message($lang_misc['Not enough topics selected']);
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
-	define('PUN_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -669,7 +669,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 			message($lang_common['Bad request']);
 			
 		// Verify that the posts are not by admins  
-		if ($pun_user['g_id'] != PUN_ADMIN)  
+		if ($pun_user['g_id'] != FORUM_ADMIN)  
 		{  
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.$pun_config['o_admin_ids'].')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());  
 			if ($db->num_rows($result))  
@@ -704,7 +704,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
-	define('PUN_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
@@ -839,7 +839,7 @@ $start_from = $pun_user['disp_topics'] * ($p - 1);
 $paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_forum['forum_name']));
-define('PUN_ACTIVE_PAGE', 'index');
+define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>

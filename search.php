@@ -53,7 +53,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		$keywords = (isset($_GET['keywords'])) ? utf8_strtolower(pun_trim($_GET['keywords'])) : null;
 		$author = (isset($_GET['author'])) ? utf8_strtolower(pun_trim($_GET['author'])) : null;
 
-		if (preg_match('%^[\*\%]+$%', $keywords) || (pun_strlen(str_replace(array('*', '%'), '', $keywords)) < PUN_SEARCH_MIN_WORD && !is_cjk($keywords)))
+		if (preg_match('%^[\*\%]+$%', $keywords) || (pun_strlen(str_replace(array('*', '%'), '', $keywords)) < FORUM_SEARCH_MIN_WORD && !is_cjk($keywords)))
 			$keywords = '';
 
 		if (preg_match('%^[\*\%]+$%', $author) || pun_strlen(str_replace(array('*', '%'), '', $author)) < 2)
@@ -549,7 +549,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		}
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_search['Search results']);
-		define('PUN_ACTIVE_PAGE', 'search');
+		define('FORUM_ACTIVE_PAGE', 'search');
 		require FORUM_ROOT.'header.php';
 
 ?>
@@ -776,7 +776,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_search['Search']);
 $focus_element = array('search', 'keywords');
-define('PUN_ACTIVE_PAGE', 'search');
+define('FORUM_ACTIVE_PAGE', 'search');
 require FORUM_ROOT.'header.php';
 
 ?>

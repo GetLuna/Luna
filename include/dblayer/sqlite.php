@@ -89,7 +89,7 @@ class DBLayer
 
 	function query($sql, $unbuffered = false)
 	{
-		if (defined('PUN_SHOW_QUERIES'))
+		if (defined('FORUM_SHOW_QUERIES'))
 			$q_start = get_microtime();
 
 		if ($unbuffered)
@@ -99,7 +99,7 @@ class DBLayer
 
 		if ($this->query_result)
 		{
-			if (defined('PUN_SHOW_QUERIES'))
+			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, sprintf('%.5f', get_microtime() - $q_start));
 
 			++$this->num_queries;
@@ -108,7 +108,7 @@ class DBLayer
 		}
 		else
 		{
-			if (defined('PUN_SHOW_QUERIES'))
+			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, 0);
 
 			$this->error_no = @sqlite_last_error($this->link_id);
@@ -233,7 +233,7 @@ class DBLayer
 		{
 			if ($this->in_transaction)
 			{
-				if (defined('PUN_SHOW_QUERIES'))
+				if (defined('FORUM_SHOW_QUERIES'))
 					$this->saved_queries[] = array('COMMIT', 0);
 
 				@sqlite_query($this->link_id, 'COMMIT');

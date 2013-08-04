@@ -8,9 +8,9 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 // Tell common.php that we don't want output buffering
-define('PUN_DISABLE_BUFFERING', 1);
+define('FORUM_DISABLE_BUFFERING', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -205,7 +205,7 @@ if ($action == 'prune')
 
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Prune']);
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('maintenance');
 
@@ -282,7 +282,7 @@ if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Maintenance']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('maintenance');
 

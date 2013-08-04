@@ -8,7 +8,7 @@
  */
 
 // Make sure no one attempts to run this script "directly"
-if (!defined('PUN'))
+if (!defined('FORUM'))
 	exit;
 
 // Make sure we have a usable language pack for admin.
@@ -29,7 +29,7 @@ function generate_admin_menu($page = '')
 {
 	global $pun_config, $pun_user, $lang_admin_common;
 
-	$is_admin = $pun_user['g_id'] == PUN_ADMIN ? true : false;
+	$is_admin = $pun_user['g_id'] == FORUM_ADMIN ? true : false;
 
 ?>
 <div class="navbar navbar-static-top">

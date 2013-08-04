@@ -55,7 +55,7 @@
 
 -----------------------------------------------------------------------------*/
 
-define('PUN_QUIET_VISIT', 1);
+define('FORUM_QUIET_VISIT', 1);
 
 if (!defined('FORUM_ROOT'))
 	define('FORUM_ROOT', dirname(__FILE__).'/');
@@ -523,7 +523,7 @@ else if ($action == 'stats')
 	if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 		include FORUM_CACHE_DIR.'cache_users_info.php';
 
-	if (!defined('PUN_USERS_INFO_LOADED'))
+	if (!defined('FORUM_USERS_INFO_LOADED'))
 	{
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 			require FORUM_ROOT.'include/cache.php';

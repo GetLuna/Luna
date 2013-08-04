@@ -8,7 +8,7 @@
  */
 
 // Make sure no one attempts to run this script "directly"
-if (!defined('PUN'))
+if (!defined('FORUM'))
 	exit;
 
 $tpl_temp = trim(ob_get_contents());
@@ -72,7 +72,7 @@ if ($pun_config['o_quickjump'] == '1')
 	if (file_exists(FORUM_CACHE_DIR.'cache_quickjump_'.$pun_user['g_id'].'.php'))
 		include FORUM_CACHE_DIR.'cache_quickjump_'.$pun_user['g_id'].'.php';
 
-	if (!defined('PUN_QJ_LOADED'))
+	if (!defined('FORUM_QJ_LOADED'))
 	{
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 			require FORUM_ROOT.'include/cache.php';
@@ -123,7 +123,7 @@ else if ($footer_style == 'viewtopic')
 <?php
 
 // Display debug info (if enabled/defined)
-if (defined('PUN_DEBUG'))
+if (defined('FORUM_DEBUG'))
 {
 	echo '<p id="debugtime">[ ';
 
@@ -147,7 +147,7 @@ if (defined('PUN_DEBUG'))
 $db->end_transaction();
 
 // Display executed queries (if enabled)
-if (defined('PUN_SHOW_QUERIES'))
+if (defined('FORUM_SHOW_QUERIES'))
 	display_saved_queries();
 
 $tpl_temp = trim(ob_get_contents());

@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -23,7 +23,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_index.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['About']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('about');
 
@@ -88,7 +88,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
     <h3>Other small improvements</h3>
 	<div class="row-fluid">
       <div class="span4"><p><b>1-step forum creation.</b><br />In v1.6.x, you had to create a forum, after that, you could give it a name. With ModernBB 2, you're able to create a forum and give it a name in just 1 step.</p></div>
-      <div class="span4"><p><b>Replace PUN_ variables.</b><br />We have replaced some of the PUN_ variables with FORUM_. With this step, we want to get improve the user experience and development. This should break plugins for the 1.x branch, but that doesn't matter, most won't work anyway.</p></div>
+      <div class="span4"><p><b>Replace PUN_ variables.</b><br />We have replaced all of the PUN_ variables with FORUM_. With this step, we want to get improve the user experience and development. This should break plugins for the 1.x branch, but that doesn't matter, most won't work anyway.</p></div>
       <div class="span4"><p><b>Create users from the dashboard.</b><br />At the <a href="users.php">Users</a> page, we've added a nice little feature that allows you to create a new user quickly without going trough the registration.</p></div>
 	</div>
 	<div class="row-fluid">

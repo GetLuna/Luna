@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -104,7 +104,7 @@ if (isset($_POST['add_user']))
 	// Insert the new user into the database. We do this now to get the last inserted id for later use.
 	$now = time();
 
-	$intial_group_id = ($_POST['random_pass'] == '0') ? $pun_config['o_default_user_group'] : PUN_UNVERIFIED;
+	$intial_group_id = ($_POST['random_pass'] == '0') ? $pun_config['o_default_user_group'] : FORUM_UNVERIFIED;
 	$password_hash = pun_hash($password1);
 
 	// Add the user
@@ -169,7 +169,7 @@ if (isset($_GET['ip_stats']))
 	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?ip_stats='.$ip_stats );
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('users');
 
@@ -248,7 +248,7 @@ if (isset($_GET['show_users']))
 	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?show_users='.$ip);
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('users');
 
@@ -347,7 +347,7 @@ if (isset($_GET['show_users']))
 // Move multiple users to other user groups
 else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 {
-	if ($pun_user['g_id'] > PUN_ADMIN)
+	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang_common['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('users.php');
@@ -367,13 +367,13 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 		message($lang_admin_users['No users selected']);
 
 	// Are we trying to batch move any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.PUN_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message($lang_admin_users['No move admins message']);
 
 	// Fetch all user groups
 	$all_groups = array();
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id NOT IN ('.PUN_GUEST.','.PUN_ADMIN.') ORDER BY g_title ASC') or error('Unable to fetch groups', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id NOT IN ('.FORUM_GUEST.','.FORUM_ADMIN.') ORDER BY g_title ASC') or error('Unable to fetch groups', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_row($result))
 		$all_groups[$row[0]] = $row[1];
 
@@ -405,7 +405,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 				unset($user_groups[$cur_group['g_id']]);
 		}
 
-		if (!empty($user_groups) && $new_group != PUN_ADMIN && $new_group_mod != '1')
+		if (!empty($user_groups) && $new_group != FORUM_ADMIN && $new_group_mod != '1')
 		{
 			// Fetch forum list and clean up their moderator list
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
@@ -428,7 +428,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Move users']);
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('users');
 
@@ -463,7 +463,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 // Delete multiple users
 else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 {
-	if ($pun_user['g_id'] > PUN_ADMIN)
+	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang_common['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('users.php');
@@ -483,7 +483,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 		message($lang_admin_users['No users selected']);
 
 	// Are we trying to delete any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.PUN_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message($lang_admin_users['No delete admins message']);
 
@@ -574,7 +574,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Delete users']);
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('users');
 
@@ -602,7 +602,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 // Ban multiple users
 else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 {
-	if ($pun_user['g_id'] != PUN_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
+	if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
 		message($lang_common['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('users.php');
@@ -622,7 +622,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 		message($lang_admin_users['No users selected']);
 
 	// Are we trying to ban any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.PUN_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message($lang_admin_users['No ban admins message']);
 
@@ -690,7 +690,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 	$focus_element = array('bans2', 'ban_message');
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('users');
 
@@ -861,13 +861,13 @@ else if (isset($_GET['find_user']))
 	$paging_links = '<span class="pages-label">'.$lang_common['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
 
 	// Some helper variables for permissions
-	$can_delete = $can_move = $pun_user['g_id'] == PUN_ADMIN;
-	$can_ban = $pun_user['g_id'] == PUN_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1');
+	$can_delete = $can_move = $pun_user['g_id'] == FORUM_ADMIN;
+	$can_ban = $pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1');
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Results head']);
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('users');
 
@@ -904,7 +904,7 @@ else if (isset($_GET['find_user']))
 			$user_title = get_title($user_data);
 
 			// This script is a special case in that we want to display "Not verified" for non-verified users
-			if (($user_data['g_id'] == '' || $user_data['g_id'] == PUN_UNVERIFIED) && $user_title != $lang_common['Banned'])
+			if (($user_data['g_id'] == '' || $user_data['g_id'] == FORUM_UNVERIFIED) && $user_title != $lang_common['Banned'])
 				$user_title = '<span class="warntext">'.$lang_admin_users['Not verified'].'</span>';
 
 			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang_admin_users['Results view IP link'].'</a> | <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang_admin_users['Results show posts link'].'</a>';
@@ -948,7 +948,7 @@ else
 {
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users']);
 	$focus_element = array('find_user', 'form[username]');
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('users');
 
@@ -1030,7 +1030,7 @@ else
                             <option value="0"><?php echo $lang_admin_users['Unverified users'] ?></option>
 <?php
 
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.PUN_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_group = $db->fetch_assoc($result))
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";

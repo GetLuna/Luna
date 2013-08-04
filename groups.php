@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -52,7 +52,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
 	$required_fields = array('req_title' => $lang_admin_groups['Group title label']);
 	$focus_element = array('groups2', 'req_title');
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('groups');
 
@@ -80,7 +80,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         <br /><span><?php echo $lang_admin_groups['User title help'] ?></span>
                     </td>
                 </tr>
-<?php if ($group['g_id'] != PUN_ADMIN): if ($group['g_id'] != PUN_GUEST): if ($mode != 'edit' || $pun_config['o_default_user_group'] != $group['g_id']): ?>
+<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $pun_config['o_default_user_group'] != $group['g_id']): ?>
                 <tr>
                     <th scope="row"> <?php echo $lang_admin_groups['Mod privileges label'] ?></th>
                     <td>
@@ -153,7 +153,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         <br /><span class="clearb"><?php echo $lang_admin_groups['Post topics help'] ?></span>
                     </td>
                 </tr>
-<?php if ($group['g_id'] != PUN_GUEST): ?>								<tr>
+<?php if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
                     <th scope="row"><?php echo $lang_admin_groups['Edit posts label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked="checked"' ?> tabindex="23" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
@@ -178,7 +178,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </td>
                 </tr>
 <?php endif;
-if ($group['g_id'] != PUN_GUEST): ?>								<tr>
+if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
                     <th scope="row"><?php echo $lang_admin_groups['Set own title label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked="checked"' ?> tabindex="31" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
@@ -202,7 +202,7 @@ if ($group['g_id'] != PUN_GUEST): ?>								<tr>
                         <br /><span class="clearb"><?php echo $lang_admin_groups['User list search help'] ?></span>
                     </td>
                 </tr>
-<?php if ($group['g_id'] != PUN_GUEST): ?>								<tr>
+<?php if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
                     <th scope="row"><?php echo $lang_admin_groups['Send e-mails label'] ?></th>
                     <td>
                         <label class="conl"><input type="radio" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked="checked"' ?> tabindex="37" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
@@ -224,7 +224,7 @@ if ($group['g_id'] != PUN_GUEST): ?>								<tr>
                         <br /><span><?php echo $lang_admin_groups['Search flood help'] ?></span>
                     </td>
                 </tr>
-<?php if ($group['g_id'] != PUN_GUEST): ?>								<tr>
+<?php if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
                     <th scope="row"><?php echo $lang_admin_groups['E-mail flood label'] ?></th>
                     <td>
                         <input type="text" name="email_flood" size="5" maxlength="4" value="<?php echo $group['g_email_flood'] ?>" tabindex="37" />
@@ -259,7 +259,7 @@ else if (isset($_POST['add_edit_group']))
 	confirm_referrer('groups.php');
 
 	// Is this the admin group? (special rules apply)
-	$is_admin_group = (isset($_POST['group_id']) && $_POST['group_id'] == PUN_ADMIN) ? true : false;
+	$is_admin_group = (isset($_POST['group_id']) && $_POST['group_id'] == FORUM_ADMIN) ? true : false;
 
 	$title = pun_trim($_POST['req_title']);
 	$user_title = pun_trim($_POST['user_title']);
@@ -334,7 +334,7 @@ else if (isset($_POST['set_default_group']))
 	$group_id = intval($_POST['default_group']);
 
 	// Make sure it's not the admin or guest groups
-	if ($group_id == PUN_ADMIN || $group_id == PUN_GUEST)
+	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
 		message($lang_common['Bad request']);
 
 	// Make sure it's not a moderator group
@@ -393,7 +393,7 @@ else if (isset($_GET['del_group']))
 			$group_title = $db->result($result);
 
 			$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
-			define('PUN_ACTIVE_PAGE', 'admin');
+			define('FORUM_ACTIVE_PAGE', 'admin');
 			require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('groups');
 
@@ -421,7 +421,7 @@ else if (isset($_GET['del_group']))
 	list($group_title, $group_members) = $db->fetch_row($result);
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
-	define('PUN_ACTIVE_PAGE', 'admin');
+	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'admin/header.php';
 
 ?>
@@ -433,11 +433,11 @@ else if (isset($_GET['del_group']))
             	<select name="move_to_group">
 <?php
 
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.PUN_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_group = $db->fetch_assoc($result))
 	{
-		if ($cur_group['g_id'] == PUN_MEMBER) // Pre-select the pre-defined Members group
+		if ($cur_group['g_id'] == FORUM_MEMBER) // Pre-select the pre-defined Members group
 			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 		else
 			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
@@ -460,7 +460,7 @@ else if (isset($_GET['del_group']))
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('groups');
 
@@ -477,7 +477,7 @@ require FORUM_ROOT.'admin/header.php';
                         <select id="base_group" name="base_group" tabindex="1">
 <?php
 
-$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.PUN_ADMIN.' AND g_id!='.PUN_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
 {
@@ -504,7 +504,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
                         <select id="default_group" name="default_group" tabindex="3">
 <?php
 
-$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.PUN_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.FORUM_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
 {
@@ -536,7 +536,7 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><th scope="row"><a class="btn btn-success btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Edit link'].'</a>'.(($cur_group['g_id'] > PUN_MEMBER) ? ' <a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Delete link'].'</a>' : '').'</th><td>'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><th scope="row"><a class="btn btn-success btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? ' <a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Delete link'].'</a>' : '').'</th><td>'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
 
 ?>
                 </table>

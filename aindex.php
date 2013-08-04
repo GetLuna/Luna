@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -22,7 +22,7 @@ if (!$pun_user['is_admmod']) {
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 	include FORUM_CACHE_DIR.'cache_users_info.php';
 
-if (!defined('PUN_USERS_INFO_LOADED'))
+if (!defined('FORUM_USERS_INFO_LOADED'))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
@@ -34,7 +34,11 @@ if (!defined('PUN_USERS_INFO_LOADED'))
 $result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
 list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
 
-if ($stats['total_topics'] == NULL) {
+if ($stats['total_posts'] == 0) {
+	$stats['total_posts'] == '0';
+}
+
+if ($stats['total_topics'] == 0) {
 	$stats['total_topics'] == '0';
 }
 
@@ -43,7 +47,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_index.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Index']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('index');
 

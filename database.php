@@ -8,7 +8,7 @@
  */
 
 // Tell header.php to use the admin template
-define('PUN_ADMIN_CONSOLE', 1);
+define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
@@ -513,7 +513,7 @@ elseif ( isset($_POST['restore_start']) ) {
 		// Strip out sql comments...
 		$sql_query = remove_remarks($sql_query);
 		$pieces = split_sql_file($sql_query, ";");
-		if(defined('PUN_DEBUG'))
+		if(defined('FORUM_DEBUG'))
 		{
 		generate_admin_menu($plugin);
 ?>
@@ -530,7 +530,7 @@ elseif ( isset($_POST['restore_start']) ) {
 			$sql = trim($pieces[$i]);
 			if(!empty($sql))
 			{
-				if(defined('PUN_DEBUG'))
+				if(defined('FORUM_DEBUG'))
 				{
 					echo "Executing: $sql\n<br>";
 					flush();
@@ -542,7 +542,7 @@ elseif ( isset($_POST['restore_start']) ) {
 				}
 			}
 		}
-		if(defined('PUN_DEBUG'))
+		if(defined('FORUM_DEBUG'))
 		{
 ?>
 				</p>
@@ -552,7 +552,7 @@ elseif ( isset($_POST['restore_start']) ) {
 <?php
 		}
 	}
-	if(defined('PUN_DEBUG'))
+	if(defined('FORUM_DEBUG'))
 	{
 ?>
 	<div class="block">
@@ -722,7 +722,7 @@ else {
 	
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Database']);
-define('PUN_ACTIVE_PAGE', 'admin');
+define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('database');
 ?>

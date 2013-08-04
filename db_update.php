@@ -17,8 +17,8 @@ define('UPDATE_TO_PARSER_REVISION', 3);
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '4.1.2');
 define('MIN_PGSQL_VERSION', '7.0.0');
-define('PUN_SEARCH_MIN_WORD', 3);
-define('PUN_SEARCH_MAX_WORD', 20);
+define('FORUM_SEARCH_MIN_WORD', 3);
+define('FORUM_SEARCH_MAX_WORD', 20);
 
 // The MySQL connection character set that was used for FluxBB 1.2 - in 99% of cases this should be detected automatically,
 // but can be overridden using the below constant if required.
@@ -43,18 +43,18 @@ if (file_exists(FORUM_ROOT.'config.php'))
 
 // If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
 if (defined('FORUM'))
-	define('PUN', FORUM);
+	define('FORUM', FORUM);
 
-// If PUN isn't defined, config.php is missing or corrupt
-if (!defined('PUN'))
+// If FORUM isn't defined, config.php is missing or corrupt
+if (!defined('FORUM'))
 {
 	header('Location: install.php');
 	exit;
 }
 
 // Enable debug mode
-if (!defined('PUN_DEBUG'))
-	define('PUN_DEBUG', 1);
+if (!defined('FORUM_DEBUG'))
+	define('FORUM_DEBUG', 1);
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
@@ -104,11 +104,11 @@ if (!defined('FORUM_CACHE_DIR'))
 @set_time_limit(0);
 
 // Define a few commonly used constants
-define('PUN_UNVERIFIED', 0);
-define('PUN_ADMIN', 1);
-define('PUN_MOD', 2);
-define('PUN_GUEST', 3);
-define('PUN_MEMBER', 4);
+define('FORUM_UNVERIFIED', 0);
+define('FORUM_ADMIN', 1);
+define('FORUM_MOD', 2);
+define('FORUM_GUEST', 3);
+define('FORUM_MEMBER', 4);
 
 // Load DB abstraction layer and try to connect
 require FORUM_ROOT.'include/dblayer/common_db.php';
@@ -775,7 +775,7 @@ switch ($stage)
 		// Insert new config option o_admin_ids  
 		if (!array_key_exists('o_admin_ids', $pun_config))  
 		{  
-		  $result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.PUN_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());  
+		  $result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.FORUM_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());  
 		  $admin_ids = array();  
 		  for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)  
 			$admin_ids[] = $cur_user_id;  
@@ -1580,7 +1580,7 @@ switch ($stage)
 					$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$cur_user['group_id']) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 					$group_mod = $db->result($result);
 
-					if ($cur_user['group_id'] == PUN_ADMIN || $group_mod == '1')
+					if ($cur_user['group_id'] == FORUM_ADMIN || $group_mod == '1')
 					{
 						$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 

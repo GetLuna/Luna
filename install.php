@@ -17,8 +17,8 @@ define('FORUM_PARSER_REVISION', 3);
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '4.1.2');
 define('MIN_PGSQL_VERSION', '7.0.0');
-define('PUN_SEARCH_MIN_WORD', 3);
-define('PUN_SEARCH_MAX_WORD', 20);
+define('FORUM_SEARCH_MIN_WORD', 3);
+define('FORUM_SEARCH_MAX_WORD', 20);
 
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
@@ -82,15 +82,15 @@ if (file_exists(FORUM_ROOT.'config.php'))
 
 	// If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
 	if (defined('FORUM'))
-		define('PUN', FORUM);
+		define('FORUM', FORUM);
 
-	// If PUN is defined, config.php is probably valid and thus the software is installed
-	if (defined('PUN'))
+	// If FORUM is defined, config.php is probably valid and thus the software is installed
+	if (defined('FORUM'))
 		exit($lang_install['Already installed']);
 }
 
-// Define PUN because email.php requires it
-define('PUN', 1);
+// Define FORUM because email.php requires it
+define('FORUM', 1);
 
 // If the cache directory is not specified, we use the default setting
 if (!defined('FORUM_CACHE_DIR'))
@@ -108,7 +108,7 @@ function generate_config_file()
 {
 	global $db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $cookie_name, $cookie_seed;
 
-	return '<?php'."\n\n".'$db_type = \''.$db_type."';\n".'$db_host = \''.$db_host."';\n".'$db_name = \''.addslashes($db_name)."';\n".'$db_username = \''.addslashes($db_username)."';\n".'$db_password = \''.addslashes($db_password)."';\n".'$db_prefix = \''.addslashes($db_prefix)."';\n".'$p_connect = false;'."\n\n".'$cookie_name = '."'".$cookie_name."';\n".'$cookie_domain = '."'';\n".'$cookie_path = '."'/';\n".'$cookie_secure = 0;'."\n".'$cookie_seed = \''.random_key(16, false, true)."';\n\ndefine('PUN', 1);\n";
+	return '<?php'."\n\n".'$db_type = \''.$db_type."';\n".'$db_host = \''.$db_host."';\n".'$db_name = \''.addslashes($db_name)."';\n".'$db_username = \''.addslashes($db_username)."';\n".'$db_password = \''.addslashes($db_password)."';\n".'$db_prefix = \''.addslashes($db_prefix)."';\n".'$p_connect = false;'."\n\n".'$cookie_name = '."'".$cookie_name."';\n".'$cookie_domain = '."'';\n".'$cookie_path = '."'/';\n".'$cookie_secure = 0;'."\n".'$cookie_seed = \''.random_key(16, false, true)."';\n\ndefine('FORUM', 1);\n";
 }
 
 

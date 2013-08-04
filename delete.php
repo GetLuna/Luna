@@ -31,7 +31,7 @@ if ($pun_config['o_censoring'] == '1')
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_post['moderators'] != '') ? unserialize($cur_post['moderators']) : array();
-$is_admmod = ($pun_user['g_id'] == PUN_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
 
 $is_topic_post = ($id == $cur_post['first_post_id']) ? true : false;
 
@@ -43,7 +43,7 @@ if (($pun_user['g_delete_posts'] == '0' ||
 	!$is_admmod)
 	message($lang_common['No permission'], false, '403 Forbidden');
 	
-if ($is_admmod && $pun_user['g_id'] != PUN_ADMIN && in_array($cur_post['poster_id'], explode(',', $pun_config['o_admin_ids'])))
+if ($is_admmod && $pun_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], explode(',', $pun_config['o_admin_ids'])))
 	message($lang_common['No permission'], false, '403 Forbidden');  
 
 
@@ -82,7 +82,7 @@ if (isset($_POST['delete']))
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_delete['Delete post']);
-define ('PUN_ACTIVE_PAGE', 'index');
+define ('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 require FORUM_ROOT.'include/parser.php';

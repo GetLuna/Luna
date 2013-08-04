@@ -12,12 +12,12 @@
 
 
 // Make sure no one attempts to run this script "directly"
-if (!defined('PUN'))
+if (!defined('FORUM'))
 	exit;
 
 
 // Make a regex that will match CJK or Hangul characters
-define('PUN_CJK_HANGUL_REGEX', '['.
+define('FORUM_CJK_HANGUL_REGEX', '['.
 	'\x{1100}-\x{11FF}'.		// Hangul Jamo							1100-11FF		(http://www.fileformat.info/info/unicode/block/hangul_jamo/index.htm)
 	'\x{3130}-\x{318F}'.		// Hangul Compatibility Jamo			3130-318F		(http://www.fileformat.info/info/unicode/block/hangul_compatibility_jamo/index.htm)
 	'\x{AC00}-\x{D7AF}'.		// Hangul Syllables						AC00-D7AF		(http://www.fileformat.info/info/unicode/block/hangul_syllables/index.htm)
@@ -91,7 +91,7 @@ function validate_search_word($word, $idx)
 		if (file_exists(FORUM_CACHE_DIR.'cache_stopwords.php'))
 			include FORUM_CACHE_DIR.'cache_stopwords.php';
 
-		if (!defined('PUN_STOPWORDS_LOADED'))
+		if (!defined('FORUM_STOPWORDS_LOADED'))
 		{
 			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 				require FORUM_ROOT.'include/cache.php';
@@ -114,7 +114,7 @@ function validate_search_word($word, $idx)
 
 	// Check the word is within the min/max length
 	$num_chars = pun_strlen($word);
-	return $num_chars >= PUN_SEARCH_MIN_WORD && $num_chars <= PUN_SEARCH_MAX_WORD;
+	return $num_chars >= FORUM_SEARCH_MIN_WORD && $num_chars <= FORUM_SEARCH_MAX_WORD;
 }
 
 
@@ -132,7 +132,7 @@ function is_keyword($word)
 //
 function is_cjk($word)
 {
-	return preg_match('%^'.PUN_CJK_HANGUL_REGEX.'+$%u', $word) ? true : false;
+	return preg_match('%^'.FORUM_CJK_HANGUL_REGEX.'+$%u', $word) ? true : false;
 }
 
 
