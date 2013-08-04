@@ -18,6 +18,26 @@ if (!$pun_user['is_admmod']) {
     header("Location: login.php");
 }
 
+// Collect some statistics from the database
+if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
+	include FORUM_CACHE_DIR.'cache_users_info.php';
+
+if (!defined('PUN_USERS_INFO_LOADED'))
+{
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_users_info_cache();
+	require FORUM_CACHE_DIR.'cache_users_info.php';
+}
+
+$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
+list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
+
+if ($stats['total_topics'] == NULL) {
+	$stats['total_topics'] == '0';
+}
+
 // Load the admin_index.php language file
 require FORUM_ROOT.'lang/'.$admin_language.'/admin_index.php';
 
@@ -104,9 +124,9 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
             <table class="table">
             	<thead>
                     <tr>
-                        <td style="text-align:center;"><h4><b><b>213.362</b></b><br />posts</h4></td>
-                        <td style="text-align:center;"><h4><b><b>32.134</b></b><br />topics</h4></td>
-                        <td style="text-align:center;"><h4><b><b>14.287</b></b><br />users</h4></td>
+                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br />posts</h4></td>
+                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br />topics</h4></td>
+                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br />users</h4></td>
                     </tr>
                 </thead>
             </table>
