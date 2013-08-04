@@ -42,21 +42,76 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 }
 ?>
 <div class="content">
-    <h2>Welcome to Backstage</h2>
-    <p>Welcome to the ModernBB dashboard: Backstage. This is where you control your forums while thinking "yay".</p>
-</div>
-<div class="content">
-    <h2><?php echo $lang_admin_index['About head'] ?></h2>
-    <table class="table">
-    	<tr>
-        	<th class="span3"><?php echo $lang_admin_index['ModernBB version label'] ?></th>
-        	<td><?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
-        </tr>
-        <tr>
-        	<th><?php echo $lang_admin_index['Server statistics label'] ?></th>
-        	<td><a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a></td>
-        </tr>
-    </table>
+	<h2>Welcome to Backstage</h2>
+	<p>Welcome to the ModernBB dashboard: Backstage. This is where you control your forums while thinking "yay".</p>
+    <div class="row-fluid">
+		<div class="span3">
+			<h6>Back-up</h6>
+			<p>Create a new database backup.</p>
+			<a class="btn btn-primary" href="#">Download</a>
+		</div>
+		<div class="span9"><h6>New reports - <a href="reports.php">view all</a></h6>
+			<table class="table">
+            	<thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>By</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>04.08.2013</td>
+                        <td>Person</td>
+                        <td>This is spam! Do something...</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>02.08.2013</td>
+                        <td>Fisher</td>
+                        <td>Reclame about stuff.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>01.08.2013</td>
+                        <td>Baz</td>
+                        <td>'Cuz I'm not the spammer. Get I kudo's?</td>
+                    </tr>
+                <tbody>
+            </table>
+        </div>
+	</div>
+    <div class="row-fluid">
+		<div class="span8">
+			<h6><?php echo $lang_admin_index['About head'] ?></h6>
+            <table class="table">
+            	<thead>
+                    <tr>
+                        <th class="span3"><?php echo $lang_admin_index['ModernBB version label'] ?></th>
+                        <td><?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_admin_index['Server statistics label'] ?></th>
+                        <td><a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a></td>
+                    </tr>
+                </thead>
+            </table>
+		</div>
+		<div class="span4">
+			<h6>Statistics</h6>
+            <table class="table">
+            	<thead>
+                    <tr>
+                        <td style="text-align:center;"><h4><b><b>213.362</b></b><br />posts</h4></td>
+                        <td style="text-align:center;"><h4><b><b>32.134</b></b><br />topics</h4></td>
+                        <td style="text-align:center;"><h4><b><b>14.287</b></b><br />users</h4></td>
+                    </tr>
+                </thead>
+            </table>
+		</div>
+    </div>
 </div>
 <?php
 
