@@ -68,7 +68,7 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 		<div class="span3">
 			<h6>Back-up</h6>
 			<p>Create a new database backup.</p>
-			<a class="btn btn-primary" href="#">Download</a>
+			<a class="btn btn-block btn-primary" href="database.php">Create new backup</a>
 		</div>
 		<div class="span9"><h6>New reports - <a href="reports.php">view all</a></h6>
             <table class="table" cellspacing="0">
@@ -107,7 +107,7 @@ else
 
 ?>
                 <tr>
-                    <td colspan="4"><p><?php echo $lang_admin_reports['No new reports'] ?></p></td>
+                    <td colspan="4"><p><?php echo $lang_admin_index['No new reports'] ?></p></td>
                 </tr>
 <?php
 
