@@ -421,7 +421,6 @@ require FORUM_ROOT.'admin/header.php';
         </fieldset>
     </form>
 </div>
-<div class="content">
 <?php
 
 // Display all the categories and forums
@@ -431,6 +430,7 @@ if ($db->num_rows($result) > 0)
 {
 
 ?>
+<div class="content">
 <h2><?php echo $lang_admin_forums['Edit forums head'] ?></h2>
     <form id="edforum" method="post" action="forums.php?action=edit">
         <fieldset>
@@ -475,11 +475,6 @@ while ($cur_forum = $db->fetch_assoc($result))
 ?>
             </tbody>
             </table>
-<?php
-
-}
-
-?>
         </fieldset>
         <div class="control-group">
         	<input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang_admin_forums['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" />
@@ -487,5 +482,6 @@ while ($cur_forum = $db->fetch_assoc($result))
     </form>
 </div>
 <?php
+}
 
 require FORUM_ROOT.'admin/footer.php';
