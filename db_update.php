@@ -15,7 +15,7 @@ define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 3);
 
 define('MIN_PHP_VERSION', '5.0.0');
-define('MIN_MYSQL_VERSION', '4.1.2');
+define('MIN_MYSQL_VERSION', '5.0.1');
 define('MIN_PGSQL_VERSION', '7.0.0');
 define('FORUM_SEARCH_MIN_WORD', 3);
 define('FORUM_SEARCH_MAX_WORD', 20);
@@ -551,7 +551,7 @@ if (empty($stage))
         </style>
         <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
 	</head>
-	<body onLoad="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
+	<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
 		<!-- Content start -->
         <form class="form-signin" id="install" method="post" action="db_update.php">
             <h1 class="form-signin-heading"><?php echo $lang_update['Update'] ?></h1>
