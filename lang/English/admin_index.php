@@ -3,7 +3,8 @@
 // Language definitions used in admin_index.php
 $lang_admin_index = array(
 
-'Welcome head'						=>	'Welcome to Backstage',
+'ModernBB intro'					=>	'Welcome to ModernBB',
+'Welcome head'						=>	'Welcome to your Backstage',
 'Welcome info'						=>	'Welcome to the ModernBB dashboard: Backstage. This is where you control your forums while thinking "yay".',
 'Backup head'						=>	'Back-up',
 'Backup info'						=>	'Create new database backup.',
