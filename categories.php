@@ -177,8 +177,8 @@ require FORUM_ROOT.'admin/header.php';
         </fieldset>
     </form>
 </div>
-<div class="content">
 <?php if ($num_cats): ?>
+<div class="content">
     <h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
     <form method="post" action="categories.php">
         <fieldset>
@@ -203,10 +203,10 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
             </table>
         </fieldset>
     </form>
-<?php endif; ?>
 </div>
-<div class="content">
+<?php endif; ?>
 <?php if ($num_cats): ?>
+<div class="content">
     <h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
     <form method="post" action="categories.php">
         <fieldset>
