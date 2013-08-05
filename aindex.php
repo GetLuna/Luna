@@ -66,15 +66,15 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 }
 ?>
 <div class="content">
-	<h2>Welcome to Backstage</h2>
-	<p>Welcome to the ModernBB dashboard: Backstage. This is where you control your forums while thinking "yay".</p>
+	<h2><?php echo $lang_admin_index['Welcome head'] ?></h2>
+	<p><?php echo $lang_admin_index['Welcome info'] ?></p>
     <div class="row-fluid">
 		<div class="span3">
-			<h6>Back-up</h6>
-			<p>Create a new database backup.</p>
-			<a class="btn btn-block btn-primary" href="database.php">Create new backup</a>
+			<h6><?php echo $lang_admin_index['Backup head'] ?></h6>
+			<p><?php echo $lang_admin_index['Backup info'] ?></p>
+			<a class="btn btn-block btn-primary" href="database.php"><?php echo $lang_admin_index['Backup button'] ?></a>
 		</div>
-		<div class="span9"><h6>New reports - <a href="reports.php">view all</a></h6>
+		<div class="span9"><h6><?php echo $lang_admin_index['Reports head'] ?> - <a href="reports.php"><?php echo $lang_admin_index['View all'] ?></a></h6>
             <table class="table" cellspacing="0">
                 <thead>
                 <tr>
@@ -143,9 +143,9 @@ else
             <table class="table">
             	<thead>
                     <tr>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br />posts</h4></td>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br />topics</h4></td>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br />users</h4></td>
+                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br /><?php echo $lang_admin_index['posts'] ?></h4></td>
+                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br /><?php echo $lang_admin_index['topics'] ?></h4></td>
+                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br /><?php echo $lang_admin_index['users'] ?></h4></td>
                     </tr>
                 </thead>
             </table>

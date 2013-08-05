@@ -561,7 +561,7 @@ if (empty($stage))
 				<fieldset>
 					<div class="infldset">
 						<label class="required">
-                            <p>You're almost ready to update to ModernBB v<?php echo UPDATE_TO ?>. To perform the database update, please give up your database password and hit 'Start update' to start the update.</p>
+                            <p><?php echo $lang_update['Datbase password info'] ?></p>
                             <input type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" /><br /></label>
 					</div>
 				</fieldset>
