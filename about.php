@@ -28,7 +28,7 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('about');
 
 //Update checking
-$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/version2.0/version.txt'));
+$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
 if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	if (FORUM_VERSION < $latest_version) { ?>
 		<div class="alert alert-info alert-update">

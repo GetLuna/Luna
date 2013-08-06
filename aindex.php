@@ -52,7 +52,7 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('index');
 
 //Update checking
-$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/version2.0/version.txt'));
+$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
 if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
 	if (FORUM_VERSION < $latest_version) { ?>
 		<div class="alert alert-info alert-update">
@@ -65,6 +65,11 @@ if (preg_match("/^[0-9.-]{1,}$/", $latest_version)) {
     <?php }
 }
 ?>
+<div class="alert alert-update alert-info">
+    <h2><?php echo $lang_admin_index['ModernBB intro'] ?> <?php echo FORUM_VERSION ?></h2>
+    <a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang_admin_common['Changelog'] ?></a>
+	<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_admin_common['Download'], FORUM_VERSION) ?></a>
+</div>
 <div class="content">
 	<h2><?php echo $lang_admin_index['Welcome head'] ?></h2>
 	<p><?php echo $lang_admin_index['Welcome info'] ?></p>
