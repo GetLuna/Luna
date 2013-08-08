@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.0-beta.1.1');
+define('UPDATE_TO', '2.0-beta.2');
 
 define('UPDATE_TO_DB_REVISION', 24);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -561,7 +561,7 @@ if (empty($stage))
 				<fieldset>
 					<div class="infldset">
 						<label class="required">
-                            <p><?php echo $lang_update['Datbase password info'] ?></p>
+                            <p><?php echo $lang_update['Database password info'] ?></p>
                             <input type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" /><br /></label>
 					</div>
 				</fieldset>
