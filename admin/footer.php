@@ -24,19 +24,7 @@ ob_start();
 <footer>
 	<p class="pull-right"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(' '.$pun_config['o_cur_version'])) ?></p>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <script src="admin/js/bootstrap-transition.js"></script>
-    <script src="admin/js/bootstrap-alert.js"></script>
-    <script src="admin/js/bootstrap-modal.js"></script>
-    <script src="admin/js/bootstrap-dropdown.js"></script>
-    <script src="admin/js/bootstrap-scrollspy.js"></script>
-    <script src="admin/js/bootstrap-tab.js"></script>
-    <script src="admin/js/bootstrap-tooltip.js"></script>
-    <script src="admin/js/bootstrap-popover.js"></script>
-    <script src="admin/js/bootstrap-button.js"></script>
-    <script src="admin/js/bootstrap-collapse.js"></script>
-    <script src="admin/js/bootstrap-carousel.js"></script>
-    <script src="admin/js/bootstrap-typeahead.js"></script>
-    <script src="admin/js/bootstrap-affix.js"></script>
+    <script src="admin/js/bootstrap.js"></script>
 </footer>
 <?php
 
