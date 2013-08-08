@@ -763,7 +763,7 @@ require FORUM_ROOT.'admin/header.php';
                 <table class="table">
                     <tr>
                         <th class="span2"><?php echo $lang_admin_database['Restore from file'] ?></th>
-                        <td><input type="file" name="backup_file" />
+                        <td><input class="form-control" type="file" name="backup_file" />
                         <input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_admin_database['Start restore'] ?>" class="mainoption" /></td>
                     </tr>
                 </table>

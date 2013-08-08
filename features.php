@@ -161,7 +161,7 @@ generate_admin_menu('features');
                 <tr>
                     <th><?php echo $lang_admin_features['Menu items label'] ?></th>
                     <td>
-                        <textarea name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
+                        <textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
                         <br /><span><?php echo $lang_admin_features['Menu items help'] ?></span>
                     </td>
                 </tr>

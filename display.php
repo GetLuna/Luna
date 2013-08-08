@@ -136,35 +136,35 @@ generate_admin_menu('display');
                 <tr>
                     <th><?php echo $lang_admin_display['Topic review label'] ?></th>
                     <td>
-                        <input type="text" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
+                        <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
                         <br /><span><?php echo $lang_admin_display['Topic review help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Topics per page label'] ?></th>
                     <td>
-                        <input type="text" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
+                        <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
                         <br /><span><?php echo $lang_admin_display['Topics per page help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Posts per page label'] ?></th>
                     <td>
-                        <input type="text" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
+                        <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
                         <br /><span><?php echo $lang_admin_display['Posts per page help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Indent label'] ?></th>
                     <td>
-                        <input type="text" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
+                        <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
                         <br /><span><?php echo $lang_admin_display['Indent help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Quote depth label'] ?></th>
                     <td>
-                        <input type="text" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
+                        <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
                         <br /><span><?php echo $lang_admin_display['Quote depth help'] ?></span>
                     </td>
                 </tr>

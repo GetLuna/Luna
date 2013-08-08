@@ -126,8 +126,8 @@ require FORUM_ROOT.'admin/header.php';
             </thead>
             <tbody>
                 <tr>
-                    <td class="tcl"><input type="text" name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
-                    <td class="tc2"><input type="text" name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
+                    <td class="tcl"><input type="text" class="form-control"name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
+                    <td class="tc2"><input type="text" class="form-control"name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
                     <td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="3" /></td>
                 </tr>
             </tbody>
@@ -154,7 +154,7 @@ if ($db->num_rows($result))
 <?php
 
 	while ($cur_rank = $db->fetch_assoc($result))
-		echo "\t\t\t\t\t\t\t\t".'<tr><td class="tcl"><input type="text" name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td class="tc2"><input type="text" name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang_admin_common['Update'].'" />&#160;<input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang_admin_common['Remove'].'" /></td></tr>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<tr><td class="tcl"><input type="text" class="form-control"name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td class="tc2"><input type="text" class="form-control"name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang_admin_common['Update'].'" />&#160;<input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang_admin_common['Remove'].'" /></td></tr>'."\n";
 
 ?>
             </tbody>

@@ -297,14 +297,14 @@ require FORUM_ROOT.'admin/header.php';
                 <tr>
                     <th width="16%"><?php echo $lang_admin_maintenance['Posts per cycle label'] ?></th>
                     <td>
-                        <input type="text" name="i_per_page" size="7" maxlength="7" value="300" tabindex="1" />
+                        <input type="text" class="form-control" name="i_per_page" size="7" maxlength="7" value="300" tabindex="1" />
                         <br /><span><?php echo $lang_admin_maintenance['Posts per cycle help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_maintenance['Starting post label'] ?></th>
                     <td>
-                        <input type="text" name="i_start_at" size="7" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
+                        <input type="text" class="form-control" name="i_start_at" size="7" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
                         <br /><span><?php echo $lang_admin_maintenance['Starting post help'] ?></span>
                     </td>
                 </tr>
@@ -329,7 +329,7 @@ require FORUM_ROOT.'admin/header.php';
                 <tr>
                     <th width="16%"><?php echo $lang_admin_maintenance['Days old label'] ?></th>
                     <td>
-                        <input type="text" name="req_prune_days" size="3" maxlength="3" tabindex="5" />
+                        <input type="text" class="form-control" name="req_prune_days" size="3" maxlength="3" tabindex="5" />
                         <br /><span><?php echo $lang_admin_maintenance['Days old help'] ?></span>
                     </td>
                 </tr>
@@ -344,7 +344,7 @@ require FORUM_ROOT.'admin/header.php';
                 <tr>
                     <th><?php echo $lang_admin_maintenance['Prune from label'] ?></th>
                     <td>
-                        <select name="prune_from" tabindex="7">
+                        <select class="form-control" name="prune_from" tabindex="7">
                             <option value="all"><?php echo $lang_admin_maintenance['All forums'] ?></option>
 <?php
 
@@ -392,14 +392,14 @@ require FORUM_ROOT.'admin/header.php';
                 <tr>
                     <th>Minimum days since registration/last login</th>
                     <td>
-                        <input type="text" name="days" value="28" size="25" tabindex="1" />
+                        <input type="text" class="form-control" name="days" value="28" size="25" tabindex="1" />
                         <br /><span>The minimum number of days before users are pruned by the setting specified above.</span>
                     </td>
                 </tr>
                 <tr>
                     <th>Maximum number of posts</th>
                     <td>
-                        <input type="text" name="posts" value="1"  size="25" tabindex="1" />
+                        <input type="text" class="form-control" name="posts" value="1"  size="25" tabindex="1" />
                         <br /><span>Users with a postcount equal of higher than this won't be pruned. E.g. a value of 1 will remove users with no posts.</span>
                     </td>
                 </tr>

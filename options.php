@@ -182,28 +182,28 @@ generate_admin_menu('global');
                 <tr>
                     <th class="span2"><?php echo $lang_admin_options['Board title label'] ?></th>
                     <td>
-                        <input type="text" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
+                        <input type="text" class="form-control" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
                         <br /><span><?php echo $lang_admin_options['Board title help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Board desc label'] ?></th>
                     <td>
-                        <input type="text" name="form[board_desc]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_desc']) ?>" />
+                        <input type="text" class="form-control" name="form[board_desc]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_desc']) ?>" />
                         <br /><span><?php echo $lang_admin_options['Board desc help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Base URL label'] ?></th>
                     <td>
-                        <input type="text" name="form[base_url]" size="50" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
+                        <input type="text" class="form-control" name="form[base_url]" size="50" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
                         <br /><span><?php echo $lang_admin_options['Base URL help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Timezone label'] ?></th>
                     <td>
-                        <select name="form[default_timezone]">
+                        <select class="form-control" name="form[default_timezone]">
                             <option value="-12"<?php if ($pun_config['o_default_timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-12:00'] ?></option>
                             <option value="-11"<?php if ($pun_config['o_default_timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-11:00'] ?></option>
                             <option value="-10"<?php if ($pun_config['o_default_timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-10:00'] ?></option>
@@ -259,7 +259,7 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Language label'] ?></th>
                     <td>
-                        <select name="form[default_lang]">
+                        <select class="form-control" name="form[default_lang]">
 <?php
 
 		$languages = forum_list_langs();
@@ -280,7 +280,7 @@ generate_admin_menu('global');
                     <tr>
                         <th><?php echo $lang_admin_options['Default style label'] ?></th>
                         <td>
-                            <select name="form[default_style]">
+                            <select class="form-control" name="form[default_style]">
 <?php
 
 		$styles = forum_list_styles();
@@ -312,35 +312,35 @@ generate_admin_menu('global');
                 <tr>
                     <th class="span2"><?php echo $lang_admin_options['Time format label'] ?></th>
                     <td>
-                        <input type="text" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
+                        <input type="text" class="form-control" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
                         <br /><span><?php printf($lang_admin_options['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Date format label'] ?></th>
                     <td>
-                        <input type="text" name="form[date_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_date_format']) ?>" />
+                        <input type="text" class="form-control" name="form[date_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_date_format']) ?>" />
                         <br /><span><?php printf($lang_admin_options['Date format help'], gmdate($pun_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Visit timeout label'] ?></th>
                     <td>
-                        <input type="text" name="form[timeout_visit]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_visit'] ?>" />
+                        <input type="text" class="form-control" name="form[timeout_visit]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_visit'] ?>" />
                         <br /><span><?php echo $lang_admin_options['Visit timeout help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Online timeout label'] ?></th>
                     <td>
-                        <input type="text" name="form[timeout_online]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
+                        <input type="text" class="form-control" name="form[timeout_online]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
                         <br /><span><?php echo $lang_admin_options['Online timeout help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Redirect time label'] ?></th>
                     <td>
-                        <input type="text" name="form[redirect_delay]" size="3" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
+                        <input type="text" class="form-control" name="form[redirect_delay]" size="3" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
                         <br /><span><?php echo $lang_admin_options['Redirect time help'] ?></span>
                     </td>
                 </tr>
@@ -361,7 +361,7 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Feed TTL label'] ?></th>
                     <td>
-                        <select name="form[feed_ttl]">
+                        <select class="form-control" name="form[feed_ttl]">
                             <option value="0"<?php if ($pun_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang_admin_options['No cache'] ?></option>
 <?php
 
@@ -392,7 +392,7 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Mailing list label'] ?></th>
                     <td>
-                        <textarea name="form[mailing_list]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_mailing_list']) ?></textarea>
+                        <textarea class="form-control" name="form[mailing_list]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_mailing_list']) ?></textarea>
                         <br /><span><?php echo $lang_admin_options['Mailing list help'] ?></span>
                     </td>
                 </tr>
@@ -412,28 +412,28 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Upload directory label'] ?></th>
                     <td>
-                        <input type="text" name="form[avatars_dir]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_avatars_dir']) ?>" />
+                        <input type="text" class="form-control" name="form[avatars_dir]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_avatars_dir']) ?>" />
                         <br /><span><?php echo $lang_admin_options['Upload directory help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Max width label'] ?></th>
                     <td>
-                        <input type="text" name="form[avatars_width]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_width'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_width]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_width'] ?>" />
                         <br /><span><?php echo $lang_admin_options['Max width help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Max height label'] ?></th>
                     <td>
-                        <input type="text" name="form[avatars_height]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_height'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_height]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_height'] ?>" />
                         <br /><span><?php echo $lang_admin_options['Max height help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_options['Max size label'] ?></th>
                     <td>
-                        <input type="text" name="form[avatars_size]" size="6" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_size]" size="6" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
                         <br /><span><?php echo $lang_admin_options['Max size help'] ?></span>
                     </td>
                 </tr>
@@ -477,7 +477,7 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Rules label'] ?></th>
                     <td>
-                        <textarea name="form[rules_message]" rows="10" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_rules_message']) ?></textarea>
+                        <textarea class="form-control" name="form[rules_message]" rows="10" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_rules_message']) ?></textarea>
                         <br /><span><?php echo $lang_admin_options['Rules help'] ?></span>
                     </td>
                 </tr>
@@ -493,7 +493,7 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Antispam API label'] ?></th>
                     <td>
-                        <input type="text" name="form[antispam_api]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
+                        <input type="text" class="form-control" name="form[antispam_api]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
                         <br /><span><?php printf($lang_admin_options['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                     </td>
                 </tr>
@@ -513,7 +513,7 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Announcement message label'] ?></th>
                     <td>
-                        <textarea name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
+                        <textarea class="form-control" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
                         <br /><span><?php echo $lang_admin_options['Announcement message help'] ?></span>
                     </td>
                 </tr>
@@ -533,7 +533,7 @@ generate_admin_menu('global');
                 <tr>
                     <th><?php echo $lang_admin_options['Maintenance message label'] ?></th>
                     <td>
-                        <textarea name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
+                        <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
                         <br /><span><?php echo $lang_admin_options['Maintenance message help'] ?></span>
                     </td>
                 </tr>

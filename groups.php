@@ -430,7 +430,7 @@ else if (isset($_GET['del_group']))
         <fieldset>
             <p><?php printf($lang_admin_groups['Move users info'], pun_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
             <label><?php echo $lang_admin_groups['Move users label'] ?>
-            	<select name="move_to_group">
+            	<select class="form-control" name="move_to_group">
 <?php
 
 	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -474,7 +474,7 @@ require FORUM_ROOT.'admin/header.php';
                 <tr>
                     <th width="18%"><?php echo $lang_admin_groups['New group label'] ?></th>
                     <td>
-                        <select id="base_group" name="base_group" tabindex="1">
+                        <select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -501,7 +501,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
                 <tr>
                     <th width="18%"><?php echo $lang_admin_groups['Default group label'] ?></th>
                     <td>
-                        <select id="default_group" name="default_group" tabindex="3">
+                        <select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.FORUM_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
