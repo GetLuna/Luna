@@ -106,14 +106,16 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	generate_admin_menu('bans');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_bans['Ban advanced head'] ?></h2>
+<h2><?php echo $lang_admin_bans['Ban advanced head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Ban advanced subhead'] ?></h3>
+    </div>
     <form id="bans2" method="post" action="bans.php">
         <input type="hidden" name="mode" value="<?php echo $mode ?>" />
 <?php if ($mode == 'edit'): ?>				<input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" />
 <?php endif; ?>				<fieldset>
-            <h3><?php echo $lang_admin_bans['Ban advanced subhead'] ?></h3>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th width="15%"><?php echo $lang_admin_bans['Username label'] ?></th>
                     <td>
@@ -138,9 +140,15 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
             </table>
             <p class="topspace"><strong class="warntext"><?php echo $lang_admin_bans['Ban IP range info'] ?></strong></p>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Message expiry subhead'] ?></h3>
+    </div>
+    <form id="bans2" method="post" action="bans.php">
         <fieldset>
-            <h3><?php echo $lang_admin_bans['Message expiry subhead'] ?></h3>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th width="15%"><?php echo $lang_admin_bans['Ban message label'] ?></th>
                     <td>
@@ -377,26 +385,27 @@ else if (isset($_GET['find_ban']))
 	generate_admin_menu('bans');
 
 ?>
-<div class="content">
-<h2><?php echo $lang_admin_bans['Results head'] ?></h2>
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
-</div>
-
-    <table class="table">
-    <thead>
-        <tr>
-            <th class="tcl" scope="col"><?php echo $lang_admin_bans['Results username head'] ?></th>
-            <th class="tc2" scope="col"><?php echo $lang_admin_bans['Results e-mail head'] ?></th>
-            <th class="tc3" scope="col"><?php echo $lang_admin_bans['Results IP address head'] ?></th>
-            <th class="tc4" scope="col"><?php echo $lang_admin_bans['Results expire head'] ?></th>
-            <th class="tc5" scope="col"><?php echo $lang_admin_bans['Results message head'] ?></th>
-            <th class="tc6" scope="col"><?php echo $lang_admin_bans['Results banned by head'] ?></th>
-            <th class="tcr" scope="col"><?php echo $lang_admin_bans['Results actions head'] ?></th>
-        </tr>
-    </thead>
-    <tbody>
-<?php
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Results head'] ?></h3>
+    </div>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
+        <table class="table">
+        <thead>
+            <tr>
+                <th class="tcl" scope="col"><?php echo $lang_admin_bans['Results username head'] ?></th>
+                <th class="tc2" scope="col"><?php echo $lang_admin_bans['Results e-mail head'] ?></th>
+                <th class="tc3" scope="col"><?php echo $lang_admin_bans['Results IP address head'] ?></th>
+                <th class="tc4" scope="col"><?php echo $lang_admin_bans['Results expire head'] ?></th>
+                <th class="tc5" scope="col"><?php echo $lang_admin_bans['Results message head'] ?></th>
+                <th class="tc6" scope="col"><?php echo $lang_admin_bans['Results banned by head'] ?></th>
+                <th class="tcr" scope="col"><?php echo $lang_admin_bans['Results actions head'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php
 
 	$result = $db->query('SELECT b.id, b.username, b.ip, b.email, b.message, b.expire, b.ban_creator, u.username AS ban_creator_username FROM '.$db->prefix.'bans AS b LEFT JOIN '.$db->prefix.'users AS u ON b.ban_creator=u.id WHERE b.id>0'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
@@ -408,15 +417,15 @@ else if (isset($_GET['find_ban']))
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
-        <tr>
-            <td class="tcl"><?php echo ($ban_data['username'] != '') ? pun_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
-            <td class="tc2"><?php echo ($ban_data['email'] != '') ? $ban_data['email'] : '&#160;' ?></td>
-            <td class="tc3"><?php echo ($ban_data['ip'] != '') ? pun_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
-            <td class="tc4"><?php echo $expire ?></td>
-            <td class="tc5"><?php echo ($ban_data['message'] != '') ? pun_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-            <td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang_admin_bans['Unknown'] ?></td>
-            <td class="tcr"><?php echo $actions ?></td>
-        </tr>
+            <tr>
+                <td class="tcl"><?php echo ($ban_data['username'] != '') ? pun_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
+                <td class="tc2"><?php echo ($ban_data['email'] != '') ? $ban_data['email'] : '&#160;' ?></td>
+                <td class="tc3"><?php echo ($ban_data['ip'] != '') ? pun_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
+                <td class="tc4"><?php echo $expire ?></td>
+                <td class="tc5"><?php echo ($ban_data['message'] != '') ? pun_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
+                <td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang_admin_bans['Unknown'] ?></td>
+                <td class="tcr"><?php echo $actions ?></td>
+            </tr>
 <?php
 
 		}
@@ -425,11 +434,11 @@ else if (isset($_GET['find_ban']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="7">'.$lang_admin_bans['No match'].'</td></tr>'."\n";
 
 ?>
-    </tbody>
+    	</tbody>
     </table>
-
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
 </div>
 <?php
 
@@ -443,11 +452,13 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('bans');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_bans['New ban head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['New ban head'] ?></h3>
+    </div>
     <form id="bans" method="post" action="bans.php?action=more">
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_bans['Username label'] ?></th>
                     <td>
@@ -460,12 +471,14 @@ require FORUM_ROOT.'admin/header.php';
         </fieldset>
     </form>
 </div>
-<div class="content">
-    <h2><?php echo $lang_admin_bans['Ban search head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Ban search head'] ?></h3>
+    </div>
     <form id="find_bans" method="get" action="bans.php">
         <fieldset>
             <p><?php echo $lang_admin_bans['Ban search info'] ?></p>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_bans['Username label'] ?></th>
                     <td><input type="text" class="form-control"name="form[username]" size="25" maxlength="25" tabindex="4" /></td>

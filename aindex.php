@@ -72,30 +72,31 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
 	</div>
 <?php }
 ?>
-<div class="row">
-    <div class="col-3">
-		<div class="panel">
-        	<div class="panel-heading">
-    			<h3 class="panel-title"><?php echo $lang_admin_index['Backup head'] ?></h3>
-            </div>
-            <p><?php echo $lang_admin_index['Backup info'] ?></p>
-            <a class="btn btn-block btn-primary" href="database.php"><?php echo $lang_admin_index['Backup button'] ?></a>
-         </div>
-    </div>
-    <div class="col-9">
-		<div class="panel">
-        	<div class="panel-heading">
-    			<h3 class="panel-title"><?php echo $lang_admin_index['Reports head'] ?> - <a href="reports.php"><?php echo $lang_admin_index['View all'] ?></a></h3>
-            </div>
-            <table class="table" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th><?php echo $lang_admin_index['Reported by'] ?></th>
-                        <th><?php echo $lang_admin_index['Date and time'] ?></th>
-                        <th><?php echo $lang_admin_index['Message'] ?></th>
-                    </tr>
-                </thead>
-                <tbody>
+<div class="index">
+    <div class="row">
+        <div class="col-3">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $lang_admin_index['Backup head'] ?></h3>
+                </div>
+                <p><?php echo $lang_admin_index['Backup info'] ?></p>
+                <a class="btn btn-block btn-primary" href="database.php"><?php echo $lang_admin_index['Backup button'] ?></a>
+             </div>
+        </div>
+        <div class="col-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $lang_admin_index['Reports head'] ?> - <a href="reports.php"><?php echo $lang_admin_index['View all'] ?></a></h3>
+                </div>
+                <table class="table" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th><?php echo $lang_admin_index['Reported by'] ?></th>
+                            <th><?php echo $lang_admin_index['Date and time'] ?></th>
+                            <th><?php echo $lang_admin_index['Message'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'topics AS t ON r.topic_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -109,11 +110,11 @@ if ($db->num_rows($result))
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
-                <tr>
-                    <td><?php printf($reporter) ?></td>
-                    <td><?php printf(format_time($cur_report['created'])) ?></td>
-                    <td><?php echo $post ?></td>
-                </tr>
+                    <tr>
+                        <td><?php printf($reporter) ?></td>
+                        <td><?php printf(format_time($cur_report['created'])) ?></td>
+                        <td><?php echo $post ?></td>
+                    </tr>
 <?php
 
 	}
@@ -122,53 +123,54 @@ else
 {
 
 ?>
-                <tr>
-                    <td colspan="4"><p><?php echo $lang_admin_index['No new reports'] ?></p></td>
-                </tr>
+                    <tr>
+                        <td colspan="4"><p><?php echo $lang_admin_index['No new reports'] ?></p></td>
+                    </tr>
 <?php
 
 }
 
 ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-8">
-		<div class="panel">
-        	<div class="panel-heading">
-    			<h3 class="panel-title"><?php echo $lang_admin_index['About head'] ?></h3>
+    <div class="row">
+        <div class="col-8">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $lang_admin_index['About head'] ?></h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="span3"><?php echo $lang_admin_index['ModernBB version label'] ?></th>
+                            <td><?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php echo $lang_admin_index['Server statistics label'] ?></th>
+                            <td><a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a></td>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="span3"><?php echo $lang_admin_index['ModernBB version label'] ?></th>
-                        <td><?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_admin_index['Server statistics label'] ?></th>
-                        <td><a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a></td>
-                    </tr>
-                </thead>
-            </table>
         </div>
-    </div>
-    <div class="col-4">
-		<div class="panel">
-        	<div class="panel-heading">
-    			<h3 class="panel-title"><?php echo $lang_admin_index['Statistics head'] ?></h3>
+        <div class="col-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $lang_admin_index['Statistics head'] ?></h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br /><?php echo $lang_admin_index['posts'] ?></h4></td>
+                            <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br /><?php echo $lang_admin_index['topics'] ?></h4></td>
+                            <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br /><?php echo $lang_admin_index['users'] ?></h4></td>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br /><?php echo $lang_admin_index['posts'] ?></h4></td>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br /><?php echo $lang_admin_index['topics'] ?></h4></td>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br /><?php echo $lang_admin_index['users'] ?></h4></td>
-                    </tr>
-                </thead>
-            </table>
         </div>
     </div>
 </div>

@@ -174,12 +174,13 @@ if (isset($_GET['ip_stats']))
 	generate_admin_menu('users');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_users['Results head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_users['Results head'] ?></h3>
+    </div>
     <div class="pagepost">
         <p class="pagelink"><?php echo $paging_links ?></p>
     </div>
-    
         <table class="table" cellspacing="0">
         <thead>
             <tr>
@@ -253,8 +254,10 @@ if (isset($_GET['show_users']))
 	generate_admin_menu('users');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_users['Results head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_users['Results head'] ?></h3>
+    </div>
     <div class="pagepost">
         <p class="pagelink"><?php echo $paging_links ?></p>
     </div>
@@ -433,8 +436,10 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_users['Move users'] ?></span></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_users['Move users'] ?></h3>
+    </div>
     <form name="confirm_move_users" method="post" action="users.php">
         <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
         <fieldset>
@@ -579,8 +584,10 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_users['Delete users'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_users['Delete users'] ?></h3>
+    </div>
     <form name="confirm_del_users" method="post" action="users.php">
         <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
             <fieldset>
@@ -695,8 +702,10 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_users['Ban users'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_users['Ban users'] ?></h3>
+    </div>
     <form id="bans2" name="confirm_ban_users" method="post" action="users.php">
         <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
         <fieldset>
@@ -877,8 +886,6 @@ else if (isset($_GET['find_user']))
     <div class="pagepost">
         <p class="pagelink"><?php echo $paging_links ?></p>
     </div>
-    
-    
     <form id="search-users-form" action="users.php" method="post">
         <table class="table" cellspacing="0">
         <thead>
@@ -953,8 +960,10 @@ else
 	generate_admin_menu('users');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_users['User search head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_users['User search head'] ?></h3>
+    </div>
     <form id="find_user" method="get" action="users.php">
         <p><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="1" /></p>
         <fieldset>
@@ -1060,8 +1069,10 @@ else
         <p class="control-group"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang_admin_users['Submit search'] ?>" tabindex="25" /></p>
     </form>
 </div>
-<div class="content">
-    <h2><?php echo $lang_admin_users['IP search head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_users['IP search head'] ?></h3>
+    </div>
     <form method="get" action="users.php">
         <fieldset>
                 <table class="table" cellspacing="0">
@@ -1075,8 +1086,10 @@ else
         </fieldset>
     </form>
 </div>
-<div class="content">
-    <h2>Add user</h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Add user</h3>
+    </div>
     <form id="example" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <fieldset>
             <div class="infldset">

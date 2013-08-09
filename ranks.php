@@ -110,11 +110,13 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('ranks');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_ranks['Ranks head'] ?></h2>
+<h2><?php echo $lang_admin_ranks['Ranks head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_ranks['Add rank subhead'] ?></h3>
+    </div>
     <form id="ranks" method="post" action="ranks.php">
         <fieldset>
-            <h3><?php echo $lang_admin_ranks['Add rank subhead'] ?></h3>
             <p><?php echo $lang_admin_ranks['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_admin_ranks['Ranks enabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_ranks['Ranks disabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>')) ?></p>
             <table class="table" cellspacing="0">
             <thead>
@@ -133,8 +135,14 @@ require FORUM_ROOT.'admin/header.php';
             </tbody>
             </table>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_ranks['Edit remove subhead'] ?></h3>
+    </div>
+    <form id="ranks" method="post" action="ranks.php">
         <fieldset>
-            <h3><?php echo $lang_admin_ranks['Edit remove subhead'] ?></h3>
 <?php
 
 $result = $db->query('SELECT id, rank, min_posts FROM '.$db->prefix.'ranks ORDER BY min_posts') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());

@@ -53,12 +53,14 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('permissions');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_permissions['Permissions head'] ?></span></h2>
+<h2><?php echo $lang_admin_permissions['Permissions head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_permissions['Posting subhead'] ?></h3>
+    </div>
     <form method="post" action="permissions.php">
         <input type="hidden" name="form_sent" value="1" />
         <fieldset>
-            <h3><?php echo $lang_admin_permissions['Posting subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="20%"><?php echo $lang_admin_permissions['BBCode label'] ?></th>
@@ -102,8 +104,14 @@ require FORUM_ROOT.'admin/header.php';
                 </tr>
             </table>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_permissions['Signatures subhead'] ?></h3>
+    </div>
+    <form method="post" action="permissions.php">
         <fieldset>
-            <h3><?php echo $lang_admin_permissions['Signatures subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="20%"><?php echo $lang_admin_permissions['BBCode sigs label'] ?></th>
@@ -145,8 +153,14 @@ require FORUM_ROOT.'admin/header.php';
                 </tr>
             </table>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_permissions['Registration subhead'] ?></h3>
+    </div>
+    <form method="post" action="permissions.php">
         <fieldset>
-            <h3><?php echo $lang_admin_permissions['Registration subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="20%"><?php echo $lang_admin_permissions['Banned e-mail label'] ?></th>
