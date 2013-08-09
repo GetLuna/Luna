@@ -236,12 +236,13 @@ else if (isset($_GET['edit_forum']))
 	generate_admin_menu('forums');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_forums['Edit forum head'] ?></span></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Edit details subhead'] ?></h3>
+    </div>
     <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
         <fieldset>
-            <h3><?php echo $lang_admin_forums['Edit details subhead'] ?></h3>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_forums['Forum name label'] ?></th>
                     <td><input type="text" class="form-control"name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" /></td>
@@ -318,11 +319,17 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                 </tr>
             </table>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Group permissions subhead'] ?></h3>
+    </div>
+    <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
         <fieldset>
-            <h3><?php echo $lang_admin_forums['Group permissions subhead'] ?></h3>
             <p><?php printf($lang_admin_forums['Group permissions info'], '<a href="groups.php">'.$lang_admin_common['User groups'].'</a>') ?></p>
 			<div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php echo $lang_admin_forums['Revert to default'] ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
-            <table class="table table-condensed" cellspacing="0">
+            <table class="table table-condensed">
             <thead>
                 <tr>
                     <th class="atcl">&#160;</th>
@@ -390,11 +397,13 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('forums');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_forums['Add forum head'] ?></span></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Add forum head'] ?></h3>
+    </div>
     <form method="post" action="forums.php?action=adddel">
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_forums['Add forum label'] ?><div></div></th>
                     <td>
@@ -430,8 +439,10 @@ if ($db->num_rows($result) > 0)
 {
 
 ?>
-<div class="content">
-<h2><?php echo $lang_admin_forums['Edit forums head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Edit forum head'] ?></h3>
+    </div>
     <form id="edforum" method="post" action="forums.php?action=edit">
         <fieldset>
 <?php
@@ -448,7 +459,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 ?>
             <h4><?php echo $lang_admin_forums['Category subhead'] ?> <?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
-            <table class="table" cellspacing="0">
+            <table class="table">
             <thead>
                 <tr>
                     <th class="span2"><?php echo $lang_admin_common['Action'] ?></th>

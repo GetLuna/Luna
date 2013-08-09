@@ -160,8 +160,10 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('categories');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_categories['Add categories head'] ?></h3>
+    </div>
     <form method="post" action="categories.php">
         <fieldset>
             <table class="table">
@@ -178,8 +180,10 @@ require FORUM_ROOT.'admin/header.php';
     </form>
 </div>
 <?php if ($num_cats): ?>
-<div class="content">
-    <h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_categories['Delete categories head'] ?></h3>
+    </div>
     <form method="post" action="categories.php">
         <fieldset>
             <table class="table">
@@ -206,8 +210,10 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
 </div>
 <?php endif; ?>
 <?php if ($num_cats): ?>
-<div class="content">
-    <h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_categories['Edit categories head'] ?></h3>
+    </div>
     <form method="post" action="categories.php">
         <fieldset>
             <table class="table" >
