@@ -22,7 +22,10 @@ ob_start();
 
 ?>
 <footer>
-	<p class="pull-right"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(' '.$pun_config['o_cur_version'])) ?></p>
+	<p>
+		<?php printf($lang_common['Thanks'], '<a href="http://modernbb.be/">ModernBB</a>') ?>
+        <span class="pull-right"><?php echo $lang_common['Version'].'&nbsp;'.$pun_config['o_cur_version'] ?></span>
+    </p>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="admin/js/bootstrap.js"></script>
 </footer>

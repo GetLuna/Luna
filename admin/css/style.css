@@ -1,7 +1,16 @@
 /* Essential structure */
+html, body {
+	background: #f2f2f2;
+	font-family: Segoe UI;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Segoe UI;
+}
+
 .container {
 	width: 960px;
-	margin: 60px auto 0;
+	margin: 65px auto 0;
 }
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
@@ -11,12 +20,58 @@
 
 /* Navbar */
 .nav-inner {
-	width: 960px;
+	width: 980px;
 	margin: 0 auto;
 }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{
     display: block;    
+}
+
+.navbar {
+	border-bottom: #0b82cd 5px solid;
+	box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
+	background: #222222;
+}
+
+.navbar-brand {
+	background: #0b82cd;
+	color: #fff;
+	margin-left: 0;
+	margin-right: 0;
+	text-transform: lowercase;
+}
+
+.nav > li {
+	margin-left: 0px;
+}
+
+.nav > li > a {
+	color: #fff;
+}
+
+.navbar-nav > .dropdown > a .caret, .navbar-nav > .dropdown > a:hover .caret, .navbar-nav > .dropdown > a:focus .caret {
+	border-top-color: #fff;
+	border-bottom-color: #fff;
+}
+
+.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+	color: #fff;
+	background-color: #2ca0e9;
+}
+
+.nav .navbar-nav .pull-right {
+	padding-right: -10px;
+}
+
+/* Input */
+.form-control {
+	border-radius: 0;
+}
+
+/* Buttons */
+.btn {
+	border-radius: 0;
 }
 
 /* Panels */
@@ -30,6 +85,8 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .panel-heading {
 	border-radius: 0;
 	border: none;
+	background: #2ca0e9;
+	color: #fff;
 }
 
 .row .panel .row {
@@ -42,6 +99,9 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	box-shadow: 4px 4px 7px 0px rgba(221,221,221,0.37);
 	border: none;
 	border-radius: 0;
+	margin-bottom: 10px;
+	background-color: #ffffff;
+	border-left: #f79f13 5px solid;
 }
 
 .alert-update {
@@ -49,33 +109,13 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	margin-left: -10px;
 }
 
+.alert-info {
+	background-color: #ffffff;
+	border-left: #2ea2cc 5px solid;
+}
+
 /* Tables */
 .table {
 	margin-top: -10px;
 	margin-bottom: -10px;
-}
-
-/* Kleurscheme */
-html, body {
-	background: #f2f2f2;
-	font-family: Segoe UI;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: Segoe UI;
-}
-
-.panel-heading {
-	background: #2ca0e9;
-	color: #fff;
-}
-
-.alert {
-	background-color: #ffffff;
-	border-left: #f79f13 5px solid;
-}
-
-.alert-info {
-	background-color: #ffffff;
-	border-left: #2ea2cc 5px solid;
 }

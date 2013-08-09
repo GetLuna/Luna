@@ -37,8 +37,7 @@ $lang_admin_common = array(
 'Server statistics'		=>  'Server statistics',
 
 // Update service
-'Available'				=>	'ModernBB v%s available',
-'Update info'			=>	'We\'ve found a new version of ModernBB on the web. Your board is out-of-date and we recommend you to update right away!',
+'Available'				=>	'An update, ModernBB v%s available, is available',
 'Download'				=>	'Download v%s',
 'Changelog'				=>	'Changelog',
 

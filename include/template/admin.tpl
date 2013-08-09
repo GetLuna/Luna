@@ -7,7 +7,9 @@
 		<link rel="stylesheet" type="text/css" href="admin/css/style.css" />
 	</head>
 	<body>
-		<pun_main>
-		<pun_footer>
+    	<div class="container">
+        	<pun_main>
+       		<pun_footer>
+		</div>
 	</body>
 </html>
