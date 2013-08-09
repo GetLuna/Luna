@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: Segoe UI;
 }
 
+h2 {
+	margin-top: 0;
+}
+
 .container {
 	width: 960px;
 	margin: 65px auto 0;
@@ -75,6 +79,16 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 /* Panels */
+.index > .row {
+	margin-left: -5px;
+	width: 990px;
+}
+
+.row {
+	margin-left: -10px;
+	width: 980px;
+}
+
 .panel {
 	border-radius: 0;
 	border: none;
@@ -90,8 +104,8 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 .row .panel .row {
-  margin-right: -5px;
-  margin-left: -5px;
+	margin-right: -5px;
+	margin-left: -5px;
 }
 
 /* Alerts */
@@ -106,7 +120,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .alert-update {
 	width: 980px;
-	margin-left: -10px;
 }
 
 .alert-info {

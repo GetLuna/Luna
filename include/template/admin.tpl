@@ -8,8 +8,10 @@
 	</head>
 	<body>
     	<div class="container">
-        	<pun_main>
-       		<pun_footer>
+            <div class="row">
+                <pun_main>
+                <pun_footer>
+            </div>
 		</div>
 	</body>
 </html>
