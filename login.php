@@ -287,14 +287,14 @@ require FORUM_ROOT.'header.php';
                 <input type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
             </div>
         </div>
-        <p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a></span></p>
+        <p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a> &middot; <a href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a></span></p>
         <div class="control-group">
             <div class="controls">
                 <label><input type="checkbox" name="save_pass" value="1" tabindex="3" /> <?php echo $lang_login['Remember me'] ?></label>
             </div>
         </div>
         <div class="control-group pull-right">
-            <a class="btn" href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a><input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang_common['Login'] ?>" tabindex="4" />
+            <input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang_common['Login'] ?>" tabindex="4" />
         </div>
     </fieldset>
 </form>

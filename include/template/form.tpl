@@ -11,21 +11,16 @@
 		body {
             padding-top: 60px;
             padding-bottom: 40px;
-            background-color: #f5f5f5;
+            background-color: #f2f2f2;
         }
         .form-signin {
-            max-width: 300px;
-			max-height: 250px;
+            max-width: 340px;
             padding: 19px 29px 29px;
             margin: 0 auto 20px;
             background-color: #fff;
-            border: 1px solid #e5e5e5;
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-			border-radius: .3em;
+			border-left: #2ca0e9 5px solid;
+			box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
         }
-		input {
-			width: 280px;
-		}
         .form-pass {
             padding: 19px 29px 4px;
         }
@@ -43,7 +38,7 @@
 			text-transform: lowercase;
 		}
         .btn {
-            margin-top: -64px;
+            margin-top: -50px;
         }
         </style>
         <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
