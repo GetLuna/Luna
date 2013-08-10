@@ -84,6 +84,15 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	width: 990px;
 }
 
+.about > .row {
+	margin-left: -5px;
+	width: 990px;
+}
+
+.about > .row .panel .row {
+	width: 960px;
+}
+
 .row {
 	margin-left: -10px;
 	width: 980px;
