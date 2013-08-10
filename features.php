@@ -72,12 +72,14 @@ require FORUM_ROOT.'admin/header.php';
 generate_admin_menu('features');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_features['Features head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_features['Features head'] ?></h3>
+    </div>
     <form method="post" action="features.php">
         <input type="hidden" name="form_sent" value="1" />
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th class="span2"><?php echo $lang_admin_features['Quick post label'] ?></th>
                     <td>

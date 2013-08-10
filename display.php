@@ -80,12 +80,14 @@ require FORUM_ROOT.'admin/header.php';
 generate_admin_menu('display');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_display['Display head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_display['Display head'] ?></h3>
+    </div>
     <form method="post" action="display.php">
         <input type="hidden" name="form_sent" value="1" />
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th class="span2"><?php echo $lang_admin_display['Version number label'] ?></th>
                     <td>

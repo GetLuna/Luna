@@ -210,8 +210,10 @@ if ($action == 'prune')
 	generate_admin_menu('maintenance');
 
 ?>
-<div class="content">
-	<h2><?php echo $lang_admin_maintenance['Prune head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_maintenance['Prune head'] ?></h3>
+    </div>
     <form method="post" action="maintenance.php">
         <input type="hidden" name="action" value="prune" />
         <input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
@@ -287,8 +289,10 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('maintenance');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_maintenance['Rebuild index subhead'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_maintenance['Rebuild index subhead'] ?></h3>
+    </div>
     <form method="get" action="maintenance.php">
         <input type="hidden" name="action" value="rebuild" />
         <fieldset>
@@ -320,8 +324,10 @@ require FORUM_ROOT.'admin/header.php';
         </fieldset>
     </form>
 </div>
-<div class="content">
-	<h2><?php echo $lang_admin_maintenance['Prune subhead'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_maintenance['Prune subhead'] ?></h3>
+    </div>
     <form method="post" action="maintenance.php" onsubmit="return process_form(this)">
         <input type="hidden" name="action" value="prune" />
         <fieldset>
@@ -377,8 +383,10 @@ require FORUM_ROOT.'admin/header.php';
         </fieldset>
     </form>
 </div>
-<div class="content">
-    <h2>Prune users</h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Prune users</h3>
+    </div>
     <form id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <fieldset>
             <table class="table" cellspacing="0">

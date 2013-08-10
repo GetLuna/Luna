@@ -77,8 +77,10 @@ require FORUM_ROOT.'admin/header.php';
 generate_admin_menu('email');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_email['E-mail head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_email['E-mail head'] ?></h3>
+    </div>
     <form method="post" action="email.php">
         <input type="hidden" name="form_sent" value="1" />
         <fieldset>
