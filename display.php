@@ -93,7 +93,7 @@ generate_admin_menu('display');
                     <td>
                         <label class="conl"><input type="radio" name="form[show_version]" value="1"<?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[show_version]" value="0"<?php if ($pun_config['o_show_version'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_display['Version number help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Version number help'] ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +101,7 @@ generate_admin_menu('display');
                     <td>
                         <label class="conl"><input type="radio" name="form[show_user_info]" value="1"<?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[show_user_info]" value="0"<?php if ($pun_config['o_show_user_info'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_display['Info in posts help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Info in posts help'] ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -109,7 +109,7 @@ generate_admin_menu('display');
                     <td>
                         <label class="conl"><input type="radio" name="form[show_post_count]" value="1"<?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[show_post_count]" value="0"<?php if ($pun_config['o_show_post_count'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_display['Post count help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Post count help'] ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -117,7 +117,7 @@ generate_admin_menu('display');
                     <td>
                         <label class="conl"><input type="radio" name="form[smilies]" value="1"<?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[smilies]" value="0"<?php if ($pun_config['o_smilies'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_display['Smilies help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Smilies help'] ?></span>
                     </td>
                 </tr>
                 <tr>
@@ -125,49 +125,49 @@ generate_admin_menu('display');
                     <td>
                         <label class="conl"><input type="radio" name="form[smilies_sig]" value="1"<?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                         <label class="conl"><input type="radio" name="form[smilies_sig]" value="0"<?php if ($pun_config['o_smilies_sig'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="clearb"><?php echo $lang_admin_display['Smilies sigs help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Smilies sigs help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Clickable links label'] ?></th>
                     <td>
                         <input type="radio" name="form[make_links]" id="form_make_links_1" value="1"<?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> />&#160;<label class="conl" for="form_make_links_1"><strong><?php echo $lang_admin_common['Yes'] ?></strong></label>&#160;&#160;&#160;<input type="radio" name="form[make_links]" id="form_make_links_0" value="0"<?php if ($pun_config['o_make_links'] == '0') echo ' checked="checked"' ?> />&#160;<label class="conl" for="form_make_links_0"><strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span><?php echo $lang_admin_display['Clickable links help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Clickable links help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Topic review label'] ?></th>
                     <td>
                         <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
-                        <br /><span><?php echo $lang_admin_display['Topic review help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Topic review help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Topics per page label'] ?></th>
                     <td>
                         <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
-                        <br /><span><?php echo $lang_admin_display['Topics per page help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Topics per page help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Posts per page label'] ?></th>
                     <td>
                         <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
-                        <br /><span><?php echo $lang_admin_display['Posts per page help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Posts per page help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Indent label'] ?></th>
                     <td>
                         <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
-                        <br /><span><?php echo $lang_admin_display['Indent help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Indent help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_display['Quote depth label'] ?></th>
                     <td>
                         <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
-                        <br /><span><?php echo $lang_admin_display['Quote depth help'] ?></span>
+                        <span class="help-block"><?php echo $lang_admin_display['Quote depth help'] ?></span>
                     </td>
                 </tr>
             </table>
