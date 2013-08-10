@@ -458,33 +458,33 @@ while ($cur_forum = $db->fetch_assoc($result))
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-            <h4><?php echo $lang_admin_forums['Category subhead'] ?> <?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
+            <h4><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
             <table class="table">
-            <thead>
-                <tr>
-                    <th class="span2"><?php echo $lang_admin_common['Action'] ?></th>
-                    <th class="span4"><?php echo $lang_admin_forums['Position label'] ?></th>
-                    <th><?php echo $lang_admin_forums['Forum label'] ?></th>
-                </tr>
-            </thead>
-            <tbody>
+                <thead>
+                    <tr>
+                        <th class="span2"><?php echo $lang_admin_common['Action'] ?></th>
+                        <th class="span4"><?php echo $lang_admin_forums['Position label'] ?></th>
+                        <th><?php echo $lang_admin_forums['Forum label'] ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
 		$cur_category = $cur_forum['cid'];
 	}
 
 ?>
-                <tr>
-                    <td><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> | <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
-                    <td><input type="text" class="form-control"name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
-                    <td><strong><?php echo ($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-                </tr>
+                    <tr>
+                        <td><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> | <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
+                        <td><input type="text" class="form-control"name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+                        <td><strong><?php echo ($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+                    </tr>
 <?php
 
 }
 
 ?>
-            </tbody>
+                </tbody>
             </table>
         </fieldset>
         <div class="control-group">
