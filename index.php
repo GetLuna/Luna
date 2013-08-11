@@ -78,20 +78,19 @@ while ($cur_forum = $db->fetch_assoc($result))
 		$forum_count = 0;
 
 ?>
-<div id="idx<?php echo $cat_count ?>" class="blocktable">
-	<h2><span><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_common['Forum'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_index['Topics'] ?></th>
-					<th class="tc3" scope="col"><?php echo $lang_common['Posts'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang_common['Last post'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+<div id="idx<?php echo $cat_count ?>">
+	<div>
+		<div>
+			<table class="table">
+                <thead>
+                    <tr class="active">
+                        <th class="col-8"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></th>
+                        <th class="col-1"><?php echo $lang_index['Topics'] ?></th>
+                        <th class="col-1"><?php echo $lang_common['Posts'] ?></th>
+                        <th class="col-2"><?php echo $lang_common['Last post'] ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
 		$cur_category = $cur_forum['cid'];
@@ -122,14 +121,14 @@ while ($cur_forum = $db->fetch_assoc($result))
 	// Is this a redirect forum?
 	if ($cur_forum['redirect_url'] != '')
 	{
-		$forum_field = '<h3><span class="redirtext">'.$lang_index['Link to'].'</span> <a href="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" title="'.$lang_index['Link to'].' '.pun_htmlspecialchars($cur_forum['redirect_url']).'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a></h3>';
+		$forum_field = '<span class="redirtext">'.$lang_index['Link to'].'</span> <a href="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" title="'.$lang_index['Link to'].' '.pun_htmlspecialchars($cur_forum['redirect_url']).'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>';
 		$num_topics = $num_posts = '-';
 		$item_status .= ' iredirect';
 		$icon_type = 'icon';
 	}
 	else
 	{
-		$forum_field = '<h3><a href="viewforum.php?id='.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '').'</h3>';
+		$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		$num_topics = $cur_forum['num_topics'];
 		$num_posts = $cur_forum['num_posts'];
 		if (isset($sfdb[$cur_forum['fid']]))
@@ -199,12 +198,12 @@ while ($cur_forum = $db->fetch_assoc($result))
 	}
 
 ?>
-				<tr class="<?php echo $item_status ?>">
-					<td class="tcl">
-						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
-						<div class="tclcon">
-							<div>
-								<?php echo $forum_field."\n".$moderators ?>
+                    <tr class="<?php echo $item_status ?>">
+                        <td class="tcl">
+                            <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
+                            <div class="tclcon">
+                                <div>
+                                    <?php echo $forum_field."\n".$moderators ?>
 <?php
 				$sub_forums_list = array();
 				if (!empty($sfdb) && isset($sfdb[$cur_forum['fid']]))
@@ -212,31 +211,20 @@ while ($cur_forum = $db->fetch_assoc($result))
 					foreach ($sfdb[$cur_forum['fid']] as $cur_subforum)
 						$sub_forums_list[] = '<a class="subforum_name" href="viewforum.php?id='.$cur_subforum['id'].'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a>';
 
-					// EDIT THIS FOR THE DISPLAY STYLE OF THE SUBFORUMS ON MAIN PAGE
 					if(!empty($sub_forums_list))
 					{
-						// Leave one $sub_forums_list commented out to use the other (between the ###..)
-						################################
-						// This is Single Line Wrap Style
-						$sub_forums_list = "\t\t\t\t\t\t\t\t".'<span class="subforum">'.$lang_common['Sub forums'].':</span> '.implode(', ', $sub_forums_list)."\n";
-						// This is List Style
-						//$sub_forums_list = "\n".'<b><em>'.$lang_common['Sub forums'].':</em></b><br />&nbsp; -- &nbsp;'.implode('<br />&nbsp; -- &nbsp;', $sub_forums_list)."\n";
-						################################
-						/* if ($cur_forum['forum_desc'] != NULL)
-						echo "<br />";
-						*/
-						// TO TURN OFF DISPLAY OF SUBFORUMS ON INDEX PAGE, COMMENT OUT THE FOLLOWING LINE
+						$sub_forums_list = "\t\t\t\t\t\t\t\t".'<span class="subforums"><span class="subforum">'.$lang_common['Sub forums'].':</span> '.implode(', ', $sub_forums_list).'</span>'."\n";
 						echo $sub_forums_list;
 					}
 				}
 ?>
-							</div>
-						</div>
-					</td>
-					<td class="tc2"><?php echo forum_number_format($num_topics) ?></td>
-					<td class="tc3"><?php echo forum_number_format($num_posts) ?></td>
-					<td class="tcr"><?php echo $last_post ?></td>
-				</tr>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="tc2"><?php echo forum_number_format($num_topics) ?></td>
+                        <td class="tc3"><?php echo forum_number_format($num_posts) ?></td>
+                        <td class="tcr"><?php echo $last_post ?></td>
+                    </tr>
 <?php
 
 }
@@ -268,33 +256,18 @@ if ($pun_user['g_view_users'] == '1')
 else
 	$stats['newest_user'] = pun_htmlspecialchars($stats['last_user']['username']);
 
-if (!empty($forum_actions))
-{
-
 ?>
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<p class="subscribelink clearb"><?php echo implode(' - ', $forum_actions); ?></p>
-	</div>
-</div>
-<?php
-
-}
-
-?>
-<div id="brdstats" class="block">
-	<h2><span><?php echo $lang_index['Board info'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<dl class="conr">
-				<dt><strong><?php echo $lang_index['Board stats'] ?></strong></dt>
-				<dd><span><?php printf($lang_index['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></dd>
-				<dd><span><?php printf($lang_index['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></dd>
-				<dd><span><?php printf($lang_index['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></dd>
-			</dl>
-			<dl class="conl">
-				<dt><strong><?php echo $lang_index['User info'] ?></strong></dt>
-				<dd><span><?php printf($lang_index['Newest user'], $stats['newest_user']) ?></span></dd>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_index['Board stats'] ?></h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td class="col-2"><span><?php printf($lang_index['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></td>
+                <td class="col-2"><span><?php printf($lang_index['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></td>
+                <td class="col-2"><span><?php printf($lang_index['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></td>
+    	        <td class="col-2"><span><?php printf($lang_index['Newest user'], $stats['newest_user']) ?></span></td>
 <?php
 
 if ($pun_config['o_users_online'] == '1')
@@ -309,20 +282,23 @@ if ($pun_config['o_users_online'] == '1')
 		if ($pun_user_online['user_id'] > 1)
 		{
 			if ($pun_user['g_view_users'] == '1')
-				$users[] = "\n\t\t\t\t".'<dd><a href="profile.php?id='.$pun_user_online['user_id'].'">'.pun_htmlspecialchars($pun_user_online['ident']).'</a>';
+				$users[] = "\n\t\t\t\t".'<td class="col-2"><a href="profile.php?id='.$pun_user_online['user_id'].'">'.pun_htmlspecialchars($pun_user_online['ident']).'</a>';
 			else
-				$users[] = "\n\t\t\t\t".'<dd>'.pun_htmlspecialchars($pun_user_online['ident']);
+				$users[] = "\n\t\t\t\t".'<td class="col-2">'.pun_htmlspecialchars($pun_user_online['ident']);
 		}
 		else
 			++$num_guests;
 	}
 
 	$num_users = count($users);
-	echo "\t\t\t\t".'<dd><span>'.sprintf($lang_index['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></dd>'."\n\t\t\t\t".'<dd><span>'.sprintf($lang_index['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></dd>'."\n\t\t\t".'</dl>'."\n";
-
-
+	echo "\t\t\t\t".'<td class="col-2"><span>'.sprintf($lang_index['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></td>'."\n\t\t\t\t".'<td><span>'.sprintf($lang_index['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></td>'."\n\t\t\t".'</dl>'."\n";
+?>
+            </tr>
+        </thead>
+    </table>
+<?php
 	if ($num_users > 0)
-		echo "\t\t\t".'<dl id="onlinelist" class="clearb">'."\n\t\t\t\t".'<dt><strong>'.$lang_index['Online'].' </strong></dt>'."\t\t\t\t".implode(',</dd> ', $users).'</dd>'."\n\t\t\t".'</dl>'."\n";
+		echo "\t\t\t\n\t\t\t\t".'<strong>'.$lang_index['Online'].' </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n";
 	else
 		echo "\t\t\t".'<div class="clearer"></div>'."\n";
 
@@ -332,8 +308,6 @@ else
 
 
 ?>
-		</div>
-	</div>
 </div>
 <?php
 

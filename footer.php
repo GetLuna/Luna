@@ -21,7 +21,7 @@ ob_end_clean();
 ob_start();
 
 ?>
-<div id="brdfooter" class="block">
+<footer>
 	<div class="box">
 <?php
 
@@ -61,30 +61,6 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 
 ?>
 		<div id="brdfooternav" class="inbox">
-<?php
-
-echo "\t\t\t".'<div class="conl">'."\n";
-
-// Display the "Jump to" drop list
-if ($pun_config['o_quickjump'] == '1')
-{
-	// Load cached quick jump
-	if (file_exists(FORUM_CACHE_DIR.'cache_quickjump_'.$pun_user['g_id'].'.php'))
-		include FORUM_CACHE_DIR.'cache_quickjump_'.$pun_user['g_id'].'.php';
-
-	if (!defined('FORUM_QJ_LOADED'))
-	{
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
-
-		generate_quickjump_cache($pun_user['g_id']);
-		require FORUM_CACHE_DIR.'cache_quickjump_'.$pun_user['g_id'].'.php';
-	}
-}
-
-echo "\t\t\t".'</div>'."\n";
-
-?>
 			<div class="conr">
 <?php
 
@@ -94,32 +70,33 @@ $footer_style = isset($footer_style) ? $footer_style : NULL;
 if ($footer_style == 'index')
 {
 	if ($pun_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;type=rss">'.$lang_common['RSS active topics feed'].'</a></span></p>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;type=rss">'.$lang_common['RSS active topics feed'].'</a></span>'."\n";
 	else if ($pun_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;type=atom">'.$lang_common['Atom active topics feed'].'</a></span></p>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;type=atom">'.$lang_common['Atom active topics feed'].'</a></span>'."\n";
 }
 else if ($footer_style == 'viewforum')
 {
 	if ($pun_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=rss">'.$lang_common['RSS forum feed'].'</a></span></p>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=rss">'.$lang_common['RSS forum feed'].'</a></span>'."\n";
 	else if ($pun_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=atom">'.$lang_common['Atom forum feed'].'</a></span></p>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=atom">'.$lang_common['Atom forum feed'].'</a></span>'."\n";
 }
 else if ($footer_style == 'viewtopic')
 {
 	if ($pun_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss">'.$lang_common['RSS topic feed'].'</a></span></p>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss">'.$lang_common['RSS topic feed'].'</a></span>'."\n";
 	else if ($pun_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom">'.$lang_common['Atom topic feed'].'</a></span></p>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom">'.$lang_common['Atom topic feed'].'</a></span>'."\n";
 }
 
 ?>
-				<p id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></p>
+				<span class="pull-right" id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></span></p>
 			</div>
-			<div class="clearer"></div>
 		</div>
 	</div>
-</div>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="admin/js/bootstrap.js"></script>
+<footer>
 <?php
 
 // Display debug info (if enabled/defined)

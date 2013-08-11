@@ -94,7 +94,7 @@ function generate_admin_menu($page = '')
                 </ul>
             </li>
 <?php } ?>
-	</ul>
+		</ul>
         <ul class="nav navbar-nav pull-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
