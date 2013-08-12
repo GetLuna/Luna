@@ -124,8 +124,270 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	padding-right: -10px;
 }
 
+/* Post messages */
+.bblinks {
+	padding-top: 0;
+	float: right;
+}
 
+.bblinks li {
+	display: inline;
+}
 
+.bblinks li span {
+	background: url(Earth/img/help.png) center left no-repeat;
+	margin-right: 8px;
+	padding-left: 20px;
+	display: inline-block;
+}
+
+.blockpost .postbody {
+	border-left-style: solid;
+	border-left-width: 1px;
+	float: right;
+	margin-right: -218px;
+	position: relative;
+	text-align: left;
+	width: 100%;
+}
+
+.blockpost .postleft {
+	padding: 7px 12px 7px 18px;
+	float: left;
+	position: relative;
+}
+
+.blockpost .postfoot li span {
+	display: inline-block;
+	padding-left: 16px;
+	margin-left: 8px;
+	line-height: normal;
+	background: url(Earth/img/bull.png) center left no-repeat;
+}
+
+.username {
+	margin: 0;
+	margin-top: -15px;
+}
+
+.time-nr {
+	font-size: 70%;
+	color: #ccc;
+}
+
+/* Buttons */
+.btn {
+	display: inline-block;
+	padding: 4px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	color: #333;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background: #f5f5f5;
+	border: 1px solid #ccc;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	border-bottom-color: #b3b3b3;
+	border-radius: 0;
+	font-weight: 500;
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn.active, .btn.disabled, .btn[disabled] {
+	color: #333;
+	background: #e6e6e6;
+}
+
+.btn:active, .btn.active {
+	background-color: #ccc 9;
+}
+
+.btn:hover, .btn:focus {
+	color: #333;
+	text-decoration: none;
+	background-position: 0 -15px;
+	transition: background-position 0.1s linear;
+}
+
+.btn:focus {
+	outline: thin dotted #333;
+	outline-offset: -2px;
+}
+
+.btn.active, .btn:active {
+	background: none;
+	outline: 0;
+}
+
+.btn.disabled, .btn[disabled] {
+	cursor: default;
+	background: none;
+	opacity: 0.65;
+}
+
+.btn-large {
+	padding: 11px 19px;
+	font-size: 17.5px;
+}
+
+.btn-large [class^="icon-"], .btn-large [class*=" icon-"] {
+	margin-top: 4px;
+}
+
+.btn-small {
+	padding: 2px 10px;
+	font-size: 11.9px;
+}
+
+.btn-small [class^="icon-"], .btn-small [class*=" icon-"] {
+	margin-top: 0;
+}
+
+.btn-mini [class^="icon-"], .btn-mini [class*=" icon-"] {
+	margin-top: -1px;
+}
+
+.btn-mini {
+	padding: 0 6px;
+	font-size: 10.5px;
+}
+
+.btn-block {
+	display: block;
+	width: 100%;
+	padding-right: 0;
+	padding-left: 0;
+	box-sizing: border-box;
+}
+
+.btn-block + .btn-block {
+	margin-top: 5px;
+}
+
+input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="button"].btn-block {
+	width: 100%;
+}
+
+.btn-primary.active, .btn-warning.active, .btn-danger.active, .btn-success.active, .btn-info.active, .btn-inverse.active {
+	color: rgba(255,255,255,0.75);
+}
+
+.btn-primary {
+	color: #fff;
+	background: #2f92e7;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	color: #fff;
+	background: #2f76e7;
+}
+
+.btn-primary:active, .btn-primary.active {
+	background-color: #175dcc 9;
+}
+
+.btn-warning {
+	color: #fff;
+	background: #dd5600;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning.disabled, .btn-warning[disabled] {
+	color: #fff;
+	background: #dd5600;
+}
+
+.btn-warning:active, .btn-warning.active {
+	background-color: #aa4200 9;
+}
+
+.btn-danger {
+	color: #fff;
+	background: #c32627;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .btn-danger.disabled, .btn-danger[disabled] {
+	color: #fff;
+	background: #bd362f;
+}
+
+.btn-danger:active, .btn-danger.active {
+	background-color: #942a25 9;
+}
+
+.btn-success {
+	color: #fff;
+	background: #65a643;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled] {
+	color: #fff;
+	background: #51a351;
+}
+
+.btn-success:active, .btn-success.active {
+	background-color: #408140 9;
+}
+
+.btn-info {
+	color: #fff;
+	background: #6d76b3;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
+	color: #fff;
+	background: #2f96b4;
+}
+
+.btn-info:active, .btn-info.active {
+	background-color: #24748c 9;
+}
+
+.btn-inverse {
+	color: #fff;
+	background: #0f3253;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+
+.btn-inverse:hover, .btn-inverse:focus, .btn-inverse:active, .btn-inverse.active, .btn-inverse.disabled, .btn-inverse[disabled] {
+	color: #fff;
+	background: #222;
+}
+
+.btn-inverse:active, .btn-inverse.active {
+	background-color: #080808 9;
+}
+
+button.btn::-moz-focus-inner:, input[type="submit"].btn: {
+	padding: 0;
+	border: 0;
+}
+
+.btn-link, .btn-link:active, .btn-link[disabled] {
+	background: transparent none;
+}
+
+.btn-link {
+	color: #2fa4e7;
+	cursor: pointer;
+	border-color: transparent;
+}
+
+.btn-link:hover, .btn-link:focus {
+	color: #157ab5;
+	text-decoration: underline;
+	background: transparent;
+}
+
+.btn-link[disabled]:hover, .btn-link[disabled]:focus {
+	color: #333;
+	text-decoration: none;
+}
 
 
 
@@ -704,24 +966,6 @@ MAIN POSTS
 	width: 100%;
 }
 
-.pun .blockpost .postbody, .pun .blockpost .postfoot {
-	border-left-style: solid;
-	border-left-width: 1px;
-	float: right;
-	margin-right: -218px;
-	position: relative;
-	text-align: left;
-	width: 100%;
-}
-
-.pun .blockpost .postleft, .pun .blockpost .postfootleft {
-	width: 194px;
-	padding: 7px 12px 7px 12px;
-	float: left;
-	margin-left: -218px;
-	position: relative;
-}
-
 .pun .blockpost .postleft dl {
 	padding: 0;
 }
@@ -765,28 +1009,6 @@ MAIN POSTS
 	width:100%;
 	overflow: hidden;
 	word-wrap: break-word;
-}
-
-.pun .blockpost .postfootright {
-	position: relative;
-	padding: 7px 230px 7px 18px;
-	text-align: right;
-}
-
-.pun .postfoot p, .pun .postfoot ul {
-	padding: 0;
-}
-
-.pun .blockpost .postfootright li {
-	display: inline;
-}
-
-.pun .blockpost .postfootright li span {
-	display: inline-block;
-	padding-left: 16px;
-	margin-left: 8px;
-	line-height: normal;
-	background: url(Earth/img/bull.png) center left no-repeat;
 }
 
 .pun .blockpost .usercontacts {
@@ -1134,29 +1356,6 @@ MAIN FORMS
 .pun #quickpost .txtarea {
 	padding-right: 12px;
 	position: relative;
-}
-
-.pun .blockform .bblinks {
-	padding-top: 0;
-}
-
-.pun .blockform .bblinks li {
-	display: inline;
-}
-
-.pun .blockform .bblinks li span {
-	background: url(Earth/img/help.png) center left no-repeat;
-	margin-right: 8px;
-	padding-left: 20px;
-	display: inline-block;
-}
-
-.pun #quickpost .bblinks {
-	padding-top: 0;
-}
-
-.pun #quickpost .bblinks li {
-	display: inline;
 }
 
 .pun #login p.clearb {
