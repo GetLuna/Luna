@@ -177,22 +177,16 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-            <?php if ($cur_topic['parent_forum']) echo "\t\t".'<li><span>»&#160;</span><a href="viewforum.php?id='.$cur_topic['parent_forum_id'].'">'.pun_htmlspecialchars($cur_topic['parent_forum']).'</a></li> '; ?>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></strong></a></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+    <?php if ($cur_topic['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_topic['parent_forum_id'].'">'.pun_htmlspecialchars($cur_topic['parent_forum']).'</a></li> '; ?>
+    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+</ul>
+<div class="pagepost">
+    <p class="pagelink conl"><?php echo $paging_links ?></p>
 <?php echo $post_link ?>
-		</div>
-		<div class="clearer"></div>
-	</div>
 </div>
-
 <?php
 
 
@@ -226,7 +220,7 @@ while ($cur_post = $db->fetch_assoc($result))
 	if ($cur_post['poster_id'] > 1)
 	{
 		if ($pun_user['g_view_users'] == '1')
-			$username = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.pun_htmlspecialchars($cur_post['username']).'</a>';
+			$username = '<a href="profile.php?id='.$cur_post['poster_id'].'"><h4 class="username">'.pun_htmlspecialchars($cur_post['username']).'</h4></a>';
 		else
 			$username = pun_htmlspecialchars($cur_post['username']);
 
@@ -302,31 +296,31 @@ while ($cur_post = $db->fetch_assoc($result))
 	if (!$is_admmod)
 	{
 		if (!$pun_user['is_guest'])
-			$post_actions[] = '<li class="postreport"><span><a href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a></span></li>';
+			$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
 
 		if ($cur_topic['closed'] == '0')
 		{
 			if ($cur_post['poster_id'] == $pun_user['id'])
 			{
 				if ((($start_from + $post_count) == 1 && $pun_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $pun_user['g_delete_posts'] == '1'))
-					$post_actions[] = '<li class="postdelete"><span><a href="delete.php?id='.$cur_post['id'].'">'.$lang_topic['Delete'].'</a></span></li>';
+					$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang_topic['Delete'].'</a>';
 				if ($pun_user['g_edit_posts'] == '1')
-					$post_actions[] = '<li class="postedit"><span><a href="edit.php?id='.$cur_post['id'].'">'.$lang_topic['Edit'].'</a></span></li>';
+					$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang_topic['Edit'].'</a>';
 			}
 
 			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<li class="postquote"><span><a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a></span></li>';
+				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a>';
 		}
 	}
 	else
 	{
-		$post_actions[] = '<li class="postreport"><span><a href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a></span></li>';
+		$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
 		if ($pun_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
 		{  
-			$post_actions[] = '<li class="postdelete"><span><a href="delete.php?id='.$cur_post['id'].'">'.$lang_topic['Delete'].'</a></span></li>';  
-			$post_actions[] = '<li class="postedit"><span><a href="edit.php?id='.$cur_post['id'].'">'.$lang_topic['Edit'].'</a></span></li>';  
+			$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang_topic['Delete'].'</a>';  
+			$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang_topic['Edit'].'</a>';  
 		}  
-		$post_actions[] = '<li class="postquote"><span><a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a></span></li>';
+		$post_actions[] = '<a class="btn btn-primary btn-mini" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a>';
 	}
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
@@ -346,33 +340,29 @@ while ($cur_post = $db->fetch_assoc($result))
 	
 ?>
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?><?php if ($marked == '1') echo ' marked'; ?>">
-	<h2><span><span class="conr">#<?php echo ($start_from + $post_count) ?></span> <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h2>
 	<div class="box">
-		<div class="inbox">
-			<div class="postbody">
-				<div class="postleft">
+		<div class="post-topic">
+			<div class="row">
+				<div class="col-2">
 					<dl>
-						<dt><strong><?php echo $username ?></strong></dt>
-						<dd class="usertitle"><strong><?php echo $user_title ?></strong></dd>
+						<dd class="usertitle"><strong><?php echo $username ?><?php echo $user_title ?></strong></dd>
 <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
 <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
 <?php if (count($user_contacts)) echo "\t\t\t\t\t\t".'<dd class="usercontacts">'.implode(' ', $user_contacts).'</dd>'."\n"; ?>
 					</dl>
 				</div>
-				<div class="postright">
-					<h3><?php if ($cur_post['id'] != $cur_topic['first_post_id']) echo $lang_topic['Re'].' '; ?><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h3>
+				<div class="col-10">
+					<span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
 					<div class="postmsg">
 						<?php echo $cur_post['message']."\n" ?>
 <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
 					</div>
 <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
 				</div>
-			</div>
-		</div>
-		<div class="inbox">
-			<div class="postfoot clearb">
-				<div class="postfootleft"><?php if ($cur_post['poster_id'] > 1) echo '<p>'.$is_online.'</p>'; ?></div>
-<?php if (count($post_actions)) echo "\t\t\t\t".'<div class="postfootright">'."\n\t\t\t\t\t".'<ul>'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t".'</ul>'."\n\t\t\t\t".'</div>'."\n" ?>
+                <div class="col-12 postfoot">
+                    <p><?php if ($cur_post['poster_id'] > 1) echo $is_online; ?>
+                    <span class="pull-right"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></span></p>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -383,22 +373,17 @@ while ($cur_post = $db->fetch_assoc($result))
 }
 
 ?>
-<div class="postlinksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
+<div class="pagepost">
+    <p class="pagelink conl"><?php echo $paging_links ?></p>
 <?php echo $post_link ?>
-		</div>
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-            <?php if ($cur_topic['parent_forum']) echo "\t\t".'<li><span>»&#160;</span><a href="viewforum.php?id='.$cur_topic['parent_forum_id'].'">'.pun_htmlspecialchars($cur_topic['parent_forum']).'</a></li> '; ?>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></strong></a></li>
-		</ul>
-<?php echo $subscraction ?>
-		<div class="clearer"></div>
-	</div>
 </div>
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+    <?php if ($cur_topic['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_topic['parent_forum_id'].'">'.pun_htmlspecialchars($cur_topic['parent_forum']).'</a></li> '; ?>
+    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+</ul>
+<?php echo $subscraction ?>
 
 <?php
 
@@ -409,15 +394,13 @@ if ($quickpost)
 $cur_index = 1;
 
 ?>
-<div id="quickpost" class="blockform">
-	<h2><span><?php echo $lang_topic['Quick post'] ?></span></h2>
-	<div class="box">
-		<form id="quickpostform" method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_common['Write message legend'] ?></legend>
-					<div class="infldset txtarea">
-						<input type="hidden" name="form_sent" value="1" />
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_topic['Quick post'] ?></h3>
+    </div>
+    <form id="quickpostform" method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+        <fieldset>
+            <input type="hidden" name="form_sent" value="1" />
 <?php if ($pun_config['o_topic_subscriptions'] == '1' && ($pun_user['auto_notify'] == '1' || $cur_topic['is_subscribed'])): ?>						<input type="hidden" name="subscribe" value="1" />
 <?php endif; ?>
 <?php
@@ -428,9 +411,8 @@ if ($pun_user['is_guest'])
 	$email_form_name = ($pun_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
-						<label class="conl required"><strong><?php echo $lang_post['Guest name'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" size="25" maxlength="25" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
-						<label class="conl<?php echo ($pun_config['p_force_guest_email'] == '1') ? ' required' : '' ?>"><?php echo $email_label ?><br /><input type="text" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo pun_htmlspecialchars($email); ?>" size="50" maxlength="80" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
-						<div class="clearer"></div>
+            <label class="conl required"><strong><?php echo $lang_post['Guest name'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" size="25" maxlength="25" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
+            <label class="conl<?php echo ($pun_config['p_force_guest_email'] == '1') ? ' required' : '' ?>"><?php echo $email_label ?><br /><input type="text" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo pun_htmlspecialchars($email); ?>" size="50" maxlength="80" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
 <?php
 
 	echo "\t\t\t\t\t\t".'<label class="required"><strong>'.$lang_common['Message'].' <span>'.$lang_common['Required'].'</span></strong><br />';
@@ -439,18 +421,15 @@ else
 	echo "\t\t\t\t\t\t".'<label>';
 
 ?>
-<textarea name="req_message" rows="7" cols="75" tabindex="<?php echo $cur_index++ ?>"></textarea></label>
-						<ul class="bblinks">
-							<li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
-							<li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang_common['img tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
-							<li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang_common['Smilies'] ?></a> <?php echo ($pun_config['o_smilies'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
-						</ul>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /> <input type="submit" name="preview" value="<?php echo $lang_topic['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></p>
-		</form>
-	</div>
+            <textarea class="form-control" name="req_message" rows="7" cols="75" tabindex="<?php echo $cur_index++ ?>"></textarea></label>
+            <ul class="bblinks">
+                <li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
+                <li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang_common['img tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
+                <li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang_common['Smilies'] ?></a> <?php echo ($pun_config['o_smilies'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
+            </ul>
+        </fieldset>
+        <p class="control-group"><input class="btn btn-primary" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /> <input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang_topic['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></p>
+    </form>
 </div>
 <?php
 
