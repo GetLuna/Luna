@@ -127,29 +127,20 @@ if ($action == 'change_pass')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><?php echo $lang_profile['Change pass'] ?></h2>
-	<div class="box">
-		<form id="change_pass" method="post" action="profile.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-			<div class="inform">
-				<input type="hidden" name="form_sent" value="1" />
-				<fieldset>
-					<h3><?php echo $lang_profile['Change pass legend'] ?></h3>
-					<div class="infldset">
-<?php if (!$pun_user['is_admmod']): ?>						<label class="required"><strong><?php echo $lang_profile['Old pass'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<input type="password" name="req_old_password" size="16" /></label>
+<h2><?php echo $lang_profile['Change pass'] ?></h2>
+<form id="change_pass" method="post" action="profile.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+    <input type="hidden" name="form_sent" value="1" />
+    <fieldset>
+    	<?php if (!$pun_user['is_admmod']): ?>        <label class="required"><strong><?php echo $lang_profile['Old pass'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
+        <input class="form-control" type="password" name="req_old_password" size="16" /></label>
 <?php endif; ?>						<label class="conl required"><strong><?php echo $lang_profile['New pass'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<input type="password" name="req_new_password1" size="16" /></label>
-						<label class="conl required"><strong><?php echo $lang_profile['Confirm new pass'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<input type="password" name="req_new_password2" size="16" /></label>
-						<p class="clearb"><?php echo $lang_profile['Pass info'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p><input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang_common['Submit'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
+        <input class="form-control" type="password" name="req_new_password1" size="16" /></label>
+        <label class="conl required"><strong><?php echo $lang_profile['Confirm new pass'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
+        <input class="form-control" type="password" name="req_new_password2" size="16" /></label>
+        <p class="clearb"><?php echo $lang_profile['Pass info'] ?></p>
+    </fieldset>
+    <p><input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang_common['Submit'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
@@ -286,25 +277,17 @@ else if ($action == 'change_email')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><?php echo $lang_profile['Change email'] ?></h2>
-	<div class="box">
-		<form id="change_email" method="post" action="profile.php?action=change_email&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-			<div class="inform">
-				<fieldset>
-					<h3><?php echo $lang_profile['Email legend'] ?></h3>
-					<div class="infldset">
-						<input type="hidden" name="form_sent" value="1" />
-						<label class="required"><strong><?php echo $lang_profile['New email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" class="form-control" name="req_new_email" size="50" maxlength="80" /></label>
-						<label class="required"><strong><?php echo $lang_common['Password'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="password" name="req_password" size="16" /></label>
-						<p><?php echo $lang_profile['Email instructions'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang_common['Submit'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
+<h2><?php echo $lang_profile['Change email'] ?></h2>
+<form id="change_email" method="post" action="profile.php?action=change_email&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+    <fieldset>
+        <h3><?php echo $lang_profile['Email legend'] ?></h3>
+        <input type="hidden" name="form_sent" value="1" />
+        <label class="required"><strong><?php echo $lang_profile['New email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" class="form-control" name="req_new_email" size="50" maxlength="80" /></label>
+        <label class="required"><strong><?php echo $lang_common['Password'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="password" name="req_password" size="16" /></label>
+        <p><?php echo $lang_profile['Email instructions'] ?></p>
+    </fieldset>
+    <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang_common['Submit'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
@@ -412,25 +395,16 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><?php echo $lang_profile['Upload avatar'] ?></h2>
-	<div class="box">
-		<form id="upload_avatar" method="post" enctype="multipart/form-data" action="profile.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-			<div class="inform">
-				<fieldset>
-					<h3><?php echo $lang_profile['Upload avatar legend'] ?></h3>
-					<div class="infldset">
-						<input type="hidden" name="form_sent" value="1" />
-						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
-						<label class="required"><strong><?php echo $lang_profile['File'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input name="req_file" type="file" size="40" /></label>
-						<p><?php echo $lang_profile['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang_profile['pixels'].' '.$lang_common['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang_profile['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p><input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang_profile['Upload'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
+<h2><?php echo $lang_profile['Upload avatar'] ?></h2>
+<form id="upload_avatar" method="post" enctype="multipart/form-data" action="profile.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+    <fieldset>
+        <input type="hidden" name="form_sent" value="1" />
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
+        <label class="required"><strong><?php echo $lang_profile['File'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input name="req_file" type="file" size="40" /></label>
+        <p><?php echo $lang_profile['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang_profile['pixels'].' '.$lang_common['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang_profile['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></p>
+    </fieldset>
+    <p><input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang_profile['Upload'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
@@ -676,26 +650,17 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><?php echo $lang_profile['Confirm delete user'] ?></h2>
-	<div class="box">
-		<form id="confirm_del_user" method="post" action="profile.php?id=<?php echo $id ?>">
-			<div class="inform">
-				<fieldset>
-					<h3><?php echo $lang_profile['Confirm delete legend'] ?></h3>
-					<div class="infldset">
-						<p><?php echo $lang_profile['Confirmation info'].' <strong>'.pun_htmlspecialchars($username).'</strong>.' ?></p>
-						<div class="rbox">
-							<label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang_profile['Delete posts'] ?></label>
-						</div>
-						<p class="warntext"><strong><?php echo $lang_profile['Delete warning'] ?></strong></p>
-					</div>
-				</fieldset>
-			</div>
-			<p><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang_profile['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
+<h2><?php echo $lang_profile['Confirm delete user'] ?></h2>
+<form id="confirm_del_user" method="post" action="profile.php?id=<?php echo $id ?>">
+    <fieldset>
+        <div class="alert alert-danger">
+        	<h4><?php echo $lang_profile['Confirmation info'].' <strong>'.pun_htmlspecialchars($username).'</strong>.' ?></h4>
+			<?php echo $lang_profile['Delete warning'] ?>
+        </div>
+		<label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang_profile['Delete posts'] ?></label>
+    </fieldset>
+    <p><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang_profile['Delete'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
@@ -1032,30 +997,30 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 {
 	$user_personal = array();
 
-	$user_personal[] = '<dt>'.$lang_common['Username'].'</dt>';
-	$user_personal[] = '<dd>'.pun_htmlspecialchars($user['username']).'</dd>';
+	$user_personal[] = '<tr><th class="col-2">'.$lang_common['Username'].'</th>';
+	$user_personal[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
 
 	$user_title_field = get_title($user);
-	$user_personal[] = '<dt>'.$lang_common['Title'].'</dt>';
-	$user_personal[] = '<dd>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</dd>';
+	$user_personal[] = '<tr><th>'.$lang_common['Title'].'</th>';
+	$user_personal[] = '<td>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
 
 	if ($user['realname'] != '')
 	{
-		$user_personal[] = '<dt>'.$lang_profile['Realname'].'</dt>';
-		$user_personal[] = '<dd>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</dd>';
+		$user_personal[] = '<tr><th>'.$lang_profile['Realname'].'</th>';
+		$user_personal[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
 	}
 
 	if ($user['location'] != '')
 	{
-		$user_personal[] = '<dt>'.$lang_profile['Location'].'</dt>';
-		$user_personal[] = '<dd>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</dd>';
+		$user_personal[] = '<tr><th>'.$lang_profile['Location'].'</th>';
+		$user_personal[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
 	}
 
 	if ($user['url'] != '')
 	{
 		$user['url'] = pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
-		$user_personal[] = '<dt>'.$lang_profile['Website'].'</dt>';
-		$user_personal[] = '<dd><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></dd>';
+		$user_personal[] = '<tr><th>'.$lang_profile['Website'].'</th>';
+		$user_personal[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
 	}
 
 	if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
@@ -1066,40 +1031,40 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 		$email_field = '';
 	if ($email_field != '')
 	{
-		$user_personal[] = '<dt>'.$lang_common['Email'].'</dt>';
-		$user_personal[] = '<dd><span class="email">'.$email_field.'</span></dd>';
+		$user_personal[] = '<tr><th>'.$lang_common['Email'].'</th>';
+		$user_personal[] = '<td><span class="email">'.$email_field.'</span></td></tr>';
 	}
 
 	$user_messaging = array();
 
 	if ($user['jabber'] != '')
 	{
-		$user_messaging[] = '<dt>'.$lang_profile['Jabber'].'</dt>';
-		$user_messaging[] = '<dd>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</dd>';
+		$user_messaging[] = '<tr><th>'.$lang_profile['Jabber'].'</th>';
+		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
 	}
 
 	if ($user['icq'] != '')
 	{
-		$user_messaging[] = '<dt>'.$lang_profile['ICQ'].'</dt>';
-		$user_messaging[] = '<dd>'.$user['icq'].'</dd>';
+		$user_messaging[] = '<tr><th>'.$lang_profile['ICQ'].'</th>';
+		$user_messaging[] = '<td>'.$user['icq'].'</td></tr>';
 	}
 
 	if ($user['msn'] != '')
 	{
-		$user_messaging[] = '<dt>'.$lang_profile['MSN'].'</dt>';
-		$user_messaging[] = '<dd>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</dd>';
+		$user_messaging[] = '<tr><th>'.$lang_profile['MSN'].'</th>';
+		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
 	}
 
 	if ($user['aim'] != '')
 	{
-		$user_messaging[] = '<dt>'.$lang_profile['AOL IM'].'</dt>';
-		$user_messaging[] = '<dd>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</dd>';
+		$user_messaging[] = '<tr><th>'.$lang_profile['AOL IM'].'</th>';
+		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
 	}
 
 	if ($user['yahoo'] != '')
 	{
-		$user_messaging[] = '<dt>'.$lang_profile['Yahoo'].'</dt>';
-		$user_messaging[] = '<dd>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</dd>';
+		$user_messaging[] = '<tr><th>'.$lang_profile['Yahoo'].'</th>';
+		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
 	}
 
 	$user_personality = array();
@@ -1109,8 +1074,8 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 		$avatar_field = generate_avatar_markup($id);
 		if ($avatar_field != '')
 		{
-			$user_personality[] = '<dt>'.$lang_profile['Avatar'].'</dt>';
-			$user_personality[] = '<dd>'.$avatar_field.'</dd>';
+			$user_personality[] = '<tr><th>'.$lang_profile['Avatar'].'</th>';
+			$user_personality[] = '<td>'.$avatar_field.'</td></tr>';
 		}
 	}
 
@@ -1118,8 +1083,8 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	{
 		if (isset($parsed_signature))
 		{
-			$user_personality[] = '<dt>'.$lang_profile['Signature'].'</dt>';
-			$user_personality[] = '<dd><div class="postsignature postmsg">'.$parsed_signature.'</div></dd>';
+			$user_personality[] = '<tr><th>'.$lang_profile['Signature'].'</th>';
+			$user_personality[] = '<td><div class="postsignature postmsg">'.$parsed_signature.'</div></td></tr>';
 		}
 	}
 
@@ -1140,22 +1105,22 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 			$quick_searches[] = '<a href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang_profile['Show subscriptions'].'</a>';
 
 		if (!empty($quick_searches))
-			$posts_field .= (($posts_field != '') ? ' - ' : '').implode(' - ', $quick_searches);
+			$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
 	}
 	if ($posts_field != '')
 	{
-		$user_activity[] = '<dt>'.$lang_common['Posts'].'</dt>';
-		$user_activity[] = '<dd>'.$posts_field.'</dd>';
+		$user_activity[] = '<tr><th>'.$lang_common['Posts'].'</th>';
+		$user_activity[] = '<td>'.$posts_field.'</td></tr>';
 	}
 
 	if ($user['num_posts'] > 0)
 	{
-		$user_activity[] = '<dt>'.$lang_common['Last post'].'</dt>';
-		$user_activity[] = '<dd>'.$last_post.'</dd>';
+		$user_activity[] = '<tr><th>'.$lang_common['Last post'].'</th>';
+		$user_activity[] = '<td>'.$last_post.'</td></tr>';
 	}
 
-	$user_activity[] = '<dt>'.$lang_common['Registered'].'</dt>';
-	$user_activity[] = '<dd>'.format_time($user['registered'], true).'</dd>';
+	$user_activity[] = '<tr><th>'.$lang_common['Registered'].'</th>';
+	$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), sprintf($lang_profile['Users profile'], pun_htmlspecialchars($user['username'])));
 	define('FORUM_ALLOW_INDEX', 1);
@@ -1163,57 +1128,28 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div id="viewprofile" class="block">
-	<h2><?php echo $lang_common['Profile'] ?></h2>
-	<div class="box">
-		<div class="fakeform">
-			<div class="inform">
-				<fieldset>
-				<h3><?php echo $lang_profile['Section personal'] ?></h3>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_personal)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-<?php if (!empty($user_messaging)): ?>			<div class="inform">
-				<fieldset>
-				<h3><?php echo $lang_profile['Section messaging'] ?></h3>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-<?php endif; if (!empty($user_personality)): ?>			<div class="inform">
-				<fieldset>
-				<h3><?php echo $lang_profile['Section personality'] ?></h3>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-<?php endif; ?>			<div class="inform">
-				<fieldset>
-				<h3><?php echo $lang_profile['User activity'] ?></h3>
-					<div class="infldset">
-						<dl>
-							<?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-						</dl>
-						<div class="clearer"></div>
-					</div>
-				</fieldset>
-			</div>
-		</div>
-	</div>
-</div>
+<h2><?php echo $lang_common['Profile'] ?></h2>
+<table class="table">
+    <tr><td class="active" colspan="2"><h4><?php echo $lang_profile['Section personal'] ?></h4></td></tr>
+    <tr>
+        <?php echo implode("\n\t\t\t\t\t\t\t", $user_personal)."\n" ?>
+    </tr>
+<?php if (!empty($user_messaging)): ?>
+    <tr><td class="active" colspan="2"><h4><?php echo $lang_profile['Section messaging'] ?></h4></td></tr>
+    <tr>
+        <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
+    </tr>
+<?php endif; if (!empty($user_personality)): ?>
+    <tr><td class="active" colspan="2"><h4><?php echo $lang_profile['Section personality'] ?></h4></td></tr>
+    <tr>
+        <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
+    </tr>
+<?php endif; ?>
+    <tr><td class="active" colspan="2"><h4><?php echo $lang_profile['User activity'] ?></h4></td></tr>
+    <tr>
+        <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
+    </tr>
+</table>
 
 <?php
 
