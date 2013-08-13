@@ -63,18 +63,16 @@ define('FORUM_ACTIVE_PAGE', 'userlist');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><span><?php echo $lang_search['User search'] ?></span></h2>
-	<div class="box">
-		<form id="userlist" method="get" action="userlist.php">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_ul['User find legend'] ?></legend>
-					<div class="infldset">
-<?php if ($pun_user['g_search_users'] == '1'): ?>						<label class="conl"><?php echo $lang_common['Username'] ?><br /><input type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /><br /></label>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_search['User search'] ?></h3>
+    </div>
+    <form id="userlist" method="get" action="userlist.php">
+        <fieldset>
+<?php if ($pun_user['g_search_users'] == '1'): ?>						<label class="conl"><?php echo $lang_common['Username'] ?><br /><input class="form-control" type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /><br /></label>
 <?php endif; ?>						<label class="conl"><?php echo $lang_ul['User group']."\n" ?>
-						<br /><select name="show_group">
-							<option value="-1"<?php if ($show_group == -1) echo ' selected="selected"' ?>><?php echo $lang_ul['All users'] ?></option>
+                <br /><select class="form-control" name="show_group">
+                    <option value="-1"<?php if ($show_group == -1) echo ' selected="selected"' ?>><?php echo $lang_ul['All users'] ?></option>
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -88,51 +86,43 @@ while ($cur_group = $db->fetch_assoc($result))
 }
 
 ?>
-						</select>
-						<br /></label>
-						<label class="conl"><?php echo $lang_search['Sort by']."\n" ?>
-						<br /><select name="sort_by">
-							<option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang_common['Username'] ?></option>
-							<option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang_common['Registered'] ?></option>
+                </select>
+                <br /></label>
+                <label class="conl"><?php echo $lang_search['Sort by']."\n" ?>
+                <br /><select class="form-control" name="sort_by">
+                    <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang_common['Username'] ?></option>
+                    <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang_common['Registered'] ?></option>
 <?php if ($show_post_count): ?>							<option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang_ul['No of posts'] ?></option>
 <?php endif; ?>						</select>
-						<br /></label>
-						<label class="conl"><?php echo $lang_search['Sort order']."\n" ?>
-						<br /><select name="sort_dir">
-							<option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang_search['Ascending'] ?></option>
-							<option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang_search['Descending'] ?></option>
-						</select>
-						<br /></label>
-						<p class="clearb"><?php echo ($pun_user['g_search_users'] == '1' ? $lang_ul['User search info'].' ' : '').$lang_ul['User sort info']; ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /></p>
-		</form>
-	</div>
+                <br /></label>
+                <label class="conl"><?php echo $lang_search['Sort order']."\n" ?>
+                <br /><select class="form-control" name="sort_dir">
+                    <option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang_search['Ascending'] ?></option>
+                    <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang_search['Descending'] ?></option>
+                </select>
+                <br /></label>
+                <p class="help-block"><?php echo ($pun_user['g_search_users'] == '1' ? $lang_ul['User search info'].' ' : '').$lang_ul['User sort info']; ?></p>
+        </fieldset>
+        <p class="control-group"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /></p>
+    </form>
 </div>
 
-<div class="linkst">
-	<div class="inbox">
-		<p class="pagelink"><?php echo $paging_links ?></p>
-		<div class="clearer"></div>
-	</div>
-</div>
 
-<div id="users1" class="blocktable">
-	<h2><span><?php echo $lang_common['User list'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_common['Username'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_common['Title'] ?></th>
-<?php if ($show_post_count): ?>					<th class="tc3" scope="col"><?php echo $lang_common['Posts'] ?></th>
-<?php endif; ?>					<th class="tcr" scope="col"><?php echo $lang_common['Registered'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_common['User list'] ?></h3>
+    </div>
+    <p class="pagelink"><?php echo $paging_links ?></p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><?php echo $lang_common['Username'] ?></th>
+                <th><?php echo $lang_common['Title'] ?></th>
+<?php if ($show_post_count): ?>                <th><?php echo $lang_common['Posts'] ?></th>
+<?php endif; ?>                <th><?php echo $lang_common['Registered'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 
 // Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
@@ -152,13 +142,13 @@ if ($db->num_rows($result))
 		$user_title_field = get_title($user_data);
 
 ?>
-				<tr>
-					<td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
-					<td class="tc2"><?php echo $user_title_field ?></td>
-<?php if ($show_post_count): ?>					<td class="tc3"><?php echo forum_number_format($user_data['num_posts']) ?></td>
+            <tr>
+                <td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+                <td><?php echo $user_title_field ?></td>
+<?php if ($show_post_count): ?>                <td><?php echo forum_number_format($user_data['num_posts']) ?></td>
 <?php endif; ?>
-					<td class="tcr"><?php echo format_time($user_data['registered'], true) ?></td>
-				</tr>
+                <td><?php echo format_time($user_data['registered'], true) ?></td>
+            </tr>
 <?php
 
 	}
@@ -167,17 +157,8 @@ else
 	echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang_search['No hits'].'</td></tr>'."\n";
 
 ?>
-			</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-
-<div class="linksb">
-	<div class="inbox">
-		<p class="pagelink"><?php echo $paging_links ?></p>
-		<div class="clearer"></div>
-	</div>
+        </tbody>
+    </table>
 </div>
 <?php
 
