@@ -3,11 +3,6 @@
 	margin: 5px auto 0;
 }
 
-/* Menu */
-ul.nav li.dropdown:hover > ul.dropdown-menu{
-    display: block;    
-}
-
 /* Index */
 .subforums {
 	display: block;
@@ -122,6 +117,16 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .nav .navbar-nav .pull-right {
 	padding-right: -10px;
+}
+
+/* Profile menu */
+.profile-nav {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+:first-child.list-group-item, :last-child.list-group-item {
+	border-radius: 0;
 }
 
 /* Post messages */
@@ -388,7 +393,6 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	color: #333;
 	text-decoration: none;
 }
-
 
 
 
