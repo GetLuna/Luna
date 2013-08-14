@@ -726,62 +726,64 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('database');
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_database['Backup and restore'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_database['Backup options'] ?></h3>
+    </div>
     <form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <fieldset>
-            <h3><?php echo $lang_admin_database['Backup options'] ?></h3>
-            <div class="infldset">
-                <p><?php echo $lang_admin_database['Backup info 1'] ?></p>
-                <table class="table">
-                    <tr>
-                        <th class="span2"><?php echo $lang_admin_database['Backup type'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang_admin_database['Full'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang_admin_database['Structure only'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang_admin_database['Data only'] ?></strong></label>
-                            <br /><span><?php echo $lang_admin_database['Backup info 2'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_admin_database['Gzip compression'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <p><?php echo $lang_admin_database['Backup info 1'] ?></p>
+            <table class="table">
+                <tr>
+                    <th class="col-2"><?php echo $lang_admin_database['Backup type'] ?></th>
+                    <td>
+                        <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang_admin_database['Full'] ?></strong></label>
+                        <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang_admin_database['Structure only'] ?></strong></label>
+                        <label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang_admin_database['Data only'] ?></strong></label>
+                        <span class="help-block"><?php echo $lang_admin_database['Backup info 2'] ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><?php echo $lang_admin_database['Gzip compression'] ?></th>
+                    <td>
+                        <label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
+                        <label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
+                    </td>
+                </tr>
+            </table>
         </fieldset>
-    <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang_admin_database['Start backup'] ?>" class="mainoption" /></p>
+    	<p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang_admin_database['Start backup'] ?>" class="mainoption" /></p>
     </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_database['Restore options'] ?></h3>
+    </div>
     <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <fieldset>
-            <h3><?php echo $lang_admin_database['Restore options'] ?></h3>
-            <div class="infldset">
-                <p><?php echo $lang_admin_database['Restore info 1'] ?></p>
-                <table class="table">
-                    <tr>
-                        <th class="span2"><?php echo $lang_admin_database['Restore from file'] ?></th>
-                        <td><input type="file" name="backup_file" />
-                        <input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_admin_database['Start restore'] ?>" class="mainoption" /></td>
-                    </tr>
-                </table>
-            </div>
+            <p><?php echo $lang_admin_database['Restore info 1'] ?></p>
+            <table class="table">
+                <tr>
+                    <th class="col-2"><?php echo $lang_admin_database['Restore from file'] ?></th>
+                    <td><input type="file" name="backup_file" />
+                    <input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_admin_database['Start restore'] ?>" class="mainoption" /></td>
+                </tr>
+            </table>
         </fieldset>
     </form>
 </div>
-<div class="content">
-    <h2><?php echo $lang_admin_database['Advanced options'] ?></h2>
-    <div class="alert alert-danger">
-        <h4><?php echo $lang_admin_database['Warning'] ?></h4>
-        <p><?php echo $lang_admin_database['Warning info'] ?></p>
+<div class="alert alert-danger alert-update">
+    <h4><?php echo $lang_admin_database['Warning'] ?></h4>
+    <p><?php echo $lang_admin_database['Warning info'] ?></p>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_database['Run SQL query'] ?></h3>
     </div>
     <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
         <fieldset>
-            <h3><?php echo $lang_admin_database['Run SQL query'] ?></h3>
             <p><?php echo $lang_admin_database['Run info 1'] ?></p>
-            <textarea placeholder="<?php echo $lang_admin_database['SQL Query'] ?>" name="this_query" rows="5" cols="50"></textarea>
+            <textarea class="form-control" placeholder="<?php echo $lang_admin_database['SQL Query'] ?>" name="this_query" rows="5" cols="50"></textarea>
         </fieldset>
         <div class="control-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_admin_database['Run query'] ?>" /></div>
         <fieldset>

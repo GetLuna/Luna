@@ -120,32 +120,19 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
 
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></a></li>
-		</ul>
-		<div class="clearer"></div>
-	</div>
-</div>
-
 <div id="punindex" class="subforumlist">
 
 <div id="vf1" class="blocktable">
-	<h2><span><?php echo $lang_common['Sub forums'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_common['Forum'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_index['Topics'] ?></th>
-					<th class="tc3" scope="col"><?php echo $lang_common['Posts'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang_common['Last post'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th class="col-8"><?php echo $lang_common['Forum'] ?></th>
+                <th class="col-1"><?php echo $lang_index['Topics'] ?></th>
+                <th class="col-1"><?php echo $lang_common['Posts'] ?></th>
+                <th class="col-2"><?php echo $lang_common['Last post'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 		$subforum_count = 0;
 
@@ -174,14 +161,14 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
 			// Is this a redirect forum?
 			if ($cur_forum['redirect_url'] != '')
 			{
-				$forum_field = '<h3><a href="'.pun_htmlspecialchars($cur_subforum['redirect_url']).'" title="'.$lang_index['Link to'].' '.pun_htmlspecialchars($cur_subforum['redirect_url']).'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a></h3>';
+				$forum_field = '<a href="'.pun_htmlspecialchars($cur_subforum['redirect_url']).'" title="'.$lang_index['Link to'].' '.pun_htmlspecialchars($cur_subforum['redirect_url']).'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a>';
 				$num_topics = $num_posts = '&nbsp;';
 				$item_status = 'iredirect';
 				$icon_type = 'icon';
 			}
 			else
 			{
-				$forum_field = '<h3><a href="viewforum.php?id='.$cur_subforum['id'].'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a></h3>';
+				$forum_field = '<a href="viewforum.php?id='.$cur_subforum['id'].'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a>';
 				$num_topics = $cur_subforum['num_topics'];
 				$num_posts = $cur_subforum['num_posts'];
 			}
@@ -213,30 +200,28 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
 				$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">(<em>'.$lang_common['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
 			}
 ?>
-				<tr<?php if ($item_status != '') echo ' class="'.$item_status.'"'; ?>>
-					<td class="tcl">
-						<div class="intd">
-							<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($subforum_count) ?></div></div>
-							<div class="tclcon">
-								<?php echo $forum_field;
-								if ($cur_subforum['moderators'] != '') {
-									echo "\n".$moderators;
-								}
-								?>
-							</div>
-						</div>
-					</td>
-					<td class="tc2"><?php echo $num_topics ?></td>
-					<td class="tc3"><?php echo $num_posts ?></td>
-					<td class="tcr"><?php echo $last_post ?></td>
-				</tr>
+            <tr<?php if ($item_status != '') echo ' class="'.$item_status.'"'; ?>>
+                <td class="tcl">
+                    <div class="intd">
+                        <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($subforum_count) ?></div></div>
+                        <div class="tclcon">
+                            <?php echo $forum_field;
+                            if ($cur_subforum['moderators'] != '') {
+                                echo "\n".$moderators;
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </td>
+                <td class="tc2"><?php echo $num_topics ?></td>
+                <td class="tc3"><?php echo $num_posts ?></td>
+                <td class="tcr"><?php echo $last_post ?></td>
+            </tr>
 <?php
 		}
 ?>
-			</tbody>
-			</table>
-		</div>
-	</div>
+        </tbody>
+    </table>
 </div>
 
 </div>
@@ -245,35 +230,27 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
 }
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<?php if($cur_forum['parent_forum']) echo "\t\t".'<li><span>»&#160;</span><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></a></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+    <?php if($cur_forum['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
+    <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
+</ul>
+<div class="pagepost">
+    <p class="pagelink conl"><?php echo $paging_links ?></p>
 <?php echo $post_link ?>
-		</div>
-		<div class="clearer"></div>
-	</div>
 </div>
-
 <div id="vf" class="blocktable">
-	<h2><span><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_common['Topic'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_common['Replies'] ?></th>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="tc3" scope="col"><?php echo $lang_forum['Views'] ?></th>
-<?php endif; ?>					<th class="tcr" scope="col"><?php echo $lang_common['Last post'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+	<h2><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></h2>
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th class="col-8"><?php echo $lang_common['Topic'] ?></th>
+                <th class="col-1"><?php echo $lang_common['Replies'] ?></th>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-1"><?php echo $lang_forum['Views'] ?></th>
+<?php endif; ?>			<th class="col-2"><?php echo $lang_common['Last post'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 
 // Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
@@ -378,19 +355,19 @@ if ($db->num_rows($result))
 		}
 
 ?>
-				<tr class="<?php echo $item_status ?>">
-					<td class="tcl">
-						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
-						<div class="tclcon">
-							<div>
-								<?php echo $subject."\n" ?>
-							</div>
-						</div>
-					</td>
-					<td class="tc2"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></td>
+            <tr class="<?php echo $item_status ?>">
+                <td class="tcl">
+                    <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
+                    <div class="tclcon">
+                        <div>
+                            <?php echo $subject."\n" ?>
+                        </div>
+                    </div>
+                </td>
+                <td class="tc2"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></td>
 <?php if ($pun_config['o_topic_views'] == '1'): ?>					<td class="tc3"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></td>
-<?php endif; ?>					<td class="tcr"><?php echo $last_post ?></td>
-				</tr>
+<?php endif; ?>			<td class="tcr"><?php echo $last_post ?></td>
+            </tr>
 <?php
 
 	}
@@ -400,41 +377,33 @@ else
 	$colspan = ($pun_config['o_topic_views'] == '1') ? 4 : 3;
 
 ?>
-				<tr class="rowodd inone">
-					<td class="tcl" colspan="<?php echo $colspan ?>">
-						<div class="icon inone"><div class="nosize"><!-- --></div></div>
-						<div class="tclcon">
-							<div>
-								<strong><?php echo $lang_forum['Empty forum'] ?></strong>
-							</div>
-						</div>
-					</td>
-				</tr>
+            <tr class="rowodd inone">
+                <td class="tcl" colspan="<?php echo $colspan ?>">
+                    <div class="icon inone"><div class="nosize"><!-- --></div></div>
+                    <div class="tclcon">
+                        <div>
+                            <strong><?php echo $lang_forum['Empty forum'] ?></strong>
+                        </div>
+                    </div>
+                </td>
+            </tr>
 <?php
 
 }
 
 ?>
-			</tbody>
-			</table>
-		</div>
-	</div>
+        </tbody>
+    </table>
 </div>
 
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+    <?php if($cur_forum['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
+    <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
+</ul>
+<div class="pagepost">
+    <p class="pagelink conl"><?php echo $paging_links ?></p>
 <?php echo $post_link ?>
-		</div>
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<?php if($cur_forum['parent_forum']) echo "\t\t".'<li><span>»&#160;</span><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $id ?>"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></a></li>
-		</ul>
-<?php echo (!empty($forum_actions) ? "\t\t".'<p class="subscribelink clearb">'.implode(' - ', $forum_actions).'</p>'."\n" : '') ?>
-		<div class="clearer"></div>
-	</div>
 </div>
 <?php
 

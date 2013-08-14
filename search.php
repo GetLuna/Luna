@@ -554,17 +554,14 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $crumbs_text['search_type'] ?></strong></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-		</div>
-		<div class="clearer"></div>
-	</div>
+    <ul class="breadcrumb">
+        <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+        <li><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
+        <li class="active"><?php echo $crumbs_text['search_type'] ?></li>
+    </ul>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
 </div>
 
 <?php
@@ -575,19 +572,16 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <div id="vf" class="blocktable">
-	<h2><span><?php echo $lang_search['Search results'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang_common['Topic'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang_common['Forum'] ?></th>
-					<th class="tc3" scope="col"><?php echo $lang_common['Replies'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang_common['Last post'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><?php echo $lang_common['Topic'] ?></th>
+                <th class="col-2"><?php echo $lang_common['Forum'] ?></th>
+                <th class="col-1"><?php echo $lang_common['Replies'] ?></th>
+                <th class="col-3"><?php echo $lang_common['Last post'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 
 		}
@@ -662,7 +656,6 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 						<?php echo $message."\n" ?>
 					</div>
 				</div>
-				<div class="clearer"></div>
 			</div>
 		</div>
 		<div class="inbox">
@@ -730,7 +723,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 				<tr class="<?php echo $item_status ?>">
-					<td class="tcl">
+					<td>
 						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
 						<div class="tclcon">
 							<div>
@@ -738,9 +731,9 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 							</div>
 						</div>
 					</td>
-					<td class="tc2"><?php echo $forum ?></td>
-					<td class="tc3"><?php echo forum_number_format($cur_search['num_replies']) ?></td>
-					<td class="tcr"><?php echo '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_search['last_poster']) ?></span></td>
+					<td><?php echo $forum ?></td>
+					<td><?php echo forum_number_format($cur_search['num_replies']) ?></td>
+					<td><?php echo '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_search['last_poster']) ?></span></td>
 				</tr>
 <?php
 
@@ -748,22 +741,19 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		}
 
 		if ($show_as == 'topics')
-			echo "\t\t\t".'</tbody>'."\n\t\t\t".'</table>'."\n\t\t".'</div>'."\n\t".'</div>'."\n".'</div>'."\n\n";
+			echo "\t\t\t".'</tbody>'."\n\t\t\t".'</table>'."\n\t\t".'</div>'."\n\n";
 
 ?>
 <div class="<?php echo ($show_as == 'topics') ? 'linksb' : 'postlinksb'; ?>">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink"><?php echo $paging_links ?></p>
-		</div>
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $crumbs_text['search_type'] ?></strong></li>
-		</ul>
-<?php echo (!empty($forum_actions) ? "\t\t".'<p class="subscribelink clearb">'.implode(' - ', $forum_actions).'</p>'."\n" : '') ?>
-		<div class="clearer"></div>
-	</div>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
+    <ul class="breadcrumb">
+        <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+        <li><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
+        <li class="active"><?php echo $crumbs_text['search_type'] ?></li>
+    </ul>
+    <?php echo (!empty($forum_actions) ? "\t\t".'<p class="subscribelink clearb">'.implode(' - ', $forum_actions).'</p>'."\n" : '') ?>
 </div>
 <?php
 
@@ -780,25 +770,24 @@ define('FORUM_ACTIVE_PAGE', 'search');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div id="searchform" class="blockform">
-	<h2><span><?php echo $lang_search['Search'] ?></span></h2>
-	<div class="box">
-		<form id="search" method="get" action="search.php">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_search['Search criteria legend'] ?></legend>
-					<div class="infldset">
-						<input type="hidden" name="action" value="search" />
-						<label class="conl"><?php echo $lang_search['Keyword search'] ?><br /><input type="text" name="keywords" size="40" maxlength="100" /><br /></label>
-						<label class="conl"><?php echo $lang_search['Author search'] ?><br /><input id="author" type="text" name="author" size="25" maxlength="25" /><br /></label>
-						<p class="clearb"><?php echo $lang_search['Search info'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_search['Search in legend'] ?></legend>
-					<div class="infldset">
+<h2><?php echo $lang_search['Search'] ?></h2>
+<form id="search" method="get" action="search.php">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_search['Search criteria legend'] ?></h3>
+        </div>
+        <fieldset>
+            <input class="form-control" type="hidden" name="action" value="search" />
+            <label class="conl"><?php echo $lang_search['Keyword search'] ?><br /><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /><br /></label>
+            <label class="conl"><?php echo $lang_search['Author search'] ?><br /><input class="form-control" id="author" type="text" name="author" size="25" maxlength="25" /><br /></label>
+            <p class="clearb"><?php echo $lang_search['Search info'] ?></p>
+        </fieldset>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_search['Search in legend'] ?></h3>
+        </div>
+        <fieldset>
 <?php
 
 $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.redirect_url, f.parent_forum_id FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -808,7 +797,7 @@ if ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'])
 {
 	echo "\t\t\t\t\t\t".'<div class="conl multiselect">'.$lang_search['Forum search']."\n";
 	echo "\t\t\t\t\t\t".'<br />'."\n";
-	echo "\t\t\t\t\t\t".'<div class="checklist">'."\n";
+	echo "\t\t\t\t\t\t".'<div class="checklist form-control forum-list-border">'."\n";
 
 	$cur_category = 0;
 	while ($cur_forum = $db->fetch_assoc($result))
@@ -820,12 +809,12 @@ if ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'])
 				echo "\t\t\t\t\t\t\t\t".'</div>'."\n"; 
 				echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
 			}
-			echo "\t\t\t\t\t\t\t".'<fieldset><legend><span>'.pun_htmlspecialchars($cur_forum['cat_name']).'</span></legend>'."\n";
+			echo "\t\t\t\t\t\t\t".'<fieldset><h3 class="forum-list"><span>'.pun_htmlspecialchars($cur_forum['cat_name']).'</span></h3>'."\n";
 			echo "\t\t\t\t\t\t\t\t".'<div class="rbox">'; 
 			$cur_category = $cur_forum['cid'];
 		}
 
-	echo "\t\t\t\t\t\t\t\t".'<label><input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" />'.pun_htmlspecialchars($cur_forum['forum_name']).'</label>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<label class="forum-list"><input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" />'.pun_htmlspecialchars($cur_forum['forum_name']).'</label>'."\n";
  	}
 	
 	if ($cur_category)
@@ -865,50 +854,49 @@ else
 }
 
 ?>
-						<label class="conl"><?php echo $lang_search['Search in']."\n" ?>
-						<br /><select id="search_in" name="search_in">
-							<option value="0"><?php echo $lang_search['Message and subject'] ?></option>
-							<option value="1"><?php echo $lang_search['Message only'] ?></option>
-							<option value="-1"><?php echo $lang_search['Topic only'] ?></option>
-						</select>
-						<br /></label>
-						<p class="clearl"><?php echo $lang_search['Search in info'] ?></p>
-<?php echo ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'] ? '<p>'.$lang_search['Search multiple forums info'].'</p>' : '') ?>
-					</div>
-				</fieldset>
-			</div>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_search['Search results legend'] ?></legend>
-					<div class="infldset">
-						<label class="conl"><?php echo $lang_search['Sort by']."\n" ?>
-						<br /><select name="sort_by">
-							<option value="0"><?php echo $lang_search['Sort by post time'] ?></option>
-							<option value="1"><?php echo $lang_search['Sort by author'] ?></option>
-							<option value="2"><?php echo $lang_search['Sort by subject'] ?></option>
-							<option value="3"><?php echo $lang_search['Sort by forum'] ?></option>
-						</select>
-						<br /></label>
-						<label class="conl"><?php echo $lang_search['Sort order']."\n" ?>
-						<br /><select name="sort_dir">
-							<option value="DESC"><?php echo $lang_search['Descending'] ?></option>
-							<option value="ASC"><?php echo $lang_search['Ascending'] ?></option>
-						</select>
-						<br /></label>
-						<label class="conl"><?php echo $lang_search['Show as']."\n" ?>
-						<br /><select name="show_as">
-							<option value="topics"><?php echo $lang_search['Show as topics'] ?></option>
-							<option value="posts"><?php echo $lang_search['Show as posts'] ?></option>
-						</select>
-						<br /></label>
-						<p class="clearb"><?php echo $lang_search['Search results info'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /></p>
-		</form>
-	</div>
-</div>
+            <label class="conl"><?php echo $lang_search['Search in']."\n" ?>
+            <br /><select class="form-control" id="search_in" name="search_in">
+                <option value="0"><?php echo $lang_search['Message and subject'] ?></option>
+                <option value="1"><?php echo $lang_search['Message only'] ?></option>
+                <option value="-1"><?php echo $lang_search['Topic only'] ?></option>
+            </select>
+            <br /></label>
+            <p><?php echo $lang_search['Search in info'] ?></p>
+    <?php echo ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'] ? '<p>'.$lang_search['Search multiple forums info'].'</p>' : '') ?>
+        </fieldset>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_search['Search results legend'] ?></h3>
+        </div>
+        <fieldset>
+            <label class="conl"><?php echo $lang_search['Sort by']."\n" ?>
+            <br /><select class="form-control" name="sort_by">
+                <option value="0"><?php echo $lang_search['Sort by post time'] ?></option>
+                <option value="1"><?php echo $lang_search['Sort by author'] ?></option>
+                <option value="2"><?php echo $lang_search['Sort by subject'] ?></option>
+                <option value="3"><?php echo $lang_search['Sort by forum'] ?></option>
+            </select>
+            <br /></label>
+            <label class="conl"><?php echo $lang_search['Sort order']."\n" ?>
+            <br /><select class="form-control" name="sort_dir">
+                <option value="DESC"><?php echo $lang_search['Descending'] ?></option>
+                <option value="ASC"><?php echo $lang_search['Ascending'] ?></option>
+            </select>
+            <br /></label>
+            <label class="conl"><?php echo $lang_search['Show as']."\n" ?>
+            <br /><select class="form-control" name="show_as">
+                <option value="topics"><?php echo $lang_search['Show as topics'] ?></option>
+                <option value="posts"><?php echo $lang_search['Show as posts'] ?></option>
+            </select>
+            <br /></label>
+            <p><?php echo $lang_search['Search results info'] ?></p>
+        </fieldset>
+    </div>
+    <div class="alert alert-info">
+		<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" />
+    </div>
+</form>
 <?php
 
 require FORUM_ROOT.'footer.php';

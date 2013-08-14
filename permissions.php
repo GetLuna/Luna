@@ -53,12 +53,14 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('permissions');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_permissions['Permissions head'] ?></span></h2>
+<h2><?php echo $lang_admin_permissions['Permissions head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_permissions['Posting subhead'] ?></h3>
+    </div>
     <form method="post" action="permissions.php">
         <input type="hidden" name="form_sent" value="1" />
         <fieldset>
-            <h3><?php echo $lang_admin_permissions['Posting subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="20%"><?php echo $lang_admin_permissions['BBCode label'] ?></th>
@@ -102,8 +104,14 @@ require FORUM_ROOT.'admin/header.php';
                 </tr>
             </table>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_permissions['Signatures subhead'] ?></h3>
+    </div>
+    <form method="post" action="permissions.php">
         <fieldset>
-            <h3><?php echo $lang_admin_permissions['Signatures subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="20%"><?php echo $lang_admin_permissions['BBCode sigs label'] ?></th>
@@ -132,21 +140,27 @@ require FORUM_ROOT.'admin/header.php';
                 <tr>
                     <th><?php echo $lang_admin_permissions['Max sig length label'] ?></th>
                     <td>
-                        <input type="text" name="form[sig_length]" size="5" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
+                        <input type="text" class="form-control"name="form[sig_length]" size="5" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
                         <br /><span class="clearb"><?php echo $lang_admin_permissions['Max sig length help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_permissions['Max sig lines label'] ?></th>
                     <td>
-                        <input type="text" name="form[sig_lines]" size="3" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
+                        <input type="text" class="form-control"name="form[sig_lines]" size="3" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
                         <br /><span class="clearb"><?php echo $lang_admin_permissions['Max sig lines help'] ?></span>
                     </td>
                 </tr>
             </table>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_permissions['Registration subhead'] ?></h3>
+    </div>
+    <form method="post" action="permissions.php">
         <fieldset>
-            <h3><?php echo $lang_admin_permissions['Registration subhead'] ?></h3>
             <table class="table" cellspacing="0">
                 <tr>
                     <th width="20%"><?php echo $lang_admin_permissions['Banned e-mail label'] ?></th>

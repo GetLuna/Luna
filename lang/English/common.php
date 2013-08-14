@@ -129,6 +129,8 @@ $lang_common = array(
 'Stick topic'						=>	'Stick topic',
 'Moderate forum'					=>	'Moderate forum',
 'Powered by'						=>	'Powered by %s',
+'Thanks'							=>	'Thanks for using %s',
+'Version'							=>	'Version',
 
 // Debug information
 'Debug table'						=>	'Debug information',

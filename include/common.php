@@ -8,10 +8,10 @@
  */
 
 if (!defined('FORUM_ROOT'))
-	exit('The constant FORUM_ROOT must be defined and point to a valid FluxBB installation root directory.');
+	exit('The constant FORUM_ROOT must be defined and point to a valid ModernBB installation root directory.');
 
 // Define the version and database revision that this code was written for
-define('FORUM_VERSION', '2.0-beta.2');
+define('FORUM_VERSION', '2.0-beta.2.5');
 
 define('FORUM_DB_REVISION', 24);
 define('FORUM_SI_REVISION', 2);

@@ -236,24 +236,25 @@ else if (isset($_GET['edit_forum']))
 	generate_admin_menu('forums');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_forums['Edit forum head'] ?></span></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Edit details subhead'] ?></h3>
+    </div>
     <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
         <fieldset>
-            <h3><?php echo $lang_admin_forums['Edit details subhead'] ?></h3>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_forums['Forum name label'] ?></th>
-                    <td><input type="text" name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" /></td>
+                    <td><input type="text" class="form-control"name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" /></td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_forums['Forum description label'] ?></th>
-                    <td><textarea name="forum_desc" rows="3" cols="80" tabindex="2"><?php echo pun_htmlspecialchars($cur_forum['forum_desc']) ?></textarea></td>
+                    <td><textarea class="form-control" name="forum_desc" rows="3" cols="80" tabindex="2"><?php echo pun_htmlspecialchars($cur_forum['forum_desc']) ?></textarea></td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_forums['Category label'] ?></th>
                     <td>
-                        <select name="cat_id" tabindex="3">
+                        <select class="form-control" name="cat_id" tabindex="3">
 <?php
 
 $result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
@@ -270,7 +271,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                 <tr>
                     <th><?php echo $lang_admin_forums['Sort by label'] ?></th>
                     <td>
-                        <select name="sort_by" tabindex="4">
+                        <select class="form-control" name="sort_by" tabindex="4">
                             <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected="selected"' ?>><?php echo $lang_admin_forums['Last post'] ?></option>
                             <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected="selected"' ?>><?php echo $lang_admin_forums['Topic start'] ?></option>
                             <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected="selected"' ?>><?php echo $lang_admin_forums['Subject'] ?></option>
@@ -279,12 +280,12 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_forums['Redirect label'] ?></th>
-                    <td><?php echo ($cur_forum['num_topics']) ? $lang_admin_forums['Redirect help'] : '<input type="text" name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?></td>
+                    <td><?php echo ($cur_forum['num_topics']) ? $lang_admin_forums['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?></td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_common['Parent forum'] ?></th>
                     <td>
-                        <select name="parent_forum">
+                        <select class="form-control" name="parent_forum">
                             <option value="0"><?php echo $lang_common['No parent forum'] ?></option>
 <?php
 
@@ -318,11 +319,17 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                 </tr>
             </table>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Group permissions subhead'] ?></h3>
+    </div>
+    <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
         <fieldset>
-            <h3><?php echo $lang_admin_forums['Group permissions subhead'] ?></h3>
             <p><?php printf($lang_admin_forums['Group permissions info'], '<a href="groups.php">'.$lang_admin_common['User groups'].'</a>') ?></p>
 			<div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php echo $lang_admin_forums['Revert to default'] ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
-            <table class="table table-condensed" cellspacing="0">
+            <table class="table table-condensed">
             <thead>
                 <tr>
                     <th class="atcl">&#160;</th>
@@ -390,15 +397,17 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('forums');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_forums['Add forum head'] ?></span></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Add forum head'] ?></h3>
+    </div>
     <form method="post" action="forums.php?action=adddel">
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_forums['Add forum label'] ?><div></div></th>
                     <td>
-                        <select name="add_to_cat" tabindex="1">
+                        <select class="form-control" name="add_to_cat" tabindex="1">
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
@@ -412,7 +421,7 @@ require FORUM_ROOT.'admin/header.php';
 
 ?>
                         </select>
-                        <input type="text" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" /> 
+                        <input type="text" class="form-control"name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" /> 
                         <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
                         <br /><span><?php echo $lang_admin_forums['Add forum help'] ?></span>
                     </td>
@@ -430,8 +439,10 @@ if ($db->num_rows($result) > 0)
 {
 
 ?>
-<div class="content">
-<h2><?php echo $lang_admin_forums['Edit forums head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_forums['Edit forum head'] ?></h3>
+    </div>
     <form id="edforum" method="post" action="forums.php?action=edit">
         <fieldset>
 <?php
@@ -447,33 +458,33 @@ while ($cur_forum = $db->fetch_assoc($result))
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-            <h4><?php echo $lang_admin_forums['Category subhead'] ?> <?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
-            <table class="table" cellspacing="0">
-            <thead>
-                <tr>
-                    <th class="span2"><?php echo $lang_admin_common['Action'] ?></th>
-                    <th class="span4"><?php echo $lang_admin_forums['Position label'] ?></th>
-                    <th><?php echo $lang_admin_forums['Forum label'] ?></th>
-                </tr>
-            </thead>
-            <tbody>
+            <h4><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="span2"><?php echo $lang_admin_common['Action'] ?></th>
+                        <th class="span4"><?php echo $lang_admin_forums['Position label'] ?></th>
+                        <th><?php echo $lang_admin_forums['Forum label'] ?></th>
+                    </tr>
+                </thead>
+                <tbody>
 <?php
 
 		$cur_category = $cur_forum['cid'];
 	}
 
 ?>
-                <tr>
-                    <td><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> | <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
-                    <td><input type="text" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
-                    <td><strong><?php echo ($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-                </tr>
+                    <tr>
+                        <td><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Edit link'] ?></a> | <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_admin_forums['Delete link'] ?></a></td>
+                        <td><input type="text" class="form-control"name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+                        <td><strong><?php echo ($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+                    </tr>
 <?php
 
 }
 
 ?>
-            </tbody>
+                </tbody>
             </table>
         </fieldset>
         <div class="control-group">

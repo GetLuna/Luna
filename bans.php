@@ -106,52 +106,60 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	generate_admin_menu('bans');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_bans['Ban advanced head'] ?></h2>
+<h2><?php echo $lang_admin_bans['Ban advanced head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Ban advanced subhead'] ?></h3>
+    </div>
     <form id="bans2" method="post" action="bans.php">
         <input type="hidden" name="mode" value="<?php echo $mode ?>" />
 <?php if ($mode == 'edit'): ?>				<input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" />
 <?php endif; ?>				<fieldset>
-            <h3><?php echo $lang_admin_bans['Ban advanced subhead'] ?></h3>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th width="15%"><?php echo $lang_admin_bans['Username label'] ?></th>
                     <td>
-                        <input type="text" name="ban_user" size="25" maxlength="25" value="<?php if (isset($ban_user)) echo pun_htmlspecialchars($ban_user); ?>" tabindex="1" />
+                        <input type="text" class="form-control"name="ban_user" size="25" maxlength="25" value="<?php if (isset($ban_user)) echo pun_htmlspecialchars($ban_user); ?>" tabindex="1" />
                         <br /><span><?php echo $lang_admin_bans['Username help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_bans['IP label'] ?></th>
                     <td>
-                        <input type="text" name="ban_ip" size="45" maxlength="255" value="<?php if (isset($ban_ip)) echo pun_htmlspecialchars($ban_ip); ?>" tabindex="2" />
+                        <input type="text" class="form-control"name="ban_ip" size="45" maxlength="255" value="<?php if (isset($ban_ip)) echo pun_htmlspecialchars($ban_ip); ?>" tabindex="2" />
                         <br /><span><?php echo $lang_admin_bans['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang_admin_bans['IP help link'], '<a href="../users.php?ip_stats='.$user_id.'">'.$lang_admin_common['here'].'</a>') ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_bans['E-mail label'] ?></th>
                     <td>
-                        <input type="text" name="ban_email" size="40" maxlength="80" value="<?php if (isset($ban_email)) echo $ban_email; ?>" tabindex="3" />
+                        <input type="text" class="form-control"name="ban_email" size="40" maxlength="80" value="<?php if (isset($ban_email)) echo $ban_email; ?>" tabindex="3" />
                         <br /><span><?php echo $lang_admin_bans['E-mail help'] ?></span>
                     </td>
                 </tr>
             </table>
             <p class="topspace"><strong class="warntext"><?php echo $lang_admin_bans['Ban IP range info'] ?></strong></p>
         </fieldset>
+    </form>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Message expiry subhead'] ?></h3>
+    </div>
+    <form id="bans2" method="post" action="bans.php">
         <fieldset>
-            <h3><?php echo $lang_admin_bans['Message expiry subhead'] ?></h3>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th width="15%"><?php echo $lang_admin_bans['Ban message label'] ?></th>
                     <td>
-                        <input type="text" name="ban_message" size="50" maxlength="255" value="<?php if (isset($ban_message)) echo pun_htmlspecialchars($ban_message); ?>" tabindex="4" />
+                        <input type="text" class="form-control"name="ban_message" size="50" maxlength="255" value="<?php if (isset($ban_message)) echo pun_htmlspecialchars($ban_message); ?>" tabindex="4" />
                         <br /><span><?php echo $lang_admin_bans['Ban message help'] ?></span>
                     </td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_bans['Expire date label'] ?></th>
                     <td>
-                        <input type="text" name="ban_expire" size="17" maxlength="10" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
+                        <input type="text" class="form-control"name="ban_expire" size="17" maxlength="10" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
                         <br /><span><?php echo $lang_admin_bans['Expire date help'] ?></span>
                     </td>
                 </tr>
@@ -377,26 +385,27 @@ else if (isset($_GET['find_ban']))
 	generate_admin_menu('bans');
 
 ?>
-<div class="content">
-<h2><?php echo $lang_admin_bans['Results head'] ?></h2>
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
-</div>
-
-    <table class="table">
-    <thead>
-        <tr>
-            <th class="tcl" scope="col"><?php echo $lang_admin_bans['Results username head'] ?></th>
-            <th class="tc2" scope="col"><?php echo $lang_admin_bans['Results e-mail head'] ?></th>
-            <th class="tc3" scope="col"><?php echo $lang_admin_bans['Results IP address head'] ?></th>
-            <th class="tc4" scope="col"><?php echo $lang_admin_bans['Results expire head'] ?></th>
-            <th class="tc5" scope="col"><?php echo $lang_admin_bans['Results message head'] ?></th>
-            <th class="tc6" scope="col"><?php echo $lang_admin_bans['Results banned by head'] ?></th>
-            <th class="tcr" scope="col"><?php echo $lang_admin_bans['Results actions head'] ?></th>
-        </tr>
-    </thead>
-    <tbody>
-<?php
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Results head'] ?></h3>
+    </div>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
+        <table class="table">
+        <thead>
+            <tr>
+                <th class="tcl" scope="col"><?php echo $lang_admin_bans['Results username head'] ?></th>
+                <th class="tc2" scope="col"><?php echo $lang_admin_bans['Results e-mail head'] ?></th>
+                <th class="tc3" scope="col"><?php echo $lang_admin_bans['Results IP address head'] ?></th>
+                <th class="tc4" scope="col"><?php echo $lang_admin_bans['Results expire head'] ?></th>
+                <th class="tc5" scope="col"><?php echo $lang_admin_bans['Results message head'] ?></th>
+                <th class="tc6" scope="col"><?php echo $lang_admin_bans['Results banned by head'] ?></th>
+                <th class="tcr" scope="col"><?php echo $lang_admin_bans['Results actions head'] ?></th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php
 
 	$result = $db->query('SELECT b.id, b.username, b.ip, b.email, b.message, b.expire, b.ban_creator, u.username AS ban_creator_username FROM '.$db->prefix.'bans AS b LEFT JOIN '.$db->prefix.'users AS u ON b.ban_creator=u.id WHERE b.id>0'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
@@ -408,15 +417,15 @@ else if (isset($_GET['find_ban']))
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
-        <tr>
-            <td class="tcl"><?php echo ($ban_data['username'] != '') ? pun_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
-            <td class="tc2"><?php echo ($ban_data['email'] != '') ? $ban_data['email'] : '&#160;' ?></td>
-            <td class="tc3"><?php echo ($ban_data['ip'] != '') ? pun_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
-            <td class="tc4"><?php echo $expire ?></td>
-            <td class="tc5"><?php echo ($ban_data['message'] != '') ? pun_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-            <td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang_admin_bans['Unknown'] ?></td>
-            <td class="tcr"><?php echo $actions ?></td>
-        </tr>
+            <tr>
+                <td class="tcl"><?php echo ($ban_data['username'] != '') ? pun_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
+                <td class="tc2"><?php echo ($ban_data['email'] != '') ? $ban_data['email'] : '&#160;' ?></td>
+                <td class="tc3"><?php echo ($ban_data['ip'] != '') ? pun_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
+                <td class="tc4"><?php echo $expire ?></td>
+                <td class="tc5"><?php echo ($ban_data['message'] != '') ? pun_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
+                <td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang_admin_bans['Unknown'] ?></td>
+                <td class="tcr"><?php echo $actions ?></td>
+            </tr>
 <?php
 
 		}
@@ -425,11 +434,11 @@ else if (isset($_GET['find_ban']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="7">'.$lang_admin_bans['No match'].'</td></tr>'."\n";
 
 ?>
-    </tbody>
+    	</tbody>
     </table>
-
-<div class="pagepost">
-    <p class="pagelink"><?php echo $paging_links ?></p>
+    <div class="pagepost">
+        <p class="pagelink"><?php echo $paging_links ?></p>
+    </div>
 </div>
 <?php
 
@@ -443,15 +452,17 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('bans');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_bans['New ban head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['New ban head'] ?></h3>
+    </div>
     <form id="bans" method="post" action="bans.php?action=more">
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_bans['Username label'] ?></th>
                     <td>
-                        <input type="text" name="new_ban_user" size="25" maxlength="25" tabindex="1" />
+                        <input type="text" class="form-control"name="new_ban_user" size="25" maxlength="25" tabindex="1" />
                         <input class="btn btn-danger" type="submit" name="add_ban" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="2" />
                         <br /><span><?php echo $lang_admin_bans['Username advanced help'] ?></span>
                     </td>
@@ -460,41 +471,43 @@ require FORUM_ROOT.'admin/header.php';
         </fieldset>
     </form>
 </div>
-<div class="content">
-    <h2><?php echo $lang_admin_bans['Ban search head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_bans['Ban search head'] ?></h3>
+    </div>
     <form id="find_bans" method="get" action="bans.php">
         <fieldset>
             <p><?php echo $lang_admin_bans['Ban search info'] ?></p>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <tr>
                     <th><?php echo $lang_admin_bans['Username label'] ?></th>
-                    <td><input type="text" name="form[username]" size="25" maxlength="25" tabindex="4" /></td>
+                    <td><input type="text" class="form-control"name="form[username]" size="25" maxlength="25" tabindex="4" /></td>
                     <th><?php echo $lang_admin_bans['IP label'] ?></th>
-                    <td><input type="text" name="form[ip]" size="30" maxlength="255" tabindex="5" /></td>
+                    <td><input type="text" class="form-control"name="form[ip]" size="30" maxlength="255" tabindex="5" /></td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_bans['E-mail label'] ?></th>
-                    <td><input type="text" name="form[email]" size="30" maxlength="80" tabindex="6" /></td>
+                    <td><input type="text" class="form-control"name="form[email]" size="30" maxlength="80" tabindex="6" /></td>
                     <th><?php echo $lang_admin_bans['Message label'] ?></th>
-                    <td><input type="text" name="form[message]" size="30" maxlength="255" tabindex="7" /></td>
+                    <td><input type="text" class="form-control"name="form[message]" size="30" maxlength="255" tabindex="7" /></td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_bans['Expire after label'] ?></th>
-                    <td><input type="text" name="expire_after" size="10" maxlength="10" tabindex="8" />
+                    <td><input type="text" class="form-control"name="expire_after" size="10" maxlength="10" tabindex="8" />
                     <br /><span><?php echo $lang_admin_bans['Date help'] ?></span></td>
                     <th><?php echo $lang_admin_bans['Expire before label'] ?></th>
-                    <td><input type="text" name="expire_before" size="10" maxlength="10" tabindex="9" />
+                    <td><input type="text" class="form-control"name="expire_before" size="10" maxlength="10" tabindex="9" />
                     <br /><span><?php echo $lang_admin_bans['Date help'] ?></span></td>
                 </tr>
                 <tr>
                     <th><?php echo $lang_admin_bans['Order by label'] ?></th>
                     <td colspan="3">
-                        <select name="order_by" tabindex="10">
+                        <select class="form-control"name="order_by" tabindex="10">
                             <option value="username" selected="selected"><?php echo $lang_admin_bans['Order by username'] ?></option>
                             <option value="ip"><?php echo $lang_admin_bans['Order by ip'] ?></option>
                             <option value="email"><?php echo $lang_admin_bans['Order by e-mail'] ?></option>
                             <option value="expire"><?php echo $lang_admin_bans['Order by expire'] ?></option>
-                        </select>&#160;&#160;&#160;<select name="direction" tabindex="11">
+                        </select>&#160;&#160;&#160;<select class="form-control"name="direction" tabindex="11">
                             <option value="ASC" selected="selected"><?php echo $lang_admin_bans['Ascending'] ?></option>
                             <option value="DESC"><?php echo $lang_admin_bans['Descending'] ?></option>
                         </select>

@@ -53,11 +53,14 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('reports');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_reports['New reports head'] ?></h2>
+<h2><?php echo $lang_admin_reports['New reports head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_reports['New reports head'] ?></h3>
+    </div>
     <form method="post" action="reports.php?action=zap">
         <fieldset>
-            <table class="table" cellspacing="0">
+            <table class="table">
                 <thead>
                 <tr>
                     <th><?php echo $lang_admin_reports['Reported by'] ?></th>
@@ -112,9 +115,11 @@ else
         </fieldset>
     </form>
 </div>
-<div class="content">
-    <h2><span><?php echo $lang_admin_reports['Last 10 head'] ?></span></h2>
-    <table class="table" cellspacing="0">
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_reports['Last 10 head'] ?></h3>
+    </div>
+    <table class="table">
         <thead>
         <tr>
             <th><?php echo $lang_admin_reports['Reported by'] ?></th>

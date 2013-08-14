@@ -106,8 +106,10 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('stats');
 
 ?>
-<div class="content">
-    <h2><span><?php echo $lang_admin_index['Server statistics head'] ?></span></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_index['Server statistics head'] ?></h3>
+    </div>
     <table class="table">
         <tr>
             <th><?php echo $lang_admin_index['Server load label'] ?></th>

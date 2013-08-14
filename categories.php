@@ -160,15 +160,17 @@ require FORUM_ROOT.'admin/header.php';
 	generate_admin_menu('categories');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_admin_categories['Add categories head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_categories['Add categories head'] ?></h3>
+    </div>
     <form method="post" action="categories.php">
         <fieldset>
             <table class="table">
                 <tr>
                     <th class="span2"><?php echo $lang_admin_categories['Add category label'] ?></th>
                     <td>
-                        <input type="text" name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
+                        <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
                         <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
                         <br /><?php printf($lang_admin_categories['Add category help'], '<a href="forums.php">'.$lang_admin_common['Forums'].'</a>') ?>
                     </td>
@@ -178,8 +180,10 @@ require FORUM_ROOT.'admin/header.php';
     </form>
 </div>
 <?php if ($num_cats): ?>
-<div class="content">
-    <h2><?php echo $lang_admin_categories['Delete categories head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_categories['Delete categories head'] ?></h3>
+    </div>
     <form method="post" action="categories.php">
         <fieldset>
             <table class="table">
@@ -188,7 +192,7 @@ require FORUM_ROOT.'admin/header.php';
 						<?php echo $lang_admin_categories['Delete category label'] ?>
                     </th>
                     <td>
-                    	<select name="cat_to_delete" tabindex="3">
+                    	<select class="form-control" name="cat_to_delete" tabindex="3">
 <?php
 
 foreach ($cat_list as $cur_cat)
@@ -206,8 +210,10 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
 </div>
 <?php endif; ?>
 <?php if ($num_cats): ?>
-<div class="content">
-    <h2><?php echo $lang_admin_categories['Edit categories head'] ?></h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_admin_categories['Edit categories head'] ?></h3>
+    </div>
     <form method="post" action="categories.php">
         <fieldset>
             <table class="table" >
@@ -225,8 +231,8 @@ foreach ($cat_list as $cur_cat)
 
 ?>
                 <tr>
-                    <td class="tcl"><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
-                    <td><input type="text" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
+                    <td class="tcl"><input type="text" class="form-control"name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
+                    <td><input type="text" class="form-control"name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
                 </tr>
 <?php
 

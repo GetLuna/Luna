@@ -10,6 +10,7 @@ $lang_admin_index = array(
 'Backup info'						=>	'Create new database backup.',
 'Backup button'						=>	'Create new backup',
 'Reports head'						=>	'New reports',
+'Statistics head'					=>	'Statistics',
 'View all'							=>	'View all',
 'posts'								=>	'posts',
 'topics'							=>	'topics',
