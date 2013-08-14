@@ -3,6 +3,19 @@
 	margin: 5px auto 0;
 }
 
+body, html {
+	background-color: #f2f2f2;
+}
+
+.forum-list {
+	margin: 0;
+	margin-bottom: -5px;
+}
+
+.forum-list-border {
+	height: 300px;
+}
+
 /* Index */
 .subforums {
 	display: block;
