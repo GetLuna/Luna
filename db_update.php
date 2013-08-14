@@ -42,8 +42,8 @@ if (file_exists(FORUM_ROOT.'config.php'))
 	include FORUM_ROOT.'config.php';
 
 // If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
-if (defined('FORUM'))
-	define('FORUM', FORUM);
+if (defined('PUN'))
+	define('FORUM', PUN);
 
 // If FORUM isn't defined, config.php is missing or corrupt
 if (!defined('FORUM'))
