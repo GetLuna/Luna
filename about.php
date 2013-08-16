@@ -51,122 +51,130 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
 <h2><?php echo $lang_about['What new'] ?> <?php echo FORUM_VERSION ?></h2>
 <div class="about">
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_about['Headline feature 1 title'] ?></h3>
                 </div>
-                <div class="thumbnail">
-                    <img src="admin/img/dashboard.png" width="1065" height="250" />
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <p><b><?php echo $lang_about['Headline feature 1 head 1'] ?></b><br />
-                        <?php echo $lang_about['Headline feature 1 info 1'] ?></p>
+                <div class="panel-body">
+                    <div class="thumbnail">
+                        <img src="admin/img/dashboard.png" width="1065" height="250" />
                     </div>
-                    <div class="col-6">
-                        <p><b><?php echo $lang_about['Headline feature 1 head 2'] ?></b><br />
-                        <?php echo $lang_about['Headline feature 1 info 2'] ?></p>
-                    </div>
-                    <div class="col-12">
-                        <p><b><?php echo $lang_about['Headline feature 1 head 3'] ?></b><br />
-                        <?php echo $lang_about['Headline feature 1 info 3'] ?></p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><b><?php echo $lang_about['Headline feature 1 head 1'] ?></b><br />
+                            <?php echo $lang_about['Headline feature 1 info 1'] ?></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><b><?php echo $lang_about['Headline feature 1 head 2'] ?></b><br />
+                            <?php echo $lang_about['Headline feature 1 info 2'] ?></p>
+                        </div>
+                        <div class="col-md-12">
+                            <p><b><?php echo $lang_about['Headline feature 1 head 3'] ?></b><br />
+                            <?php echo $lang_about['Headline feature 1 info 3'] ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_about['Headline feature 2 title'] ?></h3>
                 </div>
-                <div class="thumbnail">
-                    <img src="admin/img/update.png" width="981" height="89" />
+                <div class="panel-body">
+                    <div class="thumbnail">
+                        <img src="admin/img/update.png" width="981" height="89" />
+                    </div>
+                    <p><?php echo $lang_about['Headline feature 2 info'] ?></p>
                 </div>
-                <p><?php echo $lang_about['Headline feature 2 info'] ?></p>
-            </div>
+			</div>
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_about['More new'] ?></h3>
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Second feature 1 head'] ?></b></p>
-                        <div class="thumbnail">
-                            <img src="admin/img/login.png" width="366" height="318" />
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Second feature 1 head'] ?></b></p>
+                            <div class="thumbnail">
+                                <img src="admin/img/login.png" width="366" height="318" />
+                            </div>
+                            <p><?php echo $lang_about['Second feature 1 info'] ?></p>
                         </div>
-                        <p><?php echo $lang_about['Second feature 1 info'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Second feature 2 head'] ?></b></p>
-                        <div class="thumbnail">
-                            <img src="admin/img/styles.png" width="366" height="318" />
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Second feature 2 head'] ?></b></p>
+                            <div class="thumbnail">
+                                <img src="admin/img/styles.png" width="366" height="318" />
+                            </div>
+                            <p><?php echo $lang_about['Second feature 2 info'] ?></p>
                         </div>
-                        <p><?php echo $lang_about['Second feature 2 info'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Second feature 3 head'] ?></b></p>
-                        <div class="thumbnail">
-                            <img src="admin/img/database.png" width="366" height="318" />
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Second feature 3 head'] ?></b></p>
+                            <div class="thumbnail">
+                                <img src="admin/img/database.png" width="366" height="318" />
+                            </div>
+                            <p><?php echo $lang_about['Second feature 3 info'] ?></p>
                         </div>
-                        <p><?php echo $lang_about['Second feature 3 info'] ?></p>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Second feature 4 head'] ?>.</b>
-                        <br /><?php echo $lang_about['Second feature 4 info'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Second feature 5 head'] ?></b>
-                        <br /><?php echo $lang_about['Second feature 5 info'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Second feature 6 head'] ?></b>
-                        <br /><?php echo $lang_about['Second feature 6 info'] ?></p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Second feature 4 head'] ?>.</b>
+                            <br /><?php echo $lang_about['Second feature 4 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Second feature 5 head'] ?></b>
+                            <br /><?php echo $lang_about['Second feature 5 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Second feature 6 head'] ?></b>
+                            <br /><?php echo $lang_about['Second feature 6 info'] ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_about['Other new'] ?></h3>
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Minor feature 1 head'] ?>.</b>
-                        <br /><?php echo $lang_about['Minor feature 1 info'] ?></p>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Minor feature 1 head'] ?>.</b>
+                            <br /><?php echo $lang_about['Minor feature 1 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Minor feature 2 head'] ?></b>
+                            <br /><?php echo $lang_about['Minor feature 2 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Minor feature 3 head'] ?></b>
+                            <br /><?php echo $lang_about['Minor feature 3 info'] ?></p>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Minor feature 2 head'] ?></b>
-                        <br /><?php echo $lang_about['Minor feature 2 info'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Minor feature 3 head'] ?></b>
-                        <br /><?php echo $lang_about['Minor feature 3 info'] ?></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Minor feature 4 head'] ?>.</b>
-                        <br /><?php echo $lang_about['Minor feature 4 info'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Minor feature 5 head'] ?></b>
-                        <br /><?php echo $lang_about['Minor feature 5 info'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <p><b><?php echo $lang_about['Minor feature 6 head'] ?></b>
-                        <br /><?php echo $lang_about['Minor feature 6 info'] ?></p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Minor feature 4 head'] ?>.</b>
+                            <br /><?php echo $lang_about['Minor feature 4 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Minor feature 5 head'] ?></b>
+                            <br /><?php echo $lang_about['Minor feature 5 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_about['Minor feature 6 head'] ?></b>
+                            <br /><?php echo $lang_about['Minor feature 6 info'] ?></p>
+                        </div>
                     </div>
                 </div>
             </div>

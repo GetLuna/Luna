@@ -115,34 +115,37 @@ require FORUM_ROOT.'admin/header.php';
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_admin_ranks['Add rank subhead'] ?></h3>
     </div>
-    <form id="ranks" method="post" action="ranks.php">
-        <fieldset>
-            <p><?php echo $lang_admin_ranks['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_admin_ranks['Ranks enabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_ranks['Ranks disabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>')) ?></p>
-            <table class="table" cellspacing="0">
-            <thead>
-                <tr>
-                    <th class="tcl" scope="col"><?php echo $lang_admin_ranks['Rank title label'] ?></th>
-                    <th class="tc2" scope="col"><?php echo $lang_admin_ranks['Minimum posts label'] ?></th>
-                    <th class="hidehead" scope="col"><?php echo $lang_admin_ranks['Actions label'] ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="tcl"><input type="text" class="form-control"name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
-                    <td class="tc2"><input type="text" class="form-control"name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
-                    <td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="3" /></td>
-                </tr>
-            </tbody>
-            </table>
-        </fieldset>
-    </form>
+    <div class="panel-body">
+        <form id="ranks" method="post" action="ranks.php">
+            <fieldset>
+                <p><?php echo $lang_admin_ranks['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_admin_ranks['Ranks enabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_ranks['Ranks disabled'], '<a href="options.php#ranks">'.$lang_admin_common['Options'].'</a>')) ?></p>
+                <table class="table" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="tcl" scope="col"><?php echo $lang_admin_ranks['Rank title label'] ?></th>
+                            <th class="tc2" scope="col"><?php echo $lang_admin_ranks['Minimum posts label'] ?></th>
+                            <th class="hidehead" scope="col"><?php echo $lang_admin_ranks['Actions label'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tcl"><input type="text" class="form-control"name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
+                            <td class="tc2"><input type="text" class="form-control"name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
+                            <td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="3" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
+    </div>
 </div>
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_admin_ranks['Edit remove subhead'] ?></h3>
     </div>
-    <form id="ranks" method="post" action="ranks.php">
-        <fieldset>
+    <div class="panel-body">
+        <form id="ranks" method="post" action="ranks.php">
+            <fieldset>
 <?php
 
 $result = $db->query('SELECT id, rank, min_posts FROM '.$db->prefix.'ranks ORDER BY min_posts') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
@@ -150,23 +153,23 @@ if ($db->num_rows($result))
 {
 
 ?>
-            <table class="table" cellspacing="0">
-            <thead>
-                <tr>
-                    <th class="tcl" scope="col"><?php echo $lang_admin_ranks['Rank title label'] ?></th>
-                    <th class="tc2" scope="col"><?php echo $lang_admin_ranks['Minimum posts label'] ?></th>
-                    <th class="hidehead" scope="col"><?php echo $lang_admin_ranks['Actions label'] ?></th>
-                </tr>
-            </thead>
-            <tbody>
+                <table class="table" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="tcl" scope="col"><?php echo $lang_admin_ranks['Rank title label'] ?></th>
+                            <th class="tc2" scope="col"><?php echo $lang_admin_ranks['Minimum posts label'] ?></th>
+                            <th class="hidehead" scope="col"><?php echo $lang_admin_ranks['Actions label'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
 
 	while ($cur_rank = $db->fetch_assoc($result))
 		echo "\t\t\t\t\t\t\t\t".'<tr><td class="tcl"><input type="text" class="form-control"name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td class="tc2"><input type="text" class="form-control"name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang_admin_common['Update'].'" />&#160;<input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang_admin_common['Remove'].'" /></td></tr>'."\n";
 
 ?>
-            </tbody>
-            </table>
+                    </tbody>
+                </table>
 <?php
 
 }
@@ -174,8 +177,9 @@ else
 	echo "\t\t\t\t\t\t\t".'<p>'.$lang_admin_ranks['No ranks in list'].'</p>'."\n";
 
 ?>
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>
 <?php
 

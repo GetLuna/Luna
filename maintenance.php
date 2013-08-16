@@ -214,19 +214,22 @@ if ($action == 'prune')
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_admin_maintenance['Prune head'] ?></h3>
     </div>
-    <form method="post" action="maintenance.php">
-        <input type="hidden" name="action" value="prune" />
-        <input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
-        <input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
-        <input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
-        <fieldset>
-            <h3><?php echo $lang_admin_maintenance['Confirm prune subhead'] ?></h3>
-            <p><?php printf($lang_admin_maintenance['Confirm prune info'], $prune_days, $forum, forum_number_format($num_topics)) ?></p>
-            <p class="warntext"><?php echo $lang_admin_maintenance['Confirm prune warn'] ?></p>
-        </fieldset>
-        <div class="control-group"><input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang_admin_common['Prune'] ?>" />
-        <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a></div>
-    </form>
+	<div class="panel-body">
+        <form method="post" action="maintenance.php">
+            <input type="hidden" name="action" value="prune" />
+            <input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
+            <input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
+            <input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
+            <fieldset>
+                <h3><?php echo $lang_admin_maintenance['Confirm prune subhead'] ?></h3>
+                <p><?php printf($lang_admin_maintenance['Confirm prune info'], $prune_days, $forum, forum_number_format($num_topics)) ?></p>
+                <p class="warntext"><?php echo $lang_admin_maintenance['Confirm prune warn'] ?></p>
+            </fieldset>
+            <div class="control-group"><input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang_admin_common['Prune'] ?>" />
+            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_admin_common['Go back'] ?></a></div>
+        </form>
+    </div>
+</div>
 <?php
 
 	require FORUM_ROOT.'admin/footer.php';
@@ -293,66 +296,69 @@ require FORUM_ROOT.'admin/header.php';
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_admin_maintenance['Rebuild index subhead'] ?></h3>
     </div>
-    <form method="get" action="maintenance.php">
-        <input type="hidden" name="action" value="rebuild" />
-        <fieldset>
-            <p><?php printf($lang_admin_maintenance['Rebuild index info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
-            <table class="table" cellspacing="0">
-                <tr>
-                    <th width="16%"><?php echo $lang_admin_maintenance['Posts per cycle label'] ?></th>
-                    <td>
-                        <input type="text" class="form-control" name="i_per_page" size="7" maxlength="7" value="300" tabindex="1" />
-                        <span class="help-block"><?php echo $lang_admin_maintenance['Posts per cycle help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_maintenance['Starting post label'] ?></th>
-                    <td>
-                        <input type="text" class="form-control" name="i_start_at" size="7" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
-                        <span class="help-block"><?php echo $lang_admin_maintenance['Starting post help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_maintenance['Empty index label'] ?></th>
-                    <td class="inputadmin">
-                        <label><input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked="checked" />&#160;&#160;<?php echo $lang_admin_maintenance['Empty index help'] ?></label>
-                    </td>
-                </tr>
-            </table>
-            <p class="topspace"><?php echo $lang_admin_maintenance['Rebuild completed info'] ?></p>
-            <div class="control-group"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang_admin_maintenance['Rebuild index'] ?>" tabindex="4" /></div>
-        </fieldset>
-    </form>
+	<div class="panel-body">
+        <form method="get" action="maintenance.php">
+            <input type="hidden" name="action" value="rebuild" />
+            <fieldset>
+                <p><?php printf($lang_admin_maintenance['Rebuild index info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <th width="16%"><?php echo $lang_admin_maintenance['Posts per cycle label'] ?></th>
+                        <td>
+                            <input type="text" class="form-control" name="i_per_page" size="7" maxlength="7" value="300" tabindex="1" />
+                            <span class="help-block"><?php echo $lang_admin_maintenance['Posts per cycle help'] ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_admin_maintenance['Starting post label'] ?></th>
+                        <td>
+                            <input type="text" class="form-control" name="i_start_at" size="7" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
+                            <span class="help-block"><?php echo $lang_admin_maintenance['Starting post help'] ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_admin_maintenance['Empty index label'] ?></th>
+                        <td class="inputadmin">
+                            <label><input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked="checked" />&#160;&#160;<?php echo $lang_admin_maintenance['Empty index help'] ?></label>
+                        </td>
+                    </tr>
+                </table>
+                <p class="topspace"><?php echo $lang_admin_maintenance['Rebuild completed info'] ?></p>
+                <div class="control-group"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang_admin_maintenance['Rebuild index'] ?>" tabindex="4" /></div>
+            </fieldset>
+        </form>
+    </div>
 </div>
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_admin_maintenance['Prune subhead'] ?></h3>
     </div>
-    <form method="post" action="maintenance.php" onsubmit="return process_form(this)">
-        <input type="hidden" name="action" value="prune" />
-        <fieldset>
-            <p class="topspace"><?php printf($lang_admin_maintenance['Prune info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
-            <table class="table" cellspacing="0">
-                <tr>
-                    <th width="16%"><?php echo $lang_admin_maintenance['Days old label'] ?></th>
-                    <td>
-                        <input type="text" class="form-control" name="req_prune_days" size="3" maxlength="3" tabindex="5" />
-                        <span class="help-block"><?php echo $lang_admin_maintenance['Days old help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_maintenance['Prune sticky label'] ?></th>
-                    <td>
-                        <label class="conl"><input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                        <label class="conl"><input type="radio" name="prune_sticky" value="0" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                        <span class="help-block"><?php echo $lang_admin_maintenance['Prune sticky help'] ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th><?php echo $lang_admin_maintenance['Prune from label'] ?></th>
-                    <td>
-                        <select class="form-control" name="prune_from" tabindex="7">
-                            <option value="all"><?php echo $lang_admin_maintenance['All forums'] ?></option>
+	<div class="panel-body">
+        <form method="post" action="maintenance.php" onsubmit="return process_form(this)">
+            <input type="hidden" name="action" value="prune" />
+            <fieldset>
+                <p class="topspace"><?php printf($lang_admin_maintenance['Prune info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <th width="16%"><?php echo $lang_admin_maintenance['Days old label'] ?></th>
+                        <td>
+                            <input type="text" class="form-control" name="req_prune_days" size="3" maxlength="3" tabindex="5" />
+                            <span class="help-block"><?php echo $lang_admin_maintenance['Days old help'] ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_admin_maintenance['Prune sticky label'] ?></th>
+                        <td>
+                            <label class="conl"><input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="prune_sticky" value="0" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_admin_maintenance['Prune sticky help'] ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_admin_maintenance['Prune from label'] ?></th>
+                        <td>
+                            <select class="form-control" name="prune_from" tabindex="7">
+                                <option value="all"><?php echo $lang_admin_maintenance['All forums'] ?></option>
 <?php
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id WHERE f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -373,63 +379,66 @@ require FORUM_ROOT.'admin/header.php';
 	}
 
 ?>
-                            </optgroup>
-                        </select>
-                        <span class="help-block"><?php echo $lang_admin_maintenance['Prune from help'] ?></span>
-                    </td>
-                </tr>
-            </table>
-            <div class="control-group"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="8" /></div>
-        </fieldset>
-    </form>
+                                </optgroup>
+                            </select>
+                            <span class="help-block"><?php echo $lang_admin_maintenance['Prune from help'] ?></span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="control-group"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="8" /></div>
+            </fieldset>
+        </form>
+    </div>
 </div>
 <div class="panel">
     <div class="panel-heading">
         <h3 class="panel-title">Prune users</h3>
     </div>
-    <form id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-        <fieldset>
-        	<p class="topspace"><?php printf($lang_admin_maintenance['Prune users info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
-            <table class="table" cellspacing="0">
-                <tr>
-                    <th class="span3">Prune by</th>
-                    <td>
-                        <input type="radio" name="prune_by" value="1" checked="checked" />&nbsp;<strong>Registed date</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="prune_by" value="0" />&nbsp;<strong>Last Login</strong>
-                        <span class="help-block">This decides if the minimum number of days is calculated since the last login or the registered date.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Minimum days since registration/last login</th>
-                    <td>
-                        <input type="text" class="form-control" name="days" value="28" size="25" tabindex="1" />
-                        <span class="help-block">The minimum number of days before users are pruned by the setting specified above.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Maximum number of posts</th>
-                    <td>
-                        <input type="text" class="form-control" name="posts" value="1"  size="25" tabindex="1" />
-                        <span class="help-block">Users with a postcount equal of higher than this won't be pruned. E.g. a value of 1 will remove users with no posts.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Delete admins and mods?</th>
-                    <td>
-                        <input type="radio" name="admods_delete" value="1" />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="admods_delete" value="0" checked="checked" />&nbsp;<strong>No</strong>
-                        <span class="help-block">If Yes, any affected Moderators and Admins will also be pruned.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>User status</th>
-                    <td>
-                        <input type="radio" name="verified" value="1" />&nbsp;<strong>Delete any</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="0" checked="checked" />&nbsp;<strong>Delete only verified</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="2" />&nbsp;<strong>Delete only unverified</strong>
-                        <span class="help-block">Decides if (un)verified users should be deleted.</span>
-                    </td>
-                </tr>
-            </table>
-			<p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="2" /></p>
-        </fieldset>
-    </form>
+	<div class="panel-body">
+        <form id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+            <fieldset>
+                <p class="topspace"><?php printf($lang_admin_maintenance['Prune users info'], '<a href="options.php#maintenance">'.$lang_admin_common['Maintenance mode'].'</a>') ?></p>
+                <table class="table" cellspacing="0">
+                    <tr>
+                        <th class="span3">Prune by</th>
+                        <td>
+                            <input type="radio" name="prune_by" value="1" checked="checked" />&nbsp;<strong>Registed date</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="prune_by" value="0" />&nbsp;<strong>Last Login</strong>
+                            <span class="help-block">This decides if the minimum number of days is calculated since the last login or the registered date.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Minimum days since registration/last login</th>
+                        <td>
+                            <input type="text" class="form-control" name="days" value="28" size="25" tabindex="1" />
+                            <span class="help-block">The minimum number of days before users are pruned by the setting specified above.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Maximum number of posts</th>
+                        <td>
+                            <input type="text" class="form-control" name="posts" value="1"  size="25" tabindex="1" />
+                            <span class="help-block">Users with a postcount equal of higher than this won't be pruned. E.g. a value of 1 will remove users with no posts.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Delete admins and mods?</th>
+                        <td>
+                            <input type="radio" name="admods_delete" value="1" />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="admods_delete" value="0" checked="checked" />&nbsp;<strong>No</strong>
+                            <span class="help-block">If Yes, any affected Moderators and Admins will also be pruned.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>User status</th>
+                        <td>
+                            <input type="radio" name="verified" value="1" />&nbsp;<strong>Delete any</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="0" checked="checked" />&nbsp;<strong>Delete only verified</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="2" />&nbsp;<strong>Delete only unverified</strong>
+                            <span class="help-block">Decides if (un)verified users should be deleted.</span>
+                        </td>
+                    </tr>
+                </table>
+                <p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang_admin_common['Prune'] ?>" tabindex="2" /></p>
+            </fieldset>
+        </form>
+    </div>
 </div>
 <?php
 
