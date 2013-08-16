@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '1.6.1');
+define('UPDATE_TO', '1.6.2');
 
 define('UPDATE_TO_DB_REVISION', 20);
 define('UPDATE_TO_SI_REVISION', 2);
