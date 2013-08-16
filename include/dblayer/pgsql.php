@@ -117,7 +117,7 @@ class DBLayer
 			++$this->num_queries;
 
 			$this->last_query_text[intval($this->query_result)] = $sql;
-
+			
 			return $this->query_result;
 		}
 		else
