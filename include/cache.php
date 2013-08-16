@@ -216,6 +216,26 @@ function generate_users_info_cache()
 
 
 //
+// Generate the admins cache PHP script
+//
+function generate_admins_cache()
+{
+	global $db;
+
+	// Get admins from the DB
+	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.PUN_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());
+
+	$output = array();
+	while ($row = $db->fetch_row($result))
+		$output[] = $row[0];
+
+	// Output admin list as PHP code
+	$content = '<?php'."\n\n".'define(\'PUN_ADMINS_LOADED\', 1);'."\n\n".'$pun_admins = '.var_export($output, true).';'."\n\n".'?>';
+	fluxbb_write_cache_file('cache_admins.php', $content);
+}
+
+
+//
 // Safely write out a cache file.
 //
 function fluxbb_write_cache_file($file, $content)
