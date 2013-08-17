@@ -183,24 +183,24 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_options['Board title label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_options['Board title label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Board title help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Board title help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Board desc label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[board_desc]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_desc']) ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Board desc help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Board desc help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Base URL label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[base_url]" size="50" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Base URL help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Base URL help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -319,38 +319,38 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_options['Time format label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_options['Time format label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
-                            <span class="help-block"><?php printf($lang_admin_options['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
+                            <br /><span class="help-block"><?php printf($lang_admin_options['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Date format label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[date_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_date_format']) ?>" />
-                            <span class="help-block"><?php printf($lang_admin_options['Date format help'], gmdate($pun_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
+                            <br /><span class="help-block"><?php printf($lang_admin_options['Date format help'], gmdate($pun_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Visit timeout label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[timeout_visit]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_visit'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Visit timeout help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Visit timeout help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Online timeout label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[timeout_online]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Online timeout help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Online timeout help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Redirect time label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[redirect_delay]" size="3" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Redirect time help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Redirect time help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -365,7 +365,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_options['Default feed label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_options['Default feed label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['None'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['RSS'] ?></strong></label>
@@ -402,7 +402,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_options['Reporting method label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_options['Reporting method label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['Internal'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['By e-mail'] ?></strong></label>
@@ -429,7 +429,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_options['Use avatars label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_options['Use avatars label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[avatars]" value="1"<?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[avatars]" value="0"<?php if ($pun_config['o_avatars'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -440,28 +440,28 @@ generate_admin_menu('global');
                         <th><?php echo $lang_admin_options['Upload directory label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_dir]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_avatars_dir']) ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Upload directory help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Upload directory help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Max width label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_width]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_width'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Max width help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Max width help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Max height label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_height]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_height'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Max height help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Max height help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_options['Max size label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_size]" size="6" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_options['Max size help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_options['Max size help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -476,7 +476,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_options['Allow new label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_options['Allow new label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[regs_allow]" value="1"<?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[regs_allow]" value="0"<?php if ($pun_config['o_regs_allow'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -527,7 +527,7 @@ generate_admin_menu('global');
                         <th><?php echo $lang_admin_options['Antispam API label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[antispam_api]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
-                            <span class="help-block"><?php printf($lang_admin_options['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
+                            <br /><span class="help-block"><?php printf($lang_admin_options['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                         </td>
                     </tr>
                 </table>
@@ -542,7 +542,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_options['Display announcement label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_options['Display announcement label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[announcement]" value="1"<?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[announcement]" value="0"<?php if ($pun_config['o_announcement'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
@@ -568,7 +568,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><a name="maintenance"></a><?php echo $lang_admin_options['Maintenance mode label'] ?></th>
+                        <th class="col-md-2"><a name="maintenance"></a><?php echo $lang_admin_options['Maintenance mode label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[maintenance]" value="1"<?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[maintenance]" value="0"<?php if ($pun_config['o_maintenance'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>

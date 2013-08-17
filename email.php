@@ -87,17 +87,17 @@ generate_admin_menu('email');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th width="18%"><?php echo $lang_admin_email['Admin e-mail label'] ?></th>
+                        <th width="col-md-2"><?php echo $lang_admin_email['Admin e-mail label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[admin_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_email['Admin e-mail help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_email['Admin e-mail help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_email['Webmaster e-mail label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[webmaster_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_webmaster_email'] ?>" />
-                            <span class="help-block"><?php echo $lang_admin_email['Webmaster e-mail help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_email['Webmaster e-mail help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -120,14 +120,14 @@ generate_admin_menu('email');
                         <th><?php echo $lang_admin_email['SMTP address label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[smtp_host]" size="30" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_host']) ?>" />
-                            <span class="help-block"><?php echo $lang_admin_email['SMTP address help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_email['SMTP address help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_email['SMTP username label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[smtp_user]" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
-                            <span class="help-block"><?php echo $lang_admin_email['SMTP username help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_email['SMTP username help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -137,7 +137,7 @@ generate_admin_menu('email');
     <?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
                             <br /><input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
                             <input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                            <span class="help-block"><?php echo $lang_admin_email['SMTP password help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_email['SMTP password help'] ?></span>
                         </td>
                     </tr>
                     <tr>

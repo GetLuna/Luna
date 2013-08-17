@@ -412,7 +412,8 @@ require FORUM_ROOT.'admin/header.php';
                     <tr>
                         <th><?php echo $lang_admin_forums['Add forum label'] ?><div></div></th>
                         <td>
-                            <select class="form-control" name="add_to_cat" tabindex="1">
+                            <div class="input-group">
+                                <select class="form-control" name="add_to_cat" tabindex="1">
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
@@ -425,10 +426,11 @@ require FORUM_ROOT.'admin/header.php';
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_admin_forums['No categories exist'].'</option>'."\n";
 
 ?>
-                            </select>
-                            <input type="text" class="form-control"name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" /> 
-                            <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
-                            <br /><span><?php echo $lang_admin_forums['Add forum help'] ?></span>
+                                </select>
+                                <input type="text" class="form-control"name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
+								<input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
+                            </div>
+                            <span class="help-block"><?php echo $lang_admin_forums['Add forum help'] ?></span>
                         </td>
                     </tr>
                 </table>

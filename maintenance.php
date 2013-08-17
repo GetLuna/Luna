@@ -306,14 +306,14 @@ require FORUM_ROOT.'admin/header.php';
                         <th width="16%"><?php echo $lang_admin_maintenance['Posts per cycle label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="i_per_page" size="7" maxlength="7" value="300" tabindex="1" />
-                            <span class="help-block"><?php echo $lang_admin_maintenance['Posts per cycle help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_maintenance['Posts per cycle help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_maintenance['Starting post label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="i_start_at" size="7" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
-                            <span class="help-block"><?php echo $lang_admin_maintenance['Starting post help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_maintenance['Starting post help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -343,7 +343,7 @@ require FORUM_ROOT.'admin/header.php';
                         <th width="16%"><?php echo $lang_admin_maintenance['Days old label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="req_prune_days" size="3" maxlength="3" tabindex="5" />
-                            <span class="help-block"><?php echo $lang_admin_maintenance['Days old help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_maintenance['Days old help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -351,7 +351,7 @@ require FORUM_ROOT.'admin/header.php';
                         <td>
                             <label class="conl"><input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="prune_sticky" value="0" />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_maintenance['Prune sticky help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_admin_maintenance['Prune sticky help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -410,14 +410,14 @@ require FORUM_ROOT.'admin/header.php';
                         <th>Minimum days since registration/last login</th>
                         <td>
                             <input type="text" class="form-control" name="days" value="28" size="25" tabindex="1" />
-                            <span class="help-block">The minimum number of days before users are pruned by the setting specified above.</span>
+                            <br /><span class="help-block">The minimum number of days before users are pruned by the setting specified above.</span>
                         </td>
                     </tr>
                     <tr>
                         <th>Maximum number of posts</th>
                         <td>
                             <input type="text" class="form-control" name="posts" value="1"  size="25" tabindex="1" />
-                            <span class="help-block">Users with a postcount equal of higher than this won't be pruned. E.g. a value of 1 will remove users with no posts.</span>
+                            <br /><span class="help-block">Users with a postcount equal of higher than this won't be pruned. E.g. a value of 1 will remove users with no posts.</span>
                         </td>
                     </tr>
                     <tr>

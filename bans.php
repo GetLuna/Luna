@@ -469,7 +469,7 @@ require FORUM_ROOT.'admin/header.php';
                         <td>
                             <input type="text" class="form-control"name="new_ban_user" size="25" maxlength="25" tabindex="1" />
                             <input class="btn btn-danger" type="submit" name="add_ban" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="2" />
-                            <br /><span><?php echo $lang_admin_bans['Username advanced help'] ?></span>
+                            <span class="help-block"><?php echo $lang_admin_bans['Username advanced help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -500,11 +500,9 @@ require FORUM_ROOT.'admin/header.php';
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_bans['Expire after label'] ?></th>
-                        <td><input type="text" class="form-control"name="expire_after" size="10" maxlength="10" tabindex="8" />
-                        <br /><span><?php echo $lang_admin_bans['Date help'] ?></span></td>
+                        <td><input type="text" class="form-control"name="expire_after" size="10" maxlength="10" tabindex="8" placeholder="<?php echo $lang_admin_bans['Date help'] ?>" /></td>
                         <th><?php echo $lang_admin_bans['Expire before label'] ?></th>
-                        <td><input type="text" class="form-control"name="expire_before" size="10" maxlength="10" tabindex="9" />
-                        <br /><span><?php echo $lang_admin_bans['Date help'] ?></span></td>
+                        <td><input type="text" class="form-control"name="expire_before" size="10" maxlength="10" tabindex="9" placeholder="<?php echo $lang_admin_bans['Date help'] ?>" /></td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_admin_bans['Order by label'] ?></th>

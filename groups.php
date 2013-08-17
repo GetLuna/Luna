@@ -506,7 +506,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 ?>
                             </select>
                             <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang_admin_common['Add'] ?>" tabindex="2" />
-                            <br /><span><?php echo $lang_admin_groups['New group help'] ?></span>
+                            <span class="help-block"><?php echo $lang_admin_groups['New group help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -541,7 +541,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 ?>
                             </select>
                             <input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang_admin_common['Save'] ?>" tabindex="4" />
-                            <br /><span><?php echo $lang_admin_groups['Default group help'] ?></span>
+                            <span class="help-block"><?php echo $lang_admin_groups['Default group help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -564,12 +564,11 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><th><a class="btn btn-success btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? ' <a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Delete link'].'</a>' : '').'</th><td>'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><th><a class="btn btn-primary btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? ' <a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_admin_groups['Delete link'].'</a>' : '').'</th><td>'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
 
 ?>
-                    </table>
-            </fieldset>
-        </div>
+            </table>
+        </fieldset>
     </div>
 </div>
 <?php

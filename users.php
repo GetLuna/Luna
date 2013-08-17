@@ -1089,9 +1089,11 @@ else
                     <table class="table" cellspacing="0">
                         <tr>
                             <th scope="row"><?php echo $lang_admin_users['IP address label'] ?></th>
-                            <td><input type="text" class="form-control" name="show_users" size="18" maxlength="15" tabindex="24" />
-                            <input class="btn btn-primary" type="submit" value="<?php echo $lang_admin_users['Find IP address'] ?>" tabindex="26" />
-                            <br /><span><?php echo $lang_admin_users['IP address help'] ?></span></td>
+                            <td>
+                                <input type="text" class="form-control" name="show_users" size="18" maxlength="15" tabindex="24" />
+                                <input class="btn btn-primary" type="submit" value="<?php echo $lang_admin_users['Find IP address'] ?>" tabindex="26" />
+                                <br /><span class="help-block"><?php echo $lang_admin_users['IP address help'] ?></span>
+                            </td>
                         </tr>
                     </table>
             </fieldset>
@@ -1123,14 +1125,14 @@ else
                         <th>Generate random password?</th>
                         <td>
                             <input type="radio" name="random_pass" value="1" />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="random_pass" value="0" checked="checked" />&nbsp;<strong>No</strong>
-                            <br /><span>If Yes a random password will be generated and emailed to the above address.</span>
+                            <span class="help-block">If yes, a random password will be generated and emailed to the above address.</span>
                         </td>
                     </tr>
                     <tr>
                         <th>Password</th>
                         <td>
                             <input type="password" class="form-control" name="password" size="25" tabindex="3" />
-                            <br /><span>Give up a password, keep empty for a random password.</span>
+                            <br /><span class="help-block">Give up a password, keep empty for a random password.</span>
                         </td>
                     </tr>
                 </table>

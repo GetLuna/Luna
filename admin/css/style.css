@@ -17,7 +17,7 @@ h2 {
 	margin: 65px auto 0;
 }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
 	padding-right: 5px;
 	padding-left: 5px;
 }
@@ -55,6 +55,15 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	margin-left: 0;
 	margin-right: 0;
 	text-transform: lowercase;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+	background: #0b82cd;
+	text-decoration: none;
+	color: #fff;
 }
 
 .nav > li {
@@ -93,7 +102,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 /* Buttons */
 .btn {
 	display: inline-block;
-	padding: 4px 12px;
+	padding: 6px 12px;
 	margin-bottom: 0;
 	font-size: 14px;
 	line-height: 20px;
@@ -338,6 +347,10 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	color: #fff;
 }
 
+.panel-body {
+  padding: 10px;
+}
+
 .row .panel .row {
 	margin-right: -5px;
 	margin-left: -5px;
@@ -358,12 +371,28 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 }
 
 .alert-info {
-	background-color: #ffffff;
 	border-left: #2ca0e9 5px solid;
+}
+
+.alert-danger {
+	border-left: #ff5a00 5px solid;
+	color: #d33200;
+}
+
+.alert-success {
+	border-left: #41d300 5px solid;
+	color: #4e9e00;
 }
 
 /* Tables */
 .table {
-	margin-top: -10px;
-	margin-bottom: -10px;
+	margin-top: -5px;
+	margin-bottom: -5px;
+}
+
+/* Forms */
+.form-control {
+	width: auto;
+	min-width: 200px;
+	display: inline;
 }
