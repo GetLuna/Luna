@@ -776,18 +776,21 @@ require FORUM_ROOT.'header.php';
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_search['Search criteria legend'] ?></h3>
         </div>
-        <fieldset>
-            <input class="form-control" type="hidden" name="action" value="search" />
-            <label class="conl"><?php echo $lang_search['Keyword search'] ?><br /><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /><br /></label>
-            <label class="conl"><?php echo $lang_search['Author search'] ?><br /><input class="form-control" id="author" type="text" name="author" size="25" maxlength="25" /><br /></label>
-            <p class="clearb"><?php echo $lang_search['Search info'] ?></p>
-        </fieldset>
+        <div class="panel-body">
+            <fieldset>
+                <input class="form-control" type="hidden" name="action" value="search" />
+                <label class="conl"><?php echo $lang_search['Keyword search'] ?><br /><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /><br /></label>
+                <label class="conl"><?php echo $lang_search['Author search'] ?><br /><input class="form-control" id="author" type="text" name="author" size="25" maxlength="25" /><br /></label>
+                <p class="clearb"><?php echo $lang_search['Search info'] ?></p>
+            </fieldset>
+        </div>
     </div>
     <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_search['Search in legend'] ?></h3>
         </div>
-        <fieldset>
+        <div class="panel-body">
+            <fieldset>
 <?php
 
 $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.redirect_url, f.parent_forum_id FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -854,44 +857,47 @@ else
 }
 
 ?>
-            <label class="conl"><?php echo $lang_search['Search in']."\n" ?>
-            <br /><select class="form-control" id="search_in" name="search_in">
-                <option value="0"><?php echo $lang_search['Message and subject'] ?></option>
-                <option value="1"><?php echo $lang_search['Message only'] ?></option>
-                <option value="-1"><?php echo $lang_search['Topic only'] ?></option>
-            </select>
-            <br /></label>
-            <p><?php echo $lang_search['Search in info'] ?></p>
-    <?php echo ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'] ? '<p>'.$lang_search['Search multiple forums info'].'</p>' : '') ?>
-        </fieldset>
+                <label class="conl"><?php echo $lang_search['Search in']."\n" ?>
+                <br /><select class="form-control" id="search_in" name="search_in">
+                    <option value="0"><?php echo $lang_search['Message and subject'] ?></option>
+                    <option value="1"><?php echo $lang_search['Message only'] ?></option>
+                    <option value="-1"><?php echo $lang_search['Topic only'] ?></option>
+                </select>
+                <br /></label>
+                <p><?php echo $lang_search['Search in info'] ?></p>
+				<?php echo ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'] ? '<p>'.$lang_search['Search multiple forums info'].'</p>' : '') ?>
+            </fieldset>
+        </div>
     </div>
     <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_search['Search results legend'] ?></h3>
         </div>
-        <fieldset>
-            <label class="conl"><?php echo $lang_search['Sort by']."\n" ?>
-            <br /><select class="form-control" name="sort_by">
-                <option value="0"><?php echo $lang_search['Sort by post time'] ?></option>
-                <option value="1"><?php echo $lang_search['Sort by author'] ?></option>
-                <option value="2"><?php echo $lang_search['Sort by subject'] ?></option>
-                <option value="3"><?php echo $lang_search['Sort by forum'] ?></option>
-            </select>
-            <br /></label>
-            <label class="conl"><?php echo $lang_search['Sort order']."\n" ?>
-            <br /><select class="form-control" name="sort_dir">
-                <option value="DESC"><?php echo $lang_search['Descending'] ?></option>
-                <option value="ASC"><?php echo $lang_search['Ascending'] ?></option>
-            </select>
-            <br /></label>
-            <label class="conl"><?php echo $lang_search['Show as']."\n" ?>
-            <br /><select class="form-control" name="show_as">
-                <option value="topics"><?php echo $lang_search['Show as topics'] ?></option>
-                <option value="posts"><?php echo $lang_search['Show as posts'] ?></option>
-            </select>
-            <br /></label>
-            <p><?php echo $lang_search['Search results info'] ?></p>
-        </fieldset>
+        <div class="panel-body">
+            <fieldset>
+                <label class="conl"><?php echo $lang_search['Sort by']."\n" ?>
+                <br /><select class="form-control" name="sort_by">
+                    <option value="0"><?php echo $lang_search['Sort by post time'] ?></option>
+                    <option value="1"><?php echo $lang_search['Sort by author'] ?></option>
+                    <option value="2"><?php echo $lang_search['Sort by subject'] ?></option>
+                    <option value="3"><?php echo $lang_search['Sort by forum'] ?></option>
+                </select>
+                <br /></label>
+                <label class="conl"><?php echo $lang_search['Sort order']."\n" ?>
+                <br /><select class="form-control" name="sort_dir">
+                    <option value="DESC"><?php echo $lang_search['Descending'] ?></option>
+                    <option value="ASC"><?php echo $lang_search['Ascending'] ?></option>
+                </select>
+                <br /></label>
+                <label class="conl"><?php echo $lang_search['Show as']."\n" ?>
+                <br /><select class="form-control" name="show_as">
+                    <option value="topics"><?php echo $lang_search['Show as topics'] ?></option>
+                    <option value="posts"><?php echo $lang_search['Show as posts'] ?></option>
+                </select>
+                <br /></label>
+                <p><?php echo $lang_search['Search results info'] ?></p>
+            </fieldset>
+        </div>
     </div>
     <div class="alert alert-info">
 		<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" />

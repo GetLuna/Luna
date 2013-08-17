@@ -261,13 +261,14 @@ else
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_index['Board stats'] ?></h3>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <td class="col-2"><span><?php printf($lang_index['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></td>
-                <td class="col-2"><span><?php printf($lang_index['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></td>
-                <td class="col-2"><span><?php printf($lang_index['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></td>
-    	        <td class="col-2"><span><?php printf($lang_index['Newest user'], $stats['newest_user']) ?></span></td>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="col-2"><span><?php printf($lang_index['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></td>
+                    <td class="col-2"><span><?php printf($lang_index['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></td>
+                    <td class="col-2"><span><?php printf($lang_index['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></td>
+                    <td class="col-2"><span><?php printf($lang_index['Newest user'], $stats['newest_user']) ?></span></td>
 <?php
 
 if ($pun_config['o_users_online'] == '1')
@@ -293,9 +294,9 @@ if ($pun_config['o_users_online'] == '1')
 	$num_users = count($users);
 	echo "\t\t\t\t".'<td class="col-2"><span>'.sprintf($lang_index['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></td>'."\n\t\t\t\t".'<td><span>'.sprintf($lang_index['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></td>'."\n\t\t\t".'</dl>'."\n";
 ?>
-            </tr>
-        </thead>
-    </table>
+                </tr>
+            </thead>
+        </table>
 <?php
 	if ($num_users > 0)
 		echo "\t\t\t\n\t\t\t\t".'<strong>'.$lang_index['Online'].' </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n";
@@ -308,6 +309,7 @@ else
 
 
 ?>
+	</div>
 </div>
 <?php
 
