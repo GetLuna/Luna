@@ -169,13 +169,11 @@ require FORUM_ROOT.'admin/header.php';
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2"><?php echo $lang_admin_categories['Add category label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_admin_categories['Add category label'] ?></th>
                         <td>
-                            <div class="input-group">
-                                <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
-                                <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
-                                <span class="help-block"><?php printf($lang_admin_categories['Add category help'], '<a href="forums.php">'.$lang_admin_common['Forums'].'</a>') ?></span>
-                            </div>
+                            <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
+                            <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_admin_categories['Add new submit'] ?>" tabindex="2" />
+                            <span class="help-block"><?php printf($lang_admin_categories['Add category help'], '<a href="forums.php">'.$lang_admin_common['Forums'].'</a>') ?></span>
                         </td>
                     </tr>
                 </table>
@@ -193,21 +191,19 @@ require FORUM_ROOT.'admin/header.php';
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="span2">
+                        <th class="col-md-2">
                             <?php echo $lang_admin_categories['Delete category label'] ?>
                         </th>
                         <td>
-                            <div class="input-group">
-                                <select class="form-control" name="cat_to_delete" tabindex="3">
+                            <select class="form-control" name="cat_to_delete" tabindex="3">
 <?php
 
 foreach ($cat_list as $cur_cat)
 echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 
 ?>
-                                </select>
-                                <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_admin_common['Delete'] ?>" tabindex="4" />
-							</div>
+                            </select>
+                            <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_admin_common['Delete'] ?>" tabindex="4" />
                             <span class="help-block"><?php echo $lang_admin_categories['Delete category help'] ?></span>
                         </td>
                     </tr>

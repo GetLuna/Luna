@@ -412,8 +412,7 @@ require FORUM_ROOT.'admin/header.php';
                     <tr>
                         <th><?php echo $lang_admin_forums['Add forum label'] ?><div></div></th>
                         <td>
-                            <div class="input-group">
-                                <select class="form-control" name="add_to_cat" tabindex="1">
+                            <select class="form-control" name="add_to_cat" tabindex="1">
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
@@ -426,10 +425,9 @@ require FORUM_ROOT.'admin/header.php';
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_admin_forums['No categories exist'].'</option>'."\n";
 
 ?>
-                                </select>
-                                <input type="text" class="form-control"name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
-								<input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
-                            </div>
+                            </select>
+                            <input type="text" class="form-control"name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
+                            <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_admin_forums['Add forum'] ?>" tabindex="2" />
                             <span class="help-block"><?php echo $lang_admin_forums['Add forum help'] ?></span>
                         </td>
                     </tr>
@@ -471,7 +469,7 @@ while ($cur_forum = $db->fetch_assoc($result))
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="span2"><?php echo $lang_admin_common['Action'] ?></th>
+                            <th class="col-md-2"><?php echo $lang_admin_common['Action'] ?></th>
                             <th class="span4"><?php echo $lang_admin_forums['Position label'] ?></th>
                             <th><?php echo $lang_admin_forums['Forum label'] ?></th>
                         </tr>

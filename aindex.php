@@ -54,7 +54,7 @@ require FORUM_ROOT.'admin/header.php';
 //Update checking
 $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
 if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
-	<div class="alert alert-update">
+	<div class="alert">
 		<h4><?php echo sprintf($lang_admin_common['Available'], $latest_version) ?></h4>
 		<div class="btn-group">
 			<a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_admin_common['Download'], $latest_version) ?></a>
@@ -63,7 +63,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
 		<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang_admin_common['Download'], FORUM_VERSION) ?></a>
 	</div>
 <?php } else { ?>
-	<div class="alert alert-update alert-info">
+	<div class="alert alert-info">
 		<h4><?php echo $lang_admin_index['ModernBB intro'] ?> <?php echo FORUM_VERSION ?></h4>
 		<div class="btn-group">
 			<a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang_admin_common['Changelog'] ?></a>
