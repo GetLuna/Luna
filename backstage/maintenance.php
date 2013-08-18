@@ -12,7 +12,7 @@ define('FORUM_ADMIN_CONSOLE', 1);
 // Tell common.php that we don't want output buffering
 define('FORUM_DISABLE_BUFFERING', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -39,9 +39,6 @@ if ($action == 'rebuild')
 	// If this is the first cycle of posts we empty the search index before we proceed
 	if (isset($_GET['i_empty_index']))
 	{
-		// This is the only potentially "dangerous" thing we can do here, so we check the referer
-		confirm_referrer('maintenance.php');
-
 		$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
 		$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
 
@@ -131,8 +128,6 @@ if ($action == 'prune')
 
 	if (isset($_POST['prune_comply']))
 	{
-		confirm_referrer('maintenance.php');
-
 		$prune_days = intval($_POST['prune_days']);
 		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
 
@@ -170,7 +165,7 @@ if ($action == 'prune')
 			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
-		redirect('maintenance.php', $lang_admin_maintenance['Posts pruned redirect']);
+		redirect('backstage/maintenance.php', $lang_admin_maintenance['Posts pruned redirect']);
 	}
 
 	$prune_days = pun_trim($_POST['req_prune_days']);
@@ -206,7 +201,7 @@ if ($action == 'prune')
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Prune']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'admin/header.php';
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('maintenance');
 
 ?>
@@ -232,7 +227,7 @@ if ($action == 'prune')
 </div>
 <?php
 
-	require FORUM_ROOT.'admin/footer.php';
+	require FORUM_ROOT.'backstage/footer.php';
 	exit;
 }
 
@@ -288,7 +283,7 @@ if ($db->num_rows($result))
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Maintenance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('maintenance');
 
 ?>
@@ -442,4 +437,4 @@ require FORUM_ROOT.'admin/header.php';
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

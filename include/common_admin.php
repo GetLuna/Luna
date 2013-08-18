@@ -34,7 +34,7 @@ function generate_admin_menu($page = '')
 ?>
 <div class="navbar navbar-fixed-top">
     <div class="nav-inner">
-        <a class="navbar-brand" href="index.php">ModernBB</a>
+        <a class="navbar-brand" href="../index.php">ModernBB</a>
         <ul class="nav navbar-nav">
             <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="aindex.php"><?php echo $lang_admin_common['Dashboard'] ?></a></li>
             <li class="dropdown <?php if ($page == 'forums' || $page == 'categories' || $page == 'censoring' || $page == 'reports') echo 'active'; ?>">
@@ -101,13 +101,13 @@ function generate_admin_menu($page = '')
                     <?php echo $lang_admin_common['Welcome'] ?>, <?php print(pun_htmlspecialchars($pun_user['username'])) ?> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><?php echo '<a href="profile.php?id='.$pun_user['id'].'">' ?><?php echo $lang_admin_common['Profile'] ?></a></li>
-                    <li><a href="index.php"><?php echo $lang_admin_common['Forum'] ?></a></li>
+                    <li><?php echo '<a href="../profile.php?id='.$pun_user['id'].'">' ?><?php echo $lang_admin_common['Profile'] ?></a></li>
+                    <li><a href="../index.php"><?php echo $lang_admin_common['Forum'] ?></a></li>
                     <li class="divider"></li>
                     <li><a href="http://modernbb.be"><?php echo $lang_admin_common['Support'] ?></a></li>
                     <li><a href="about.php"><?php echo $lang_admin_common['About'] ?></a></li>
                     <li class="divider"></li>
-                    <li><?php echo '<a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">' ?><?php echo $lang_admin_common['Logout'] ?></a></li>
+                    <li><?php echo '<a href="../login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">' ?><?php echo $lang_admin_common['Logout'] ?></a></li>
                 </ul>
             </li>
         </ul>

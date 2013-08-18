@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -24,22 +24,18 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_categories.php';
 // Add a new category
 if (isset($_POST['add_cat']))
 {
-	confirm_referrer('categories.php');
-
 	$new_cat_name = pun_trim($_POST['new_cat_name']);
 	if ($new_cat_name == '')
 		message($lang_admin_categories['Must enter name message']);
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
-	redirect('categories.php', $lang_admin_categories['Category added redirect']);
+	redirect('backstage/categories.php', $lang_admin_categories['Category added redirect']);
 }
 
 // Delete a category
 else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 {
-	confirm_referrer('categories.php');
-
 	$cat_to_delete = intval($_POST['cat_to_delete']);
 	if ($cat_to_delete < 1)
 		message($lang_common['Bad request']);
@@ -83,7 +79,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		generate_quickjump_cache();
 
-		redirect('categories.php', $lang_admin_categories['Category deleted redirect']);
+		redirect('backstage/categories.php', $lang_admin_categories['Category deleted redirect']);
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -92,7 +88,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
-		require FORUM_ROOT.'admin/header.php';
+		require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('categories');
 
 ?>
@@ -112,14 +108,12 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 </div>
 <?php
 
-		require FORUM_ROOT.'admin/footer.php';
+		require FORUM_ROOT.'backstage/footer.php';
 	}
 }
 
 else if (isset($_POST['update'])) // Change position and name of the categories
 {
-	confirm_referrer('categories.php');
-
 	$categories = $_POST['cat'];
 	if (empty($categories))
 		message($lang_common['Bad request']);
@@ -144,7 +138,7 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 
 	generate_quickjump_cache();
 
-	redirect('categories.php', $lang_admin_categories['Categories updated redirect']);
+	redirect('backstage/categories.php', $lang_admin_categories['Categories updated redirect']);
 }
 
 // Generate an array with all categories
@@ -156,7 +150,7 @@ for ($i = 0; $i < $num_cats; ++$i)
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Categories']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('categories');
 
 ?>
@@ -255,4 +249,4 @@ foreach ($cat_list as $cur_cat)
 </div>
 <?php endif; 
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

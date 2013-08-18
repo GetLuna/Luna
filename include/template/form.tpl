@@ -5,8 +5,8 @@
 		<title>ModernBB &middot; Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
-        <link href="admin/css/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="admin/css/style.css" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../include/bootstrap/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
         <style type="text/css">
 		body {
             padding-top: 60px;

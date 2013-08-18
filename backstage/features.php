@@ -23,8 +23,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_features.php';
 
 if (isset($_POST['form_sent']))
 {
-	confirm_referrer('features.php', $lang_admin_features['Bad HTTP Referer message']);
-
 	$form = array(
 		'quickpost'				=> $_POST['form']['quickpost'] != '1' ? '0' : '1',
 		'users_online'			=> $_POST['form']['users_online'] != '1' ? '0' : '1',
@@ -63,12 +61,12 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('features.php', $lang_admin_features['Options updated redirect']);
+	redirect('backstage/features.php', $lang_admin_features['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('features');
 
 ?>
@@ -176,4 +174,4 @@ generate_admin_menu('features');
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

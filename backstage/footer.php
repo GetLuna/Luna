@@ -27,7 +27,7 @@ ob_start();
         <span class="pull-right"><?php echo $lang_common['Version'].'&nbsp;'.$pun_config['o_cur_version'] ?></span>
     </p>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <script src="admin/js/bootstrap.js"></script>
+    <script src="include/bootstrap/bootstrap.js"></script>
 </footer>
 <?php
 

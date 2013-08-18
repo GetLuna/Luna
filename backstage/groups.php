@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -53,7 +53,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	$required_fields = array('req_title' => $lang_admin_groups['Group title label']);
 	$focus_element = array('groups2', 'req_title');
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'admin/header.php';
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
 
 ?>
@@ -254,15 +254,13 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 </div>
 <?php
 
-	require FORUM_ROOT.'admin/footer.php';
+	require FORUM_ROOT.'backstage/footer.php';
 }
 
 
 // Add/edit a group (stage 2)
 else if (isset($_POST['add_edit_group']))
 {
-	confirm_referrer('groups.php');
-
 	// Is this the admin group? (special rules apply)
 	$is_admin_group = (isset($_POST['group_id']) && $_POST['group_id'] == FORUM_ADMIN) ? true : false;
 
@@ -325,17 +323,15 @@ else if (isset($_POST['add_edit_group']))
 	generate_quickjump_cache($group_id);
 
 	if ($_POST['mode'] == 'edit')
-		redirect('groups.php', $lang_admin_groups['Group edited redirect']);
+		redirect('backstage/groups.php', $lang_admin_groups['Group edited redirect']);
 	else
-		redirect('groups.php', $lang_admin_groups['Group added redirect']);
+		redirect('backstage/groups.php', $lang_admin_groups['Group added redirect']);
 }
 
 
 // Set default group
 else if (isset($_POST['set_default_group']))
 {
-	confirm_referrer('groups.php');
-
 	$group_id = intval($_POST['default_group']);
 
 	// Make sure it's not the admin or guest groups
@@ -355,15 +351,13 @@ else if (isset($_POST['set_default_group']))
 
 	generate_config_cache();
 
-	redirect('groups.php', $lang_admin_groups['Default group redirect']);
+	redirect('backstage/groups.php', $lang_admin_groups['Default group redirect']);
 }
 
 
 // Remove a group
 else if (isset($_GET['del_group']))
 {
-	confirm_referrer('groups.php');
-
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
 		message($lang_common['Bad request']);
@@ -390,7 +384,7 @@ else if (isset($_GET['del_group']))
 			$db->query('DELETE FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to delete group', __FILE__, __LINE__, $db->error());
 			$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$group_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
-			redirect('groups.php', $lang_admin_groups['Group removed redirect']);
+			redirect('backstage/groups.php', $lang_admin_groups['Group removed redirect']);
 		}
 		else
 		{
@@ -399,7 +393,7 @@ else if (isset($_GET['del_group']))
 
 			$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
 			define('FORUM_ACTIVE_PAGE', 'admin');
-			require FORUM_ROOT.'admin/header.php';
+			require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
 
 ?>
@@ -423,7 +417,7 @@ else if (isset($_GET['del_group']))
 </div>
 <?php
 
-			require FORUM_ROOT.'admin/footer.php';
+			require FORUM_ROOT.'backstage/footer.php';
 		}
 	}
 
@@ -431,7 +425,7 @@ else if (isset($_GET['del_group']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'admin/header.php';
+	require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <div class="panel">
@@ -469,13 +463,13 @@ else if (isset($_GET['del_group']))
 </div>
 <?php
 
-	require FORUM_ROOT.'admin/footer.php';
+	require FORUM_ROOT.'backstage/footer.php';
 }
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['User groups']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
 
 ?>
@@ -573,4 +567,4 @@ while ($cur_group = $db->fetch_assoc($result))
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

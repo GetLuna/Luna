@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -24,8 +24,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_ranks.php';
 // Add a rank
 if (isset($_POST['add_rank']))
 {
-	confirm_referrer('ranks.php');
-
 	$rank = pun_trim($_POST['new_rank']);
 	$min_posts = pun_trim($_POST['new_min_posts']);
 
@@ -48,15 +46,13 @@ if (isset($_POST['add_rank']))
 
 	generate_ranks_cache();
 
-	redirect('ranks.php', $lang_admin_ranks['Rank added redirect']);
+	redirect('backstage/ranks.php', $lang_admin_ranks['Rank added redirect']);
 }
 
 
 // Update a rank
 else if (isset($_POST['update']))
 {
-	confirm_referrer('ranks.php');
-
 	$id = intval(key($_POST['update']));
 
 	$rank = pun_trim($_POST['rank'][$id]);
@@ -81,15 +77,13 @@ else if (isset($_POST['update']))
 
 	generate_ranks_cache();
 
-	redirect('ranks.php', $lang_admin_ranks['Rank updated redirect']);
+	redirect('backstage/ranks.php', $lang_admin_ranks['Rank updated redirect']);
 }
 
 
 // Remove a rank
 else if (isset($_POST['remove']))
 {
-	confirm_referrer('ranks.php');
-
 	$id = intval(key($_POST['remove']));
 
 	$db->query('DELETE FROM '.$db->prefix.'ranks WHERE id='.$id) or error('Unable to delete rank', __FILE__, __LINE__, $db->error());
@@ -100,13 +94,13 @@ else if (isset($_POST['remove']))
 
 	generate_ranks_cache();
 
-	redirect('ranks.php', $lang_admin_ranks['Rank removed redirect']);
+	redirect('backstage/ranks.php', $lang_admin_ranks['Rank removed redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Ranks']);
 $focus_element = array('ranks', 'new_rank');
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('ranks');
 
 ?>
@@ -183,4 +177,4 @@ else
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

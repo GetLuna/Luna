@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -24,8 +24,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_forums.php';
 // Add a "default" forum
 if (isset($_POST['add_forum']))
 {
-	confirm_referrer('forums.php');
-
 	$forum_name = pun_trim($_POST['new_forum']); 
 	$add_to_cat = intval($_POST['add_to_cat']);
 	if ($add_to_cat < 1)
@@ -39,14 +37,12 @@ if (isset($_POST['add_forum']))
 
 	generate_quickjump_cache();
 
-	redirect('forums.php', $lang_admin_forums['Forum added redirect']);
+	redirect('backstage/forums.php', $lang_admin_forums['Forum added redirect']);
 }
 
 // Delete a forum
 else if (isset($_GET['del_forum']))
 {
-	confirm_referrer('forums.php');
-
 	$forum_id = intval($_GET['del_forum']);
 	if ($forum_id < 1)
 		message($lang_common['Bad request']);
@@ -83,7 +79,7 @@ else if (isset($_GET['del_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('forums.php', $lang_admin_forums['Forum deleted redirect']);
+		redirect('backstage/forums.php', $lang_admin_forums['Forum deleted redirect']);
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -92,7 +88,7 @@ else if (isset($_GET['del_forum']))
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
-		require FORUM_ROOT.'admin/header.php';
+		require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('forums');
 
 ?>
@@ -111,15 +107,13 @@ else if (isset($_GET['del_forum']))
 </div>
 <?php
 
-		require FORUM_ROOT.'admin/footer.php';
+		require FORUM_ROOT.'backstage/footer.php';
 	}
 }
 
 // Update forum positions
 else if (isset($_POST['update_positions']))
 {
-	confirm_referrer('forums.php');
-
 	foreach ($_POST['position'] as $forum_id => $disp_position)
 	{
 		$disp_position = trim($disp_position);
@@ -135,7 +129,7 @@ else if (isset($_POST['update_positions']))
 
 	generate_quickjump_cache();
 
-	redirect('forums.php', $lang_admin_forums['Forums updated redirect']);
+	redirect('backstage/forums.php', $lang_admin_forums['Forums updated redirect']);
 }
 
 else if (isset($_GET['edit_forum']))
@@ -147,8 +141,6 @@ else if (isset($_GET['edit_forum']))
 	// Update group permissions for $forum_id
 	if (isset($_POST['save']))
 	{
-		confirm_referrer('forums.php');
-
 		// Start with the forum details
 		$forum_name = pun_trim($_POST['forum_name']);
 		$forum_desc = pun_linebreaks(pun_trim($_POST['forum_desc']));
@@ -201,12 +193,10 @@ else if (isset($_GET['edit_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('forums.php', $lang_admin_forums['Forum updated redirect']);
+		redirect('backstage/forums.php', $lang_admin_forums['Forum updated redirect']);
 	}
 	else if (isset($_POST['revert_perms']))
 	{
-		confirm_referrer('forums.php');
-
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the quick jump cache
@@ -232,7 +222,7 @@ else if (isset($_GET['edit_forum']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'admin/header.php';
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('forums');
 
 ?>
@@ -392,12 +382,12 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
 
 <?php
 
-	require FORUM_ROOT.'admin/footer.php';
+	require FORUM_ROOT.'backstage/footer.php';
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Forums']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('forums');
 
 ?>
@@ -503,4 +493,4 @@ while ($cur_forum = $db->fetch_assoc($result))
 <?php
 }
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

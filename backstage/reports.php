@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -24,8 +24,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_reports.php';
 // Zap a report
 if (isset($_POST['zap_id']))
 {
-	confirm_referrer('reports.php');
-
 	$zap_id = intval(key($_POST['zap_id']));
 
 	$result = $db->query('SELECT zapped FROM '.$db->prefix.'reports WHERE id='.$zap_id) or error('Unable to fetch report info', __FILE__, __LINE__, $db->error());
@@ -43,13 +41,13 @@ if (isset($_POST['zap_id']))
 		$db->query('DELETE FROM '.$db->prefix.'reports WHERE zapped <= '.$zapped_threshold) or error('Unable to delete old read reports', __FILE__, __LINE__, $db->error());
 	}
 
-	redirect('reports.php', $lang_admin_reports['Report zapped redirect']);
+	redirect('backstage/reports.php', $lang_admin_reports['Report zapped redirect']);
 }
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Reports']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('reports');
 
 ?>
@@ -181,4 +179,4 @@ else
     </div>
 </div>
 <?php
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

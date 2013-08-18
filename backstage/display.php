@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -23,8 +23,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_display.php';
 
 if (isset($_POST['form_sent']))
 {
-	confirm_referrer('display.php', $lang_admin_display['Bad HTTP Referer message']);
-
 	$form = array(
 		'show_version'			=> $_POST['form']['show_version'] != '1' ? '0' : '1',
 		'show_user_info'		=> $_POST['form']['show_user_info'] != '1' ? '0' : '1',
@@ -71,12 +69,12 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('display.php', $lang_admin_display['Options updated redirect']);
+	redirect('backstage/display.php', $lang_admin_display['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('display');
 
 ?>
@@ -180,4 +178,4 @@ generate_admin_menu('display');
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

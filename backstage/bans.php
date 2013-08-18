@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -102,7 +102,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 	$focus_element = array('bans2', 'ban_user');
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'admin/header.php';
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('bans');
 
 ?>
@@ -172,14 +172,12 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 </form>
 <?php
 
-	require FORUM_ROOT.'admin/footer.php';
+	require FORUM_ROOT.'backstage/footer.php';
 }
 
 // Add/edit a ban (stage 2)
 else if (isset($_POST['add_edit_ban']))
 {
-	confirm_referrer('bans.php');
-
 	$ban_user = pun_trim($_POST['ban_user']);
 	$ban_ip = pun_trim($_POST['ban_ip']);
 	$ban_email = strtolower(pun_trim($_POST['ban_email']));
@@ -294,16 +292,14 @@ else if (isset($_POST['add_edit_ban']))
 	generate_bans_cache();
 
 	if ($_POST['mode'] == 'edit')
-		redirect('bans.php', $lang_admin_bans['Ban edited redirect']);
+		redirect('backstage/bans.php', $lang_admin_bans['Ban edited redirect']);
 	else
-		redirect('bans.php', $lang_admin_bans['Ban added redirect']);
+		redirect('backstage/bans.php', $lang_admin_bans['Ban added redirect']);
 }
 
 // Remove a ban
 else if (isset($_GET['del_ban']))
 {
-	confirm_referrer('bans.php');
-
 	$ban_id = intval($_GET['del_ban']);
 	if ($ban_id < 1)
 		message($lang_common['Bad request']);
@@ -316,7 +312,7 @@ else if (isset($_GET['del_ban']))
 
 	generate_bans_cache();
 
-	redirect('bans.php', $lang_admin_bans['Ban removed redirect']);
+	redirect('backstage/bans.php', $lang_admin_bans['Ban removed redirect']);
 }
 
 // Find bans
@@ -383,7 +379,7 @@ else if (isset($_GET['find_ban']))
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans'], $lang_admin_bans['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'admin/header.php';
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('bans');
 
 ?>
@@ -446,13 +442,13 @@ else if (isset($_GET['find_ban']))
 </div>
 <?php
 
-	require FORUM_ROOT.'admin/footer.php';
+	require FORUM_ROOT.'backstage/footer.php';
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);
 $focus_element = array('bans', 'new_ban_user');
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('bans');
 
 ?>
@@ -526,4 +522,4 @@ require FORUM_ROOT.'admin/header.php';
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

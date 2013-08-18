@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -58,7 +58,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
                 </div>
                 <div class="panel-body">
                     <div class="thumbnail">
-                        <img src="admin/img/dashboard.png" width="1065" height="250" />
+                        <img src="../img/backstage/dashboard.png" width="997" height="215" />
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -86,7 +86,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
                 </div>
                 <div class="panel-body">
                     <div class="thumbnail">
-                        <img src="admin/img/update.png" width="981" height="89" />
+                        <img src="../img/backstage/update.png" width="989" height="102" />
                     </div>
                     <p><?php echo $lang_about['Headline feature 2 info'] ?></p>
                 </div>
@@ -104,21 +104,21 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
                         <div class="col-md-4">
                             <p><b><?php echo $lang_about['Second feature 1 head'] ?></b></p>
                             <div class="thumbnail">
-                                <img src="admin/img/login.png" width="366" height="318" />
+                                <img src="../img/backstage/login.png" width="366" height="318" />
                             </div>
                             <p><?php echo $lang_about['Second feature 1 info'] ?></p>
                         </div>
                         <div class="col-md-4">
                             <p><b><?php echo $lang_about['Second feature 2 head'] ?></b></p>
                             <div class="thumbnail">
-                                <img src="admin/img/styles.png" width="366" height="318" />
+                                <img src="../img/backstage/styles.png" width="366" height="318" />
                             </div>
                             <p><?php echo $lang_about['Second feature 2 info'] ?></p>
                         </div>
                         <div class="col-md-4">
                             <p><b><?php echo $lang_about['Second feature 3 head'] ?></b></p>
                             <div class="thumbnail">
-                                <img src="admin/img/database.png" width="366" height="318" />
+                                <img src="../img/backstage/database.png" width="366" height="318" />
                             </div>
                             <p><?php echo $lang_about['Second feature 3 info'] ?></p>
                         </div>

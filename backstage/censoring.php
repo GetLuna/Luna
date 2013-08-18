@@ -10,7 +10,7 @@
 // Tell header.php to use the admin template
 define('FORUM_ADMIN_CONSOLE', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
+define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
@@ -24,8 +24,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_censoring.php';
 // Add a censor word
 if (isset($_POST['add_word']))
 {
-	confirm_referrer('censoring.php');
-
 	$search_for = pun_trim($_POST['new_search_for']);
 	$replace_with = pun_trim($_POST['new_replace_with']);
 
@@ -40,14 +38,12 @@ if (isset($_POST['add_word']))
 
 	generate_censoring_cache();
 
-	redirect('censoring.php', $lang_admin_censoring['Word added redirect']);
+	redirect('backstage/censoring.php', $lang_admin_censoring['Word added redirect']);
 }
 
 // Update a censor word
 else if (isset($_POST['update']))
 {
-	confirm_referrer('censoring.php');
-
 	$id = intval(key($_POST['update']));
 
 	$search_for = pun_trim($_POST['search_for'][$id]);
@@ -64,14 +60,12 @@ else if (isset($_POST['update']))
 
 	generate_censoring_cache();
 
-	redirect('censoring.php', $lang_admin_censoring['Word updated redirect']);
+	redirect('backstage/censoring.php', $lang_admin_censoring['Word updated redirect']);
 }
 
 // Remove a censor word
 else if (isset($_POST['remove']))
 {
-	confirm_referrer('censoring.php');
-
 	$id = intval(key($_POST['remove']));
 
 	$db->query('DELETE FROM '.$db->prefix.'censoring WHERE id='.$id) or error('Unable to delete censor word', __FILE__, __LINE__, $db->error());
@@ -82,13 +76,13 @@ else if (isset($_POST['remove']))
 
 	generate_censoring_cache();
 
-	redirect('censoring.php',  $lang_admin_censoring['Word removed redirect']);
+	redirect('backstage/censoring.php',  $lang_admin_censoring['Word removed redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Censoring']);
 $focus_element = array('censoring', 'new_search_for');
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('censoring');
 
 ?>
@@ -165,4 +159,4 @@ echo "\t\t\t\t\t\t\t".'<p>'.$lang_admin_censoring['No words in list'].'</p>'."\n
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';
