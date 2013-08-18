@@ -36,7 +36,7 @@ function generate_admin_menu($page = '')
     <div class="nav-inner">
         <a class="navbar-brand" href="../index.php">ModernBB</a>
         <ul class="nav navbar-nav">
-            <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="aindex.php"><?php echo $lang_admin_common['Dashboard'] ?></a></li>
+            <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="index.php"><?php echo $lang_admin_common['Dashboard'] ?></a></li>
             <li class="dropdown <?php if ($page == 'forums' || $page == 'categories' || $page == 'censoring' || $page == 'reports') echo 'active'; ?>">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <?php echo $lang_admin_common['Content'] ?> <b class="caret"></b>
