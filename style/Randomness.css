@@ -184,22 +184,18 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	position: relative;
 }
 
-.blockpost .postfoot li span {
-	display: inline-block;
-	padding-left: 16px;
-	margin-left: 8px;
-	line-height: normal;
-	background: url(Randomness/img/bull.png) center left no-repeat;
-}
 
 .username {
 	margin: 0;
-	margin-top: -15px;
 }
 
 .time-nr {
 	font-size: 70%;
 	color: #ccc;
+}
+
+.postview {
+	margin-bottom: 10px;
 }
 
 .post-topic {
@@ -213,14 +209,21 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	font-size: 80%;
 }
 
-.user-box {
-	background-color: #f7f7f7;
-	margin-left: 10px;
-	margin-top: 5px;
+.postsignature hr {
+	margin-bottom: 0;
 }
 
 /* Table */
-.table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
+.table > tbody > tr > td.user-data {
+	background-color: #f7f7f7;
+}
+
+.table > tbody > tr > td.postfooter {
+	padding-bottom: 0;
+	background-color: #dfdfdf;
+}
+
+.table > thead > tr.active {
 	color: #fff;
 	background-color: #007ecd;
 }
@@ -232,6 +235,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 table {
 	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
+}
+
+.table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
+	background: none;
 }
 
 /* Buttons */
@@ -474,6 +481,27 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 .col-md-10 .alert {
 	margin-right: -14px;
+}
+
+/* Forms */
+.form-control {
+	border-radius: 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+	background-color: #4c4c4c;
+	border-radius: 0;
+}
+
+.breadcrumb a {
+	color: #009cff;
+	text-decoration: none;
+}
+
+.breadcrumb a:hover {
+	color: #3ab3ff;
+	text-decoration: none;
 }
 
 /* Status Indicators */
@@ -1093,13 +1121,6 @@ MAIN POSTS
 	padding-left: 18px;
 	display: inline-block;
 	line-height: normal;
-}
-
-.pun .postsignature hr {
-	border:none;
-	height: 1px;
-	margin-left: 0px;
-	text-align: left;
 }
 
 /* Content (includes other user content)
