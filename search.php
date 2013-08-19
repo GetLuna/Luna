@@ -770,7 +770,6 @@ define('FORUM_ACTIVE_PAGE', 'search');
 require FORUM_ROOT.'header.php';
 
 ?>
-<h2><?php echo $lang_search['Search'] ?></h2>
 <form id="search" method="get" action="search.php">
     <div class="panel">
         <div class="panel-heading">
@@ -779,17 +778,22 @@ require FORUM_ROOT.'header.php';
         <div class="panel-body">
             <fieldset>
                 <input class="form-control" type="hidden" name="action" value="search" />
-                <label class="conl"><?php echo $lang_search['Keyword search'] ?><br /><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /><br /></label>
-                <label class="conl"><?php echo $lang_search['Author search'] ?><br /><input class="form-control" id="author" type="text" name="author" size="25" maxlength="25" /><br /></label>
-                <p class="clearb"><?php echo $lang_search['Search info'] ?></p>
+            	<table>
+                	<thead>
+                    	<tr>
+                        	<th><?php echo $lang_search['Keyword search'] ?></th>
+                            <th><?php echo $lang_search['Author search'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                        	<td><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /></td>
+                        	<td><input class="form-control" id="author" type="text" name="author" size="25" maxlength="25" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="help-block"><?php echo $lang_search['Search info'] ?></p>
             </fieldset>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_search['Search in legend'] ?></h3>
-        </div>
-        <div class="panel-body">
             <fieldset>
 <?php
 
@@ -864,38 +868,43 @@ else
                     <option value="-1"><?php echo $lang_search['Topic only'] ?></option>
                 </select>
                 <br /></label>
-                <p><?php echo $lang_search['Search in info'] ?></p>
-				<?php echo ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'] ? '<p>'.$lang_search['Search multiple forums info'].'</p>' : '') ?>
+                <p class="help-block"><?php echo $lang_search['Search in info'] ?></p>
             </fieldset>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_search['Search results legend'] ?></h3>
-        </div>
-        <div class="panel-body">
             <fieldset>
-                <label class="conl"><?php echo $lang_search['Sort by']."\n" ?>
-                <br /><select class="form-control" name="sort_by">
-                    <option value="0"><?php echo $lang_search['Sort by post time'] ?></option>
-                    <option value="1"><?php echo $lang_search['Sort by author'] ?></option>
-                    <option value="2"><?php echo $lang_search['Sort by subject'] ?></option>
-                    <option value="3"><?php echo $lang_search['Sort by forum'] ?></option>
-                </select>
-                <br /></label>
-                <label class="conl"><?php echo $lang_search['Sort order']."\n" ?>
-                <br /><select class="form-control" name="sort_dir">
-                    <option value="DESC"><?php echo $lang_search['Descending'] ?></option>
-                    <option value="ASC"><?php echo $lang_search['Ascending'] ?></option>
-                </select>
-                <br /></label>
-                <label class="conl"><?php echo $lang_search['Show as']."\n" ?>
-                <br /><select class="form-control" name="show_as">
-                    <option value="topics"><?php echo $lang_search['Show as topics'] ?></option>
-                    <option value="posts"><?php echo $lang_search['Show as posts'] ?></option>
-                </select>
-                <br /></label>
-                <p><?php echo $lang_search['Search results info'] ?></p>
+            	<table>
+                	<thead>
+                    	<tr>
+                        	<th><?php echo $lang_search['Sort by'] ?></th>
+                            <th><?php echo $lang_search['Sort order'] ?></th>
+                            <th><?php echo $lang_search['Show as'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                        	<td>
+                                <select class="form-control" name="sort_by">
+                                    <option value="0"><?php echo $lang_search['Sort by post time'] ?></option>
+                                    <option value="1"><?php echo $lang_search['Sort by author'] ?></option>
+                                    <option value="2"><?php echo $lang_search['Sort by subject'] ?></option>
+                                    <option value="3"><?php echo $lang_search['Sort by forum'] ?></option>
+                                </select>
+                            </td>
+                        	<td>
+                                <select class="form-control" name="sort_dir">
+                                    <option value="DESC"><?php echo $lang_search['Descending'] ?></option>
+                                    <option value="ASC"><?php echo $lang_search['Ascending'] ?></option>
+                                </select>
+                            </td>
+                        	<td>
+                                <select class="form-control" name="show_as">
+                                    <option value="topics"><?php echo $lang_search['Show as topics'] ?></option>
+                                    <option value="posts"><?php echo $lang_search['Show as posts'] ?></option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="help-block"><?php echo $lang_search['Search results info'] ?></p>
             </fieldset>
         </div>
     </div>
