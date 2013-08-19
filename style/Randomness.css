@@ -49,7 +49,7 @@ body, html {
 }
 
 #brdwelcome li span {
-	background: url(Awesomeness/img/bull.png) center left no-repeat;
+	background: url(Randomness/img/bull.png) center left no-repeat;
 	padding-left: 18px;
 	margin-right: 3px;
 	display: inline-block;
@@ -72,7 +72,7 @@ body, html {
 	border-radius: 0;
 	border: none;
 	margin-bottom: 10px;
-	box-shadow: 0px 1px 7px 0px rgba(0,0,0,0.1);
+	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
 	margin-top: 15px;
 }
 
@@ -83,9 +83,13 @@ body, html {
 	color: #fff;
 }
 
+.col-md-10 .panel {
+	margin-right: -14px;
+}
+
 /* Navbar */
 .nav-inner {
-	width: 1165px;
+	width: 1137px;
 	margin: 0 auto;
 }
 
@@ -106,7 +110,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .navbar {
 	border-bottom: #0b82cd 5px solid;
-	box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
+	box-shadow: 0 5px 5px 0px rgba(0,0,0,0.1);
 	background: #222222;
 }
 
@@ -132,7 +136,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	padding-right: -10px;
 }
 
-/* Profile menu */
+/* Profile */
 .profile-nav {
 	padding-left: 0;
 	padding-right: 0;
@@ -140,6 +144,11 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 :first-child.list-group-item, :last-child.list-group-item {
 	border-radius: 0;
+}
+
+.profile-h2 {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 /* Post messages */
@@ -153,7 +162,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 .bblinks li span {
-	background: url(Awesomeness/img/help.png) center left no-repeat;
+	background: url(Randomness/img/help.png) center left no-repeat;
 	margin-right: 8px;
 	padding-left: 20px;
 	display: inline-block;
@@ -180,7 +189,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	padding-left: 16px;
 	margin-left: 8px;
 	line-height: normal;
-	background: url(Awesomeness/img/bull.png) center left no-repeat;
+	background: url(Randomness/img/bull.png) center left no-repeat;
 }
 
 .username {
@@ -191,6 +200,38 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .time-nr {
 	font-size: 70%;
 	color: #ccc;
+}
+
+.post-topic {
+	background-color: #fff;
+	padding: 5px;
+	padding-bottom: 0px;
+	margin-bottom: 10px;
+}
+
+.user-info {
+	font-size: 80%;
+}
+
+.user-box {
+	background-color: #f7f7f7;
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+/* Table */
+.table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
+	color: #fff;
+	background-color: #007ecd;
+}
+
+.table > tbody > tr > td {
+	color: #232323;
+	background-color: #fff;
+}
+
+table {
+	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
 }
 
 /* Buttons */
@@ -407,7 +448,48 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	text-decoration: none;
 }
 
+/* Alerts */
+.alert {
+	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
+	border: none;
+	border-radius: 0;
+	margin-bottom: 10px;
+	background-color: #ffffff;
+	border-left: #f79f13 5px solid;
+}
 
+.alert-info {
+	border-left: #2ca0e9 5px solid;
+}
+
+.alert-danger {
+	border-left: #ff5a00 5px solid;
+	color: #d33200;
+}
+
+.alert-success {
+	border-left: #41d300 5px solid;
+	color: #4e9e00;
+}
+
+.col-md-10 .alert {
+	margin-right: -14px;
+}
+
+/* Status Indicators */
+.icon {
+	border-color: #dcdcdc;
+}
+
+.iredirect .icon {
+	border-color: #dcdcdc;
+	border-width: 1px;
+	padding: 7px;
+}
+
+.inew .icon {
+	border-color: #2ca0e9;
+}
 
 
 /*****************************************************************************************************************************************************
@@ -587,7 +669,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 }
 
 .pun #brdfooter #modcontrols dd span {
-	background: url(Awesomeness/img/bull.png) center left no-repeat;
+	background: url(Randomness/img/bull.png) center left no-repeat;
 	display: inline-block;
 	line-height: normal;
 	padding-left: 18px;
@@ -617,7 +699,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 }
 
 .pun #brdfooter #searchlinks dd span {
-	background: url(Awesomeness/img/bull.png) center left no-repeat;
+	background: url(Randomness/img/bull.png) center left no-repeat;
 	display: inline-block;
 	line-height: normal;
 	padding-left: 18px;
@@ -629,7 +711,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 }
 
 .pun #brdfooter #feedlinks span {
-	background: url(Awesomeness/img/feed.png) center left no-repeat;
+	background: url(Randomness/img/feed.png) center left no-repeat;
 	display: inline-block;
 	padding-left: 18px;
 	white-space: nowrap;
@@ -932,40 +1014,6 @@ MAIN POSTS
 /* Structure
 ----------------------------------------------------------------*/
 
-.pun .blockpost {
-	border-style: solid;
-	border-width: 0;
-	margin-bottom: 10px;
-	overflow: hidden;
-	position: relative;
-	border-bottom-left-radius: 7px;
-}
-
-* html .pun .blockpost {
-	display: inline-block;
-}
-
-.pun .blockpost h2 {
-	font: 1em/1.462em Arial, Helvetica, sans-serif;
-	white-space: nowrap;
-	border-bottom-width: 0;
-	height: 1.462em;
-	padding: 0.538em 8px 0.538em 236px;
-	font-weight: normal;
-}
-
-#punsearch .blockpost h2 {
-	height: auto;
-	padding-left: 36px;
-	white-space: normal;
-}
-
-#punsearch .blockpost h2 span span {
-	white-space: nowrap;
-	display: inline-block;
-	font: 1.077em "Trebuchet MS", Arial, Helvetica, sans-serif
-}
-
 #punsearch .blockpost .icon {
 	position: absolute;
 	top: 0;
@@ -1033,7 +1081,7 @@ MAIN POSTS
 }
 
 .pun .blockpost .usercontacts .email {
-	background: url(Awesomeness/img/email.png) left 65% no-repeat;
+	background: url(Randomness/img/email.png) left 65% no-repeat;
 	margin-right: 5px;
 	padding-left: 21px;
 	display: inline-block;
@@ -1041,7 +1089,7 @@ MAIN POSTS
 }
 
 .pun .blockpost .usercontacts .website {
-	background: url(Awesomeness/img/ext.png) left 65% no-repeat;
+	background: url(Randomness/img/ext.png) left 65% no-repeat;
 	padding-left: 18px;
 	display: inline-block;
 	line-height: normal;
@@ -1260,7 +1308,7 @@ MAIN FORMS
 
 .pun .error-list li {
 	padding-left: 24px;
-	background: url(Awesomeness/img/exclaim.png) center left no-repeat;
+	background: url(Randomness/img/exclaim.png) center left no-repeat;
 }
 
 .pun .inform {
@@ -1311,7 +1359,7 @@ MAIN FORMS
 }
 
 .pun .required strong {
-	background: url(Awesomeness/img/asterisk.png) center right no-repeat;
+	background: url(Randomness/img/asterisk.png) center right no-repeat;
 	font-weight: normal;
 	padding-right: 14px;
 	white-space: pre;
@@ -1412,7 +1460,7 @@ MAIN FORMS
 }
 
 .pun span.email {
-	background: url(Awesomeness/img/email.png) left 65% no-repeat;
+	background: url(Randomness/img/email.png) left 65% no-repeat;
 	margin-right: 5px;
 	padding-left: 21px;
 	display: inline-block;
@@ -1420,7 +1468,7 @@ MAIN FORMS
 }
 
 .pun span.website {
-	background: url(Awesomeness/img/ext.png) left 65% no-repeat;
+	background: url(Randomness/img/ext.png) left 65% no-repeat;
 	padding-left: 18px;
 	display: inline-block;
 	line-height: normal;
@@ -1545,7 +1593,7 @@ PROFILES (+ ADMIN MENU)
 	padding-left: 16px;
 	margin-left: 8px;
 	line-height: normal;
-	background: url(Awesomeness/img/bull.png) center left no-repeat;
+	background: url(Randomness/img/bull.png) center left no-repeat;
 }
 
 #adstats .inbox, #adintro .inbox {
@@ -1565,21 +1613,4 @@ PROFILES (+ ADMIN MENU)
 	border-style: none none solid none;
 	border-width: 1px;
 	padding: 7px 0 7px 13em;
-}
-
-/* Status Indicators
-----------------------------------------------------------------*/
-
-.pun .icon {
-	border-color: #eef1e8;
-}
-
-.pun .iredirect .icon {
-	border-color: #bbc6b2;
-	border-width: 1px;
-	padding: 7px;
-}
-
-.pun .inew .icon {
-	border-color: #50a42f;
 }
