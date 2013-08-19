@@ -213,6 +213,16 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	margin-bottom: 0;
 }
 
+.modcontrols {
+	padding-bottom: 8px;
+}
+
+/* Quick post */
+.actions {
+	margin-top: -30px;
+	margin-bottom: 0;
+}
+
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;
@@ -233,10 +243,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	background-color: #fff;
 }
 
-table {
-	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
-}
-
 .table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
 	background: none;
 }
@@ -244,7 +250,7 @@ table {
 /* Buttons */
 .btn {
 	display: inline-block;
-	padding: 4px 12px;
+	padding: 6px 12px;
 	margin-bottom: 0;
 	font-size: 14px;
 	line-height: 20px;

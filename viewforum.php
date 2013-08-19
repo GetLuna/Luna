@@ -126,10 +126,10 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
     <table class="table">
         <thead>
             <tr class="active">
-                <th class="col-8"><?php echo $lang_common['Forum'] ?></th>
-                <th class="col-1"><?php echo $lang_index['Topics'] ?></th>
-                <th class="col-1"><?php echo $lang_common['Posts'] ?></th>
-                <th class="col-2"><?php echo $lang_common['Last post'] ?></th>
+                <th class="col-md-7"><?php echo $lang_common['Forum'] ?></th>
+                <th class="col-md-1"><?php echo $lang_index['Topics'] ?></th>
+                <th class="col-md-1"><?php echo $lang_common['Posts'] ?></th>
+                <th class="col-md-3"><?php echo $lang_common['Last post'] ?></th>
             </tr>
         </thead>
         <tbody>
@@ -244,10 +244,10 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
     <table class="table">
         <thead>
             <tr class="active">
-                <th class="col-8"><?php echo $lang_common['Topic'] ?></th>
-                <th class="col-1"><?php echo $lang_common['Replies'] ?></th>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-1"><?php echo $lang_forum['Views'] ?></th>
-<?php endif; ?>			<th class="col-2"><?php echo $lang_common['Last post'] ?></th>
+                <th class="col-md-7"><?php echo $lang_common['Topic'] ?></th>
+                <th class="col-md-1"><?php echo $lang_common['Replies'] ?></th>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-md-1"><?php echo $lang_forum['Views'] ?></th>
+<?php endif; ?>			<th class="col-md-3"><?php echo $lang_common['Last post'] ?></th>
             </tr>
         </thead>
         <tbody>
@@ -396,15 +396,15 @@ else
     </table>
 </div>
 
+<div class="pagepost">
+    <p class="pagelink conl"><?php echo $paging_links ?></p>
+<?php echo $post_link ?>
+</div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
     <?php if($cur_forum['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
     <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
 </ul>
-<div class="pagepost">
-    <p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
-</div>
 <?php
 
 $forum_id = $id;
