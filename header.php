@@ -199,10 +199,22 @@ else
 	$links[] = '<li id="navprofile"'.((FORUM_ACTIVE_PAGE == 'profile') ? ' class="active"' : '').'><a href="profile.php?id='.$pun_user['id'].'">'.$lang_common['Profile'].'</a></li>';
 
 	if ($pun_user['is_admmod'])
-		$links[] = '<li id="navadmin"'.((FORUM_ACTIVE_PAGE == 'admin') ? ' class="active"' : '').'><a href="aindex.php">'.$lang_common['Admin'].'</a></li>';
+		$links[] = '<li id="navadmin"'.((FORUM_ACTIVE_PAGE == 'admin') ? ' class="active"' : '').'><a href="backstage/index.php">'.$lang_common['Admin'].'</a></li>';
 
 	$links[] = '<li id="navlogout"><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang_common['Logout'].'</a></li>';
 }
+// Are there any additional navlinks we should insert into the array before imploding it?
+if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != '')
+{
+	if (preg_match_all('%([0-9]+)\s*=\s*(.*?)\n%s', $pun_config['o_additional_navlinks']."\n", $extra_links))
+	{
+		// Insert any additional links into the $links array (at the correct index)
+		$num_links = count($extra_links[1]);
+		for ($i = 0; $i < $num_links; ++$i)
+			array_splice($links, $extra_links[1][$i], 0, array('<li id="navextra'.($i + 1).'">'.$extra_links[2][$i].'</li>'));
+	}
+}
+
 $links[] = '</ul></div></div>';
 
 $tpl_temp = '<div>'."\n\t\t\t".'<ul>'."\n\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t".'</ul>'."\n\t\t".'</div>';
