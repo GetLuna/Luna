@@ -319,8 +319,8 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 /* Panels */
 .index > .row {
-	margin-left: -5px;
 	width: 990px;
+	margin-left: -5px;
 }
 
 .about > .row {
@@ -333,7 +333,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 }
 
 .row {
-	margin-left: -10px;
+	margin-left: -30px;
 	width: 980px;
 }
 
@@ -367,8 +367,12 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	border-radius: 0;
 	margin-bottom: 10px;
 	background-color: #ffffff;
-	border-left: #f79f13 5px solid;
+	border-left: #555 5px solid;
 }
+
+.alert-warning {
+	border-left: #f79f13 5px solid;
+}	
 
 .alert-info {
 	border-left: #2ca0e9 5px solid;

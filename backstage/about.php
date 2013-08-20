@@ -24,7 +24,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/admin_about.php';
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['About']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'admin/header.php';
+require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('about');
 
 //Update checking
@@ -183,4 +183,4 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
 </div>
 <?php
 
-require FORUM_ROOT.'admin/footer.php';
+require FORUM_ROOT.'backstage/footer.php';

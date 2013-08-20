@@ -54,7 +54,7 @@ require FORUM_ROOT.'backstage/header.php';
 //Update checking
 $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
 if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
-	<div class="alert">
+	<div class="alert alert-warning">
 		<h4><?php echo sprintf($lang_admin_common['Available'], $latest_version) ?></h4>
 		<div class="btn-group">
 			<a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_admin_common['Download'], $latest_version) ?></a>
