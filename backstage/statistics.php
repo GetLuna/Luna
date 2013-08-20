@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: login.php");
 }
 
-// Load the admin_index.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/admin_index.php';
+// Load the backstage.php language file
+require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -100,7 +100,7 @@ else
 	$php_accelerator = $lang_admin_index['NA'];
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Server statistics']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Server statistics']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('stats');

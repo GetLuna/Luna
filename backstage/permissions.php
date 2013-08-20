@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: login.php");
 }
 
-// Load the admin_permissions.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/admin_permissions.php';
+// Load the backstage.php language file
+require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
 
 if (isset($_POST['form_sent']))
 {
@@ -42,63 +42,63 @@ if (isset($_POST['form_sent']))
 
 	generate_config_cache();
 
-	redirect('backstage/permissions.php', $lang_admin_permissions['Perms updated redirect']);
+	redirect('backstage/permissions.php', $lang_back['Perms updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Permissions']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Permissions']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('permissions');
 
 ?>
-<h2><?php echo $lang_admin_permissions['Permissions head'] ?></h2>
+<h2><?php echo $lang_back['Permissions head'] ?></h2>
 <form method="post" action="permissions.php">
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_permissions['Posting subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Posting subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th width="20%"><?php echo $lang_admin_permissions['BBCode label'] ?></th>
+                        <th width="20%"><?php echo $lang_back['BBCode label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[message_bbcode]" value="1"<?php if ($pun_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[message_bbcode]" value="0"<?php if ($pun_config['p_message_bbcode'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['BBCode help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[message_bbcode]" value="1"<?php if ($pun_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[message_bbcode]" value="0"<?php if ($pun_config['p_message_bbcode'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['BBCode help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['Image tag label'] ?></th>
+                        <th><?php echo $lang_back['Image tag label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[message_img_tag]" value="1"<?php if ($pun_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[message_img_tag]" value="0"<?php if ($pun_config['p_message_img_tag'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['Image tag help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[message_img_tag]" value="1"<?php if ($pun_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[message_img_tag]" value="0"<?php if ($pun_config['p_message_img_tag'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Image tag help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['All caps message label'] ?></th>
+                        <th><?php echo $lang_back['All caps message label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[message_all_caps]" value="1"<?php if ($pun_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[message_all_caps]" value="0"<?php if ($pun_config['p_message_all_caps'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['All caps message help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[message_all_caps]" value="1"<?php if ($pun_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[message_all_caps]" value="0"<?php if ($pun_config['p_message_all_caps'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['All caps message help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['All caps subject label'] ?></th>
+                        <th><?php echo $lang_back['All caps subject label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[subject_all_caps]" value="1"<?php if ($pun_config['p_subject_all_caps'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[subject_all_caps]" value="0"<?php if ($pun_config['p_subject_all_caps'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['All caps subject help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[subject_all_caps]" value="1"<?php if ($pun_config['p_subject_all_caps'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[subject_all_caps]" value="0"<?php if ($pun_config['p_subject_all_caps'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['All caps subject help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['Require e-mail label'] ?></th>
+                        <th><?php echo $lang_back['Require e-mail label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[force_guest_email]" value="1"<?php if ($pun_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[force_guest_email]" value="0"<?php if ($pun_config['p_force_guest_email'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['Require e-mail help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[force_guest_email]" value="1"<?php if ($pun_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[force_guest_email]" value="0"<?php if ($pun_config['p_force_guest_email'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Require e-mail help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -107,47 +107,47 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_permissions['Signatures subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Signatures subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th width="20%"><?php echo $lang_admin_permissions['BBCode sigs label'] ?></th>
+                        <th width="20%"><?php echo $lang_back['BBCode sigs label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[sig_bbcode]" value="1"<?php if ($pun_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[sig_bbcode]" value="0"<?php if ($pun_config['p_sig_bbcode'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['BBCode sigs help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[sig_bbcode]" value="1"<?php if ($pun_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[sig_bbcode]" value="0"<?php if ($pun_config['p_sig_bbcode'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['BBCode sigs help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['Image tag sigs label'] ?></th>
+                        <th><?php echo $lang_back['Image tag sigs label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[sig_img_tag]" value="1"<?php if ($pun_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[sig_img_tag]" value="0"<?php if ($pun_config['p_sig_img_tag'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['Image tag sigs help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[sig_img_tag]" value="1"<?php if ($pun_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[sig_img_tag]" value="0"<?php if ($pun_config['p_sig_img_tag'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Image tag sigs help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['All caps sigs label'] ?></th>
+                        <th><?php echo $lang_back['All caps sigs label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[sig_all_caps]" value="1"<?php if ($pun_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[sig_all_caps]" value="0"<?php if ($pun_config['p_sig_all_caps'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['All caps sigs help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[sig_all_caps]" value="1"<?php if ($pun_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[sig_all_caps]" value="0"<?php if ($pun_config['p_sig_all_caps'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['All caps sigs help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['Max sig length label'] ?></th>
+                        <th><?php echo $lang_back['Max sig length label'] ?></th>
                         <td>
                             <input type="text" class="form-control"name="form[sig_length]" size="5" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_permissions['Max sig length help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Max sig length help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['Max sig lines label'] ?></th>
+                        <th><?php echo $lang_back['Max sig lines label'] ?></th>
                         <td>
                             <input type="text" class="form-control"name="form[sig_lines]" size="3" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_permissions['Max sig lines help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Max sig lines help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -156,32 +156,32 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_permissions['Registration subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Registration subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th width="20%"><?php echo $lang_admin_permissions['Banned e-mail label'] ?></th>
+                        <th width="20%"><?php echo $lang_back['Banned e-mail label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[allow_banned_email]" value="1"<?php if ($pun_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[allow_banned_email]" value="0"<?php if ($pun_config['p_allow_banned_email'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['Banned e-mail help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[allow_banned_email]" value="1"<?php if ($pun_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[allow_banned_email]" value="0"<?php if ($pun_config['p_allow_banned_email'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Banned e-mail help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_permissions['Duplicate e-mail label'] ?></th>
+                        <th><?php echo $lang_back['Duplicate e-mail label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[allow_dupe_email]" value="1"<?php if ($pun_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[allow_dupe_email]" value="0"<?php if ($pun_config['p_allow_dupe_email'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_permissions['Duplicate e-mail help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[allow_dupe_email]" value="1"<?php if ($pun_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[allow_dupe_email]" value="0"<?php if ($pun_config['p_allow_dupe_email'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Duplicate e-mail help'] ?></span>
                         </td>
                     </tr>
                 </table>
             </fieldset>
         </div>
     </div>
-    <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_admin_common['Save changes'] ?>" /></div>
+    <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></div>
 </form>
 <?php
 

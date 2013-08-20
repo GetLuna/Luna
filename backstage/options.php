@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: login.php");
 }
 
-// Load the admin_options.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/admin_options.php';
+// Load the backstage.php language file
+require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
 
 if (isset($_POST['form_sent']))
 {
@@ -60,7 +60,7 @@ if (isset($_POST['form_sent']))
 	);
 
 	if ($form['board_title'] == '')
-		message($lang_admin_options['Must enter title message']);
+		message($lang_back['Must enter title message']);
 
 	// Make sure base_url doesn't end with a slash
 	if (substr($form['base_url'], -1) == '/')
@@ -99,14 +99,14 @@ if (isset($_POST['form_sent']))
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
 		else
-			message($lang_admin_options['SMTP passwords did not match']);
+			message($lang_back['SMTP passwords did not match']);
 	}
 
 	if ($form['announcement_message'] != '')
 		$form['announcement_message'] = pun_linebreaks($form['announcement_message']);
 	else
 	{
-		$form['announcement_message'] = $lang_admin_options['Enter announcement here'];
+		$form['announcement_message'] = $lang_back['Enter announcement here'];
 		$form['announcement'] = '0';
 	}
 
@@ -114,7 +114,7 @@ if (isset($_POST['form_sent']))
 		$form['rules_message'] = pun_linebreaks($form['rules_message']);
 	else
 	{
-		$form['rules_message'] = $lang_admin_options['Enter rules here'];
+		$form['rules_message'] = $lang_back['Enter rules here'];
 		$form['rules'] = '0';
 	}
 
@@ -122,7 +122,7 @@ if (isset($_POST['form_sent']))
 		$form['maintenance_message'] = pun_linebreaks($form['maintenance_message']);
 	else
 	{
-		$form['maintenance_message'] = $lang_admin_options['Default maintenance message'];
+		$form['maintenance_message'] = $lang_back['Default maintenance message'];
 		$form['maintenance'] = '0';
 	}
 
@@ -139,7 +139,7 @@ if (isset($_POST['form_sent']))
 		message($lang_common['Bad request']);
 
 	if ($form['timeout_online'] >= $form['timeout_visit'])
-		message($lang_admin_options['Timeout error message']);
+		message($lang_back['Timeout error message']);
 
 	foreach ($form as $key => $input)
 	{
@@ -162,104 +162,104 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/options.php', $lang_admin_options['Options updated redirect']);
+	redirect('backstage/options.php', $lang_back['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Options']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('global');
 
 ?>
-<h2><?php echo $lang_admin_options['Options head'] ?></h2>
+<h2><?php echo $lang_back['Options head'] ?></h2>
 <form method="post" action="options.php">
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Essentials subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Essentials subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_admin_options['Board title label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_back['Board title label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Board title help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Board title help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Board desc label'] ?></th>
+                        <th><?php echo $lang_back['Board desc label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[board_desc]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_desc']) ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Board desc help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Board desc help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Base URL label'] ?></th>
+                        <th><?php echo $lang_back['Base URL label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[base_url]" size="50" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Base URL help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Base URL help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Timezone label'] ?></th>
+                        <th><?php echo $lang_back['Timezone label'] ?></th>
                         <td>
                             <select class="form-control" name="form[default_timezone]">
-                                <option value="-12"<?php if ($pun_config['o_default_timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-12:00'] ?></option>
-                                <option value="-11"<?php if ($pun_config['o_default_timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-11:00'] ?></option>
-                                <option value="-10"<?php if ($pun_config['o_default_timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-10:00'] ?></option>
-                                <option value="-9.5"<?php if ($pun_config['o_default_timezone'] == -9.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-09:30'] ?></option>
-                                <option value="-9"<?php if ($pun_config['o_default_timezone'] == -9) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-09:00'] ?></option>
-                                <option value="-8.5"<?php if ($pun_config['o_default_timezone'] == -8.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-08:30'] ?></option>
-                                <option value="-8"<?php if ($pun_config['o_default_timezone'] == -8) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-08:00'] ?></option>
-                                <option value="-7"<?php if ($pun_config['o_default_timezone'] == -7) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-07:00'] ?></option>
-                                <option value="-6"<?php if ($pun_config['o_default_timezone'] == -6) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-06:00'] ?></option>
-                                <option value="-5"<?php if ($pun_config['o_default_timezone'] == -5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-05:00'] ?></option>
-                                <option value="-4"<?php if ($pun_config['o_default_timezone'] == -4) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-04:00'] ?></option>
-                                <option value="-3.5"<?php if ($pun_config['o_default_timezone'] == -3.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-03:30'] ?></option>
-                                <option value="-3"<?php if ($pun_config['o_default_timezone'] == -3) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-03:00'] ?></option>
-                                <option value="-2"<?php if ($pun_config['o_default_timezone'] == -2) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-02:00'] ?></option>
-                                <option value="-1"<?php if ($pun_config['o_default_timezone'] == -1) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC-01:00'] ?></option>
-                                <option value="0"<?php if ($pun_config['o_default_timezone'] == 0) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC'] ?></option>
-                                <option value="1"<?php if ($pun_config['o_default_timezone'] == 1) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+01:00'] ?></option>
-                                <option value="2"<?php if ($pun_config['o_default_timezone'] == 2) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+02:00'] ?></option>
-                                <option value="3"<?php if ($pun_config['o_default_timezone'] == 3) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+03:00'] ?></option>
-                                <option value="3.5"<?php if ($pun_config['o_default_timezone'] == 3.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+03:30'] ?></option>
-                                <option value="4"<?php if ($pun_config['o_default_timezone'] == 4) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+04:00'] ?></option>
-                                <option value="4.5"<?php if ($pun_config['o_default_timezone'] == 4.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+04:30'] ?></option>
-                                <option value="5"<?php if ($pun_config['o_default_timezone'] == 5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+05:00'] ?></option>
-                                <option value="5.5"<?php if ($pun_config['o_default_timezone'] == 5.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+05:30'] ?></option>
-                                <option value="5.75"<?php if ($pun_config['o_default_timezone'] == 5.75) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+05:45'] ?></option>
-                                <option value="6"<?php if ($pun_config['o_default_timezone'] == 6) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+06:00'] ?></option>
-                                <option value="6.5"<?php if ($pun_config['o_default_timezone'] == 6.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+06:30'] ?></option>
-                                <option value="7"<?php if ($pun_config['o_default_timezone'] == 7) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+07:00'] ?></option>
-                                <option value="8"<?php if ($pun_config['o_default_timezone'] == 8) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+08:00'] ?></option>
-                                <option value="8.75"<?php if ($pun_config['o_default_timezone'] == 8.75) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+08:45'] ?></option>
-                                <option value="9"<?php if ($pun_config['o_default_timezone'] == 9) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+09:00'] ?></option>
-                                <option value="9.5"<?php if ($pun_config['o_default_timezone'] == 9.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+09:30'] ?></option>
-                                <option value="10"<?php if ($pun_config['o_default_timezone'] == 10) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+10:00'] ?></option>
-                                <option value="10.5"<?php if ($pun_config['o_default_timezone'] == 10.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+10:30'] ?></option>
-                                <option value="11"<?php if ($pun_config['o_default_timezone'] == 11) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+11:00'] ?></option>
-                                <option value="11.5"<?php if ($pun_config['o_default_timezone'] == 11.5) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+11:30'] ?></option>
-                                <option value="12"<?php if ($pun_config['o_default_timezone'] == 12) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+12:00'] ?></option>
-                                <option value="12.75"<?php if ($pun_config['o_default_timezone'] == 12.75) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+12:45'] ?></option>
-                                <option value="13"<?php if ($pun_config['o_default_timezone'] == 13) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+13:00'] ?></option>
-                                <option value="14"<?php if ($pun_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang_admin_options['UTC+14:00'] ?></option>
+                                <option value="-12"<?php if ($pun_config['o_default_timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-12:00'] ?></option>
+                                <option value="-11"<?php if ($pun_config['o_default_timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-11:00'] ?></option>
+                                <option value="-10"<?php if ($pun_config['o_default_timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-10:00'] ?></option>
+                                <option value="-9.5"<?php if ($pun_config['o_default_timezone'] == -9.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-09:30'] ?></option>
+                                <option value="-9"<?php if ($pun_config['o_default_timezone'] == -9) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-09:00'] ?></option>
+                                <option value="-8.5"<?php if ($pun_config['o_default_timezone'] == -8.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-08:30'] ?></option>
+                                <option value="-8"<?php if ($pun_config['o_default_timezone'] == -8) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-08:00'] ?></option>
+                                <option value="-7"<?php if ($pun_config['o_default_timezone'] == -7) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-07:00'] ?></option>
+                                <option value="-6"<?php if ($pun_config['o_default_timezone'] == -6) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-06:00'] ?></option>
+                                <option value="-5"<?php if ($pun_config['o_default_timezone'] == -5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-05:00'] ?></option>
+                                <option value="-4"<?php if ($pun_config['o_default_timezone'] == -4) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-04:00'] ?></option>
+                                <option value="-3.5"<?php if ($pun_config['o_default_timezone'] == -3.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-03:30'] ?></option>
+                                <option value="-3"<?php if ($pun_config['o_default_timezone'] == -3) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-03:00'] ?></option>
+                                <option value="-2"<?php if ($pun_config['o_default_timezone'] == -2) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-02:00'] ?></option>
+                                <option value="-1"<?php if ($pun_config['o_default_timezone'] == -1) echo ' selected="selected"' ?>><?php echo $lang_back['UTC-01:00'] ?></option>
+                                <option value="0"<?php if ($pun_config['o_default_timezone'] == 0) echo ' selected="selected"' ?>><?php echo $lang_back['UTC'] ?></option>
+                                <option value="1"<?php if ($pun_config['o_default_timezone'] == 1) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+01:00'] ?></option>
+                                <option value="2"<?php if ($pun_config['o_default_timezone'] == 2) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+02:00'] ?></option>
+                                <option value="3"<?php if ($pun_config['o_default_timezone'] == 3) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+03:00'] ?></option>
+                                <option value="3.5"<?php if ($pun_config['o_default_timezone'] == 3.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+03:30'] ?></option>
+                                <option value="4"<?php if ($pun_config['o_default_timezone'] == 4) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+04:00'] ?></option>
+                                <option value="4.5"<?php if ($pun_config['o_default_timezone'] == 4.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+04:30'] ?></option>
+                                <option value="5"<?php if ($pun_config['o_default_timezone'] == 5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+05:00'] ?></option>
+                                <option value="5.5"<?php if ($pun_config['o_default_timezone'] == 5.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+05:30'] ?></option>
+                                <option value="5.75"<?php if ($pun_config['o_default_timezone'] == 5.75) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+05:45'] ?></option>
+                                <option value="6"<?php if ($pun_config['o_default_timezone'] == 6) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+06:00'] ?></option>
+                                <option value="6.5"<?php if ($pun_config['o_default_timezone'] == 6.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+06:30'] ?></option>
+                                <option value="7"<?php if ($pun_config['o_default_timezone'] == 7) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+07:00'] ?></option>
+                                <option value="8"<?php if ($pun_config['o_default_timezone'] == 8) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+08:00'] ?></option>
+                                <option value="8.75"<?php if ($pun_config['o_default_timezone'] == 8.75) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+08:45'] ?></option>
+                                <option value="9"<?php if ($pun_config['o_default_timezone'] == 9) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+09:00'] ?></option>
+                                <option value="9.5"<?php if ($pun_config['o_default_timezone'] == 9.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+09:30'] ?></option>
+                                <option value="10"<?php if ($pun_config['o_default_timezone'] == 10) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+10:00'] ?></option>
+                                <option value="10.5"<?php if ($pun_config['o_default_timezone'] == 10.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+10:30'] ?></option>
+                                <option value="11"<?php if ($pun_config['o_default_timezone'] == 11) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+11:00'] ?></option>
+                                <option value="11.5"<?php if ($pun_config['o_default_timezone'] == 11.5) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+11:30'] ?></option>
+                                <option value="12"<?php if ($pun_config['o_default_timezone'] == 12) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+12:00'] ?></option>
+                                <option value="12.75"<?php if ($pun_config['o_default_timezone'] == 12.75) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+12:45'] ?></option>
+                                <option value="13"<?php if ($pun_config['o_default_timezone'] == 13) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+13:00'] ?></option>
+                                <option value="14"<?php if ($pun_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+14:00'] ?></option>
                             </select>
-                            <span class="help-block"><?php echo $lang_admin_options['Timezone help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Timezone help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['DST label'] ?></th>
+                        <th><?php echo $lang_back['DST label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[default_dst]" value="1"<?php if ($pun_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[default_dst]" value="0"<?php if ($pun_config['o_default_dst'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['DST help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[default_dst]" value="1"<?php if ($pun_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[default_dst]" value="0"<?php if ($pun_config['o_default_dst'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['DST help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Language label'] ?></th>
+                        <th><?php echo $lang_back['Language label'] ?></th>
                         <td>
                             <select class="form-control" name="form[default_lang]">
 <?php
@@ -276,11 +276,11 @@ generate_admin_menu('global');
 
 ?>
                             </select>
-                            <span class="help-block"><?php echo $lang_admin_options['Language help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Language help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Default style label'] ?></th>
+                        <th><?php echo $lang_back['Default style label'] ?></th>
                         <td>
                             <select class="form-control" name="form[default_style]">
 <?php
@@ -297,7 +297,7 @@ generate_admin_menu('global');
 
 ?>
                             </select>
-                            <span class="help-block"><?php echo $lang_admin_options['Default style help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Default style help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -312,44 +312,44 @@ generate_admin_menu('global');
 ?>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Timeouts subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Timeouts subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_admin_options['Time format label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_back['Time format label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
-                            <br /><span class="help-block"><?php printf($lang_admin_options['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
+                            <br /><span class="help-block"><?php printf($lang_back['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_back['PHP manual'].'</a>') ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Date format label'] ?></th>
+                        <th><?php echo $lang_back['Date format label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[date_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_date_format']) ?>" />
-                            <br /><span class="help-block"><?php printf($lang_admin_options['Date format help'], gmdate($pun_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_admin_options['PHP manual'].'</a>') ?></span>
+                            <br /><span class="help-block"><?php printf($lang_back['Date format help'], gmdate($pun_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_back['PHP manual'].'</a>') ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Visit timeout label'] ?></th>
+                        <th><?php echo $lang_back['Visit timeout label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[timeout_visit]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_visit'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Visit timeout help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Visit timeout help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Online timeout label'] ?></th>
+                        <th><?php echo $lang_back['Online timeout label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[timeout_online]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Online timeout help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Online timeout help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Redirect time label'] ?></th>
+                        <th><?php echo $lang_back['Redirect time label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[redirect_delay]" size="3" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Redirect time help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Redirect time help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -358,35 +358,35 @@ generate_admin_menu('global');
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Feed subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Feed subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_admin_options['Default feed label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_back['Default feed label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['None'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['RSS'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[feed_type]" value="2"<?php if ($pun_config['o_feed_type'] == '2') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['Atom'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Default feed help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['None'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['RSS'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[feed_type]" value="2"<?php if ($pun_config['o_feed_type'] == '2') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Atom'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Default feed help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Feed TTL label'] ?></th>
+                        <th><?php echo $lang_back['Feed TTL label'] ?></th>
                         <td>
                             <select class="form-control" name="form[feed_ttl]">
-                                <option value="0"<?php if ($pun_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang_admin_options['No cache'] ?></option>
+                                <option value="0"<?php if ($pun_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang_back['No cache'] ?></option>
 <?php
 
 		$times = array(5, 15, 30, 60);
 
 		foreach ($times as $time)
-			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_ttl'] == $time ? ' selected="selected"' : '').'>'.sprintf($lang_admin_options['Minutes'], $time).'</option>'."\n";
+			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_ttl'] == $time ? ' selected="selected"' : '').'>'.sprintf($lang_back['Minutes'], $time).'</option>'."\n";
 
 ?>
                             </select>
-                            <span class="help-block"><?php echo $lang_admin_options['Feed TTL help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Feed TTL help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -395,25 +395,25 @@ generate_admin_menu('global');
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Reports subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Reports subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_admin_options['Reporting method label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_back['Reporting method label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['Internal'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['By e-mail'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[report_method]" value="2"<?php if ($pun_config['o_report_method'] == '2') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_options['Both'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Reporting method help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Internal'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['By e-mail'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[report_method]" value="2"<?php if ($pun_config['o_report_method'] == '2') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Both'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Reporting method help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Mailing list label'] ?></th>
+                        <th><?php echo $lang_back['Mailing list label'] ?></th>
                         <td>
                             <textarea class="form-control" name="form[mailing_list]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_mailing_list']) ?></textarea>
-                            <span class="help-block"><?php echo $lang_admin_options['Mailing list help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Mailing list help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -422,45 +422,45 @@ generate_admin_menu('global');
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Avatars subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Avatars subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_admin_options['Use avatars label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_back['Use avatars label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[avatars]" value="1"<?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[avatars]" value="0"<?php if ($pun_config['o_avatars'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Use avatars help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[avatars]" value="1"<?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[avatars]" value="0"<?php if ($pun_config['o_avatars'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Use avatars help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Upload directory label'] ?></th>
+                        <th><?php echo $lang_back['Upload directory label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_dir]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_avatars_dir']) ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Upload directory help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Upload directory help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Max width label'] ?></th>
+                        <th><?php echo $lang_back['Max width label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_width]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_width'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Max width help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Max width help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Max height label'] ?></th>
+                        <th><?php echo $lang_back['Max height label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_height]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_height'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Max height help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Max height help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Max size label'] ?></th>
+                        <th><?php echo $lang_back['Max size label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[avatars_size]" size="6" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_admin_options['Max size help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Max size help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -469,64 +469,64 @@ generate_admin_menu('global');
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Registration subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Registration subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_admin_options['Allow new label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_back['Allow new label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[regs_allow]" value="1"<?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[regs_allow]" value="0"<?php if ($pun_config['o_regs_allow'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Allow new help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[regs_allow]" value="1"<?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[regs_allow]" value="0"<?php if ($pun_config['o_regs_allow'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Allow new help'] ?></span>
                         </td> 
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Verify label'] ?></th>
+                        <th><?php echo $lang_back['Verify label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[regs_verify]" value="1"<?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[regs_verify]" value="0"<?php if ($pun_config['o_regs_verify'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Verify help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[regs_verify]" value="1"<?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[regs_verify]" value="0"<?php if ($pun_config['o_regs_verify'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Verify help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Report new label'] ?></th>
+                        <th><?php echo $lang_back['Report new label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[regs_report]" value="1"<?php if ($pun_config['o_regs_report'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[regs_report]" value="0"<?php if ($pun_config['o_regs_report'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Report new help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[regs_report]" value="1"<?php if ($pun_config['o_regs_report'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[regs_report]" value="0"<?php if ($pun_config['o_regs_report'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Report new help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Use rules label'] ?></th>
+                        <th><?php echo $lang_back['Use rules label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[rules]" value="1"<?php if ($pun_config['o_rules'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[rules]" value="0"<?php if ($pun_config['o_rules'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Use rules help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[rules]" value="1"<?php if ($pun_config['o_rules'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[rules]" value="0"<?php if ($pun_config['o_rules'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Use rules help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Rules label'] ?></th>
+                        <th><?php echo $lang_back['Rules label'] ?></th>
                         <td>
                             <textarea class="form-control" name="form[rules_message]" rows="10" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_rules_message']) ?></textarea>
-                            <span class="help-block"><?php echo $lang_admin_options['Rules help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Rules help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['E-mail default label'] ?></th>
+                        <th><?php echo $lang_back['E-mail default label'] ?></th>
                         <td>
-                            <span class="help-block"><?php echo $lang_admin_options['E-mail default help'] ?></span>
-                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />&#160;<?php echo $lang_admin_options['Display e-mail label'] ?></label>
-                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($pun_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />&#160;<?php echo $lang_admin_options['Hide allow form label'] ?></label>
-                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($pun_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />&#160;<?php echo $lang_admin_options['Hide both label'] ?></label>
+                            <span class="help-block"><?php echo $lang_back['E-mail default help'] ?></span>
+                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />&#160;<?php echo $lang_back['Display e-mail label'] ?></label>
+                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($pun_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />&#160;<?php echo $lang_back['Hide allow form label'] ?></label>
+                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($pun_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />&#160;<?php echo $lang_back['Hide both label'] ?></label>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Antispam API label'] ?></th>
+                        <th><?php echo $lang_back['Antispam API label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[antispam_api]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
-                            <br /><span class="help-block"><?php printf($lang_admin_options['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
+                            <br /><span class="help-block"><?php printf($lang_back['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                         </td>
                     </tr>
                 </table>
@@ -535,24 +535,24 @@ generate_admin_menu('global');
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Announcement subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Announcement subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_admin_options['Display announcement label'] ?></th>
+                        <th class="col-md-2"><?php echo $lang_back['Display announcement label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[announcement]" value="1"<?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[announcement]" value="0"<?php if ($pun_config['o_announcement'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Display announcement help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[announcement]" value="1"<?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[announcement]" value="0"<?php if ($pun_config['o_announcement'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Display announcement help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Announcement message label'] ?></th>
+                        <th><?php echo $lang_back['Announcement message label'] ?></th>
                         <td>
                             <textarea class="form-control" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
-                            <span class="help-block"><?php echo $lang_admin_options['Announcement message help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Announcement message help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -561,31 +561,31 @@ generate_admin_menu('global');
     </div>
     <div class="panel">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_admin_options['Maintenance subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Maintenance subhead'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><a name="maintenance"></a><?php echo $lang_admin_options['Maintenance mode label'] ?></th>
+                        <th class="col-md-2"><a name="maintenance"></a><?php echo $lang_back['Maintenance mode label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[maintenance]" value="1"<?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[maintenance]" value="0"<?php if ($pun_config['o_maintenance'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_admin_options['Maintenance mode help'] ?></span>
+                            <label class="conl"><input type="radio" name="form[maintenance]" value="1"<?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="form[maintenance]" value="0"<?php if ($pun_config['o_maintenance'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Maintenance mode help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_admin_options['Maintenance message label'] ?></th>
+                        <th><?php echo $lang_back['Maintenance message label'] ?></th>
                         <td>
                             <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
-                            <span class="help-block"><?php echo $lang_admin_options['Maintenance message help'] ?></span>
+                            <span class="help-block"><?php echo $lang_back['Maintenance message help'] ?></span>
                         </td>
                     </tr>
                 </table>
             </fieldset>
         </div>
     </div>
-    <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_admin_common['Save changes'] ?>" /></div>
+    <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></div>
 </form>
 <?php
 
