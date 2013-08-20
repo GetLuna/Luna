@@ -151,13 +151,15 @@ else
                         <thead>
                             <tr>
                                 <th class="span3"><?php echo $lang_admin_index['ModernBB version label'] ?></th>
-                                <td><?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
-                            </tr>
-                            <tr>
                                 <th><?php echo $lang_admin_index['Server statistics label'] ?></th>
-                                <td><a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a></td>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr>
+                                <td><?php printf($lang_admin_index['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
+                                <td><a href="statistics.php"><?php echo $lang_admin_index['View server statistics'] ?></a></td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
