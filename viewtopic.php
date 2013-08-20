@@ -205,7 +205,7 @@ if (empty($post_ids))
 	error('The post table and topic table seem to be out of sync!', __FILE__, __LINE__);
 
 // Retrieve the posts (and their respective poster/online status)
-$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 while ($cur_post = $db->fetch_assoc($result))
 {
 	$post_count++;
@@ -295,8 +295,13 @@ while ($cur_post = $db->fetch_assoc($result))
 	// Generation post action array (quote, edit, delete etc.)
 	if (!$is_admmod)
 	{
-		if (!$pun_user['is_guest'])
-			$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+		if (!$pun_user['is_guest']) {
+			if ($cur_post['marked'] == false) {
+				$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+			} else {
+				$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+			}
+		}
 
 		if ($cur_topic['closed'] == '0')
 		{
@@ -314,7 +319,12 @@ while ($cur_post = $db->fetch_assoc($result))
 	}
 	else
 	{
-		$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+		if ($cur_post['marked'] == false)
+		{
+			$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+		} else {
+			$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+		}
 		if ($pun_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
 		{  
 			$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang_topic['Delete'].'</a>';  
@@ -339,35 +349,33 @@ while ($cur_post = $db->fetch_assoc($result))
 	}
 	
 ?>
-<div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?><?php if ($marked == '1') echo ' marked'; ?>">
-	<table class="table postview">
-		<div class="">
-            <tr>
-                <td class="col-md-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
-                    <dd class="usertitle"><strong><?php echo $username ?><?php echo $user_title ?></strong></dd>
-                    <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
-                    <span class="user-info">
-                        <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
-                        <?php if (count($user_contacts)) echo "\t\t\t\t\t\t".'<dd class="usercontacts">'.implode(' ', $user_contacts).'</dd>'."\n"; ?>
-                    </span>
-                </td>
-                <td class="col-md-10">
-                    <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
-                    <div class="postmsg">
-                        <?php echo $cur_post['message']."\n" ?>
+<div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?>">
+	<table class="table postview <?php if ($cur_post['marked'] == true) echo 'marked'; ?>">
+        <tr>
+            <td class="col-md-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
+                <dd class="usertitle"><strong><?php echo $username ?><?php echo $user_title ?></strong></dd>
+                <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
+                <span class="user-info">
+                    <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
+                    <?php if (count($user_contacts)) echo "\t\t\t\t\t\t".'<dd class="usercontacts">'.implode(' ', $user_contacts).'</dd>'."\n"; ?>
+                </span>
+            </td>
+            <td class="col-md-10 post-content">
+                <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
+                <div class="postmsg">
+                    <?php echo $cur_post['message']."\n" ?>
 <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
-                    </div>
-					<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
-                </td>
-            </tr>
-            <?php if (!$pun_user['is_guest']) { ?>
-            <tr>
-                <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-                    <p class="pull-right"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></p>
-                </td>
-            </tr>
-            <?php } ?>
-		</div>
+                </div>
+                <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
+            </td>
+        </tr>
+        <?php if (!$pun_user['is_guest']) { ?>
+        <tr>
+            <td colspan="2" class="postfooter" style="padding-bottom: 0;">
+                <p class="pull-right"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></p>
+            </td>
+        </tr>
+        <?php } ?>
 	</table>
 </div>
 

@@ -184,7 +184,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	position: relative;
 }
 
-
 .username {
 	margin: 0;
 }
@@ -215,6 +214,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .modcontrols {
 	padding-bottom: 8px;
+}
+
+.marked .post-content {
+	background-color: #fff0ed;
 }
 
 /* Quick post */
