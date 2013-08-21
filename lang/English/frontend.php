@@ -13,7 +13,7 @@ $lang_front = array(
 'Post del redirect'		=>	'Post deleted. Redirecting …',
 'Topic del redirect'	=>	'Topic deleted. Redirecting …',
 
-// Language definitions used in help.php
+// Language for help.php
 'Help'					=>	'Help',
 'produces'				=>	'produces',
 
@@ -78,7 +78,7 @@ $lang_front = array(
 'Smilies'				=>	'Smilies',
 'Smilies info'			=>	'If you like (and if it is enabled), the forum can convert a series of smilies to images representations of that smiley. This forum recognizes the following smilies and replaces them with images:',
 
-// Language definitions used in index.php
+// Language for index.php
 'Topics'		=>	'Topics',
 'Link to'		=>	'Link to:', // As in "Link to: http://modernbb.be/"
 'Empty board'	=>	'Board is empty.',
@@ -93,7 +93,7 @@ $lang_front = array(
 'Board stats'	=>	'Board statistics',
 'User info'		=>	'User information',
 
-// Language definitions used in login.php
+// Language for login.php
 'Wrong user/pass'			=>	'Wrong username and/or password.',
 'Forgotten pass'			=>	'Forgotten password',
 'Login redirect'			=>	'Logged in successfully. Redirecting …',
@@ -110,7 +110,7 @@ $lang_front = array(
 'Forget mail'				=>	'An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at',
 'Email flood'				=>  'This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again.',
 
-// Language definitions used in various scripts
+// Language for various scripts
 'Mark read redirect'			=>	'All topics and forums have been marked as read. Redirecting …',
 'Mark forum read redirect'		=>	'All topics in the specified forum have been marked as read. Redirecting …',
 
@@ -198,7 +198,7 @@ $lang_front = array(
 'Host info 2'					=>	'The host name is: %s',
 'Show more users'				=>	'Show more users for this IP',
 
-// Language definitions used in post.php and edit.php
+// Language for post.php and edit.php
 // Post validation stuff (many are similiar to those in edit.php)
 'No subject'		=>	'Topics must contain a subject.',
 'No subject after censoring'	=>	'Topics must contain a subject. After applying censoring filters, your subject was empty.',
@@ -231,7 +231,7 @@ $lang_front = array(
 'Edit post'			=>	'Edit post',
 'Edit redirect'		=>	'Post updated. Redirecting …',
 
-// Language definitions used in both profile.php and register.php
+// Language for both profile.php and register.php
 'Email legend'				=>	'Enter a valid email address',
 'Email legend 2'			=>	'Enter and confirm a valid email address',
 'Localisation legend'		=>	'Set your localisation options',
@@ -305,7 +305,7 @@ $lang_front = array(
 'UTC+13:00'					=>	'(UTC+13:00) Tonga, Phoenix Islands, Kamchatka',
 'UTC+14:00'					=>	'(UTC+14:00) Line Islands',
 
-// Language definitions used in profile.php
+// Language for profile.php
 // Navigation and sections
 'Profile menu'					=>	'Profile menu',
 'Section essentials'			=>	'Essentials',
@@ -441,7 +441,7 @@ $lang_front = array(
 'Ban redirect'					=>	'Redirecting …',
 'No delete admin message'		=>	'Administrators cannot be deleted. In order to delete this user, you must first move him/her to a different user group.',
 
-// Language definitions used in register.php
+// Language for register.php
 'No new regs'				=>	'This forum is not accepting new registrations.',
 'Reg cancel redirect'		=>	'Registration cancelled. Redirecting …',
 'Forum rules'				=>	'Forum rules',
@@ -473,7 +473,7 @@ $lang_front = array(
 'If human'					=>	'If you are human please leave this field blank!',
 'Spam catch'				=>	'Unfortunately it looks like your request is spam. If you feel this is a mistake, please direct any inquiries to the forum administrator at',
 
-// Language definitions used in search.php
+// Language for search.php
 'User search'						=>	'User search',
 'No search permission'				=>	'You do not have permission to use the search feature.',
 'Search flood'						=>  'At least %s seconds have to pass between searches. Please wait %s seconds and try searching again.',
@@ -532,7 +532,7 @@ $lang_front = array(
 'Go to post'						=>	'Go to post',
 'Go to topic'						=>	'Go to topic',
 
-// Language definitions used in viewtopic.php
+// Language for viewtopic.php
 'Post reply'		=>	'Post reply',
 'Topic closed'		=>	'Topic closed',
 'From'				=>	'From:', // User location
@@ -559,7 +559,7 @@ $lang_front = array(
 'Re'				=>	'Re:',
 'Preview'			=>	'Preview',
 
-// Language definitions used in userlist.php
+// Language for userlist.php
 'User find legend'	=>	'Find and sort users',
 'User search info'	=>	'Enter a username to search for and/or a user group to filter by. The username field can be left blank. Use the wildcard character * for partial matches.',
 'User sort info'	=>	'Sort users by name, date registered or number of posts and in ascending/descending order.',
