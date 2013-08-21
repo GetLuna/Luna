@@ -427,28 +427,28 @@ function check_bans()
 //
 function check_username($username, $exclude_id = null)
 {
-	global $db, $pun_config, $errors, $lang_prof_reg, $lang_register, $lang_common, $pun_bans;
+	global $db, $pun_config, $errors, $lang_front, $lang_common, $pun_bans;
 
 	// Convert multiple whitespace characters into one (to prevent people from registering with indistinguishable usernames)
 	$username = preg_replace('%\s+%s', ' ', $username);
 
 	// Validate username
 	if (pun_strlen($username) < 2)
-		$errors[] = $lang_prof_reg['Username too short'];
+		$errors[] = $lang_front['Username too short'];
 	else if (pun_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
-		$errors[] = $lang_prof_reg['Username too long'];
+		$errors[] = $lang_front['Username too long'];
 	else if (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang_common['Guest']))
-		$errors[] = $lang_prof_reg['Username guest'];
+		$errors[] = $lang_front['Username guest'];
 	else if (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
-		$errors[] = $lang_prof_reg['Username IP'];
+		$errors[] = $lang_front['Username IP'];
 	else if ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
-		$errors[] = $lang_prof_reg['Username reserved chars'];
+		$errors[] = $lang_front['Username reserved chars'];
 	else if (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|topic|post|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
-		$errors[] = $lang_prof_reg['Username BBCode'];
+		$errors[] = $lang_front['Username BBCode'];
 
 	// Check username for any censored words
 	if ($pun_config['o_censoring'] == '1' && censor_words($username) != $username)
-		$errors[] = $lang_register['Username censor'];
+		$errors[] = $lang_front['Username censor'];
 
 	// Check that the username (or a too similar username) is not already registered
 	$query = ($exclude_id) ? ' AND id!='.$exclude_id : '';
@@ -458,7 +458,7 @@ function check_username($username, $exclude_id = null)
 	if ($db->num_rows($result))
 	{
 		$busy = $db->result($result);
-		$errors[] = $lang_register['Username dupe 1'].' '.pun_htmlspecialchars($busy).'. '.$lang_register['Username dupe 2'];
+		$errors[] = $lang_front['Username dupe 1'].' '.pun_htmlspecialchars($busy).'. '.$lang_front['Username dupe 2'];
 	}
 
 	// Check username for any banned usernames
@@ -466,7 +466,7 @@ function check_username($username, $exclude_id = null)
 	{
 		if ($cur_ban['username'] != '' && utf8_strtolower($username) == utf8_strtolower($cur_ban['username']))
 		{
-			$errors[] = $lang_prof_reg['Banned username'];
+			$errors[] = $lang_front['Banned username'];
 			break;
 		}
 	}
@@ -509,21 +509,21 @@ function update_users_online()
 //
 function generate_profile_menu($page = '')
 {
-	global $lang_profile, $pun_config, $pun_user, $id;
+	global $lang_front, $pun_config, $pun_user, $id;
 
 ?>
 <div class="col-md-2 profile-nav">
     <div class="list-group">
-        <a class="<?php if ($page == 'essentials') echo 'active'; ?> list-group-item" href="profile.php?section=essentials&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section essentials'] ?></a>
-        <a class="<?php if ($page == 'personal') echo 'active'; ?> list-group-item" href="profile.php?section=personal&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personal'] ?></a>
-        <a class="<?php if ($page == 'messaging') echo 'active'; ?> list-group-item" href="profile.php?section=messaging&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section messaging'] ?></a>
+        <a class="<?php if ($page == 'essentials') echo 'active'; ?> list-group-item" href="profile.php?section=essentials&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section essentials'] ?></a>
+        <a class="<?php if ($page == 'personal') echo 'active'; ?> list-group-item" href="profile.php?section=personal&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section personal'] ?></a>
+        <a class="<?php if ($page == 'messaging') echo 'active'; ?> list-group-item" href="profile.php?section=messaging&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section messaging'] ?></a>
 		<?php if ($pun_config['o_avatars'] == '1' || $pun_config['o_signatures'] == '1'): ?>
-			<a class="<?php if ($page == 'personality') echo 'active'; ?> list-group-item" href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personality'] ?></a>
+			<a class="<?php if ($page == 'personality') echo 'active'; ?> list-group-item" href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section personality'] ?></a>
 		<?php endif; ?>
-        <a class="<?php if ($page == 'display') echo 'active'; ?> list-group-item" href="profile.php?section=display&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section display'] ?></a>
-        <a class="<?php if ($page == 'privacy') echo 'active'; ?> list-group-item" href="profile.php?section=privacy&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section privacy'] ?></a>
+        <a class="<?php if ($page == 'display') echo 'active'; ?> list-group-item" href="profile.php?section=display&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section display'] ?></a>
+        <a class="<?php if ($page == 'privacy') echo 'active'; ?> list-group-item" href="profile.php?section=privacy&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section privacy'] ?></a>
 		<?php if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>
-            <a class="<?php if ($page == 'admin') echo 'active'; ?> list-group-item" href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section admin'] ?></a>
+            <a class="<?php if ($page == 'admin') echo 'active'; ?> list-group-item" href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section admin'] ?></a>
 		<?php endif; ?>
     </div>
 </div>
