@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.0-beta.2.5');
+define('UPDATE_TO', '2.0-beta.3-dev.1');
 
 define('UPDATE_TO_DB_REVISION', 24);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -20,12 +20,7 @@ define('MIN_PGSQL_VERSION', '7.0.0');
 define('FORUM_SEARCH_MIN_WORD', 3);
 define('FORUM_SEARCH_MAX_WORD', 20);
 
-// The MySQL connection character set that was used for FluxBB 1.2 - in 99% of cases this should be detected automatically,
-// but can be overridden using the below constant if required.
-//define('FORUM_DEFAULT_CHARSET', 'latin1');
-
-
-// The number of items to process per page view (lower this if the update script times out during UTF-8 conversion)
+// The number of items to process per page view
 define('PER_PAGE', 300);
 
 // Don't set to UTF-8 until after we've found out what the default character set is
@@ -41,7 +36,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 if (file_exists(FORUM_ROOT.'config.php'))
 	include FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN, from PunBB 1.1 and 1.2, FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
+// This fixes incorrect defined PUN, from FluxBB 1.4 and 1.5 and ModernBB 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 
@@ -136,7 +131,7 @@ require FORUM_ROOT.'lang/'.$default_lang.'/update.php';
 // Check current version
 $cur_version = $pun_config['o_cur_version'];
 
-if (version_compare($cur_version, '1.2', '<'))
+if (version_compare($cur_version, '1.4', '<'))
 	error(sprintf($lang_update['Version mismatch error'], $db_name));
 
 // Do some DB type specific checks
@@ -172,9 +167,6 @@ if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revisio
 $default_style = $pun_config['o_default_style'];
 if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
 	$default_style = 'Air';
-
-// Start a session, used to queue up errors if duplicate users occur when converting from FluxBB v1.2.
-session_start();
 
 //
 // Determines whether $str is UTF-8 encoded or not
@@ -248,46 +240,6 @@ function dcr2utf8($src)
 
 	return $dest;
 }
-
-
-//
-// Attempts to convert $str from $old_charset to UTF-8. Also converts HTML entities (including numeric entities) to UTF-8 characters
-//
-function convert_to_utf8(&$str, $old_charset)
-{
-	if (is_null($str) || $str == '')
-		return false;
-
-	$save = $str;
-
-	// Replace literal entities (for non-UTF-8 compliant html_entity_encode)
-	if (version_compare(PHP_VERSION, '5.0.0', '<') && $old_charset == 'ISO-8859-1' || $old_charset == 'ISO-8859-15')
-		$str = html_entity_decode($str, ENT_QUOTES, $old_charset);
-
-	if ($old_charset != 'UTF-8' && !seems_utf8($str))
-	{
-		if (function_exists('iconv'))
-			$str = iconv($old_charset == 'ISO-8859-1' ? 'WINDOWS-1252' : 'ISO-8859-1', 'UTF-8', $str);
-		else if (function_exists('mb_convert_encoding'))
-			$str = mb_convert_encoding($str, 'UTF-8', $old_charset == 'ISO-8859-1' ? 'WINDOWS-1252' : 'ISO-8859-1');
-		else if ($old_charset == 'ISO-8859-1')
-			$str = utf8_encode($str);
-	}
-
-	// Replace literal entities (for UTF-8 compliant html_entity_encode)
-	if (version_compare(PHP_VERSION, '5.0.0', '>='))
-		$str = html_entity_decode($str, ENT_QUOTES, 'UTF-8');
-
-	// Replace numeric entities
-	$str = preg_replace_callback('%&#([0-9]+);%', 'utf8_callback_1', $str);
-	$str = preg_replace_callback('%&#x([a-f0-9]+);%i', 'utf8_callback_2', $str);
-
-	// Remove "bad" characters
-	$str = remove_bad_characters($str);
-
-	return ($save != $str);
-}
-
 
 function utf8_callback_1($matches)
 {
@@ -512,33 +464,32 @@ if (empty($stage))
 		<title>ModernBB &middot; <?php echo $lang_update['Update'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
-        <link href="admin/css/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="admin/css/style.css" type="text/css" rel="stylesheet">
+        <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
+        <link href="style/Randomness.css" type="text/css" rel="stylesheet">
         <style type="text/css">
 		body {
-            padding-top: 60px;
             padding-bottom: 40px;
-            background-color: #f5f5f5;
+			padding-top: 60px;
+            background-color: #f2f2f2;
         }
         .form-signin {
-            max-width: 300px;
-            padding: 19px 29px 29px;
+            max-width: 350px;
+            padding: 19px 29px 9px 29px;
             margin: 0 auto 20px;
             background-color: #fff;
-            border: 1px solid #e5e5e5;
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-			border-radius: .3em;
+			border-left: #2ca0e9 5px solid;
+			box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
         }
-		input {
-			width: 280px;
+		h1 {
+			font-weight: 100;
 		}
         .form-pass {
             padding: 19px 29px 4px;
         }
-        .form-signin .form-signin-heading, .form-signin .checkbox {
+        .form-signin .form-signin-heading {
             margin-bottom: 10px;
         }
-        .form-signin input[type="text"], .form-signin input[type="password"] {
+        .form-signin input[type="password"] {
             font-size: 16px;
             height: auto;
             margin-bottom: 5px;
@@ -547,25 +498,22 @@ if (empty($stage))
 		.form-signin-heading {
 			color: #2ca0e9;
 			text-transform: lowercase;
+			margin-top: 0;
+		}
+		.btn {
+			margin-bottom: 20px;
 		}
         </style>
-        <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
 		<!-- Content start -->
         <form class="form-signin" id="install" method="post" action="db_update.php">
             <h1 class="form-signin-heading"><?php echo $lang_update['Update'] ?></h1>
             <fieldset>
-			<input type="hidden" name="stage" value="start" />
-			<div class="inform">
-				<fieldset>
-					<div class="infldset">
-						<label class="required">
-                            <p><?php echo $lang_update['Database password info'] ?></p>
-                            <input type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" /><br /></label>
-					</div>
-				</fieldset>
-			</div>
+                <input type="hidden" name="stage" value="start" />
+                <p><?php echo $lang_update['Database password info'] ?></p>
+                <input class="form-control" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
+            </fieldset>
 			<div><input class="btn btn-primary btn-block" type="submit" name="start" value="<?php echo $lang_update['Start update'] ?>" /></div>
 		</form>
 	</body>
@@ -647,97 +595,39 @@ switch ($stage)
 		if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revision'] >= UPDATE_TO_DB_REVISION)
 			break;
 
-		// Make all email fields VARCHAR(80)
-		$db->alter_field('bans', 'email', 'VARCHAR(80)', true) or error('Unable to alter email field', __FILE__, __LINE__, $db->error());
-		$db->alter_field('posts', 'poster_email', 'VARCHAR(80)', true) or error('Unable to alter poster_email field', __FILE__, __LINE__, $db->error());
-		$db->alter_field('users', 'email', 'VARCHAR(80)', false, '') or error('Unable to alter email field', __FILE__, __LINE__, $db->error());
-		$db->alter_field('users', 'jabber', 'VARCHAR(80)', true) or error('Unable to alter jabber field', __FILE__, __LINE__, $db->error());
-		$db->alter_field('users', 'msn', 'VARCHAR(80)', true) or error('Unable to alter msn field', __FILE__, __LINE__, $db->error());
-		$db->alter_field('users', 'activate_string', 'VARCHAR(80)', true) or error('Unable to alter activate_string field', __FILE__, __LINE__, $db->error());
-
-		// Make all IP fields VARCHAR(39) to support IPv6
-		$db->alter_field('posts', 'poster_ip', 'VARCHAR(39)', true) or error('Unable to alter poster_ip field', __FILE__, __LINE__, $db->error());
-		$db->alter_field('users', 'registration_ip', 'VARCHAR(39)', false, '0.0.0.0') or error('Unable to alter registration_ip field', __FILE__, __LINE__, $db->error());
-
 		// Make the message field MEDIUMTEXT to allow proper conversion of 65535 character posts to UTF-8
 		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
 		// Add the DST option to the users table
 		$db->add_field('users', 'dst', 'TINYINT(1)', false, 0, 'timezone') or error('Unable to add dst field', __FILE__, __LINE__, $db->error());
 
-		// Add the last_post column to the online table
-		$db->add_field('online', 'last_post', 'INT(10) UNSIGNED', true, null, null) or error('Unable to add last_post field', __FILE__, __LINE__, $db->error());
-
-		// Add the last_search column to the online table
-		$db->add_field('online', 'last_search', 'INT(10) UNSIGNED', true, null, null) or error('Unable to add last_search field', __FILE__, __LINE__, $db->error());
-
-		// Add the last_search column to the users table
-		$db->add_field('users', 'last_search', 'INT(10) UNSIGNED', true, null, 'last_post') or error('Unable to add last_search field', __FILE__, __LINE__, $db->error());
-		
-		// Add the parent_forum_id column to support sub forums
+		// Since 2.0-beta.1: Add the parent_forum_id column to the forums table
 		$db->add_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to add parent_forum_id field', __FILE__, __LINE__, $db->error());
 		
-		// Add the marked column to the posts table
+		// Since 2.0-beta.1: Add the marked column to the posts table
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-		// Drop use_avatar column from users table
-		$db->drop_field('users', 'use_avatar') or error('Unable to drop use_avatar field', __FILE__, __LINE__, $db->error());
-
-		// Drop save_pass column from users table
-		$db->drop_field('users', 'save_pass') or error('Unable to drop save_pass field', __FILE__, __LINE__, $db->error());
-
-		// Drop g_edit_subjects_interval column from groups table
-		$db->drop_field('groups', 'g_edit_subjects_interval');
-
-		// Add database revision number
-		if (!array_key_exists('o_database_revision', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_database_revision\', \'0\')') or error('Unable to insert config value \'o_database_revision\'', __FILE__, __LINE__, $db->error());
-
-		// Add search index revision number
+		//  Since 1.4-beta.1: Add search index revision number
 		if (!array_key_exists('o_searchindex_revision', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_searchindex_revision\', \'0\')') or error('Unable to insert config value \'o_searchindex_revision\'', __FILE__, __LINE__, $db->error());
 
-		// Add parser revision number
+		// Since 1.4-beta.1: Add parser revision number
 		if (!array_key_exists('o_parser_revision', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_parser_revision\', \'0\')') or error('Unable to insert config value \'o_parser_revision\'', __FILE__, __LINE__, $db->error());
 
-		// Add default email setting option
-		if (!array_key_exists('o_default_email_setting', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_default_email_setting\', \'1\')') or error('Unable to insert config value \'o_default_email_setting\'', __FILE__, __LINE__, $db->error());
-
-		// Make sure we have o_additional_navlinks (was added in 1.2.1)
-		if (!array_key_exists('o_additional_navlinks', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_additional_navlinks\', \'\')') or error('Unable to insert config value \'o_additional_navlinks\'', __FILE__, __LINE__, $db->error());
-
-		// Insert new config option o_topic_views
-		if (!array_key_exists('o_topic_views', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_topic_views\', \'1\')') or error('Unable to insert config value \'o_topic_views\'', __FILE__, __LINE__, $db->error());
-
-		// Insert new config option o_signatures
-		if (!array_key_exists('o_signatures', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_signatures\', \'1\')') or error('Unable to insert config value \'o_signatures\'', __FILE__, __LINE__, $db->error());
-
-		// Insert new config option o_smtp_ssl
-		if (!array_key_exists('o_smtp_ssl', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_smtp_ssl\', \'0\')') or error('Unable to insert config value \'o_smtp_ssl\'', __FILE__, __LINE__, $db->error());
-
-		// Insert new config option o_default_dst
-		if (!array_key_exists('o_default_dst', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_default_dst\', \'0\')') or error('Unable to insert config value \'o_default_dst\'', __FILE__, __LINE__, $db->error());
-
-		// Insert new config option o_quote_depth
+		//  Since 1.4-beta.1: Insert new config option o_quote_depth
 		if (!array_key_exists('o_quote_depth', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_quote_depth\', \'3\')') or error('Unable to insert config value \'o_quote_depth\'', __FILE__, __LINE__, $db->error());
 
-		// Insert new config option o_feed_type
+		//  Since 1.4-beta.1: Insert new config option o_feed_type
 		if (!array_key_exists('o_feed_type', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_type\', \'2\')') or error('Unable to insert config value \'o_feed_type\'', __FILE__, __LINE__, $db->error());
 
-		// Insert new config option o_feed_ttl
+		//  Since 1.4-beta.1: Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 
-		// Insert new config option o_antispam_api
+		//  Since 2.0-beta.2: Insert new config option o_antispam_api
 		if (!array_key_exists('o_antispam_api', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_antispam_api\', NULL)') or error('Unable to insert config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
 			
@@ -752,7 +642,7 @@ switch ($stage)
 		 $db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_ids\', \''.implode(',', $admin_ids).'\')') or error('Unable to insert config value \'o_admin_ids\'', __FILE__, __LINE__, $db->error());  
 		}
 		
-		// Insert config option o_base_url which was removed in 1.3
+		//  Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
 		if (!array_key_exists('o_base_url', $pun_config))
 		{
 			// If it isn't in $pun_config['o_base_url'] it should be in $base_url, but just in-case it isn't we can make a guess at it
@@ -770,169 +660,6 @@ switch ($stage)
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_base_url\', \''.$db->escape($base_url).'\')') or error('Unable to insert config value \'o_base_url\'', __FILE__, __LINE__, $db->error());
 		}
 		
-		if (strpos($cur_version, '1.2') === 0)
-		{
-			// Groups are almost the same as 1.2:
-			// unverified:	32000 -> 0
-
-			$db->query('UPDATE '.$db->prefix.'users SET group_id = 0 WHERE group_id = 32000') or error('Unable to update unverified users', __FILE__, __LINE__, $db->error());
-		}
-		else if (strpos($cur_version, '1.3') === 0)
-		{
-			// Groups have changed quite a lot from 1.3:
-			// unverified:	0 -> 0
-			// admin:		1 -> 1
-			// mod:			? -> 2
-			// guest:		2 -> 3
-			// member:		? -> 4
-
-			$result = $db->query('SELECT MAX(g_id) + 1 FROM '.$db->prefix.'groups') or error('Unable to select temp group ID', __FILE__, __LINE__, $db->error());
-			$temp_id = $db->result($result);
-
-			$result = $db->query('SELECT g_id FROM '.$db->prefix.'groups WHERE g_moderator = 1 AND g_id > 1 LIMIT 1') or error('Unable to select moderator group', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result))
-				$mod_gid = $db->result($result);
-			else
-			{
-				$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('."'Moderators', 'Moderator', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)") or error('Unable to add group', __FILE__, __LINE__, $db->error());
-				$mod_gid = $db->insert_id();
-			}
-
-			$member_gid = $pun_config['o_default_user_group'];
-
-			// move the mod group to a temp place
-			$db->query('UPDATE '.$db->prefix.'groups SET g_id = '.$temp_id.' WHERE g_id = '.$mod_gid) or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'users SET group_id = '.$temp_id.' WHERE group_id = '.$mod_gid) or error('Unable to update users group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'forum_perms SET group_id = '.$temp_id.' WHERE group_id = '.$mod_gid) or error('Unable to forum_perms group ID', __FILE__, __LINE__, $db->error());
-			if ($member_gid == $mod_gid) $member_gid = $temp_id;
-
-			// move whoever is in 3 to a spare slot
-			$db->query('UPDATE '.$db->prefix.'groups SET g_id = '.$mod_gid.' WHERE g_id = 3') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'users SET group_id = '.$mod_gid.' WHERE group_id = 3') or error('Unable to update users group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'forum_perms SET group_id = '.$mod_gid.' WHERE group_id = 3') or error('Unable to forum_perms group ID', __FILE__, __LINE__, $db->error());
-			if ($member_gid == 3) $member_gid = $mod_gid;
-
-			// move guest to 3
-			$db->query('UPDATE '.$db->prefix.'groups SET g_id = 3 WHERE g_id = 2') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'users SET group_id = 3 WHERE group_id = 2') or error('Unable to update users group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'forum_perms SET group_id = 3 WHERE group_id = 2') or error('Unable to forum_perms group ID', __FILE__, __LINE__, $db->error());
-			if ($member_gid == 2) $member_gid = 3;
-
-			// move mod group in temp place to 2
-			$db->query('UPDATE '.$db->prefix.'groups SET g_id = 2 WHERE g_id = '.$temp_id) or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'users SET group_id = 2 WHERE group_id = '.$temp_id) or error('Unable to update users group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'forum_perms SET group_id = 2 WHERE group_id = '.$temp_id) or error('Unable to forum_perms group ID', __FILE__, __LINE__, $db->error());
-			if ($member_gid == $temp_id) $member_gid = 2;
-
-			// Only move stuff around if it isn't already in the right place
-			if ($member_gid != $mod_gid || $member_gid != 4)
-			{
-				// move members to temp place
-				$db->query('UPDATE '.$db->prefix.'groups SET g_id = '.$temp_id.' WHERE g_id = '.$member_gid) or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'users SET group_id = '.$temp_id.' WHERE group_id = '.$member_gid) or error('Unable to update users group ID', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'forum_perms SET group_id = '.$temp_id.' WHERE group_id = '.$member_gid) or error('Unable to forum_perms group ID', __FILE__, __LINE__, $db->error());
-
-				// move whoever is in 4 to members place
-				$db->query('UPDATE '.$db->prefix.'groups SET g_id = '.$member_gid.' WHERE g_id = 4') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'users SET group_id = '.$member_gid.' WHERE group_id = 4') or error('Unable to update users group ID', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'forum_perms SET group_id = '.$member_gid.' WHERE group_id = 4') or error('Unable to forum_perms group ID', __FILE__, __LINE__, $db->error());
-
-				// move members in temp place to 4
-				$db->query('UPDATE '.$db->prefix.'groups SET g_id = 4 WHERE g_id = '.$temp_id) or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'users SET group_id = 4 WHERE group_id = '.$temp_id) or error('Unable to update users group ID', __FILE__, __LINE__, $db->error());
-				$db->query('UPDATE '.$db->prefix.'forum_perms SET group_id = 4 WHERE group_id = '.$temp_id) or error('Unable to forum_perms group ID', __FILE__, __LINE__, $db->error());
-			}
-
-			$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.$member_gid.'\' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update default user group ID', __FILE__, __LINE__, $db->error());
-		}
-
-		// Server time zone is now simply the default time zone
-		if (!array_key_exists('o_default_timezone', $pun_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name = \'o_default_timezone\' WHERE conf_name = \'o_server_timezone\'') or error('Unable to update time zone config', __FILE__, __LINE__, $db->error());
-
-		// Increase visit timeout to 30 minutes (only if it hasn't been changed from the default)
-		if (!array_key_exists('o_database_revision', $pun_config) && $pun_config['o_timeout_visit'] == '600')
-			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'1800\' WHERE conf_name = \'o_timeout_visit\'') or error('Unable to update visit timeout config', __FILE__, __LINE__, $db->error());
-
-		// Remove obsolete g_post_polls permission from groups table
-		$db->drop_field('groups', 'g_post_polls');
-
-		// Make room for multiple moderator groups
-		if (!$db->field_exists('groups', 'g_moderator'))
-		{
-			// Add g_moderator column to groups table
-			$db->add_field('groups', 'g_moderator', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_moderator field', __FILE__, __LINE__, $db->error());
-
-			// Give the moderator group moderator privileges
-			$db->query('UPDATE '.$db->prefix.'groups SET g_moderator = 1 WHERE g_id = 2') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
-
-		// Replace obsolete p_mod_edit_users config setting with new per-group permission
-		if (array_key_exists('p_mod_edit_users', $pun_config))
-		{
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'p_mod_edit_users\'') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-
-			$db->add_field('groups', 'g_mod_edit_users', 'TINYINT(1)', false, 0, 'g_moderator') or error('Unable to add g_mod_edit_users field', __FILE__, __LINE__, $db->error());
-
-			$db->query('UPDATE '.$db->prefix.'groups SET g_mod_edit_users = '.$pun_config['p_mod_edit_users'].' WHERE g_moderator = 1') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
-
-		// Replace obsolete p_mod_rename_users config setting with new per-group permission
-		if (array_key_exists('p_mod_rename_users', $pun_config))
-		{
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'p_mod_rename_users\'') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-
-			$db->add_field('groups', 'g_mod_rename_users', 'TINYINT(1)', false, 0, 'g_mod_edit_users') or error('Unable to add g_mod_rename_users field', __FILE__, __LINE__, $db->error());
-
-			$db->query('UPDATE '.$db->prefix.'groups SET g_mod_rename_users = '.$pun_config['p_mod_rename_users'].' WHERE g_moderator = 1') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
-
-		// Replace obsolete p_mod_change_passwords config setting with new per-group permission
-		if (array_key_exists('p_mod_change_passwords', $pun_config))
-		{
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'p_mod_change_passwords\'') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-
-			$db->add_field('groups', 'g_mod_change_passwords', 'TINYINT(1)', false, 0, 'g_mod_rename_users') or error('Unable to add g_mod_change_passwords field', __FILE__, __LINE__, $db->error());
-
-			$db->query('UPDATE '.$db->prefix.'groups SET g_mod_change_passwords = '.$pun_config['p_mod_change_passwords'].' WHERE g_moderator = 1') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
-
-		// Replace obsolete p_mod_ban_users config setting with new per-group permission
-		if (array_key_exists('p_mod_ban_users', $pun_config))
-		{
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'p_mod_ban_users\'') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-
-			$db->add_field('groups', 'g_mod_ban_users', 'TINYINT(1)', false, 0, 'g_mod_change_passwords') or error('Unable to add g_mod_ban_users field', __FILE__, __LINE__, $db->error());
-
-			$db->query('UPDATE '.$db->prefix.'groups SET g_mod_ban_users = '.$pun_config['p_mod_ban_users'].' WHERE g_moderator = 1') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
-
-		// We need to add a unique index to avoid users having multiple rows in the online table
-		if (!$db->index_exists('online', 'user_id_ident_idx'))
-		{
-			$db->truncate_table('online') or error('Unable to clear online table', __FILE__, __LINE__, $db->error());
-
-			if ($mysql)
-				$db->add_index('online', 'user_id_ident_idx', array('user_id', 'ident(25)'), true) or error('Unable to add user_id_ident_idx index', __FILE__, __LINE__, $db->error());
-			else
-				$db->add_index('online', 'user_id_ident_idx', array('user_id', 'ident'), true) or error('Unable to add user_id_ident_idx index', __FILE__, __LINE__, $db->error());
-		}
-
-		// Remove the redundant user_id_idx on the online table
-		$db->drop_index('online', 'user_id_idx') or error('Unable to drop user_id_idx index', __FILE__, __LINE__, $db->error());
-
-		// Add an index to ident on the online table
-		if ($mysql)
-			$db->add_index('online', 'ident_idx', array('ident(25)')) or error('Unable to add ident_idx index', __FILE__, __LINE__, $db->error());
-		else
-			$db->add_index('online', 'ident_idx', array('ident')) or error('Unable to add ident_idx index', __FILE__, __LINE__, $db->error());
-
-		// Add an index to logged in the online table
-		$db->add_index('online', 'logged_idx', array('logged')) or error('Unable to add logged_idx index', __FILE__, __LINE__, $db->error());
-
-		// Add an index to last_post in the topics table
-		$db->add_index('topics', 'last_post_idx', array('last_post')) or error('Unable to add last_post_idx index', __FILE__, __LINE__, $db->error());
-
 		// Add an index to username on the bans table
 		if ($mysql)
 			$db->add_index('bans', 'username_idx', array('username(25)')) or error('Unable to add username_idx index', __FILE__, __LINE__, $db->error());
@@ -948,152 +675,13 @@ switch ($stage)
 		if (!$db->add_index('users', 'username_idx', array($field), true))
 			$db->add_index('users', 'username_idx', array($field)) or error('Unable to add username_idx field', __FILE__, __LINE__, $db->error());
 
-		// Add g_view_users column to groups table
-		$db->add_field('groups', 'g_view_users', 'TINYINT(1)', false, 1, 'g_read_board') or error('Unable to add g_view_users field', __FILE__, __LINE__, $db->error());
-
-		// Add the last_email_sent column to the users table and the g_send_email and
-		// g_email_flood columns to the groups table
-		$db->add_field('users', 'last_email_sent', 'INT(10) UNSIGNED', true, null, 'last_search') or error('Unable to add last_email_sent field', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_send_email', 'TINYINT(1)', false, 1, 'g_search_users') or error('Unable to add g_send_email field', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_email_flood', 'SMALLINT(6)', false, 60, 'g_search_flood') or error('Unable to add g_email_flood field', __FILE__, __LINE__, $db->error());
-
 		// Add the last_report_sent column to the users table and the g_report_flood
 		// column to the groups table
 		$db->add_field('users', 'last_report_sent', 'INT(10) UNSIGNED', true, null, 'last_email_sent') or error('Unable to add last_report_sent field', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_report_flood', 'SMALLINT(6)', false, 60, 'g_email_flood') or error('Unable to add g_report_flood field', __FILE__, __LINE__, $db->error());
 
-		// Set non-default g_send_email, g_flood_email and g_flood_report values properly
-		$db->query('UPDATE '.$db->prefix.'groups SET g_send_email = 0 WHERE g_id = 3') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'groups SET g_email_flood = 0, g_report_flood = 0 WHERE g_id IN (1,2,3)') or error('Unable to update group email permissions', __FILE__, __LINE__, $db->error());
-
-		// Add the auto notify/subscription option to the users table
-		$db->add_field('users', 'auto_notify', 'TINYINT(1)', false, 0, 'notify_with_post') or error('Unable to add auto_notify field', __FILE__, __LINE__, $db->error());
-
-		// Add the first_post_id column to the topics table
-		if (!$db->field_exists('topics', 'first_post_id'))
-		{
-			$db->add_field('topics', 'first_post_id', 'INT(10) UNSIGNED', false, 0, 'posted') or error('Unable to add first_post_id field', __FILE__, __LINE__, $db->error());
-			$db->add_index('topics', 'first_post_id_idx', array('first_post_id')) or error('Unable to add first_post_id_idx index', __FILE__, __LINE__, $db->error());
-
-			// Now that we've added the column and indexed it, we need to give it correct data
-			$result = $db->query('SELECT MIN(id) AS first_post, topic_id FROM '.$db->prefix.'posts GROUP BY topic_id') or error('Unable to fetch first_post_id', __FILE__, __LINE__, $db->error());
-
-			while ($cur_post = $db->fetch_assoc($result))
-				$db->query('UPDATE '.$db->prefix.'topics SET first_post_id = '.$cur_post['first_post'].' WHERE id = '.$cur_post['topic_id']) or error('Unable to update first_post_id', __FILE__, __LINE__, $db->error());
-		}
-
-		// Move any users with the old unverified status to their new group
-		$db->query('UPDATE '.$db->prefix.'users SET group_id=0 WHERE group_id=32000') or error('Unable to move unverified users', __FILE__, __LINE__, $db->error());
-
-		// Add the ban_creator column to the bans table
-		$db->add_field('bans', 'ban_creator', 'INT(10) UNSIGNED', false, 0) or error('Unable to add ban_creator field', __FILE__, __LINE__, $db->error());
-
-		// Add the time/date format settings to the user table
-		$db->add_field('users', 'time_format', 'TINYINT(1)', false, 0, 'dst') or error('Unable to add time_format field', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'date_format', 'TINYINT(1)', false, 0, 'dst') or error('Unable to add date_format field', __FILE__, __LINE__, $db->error());
-
 		// Change the search_data column to mediumtext
 		$db->alter_field('search_cache', 'search_data', 'MEDIUMTEXT', true) or error('Unable to alter search_data field', __FILE__, __LINE__, $db->error());
-
-		// In case we had the fulltext search extension installed (1.3-legacy), remove it
-		$db->drop_index('topics', 'subject_idx') or error('Unable to drop subject_idx index', __FILE__, __LINE__, $db->error());
-		$db->drop_index('posts', 'message_idx') or error('Unable to drop message_idx index', __FILE__, __LINE__, $db->error());
-		// In case we had the fulltext search mod installed (1.2), remove it
-		$db->drop_index('topics', 'subject_fulltext_search') or error('Unable to drop subject_fulltext_search index', __FILE__, __LINE__, $db->error());
-		$db->drop_index('posts', 'message_fulltext_search') or error('Unable to drop message_fulltext_search index', __FILE__, __LINE__, $db->error());
-
-		// If the search_cache table has been dropped by the fulltext search extension, recreate it
-		if (!$db->table_exists('search_cache'))
-		{
-			$schema = array(
-				'FIELDS'		=> array(
-					'id'			=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'ident'			=> array(
-						'datatype'		=> 'VARCHAR(200)',
-						'allow_null'	=> false,
-						'default'		=> '\'\''
-					),
-					'search_data'	=> array(
-						'datatype'		=> 'MEDIUMTEXT',
-						'allow_null'	=> true
-					)
-				),
-				'PRIMARY KEY'	=> array('id'),
-				'INDEXES'		=> array(
-					'ident_idx'	=> array('ident')
-				)
-			);
-
-			if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
-				$schema['INDEXES']['ident_idx'] = array('ident(8)');
-
-			$db->create_table('search_cache', $schema);
-		}
-
-		// If the search_matches table has been dropped by the fulltext search extension, recreate it
-		if (!$db->table_exists('search_matches'))
-		{
-			$schema = array(
-				'FIELDS'		=> array(
-					'post_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'word_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'subject_match'	=> array(
-						'datatype'		=> 'TINYINT(1)',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					)
-				),
-				'INDEXES'		=> array(
-					'word_id_idx'	=> array('word_id'),
-					'post_id_idx'	=> array('post_id')
-				)
-			);
-
-			$db->create_table('search_matches', $schema);
-		}
-
-		// If the search_words table has been dropped by the fulltext search extension, recreate it
-		if (!$db->table_exists('search_words'))
-		{
-			$schema = array(
-				'FIELDS'		=> array(
-					'id'			=> array(
-						'datatype'		=> 'SERIAL',
-						'allow_null'	=> false
-					),
-					'word'			=> array(
-						'datatype'		=> 'VARCHAR(20)',
-						'allow_null'	=> false,
-						'default'		=> '\'\'',
-						'collation'		=> 'bin'
-					)
-				),
-				'PRIMARY KEY'	=> array('word'),
-				'INDEXES'		=> array(
-					'id_idx'	=> array('id')
-				)
-			);
-
-			if ($db_type == 'sqlite')
-			{
-				$schema['PRIMARY KEY'] = array('id');
-				$schema['UNIQUE KEYS'] = array('word_idx'	=> array('word'));
-			}
-
-			$db->create_table('search_words', $schema);
-		}
 
 		// Rename the subscription table
 		$db->rename_table('subscriptions', 'topic_subscriptions');
@@ -1136,352 +724,7 @@ switch ($stage)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
-		// Should we do charset conversion or not?
-		if (strpos($cur_version, '1.2') === 0 && isset($_POST['convert_charset']))
-			$query_str = '?stage=conv_bans&req_old_charset='.$old_charset;
-
 		break;
-
-
-	// Convert bans
-	case 'conv_bans':
-		$query_str = '?stage=conv_categories&req_old_charset='.$old_charset;
-
-		function _conv_bans($cur_item, $old_charset)
-		{
-			global $lang_update;
-
-			echo sprintf($lang_update['Converting item'], $lang_update['ban'], $cur_item['id']).'<br />'."\n";
-
-			convert_to_utf8($cur_item['username'], $old_charset);
-			convert_to_utf8($cur_item['message'], $old_charset);
-
-			return $cur_item;
-		}
-
-		$end_at = convert_table_utf8($db->prefix.'bans', '_conv_bans', $old_charset, 'id', $start_at);
-
-		if ($end_at !== true)
-			$query_str = '?stage=conv_bans&req_old_charset='.$old_charset.'&start_at='.$end_at;
-
-		break;
-
-
-	// Convert categories
-	case 'conv_categories':
-		$query_str = '?stage=conv_censors&req_old_charset='.$old_charset;
-
-		echo sprintf($lang_update['Converting'], $lang_update['categories']).'<br />'."\n";
-
-		function _conv_categories($cur_item, $old_charset)
-		{
-			convert_to_utf8($cur_item['cat_name'], $old_charset);
-
-			return $cur_item;
-		}
-
-		convert_table_utf8($db->prefix.'categories', '_conv_categories', $old_charset, 'id');
-
-		break;
-
-
-	// Convert censor words
-	case 'conv_censors':
-		$query_str = '?stage=conv_config&req_old_charset='.$old_charset;
-
-		echo sprintf($lang_update['Converting'], $lang_update['censor words']).'<br />'."\n";
-
-		function _conv_censoring($cur_item, $old_charset)
-		{
-			convert_to_utf8($cur_item['search_for'], $old_charset);
-			convert_to_utf8($cur_item['replace_with'], $old_charset);
-
-			return $cur_item;
-		}
-
-		convert_table_utf8($db->prefix.'censoring', '_conv_censoring', $old_charset, 'id');
-
-		break;
-
-
-	// Convert config
-	case 'conv_config':
-		$query_str = '?stage=conv_forums&req_old_charset='.$old_charset;
-
-		echo sprintf($lang_update['Converting'], $lang_update['configuration']).'<br />'."\n";
-
-		function _conv_config($cur_item, $old_charset)
-		{
-			convert_to_utf8($cur_item['conf_value'], $old_charset);
-
-			return $cur_item;
-		}
-
-		convert_table_utf8($db->prefix.'config', '_conv_config', $old_charset, 'conf_name');
-
-		break;
-
-
-	// Convert forums
-	case 'conv_forums':
-		$query_str = '?stage=conv_perms&req_old_charset='.$old_charset;
-
-		echo sprintf($lang_update['Converting'], $lang_update['forums']).'<br />'."\n";
-
-		function _conv_forums($cur_item, $old_charset)
-		{
-			$moderators = ($cur_item['moderators'] != '') ? unserialize($cur_item['moderators']) : array();
-			$moderators_utf8 = array();
-			foreach ($moderators as $mod_username => $mod_user_id)
-			{
-				convert_to_utf8($mod_username, $old_charset);
-				$moderators_utf8[$mod_username] = $mod_user_id;
-			}
-
-			convert_to_utf8($cur_item['forum_name'], $old_charset);
-			convert_to_utf8($cur_item['forum_desc'], $old_charset);
-
-			if (!empty($moderators_utf8))
-				$cur_item['moderators'] = serialize($moderators_utf8);
-
-			return $cur_item;
-		}
-
-		convert_table_utf8($db->prefix.'forums', '_conv_forums', $old_charset, 'id');
-
-		break;
-
-
-	// Convert forum permissions
-	case 'conv_perms':
-		$query_str = '?stage=conv_groups&req_old_charset='.$old_charset;
-
-		alter_table_utf8($db->prefix.'forum_perms');
-
-		break;
-
-
-	// Convert groups
-	case 'conv_groups':
-		$query_str = '?stage=conv_online&req_old_charset='.$old_charset;
-
-		echo sprintf($lang_update['Converting'], $lang_update['groups']).'<br />'."\n";
-
-		function _conv_groups($cur_item, $old_charset)
-		{
-			convert_to_utf8($cur_item['g_title'], $old_charset);
-			convert_to_utf8($cur_item['g_user_title'], $old_charset);
-
-			return $cur_item;
-		}
-
-		convert_table_utf8($db->prefix.'groups', '_conv_groups', $old_charset, 'g_id');
-
-		break;
-
-
-	// Convert online
-	case 'conv_online':
-		$query_str = '?stage=conv_posts&req_old_charset='.$old_charset;
-
-		// Truncate the table
-		$db->truncate_table('online') or error('Unable to empty online table', __FILE__, __LINE__, $db->error());
-
-		alter_table_utf8($db->prefix.'online');
-
-		break;
-
-
-	// Convert posts
-	case 'conv_posts':
-		$query_str = '?stage=conv_ranks&req_old_charset='.$old_charset;
-
-		function _conv_posts($cur_item, $old_charset)
-		{
-			global $lang_update;
-
-			echo sprintf($lang_update['Converting item'], $lang_update['post'], $cur_item['id']).'<br />'."\n";
-
-			convert_to_utf8($cur_item['poster'], $old_charset);
-			convert_to_utf8($cur_item['message'], $old_charset);
-			convert_to_utf8($cur_item['edited_by'], $old_charset);
-
-			return $cur_item;
-		}
-
-		$end_at = convert_table_utf8($db->prefix.'posts', '_conv_posts', $old_charset, 'id', $start_at);
-
-		if ($end_at !== true)
-			$query_str = '?stage=conv_posts&req_old_charset='.$old_charset.'&start_at='.$end_at;
-
-		break;
-
-
-	// Convert ranks
-	case 'conv_ranks':
-		$query_str = '?stage=conv_reports&req_old_charset='.$old_charset;
-
-		echo sprintf($lang_update['Converting'], $lang_update['ranks']).'<br />'."\n";
-
-		function _conv_ranks($cur_item, $old_charset)
-		{
-			convert_to_utf8($cur_item['rank'], $old_charset);
-
-			return $cur_item;
-		}
-
-		convert_table_utf8($db->prefix.'ranks', '_conv_ranks', $old_charset, 'id');
-
-		break;
-
-
-	// Convert reports
-	case 'conv_reports':
-		$query_str = '?stage=conv_search_cache&req_old_charset='.$old_charset;
-
-		function _conv_reports($cur_item, $old_charset)
-		{
-			global $lang_update;
-
-			echo sprintf($lang_update['Converting item'], $lang_update['report'], $cur_item['id']).'<br />'."\n";
-
-			convert_to_utf8($cur_item['message'], $old_charset);
-
-			return $cur_item;
-		}
-
-		$end_at = convert_table_utf8($db->prefix.'reports', '_conv_reports', $old_charset, 'id', $start_at);
-
-		if ($end_at !== true)
-			$query_str = '?stage=conv_reports&req_old_charset='.$old_charset.'&start_at='.$end_at;
-
-		break;
-
-
-	// Convert search cache
-	case 'conv_search_cache':
-		$query_str = '?stage=conv_search_matches&req_old_charset='.$old_charset;
-
-		// Truncate the table
-		$db->truncate_table('search_cache') or error('Unable to empty search cache table', __FILE__, __LINE__, $db->error());
-
-		alter_table_utf8($db->prefix.'search_cache');
-
-		break;
-
-
-	// Convert search matches
-	case 'conv_search_matches':
-		$query_str = '?stage=conv_search_words&req_old_charset='.$old_charset;
-
-		// Truncate the table
-		$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
-
-		alter_table_utf8($db->prefix.'search_matches');
-
-		break;
-
-
-	// Convert search words
-	case 'conv_search_words':
-		$query_str = '?stage=conv_subscriptions&req_old_charset='.$old_charset;
-
-		// Truncate the table
-		$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
-
-		// Reset the sequence for the search words (not needed for SQLite)
-		switch ($db_type)
-		{
-			case 'mysql':
-			case 'mysqli':
-			case 'mysql_innodb':
-			case 'mysqli_innodb':
-				$db->query('ALTER TABLE '.$db->prefix.'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
-				break;
-
-			case 'pgsql';
-				$db->query('SELECT setval(\''.$db->prefix.'search_words_id_seq\', 1, false)') or error('Unable to update sequence', __FILE__, __LINE__, $db->error());
-				break;
-		}
-
-		alter_table_utf8($db->prefix.'search_words');
-
-		break;
-
-
-	// Convert subscriptions
-	case 'conv_subscriptions':
-		$query_str = '?stage=conv_topics&req_old_charset='.$old_charset;
-
-		// By this stage we should have already renamed the subscription table
-		alter_table_utf8($db->prefix.'topic_subscriptions');
-		alter_table_utf8($db->prefix.'forum_subscriptions'); // This should actually already be utf8, but for consistency...
-
-		break;
-
-
-	// Convert topics
-	case 'conv_topics':
-		$query_str = '?stage=conv_users&req_old_charset='.$old_charset;
-
-		function _conv_topics($cur_item, $old_charset)
-		{
-			global $lang_update;
-
-			echo sprintf($lang_update['Converting item'], $lang_update['topic'], $cur_item['id']).'<br />'."\n";
-
-			convert_to_utf8($cur_item['poster'], $old_charset);
-			convert_to_utf8($cur_item['subject'], $old_charset);
-			convert_to_utf8($cur_item['last_poster'], $old_charset);
-
-			return $cur_item;
-		}
-
-		$end_at = convert_table_utf8($db->prefix.'topics', '_conv_topics', $old_charset, 'id', $start_at);
-
-		if ($end_at !== true)
-			$query_str = '?stage=conv_topics&req_old_charset='.$old_charset.'&start_at='.$end_at;
-
-		break;
-
-
-	// Convert users
-	case 'conv_users':
-		$query_str = '?stage=preparse_posts';
-
-		if ($start_at == 0)
-			$_SESSION['dupe_users'] = array();
-
-		function _conv_users($cur_item, $old_charset)
-		{
-			global $lang_update;
-
-			echo sprintf($lang_update['Converting item'], $lang_update['user'], $cur_item['id']).'<br />'."\n";
-
-			convert_to_utf8($cur_item['username'], $old_charset);
-			convert_to_utf8($cur_item['title'], $old_charset);
-			convert_to_utf8($cur_item['realname'], $old_charset);
-			convert_to_utf8($cur_item['location'], $old_charset);
-			convert_to_utf8($cur_item['signature'], $old_charset);
-			convert_to_utf8($cur_item['admin_note'], $old_charset);
-
-			return $cur_item;
-		}
-
-		function _error_users($cur_user)
-		{
-			$_SESSION['dupe_users'][$cur_user['id']] = $cur_user;
-		}
-
-		$end_at = convert_table_utf8($db->prefix.'users', '_conv_users', $old_charset, 'id', $start_at, '_error_users');
-
-		if ($end_at !== true)
-			$query_str = '?stage=conv_users&req_old_charset='.$old_charset.'&start_at='.$end_at;
-		else if (!empty($_SESSION['dupe_users']))
-			$query_str = '?stage=conv_users_dupe';
-
-		break;
-
 
 	// Handle any duplicate users which occured due to conversion
 	case 'conv_users_dupe':
@@ -1836,38 +1079,60 @@ foreach ($errors[$id] as $cur_error)
 		@unlink(FORUM_CACHE_DIR.'db_update.lock');
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang_common['lang_identifier'] ?>" lang="<?php echo $lang_common['lang_identifier'] ?>" dir="<?php echo $lang_common['lang_direction'] ?>">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $lang_update['Update'] ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
-</head>
-<body>
-
-<div id="pundb_update" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
-<div class="punwrap">
-
-<div class="blockform">
-	<h2><span><?php echo $lang_update['Update'] ?></span></h2>
-	<div class="box">
-		<div class="fakeform">
-			<div class="inform">
-				<div class="forminfo">
-					<p style="font-size: 1.1em"><?php printf($lang_update['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang_update['go to index'])) ?></p>
-				</div>
-			</div>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title><?php echo $lang_update['Update'] ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, nofollow">
+        <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
+        <link href="style/Randomness.css" type="text/css" rel="stylesheet">
+        <style type="text/css">
+		body {
+            padding-bottom: 40px;
+			padding-top: 60px;
+            background-color: #f2f2f2;
+        }
+        .form-signin {
+            max-width: 350px;
+            padding: 19px 29px 9px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+			border-left: #2ca0e9 5px solid;
+			box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
+        }
+		h1 {
+			font-weight: 100;
+		}
+        .form-pass {
+            padding: 19px 29px 4px;
+        }
+        .form-signin .form-signin-heading {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 5px;
+            padding: 7px 9px;
+        }
+		.form-signin-heading {
+			color: #2ca0e9;
+			text-transform: lowercase;
+			margin-top: 0;
+		}
+		.btn {
+			margin-bottom: 20px;
+		}
+        </style>
+	</head>
+	<body>
+        <div class="form-signin">
+            <h1 class="form-signin-heading"><?php echo $lang_update['Update'] ?></h1>
+            <p><?php printf($lang_update['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang_update['go to index'])) ?></p>
 		</div>
-	</div>
-</div>
-
-</div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
-</div>
-
-</body>
+	</body>
 </html>
 <?php
 
