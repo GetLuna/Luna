@@ -1066,7 +1066,11 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   })
 
   $(document)
+<<<<<<< HEAD:include/bootstrap/bootstrap.js
     .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
+=======
+    .on('shown.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
+>>>>>>> origin/master:admin/js/bootstrap.js
     .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
 
 }(window.jQuery);
