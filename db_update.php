@@ -41,7 +41,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 if (file_exists(FORUM_ROOT.'config.php'))
 	include FORUM_ROOT.'config.php';
 
-// If we have the 1.3-legacy constant defined, define the proper 1.4 constant so we don't get an incorrect "need to install" message
+// This fixes incorrect defined PUN, from PunBB 1.1 and 1.2, FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 

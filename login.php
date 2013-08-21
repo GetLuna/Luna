@@ -17,8 +17,8 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 
-// Load the login.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/login.php';
+// Load the frontend.php language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -65,7 +65,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	}
 
 	if (!$authorized)
-		message($lang_login['Wrong user/pass'].' <a href="login.php?action=forget">'.$lang_login['Forgotten pass'].'</a>');
+		message($lang_front['Wrong user/pass'].' <a href="login.php?action=forget">'.$lang_front['Forgotten pass'].'</a>');
 
 	// Update the status if this is the first time the user logged in
 	if ($cur_user['group_id'] == FORUM_UNVERIFIED)
@@ -88,7 +88,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang_login['Login redirect']);
+	redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang_front['Login redirect']);
 }
 
 
@@ -109,7 +109,7 @@ else if ($action == 'out')
 
 	pun_setcookie(1, pun_hash(uniqid(rand(), true)), time() + 31536000);
 
-	redirect('index.php', $lang_login['Logout redirect']);
+	redirect('index.php', $lang_front['Logout redirect']);
 }
 
 
@@ -156,7 +156,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 				while ($cur_hit = $db->fetch_assoc($result))
 				{
 					if ($cur_hit['last_email_sent'] != '' && (time() - $cur_hit['last_email_sent']) < 3600 && (time() - $cur_hit['last_email_sent']) >= 0)
-					message(sprintf($lang_login['Email flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
+					message(sprintf($lang_front['Email flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
 					
 					// Generate a new password and a new password activation code
 					$new_password = random_pass(8);
@@ -172,14 +172,14 @@ else if ($action == 'forget' || $action == 'forget_2')
 					pun_mail($email, $mail_subject, $cur_mail_message);
 				}
 
-				message($lang_login['Forget mail'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
+				message($lang_front['Forget mail'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
 			}
 			else
-				$errors[] = $lang_login['No email match'].' '.htmlspecialchars($email).'.';
+				$errors[] = $lang_front['No email match'].' '.htmlspecialchars($email).'.';
 			}
 		}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_login['Request pass']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Request pass']);
 	$required_fields = array('req_email' => $lang_common['Email']);
 	$focus_element = array('request_pass', 'req_email');
 	define ('FORUM_ACTIVE_PAGE', 'login');
@@ -191,10 +191,10 @@ if (!empty($errors))
 
 ?>
 <div id="posterror" class="block">
-	<h2><span><?php echo $lang_login['New password errors'] ?></span></h2>
+	<h2><span><?php echo $lang_front['New password errors'] ?></span></h2>
 	<div class="box">
 		<div class="inbox error-info">
-			<p><?php echo $lang_login['New passworderrors info'] ?></p>
+			<p><?php echo $lang_front['New passworderrors info'] ?></p>
 			<ul class="error-list">
 <?php
 
@@ -211,7 +211,7 @@ if (!empty($errors))
 }
 ?>
 <form class="form-signin form-pass" id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">
-    <h1 class="form-signin-heading"><?php echo $lang_login['Request pass'] ?></h1>
+    <h1 class="form-signin-heading"><?php echo $lang_front['Request pass'] ?></h1>
     <fieldset>
         <h4><?php echo $lang_common['Email'] ?> <?php echo $lang_common['Required'] ?></h4>
         <input type="hidden" name="form_sent" value="1" />
@@ -272,25 +272,25 @@ require FORUM_ROOT.'header.php';
 ?>
 <form class="form-signin" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
     <fieldset>
-    <h1 class="form-signin-heading">ModernBB</h1>
+        <h1 class="form-signin-heading">ModernBB</h1>
         <input type="hidden" name="form_sent" value="1" />
         <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
         <div class"control-group">
             <label class="control-label"><?php echo $lang_common['Username'] ?></label>
             <div class="controls">
-                <input class="control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
+                <input class="form-control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label"><?php echo $lang_common['Password'] ?></label>
             <div class="controls">
-                <input type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
+                <input class="form-control" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
             </div>
         </div>
-        <p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_login['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_login['Forgotten pass'] ?></a> &middot; <a href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a></span></p>
+        <p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_front['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_front['Forgotten pass'] ?></a> &middot; <a href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a></span></p>
         <div class="control-group">
             <div class="controls">
-                <label><input type="checkbox" name="save_pass" value="1" tabindex="3" /> <?php echo $lang_login['Remember me'] ?></label>
+                <label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang_front['Remember me'] ?></label>
             </div>
         </div>
         <div class="control-group pull-right">

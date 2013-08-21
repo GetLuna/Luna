@@ -47,8 +47,8 @@ if ($is_admmod && $pun_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster
 	message($lang_common['No permission'], false, '403 Forbidden');  
 
 
-// Load the delete.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/delete.php';
+// Load the frontend.php language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 
 if (isset($_POST['delete']))
@@ -64,7 +64,7 @@ if (isset($_POST['delete']))
 		delete_topic($cur_post['tid']);
 		update_forum($cur_post['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid'], $lang_delete['Topic del redirect']);
+		redirect('viewforum.php?id='.$cur_post['fid'], $lang_front['Topic del redirect']);
 	}
 	else
 	{
@@ -76,12 +76,12 @@ if (isset($_POST['delete']))
 		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		$post_id = $db->result($result);
 
-		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id, $lang_delete['Post del redirect']);
+		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id, $lang_front['Post del redirect']);
 	}
 }
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_delete['Delete post']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Delete post']);
 define ('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
@@ -95,22 +95,22 @@ $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smili
 			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
 			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo pun_htmlspecialchars($cur_post['forum_name']) ?></a></li>
 			<li><span>»&#160;</span><a href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_post['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_delete['Delete post'] ?></strong></li>
+			<li><span>»&#160;</span><strong><?php echo $lang_front['Delete post'] ?></strong></li>
 		</ul>
 	</div>
 </div>
 
 <div class="blockform">
-	<h2><span><?php echo $lang_delete['Delete post'] ?></span></h2>
+	<h2><span><?php echo $lang_front['Delete post'] ?></span></h2>
 	<div class="box">
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
 			<div class="inform">
 				<div class="forminfo">
-					<h3><span><?php printf($is_topic_post ? $lang_delete['Topic by'] : $lang_delete['Reply by'], '<strong>'.pun_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted'])) ?></span></h3>
-					<p><?php echo ($is_topic_post) ? '<strong>'.$lang_delete['Topic warning'].'</strong>' : '<strong>'.$lang_delete['Warning'].'</strong>' ?><br /><?php echo $lang_delete['Delete info'] ?></p>
+					<h3><span><?php printf($is_topic_post ? $lang_front['Topic by'] : $lang_front['Reply by'], '<strong>'.pun_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted'])) ?></span></h3>
+					<p><?php echo ($is_topic_post) ? '<strong>'.$lang_front['Topic warning'].'</strong>' : '<strong>'.$lang_front['Warning'].'</strong>' ?><br /><?php echo $lang_front['Delete info'] ?></p>
 				</div>
 			</div>
-			<p class="buttons"><input type="submit" name="delete" value="<?php echo $lang_delete['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+			<p class="buttons"><input type="submit" name="delete" value="<?php echo $lang_front['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>

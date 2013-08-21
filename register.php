@@ -18,41 +18,38 @@ if (!$pun_user['is_guest'])
 	exit;
 }
 
-// Load the register.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
-
-// Load the register.php/profile.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
+// Load the frontend.php language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 if ($pun_config['o_regs_allow'] == '0')
-	message($lang_register['No new regs']);
+	message($lang_front['No new regs']);
 
 
 // User pressed the cancel button
 if (isset($_GET['cancel']))
-	redirect('index.php', $lang_register['Reg cancel redirect']);
+	redirect('index.php', $lang_front['Reg cancel redirect']);
 
 
 else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent']))
 {
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_register['Register'], $lang_register['Forum rules']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Register'], $lang_front['Forum rules']);
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require FORUM_ROOT.'header.php';
 
 ?>
 <div id="rules" class="blockform">
-	<div class="hd"><h2><span><?php echo $lang_register['Forum rules'] ?></span></h2></div>
+	<div class="hd"><h2><span><?php echo $lang_front['Forum rules'] ?></span></h2></div>
 	<div class="box">
 		<form method="get" action="register.php">
 			<div class="inform">
 				<fieldset>
-					<legend><?php echo $lang_register['Rules legend'] ?></legend>
+					<legend><?php echo $lang_front['Rules legend'] ?></legend>
 					<div class="infldset">
 						<div class="usercontent"><?php echo $pun_config['o_rules_message'] ?></div>
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="agree" value="<?php echo $lang_register['Agree'] ?>" /> <input type="submit" name="cancel" value="<?php echo $lang_register['Cancel'] ?>" /></p>
+			<p class="buttons"><input type="submit" name="agree" value="<?php echo $lang_front['Agree'] ?>" /> <input type="submit" name="cancel" value="<?php echo $lang_front['Cancel'] ?>" /></p>
 		</form>
 	</div>
 </div>
@@ -70,7 +67,7 @@ if (isset($_POST['form_sent']))
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE registration_ip=\''.$db->escape(get_remote_address()).'\' AND registered>'.(time() - 3600)) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 
 	if ($db->num_rows($result))
-		message($lang_register['Registration flood']);
+		message($lang_front['Registration flood']);
 
 
 	$username = pun_trim($_POST['req_honeypot']);
@@ -93,9 +90,9 @@ if (isset($_POST['form_sent']))
 	check_username($username);
 
 	if (pun_strlen($password1) < 4)
-		$errors[] = $lang_prof_reg['Pass too short'];
+		$errors[] = $lang_front['Pass too short'];
 	else if ($password1 != $password2)
-		$errors[] = $lang_prof_reg['Pass not match'];
+		$errors[] = $lang_front['Pass not match'];
 
 	// Validate email
 	require FORUM_ROOT.'include/email.php';
@@ -103,13 +100,13 @@ if (isset($_POST['form_sent']))
 	if (!is_valid_email($email1))
 		$errors[] = $lang_common['Invalid email'];
 	else if ($pun_config['o_regs_verify'] == '1' && $email1 != $email2)
-		$errors[] = $lang_register['Email not match'];
+		$errors[] = $lang_front['Email not match'];
 
 	// Check if it's a banned email address
 	if (is_banned_email($email1))
 	{
 		if ($pun_config['p_allow_banned_email'] == '0')
-			$errors[] = $lang_prof_reg['Banned email'];
+			$errors[] = $lang_front['Banned email'];
 
 		$banned_email = true; // Used later when we send an alert email
 	}
@@ -123,7 +120,7 @@ if (isset($_POST['form_sent']))
 	if ($db->num_rows($result))
 	{
 		if ($pun_config['p_allow_dupe_email'] == '0')
-			$errors[] = $lang_prof_reg['Dupe email'];
+			$errors[] = $lang_front['Dupe email'];
 
 		while ($cur_dupe = $db->fetch_assoc($result))
 			$dupe_list[] = $cur_dupe['username'];
@@ -148,7 +145,7 @@ if (isset($_POST['form_sent']))
   		// Since we found a spammer, lets report the bastard!
   		stopforumspam_report(get_remote_address(), $email1, $req_username);
 
-  		message($lang_register['Spam catch'].' <a href="mailto:'.$pun_config['o_admin_email'].'">'.$pun_config['o_admin_email'].'</a>.');
+  		message($lang_front['Spam catch'].' <a href="mailto:'.$pun_config['o_admin_email'].'">'.$pun_config['o_admin_email'].'</a>.');
   	}
 
 	// Did everything go according to plan?
@@ -245,7 +242,7 @@ if (isset($_POST['form_sent']))
 
 			pun_mail($email1, $mail_subject, $mail_message);
 
-			message($lang_register['Reg email'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
+			message($lang_front['Reg email'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
 		}
 
 		// Regenerate the users info cache
@@ -256,13 +253,13 @@ if (isset($_POST['form_sent']))
 
 		pun_setcookie($new_uid, $password_hash, time() + $pun_config['o_timeout_visit']);
 
-		redirect('index.php', $lang_register['Reg complete']);
+		redirect('index.php', $lang_front['Reg complete']);
 	}
 }
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_register['Register']);
-$required_fields = array('req_user' => $lang_common['Username'], 'req_password1' => $lang_common['Password'], 'req_password2' => $lang_prof_reg['Confirm pass'], 'req_email1' => $lang_common['Email'], 'req_email2' => $lang_common['Email'].' 2');
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Register']);
+$required_fields = array('req_user' => $lang_common['Username'], 'req_password1' => $lang_common['Password'], 'req_password2' => $lang_front['Confirm pass'], 'req_email1' => $lang_common['Email'], 'req_email2' => $lang_common['Email'].' 2');
 $focus_element = array('register', 'req_user');
 $page_head = array('<style type="text/css">#register label.usernamefield { display: none }</style>');
 define('FORUM_ACTIVE_PAGE', 'register');
@@ -274,10 +271,10 @@ if (!empty($errors))
 
 ?>
 <div id="posterror" class="block">
-	<h2><span><?php echo $lang_register['Registration errors'] ?></span></h2>
+	<h2><span><?php echo $lang_front['Registration errors'] ?></span></h2>
 	<div class="box">
 		<div class="inbox error-info">
-			<p><?php echo $lang_register['Registration errors info'] ?></p>
+			<p><?php echo $lang_front['Registration errors info'] ?></p>
 			<ul class="error-list">
 <?php
 
@@ -294,41 +291,41 @@ if (!empty($errors))
 }
 ?>
 <div id="regform" class="blockform">
-	<h2><span><?php echo $lang_register['Register'] ?></span></h2>
+	<h2><span><?php echo $lang_front['Register'] ?></span></h2>
 	<div class="box">
 		<form id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
 			<div class="inform">
 				<div class="forminfo">
 					<h3><?php echo $lang_common['Important information'] ?></h3>
-					<p><?php echo $lang_register['Desc'] ?></p>
+					<p><?php echo $lang_front['Desc'] ?></p>
 				</div>
 				<fieldset>
-					<legend><?php echo $lang_register['Username legend'] ?></legend>
+					<legend><?php echo $lang_front['Username legend'] ?></legend>
 					<div class="infldset">
 						<input type="hidden" name="form_sent" value="1" />
-						<label class="required usernamefield"><strong><?php echo $lang_register['If human'] ?></strong><br /><input type="text" name="req_username" value="" size="25" maxlength="25" /><br /></label>
+						<label class="required usernamefield"><strong><?php echo $lang_front['If human'] ?></strong><br /><input type="text" name="req_username" value="" size="25" maxlength="25" /><br /></label>
 						<label class="required"><strong><?php echo $lang_common['Username'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" size="25" maxlength="25" /><br /></label>
 					</div>
 				</fieldset>
 			</div>
 <?php if ($pun_config['o_regs_verify'] == '0'): ?>			<div class="inform">
 				<fieldset>
-					<legend><?php echo $lang_register['Pass legend'] ?></legend>
+					<legend><?php echo $lang_front['Pass legend'] ?></legend>
 					<div class="infldset">
 						<label class="conl required"><strong><?php echo $lang_common['Password'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="password" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" size="16" /><br /></label>
-						<label class="conl required"><strong><?php echo $lang_prof_reg['Confirm pass'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="password" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" size="16" /><br /></label>
-						<p class="clearb"><?php echo $lang_register['Pass info'] ?></p>
+						<label class="conl required"><strong><?php echo $lang_front['Confirm pass'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="password" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" size="16" /><br /></label>
+						<p class="clearb"><?php echo $lang_front['Pass info'] ?></p>
 					</div>
 				</fieldset>
 			</div>
 <?php endif; ?>			<div class="inform">
 				<fieldset>
-					<legend><?php echo ($pun_config['o_regs_verify'] == '1') ? $lang_prof_reg['Email legend 2'] : $lang_prof_reg['Email legend'] ?></legend>
+					<legend><?php echo ($pun_config['o_regs_verify'] == '1') ? $lang_front['Email legend 2'] : $lang_front['Email legend'] ?></legend>
 					<div class="infldset">
-<?php if ($pun_config['o_regs_verify'] == '1'): ?>						<p><?php echo $lang_register['Email info'] ?></p>
+<?php if ($pun_config['o_regs_verify'] == '1'): ?>						<p><?php echo $lang_front['Email info'] ?></p>
 <?php endif; ?>						<label class="required"><strong><?php echo $lang_common['Email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
 						<input type="text" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" size="50" maxlength="80" /><br /></label>
-<?php if ($pun_config['o_regs_verify'] == '1'): ?>						<label class="required"><strong><?php echo $lang_register['Confirm email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
+<?php if ($pun_config['o_regs_verify'] == '1'): ?>						<label class="required"><strong><?php echo $lang_front['Confirm email'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
 						<input type="text" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" size="50" maxlength="80" /><br /></label>
 <?php endif; ?>					</div>
 				</fieldset>
@@ -344,9 +341,9 @@ if (!empty($errors))
 ?>
 			<div class="inform">
 				<fieldset>
-					<legend><?php echo $lang_prof_reg['Localisation legend'] ?></legend>
+					<legend><?php echo $lang_front['Localisation legend'] ?></legend>
 					<div class="infldset">
-                        <label><?php echo $lang_prof_reg['Language'] ?>
+                        <label><?php echo $lang_front['Language'] ?>
                         <br /><select name="language">
 <?php
 
@@ -368,7 +365,7 @@ if (!empty($errors))
 
 		}
 ?>
-			<p class="buttons"><input type="submit" name="register" value="<?php echo $lang_register['Register'] ?>" /></p>
+			<p class="buttons"><input type="submit" name="register" value="<?php echo $lang_front['Register'] ?>" /></p>
 		</form>
 	</div>
 </div>

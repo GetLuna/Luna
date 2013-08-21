@@ -512,23 +512,21 @@ function generate_profile_menu($page = '')
 	global $lang_profile, $pun_config, $pun_user, $id;
 
 ?>
-<div id="profile" class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_profile['Profile menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li<?php if ($page == 'essentials') echo ' class="isactive"'; ?>><a href="profile.php?section=essentials&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section essentials'] ?></a></li>
-					<li<?php if ($page == 'personal') echo ' class="isactive"'; ?>><a href="profile.php?section=personal&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personal'] ?></a></li>
-					<li<?php if ($page == 'messaging') echo ' class="isactive"'; ?>><a href="profile.php?section=messaging&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section messaging'] ?></a></li>
-<?php if ($pun_config['o_avatars'] == '1' || $pun_config['o_signatures'] == '1'): ?>					<li<?php if ($page == 'personality') echo ' class="isactive"'; ?>><a href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personality'] ?></a></li>
-<?php endif; ?>					<li<?php if ($page == 'display') echo ' class="isactive"'; ?>><a href="profile.php?section=display&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section display'] ?></a></li>
-					<li<?php if ($page == 'privacy') echo ' class="isactive"'; ?>><a href="profile.php?section=privacy&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section privacy'] ?></a></li>
-<?php if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>					<li<?php if ($page == 'admin') echo ' class="isactive"'; ?>><a href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section admin'] ?></a></li>
-<?php endif; ?>				</ul>
-			</div>
-		</div>
-	</div>
+<div class="col-md-2 profile-nav">
+    <div class="list-group">
+        <a class="<?php if ($page == 'essentials') echo 'active'; ?> list-group-item" href="profile.php?section=essentials&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section essentials'] ?></a>
+        <a class="<?php if ($page == 'personal') echo 'active'; ?> list-group-item" href="profile.php?section=personal&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personal'] ?></a>
+        <a class="<?php if ($page == 'messaging') echo 'active'; ?> list-group-item" href="profile.php?section=messaging&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section messaging'] ?></a>
+		<?php if ($pun_config['o_avatars'] == '1' || $pun_config['o_signatures'] == '1'): ?>
+			<a class="<?php if ($page == 'personality') echo 'active'; ?> list-group-item" href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personality'] ?></a>
+		<?php endif; ?>
+        <a class="<?php if ($page == 'display') echo 'active'; ?> list-group-item" href="profile.php?section=display&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section display'] ?></a>
+        <a class="<?php if ($page == 'privacy') echo 'active'; ?> list-group-item" href="profile.php?section=privacy&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section privacy'] ?></a>
+		<?php if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>
+            <a class="<?php if ($page == 'admin') echo 'active'; ?> list-group-item" href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section admin'] ?></a>
+		<?php endif; ?>
+    </div>
+</div>
 <?php
 
 }
@@ -1023,33 +1021,6 @@ function random_key($len, $readable = false, $hash = false)
 		$key = substr(base64_encode($key), 0, $len);  
 		
 	return $key;
-}
-
-
-//
-// Make sure that HTTP_REFERER matches base_url/script
-//
-function confirm_referrer($script, $error_msg = false)
-{
-	global $pun_config, $lang_common;
-
-	// There is no referrer
-	if (empty($_SERVER['HTTP_REFERER']))
-		message($error_msg ? $error_msg : $lang_common['Bad referrer']);
-
-	$referrer = parse_url(strtolower($_SERVER['HTTP_REFERER']));
-	// Remove www subdomain if it exists
-	if (strpos($referrer['host'], 'www.') === 0)
-		$referrer['host'] = substr($referrer['host'], 4);
-
-	$valid = parse_url(strtolower(get_base_url().'/'.$script));
-	// Remove www subdomain if it exists
-	if (strpos($valid['host'], 'www.') === 0)
-		$valid['host'] = substr($valid['host'], 4);
-
-	// Check the host and path match. Ignore the scheme, port, etc.
-	if ($referrer['host'] != $valid['host'] || $referrer['path'] != $valid['path'])
-		message($error_msg ? $error_msg : $lang_common['Bad referrer']);
 }
 
 

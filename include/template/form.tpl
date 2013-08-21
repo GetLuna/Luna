@@ -5,17 +5,16 @@
 		<title>ModernBB &middot; Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
-        <link href="admin/css/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="admin/css/style.css" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <style type="text/css">
 		body {
-            padding-top: 60px;
             padding-bottom: 40px;
             background-color: #f2f2f2;
         }
         .form-signin {
             max-width: 340px;
-            padding: 19px 29px 29px;
+            padding: 19px 29px 9px 29px;
             margin: 0 auto 20px;
             background-color: #fff;
 			border-left: #2ca0e9 5px solid;
@@ -36,12 +35,12 @@
 		.form-signin-heading {
 			color: #2ca0e9;
 			text-transform: lowercase;
+			margin-top: 0;
 		}
         .btn {
             margin-top: -50px;
         }
         </style>
-        <link href="../resources/bootstrap/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
 		<!-- Content start -->

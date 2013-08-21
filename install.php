@@ -79,10 +79,10 @@ if (file_exists(FORUM_ROOT.'config.php'))
 {
 	// Check to see whether ModernBB is already installed
 	include FORUM_ROOT.'config.php';
-	
+
 	// This fixes incorrect defined PUN, from PunBB 1.1 and 1.2, FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
 	if (defined('PUN'))
-	define('FORUM', PUN);
+		define('FORUM', PUN);
 
 	// If FORUM is defined, config.php is probably valid and thus the software is installed
 	if (defined('FORUM'))
@@ -146,7 +146,7 @@ if (!isset($_POST['form_sent']))
 	$title = $lang_install['My ModernBB Forum'];
 	$description = '<p><span>'.$lang_install['Description'].'</span></p>';
 	$default_lang = $install_lang;
-	$default_style = 'Air';
+	$default_style = 'Randomness';
 }
 else
 {

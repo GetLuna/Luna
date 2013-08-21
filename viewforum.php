@@ -19,8 +19,8 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 1)
 	message($lang_common['Bad request'], false, '404 Not Found');
 
-// Load the viewforum.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/forum.php';
+// Load the frontend.php language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 // Fetch some info about the forum
 if (!$pun_user['is_guest'])
@@ -62,7 +62,7 @@ switch ($cur_forum['sort_by'])
 
 // Can we or can we not post new topics?
 if (($cur_forum['post_topics'] == '' && $pun_user['g_post_topics'] == '1') || $cur_forum['post_topics'] == '1' || $is_admmod)
-	$post_link = "\t\t\t".'<p class="postlink conr"><a href="post.php?fid='.$id.'">'.$lang_forum['Post topic'].'</a></p>'."\n";
+	$post_link = "\t\t\t".'<p class="postlink conr"><a href="post.php?fid='.$id.'">'.$lang_front['Post topic'].'</a></p>'."\n";
 else
 	$post_link = '';
 
@@ -99,9 +99,9 @@ if (!$pun_user['is_guest'])
 	if ($pun_config['o_forum_subscriptions'] == '1')
 	{
 		if ($cur_forum['is_subscribed'])
-			$forum_actions[] = '<span>'.$lang_forum['Is subscribed'].' - </span><a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.$lang_forum['Unsubscribe'].'</a>';
+			$forum_actions[] = '<span>'.$lang_front['Is subscribed'].' - </span><a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.$lang_front['Unsubscribe'].'</a>';
 		else
-			$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.'">'.$lang_forum['Subscribe'].'</a>';
+			$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.'">'.$lang_front['Subscribe'].'</a>';
 	}
 
 	$forum_actions[] = '<a href="misc.php?action=markforumread&amp;fid='.$id.'">'.$lang_common['Mark forum read'].'</a>';
@@ -126,10 +126,10 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
     <table class="table">
         <thead>
             <tr class="active">
-                <th class="col-8"><?php echo $lang_common['Forum'] ?></th>
-                <th class="col-1"><?php echo $lang_index['Topics'] ?></th>
-                <th class="col-1"><?php echo $lang_common['Posts'] ?></th>
-                <th class="col-2"><?php echo $lang_common['Last post'] ?></th>
+                <th class="col-md-7"><?php echo $lang_common['Forum'] ?></th>
+                <th class="col-md-1"><?php echo $lang_index['Topics'] ?></th>
+                <th class="col-md-1"><?php echo $lang_common['Posts'] ?></th>
+                <th class="col-md-3"><?php echo $lang_common['Last post'] ?></th>
             </tr>
         </thead>
         <tbody>
@@ -244,10 +244,10 @@ if (!isset($_GET['p']) || $_GET['p'] == 1)
     <table class="table">
         <thead>
             <tr class="active">
-                <th class="col-8"><?php echo $lang_common['Topic'] ?></th>
-                <th class="col-1"><?php echo $lang_common['Replies'] ?></th>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-1"><?php echo $lang_forum['Views'] ?></th>
-<?php endif; ?>			<th class="col-2"><?php echo $lang_common['Last post'] ?></th>
+                <th class="col-md-7"><?php echo $lang_common['Topic'] ?></th>
+                <th class="col-md-1"><?php echo $lang_common['Replies'] ?></th>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-md-1"><?php echo $lang_front['Views'] ?></th>
+<?php endif; ?>			<th class="col-md-3"><?php echo $lang_common['Last post'] ?></th>
             </tr>
         </thead>
         <tbody>
@@ -299,13 +299,13 @@ if ($db->num_rows($result))
 		if ($cur_topic['sticky'] == '1')
 		{
 			$item_status .= ' isticky';
-			$status_text[] = '<span class="stickytext">'.$lang_forum['Sticky'].'</span>';
+			$status_text[] = '<span class="stickytext">'.$lang_front['Sticky'].'</span>';
 		}
 
 		if ($cur_topic['moved_to'] != 0)
 		{
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
-			$status_text[] = '<span class="movedtext">'.$lang_forum['Moved'].'</span>';
+			$status_text[] = '<span class="movedtext">'.$lang_front['Moved'].'</span>';
 			$item_status .= ' imoved';
 		}
 		else if ($cur_topic['closed'] == '0')
@@ -313,7 +313,7 @@ if ($db->num_rows($result))
 		else
 		{
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
-			$status_text[] = '<span class="closedtext">'.$lang_forum['Closed'].'</span>';
+			$status_text[] = '<span class="closedtext">'.$lang_front['Closed'].'</span>';
 			$item_status .= ' iclosed';
 		}
 
@@ -382,7 +382,7 @@ else
                     <div class="icon inone"><div class="nosize"><!-- --></div></div>
                     <div class="tclcon">
                         <div>
-                            <strong><?php echo $lang_forum['Empty forum'] ?></strong>
+                            <strong><?php echo $lang_front['Empty forum'] ?></strong>
                         </div>
                     </div>
                 </td>
@@ -396,15 +396,15 @@ else
     </table>
 </div>
 
+<div class="pagepost">
+    <p class="pagelink conl"><?php echo $paging_links ?></p>
+<?php echo $post_link ?>
+</div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
     <?php if($cur_forum['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
     <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
 </ul>
-<div class="pagepost">
-    <p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
-</div>
 <?php
 
 $forum_id = $id;

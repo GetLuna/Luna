@@ -27,36 +27,29 @@ ob_start();
 
 if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'viewtopic') && $is_admmod)
 {
-	echo "\t\t".'<div id="modcontrols" class="inbox">'."\n";
+	echo "\t\t".'<div class="modcontrols">'."\n";
 
 	if ($footer_style == 'viewforum')
 	{
-		echo "\t\t\t".'<dl>'."\n";
-		echo "\t\t\t\t".'<dt><strong>'.$lang_forum['Mod controls'].'</strong></dt>'."\n";
-		echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;p='.$p.'">'.$lang_common['Moderate forum'].'</a></span></dd>'."\n";
-		echo "\t\t\t".'</dl>'."\n";
+		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang_common['Moderate forum'].'</a>'."\n";
 	}
 	else if ($footer_style == 'viewtopic')
 	{
-		echo "\t\t\t".'<dl>'."\n";
-		echo "\t\t\t\t".'<dt><strong>'.$lang_topic['Mod controls'].'</strong></dt>'."\n";
-		echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;p='.$p.'">'.$lang_common['Moderate topic'].'</a></span></dd>'."\n";
-		echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;move_topics='.$id.'">'.$lang_common['Move topic'].'</a></span></dd>'."\n";
+		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang_common['Moderate topic'].'</a>'."\n";
+		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;move_topics='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Move topic'].'</a>'."\n";
 
 		if ($cur_topic['closed'] == '1')
-			echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;open='.$id.'">'.$lang_common['Open topic'].'</a></span></dd>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;open='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Open topic'].'</a>'."\n";
 		else
-			echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;close='.$id.'">'.$lang_common['Close topic'].'</a></span></dd>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;close='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Close topic'].'</a>'."\n";
 
 		if ($cur_topic['sticky'] == '1')
-			echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;unstick='.$id.'">'.$lang_common['Unstick topic'].'</a></span></dd>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;unstick='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Unstick topic'].'</a>'."\n";
 		else
-			echo "\t\t\t\t".'<dd><span><a href="moderate.php?fid='.$forum_id.'&amp;stick='.$id.'">'.$lang_common['Stick topic'].'</a></span></dd>'."\n";
-
-		echo "\t\t\t".'</dl>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;stick='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Stick topic'].'</a>'."\n";
 	}
 
-	echo "\t\t\t".'<div class="clearer"></div>'."\n\t\t".'</div>'."\n";
+	echo "\t\t\t\n\t\t".'</div>'."\n";
 }
 
 ?>
