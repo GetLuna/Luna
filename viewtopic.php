@@ -21,8 +21,8 @@ $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 if ($id < 1 && $pid < 1)
 	message($lang_common['Bad request'], false, '404 Not Found');
 
-// Load the viewtopic.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/topic.php';
+// Load the frontend.php language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 
 // If a post ID is specified we determine topic ID and page number so we can redirect to the correct message
@@ -99,16 +99,16 @@ $admin_ids = explode(',', $pun_config['o_admin_ids']);
 if ($cur_topic['closed'] == '0')
 {
 	if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)
-		$post_link = "\t\t\t".'<p class="postlink conr"><a href="post.php?tid='.$id.'">'.$lang_topic['Post reply'].'</a></p>'."\n";
+		$post_link = "\t\t\t".'<p class="postlink conr"><a href="post.php?tid='.$id.'">'.$lang_front['Post reply'].'</a></p>'."\n";
 	else
 		$post_link = '';
 }
 else
 {
-	$post_link = $lang_topic['Topic closed'];
+	$post_link = $lang_front['Topic closed'];
 
 	if ($is_admmod)
-		$post_link .= ' / <a href="post.php?tid='.$id.'">'.$lang_topic['Post reply'].'</a>';
+		$post_link .= ' / <a href="post.php?tid='.$id.'">'.$lang_front['Post reply'].'</a>';
 
 	$post_link = "\t\t\t".'<p class="postlink conr">'.$post_link.'</p>'."\n";
 }
@@ -159,9 +159,9 @@ if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
 {
 	if ($cur_topic['is_subscribed'])
 		// I apologize for the variable naming here. It's a mix of subscription and action I guess :-)
-		$subscraction = "\t\t".'<p class="subscribelink clearb"><span>'.$lang_topic['Is subscribed'].' - </span><a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang_topic['Unsubscribe'].'</a></p>'."\n";
+		$subscraction = "\t\t".'<p class="subscribelink clearb"><span>'.$lang_front['Is subscribed'].' - </span><a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang_front['Unsubscribe'].'</a></p>'."\n";
 	else
-		$subscraction = "\t\t".'<p class="subscribelink clearb"><a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang_topic['Subscribe'].'</a></p>'."\n";
+		$subscraction = "\t\t".'<p class="subscribelink clearb"><a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang_front['Subscribe'].'</a></p>'."\n";
 }
 else
 	$subscraction = '';
@@ -230,7 +230,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			$user_title = censor_words($user_title);
 
 		// Format the online indicator
-		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? '<strong>'.$lang_topic['Online'].'</strong>' : '<span>'.$lang_topic['Offline'].'</span>';
+		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? '<strong>'.$lang_front['Online'].'</strong>' : '<span>'.$lang_front['Offline'].'</span>';
 
 		if ($pun_config['o_avatars'] == '1' && $pun_user['show_avatars'] != '0')
 		{
@@ -248,13 +248,13 @@ while ($cur_post = $db->fetch_assoc($result))
 				if ($pun_config['o_censoring'] == '1')
 					$cur_post['location'] = censor_words($cur_post['location']);
 
-				$user_info[] = '<dd><span>'.$lang_topic['From'].' '.pun_htmlspecialchars($cur_post['location']).'</span></dd>';
+				$user_info[] = '<dd><span>'.$lang_front['From'].' '.pun_htmlspecialchars($cur_post['location']).'</span></dd>';
 			}
 
-			$user_info[] = '<dd><span>'.$lang_topic['Registered'].' '.format_time($cur_post['registered'], true).'</span></dd>';
+			$user_info[] = '<dd><span>'.$lang_front['Registered'].' '.format_time($cur_post['registered'], true).'</span></dd>';
 
 			if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
-				$user_info[] = '<dd><span>'.$lang_topic['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+				$user_info[] = '<dd><span>'.$lang_front['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 
 			// Now let's deal with the contact links (Email and URL)
 			if ((($cur_post['email_setting'] == '0' && !$pun_user['is_guest']) || $pun_user['is_admmod']) && $pun_user['g_send_email'] == '1')
@@ -267,16 +267,16 @@ while ($cur_post = $db->fetch_assoc($result))
 				if ($pun_config['o_censoring'] == '1')
 					$cur_post['url'] = censor_words($cur_post['url']);
 
-				$user_contacts[] = '<span class="website"><a href="'.pun_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang_topic['Website'].'</a></span>';
+				$user_contacts[] = '<span class="website"><a href="'.pun_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang_front['Website'].'</a></span>';
 			}
 		}
 
 		if ($pun_user['is_admmod'])
 		{
-			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang_topic['IP address logged'].'</a></span></dd>';
+			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang_front['IP address logged'].'</a></span></dd>';
 
 			if ($cur_post['admin_note'] != '')
-				$user_info[] = '<dd><span>'.$lang_topic['Note'].' <strong>'.pun_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+				$user_info[] = '<dd><span>'.$lang_front['Note'].' <strong>'.pun_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 		}
 	}
 	// If the poster is a guest (or a user that has been deleted)
@@ -286,7 +286,7 @@ while ($cur_post = $db->fetch_assoc($result))
 		$user_title = get_title($cur_post);
 
 		if ($pun_user['is_admmod'])
-			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang_topic['IP address logged'].'</a></span></dd>';
+			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang_front['IP address logged'].'</a></span></dd>';
 
 		if ($pun_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
 			$user_contacts[] = '<span class="email"><a href="mailto:'.pun_htmlspecialchars($cur_post['poster_email']).'">'.$lang_common['Email'].'</a></span>';
@@ -297,9 +297,9 @@ while ($cur_post = $db->fetch_assoc($result))
 	{
 		if (!$pun_user['is_guest']) {
 			if ($cur_post['marked'] == false) {
-				$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+				$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_front['Report'].'</a>';
 			} else {
-				$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+				$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang_front['Report'].'</a>';
 			}
 		}
 
@@ -308,29 +308,29 @@ while ($cur_post = $db->fetch_assoc($result))
 			if ($cur_post['poster_id'] == $pun_user['id'])
 			{
 				if ((($start_from + $post_count) == 1 && $pun_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $pun_user['g_delete_posts'] == '1'))
-					$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang_topic['Delete'].'</a>';
+					$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang_front['Delete'].'</a>';
 				if ($pun_user['g_edit_posts'] == '1')
-					$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang_topic['Edit'].'</a>';
+					$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang_front['Edit'].'</a>';
 			}
 
 			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a>';
+				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_front['Quote'].'</a>';
 		}
 	}
 	else
 	{
 		if ($cur_post['marked'] == false)
 		{
-			$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+			$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang_front['Report'].'</a>';
 		} else {
-			$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang_topic['Report'].'</a>';
+			$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang_front['Report'].'</a>';
 		}
 		if ($pun_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
 		{  
-			$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang_topic['Delete'].'</a>';  
-			$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang_topic['Edit'].'</a>';  
+			$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang_front['Delete'].'</a>';  
+			$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang_front['Edit'].'</a>';  
 		}  
-		$post_actions[] = '<a class="btn btn-primary btn-mini" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_topic['Quote'].'</a>';
+		$post_actions[] = '<a class="btn btn-primary btn-mini" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang_front['Quote'].'</a>';
 	}
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
@@ -364,7 +364,7 @@ while ($cur_post = $db->fetch_assoc($result))
                 <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
                 <div class="postmsg">
                     <?php echo $cur_post['message']."\n" ?>
-<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
+<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_front['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
                 </div>
                 <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
             </td>
@@ -407,7 +407,7 @@ $cur_index = 1;
 ?>
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_topic['Quick post'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_front['Quick post'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="quickpostform" method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
@@ -440,7 +440,7 @@ else
                     <li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang_common['Smilies'] ?></a> <?php echo ($pun_config['o_smilies'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
                 </ul>
             </fieldset>
-            <p class="actions"><input class="btn btn-primary" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /> <input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang_topic['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></p>
+            <p class="actions"><input class="btn btn-primary" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /> <input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang_front['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></p>
         </form>
     </div>
 </div>

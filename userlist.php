@@ -16,11 +16,8 @@ if ($pun_user['g_read_board'] == '0')
 else if ($pun_user['g_view_users'] == '0')
 	message($lang_common['No permission'], false, '403 Forbidden');
 
-// Load the userlist.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/userlist.php';
-
-// Load the search.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/search.php';
+// Load the frontend.php language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 
 // Determine if we are allowed to view post counts
@@ -79,7 +76,7 @@ require FORUM_ROOT.'header.php';
                                 </th>
                             <?php endif; ?>
                             <th>
-								<?php echo $lang_ul['User group']."\n" ?>
+								<?php echo $lang_front['User group']."\n" ?>
                     		</th>
                             <th>
                     			<?php echo $lang_search['Sort by']."\n" ?>
@@ -87,6 +84,7 @@ require FORUM_ROOT.'header.php';
                             <th>
                     			<?php echo $lang_search['Sort order']."\n" ?>
                     		</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,7 +94,7 @@ require FORUM_ROOT.'header.php';
                             <?php endif; ?>
                         	<td>
                             	<select class="form-control" name="show_group">
-                                    <option value="-1"<?php if ($show_group == -1) echo ' selected="selected"' ?>><?php echo $lang_ul['All users'] ?></option>
+                                    <option value="-1"<?php if ($show_group == -1) echo ' selected="selected"' ?>><?php echo $lang_front['All users'] ?></option>
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -117,7 +115,7 @@ while ($cur_group = $db->fetch_assoc($result))
                                     <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang_common['Username'] ?></option>
                                     <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang_common['Registered'] ?></option>
 									<?php if ($show_post_count): ?>
-                                        <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang_ul['No of posts'] ?></option>
+                                        <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang_front['No of posts'] ?></option>
 									<?php endif; ?>
 								</select>
                             </td>
@@ -127,12 +125,14 @@ while ($cur_group = $db->fetch_assoc($result))
                                     <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang_search['Descending'] ?></option>
                                 </select>
                     		</td>
+                            <td>
+                            	<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" />
+                            </td>
                         </tr>
                      </tbody>
                  </table>
-                <p class="help-block"><?php echo ($pun_user['g_search_users'] == '1' ? $lang_ul['User search info'].' ' : '').$lang_ul['User sort info']; ?></p>
+                <p class="help-block"><?php echo ($pun_user['g_search_users'] == '1' ? $lang_front['User search info'].' ' : '').$lang_front['User sort info']; ?></p>
             </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" /></p>
         </form>
     </div>
 </div>
