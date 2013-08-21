@@ -351,6 +351,11 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	color: #fff;
 }
 
+.panel-warning .panel-heading {
+	background: #ff9c00;
+	color: #fff;
+}
+
 .panel-body {
   padding: 10px;
 }
