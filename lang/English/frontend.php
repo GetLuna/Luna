@@ -450,6 +450,7 @@ $lang_front = array(
 'Agree'						=>	'Agree',
 'Cancel'					=>	'Cancel',
 'Register'					=>	'Register',
+'Register legend'			=>	'Enter the requisted data',
 
 // Form validation stuff (some of these are also used in post.php)
 'Registration errors'		=>	'Registration errors',
