@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.0-beta.3-dev.1');
 
-define('UPDATE_TO_DB_REVISION', 24);
+define('UPDATE_TO_DB_REVISION', 25);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 3);
 
@@ -607,7 +607,7 @@ switch ($stage)
 		// Since 2.0-beta.1: Add the marked column to the posts table
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-		//  Since 1.4-beta.1: Add search index revision number
+		// Since 1.4-beta.1: Add search index revision number
 		if (!array_key_exists('o_searchindex_revision', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_searchindex_revision\', \'0\')') or error('Unable to insert config value \'o_searchindex_revision\'', __FILE__, __LINE__, $db->error());
 
@@ -615,21 +615,25 @@ switch ($stage)
 		if (!array_key_exists('o_parser_revision', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_parser_revision\', \'0\')') or error('Unable to insert config value \'o_parser_revision\'', __FILE__, __LINE__, $db->error());
 
-		//  Since 1.4-beta.1: Insert new config option o_quote_depth
+		// Since 1.4-beta.1: Insert new config option o_quote_depth
 		if (!array_key_exists('o_quote_depth', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_quote_depth\', \'3\')') or error('Unable to insert config value \'o_quote_depth\'', __FILE__, __LINE__, $db->error());
 
-		//  Since 1.4-beta.1: Insert new config option o_feed_type
+		// Since 1.4-beta.1: Insert new config option o_feed_type
 		if (!array_key_exists('o_feed_type', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_type\', \'2\')') or error('Unable to insert config value \'o_feed_type\'', __FILE__, __LINE__, $db->error());
 
-		//  Since 1.4-beta.1: Insert new config option o_feed_ttl
+		// Since 1.4-beta.1: Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 
-		//  Since 2.0-beta.2: Insert new config option o_antispam_api
+		// Since 2.0-beta.2: Insert new config option o_antispam_api
 		if (!array_key_exists('o_antispam_api', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_antispam_api\', NULL)') or error('Unable to insert config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
+			
+		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
+		if (array_key_exists('o_quickjump', $pun_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
 			
 		// Insert new config option o_admin_ids  
 		if (!array_key_exists('o_admin_ids', $pun_config))  
@@ -642,7 +646,7 @@ switch ($stage)
 		 $db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_ids\', \''.implode(',', $admin_ids).'\')') or error('Unable to insert config value \'o_admin_ids\'', __FILE__, __LINE__, $db->error());  
 		}
 		
-		//  Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
+		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
 		if (!array_key_exists('o_base_url', $pun_config))
 		{
 			// If it isn't in $pun_config['o_base_url'] it should be in $base_url, but just in-case it isn't we can make a guess at it
