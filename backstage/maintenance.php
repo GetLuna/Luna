@@ -344,8 +344,8 @@ require FORUM_ROOT.'backstage/header.php';
                     <tr>
                         <th><?php echo $lang_back['Prune sticky label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="prune_sticky" value="0" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <label><input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label><input type="radio" name="prune_sticky" value="0" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
                             <br /><span class="help-block"><?php echo $lang_back['Prune sticky help'] ?></span>
                         </td>
                     </tr>
@@ -387,7 +387,7 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">Prune users</h3>
+        <h3 class="panel-title"><?php echo $lang_back['Prune users head'] ?></h3>
     </div>
 	<div class="panel-body">
         <form id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
@@ -395,38 +395,42 @@ require FORUM_ROOT.'backstage/header.php';
                 <p class="topspace"><?php printf($lang_back['Prune users info'], '<a href="options.php#maintenance">'.$lang_back['Maintenance mode'].'</a>') ?></p>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th class="span3">Prune by</th>
+                        <th class="col-md-3"><?php echo $lang_back['Prune by'] ?></th>
                         <td>
-                            <input type="radio" name="prune_by" value="1" checked="checked" />&nbsp;<strong>Registed date</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="prune_by" value="0" />&nbsp;<strong>Last Login</strong>
-                            <span class="help-block">This decides if the minimum number of days is calculated since the last login or the registered date.</span>
+                            <label><input type="radio" name="prune_by" value="1" checked="checked" />&#160;<strong><?php echo $lang_back['Registed date'] ?></strong></label>
+                            <label><input type="radio" name="prune_by" value="0" />&#160;<strong><?php echo $lang_back['Last login'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Prune by info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th>Minimum days since registration/last login</th>
+                        <th><?php echo $lang_back['Minimum days'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="days" value="28" size="25" tabindex="1" />
-                            <br /><span class="help-block">The minimum number of days before users are pruned by the setting specified above.</span>
+                            <br /><span class="help-block"><?php echo $lang_back['Minimum days info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th>Maximum number of posts</th>
+                        <th><?php echo $lang_back['Maximum posts'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="posts" value="1"  size="25" tabindex="1" />
-                            <br /><span class="help-block">Users with a postcount equal of higher than this won't be pruned. E.g. a value of 1 will remove users with no posts.</span>
+                            <br /><span class="help-block"><?php echo $lang_back['Maximum posts info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th>Delete admins and mods?</th>
+                        <th><?php echo $lang_back['Delete admins'] ?></th>
                         <td>
-                            <input type="radio" name="admods_delete" value="1" />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="admods_delete" value="0" checked="checked" />&nbsp;<strong>No</strong>
-                            <span class="help-block">If Yes, any affected Moderators and Admins will also be pruned.</span>
+                            <label><input type="radio" name="admods_delete" value="1" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label><input type="radio" name="admods_delete" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Delete admins info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th>User status</th>
+                        <th><?php echo $lang_back['User status'] ?></th>
                         <td>
-                            <input type="radio" name="verified" value="1" />&nbsp;<strong>Delete any</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="0" checked="checked" />&nbsp;<strong>Delete only verified</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="verified" value="2" />&nbsp;<strong>Delete only unverified</strong>
-                            <span class="help-block">Decides if (un)verified users should be deleted.</span>
+                            <label><input type="radio" name="verified" value="1" />&#160;<strong><?php echo $lang_back['Delete any'] ?></strong></label>
+                            <label><input type="radio" name="verified" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['Delete only verified'] ?></strong></label>
+                            <label><input type="radio" name="verified" value="2" />&#160;<strong><?php echo $lang_back['Delete only unverified'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['User status info'] ?></span>
                         </td>
                     </tr>
                 </table>

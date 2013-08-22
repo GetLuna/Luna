@@ -456,6 +456,23 @@ $lang_back = array(
 'Confirm prune info'			=>	'Are you sure that you want to prune all topics older than %s days from %s (%s topics).',
 'Confirm prune warn'			=>	'WARNING! Pruning posts deletes them permanently.',
 
+'Prune users head'			=>	'Prune users',
+'Prune by'					=>	'Prune by',
+'Registed date'				=>	'Registed date',
+'Last login'				=>	'Last login',
+'Prune by info'				=>	'This decides if the minimum number of days is calculated since the last login or the registered date.',
+'Minimum days'				=>	'Minimum days since registration/last login',
+'Minimum days info'			=>	'The minimum number of days before users are pruned by the setting specified above.',
+'Maximum posts'				=>	'Maximum number of posts',
+'Maximum posts info'		=>	'Users with a postcount equal of higher than this won\'t be pruned. E.g. a value of 1 will remove users with no posts.',
+'Delete admins'				=>	'Delete admins and mods',
+'Delete admins info'		=>	'If yes, any affected moderators and admins will also be pruned.',
+'User status'				=>	'User status',
+'Delete any'				=>	'Delete any',
+'Delete only verified'		=>	'Delete only verified',
+'Delete only unverified'	=>	'Delete only unverified',
+'User status info'			=>	'Decides if (un)verified users should be deleted.',
+
 // Language for options.php
 'Options head'						=>	'Global settings',
 
