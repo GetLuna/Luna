@@ -56,9 +56,22 @@ $smilies = array(
 	':P' => 'tongue.png',
 	':p' => 'tongue.png',
 	':lol:' => 'lol.png',
+	':-))' => 'lol.png',
+	':))' => 'lol.png',
 	':mad:' => 'mad.png',
+	':@' => 'mad.png',
 	':rolleyes:' => 'roll.png',
-	':cool:' => 'cool.png');
+	'%)' => 'roll.png',
+	':cool:' => 'cool.png',
+	'b:' => 'cool.png',
+	'B:' => 'cool.png',
+	':hc:' => 'happycry.png',
+	'(A)' => 'angel.png',
+	'^-^' => 'ohyeah.png',
+	'(a)' => 'angel.png',
+	'(A)' => 'angel.png',
+	'^.^' => 'happy.png'
+	);
 
 //
 // Make sure all BBCodes are lower case and do a little cleanup
