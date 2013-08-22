@@ -798,6 +798,14 @@ $lang_back = array(
 'Results no IP found'		=>	'The supplied IP address could not be found in the database.',
 'No match'					=>	'No match',
 
+// Create new user
+'Add user head'				=>	'Add user',
+'Username'					=>	'Username',
+'Random password'			=>	'Generate random password',
+'Random password info'		=>	'If yes, a random password will be generated and emailed to the above address.',
+'Password'					=>	'Password',
+'Password info'				=>	'Give up a password, keep empty for a random password.',
+
 // Common language used in /backstage/
 // Main menu
 'Dashboard'				=>	'Backstage',
