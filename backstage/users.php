@@ -728,8 +728,8 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
                     <tr>
                         <th><?php echo $lang_back['Ban IP label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <label><input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label><input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
                             <p class="clearb"><?php echo $lang_back['Ban IP help'] ?></p>
                         </td>
                     </tr>
@@ -1096,7 +1096,7 @@ else
 </div>
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">Add user</h3>
+        <h3 class="panel-title"><?php echo $lang_back['Add user head'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="example" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
@@ -1104,35 +1104,36 @@ else
                 <div class="infldset">
                 <table class="table">
                     <tr>
-                        <th class="span3">Username</th>
+                        <th class="span3"><?php echo $lang_back['Username'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="username" size="25" tabindex="3" />
                         </td>
                     </tr>
                     <tr>
-                        <th>Email</th>
+                        <th><?php echo $lang_back['Email'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="email" size="50" tabindex="3" />
                         </td>
                     </tr>
                     <tr>
-                        <th>Generate random password?</th>
+                        <th><?php echo $lang_back['Random password'] ?></th>
                         <td>
-                            <input type="radio" name="random_pass" value="1" />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="random_pass" value="0" checked="checked" />&nbsp;<strong>No</strong>
-                            <span class="help-block">If yes, a random password will be generated and emailed to the above address.</span>
+                            <label><input type="radio" name="random_pass" value="1" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+                            <label><input type="radio" name="random_pass" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang_back['Random password info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th>Password</th>
+                        <th><?php echo $lang_back['Password'] ?></th>
                         <td>
                             <input type="password" class="form-control" name="password" size="25" tabindex="3" />
-                            <br /><span class="help-block">Give up a password, keep empty for a random password.</span>
+                            <br /><span class="help-block"><?php echo $lang_back['Password info'] ?></span>
                         </td>
                     </tr>
                 </table>
                 </div>
             </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="add_user" value="Go!" tabindex="4" /></p>
+            <p class="control-group"><input class="btn btn-primary" type="submit" name="add_user" value="<?php echo $lang_common['Submit'] ?>" tabindex="4" /></p>
         </form>
     </div>
 </div>
