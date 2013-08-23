@@ -471,8 +471,12 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	border-radius: 0;
 	margin-bottom: 10px;
 	background-color: #ffffff;
-	border-left: #f79f13 5px solid;
+	border-left: #555 5px solid;
 }
+
+.alert-warning {
+	border-left: #f79f13 5px solid;
+}	
 
 .alert-info {
 	border-left: #2ca0e9 5px solid;
@@ -1336,7 +1340,7 @@ MAIN FORMS
 	padding-bottom: 0;
 }
 
-.pun .error-list li {
+.pun .error-list {
 	padding-left: 24px;
 	background: url(Randomness/img/exclaim.png) center left no-repeat;
 }

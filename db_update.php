@@ -8,14 +8,15 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.0-beta.3-dev.1');
+define('UPDATE_TO', '2.0-beta.3-dev.2');
 
-define('UPDATE_TO_DB_REVISION', 25);
+define('UPDATE_TO_DB_REVISION', 26);
 define('UPDATE_TO_SI_REVISION', 2);
-define('UPDATE_TO_PARSER_REVISION', 3);
+define('UPDATE_TO_PARSER_REVISION', 4);
 
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '5.0.1');
+define('MIN_MARIADB_VERSION', '5.3.4');
 define('MIN_PGSQL_VERSION', '7.0.0');
 define('FORUM_SEARCH_MIN_WORD', 3);
 define('FORUM_SEARCH_MAX_WORD', 20);
@@ -148,6 +149,14 @@ switch ($db_type)
 
 		$mysql = true;
 		break;
+		
+	case 'mariadb':
+		$mariadb_info = $db->get_version();
+		if (version_compare($mariadb_info['version'], MIN_MARIADB_VERSION, '<'))
+			error(sprintf($lang_update['You are running error'], 'MardiaDB', $mariadb_info['version'], UPDATE_TO, MIN_MARIADB_VERSION));
+
+		$mariadb = true;
+		break;
 
 	case 'pgsql':
 		$pgsql_info = $db->get_version();
@@ -251,155 +260,6 @@ function utf8_callback_2($matches)
 {
 	return dcr2utf8(hexdec($matches[1]));
 }
-
-
-//
-// Alter a table to be utf8. MySQL only
-// Function based on update_convert_table_utf8() from the Drupal project (http://drupal.org/)
-//
-function alter_table_utf8($table)
-{
-	global $mysql, $db;
-	static $types;
-
-	if (!$mysql)
-		return;
-
-	if (!isset($types))
-	{
-		$types = array(
-			'char'			=> 'binary',
-			'varchar'		=> 'varbinary',
-			'tinytext'		=> 'tinyblob',
-			'mediumtext'	=> 'mediumblob',
-			'text'			=> 'blob',
-			'longtext'		=> 'longblob'
-		);
-	}
-
-	// Set table default charset to utf8
-	$db->query('ALTER TABLE '.$table.' CHARACTER SET utf8') or error('Unable to set table character set', __FILE__, __LINE__, $db->error());
-
-	// Find out which columns need converting and build SQL statements
-	$result = $db->query('SHOW FULL COLUMNS FROM '.$table) or error('Unable to fetch column information', __FILE__, __LINE__, $db->error());
-	while ($cur_column = $db->fetch_assoc($result))
-	{
-		if (is_null($cur_column['Collation']))
-			continue;
-
-		list($type) = explode('(', $cur_column['Type']);
-		if (isset($types[$type]) && strpos($cur_column['Collation'], 'utf8') === false)
-		{
-			$allow_null = ($cur_column['Null'] == 'YES');
-			$collate = (substr($cur_column['Collation'], -3) == 'bin') ? 'utf8_bin' : 'utf8_general_ci';
-
-			$db->alter_field($table, $cur_column['Field'], preg_replace('%'.$type.'%i', $types[$type], $cur_column['Type']), $allow_null, $cur_column['Default'], null, true) or error('Unable to alter field to binary', __FILE__, __LINE__, $db->error());
-			$db->alter_field($table, $cur_column['Field'], $cur_column['Type'].' CHARACTER SET utf8 COLLATE '.$collate, $allow_null, $cur_column['Default'], null, true) or error('Unable to alter field to utf8', __FILE__, __LINE__, $db->error());
-		}
-	}
-}
-
-//
-// Safely converts text type columns into utf8
-// If finished returns true, otherwise returns $end_at
-//
-function convert_table_utf8($table, $callback, $old_charset, $key = null, $start_at = null, $error_callback = null)
-{
-	global $mysql, $db, $old_connection_charset;
-
-	$finished = true;
-	$end_at = 0;
-	if ($mysql)
-	{
-		// Only set up the tables if we are doing this in 1 go, or it's the first go
-		if (is_null($start_at) || $start_at == 0)
-		{
-			// Drop any temp table that exists, in-case it's left over from a failed update
-			$db->drop_table($table.'_utf8', true) or error('Unable to drop left over temp table', __FILE__, __LINE__, $db->error());
-
-			// Copy the table
-			$db->query('CREATE TABLE '.$table.'_utf8 LIKE '.$table) or error('Unable to create new table', __FILE__, __LINE__, $db->error());
-
-			// Set table default charset to utf8
-			alter_table_utf8($table.'_utf8');
-		}
-
-		// Change to the old character set so MySQL doesn't attempt to perform conversion on the data from the old table
-		$db->set_names($old_connection_charset);
-
-		// Move & Convert everything
-		$result = $db->query('SELECT * FROM '.$table.(is_null($start_at) ? '' : ' WHERE '.$key.'>'.$start_at).' ORDER BY '.$key.' ASC'.(is_null($start_at) ? '' : ' LIMIT '.PER_PAGE), false) or error('Unable to select from old table', __FILE__, __LINE__, $db->error());
-
-		// Change back to utf8 mode so we can insert it into the new table
-		$db->set_names('utf8');
-
-		while ($cur_item = $db->fetch_assoc($result))
-		{
-			$cur_item = call_user_func($callback, $cur_item, $old_charset);
-
-			$temp = array();
-			foreach ($cur_item as $idx => $value)
-				$temp[$idx] = is_null($value) ? 'NULL' : '\''.$db->escape($value).'\'';
-
-			$db->query('INSERT INTO '.$table.'_utf8('.implode(',', array_keys($temp)).') VALUES ('.implode(',', array_values($temp)).')') or (is_null($error_callback) ? error('Unable to insert data to new table', __FILE__, __LINE__, $db->error()) : call_user_func($error_callback, $cur_item));
-
-			$end_at = $cur_item[$key];
-		}
-
-		// If we aren't doing this all in 1 go and $end_at has a value (i.e. we have processed at least 1 row), figure out if we have more to do or not
-		if (!is_null($start_at) && $end_at > 0)
-		{
-			$result = $db->query('SELECT 1 FROM '.$table.' WHERE '.$key.'>'.$end_at.' ORDER BY '.$key.' ASC LIMIT 1') or error('Unable to check for next row', __FILE__, __LINE__, $db->error());
-			$finished = $db->num_rows($result) == 0;
-		}
-
-		// Only swap the tables if we are doing this in 1 go, or it's the last go
-		if ($finished)
-		{
-			// Delete old table
-			$db->drop_table($table, true) or error('Unable to drop old table', __FILE__, __LINE__, $db->error());
-
-			// Rename table
-			$db->query('ALTER TABLE '.$table.'_utf8 RENAME '.$table) or error('Unable to rename new table', __FILE__, __LINE__, $db->error());
-
-			return true;
-		}
-
-		return $end_at;
-	}
-	else
-	{
-		// Convert everything
-		$result = $db->query('SELECT * FROM '.$table.(is_null($start_at) ? '' : ' WHERE '.$key.'>'.$start_at).' ORDER BY '.$key.' ASC'.(is_null($start_at ) ? '' : ' LIMIT '.PER_PAGE)) or error('Unable to select from table', __FILE__, __LINE__, $db->error());
-		while ($cur_item = $db->fetch_assoc($result))
-		{
-			$cur_item = call_user_func($callback, $cur_item, $old_charset);
-
-			$temp = array();
-			foreach ($cur_item as $idx => $value)
-				$temp[] = $idx.'='.(is_null($value) ? 'NULL' : '\''.$db->escape($value).'\'');
-
-			if (!empty($temp))
-				$db->query('UPDATE '.$table.' SET '.implode(', ', $temp).' WHERE '.$key.'=\''.$db->escape($cur_item[$key]).'\'') or error('Unable to update data', __FILE__, __LINE__, $db->error());
-
-			$end_at = $cur_item[$key];
-		}
-
-		if (!is_null($start_at) && $end_at > 0)
-		{
-			$result = $db->query('SELECT 1 FROM '.$table.' WHERE '.$key.'>'.$end_at.' ORDER BY '.$key.' ASC LIMIT 1') or error('Unable to check for next row', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result) == 0)
-				return true;
-
-			return $end_at;
-		}
-
-		return true;
-	}
-}
-
-
-header('Content-type: text/html; charset=utf-8');
 
 // Empty all output buffers and stop buffering
 while (@ob_end_clean());
@@ -665,14 +525,14 @@ switch ($stage)
 		}
 		
 		// Add an index to username on the bans table
-		if ($mysql)
+		if ($mysql || $mariadb)
 			$db->add_index('bans', 'username_idx', array('username(25)')) or error('Unable to add username_idx index', __FILE__, __LINE__, $db->error());
 		else
 			$db->add_index('bans', 'username_idx', array('username')) or error('Unable to add username_idx index', __FILE__, __LINE__, $db->error());
 
 		// Change the username_idx on users to a unique index of max size 25
 		$db->drop_index('users', 'username_idx') or error('Unable to drop old username_idx index', __FILE__, __LINE__, $db->error());
-		$field = $mysql ? 'username(25)' : 'username';
+		$field = $mysql || $mariadb ? 'username(25)' : 'username';
 
 		// Attempt to add a unique index. If the user doesn't use a transactional database this can fail due to multiple matching usernames in the
 		// users table. This is bad, but just giving up if it happens is even worse! If it fails just add a regular non-unique index.
@@ -725,7 +585,7 @@ switch ($stage)
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
-		if ($db_type == 'mysql' || $db_type == 'mysqli')
+		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mardiadb')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
 		break;
@@ -734,7 +594,7 @@ switch ($stage)
 	case 'conv_users_dupe':
 		$query_str = '?stage=preparse_posts';
 
-		if (!$mysql || empty($_SESSION['dupe_users']))
+		if (!$mysql || !$mariadb || empty($_SESSION['dupe_users']))
 			break;
 
 		if (isset($_POST['form_sent']))
@@ -1009,6 +869,7 @@ foreach ($errors[$id] as $cur_error)
 				case 'mysqli':
 				case 'mysql_innodb':
 				case 'mysqli_innodb':
+				case 'mariadb':
 					$db->query('ALTER TABLE '.$db->prefix.'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
 					break;
 

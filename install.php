@@ -8,14 +8,15 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '2.0-beta.3-dev.1');
+define('FORUM_VERSION', '2.0-beta.3-dev.2');
 
-define('FORUM_DB_REVISION', 25);
+define('FORUM_DB_REVISION', 26);
 define('FORUM_SI_REVISION', 2);
-define('FORUM_PARSER_REVISION', 3);
+define('FORUM_PARSER_REVISION', 4);
 
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '5.0.1');
+define('MIN_MARIADB_VERSION', '5.3.4');
 define('MIN_PGSQL_VERSION', '7.0.0');
 define('FORUM_SEARCH_MIN_WORD', 3);
 define('FORUM_SEARCH_MAX_WORD', 20);
@@ -237,6 +238,8 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 		if (count($db_extensions) > 2)
 			$dual_mysql = true;
 	}
+	if (function_exists('mariadb_connect'))
+		$db_extensions[] = array('mariadb', 'MardiaDB');;
 	if (function_exists('sqlite_open'))
 		$db_extensions[] = array('sqlite', 'SQLite');
 	if (function_exists('pg_connect'))
@@ -477,6 +480,10 @@ else
 		case 'mysqli_innodb':
 			require FORUM_ROOT.'include/dblayer/mysqli_innodb.php';
 			break;
+			
+		case 'mariadb':
+			require FORUM_ROOT.'include/dblayer/mariadb.php';
+			break;
 
 		case 'pgsql':
 			require FORUM_ROOT.'include/dblayer/pgsql.php';
@@ -507,6 +514,12 @@ else
 			$mysql_info = $db->get_version();
 			if (version_compare($mysql_info['version'], MIN_MYSQL_VERSION, '<'))
 				error(sprintf($lang_install['You are running error'], 'MySQL', $mysql_info['version'], FORUM_VERSION, MIN_MYSQL_VERSION));
+			break;
+			
+		case 'mariadb':
+			$mysql_info = $db->get_version();
+			if (version_compare($mariadb_info['version'], MIN_MARIADB_VERSION, '<'))
+				error(sprintf($lang_install['You are running error'], 'MariaDB', $mariadb_info['version'], FORUM_VERSION, MIN_MARIADB_VERSION));
 			break;
 
 		case 'pgsql':
@@ -580,7 +593,7 @@ else
 		)
 	);
 
-	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
+	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb' || $db_type == 'mariadb')
 		$schema['INDEXES']['username_idx'] = array('username(25)');
 
 	$db->create_table('bans', $schema) or error('Unable to create bans table', __FILE__, __LINE__, $db->error());
@@ -918,7 +931,7 @@ else
 		)
 	);
 
-	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
+	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb' || $db_type == 'mariadb')
 	{
 		$schema['UNIQUE KEYS']['user_id_ident_idx'] = array('user_id', 'ident(25)');
 		$schema['INDEXES']['ident_idx'] = array('ident(25)');
@@ -1096,7 +1109,7 @@ else
 		)
 	);
 
-	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
+	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb' || $db_type == 'mariadb')
 		$schema['INDEXES']['ident_idx'] = array('ident(8)');
 
 	$db->create_table('search_cache', $schema) or error('Unable to create search_cache table', __FILE__, __LINE__, $db->error());
@@ -1479,7 +1492,7 @@ else
 		)
 	);
 
-	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
+	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb' || $db_type == 'mariadb')
 		$schema['UNIQUE KEYS']['username_idx'] = array('username(25)');
 
 	$db->create_table('users', $schema) or error('Unable to create users table', __FILE__, __LINE__, $db->error());

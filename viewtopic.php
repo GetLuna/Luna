@@ -142,8 +142,8 @@ if ($pun_config['o_quickpost'] == '1' &&
 	($cur_topic['post_replies'] == '1' || ($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1')) &&
 	($cur_topic['closed'] == '0' || $is_admmod))
 {
-	// Load the post.php language file
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/post.php';
+	// Load the frontend.php language file
+	require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 	$required_fields = array('req_message' => $lang_common['Message']);
 	if ($pun_user['is_guest'])
