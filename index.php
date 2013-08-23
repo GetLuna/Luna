@@ -265,10 +265,10 @@ else
         <table class="table">
             <thead>
                 <tr>
-                    <td class="col-md-2"><span><?php printf($lang_front['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></td>
-                    <td class="col-md-2"><span><?php printf($lang_front['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></td>
-                    <td class="col-md-2"><span><?php printf($lang_front['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></td>
-                    <td class="col-md-2"><span><?php printf($lang_front['Newest user'], $stats['newest_user']) ?></span></td>
+                    <div class="col-md-2"><span><?php printf($lang_front['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
+                    <div class="col-md-2"><span><?php printf($lang_front['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
+                    <div class="col-md-2"><span><?php printf($lang_front['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
+                    <div class="col-md-2"><span><?php printf($lang_front['Newest user'], $stats['newest_user']) ?></span></div>
 <?php
 
 if ($pun_config['o_users_online'] == '1')
@@ -283,16 +283,16 @@ if ($pun_config['o_users_online'] == '1')
 		if ($pun_user_online['user_id'] > 1)
 		{
 			if ($pun_user['g_view_users'] == '1')
-				$users[] = "\n\t\t\t\t".'<td class="col-md-2"><a href="profile.php?id='.$pun_user_online['user_id'].'">'.pun_htmlspecialchars($pun_user_online['ident']).'</a>';
+				$users[] = "\n\t\t\t\t".'<div class="col-md-2"><a href="profile.php?id='.$pun_user_online['user_id'].'">'.pun_htmlspecialchars($pun_user_online['ident']).'</a>';
 			else
-				$users[] = "\n\t\t\t\t".'<td class="col-md-2">'.pun_htmlspecialchars($pun_user_online['ident']);
+				$users[] = "\n\t\t\t\t".'<div class="col-md-2">'.pun_htmlspecialchars($pun_user_online['ident']);
 		}
 		else
 			++$num_guests;
 	}
 
 	$num_users = count($users);
-	echo "\t\t\t\t".'<td class="col-md-2"><span>'.sprintf($lang_front['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></td>'."\n\t\t\t\t".'<td><span>'.sprintf($lang_front['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></td>'."\n\t\t\t".'</dl>'."\n";
+	echo "\t\t\t\t".'<div class="col-md-2"><span>'.sprintf($lang_front['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div><span>'.sprintf($lang_front['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t".'</dl>'."\n";
 ?>
                 </tr>
             </thead>

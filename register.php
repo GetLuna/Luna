@@ -50,7 +50,7 @@ else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
             </fieldset>
         </div>
     </div>
-    <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang_front['Agree'] ?>" /> <input type="submit" class="btn btn-default" name="cancel" value="<?php echo $lang_front['Cancel'] ?>" /></p>
+    <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang_front['Agree'] ?>" /> <input type="submit" class="btn btn-default" name="cancel" value="<?php echo $lang_front['Cancel'] ?>" /></div>
 </form>
 <?php
 

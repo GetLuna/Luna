@@ -11,11 +11,11 @@ if (!defined('FORUM_ROOT'))
 	exit('The constant FORUM_ROOT must be defined and point to a valid ModernBB installation root directory.');
 
 // Define the version and database revision that this code was written for
-define('FORUM_VERSION', '2.0-beta.3-dev.1');
+define('FORUM_VERSION', '2.0-beta.3-dev.2');
 
-define('FORUM_DB_REVISION', 25);
+define('FORUM_DB_REVISION', 26);
 define('FORUM_SI_REVISION', 2);
-define('FORUM_PARSER_REVISION', 3);
+define('FORUM_PARSER_REVISION', 4);
 
 // Block prefetch requests
 if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
