@@ -30,8 +30,12 @@ if (isset($_POST['zap_id']))
 	$zapped = $db->result($result);
 
 	if ($zapped == '')
+	{
 		$db->query('UPDATE '.$db->prefix.'reports SET zapped='.time().', zapped_by='.$pun_user['id'].' WHERE id='.$zap_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'posts SET marked = 0 WHERE id='.$zap_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT post_id FROM '.$db->prefix.'reports WHERE id='.$zap_id) or error('Unable to fetch report info', __FILE__, __LINE__, $db->error());
+		$post_id = $db->result($result);
+		$db->query('UPDATE '.$db->prefix.'posts SET marked = 0 WHERE id='.$post_id) or error('Unable to zap report', __FILE__, __LINE__, $db->error());
+	}
 
 	// Delete old reports (which cannot be viewed anyway)
 	$result = $db->query('SELECT zapped FROM '.$db->prefix.'reports WHERE zapped IS NOT NULL ORDER BY zapped DESC LIMIT 10,1') or error('Unable to fetch read reports to delete', __FILE__, __LINE__, $db->error());
