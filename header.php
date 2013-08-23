@@ -244,11 +244,11 @@ else
 			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
 
 			if ($db->result($result_header))
-				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="reports.php">'.$lang_common['New reports'].'</a></strong></span></li>';
+				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.$lang_common['New reports'].'</a></strong></span></li>';
 		}
 
 		if ($pun_config['o_maintenance'] == '1')
-			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="options.php#maintenance">'.$lang_common['Maintenance mode enabled'].'</a></strong></span></li>';
+			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/options.php#maintenance">'.$lang_common['Maintenance mode enabled'].'</a></strong></span></li>';
 	}
 
 	if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
