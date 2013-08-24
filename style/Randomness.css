@@ -617,14 +617,6 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 /* Section Spacing and Borders
 ----------------------------------------------------------------*/
-
-#brdmain {
-	border-style: solid none;
-	border-width: 2px 0;
-	margin-bottom: 12px;
-	padding: 12px 0;
-}
-
 #punindex #brdmain {
 	padding-top: 24px;
 }
