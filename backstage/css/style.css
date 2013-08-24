@@ -365,8 +365,8 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	margin-left: -5px;
 }
 
-/* Alerts */
-.alert {
+/* Alerts and redirects */
+.alert, #redirect {
 	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
 	border: none;
 	border-radius: 0;
@@ -379,7 +379,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	border-left: #f79f13 5px solid;
 }	
 
-.alert-info {
+.alert-info, #redirect {
 	border-left: #2ca0e9 5px solid;
 }
 
@@ -391,6 +391,12 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 .alert-success {
 	border-left: #41d300 5px solid;
 	color: #4e9e00;
+}
+
+#redirect {
+	margin: 60px auto 0;
+	width: 800px;
+	padding: 10px 5px 5px 15px;
 }
 
 /* Tables */
