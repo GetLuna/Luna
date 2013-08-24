@@ -6,7 +6,7 @@
 	</head>
 	<body>
     	<pun_navlinks>
-        <div id="pun<pun_page>">
+        <div id="<pun_page>">
             <div class="container">
                 <div id="brdheader" class="block">
                     <div class="box">
