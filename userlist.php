@@ -62,7 +62,7 @@ require FORUM_ROOT.'header.php';
 ?>
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_search['User search'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_front['User search'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="userlist" method="get" action="userlist.php">
@@ -79,10 +79,10 @@ require FORUM_ROOT.'header.php';
 								<?php echo $lang_front['User group']."\n" ?>
                     		</th>
                             <th>
-                    			<?php echo $lang_search['Sort by']."\n" ?>
+                    			<?php echo $lang_front['Sort by']."\n" ?>
                     		</th>
                             <th>
-                    			<?php echo $lang_search['Sort order']."\n" ?>
+                    			<?php echo $lang_front['Sort order']."\n" ?>
                     		</th>
                             <th></th>
                         </tr>
@@ -121,8 +121,8 @@ while ($cur_group = $db->fetch_assoc($result))
                             </td>
                         	<td>
                             	<select class="form-control" name="sort_dir">
-                                    <option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang_search['Ascending'] ?></option>
-                                    <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang_search['Descending'] ?></option>
+                                    <option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang_front['Ascending'] ?></option>
+                                    <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang_front['Descending'] ?></option>
                                 </select>
                     		</td>
                             <td>
@@ -185,7 +185,7 @@ if ($db->num_rows($result))
 	}
 }
 else
-	echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang_search['No hits'].'</td></tr>'."\n";
+	echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang_front['No hits'].'</td></tr>'."\n";
 
 ?>
             </tbody>
