@@ -505,6 +505,7 @@ $lang_front = array(
 'Show as'							=>	'Show results as',
 'Show as topics'					=>	'Topics',
 'Show as posts'						=>	'Posts',
+'Advanced search'					=>	'Advanced search',
 
 // Results
 'Search'							=>	'Search',

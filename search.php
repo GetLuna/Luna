@@ -16,6 +16,7 @@ require FORUM_ROOT.'include/common.php';
 // Load the frontend.php language file
 require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
+$section = isset($_GET['section']) ? $_GET['section'] : null;
 
 if ($pun_user['g_read_board'] == '0')
 	message($lang_common['No view'], false, '403 Forbidden');
@@ -763,13 +764,56 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 }
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Search']);
-$focus_element = array('search', 'keywords');
-define('FORUM_ACTIVE_PAGE', 'search');
-require FORUM_ROOT.'header.php';
+	if (!$section || $section == 'simple')
+	{
+
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Search']);
+	$focus_element = array('search', 'keywords');
+	define('FORUM_ACTIVE_PAGE', 'search');
+	require FORUM_ROOT.'header.php';
 
 ?>
-<form id="search" method="get" action="search.php">
+<form id="search" method="get" action="search.php?section=simple">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_front['Search criteria legend'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <input class="form-control" type="hidden" name="action" value="search" />
+            	<table>
+                	<thead>
+                    	<tr>
+                        	<th><?php echo $lang_front['Keyword search'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                        	<td><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="help-block"><a href="search.php?section=advanced"><?php echo $lang_front['Advanced search'] ?></a></p>
+            </fieldset>
+        </div>
+    </div>
+    <div class="alert alert-info">
+		<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" />
+    </div>
+</form>
+<?php
+
+	require FORUM_ROOT.'footer.php';
+
+	} else {
+	
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Search']);
+	$focus_element = array('search', 'keywords');
+	define('FORUM_ACTIVE_PAGE', 'search');
+	require FORUM_ROOT.'header.php';
+
+?>
+<form id="search" method="get" action="search.php?section=advanced">
     <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_front['Search criteria legend'] ?></h3>
@@ -913,4 +957,5 @@ else
 </form>
 <?php
 
-require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';
+	}
