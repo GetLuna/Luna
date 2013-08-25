@@ -30,6 +30,11 @@ body, html {
 	margin-bottom: 0;
 }
 
+.users-online {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
 /* Welcome box and header */
 #brddesc {
 	border-bottom-style: dotted;
