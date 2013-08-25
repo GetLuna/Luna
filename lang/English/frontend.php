@@ -307,13 +307,13 @@ $lang_front = array(
 
 // Language for profile.php
 // Navigation and sections
-'Profile menu'					=>	'Profile menu',
 'Section essentials'			=>	'Essentials',
 'Section personal'				=>	'Personal',
 'Section messaging'				=>	'Messaging',
 'Section personality'			=>	'Personality',
 'Section display'				=>	'Display',
 'Section privacy'				=>	'Privacy',
+'Section view' 					=>  'View profile',
 'Section admin'					=>	'Administration',
 
 // Miscellaneous
@@ -322,6 +322,9 @@ $lang_front = array(
 'Contact details legend'		=>	'Enter your messaging details',
 'User activity'					=>	'User activity',
 'Paginate info'					=>	'Enter the number of topics and posts you wish to view on each page.',
+'View info'						=>  'This is what others see when they view your profile',
+'Private'						=>  'Private',
+'Unknown'          				=>  'Unknown',
 
 // Password stuff
 'Pass key bad'					=>	'The specified password activation key was incorrect or has expired. Please re-request a new password. If that fails, contact the forum administrator at',
