@@ -1626,6 +1626,144 @@ if (count($languages) > 1)
 <?php
 
 	}
+	else if ($section == 'view')
+	{
+		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_front['title view own profile']);
+		define('FORUM_ACTIVE_PAGE', 'profile');
+		require FORUM_ROOT.'header.php';
+
+		generate_profile_menu('view');
+
+	if ($user['email_setting'] == '0' && !$pun_user['is_guest'])
+		$email_field = '<a href="mailto:'.$user['email'].'">'.$user['email'].'</a>';
+	else if ($user['email_setting'] == '1' && !$pun_user['is_guest'])
+		$email_field = '<a href="misc.php?email='.$id.'">'.$lang_common['Send email'].'</a>';
+	else
+		$email_field = $lang_front['Private'];
+
+	$user_title_field = get_title($user);
+
+	if ($user['url'] != '')
+	{
+		$user['url'] = pun_htmlspecialchars($user['url']);
+
+		if ($pun_config['o_censoring'] == '1')
+			$user['url'] = censor_words($user['url']);
+
+		$url = '<a href="'.$user['url'].'">'.$user['url'].'</a>';
+	}
+	else
+		$url = $lang_front['Unknown'];
+
+	if ($pun_config['o_avatars'] == '1')
+	{
+		if ($img_size = @getimagesize($pun_config['o_avatars_dir'].'/'.$id.'.gif'))
+			$avatar_field = '<img src="'.$pun_config['o_avatars_dir'].'/'.$id.'.gif" '.$img_size[3].' alt="" />';
+		else if ($img_size = @getimagesize($pun_config['o_avatars_dir'].'/'.$id.'.jpg'))
+			$avatar_field = '<img src="'.$pun_config['o_avatars_dir'].'/'.$id.'.jpg" '.$img_size[3].' alt="" />';
+		else if ($img_size = @getimagesize($pun_config['o_avatars_dir'].'/'.$id.'.png'))
+			$avatar_field = '<img src="'.$pun_config['o_avatars_dir'].'/'.$id.'.png" '.$img_size[3].' alt="" />';
+		else
+			$avatar_field = $lang_front['unknown'];
+	}
+
+	$posts_field = '';
+	if ($pun_config['o_show_post_count'] == '1' || $pun_user['g_id'] < FORUM_GUEST)
+		$posts_field = $user['num_posts'];
+	if ($pun_user['g_search'] == '1')
+		$posts_field .= (($posts_field != '') ? ' - ' : '').'<a href="search.php?action=show_user&amp;user_id='.$id.'">'.$lang_front['Show posts'].'</a>';
+
+?>
+
+<div class="col-md-10">
+	<h2><?php echo $lang_common['Profile'] ?> <small><?php echo $lang_front['View info'] ?></small></h2>
+    <table class="table">
+    	<tr>
+            <td class="active" colspan="2"><h4><?php echo $lang_front['Section personal'] ?></h4></td>
+        </tr>
+        <tr>
+            <th class="col-md-2"><?php echo $lang_common['Username'] ?></th>
+            <td><?php echo pun_htmlspecialchars($user['username']) ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_common['Title'] ?></th>
+            <td><?php echo ($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field; ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['Realname'] ?></th>
+            <td><?php echo ($user['realname'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']) : $lang_front['unknown']; ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['Location'] ?></th>
+            <td><?php echo ($user['location'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']) : $lang_front['unknown']; ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['Website'] ?></th>
+            <td><?php echo $url ?>&nbsp;</td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_common['Email'] ?></th>
+            <td><?php echo $email_field ?></td>
+    	</tr>
+    	<tr>
+            <td class="active" colspan="2"><h4><?php echo $lang_front['Section messaging'] ?></h4></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['Jabber'] ?></th>
+            <td><?php echo ($user['jabber'] !='') ? pun_htmlspecialchars($user['jabber']) : $lang_front['unknown']; ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['ICQ'] ?></th>
+            <td><?php echo ($user['icq'] !='') ? $user['icq'] : $lang_front['Unknown']; ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['MSN'] ?></th>
+            <td><?php echo ($user['msn'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']) : $lang_front['unknown']; ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['AOL IM'] ?></th>
+            <td><?php echo ($user['aim'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']) : $lang_front['unknown']; ?></td>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['Yahoo'] ?></th>
+            <td><?php echo ($user['yahoo'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']) : $lang_front['unknown']; ?></td>
+        </tr>
+    	<tr>
+            <td class="active" colspan="2"><h4><?php echo $lang_front['Section personality'] ?></h4></td>
+        </tr>
+        <tr>
+			<?php if ($pun_config['o_avatars'] == '1'): ?>
+                <th><?php echo $lang_front['Avatar'] ?></th>
+                <td><?php echo $avatar_field ?></td>
+            <?php endif; ?>
+        </tr>
+        <tr>
+            <th><?php echo $lang_front['Signature'] ?></th>
+            <td><div><?php echo isset($parsed_signature) ? $parsed_signature : $lang_front['No sig']; ?></div></td>
+        </tr>
+    	<tr>
+            <td class="active" colspan="2"><h4><?php echo $lang_front['User activity'] ?></h4></td>
+        </tr>
+    	<tr>
+			<?php if ($posts_field != ''): ?>
+                <th><?php echo $lang_common['Posts'] ?></th>
+                <td><?php echo $posts_field ?></td>
+            <?php endif; ?>
+        </tr>
+    	<tr>
+    		<th><?php echo $lang_common['Last post'] ?></th>
+            <td><?php echo $last_post ?></td>
+        </tr>
+    	<tr>
+            <th><?php echo $lang_common['Registered'] ?></th>
+            <td><?php echo format_time($user['registered'], true) ?></td>
+        </tr>
+    </table>
+</div>
+
+<?php
+
+	}
 	else if ($section == 'admin')
 	{
 		if (!$pun_user['is_admmod'] || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '0'))

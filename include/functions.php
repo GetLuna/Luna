@@ -524,6 +524,7 @@ function generate_profile_menu($page = '')
 		<?php endif; ?>
         <a class="<?php if ($page == 'display') echo 'active'; ?> list-group-item" href="profile.php?section=display&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section display'] ?></a>
         <a class="<?php if ($page == 'privacy') echo 'active'; ?> list-group-item" href="profile.php?section=privacy&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section privacy'] ?></a>
+        <a class="<?php if ($page == 'view') echo 'active'; ?> list-group-item" href="profile.php?section=view&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section view'] ?></a>
 		<?php if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>
             <a class="<?php if ($page == 'admin') echo 'active'; ?> list-group-item" href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_front['Section admin'] ?></a>
 		<?php endif; ?>
