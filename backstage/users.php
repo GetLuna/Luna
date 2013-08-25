@@ -24,8 +24,7 @@ require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
 // Create new user
 if (isset($_POST['add_user']))
 {
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
+	require FORUM_ROOT.'lang/'.$pun_user['language'].'/backstage.php';
 	$username = pun_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
