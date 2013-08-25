@@ -25,21 +25,18 @@ if ($action == 'rules')
 	if ($pun_config['o_rules'] == '0' || ($pun_user['is_guest'] && $pun_user['g_read_board'] == '0' && $pun_config['o_regs_allow'] == '0'))
 		message($lang_common['Bad request']);
 
-	// Load the register.php language file
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
-
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_register['Forum rules']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Forum rules']);
 	define('FORUM_ACTIVE_PAGE', 'rules');
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div id="rules" class="block">
-	<div class="hd"><h2><span><?php echo $lang_register['Forum rules'] ?></span></h2></div>
-	<div class="box">
-		<div id="rules-block" class="inbox">
-			<div class="usercontent"><?php echo $pun_config['o_rules_message'] ?></div>
-		</div>
-	</div>
+<div class="panel">
+    <div id="rules-block" class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_front['Forum rules'] ?></h3>
+    </div>
+    <div class="panel-body">
+        <div class="usercontent"><?php echo $pun_config['o_rules_message'] ?></div>
+    </div>
 </div>
 <?php
 
