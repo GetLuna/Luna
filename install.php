@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '2.0-beta.3-dev.2');
+define('FORUM_VERSION', '2.0-beta.3');
 
-define('FORUM_DB_REVISION', 26);
+define('FORUM_DB_REVISION', 28);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 4);
 
@@ -1289,6 +1289,66 @@ else
 
 	$db->create_table('topics', $schema) or error('Unable to create topics table', __FILE__, __LINE__, $db->error());
 
+	$schema = array(
+		'FIELDS' => array(
+			'conf_name' => array(
+				'datatype' => 'VARCHAR(40)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'conf_value' => array(
+				'datatype' => 'VARCHAR(40)',
+				'allow_null' => false,
+				'default' => '\'\''
+			)
+		),
+		'PRIMARY KEY' => array('conf_name')
+	);
+
+	$db->create_table('toolbar_conf', $schema) or error('Unable to create toolbar_conf table', __FILE__, __LINE__, $db->error());
+	
+	$schema = array(
+		'FIELDS' => array(
+			'name' => array(
+				'datatype' => 'VARCHAR(20)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'code' => array(
+				'datatype' => 'VARCHAR(20)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'enable_form' => array(
+				'datatype' => 'TINYINT(1)',
+				'allow_null' => false,
+				'default' => '0'
+			),
+			'enable_quick' => array(
+				'datatype' => 'TINYINT(1)',
+				'allow_null' => false,
+				'default' => '0'
+			),
+			'image' => array(
+				'datatype' => 'VARCHAR(40)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'func' => array(
+				'datatype' => 'TINYINT(1)',
+				'allow_null' => false,
+				'default' => '0'
+			),
+			'position' => array(
+				'datatype' => 'TINYINT(2) UNSIGNED',
+				'allow_null' => false,
+				'default' => '1'
+			)
+		),
+		'PRIMARY KEY' => array('name')
+	);
+	
+	$db->create_table('toolbar_tags', $schema) or error('Unable to create toolbar_tags table', __FILE__, __LINE__, $db->error());
 
 	$schema = array(
 		'FIELDS'		=> array(
@@ -1607,6 +1667,50 @@ else
 		$db->query('INSERT INTO '.$db_prefix.'config (conf_name, conf_value) VALUES(\''.$conf_name.'\', '.(is_null($conf_value) ? 'NULL' : '\''.$db->escape($conf_value).'\'').')')
 			or error('Unable to insert into table '.$db_prefix.'config. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	}
+	
+	$config = array(
+		'enable_form'		=>	'1',
+		'enable_quickform'	=>	'0',
+		'img_pack'		=>	'smooth',
+		'nb_smilies'		=>	'12',
+		'pop_up_width'		=>	'240',
+		'pop_up_height'		=>	'200',
+		'button_size'		=>	'4096',
+		'button_width'		=>	'32',
+		'button_height'		=>	'32'
+	);
+	
+	while (list($conf_name, $conf_value) = @each($config))
+		$db->query('INSERT INTO '.$db->prefix.'toolbar_conf (conf_name, conf_value) VALUES(\''.$db->escape($conf_name).'\', \''.$db->escape($conf_value).'\')') or error('Unable to insert in toolbar_conf table', __FILE__, __LINE__, $db->error());
+		
+	$tags = array(
+		"'smilies', '', '1', '1', 'bt_smilies.png', '0', '0'",
+		"'bold', 'b', '1', '1', 'bt_bold.png', '0', '1'",
+		"'italic', 'i', '1', '1', 'bt_italic.png', '0', '2'",
+		"'underline', 'u', '1', '1', 'bt_underline.png', '0', '3'",
+		"'strike', 's', '1', '1', 'bt_strike.png', '0', '4'",
+		"'sup', 'sup', '1', '0', 'bt_sup.png', '0', '5'",
+		"'sub', 'sub', '1', '0', 'bt_sub.png', '0', '6'",
+		"'heading', 'h', '1', '1', 'bt_size_plus.png', '0', '7'",
+		"'left', 'left', '1', '0', 'bt_align_left.png', '0', '8'",
+		"'right', 'right', '1', '0', 'bt_align_right.png', '0', '9'",
+		"'center', 'center', '1', '0', 'bt_align_center.png', '0', '10'",
+		"'justify', 'justify', '1', '0', 'bt_align_justify.png', '0', '11'",
+		"'color', 'color', '1', '1', 'bt_color.png', '0', '12'",
+		"'q', 'q', '1', '0', 'bt_quote.png', '0', '13'",
+		"'acronym', 'acronym', '1', '0', 'bt_acronym.png', '1', '14'",
+		"'img', 'img', '1', '1', 'bt_img.png', '2', '15'",
+		"'code', 'code', '1', '1', 'bt_pre.png', '0', '16'",
+		"'quote', 'quote', '1', '1', 'bt_bquote.png', '1', '17'",
+		"'link', 'url', '1', '1', 'bt_link.png', '2', '18'",
+		"'email', 'email', '1', '1', 'bt_email.png', '2', '19'",
+		"'video', 'video', '1', '0', 'bt_video.png', '3', '20'",
+		"'li', '*', '1', '1', 'bt_li.png', '0', '21'",
+		"'list', 'list', '1', '1', 'bt_ul.png', '1', '22'"
+	);
+	
+	foreach ($tags as $tag)
+		$db->query('INSERT INTO '.$db->prefix.'toolbar_tags (name, code, enable_form, enable_quick, image, func, position) VALUES ('.$tag.')') or error('Unable to insert in toolbar_tags table', __FILE__, __LINE__, $db->error());
 
 	// Insert some other default data
 	$subject = $lang_install['Test post'];
