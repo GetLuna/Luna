@@ -30,7 +30,7 @@ require FORUM_ROOT.'backstage/header.php';
 //Update checking
 $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
 if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
-	<div class="alert alert-update">
+	<div class="alert alert-warning">
 		<h4><?php echo sprintf($lang_back['Available'], $latest_version) ?></h4>
 		<div class="btn-group">
 			<a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_back['Download'], $latest_version) ?></a>
@@ -39,7 +39,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
 		<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang_back['Download'], FORUM_VERSION) ?></a>
 	</div>
 <?php } else { ?>
-	<div class="alert alert-update alert-info">
+	<div class="alert alert-info">
 		<h4><?php echo $lang_back['ModernBB intro'] ?> <?php echo FORUM_VERSION ?></h4>
 		<div class="btn-group">
 			<a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang_back['Changelog'] ?></a>
@@ -137,6 +137,20 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
                             <br /><?php echo $lang_back['Second feature 6 info'] ?></p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_back['Second feature 7 head'] ?>.</b>
+                            <br /><?php echo $lang_back['Second feature 7 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_back['Second feature 8 head'] ?></b>
+                            <br /><?php echo $lang_back['Second feature 8 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_back['Second feature 9 head'] ?></b>
+                            <br /><?php echo $lang_back['Second feature 9 info'] ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,7 +178,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <p><b><?php echo $lang_back['Minor feature 4 head'] ?>.</b>
+                            <p><b><?php echo $lang_back['Minor feature 4 head'] ?></b>
                             <br /><?php echo $lang_back['Minor feature 4 info'] ?></p>
                         </div>
                         <div class="col-md-4">
@@ -174,6 +188,20 @@ if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
                         <div class="col-md-4">
                             <p><b><?php echo $lang_back['Minor feature 6 head'] ?></b>
                             <br /><?php echo $lang_back['Minor feature 6 info'] ?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_back['Minor feature 7 head'] ?></b>
+                            <br /><?php echo $lang_back['Minor feature 7 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_back['Minor feature 8 head'] ?></b>
+                            <br /><?php echo $lang_back['Minor feature 8 info'] ?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b><?php echo $lang_back['Minor feature 9 head'] ?></b>
+                            <br /><?php echo $lang_back['Minor feature 9 info'] ?></p>
                         </div>
                     </div>
                 </div>
