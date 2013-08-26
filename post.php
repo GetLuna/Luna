@@ -614,7 +614,17 @@ if ($pun_user['is_guest'])
 if ($fid): ?>
                 <label class="required"><strong><?php echo $lang_common['Subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input class="longinput form-control full-form" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" /></label>
 <?php endif; ?>			<label class="required"><strong><?php echo $lang_common['Message'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-                        <textarea class="form-control full-form" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea></label>
+                        <textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea></label>
+<?php
+if (file_exists(FORUM_CACHE_DIR.'cache_fluxtoolbar_form.php'))
+	include FORUM_CACHE_DIR.'cache_fluxtoolbar_form.php';
+else
+{
+	require_once FORUM_ROOT.'include/cache_fluxtoolbar.php';
+	generate_ftb_cache('form');
+	require FORUM_CACHE_DIR.'cache_fluxtoolbar_form.php';
+}
+?>
                 <ul class="bblinks">
                     <li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
                     <li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang_common['img tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
