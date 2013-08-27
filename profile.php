@@ -1009,7 +1009,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
 		$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
 	else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-		$email_field = '<a href="misc.php?email='.$id.'">'.$lang_common['Send email'].'</a>';
+		$email_field = '<a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang_common['Send email'].'</a>';
 	else
 		$email_field = '';
 	if ($email_field != '')
@@ -1149,7 +1149,7 @@ else
 			else
 				$username_field = '<p>'.sprintf($lang_front['Username info'], pun_htmlspecialchars($user['username'])).'</p>'."\n";
 
-			$email_field = '<label class="required"><strong>'.$lang_common['Email'].' <span>'.$lang_common['Required'].'</span></strong><br /><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a href="misc.php?email='.$id.'">'.$lang_common['Send email'].'</a></span></p>'."\n";
+			$email_field = '<label class="required"><strong>'.$lang_common['Email'].' <span>'.$lang_common['Required'].'</span></strong><br /><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang_common['Send email'].'</a></span></p>'."\n";
 		}
 		else
 		{
@@ -1165,7 +1165,7 @@ else
 		$posts_actions = array();
 
 		if ($pun_user['g_id'] == FORUM_ADMIN)
-			$posts_field .= '<label>'.$lang_common['Posts'].'<br /><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></label>';
+			$posts_field .= '<label>'.$lang_common['Posts'].'<br /><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></label><br />';
 		else if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
 			$posts_actions[] = sprintf($lang_front['Posts info'], forum_number_format($user['num_posts']));
 
@@ -1200,8 +1200,9 @@ else
                 <fieldset>
                     <input type="hidden" name="form_sent" value="1" />
                     <?php echo $username_field ?>
-        <?php if ($pun_user['id'] == $id || $pun_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>							<p class="actions"><span><a href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang_front['Change pass'] ?></a></span></p>
-        <?php endif; ?>
+					<?php if ($pun_user['id'] == $id || $pun_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>
+                        <p><a class="btn btn-primary btn-small" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang_front['Change pass'] ?></a></p>
+                    <?php endif; ?>
                 </fieldset>
             </div>
         </div>
@@ -1637,7 +1638,7 @@ if (count($languages) > 1)
 	if ($user['email_setting'] == '0' && !$pun_user['is_guest'])
 		$email_field = '<a href="mailto:'.$user['email'].'">'.$user['email'].'</a>';
 	else if ($user['email_setting'] == '1' && !$pun_user['is_guest'])
-		$email_field = '<a href="misc.php?email='.$id.'">'.$lang_common['Send email'].'</a>';
+		$email_field = '<a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang_common['Send email'].'</a>';
 	else
 		$email_field = $lang_front['Private'];
 
