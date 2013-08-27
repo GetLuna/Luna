@@ -1,30 +1,26 @@
 <?php
-/***********************************************************************
 
-  Copyright (C) 2010-2011 Mpok
-  based on code Copyright (C) 2005 Vincent Garnier
-  License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
+ * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
 
-************************************************************************/
+// Tell header.php to use the admin template
+define('FORUM_ADMIN_CONSOLE', 1);
 
-// Make sure no one attempts to run this script "directly"
-if (!defined('FORUM'))
-	exit;
+define('FORUM_ROOT', '../');
+require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/common_admin.php';
 
-// Tell admin_loader.php that this is indeed a plugin and that it is loaded
-define('FORUM_PLUGIN_LOADED', 1);
-define('PLUGIN_VERSION', '2.1.1');
-define('PLUGIN_URL', $_SERVER['REQUEST_URI']);
+if (!$pun_user['is_admmod']) {
+    header("Location: login.php");
+}
 
-// Load the puntoolbar language files
-if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar.php'))
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar.php';
-else
-	require FORUM_ROOT.'lang/English/fluxtoolbar.php';
-if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar_admin.php'))
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar_admin.php';
-else
-	require FORUM_ROOT.'lang/English/fluxtoolbar_admin.php';
+// Load the backstage.php language file
+require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+require FORUM_ROOT.'lang/'.$admin_language.'/common.php';
 
 // Retrieve configuration
 $ftb_conf = array();
@@ -67,7 +63,7 @@ function re_generate($mode)
 if (isset($_POST['regenerate']))
 {
 	re_generate('all');
-	redirect(PLUGIN_URL, $lang_ftb_admin['cache_updated']);
+	redirect('backstage/toolbar.php', $lang_back['cache_updated']);
 }
 
 // General settings modification
@@ -83,7 +79,7 @@ else if (isset($_POST['form_conf']))
 		{
 			// Checking input (basically for numeric values)
 			if ($key != 'img_pack' && !is_numeric($input))
-				message($lang_ftb_admin['not_numeric'].$key);
+				message($lang_back['not_numeric'].$key);
 
 			$db->query('UPDATE '.$db->prefix.'toolbar_conf SET conf_value=\''.$db->escape($input).'\' WHERE conf_name=\''.$db->escape($key).'\'') or error('Unable to update general settings', __FILE__, __LINE__, $db->error());
 			$done = true;
@@ -94,10 +90,10 @@ else if (isset($_POST['form_conf']))
 	if ($done)
 	{
 		re_generate('forms');
-		redirect(PLUGIN_URL, $lang_ftb_admin['success']);
+		redirect('backstage/toolbar.php', $lang_back['success']);
 	}
 	else
-		redirect(PLUGIN_URL, $lang_ftb_admin['no_change']);
+		redirect('backstage/toolbar.php', $lang_back['no_change']);
 }
 
 // Buttons positions modifications and form settings, or tags to edit or delete
@@ -118,7 +114,7 @@ else if (isset($_POST['form_button']))
 		{
 			// Check new position
 			if ($pos[$button['name']] < 1 && $button['name'] != 'smilies')
-				message($lang_ftb_admin['incorrect_pos'].$pos[$button['name']]);
+				message($lang_back['incorrect_pos'].$pos[$button['name']]);
 
 			// Check modification
 			if ($c_form[$button['name']] != $button['enable_form'] || $q_form[$button['name']] != $button['enable_quick'] || $pos[$button['name']] != $button['position'])
@@ -131,29 +127,29 @@ else if (isset($_POST['form_button']))
 			foreach ($modified as $name => $arr)
 				$db->query('UPDATE '.$db->prefix.'toolbar_tags SET enable_form='.$arr[0].', enable_quick='.$arr[1].', position='.$arr[2].' WHERE name=\''.$db->escape($name).'\'') or error('Unable to update button', __FILE__, __LINE__, $db->error());
 			re_generate('forms');
-			redirect(PLUGIN_URL, $lang_ftb_admin['success_updated']);
+			redirect('backstage/toolbar.php', $lang_back['success_updated']);
 		}
 		else
-			redirect(PLUGIN_URL, $lang_ftb_admin['no_change']);
+			redirect('backstage/toolbar.php', $lang_back['no_change']);
 	}
 
 	else
 	{
 		if (empty($_POST['name']))
-			message($lang_ftb_admin['no_tags']);
+			message($lang_back['no_tags']);
 		$tags = array_map('trim', $_POST['name']);
 
 		// Delete selected tags/buttons
 		if (isset($_POST['delete_tag']))
 		{
-			$desc = $lang_ftb_admin['deleting'];
+			$desc = $lang_back['deleting'];
 			$action = 'delete';
 		}
 
 		// Modify selected tags/buttons
 		else if (isset($_POST['edit_tag']))
 		{
-			$desc = $lang_ftb_admin['editing'];
+			$desc = $lang_back['editing'];
 			$action = 'save';
 		}
 
@@ -165,20 +161,20 @@ else if (isset($_POST['form_button']))
 ?>
 <h2>Toolbar settings</h2>
 <div class="blockform">
-	<h2 class="block2"><span><?php echo $lang_ftb_admin['tag_conf'] ?></span></h2>
+	<h2 class="block2"><span><?php echo $lang_back['tag_conf'] ?></span></h2>
 	<div class="box">
-		<form action="<?php echo PLUGIN_URL ?>" method="post">
+		<form action="toolbar.php" method="post">
 			<div class="inform">
 				<input type="hidden" name="edit_delete" value="1" />
 				<fieldset>
-					<legend><?php echo ($action == 'delete') ? $lang_ftb_admin['tags_deleting'] : $lang_ftb_admin['tags_editing'] ?></legend>
+					<legend><?php echo ($action == 'delete') ? $lang_back['tags_deleting'] : $lang_back['tags_editing'] ?></legend>
 					<div class="infldset">
 						<table class="table">
 							<thead><tr>
-								<th scope="col" style="width: 25%"><?php echo $lang_ftb_admin['name'] ?></th>
-								<th scope="col" colspan="2" style="width: 35%"><?php echo $lang_ftb_admin['image'] ?></th>
-								<th scope="col" style="width: 25%"><?php echo $lang_ftb_admin['code'] ?></th>
-								<th scope="col" style="width: 15%"><?php echo $lang_ftb_admin['function'] ?></th>
+								<th scope="col" style="width: 25%"><?php echo $lang_back['name'] ?></th>
+								<th scope="col" colspan="2" style="width: 35%"><?php echo $lang_back['image'] ?></th>
+								<th scope="col" style="width: 25%"><?php echo $lang_back['code'] ?></th>
+								<th scope="col" style="width: 15%"><?php echo $lang_back['function'] ?></th>
 							</tr></thead>
 							<tbody>
 <?php
@@ -193,7 +189,7 @@ else if (isset($_POST['form_button']))
 				echo "\t\t\t\t\t\t\t\t\t".'<td><input type="hidden" name="name['.pun_htmlspecialchars($button['name']).']" value="1" />'.pun_htmlspecialchars($button['name']).'</td>'."\n";
 			else
 				echo "\t\t\t\t\t\t\t\t\t".'<td><input type="text" size="10" maxlength="20" name="name['.pun_htmlspecialchars($button['name']).']" value="'.pun_htmlspecialchars($button['name']).'" /></td>'."\n";
-			echo "\t\t\t\t\t\t\t\t\t".'<td><img src="img/toolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_ftb['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
+			echo "\t\t\t\t\t\t\t\t\t".'<td><img src="img/toolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_common['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
 			if ($action == 'delete')
 			{
 				echo "\t\t\t\t\t\t\t\t\t".'<td>'.pun_htmlspecialchars($button['image']).'</td>'."\n";
@@ -228,10 +224,10 @@ else if (isset($_POST['form_button']))
 							</tbody>
 						</table>
 					</div>
-					<p><strong><?php echo $lang_ftb_admin['edit_info'] ?></strong></p>
+					<p><strong><?php echo $lang_back['edit_info'] ?></strong></p>
 				</fieldset>
 			</div>
-			<p class="submitend"><input type="submit" name="<?php echo $action ?>" value="<?php echo $lang_ftb_admin[$action] ?>" /></p>
+			<p class="submitend"><input type="submit" name="<?php echo $action ?>" value="<?php echo $lang_back[$action] ?>" /></p>
 		</form>
 	</div>
 </div>
@@ -243,7 +239,7 @@ else if (isset($_POST['form_button']))
 else if (isset($_POST['edit_delete']))
 {
 	if (empty($_POST['name']))
-		message($lang_ftb_admin['no_tags']);
+		message($lang_back['no_tags']);
 	$tags = array_map('trim', $_POST['name']);
 
 	// Delete selected tags/buttons
@@ -251,7 +247,7 @@ else if (isset($_POST['edit_delete']))
 	{
 		$db->query('DELETE FROM '.$db->prefix.'toolbar_tags WHERE name IN (\''.implode(array_keys($_POST['name']), "', '").'\')') or error('Unable to delete tags', __FILE__, __LINE__, $db->error());
 		re_generate('all');
-		redirect(PLUGIN_URL, $lang_ftb_admin['success_deleted']);
+		redirect('backstage/toolbar.php', $lang_back['success_deleted']);
 	}
 
 	// Modify selected tags/buttons
@@ -293,9 +289,9 @@ else if (isset($_POST['edit_delete']))
 		else if ($edited)
 		{
 			re_generate('all');
-			redirect(PLUGIN_URL, $lang_ftb_admin['success_edited']);
+			redirect('backstage/toolbar.php', $lang_back['success_edited']);
 		}
-		header('Location: '.PLUGIN_URL);
+		header('Location: '.toolbar.php);
 		exit;
 	}
 
@@ -307,32 +303,37 @@ else if (isset($_POST['edit_delete']))
 else
 {
 	// Display the admin navigation menu
-	generate_admin_menu($plugin);
+
+
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Toolbar']);
+define('FORUM_ACTIVE_PAGE', 'admin');
+require FORUM_ROOT.'backstage/header.php';
+	generate_admin_menu('toolbar');
 ?>
 <h2>Toolbar settings</h2>
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_ftb_admin['glob_conf'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['glob_conf'] ?></h3>
     </div>
     <div class="panel-body">
-		<form action="<?php echo PLUGIN_URL ?>" method="post">
+		<form action="toolbar.php" method="post">
             <input type="hidden" name="form_conf" value="1" />
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th><?php echo $lang_ftb_admin['enable_form'] ?></th>
-                        <td><input type="radio" name="form[enable_form]" value="1"<?php if ($ftb_conf['enable_form'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_form]" value="0"<?php if ($ftb_conf['enable_form'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['no'] ?></strong>
-                            <span class="help-block"><?php echo $lang_ftb_admin['enable_form_infos'] ?></span>
+                        <th><?php echo $lang_back['enable_form'] ?></th>
+                        <td><input type="radio" name="form[enable_form]" value="1"<?php if ($ftb_conf['enable_form'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_back['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_form]" value="0"<?php if ($ftb_conf['enable_form'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_back['no'] ?></strong>
+                            <span class="help-block"><?php echo $lang_back['enable_form_infos'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_ftb_admin['enable_quickform'] ?></th>
-                        <td><input type="radio" name="form[enable_quickform]" value="1"<?php if ($ftb_conf['enable_quickform'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_quickform]" value="0"<?php if ($ftb_conf['enable_quickform'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['no'] ?></strong>
-                            <span class="help-block"><?php echo $lang_ftb_admin['enable_quickform_infos'] ?></span>
+                        <th><?php echo $lang_back['enable_quickform'] ?></th>
+                        <td><input type="radio" name="form[enable_quickform]" value="1"<?php if ($ftb_conf['enable_quickform'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_back['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_quickform]" value="0"<?php if ($ftb_conf['enable_quickform'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_back['no'] ?></strong>
+                            <span class="help-block"><?php echo $lang_back['enable_quickform_infos'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_ftb_admin['images_pack'] ?></th>
+                        <th><?php echo $lang_back['images_pack'] ?></th>
                         <td><select class="form-control" name="form[img_pack]">
 <?php
 	$packs = array();
@@ -354,12 +355,12 @@ else
 	}
 ?>
                         </select>
-                        <br /><span class="help-block"><?php echo $lang_ftb_admin['images_pack_infos'] ?></span></td>
+                        <br /><span class="help-block"><?php echo $lang_back['images_pack_infos'] ?></span></td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_ftb_admin['nb_smilies'] ?></th>
+                        <th><?php echo $lang_back['nb_smilies'] ?></th>
                         <td><input type="text" class="form-control" name="form[nb_smilies]" size="3" maxlength="3" value="<?php echo $ftb_conf['nb_smilies'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_ftb_admin['nb_smilies_info'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['nb_smilies_info'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -370,19 +371,19 @@ else
 </div>
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_ftb_admin['button_conf'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['button_conf'] ?></h3>
     </div>
     <div class="panel-body">
-		<form action="<?php echo PLUGIN_URL ?>" method="post">
+		<form action="toolbar.php" method="post">
             <input type="hidden" name="form_button" value="1" />
             <fieldset>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 6em"><?php echo $lang_ftb_admin['position'] ?></th>
-                            <th scope="col" style="width: 6em"><?php echo $lang_ftb_admin['button'] ?></th>
-                            <th scope="col"><?php echo $lang_ftb_admin['classic_form'] ?></th>
-                            <th scope="col"><?php echo $lang_ftb_admin['quickreply_form'] ?></th>
+                            <th scope="col" style="width: 6em"><?php echo $lang_back['position'] ?></th>
+                            <th scope="col" style="width: 6em"><?php echo $lang_back['button'] ?></th>
+                            <th scope="col"><?php echo $lang_back['classic_form'] ?></th>
+                            <th scope="col"><?php echo $lang_back['quickreply_form'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -399,30 +400,32 @@ else
 			echo '<input type="text" class="form-control" name="pos['.pun_htmlspecialchars($button['name']).']" value="'.$button['position'].'" size="3" maxlength="3" /></td>'."\n";
 		else
 			echo '&nbsp;</td>'."\n";
-		echo "\t\t\t\t\t\t\t\t\t".'<td><img src="../img/toolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_ftb['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
+		echo "\t\t\t\t\t\t\t\t\t".'<td><img src="../img/toolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_common['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
 		echo "\t\t\t\t\t\t\t\t\t".'<td><input type="radio" name="c_form['.pun_htmlspecialchars($button['name']).']" value="1"';
 		if ($button['enable_form'] == 1)
 			echo ' checked="checked"';
-		echo ' />&nbsp;<strong>'.$lang_ftb_admin['yes'].'</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="c_form['.pun_htmlspecialchars($button['name']).']" value="0"';
+		echo ' />&nbsp;<strong>'.$lang_back['yes'].'</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="c_form['.pun_htmlspecialchars($button['name']).']" value="0"';
 		if ($button['enable_form'] == 0)
 			echo ' checked="checked"';
-		echo ' />&nbsp;<strong>'.$lang_ftb_admin['no'].'</strong></td>'."\n";
+		echo ' />&nbsp;<strong>'.$lang_back['no'].'</strong></td>'."\n";
 		echo "\t\t\t\t\t\t\t\t\t".'<td><input type="radio" name="q_form['.pun_htmlspecialchars($button['name']).']" value="1"';
 		if ($button['enable_quick'] == 1)
 			echo ' checked="checked"';
-		echo ' />&nbsp;<strong>'.$lang_ftb_admin['yes'].'</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="q_form['.pun_htmlspecialchars($button['name']).']" value="0"';
+		echo ' />&nbsp;<strong>'.$lang_back['yes'].'</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="q_form['.pun_htmlspecialchars($button['name']).']" value="0"';
 		if ($button['enable_quick'] == 0)
 			echo ' checked="checked"';
-		echo ' />&nbsp;<strong>'.$lang_ftb_admin['no'].'</strong></td>'."\n";
+		echo ' />&nbsp;<strong>'.$lang_back['no'].'</strong></td>'."\n";
 		echo "\t\t\t\t\t\t\t\t".'</tr>'."\n";
 	}
 ?>
                     </tbody>
                 </table>
             </fieldset>
-            <input type="submit" class="btn btn-primary" name="edit_pos" value="<?php echo $lang_ftb_admin['update_pos'] ?>" />
+            <input type="submit" class="btn btn-primary" name="edit_pos" value="<?php echo $lang_back['update_pos'] ?>" />
 		</form>
 	</div>
 </div>
 <?php
 }
+
+require FORUM_ROOT.'backstage/footer.php';

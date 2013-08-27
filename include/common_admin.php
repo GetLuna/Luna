@@ -57,7 +57,7 @@ function generate_admin_menu($page = '')
                     <li><a href="bans.php"><?php echo $lang_back['Bans'] ?></a></li>
                 </ul>
             </li>
-            <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'email' || $page == 'maintenance') echo 'active'; ?>">
+            <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'toolbar' || $page == 'email' || $page == 'maintenance') echo 'active'; ?>">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <?php echo $lang_back['Settings'] ?> <b class="caret"></b>
                 </a>
@@ -65,6 +65,7 @@ function generate_admin_menu($page = '')
                     <li><a href="options.php"><?php echo $lang_back['Global'] ?></a></li>
                     <li><a href="display.php"><?php echo $lang_back['Display'] ?></a></li>
                     <li><a href="features.php"><?php echo $lang_back['Features'] ?></a></li>
+                    <li><a href="toolbar.php"><?php echo $lang_back['Toolbar'] ?></a></li>
                     <li><a href="email.php"><?php echo $lang_back['Email'] ?></a></li>
                     <li><a href="maintenance.php"><?php echo $lang_back['Maintenance'] ?></a></li>
                     <li><a href="database.php"><?php echo $lang_back['Database'] ?></a></li>

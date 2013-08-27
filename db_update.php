@@ -595,7 +595,7 @@ switch ($stage)
 			$config = array(
 				'enable_form'		=>	'1',
 				'enable_quickform'	=>	'0',
-				'img_pack'			=>	'smooth',
+				'img_pack'			=>	'Default',
 				'nb_smilies'		=>	'12',
 				'pop_up_width'		=>	'240',
 				'pop_up_height'		=>	'200',

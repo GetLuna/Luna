@@ -13,10 +13,7 @@ require FORUM_ROOT.'include/common.php';
 if ($pun_user['g_read_board'] == '0')
 	message($lang_common['No view']);
 
-if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar.php'))
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar.php';
-else
-	require FORUM_ROOT.'lang/English/fluxtoolbar.php';
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/common.php';
 
 if ($pun_config['o_smilies'] == '1')
 {
