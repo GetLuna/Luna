@@ -55,8 +55,8 @@ function generate_ftb_cache($form = 'form')
 			$output_search .= '$text = preg_replace(\'%\[/?('.implode($tags, '|').')(?:\=[^\]]*)?\]%\', \' \', $text);'."\n";
 		}
 
-		write_cache('cache_fluxtoolbar_tag_check.php', $output_check);
-		write_cache('cache_fluxtoolbar_tag_search.php', $output_search);
+		write_cache('cache_toolbar_tag_check.php', $output_check);
+		write_cache('cache_toolbar_tag_search.php', $output_search);
 		return;
 	}
 
@@ -69,7 +69,7 @@ function generate_ftb_cache($form = 'form')
 	// Checking if toolbar enabled
 	if ($form == 'quickform')
 	{
-		$cache_file = 'cache_fluxtoolbar_quickform.php';
+		$cache_file = 'cache_toolbar_quickform.php';
 		if (!$ftb_conf['enable_quickform'])
 		{
 			write_cache($cache_file, $output);
@@ -78,7 +78,7 @@ function generate_ftb_cache($form = 'form')
 	}
 	else
 	{
-		$cache_file = 'cache_fluxtoolbar_form.php';
+		$cache_file = 'cache_toolbar_form.php';
 		if (!$ftb_conf['enable_form'])
 		{
 			write_cache($cache_file, $output);
@@ -102,7 +102,7 @@ function generate_ftb_cache($form = 'form')
 		'<script type="text/javascript">'."\n".
 		'/* <![CDATA[ */'."\n";
 	$output .= 
-		"\t".'var tb = new toolBar(document.getElementById(\'req_message\'), \'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/\', \'img/smilies/\');'."\n";
+		"\t".'var tb = new toolBar(document.getElementById(\'req_message\'), \'img/toolbar/'.$ftb_conf['img_pack'].'/\', \'img/smilies/\');'."\n";
 
 	// Retrieve buttons
 	$do_smilies = false;

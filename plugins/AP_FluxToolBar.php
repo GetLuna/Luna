@@ -34,7 +34,7 @@ while ($conf = $db->fetch_assoc($result))
 
 // Retrieve image files
 $images = array();
-$d = dir(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack']);
+$d = dir(FORUM_ROOT.'img/toolbar/'.$ftb_conf['img_pack']);
 while (($entry = $d->read()) !== false)
 {
 	 if ($entry != '.' && $entry != '..' && $entry != 'index.html')
@@ -53,7 +53,7 @@ $toolbar_tags = array('sup', 'sub', 'left', 'right', 'center', 'justify', 'q', '
 // Regenerate cache function
 function re_generate($mode)
 {
-	require_once FORUM_ROOT.'include/cache_fluxtoolbar.php';
+	require_once FORUM_ROOT.'include/cache_toolbar.php';
 	if ($mode == 'tags' || $mode == 'all')
 		generate_ftb_cache('tags');
 	if ($mode == 'forms' || $mode == 'all')
@@ -61,71 +61,6 @@ function re_generate($mode)
 		generate_ftb_cache('form');
 		generate_ftb_cache('quickform');
 	}
-}
-
-// Validation function for tag
-function validate_tag($t, $mode, $name = '')
-{
-	global $db, $errors, $ftb_conf, $lang_common, $lang_ftb_admin;
-
-	// Checking mode - not very useful :)
-	if ($mode != 'edit' && $mode != 'create')
-		message($lang_common['Bad request']);
-
-	// Checking empty param
-	if ($t['name'] == '' || $t['code'] == '' || $t['image'] == '')
-	{
-		$errors[] = $lang_ftb_admin['missing_param'];
-		return false;
-	}
-
-	// Checking name already used
-	if ($mode == 'create' || ($mode == 'edit' && $name != $t['name']))
-	{
-		$res = $db->query('SELECT 1 FROM '.$db->prefix.'toolbar_tags WHERE name=\''.$db->escape($t['name']).'\'') or error('Unable to retrieve tag name', __FILE__, __LINE__, $db->error());
-		if ($db->num_rows($res))
-			$errors[] = $lang_ftb_admin['name_used'].$t['name'];
-	}
-
-	// Checking incorrect characters for name
-	if (preg_match('%[^a-zA-Z0-9\-_]%', $t['name']))
-		$errors[] = $lang_ftb_admin['incorrect_name'];
-
-	// Retrieve old tag for edit
-	if ($mode == 'edit')
-	{
-		$res = $db->query('SELECT name, code, image, func FROM '.$db->prefix.'toolbar_tags WHERE name=\''.$db->escape($name).'\'') or error('Unable to retrieve tag', __FILE__, __LINE__, $db->error());
-		$old = $db->fetch_assoc($res);
-	}
-	else
-		$old = array('name' => '', 'code' => '', 'image' => '', 'func' => 0);
-
-	// Checking code already used
-	$res = $db->query('SELECT 1 FROM '.$db->prefix.'toolbar_tags WHERE name!=\''.$db->escape($old['name']).'\' AND code!=\''.$db->escape($old['code']).'\' AND code=\''.$db->escape($t['code']).'\'') or error('Unable to retrieve tag name', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($res))
-		$errors[] = $lang_ftb_admin['code_used'].$t['code'];
-
-	// Checking incorrect characters for code
-	if (preg_match('%[^a-zA-Z0-9]%', $t['code']))
-		$errors[] = $lang_ftb_admin['incorrect_code'];
-
-	// Checking image - should not be triggered (cause <select>)
-	if ($t['image'] != $old['image'] && !file_exists(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$t['image']))
-		$errors[] = $lang_ftb_admin['incorrect_image'].$t['image'];
-
-	// Checking func - should not be triggered (cause <select>)
-	if ($t['func'] != $old['func'] && ($t['func'] < 0 || $t['func'] > 3))
-		$errors[] = $lang_ftb_admin['incorrect_func'].$t['func'];
-
-	// Checking position
-	if (isset($t['position']) && $t['position'] < 1)
-		$errors[] = $lang_ftb_admin['incorrect_pos'].$t['position'];
-
-	// Return false if errors or no edit
-	if (!empty($errors) || ($old['name'] == $t['name'] && $old['code'] == $t['code'] && $old['image'] == $t['image'] && $old['func'] == $t['func']))
-		return false;
-	else
-		return true;
 }
 
 // Regenerate cache
@@ -228,14 +163,7 @@ else if (isset($_POST['form_button']))
 		// Display the admin navigation menu
 		generate_admin_menu($plugin);
 ?>
-<div class="block">
-	<h2><span>FluxToolBar v.<?php echo PLUGIN_VERSION ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<p><?php echo $desc ?></p>
-		</div>
-	</div>
-</div>
+<h2>Toolbar settings</h2>
 <div class="blockform">
 	<h2 class="block2"><span><?php echo $lang_ftb_admin['tag_conf'] ?></span></h2>
 	<div class="box">
@@ -245,7 +173,7 @@ else if (isset($_POST['form_button']))
 				<fieldset>
 					<legend><?php echo ($action == 'delete') ? $lang_ftb_admin['tags_deleting'] : $lang_ftb_admin['tags_editing'] ?></legend>
 					<div class="infldset">
-						<table class="aligntop" cellspacing="0">
+						<table class="table">
 							<thead><tr>
 								<th scope="col" style="width: 25%"><?php echo $lang_ftb_admin['name'] ?></th>
 								<th scope="col" colspan="2" style="width: 35%"><?php echo $lang_ftb_admin['image'] ?></th>
@@ -265,7 +193,7 @@ else if (isset($_POST['form_button']))
 				echo "\t\t\t\t\t\t\t\t\t".'<td><input type="hidden" name="name['.pun_htmlspecialchars($button['name']).']" value="1" />'.pun_htmlspecialchars($button['name']).'</td>'."\n";
 			else
 				echo "\t\t\t\t\t\t\t\t\t".'<td><input type="text" size="10" maxlength="20" name="name['.pun_htmlspecialchars($button['name']).']" value="'.pun_htmlspecialchars($button['name']).'" /></td>'."\n";
-			echo "\t\t\t\t\t\t\t\t\t".'<td><img src="img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_ftb['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
+			echo "\t\t\t\t\t\t\t\t\t".'<td><img src="img/toolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_ftb['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
 			if ($action == 'delete')
 			{
 				echo "\t\t\t\t\t\t\t\t\t".'<td>'.pun_htmlspecialchars($button['image']).'</td>'."\n";
@@ -375,335 +303,43 @@ else if (isset($_POST['edit_delete']))
 		message($lang_common['Bad request']);
 }
 
-// Tag created
-else if (isset($_POST['create']))
-{
-	$form = array_map('trim', $_POST['form']);
-	$form['func'] = intval($form['func']);
-	$form['position'] = intval($form['position']);
-
-	// Validate and insert tag
-	if (validate_tag($form, 'create'))
-	{
-		$db->query('INSERT INTO '.$db->prefix.'toolbar_tags (name, code, enable_form, enable_quick, image, func, position) VALUES(\''.$db->escape($form['name']).'\', \''.$db->escape($form['code']).'\', 0, 0, \''.$db->escape($form['image']).'\', '.$form['func'].', '.$form['position'].')') or error('Unable to insert new tag', __FILE__, __LINE__, $db->error());
-		re_generate('tags');
-		redirect(PLUGIN_URL, $lang_ftb_admin['success_created']);
-	}
-	else
-		message(implode($errors, "<br />\n"));
-}
-
-// Delete images
-else if (isset($_POST['delete_img']))
-{
-	if (empty($_POST['del_images']))
-		message($lang_ftb_admin['no_images']);
-	$del_images = array_map('trim', $_POST['del_images']);
-
-	$to_delete = array();
-	$images_affected = array();
-	$not_deleted = array();
-
-	// Checking if images to delete are used by some buttons
-	$result = $db->query('SELECT image FROM '.$db->prefix.'toolbar_tags') or error('Unable to retrieve images', __FILE__, __LINE__, $db->error());
-	$res = array();
-	while ($img = $db->fetch_assoc($result))
-		$res[] = $img['image'];
-	$button_img = array_unique($res);
-	foreach (array_keys($del_images) as $img)
-	{
-		if (!in_array($img, $button_img))
-			$to_delete[] = $img;
-		else
-			$images_affected[] = $img;
-	}
-
-	if (!empty($images_affected))
-		message(sprintf($lang_ftb_admin['images_affected'], implode(', ', $images_affected)));
-	else
-	{
-		// Delete each image
-		foreach ($to_delete as $img)
-		{
-			if (!@unlink(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$img))
-				$not_deleted[] = $img;
-		}
-	}
-
-	if (!empty($not_deleted))
-		$message = sprintf($lang_ftb_admin['images_not_deleted'], implode(', ', $not_deleted));
-	else
-		$message = $lang_ftb_admin['images_deleted'];
-	redirect(PLUGIN_URL, $message);
-}
-
-// Add image
-else if (isset($_POST['add_image']))
-{
-	if (!isset($_FILES['req_file']))
-		message($lang_ftb_admin['no_file']);
-
-	$uploaded_file = $_FILES['req_file'];
-
-	// Make sure the upload went smooth
-	if (isset($uploaded_file['error']))
-	{
-		switch ($uploaded_file['error'])
-		{
-			case 1:	// UPLOAD_ERR_INI_SIZE
-			case 2:	// UPLOAD_ERR_FORM_SIZE
-				message($lang_ftb_admin['too_large_ini']);
-				break;
-
-			case 3:	// UPLOAD_ERR_PARTIAL
-				message($lang_ftb_admin['partial_upload']);
-				break;
-
-			case 4:	// UPLOAD_ERR_NO_FILE
-				message($lang_ftb_admin['no_file']);
-				break;
-
-			case 6:	// UPLOAD_ERR_NO_TMP_DIR
-				message($lang_ftb_admin['no_tmp_directory']);
-				break;
-
-			default:
-				// No error occured, but was something actually uploaded?
-				if ($uploaded_file['size'] == 0)
-					message($lang_ftb_admin['no_file']);
-				break;
-		}
-	}
-
-	if (is_uploaded_file($uploaded_file['tmp_name']))
-	{
-		$filename = substr($uploaded_file['name'], 0, strpos($uploaded_file['name'], '.'));
-
-		// Check types
-		$allowed_types = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
-		if (!in_array($uploaded_file['type'], $allowed_types))
-			message($lang_ftb_admin['bad_type']);
-
-		// Make sure the file isn't too big
-		if ($uploaded_file['size'] > $ftb_conf['button_size'])
-			message($lang_ftb_admin['too_large'].' '.$ftb_conf['button_size'].' '.$lang_ftb_admin['bytes'].'.');
-
-		// Determine type
-		$extensions = null;
-		if ($uploaded_file['type'] == 'image/gif')
-			$extensions = array('.gif', '.jpg', '.png');
-		else if ($uploaded_file['type'] == 'image/jpeg' || $uploaded_file['type'] == 'image/pjpeg')
-			$extensions = array('.jpg', '.gif', '.png');
-		else
-			$extensions = array('.png', '.gif', '.jpg');
-
-		// Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions.
-		if (!@move_uploaded_file($uploaded_file['tmp_name'], FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.'.tmp'))
-			message($lang_ftb_admin['move_failed']);
-
-		// Now check the width/height
-		list($width, $height, $type,) = getimagesize(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.'.tmp');
-		if (empty($width) || empty($height) || $width > $ftb_conf['button_width'] || $height > $ftb_conf['button_height'])
-		{
-			@unlink(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.'.tmp');
-			message($lang_ftb_admin['too_wide_or_high'].' '.$ftb_conf['button_width'].'x'.$ftb_conf['button_height'].' '.$lang_ftb_admin['pixels'].'.');
-		}
-		else if ($type == 1 && $uploaded_file['type'] != 'image/gif')			// Prevent dodgy uploads
-		{
-			@unlink(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.'.tmp');
-			message($lang_ftb_admin['bad_type']);
-		}
-
-		// Delete any old images and put the new one in place
-		@unlink(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.$extensions[0]);
-		@unlink(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.$extensions[1]);
-		@unlink(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.$extensions[2]);
-		@rename(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.'.tmp', FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.$extensions[0]);
-		@chmod(FORUM_ROOT.'img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.$filename.$extensions[0], 0644);
-	}
-	else
-		message($lang_ftb_admin['unknown_failure']);
-
-	redirect(PLUGIN_URL, $lang_ftb_admin['successful_upload']);
-}
-
-// Tag creation form
-else if (isset($_GET['tag_create']))
-{
-	// Retrieve max position
-	$result = $db->query('SELECT MAX(position) FROM '.$db->prefix.'toolbar_tags') or error('Unable to retrieve position', __FILE__, __LINE__, $db->error());
-	$def_pos = intval($db->result($result, 0)) + 1;
-
-	// Display the admin navigation menu
-	generate_admin_menu($plugin);
-?>
-<div class="block">
-	<h2><span>FluxToolBar v.<?php echo PLUGIN_VERSION ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<p><?php echo $lang_ftb_admin['creating'] ?></p>
-		</div>
-	</div>
-</div>
-<div class="blockform">
-	<h2 class="block2"><span><?php echo $lang_ftb_admin['create_conf'] ?></span></h2>
-	<div class="box">
-		<form action="<?php echo str_replace('&', '&amp;', PLUGIN_URL) ?>" method="post">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_ftb_admin['new_tag'] ?></legend>
-					<div class="infldset">
-						<table class="aligntop" cellspacing="0">
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['name'] ?></th>
-								<td><input type="text" size="10" maxlength="20" name="form[name]" />
-									<span><?php echo $lang_ftb_admin['name_info'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['image'] ?></th>
-								<td><select name="form[image]">
-<?php
-	foreach ($images as $img)
-		echo "\t\t\t\t\t\t\t\t\t".'<option value="'.$img.'">'.$img.'</option>'."\n";
-?>
-								</select>
-								<span><?php echo $lang_ftb_admin['image_info'] ?></span></td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['code'] ?></th>
-								<td><input type="text" size="10" maxlength="20" name="form[code]" />
-									<span><?php echo $lang_ftb_admin['tag_info'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['function'] ?></th>
-								<td><select name="form[func]">
-									<option value="0" selected="selected">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select>
-								<span><?php echo $lang_ftb_admin['func_info'] ?></span></td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['position'] ?></th>
-								<td><input type="text" size="2" maxlength="3" name="form[position]" value="<?php echo $def_pos ?>" />
-									<span><?php echo $lang_ftb_admin['pos_info'] ?></span>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<p><strong><?php echo $lang_ftb_admin['create_info'] ?></strong></p>
-				</fieldset>
-			</div>
-			<p class="submitend"><input type="submit" name="create" value="<?php echo $lang_ftb_admin['save'] ?>" /></p>
-		</form>
-	</div>
-</div>
-<div class="blockform">
-	<h2 class="block2"><span><?php echo $lang_ftb_admin['current_images'] ?></span></h2>
-	<div class="box">
-		<form action="<?php echo str_replace('&', '&amp;', PLUGIN_URL) ?>" method="post">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_ftb_admin['list_images'] ?></legend>
-					<div class="infldset">
-						<table>
-							<thead><tr>
-								<th scope="col"><?php echo $lang_ftb_admin['image_filename']; ?></th>
-								<th scope="col"><?php echo $lang_ftb_admin['image']; ?></th>
-								<th scope="col"><?php echo $lang_ftb_admin['delete']; ?></th>
-							</tr></thead>
-							<tbody>
-<?php
-	foreach ($images as $img)
-	{
-?>
-								<tr>
-									<th scope="row"><?php echo $img ?></th>
-									<td><img src="img/fluxtoolbar/<?php echo $ftb_conf['img_pack'].'/'.$img ?>" alt="" /></td>
-									<td><input name="del_images[<?php echo $img ?>]" type="checkbox" value="1" /></td>
-								</tr>
-<?php
-	}
-?>
-							</tbody>
-						</table>
-					</div>
-				</fieldset>
-			</div>
-			<p class="submitend"><input name="delete_img" type="submit" value="<?php echo $lang_ftb_admin['delete_img'] ?>" /></p>
-		</form>
-		<form method="post" enctype="multipart/form-data"  action="<?php echo str_replace('&', '&amp;', PLUGIN_URL) ?>">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_ftb_admin['add_image'] ?></legend>
-					<div class="infldset">
-						<label><?php echo $lang_ftb_admin['image_file'] ?><br /><input name="req_file" type="file" size="40" /><br /></label>
-					</div>
-				</fieldset>
-			</div>
-			<p class="submitend"><input name="add_image" type="submit" value="<?php echo $lang_ftb_admin['upload'] ?>" /></p>
-		</form>
-	</div>
-</div>
-<div class="blockform">
-	<h2><a href="<?php echo str_replace('&tag_create', '', PLUGIN_URL) ?>"><?php echo $lang_ftb_admin['back_conf'] ?></a></h2>
-</div>
-<?php
-}
-
 // Normal Display
 else
 {
 	// Display the admin navigation menu
 	generate_admin_menu($plugin);
 ?>
-<div class="block">
-	<h2><span>FluxToolBar v.<?php echo PLUGIN_VERSION ?></span></h2>
-	<div style="float: right; margin-right: 5em">
+<h2>Toolbar settings</h2>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_ftb_admin['glob_conf'] ?></h3>
+    </div>
+    <div class="panel-body">
 		<form action="<?php echo PLUGIN_URL ?>" method="post">
-			<p class="submitend"><input type="submit" name="regenerate" value="<?php echo $lang_ftb_admin['regenerate'] ?>" /></p>
-		</form>
-	</div>
-	<div class="box">
-		<div class="inbox">
-			<p><?php echo $lang_ftb_admin['plugin_desc'] ?></p>
-		</div>
-	</div>
-</div>
-<div class="blockform">
-	<h2 class="block2"><span><?php echo $lang_ftb_admin['glob_conf'] ?></span></h2>
-	<div class="box">
-		<form action="<?php echo PLUGIN_URL ?>" method="post">
-			<div class="inform">
-				<input type="hidden" name="form_conf" value="1" />
-				<fieldset>
-					<legend><?php echo $lang_ftb_admin['settings'] ?></legend>
-					<div class="infldset">
-						<table class="aligntop" cellspacing="0">
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['enable_form'] ?></th>
-								<td><input type="radio" name="form[enable_form]" value="1"<?php if ($ftb_conf['enable_form'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_form]" value="0"<?php if ($ftb_conf['enable_form'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['no'] ?></strong>
-									<span><?php echo $lang_ftb_admin['enable_form_infos'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['enable_quickform'] ?></th>
-								<td><input type="radio" name="form[enable_quickform]" value="1"<?php if ($ftb_conf['enable_quickform'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_quickform]" value="0"<?php if ($ftb_conf['enable_quickform'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['no'] ?></strong>
-									<span><?php echo $lang_ftb_admin['enable_quickform_infos'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['images_pack'] ?></th>
-								<td><select name="form[img_pack]">
+            <input type="hidden" name="form_conf" value="1" />
+            <fieldset>
+                <table class="table">
+                    <tr>
+                        <th><?php echo $lang_ftb_admin['enable_form'] ?></th>
+                        <td><input type="radio" name="form[enable_form]" value="1"<?php if ($ftb_conf['enable_form'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_form]" value="0"<?php if ($ftb_conf['enable_form'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['no'] ?></strong>
+                            <span class="help-block"><?php echo $lang_ftb_admin['enable_form_infos'] ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_ftb_admin['enable_quickform'] ?></th>
+                        <td><input type="radio" name="form[enable_quickform]" value="1"<?php if ($ftb_conf['enable_quickform'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['yes'] ?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[enable_quickform]" value="0"<?php if ($ftb_conf['enable_quickform'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_ftb_admin['no'] ?></strong>
+                            <span class="help-block"><?php echo $lang_ftb_admin['enable_quickform_infos'] ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_ftb_admin['images_pack'] ?></th>
+                        <td><select class="form-control" name="form[img_pack]">
 <?php
 	$packs = array();
-	$d = dir(FORUM_ROOT.'img/fluxtoolbar');
+	$d = dir(FORUM_ROOT.'img/toolbar');
 	while (($entry = $d->read()) !== false)
 	{
-		 if ($entry != '.' && $entry != '..' && is_dir(FORUM_ROOT.'img/fluxtoolbar/'.$entry))
+		 if ($entry != '.' && $entry != '..' && is_dir(FORUM_ROOT.'img/toolbar/'.$entry))
 			$packs[] = $entry;
 	}
 	$d->close();
@@ -717,89 +353,39 @@ else
 			echo "\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
 	}
 ?>
-								</select>
-								<span><?php echo $lang_ftb_admin['images_pack_infos'] ?></span></td>
-							</tr>
-						</table>
-					</div>
-				</fieldset>
-			</div>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_ftb_admin['smilies_settings'] ?></legend>
-					<div class="infldset">
-						<table class="aligntop" cellspacing="0">
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['nb_smilies'] ?></th>
-								<td><input type="text" name="form[nb_smilies]" size="3" maxlength="3" value="<?php echo $ftb_conf['nb_smilies'] ?>" />
-									<span><?php echo $lang_ftb_admin['nb_smilies_info'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['smilies_width'] ?></th>
-								<td><input type="text" name="form[pop_up_width]" size="5" maxlength="5" value="<?php echo $ftb_conf['pop_up_width'] ?>" />
-									<span><?php echo $lang_ftb_admin['smilies_width_info'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['smilies_height'] ?></th>
-								<td><input type="text" name="form[pop_up_height]" size="5" maxlength="5" value="<?php echo $ftb_conf['pop_up_height'] ?>" />
-									<span><?php echo $lang_ftb_admin['smilies_height_info'] ?></span>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</fieldset>
-			</div>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_ftb_admin['buttons_settings'] ?></legend>
-					<div class="infldset">
-						<table class="aligntop" cellspacing="0">
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['button_size'] ?></th>
-								<td><input type="text" name="form[button_size]" size="3" maxlength="5" value="<?php echo $ftb_conf['button_size'] ?>" />
-									<span><?php echo $lang_ftb_admin['button_size_info'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['button_width'] ?></th>
-								<td><input type="text" name="form[button_width]" size="2" maxlength="3" value="<?php echo $ftb_conf['button_width'] ?>" />
-									<span><?php echo $lang_ftb_admin['button_width_info'] ?></span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><?php echo $lang_ftb_admin['button_height'] ?></th>
-								<td><input type="text" name="form[button_height]" size="2" maxlength="3" value="<?php echo $ftb_conf['button_height'] ?>" />
-									<span><?php echo $lang_ftb_admin['button_height_info'] ?></span>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</fieldset>
-			</div>
-			<p class="submitend"><input type="submit" name="save" value="<?php echo $lang_ftb_admin['save'] ?>" /></p>
+                        </select>
+                        <br /><span class="help-block"><?php echo $lang_ftb_admin['images_pack_infos'] ?></span></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_ftb_admin['nb_smilies'] ?></th>
+                        <td><input type="text" class="form-control" name="form[nb_smilies]" size="3" maxlength="3" value="<?php echo $ftb_conf['nb_smilies'] ?>" />
+                            <br /><span class="help-block"><?php echo $lang_ftb_admin['nb_smilies_info'] ?></span>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+			<input type="submit" class="btn btn-primary" name="save" value="<?php echo $lang_common['Submit'] ?>" />
 		</form>
 	</div>
 </div>
-<div class="blockform">
-	<h2 class="block2"><span><?php echo $lang_ftb_admin['button_conf'] ?></span></h2>
-	<div class="box">
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_ftb_admin['button_conf'] ?></h3>
+    </div>
+    <div class="panel-body">
 		<form action="<?php echo PLUGIN_URL ?>" method="post">
-			<div class="inform">
-				<input type="hidden" name="form_button" value="1" />
-				<fieldset>
-					<legend><?php echo $lang_ftb_admin['buttons_settings'] ?></legend>
-					<div class="infldset">
-						<table class="aligntop" cellspacing="0">
-							<thead><tr>
-								<th scope="col" style="width: 6em"><?php echo $lang_ftb_admin['position'] ?></th>
-								<th scope="col" style="width: 6em"><?php echo $lang_ftb_admin['button'] ?></th>
-								<th scope="col"><?php echo $lang_ftb_admin['classic_form'] ?></th>
-								<th scope="col"><?php echo $lang_ftb_admin['quickreply_form'] ?></th>
-								<th scope="col" style="width: 4em"><?php echo $lang_ftb_admin['select'] ?></th>
-							</tr></thead>
-							<tbody>
+            <input type="hidden" name="form_button" value="1" />
+            <fieldset>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 6em"><?php echo $lang_ftb_admin['position'] ?></th>
+                            <th scope="col" style="width: 6em"><?php echo $lang_ftb_admin['button'] ?></th>
+                            <th scope="col"><?php echo $lang_ftb_admin['classic_form'] ?></th>
+                            <th scope="col"><?php echo $lang_ftb_admin['quickreply_form'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 <?php
 	// Retrieve buttons
 	$result = $db->query('SELECT position, name, enable_form, enable_quick, image FROM '.$db->prefix.'toolbar_tags ORDER by position') or error('Unable to retrieve toolbar buttons', __FILE__, __LINE__, $db->error());
@@ -810,10 +396,10 @@ else
 		echo "\t\t\t\t\t\t\t\t".'<tr>'."\n";
 		echo "\t\t\t\t\t\t\t\t\t".'<td>';
 		if ($button['position'] != 0)
-			echo '<input type="text" name="pos['.pun_htmlspecialchars($button['name']).']" value="'.$button['position'].'" size="3" maxlength="3" /></td>'."\n";
+			echo '<input type="text" class="form-control" name="pos['.pun_htmlspecialchars($button['name']).']" value="'.$button['position'].'" size="3" maxlength="3" /></td>'."\n";
 		else
 			echo '&nbsp;</td>'."\n";
-		echo "\t\t\t\t\t\t\t\t\t".'<td><img src="img/fluxtoolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_ftb['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
+		echo "\t\t\t\t\t\t\t\t\t".'<td><img src="../img/toolbar/'.$ftb_conf['img_pack'].'/'.pun_htmlspecialchars($button['image']).'" title="'.pun_htmlspecialchars($lang_ftb['bt_'.$button['name']]).'" alt="" style="vertical-align: -8px" /></td>'."\n";
 		echo "\t\t\t\t\t\t\t\t\t".'<td><input type="radio" name="c_form['.pun_htmlspecialchars($button['name']).']" value="1"';
 		if ($button['enable_form'] == 1)
 			echo ' checked="checked"';
@@ -828,28 +414,15 @@ else
 		if ($button['enable_quick'] == 0)
 			echo ' checked="checked"';
 		echo ' />&nbsp;<strong>'.$lang_ftb_admin['no'].'</strong></td>'."\n";
-		if (in_array($button['name'], $def_tags))
-			echo "\t\t\t\t\t\t\t\t\t".'<td>&nbsp;</td>'."\n";
-		else
-			echo "\t\t\t\t\t\t\t\t\t".'<td><input name="name['.pun_htmlspecialchars($button['name']).']" type="checkbox" value="1" /></td>'."\n";
 		echo "\t\t\t\t\t\t\t\t".'</tr>'."\n";
 	}
 ?>
-							</tbody>
-						</table>
-					</div>
-				</fieldset>
-			</div>
-			<p class="submitend">
-				<input type="submit" name="edit_pos" value="<?php echo $lang_ftb_admin['update_pos'] ?>" /><br /><br />
-				<input type="submit" name="edit_tag" value="<?php echo $lang_ftb_admin['edit_tag'] ?>" />&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="submit" name="delete_tag" value="<?php echo $lang_ftb_admin['delete_tag'] ?>" />
-			</p>
+                    </tbody>
+                </table>
+            </fieldset>
+            <input type="submit" class="btn btn-primary" name="edit_pos" value="<?php echo $lang_ftb_admin['update_pos'] ?>" />
 		</form>
 	</div>
-</div>
-<div class="blockform">
-	<h2><a href="<?php echo PLUGIN_URL.'&amp;tag_create' ?>"><?php echo $lang_ftb_admin['tag_create'] ?></a></h2>
 </div>
 <?php
 }

@@ -435,13 +435,13 @@ else
 ?>
                 <textarea class="form-control full-form" id="req_message" name="req_message" rows="7" cols="75" tabindex="<?php echo $cur_index++ ?>"></textarea></label>
 <?php
-if (file_exists(FORUM_CACHE_DIR.'cache_fluxtoolbar_quickform.php'))
-	include FORUM_CACHE_DIR.'cache_fluxtoolbar_quickform.php';
+if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_quickform.php'))
+	include FORUM_CACHE_DIR.'cache_toolbar_quickform.php';
 else
 {
-	require_once FORUM_ROOT.'include/cache_fluxtoolbar.php';
+	require_once FORUM_ROOT.'include/cache_toolbar.php';
 	generate_ftb_cache('quickform');
-	require FORUM_CACHE_DIR.'cache_fluxtoolbar_quickform.php';
+	require FORUM_CACHE_DIR.'cache_toolbar_quickform.php';
 }
 ?>
                 <ul class="bblinks">

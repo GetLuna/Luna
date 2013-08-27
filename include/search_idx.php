@@ -51,13 +51,13 @@ function split_words($text, $idx)
 	// Remove BBCode
 	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]%', ' ', $text);
 	
-	if (file_exists(FORUM_CACHE_DIR.'cache_fluxtoolbar_tag_search.php'))
-		include FORUM_CACHE_DIR.'cache_fluxtoolbar_tag_search.php';
+	if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_tag_search.php'))
+		include FORUM_CACHE_DIR.'cache_toolbar_tag_search.php';
 	else
 	{
-		require_once FORUM_ROOT.'include/cache_fluxtoolbar.php';
+		require_once FORUM_ROOT.'include/cache_toolbar.php';
 		generate_ftb_cache('tags');
-		require FORUM_CACHE_DIR.'cache_fluxtoolbar_tag_search.php';
+		require FORUM_CACHE_DIR.'cache_toolbar_tag_search.php';
 	}
 
 	// Remove any apostrophes or dashes which aren't part of words
