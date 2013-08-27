@@ -29,7 +29,7 @@ require FORUM_ROOT.'backstage/header.php';
 
 //Update checking
 $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
-if (version_compare(FORUM_VERSION, $latest_version, '<=')) { ?>
+if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 	<div class="alert alert-warning">
 		<h4><?php echo sprintf($lang_back['Available'], $latest_version) ?></h4>
 		<div class="btn-group">
