@@ -1672,7 +1672,7 @@ else
 		'enable_form'		=>	'1',
 		'enable_quickform'	=>	'0',
 		'img_pack'			=>	'Default',
-		'nb_smilies'		=>	'12',
+		'nb_smilies'		=>	'16',
 	);
 	
 	while (list($conf_name, $conf_value) = @each($config))
