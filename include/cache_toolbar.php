@@ -86,19 +86,11 @@ function generate_ftb_cache($form = 'form')
 		}
 	}
 
-	// Include the fluxtoolbar language files
-	$output .= '<?php'."\n".
-		'if (file_exists(FORUM_ROOT.\'lang/\'.$pun_user[\'language\'].\'/fluxtoolbar.php\'))'."\n".
-		"\t".'require_once FORUM_ROOT.\'lang/\'.$pun_user[\'language\'].\'/fluxtoolbar.php\';'."\n".
-		'else'."\n".
-		"\t".'require_once FORUM_ROOT.\'lang/English/fluxtoolbar.php\';'."\n".
-		'?>'."\n";
-
 	// Start output JS
 	$output .=
 		'<script type="text/javascript" src="include/toolbar_func.js"></script>'."\n".
 		'<script type="text/javascript" src="include/jscolor/jscolor.js"></script>'."\n".
-		'<noscript><p><strong><?php echo $lang_ftb[\'enable_js\'] ?></strong></p></noscript>'."\n".
+		'<noscript><p><strong><?php echo $lang_common[\'enable_js\'] ?></strong></p></noscript>'."\n".
 		'<script type="text/javascript">'."\n".
 		'/* <![CDATA[ */'."\n";
 	$output .= 
@@ -152,8 +144,6 @@ function generate_ftb_cache($form = 'form')
 				"\t".'function popup_smilies()'."\n".
 				"\t".'{'."\n".
 				"\t\t".'document.getElementById(\'req_message\').focus();'."\n".
-				"\t\t".'var width = '.$ftb_conf['pop_up_width'].';'."\n".
-				"\t\t".'var height = '.$ftb_conf['pop_up_height'].';'."\n".
 				"\t\t".'window.open(\'smiley_picker.php\', \'sp\', \'alwaysRaised=yes, dependent=yes, resizable=yes, location=no, width=\'+width+\', height=\'+height+\', menubar=no, status=yes, scrollbars=yes, menubar=no\');'."\n".
 				"\t".'}'."\n";
 
@@ -177,7 +167,7 @@ function generate_ftb_cache($form = 'form')
 				continue;
 			$msg_1 = 'bt_'.$button['name'].'_msg_1';
 			$msg_2 = 'bt_'.$button['name'].'_msg_2';
-			$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$msg_2.'\']) ?>\', 1);'."\n";
+			$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_2.'\']) ?>\', 1);'."\n";
 		}
 
 		// Stop if bbcode not enabled
@@ -186,7 +176,7 @@ function generate_ftb_cache($form = 'form')
 
 		// Color stuff
 		else if	($button['name'] == 'color')
-			$output .= "\t".'tb.btColor(\''.$button['image'].'\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$name.'\']) ?>\');'."\n";
+			$output .= "\t".'tb.btColor(\''.$button['image'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\');'."\n";
 
 		// All other buttons
 		else
@@ -194,20 +184,20 @@ function generate_ftb_cache($form = 'form')
 			{
 				case '3' :
 					$msg_1 = 'bt_'.$button['name'].'_msg_1';
-					$output .= "\t".'tb.btPrompt_1inside(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$msg_1.'\']) ?>\');'."\n";
+					$output .= "\t".'tb.btPrompt_1inside(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\');'."\n";
 					break;
 				case '2' :
 					$msg_1 = 'bt_'.$button['name'].'_msg_1';
 					$msg_2 = 'bt_'.$button['name'].'_msg_2';
-					$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$msg_2.'\']) ?>\', 0);'."\n";
+					$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_2.'\']) ?>\', 0);'."\n";
 					break;
 				case '1' :
 					$msg_1 = 'bt_'.$button['name'].'_msg_1';
-					$output .= "\t".'tb.btPrompt_1(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$msg_1.'\']) ?>\');'."\n";
+					$output .= "\t".'tb.btPrompt_1(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\');'."\n";
 					break;
 				case '0' :
 				default :
-					$output .= "\t".'tb.btSingle(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_ftb[\''.$name.'\']) ?>\');'."\n";
+					$output .= "\t".'tb.btSingle(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\');'."\n";
 					break;
 			}
 	}
@@ -216,7 +206,7 @@ function generate_ftb_cache($form = 'form')
 	if ($do_smilies)
 	{
 		$output .= 
-			"\t".'tb.btSmilies(\''.$img_smilies.'\', \'<?php echo str_replace("\'","\\\'",$lang_ftb[\'bt_smilies\']) ?>\');'."\n".
+			"\t".'tb.btSmilies(\''.$img_smilies.'\', \'<?php echo str_replace("\'","\\\'",$lang_common[\'bt_smilies\']) ?>\');'."\n".
 			"\t".'tb.barSmilies(smilies);'."\n";
 	}
 
@@ -225,7 +215,7 @@ function generate_ftb_cache($form = 'form')
 
 	// Add "All smilies" link
 	if ($do_smilies && $more_smilies)
-		$output .= "\t".'tb.moreSmilies(\'<?php echo str_replace("\'","\\\'",$lang_ftb[\'all_smilies\']) ?>\');'."\n";
+		$output .= "\t".'tb.moreSmilies(\'<?php echo str_replace("\'","\\\'",$lang_common[\'all_smilies\']) ?>\');'."\n";
 
 	// End JS
 	$output .=
