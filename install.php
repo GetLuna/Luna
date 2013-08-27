@@ -1673,40 +1673,35 @@ else
 		'enable_quickform'	=>	'0',
 		'img_pack'			=>	'Default',
 		'nb_smilies'		=>	'12',
-		'pop_up_width'		=>	'240',
-		'pop_up_height'		=>	'200',
-		'button_size'		=>	'4096',
-		'button_width'		=>	'32',
-		'button_height'		=>	'32'
 	);
 	
 	while (list($conf_name, $conf_value) = @each($config))
 		$db->query('INSERT INTO '.$db->prefix.'toolbar_conf (conf_name, conf_value) VALUES(\''.$db->escape($conf_name).'\', \''.$db->escape($conf_value).'\')') or error('Unable to insert in toolbar_conf table', __FILE__, __LINE__, $db->error());
 		
 	$tags = array(
-		"'smilies', '', '1', '1', 'bt_smilies.png', '0', '0'",
-		"'bold', 'b', '1', '1', 'bt_bold.png', '0', '1'",
-		"'italic', 'i', '1', '1', 'bt_italic.png', '0', '2'",
-		"'underline', 'u', '1', '1', 'bt_underline.png', '0', '3'",
-		"'strike', 's', '1', '1', 'bt_strike.png', '0', '4'",
-		"'sup', 'sup', '1', '0', 'bt_sup.png', '0', '5'",
-		"'sub', 'sub', '1', '0', 'bt_sub.png', '0', '6'",
-		"'heading', 'h', '1', '1', 'bt_size_plus.png', '0', '7'",
-		"'left', 'left', '1', '0', 'bt_align_left.png', '0', '8'",
-		"'right', 'right', '1', '0', 'bt_align_right.png', '0', '9'",
-		"'center', 'center', '1', '0', 'bt_align_center.png', '0', '10'",
-		"'justify', 'justify', '1', '0', 'bt_align_justify.png', '0', '11'",
-		"'color', 'color', '1', '1', 'bt_color.png', '0', '12'",
-		"'q', 'q', '1', '0', 'bt_quote.png', '0', '13'",
-		"'acronym', 'acronym', '1', '0', 'bt_acronym.png', '1', '14'",
-		"'img', 'img', '1', '1', 'bt_img.png', '2', '15'",
-		"'code', 'code', '1', '1', 'bt_pre.png', '0', '16'",
-		"'quote', 'quote', '1', '1', 'bt_bquote.png', '1', '17'",
-		"'link', 'url', '1', '1', 'bt_link.png', '2', '18'",
-		"'email', 'email', '1', '1', 'bt_email.png', '2', '19'",
-		"'video', 'video', '1', '0', 'bt_video.png', '3', '20'",
-		"'li', '*', '1', '1', 'bt_li.png', '0', '21'",
-		"'list', 'list', '1', '1', 'bt_ul.png', '1', '22'"
+		"'smilies', '', '1', '1', 'smilies.png', '0', '0'",
+		"'bold', 'b', '1', '1', 'bold.png', '0', '1'",
+		"'italic', 'i', '1', '1', 'italic.png', '0', '2'",
+		"'underline', 'u', '1', '1', 'underline.png', '0', '3'",
+		"'strike', 's', '1', '1', 'strike.png', '0', '4'",
+		"'sup', 'sup', '1', '0', 'sup.png', '0', '5'",
+		"'sub', 'sub', '1', '0', 'sub.png', '0', '6'",
+		"'heading', 'h', '1', '1', 'size_plus.png', '0', '7'",
+		"'left', 'left', '1', '0', 'align_left.png', '0', '8'",
+		"'right', 'right', '1', '0', 'align_right.png', '0', '9'",
+		"'center', 'center', '1', '0', 'align_center.png', '0', '10'",
+		"'justify', 'justify', '1', '0', 'align_justify.png', '0', '11'",
+		"'color', 'color', '1', '1', 'color.png', '0', '12'",
+		"'q', 'q', '1', '0', 'quote.png', '0', '13'",
+		"'acronym', 'acronym', '1', '0', 'acronym.png', '1', '14'",
+		"'img', 'img', '1', '1', 'img.png', '2', '15'",
+		"'code', 'code', '1', '1', 'pre.png', '0', '16'",
+		"'quote', 'quote', '1', '1', 'bquote.png', '1', '17'",
+		"'link', 'url', '1', '1', 'link.png', '2', '18'",
+		"'email', 'email', '1', '1', 'email.png', '2', '19'",
+		"'video', 'video', '1', '0', 'video.png', '3', '20'",
+		"'li', '*', '1', '1', 'li.png', '0', '21'",
+		"'list', 'list', '1', '1', 'ul.png', '1', '22'"
 	);
 	
 	foreach ($tags as $tag)
