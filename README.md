@@ -1,17 +1,18 @@
-ModernBB 2.0 beta
-=================
+ModernBB 2.0 RC
+===============
 
 ## About
 ModernBB is an open source forum application released under the GNU General Public Licence v3. It is free to download and use and will remain so. ModernBB was conceived and designed to be fast and light with less of the "not so essential" features that some of the other forums have whilst not sacrificing essential functionality or usability.
 
 ## Unstable
-This version of ModernBB is labeled as unstable, this means that this version is still in development and can get issues. If you like to work "on the edge", you can use this version. However, remind that this can cause issues. For developers, this is also a good place to start.
+This version of ModernBB is labeled as unstable, this means that this version is still in development and can get issues. If you like to work "on the edge", you can use this version. However, remind that this can cause issues. Since this is a Release Candidate, it should be a kind-of "stable", anyway. For developers, this is also a good place to start.
 
 ## Requirements
  - A webserver
  - PHP 5.0.0 or later
  - A database <br />
- -- MySQL 4.1.2 or later <br />
+ -- MySQL 5.0.1 or later <br />
+ -- MariaDB 5.3.4 of later <br />
  -- PostgreSQL 7.0 or later <br />
  -- SQLite 2
 
