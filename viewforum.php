@@ -24,9 +24,9 @@ require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 // Fetch some info about the forum
 if (!$pun_user['is_guest'])
-	$result = $db->query('SELECT pf.forum_name AS parent_forum, f.parent_forum_id, f.forum_name, f.redirect_url, f.moderators, f.num_topics, f.sort_by, fp.post_topics, s.user_id AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id='.$pun_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') LEFT JOIN '.$db->prefix.'forums AS pf ON f.parent_forum_id=pf.id  WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.forum_name, f.redirect_url, f.moderators, f.num_topics, f.sort_by, fp.post_topics, s.user_id AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_subscriptions AS s ON (f.id=s.forum_id AND s.user_id='.$pun_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT pf.forum_name AS parent_forum, f.parent_forum_id, f.forum_name, f.redirect_url, f.moderators, f.num_topics, f.sort_by, fp.post_topics, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') LEFT JOIN '.$db->prefix.'forums AS pf ON f.parent_forum_id=pf.id  WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.forum_name, f.redirect_url, f.moderators, f.num_topics, f.sort_by, fp.post_topics, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message($lang_common['Bad request'], false, '404 Not Found');
@@ -68,15 +68,7 @@ else
 
 // Get topic/forum tracking data
 if (!$pun_user['is_guest'])
-{
-	$result = $db->query('SELECT t.forum_id, t.id, t.last_post FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.$pun_user['last_visit'].' AND t.moved_to IS NULL') or error('Unable to fetch new topics', __FILE__, __LINE__, $db->error());
-
-	$new_topics = array();
-	while ($cur_topic = $db->fetch_assoc($result))
-		$new_topics[$cur_topic['forum_id']][$cur_topic['id']] = $cur_topic['last_post'];
-
 	$tracked_topics = get_tracked_topics();
-}
 
 // Determine the topic offset (based on $_GET['p'])
 $num_pages = ceil($cur_forum['num_topics'] / $pun_user['disp_topics']);
@@ -112,127 +104,9 @@ define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-if (!isset($_GET['p']) || $_GET['p'] == 1)
-{
-	$subforum_result = $db->query('SELECT f.forum_desc, f.forum_name, f.id, f.last_post, f.last_post_id, f.last_poster, f.moderators, f.num_posts, f.num_topics, f.redirect_url FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND parent_forum_id='.$id.' ORDER BY disp_position') or error('Unable to fetch sub forum info',__FILE__,__LINE__,$db->error());
-	if ($db->num_rows($subforum_result))
-	{
-
-
-?>
-<div id="punindex" class="subforumlist">
-
-<div id="vf1" class="blocktable">
-    <table class="table">
-        <thead>
-            <tr class="active">
-                <th class="col-md-7"><?php echo $lang_common['Forum'] ?></th>
-                <th class="col-md-1"><?php echo $lang_index['Topics'] ?></th>
-                <th class="col-md-1"><?php echo $lang_common['Posts'] ?></th>
-                <th class="col-md-3"><?php echo $lang_common['Last post'] ?></th>
-            </tr>
-        </thead>
-        <tbody>
-<?php
-		$subforum_count = 0;
-
-		while ($cur_subforum = $db->fetch_assoc($subforum_result))
-		{
-			++$subforum_count;
-			$item_status = '';
-			$icon_type = 'icon';
-
-			// Are there new posts?
-			if (!$pun_user['is_guest'] && $cur_subforum['last_post'] > $pun_user['last_visit'] && (empty($tracked_topics['forums'][$cur_subforum['id']]) || $cur_subforum['last_post'] > $tracked_topics['forums'][$cur_subforum['id']]))
-			{
-				// There are new posts in this forum, but have we read all of them already?
-				foreach ($new_topics[$cur_subforum['id']] as $check_topic_id => $check_last_post)
-				{
-					if ((empty($tracked_topics['topics'][$check_topic_id]) || $tracked_topics['topics'][$check_topic_id] < $check_last_post) && (empty($tracked_topics['forums'][$cur_subforum['id']]) || $tracked_topics['forums'][$cur_subforum['id']] < $check_last_post))
-					{
-						$item_status = 'inew';
-						$icon_type = 'icon inew';
-
-						break;
-					}
-				}
-			}
-
-			// Is this a redirect forum?
-			if ($cur_forum['redirect_url'] != '')
-			{
-				$forum_field = '<a href="'.pun_htmlspecialchars($cur_subforum['redirect_url']).'" title="'.$lang_index['Link to'].' '.pun_htmlspecialchars($cur_subforum['redirect_url']).'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a>';
-				$num_topics = $num_posts = '&nbsp;';
-				$item_status = 'iredirect';
-				$icon_type = 'icon';
-			}
-			else
-			{
-				$forum_field = '<a href="viewforum.php?id='.$cur_subforum['id'].'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a>';
-				$num_topics = $cur_subforum['num_topics'];
-				$num_posts = $cur_subforum['num_posts'];
-			}
-
-			if ($cur_subforum['forum_desc'] != '')
-				$forum_field .= "\n\t\t\t\t\t\t\t\t".$cur_subforum['forum_desc'];
-
-			// If there is a last_post/last_poster
-			if ($cur_subforum['last_post'] != '')
-				$last_post = '<a href="viewtopic.php?pid='.$cur_subforum['last_post_id'].'#p'.$cur_subforum['last_post_id'].'">'.format_time($cur_subforum['last_post']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_subforum['last_poster']).'</span>';
-			else if ($cur_subforum['redirect_url'] != '')
-				$last_post = '- - -';
-			else
-				$last_post = $lang_common['Never'];
-
-			if ($cur_subforum['moderators'] != '')
-			{
-				$mods_array = unserialize($cur_subforum['moderators']);
-				$moderators = array();
-
-				foreach ($mods_array as $mod_username => $mod_id)
-				{
-					if ($pun_user['g_view_users'] == '1')
-						$moderators[] = '<a href="profile.php?id='.$mod_id.'">'.pun_htmlspecialchars($mod_username).'</a>';
-					else
-						$moderators[] = pun_htmlspecialchars($mod_username);
-				}
-
-				$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">(<em>'.$lang_common['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
-			}
-?>
-            <tr<?php if ($item_status != '') echo ' class="'.$item_status.'"'; ?>>
-                <td class="tcl">
-                    <div class="intd">
-                        <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($subforum_count) ?></div></div>
-                        <div class="tclcon">
-                            <?php echo $forum_field;
-                            if ($cur_subforum['moderators'] != '') {
-                                echo "\n".$moderators;
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </td>
-                <td class="tc2"><?php echo $num_topics ?></td>
-                <td class="tc3"><?php echo $num_posts ?></td>
-                <td class="tcr"><?php echo $last_post ?></td>
-            </tr>
-<?php
-		}
-?>
-        </tbody>
-    </table>
-</div>
-
-</div>
-<?php
-	}
-}
-
 ?>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-    <?php if($cur_forum['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
     <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
 </ul>
 <div class="pagepost">
@@ -402,7 +276,6 @@ else
 </div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-    <?php if($cur_forum['parent_forum']) echo "\t\t".'<li><a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a></li> '; ?>
     <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
 </ul>
 <?php

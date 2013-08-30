@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.0-rc.1-dev.1');
 
-define('UPDATE_TO_DB_REVISION', 28);
+define('UPDATE_TO_DB_REVISION', 29);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 4);
 
@@ -460,12 +460,12 @@ switch ($stage)
 
 		// Add the DST option to the users table
 		$db->add_field('users', 'dst', 'TINYINT(1)', false, 0, 'timezone') or error('Unable to add dst field', __FILE__, __LINE__, $db->error());
-
-		// Since 2.0-beta.1: Add the parent_forum_id column to the forums table
-		$db->add_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to add parent_forum_id field', __FILE__, __LINE__, $db->error());
 		
 		// Since 2.0-beta.1: Add the marked column to the posts table
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-rc.1: Add the parent_forum_id column to the forums table
+		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
 
 		// Since 1.4-beta.1: Add search index revision number
 		if (!array_key_exists('o_searchindex_revision', $pun_config))

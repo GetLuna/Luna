@@ -10,7 +10,7 @@
 // The ModernBB version this script installs
 define('FORUM_VERSION', '2.0-rc.1-dev.1');
 
-define('FORUM_DB_REVISION', 28);
+define('FORUM_DB_REVISION', 29);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 4);
 
@@ -756,12 +756,7 @@ else
 				'datatype'		=> 'INT(10) UNSIGNED',
 				'allow_null'	=> false,
 				'default'		=>	'0'
-			),
-			'parent_forum_id'  => array(
-				'datatype'    => 'INT',
-				'allow_null'  =>  true,
-				'default'    =>  '0'
-			) 
+			)
 		),
 		'PRIMARY KEY'	=> array('id')
 	);

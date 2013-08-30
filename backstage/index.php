@@ -68,7 +68,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 		<div class="btn-group">
 			<a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang_back['Changelog'] ?></a>
 			<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_back['Download'], FORUM_VERSION) ?></a>
-      </div>
+        </div>
 	</div>
 <?php }
 ?>

@@ -164,11 +164,6 @@ $lang_common = array(
 'Size unit PiB'						=>	'%s PiB',
 'Size unit EiB'						=>	'%s EiB',
 
-// Subforum
-'Sub forums'				=>	'Sub forums',
-'Parent forum'				=>	'Parent forum',
-'No parent forum'			=>	'No parent forum',
-
 // Toolbar
 'enable_js'					=>	'Please enable javascript to activate the text formatting tools.',
 'bt_smilies'				=>	'Click here to display the smilies toolbar',
