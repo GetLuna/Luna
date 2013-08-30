@@ -372,7 +372,7 @@ if (empty($stage))
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
                 <p><?php echo $lang_update['Database password info'] ?></p>
-                <input class="form-control" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
+                <input class="form-control full-form" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
             </fieldset>
 			<div><input class="btn btn-primary btn-block" type="submit" name="start" value="<?php echo $lang_update['Start update'] ?>" /></div>
 		</form>
