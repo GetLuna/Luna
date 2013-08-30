@@ -14,8 +14,9 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
-	message($lang_common['No permission'], false, '403 Forbidden');
+if (!$pun_user['is_admmod']) {
+    header("Location: ../login.php");
+}
 
 // Load the backstage.php language file
 require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';

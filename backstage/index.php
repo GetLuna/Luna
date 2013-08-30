@@ -15,7 +15,7 @@ require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
 if (!$pun_user['is_admmod']) {
-    header("Location: login.php");
+    header("Location: ../login.php");
 }
 
 // Collect some statistics from the database

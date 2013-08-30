@@ -15,7 +15,7 @@ require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
 if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0')) {
-    header("Location: login.php");
+    header("Location: ../login.php");
 }
 
 // Load the backstage.php language file
