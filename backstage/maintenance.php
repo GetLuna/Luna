@@ -376,7 +376,7 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
                                 </optgroup>
                             </select>
-                            <span class="help-block"><?php echo $lang_back['Prune from help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Prune from help'] ?></span>
                         </td>
                     </tr>
                 </table>

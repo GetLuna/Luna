@@ -131,7 +131,7 @@ generate_admin_menu('email');
                     <tr>
                         <th><?php echo $lang_back['SMTP password label'] ?></th>
                         <td>
-                            <span><input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />&#160;&#160;<label for="form_smtp_change_pass"><?php echo $lang_back['SMTP change password help'] ?></label></span>
+                            <span><input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />&#160;&#160;<?php echo $lang_back['SMTP change password help'] ?></span>
     <?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
                             <br /><input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
                             <input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
