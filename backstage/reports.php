@@ -152,17 +152,15 @@ if ($db->num_rows($result))
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
-            <fieldset>
-                <h3><?php printf($lang_back['Zapped subhead'], format_time($cur_report['zapped']), $zapped_by) ?></h3>
-                    <tr>
-                        <td><?php printf($reporter) ?></td>
-                        <td><?php printf($zapped_by) ?></td>
-                        <td><?php printf(format_time($cur_report['zapped'])) ?></td>
-                        <td>
-                            <div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
-                            <?php echo $post ?>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><?php printf($reporter) ?></td>
+                    <td><?php printf($zapped_by) ?></td>
+                    <td><?php printf(format_time($cur_report['zapped'])) ?></td>
+                    <td>
+                        <div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
+                        <?php echo $post ?>
+                    </td>
+                </tr>
 <?php
 
 	}
@@ -171,13 +169,12 @@ else
 {
 
 ?>
-                    <tr>
-                        <td colspan="4"><?php echo $lang_back['No zapped reports'] ?></td>
-                    </tr>
+                <tr>
+                    <td colspan="4"><?php echo $lang_back['No zapped reports'] ?></td>
+                </tr>
 <?php
 
 } ?>
-                </fieldset>
             </tbody>
         </table>
     </div>

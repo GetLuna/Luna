@@ -441,3 +441,12 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	min-width: 200px;
 	display: inline;
 }
+
+/* Breadcrumb */
+.breadcrumb {
+	margin-bottom: 5px;
+	border-radius: 0;
+	background-color: #252525;
+	color: #c9c9c9;
+	padding: 7px 15px;
+}
