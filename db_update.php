@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.0-rc.1-dev.2');
 
-define('UPDATE_TO_DB_REVISION', 29);
+define('UPDATE_TO_DB_REVISION', 30);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 4);
 
@@ -494,6 +494,10 @@ switch ($stage)
 		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
 		if (array_key_exists('o_quickjump', $pun_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
+			
+		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
+		if (array_key_exists('o_show_dot', $pun_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
 			
 		// Insert new config option o_admin_ids  
 		if (!array_key_exists('o_admin_ids', $pun_config))  
