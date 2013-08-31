@@ -13,7 +13,7 @@ if (!defined('FORUM_ROOT'))
 // Define the version and database revision that this code was written for
 define('FORUM_VERSION', '2.0-rc.1-dev.2');
 
-define('FORUM_DB_REVISION', 29);
+define('FORUM_DB_REVISION', 30);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 4);
 
@@ -132,7 +132,11 @@ if (!isset($pun_config['o_database_revision']) || $pun_config['o_database_revisi
 	!isset($pun_config['o_parser_revision']) || $pun_config['o_parser_revision'] < FORUM_PARSER_REVISION ||
 	version_compare($pun_config['o_cur_version'], FORUM_VERSION, '<'))
 {
-	header('Location: '.FORUM_ROOT.'db_update.php');
+	if (defined('FORUM_ADMIN_CONSOLE')) {
+		header('Location: '.FORUM_ROOT.'db_update.php');
+	} else {
+		header('Location: db_update.php');
+	}
 	exit;
 }
 
