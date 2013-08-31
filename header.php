@@ -234,7 +234,7 @@ else
 	
 	if (!empty($forum_actions))
 	{
-		$page_statusinfo[] = '<li><span>'.implode(' - ', $forum_actions).'</li></span>';
+		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</li></span>';
 	}
 
 	if ($pun_user['is_admmod'])

@@ -137,11 +137,7 @@ $lang_front = array(
 'Reason desc'					=>	'Please enter a short reason why you are reporting this post',
 
 // Subscriptions
-'Already subscribed topic'		=>	'You are already subscribed to this topic.',
-'Already subscribed forum'		=>	'You are already subscribed to this forum.',
 'Subscribe redirect'			=>	'Your subscription has been added. Redirecting …',
-'Not subscribed topic'			=>	'You are not subscribed to this topic.',
-'Not subscribed forum'			=>	'You are not subscribed to this forum.',
 'Unsubscribe redirect'			=>	'Your subscription has been removed. Redirecting …',
 
 // General forum and topic moderation

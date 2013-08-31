@@ -91,7 +91,7 @@ if (!$pun_user['is_guest'])
 	if ($pun_config['o_forum_subscriptions'] == '1')
 	{
 		if ($cur_forum['is_subscribed'])
-			$forum_actions[] = '<span>'.$lang_front['Is subscribed'].' - </span><a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.$lang_front['Unsubscribe'].'</a>';
+			$forum_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.$lang_front['Unsubscribe'].'</a>';
 		else
 			$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.'">'.$lang_front['Subscribe'].'</a>';
 	}

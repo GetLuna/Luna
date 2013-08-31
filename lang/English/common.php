@@ -112,8 +112,8 @@ $lang_common = array(
 'Show active topics'				=>	'Find topics with recent posts.',
 'Show unanswered topics'			=>	'Find topics with no replies.',
 'Show posted topics'				=>	'Find topics you have posted to.',
-'Mark all as read'					=>	'Mark all topics as read',
-'Mark forum read'					=>	'Mark this forum as read',
+'Mark all as read'					=>	'Mark all as read',
+'Mark forum read'					=>	'Mark as read',
 'Title separator'					=>	' / ',
 
 // Stuff for the page footer
