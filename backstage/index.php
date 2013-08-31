@@ -75,7 +75,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 <div class="index">
     <div class="row">
         <div class="col-md-3">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Backup head'] ?></h3>
                 </div>
@@ -86,7 +86,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
              </div>
         </div>
         <div class="col-md-9">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Reports head'] ?> - <a href="reports.php"><?php echo $lang_back['View all'] ?></a></h3>
                 </div>
@@ -142,7 +142,7 @@ else
     </div>
     <div class="row">
         <div class="col-md-8">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['About head'] ?></h3>
                 </div>
@@ -165,7 +165,7 @@ else
             </div>
         </div>
         <div class="col-md-4">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Statistics head'] ?></h3>
                 </div>

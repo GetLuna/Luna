@@ -173,7 +173,7 @@ if (isset($_GET['ip_stats']))
 	generate_admin_menu('users');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Results head'] ?></h3>
     </div>
@@ -254,7 +254,7 @@ if (isset($_GET['show_users']))
 	generate_admin_menu('users');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Results head'] ?></h3>
     </div>
@@ -435,7 +435,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Move users'] ?></h3>
     </div>
@@ -583,7 +583,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Delete users'] ?></h3>
     </div>
@@ -701,7 +701,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Ban users'] ?></h3>
     </div>
@@ -961,7 +961,7 @@ else
 	generate_admin_menu('users');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['User search head'] ?></h3>
     </div>
@@ -1072,7 +1072,7 @@ else
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['IP search head'] ?></h3>
     </div>
@@ -1093,7 +1093,7 @@ else
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add user head'] ?></h3>
     </div>

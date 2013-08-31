@@ -154,7 +154,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('categories');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add categories head'] ?></h3>
     </div>
@@ -176,7 +176,7 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
 </div>
 <?php if ($num_cats): ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Delete categories head'] ?></h3>
     </div>
@@ -208,7 +208,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
 </div>
 <?php endif; ?>
 <?php if ($num_cats): ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Edit categories head'] ?></h3>
     </div>

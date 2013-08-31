@@ -29,7 +29,6 @@ if (isset($_POST['form_sent']))
 		'censoring'				=> $_POST['form']['censoring'] != '1' ? '0' : '1',
 		'signatures'			=> $_POST['form']['signatures'] != '1' ? '0' : '1',
 		'ranks'					=> $_POST['form']['ranks'] != '1' ? '0' : '1',
-		'show_dot'				=> $_POST['form']['show_dot'] != '1' ? '0' : '1',
 		'topic_views'			=> $_POST['form']['topic_views'] != '1' ? '0' : '1',
 		'gzip'					=> $_POST['form']['gzip'] != '1' ? '0' : '1',
 		'search_all_forums'		=> $_POST['form']['search_all_forums'] != '1' ? '0' : '1',
@@ -69,7 +68,7 @@ require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('features');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Features head'] ?></h3>
     </div>
@@ -116,14 +115,6 @@ generate_admin_menu('features');
                             <label class="conl"><input type="radio" name="form[ranks]" value="1"<?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[ranks]" value="0"<?php if ($pun_config['o_ranks'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
                             <span class="help-block"><?php printf($lang_back['User ranks help'], '<a href="admin_ranks.php">'.$lang_back['Ranks'].'</a>') ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['User has posted label'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="form[show_dot]" value="1"<?php if ($pun_config['o_show_dot'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[show_dot]" value="0"<?php if ($pun_config['o_show_dot'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['User has posted help'] ?></span>
                         </td>
                     </tr>
                     <tr>

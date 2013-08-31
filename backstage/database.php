@@ -726,7 +726,7 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Backup options'] ?></h3>
     </div>
@@ -757,7 +757,7 @@ require FORUM_ROOT.'backstage/header.php';
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Restore options'] ?></h3>
     </div>
@@ -780,7 +780,7 @@ require FORUM_ROOT.'backstage/header.php';
     <h4><?php echo $lang_back['Warning'] ?></h4>
     <p><?php echo $lang_back['Warning info'] ?></p>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Run SQL query'] ?></h3>
     </div>

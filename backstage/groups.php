@@ -58,7 +58,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 
 ?>
 <h2><?php echo $lang_back['Group settings head'] ?></h2>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Group settings subhead'] ?></h3>
     </div>
@@ -397,7 +397,7 @@ else if (isset($_GET['del_group']))
 	generate_admin_menu('groups');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Group delete head'] ?></h3>
     </div>
@@ -428,7 +428,7 @@ else if (isset($_GET['del_group']))
 	require FORUM_ROOT.'backstage/header.php';
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Delete group head'] ?></h3>
     </div>
@@ -473,7 +473,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add group subhead'] ?></h3>
     </div>
@@ -508,7 +508,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Default group subhead'] ?></h3>
     </div>
@@ -543,7 +543,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Existing groups head'] ?></h3>
     </div>

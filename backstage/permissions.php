@@ -53,7 +53,7 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
 <h2><?php echo $lang_back['Permissions head'] ?></h2>
 <form method="post" action="permissions.php">
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Posting subhead'] ?></h3>
         </div>
@@ -105,7 +105,7 @@ require FORUM_ROOT.'backstage/header.php';
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Signatures subhead'] ?></h3>
         </div>
@@ -154,7 +154,7 @@ require FORUM_ROOT.'backstage/header.php';
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Registration subhead'] ?></h3>
         </div>

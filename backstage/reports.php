@@ -56,7 +56,7 @@ require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <h2><?php echo $lang_back['New reports head'] ?></h2>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['New reports head'] ?></h3>
     </div>
@@ -119,7 +119,7 @@ else
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Last 10 head'] ?></h3>
     </div>

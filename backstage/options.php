@@ -173,7 +173,7 @@ generate_admin_menu('global');
 ?>
 <h2><?php echo $lang_back['Options head'] ?></h2>
 <form method="post" action="options.php">
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Essentials subhead'] ?></h3>
         </div>
@@ -310,7 +310,7 @@ generate_admin_menu('global');
 	$timestamp = time() + $diff;
 
 ?>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Timeouts subhead'] ?></h3>
         </div>
@@ -356,7 +356,7 @@ generate_admin_menu('global');
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Feed subhead'] ?></h3>
         </div>
@@ -393,7 +393,7 @@ generate_admin_menu('global');
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Reports subhead'] ?></h3>
         </div>
@@ -420,7 +420,7 @@ generate_admin_menu('global');
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Avatars subhead'] ?></h3>
         </div>
@@ -467,7 +467,7 @@ generate_admin_menu('global');
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Registration subhead'] ?></h3>
         </div>
@@ -533,7 +533,7 @@ generate_admin_menu('global');
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Announcement subhead'] ?></h3>
         </div>
@@ -559,7 +559,7 @@ generate_admin_menu('global');
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Maintenance subhead'] ?></h3>
         </div>

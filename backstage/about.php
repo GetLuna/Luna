@@ -52,7 +52,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 <div class="about">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Headline feature 1 title'] ?></h3>
                 </div>
@@ -80,7 +80,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Headline feature 2 title'] ?></h3>
                 </div>
@@ -95,7 +95,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['More new'] ?></h3>
                 </div>
@@ -157,7 +157,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Other new'] ?></h3>
                 </div>
@@ -204,6 +204,23 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                             <br /><?php echo $lang_back['Minor feature 9 info'] ?></p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Removed features</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Unfortunaly, we can't keep all features arround, that's why we have a list here with the features that where available in ModernBB 1.6, but aren't in 2.0</p>
+                    <ul>
+                    	<li>Quickjump has been removed</li>
+                        <li>"Show dot when posted" has been removed, this feature is planned to make a return in the future</li>
+                        <li>Air, Earth and Fire have been removed, they are replaced with new templates</li>
+                    </ul>
                 </div>
             </div>
         </div>

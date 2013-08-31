@@ -221,7 +221,7 @@ else if (isset($_GET['edit_forum']))
 	generate_admin_menu('forums');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Edit details subhead'] ?></h3>
     </div>
@@ -273,7 +273,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Group permissions subhead'] ?></h3>
     </div>
@@ -351,7 +351,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('forums');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add forum head'] ?></h3>
     </div>
@@ -395,7 +395,7 @@ if ($db->num_rows($result) > 0)
 {
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Edit forum head'] ?></h3>
     </div>

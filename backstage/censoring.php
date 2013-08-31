@@ -87,7 +87,7 @@ require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <h2><?php echo $lang_back['Censoring head'] ?></h2>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add word subhead'] ?></h3>
     </div>
@@ -115,7 +115,7 @@ require FORUM_ROOT.'backstage/header.php';
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Edit remove subhead'] ?></h3>
     </div>

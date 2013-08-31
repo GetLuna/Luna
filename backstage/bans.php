@@ -108,7 +108,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 ?>
 <h2><?php echo $lang_back['Ban advanced head'] ?></h2>
 <form id="bans2" method="post" action="bans.php">
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Ban advanced subhead'] ?></h3>
         </div>
@@ -143,7 +143,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
             </fieldset>
         </div>
     </div>
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Message expiry subhead'] ?></h3>
         </div>
@@ -383,7 +383,7 @@ else if (isset($_GET['find_ban']))
 	generate_admin_menu('bans');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Results head'] ?></h3>
     </div>
@@ -452,7 +452,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('bans');
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['New ban head'] ?></h3>
     </div>
@@ -473,7 +473,7 @@ require FORUM_ROOT.'backstage/header.php';
         </form>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Ban search head'] ?></h3>
     </div>
