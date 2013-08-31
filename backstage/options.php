@@ -247,7 +247,7 @@ generate_admin_menu('global');
                                 <option value="13"<?php if ($pun_config['o_default_timezone'] == 13) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+13:00'] ?></option>
                                 <option value="14"<?php if ($pun_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang_back['UTC+14:00'] ?></option>
                             </select>
-                            <span class="help-block"><?php echo $lang_back['Timezone help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Timezone help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -276,7 +276,7 @@ generate_admin_menu('global');
 
 ?>
                             </select>
-                            <span class="help-block"><?php echo $lang_back['Language help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Language help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -297,7 +297,7 @@ generate_admin_menu('global');
 
 ?>
                             </select>
-                            <span class="help-block"><?php echo $lang_back['Default style help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Default style help'] ?></span>
                         </td>
                     </tr>
                 </table>
@@ -369,7 +369,7 @@ generate_admin_menu('global');
                             <label class="conl"><input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['None'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['RSS'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[feed_type]" value="2"<?php if ($pun_config['o_feed_type'] == '2') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Atom'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Default feed help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Default feed help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -386,7 +386,7 @@ generate_admin_menu('global');
 
 ?>
                             </select>
-                            <span class="help-block"><?php echo $lang_back['Feed TTL help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Feed TTL help'] ?></span>
                         </td>
                     </tr>
                 </table>

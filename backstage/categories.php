@@ -167,7 +167,7 @@ require FORUM_ROOT.'backstage/header.php';
                         <td>
                             <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
                             <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_back['Add new submit'] ?>" tabindex="2" />
-                            <span class="help-block"><?php printf($lang_back['Add category help'], '<a href="forums.php">'.$lang_back['Forums'].'</a>') ?></span>
+                            <br /><span class="help-block"><?php printf($lang_back['Add category help'], '<a href="forums.php">'.$lang_back['Forums'].'</a>') ?></span>
                         </td>
                     </tr>
                 </table>
@@ -198,7 +198,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
 ?>
                             </select>
                             <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_back['Delete'] ?>" tabindex="4" />
-                            <span class="help-block"><?php echo $lang_back['Delete category help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang_back['Delete category help'] ?></span>
                         </td>
                     </tr>
                 </table>
