@@ -32,7 +32,6 @@ $lang_install = array(
 'Administrator email'			=>	'Administrator\'s email',
 'Board title'					=>	'Board title',
 'Base URL'						=>	'The URL (without trailing slash) of your ModernBB forum. This must be correct.',
-'Base URL problem'          =>  'Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter in order to avoid "Bad referer" errors.',
 'Required field'				=>	'is a required field in this form.',
 'ModernBB Installation'			=>	'ModernBB Installation',
 'Welcome'						=>	'You are about to install ModernBB. In order to install ModernBB, you must complete the form set out below. If you encounter any difficulties with the installation, please refer to the documentation.',
