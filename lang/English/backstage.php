@@ -493,6 +493,7 @@ $lang_back = array(
 'Board desc help'					=>	'A short description of this bulletin board. This field may contain HTML.',
 'Base URL label'					=>	'Base URL',
 'Base URL help'						=>	'The complete URL of the board without trailing slash (i.e. http://www.mydomain.com/forums).',
+'Base URL problem'          =>  'Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter in order to avoid "Bad referer" errors.',
 'Timezone label'					=>	'Default time zone',
 'Timezone help'						=>	'The default time zone for guests and users attempting to register for the board.',
 'DST label'							=>	'Adjust for DST',
