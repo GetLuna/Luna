@@ -112,7 +112,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form id="ranks" method="post" action="ranks.php">
             <fieldset>
-                <p><?php echo $lang_back['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_back['Ranks enabled'], '<a href="options.php#ranks">'.$lang_back['Options'].'</a>') : sprintf($lang_back['Ranks disabled'], '<a href="options.php#ranks">'.$lang_back['Options'].'</a>')) ?></p>
+                <p><?php echo $lang_back['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_back['Ranks enabled'], '<a href="features.php">'.$lang_common['Features'].'</a>') : sprintf($lang_back['Ranks disabled'], '<a href="features.php">'.$lang_common['Features'].'</a>')) ?></p>
                 <table class="table" cellspacing="0">
                     <thead>
                         <tr>

@@ -23,7 +23,8 @@ $lang_common = array(
 
 // Miscellaneous
 'Announcement'						=>	'Announcement',
-'Options'							=>	'Options',
+'Options'							=>	'Global settings',
+'Features'							=>	'Features',
 'Submit'							=>	'Submit', // "Name" of submit buttons
 'Ban message'						=>	'You are banned from this forum.',
 'Ban message 2'						=>	'The ban expires at the end of',
