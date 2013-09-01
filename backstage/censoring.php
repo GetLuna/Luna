@@ -94,7 +94,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form id="censoring" method="post" action="censoring.php">
             <fieldset>
-                <p><?php echo $lang_back['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang_back['Censoring enabled'], '<a href="options.php#censoring">'.$lang_back['Options'].'</a>') : sprintf($lang_back['Censoring disabled'], '<a href="options.php#censoring">'.$lang_back['Options'].'</a>')) ?></p>
+                <p><?php echo $lang_back['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang_back['Censoring enabled'], '<a href="options.php#censoring">'.$lang_back['Options'].'</a>') : sprintf($lang_back['Censoring disabled'], '<a href="options.php#censoring">'.$lang_common['Options'].'</a>')) ?></p>
                 <table class="table">
                     <thead>
                         <tr>
