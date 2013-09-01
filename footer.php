@@ -88,7 +88,8 @@ else if ($footer_style == 'viewtopic')
 		</div>
 	</div>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <script src="admin/js/bootstrap.js"></script>
+    <script src="include/bootstrap/jquery.js"></script>
+    <script src="include/bootstrap/bootstrap.js"></script>
 <footer>
 <?php
 

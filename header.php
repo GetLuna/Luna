@@ -177,7 +177,15 @@ $links = array();
 // Index should always be displayed
 $links[] = '<div class="navbar navbar-fixed-top">
 				<div class="nav-inner">
-					<ul class="nav navbar-nav">';
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">';
 $links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang_common['Index'].'</a></li>';
 
 if ($pun_user['g_read_board'] == '1' && $pun_user['g_view_users'] == '1')
@@ -215,7 +223,7 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != 
 	}
 }
 
-$links[] = '</ul></div></div>';
+$links[] = '</ul></div></div></div>';
 
 $tpl_temp = '<div>'."\n\t\t\t".'<ul>'."\n\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t".'</ul>'."\n\t\t".'</div>';
 $tpl_main = str_replace('<pun_navlinks>', $tpl_temp, $tpl_main);
