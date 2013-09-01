@@ -69,7 +69,7 @@ if (isset($_POST['form_sent']))
 		message($lang_front['Registration flood']);
 
 
-	$username = pun_trim($_POST['req_honeypot']);
+	$username = pun_trim($_POST['req_user']);
 	$email1 = strtolower(pun_trim($_POST['req_email1']));
 
 	if ($pun_config['o_regs_verify'] == '1')
