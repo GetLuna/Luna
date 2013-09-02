@@ -902,7 +902,7 @@ $lang_back = array(
 'Server statistics'		=>  'Server statistics',
 
 // Update service
-'Available'				=>	'An update, ModernBB v%s available, is available',
+'Available'				=>	'An update, ModernBB v%s, is available',
 'Download'				=>	'Download v%s',
 'Changelog'				=>	'Changelog',
 
