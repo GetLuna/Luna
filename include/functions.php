@@ -450,6 +450,7 @@ function check_username($username, $exclude_id = null)
 		$errors[] = $lang_front['Username reserved chars'];
 	else if (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|topic|post|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
 		$errors[] = $lang_front['Username BBCode'];
+		
 	if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_tag_check.php'))
 		include FORUM_CACHE_DIR.'cache_toolbar_tag_check.php';
 	else

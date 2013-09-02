@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.0-rc.1-dev.2');
 
-define('UPDATE_TO_DB_REVISION', 30);
+define('UPDATE_TO_DB_REVISION', 31);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 4);
 
@@ -498,17 +498,6 @@ switch ($stage)
 		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
 		if (array_key_exists('o_show_dot', $pun_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
-			
-		// Insert new config option o_admin_ids  
-		if (!array_key_exists('o_admin_ids', $pun_config))  
-		{  
-		  $result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.FORUM_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());  
-		  $admin_ids = array();  
-		  for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)  
-			$admin_ids[] = $cur_user_id;  
-	  
-		 $db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_ids\', \''.implode(',', $admin_ids).'\')') or error('Unable to insert config value \'o_admin_ids\'', __FILE__, __LINE__, $db->error());  
-		}
 		
 		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
 		if (!array_key_exists('o_base_url', $pun_config))

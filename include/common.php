@@ -13,7 +13,7 @@ if (!defined('FORUM_ROOT'))
 // Define the version and database revision that this code was written for
 define('FORUM_VERSION', '2.0-rc.1-dev.2');
 
-define('FORUM_DB_REVISION', 30);
+define('FORUM_DB_REVISION', 31);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 4);
 
@@ -35,7 +35,7 @@ if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
 if (file_exists(FORUM_ROOT.'config.php'))
 	require FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN, from PunBB 1.1 and 1.2, FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
+// This fixes incorrect defined PUN in PunBB/FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 
