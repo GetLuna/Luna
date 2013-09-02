@@ -1410,13 +1410,13 @@ if (count($languages) > 1)
 		if ($pun_config['o_avatars'] == '0' && $pun_config['o_signatures'] == '0')
 			message($lang_common['Bad request']);
 
-		$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_front['Change avatar'].'</a></span>';
+		$avatar_field = '<a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_front['Change avatar'].'</a>';
 
 		$user_avatar = generate_avatar_markup($id);
 		if ($user_avatar)
-			$avatar_field .= ' <span><a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_front['Delete avatar'].'</a></span>';
+			$avatar_field .= ' <a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_front['Delete avatar'].'</a>';
 		else
-			$avatar_field = '<span><a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_front['Upload avatar'].'</a></span>';
+			$avatar_field = '<a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_front['Upload avatar'].'</a>';
 
 		if ($user['signature'] != '')
 			$signature_preview = '<p>'.$lang_front['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
@@ -1444,7 +1444,7 @@ if (count($languages) > 1)
                 <fieldset id="profileavatar">
 <?php if ($user_avatar): ?>                <div class="useravatar"><?php echo $user_avatar ?></div>
 <?php endif; ?>                <p><?php echo $lang_front['Avatar info'] ?></p>
-                    <p class="clearb actions"><?php echo $avatar_field ?></p>
+                    <p><?php echo $avatar_field ?></p>
                 </fieldset>
             </div>
         </div>
