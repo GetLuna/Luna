@@ -204,16 +204,6 @@ if ($db->num_rows($result))
 		// Insert the status text before the subject
 		$subject = implode(' ', $status_text).' '.$subject;
 
-		// Should we display the dot or not? :)
-		if (!$pun_user['is_guest'] && $pun_config['o_show_dot'] == '1')
-		{
-			if ($cur_topic['has_posted'] == $pun_user['id'])
-			{
-				$subject = '<strong class="ipost">·&#160;</strong>'.$subject;
-				$item_status .= ' iposted';
-			}
-		}
-
 		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $pun_user['disp_posts']);
 
 		if ($num_pages_topic > 1)
@@ -234,7 +224,7 @@ if ($db->num_rows($result))
                     <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
                     <div class="tclcon">
                         <div>
-                            <?php echo $subject."\n" ?>
+							<?php echo $subject."\n" ?>
                         </div>
                     </div>
                 </td>
