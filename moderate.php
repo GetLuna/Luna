@@ -10,6 +10,8 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
+// Load the frontend.php language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins
@@ -33,11 +35,8 @@ if (isset($_GET['get_host']))
 
 		$ip = $db->result($result);
 	}
-
-	// Load the misc.php language file
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/misc.php';
-
-	message(sprintf($lang_misc['Host info 1'], $ip).'<br />'.sprintf($lang_misc['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a href="users.php?show_users='.$ip.'">'.$lang_misc['Show more users'].'</a>');
+	
+	message(sprintf($lang_front['Host info 1'], $ip).'<br />'.sprintf($lang_front['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a href="users.php?show_users='.$ip.'">'.$lang_front['Show more users'].'</a>');
 }
 
 
@@ -81,7 +80,7 @@ if (isset($_GET['tid']))
 	{
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
-			message($lang_misc['No posts selected']);
+			message($lang_front['No posts selected']);
 
 		if (isset($_POST['delete_posts_comply']))
 		{
@@ -115,29 +114,29 @@ if (isset($_GET['tid']))
 
 			update_forum($fid);
 
-			redirect('viewtopic.php?id='.$tid, $lang_misc['Delete posts redirect']);
+			redirect('viewtopic.php?id='.$tid, $lang_front['Delete posts redirect']);
 		}
 
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
+		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Moderate']);
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
-	<h2><span><?php echo $lang_misc['Delete posts'] ?></span></h2>
+	<h2><span><?php echo $lang_front['Delete posts'] ?></span></h2>
 	<div class="box">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="inform">
 				<fieldset>
-					<legend><?php echo $lang_misc['Confirm delete legend'] ?></legend>
+					<legend><?php echo $lang_front['Confirm delete legend'] ?></legend>
 					<div class="infldset">
 						<input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-						<p><?php echo $lang_misc['Delete posts comply'] ?></p>
+						<p><?php echo $lang_front['Delete posts comply'] ?></p>
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="delete_posts_comply" value="<?php echo $lang_misc['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+			<p class="buttons"><input type="submit" name="delete_posts_comply" value="<?php echo $lang_front['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>
@@ -149,7 +148,7 @@ if (isset($_GET['tid']))
 	{
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
-			message($lang_misc['No posts selected']);
+			message($lang_front['No posts selected']);
 
 		if (isset($_POST['split_posts_comply']))
 		{
@@ -213,28 +212,28 @@ if (isset($_GET['tid']))
 			update_forum($fid);
 			update_forum($move_to_forum);
 
-			redirect('viewtopic.php?id='.$new_tid, $lang_misc['Split posts redirect']);
+			redirect('viewtopic.php?id='.$new_tid, $lang_front['Split posts redirect']);
 		}
 
 		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
+		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Moderate']);
 		$focus_element = array('subject','new_subject');
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
-	<h2><span><?php echo $lang_misc['Split posts'] ?></span></h2>
+	<h2><span><?php echo $lang_front['Split posts'] ?></span></h2>
 	<div class="box">
 		<form id="subject" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="inform">
 				<fieldset>
-					<legend><?php echo $lang_misc['Confirm split legend'] ?></legend>
+					<legend><?php echo $lang_front['Confirm split legend'] ?></legend>
 					<div class="infldset">
 						<input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-						<label class="required"><strong><?php echo $lang_misc['New subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" name="new_subject" size="80" maxlength="70" /><br /></label>
-						<label><?php echo $lang_misc['Move to'] ?>
+						<label class="required"><strong><?php echo $lang_front['New subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input type="text" name="new_subject" size="80" maxlength="70" /><br /></label>
+						<label><?php echo $lang_front['Move to'] ?>
 						<br /><select name="move_to_forum">
 <?php
 
@@ -257,11 +256,11 @@ if (isset($_GET['tid']))
 							</optgroup>
 						</select>
 						<br /></label>
-						<p><?php echo $lang_misc['Split posts comply'] ?></p>
+						<p><?php echo $lang_front['Split posts comply'] ?></p>
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="split_posts_comply" value="<?php echo $lang_misc['Split'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+			<p class="buttons"><input type="submit" name="split_posts_comply" value="<?php echo $lang_front['Split'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>
@@ -305,7 +304,7 @@ if (isset($_GET['tid']))
 			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
 			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
 			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_misc['Moderate'] ?></strong></li>
+			<li><span>»&#160;</span><strong><?php echo $lang_front['Moderate'] ?></strong></li>
 		</ul>
 		<div class="pagepost">
 			<p class="pagelink conl"><?php echo $paging_links ?></p>
@@ -384,7 +383,7 @@ if (isset($_GET['tid']))
 		</div>
 		<div class="inbox">
 			<div class="postfoot clearb">
-				<div class="postfootright"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang_misc['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang_misc['Cannot select first'].'</p>' ?></div>
+				<div class="postfootright"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang_front['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang_front['Cannot select first'].'</p>' ?></div>
 			</div>
 		</div>
 	</div>
@@ -399,14 +398,14 @@ if (isset($_GET['tid']))
 	<div class="inbox crumbsplus">
 		<div class="pagepost">
 			<p class="pagelink conl"><?php echo $paging_links ?></p>
-			<p class="conr modbuttons"><input type="submit" name="split_posts" value="<?php echo $lang_misc['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" name="delete_posts" value="<?php echo $lang_misc['Delete'] ?>"<?php echo $button_status ?> /></p>
+			<p class="conr modbuttons"><input type="submit" name="split_posts" value="<?php echo $lang_front['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" name="delete_posts" value="<?php echo $lang_front['Delete'] ?>"<?php echo $button_status ?> /></p>
 			<div class="clearer"></div>
 		</div>
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
 			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
 			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_misc['Moderate'] ?></strong></li>
+			<li><span>»&#160;</span><strong><?php echo $lang_front['Moderate'] ?></strong></li>
 		</ul>
 		<div class="clearer"></div>
 	</div>
@@ -467,7 +466,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 		update_forum($fid); // Update the forum FROM which the topic was moved
 		update_forum($move_to_forum); // Update the forum TO which the topic was moved
 
-		$redirect_msg = (count($topics) > 1) ? $lang_misc['Move topics redirect'] : $lang_misc['Move topic redirect'];
+		$redirect_msg = (count($topics) > 1) ? $lang_front['Move topics redirect'] : $lang_front['Move topic redirect'];
 		redirect('viewforum.php?id='.$move_to_forum, $redirect_msg);
 	}
 
@@ -475,7 +474,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	{
 		$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 		if (empty($topics))
-			message($lang_misc['No topics selected']);
+			message($lang_front['No topics selected']);
 
 		$topics = implode(',', array_map('intval', array_keys($topics)));
 		$action = 'multi';
@@ -491,23 +490,23 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) < 2)
-		message($lang_misc['Nowhere to move']);
+		message($lang_front['Nowhere to move']);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
-	<h2><span><?php echo ($action == 'single') ? $lang_misc['Move topic'] : $lang_misc['Move topics'] ?></span></h2>
+	<h2><span><?php echo ($action == 'single') ? $lang_front['Move topic'] : $lang_front['Move topics'] ?></span></h2>
 	<div class="box">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<div class="inform">
 			<input type="hidden" name="topics" value="<?php echo $topics ?>" />
 				<fieldset>
-					<legend><?php echo $lang_misc['Move legend'] ?></legend>
+					<legend><?php echo $lang_front['Move legend'] ?></legend>
 					<div class="infldset">
-						<label><?php echo $lang_misc['Move to'] ?>
+						<label><?php echo $lang_front['Move to'] ?>
 						<br /><select name="move_to_forum">
 <?php
 
@@ -532,12 +531,12 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 						</select>
 						<br /></label>
 						<div class="rbox">
-							<label><input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /><?php echo $lang_misc['Leave redirect'] ?><br /></label>
+							<label><input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /><?php echo $lang_front['Leave redirect'] ?><br /></label>
 						</div>
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="move_topics_to" value="<?php echo $lang_misc['Move'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+			<p class="buttons"><input type="submit" name="move_topics_to" value="<?php echo $lang_front['Move'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>
@@ -558,7 +557,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 
 		$topics = explode(',', $_POST['topics']);
 		if (count($topics) < 2)
-			message($lang_misc['Not enough topics selected']);
+			message($lang_front['Not enough topics selected']);
 
 		// Verify that the topic IDs are valid (redirect links will point to the merged topic after the merge)
 		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid.' ORDER BY id ASC') or error('Unable to check topics', __FILE__, __LINE__, $db->error());
@@ -610,34 +609,34 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 
 		// Update the forum FROM which the topic was moved and redirect
 		update_forum($fid);
-		redirect('viewforum.php?id='.$fid, $lang_misc['Merge topics redirect']);
+		redirect('viewforum.php?id='.$fid, $lang_front['Merge topics redirect']);
 	}
 
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (count($topics) < 2)
-		message($lang_misc['Not enough topics selected']);
+		message($lang_front['Not enough topics selected']);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
-	<h2><span><?php echo $lang_misc['Merge topics'] ?></span></h2>
+	<h2><span><?php echo $lang_front['Merge topics'] ?></span></h2>
 	<div class="box">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
 			<div class="inform">
 				<fieldset>
-					<legend><?php echo $lang_misc['Confirm merge legend'] ?></legend>
+					<legend><?php echo $lang_front['Confirm merge legend'] ?></legend>
 					<div class="infldset">
 						<div class="rbox">
-							<label><input type="checkbox" name="with_redirect" value="1" /><?php echo $lang_misc['Leave redirect'] ?><br /></label>
+							<label><input type="checkbox" name="with_redirect" value="1" /><?php echo $lang_front['Leave redirect'] ?><br /></label>
 						</div>
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="merge_topics_comply" value="<?php echo $lang_misc['Merge'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+			<p class="buttons"><input type="submit" name="merge_topics_comply" value="<?php echo $lang_front['Merge'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>
@@ -651,7 +650,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (empty($topics))
-		message($lang_misc['No topics selected']);
+		message($lang_front['No topics selected']);
 
 	if (isset($_POST['delete_topics_comply']))
 	{
@@ -699,29 +698,29 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 		update_forum($fid);
 
-		redirect('viewforum.php?id='.$fid, $lang_misc['Delete topics redirect']);
+		redirect('viewforum.php?id='.$fid, $lang_front['Delete topics redirect']);
 	}
 
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_misc['Moderate']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
 <div class="blockform">
-	<h2><span><?php echo $lang_misc['Delete topics'] ?></span></h2>
+	<h2><span><?php echo $lang_front['Delete topics'] ?></span></h2>
 	<div class="box">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
 			<div class="inform">
 				<fieldset>
-					<legend><?php echo $lang_misc['Confirm delete legend'] ?></legend>
+					<legend><?php echo $lang_front['Confirm delete legend'] ?></legend>
 					<div class="infldset">
-						<p><?php echo $lang_misc['Delete topics comply'] ?></p>
+						<p><?php echo $lang_front['Delete topics comply'] ?></p>
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="delete_topics_comply" value="<?php echo $lang_misc['Delete'] ?>" /><a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+			<p class="buttons"><input type="submit" name="delete_topics_comply" value="<?php echo $lang_front['Delete'] ?>" /><a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>
@@ -743,11 +742,11 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
 		if (empty($topics))
-			message($lang_misc['No topics selected']);
+			message($lang_front['No topics selected']);
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
-		$redirect_msg = ($action) ? $lang_misc['Close topics redirect'] : $lang_misc['Open topics redirect'];
+		$redirect_msg = ($action) ? $lang_front['Close topics redirect'] : $lang_front['Open topics redirect'];
 		redirect('moderate.php?fid='.$fid, $redirect_msg);
 	}
 	// Or just one in $_GET
@@ -761,7 +760,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
-		$redirect_msg = ($action) ? $lang_misc['Close topic redirect'] : $lang_misc['Open topic redirect'];
+		$redirect_msg = ($action) ? $lang_front['Close topic redirect'] : $lang_front['Open topic redirect'];
 		redirect('viewtopic.php?id='.$topic_id, $redirect_msg);
 	}
 }
@@ -778,7 +777,7 @@ else if (isset($_GET['stick']))
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to stick topic', __FILE__, __LINE__, $db->error());
 
-	redirect('viewtopic.php?id='.$stick, $lang_misc['Stick topic redirect']);
+	redirect('viewtopic.php?id='.$stick, $lang_front['Stick topic redirect']);
 }
 
 
@@ -793,7 +792,7 @@ else if (isset($_GET['unstick']))
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
 
-	redirect('viewtopic.php?id='.$unstick, $lang_misc['Unstick topic redirect']);
+	redirect('viewtopic.php?id='.$unstick, $lang_front['Unstick topic redirect']);
 }
 
 
@@ -848,7 +847,7 @@ require FORUM_ROOT.'header.php';
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
 			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_misc['Moderate'] ?></strong></li>
+			<li><span>»&#160;</span><strong><?php echo $lang_front['Moderate'] ?></strong></li>
 		</ul>
 		<div class="pagepost">
 			<p class="pagelink conl"><?php echo $paging_links ?></p>
@@ -869,7 +868,7 @@ require FORUM_ROOT.'header.php';
 					<th class="tc2" scope="col"><?php echo $lang_common['Replies'] ?></th>
 <?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="tc3" scope="col"><?php echo $lang_forum['Views'] ?></th>
 <?php endif; ?>					<th class="tcr"><?php echo $lang_common['Last post'] ?></th>
-					<th class="tcmod" scope="col"><?php echo $lang_misc['Select'] ?></th>
+					<th class="tcmod" scope="col"><?php echo $lang_front['Select'] ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -998,13 +997,13 @@ else
 	<div class="inbox crumbsplus">
 		<div class="pagepost">
 			<p class="pagelink conl"><?php echo $paging_links ?></p>
-			<p class="conr modbuttons"><input type="submit" name="move_topics" value="<?php echo $lang_misc['Move'] ?>"<?php echo $button_status ?> /> <input type="submit" name="delete_topics" value="<?php echo $lang_misc['Delete'] ?>"<?php echo $button_status ?> /> <input type="submit" name="merge_topics" value="<?php echo $lang_misc['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" name="open" value="<?php echo $lang_misc['Open'] ?>"<?php echo $button_status ?> /> <input type="submit" name="close" value="<?php echo $lang_misc['Close'] ?>"<?php echo $button_status ?> /></p>
+			<p class="conr modbuttons"><input type="submit" name="move_topics" value="<?php echo $lang_front['Move'] ?>"<?php echo $button_status ?> /> <input type="submit" name="delete_topics" value="<?php echo $lang_front['Delete'] ?>"<?php echo $button_status ?> /> <input type="submit" name="merge_topics" value="<?php echo $lang_front['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" name="open" value="<?php echo $lang_front['Open'] ?>"<?php echo $button_status ?> /> <input type="submit" name="close" value="<?php echo $lang_front['Close'] ?>"<?php echo $button_status ?> /></p>
 			<div class="clearer"></div>
 		</div>
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
 			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_misc['Moderate'] ?></strong></li>
+			<li><span>»&#160;</span><strong><?php echo $lang_front['Moderate'] ?></strong></li>
 		</ul>
 		<div class="clearer"></div>
 	</div>
