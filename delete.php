@@ -53,9 +53,6 @@ require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 if (isset($_POST['delete']))
 {
-	if ($is_admmod)
-		confirm_referrer('delete.php');
-
 	require FORUM_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post)
