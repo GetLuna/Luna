@@ -549,19 +549,15 @@ if (!empty($errors))
 {
 
 ?>
-<div id="posterror" class="block">
-	<h2><?php echo $lang_front['Post errors'] ?></h2>
-	<div class="box">
-		<div class="inbox error-info">
-			<p><?php echo $lang_front['Post errors info'] ?></p>
-			<ul class="error-list">
+<div class="panel panel-danger">
+	<div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_front['Post errors'] ?></h3>
+    </div>
+    <div class="panel-body">
 <?php
-
 	foreach ($errors as $cur_error)
-		echo "\t\t\t\t".'<li><strong>'.$cur_error.'</strong></li>'."\n";
+		echo "\t\t\t\t".$cur_error."\n";
 ?>
-			</ul>
-		</div>
 	</div>
 </div>
 
