@@ -673,7 +673,7 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 	$url = pun_trim($url);
 
 	// Deal with [url][img]http://example.com/test.png[/img][/url]
-	if (preg_match('%<img src=\\\\"(.*?)\\\\"%', $url, $matches))
+	if (preg_match('%<img class="img-responsive" src=\\\\"(.*?)\\\\"%', $url, $matches))
 		return handle_url_tag($matches[1], $url, $bbcode);
 
 	$full_url = str_replace(array(' ', '\'', '`', '"'), array('%20', '', '', ''), $url);
@@ -723,9 +723,9 @@ function handle_img_tag($url, $is_signature = false, $alt = null)
 	$img_tag = '<a href="'.$url.'" rel="nofollow">&lt;'.$lang_common['Image link'].' - '.$alt.'&gt;</a>';
 
 	if ($is_signature && $pun_user['show_img_sig'] != '0')
-		$img_tag = '<img class="sigimage" src="'.$url.'" alt="'.$alt.'" />';
+		$img_tag = '<img class="sigimage img-responsive" src="'.$url.'" alt="'.$alt.'" />';
 	else if (!$is_signature && $pun_user['show_img'] != '0')
-		$img_tag = '<span class="postimg"><img src="'.$url.'" alt="'.$alt.'" /></span>';
+		$img_tag = '<span class="postimg"><img class="img-responsive" src="'.$url.'" alt="'.$alt.'" /></span>';
 
 	return $img_tag;
 }
