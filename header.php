@@ -175,17 +175,6 @@ $tpl_main = str_replace('<pun_desc>', '<div id="brddesc">'.$pun_config['o_board_
 $links = array();
 
 // Index should always be displayed
-$links[] = '<div class="navbar navbar-fixed-top">
-				<div class="nav-inner">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">';
 $links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang_common['Index'].'</a></li>';
 
 if ($pun_user['g_read_board'] == '1' && $pun_user['g_view_users'] == '1')
@@ -223,9 +212,7 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != 
 	}
 }
 
-$links[] = '</ul></div></div></div>';
-
-$tpl_temp = '<div>'."\n\t\t\t".'<ul>'."\n\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t".'</ul>'."\n\t\t".'</div>';
+$tpl_temp = '<div class="navbar navbar-fixed-top">'."\n\t\t\t".'<div class="nav-inner">'."\n\t\t\t\t".'<div class="navbar-header">'."\n\t\t\t\t\t".'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">'."\n\t\t\t\t\t\t".'<span class="icon-bar"></span>'."\n\t\t\t\t\t\t".'<span class="icon-bar"></span>'."\n\t\t\t\t\t\t".'<span class="icon-bar"></span>'."\n\t\t\t\t\t".'</button>'."\n\t\t\t\t".'</div>'."\n\t\t\t\t\t".'<div class="navbar-collapse collapse">'."\n\t\t\t\t\t".'<ul class="nav navbar-nav">'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t\t\t\t".'</ul>'."\n\t\t\t\t\t".'</div>'."\n\t\t\t\t".'</div>'."\n\t\t\t".'</div>';
 $tpl_main = str_replace('<pun_navlinks>', $tpl_temp, $tpl_main);
 // END SUBST - <pun_navlinks>
 
