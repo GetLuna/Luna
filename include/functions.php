@@ -245,10 +245,10 @@ function get_admin_ids()
 	if (file_exists(FORUM_CACHE_DIR.'cache_admins.php'))  
 		include FORUM_CACHE_DIR.'cache_admins.php';  
 	
-	if (!defined('PUN_ADMINS_LOADED'))  
+	if (!defined('FORUM_ADMINS_LOADED'))  
 	{  
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))  
-			require PUN_ROOT.'include/cache.php';  
+			require FORUM_ROOT.'include/cache.php';  
 		
 		generate_admins_cache();  
 		require FORUM_CACHE_DIR.'cache_admins.php';  
