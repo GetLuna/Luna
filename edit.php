@@ -149,16 +149,12 @@ require FORUM_ROOT.'header.php';
 $cur_index = 1;
 
 ?>
-<div class="linkst">
-	<div class="inbox">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo pun_htmlspecialchars($cur_post['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><?php echo pun_htmlspecialchars($cur_post['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_front['Edit post'] ?></strong></li>
-		</ul>
-	</div>
-</div>
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo pun_htmlspecialchars($cur_post['forum_name']) ?></a></li>
+    <li><a href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><?php echo pun_htmlspecialchars($cur_post['subject']) ?></a></li>
+    <li class="active"><?php echo $lang_front['Edit post'] ?></li>
+</ul>
 
 <?php
 
@@ -167,18 +163,19 @@ if (!empty($errors))
 {
 
 ?>
-<div id="posterror" class="block">
-	<h2><span><?php echo $lang_front['Post errors'] ?></span></h2>
-	<div class="box">
+<div class="panel panel-danger">
+	<div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_front['Post errors'] ?></h3>
+    </div>
+	<div class="panel-body">
 		<div class="inbox error-info">
-			<p><?php echo $lang_front['Post errors info'] ?></p>
-			<ul class="error-list">
+			<p>
 <?php
 
 	foreach ($errors as $cur_error)
-		echo "\t\t\t\t".'<li><strong>'.$cur_error.'</strong></li>'."\n";
+		echo "\t\t\t\t".$cur_error."\n";
 ?>
-			</ul>
+			</p>
 		</div>
 	</div>
 </div>
@@ -192,18 +189,12 @@ else if (isset($_POST['preview']))
 	$preview_message = parse_message($message, $hide_smilies);
 
 ?>
-<div id="postpreview" class="blockpost">
-	<h2><span><?php echo $lang_front['Post preview'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<div class="postbody">
-				<div class="postright">
-					<div class="postmsg">
-						<?php echo $preview_message."\n" ?>
-					</div>
-				</div>
-			</div>
-		</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_front['Post preview'] ?></h3>
+    </div>
+	<div class="panel-body">
+		<?php echo $preview_message ?>
 	</div>
 </div>
 
@@ -212,87 +203,84 @@ else if (isset($_POST['preview']))
 }
 
 ?>
-<div id="editform" class="blockform">
-	<h2><span><?php echo $lang_front['Edit post'] ?></span></h2>
-	<div class="box">
-		<form id="edit" method="post" action="edit.php?id=<?php echo $id ?>&amp;action=edit" onsubmit="return process_form(this)">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_front['Edit post legend'] ?></legend>
-					<input type="hidden" name="form_sent" value="1" />
-					<div class="infldset txtarea">
+<form id="edit" method="post" action="edit.php?id=<?php echo $id ?>&amp;action=edit" onsubmit="return process_form(this)">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_front['Edit post'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <input type="hidden" name="form_sent" value="1" />
 <?php if ($can_edit_subject): ?>						<label class="required"><strong><?php echo $lang_common['Subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<input class="longinput" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" /><br /></label>
+                <input class="form-control full-form" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" /></label>
 <?php endif; ?>						<label class="required"><strong><?php echo $lang_common['Message'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea><br /></label>
+				<textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea></label>
 <?php
 if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_form.php'))
-	include FORUM_CACHE_DIR.'cache_toolbar_form.php';
+include FORUM_CACHE_DIR.'cache_toolbar_form.php';
 else
 {
-	require_once FORUM_ROOT.'include/cache_toolbar.php';
-	generate_ftb_cache('form');
-	require FORUM_CACHE_DIR.'cache_toolbar_form.php';
+require_once FORUM_ROOT.'include/cache_toolbar.php';
+generate_ftb_cache('form');
+require FORUM_CACHE_DIR.'cache_toolbar_form.php';
 }
 ?>
-						<ul class="bblinks">
-							<li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
-							<li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang_common['img tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
-							<li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang_common['Smilies'] ?></a> <?php echo ($pun_config['o_smilies'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
-						</ul>
-					</div>
-				</fieldset>
+                <ul class="bblinks">
+                    <li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
+                    <li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang_common['img tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
+                    <li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang_common['Smilies'] ?></a> <?php echo ($pun_config['o_smilies'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
+                </ul>
+            </fieldset>
+        </div>
+    </div>
 <?php
 
 $checkboxes = array();
 if ($can_edit_subject && $is_admmod)
 {
 	if (isset($_POST['stick_topic']) || $cur_post['sticky'] == '1')
-		$checkboxes[] = '<label><input type="checkbox" name="stick_topic" value="1" checked="checked" tabindex="'.($cur_index++).'" />'.$lang_common['Stick topic'].'<br /></label>';
+		$checkboxes[] = '<label><input type="checkbox" name="stick_topic" value="1" checked="checked" tabindex="'.($cur_index++).'" />'.$lang_common['Stick topic'].'</label>';
 	else
-		$checkboxes[] = '<label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'" />'.$lang_common['Stick topic'].'<br /></label>';
+		$checkboxes[] = '<label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'" />'.$lang_common['Stick topic'].'</label>';
 }
 
 if ($pun_config['o_smilies'] == '1')
 {
 	if (isset($_POST['hide_smilies']) || $cur_post['hide_smilies'] == '1')
-		$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" checked="checked" tabindex="'.($cur_index++).'" />'.$lang_front['Hide smilies'].'<br /></label>';
+		$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" checked="checked" tabindex="'.($cur_index++).'" />'.$lang_front['Hide smilies'].'</label>';
 	else
-		$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'" />'.$lang_front['Hide smilies'].'<br /></label>';
+		$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'" />'.$lang_front['Hide smilies'].'</label>';
 }
 
 if ($is_admmod)
 {
 	if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent']))
-		$checkboxes[] = '<label><input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" checked="checked" />'.$lang_front['Silent edit'].'<br /></label>';
+		$checkboxes[] = '<label><input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" checked="checked" />'.$lang_front['Silent edit'].'</label>';
 	else
-		$checkboxes[] = '<label><input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" />'.$lang_front['Silent edit'].'<br /></label>';
+		$checkboxes[] = '<label><input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" />'.$lang_front['Silent edit'].'</label>';
 }
 
 if (!empty($checkboxes))
 {
 
 ?>
-			</div>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_common['Options'] ?></legend>
-					<div class="infldset">
-						<div class="rbox">
-							<?php echo implode("\n\t\t\t\t\t\t\t", $checkboxes)."\n" ?>
-						</div>
-					</div>
-				</fieldset>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_common['Options'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+				<?php echo implode("\n\t\t\t\t\t\t\t", $checkboxes)."\n" ?>
+            </fieldset>
+        </div>
+    </div>
 <?php
 
 	}
 
 ?>
-			</div>
-			<p class="buttons"><input type="submit" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" name="preview" value="<?php echo $lang_front['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
+    <div class="alert alert-info"><div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" class="btn btn-primary" name="preview" value="<?php echo $lang_front['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></div>
+</form>
 <?php
 
 require FORUM_ROOT.'footer.php';
