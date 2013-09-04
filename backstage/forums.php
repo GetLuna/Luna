@@ -221,12 +221,12 @@ else if (isset($_GET['edit_forum']))
 	generate_admin_menu('forums');
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Edit details subhead'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
+<form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['Edit details subhead'] ?></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <table class="table">
                     <tr>
@@ -270,15 +270,13 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                     </tr>
                 </table>
             </fieldset>
-        </form>
+        </div>
     </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Group permissions subhead'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['Group permissions subhead'] ?></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <p><?php printf($lang_back['Group permissions info'], '<a href="groups.php">'.$lang_back['User groups'].'</a>') ?></p>
                 <div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php echo $lang_back['Revert to default'] ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
@@ -333,12 +331,12 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                     </tbody>
                 </table>
             </fieldset>
-            <p class="control-group">
-                <input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" />
-            </p>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="alert alert-info">
+        <input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" />
+    </div>
+</form>
 
 <?php
 
