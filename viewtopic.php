@@ -404,7 +404,7 @@ if ($quickpost)
 $cur_index = 1;
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Quick post'] ?></h3>
     </div>

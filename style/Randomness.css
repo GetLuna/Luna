@@ -101,7 +101,7 @@ body, html {
 	margin-top: 15px;
 }
 
-.panel-heading {
+.panel-default .panel-heading {
 	border-radius: 0;
 	border: none;
 	background: #2ca0e9;

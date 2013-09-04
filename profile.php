@@ -1180,7 +1180,7 @@ else
 <div class="col-md-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section essentials'] ?></h2>
     <form id="profile1" method="post" action="profile.php?section=essentials&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Username and pass legend'] ?></h3>
             </div>
@@ -1194,7 +1194,7 @@ else
                 </fieldset>
             </div>
         </div>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Email legend'] ?></h3>
             </div>
@@ -1204,7 +1204,7 @@ else
                 </fieldset>
             </div>
         </div>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Localisation legend'] ?></h3>
             </div>
@@ -1323,7 +1323,7 @@ if (count($languages) > 1)
                 </fieldset>
             </div>
         </div>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['User activity'] ?></h3>
             </div>
@@ -1359,7 +1359,7 @@ if (count($languages) > 1)
 <div class="col-md-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section personal'] ?></h2>
     <form id="profile2" method="post" action="profile.php?section=personal&amp;id=<?php echo $id ?>">
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Personal details legend'] ?></h3>
             </div>
@@ -1391,7 +1391,7 @@ if (count($languages) > 1)
 <div class="col-md-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section messaging'] ?></h2>
     <form id="profile3" method="post" action="profile.php?section=messaging&amp;id=<?php echo $id ?>">
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Contact details legend'] ?></h3>
             </div>
@@ -1442,7 +1442,7 @@ if (count($languages) > 1)
     <form id="profile4" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
         <div><input type="hidden" name="form_sent" value="1" /></div>
 <?php if ($pun_config['o_avatars'] == '1'): ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Avatar legend'] ?></h3>
             </div>
@@ -1455,7 +1455,7 @@ if (count($languages) > 1)
             </div>
         </div>
 <?php endif; if ($pun_config['o_signatures'] == '1'): ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Signature legend'] ?></h3>
             </div>
@@ -1502,7 +1502,7 @@ if (count($languages) > 1)
 		{
 
 ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Style legend'] ?></h3>
             </div>
@@ -1531,7 +1531,7 @@ if (count($languages) > 1)
 
 ?>
 <?php if ($pun_config['o_smilies'] == '1' || $pun_config['o_smilies_sig'] == '1' || $pun_config['o_signatures'] == '1' || $pun_config['o_avatars'] == '1' || ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1')): ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Post display legend'] ?></h3>
             </div>
@@ -1553,7 +1553,7 @@ if (count($languages) > 1)
             </div>
         </div>
 <?php endif; ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Pagination legend'] ?></h3>
             </div>
@@ -1583,7 +1583,7 @@ if (count($languages) > 1)
 <div class="col-md-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section privacy'] ?></h2>
     <form id="profile6" method="post" action="profile.php?section=privacy&amp;id=<?php echo $id ?>">
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Privacy options legend'] ?></h3>
             </div>
@@ -1597,7 +1597,7 @@ if (count($languages) > 1)
                 </fieldset>
             </div>
         </div>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Subscription legend'] ?></h3>
             </div>
@@ -1774,7 +1774,7 @@ if (count($languages) > 1)
 		{
 
 ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Delete ban legend'] ?></h3>
             </div>
@@ -1794,7 +1794,7 @@ if (count($languages) > 1)
 			{
 
 ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Group membership legend'] ?></h3>
             </div>
@@ -1824,7 +1824,7 @@ if (count($languages) > 1)
 			}
 
 ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Delete ban legend'] ?></h3>
             </div>
@@ -1840,7 +1840,7 @@ if (count($languages) > 1)
 			{
 
 ?>
-        <div class="panel">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang_front['Set mods legend'] ?></h3>
             </div>

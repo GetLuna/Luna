@@ -570,7 +570,7 @@ else if (isset($_POST['preview']))
 	$preview_message = parse_message($message, $hide_smilies);
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Post preview'] ?></h3>
     </div>
@@ -585,7 +585,7 @@ else if (isset($_POST['preview']))
 $cur_index = 1;
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $action ?></h3>
     </div>
@@ -664,7 +664,7 @@ if (!empty($checkboxes))
 ?>
 	</div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_common['Options'] ?></h3>
     </div>
@@ -694,7 +694,7 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 	$result = $db->query('SELECT poster, message, hide_smilies, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT '.$pun_config['o_topic_review']) or error('Unable to fetch topic review', __FILE__, __LINE__, $db->error());
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
 <?php
 
 	// Set background switching on

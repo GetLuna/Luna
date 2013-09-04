@@ -30,7 +30,7 @@ if ($action == 'rules')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div id="rules-block" class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Forum rules'] ?></h3>
     </div>
@@ -299,7 +299,7 @@ else if (isset($_GET['report']))
     <li class="active"><?php echo $lang_front['Report post'] ?></li>
 </ul>
 
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Reason desc'] ?></h3>
     </div>

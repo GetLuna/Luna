@@ -28,7 +28,7 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <h2><?php echo $lang_front['BBCode'] ?></h2>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['BBCode'] ?></h3>
     </div>
@@ -37,7 +37,7 @@ require FORUM_ROOT.'header.php';
         <p><?php echo $lang_front['BBCode info 2'] ?></p>
     </div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Text style'] ?></h3>
     </div>
@@ -57,7 +57,7 @@ require FORUM_ROOT.'header.php';
 		<p><code>[h]<?php echo $lang_front['Heading text'] ?>[/h]</code> <?php echo $lang_front['produces'] ?></p> <div class="postmsg"><h5><?php echo $lang_front['Heading text'] ?></h5></div>
 	</div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Links, images and video'] ?></h3>
     </div>
@@ -82,7 +82,7 @@ require FORUM_ROOT.'header.php';
 		<p><code>[video=(x,y)][url]<?php echo $lang_front['Video link'] ?>[/url][/video]</code>
 	</div> 
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Quotes'] ?></h3>
     </div>
@@ -102,7 +102,7 @@ require FORUM_ROOT.'header.php';
 		<p><?php echo $lang_front['quote note'] ?></p>
 	</div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Code'] ?></h3>
     </div>
@@ -115,7 +115,7 @@ require FORUM_ROOT.'header.php';
 		</div>
 	</div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Lists'] ?></h3>
     </div>
@@ -138,7 +138,7 @@ require FORUM_ROOT.'header.php';
 		</div>
 	</div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Nested tags'] ?></h3>
     </div>
@@ -147,7 +147,7 @@ require FORUM_ROOT.'header.php';
 		<p><code>[b][u]<?php echo $lang_front['Bold, underlined text'] ?>[/u][/b]</code> <?php echo $lang_front['produces'] ?> <strong><span class="bbu"><?php echo $lang_front['Bold, underlined text'] ?></span></strong></p>
 	</div>
 </div>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Smilies'] ?></h3>
     </div>

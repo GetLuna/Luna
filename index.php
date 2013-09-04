@@ -193,7 +193,7 @@ else
 	$stats['newest_user'] = pun_htmlspecialchars($stats['last_user']['username']);
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['Board stats'] ?></h3>
     </div>

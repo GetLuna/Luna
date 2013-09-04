@@ -40,7 +40,7 @@ else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
 ?>
 <h2><?php echo $lang_front['Forum rules'] ?></h2>
 <form method="get" action="register.php">
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_front['Rules legend'] ?></h3>
         </div>
@@ -284,7 +284,7 @@ if (!empty($errors))
 ?>
 <h2><?php echo $lang_front['Register'] ?></h2>
 <form id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_front['Register legend'] ?></h3>
         </div>

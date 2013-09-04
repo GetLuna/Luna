@@ -304,7 +304,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
                 <h1><?php echo sprintf($lang_install['Install'], FORUM_VERSION) ?></h1>
 				<?php if (count($languages) > 1): ?>
                 <form id="install" method="post" action="install.php">
-                    <div class="panel">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><?php echo $lang_install['Choose install language'] ?></h3>
                         </div>
@@ -353,7 +353,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 <?php endif; ?>
 				<form id="install" method="post" action="install.php" onsubmit="this.start.disabled=true;if(process_form(this)){return true;}else{this.start.disabled=false;return false;}">
 					<div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo pun_htmlspecialchars($install_lang) ?>" /></div>
-                    <div class="panel">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><?php echo $lang_install['Database setup'] ?></h3>
                         </div>
@@ -395,7 +395,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             </fieldset>
                         </div>
                     </div>
-                    <div class="panel">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><?php echo $lang_install['Administration setup'] ?></h3>
                         </div>
@@ -409,7 +409,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             </fieldset>
                         </div>
                     </div>
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_install['Board setup'] ?></h3>
                 </div>

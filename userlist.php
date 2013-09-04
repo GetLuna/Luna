@@ -60,7 +60,7 @@ define('FORUM_ACTIVE_PAGE', 'userlist');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_front['User search'] ?></h3>
     </div>
@@ -138,7 +138,7 @@ while ($cur_group = $db->fetch_assoc($result))
 </div>
 
 
-<div class="panel">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_common['User list'] ?></h3>
     </div>

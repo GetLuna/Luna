@@ -774,7 +774,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <form id="search" method="get" action="search.php?section=simple">
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_front['Search criteria legend'] ?></h3>
         </div>
@@ -814,7 +814,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <form id="search" method="get" action="search.php?section=advanced">
-    <div class="panel">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_front['Search criteria legend'] ?></h3>
         </div>
