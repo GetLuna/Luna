@@ -389,16 +389,22 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<h2 class="profile-h2"><?php echo $lang_front['Upload avatar'] ?></h2>
-<form id="upload_avatar" method="post" enctype="multipart/form-data" action="profile.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-    <fieldset>
-        <input type="hidden" name="form_sent" value="1" />
-        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
-        <label class="required"><strong><?php echo $lang_front['File'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input name="req_file" type="file" size="40" /></label>
-        <p><?php echo $lang_front['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang_front['pixels'].' '.$lang_common['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang_front['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></p>
-    </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang_front['Upload'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
-</form>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang_front['Upload avatar'] ?></h3>
+    </div>
+    <div class="panel-body">
+        <form id="upload_avatar" method="post" enctype="multipart/form-data" action="profile.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+            <fieldset>
+                <input type="hidden" name="form_sent" value="1" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
+                <label class="required"><strong><?php echo $lang_front['File'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input name="req_file" class="form-control" type="file" size="40" /></label>
+                <span class="help-block"><?php echo $lang_front['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang_front['pixels'].' '.$lang_common['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang_front['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></span>
+            </fieldset>
+            <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang_front['Upload'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a>
+        </form>
+    </div>
+</div>
 <?php
 
 	require FORUM_ROOT.'footer.php';
