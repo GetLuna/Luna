@@ -33,8 +33,7 @@ require FORUM_ROOT.'header.php';
         <h3 class="panel-title"><?php echo $lang_front['BBCode'] ?></h3>
     </div>
     <div class="panel-body">
-        <p><a name="bbcode"></a><?php echo $lang_front['BBCode info 1'] ?></p>
-        <p><?php echo $lang_front['BBCode info 2'] ?></p>
+        <p><a name="bbcode"></a><?php echo $lang_front['BBCode info'] ?></p>
     </div>
 </div>
 <div class="panel panel-default">

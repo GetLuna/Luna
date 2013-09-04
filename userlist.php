@@ -131,7 +131,7 @@ while ($cur_group = $db->fetch_assoc($result))
                         </tr>
                      </tbody>
                  </table>
-                <p class="help-block"><?php echo ($pun_user['g_search_users'] == '1' ? $lang_front['User search info'].' ' : '').$lang_front['User sort info']; ?></p>
+                <p class="help-block"><?php echo ($pun_user['g_search_users'] == '1' ? $lang_front['User search info'].' ' : '') ?></p>
             </fieldset>
         </form>
     </div>

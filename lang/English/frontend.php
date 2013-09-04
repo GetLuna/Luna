@@ -4,7 +4,6 @@ $lang_front = array(
 
 // Language for delete.php
 'Delete post'			=>	'Delete post',
-'Warning'				=>	'You are about to permanently delete this post.',
 'Topic warning'			=>	'Warning! This is the first post in the topic, the whole topic will be permanently deleted.',
 'Delete info'			=>	'The post you have chosen to delete is set out below for you to review before proceeding.',
 'Reply by'				=>	'Reply by %s - %s',
@@ -18,8 +17,7 @@ $lang_front = array(
 'produces'				=>	'produces',
 
 'BBCode'				=>	'BBCode',
-'BBCode info 1'			=>	'BBCode is a collection of formatting tags that are used to change the look of text in this forum. BBCode is based on the same principal as, and is very similar to, HTML. Below is a list of all the available BBCodes and instructions on how to use them.',
-'BBCode info 2'			=>	'Administrators have the ability to enable or disable BBCode. You can tell if BBCode is enabled or disabled out in the left margin whenever you post a message or edit your signature.',
+'BBCode info'			=>	'BBCode is a collection of formatting tags that are used to change the look of text in this forum. BBCode is based on the same principal as, and is very similar to, HTML. Below is a list of all the available BBCodes and instructions on how to use them. Administrators have the ability to enable or disable BBCode. You can tell if BBCode is enabled or disabled out in the left margin whenever you post a message or edit your signature.',
 
 'Text style'			=>	'Text style',
 'Text style info'		=>	'The following tags change the appearance of text:',
@@ -124,8 +122,7 @@ $lang_front = array(
 'Send email to'					=>	'Send email to',
 'Email subject'					=>	'Subject',
 'Email message'					=>	'Message',
-'Email disclosure note'			=>	'Please note that by using this form, your email address will be disclosed to the recipient.',
-'Write email'					=>	'Write and submit your email message',
+'Email disclosure note'			=>	'Note that by using this form, your email address will be disclosed to the recipient.',
 
 // Report
 'No reason'						=>	'You must enter a reason.',
@@ -563,7 +560,6 @@ $lang_front = array(
 // Language for userlist.php
 'User find legend'	=>	'Find and sort users',
 'User search info'	=>	'Enter a username to search for and/or a user group to filter by. The username field can be left blank. Use the wildcard character * for partial matches.',
-'User sort info'	=>	'Sort users by name, date registered or number of posts and in ascending/descending order.',
 'User group'		=>	'User group',
 'No of posts'		=>	'Number of posts',
 'All users'			=>	'All',
@@ -576,7 +572,7 @@ $lang_front = array(
 'Closed'		=>	'Closed:',
 'Empty forum'	=>	'Forum is empty.',
 'Mod controls'	=>	'Moderator controls',
-'Is subscribed'	=>	'You are currently subscribed to this forum',
+'Is subscribed'	=>	'You are subscribed to this forum',
 'Unsubscribe'	=>	'Unsubscribe',
 'Subscribe'		=>	'Subscribe to this forum',
 
