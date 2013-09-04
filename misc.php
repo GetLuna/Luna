@@ -174,25 +174,23 @@ else if (isset($_GET['email']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div id="emailform" class="blockform">
-	<h2><span><?php echo $lang_front['Send email to'] ?> <?php echo pun_htmlspecialchars($recipient) ?></span></h2>
-	<div class="box">
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_front['Send email to'] ?> <?php echo pun_htmlspecialchars($recipient) ?></h3>
+    </div>
+	<div class="panel-body">
 		<form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang_front['Write email'] ?></legend>
-					<div class="infldset txtarea">
-						<input type="hidden" name="form_sent" value="1" />
-						<input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
-						<label class="required"><strong><?php echo $lang_front['Email subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<input class="longinput" type="text" name="req_subject" size="75" maxlength="70" tabindex="1" /><br /></label>
-						<label class="required"><strong><?php echo $lang_front['Email message'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
-						<textarea name="req_message" rows="10" cols="75" tabindex="2"></textarea><br /></label>
-						<p><?php echo $lang_front['Email disclosure note'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="3" accesskey="s" /> <a href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a></p>
+            <fieldset>
+                <input type="hidden" name="form_sent" value="1" />
+                <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
+                <label class="required"><?php echo $lang_front['Email subject'] ?>
+                <input class="form-control full-form" type="text" name="req_subject" size="75" maxlength="70" tabindex="1" /></label>
+                <label class="required"><?php echo $lang_front['Email message'] ?>
+                <textarea name="req_message" class="form-control full-form" rows="10" cols="75" tabindex="2"></textarea></label>
+                <p class="help-block"><?php echo $lang_front['Email disclosure note'] ?></p>
+            </fieldset>
+			<div><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="3" accesskey="s" /> <a href="javascript:history.go(-1)" class="btn btn-defaullt"><?php echo $lang_common['Go back'] ?></a></div>
 		</form>
 	</div>
 </div>
