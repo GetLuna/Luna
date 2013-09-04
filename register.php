@@ -144,7 +144,7 @@ if (isset($_POST['form_sent']))
   		// Since we found a spammer, lets report the bastard!
   		stopforumspam_report(get_remote_address(), $email1, $req_username);
 
-  		message($lang_front['Spam catch'].' <a href="mailto:'.$pun_config['o_admin_email'].'">'.$pun_config['o_admin_email'].'</a>.');
+  		message($lang_front['Spam catch'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
   	}
 
 	// Did everything go according to plan?
