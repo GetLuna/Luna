@@ -114,7 +114,7 @@ body, html {
 
 /* Navbar */
 .nav-inner {
-	max-width: 1137px;
+	max-width: 1170px;
 	margin: 0 auto;
 }
 
@@ -583,17 +583,17 @@ fieldset label {
 
 /* Breadcrumb */
 .breadcrumb {
-	background-color: #4c4c4c;
+	background-color: #009dff;
 	border-radius: 0;
 }
 
 .breadcrumb a {
-	color: #009cff;
+	color: #fff;
 	text-decoration: none;
 }
 
 .breadcrumb a:hover {
-	color: #3ab3ff;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -612,11 +612,8 @@ fieldset label {
 	border-color: #2ca0e9;
 }
 
-
-/* Generic Float Clear
-----------------------------------------------------------------*/
-
-.inbox, #brdmain, .crumbs, .pagepost, .block2col {
+/* Generic Float Clear */
+.inbox, #brdmain, .pagepost, .block2col {
 	min-height: 1px;
 }
 
@@ -707,4 +704,12 @@ span.bbu {
 
 span.bbs, del {
 	text-decoration: line-through;
+}
+
+blockquote p {
+	font-size: 13px;
+}
+
+pre {
+	border-radius: 0;
 }
