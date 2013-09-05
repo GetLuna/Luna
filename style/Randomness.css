@@ -699,3 +699,12 @@ fieldset label {
 	width: 90%;
 	white-space: normal
 }
+
+/* BBCode */
+span.bbu {
+	text-decoration: underline;
+}
+
+span.bbs, del {
+	text-decoration: line-through;
+}
