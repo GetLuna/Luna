@@ -466,6 +466,12 @@ switch ($stage)
 
 		// Since 2.0-rc.1: Add the parent_forum_id column to the forums table
 		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
+		
+		// Since 2.0-rc.1: Change style from anything to Randomness when updating from ModernBB 2.0-beta.3 or lower
+		if (FORUM_VERSION < '2.0-rc.1') {
+			$db->query('UPDATE '.$db->prefix.'users SET style = Randomness WHERE style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'config SET o_default_style = Randomness WHERE o_default_style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
+		}
 
 		// Since 1.4-beta.1: Add search index revision number
 		if (!array_key_exists('o_searchindex_revision', $pun_config))
