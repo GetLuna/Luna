@@ -816,7 +816,7 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<ins>$1</ins>';
 	$replace[] = '<em>$1</em>';
 	$replace[] = '<span style="color: $1">$2</span>';
-	$replace[] = '</p><h5>$1</h5><p>';
+	$replace[] = '</p><h4>$1</h4><p>';
 	$replace[] = '<acronym>$1</acronym>';
 	$replace[] = '<acronym title="$1">$2</acronym>';
 	$replace[] = '<q>$1</q>';

@@ -53,7 +53,7 @@ require FORUM_ROOT.'header.php';
 		<p><code>[color=blue]<?php echo $lang_front['Blue text'] ?>[/color]</code> <?php echo $lang_front['produces'] ?> <span style="color: blue"><?php echo $lang_front['Blue text'] ?></span></p>
 		<p><code>[sub]<?php echo $lang_front['Sub text'] ?>[/sub]</code> <?php echo $lang_front['produces'] ?> <sub><?php echo $lang_front['Sub text'] ?></sub></p>
 		<p><code>[sup]<?php echo $lang_front['Sup text'] ?>[/sup]</code> <?php echo $lang_front['produces'] ?> <sup><?php echo $lang_front['Sup text'] ?></sup></p>
-		<p><code>[h]<?php echo $lang_front['Heading text'] ?>[/h]</code> <?php echo $lang_front['produces'] ?></p> <div class="postmsg"><h5><?php echo $lang_front['Heading text'] ?></h5></div>
+		<p><code>[h]<?php echo $lang_front['Heading text'] ?>[/h]</code> <?php echo $lang_front['produces'] ?></p> <h4><?php echo $lang_front['Heading text'] ?></h4>
 	</div>
 </div>
 <div class="panel panel-default">
