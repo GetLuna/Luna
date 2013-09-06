@@ -51,9 +51,14 @@ require FORUM_ROOT.'header.php';
 		<p><code>[em]<?php echo $lang_front['Emphasised text'] ?>[/em]</code> <?php echo $lang_front['produces'] ?> <em><?php echo $lang_front['Emphasised text'] ?></em></p>
 		<p><code>[color=#FF0000]<?php echo $lang_front['Red text'] ?>[/color]</code> <?php echo $lang_front['produces'] ?> <span style="color: #ff0000"><?php echo $lang_front['Red text'] ?></span></p>
 		<p><code>[color=blue]<?php echo $lang_front['Blue text'] ?>[/color]</code> <?php echo $lang_front['produces'] ?> <span style="color: blue"><?php echo $lang_front['Blue text'] ?></span></p>
+		<p><code>[acronym=<?php echo $lang_front['Acronym'] ?>]<?php echo $lang_front['Acronym text'] ?>[/acronym]</code> <?php echo $lang_front['produces'] ?> <acronym title="<?php echo $lang_front['Acronym'] ?>"><?php echo $lang_front['Acronym text'] ?></acronym></p>
 		<p><code>[sub]<?php echo $lang_front['Sub text'] ?>[/sub]</code> <?php echo $lang_front['produces'] ?> <sub><?php echo $lang_front['Sub text'] ?></sub></p>
 		<p><code>[sup]<?php echo $lang_front['Sup text'] ?>[/sup]</code> <?php echo $lang_front['produces'] ?> <sup><?php echo $lang_front['Sup text'] ?></sup></p>
 		<p><code>[h]<?php echo $lang_front['Heading text'] ?>[/h]</code> <?php echo $lang_front['produces'] ?></p> <h4><?php echo $lang_front['Heading text'] ?></h4>
+		<p><code>[left]<?php echo $lang_front['Left text'] ?>[/left]</code> <?php echo $lang_front['produces'] ?></p> <p style="text-align: left"><?php echo $lang_front['Left text'] ?></p>
+		<p><code>[center]<?php echo $lang_front['Center text'] ?>[/center]</code> <?php echo $lang_front['produces'] ?></p> <p style="text-align: center"><?php echo $lang_front['Center text'] ?></p>
+		<p><code>[right]<?php echo $lang_front['Right text'] ?>[/right]</code> <?php echo $lang_front['produces'] ?></p> <p style="text-align: right"><?php echo $lang_front['Right text'] ?></p>
+		<p><code>[justify]<?php echo $lang_front['Justify text'] ?>[/justify]</code> <?php echo $lang_front['produces'] ?></p> <p style="text-align: justify"><?php echo $lang_front['Justify text'] ?></p>
 	</div>
 </div>
 <div class="panel panel-default">
@@ -93,12 +98,7 @@ require FORUM_ROOT.'header.php';
 			<div class="quotebox"><cite>James <?php echo $lang_common['wrote'] ?></cite><blockquote><div><p><?php echo $lang_front['Quote text'] ?></p></div></blockquote></div>
 		</div>
 		<p><?php echo $lang_front['Quotes info 2'] ?></p>
-		<p><code>[quote]<?php echo $lang_front['Quote text'] ?>[/quote]</code></p>
-		<p><?php echo $lang_front['produces quote box'] ?></p>
-		<div class="postmsg">
-			<div class="quotebox"><blockquote><div><p><?php echo $lang_front['Quote text'] ?></p></div></blockquote></div>
-		</div>
-		<p><?php echo $lang_front['quote note'] ?></p>
+		<p><code>[q]<?php echo $lang_front['Inline quote'] ?>[/q]</code> <?php echo $lang_front['produces'] ?> <q><?php echo $lang_front['Inline quote'] ?></q></p>
 	</div>
 </div>
 <div class="panel panel-default">
