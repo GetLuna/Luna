@@ -715,5 +715,13 @@ pre {
 }
 
 q {
-  quotes: "\201C" "\201D" "\2018" "\2019";
+	font-style: italic;
+}
+
+q:before {
+  content: "\201C";
+}
+
+q:after {
+  content: "\201D";
 }
