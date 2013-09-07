@@ -8,11 +8,11 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.0-rc.1-dev.2');
+define('UPDATE_TO', '2.0-rc.1');
 
-define('UPDATE_TO_DB_REVISION', 31);
+define('UPDATE_TO_DB_REVISION', 32);
 define('UPDATE_TO_SI_REVISION', 2);
-define('UPDATE_TO_PARSER_REVISION', 4);
+define('UPDATE_TO_PARSER_REVISION', 5);
 
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '5.0.1');
