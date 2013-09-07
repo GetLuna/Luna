@@ -197,6 +197,11 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	padding-right: 0;
 }
 
+.active.list-group-item, .active.list-group-item:hover, .active.list-group-item:focus {
+	background-color: #428bca;
+	border-color: #428bca;
+}
+
 :first-child.list-group-item, :last-child.list-group-item {
 	border-radius: 0;
 }
@@ -531,7 +536,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 .alert-warning {
 	border-left: #f79f13 5px solid;
-}	
+}
 
 .alert-info {
 	border-left: #2ca0e9 5px solid;
@@ -585,6 +590,10 @@ fieldset label {
 .breadcrumb {
 	background-color: #009dff;
 	border-radius: 0;
+}
+
+.breadcrumb > li + li::before {
+	color: #ccc;
 }
 
 .breadcrumb a {
@@ -695,6 +704,19 @@ fieldset label {
 #debug .tcr {
 	width: 90%;
 	white-space: normal
+}
+
+/* Links */
+a {
+	color: #428bca;
+}
+
+a:hover, a:active {
+	color: #2a6496;
+}
+
+a.list-group-item:hover, a.list-group-item:active {
+	color: #555555;
 }
 
 /* BBCode */
