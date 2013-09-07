@@ -64,7 +64,7 @@ body, html {
 }
 
 #brdwelcome li span {
-	background: url(Awesomness/img/bull.png) center left no-repeat;
+	background: url(Awesomeness/img/bull.png) center left no-repeat;
 	padding-left: 18px;
 	margin-right: 3px;
 	display: inline-block;
@@ -222,7 +222,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 .bblinks li span {
-	background: url(Awesomness/img/help.png) center left no-repeat;
+	background: url(Awesomeness/img/help.png) center left no-repeat;
 	margin-right: 8px;
 	padding-left: 20px;
 	display: inline-block;
