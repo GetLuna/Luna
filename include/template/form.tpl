@@ -10,7 +10,6 @@
         <style type="text/css">
 		body {
             padding-bottom: 40px;
-            background-color: #f2f2f2;
         }
         .form-signin {
             max-width: 340px;
