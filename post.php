@@ -535,12 +535,12 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-<ul class="breadcrumb">
-    <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo pun_htmlspecialchars($cur_posting['forum_name']) ?></a></li>
-<?php if (isset($cur_posting['subject'])): ?>			<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_posting['subject']) ?></a></li>
-<?php endif; ?>			<li class="active"><?php echo $action ?></li>
-</ul>
+    <ul class="breadcrumb">
+        <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+        <li><a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo pun_htmlspecialchars($cur_posting['forum_name']) ?></a></li>
+    <?php if (isset($cur_posting['subject'])): ?>			<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_posting['subject']) ?></a></li>
+    <?php endif; ?>			<li class="active"><?php echo $action ?></li>
+    </ul>
 
 <?php
 
@@ -549,17 +549,17 @@ if (!empty($errors))
 {
 
 ?>
-<div class="panel panel-danger">
-	<div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_front['Post errors'] ?></h3>
-    </div>
-    <div class="panel-body">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_front['Post errors'] ?></h3>
+        </div>
+        <div class="panel-body">
 <?php
 	foreach ($errors as $cur_error)
 		echo "\t\t\t\t".$cur_error."\n";
 ?>
-	</div>
-</div>
+        </div>
+    </div>
 
 <?php
 
@@ -570,12 +570,12 @@ else if (isset($_POST['preview']))
 	$preview_message = parse_message($message, $hide_smilies);
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_front['Post preview'] ?></h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_front['Post preview'] ?></h3>
+        </div>
+        <?php echo $preview_message."\n" ?>
     </div>
-	<?php echo $preview_message."\n" ?>
-</div>
 
 <?php
 
@@ -585,12 +585,12 @@ else if (isset($_POST['preview']))
 $cur_index = 1;
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $action ?></h3>
-    </div>
-    <div class="panel-body">
-		<?php echo $form."\n" ?>
+<?php echo $form."\n" ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $action ?></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
 <?php
@@ -662,22 +662,22 @@ if (!empty($checkboxes))
 {
 
 ?>
-	</div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_common['Options'] ?></h3>
+        </div>
     </div>
-    <div class="panel-body">
-        <fieldset>
-            <?php echo implode("\n\t\t\t\t\t\t\t", $checkboxes)."\n" ?>
-        </fieldset>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_common['Options'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <?php echo implode("\n\t\t\t\t\t\t\t", $checkboxes)."\n" ?>
+            </fieldset>
+        </div>
     </div>
-</div>
-<div class="alert alert-info">
-    <input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang_front['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a>
-    </form>
-</div>
+    <div class="alert alert-info">
+        <input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang_front['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a>
+    </div>
+</form>
 <?php
 
 }
