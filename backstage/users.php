@@ -882,26 +882,29 @@ else if (isset($_GET['find_user']))
 	generate_admin_menu('users');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang_back['Results head'] ?></h2>
-    <div class="pagepost">
-        <p class="pagelink"><?php echo $paging_links ?></p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_back['Results head'] ?></h3>
     </div>
-    <form id="search-users-form" action="users.php" method="post">
-        <table class="table">
-        <thead>
-            <tr>
-                <th class="tcl" scope="col"><?php echo $lang_back['Results username head'] ?></th>
-                <th class="tc2" scope="col"><?php echo $lang_back['Results e-mail head'] ?></th>
-                <th class="tc3" scope="col"><?php echo $lang_back['Results title head'] ?></th>
-                <th class="tc4" scope="col"><?php echo $lang_back['Results posts head'] ?></th>
-                <th class="tc5" scope="col"><?php echo $lang_back['Results admin note head'] ?></th>
-                <th class="tcr" scope="col"><?php echo $lang_back['Results actions head'] ?></th>
-    <?php if ($can_action): ?>					<th class="tcmod" scope="col"><?php echo $lang_back['Select'] ?></th>
-    <?php endif; ?>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="panel-body">
+        <div class="pagepost">
+            <p class="pagelink"><?php echo $paging_links ?></p>
+        </div>
+        <form id="search-users-form" action="users.php" method="post">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th class="tcl" scope="col"><?php echo $lang_back['Results username head'] ?></th>
+                    <th class="tc2" scope="col"><?php echo $lang_back['Results e-mail head'] ?></th>
+                    <th class="tc3" scope="col"><?php echo $lang_back['Results title head'] ?></th>
+                    <th class="tc4" scope="col"><?php echo $lang_back['Results posts head'] ?></th>
+                    <th class="tc5" scope="col"><?php echo $lang_back['Results admin note head'] ?></th>
+                    <th class="tcr" scope="col"><?php echo $lang_back['Results actions head'] ?></th>
+        <?php if ($can_action): ?>					<th class="tcmod" scope="col"><?php echo $lang_back['Select'] ?></th>
+        <?php endif; ?>
+                </tr>
+            </thead>
+            <tbody>
 <?php
 
 	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -918,15 +921,15 @@ else if (isset($_GET['find_user']))
 			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang_back['Results view IP link'].'</a> | <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang_back['Results show posts link'].'</a>';
 
 ?>
-            <tr>
-                <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
-				<td class="tc2"><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td class="tc3"><?php echo $user_title ?></td>
-                <td class="tc4"><?php echo forum_number_format($user_data['num_posts']) ?></td>
-                <td class="tc5"><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
-                <td class="tcr"><?php echo $actions ?></td>
-    <?php if ($can_action): ?>					<td class="tcmod"><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
-    <?php endif; ?>
-            </tr>
+                <tr>
+                    <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+                    <td class="tc2"><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td class="tc3"><?php echo $user_title ?></td>
+                    <td class="tc4"><?php echo forum_number_format($user_data['num_posts']) ?></td>
+                    <td class="tc5"><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+                    <td class="tcr"><?php echo $actions ?></td>
+        <?php if ($can_action): ?>					<td class="tcmod"><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
+        <?php endif; ?>
+                </tr>
 <?php
 
 		}
@@ -935,15 +938,27 @@ else if (isset($_GET['find_user']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="6">'.$lang_back['No match'].'</td></tr>'."\n";
 
 ?>
-        </tbody>
-        </table>
-
-        <div class="pagepost">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        <?php if ($can_action): ?>			<p class="conr modbuttons"><a class="btn" href="#" onclick="return select_checkboxes('search-users-form', this, '<?php echo $lang_back['Unselect all'] ?>')"><?php echo $lang_back['Select all'] ?></a> <?php if ($can_ban) : ?><input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_back['Ban'] ?>" /><?php endif; if ($can_delete) : ?><input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_back['Delete'] ?>" /><?php endif; if ($can_move) : ?><input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang_back['Change group'] ?>" /><?php endif; ?></p>
-        <?php endif; ?>
-        </div>
-    </form>
+            </tbody>
+            </table>
+    
+            <div class="pagepost">
+                <p class="pagelink"><?php echo $paging_links ?></p>
+				<?php if ($can_action): ?>
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+							<?php if ($can_ban) : ?>
+                            <input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang_back['Ban'] ?>" />
+                            <?php endif; if ($can_delete) : ?>
+                            <input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang_back['Delete'] ?>" />
+                            <?php endif; if ($can_move) : ?>
+                            <input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang_back['Change group'] ?>" />
+                            <?php endif; ?>
+                        </div>
+                    </div>
+            <?php endif; ?>
+            </div>
+        </form>
+    </div>
 </div>
 <?php
 
