@@ -11,7 +11,6 @@
 if (!defined('FORUM'))
 	exit;
 
-
 //
 // Generate the config cache PHP script
 //
@@ -53,35 +52,11 @@ function generate_bans_cache()
 
 
 //
-// Generate the ranks cache PHP script
-//
-function generate_ranks_cache()
-{
-	global $db;
-
-	// Get the rank list from the DB
-	$result = $db->query('SELECT * FROM '.$db->prefix.'ranks ORDER BY min_posts', true) or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
-
-	$output = array();
-	while ($cur_rank = $db->fetch_assoc($result))
-		$output[] = $cur_rank;
-
-	// Output ranks list as PHP code
-	fwrite($fh, '<?php'."\n\n".'define(\'FORUM_RANKS_LOADED\', 1);'."\n\n".'$pun_ranks = '.var_export($output, true).';'."\n\n".'?>');
-
-	fclose($fh);
-
-	if (function_exists('apc_delete_file'))
-		@apc_delete_file(FORUM_CACHE_DIR.'cache_ranks.php');
-}
-
-
-//
 // Generate quick jump cache PHP scripts
 //
 function generate_quickjump_cache($group_id = false)
 {
-	global $db, $lang_common, $pun_user;
+	global $db, $lang_common;
 
 	$groups = array();
 
@@ -140,6 +115,25 @@ function generate_quickjump_cache($group_id = false)
 
 		fluxbb_write_cache_file('cache_quickjump_'.$group_id.'.php', $output);
 	}
+}
+
+//
+// Generate the ranks cache PHP script
+//
+function generate_ranks_cache()
+{
+	global $db;
+
+	// Get the rank list from the DB
+	$result = $db->query('SELECT * FROM '.$db->prefix.'ranks ORDER BY min_posts', true) or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
+
+	$output = array();
+	while ($cur_rank = $db->fetch_assoc($result))
+		$output[] = $cur_rank;
+
+	// Output ranks list as PHP code
+	$content = '<?php'."\n\n".'define(\'FORUM_RANKS_LOADED\', 1);'."\n\n".'$pun_ranks = '.var_export($output, true).';'."\n\n".'?>';
+	fluxbb_write_cache_file('cache_ranks.php', $content);
 }
 
 
@@ -221,24 +215,17 @@ function generate_users_info_cache()
 function generate_admins_cache()
 {
 	global $db;
-	
+
 	// Get admins from the DB
 	$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE group_id='.FORUM_ADMIN) or error('Unable to fetch users info', __FILE__, __LINE__, $db->error());
-	
+
 	$output = array();
 	while ($row = $db->fetch_row($result))
 		$output[] = $row[0];
-	
+
 	// Output admin list as PHP code
-	$fh = @fopen(FORUM_CACHE_DIR.'cache_admins.php', 'wb');
-	if (!$fh)
-		error('Unable to write admins cache file to cache directory. Please make sure PHP has write access to the directory \''.pun_htmlspecialchars(FORUM_CACHE_DIR).'\'', __FILE__, __LINE__);
-		  
-	fwrite($fh, '<?php'."\n\n".'define(\'FORUM_ADMINS_LOADED\', 1);'."\n\n".'$pun_admins = '.var_export($output, true).';'."\n\n".'?>');
-	fclose($fh);
-	
-	if (function_exists('apc_delete_file'))
-		@apc_delete_file(FORUM_CACHE_DIR.'cache_admins.php');
+	$content = '<?php'."\n\n".'define(\'FORUM_ADMINS_LOADED\', 1);'."\n\n".'$pun_admins = '.var_export($output, true).';'."\n\n".'?>';
+	fluxbb_write_cache_file('cache_admins.php', $content);
 }
 
 
@@ -262,6 +249,7 @@ function fluxbb_write_cache_file($file, $content)
 	if (function_exists('apc_delete_file'))
 		@apc_delete_file(FORUM_CACHE_DIR.$file);
 }
+
 
 //
 // Delete all feed caches
