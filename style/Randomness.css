@@ -1,6 +1,7 @@
 /* General fixes */
 .container {
 	margin: 55px auto 20px;
+	max-width: 1170px;
 }
 
 body, html {
