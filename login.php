@@ -213,9 +213,9 @@ if (!empty($errors))
 <form class="form-signin form-pass" id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">
     <h1 class="form-signin-heading"><?php echo $lang_front['Request pass'] ?></h1>
     <fieldset>
-        <h4><?php echo $lang_common['Email'] ?> <?php echo $lang_common['Required'] ?></h4>
+        <h4><?php echo $lang_common['Email'] ?></h4>
         <input type="hidden" name="form_sent" value="1" />
-        <label class="required"><input id="req_email input-large" type="text" name="req_email" size="50" maxlength="80" placeholder="<?php echo $lang_common['Email'] ?> <?php echo $lang_common['Required'] ?>" /><br /></label>
+        <label class="required"><input class="form-control full-form" type="text" name="req_email" placeholder="<?php echo $lang_common['Email'] ?>" /></label>
         <div class="control-group pull-right" style="margin-top: 60px;">
             <?php if (empty($errors)): ?><a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a><?php endif; ?><input class="btn btn-primary" type="submit" name="request_pass" value="<?php echo $lang_common['Submit'] ?>" />
         </div>
