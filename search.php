@@ -861,8 +861,7 @@ if ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'])
 			echo "\t\t\t\t\t\t\t\t".'<div class="rbox">'; 
 			$cur_category = $cur_forum['cid'];
 		}
-
-		echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<label class="forum-list"><input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" />'.pun_htmlspecialchars($cur_forum['forum_name']).'</label>'."\n";
  	}
 	
 	if ($cur_category)
