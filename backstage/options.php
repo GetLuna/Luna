@@ -191,7 +191,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Board title label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Board title label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
                             <br /><span class="help-block"><?php echo $lang_back['Board title help'] ?></span>
@@ -327,7 +327,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Time format label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Time format label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
                             <br /><span class="help-block"><?php printf($lang_back['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang_back['PHP manual'].'</a>') ?></span>
@@ -373,7 +373,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Default feed label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Default feed label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['None'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['RSS'] ?></strong></label>
@@ -410,7 +410,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Reporting method label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Reporting method label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Internal'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['By e-mail'] ?></strong></label>
@@ -437,7 +437,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Use avatars label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Use avatars label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[avatars]" value="1"<?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[avatars]" value="0"<?php if ($pun_config['o_avatars'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
@@ -484,7 +484,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Allow new label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Allow new label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[regs_allow]" value="1"<?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[regs_allow]" value="0"<?php if ($pun_config['o_regs_allow'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
@@ -550,7 +550,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Display announcement label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Display announcement label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[announcement]" value="1"<?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[announcement]" value="0"<?php if ($pun_config['o_announcement'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
@@ -576,7 +576,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><a name="maintenance"></a><?php echo $lang_back['Maintenance mode label'] ?></th>
+                        <th class="col-xs-2"><a name="maintenance"></a><?php echo $lang_back['Maintenance mode label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[maintenance]" value="1"<?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[maintenance]" value="0"<?php if ($pun_config['o_maintenance'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>

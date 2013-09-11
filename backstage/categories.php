@@ -163,7 +163,7 @@ require FORUM_ROOT.'backstage/header.php';
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Add category label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Add category label'] ?></th>
                         <td>
                             <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
                             <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_back['Add new submit'] ?>" tabindex="2" />
@@ -185,7 +185,7 @@ require FORUM_ROOT.'backstage/header.php';
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2">
+                        <th class="col-xs-2">
                             <?php echo $lang_back['Delete category label'] ?>
                         </th>
                         <td>

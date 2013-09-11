@@ -85,7 +85,7 @@ generate_admin_menu('email');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th width="col-md-2"><?php echo $lang_back['Admin e-mail label'] ?></th>
+                        <th width="col-xs-2"><?php echo $lang_back['Admin e-mail label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[admin_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
                             <br /><span class="help-block"><?php echo $lang_back['Admin e-mail help'] ?></span>

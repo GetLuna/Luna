@@ -78,7 +78,7 @@ generate_admin_menu('features');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Quick post label'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang_back['Quick post label'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="form[quickpost]" value="1"<?php if ($pun_config['o_quickpost'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[quickpost]" value="0"<?php if ($pun_config['o_quickpost'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>

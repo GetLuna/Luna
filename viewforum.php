@@ -118,10 +118,10 @@ require FORUM_ROOT.'header.php';
     <table class="table">
         <thead>
             <tr class="active">
-                <th class="col-md-7"><?php echo $lang_common['Topic'] ?></th>
-                <th class="col-md-1"><?php echo $lang_common['Replies'] ?></th>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-md-1"><?php echo $lang_front['Views'] ?></th>
-<?php endif; ?>			<th class="col-md-3"><?php echo $lang_common['Last post'] ?></th>
+                <th class="col-xs-7"><?php echo $lang_common['Topic'] ?></th>
+                <th class="col-xs-1"><?php echo $lang_common['Replies'] ?></th>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-xs-1"><?php echo $lang_front['Views'] ?></th>
+<?php endif; ?>			<th class="col-xs-3"><?php echo $lang_common['Last post'] ?></th>
             </tr>
         </thead>
         <tbody>

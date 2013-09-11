@@ -74,7 +74,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 ?>
 <div class="index">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-xs-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Backup head'] ?></h3>
@@ -85,7 +85,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                 </div>
              </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-xs-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Reports head'] ?> - <a href="reports.php"><?php echo $lang_back['View all'] ?></a></h3>
@@ -141,7 +141,7 @@ else
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-xs-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['About head'] ?></h3>
@@ -150,7 +150,7 @@ else
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="span3"><?php echo $lang_back['ModernBB version label'] ?></th>
+                                <th class="col-xs-3"><?php echo $lang_back['ModernBB version label'] ?></th>
                                 <th><?php echo $lang_back['Server statistics label'] ?></th>
                             </tr>
                         </thead>
@@ -164,7 +164,7 @@ else
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang_back['Statistics head'] ?></h3>

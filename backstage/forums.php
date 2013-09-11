@@ -417,8 +417,8 @@ while ($cur_forum = $db->fetch_assoc($result))
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="col-md-2"><?php echo $lang_back['Action'] ?></th>
-                            <th class="span4"><?php echo $lang_back['Position label'] ?></th>
+                            <th class="col-xs-2"><?php echo $lang_back['Action'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang_back['Position label'] ?></th>
                             <th><?php echo $lang_back['Forum label'] ?></th>
                         </tr>
                     </thead>
