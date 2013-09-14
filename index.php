@@ -198,9 +198,10 @@ else
         <h3 class="panel-title"><?php echo $lang_front['Board stats'] ?></h3>
     </div>
     <div class="panel-body">
+    <div class="row">
         <div class="col-xs-2"><span><?php printf($lang_front['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
         <div class="col-xs-2"><span><?php printf($lang_front['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
-        <div class="col-xs-2"><span><?php printf($lang_front['No of posts'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
+        <div class="col-xs-2"><span><?php printf($lang_front['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
         <div class="col-xs-2"><span><?php printf($lang_front['Newest user'], $stats['newest_user']) ?></span></div>
 <?php
 
@@ -223,9 +224,11 @@ if ($pun_config['o_users_online'] == '1')
 		else
 			++$num_guests;
 	}
-
+	?>
+    </div>
+	<?php
 	$num_users = count($users);
-	echo "\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
+	echo "\t\t\t\t".'<span>'.sprintf($lang_front['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
 	
 	if ($num_users > 0)
 		echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang_front['Online'].': </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
