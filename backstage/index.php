@@ -150,8 +150,8 @@ else
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-xs-3"><?php echo $lang_back['ModernBB version label'] ?></th>
-                                <th><?php echo $lang_back['Server statistics label'] ?></th>
+                                <th class="col-xs-6"><?php echo $lang_back['ModernBB version label'] ?></th>
+                                <th class="col-xs-6"><?php echo $lang_back['Server statistics label'] ?></th>
                             </tr>
                         </thead>
                         <tbody>

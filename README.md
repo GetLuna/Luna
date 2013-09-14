@@ -1,11 +1,8 @@
-ModernBB 2.0 RC
-===============
+ModernBB 2.0 "Zoe"
+==================
 
 ## About
 ModernBB is an open source forum application released under the GNU General Public Licence v3. It is free to download and use and will remain so. ModernBB was conceived and designed to be fast and light with less of the "not so essential" features that some of the other forums have whilst not sacrificing essential functionality or usability.
-
-## Unstable
-This version of ModernBB is labeled as unstable, this means that this version is still in development and can get issues. If you like to work "on the edge", you can use this version. However, remind that this can cause issues. Since this is a Release Candidate, it should be a kind-of "stable", anyway. For developers, this is also a good place to start.
 
 ## Requirements
  - A webserver
@@ -23,4 +20,5 @@ This version of ModernBB is labeled as unstable, this means that this version is
 ## Links
  - Homepage: http://modernbb.be
  - Forums: http://modernbb.be/forums
+ - Documentation: http://modernbb.be/docs/zoe
  - Development: http://github.com/modernbb/modernbb/
