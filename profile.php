@@ -968,7 +968,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 {
 	$user_personal = array();
 
-	$user_personal[] = '<tr><th class="-2">'.$lang_common['Username'].'</th>';
+	$user_personal[] = '<tr><th class="col-xs-2">'.$lang_common['Username'].'</th>';
 	$user_personal[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
 
 	$user_title_field = get_title($user);
@@ -1177,7 +1177,7 @@ else
 		generate_profile_menu('essentials');
 
 ?>
-<div class="-10">
+<div class="col-xs-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section essentials'] ?></h2>
     <form id="profile1" method="post" action="profile.php?section=essentials&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
         <div class="panel panel-default">
@@ -1356,7 +1356,7 @@ if (count($languages) > 1)
 		generate_profile_menu('personal');
 
 ?>
-<div class="-10">
+<div class="col-xs-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section personal'] ?></h2>
     <form id="profile2" method="post" action="profile.php?section=personal&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
@@ -1388,7 +1388,7 @@ if (count($languages) > 1)
 		generate_profile_menu('messaging');
 
 ?>
-<div class="-10">
+<div class="col-xs-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section messaging'] ?></h2>
     <form id="profile3" method="post" action="profile.php?section=messaging&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
@@ -1437,7 +1437,7 @@ if (count($languages) > 1)
 
 
 ?>
-<div class="-10">
+<div class="col-xs-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section personality'] ?></h2>
     <form id="profile4" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
         <div><input type="hidden" name="form_sent" value="1" /></div>
@@ -1487,7 +1487,7 @@ if (count($languages) > 1)
 		generate_profile_menu('display');
 
 ?>
-<div class="-10">
+<div class="col-xs-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section display'] ?></h2>
     <form id="profile5" method="post" action="profile.php?section=display&amp;id=<?php echo $id ?>">
         <div><input type="hidden" name="form_sent" value="1" /></div>
@@ -1580,7 +1580,7 @@ if (count($languages) > 1)
 		generate_profile_menu('privacy');
 
 ?>
-<div class="-10">
+<div class="col-xs-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section privacy'] ?></h2>
     <form id="profile6" method="post" action="profile.php?section=privacy&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
@@ -1664,14 +1664,14 @@ if (count($languages) > 1)
 
 ?>
 
-<div class="-10">
+<div class="col-xs-10">
 	<h2><?php echo $lang_common['Profile'] ?> <small><?php echo $lang_front['View info'] ?></small></h2>
     <table class="table">
     	<tr>
             <td class="active" colspan="2"><h4><?php echo $lang_front['Section personal'] ?></h4></td>
         </tr>
         <tr>
-            <th class="-2"><?php echo $lang_common['Username'] ?></th>
+            <th class="col-xs-2"><?php echo $lang_common['Username'] ?></th>
             <td><?php echo pun_htmlspecialchars($user['username']) ?></td>
         </tr>
         <tr>
@@ -1765,7 +1765,7 @@ if (count($languages) > 1)
 		generate_profile_menu('admin');
 
 ?>
-<div class="-10">
+<div class="col-xs-10">
     <h2 class="profile-h2"><?php echo $lang_front['Section admin'] ?></h2>
     <form id="profile7" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>">
 <?php
