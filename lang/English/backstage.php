@@ -8,6 +8,10 @@ $lang_back = array(
 'More new'					=>	'More improvements',
 'Other new'					=>	'Other small improvements',
 
+'Maintenance releases'		=>	'Maintenance and security releases',
+'Version release'			=>	'<b>Version %s</b>:',
+'Maintenance version'		=>	'addressed some issues and fixed %s bugs.',
+'Security version'			=>	'addressed some security issues and fixed %s bugs.',
 'Headline feature 1 title'	=>	'The new dashboard: Backstage',
 'Headline feature 1 head 1'	=>	'Modern design.',
 'Headline feature 1 head 2'	=>	'Modern standards. No dust. More features.',
