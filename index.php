@@ -224,12 +224,13 @@ if ($pun_config['o_users_online'] == '1')
 		else
 			++$num_guests;
 	}
+	
+	$num_users = count($users);
+	echo "\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
 	?>
     </div>
-	<?php
-	$num_users = count($users);
-	echo "\t\t\t\t".'<span>'.sprintf($lang_front['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
-	
+    <div class="row">
+    <?php
 	if ($num_users > 0)
 		echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang_front['Online'].': </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
 }
