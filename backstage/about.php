@@ -125,7 +125,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                     </div>
                     <div class="row">
                         <div class="col-xs-4">
-                            <p><b><?php echo $lang_back['Second feature 4 head'] ?>.</b>
+                            <p><b><?php echo $lang_back['Second feature 4 head'] ?></b>
                             <br /><?php echo $lang_back['Second feature 4 info'] ?></p>
                         </div>
                         <div class="col-xs-4">
@@ -145,10 +145,6 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                         <div class="col-xs-4">
                             <p><b><?php echo $lang_back['Second feature 8 head'] ?></b>
                             <br /><?php echo $lang_back['Second feature 8 info'] ?></p>
-                        </div>
-                        <div class="col-xs-4">
-                            <p><b><?php echo $lang_back['Second feature 9 head'] ?></b>
-                            <br /><?php echo $lang_back['Second feature 9 info'] ?></p>
                         </div>
                     </div>
                 </div>
@@ -198,10 +194,6 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                         <div class="col-xs-4">
                             <p><b><?php echo $lang_back['Minor feature 8 head'] ?></b>
                             <br /><?php echo $lang_back['Minor feature 8 info'] ?></p>
-                        </div>
-                        <div class="col-xs-4">
-                            <p><b><?php echo $lang_back['Minor feature 9 head'] ?></b>
-                            <br /><?php echo $lang_back['Minor feature 9 info'] ?></p>
                         </div>
                     </div>
                 </div>
