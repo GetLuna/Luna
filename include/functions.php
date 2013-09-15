@@ -7,7 +7,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
-include FORUM_ROOT.'include/srand.php'; 
+include PUN_ROOT.'include/srand.php'; 
 
 //
 // Return current timestamp (with microseconds) as a float
@@ -70,11 +70,11 @@ function check_cookie(&$pun_user)
 		pun_setcookie($pun_user['id'], $pun_user['password'], $expire);
 
 		// Set a default language if the user selected language no longer exists
-		if (!file_exists(FORUM_ROOT.'lang/'.$pun_user['language']))
+		if (!file_exists(PUN_ROOT.'lang/'.$pun_user['language']))
 			$pun_user['language'] = $pun_config['o_default_lang'];
 
 		// Set a default style if the user selected style no longer exists
-		if (!file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'.css'))
+		if (!file_exists(PUN_ROOT.'style/'.$pun_user['style'].'.css'))
 			$pun_user['style'] = $pun_config['o_default_style'];
 
 		if (!$pun_user['disp_topics'])
@@ -83,7 +83,7 @@ function check_cookie(&$pun_user)
 			$pun_user['disp_posts'] = $pun_config['o_disp_posts_default'];
 
 		// Define this if you want this visit to affect the online list and the users last visit data
-		if (!defined('FORUM_QUIET_VISIT'))
+		if (!defined('PUN_QUIET_VISIT'))
 		{
 			// Update the online list
 			if (!$pun_user['logged'])
@@ -133,7 +133,7 @@ function check_cookie(&$pun_user)
 		}
 
 		$pun_user['is_guest'] = false;
-		$pun_user['is_admmod'] = $pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_moderator'] == '1';
+		$pun_user['is_admmod'] = $pun_user['g_id'] == PUN_ADMIN || $pun_user['g_moderator'] == '1';
 	}
 	else
 		set_default_user();
@@ -439,7 +439,7 @@ function check_bans()
 	if ($bans_altered)
 	{
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+			require PUN_ROOT.'include/cache.php';
 
 		generate_bans_cache();
 	}
@@ -548,7 +548,7 @@ function generate_profile_menu($page = '')
 <?php if ($pun_config['o_avatars'] == '1' || $pun_config['o_signatures'] == '1'): ?>					<li<?php if ($page == 'personality') echo ' class="isactive"'; ?>><a href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section personality'] ?></a></li>
 <?php endif; ?>					<li<?php if ($page == 'display') echo ' class="isactive"'; ?>><a href="profile.php?section=display&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section display'] ?></a></li>
 					<li<?php if ($page == 'privacy') echo ' class="isactive"'; ?>><a href="profile.php?section=privacy&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section privacy'] ?></a></li>
-<?php if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>					<li<?php if ($page == 'admin') echo ' class="isactive"'; ?>><a href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section admin'] ?></a></li>
+<?php if ($pun_user['g_id'] == PUN_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>					<li<?php if ($page == 'admin') echo ' class="isactive"'; ?>><a href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang_profile['Section admin'] ?></a></li>
 <?php endif; ?>				</ul>
 			</div>
 		</div>
@@ -572,9 +572,9 @@ function generate_avatar_markup($user_id)
 	{
 		$path = $pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
-		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path))
+		if (file_exists(PUN_ROOT.$path) && $img_size = getimagesize(PUN_ROOT.$path))
 		{
-			$avatar_markup = '<img src="'.pun_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
+			$avatar_markup = '<img src="'.pun_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(PUN_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		}
 	}
@@ -700,8 +700,8 @@ function delete_avatar($user_id)
 	// Delete user avatar
 	foreach ($filetypes as $cur_type)
 	{
-		if (file_exists(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type))
-			@unlink(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type);
+		if (file_exists(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type))
+			@unlink(PUN_ROOT.$pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type);
 	}
 }
 
@@ -801,10 +801,10 @@ function censor_words($text)
 		if (file_exists(FORUM_CACHE_DIR.'cache_censoring.php'))
 			include FORUM_CACHE_DIR.'cache_censoring.php';
 
-		if (!defined('FORUM_CENSOR_LOADED'))
+		if (!defined('PUN_CENSOR_LOADED'))
 		{
 			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-				require FORUM_ROOT.'include/cache.php';
+				require PUN_ROOT.'include/cache.php';
 
 			generate_censoring_cache();
 			require FORUM_CACHE_DIR.'cache_censoring.php';
@@ -837,15 +837,15 @@ function get_title($user)
 	}
 
 	// If not already loaded in a previous call, load the cached ranks
-	if ($pun_config['o_ranks'] == '1' && !defined('FORUM_RANKS_LOADED'))
+	if ($pun_config['o_ranks'] == '1' && !defined('PUN_RANKS_LOADED'))
 	{
 		if (file_exists(FORUM_CACHE_DIR.'cache_ranks.php'))
 			include FORUM_CACHE_DIR.'cache_ranks.php';
 
-		if (!defined('FORUM_RANKS_LOADED'))
+		if (!defined('PUN_RANKS_LOADED'))
 		{
 			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-				require FORUM_ROOT.'include/cache.php';
+				require PUN_ROOT.'include/cache.php';
 
 			generate_ranks_cache();
 			require FORUM_CACHE_DIR.'cache_ranks.php';
@@ -862,7 +862,7 @@ function get_title($user)
 	else if ($user['g_user_title'] != '')
 		$user_title = pun_htmlspecialchars($user['g_user_title']);
 	// If the user is a guest
-	else if ($user['g_id'] == FORUM_GUEST)
+	else if ($user['g_id'] == PUN_GUEST)
 		$user_title = $lang_common['Guest'];
 	else
 	{
@@ -958,11 +958,11 @@ function message($message, $no_back_link = false, $http_status = null)
 		header('HTTP/1.1 ' . $http_status);
 	}
 
-	if (!defined('FORUM_HEADER'))
+	if (!defined('PUN_HEADER'))
 	{
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Info']);
 		define('FORUM_ACTIVE_PAGE', 'index');
-		require FORUM_ROOT.'header.php';
+		require PUN_ROOT.'header.php';
 	}
 
 ?>
@@ -978,7 +978,7 @@ function message($message, $no_back_link = false, $http_status = null)
 </div>
 <?php
 
-	require FORUM_ROOT.'footer.php';
+	require PUN_ROOT.'footer.php';
 }
 
 
@@ -1234,15 +1234,15 @@ function maintenance_message()
 	$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
 	$message = str_replace($pattern, $replace, $pun_config['o_maintenance_message']);
 
-	if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/maintenance.tpl'))
+	if (file_exists(PUN_ROOT.'style/'.$pun_user['style'].'/maintenance.tpl'))
 	{
-		$tpl_file = FORUM_ROOT.'style/'.$pun_user['style'].'/maintenance.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'style/'.$pun_user['style'].'/';
+		$tpl_file = PUN_ROOT.'style/'.$pun_user['style'].'/maintenance.tpl';
+		$tpl_inc_dir = PUN_ROOT.'style/'.$pun_user['style'].'/';
 	}
 	else
 	{
-		$tpl_file = FORUM_ROOT.'include/template/maintenance.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'include/user/';
+		$tpl_file = PUN_ROOT.'include/template/maintenance.tpl';
+		$tpl_inc_dir = PUN_ROOT.'include/user/';
 	}
 
 	$tpl_maint = file_get_contents($tpl_file);
@@ -1257,8 +1257,8 @@ function maintenance_message()
 		// Allow for overriding user includes, too.
 		if (file_exists($tpl_inc_dir.$cur_include[1].'.'.$cur_include[2]))
 			require $tpl_inc_dir.$cur_include[1].'.'.$cur_include[2];
-		else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2]))
-			require FORUM_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2];
+		else if (file_exists(PUN_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2]))
+			require PUN_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2];
 		else
 			error(sprintf($lang_common['Pun include error'], htmlspecialchars($cur_include[0]), basename($tpl_file)));
 
@@ -1359,15 +1359,15 @@ function redirect($destination_url, $message)
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
 
-	if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/redirect.tpl'))
+	if (file_exists(PUN_ROOT.'style/'.$pun_user['style'].'/redirect.tpl'))
 	{
-		$tpl_file = FORUM_ROOT.'style/'.$pun_user['style'].'/redirect.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'style/'.$pun_user['style'].'/';
+		$tpl_file = PUN_ROOT.'style/'.$pun_user['style'].'/redirect.tpl';
+		$tpl_inc_dir = PUN_ROOT.'style/'.$pun_user['style'].'/';
 	}
 	else
 	{
-		$tpl_file = FORUM_ROOT.'include/template/redirect.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'include/user/';
+		$tpl_file = PUN_ROOT.'include/template/redirect.tpl';
+		$tpl_inc_dir = PUN_ROOT.'include/user/';
 	}
 
 	$tpl_redir = file_get_contents($tpl_file);
@@ -1382,8 +1382,8 @@ function redirect($destination_url, $message)
 		// Allow for overriding user includes, too.
 		if (file_exists($tpl_inc_dir.$cur_include[1].'.'.$cur_include[2]))
 			require $tpl_inc_dir.$cur_include[1].'.'.$cur_include[2];
-		else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2]))
-			require FORUM_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2];
+		else if (file_exists(PUN_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2]))
+			require PUN_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2];
 		else
 			error(sprintf($lang_common['Pun include error'], htmlspecialchars($cur_include[0]), basename($tpl_file)));
 
@@ -1448,7 +1448,7 @@ function redirect($destination_url, $message)
 	$db->end_transaction();
 
 	// Display executed queries (if enabled)
-	if (defined('FORUM_SHOW_QUERIES'))
+	if (defined('PUN_SHOW_QUERIES'))
 		display_saved_queries();
 
 	$tpl_temp = trim(ob_get_contents());
@@ -1528,7 +1528,7 @@ H2 {MARGIN: 0; COLOR: #FFFFFF; BACKGROUND-COLOR: #B84623; FONT-SIZE: 1.1em; PADD
 	<div>
 <?php
 
-	if (defined('FORUM_DEBUG') && !is_null($file) && !is_null($line))
+	if (defined('PUN_DEBUG') && !is_null($file) && !is_null($line))
 	{
 		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>FluxBB reported</strong>: '.$message."\n";
 
@@ -1643,7 +1643,7 @@ function remove_bad_characters($array)
 			"\xe2\x80\x85"	=> ' ',		// FOUR-PER-EM SPACE					2005	*
 			"\xe2\x80\x86"	=> ' ',		// SIX-PER-EM SPACE						2006	*
 			"\xe2\x80\x87"	=> ' ',		// FIGURE SPACE							2007	*
-			"\xe2\x80\x88"	=> ' ',		// FORUMCTUATION SPACE					2008	*
+			"\xe2\x80\x88"	=> ' ',		// PUNCTUATION SPACE					2008	*
 			"\xe2\x80\x89"	=> ' ',		// THIN SPACE							2009	*
 			"\xe2\x80\x8a"	=> ' ',		// HAIR SPACE							200A	*
 			"\xE3\x80\x80"	=> ' ',		// IDEOGRAPHIC SPACE					3000	*
@@ -1689,7 +1689,7 @@ function forum_list_styles()
 {
 	$styles = array();
 
-	$d = dir(FORUM_ROOT.'style');
+	$d = dir(PUN_ROOT.'style');
 	while (($entry = $d->read()) !== false)
 	{
 		if ($entry{0} == '.')
@@ -1713,13 +1713,13 @@ function forum_list_langs()
 {
 	$languages = array();
 
-	$d = dir(FORUM_ROOT.'lang');
+	$d = dir(PUN_ROOT.'lang');
 	while (($entry = $d->read()) !== false)
 	{
 		if ($entry{0} == '.')
 			continue;
 
-		if (is_dir(FORUM_ROOT.'lang/'.$entry) && file_exists(FORUM_ROOT.'lang/'.$entry.'/common.php'))
+		if (is_dir(PUN_ROOT.'lang/'.$entry) && file_exists(PUN_ROOT.'lang/'.$entry.'/common.php'))
 			$languages[] = $entry;
 	}
 	$d->close();
@@ -1735,7 +1735,7 @@ function forum_list_langs()
 //
 function generate_stopwords_cache_id()
 {
-	$files = glob(FORUM_ROOT.'lang/*/stopwords.txt');
+	$files = glob(PUN_ROOT.'lang/*/stopwords.txt');
 	if ($files === false)
 		return 'cache_id_error';
 
@@ -1758,7 +1758,7 @@ function forum_list_plugins($is_admin)
 {
 	$plugins = array();
 
-	$d = dir(FORUM_ROOT.'plugins');
+	$d = dir(PUN_ROOT.'plugins');
 	while (($entry = $d->read()) !== false)
 	{
 		if ($entry{0} == '.')
