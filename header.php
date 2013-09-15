@@ -25,8 +25,6 @@ if (defined('FORUM_ADMIN_CONSOLE'))
 	$tpl_file = 'admin.tpl';
 else if (defined ('FORUM_FORM'))
 	$tpl_file = 'form.tpl';
-else if (defined('FORUM_HELP'))
-	$tpl_file = 'help.tpl';
 else
 	$tpl_file = 'main.tpl';
 

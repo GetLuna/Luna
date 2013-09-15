@@ -23,7 +23,6 @@ require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
 
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_front['Help']);
-define('FORUM_ACTIVE_PAGE', 'help');
 require FORUM_ROOT.'header.php';
 
 ?>
