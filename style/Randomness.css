@@ -1,6 +1,6 @@
 /* General fixes */
 .container {
-	margin: 55px auto 20px;
+	margin: 0 auto 20px;
 	width: 1100px;
 }
 
@@ -15,6 +15,42 @@ body, html {
 
 .forum-list-border {
 	height: 300px;
+}
+
+#brdmain {
+	margin-top: 10px;
+}
+
+/* Header */
+#header {
+	background: #fff;
+	background-image: url(Randomness/img/header.png);
+	color: #fff;
+}
+
+#header a {
+	color: #fff;
+	opacity: 0.8;
+}
+
+#header a:hover {
+	color: #fff;
+	opacity: 0.5;
+	text-decoration: none;
+}
+
+#header .alert {
+	padding: 5px 10px;
+}
+
+.announcement a {
+	text-decoration: underline;
+}
+
+#header-container {
+	width: 1070px;
+	padding-top: 50px;
+	margin: 0 auto;
 }
 
 /* Index */
@@ -117,6 +153,7 @@ body, html {
 .nav-inner {
 	width: 1100px;
 	margin: 0 auto;
+	visibility: .2;
 }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu{
@@ -125,9 +162,9 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  background-color: #2ca0e9;
-  background-image: none;
-  filter: none;
+	background: rgba(0,0,0,.4);
+	background-image: none;
+	filter: none;
 }
 
 .dropdown-menu {
@@ -135,9 +172,9 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 .navbar {
-	border-bottom: #0b82cd 5px solid;
-	box-shadow: 0 5px 5px 0px rgba(0,0,0,0.1);
-	background: #222222;
+	box-shadow: 0 5px 5px 0px rgba(0,0,0,0.05);
+	border: none;
+	background: rgba(0,0,0,.2);
 }
 
 .nav > li {
@@ -155,7 +192,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
 	color: #fff;
-	background-color: #0b82cd;
+	background: rgba(0,0,0,.2);
 }
 
 .nav .navbar-nav .pull-right {
@@ -551,6 +588,15 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 .alert-success {
 	border-left: #41d300 5px solid;
 	color: #4e9e00;
+}
+
+.announcement {
+	box-shadow: none;
+	border: none;
+	color: #fff;
+	border-top-left-radius: .3em;
+	border-top-right-radius: .3em;
+	background: rgba(255,255,255,.5);
 }
 
 .col-md-10 .alert {
