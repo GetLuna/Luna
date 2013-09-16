@@ -7,8 +7,8 @@
 	<body>
     	<pun_navlinks>
         <div id="<pun_page>">
-            <div class="container">
-                <div id="brdheader" class="block">
+            <div id="header">
+            	<div id="header-container">
                     <div class="box">
                         <div id="brdtitle" class="inbox">
                             <pun_title>
@@ -16,8 +16,10 @@
                         </div>
                         <pun_status>
                     </div>
+                    <pun_announcement>
                 </div>
-                <pun_announcement>
+            </div>
+            <div class="container">
                 <div id="brdmain">
                     <pun_main>
                 </div>

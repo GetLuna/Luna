@@ -292,7 +292,7 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_announcement'] == '1')
 	ob_start();
 
 ?>
-<div class="alert alert-info">
+<div class="alert alert-info announcement">
 	<div><?php echo $pun_config['o_announcement_message'] ?></div>
 </div>
 <?php
