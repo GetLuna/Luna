@@ -21,11 +21,16 @@ body, html {
 	margin-top: 10px;
 }
 
+h1 {
+	margin-top: -15px;
+}
+
 /* Header */
 #header {
 	background: #fff;
 	background-image: url(Randomness/img/header.png);
 	color: #fff;
+	box-shadow: 0 -10px 30px rgba(0,0,0,.15) inset;
 }
 
 #header a {
@@ -49,7 +54,7 @@ body, html {
 
 #header-container {
 	width: 1070px;
-	padding-top: 50px;
+	padding-top: -10px;
 	margin: 0 auto;
 }
 
@@ -174,7 +179,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .navbar {
 	box-shadow: 0 5px 5px 0px rgba(0,0,0,0.05);
 	border: none;
-	background: rgba(0,0,0,.2);
+	background: rgba(0,0,0,.4);
 }
 
 .nav > li {
