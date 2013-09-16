@@ -92,6 +92,13 @@ $lang_common = array(
 'BBCode list size error'			=>	'Your list was too long to parse, please make it smaller!',
 
 // Stuff for the navigator (top of every page)
+
+// User menu
+'Welcome'							=>	'Welcome',
+'Support'							=>	'Support',
+'About'								=>	'About ModernBB',
+'Help'								=>	'Help',
+
 'Index'								=>	'Index',
 'User list'							=>	'User list',
 'Rules'								=>	'Rules',

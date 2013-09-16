@@ -184,20 +184,6 @@ if ($pun_config['o_rules'] == '1' && (!$pun_user['is_guest'] || $pun_user['g_rea
 if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
 	$links[] = '<li id="navsearch"'.((FORUM_ACTIVE_PAGE == 'search') ? ' class="active"' : '').'><a href="search.php">'.$lang_common['Search'].'</a></li>';
 
-if ($pun_user['is_guest'])
-{
-	$links[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang_common['Register'].'</a></li>';
-	$links[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang_common['Login'].'</a></li>';
-}
-else
-{
-	$links[] = '<li id="navprofile"'.((FORUM_ACTIVE_PAGE == 'profile') ? ' class="active"' : '').'><a href="profile.php?id='.$pun_user['id'].'">'.$lang_common['Profile'].'</a></li>';
-
-	if ($pun_user['is_admmod'])
-		$links[] = '<li id="navadmin"'.((FORUM_ACTIVE_PAGE == 'admin') ? ' class="active"' : '').'><a href="backstage/index.php">'.$lang_common['Admin'].'</a></li>';
-
-	$links[] = '<li id="navlogout"><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang_common['Logout'].'</a></li>';
-}
 // Are there any additional navlinks we should insert into the array before imploding it?
 if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != '')
 {
@@ -209,8 +195,43 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != 
 			array_splice($links, $extra_links[1][$i], 0, array('<li id="navextra'.($i + 1).'">'.$extra_links[2][$i].'</li>'));
 	}
 }
+// The user menu
+if ($pun_user['is_guest'])
+{
+	$usermenu[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang_common['Register'].'</a></li>';
+	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang_common['Login'].'</a></li>';
+} else {
+	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang_common['Welcome'].', '.(pun_htmlspecialchars($pun_user['username'])).'<b class="caret"></b></a>';
+	$usermenu[] = '<ul class="dropdown-menu">';
+	$usermenu[] = '<li><a href="profile.php?id='.$pun_user['id'].'">'.$lang_common['Profile'].'</a></li>';
+	$usermenu[] = '<li><a href="help.php">'.$lang_common['Help'].'</a></li>';
+	$usermenu[] = '<li class="divider"></li>';
+	if ($pun_user['is_admmod']) {
+		$usermenu[] = '<li><a href="http://modernbb.be">'.$lang_common['Support'].'</a></li>';
+		$usermenu[] = '<li><a href="backstage/about.php">'.$lang_common['About'].'</a></li>';
+		$usermenu[] = '<li class="divider"></li>';
+	}
+	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang_common['Logout'].'</a></li>';
+	$usermenu[] = '</ul>';
+}
 
-$tpl_temp = '<div class="navbar navbar-fixed-top">'."\n\t\t\t".'<div class="nav-inner">'."\n\t\t\t\t".'<div class="navbar-header">'."\n\t\t\t\t\t".'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">'."\n\t\t\t\t\t\t".'<span class="icon-bar"></span>'."\n\t\t\t\t\t\t".'<span class="icon-bar"></span>'."\n\t\t\t\t\t\t".'<span class="icon-bar"></span>'."\n\t\t\t\t\t".'</button>'."\n\t\t\t\t".'</div>'."\n\t\t\t\t\t".'<div class="navbar-collapse collapse">'."\n\t\t\t\t\t".'<ul class="nav navbar-nav">'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t\t\t\t".'</ul>'."\n\t\t\t\t\t".'</div>'."\n\t\t\t\t".'</div>'."\n\t\t\t".'</div>';
+$tpl_temp = '<div class="navbar">
+	<div class="nav-inner">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t\t\t\t".'</ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t", $usermenu)."\n\t\t\t\t\t\t".'</li>
+            </ul>
+		</div>
+	</div>
+</div>';
 $tpl_main = str_replace('<pun_navlinks>', $tpl_temp, $tpl_main);
 // END SUBST - <pun_navlinks>
 
