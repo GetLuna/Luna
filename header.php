@@ -207,6 +207,7 @@ if ($pun_user['is_guest'])
 	$usermenu[] = '<li><a href="help.php">'.$lang_common['Help'].'</a></li>';
 	$usermenu[] = '<li class="divider"></li>';
 	if ($pun_user['is_admmod']) {
+		$usermenu[] = '<li><a href="backstage/">'.$lang_common['Backstage'].'</a></li>';
 		$usermenu[] = '<li><a href="http://modernbb.be">'.$lang_common['Support'].'</a></li>';
 		$usermenu[] = '<li><a href="backstage/about.php">'.$lang_common['About'].'</a></li>';
 		$usermenu[] = '<li class="divider"></li>';
@@ -239,13 +240,8 @@ $tpl_main = str_replace('<pun_navlinks>', $tpl_temp, $tpl_main);
 // START SUBST - <pun_status>
 $page_statusinfo = $page_topicsearches = array();
 
-if ($pun_user['is_guest'])
-	$page_statusinfo = '<p class="conl">'.$lang_common['Not logged in'].'</p>';
-else
+if (!$pun_user['is_guest'])
 {
-	$page_statusinfo[] = '<li><span>'.$lang_common['Logged in as'].' <strong>'.pun_htmlspecialchars($pun_user['username']).'</strong></span></li>';
-	$page_statusinfo[] = '<li><span>'.sprintf($lang_common['Last visit'], format_time($pun_user['last_visit'])).'</span></li>';
-	
 	if (!empty($forum_actions))
 	{
 		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</li></span>';
@@ -297,7 +293,7 @@ else
 if (!empty($page_topicsearches))
 {
 	$tpl_temp .= "\n\t\t\t".'<ul class="conr">';
-	$tpl_temp .= "\n\t\t\t\t".'<li><span>'.$lang_common['Topic searches'].' '.implode(' | ', $page_topicsearches).'</span></li>';
+	$tpl_temp .= "\n\t\t\t\t".'<li><span>'.implode(' &middot; ', $page_topicsearches).'</span></li>';
 	$tpl_temp .= "\n\t\t\t".'</ul>';
 }
 
