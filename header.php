@@ -294,13 +294,8 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_announcement'] == '1')
 	ob_start();
 
 ?>
-<div id="announce" class="block">
-	<div class="hd"><h2><span><?php echo $lang_common['Announcement'] ?></span></h2></div>
-	<div class="box">
-		<div id="announce-block" class="inbox">
-			<div class="usercontent"><?php echo $pun_config['o_announcement_message'] ?></div>
-		</div>
-	</div>
+<div class="alert alert-info">
+	<div><?php echo $pun_config['o_announcement_message'] ?></div>
 </div>
 <?php
 
