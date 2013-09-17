@@ -1,7 +1,9 @@
 /* General fixes */
 .container {
-	margin: 0 auto 20px;
-	width: 1100px;
+	margin: 0 auto;
+	width: 1070px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 body, html {
@@ -50,6 +52,11 @@ h1 {
 
 #header .dropdown-menu > li > a {
 	color: #222;
+	opacity: 1;
+}
+
+#header .navbar a {
+	opacity: 1;
 }
 
 #header .dropdown-menu > li > a:hover,
@@ -64,6 +71,16 @@ h1 {
 
 .announcement a {
 	text-decoration: underline;
+}
+
+.navbar-brand {
+	background: rgba(0,0,0,.4);
+	color: #fff;
+	margin-left: 0;
+	margin-right: 0;
+	margin-left: 16px;
+	padding-left: 12px;
+	padding-right: 12px;
 }
 
 #header-container {
@@ -159,7 +176,8 @@ h1 {
 .panel-default .panel-heading {
 	border-radius: 0;
 	border: none;
-	background: #2ca0e9;
+	background: #20a3f6;
+	background-image: linear-gradient(#20a3f6, #0b8ada);
 	color: #fff;
 }
 
@@ -355,6 +373,29 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .table > thead > tr.active {
 	color: #fff;
 	background-color: #078cdb;
+	background-image: url(Randomness/img/header.png);
+	color: #fff;
+}
+
+.category-header {
+	color: #fff;
+	background-color: #078cdb;
+	background-image: url(Randomness/img/header.png);
+	color: #fff;
+	box-shadow: 0 0 30px rgba(0,0,0,.3) inset;
+	padding: 8px 0;
+}
+
+.category-box {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.forum-row {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-top: 1px #ddd solid;
 }
 
 .table > tbody > tr > td {
