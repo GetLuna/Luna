@@ -113,18 +113,17 @@ require FORUM_ROOT.'header.php';
     <p class="pagelink conl"><?php echo $paging_links ?></p>
 <?php echo $post_link ?>
 </div>
-<div id="vf" class="blocktable">
+<div>
 	<h2><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></h2>
-    <table class="table">
-        <thead>
-            <tr class="active">
-                <th class="col-xs-7"><?php echo $lang_common['Topic'] ?></th>
-                <th class="col-xs-1"><?php echo $lang_common['Replies'] ?></th>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="col-xs-1"><?php echo $lang_front['Views'] ?></th>
-<?php endif; ?>			<th class="col-xs-3"><?php echo $lang_common['Last post'] ?></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="forum-box">
+        <div class="row forum-header">
+            <div class="col-xs-7"><?php echo $lang_common['Topic'] ?></div>
+            <div class="col-xs-1"><?php echo $lang_common['Replies'] ?></div>
+			<?php if ($pun_config['o_topic_views'] == '1'): ?>
+                <div class="col-xs-1"><?php echo $lang_front['Views'] ?></div>
+            <?php endif; ?>
+            <div class="col-xs-3"><?php echo $lang_common['Last post'] ?></div>
+		</div>
 <?php
 
 // Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
@@ -219,19 +218,21 @@ if ($db->num_rows($result))
 		}
 
 ?>
-            <tr class="<?php echo $item_status ?>">
-                <td class="tcl">
-                    <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
-                    <div class="tclcon">
-                        <div>
-							<?php echo $subject."\n" ?>
-                        </div>
+        <div class="row topic-row <?php echo $item_status ?>">
+            <div class="col-xs-7">
+                <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
+                <div class="tclcon">
+                    <div>
+                        <?php echo $subject."\n" ?>
                     </div>
-                </td>
-                <td class="tc2"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></td>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<td class="tc3"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></td>
-<?php endif; ?>			<td class="tcr"><?php echo $last_post ?></td>
-            </tr>
+                </div>
+            </div>
+            <div class="col-xs-1"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
+			<?php if ($pun_config['o_topic_views'] == '1'): ?>
+                <div class="col-xs-1"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+			<?php endif; ?>
+            <div class="col-xs-3"><?php echo $last_post ?></div>
+        </div>
 <?php
 
 	}
@@ -241,23 +242,20 @@ else
 	$colspan = ($pun_config['o_topic_views'] == '1') ? 4 : 3;
 
 ?>
-            <tr class="rowodd inone">
-                <td class="tcl" colspan="<?php echo $colspan ?>">
-                    <div class="icon inone"><div class="nosize"><!-- --></div></div>
-                    <div class="tclcon">
-                        <div>
-                            <strong><?php echo $lang_front['Empty forum'] ?></strong>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="icon inone"><div class="nosize"></div></div>
+                <div>
+                    <strong><?php echo $lang_front['Empty forum'] ?></strong>
+                </div>
+            </div>
+        </div>
 <?php
 
 }
 
 ?>
-        </tbody>
-    </table>
+    </div>
 </div>
 
 <div class="pagepost">
