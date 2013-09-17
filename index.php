@@ -162,7 +162,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 // Did we output any categories and forums?
 if ($cur_category > 0)
-	echo "\t\t\t".'</div>'."\n\t".'</div>'."\n".'</div>'."\n\n";
+	echo "\t\t\t".'</div>'."\n".'</div>'."\n\n";
 else
 	echo '<div id="idx0" class="block"><div class="box"><div class="inbox"><p>'.$lang_front['Empty board'].'</p></div></div></div>';
 
