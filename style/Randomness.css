@@ -377,7 +377,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	color: #fff;
 }
 
-.category-header {
+.category-header, .forum-header {
 	color: #fff;
 	background-color: #078cdb;
 	background-image: url(Randomness/img/header.png);
@@ -386,12 +386,12 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	padding: 8px 0;
 }
 
-.category-box {
+.category-box, .forum-box {
 	padding-left: 15px;
 	padding-right: 15px;
 }
 
-.forum-row {
+.forum-row, .topic-row {
 	color: #232323;
 	background-color: #fff;
 	padding: 8px 0;
