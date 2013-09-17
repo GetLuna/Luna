@@ -66,18 +66,13 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 ?>
 <div id="idx<?php echo $cat_count ?>">
-	<div>
-		<div>
-			<table class="table">
-                <thead>
-                    <tr class="active">
-                        <th class="col-xs-8"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></th>
-                        <th class="col-xs-1"><?php echo $lang_front['Topics'] ?></th>
-                        <th class="col-xs-1"><?php echo $lang_common['Posts'] ?></th>
-                        <th class="col-xs-2"><?php echo $lang_common['Last post'] ?></th>
-                    </tr>
-                </thead>
-                <tbody>
+    <div class="category-box">
+        <div class="row category-header">
+            <div class="col-xs-8"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></div>
+            <div class="col-xs-1"><?php echo $lang_front['Topics'] ?></div>
+            <div class="col-xs-1"><?php echo $lang_common['Posts'] ?></div>
+            <div class="col-xs-2"><?php echo $lang_common['Last post'] ?></div>
+        </div>
 <?php
 
 		$cur_category = $cur_forum['cid'];
@@ -148,26 +143,26 @@ while ($cur_forum = $db->fetch_assoc($result))
 	}
 
 ?>
-                    <tr class="<?php echo $item_status ?>">
-                        <td class="tcl">
-                            <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
-                            <div class="tclcon">
-                                <div>
-                                    <?php echo $forum_field."\n".$moderators ?>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="tc2"><?php echo forum_number_format($num_topics) ?></td>
-                        <td class="tc3"><?php echo forum_number_format($num_posts) ?></td>
-                        <td class="tcr"><?php echo $last_post ?></td>
-                    </tr>
+            <div class="<?php echo $item_status ?> row forum-row">
+                <div class="col-xs-8">
+                    <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
+                    <div class="tclcon">
+                        <div>
+                            <?php echo $forum_field."\n".$moderators ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-1"><?php echo forum_number_format($num_topics) ?></div>
+                <div class="col-xs-1"><?php echo forum_number_format($num_posts) ?></div>
+                <div class="col-xs-2"><?php echo $last_post ?></div>
+            </div>
 <?php
 
 }
 
 // Did we output any categories and forums?
 if ($cur_category > 0)
-	echo "\t\t\t".'</tbody>'."\n\t\t\t".'</table>'."\n\t\t".'</div>'."\n\t".'</div>'."\n".'</div>'."\n\n";
+	echo "\t\t\t".'</div>'."\n\t".'</div>'."\n".'</div>'."\n\n";
 else
 	echo '<div id="idx0" class="block"><div class="box"><div class="inbox"><p>'.$lang_front['Empty board'].'</p></div></div></div>';
 
