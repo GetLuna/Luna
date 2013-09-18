@@ -1069,11 +1069,11 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 		$quick_searches = array();
 		if ($user['num_posts'] > 0)
 		{
-			$quick_searches[] = '<a href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang_front['Show topics'].'</a>';
-			$quick_searches[] = '<a href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang_front['Show posts'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang_front['Show topics'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang_front['Show posts'].'</a>';
 		}
 		if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
-			$quick_searches[] = '<a href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang_front['Show subscriptions'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang_front['Show subscriptions'].'</a>';
 
 		if (!empty($quick_searches))
 			$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
@@ -1159,14 +1159,14 @@ else
 
 		if ($pun_user['g_search'] == '1' || $pun_user['g_id'] == FORUM_ADMIN)
 		{
-			$posts_actions[] = '<a href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang_front['Show topics'].'</a>';
-			$posts_actions[] = '<a href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang_front['Show posts'].'</a>';
+			$posts_actions[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang_front['Show topics'].'</a>';
+			$posts_actions[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang_front['Show posts'].'</a>';
 
 			if ($pun_config['o_topic_subscriptions'] == '1')
-				$posts_actions[] = '<a href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang_front['Show subscriptions'].'</a>';
+				$posts_actions[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang_front['Show subscriptions'].'</a>';
 		}
 
-		$posts_field .= (!empty($posts_actions) ? '<p class="actions">'.implode(' - ', $posts_actions).'</p>' : '')."\n";
+		$posts_field .= (!empty($posts_actions) ? '<p class="actions">'.implode(' ', $posts_actions).'</p>' : '')."\n";
 
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_front['Section essentials']);
@@ -1212,7 +1212,7 @@ else
                 <fieldset>
                     <p><?php echo $lang_front['Time zone info'] ?></p>
                     <label><?php echo $lang_front['Time zone']."\n" ?>
-                    <br /><select name="form[timezone]">
+                    <br /><select class="form-control" name="form[timezone]">
                         <option value="-12"<?php if ($user['timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang_front['UTC-12:00'] ?></option>
                         <option value="-11"<?php if ($user['timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang_front['UTC-11:00'] ?></option>
                         <option value="-10"<?php if ($user['timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang_front['UTC-10:00'] ?></option>
@@ -1255,10 +1255,10 @@ else
                         <option value="14"<?php if ($user['timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang_front['UTC+14:00'] ?></option>
                     </select>
                     </label>
-                    <label><input type="checkbox" name="form[dst]" value="1"<?php if ($user['dst'] == '1') echo ' checked="checked"' ?> /><?php echo $lang_front['DST'] ?></label>
+                    <p><input type="checkbox" name="form[dst]" value="1"<?php if ($user['dst'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['DST'] ?></p>
                     <label><?php echo $lang_front['Time format'] ?>
         
-                    <br /><select name="form[time_format]">
+                    <br /><select class="form-control" name="form[time_format]">
 <?php
                         foreach (array_unique($forum_time_formats) as $key => $time_format)
                         {
@@ -1275,7 +1275,7 @@ else
                     </label>
                     <label><?php echo $lang_front['Date format'] ?>
         
-                    <br /><select name="form[date_format]">
+                    <br /><select class="form-control" name="form[date_format]">
 <?php
                         foreach (array_unique($forum_date_formats) as $key => $date_format)
                         {
@@ -1301,7 +1301,7 @@ if (count($languages) > 1)
 
 ?>
                     <label><?php echo $lang_front['Language'] ?>
-                    <br /><select name="form[language]">
+                    <br /><select class="form-control" name="form[language]">
 <?php
 
     foreach ($languages as $temp)
@@ -1332,7 +1332,7 @@ if (count($languages) > 1)
                     <p><?php printf($lang_front['Registered info'], format_time($user['registered'], true).(($pun_user['is_admmod']) ? ' (<a href="moderate.php?get_host='.pun_htmlspecialchars($user['registration_ip']).'">'.pun_htmlspecialchars($user['registration_ip']).'</a>)' : '')) ?></p>
                     <p><?php printf($lang_front['Last post info'], $last_post) ?></p>
                     <p><?php printf($lang_front['Last visit info'], format_time($user['last_visit'])) ?></p>
-                    <?php echo $posts_field ?>
+                    <?php echo $posts_field ?><br />
 <?php if ($pun_user['is_admmod']): ?>							<label><?php echo $lang_front['Admin note'] ?><br />
                         <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" size="30" maxlength="30" /></label>
 <?php endif; ?>
@@ -1420,9 +1420,9 @@ if (count($languages) > 1)
 
 		$user_avatar = generate_avatar_markup($id);
 		if ($user_avatar)
-			$avatar_field .= ' <a href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_front['Delete avatar'].'</a>';
+			$avatar_field .= ' <a class="btn btn-primary btn-small" href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang_front['Delete avatar'].'</a>';
 		else
-			$avatar_field = '<a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_front['Upload avatar'].'</a>';
+			$avatar_field = '<a class="btn btn-primary btn-small" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang_front['Upload avatar'].'</a>';
 
 		if ($user['signature'] != '')
 			$signature_preview = '<p>'.$lang_front['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
@@ -1463,7 +1463,7 @@ if (count($languages) > 1)
                 <fieldset>
                     <p><?php echo $lang_front['Signature info'] ?></p>
                     <label><?php printf($lang_front['Sig max size'], forum_number_format($pun_config['p_sig_length']), $pun_config['p_sig_lines']) ?><br />
-                    <textarea class="form-control" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
+                    <textarea class="form-control full-form" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
                     <ul class="bblinks">
                         <li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang_common['BBCode'] ?></a> <?php echo ($pun_config['p_sig_bbcode'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
                         <li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang_common['img tag'] ?></a> <?php echo ($pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1') ? $lang_common['on'] : $lang_common['off']; ?></span></li>
@@ -1539,15 +1539,15 @@ if (count($languages) > 1)
                 <fieldset>
                     <p><?php echo $lang_front['Post display info'] ?></p>
 <?php if ($pun_config['o_smilies'] == '1' || $pun_config['o_smilies_sig'] == '1'): ?>
-                    <label><input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show smilies'] ?></label>
+                    <p><input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show smilies'] ?><br />
 <?php endif; if ($pun_config['o_signatures'] == '1'): ?>
-                    <label><input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show sigs'] ?></label>
+                    <input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show sigs'] ?><br />
 <?php endif; if ($pun_config['o_avatars'] == '1'): ?>
-                    <label><input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show avatars'] ?></label>
+                    <input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show avatars'] ?><br />
 <?php endif; if ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1'): ?>
-                    <label><input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show images'] ?></label>
+                    <input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show images'] ?><br />
 <?php endif; if ($pun_config['o_signatures'] == '1' && $pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1'): ?>
-                    <label><input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show images sigs'] ?></label>
+                    <input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Show images sigs'] ?></p>
 <?php endif; ?>
                 </fieldset>
             </div>
@@ -1559,7 +1559,6 @@ if (count($languages) > 1)
             </div>
             <div class="panel-body">
                 <fieldset>
-                    <h3><?php echo $lang_front['Pagination legend'] ?></h3>
                     <label class="conl"><?php echo $lang_front['Topics per page'] ?><br /><input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" size="6" maxlength="3" /></label>
                     <label class="conl"><?php echo $lang_front['Posts per page'] ?><br /><input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" size="6" maxlength="3" /></label>
                     <p class="clearb"><?php echo $lang_front['Paginate info'] ?> <?php echo $lang_front['Leave blank'] ?></p>
@@ -1591,9 +1590,9 @@ if (count($languages) > 1)
                 <fieldset>
                     <input type="hidden" name="form_sent" value="1" />
                     <p><?php echo $lang_front['Email setting info'] ?></p>
-                    <label><input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked="checked"' ?> /> <?php echo $lang_front['Email setting 1'] ?></label>
-                    <label><input type="radio" name="form[email_setting]" value="1"<?php if ($user['email_setting'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Email setting 2'] ?></label>
-                    <label><input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked="checked"' ?> /> <?php echo $lang_front['Email setting 3'] ?></label>
+                    <p><input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked="checked"' ?> /> <?php echo $lang_front['Email setting 1'] ?><br />
+                    <input type="radio" name="form[email_setting]" value="1"<?php if ($user['email_setting'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Email setting 2'] ?><br />
+                    <input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked="checked"' ?> /> <?php echo $lang_front['Email setting 3'] ?></p>
                 </fieldset>
             </div>
         </div>
@@ -1604,9 +1603,10 @@ if (count($languages) > 1)
             <div class="panel-body">
 <?php if ($pun_config['o_forum_subscriptions'] == '1' || $pun_config['o_topic_subscriptions'] == '1'): ?>
                 <fieldset>
-                    <label><input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Notify full'] ?></label>
-        <?php if ($pun_config['o_topic_subscriptions'] == '1'): ?>								<label><input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Auto notify full'] ?></label>
-        <?php endif; ?>
+                    <p><input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Notify full'] ?><br />
+					<?php if ($pun_config['o_topic_subscriptions'] == '1'): ?>
+                        <input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_front['Auto notify full'] ?></p>
+                    <?php endif; ?>
                 </fieldset>
             </div>
         </div>
@@ -1660,7 +1660,7 @@ if (count($languages) > 1)
 	if ($pun_config['o_show_post_count'] == '1' || $pun_user['g_id'] < FORUM_GUEST)
 		$posts_field = $user['num_posts'];
 	if ($pun_user['g_search'] == '1')
-		$posts_field .= (($posts_field != '') ? ' - ' : '').'<a href="search.php?action=show_user&amp;user_id='.$id.'">'.$lang_front['Show posts'].'</a>';
+		$posts_field .= (($posts_field != '') ? ' - ' : '').'<a class="btn btn-primary btn-small" href="search.php?action=show_user&amp;user_id='.$id.'">'.$lang_front['Show posts'].'</a>';
 
 ?>
 
@@ -1862,17 +1862,17 @@ if (count($languages) > 1)
 						if ($cur_category != 0)
 							echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
 
-						echo "\t\t\t\t\t\t\t".'<div class="conl">'."\n\t\t\t\t\t\t\t\t".'<p><strong>'.pun_htmlspecialchars($cur_forum['cat_name']).'</strong></p>'."\n\t\t\t\t\t\t\t\t".'<div>';
+						echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.pun_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'<div>';
 						$cur_category = $cur_forum['cid'];
 					}
 
 					$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
-					echo "\n\t\t\t\t\t\t\t\t\t".'<label><input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked="checked"' : '').' />'.pun_htmlspecialchars($cur_forum['forum_name']).'</label>'."\n";
+					echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked="checked"' : '').' /> '.pun_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
 				}
 
 ?>
-                    <input type="submit" class="btn btn-primary" name="update_forums" value="<?php echo $lang_front['Update forums'] ?>" />
+                    <br /><input type="submit" class="btn btn-primary" name="update_forums" value="<?php echo $lang_front['Update forums'] ?>" />
                 </fieldset>
             </div>
         </div>
