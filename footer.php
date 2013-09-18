@@ -22,7 +22,6 @@ ob_start();
 
 ?>
 <footer>
-	<div class="box">
 <?php
 
 if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'viewtopic') && $is_admmod)
@@ -52,11 +51,6 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 	echo "\t\t\t\n\t\t".'</div>'."\n";
 }
 
-?>
-		<div id="brdfooternav" class="inbox">
-			<div class="conr">
-<?php
-
 // If no footer style has been specified, we use the default (only copyright/debug info)
 $footer_style = isset($footer_style) ? $footer_style : NULL;
 
@@ -83,10 +77,7 @@ else if ($footer_style == 'viewtopic')
 }
 
 ?>
-				<span class="pull-right" id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></span></p>
-			</div>
-		</div>
-	</div>
+        <span class="pull-right" id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></span></p>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="include/bootstrap/jquery.js"></script>
     <script src="include/bootstrap/bootstrap.js"></script>
