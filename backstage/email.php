@@ -26,11 +26,11 @@ if (isset($_POST['form_sent']))
 	$form = array(
 		'admin_email'			=> strtolower(pun_trim($_POST['form']['admin_email'])),
 		'webmaster_email'		=> strtolower(pun_trim($_POST['form']['webmaster_email'])),
-		'forum_subscriptions'	=> $_POST['form']['forum_subscriptions'] != '1' ? '0' : '1',
-		'topic_subscriptions'	=> $_POST['form']['topic_subscriptions'] != '1' ? '0' : '1',
+		'forum_subscriptions'	=> $_POST['form']['forum_subscriptions'] ? '1' : '0',
+		'topic_subscriptions'	=> $_POST['form']['topic_subscriptions'] ? '1' : '0',
 		'smtp_host'				=> pun_trim($_POST['form']['smtp_host']),
 		'smtp_user'				=> pun_trim($_POST['form']['smtp_user']),
-		'smtp_ssl'				=> $_POST['form']['smtp_ssl'] != '1' ? '0' : '1',
+		'smtp_ssl'				=> $_POST['form']['smtp_ssl'] ? '1' : '0',
 	);
 	
 	// Change or enter a SMTP password
@@ -86,7 +86,7 @@ generate_admin_menu('email');
                 <table class="table">
                     <tr>
                         <th width="col-xs-2"><?php echo $lang_back['Admin e-mail label'] ?></th>
-                        <td>
+                        <td width="col-xs-10">
                             <input type="text" class="form-control" name="form[admin_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
                             <br /><span class="help-block"><?php echo $lang_back['Admin e-mail help'] ?></span>
                         </td>
@@ -99,19 +99,10 @@ generate_admin_menu('email');
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Forum subscriptions label'] ?></th>
+                        <th><?php echo $lang_back['Subscriptions label'] ?></th>
                         <td>
-                            <label><input type="radio" name="form[forum_subscriptions]" value="1"<?php if ($pun_config['o_forum_subscriptions'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label><input type="radio" name="form[forum_subscriptions]" value="0"<?php if ($pun_config['o_forum_subscriptions'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Forum subscriptions help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Topic subscriptions label'] ?></th>
-                        <td>
-                            <label><input type="radio" name="form[topic_subscriptions]" value="1"<?php if ($pun_config['o_topic_subscriptions'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label><input type="radio" name="form[topic_subscriptions]" value="0"<?php if ($pun_config['o_topic_subscriptions'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Topic subscriptions help'] ?></span>
+                            <input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($pun_config['o_forum_subscriptions'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Forum subscriptions help'] ?><br />
+                            <input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($pun_config['o_topic_subscriptions'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Topic subscriptions help'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -131,7 +122,7 @@ generate_admin_menu('email');
                     <tr>
                         <th><?php echo $lang_back['SMTP password label'] ?></th>
                         <td>
-                            <span><input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />&#160;&#160;<?php echo $lang_back['SMTP change password help'] ?></span>
+                            <span><input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" /> <?php echo $lang_back['SMTP change password help'] ?></span>
     <?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
                             <br /><input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
                             <input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
@@ -141,9 +132,7 @@ generate_admin_menu('email');
                     <tr>
                         <th><?php echo $lang_back['SMTP SSL label'] ?></th>
                         <td>
-                            <label><input type="radio" name="form[smtp_ssl]" value="1"<?php if ($pun_config['o_smtp_ssl'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label><input type="radio" name="form[smtp_ssl]" value="0"<?php if ($pun_config['o_smtp_ssl'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['SMTP SSL help'] ?></span>
+							<input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($pun_config['o_smtp_ssl'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['SMTP SSL help'] ?>
                         </td>
                     </tr>
                 </table>

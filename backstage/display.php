@@ -138,7 +138,7 @@ generate_admin_menu('display');
         </div>
         <div class="panel-body">
             <fieldset>
-        	    <input type="checkbox" name="form[show_version]" value="1" <?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Version number help'] ?><br />
+        	    <input type="checkbox" name="form[show_version]" value="1" <?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Version number help'] ?>
             </fieldset>
 		</div>
 	</div>
