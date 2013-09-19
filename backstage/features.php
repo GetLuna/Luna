@@ -32,7 +32,6 @@ if (isset($_POST['form_sent']))
 		'topic_views'			=> $_POST['form']['topic_views'] != '1' ? '0' : '1',
 		'gzip'					=> $_POST['form']['gzip'] != '1' ? '0' : '1',
 		'search_all_forums'		=> $_POST['form']['search_all_forums'] != '1' ? '0' : '1',
-		'additional_navlinks'	=> pun_trim($_POST['form']['additional_navlinks']),
 	);
 
 	if ($form['additional_navlinks'] != '')
@@ -139,13 +138,6 @@ generate_admin_menu('features');
                             <label class="conl"><input type="radio" name="form[search_all_forums]" value="1"<?php if ($pun_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
                             <label class="conl"><input type="radio" name="form[search_all_forums]" value="0"<?php if ($pun_config['o_search_all_forums'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
                             <span class="help-block"><?php echo $lang_back['Search all help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Menu items label'] ?></th>
-                        <td>
-                            <textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
-                            <span class="help-block"><?php echo $lang_back['Menu items help'] ?></span>
                         </td>
                     </tr>
                 </table>

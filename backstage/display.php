@@ -24,9 +24,10 @@ require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
 if (isset($_POST['form_sent']))
 {
 	$form = array(
-		'show_version'			=> $_POST['form']['show_version'] != '1' ? '0' : '1',
-		'show_user_info'		=> $_POST['form']['show_user_info'] != '1' ? '0' : '1',
-		'show_post_count'		=> $_POST['form']['show_post_count'] != '1' ? '0' : '1',
+		'default_style'			=> pun_trim($_POST['form']['default_style']),
+		'show_version'			=> $_POST['form']['show_version'] ? '1' : '0',
+		'show_user_info'		=> $_POST['form']['show_user_info'] ? '1' : '0',
+		'show_post_count'		=> $_POST['form']['show_post_count'] ? '1' : '0',
 		'smilies'				=> $_POST['form']['smilies'] != '1' ? '0' : '1',
 		'smilies_sig'			=> $_POST['form']['smilies_sig'] != '1' ? '0' : '1',
 		'make_links'			=> $_POST['form']['make_links'] != '1' ? '0' : '1',
@@ -35,7 +36,11 @@ if (isset($_POST['form_sent']))
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
 		'indent_num_spaces'		=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'			=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
+		'additional_navlinks'	=> pun_trim($_POST['form']['additional_navlinks']),
 	);
+
+	if ($form['additional_navlinks'] != '')
+		$form['additional_navlinks'] = pun_trim(pun_linebreaks($form['additional_navlinks']));
 
 	// Make sure the number of displayed topics and posts is between 3 and 75
 	if ($form['disp_topics_default'] < 3)
@@ -47,6 +52,10 @@ if (isset($_POST['form_sent']))
 		$form['disp_posts_default'] = 3;
 	else if ($form['disp_posts_default'] > 75)
 		$form['disp_posts_default'] = 75;
+
+	$styles = forum_list_styles();
+	if (!in_array($form['default_style'], $styles))
+		message($lang_common['Bad request']);
 
 	foreach ($form as $key => $input)
 	{
@@ -78,104 +87,95 @@ require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('display');
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Display head'] ?></h3>
-    </div>
-	<div class="panel-body">
-        <form method="post" action="display.php">
-            <input type="hidden" name="form_sent" value="1" />
+<h2><?php echo $lang_back['Appearance'] ?></h2>
+<form method="post" action="display.php">
+    <input type="hidden" name="form_sent" value="1" />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['General appearance'] ?></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th class="col-md-2"><?php echo $lang_back['Version number label'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="form[show_version]" value="1"<?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[show_version]" value="0"<?php if ($pun_config['o_show_version'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Version number help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Info in posts label'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="form[show_user_info]" value="1"<?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[show_user_info]" value="0"<?php if ($pun_config['o_show_user_info'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Info in posts help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Post count label'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="form[show_post_count]" value="1"<?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[show_post_count]" value="0"<?php if ($pun_config['o_show_post_count'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Post count help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Smilies label'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="form[smilies]" value="1"<?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[smilies]" value="0"<?php if ($pun_config['o_smilies'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Smilies help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Smilies sigs label'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="form[smilies_sig]" value="1"<?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[smilies_sig]" value="0"<?php if ($pun_config['o_smilies_sig'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Smilies sigs help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Clickable links label'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="form[make_links]" value="1"<?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[make_links]" value="0"<?php if ($pun_config['o_make_links'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Clickable links help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Topic review label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_back['Topic review help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Topics per page label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_back['Topics per page help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Posts per page label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_back['Posts per page help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Indent label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_back['Indent help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Quote depth label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
-                            <br /><span class="help-block"><?php echo $lang_back['Quote depth help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                <h4><?php echo $lang_back['Default style label'] ?></h4>
+				<select class="form-control" name="form[default_style]">
+<?php
+
+		$styles = forum_list_styles();
+
+		foreach ($styles as $temp)
+		{
+			if ($pun_config['o_default_style'] == $temp)
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
+		}
+
+?>
+				</select>
+				<br /><span class="help-block"><?php echo $lang_back['Default style help'] ?></span>
             </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></p>
-        </form>
+		</div>
+	</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['Header appearance'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+				<h4><?php echo $lang_back['Menu items label'] ?></h4>
+				<textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
+				<p class="help-block"><?php echo $lang_back['Menu items help'] ?></p>
+				<h4>Title settings</h4>
+                <p class="alert alert-danger">The feature showed below is not available in this version of ModernBB.</p>
+                <input type="checkbox" name="form[title_menu]" id="title_menu" value="1" /> Show board title in menu.<br />
+				<input type="checkbox" name="form[title_header]" id="title_header" value="1" /> Show board title in header.<br /></p>
+            </fieldset>
+		</div>
+	</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['Footer appearance'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+        	    <input type="checkbox" name="form[show_version]" value="1" <?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Version number help'] ?><br />
+            </fieldset>
+		</div>
+	</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['Display head'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+            	<h4>User profile</h4>
+				<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Info in posts help'] ?><br />
+				<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Post count help'] ?>
+            	<h4>Topics and posts</h4>
+				<input type="checkbox" name="form[smilies]" value="1" <?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies help'] ?><br />
+				<input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies sigs help'] ?><br />
+				<input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['O_make_links'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Clickable links help'] ?><br /><br />
+
+                <b><?php echo $lang_back['Topic review label'] ?></b><br />
+                <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
+                <br /><span class="help-block"><?php echo $lang_back['Topic review help'] ?></span><br /><br />
+                <b><?php echo $lang_back['Topics per page label'] ?></b><br />
+                <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
+                <br /><span class="help-block"><?php echo $lang_back['Topics per page help'] ?></span><br /><br />
+                <b><?php echo $lang_back['Posts per page label'] ?></b><br />
+                <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
+                <br /><span class="help-block"><?php echo $lang_back['Posts per page help'] ?></span><br /><br />
+                <b><?php echo $lang_back['Indent label'] ?></b><br />
+                <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
+                <br /><span class="help-block"><?php echo $lang_back['Indent help'] ?></span><br /><br />
+                <b><?php echo $lang_back['Quote depth label'] ?></b><br />
+                <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
+                <br /><span class="help-block"><?php echo $lang_back['Quote depth help'] ?></span><br />
+            </fieldset>
+        </div>
     </div>
-</div>
+	<div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></div>
+</form>
 <?php
 
 require FORUM_ROOT.'backstage/footer.php';

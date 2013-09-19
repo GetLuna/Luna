@@ -206,6 +206,9 @@ $lang_back = array(
 'Options updated redirect'			=>	'Settings updated. Redirecting …',
 
 // Language for display.php
+'General appearance'				=>	'Global appearance',
+'Header appearance'					=>	'Header appearance',
+'Footer appearance'					=>	'Footer appearance',
 'Display head'						=>	'Display settings',
 'Version number label'				=>	'Version number',
 'Version number help'				=>	'Show ModernBB version number in footer.',
@@ -881,7 +884,7 @@ $lang_back = array(
 'Bans'					=>	'Bans',
 'Settings'				=>	'Settings',
 'Global'				=>	'Global settings',
-'Display'				=>	'Display',
+'Appearance'			=>	'Appearance',
 'Features'				=>	'Features',
 'Toolbar'				=>	'Toolbar',
 'Email'					=>	'Email',

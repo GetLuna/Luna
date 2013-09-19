@@ -31,7 +31,6 @@ if (isset($_POST['form_sent']))
 		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
 		'default_dst'			=> $_POST['form']['default_dst'] != '1' ? '0' : '1',
 		'default_lang'			=> pun_trim($_POST['form']['default_lang']),
-		'default_style'			=> pun_trim($_POST['form']['default_style']),
 		'time_format'			=> pun_trim($_POST['form']['time_format']),
 		'date_format'			=> pun_trim($_POST['form']['date_format']),
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
@@ -286,27 +285,6 @@ generate_admin_menu('global');
 ?>
                             </select>
                             <br /><span class="help-block"><?php echo $lang_back['Language help'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Default style label'] ?></th>
-                        <td>
-                            <select class="form-control" name="form[default_style]">
-<?php
-
-		$styles = forum_list_styles();
-
-		foreach ($styles as $temp)
-		{
-			if ($pun_config['o_default_style'] == $temp)
-				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
-			else
-				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-		}
-
-?>
-                            </select>
-                            <br /><span class="help-block"><?php echo $lang_back['Default style help'] ?></span>
                         </td>
                     </tr>
                 </table>
