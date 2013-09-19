@@ -29,7 +29,7 @@ if (isset($_POST['form_sent']))
 		'board_desc'			=> pun_trim($_POST['form']['board_desc']),
 		'base_url'				=> pun_trim($_POST['form']['base_url']),
 		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
-		'default_dst'			=> $_POST['form']['default_dst'] != '1' ? '0' : '1',
+		'default_dst'			=> $_POST['form']['default_dst'] ? '1' : '0',
 		'default_lang'			=> pun_trim($_POST['form']['default_lang']),
 		'time_format'			=> pun_trim($_POST['form']['time_format']),
 		'date_format'			=> pun_trim($_POST['form']['date_format']),
@@ -40,21 +40,21 @@ if (isset($_POST['form_sent']))
 		'feed_ttl'				=> intval($_POST['form']['feed_ttl']),
 		'report_method'			=> intval($_POST['form']['report_method']),
 		'mailing_list'			=> pun_trim($_POST['form']['mailing_list']),
-		'avatars'				=> $_POST['form']['avatars'] != '1' ? '0' : '1',
+		'avatars'				=> $_POST['form']['avatars'] ? '1' : '0',
 		'avatars_dir'			=> pun_trim($_POST['form']['avatars_dir']),
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
-		'regs_allow'			=> $_POST['form']['regs_allow'] != '1' ? '0' : '1',
-		'regs_verify'			=> $_POST['form']['regs_verify'] != '1' ? '0' : '1',
-		'regs_report'			=> $_POST['form']['regs_report'] != '1' ? '0' : '1',
-		'rules'					=> $_POST['form']['rules'] != '1' ? '0' : '1',
+		'regs_allow'			=> $_POST['form']['regs_allow'] ? '1' : '0',
+		'regs_verify'			=> $_POST['form']['regs_verify'] ? '1' : '0',
+		'regs_report'			=> $_POST['form']['regs_report'] ? '1' : '0',
+		'rules'					=> $_POST['form']['rules'] ? '1' : '0',
 		'rules_message'			=> pun_trim($_POST['form']['rules_message']),
 		'antispam_api'			=> pun_trim($_POST['form']['antispam_api']),
 		'default_email_setting'	=> intval($_POST['form']['default_email_setting']),
-		'announcement'			=> $_POST['form']['announcement'] != '1' ? '0' : '1',
+		'announcement'			=> $_POST['form']['announcement'] ? '1' : '0',
 		'announcement_message'	=> pun_trim($_POST['form']['announcement_message']),
-		'maintenance'			=> $_POST['form']['maintenance'] != '1' ? '0' : '1',
+		'maintenance'			=> $_POST['form']['maintenance'] ? '1' : '0',
 		'maintenance_message'	=> pun_trim($_POST['form']['maintenance_message']),
 	);
 
@@ -76,10 +76,6 @@ if (isset($_POST['form_sent']))
 
 	$languages = forum_list_langs();
 	if (!in_array($form['default_lang'], $languages))
-		message($lang_common['Bad request']);
-
-	$styles = forum_list_styles();
-	if (!in_array($form['default_style'], $styles))
 		message($lang_common['Bad request']);
 
 	if ($form['time_format'] == '')
@@ -261,9 +257,7 @@ generate_admin_menu('global');
                     <tr>
                         <th><?php echo $lang_back['DST label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[default_dst]" value="1"<?php if ($pun_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[default_dst]" value="0"<?php if ($pun_config['o_default_dst'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['DST help'] ?></span>
+                        	<input type="checkbox" name="form[default_dst]" value="1" <?php if ($pun_config['o_default_dst'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['DST help'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -417,9 +411,7 @@ generate_admin_menu('global');
                     <tr>
                         <th class="col-xs-2"><?php echo $lang_back['Use avatars label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[avatars]" value="1"<?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[avatars]" value="0"<?php if ($pun_config['o_avatars'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Use avatars help'] ?></span>
+                        	<input type="checkbox" name="form[avatars]" value="1" <?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Use avatars help'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -464,33 +456,25 @@ generate_admin_menu('global');
                     <tr>
                         <th class="col-xs-2"><?php echo $lang_back['Allow new label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[regs_allow]" value="1"<?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[regs_allow]" value="0"<?php if ($pun_config['o_regs_allow'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Allow new help'] ?></span>
+                        	<input type="checkbox" name="form[regs_allow]" value="1" <?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Allow new help'] ?>
                         </td> 
                     </tr>
                     <tr>
                         <th><?php echo $lang_back['Verify label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[regs_verify]" value="1"<?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[regs_verify]" value="0"<?php if ($pun_config['o_regs_verify'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Verify help'] ?></span>
+                        	<input type="checkbox" name="form[regs_verify]" value="1" <?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Verify help'] ?>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_back['Report new label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[regs_report]" value="1"<?php if ($pun_config['o_regs_report'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[regs_report]" value="0"<?php if ($pun_config['o_regs_report'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Report new help'] ?></span>
+                        	<input type="checkbox" name="form[regs_report]" value="1" <?php if ($pun_config['o_regs_report'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Report new help'] ?>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_back['Use rules label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[rules]" value="1"<?php if ($pun_config['o_rules'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[rules]" value="0"<?php if ($pun_config['o_rules'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Use rules help'] ?></span>
+                        	<input type="checkbox" name="form[rules]" value="1" <?php if ($pun_config['o_rules'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Use rules help'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -530,9 +514,7 @@ generate_admin_menu('global');
                     <tr>
                         <th class="col-xs-2"><?php echo $lang_back['Display announcement label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[announcement]" value="1"<?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[announcement]" value="0"<?php if ($pun_config['o_announcement'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Display announcement help'] ?></span>
+                        	<input type="checkbox" name="form[announcement]" value="1" <?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Display announcement help'] ?>
                         </td>
                     </tr>
                     <tr>
@@ -556,9 +538,7 @@ generate_admin_menu('global');
                     <tr>
                         <th class="col-xs-2"><a name="maintenance"></a><?php echo $lang_back['Maintenance mode label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="form[maintenance]" value="1"<?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="form[maintenance]" value="0"<?php if ($pun_config['o_maintenance'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Maintenance mode help'] ?></span>
+                        	<input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Maintenance mode help'] ?>
                         </td>
                     </tr>
                     <tr>
