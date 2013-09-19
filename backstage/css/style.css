@@ -12,6 +12,15 @@ h2 {
 	margin-top: 0;
 }
 
+h4 {
+	margin-bottom: 3px;
+	color: #1f99e6;
+}
+
+h4:first-child {
+	margin-top: 0px;
+}
+
 .container {
 	width: 960px;
 	margin: 65px auto 0;
@@ -480,8 +489,8 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 .breadcrumb {
 	margin-bottom: 5px;
 	border-radius: 0;
-	background-color: #252525;
-	color: #c9c9c9;
+	background-color: #efefef;
+	color: #a8a8a8;
 	padding: 7px 15px;
 }
 
