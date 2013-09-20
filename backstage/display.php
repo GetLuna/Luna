@@ -154,7 +154,7 @@ generate_admin_menu('display');
             	<h4>Topics and posts</h4>
 				<input type="checkbox" name="form[smilies]" value="1" <?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies help'] ?><br />
 				<input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies sigs help'] ?><br />
-				<input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['O_make_links'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Clickable links help'] ?><br /><br />
+				<input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Clickable links help'] ?><br /><br />
 
                 <b><?php echo $lang_back['Topic review label'] ?></b><br />
                 <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
