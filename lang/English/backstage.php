@@ -221,7 +221,7 @@ $lang_back = array(
 'Smilies sigs label'				=>	'Smilies in signatures',
 'Smilies sigs help'					=>	'Convert smilies to small graphic icons in user signatures.',
 'Clickable links label'				=>	'Make clickable links',
-'Clickable links help'				=>	'When enabled, ModernBB will automatically detect any URLs in posts and make them clickable hyperlinks.',
+'Clickable links help'				=>	'Convert URLs automatically to clickable hyperlinks.',
 'Topic review label'				=>	'Topic review',
 'Topic review help'					=>	'Maximum number of posts to display when posting. Set to 0 to disable.',
 'Topics per page label'				=>	'Topics per page',
@@ -234,14 +234,15 @@ $lang_back = array(
 'Quote depth help'					=>	'The maximum times a [quote] tag can go inside other [quote] tags, any tags deeper than this will be discarded.',
 
 // Language for email.php
-'E-mail head'						=>	'Email settings',
+'Contact head'						=>	'Contact settings',
 'Admin e-mail label'				=>	'Admin email',
 'Admin e-mail help'					=>	'The email address of the board administrator.',
 'Webmaster e-mail label'			=>	'Webmaster email',
 'Webmaster e-mail help'				=>	'This is the address that all emails sent by the board will be addressed from.',
-'Subscriptions label'				=>	'Subscriptions',
+'Subscriptions head'				=>	'Subscriptions',
 'Forum subscriptions help'			=>	'Enable users to subscribe to forums.',
 'Topic subscriptions help'			=>	'Enable users to subscribe to topics.',
+'SMTP head'							=>	'SMTP settings',
 'SMTP address label'				=>	'SMTP server address',
 'SMTP address help'					=>	'The address of an external SMTP server to send emails with. You can specify a custom port number if the SMTP server doesn\'t run on the default port 25 (example: mail.myhost.com:3580). Leave blank to use the local mail program.',
 'SMTP username label'				=>	'SMTP username',
@@ -249,7 +250,6 @@ $lang_back = array(
 'SMTP password label'				=>	'SMTP password',
 'SMTP change password help'			=>	'Check this if you want to change or delete the currently stored password.',
 'SMTP password help'				=>	'Password for SMTP server. Only enter a password if it is required by the SMTP server (most servers <strong>do not</strong> require authentication). Please enter your password twice to confirm.',
-'SMTP SSL label'					=>	'Encrypt SMTP using SSL',
 'SMTP SSL help'						=>	'Encrypts the connection to the SMTP server using SSL. Should only be used if your SMTP server requires it and your version of PHP supports SSL.',
 
 // Language for features.php
