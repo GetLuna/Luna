@@ -47,9 +47,10 @@ function generate_admin_menu($page = '')
                         <?php echo $lang_back['Content'] ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <?php if ($is_admin) { ?><li><a href="forums.php"><?php echo $lang_back['Forums'] ?></a></li><?php }; ?>
-                        <?php if ($is_admin) { ?><li><a href="categories.php"><?php echo $lang_back['Categories'] ?></a></li><?php }; ?>
-                        <?php if ($is_admin) { ?><li><a href="censoring.php"><?php echo $lang_back['Censoring'] ?></a></li><?php }; ?>
+                        <?php if ($is_admin) { ?><li><a href="forums.php"><?php echo $lang_back['Forums'] ?></a></li>
+                        <li><a href="categories.php"><?php echo $lang_back['Categories'] ?></a></li>
+                        <li class="divider"></li>
+                        <li><a href="censoring.php"><?php echo $lang_back['Censoring'] ?></a></li><?php }; ?>
                         <li><a href="reports.php"><?php echo $lang_back['Reports'] ?></a></li>
                     </ul>
                 </li>
@@ -59,8 +60,9 @@ function generate_admin_menu($page = '')
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="users.php"><?php echo $lang_back['Users'] ?></a></li>
-                        <?php if ($is_admin) { ?><li><a href="ranks.php"><?php echo $lang_back['Ranks'] ?></a></li><?php }; ?>
-                        <?php if ($is_admin) { ?><li><a href="groups.php"><?php echo $lang_back['Groups'] ?></a></li><?php }; ?>
+                        <?php if ($is_admin) { ?><li><a href="ranks.php"><?php echo $lang_back['Ranks'] ?></a></li>
+                        <li><a href="groups.php"><?php echo $lang_back['Groups'] ?></a></li><?php }; ?>
+                        <li class="divider"></li>
                         <?php if ($is_admin) { ?><li><a href="permissions.php"><?php echo $lang_back['Permissions'] ?></a></li><?php }; ?>
                         <li><a href="bans.php"><?php echo $lang_back['Bans'] ?></a></li>
                     </ul>
@@ -75,6 +77,7 @@ function generate_admin_menu($page = '')
                         <li><a href="features.php"><?php echo $lang_back['Features'] ?></a></li>
                         <li><a href="toolbar.php"><?php echo $lang_back['Toolbar'] ?></a></li>
                         <li><a href="email.php"><?php echo $lang_back['Email'] ?></a></li>
+                        <li class="divider"></li>
                         <li><a href="maintenance.php"><?php echo $lang_back['Maintenance'] ?></a></li>
                         <li><a href="database.php"><?php echo $lang_back['Database'] ?></a></li>
                     </ul>
