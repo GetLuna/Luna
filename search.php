@@ -574,7 +574,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 <div id="vf" class="blocktable">
     <table class="table">
         <thead>
-            <tr>
+            <tr class="active">
                 <th><?php echo $lang_common['Topic'] ?></th>
                 <th class="col-2"><?php echo $lang_common['Forum'] ?></th>
                 <th class="col-1"><?php echo $lang_common['Replies'] ?></th>
@@ -637,36 +637,36 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <div class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_search['pid'] == $cur_search['first_post_id']) echo ' firstpost' ?><?php if ($post_count == 1) echo ' blockpost1' ?><?php if ($item_status != '') echo ' '.$item_status ?>">
-	<h2><span><span class="conr">#<?php echo ($start_from + $post_count) ?></span> <span><?php if ($cur_search['pid'] != $cur_search['first_post_id']) echo $lang_front['Re'].' ' ?><?php echo $forum ?></span> <span>»&#160;<a href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo pun_htmlspecialchars($cur_search['subject']) ?></a></span> <span>»&#160;<a href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php echo format_time($cur_search['pposted']) ?></a></span></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<div class="postbody">
-				<div class="postleft">
-					<dl>
-						<dt><?php echo $pposter ?></dt>
-<?php if ($cur_search['pid'] == $cur_search['first_post_id']) : ?>						<dd><span><?php echo $lang_front['Replies'].' '.forum_number_format($cur_search['num_replies']) ?></span></dd>
-<?php endif; ?>
-						<dd><div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo $icon_text ?></div></div></dd>
-					</dl>
-				</div>
-				<div class="postright">
-					<div class="postmsg">
-						<?php echo $message."\n" ?>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="inbox">
-			<div class="postfoot clearb">
-				<div class="postfootright">
-					<ul>
-						<li><span><a href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo $lang_front['Go to topic'] ?></a></span></li>
-						<li><span><a href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php echo $lang_front['Go to post'] ?></a></span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+    <table class="table">
+    	<tr>
+            <td colspan="2" class="postbreadcrumb" style="padding-bottom: 0px;">
+                <ul class="breadcrumb">
+                    <li><?php if ($cur_search['pid'] != $cur_search['first_post_id']) echo $lang_front['Re'].' ' ?><?php echo $forum ?></li>
+                    <li><a href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo pun_htmlspecialchars($cur_search['subject']) ?></a></li>
+                    <li><a href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php echo format_time($cur_search['pposted']) ?></a></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="col-xs-2 user-data">
+                <?php echo $pposter ?><br />
+				<?php if ($cur_search['pid'] == $cur_search['first_post_id']) : ?>                    
+                    <?php echo $lang_front['Replies'].' '.forum_number_format($cur_search['num_replies']) ?>
+                <?php endif; ?>
+            </td>
+            <td class="col-xs-10">
+				<?php echo $message."\n" ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="postfooter" style="padding-bottom: 0;">
+                <p class="pull-right">
+					<a class="btn btn-small btn-primary" href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo $lang_front['Go to topic'] ?></a>
+					<a class="btn btn-small btn-primary" href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php echo $lang_front['Go to post'] ?></a>
+                </p>
+            </td>
+        </tr>
+	</table>
 </div>
 <?php
 
