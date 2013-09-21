@@ -71,7 +71,7 @@ function generate_admin_menu($page = '')
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="options.php"><?php echo $lang_back['Global'] ?></a></li>
-                        <li><a href="display.php"><?php echo $lang_back['Display'] ?></a></li>
+                        <li><a href="display.php"><?php echo $lang_back['Appearance'] ?></a></li>
                         <li><a href="features.php"><?php echo $lang_back['Features'] ?></a></li>
                         <li><a href="toolbar.php"><?php echo $lang_back['Toolbar'] ?></a></li>
                         <li><a href="email.php"><?php echo $lang_back['Email'] ?></a></li>
