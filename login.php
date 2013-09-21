@@ -210,13 +210,13 @@ if (!empty($errors))
 
 }
 ?>
-<form class="form-signin form-pass" id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">
-    <h1 class="form-signin-heading"><?php echo $lang_front['Request pass'] ?></h1>
+<form class="form" id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">
+    <h1 class="form-heading"><?php echo $lang_front['Request pass'] ?></h1>
     <fieldset>
         <h4><?php echo $lang_common['Email'] ?></h4>
         <input type="hidden" name="form_sent" value="1" />
         <label class="required"><input class="form-control full-form" type="text" name="req_email" placeholder="<?php echo $lang_common['Email'] ?>" /></label>
-        <div class="control-group pull-right" style="margin-top: 60px;">
+        <div class="pull-right" style="margin-top: 60px;">
             <?php if (empty($errors)): ?><a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a><?php endif; ?><input class="btn btn-primary" type="submit" name="request_pass" value="<?php echo $lang_common['Submit'] ?>" />
         </div>
     </fieldset>
@@ -270,26 +270,26 @@ define('FORUM_ACTIVE_PAGE', 'login');
 require FORUM_ROOT.'header.php';
 
 ?>
-<form class="form-signin" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
+<form class="form" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
     <fieldset>
-        <h1 class="form-signin-heading">ModernBB</h1>
+        <h1 class="form-heading"><?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?></h1>
         <input type="hidden" name="form_sent" value="1" />
         <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
         <div class"control-group">
             <label class="control-label"><?php echo $lang_common['Username'] ?></label>
             <div class="controls">
-                <input class="form-control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
+                <input class="form-control full-form" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label"><?php echo $lang_common['Password'] ?></label>
             <div class="controls">
-                <input class="form-control" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
+                <input class="form-control full-form" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
             </div>
         </div>
-        <p class="actions"><span><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_front['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_front['Forgotten pass'] ?></a> &middot; <a href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a></span></p>
+        <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang_front['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang_front['Forgotten pass'] ?></a> &middot; <a href="index.php" tabindex="4"><?php echo $lang_common['Go back'] ?></a></p>
         <div class="control-group">
-            <div class="controls">
+            <div class="controls remember">
                 <label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang_front['Remember me'] ?></label>
             </div>
         </div>

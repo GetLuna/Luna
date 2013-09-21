@@ -326,49 +326,11 @@ if (empty($stage))
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="style/Randomness.css" type="text/css" rel="stylesheet">
-        <style type="text/css">
-		body {
-            padding-bottom: 40px;
-			padding-top: 60px;
-            background-color: #f2f2f2;
-        }
-        .form-signin {
-            max-width: 350px;
-            padding: 19px 29px 9px 29px;
-            margin: 0 auto 20px;
-            background-color: #fff;
-			border-left: #2ca0e9 5px solid;
-			box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
-        }
-		h1 {
-			font-weight: 100;
-		}
-        .form-pass {
-            padding: 19px 29px 4px;
-        }
-        .form-signin .form-signin-heading {
-            margin-bottom: 10px;
-        }
-        .form-signin input[type="password"] {
-            font-size: 16px;
-            height: auto;
-            margin-bottom: 5px;
-            padding: 7px 9px;
-        }
-		.form-signin-heading {
-			color: #2ca0e9;
-			text-transform: lowercase;
-			margin-top: 0;
-		}
-		.btn {
-			margin-bottom: 20px;
-		}
-        </style>
 	</head>
 	<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
 		<!-- Content start -->
-        <form class="form-signin" id="install" method="post" action="db_update.php">
-            <h1 class="form-signin-heading"><?php echo $lang_update['Update'] ?></h1>
+        <form class="form" id="install" method="post" action="db_update.php">
+            <h1 class="form-heading"><?php echo $lang_update['Update'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
                 <p><?php echo $lang_update['Database password info'] ?></p>
@@ -1058,48 +1020,10 @@ foreach ($errors[$id] as $cur_error)
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="style/Randomness.css" type="text/css" rel="stylesheet">
-        <style type="text/css">
-		body {
-            padding-bottom: 40px;
-			padding-top: 60px;
-            background-color: #f2f2f2;
-        }
-        .form-signin {
-            max-width: 350px;
-            padding: 19px 29px 9px 29px;
-            margin: 0 auto 20px;
-            background-color: #fff;
-			border-left: #2ca0e9 5px solid;
-			box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
-        }
-		h1 {
-			font-weight: 100;
-		}
-        .form-pass {
-            padding: 19px 29px 4px;
-        }
-        .form-signin .form-signin-heading {
-            margin-bottom: 10px;
-        }
-        .form-signin input[type="password"] {
-            font-size: 16px;
-            height: auto;
-            margin-bottom: 5px;
-            padding: 7px 9px;
-        }
-		.form-signin-heading {
-			color: #2ca0e9;
-			text-transform: lowercase;
-			margin-top: 0;
-		}
-		.btn {
-			margin-bottom: 20px;
-		}
-        </style>
 	</head>
 	<body>
-        <div class="form-signin">
-            <h1 class="form-signin-heading"><?php echo $lang_update['Update'] ?></h1>
+        <div class="form">
+            <h1 class="form-heading"><?php echo $lang_update['Update'] ?></h1>
             <p><?php printf($lang_update['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang_update['go to index'])) ?></p>
 		</div>
 	</body>
