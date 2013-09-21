@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.0.1');
 
-define('UPDATE_TO_DB_REVISION', 32);
+define('UPDATE_TO_DB_REVISION', 33);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 5);
 
@@ -466,6 +466,14 @@ switch ($stage)
 		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
 		if (array_key_exists('o_show_dot', $pun_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.1-beta: Insert new config option o_menu_title
+		if (!array_key_exists('o_menu_title', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_menu_title\', \'0\')') or error('Unable to insert config value \'o_menu_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.1-beta: Insert new config option o_header_title
+		if (!array_key_exists('o_header_title', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_title\', \'1\')') or error('Unable to insert config value \'o_header_title\'', __FILE__, __LINE__, $db->error());
 		
 		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
 		if (!array_key_exists('o_base_url', $pun_config))

@@ -25,12 +25,14 @@ if (isset($_POST['form_sent']))
 {
 	$form = array(
 		'default_style'			=> pun_trim($_POST['form']['default_style']),
-		'show_version'			=> isset($_POST['form']['show_version']) ? '0' : '1',
-		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '0' : '1',
-		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '0' : '1',
-		'smilies'				=> isset($_POST['form']['smilies']) ? '0' : '1',
-		'smilies_sig'			=> isset($_POST['form']['smilies_sig']) ? '0' : '1',
-		'make_links'			=> isset($_POST['form']['make_links']) ? '0' : '1',
+		'show_version'			=> isset($_POST['form']['show_version']) ? '1' : '0',
+		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
+		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
+		'smilies'				=> isset($_POST['form']['smilies']) ? '1' : '0',
+		'smilies_sig'			=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
+		'make_links'			=> isset($_POST['form']['make_links']) ? '1' : '0',
+		'header_title'			=> isset($_POST['form']['header_title']) ? '1' : '0',
+		'menu_title'			=> isset($_POST['form']['menu_title']) ? '1' : '0',
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
@@ -126,9 +128,8 @@ generate_admin_menu('display');
 				<textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
 				<p class="help-block"><?php echo $lang_back['Menu items help'] ?></p>
 				<h4>Title settings</h4>
-                <p class="alert alert-danger">The feature showed below is not available in this version of ModernBB.</p>
-                <input type="checkbox" name="form[title_menu]" id="title_menu" value="1" /> Show board title in menu.<br />
-				<input type="checkbox" name="form[title_header]" id="title_header" value="1" /> Show board title in header.<br /></p>
+                <input type="checkbox" name="form[menu_title]" value="1" <?php if ($pun_config['o_menu_title'] == '1') echo ' checked="checked"' ?> /> Show board title in menu.<br />
+				<input type="checkbox" name="form[header_title]" value="1" <?php if ($pun_config['o_header_title'] == '1') echo ' checked="checked"' ?> /> Show board title in header.</p>
             </fieldset>
 		</div>
 	</div>
