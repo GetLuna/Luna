@@ -1747,65 +1747,58 @@ else
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $lang_install['ModernBB Installation'] ?></title>
-<link rel="stylesheet" type="text/css" href="style/Randomness.css" />
-</head>
-<body>
-
-<div id="puninstall" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
-<div class="punwrap">
-
-<div id="brdheader" class="block">
-	<div class="box">
-		<div id="brdtitle" class="inbox">
-			<h1><span><?php echo $lang_install['ModernBB Installation'] ?></span></h1>
-			<div id="brddesc"><p><?php echo $lang_install['ModernBB has been installed'] ?></p></div>
-		</div>
-	</div>
-</div>
-
-<div id="brdmain">
-
-<div class="blockform">
-	<h2><span><?php echo $lang_install['Final instructions'] ?></span></h2>
-	<div class="box">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo $lang_install['ModernBB Installation'] ?></title>
+        <link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="style/Randomness.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang_install['ModernBB Installation'] ?></h3>
+				</div>
+                <div class="panel-body">
+					<p><?php echo $lang_install['ModernBB has been installed'] ?></p>
+                </div>
+            </div>
+            <div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang_install['Final instructions'] ?></h3>
+				</div>
+                <div class="panel-body">
 <?php
 
 if (!$written)
 {
 
 ?>
-		<form method="post" action="install.php">
-			<div class="inform">
-				<div class="forminfo">
-					<p><?php echo $lang_install['Info 8'] ?></p>
-					<p><?php echo $lang_install['Info 9'] ?></p>
-				</div>
-				<input type="hidden" name="generate_config" value="1" />
-				<input type="hidden" name="db_type" value="<?php echo $db_type; ?>" />
-				<input type="hidden" name="db_host" value="<?php echo $db_host; ?>" />
-				<input type="hidden" name="db_name" value="<?php echo pun_htmlspecialchars($db_name); ?>" />
-				<input type="hidden" name="db_username" value="<?php echo pun_htmlspecialchars($db_username); ?>" />
-				<input type="hidden" name="db_password" value="<?php echo pun_htmlspecialchars($db_password); ?>" />
-				<input type="hidden" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix); ?>" />
-				<input type="hidden" name="cookie_name" value="<?php echo pun_htmlspecialchars($cookie_name); ?>" />
-				<input type="hidden" name="cookie_seed" value="<?php echo pun_htmlspecialchars($cookie_seed); ?>" />
+                    <form method="post" action="install.php">
+                        <p><?php echo $lang_install['Info 8'] ?></p>
+                        <p><?php echo $lang_install['Info 9'] ?></p>
+						<input type="hidden" name="generate_config" value="1" />
+						<input type="hidden" name="db_type" value="<?php echo $db_type; ?>" />
+						<input type="hidden" name="db_host" value="<?php echo $db_host; ?>" />
+						<input type="hidden" name="db_name" value="<?php echo pun_htmlspecialchars($db_name); ?>" />
+						<input type="hidden" name="db_username" value="<?php echo pun_htmlspecialchars($db_username); ?>" />
+						<input type="hidden" name="db_password" value="<?php echo pun_htmlspecialchars($db_password); ?>" />
+						<input type="hidden" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix); ?>" />
+						<input type="hidden" name="cookie_name" value="<?php echo pun_htmlspecialchars($cookie_name); ?>" />
+						<input type="hidden" name="cookie_seed" value="<?php echo pun_htmlspecialchars($cookie_seed); ?>" />
 
-<?php if (!empty($alerts)): ?>				<div class="forminfo error-info">
-					<ul class="error-list">
+<?php if (!empty($alerts)): ?>                        	<div class="alert alert-danger">
+                        		<ul>
 <?php
 
 foreach ($alerts as $cur_alert)
 	echo "\t\t\t\t\t".'<li>'.$cur_alert.'</li>'."\n";
 ?>
-					</ul>
-				</div>
-<?php endif; ?>			</div>
-			<p class="buttons"><input type="submit" value="<?php echo $lang_install['Download config.php file'] ?>" /></p>
-		</form>
+                        		</ul>
+							</div>
+<?php endif; ?>						</div>
+						<input type="submit" class="btn btn-primary" value="<?php echo $lang_install['Download config.php file'] ?>" />
+					</form>
 
 <?php
 
@@ -1814,28 +1807,16 @@ else
 {
 
 ?>
-		<div class="fakeform">
-			<div class="inform">
-				<div class="forminfo">
 					<p><?php echo $lang_install['ModernBB fully installed'] ?></p>
-				</div>
-			</div>
-		</div>
 <?php
 
 }
 
 ?>
-	</div>
-</div>
-
-</div>
-
-</div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
-</div>
-
-</body>
+				</div>
+            </div>
+        </div>
+    </body>
 </html>
 <?php
 
