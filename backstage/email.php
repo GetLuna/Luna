@@ -26,11 +26,11 @@ if (isset($_POST['form_sent']))
 	$form = array(
 		'admin_email'			=> strtolower(pun_trim($_POST['form']['admin_email'])),
 		'webmaster_email'		=> strtolower(pun_trim($_POST['form']['webmaster_email'])),
-		'forum_subscriptions'	=> isset($_POST['form']['forum_subscriptions']) != '1' ? '0' : '1',
-		'topic_subscriptions'	=> isset($_POST['form']['topic_subscriptions']) != '1' ? '0' : '1',
+		'forum_subscriptions'	=> isset($_POST['form']['forum_subscriptions']) ? '0' : '1',
+		'topic_subscriptions'	=> isset($_POST['form']['topic_subscriptions']) ? '0' : '1',
 		'smtp_host'				=> pun_trim($_POST['form']['smtp_host']),
 		'smtp_user'				=> pun_trim($_POST['form']['smtp_user']),
-		'smtp_ssl'				=> isset($_POST['form']['smtp_ssl']) != '1' ? '0' : '1',
+		'smtp_ssl'				=> isset($_POST['form']['smtp_ssl']) ? '0' : '1',
 	);
 	
 	// Change or enter a SMTP password

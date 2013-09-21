@@ -25,12 +25,12 @@ if (isset($_POST['form_sent']))
 {
 	$form = array(
 		'default_style'			=> pun_trim($_POST['form']['default_style']),
-		'show_version'			=> isset($_POST['form']['show_version']) != '1' ? '0' : '1',
-		'show_user_info'		=> isset($_POST['form']['show_user_info']) != '1' ? '0' : '1',
-		'show_post_count'		=> isset($_POST['form']['show_post_count']) != '1' ? '0' : '1',
-		'smilies'				=> isset($_POST['form']['smilies']) != '1' ? '0' : '1',
-		'smilies_sig'			=> isset($_POST['form']['smilies_sig']) != '1' ? '0' : '1',
-		'make_links'			=> isset($_POST['form']['make_links']) != '1' ? '0' : '1',
+		'show_version'			=> isset($_POST['form']['show_version']) ? '0' : '1',
+		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '0' : '1',
+		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '0' : '1',
+		'smilies'				=> isset($_POST['form']['smilies']) ? '0' : '1',
+		'smilies_sig'			=> isset($_POST['form']['smilies_sig']) ? '0' : '1',
+		'make_links'			=> isset($_POST['form']['make_links']) ? '0' : '1',
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),

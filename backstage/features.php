@@ -24,14 +24,14 @@ require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
 if (isset($_POST['form_sent']))
 {
 	$form = array(
-		'quickpost'				=> isset($_POST['form']['quickpost']) != '1' ? '0' : '1',
-		'users_online'			=> isset($_POST['form']['users_online']) != '1' ? '0' : '1',
-		'censoring'				=> isset($_POST['form']['censoring']) != '1' ? '0' : '1',
-		'signatures'			=> isset($_POST['form']['signatures']) != '1' ? '0' : '1',
-		'ranks'					=> isset($_POST['form']['ranks']) != '1' ? '0' : '1',
-		'topic_views'			=> isset($_POST['form']['topic_views']) != '1' ? '0' : '1',
-		'gzip'					=> isset($_POST['form']['gzip']) != '1' ? '0' : '1',
-		'search_all_forums'		=> isset($_POST['form']['search_all_forums']) != '1' ? '0' : '1',
+		'quickpost'				=> isset($_POST['form']['quickpost']) ? '0' : '1',
+		'users_online'			=> isset($_POST['form']['users_online']) ? '0' : '1',
+		'censoring'				=> isset($_POST['form']['censoring']) ? '0' : '1',
+		'signatures'			=> isset($_POST['form']['signatures']) ? '0' : '1',
+		'ranks'					=> isset($_POST['form']['ranks']) ? '0' : '1',
+		'topic_views'			=> isset($_POST['form']['topic_views']) ? '0' : '1',
+		'gzip'					=> isset($_POST['form']['gzip']) ? '0' : '1',
+		'search_all_forums'		=> isset($_POST['form']['search_all_forums']) ? '0' : '1',
 	);
 
 	foreach ($form as $key => $input)
