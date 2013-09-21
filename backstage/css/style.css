@@ -472,6 +472,11 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	padding: 10px 5px 5px 15px;
 }
 
+/* Footer */
+footer {
+	padding-bottom: 20px;
+}
+
 /* Tables */
 .table {
 	margin-top: -5px;
