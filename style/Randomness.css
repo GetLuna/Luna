@@ -307,6 +307,14 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	background-color: #fff;
 }
 
+.table thead > tr > .postbreadcrumb, .table tbody > tr > .postbreadcrumb, .table tfoot > tr > .postbreadcrumb, .table thead > tr > td > .postbreadcrumb, .table tbody > tr > td > .postbreadcrumb, .table tfoot > tr > td > .postbreadcrumb {
+	padding: 0;
+}
+
+.postbreadcrumb .breadcrumb {
+	margin: 0;
+}
+
 .table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
 	background: none;
 }
