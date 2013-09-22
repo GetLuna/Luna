@@ -499,6 +499,41 @@ footer {
 	padding: 7px 15px;
 }
 
+/* Update and login form */
+.form {
+	max-width: 340px;
+	padding: 19px 29px 9px 29px;
+	margin: 60px auto 20px;
+	background-color: #fff;
+	border-left: #2ca0e9 5px solid;
+	box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
+}
+
+.form .form-heading, .form .checkbox {
+	margin-bottom: 10px;
+}
+
+.form input[type="text"], .form input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 5px;
+	padding: 7px 9px;
+}
+
+.form-heading {
+	color: #2ca0e9;
+	text-transform: lowercase;
+	margin-top: 0;
+}
+
+.form .btn {
+	margin-top: -65px;
+}
+
+.form .actions, .form .remember {
+	margin-top: 10px;
+}
+
 /* Disable responsiveness */
 .container {
 	max-width: none !important;
