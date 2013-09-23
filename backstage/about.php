@@ -58,7 +58,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                 </div>
                 <div class="panel-body">
                     <div class="thumbnail">
-                        <img src="../img/backstage/dashboard.png" width="997" height="215" />
+                        <img src="../img/backstage/headline1.png" width="997" height="215" />
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
@@ -81,9 +81,6 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                     <h3 class="panel-title"><?php echo $lang_back['Headline feature 2 title'] ?></h3>
                 </div>
                 <div class="panel-body">
-                    <div class="thumbnail">
-                        <img src="../img/backstage/update.png" width="989" height="102" />
-                    </div>
                     <p><?php echo $lang_back['Headline feature 2 info'] ?></p>
                 </div>
 			</div>
