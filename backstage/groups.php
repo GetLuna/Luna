@@ -497,7 +497,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 ?>
                 </select>
                 <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang_back['Add'] ?>" tabindex="2" />
-                <span class="help-block"><?php echo $lang_back['New group help'] ?></span>
+                <span class="help-block"><?php echo $lang_back['Create new group'] ?></span>
             </fieldset>
         </form>
     </div>
@@ -545,7 +545,7 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><th><a class="btn btn-primary btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_back['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? ' <a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_back['Delete link'].'</a>' : '').'</th><td>'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><th class="col-xs-2"><a class="btn btn-primary btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_back['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_back['Delete link'].'</a>' : '').'</th><td class="col-xs-10">'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
 
 ?>
             </table>

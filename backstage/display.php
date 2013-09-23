@@ -124,12 +124,12 @@ generate_admin_menu('display');
         </div>
         <div class="panel-body">
             <fieldset>
-				<h4><?php echo $lang_back['Menu items label'] ?></h4>
+				<h4><?php echo $lang_back['Menu items head'] ?></h4>
 				<textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
 				<p class="help-block"><?php echo $lang_back['Menu items help'] ?></p>
-				<h4>Title settings</h4>
-                <input type="checkbox" name="form[menu_title]" value="1" <?php if ($pun_config['o_menu_title'] == '1') echo ' checked="checked"' ?> /> Show board title in menu.<br />
-				<input type="checkbox" name="form[header_title]" value="1" <?php if ($pun_config['o_header_title'] == '1') echo ' checked="checked"' ?> /> Show board title in header.</p>
+				<h4><?php echo $lang_back['Title settings head'] ?></h4>
+                <input type="checkbox" name="form[menu_title]" value="1" <?php if ($pun_config['o_menu_title'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Title in menu'] ?><br />
+				<input type="checkbox" name="form[header_title]" value="1" <?php if ($pun_config['o_header_title'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Title in header'] ?></p>
             </fieldset>
 		</div>
 	</div>
@@ -149,10 +149,10 @@ generate_admin_menu('display');
         </div>
         <div class="panel-body">
             <fieldset>
-            	<h4>User profile</h4>
+            	<h4><?php echo $lang_back['User profile head'] ?></h4>
 				<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Info in posts help'] ?><br />
 				<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Post count help'] ?>
-            	<h4>Topics and posts</h4>
+            	<h4><?php echo $lang_back['Topics posts head'] ?></h4>
 				<input type="checkbox" name="form[smilies]" value="1" <?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies help'] ?><br />
 				<input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies sigs help'] ?><br />
 				<input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Clickable links help'] ?><br /><br />

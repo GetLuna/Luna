@@ -189,7 +189,6 @@ generate_admin_menu('global');
                         <th class="col-xs-2"><?php echo $lang_back['Board title label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
-                            <br /><span class="help-block"><?php echo $lang_back['Board title help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -203,7 +202,6 @@ generate_admin_menu('global');
                         <th><?php echo $lang_back['Base URL label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[base_url]" size="50" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
-                            <br /><span class="help-block"><?php echo $lang_back['Base URL help'] ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -488,7 +486,7 @@ generate_admin_menu('global');
                         <th><?php echo $lang_back['E-mail default label'] ?></th>
                         <td>
                             <span class="help-block"><?php echo $lang_back['E-mail default help'] ?></span>
-                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />&#160;<?php echo $lang_back['Display e-mail label'] ?></label>
+                            <label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />&#160;<?php echo $lang_back['Display e-mail label'] ?></label>
                             <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($pun_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />&#160;<?php echo $lang_back['Hide allow form label'] ?></label>
                             <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($pun_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />&#160;<?php echo $lang_back['Hide both label'] ?></label>
                         </td>

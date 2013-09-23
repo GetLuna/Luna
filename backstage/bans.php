@@ -460,7 +460,6 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form id="bans" method="post" action="bans.php?action=more">
             <fieldset>
-                <b><?php echo $lang_back['Username label'] ?></b><br />
                 <input type="text" class="form-control"name="new_ban_user" size="25" maxlength="25" tabindex="1" />
                 <input class="btn btn-danger" type="submit" name="add_ban" value="<?php echo $lang_back['Add'] ?>" tabindex="2" />
                 <span class="help-block"><?php echo $lang_back['Username advanced help'] ?></span>

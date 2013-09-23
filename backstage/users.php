@@ -183,10 +183,10 @@ if (isset($_GET['ip_stats']))
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="tcl" scope="col"><?php echo $lang_back['Results IP address head'] ?></th>
-                        <th class="tc2" scope="col"><?php echo $lang_back['Results last used head'] ?></th>
-                        <th class="tc3" scope="col"><?php echo $lang_back['Results times found head'] ?></th>
-                        <th class="tcr" scope="col"><?php echo $lang_back['Results action head'] ?></th>
+                        <th><?php echo $lang_back['Results IP address head'] ?></th>
+                        <th><?php echo $lang_back['Results last used head'] ?></th>
+                        <th><?php echo $lang_back['Results times found head'] ?></th>
+                        <th><?php echo $lang_back['Results action head'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -200,17 +200,17 @@ if (isset($_GET['ip_stats']))
 
 ?>
                     <tr>
-                        <td class="tcl"><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
-                        <td class="tc2"><?php echo format_time($cur_ip['last_used']) ?></td>
-                        <td class="tc3"><?php echo $cur_ip['used_times'] ?></td>
-                        <td class="tcr"><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_back['Results find more link'] ?></a></td>
+                        <td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+                        <td><?php echo format_time($cur_ip['last_used']) ?></td>
+                        <td><?php echo $cur_ip['used_times'] ?></td>
+                        <td><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_back['Results find more link'] ?></a></td>
                     </tr>
 <?php
 
 		}
 	}
 	else
-		echo "\t\t\t\t".'<tr><td class="tcl" colspan="4">'.$lang_back['Results no posts found'].'</td></tr>'."\n";
+		echo "\t\t\t\t".'<tr><td colspan="4">'.$lang_back['Results no posts found'].'</td></tr>'."\n";
 
 ?>
                 </tbody>
@@ -264,12 +264,12 @@ if (isset($_GET['show_users']))
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="tcl" scope="col"><?php echo $lang_back['Results username head'] ?></th>
-                        <th class="tc2" scope="col"><?php echo $lang_back['Results e-mail head'] ?></th>
-                        <th class="tc3" scope="col"><?php echo $lang_back['Results title head'] ?></th>
-                        <th class="tc4" scope="col"><?php echo $lang_back['Results posts head'] ?></th>
-                        <th class="tc5" scope="col"><?php echo $lang_back['Results admin note head'] ?></th>
-                        <th class="tcr" scope="col"><?php echo $lang_back['Results actions head'] ?></th>
+                        <th><?php echo $lang_back['Results username head'] ?></th>
+                        <th><?php echo $lang_back['Results e-mail head'] ?></th>
+                        <th><?php echo $lang_back['Results title head'] ?></th>
+                        <th><?php echo $lang_back['Results posts head'] ?></th>
+                        <th><?php echo $lang_back['Results admin note head'] ?></th>
+                        <th><?php echo $lang_back['Results actions head'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -302,12 +302,12 @@ if (isset($_GET['show_users']))
 			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_back['Results view IP link'].'</a> | <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang_back['Results show posts link'].'</a>';
 ?>
                     <tr>
-                        <td class="tcl"><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-                        <td class="tc2"><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
-                        <td class="tc3"><?php echo $user_title ?></td>
-                        <td class="tc4"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-                        <td class="tc5"><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
-                        <td class="tcr"><?php echo $actions ?></td>
+                        <td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
+                        <td><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
+                        <td><?php echo $user_title ?></td>
+                        <td><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
+                        <td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+                        <td><?php echo $actions ?></td>
                     </tr>
 <?php
 
@@ -317,12 +317,12 @@ if (isset($_GET['show_users']))
 
 ?>
                     <tr>
-                        <td class="tcl"><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
-                        <td class="tc2">&#160;</td>
-                        <td class="tc3"><?php echo $lang_back['Results guest'] ?></td>
-                        <td class="tc4">&#160;</td>
-                        <td class="tc5">&#160;</td>
-                        <td class="tcr">&#160;</td>
+                        <td><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
+                        <td>&#160;</td>
+                        <td><?php echo $lang_back['Results guest'] ?></td>
+                        <td>&#160;</td>
+                        <td>&#160;</td>
+                        <td>&#160;</td>
                     </tr>
 <?php
 
@@ -330,7 +330,7 @@ if (isset($_GET['show_users']))
 		}
 	}
 	else
-		echo "\t\t\t\t".'<tr><td class="tcl" colspan="6">'.$lang_back['Results no IP found'].'</td></tr>'."\n";
+		echo "\t\t\t\t".'<tr><td colspan="6">'.$lang_back['Results no IP found'].'</td></tr>'."\n";
 
 ?>
                 </tbody>
@@ -893,13 +893,13 @@ else if (isset($_GET['find_user']))
             <table class="table">
             <thead>
                 <tr>
-                    <th class="tcl" scope="col"><?php echo $lang_back['Results username head'] ?></th>
-                    <th class="tc2" scope="col"><?php echo $lang_back['Results e-mail head'] ?></th>
-                    <th class="tc3" scope="col"><?php echo $lang_back['Results title head'] ?></th>
-                    <th class="tc4" scope="col"><?php echo $lang_back['Results posts head'] ?></th>
-                    <th class="tc5" scope="col"><?php echo $lang_back['Results admin note head'] ?></th>
-                    <th class="tcr" scope="col"><?php echo $lang_back['Results actions head'] ?></th>
-        <?php if ($can_action): ?>					<th class="tcmod" scope="col"><?php echo $lang_back['Select'] ?></th>
+                    <th><?php echo $lang_back['Results username head'] ?></th>
+                    <th><?php echo $lang_back['Results e-mail head'] ?></th>
+                    <th><?php echo $lang_back['Results title head'] ?></th>
+                    <th><?php echo $lang_back['Results posts head'] ?></th>
+                    <th><?php echo $lang_back['Results admin note head'] ?></th>
+                    <th><?php echo $lang_back['Results actions head'] ?></th>
+        <?php if ($can_action): ?>					<th><?php echo $lang_back['Select'] ?></th>
         <?php endif; ?>
                 </tr>
             </thead>
@@ -921,12 +921,12 @@ else if (isset($_GET['find_user']))
 
 ?>
                 <tr>
-                    <td class="tcl"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
-                    <td class="tc2"><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td class="tc3"><?php echo $user_title ?></td>
-                    <td class="tc4"><?php echo forum_number_format($user_data['num_posts']) ?></td>
-                    <td class="tc5"><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
-                    <td class="tcr"><?php echo $actions ?></td>
-        <?php if ($can_action): ?>					<td class="tcmod"><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
+                    <td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+                    <td><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td><?php echo $user_title ?></td>
+                    <td><?php echo forum_number_format($user_data['num_posts']) ?></td>
+                    <td><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+                    <td><?php echo $actions ?></td>
+        <?php if ($can_action): ?>					<td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
         <?php endif; ?>
                 </tr>
 <?php
@@ -934,7 +934,7 @@ else if (isset($_GET['find_user']))
 		}
 	}
 	else
-		echo "\t\t\t\t".'<tr><td class="tcl" colspan="6">'.$lang_back['No match'].'</td></tr>'."\n";
+		echo "\t\t\t\t".'<tr><td colspan="6">'.$lang_back['No match'].'</td></tr>'."\n";
 
 ?>
             </tbody>

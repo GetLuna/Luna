@@ -113,18 +113,18 @@ require FORUM_ROOT.'backstage/header.php';
         <form id="ranks" method="post" action="ranks.php">
             <fieldset>
                 <p><?php echo $lang_back['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_back['Ranks enabled'], '<a href="features.php">'.$lang_common['Features'].'</a>') : sprintf($lang_back['Ranks disabled'], '<a href="features.php">'.$lang_common['Features'].'</a>')) ?></p>
-                <table class="table" cellspacing="0">
+                <table class="table">
                     <thead>
                         <tr>
-                            <th class="tcl" scope="col"><?php echo $lang_back['Rank title label'] ?></th>
-                            <th class="tc2" scope="col"><?php echo $lang_back['Minimum posts label'] ?></th>
-                            <th class="hidehead" scope="col"><?php echo $lang_back['Actions label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang_back['Rank title label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang_back['Minimum posts label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang_back['Actions label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="tcl"><input type="text" class="form-control"name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
-                            <td class="tc2"><input type="text" class="form-control"name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
+                            <td><input type="text" class="form-control"name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
+                            <td><input type="text" class="form-control"name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
                             <td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang_back['Add'] ?>" tabindex="3" /></td>
                         </tr>
                     </tbody>
@@ -147,19 +147,19 @@ if ($db->num_rows($result))
 {
 
 ?>
-                <table class="table" cellspacing="0">
+                <table class="table">
                     <thead>
                         <tr>
-                            <th class="tcl" scope="col"><?php echo $lang_back['Rank title label'] ?></th>
-                            <th class="tc2" scope="col"><?php echo $lang_back['Minimum posts label'] ?></th>
-                            <th class="hidehead" scope="col"><?php echo $lang_back['Actions label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang_back['Rank title label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang_back['Minimum posts label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang_back['Actions label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
 <?php
 
 	while ($cur_rank = $db->fetch_assoc($result))
-		echo "\t\t\t\t\t\t\t\t".'<tr><td class="tcl"><input type="text" class="form-control"name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td class="tc2"><input type="text" class="form-control"name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang_back['Update'].'" />&#160;<input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang_back['Remove'].'" /></td></tr>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td><input type="text" class="form-control"name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang_back['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang_back['Remove'].'" /></td></tr>'."\n";
 
 ?>
                     </tbody>

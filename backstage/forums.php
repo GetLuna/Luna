@@ -93,15 +93,14 @@ else if (isset($_GET['del_forum']))
 
 ?>
 <div class="content">
-    <h2><span><?php echo $lang_back['Confirm delete head'] ?></span></h2>
-    <form method="post" action="forums.php?del_forum=<?php echo $forum_id ?>">
+    <h2><?php echo $lang_back['Confirm delete head'] ?></h2>
+    <form class="alert alert-danger" method="post" action="forums.php?del_forum=<?php echo $forum_id ?>">
         <fieldset>
-            <p><?php printf($lang_back['Confirm delete info'], $forum_name) ?></p>
-            <p class="warntext"><?php echo $lang_back['Confirm delete warn'] ?></p>
+            <p><?php printf($lang_back['Confirm delete forum info'], $forum_name) ?></p>
+            <p class="warntext"><?php echo $lang_back['Confirm delete forum'] ?></p>
         </fieldset>
-        <div class="control-group">
-        	<input class="btn btn-danger" type="submit" name="del_forum_comply" value="<?php echo $lang_back['Delete'] ?>" />
-            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_back['Go back'] ?></a>
+        <div>
+        	<input class="btn btn-danger" type="submit" name="del_forum_comply" value="<?php echo $lang_back['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang_back['Go back'] ?></a>
         </div>
     </form>
 </div>
@@ -224,7 +223,7 @@ else if (isset($_GET['edit_forum']))
 <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Edit details subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Edit details subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -274,7 +273,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Group permissions subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Group permissions subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -310,15 +309,15 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
 ?>
                         <tr>
                             <th class="atcl"><?php echo pun_htmlspecialchars($cur_perm['g_title']) ?></th>
-                            <td<?php if (!$read_forum_def) echo ' class="nodefault"'; ?>>
+                            <td<?php if (!$read_forum_def) echo ' class="danger"'; ?>>
                                 <input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
                                 <input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked="checked"' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
                             </td>
-                            <td<?php if (!$post_replies_def && $cur_forum['redirect_url'] == '') echo ' class="nodefault"'; ?>>
+                            <td<?php if (!$post_replies_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
                                 <input type="hidden" name="post_replies_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_replies) ? '1' : '0'; ?>" />
                                 <input type="checkbox" name="post_replies_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_replies) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
                             </td>
-                            <td<?php if (!$post_topics_def && $cur_forum['redirect_url'] == '') echo ' class="nodefault"'; ?>>
+                            <td<?php if (!$post_topics_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
                                 <input type="hidden" name="post_topics_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_topics) ? '1' : '0'; ?>" />
                                 <input type="checkbox" name="post_topics_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_topics) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
                             </td>
@@ -332,9 +331,6 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                 </table>
             </fieldset>
         </div>
-    </div>
-    <div class="alert alert-info">
-        <input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" />
     </div>
 </form>
 
@@ -352,7 +348,7 @@ require FORUM_ROOT.'backstage/header.php';
 <h2><?php echo $lang_back['Forums'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Add forum head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['Add forum'] ?></h3>
     </div>
     <div class="panel-body">
         <form method="post" action="forums.php?action=adddel">

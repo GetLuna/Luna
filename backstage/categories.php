@@ -92,20 +92,17 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 	generate_admin_menu('categories');
 
 ?>
-<div class="content">
-    <form method="post" action="categories.php">
-        <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
-        <fieldset>
-            <h2><?php echo $lang_back['Confirm delete subhead'] ?></h2>
-            <p><?php printf($lang_back['Confirm delete info'], pun_htmlspecialchars($cat_name)) ?></p>
-            <p class="warntext"><?php echo $lang_back['Delete category warn'] ?></p>
-        </fieldset>
-        <p class="control-group">
-        	<input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang_back['Delete'] ?>" />
-            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_back['Go back'] ?></a>
-        </p>
-    </form>
-</div>
+<h2><?php echo $lang_back['Confirm delete cat head'] ?></h2>
+<form class="alert alert-danger" method="post" action="categories.php">
+    <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
+    <fieldset>
+        <p><?php printf($lang_back['Confirm delete cat info'], pun_htmlspecialchars($cat_name)) ?></p>
+        <p class="warntext"><?php echo $lang_back['Delete category warn'] ?></p>
+    </fieldset>
+    <p class="control-group">
+        <input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang_back['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang_back['Go back'] ?></a>
+    </p>
+</form>
 <?php
 
 		require FORUM_ROOT.'backstage/footer.php';
@@ -198,7 +195,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form method="post" action="categories.php">
             <fieldset>
-                <table class="table" >
+                <table class="table">
                     <thead>
                         <tr>
                             <th><?php echo $lang_back['Category name label'] ?></th>

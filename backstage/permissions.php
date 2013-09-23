@@ -95,7 +95,7 @@ require FORUM_ROOT.'backstage/header.php';
                 <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($pun_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['All caps sigs help'] ?><br />
                 <br /><b><?php echo $lang_back['Max sig length label'] ?></b><br />
                 <input type="text" class="form-control"name="form[sig_length]" size="5" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
-                <br /><span class="help-block"><?php echo $lang_back['Max sig length help'] ?></span><br />
+                <br /><span class="help-block"><?php echo $lang_back['Max sig length help'] ?></span>
                 <br /><b><?php echo $lang_back['Max sig lines label'] ?></b><br />
                 <input type="text" class="form-control"name="form[sig_lines]" size="3" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
                 <br /><span class="help-block"><?php echo $lang_back['Max sig lines help'] ?></span>

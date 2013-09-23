@@ -100,7 +100,7 @@ require FORUM_ROOT.'backstage/header.php';
                         <tr>
                             <th><?php echo $lang_back['Censored word label'] ?></th>
                             <th><?php echo $lang_back['Replacement label'] ?></th>
-                            <th class="hidehead"><?php echo $lang_back['Action label'] ?></th>
+                            <th><?php echo $lang_back['Action label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -129,19 +129,19 @@ if ($db->num_rows($result))
 {
 
 ?>
-                <table class="table" >
+                <table class="table">
                     <thead>
                         <tr>
                             <th><?php echo $lang_back['Censored word label'] ?></th>
                             <th><?php echo $lang_back['Replacement label'] ?></th>
-                            <th class="hidehead"><?php echo $lang_back['Action label'] ?></th>
+                            <th><?php echo $lang_back['Action label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
 <?php
 
 while ($cur_word = $db->fetch_assoc($result))
-echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control"name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang_back['Update'].'" />&#160;<input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang_back['Remove'].'" /></td></tr>'."\n";
+echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control"name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang_back['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang_back['Remove'].'" /></td></tr>'."\n";
 
 ?>
                     </tbody>
