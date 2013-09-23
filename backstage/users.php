@@ -78,7 +78,6 @@ if (isset($_POST['add_user']))
 		message($lang_register['Username dupe 1'].' '.pun_htmlspecialchars($busy).'. '.$lang_register['Username dupe 2']);
 	}
 
-
 	// Validate e-mail
 	require FORUM_ROOT.'include/email.php';
 
@@ -975,13 +974,13 @@ else
 	generate_admin_menu('users');
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['User search head'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form id="find_user" method="get" action="users.php">
-            <p><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang_back['Submit search'] ?>" tabindex="1" /></p>
+<form id="find_user" method="get" action="users.php">
+    <h2><?php echo $lang_back['Users'] ?></h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['User search head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang_back['Submit search'] ?>" tabindex="1" /></span></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <p><?php echo $lang_back['User search info'] ?></p>
                 <table class="table">
@@ -1082,10 +1081,9 @@ else
                     </tr>
                 </table>
             </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang_back['Submit search'] ?>" tabindex="25" /></p>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['IP search head'] ?></h3>
@@ -1093,63 +1091,33 @@ else
     <div class="panel-body">
         <form method="get" action="users.php">
             <fieldset>
-                    <table class="table">
-                        <tr>
-                            <th><?php echo $lang_back['IP address label'] ?></th>
-                            <td>
-                                <input type="text" class="form-control" name="show_users" size="18" maxlength="15" tabindex="24" />
-                                <input class="btn btn-primary" type="submit" value="<?php echo $lang_back['Find IP address'] ?>" tabindex="26" />
-                                <br /><span class="help-block"><?php echo $lang_back['IP address help'] ?></span>
-                            </td>
-                        </tr>
-                    </table>
+                <input type="text" class="form-control" name="show_users" size="18" maxlength="15" tabindex="24" />
+                <input class="btn btn-primary" type="submit" value="<?php echo $lang_back['Find IP address'] ?>" tabindex="26" />
+                <br /><span class="help-block"><?php echo $lang_back['IP address help'] ?></span>
             </fieldset>
         </form>
     </div>
 </div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Add user head'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form id="example" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+<form id="example" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang_back['Add user head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_user" value="<?php echo $lang_common['Submit'] ?>" tabindex="4" /></span></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
-                <div class="infldset">
-                <table class="table">
-                    <tr>
-                        <th class="span3"><?php echo $lang_back['Username'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="username" size="25" tabindex="3" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Email'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="email" size="50" tabindex="3" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Random password'] ?></th>
-                        <td>
-                            <label><input type="radio" name="random_pass" value="1" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label><input type="radio" name="random_pass" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Random password info'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Password'] ?></th>
-                        <td>
-                            <input type="password" class="form-control" name="password" size="25" tabindex="3" />
-                            <br /><span class="help-block"><?php echo $lang_back['Password info'] ?></span>
-                        </td>
-                    </tr>
-                </table>
-                </div>
+                <b><?php echo $lang_back['Username'] ?></b><br />
+                <input type="text" class="form-control" name="username" size="25" tabindex="3" /><br /><br />
+                <b><?php echo $lang_back['Email'] ?></b><br />
+                <input type="text" class="form-control" name="email" size="50" tabindex="3" /><br /><br />
+                <b><?php echo $lang_back['Random password'] ?></b><br />
+                <input type="checkbox" name="random_pass" value="1" /> <?php echo $lang_back['Random password info'] ?><br /><br />
+                <b><?php echo $lang_back['Password'] ?></b><br />
+                <input type="password" class="form-control" name="password" size="25" tabindex="3" />
+                <br /><span class="help-block"><?php echo $lang_back['Password info'] ?></span>
             </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="add_user" value="<?php echo $lang_common['Submit'] ?>" tabindex="4" /></p>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 <?php
 
 	require FORUM_ROOT.'backstage/footer.php';

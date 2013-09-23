@@ -473,6 +473,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
 
 ?>
+<h2><?php echo $lang_back['Groups'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add group subhead'] ?></h3>
@@ -480,11 +481,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th width="18%"><?php echo $lang_back['New group label'] ?></th>
-                        <td>
-                            <select class="form-control" id="base_group" name="base_group" tabindex="1">
+                <select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -498,12 +495,9 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 }
 
 ?>
-                            </select>
-                            <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang_back['Add'] ?>" tabindex="2" />
-                            <span class="help-block"><?php echo $lang_back['New group help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                </select>
+                <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang_back['Add'] ?>" tabindex="2" />
+                <span class="help-block"><?php echo $lang_back['New group help'] ?></span>
             </fieldset>
         </form>
     </div>
@@ -515,11 +509,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php">
         <fieldset>
-            <table class="table">
-                <tr>
-                    <th width="18%"><?php echo $lang_back['Default group label'] ?></th>
-                    <td>
-                        <select class="form-control" id="default_group" name="default_group" tabindex="3">
+            <select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.FORUM_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -533,12 +523,9 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 }
 
 ?>
-                            </select>
-                            <input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang_back['Save'] ?>" tabindex="4" />
-                            <span class="help-block"><?php echo $lang_back['Default group help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                </select>
+                <input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang_back['Save'] ?>" tabindex="4" />
+                <span class="help-block"><?php echo $lang_back['Default group help'] ?></span>
             </fieldset>
         </form>
     </div>

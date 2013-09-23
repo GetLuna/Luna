@@ -179,7 +179,7 @@ generate_admin_menu('global');
 <form method="post" action="options.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Essentials subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Essentials subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
@@ -293,7 +293,7 @@ generate_admin_menu('global');
 ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Timeouts subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Timeouts subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -339,7 +339,7 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Feed subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Feed subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -376,7 +376,7 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Reports subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Reports subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -403,7 +403,7 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Avatars subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Avatars subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -448,7 +448,7 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Registration subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Registration subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -506,53 +506,28 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Announcement subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Announcement subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th class="col-xs-2"><?php echo $lang_back['Display announcement label'] ?></th>
-                        <td>
-                        	<input type="checkbox" name="form[announcement]" value="1" <?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Display announcement help'] ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Announcement message label'] ?></th>
-                        <td>
-                            <textarea class="form-control" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
-                            <span class="help-block"><?php echo $lang_back['Announcement message help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                <input type="checkbox" name="form[announcement]" value="1" <?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Display announcement help'] ?>
+                <br /><textarea class="form-control full-form" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
+                <br /><span class="help-block"><?php echo $lang_back['Announcement message help'] ?></span>
             </fieldset>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Maintenance subhead'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Maintenance subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th class="col-xs-2"><a name="maintenance"></a><?php echo $lang_back['Maintenance mode label'] ?></th>
-                        <td>
-                        	<input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Maintenance mode help'] ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Maintenance message label'] ?></th>
-                        <td>
-                            <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
-                            <span class="help-block"><?php echo $lang_back['Maintenance message help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                <input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Maintenance mode help'] ?>
+                <br /><textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
+                <br /><span class="help-block"><?php echo $lang_back['Maintenance message help'] ?></span>
             </fieldset>
         </div>
     </div>
-    <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></div>
 </form>
 <?php
 

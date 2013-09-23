@@ -452,6 +452,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('bans');
 
 ?>
+<h2><?php echo $lang_back['Bans'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['New ban head'] ?></h3>
@@ -459,16 +460,10 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form id="bans" method="post" action="bans.php?action=more">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th><?php echo $lang_back['Username label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control"name="new_ban_user" size="25" maxlength="25" tabindex="1" />
-                            <input class="btn btn-danger" type="submit" name="add_ban" value="<?php echo $lang_back['Add'] ?>" tabindex="2" />
-                            <span class="help-block"><?php echo $lang_back['Username advanced help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                <b><?php echo $lang_back['Username label'] ?></b><br />
+                <input type="text" class="form-control"name="new_ban_user" size="25" maxlength="25" tabindex="1" />
+                <input class="btn btn-danger" type="submit" name="add_ban" value="<?php echo $lang_back['Add'] ?>" tabindex="2" />
+                <span class="help-block"><?php echo $lang_back['Username advanced help'] ?></span>
             </fieldset>
         </form>
     </div>

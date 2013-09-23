@@ -349,6 +349,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('forums');
 
 ?>
+<h2><?php echo $lang_back['Forums'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add forum head'] ?></h3>
@@ -356,11 +357,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form method="post" action="forums.php?action=adddel">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th><?php echo $lang_back['Add forum label'] ?><div></div></th>
-                        <td>
-                            <select class="form-control" name="add_to_cat" tabindex="1">
+                <select class="form-control" name="add_to_cat" tabindex="1">
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
@@ -373,13 +370,10 @@ require FORUM_ROOT.'backstage/header.php';
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="0" disabled="disabled">'.$lang_back['No categories exist'].'</option>'."\n";
 
 ?>
-                            </select>
-                            <input type="text" class="form-control"name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
-                            <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_back['Add forum'] ?>" tabindex="2" />
-                            <span class="help-block"><?php echo $lang_back['Add forum help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                </select>
+                <input type="text" class="form-control" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
+                <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang_back['Add forum'] ?>" tabindex="2" />
+                <span class="help-block"><?php echo $lang_back['Add forum help'] ?></span>
             </fieldset>
         </form>
     </div>
@@ -395,7 +389,7 @@ if ($db->num_rows($result) > 0)
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Edit forum head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang_back['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
     </div>
     <div class="panel-body">
         <form id="edforum" method="post" action="forums.php?action=edit">
@@ -413,16 +407,13 @@ while ($cur_forum = $db->fetch_assoc($result))
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-                <h4><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-xs-2"><?php echo $lang_back['Action'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang_back['Position label'] ?></th>
-                            <th><?php echo $lang_back['Forum label'] ?></th>
-                        </tr>
-                    </thead>
                     <tbody>
+                    	<tr>
+                        	<th colspan="3" class="active">
+								<h4><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
+                            </th>
+                        </tr>
 <?php
 
 		$cur_category = $cur_forum['cid'];
@@ -430,8 +421,8 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 ?>
                         <tr>
-                            <td><a href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_back['Edit link'] ?></a> | <a href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_back['Delete link'] ?></a></td>
-                            <td><input type="text" class="form-control"name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+                            <td class="col-xs-2"><a class="btn btn-primary" href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_back['Edit link'] ?></a><a class="btn btn-primary" href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang_back['Delete link'] ?></a></td>
+                            <td class="col-xs-4"><input type="text" class="form-control"name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 							<td><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
                         </tr>
 <?php
@@ -442,9 +433,6 @@ while ($cur_forum = $db->fetch_assoc($result))
                     </tbody>
                 </table>
             </fieldset>
-            <div class="control-group">
-                <input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang_back['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" />
-            </div>
         </form>
     </div>
 </div>

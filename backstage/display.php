@@ -94,7 +94,7 @@ generate_admin_menu('display');
     <input type="hidden" name="form_sent" value="1" />
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['General appearance'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['General appearance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -120,7 +120,7 @@ generate_admin_menu('display');
 	</div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Header appearance'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Header appearance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -135,7 +135,7 @@ generate_admin_menu('display');
 	</div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Footer appearance'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Footer appearance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -145,7 +145,7 @@ generate_admin_menu('display');
 	</div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Display head'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang_back['Display head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -156,26 +156,24 @@ generate_admin_menu('display');
 				<input type="checkbox" name="form[smilies]" value="1" <?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies help'] ?><br />
 				<input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Smilies sigs help'] ?><br />
 				<input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Clickable links help'] ?><br /><br />
-
                 <b><?php echo $lang_back['Topic review label'] ?></b><br />
                 <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
-                <br /><span class="help-block"><?php echo $lang_back['Topic review help'] ?></span><br /><br />
+                <br /><span class="help-block"><?php echo $lang_back['Topic review help'] ?></span><br />
                 <b><?php echo $lang_back['Topics per page label'] ?></b><br />
                 <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
-                <br /><span class="help-block"><?php echo $lang_back['Topics per page help'] ?></span><br /><br />
+                <br /><span class="help-block"><?php echo $lang_back['Topics per page help'] ?></span><br />
                 <b><?php echo $lang_back['Posts per page label'] ?></b><br />
                 <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
-                <br /><span class="help-block"><?php echo $lang_back['Posts per page help'] ?></span><br /><br />
+                <br /><span class="help-block"><?php echo $lang_back['Posts per page help'] ?></span><br />
                 <b><?php echo $lang_back['Indent label'] ?></b><br />
                 <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
-                <br /><span class="help-block"><?php echo $lang_back['Indent help'] ?></span><br /><br />
+                <br /><span class="help-block"><?php echo $lang_back['Indent help'] ?></span><br />
                 <b><?php echo $lang_back['Quote depth label'] ?></b><br />
                 <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
-                <br /><span class="help-block"><?php echo $lang_back['Quote depth help'] ?></span><br />
+                <br /><span class="help-block"><?php echo $lang_back['Quote depth help'] ?></span>
             </fieldset>
         </div>
     </div>
-	<div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></div>
 </form>
 <?php
 

@@ -627,97 +627,6 @@ elseif (isset($_POST['optimizeall'])) {
 	}
 	message('All tables optimised');
 }
-elseif (isset($_POST['submit'])) {
-	//fix for no admin menu
-	echo "<div>";
-	$this_query = $_POST['this_query'];
-	if (empty($this_query))
-	{
-		//no query error
-		message('No Query Duh!');
-	}
-	// Add a semi-colon to the end if there isn't one:
-	if ((!strrpos($this_query, ";")) || (substr($this_query, -1) != ';'))
-	{
-		$this_query .= ";";
-	}
-	$this_query = str_replace(' #__',' '.$db->prefix,$this_query);
-	// Cut into multiple queries:
-	$this_query = remove_remarks($this_query);
-	$queries = split_sql_file($this_query, ";");
-	$queries = array_map('trim', $queries);
-	//old query splitter (seems less reliable)
-	//$queries = explode(';', $this_query, (count(explode(';', $this_query)) - 1));
-	// For the final normal die message:
-	$queriesdone = "";
-	foreach($queries as $query)
-	{
-		if (!$query)
-			continue;
-
-		// Add a semi-colon to the end if there isn't one:
-		if (!strrpos($query, ";"))
-		{
-			$query .= ";";
-		}
-		$result = $db->query($query);
-		if (!$result)
-		{
-			//query error
-			message('SQL Error');
-		}
-		$queriesdone .= $query."\n";
-		// Handle output of SELECT statements
-		$query_words = explode(" ", $query);
-		if ($db->num_rows($result))
-		{
-			if ($db->num_rows($result) > 500) {
-				message('Query result too long to be displayed');
-			}
-			// Remember the number of fields (aka columns) and the number of rows:
-			$field_count = num_fields($result);
-			$row_count = $db->num_rows($result);
-			echo '<div><div class="linkst"><div class="inbox"><div><a href="javascript:history.go(-1)" />Go back</a></div></div></div>';
-			echo '<div class="blocktable"><h2 class="block2"><span>';
-			echo pun_htmlspecialchars($query);
-			echo '</span></h2><div class="box"><div class="inbox"><div class="scrollbox" style="max-height: 500px"><table cellspacing="0"><thead><tr>';
-			// The field header:
-			for ($i = 0; $i < $field_count; $i++)
-			{
-				$field[$i] = field_name($i, $result);
-				echo '<th>';
-				echo pun_htmlspecialchars($field[$i]);
-				echo '</th>';
-			}
-			echo '</tr></thead><tbody>';
-			// OK, we have the data... let's put it out to a thingy!
-			while ($row = $db->fetch_assoc($result))
-			{
-				echo '<tr>';
-				for ($i = 0; $i < $field_count; $i++)
-				{
-				echo '<td>';
-					$temp = isset($row[$field[$i]]) ? pun_htmlspecialchars($row[$field[$i]]) : '&nbsp;';
-					echo $temp;
-				echo '</td>';
-				}
-				echo "</tr>";
-			}
-			echo '</tbody></table></div></div></div></div>';
-		}
-		elseif (substr(trim($query), 0, 6) == 'SELECT') {
-			echo '<div><div class="linkst"><div class="inbox"><div><a href="javascript:history.go(-1)" />Go back</a></div></div></div>';
-			echo '<div class="block"><h2 class="block2"><span>'.pun_htmlspecialchars($query).'</span></h2><div class="box"><div class="inbox"><p>';
-			echo "No data found";
-			echo '</p></div></div></div>';
-
-		}
-	}
-	echo '<div class="block"><h2 class="block2"><span>Queries Done</span></h2><div class="box"><div class="inbox"><p>';
-	echo nl2br(pun_htmlspecialchars($queriesdone));
-	echo '</p></div></div></div>';
-	echo '<div><div class="linkst"><div class="inbox"><div><a href="javascript:history.go(-1)" />Go back</a></div></div></div>';
-}
 else {
 	
 $action = isset($_GET['action']) ? $_GET['action'] : null;
@@ -726,6 +635,7 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 ?>
+<h2><?php echo $lang_back['Database'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Backup options'] ?></h3>
@@ -765,34 +675,19 @@ require FORUM_ROOT.'backstage/header.php';
         <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
                 <p><?php echo $lang_back['Restore info 1'] ?></p>
-                <table class="table">
-                    <tr>
-                        <th class="col-2"><?php echo $lang_back['Restore from file'] ?></th>
-                        <td><input type="file" name="backup_file" />
-                        <input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_back['Start restore'] ?>" class="mainoption" /></td>
-                    </tr>
-                </table>
+                <input type="file" name="backup_file" />
+				<input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_back['Start restore'] ?>" class="mainoption" />
             </fieldset>
         </form>
     </div>
 </div>
-<div class="alert alert-danger alert-update">
-    <h4><?php echo $lang_back['Warning'] ?></h4>
-    <p><?php echo $lang_back['Warning info'] ?></p>
-</div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Run SQL query'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['Additional functions'] ?></h3>
     </div>
 	<div class="panel-body">
         <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
             <fieldset>
-                <p><?php echo $lang_back['Run info 1'] ?></p>
-                <textarea class="form-control" placeholder="<?php echo $lang_back['SQL Query'] ?>" name="this_query" rows="5" cols="50"></textarea>
-            </fieldset>
-            <div class="control-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_back['Run query'] ?>" /></div>
-            <fieldset>
-                <h3><?php echo $lang_back['Additional functions'] ?></h3>
                 <p><?php echo $lang_back['Additional info 1'] ?></p>
                 <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang_back['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang_back['Optimise all tables'] ?>" />
             </fieldset>

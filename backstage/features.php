@@ -68,7 +68,7 @@ generate_admin_menu('features');
     <h2><?php echo $lang_back['Features head'] ?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">General</h3>
+            <h3 class="panel-title">General<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
@@ -88,7 +88,7 @@ generate_admin_menu('features');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Advanced</h3>
+            <h3 class="panel-title">Advanced<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
@@ -97,7 +97,6 @@ generate_admin_menu('features');
             </fieldset>
         </div>
     </div>
-	<div class="alert alert-info"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></div>
 </form>
 <?php
 

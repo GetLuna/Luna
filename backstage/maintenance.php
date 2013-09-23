@@ -287,6 +287,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('maintenance');
 
 ?>
+<h2><?php echo $lang_back['Maintenance'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Rebuild index subhead'] ?></h3>

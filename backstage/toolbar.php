@@ -107,10 +107,10 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('toolbar');
 ?>
-<h2>Toolbar settings</h2>
+<h2><?php echo $lang_back['Toolbar'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['glob_conf'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['glob_conf'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
     </div>
     <div class="panel-body">
 		<form action="toolbar.php" method="post">
@@ -156,13 +156,12 @@ require FORUM_ROOT.'backstage/header.php';
                     </tr>
                 </table>
             </fieldset>
-			<input type="submit" class="btn btn-primary" name="save" value="<?php echo $lang_common['Submit'] ?>" />
 		</form>
 	</div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['button_conf'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['button_conf'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="edit_pos" value="<?php echo $lang_back['Update positions'] ?>" /></span></h3>
     </div>
     <div class="panel-body">
 		<form action="toolbar.php" method="post">
@@ -212,7 +211,6 @@ require FORUM_ROOT.'backstage/header.php';
                     </tbody>
                 </table>
             </fieldset>
-            <input type="submit" class="btn btn-primary" name="edit_pos" value="<?php echo $lang_back['update_pos'] ?>" />
 		</form>
 	</div>
 </div>

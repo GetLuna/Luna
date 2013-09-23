@@ -154,6 +154,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('categories');
 
 ?>
+<h2><?php echo $lang_back['Categories'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang_back['Add categories head'] ?></h3>
@@ -161,16 +162,9 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form method="post" action="categories.php">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th class="col-xs-2"><?php echo $lang_back['Add category label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
-                            <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_back['Add new submit'] ?>" tabindex="2" />
-                            <br /><span class="help-block"><?php printf($lang_back['Add category help'], '<a href="forums.php">'.$lang_back['Forums'].'</a>') ?></span>
-                        </td>
-                    </tr>
-                </table>
+                <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
+                <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_back['Add new submit'] ?>" tabindex="2" />
+                <br /><span class="help-block"><?php printf($lang_back['Add category help'], '<a href="forums.php">'.$lang_back['Forums'].'</a>') ?></span>
             </fieldset>
         </form>
     </div>
@@ -183,25 +177,14 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form method="post" action="categories.php">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th class="col-xs-2">
-                            <?php echo $lang_back['Delete category label'] ?>
-                        </th>
-                        <td>
-                            <select class="form-control" name="cat_to_delete" tabindex="3">
+                <select class="form-control" name="cat_to_delete" tabindex="3">
 <?php
-
-foreach ($cat_list as $cur_cat)
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
-
+				foreach ($cat_list as $cur_cat)
+					echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 ?>
-                            </select>
-                            <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_back['Delete'] ?>" tabindex="4" />
-                            <br /><span class="help-block"><?php echo $lang_back['Delete category help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                </select>
+                <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_back['Delete'] ?>" tabindex="4" />
+                <br /><span class="help-block"><?php echo $lang_back['Delete category help'] ?></span>
             </fieldset>
         </form>
     </div>
@@ -210,7 +193,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
 <?php if ($num_cats): ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Edit categories head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang_back['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang_back['Update positions'] ?>" /></span></h3>
     </div>
     <div class="panel-body">
         <form method="post" action="categories.php">
@@ -218,8 +201,8 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspec
                 <table class="table" >
                     <thead>
                         <tr>
-                            <th class="tcl" scope="col"><?php echo $lang_back['Category name label'] ?></th>
-                            <th scope="col"><?php echo $lang_back['Category position label'] ?></th>
+                            <th><?php echo $lang_back['Category name label'] ?></th>
+                            <th><?php echo $lang_back['Category position label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -230,7 +213,7 @@ foreach ($cat_list as $cur_cat)
 
 ?>
                         <tr>
-                            <td class="tcl"><input type="text" class="form-control"name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
+                            <td><input type="text" class="form-control"name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
                             <td><input type="text" class="form-control"name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
                         </tr>
 <?php
@@ -240,9 +223,6 @@ foreach ($cat_list as $cur_cat)
 ?>
 					</tbody>
 				</table>
-				<div class="control-group">
-					<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang_back['Update'] ?>" />
-				</div>
 			</fieldset>
 		</form>
     </div>
