@@ -143,7 +143,11 @@ while ($cur_group = $db->fetch_assoc($result))
         <h3 class="panel-title"><?php echo $lang_common['User list'] ?></h3>
     </div>
     <div class="panel-body">
-    <p class="pagelink"><?php echo $paging_links ?></p>
+		<?php if ($num_pages < 1): ?>
+            <p class="pagelink">
+                <p class="pagelink"><?php echo $paging_links ?></p>
+            </p>
+		<?php endif; ?>
         <table class="table">
             <thead>
                 <tr>

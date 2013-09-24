@@ -110,8 +110,10 @@ require FORUM_ROOT.'header.php';
     <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
 </ul>
 <div class="pagepost">
-    <p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
+	<?php if ($num_pages < 1): ?>
+        <p class="pagelink conl"><?php echo $paging_links ?></p>
+	<?php endif; ?>
+    <?php echo $post_link ?>
 </div>
 <div class="forum-box">
     <div class="row forum-header">
@@ -256,8 +258,10 @@ else
 </div>
 
 <div class="pagepost">
-    <p class="pagelink conl"><?php echo $paging_links ?></p>
-<?php echo $post_link ?>
+	<?php if ($num_pages < 1): ?>
+        <p class="pagelink conl"><?php echo $paging_links ?></p>
+	<?php endif; ?>
+	<?php echo $post_link ?>
 </div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>

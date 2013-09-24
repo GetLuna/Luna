@@ -177,19 +177,21 @@ if (isset($_GET['ip_stats']))
         <h3 class="panel-title"><?php echo $lang_back['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-        <div class="pagepost">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th><?php echo $lang_back['Results IP address head'] ?></th>
-                        <th><?php echo $lang_back['Results last used head'] ?></th>
-                        <th><?php echo $lang_back['Results times found head'] ?></th>
-                        <th><?php echo $lang_back['Results action head'] ?></th>
-                    </tr>
-                </thead>
-                <tbody>
+		<?php if ($num_pages < 1): ?>
+            <p class="pagelink">
+                <p class="pagelink"><?php echo $paging_links ?></p>
+            </p>
+		<?php endif; ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><?php echo $lang_back['Results IP address head'] ?></th>
+                    <th><?php echo $lang_back['Results last used head'] ?></th>
+                    <th><?php echo $lang_back['Results times found head'] ?></th>
+                    <th><?php echo $lang_back['Results action head'] ?></th>
+                </tr>
+            </thead>
+            <tbody>
 <?php
 
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -199,12 +201,12 @@ if (isset($_GET['ip_stats']))
 		{
 
 ?>
-                    <tr>
-                        <td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
-                        <td><?php echo format_time($cur_ip['last_used']) ?></td>
-                        <td><?php echo $cur_ip['used_times'] ?></td>
-                        <td><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_back['Results find more link'] ?></a></td>
-                    </tr>
+                <tr>
+                    <td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+                    <td><?php echo format_time($cur_ip['last_used']) ?></td>
+                    <td><?php echo $cur_ip['used_times'] ?></td>
+                    <td><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang_back['Results find more link'] ?></a></td>
+                </tr>
 <?php
 
 		}
@@ -213,13 +215,14 @@ if (isset($_GET['ip_stats']))
 		echo "\t\t\t\t".'<tr><td colspan="4">'.$lang_back['Results no posts found'].'</td></tr>'."\n";
 
 ?>
-                </tbody>
-            </table>
-        </div>
-        <div class="pagepost">
+            </tbody>
+        </table>
+    </div>
+	<?php if ($num_pages < 1): ?>
+        <p class="pagelink">
             <p class="pagelink"><?php echo $paging_links ?></p>
-        </div>
-	</div>
+        </p>
+    <?php endif; ?>
 </div>
 <?php
 
@@ -258,9 +261,11 @@ if (isset($_GET['show_users']))
         <h3 class="panel-title"><?php echo $lang_back['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-        <div class="pagepost">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </div>
+		<?php if ($num_pages < 1): ?>
+            <p class="pagelink">
+                <p class="pagelink"><?php echo $paging_links ?></p>
+            </p>
+		<?php endif; ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -336,10 +341,11 @@ if (isset($_GET['show_users']))
                 </tbody>
             </table>
         </div>
-        
-        <div class="pagepost">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </div>
+		<?php if ($num_pages < 1): ?>
+            <p class="pagelink">
+                <p class="pagelink"><?php echo $paging_links ?></p>
+            </p>
+		<?php endif; ?>
     </div>
 </div>
 <?php
@@ -886,9 +892,11 @@ else if (isset($_GET['find_user']))
         <h3 class="panel-title"><?php echo $lang_back['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-        <div class="pagepost">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </div>
+		<?php if ($num_pages < 1): ?>
+            <p class="pagelink">
+                <p class="pagelink"><?php echo $paging_links ?></p>
+            </p>
+		<?php endif; ?>
         <form id="search-users-form" action="users.php" method="post">
             <table class="table">
             <thead>
@@ -941,7 +949,11 @@ else if (isset($_GET['find_user']))
             </table>
     
             <div class="pagepost">
-                <p class="pagelink"><?php echo $paging_links ?></p>
+				<?php if ($num_pages < 1): ?>
+                    <p class="pagelink">
+                        <p class="pagelink"><?php echo $paging_links ?></p>
+                    </p>
+                <?php endif; ?>
 				<?php if ($can_action): ?>
                     <div class="btn-toolbar">
                         <div class="btn-group">
