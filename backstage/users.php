@@ -1023,30 +1023,6 @@ else
                     <tr>
                         <th><?php echo $lang_back['Admin note label'] ?></th>
                         <td><input type="text" class="form-control" name="form[admin_note]" size="30" maxlength="30" tabindex="14" /></td>
-                        <th><?php echo $lang_back['Posts more than label'] ?></th>
-                        <td><input type="text" class="form-control" name="posts_greater" size="5" maxlength="8" tabindex="15" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Posts less than label'] ?></th>
-                        <td><input type="text" class="form-control" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
-                        <th><?php echo $lang_back['Last post after label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_post_after" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="17" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Last post before label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_post_before" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="18" /></td>
-                        <th><?php echo $lang_back['Last visit after label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_visit_after" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="17" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Last visit before label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_visit_before" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="18" /></td>
-                        <th><?php echo $lang_back['Registered after label'] ?></th>
-                        <td><input type="text" class="form-control" name="registered_after" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="19" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Registered before label'] ?></th>
-                        <td><input type="text" class="form-control" name="registered_before" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="20" /></td>
                         <th><?php echo $lang_back['User group label'] ?></th>
                         <td>
                             <select class="form-control" name="user_group" tabindex="23">
@@ -1062,6 +1038,30 @@ else
     ?>
                             </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_back['Posts less than label'] ?></th>
+                        <td><input type="text" class="form-control" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
+                        <th><?php echo $lang_back['Posts more than label'] ?></th>
+                        <td><input type="text" class="form-control" name="posts_greater" size="5" maxlength="8" tabindex="15" /></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_back['Last post before label'] ?></th>
+                        <td><input type="text" class="form-control" name="last_post_before" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="18" /></td>
+                        <th><?php echo $lang_back['Last post after label'] ?></th>
+                        <td><input type="text" class="form-control" name="last_post_after" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="17" /></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_back['Last visit before label'] ?></th>
+                        <td><input type="text" class="form-control" name="last_visit_before" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="18" /></td>
+                        <th><?php echo $lang_back['Last visit after label'] ?></th>
+                        <td><input type="text" class="form-control" name="last_visit_after" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="17" /></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo $lang_back['Registered before label'] ?></th>
+                        <td><input type="text" class="form-control" name="registered_before" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="20" /></td>
+                        <th><?php echo $lang_back['Registered after label'] ?></th>
+                        <td><input type="text" class="form-control" name="registered_after" size="24" placeholder="<?php echo $lang_back['Date help'] ?>" maxlength="19" tabindex="19" /></td>
                     </tr>
                     <tr>
                         <th><?php echo $lang_back['Order by label'] ?></th>
