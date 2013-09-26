@@ -10,7 +10,7 @@
 // The ModernBB version this script installs
 define('FORUM_VERSION', '2.0.1');
 
-define('FORUM_DB_REVISION', 33);
+define('FORUM_DB_REVISION', 36);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 5);
 
@@ -1643,6 +1643,7 @@ else
 		'o_feed_type'				=> 2,
 		'o_feed_ttl'				=> 0,
 		'o_antispam_api'			=> NULL,
+		'o_index_update_check'		=> 1,
 		'p_message_bbcode'			=> 1,
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,

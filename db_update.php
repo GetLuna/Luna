@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.0.1');
 
-define('UPDATE_TO_DB_REVISION', 33);
+define('UPDATE_TO_DB_REVISION', 36);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 5);
 
@@ -173,10 +173,6 @@ if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revisio
 		version_compare($pun_config['o_cur_version'], UPDATE_TO, '>='))
 	error($lang_update['No update error']);
 
-$default_style = $pun_config['o_default_style'];
-if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
-	$default_style = 'Air';
-
 //
 // Determines whether $str is UTF-8 encoded or not
 //
@@ -202,7 +198,6 @@ function seems_utf8($str)
 
 	return true;
 }
-
 
 //
 // Translates the number from a HTML numeric entity into an UTF-8 character
@@ -281,34 +276,20 @@ if (empty($stage))
 		$message = str_replace($pattern, $replace, $lang_update['Down']);
 
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang_common['lang_identifier'] ?>" lang="<?php echo $lang_common['lang_identifier'] ?>" dir="<?php echo $lang_common['lang_direction'] ?>">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $lang_update['Maintenance'] ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
-</head>
-<body>
-
-<div id="punmaint" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
-<div class="punwrap">
-
-<div id="brdmain">
-<div class="block">
-	<h2><?php echo $lang_update['Maintenance'] ?></h2>
-	<div class="box">
-		<div class="inbox">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+            <title><?php echo $lang_update['Maintenance'] ?></title>
+        <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
+        <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="alert alert-info">
+            <h3><?php echo $lang_update['Maintenance'] ?></h3>
 			<p><?php echo $lang_update['Down'] ?></p>
-		</div>
-	</div>
-</div>
-</div>
-
-</div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
-</div>
-
-</body>
+        </div>
+    </body>
 </html>
 <?php
 
@@ -325,18 +306,17 @@ if (empty($stage))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="style/Randomness.css" type="text/css" rel="stylesheet">
+        <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
-	<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
+	<body onload="document.getElementById('install');document.getElementById('install').start.disabled=false;">
 		<!-- Content start -->
         <form class="form" id="install" method="post" action="db_update.php">
             <h1 class="form-heading"><?php echo $lang_update['Update'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
-                <p><?php echo $lang_update['Database password info'] ?></p>
-                <input class="form-control full-form" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
+                <p><?php echo $lang_update['Database update info'] ?></p>
             </fieldset>
-			<div><input class="btn btn-primary btn-block" type="submit" name="start" value="<?php echo $lang_update['Start update'] ?>" /></div>
+			<div><input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang_update['Start update'] ?>" /></div>
 		</form>
 	</body>
 </html>
@@ -352,60 +332,6 @@ if (empty($stage))
 // Read the lock file
 $lock = file_exists(FORUM_CACHE_DIR.'db_update.lock') ? trim(file_get_contents(FORUM_CACHE_DIR.'db_update.lock')) : false;
 $lock_error = false;
-
-// Generate or fetch the UID - this confirms we have a valid admin
-if (isset($_POST['req_db_pass']))
-{
-	$req_db_pass = strtolower(pun_trim($_POST['req_db_pass']));
-
-	switch ($db_type)
-	{
-		// For SQLite we compare against the database file name, since the password is left blank
-		case 'sqlite':
-			if ($req_db_pass != strtolower($db_name))
-				error(sprintf($lang_update['Invalid file error'], 'config.php'));
-
-			break;
-		// For everything else, check the password matches
-		default:
-			if ($req_db_pass != strtolower($db_password))
-				error(sprintf($lang_update['Invalid password error'], 'config.php'));
-
-			break;
-	}
-
-	// Generate a unique id to identify this session, only if this is a valid session
-	$uid = pun_hash($req_db_pass.'|'.uniqid(rand(), true));
-	if ($lock) // We already have a lock file
-		$lock_error = true;
-	else // Create the lock file
-	{
-		$fh = @fopen(FORUM_CACHE_DIR.'db_update.lock', 'wb');
-		if (!$fh)
-			error(sprintf($lang_update['Unable to lock error'], 'cache'));
-
-		fwrite($fh, $uid);
-		fclose($fh);
-
-		// Regenerate the config cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
-
-		generate_config_cache();
-	}
-}
-else if (isset($_GET['uid']))
-{
-	$uid = pun_trim($_GET['uid']);
-	if (!$lock || $lock != $uid) // The lock doesn't exist or doesn't match the given UID
-		$lock_error = true;
-}
-else
-	error($lang_update['No password error']);
-
-// If there is an error with the lock file
-if ($lock_error)
-	error(sprintf($lang_update['Script runs error'], FORUM_CACHE_DIR.'db_update.lock'));
 
 switch ($stage)
 {
@@ -474,6 +400,10 @@ switch ($stage)
 		// Since 2.1-beta: Insert new config option o_header_title
 		if (!array_key_exists('o_header_title', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_title\', \'1\')') or error('Unable to insert config value \'o_header_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.1-beta: Insert new config option o_index_update_check
+		if (!array_key_exists('o_index_update_check', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
 		
 		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
 		if (!array_key_exists('o_base_url', $pun_config))
