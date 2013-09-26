@@ -5,8 +5,7 @@
 $lang_update = array(
 
 'Update'						=>	'Update ModernBB',
-'Database password info'		=>	'You\'re almost ready to update ModernBB. To perform the database update, please give up your database password (if you use SQLite, typ the database filename) and hit "Start update" to start the update.',
-'Database password'				=>	'Database password',
+'Database update info'			=>	'You\'re ready to update ModernBB. To perform the database update, hit "Start update" to start the update.',
 'Maintenance'					=>	'Maintenance',
 'Next'							=>	'Next',
 'Down'							=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
@@ -20,7 +19,6 @@ $lang_update = array(
 'No update error'				=>	'Your forum is already as up-to-date as this script can make it',
 
 'Start update'					=>	'Start update',
-'Required'						=>	'(Required)',
 'Correct errors'				=>	'The following errors need to be corrected:',
 'Successfully updated'			=>	'Your forum database was successfully updated. You may now %s.',
 'go to index'					=>	'go to the forum index',

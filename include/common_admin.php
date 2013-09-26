@@ -67,7 +67,7 @@ function generate_admin_menu($page = '')
                         <li><a href="bans.php"><?php echo $lang_back['Bans'] ?></a></li>
                     </ul>
                 </li>
-                <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'toolbar' || $page == 'email' || $page == 'maintenance') echo 'active'; ?>">
+                <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'toolbar' || $page == 'email' || $page == 'backstage' || $page == 'maintenance') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?php echo $lang_back['Settings'] ?> <b class="caret"></b>
                     </a>
@@ -80,6 +80,8 @@ function generate_admin_menu($page = '')
                         <li class="divider"></li>
                         <li><a href="maintenance.php"><?php echo $lang_back['Maintenance'] ?></a></li>
                         <li><a href="database.php"><?php echo $lang_back['Database'] ?></a></li>
+                        <li class="divider"></li>
+                        <li><a href="backstage.php"><?php echo $lang_back['Backstage settings'] ?></a></li>
                     </ul>
                 </li><?php }; ?>
 <?php

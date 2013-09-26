@@ -32,6 +32,10 @@ $lang_back = array(
 'Minor feature 2 head'		=>	'Performance improvements.',
 'Minor feature 2 info'		=>	'ModernBB 2.1 will take less space on your host than ModernBB 2.0, we\'ve cleaned up the core, merged files, simplified our code, etc.',
 
+// Language for backstage.php
+'Update settings head'		=>	'Update settings',
+'Index update check'		=>	'When enabled, every time you visit the Backstage index, ModernBB will check for updates. When this feature is disabled, you won\'t see any update message on the index.',
+
 // Language for bans.php
 'No user message'			=>	'No user by that username registered. If you want to add a ban not tied to a specific username just leave the username blank.',
 'No user ID message'		=>	'No user by that ID registered.',
@@ -836,6 +840,7 @@ $lang_back = array(
 'Email'					=>	'Email',
 'Maintenance'			=>	'Maintenance',
 'Database'				=>	'Database management',
+'Backstage settings'	=>	'Backstage settings',
 'Extensions'			=>	'Extensions',
 
 // User menu
