@@ -555,6 +555,10 @@ footer {
 	margin-top: -65px;
 }
 
+.form .btn-update {
+	margin-top: 0;
+}
+
 .form .actions, .form .remember {
 	margin-top: 10px;
 }
