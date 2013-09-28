@@ -220,7 +220,7 @@ if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_form.php'))
 include FORUM_CACHE_DIR.'cache_toolbar_form.php';
 else
 {
-require_once FORUM_ROOT.'include/cache_toolbar.php';
+require_once FORUM_ROOT.'include/cache.php';
 generate_ftb_cache('form');
 require FORUM_CACHE_DIR.'cache_toolbar_form.php';
 }

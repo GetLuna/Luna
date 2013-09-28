@@ -442,7 +442,7 @@ if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_quickform.php'))
 	include FORUM_CACHE_DIR.'cache_toolbar_quickform.php';
 else
 {
-	require_once FORUM_ROOT.'include/cache_toolbar.php';
+	require_once FORUM_ROOT.'include/cache.php';
 	generate_ftb_cache('quickform');
 	require FORUM_CACHE_DIR.'cache_toolbar_quickform.php';
 }
