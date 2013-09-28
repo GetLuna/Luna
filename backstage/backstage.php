@@ -23,7 +23,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
 
 if (isset($_POST['form_sent']))
 {
-
 	$form = array(
 		'index_update_check'	=> isset($_POST['form']['index_update_check']) ? '1' : '0',
 	);
@@ -49,7 +48,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/options.php', $lang_back['Options updated redirect']);
+	redirect('backstage/backstage.php', $lang_back['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Backstage settings']);
@@ -60,16 +59,17 @@ generate_admin_menu('backstage');
 ?>
 <h2><?php echo $lang_back['Backstage settings'] ?></h2>
 <form method="post" action="backstage.php">
+    <input type="hidden" name="form_sent" value="1" />
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang_back['Update settings head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <input type="checkbox" name="form[index_update_check]" value="1" <?php if ($pun_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Index update check'] ?>
+				<input type="checkbox" name="form[index_update_check]" value="1" <?php if ($pun_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Index update check'] ?>
             </fieldset>
-        </div>
-    </div>
+		</div>
+	</div>
 </form>
 <?php
 
