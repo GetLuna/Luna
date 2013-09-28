@@ -280,7 +280,7 @@ if (empty($stage))
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-            <title><?php echo $lang_update['Maintenance'] ?></title>
+        <title><?php echo $lang_update['Maintenance'] ?></title>
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
     </head>
@@ -711,70 +711,54 @@ switch ($stage)
 			$query_str = '';
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang_common['lang_identifier'] ?>" lang="<?php echo $lang_common['lang_identifier'] ?>" dir="<?php echo $lang_common['lang_direction'] ?>">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $lang_update['Update'] ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
-</head>
-<body>
-
-<div id="pundb_update" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
-<div class="punwrap">
-
-<div class="blockform">
-	<h2><span><?php echo $lang_update['Error converting users'] ?></span></h2>
-	<div class="box">
-		<form method="post" action="db_update.php?stage=conv_users_dupe&amp;uid=<?php echo $uid ?>">
-			<input type="hidden" name="form_sent" value="1" />
-			<div class="inform">
-				<div class="forminfo">
-						<p style="font-size: 1.1em"><?php echo $lang_update['Error info 1'] ?></p>
-						<p style="font-size: 1.1em"><?php echo $lang_update['Error info 2'] ?></p>
-				</div>
-			</div>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo $lang_update['Update'] ?></title>
+        <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
+        <link href="style/<?php echo $default_style ?>.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $lang_update['Error converting users'] ?></h3>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="db_update.php?stage=conv_users_dupe&amp;uid=<?php echo $uid ?>">
+                    <input type="hidden" name="form_sent" value="1" />
+                        <p><?php echo $lang_update['Error info 1'] ?></p>
+                        <p><?php echo $lang_update['Error info 2'] ?></p>
 <?php
 
 			foreach ($_SESSION['dupe_users'] as $id => $cur_user)
 			{
 
 ?>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo pun_htmlspecialchars($cur_user['username']); ?></legend>
-					<div class="infldset">
-						<label class="required"><strong><?php echo $lang_update['New username'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo pun_htmlspecialchars($_POST['dupe_users'][$id]); ?>" size="25" maxlength="25" /><br /></label>
-					</div>
-				</fieldset>
-<?php if (!empty($errors[$id])): ?>				<div class="forminfo error-info">
-					<h3><?php echo $lang_update['Correct errors'] ?></h3>
-					<ul class="error-list">
+                    <fieldset>
+                        <legend><?php echo pun_htmlspecialchars($cur_user['username']); ?></legend>
+                        <label class="required"><strong><?php echo $lang_update['New username'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo pun_htmlspecialchars($_POST['dupe_users'][$id]); ?>" size="25" maxlength="25" /><br /></label>
+                    </fieldset>
+<?php if (!empty($errors[$id])): ?>
+                    <h3><?php echo $lang_update['Correct errors'] ?></h3>
+                    <ul class="error-list">
 <?php
 
 foreach ($errors[$id] as $cur_error)
-	echo "\t\t\t\t\t\t".'<li><strong>'.$cur_error.'</strong></li>'."\n";
+	echo "\t\t\t\t\t\t".'<li>'.$cur_error.'</li>'."\n";
 ?>
-					</ul>
-				</div>
-<?php endif; ?>			</div>
+                    </ul>
+<?php endif; ?>
 <?php
 
 			}
 
 ?>
-			<p class="buttons"><input type="submit" name="rename" value="<?php echo $lang_update['Rename users'] ?>" /></p>
-		</form>
-	</div>
-</div>
-
-</div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
-</div>
-
-</body>
+                    <input type="submit" class="btn btn-primary" name="rename" value="<?php echo $lang_update['Rename users'] ?>" />
+                </form>
+            </div>
+        </div>
+    </body>
 </html>
 <?php
 
