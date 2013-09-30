@@ -32,7 +32,10 @@ if ($action == 'rebuild')
 
 	// Check per page is > 0
 	if ($per_page < 1)
+	{
+		generate_admin_menu('maintenance');
 		message($lang_back['Posts must be integer message']);
+	}
 
 	@set_time_limit(0);
 
@@ -170,7 +173,10 @@ if ($action == 'prune')
 
 	$prune_days = pun_trim($_POST['req_prune_days']);
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
+	{
+		generate_admin_menu('maintenance');
 		message($lang_back['Days must be integer message']);
+	}
 
 	$prune_date = time() - ($prune_days * 86400);
 
@@ -196,7 +202,10 @@ if ($action == 'prune')
 	$num_topics = $db->result($result);
 
 	if (!$num_topics)
+	{
+		generate_admin_menu('maintenance');
 		message(sprintf($lang_back['No old topics message'], $prune_days));
+	}
 
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Prune']);
@@ -238,7 +247,11 @@ if (isset($_POST['userprune']))
 {
 	// Make sure something something was entered
 	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
+	{
+		generate_admin_menu('maintenance');
 		message('You need to set all settings!');
+	}
+
 	if ($_POST['admods_delete']) {
 		$admod_delete = 'group_id > 0';
 	}
@@ -272,6 +285,7 @@ if (isset($_POST['userprune']))
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
+	generate_admin_menu('maintenance');
 	message('Pruning complete. Users pruned '.$users_pruned.'.');
 }
 

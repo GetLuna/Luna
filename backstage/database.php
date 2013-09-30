@@ -99,6 +99,7 @@ function get_table_def_mysql($table, $crlf)
 	$result = $db->query($field_query);
 	if(!$result)
 	{
+		generate_admin_menu('database');
 		message('Failed to get field list');
 	}
 
@@ -134,6 +135,7 @@ function get_table_def_mysql($table, $crlf)
 	$result = $db->query($key_query);
 	if(!$result)
 	{
+		generate_admin_menu('database');
 		message('Failed to get Indexed Fields');
 	}
 
@@ -194,6 +196,7 @@ function get_table_content_mysql($table, $handler)
 	// Grab the data from the table.
 	if (!($result = $db->query("SELECT * FROM $table")))
 	{
+		generate_admin_menu('database');
 		message('Failed to get table content');
 	}
 
@@ -390,6 +393,7 @@ switch($db_type)
 	case 'mysqli':
 		break;
 	default:
+		generate_admin_menu('database');
 		message('Sorry your database type is not yet supported');
 }
 //Start actual db stuff
@@ -470,6 +474,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "")
 	{
+		generate_admin_menu('database');
 		message('No file was uploaed or the upload failed, the database was not restored');
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) )
@@ -496,6 +501,7 @@ elseif ( isset($_POST['restore_start']) ) {
 			}
 			else
 			{
+				generate_admin_menu('database');
 				message('Sorry the database could not be restored');
 			}
 		}
@@ -506,6 +512,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	}
 	else
 	{
+		generate_admin_menu('database');
 		message('Error the file name or file format caused an error, the database was not restored');
 	}
 	if($sql_query != "")
@@ -538,6 +545,7 @@ elseif ( isset($_POST['restore_start']) ) {
 				$result = $db->query($sql);
 				if(!$result)
 				{
+					generate_admin_menu('database');
 					message('Error imported backup file, the database probably has not been restored');
 				}
 			}
@@ -566,17 +574,22 @@ elseif ( isset($_POST['restore_start']) ) {
 		</div>
 	</div>
 <?php
-	} else {
-	message('Restore Complete');
+	}
+	else
+	{
+		generate_admin_menu('database');
+		message('Restore Complete');
 	}
 }
-elseif (isset($_POST['repairall'])) {
+elseif (isset($_POST['repairall']))
+{
 	//repair all tables
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql))
 	{
 		// This makes no sense, the board would be dead... :P
+		generate_admin_menu('database');
 		message('Tables error, repair failed');
 	}
 	$tables = array();
@@ -594,17 +607,21 @@ elseif (isset($_POST['repairall'])) {
 		$sql = 'REPAIR TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
 		{
+			generate_admin_menu('database');
 			message('SQL error, repair failed');
 		}
 	}
+	generate_admin_menu('database');
 	message('All tables repaired');
 }
-elseif (isset($_POST['optimizeall'])) {
+elseif (isset($_POST['optimizeall']))
+{
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql))
 	{
 		// This makes no sense, the board would be dead... :P
+		generate_admin_menu('database');
 		message('Tables error, optimise failed');
 	}
 	$tables = array();
@@ -622,9 +639,11 @@ elseif (isset($_POST['optimizeall'])) {
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
 		{
+			generate_admin_menu('database');
 			message('SQL error, optimise failed');
 		}
 	}
+	generate_admin_menu('database');
 	message('All tables optimised');
 }
 else {
@@ -637,9 +656,9 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
 <h2><?php echo $lang_back['Database'] ?></h2>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Backup options'] ?></h3>
-    </div>
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang_back['Backup options'] ?></h3>
+	</div>
 	<div class="panel-body">
         <form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
@@ -668,9 +687,9 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Restore options'] ?></h3>
-    </div>
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang_back['Restore options'] ?></h3>
+	</div>
 	<div class="panel-body">
         <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
