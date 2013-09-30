@@ -30,7 +30,7 @@ if ($pun_user['g_moderator'] == '1' && $prefix == 'AP')
 
 // Make sure the file actually exists
 if (!file_exists(FORUM_ROOT.'plugins/'.$plugin))
-	message(sprintf($lang_admin_common['No plugin message'], $plugin));
+	message(sprintf($lang_back['No plugin message'], $plugin));
 
 // Construct REQUEST_URI if it isn't set
 if (!isset($_SERVER['REQUEST_URI']))
@@ -45,7 +45,7 @@ require FORUM_ROOT.'backstage/header.php';
 // get the "blank page of death"
 include FORUM_ROOT.'plugins/'.$plugin;
 if (!defined('FORUM_PLUGIN_LOADED'))
-	message(sprintf($lang_admin_common['Plugin failed message'], $plugin));
+	message(sprintf($lang_back['Plugin failed message'], $plugin));
 
 // Output the clearer div
 ?>

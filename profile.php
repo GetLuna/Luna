@@ -1653,7 +1653,7 @@ if (count($languages) > 1)
 		else if ($img_size = @getimagesize($pun_config['o_avatars_dir'].'/'.$id.'.png'))
 			$avatar_field = '<img src="'.$pun_config['o_avatars_dir'].'/'.$id.'.png" '.$img_size[3].' alt="" />';
 		else
-			$avatar_field = $lang_front['unknown'];
+			$avatar_field = $lang_front['Unknown'];
 	}
 
 	$posts_field = '';
@@ -1680,11 +1680,11 @@ if (count($languages) > 1)
         </tr>
         <tr>
             <th><?php echo $lang_front['Realname'] ?></th>
-            <td><?php echo ($user['realname'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']) : $lang_front['unknown']; ?></td>
+            <td><?php echo ($user['realname'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']) : $lang_front['Unknown']; ?></td>
         </tr>
         <tr>
             <th><?php echo $lang_front['Location'] ?></th>
-            <td><?php echo ($user['location'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']) : $lang_front['unknown']; ?></td>
+            <td><?php echo ($user['location'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']) : $lang_front['Unknown']; ?></td>
         </tr>
         <tr>
             <th><?php echo $lang_front['Website'] ?></th>
@@ -1699,7 +1699,7 @@ if (count($languages) > 1)
         </tr>
         <tr>
             <th><?php echo $lang_front['Jabber'] ?></th>
-            <td><?php echo ($user['jabber'] !='') ? pun_htmlspecialchars($user['jabber']) : $lang_front['unknown']; ?></td>
+            <td><?php echo ($user['jabber'] !='') ? pun_htmlspecialchars($user['jabber']) : $lang_front['Unknown']; ?></td>
         </tr>
         <tr>
             <th><?php echo $lang_front['ICQ'] ?></th>
@@ -1707,15 +1707,15 @@ if (count($languages) > 1)
         </tr>
         <tr>
             <th><?php echo $lang_front['MSN'] ?></th>
-            <td><?php echo ($user['msn'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']) : $lang_front['unknown']; ?></td>
+            <td><?php echo ($user['msn'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']) : $lang_front['Unknown']; ?></td>
         </tr>
         <tr>
             <th><?php echo $lang_front['AOL IM'] ?></th>
-            <td><?php echo ($user['aim'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']) : $lang_front['unknown']; ?></td>
+            <td><?php echo ($user['aim'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']) : $lang_front['Unknown']; ?></td>
         </tr>
         <tr>
             <th><?php echo $lang_front['Yahoo'] ?></th>
-            <td><?php echo ($user['yahoo'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']) : $lang_front['unknown']; ?></td>
+            <td><?php echo ($user['yahoo'] !='') ? pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']) : $lang_front['Unknown']; ?></td>
         </tr>
     	<tr>
             <td class="active" colspan="2"><h4><?php echo $lang_front['Section personality'] ?></h4></td>
