@@ -631,12 +631,12 @@ else
 
 $checkboxes = array();
 if ($fid && $is_admmod)
-	$checkboxes[] = '<label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /> '.$lang_common['Stick topic'].'<br /></label>';
+	$checkboxes[] = '<input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /> '.$lang_common['Stick topic'].'<br />';
 
 if (!$pun_user['is_guest'])
 {
 	if ($pun_config['o_smilies'] == '1')
-		$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang_front['Hide smilies'].'<br /></label>';
+		$checkboxes[] = '<input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang_front['Hide smilies'].'<br />';
 
 	if ($pun_config['o_topic_subscriptions'] == '1')
 	{
@@ -652,11 +652,11 @@ if (!$pun_user['is_guest'])
 		else if ($is_subscribed)
 			$subscr_checked = true;
 
-		$checkboxes[] = '<label><input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang_front['Stay subscribed'] : $lang_front['Subscribe']).'<br /></label>';
+		$checkboxes[] = '<input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang_front['Stay subscribed'] : $lang_front['Subscribe']).'<br />';
 	}
 }
 else if ($pun_config['o_smilies'] == '1')
-	$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang_front['Hide smilies'].'<br /></label>';
+	$checkboxes[] = '<input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang_front['Hide smilies'].'<br />';
 
 if (!empty($checkboxes))
 {
@@ -675,7 +675,7 @@ if (!empty($checkboxes))
         </div>
     </div>
     <div class="alert alert-info">
-        <input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang_front['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a>
+        <input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_common['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang_front['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang_common['Go back'] ?></a>
     </div>
 </form>
 <?php
