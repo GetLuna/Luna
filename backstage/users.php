@@ -47,7 +47,7 @@ if (isset($_POST['add_user']))
 	if (strlen($username) < 2)
 		message($lang_prof_reg['Username too short']);
 	else if (pun_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
-	    message($lang_common['Bad request']);
+	    message($lang_common['Bad request'], false, '404 Not Found');
 	else if (strlen($password1) < 4)
 		message($lang_prof_reg['Pass too short']);
 	else if ($password1 != $password2)
@@ -152,7 +152,7 @@ if (isset($_GET['ip_stats']))
 {
 	$ip_stats = intval($_GET['ip_stats']);
 	if ($ip_stats < 1)
-		message($lang_common['Bad request']);
+		message($lang_common['Bad request'], false, '404 Not Found');
 
 	// Fetch ip count
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
