@@ -597,19 +597,19 @@ $cur_index = 1;
 
 if ($pun_user['is_guest'])
 {
-	$email_label = ($pun_config['p_force_guest_email'] == '1') ? '<strong>'.$lang_common['Email'].' <span>'.$lang_common['Required'].'</span></strong>' : $lang_common['Email'];
+	$email_label = ($pun_config['p_force_guest_email'] == '1') ? '<strong>'.$lang_common['Email'].'</strong>' : $lang_common['Email'];
 	$email_form_name = ($pun_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
-                <label class="conl required full-form"><strong><?php echo $lang_front['Guest name'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input class="form-control" type="text" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" size="25" maxlength="25" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
+                <label class="conl required full-form"><strong><?php echo $lang_front['Guest name'] ?></strong><br /><input class="form-control" type="text" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" size="25" maxlength="25" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
                 <label class="conl<?php echo ($pun_config['p_force_guest_email'] == '1') ? ' required' : '' ?> full-form"><?php echo $email_label ?><br /><input class="form-control" type="text" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo pun_htmlspecialchars($email); ?>" size="50" maxlength="80" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
 <?php
 
 }
 
 if ($fid): ?>
-                <label class="required"><strong><?php echo $lang_common['Subject'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br /><input class="longinput form-control full-form" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" /></label>
-<?php endif; ?>			<label class="required"><strong><?php echo $lang_common['Message'] ?> <span><?php echo $lang_common['Required'] ?></span></strong><br />
+                <label class="required"><strong><?php echo $lang_common['Subject'] ?></strong><br /><input class="longinput form-control full-form" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" /></label>
+<?php endif; ?>	
                         <textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea></label>
 <?php
 if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_form.php'))
@@ -695,6 +695,10 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 
 ?>
 <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang_front['Topic review'] ?></h3>
+    </div>
+    <div class="panel-body">
 <?php
 
 	// Set background switching on
@@ -707,33 +711,23 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
 ?>
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_front['Topic review'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <div class="box<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?>">
-            <div class="post-topic">
-                <div class="row">
-                    <div class="col-2">
-                        <dl>
-                            <dt><h4><?php echo pun_htmlspecialchars($cur_post['poster']) ?></h4></dt>
-                            <dd><span><?php echo format_time($cur_post['posted']) ?></span></dd>
-                        </dl>
-                    </div>
-                    <div class="col-10">
-                        <div class="postmsg">
-                            <?php echo $cur_post['message']."\n" ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-	</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<h4><?php echo pun_htmlspecialchars($cur_post['poster']) ?></h4>
+				<span><?php echo format_time($cur_post['posted']) ?></span>
+			</div>
+			<div class="col-xs-10">
+				<div class="postmsg">
+					<?php echo $cur_post['message']."\n" ?>
+				</div>
+			</div>
+		</div>
 <?php
 
 	}
 
 ?>
+	</div>
 </div>
 <?php
 
