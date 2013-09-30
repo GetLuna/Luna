@@ -59,7 +59,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 	if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
 	{
 		if ($cur_category != 0)
-			echo "\t\t\t".'</tbody>'."\n\t\t\t".'</table>'."\n\t\t".'</div>'."\n\t".'</div>'."\n".'</div>'."\n\n";
+			echo "\t\t".'</tbody>'."\n\t\t".'</table>'."\n\t".'</div>'."\n".'</div>'."\n\n";
 
 		++$cat_count;
 		$forum_count = 0;
