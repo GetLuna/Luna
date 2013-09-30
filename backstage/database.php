@@ -99,6 +99,7 @@ function get_table_def_mysql($table, $crlf)
 	$result = $db->query($field_query);
 	if(!$result)
 	{
+		generate_admin_menu('database');
 		message('Failed to get field list');
 	}
 
@@ -134,6 +135,7 @@ function get_table_def_mysql($table, $crlf)
 	$result = $db->query($key_query);
 	if(!$result)
 	{
+		generate_admin_menu('database');
 		message('Failed to get Indexed Fields');
 	}
 
@@ -194,6 +196,7 @@ function get_table_content_mysql($table, $handler)
 	// Grab the data from the table.
 	if (!($result = $db->query("SELECT * FROM $table")))
 	{
+		generate_admin_menu('database');
 		message('Failed to get table content');
 	}
 
@@ -390,6 +393,7 @@ switch($db_type)
 	case 'mysqli':
 		break;
 	default:
+		generate_admin_menu('database');
 		message('Sorry your database type is not yet supported');
 }
 //Start actual db stuff
@@ -470,6 +474,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "")
 	{
+		generate_admin_menu('database');
 		message('No file was uploaed or the upload failed, the database was not restored');
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) )
@@ -496,6 +501,7 @@ elseif ( isset($_POST['restore_start']) ) {
 			}
 			else
 			{
+				generate_admin_menu('database');
 				message('Sorry the database could not be restored');
 			}
 		}
@@ -506,6 +512,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	}
 	else
 	{
+		generate_admin_menu('database');
 		message('Error the file name or file format caused an error, the database was not restored');
 	}
 	if($sql_query != "")
@@ -538,6 +545,7 @@ elseif ( isset($_POST['restore_start']) ) {
 				$result = $db->query($sql);
 				if(!$result)
 				{
+					generate_admin_menu('database');
 					message('Error imported backup file, the database probably has not been restored');
 				}
 			}
@@ -566,17 +574,22 @@ elseif ( isset($_POST['restore_start']) ) {
 		</div>
 	</div>
 <?php
-	} else {
-	message('Restore Complete');
+	}
+	else
+	{
+		generate_admin_menu('database');
+		message('Restore Complete');
 	}
 }
-elseif (isset($_POST['repairall'])) {
+elseif (isset($_POST['repairall']))
+{
 	//repair all tables
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql))
 	{
 		// This makes no sense, the board would be dead... :P
+		generate_admin_menu('database');
 		message('Tables error, repair failed');
 	}
 	$tables = array();
@@ -594,17 +607,21 @@ elseif (isset($_POST['repairall'])) {
 		$sql = 'REPAIR TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
 		{
+			generate_admin_menu('database');
 			message('SQL error, repair failed');
 		}
 	}
+	generate_admin_menu('database');
 	message('All tables repaired');
 }
-elseif (isset($_POST['optimizeall'])) {
+elseif (isset($_POST['optimizeall']))
+{
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql))
 	{
 		// This makes no sense, the board would be dead... :P
+		generate_admin_menu('database');
 		message('Tables error, optimise failed');
 	}
 	$tables = array();
@@ -622,18 +639,22 @@ elseif (isset($_POST['optimizeall'])) {
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
 		{
+			generate_admin_menu('database');
 			message('SQL error, optimise failed');
 		}
 	}
+	generate_admin_menu('database');
 	message('All tables optimised');
 }
-elseif (isset($_POST['submit'])) {
+elseif (isset($_POST['submit']))
+{
 	//fix for no admin menu
 	echo "<div>";
 	$this_query = $_POST['this_query'];
 	if (empty($this_query))
 	{
 		//no query error
+		generate_admin_menu('database');
 		message('No Query Duh!');
 	}
 	// Add a semi-colon to the end if there isn't one:
@@ -664,6 +685,7 @@ elseif (isset($_POST['submit'])) {
 		if (!$result)
 		{
 			//query error
+			generate_admin_menu('database');
 			message('SQL Error');
 		}
 		$queriesdone .= $query."\n";
@@ -671,7 +693,9 @@ elseif (isset($_POST['submit'])) {
 		$query_words = explode(" ", $query);
 		if ($db->num_rows($result))
 		{
-			if ($db->num_rows($result) > 500) {
+			if ($db->num_rows($result) > 500)
+			{
+				generate_admin_menu('database');
 				message('Query result too long to be displayed');
 			}
 			// Remember the number of fields (aka columns) and the number of rows:
@@ -696,16 +720,17 @@ elseif (isset($_POST['submit'])) {
 				echo '<tr>';
 				for ($i = 0; $i < $field_count; $i++)
 				{
-				echo '<td>';
+					echo '<td>';
 					$temp = isset($row[$field[$i]]) ? pun_htmlspecialchars($row[$field[$i]]) : '&nbsp;';
 					echo $temp;
-				echo '</td>';
+					echo '</td>';
 				}
 				echo "</tr>";
 			}
 			echo '</tbody></table></div></div></div></div>';
 		}
-		elseif (substr(trim($query), 0, 6) == 'SELECT') {
+		elseif (substr(trim($query), 0, 6) == 'SELECT')
+		{
 			echo '<div><div class="linkst"><div class="inbox"><div><a href="javascript:history.go(-1)" />Go back</a></div></div></div>';
 			echo '<div class="block"><h2 class="block2"><span>'.pun_htmlspecialchars($query).'</span></h2><div class="box"><div class="inbox"><p>';
 			echo "No data found";
@@ -718,86 +743,88 @@ elseif (isset($_POST['submit'])) {
 	echo '</p></div></div></div>';
 	echo '<div><div class="linkst"><div class="inbox"><div><a href="javascript:history.go(-1)" />Go back</a></div></div></div>';
 }
-else {
-	
-$action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Database']);
-define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
+else
+{
+	$action = isset($_GET['action']) ? $_GET['action'] : null;
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Database']);
+	define('FORUM_ACTIVE_PAGE', 'admin');
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 ?>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Backup options'] ?></h3>
-    </div>
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang_back['Backup options'] ?></h3>
+	</div>
 	<div class="panel-body">
-        <form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-            <fieldset>
-                <p><?php echo $lang_back['Backup info 1'] ?></p>
-                <table class="table">
-                    <tr>
-                        <th class="col-2"><?php echo $lang_back['Backup type'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang_back['Full'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang_back['Structure only'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang_back['Data only'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Backup info 2'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang_back['Gzip compression'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang_back['Start backup'] ?>" class="mainoption" /></p>
-        </form>
-    </div>
+		<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+			<fieldset>
+				<p><?php echo $lang_back['Backup info 1'] ?></p>
+				<table class="table">
+					<tr>
+						<th class="col-2"><?php echo $lang_back['Backup type'] ?></th>
+						<td>
+							<label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang_back['Full'] ?></strong></label>
+							<label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang_back['Structure only'] ?></strong></label>
+							<label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang_back['Data only'] ?></strong></label>
+							<span class="help-block"><?php echo $lang_back['Backup info 2'] ?></span>
+						</td>
+					</tr>
+					<tr>
+						<th><?php echo $lang_back['Gzip compression'] ?></th>
+						<td>
+							<label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
+							<label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang_back['Start backup'] ?>" class="mainoption" /></p>
+		</form>
+	</div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Restore options'] ?></h3>
-    </div>
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang_back['Restore options'] ?></h3>
+	</div>
 	<div class="panel-body">
-        <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-            <fieldset>
-                <p><?php echo $lang_back['Restore info 1'] ?></p>
-                <table class="table">
-                    <tr>
-                        <th class="col-2"><?php echo $lang_back['Restore from file'] ?></th>
-                        <td><input type="file" name="backup_file" />
-                        <input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_back['Start restore'] ?>" class="mainoption" /></td>
-                    </tr>
-                </table>
-            </fieldset>
-        </form>
-    </div>
+		<form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+			<fieldset>
+				<p><?php echo $lang_back['Restore info 1'] ?></p>
+				<table class="table">
+					<tr>
+						<th class="col-2"><?php echo $lang_back['Restore from file'] ?></th>
+						<td>
+							<input type="file" name="backup_file" />
+							<input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_back['Start restore'] ?>" class="mainoption" />
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</form>
+	</div>
 </div>
 <div class="alert alert-danger alert-update">
-    <h4><?php echo $lang_back['Warning'] ?></h4>
-    <p><?php echo $lang_back['Warning info'] ?></p>
+	<h4><?php echo $lang_back['Warning'] ?></h4>
+	<p><?php echo $lang_back['Warning info'] ?></p>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Run SQL query'] ?></h3>
-    </div>
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang_back['Run SQL query'] ?></h3>
+	</div>
 	<div class="panel-body">
-        <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
-            <fieldset>
-                <p><?php echo $lang_back['Run info 1'] ?></p>
-                <textarea class="form-control" placeholder="<?php echo $lang_back['SQL Query'] ?>" name="this_query" rows="5" cols="50"></textarea>
-            </fieldset>
-            <div class="control-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_back['Run query'] ?>" /></div>
-            <fieldset>
-                <h3><?php echo $lang_back['Additional functions'] ?></h3>
-                <p><?php echo $lang_back['Additional info 1'] ?></p>
-                <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang_back['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang_back['Optimise all tables'] ?>" />
-            </fieldset>
-        </form>
-    </div>
+		<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+			<fieldset>
+				<p><?php echo $lang_back['Run info 1'] ?></p>
+				<textarea class="form-control" placeholder="<?php echo $lang_back['SQL Query'] ?>" name="this_query" rows="5" cols="50"></textarea>
+			</fieldset>
+			<div class="control-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang_back['Run query'] ?>" /></div>
+			<fieldset>
+				<h3><?php echo $lang_back['Additional functions'] ?></h3>
+				<p><?php echo $lang_back['Additional info 1'] ?></p>
+				<input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang_back['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang_back['Optimise all tables'] ?>" />
+			</fieldset>
+		</form>
+	</div>
 </div>
 <?php
 }
