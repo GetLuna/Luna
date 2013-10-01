@@ -422,13 +422,13 @@ if (isset($_POST['backupstart'])) {
 	{
 		@ob_start();
 		@ob_implicit_flush(0);
-		header("Content-Type: application/x-gzip; name=\"punbb_db_backup." . gmdate("Y-m-d") . ".sql.gz\"");
-		header("Content-disposition: attachment; filename=punbb_db_backup." . gmdate("Y-m-d") . ".sql.gz");
+		header("Content-Type: application/x-gzip; name=\"modernbb_backup." . gmdate("Y-m-d") . ".sql.gz\"");
+		header("Content-disposition: attachment; filename=modernbb_backup." . gmdate("Y-m-d") . ".sql.gz");
 	}
 	else
 	{
-		header("Content-Type: text/x-delimtext; name=\"punbb_db_backup." . gmdate("Y-m-d") . ".sql\"");
-		header("Content-disposition: attachment; filename=punbb_db_backup." . gmdate("Y-m-d") . ".sql");
+		header("Content-Type: text/x-delimtext; name=\"modernbb_backup." . gmdate("Y-m-d") . ".sql\"");
+		header("Content-disposition: attachment; filename=modernbb_backup." . gmdate("Y-m-d") . ".sql");
 	}
 	//
 	// Build the sql script file...
