@@ -130,7 +130,7 @@ if (isset($_POST['form_sent']))
 	{
 		$language = preg_replace('%[\.\\\/]%', '', $_POST['language']);
 		if (!file_exists(FORUM_ROOT.'lang/'.$language.'/common.php'))
-			message($lang_common['Bad request']);
+			message($lang_common['Bad request'], false, '404 Not Found');
 	}
 	else
 		$language = $pun_config['o_default_lang'];

@@ -37,11 +37,11 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	{
 		$group_id = intval($_GET['edit_group']);
 		if ($group_id < 1)
-			message($lang_common['Bad request']);
+			message($lang_common['Bad request'], false, '404 Not Found');
 
 		$result = $db->query('SELECT * FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch user group info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message($lang_common['Bad request']);
+			message($lang_common['Bad request'], false, '404 Not Found');
 
 		$group = $db->fetch_assoc($result);
 
@@ -336,12 +336,12 @@ else if (isset($_POST['set_default_group']))
 
 	// Make sure it's not the admin or guest groups
 	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
-		message($lang_common['Bad request']);
+		message($lang_common['Bad request'], false, '404 Not Found');
 
 	// Make sure it's not a moderator group
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_id='.$group_id.' AND g_moderator=0') or error('Unable to check group moderator status', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
-		message($lang_common['Bad request']);
+		message($lang_common['Bad request'], false, '404 Not Found');
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$group_id.' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
@@ -360,7 +360,7 @@ else if (isset($_GET['del_group']))
 {
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
-		message($lang_common['Bad request']);
+		message($lang_common['Bad request'], false, '404 Not Found');
 
 	// Make sure we don't remove the default group
 	if ($group_id == $pun_config['o_default_user_group'])
