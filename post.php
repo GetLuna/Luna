@@ -711,17 +711,17 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
 ?>
-		<div class="row">
-			<div class="col-xs-2">
-				<h4><?php echo pun_htmlspecialchars($cur_post['poster']) ?></h4>
-				<span><?php echo format_time($cur_post['posted']) ?></span>
-			</div>
-			<div class="col-xs-10">
-				<div class="postmsg">
+		<table class="table postview">
+			<tr>
+				<td class="col-xs-2  user-data">
+					<h4 class="username"><?php echo pun_htmlspecialchars($cur_post['poster']) ?></h4>
+					<span><?php echo format_time($cur_post['posted']) ?></span>
+				</td>
+				<td class="col-xs-10 post-content">
 					<?php echo $cur_post['message']."\n" ?>
-				</div>
-			</div>
-		</div>
+				</td>
+			<tr>
+		</table>
 <?php
 
 	}
