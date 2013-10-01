@@ -773,26 +773,12 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
             <h3 class="panel-title"><?php echo $lang_front['Search criteria legend'] ?></h3>
         </div>
         <div class="panel-body">
-            <fieldset>
-                <input class="form-control" type="hidden" name="action" value="search" />
-            	<table>
-                	<thead>
-                    	<tr>
-                        	<th><?php echo $lang_front['Keyword search'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    	<tr>
-                        	<td><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p class="help-block"><a href="search.php?section=advanced"><?php echo $lang_front['Advanced search'] ?></a></p>
+            <fieldset class="search">
+                <input type="hidden" name="action" value="search" />
+            	<input class="search-form" type="text" name="keywords" size="40" maxlength="100" /><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Search'] ?>" accesskey="s" />
+                <br /><a href="search.php?section=advanced"><?php echo $lang_front['Advanced search'] ?></a>
             </fieldset>
         </div>
-    </div>
-    <div class="alert alert-info">
-		<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" />
     </div>
 </form>
 <?php
@@ -945,7 +931,7 @@ else
         </div>
     </div>
     <div class="alert alert-info">
-		<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Submit'] ?>" accesskey="s" />
+		<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang_common['Search'] ?>" accesskey="s" />
     </div>
 </form>
 <?php

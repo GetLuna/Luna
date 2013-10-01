@@ -26,6 +26,7 @@ $lang_common = array(
 'Options'							=>	'Global settings',
 'Features'							=>	'Features',
 'Submit'							=>	'Submit', // "Name" of submit buttons
+'Search'							=>	'Search',
 'Ban message'						=>	'You are banned from this forum.',
 'Ban message 2'						=>	'The ban expires at the end of',
 'Ban message 3'						=>	'The administrator or moderator that banned you left the following message:',
