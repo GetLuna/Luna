@@ -50,7 +50,7 @@ $toolbar_tags = array('sup', 'sub', 'left', 'right', 'center', 'justify', 'q', '
 // Regenerate cache function
 function re_generate($mode)
 {
-	require_once FORUM_ROOT.'include/cache_toolbar.php';
+	require_once FORUM_ROOT.'include/cache.php';
 	if ($mode == 'tags' || $mode == 'all')
 		generate_ftb_cache('tags');
 	if ($mode == 'forms' || $mode == 'all')
