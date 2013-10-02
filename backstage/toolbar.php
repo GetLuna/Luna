@@ -2,6 +2,7 @@
 
 /**
  * Copyright (C) 2013 ModernBB
+ * Based on code by Mpok copyright (C) 2010 - 2013 Mpok
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
