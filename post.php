@@ -652,7 +652,7 @@ if (!$pun_user['is_guest'])
 		else if ($is_subscribed)
 			$subscr_checked = true;
 
-		$checkboxes[] = '<input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang_front['Stay subscribed'] : $lang_front['Subscribe']).'<br />';
+		$checkboxes[] = '<input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang_front['Stay subscribed'] : $lang_front['Subscribe topic']).'<br />';
 	}
 }
 else if ($pun_config['o_smilies'] == '1')

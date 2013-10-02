@@ -254,6 +254,11 @@ if (!$pun_user['is_guest'])
 	{
 		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</li></span>';
 	}
+	
+	if (!empty($topic_actions))
+	{
+		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $topic_actions).'</li></span>';
+	}
 
 	if ($pun_user['is_admmod'])
 	{

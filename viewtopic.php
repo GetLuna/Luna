@@ -156,21 +156,20 @@ if ($pun_config['o_quickpost'] == '1' &&
 	$quickpost = true;
 }
 
-if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
-{
-	if ($cur_topic['is_subscribed'])
-		// I apologize for the variable naming here. It's a mix of subscription and action I guess :-)
-		$subscraction = "\t\t".'<p class="subscribelink clearb"><span>'.$lang_front['Is subscribed'].' - </span><a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang_front['Unsubscribe'].'</a></p>'."\n";
-	else
-		$subscraction = "\t\t".'<p class="subscribelink clearb"><a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang_front['Subscribe'].'</a></p>'."\n";
-}
-else
-	$subscraction = '';
-
 if ($pun_config['o_feed_type'] == '1')
 	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.$lang_common['RSS topic feed'].'" />');
 else if ($pun_config['o_feed_type'] == '2')
 	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.$lang_common['Atom topic feed'].'" />');
+
+$topic_actions = array();
+
+if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
+{
+	if ($cur_topic['is_subscribed'])
+		$topic_actions[] = '<a href="misc.php?action=subscribe&tid='.$id.'">'.$lang_front['Unsubscribe'].'</a>';
+	else
+		$topic_actions[] = '<a href="misc.php?action=subscribe&tid='.$id.'">'.$lang_front['Subscribe'].'</a>';
+}
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
 define('FORUM_ALLOW_INDEX', 1);
