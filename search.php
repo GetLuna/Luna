@@ -644,13 +644,13 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
             </td>
         </tr>
         <tr>
-            <td class="col-xs-xs-2 user-data">
+            <td class="col-xs-2 user-data">
                 <?php echo $pposter ?><br />
 				<?php if ($cur_search['pid'] == $cur_search['first_post_id']) : ?>                    
                     <?php echo $lang_front['Replies'].' '.forum_number_format($cur_search['num_replies']) ?>
                 <?php endif; ?>
             </td>
-            <td class="col-xs-xs-10">
+            <td class="col-xs-10">
 				<?php echo $message."\n" ?>
             </td>
         </tr>
