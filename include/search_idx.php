@@ -55,7 +55,7 @@ function split_words($text, $idx)
 		include FORUM_CACHE_DIR.'cache_toolbar_tag_search.php';
 	else
 	{
-		require_once FORUM_ROOT.'include/cache_toolbar.php';
+		require_once FORUM_ROOT.'include/cache.php';
 		generate_ftb_cache('tags');
 		require FORUM_CACHE_DIR.'cache_toolbar_tag_search.php';
 	}
