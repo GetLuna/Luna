@@ -164,10 +164,6 @@ h1 {
 	text-align: right;
 }
 
-* html .pun .inbox, * html .pun #brdmain, * html .pun .infldset, * html .pun .crumbs, * html .pun .pagepost, * html .pun .block2col {
-	display: inline-block;
-}
-
 /* Panels */
 .panel {
 	border-radius: 0;
@@ -758,10 +754,11 @@ fieldset label {
 .breadcrumb {
 	background-color: #009dff;
 	border-radius: 0;
+	color: #d0e7ff;
 }
 
-.breadcrumb > li + li::before {
-	color: #ccc;
+.breadcrumb > li + li::before, .breadcrumb .active {
+	color: #d0e7ff;
 }
 
 .breadcrumb a {
@@ -771,12 +768,14 @@ fieldset label {
 
 .breadcrumb a:hover {
 	color: #fff;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 /* Status Indicators */
 .icon {
 	border-color: #dcdcdc;
+	margin-left: -3px;
+	margin-top: 1px;
 }
 
 .iredirect .icon {
@@ -790,34 +789,18 @@ fieldset label {
 }
 
 /* Generic Float Clear */
-.inbox, #brdmain, .pagepost, .block2col {
+* html #brdmain {
+	display: inline-block;
 	min-height: 1px;
 }
 
-* html .inbox, * html #brdmain, * html .infldset, * html .crumbs, * html .pagepost, * html .block2col {
-	display: inline-block;
-}
-
-* html .inbox, * html #bdrdmain, * html .infldset, * html .crumbs, * html .pagepost, * html .block2col {
-	display: block;
-}
-
-.inbox:after, #brdmain:after, .crumbs:after, .pagepost:after, .block2col:after {
+.inbox:after, #brdmain:after, .pagepost:after{
 	content: " ";
 	display: block;
 	height: 0;
 	font-size: 0;
 	clear: both;
 	visibility: hidden;
-}
-
-.block2col .inbox:after {
-	content: none;
-	clear: none;
-}
-
-.clearl {
-	clear: left;
 }
 
 /* Forumview, index */
