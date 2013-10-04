@@ -12,9 +12,9 @@ if (!defined('FORUM'))
 	exit;
 
 // Make sure we have a usable language pack for admin.
-if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/admin_common.php'))
+if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php'))
 	$admin_language = $pun_user['language'];
-else if (file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/admin_common.php'))
+else if (file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/language.php'))
 	$admin_language = $pun_config['o_default_lang'];
 else
 	$admin_language = 'English';

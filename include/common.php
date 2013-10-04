@@ -158,9 +158,9 @@ $forum_date_formats = array($pun_config['o_date_format'], 'Y-m-d', 'Y-d-m', 'd-m
 $pun_user = array();
 check_cookie($pun_user);
 
-// Attempt to load the common language file
-if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/common.php'))
-	include FORUM_ROOT.'lang/'.$pun_user['language'].'/common.php';
+// Attempt to load the language file
+if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php'))
+	include FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
 else
 	error('There is no valid language pack \''.pun_htmlspecialchars($pun_user['language']).'\' installed. Please reinstall a language of that name');
 
