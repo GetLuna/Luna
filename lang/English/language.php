@@ -948,21 +948,16 @@ $lang = array(
 'Headline feature 1 head 1'	=>	'Modern design. Again.',
 'Headline feature 1 head 2'	=>	'Color. Color. Color. Did I say "Color" already?',
 'Headline feature 1 info 1'	=>	'We agree when you would say that the default styles from ModernBB 2.0 are ugly. But that makes space for improvement, so here they are: completely revamped styles for ModernBB 2.1.',
-'Headline feature 1 info 2'	=>	'With the new design, our default blue, yellow, green and red template are joined by a pink, grey, purple and orange theme, just to give you and your users (if you allow them to change the style) more choise.',
+'Headline feature 1 info 2'	=>	'The new default styles are available in blue (which is the default for new installations), green and red. However, on our website, you will find even more colorschemes for this style, including yellow, purple, etc. Those styles might be unavailable during beta stage.',
 'Headline feature 2 title'	=>	'Improved Backstage',
-'Headline feature 2 info'	=>	'ModernBB 2.0 was a very great first step towards a new and user-friendly dashboard, in ModernBB 2.1, we extended the changes we made, making your experience even better. We restructered Backstage from the index to the maintenance settings.',
-
-'Second feature 1 head'		=>	'Sub forums.',
-'Second feature 1 info'		=>	'It was available briefly during beta stage in ModernBB 2.0, but now, it\s core time: ModernBB 2.1 supports sub forums, and better than the beta version from the past.',
-'Second feature 2 head'		=>	'Customize your login experience.',
-'Second feature 2 info'		=>	'With ModernBB 2.1, the form template no longer uses the Backstage design, but the front-end design, making it possible to customize it to your own style.',
-'Second feature 3 head'		=>	'New header settings.',
-'Second feature 3 info'		=>	'We\'ve reworked the whole header, making it more clean and simple, with dropdown menus, and more. However, those changes give you also more options to customize the header to your likes.',
+'Headline feature 2 info'	=>	'ModernBB 2.0 was a very great first step towards a new and user-friendly dashboard, in ModernBB 2.1, we extended the changes we made, making your experience even better. We restructered Backstage from the index to the maintenance settings. Those improvements include better locations for buttons, removing tables where they aren\'t needed, fixing multiple interfaces and more.',
 
 'Minor feature 1 head'		=>	'New possibilities for developers.',
 'Minor feature 1 info'		=>	'Developers, especialy the ones that create styles, are going to like ModernBB 2.1. We\'ve added new classes, removed almost all tables, improved the form.tpl template and more! Those changes will give new oppertunities for developers to make even more awesome styles.',
 'Minor feature 2 head'		=>	'Performance improvements.',
-'Minor feature 2 info'		=>	'ModernBB 2.1 will take less space on your host than ModernBB 2.0, we\'ve cleaned up the core, merged files, simplified our code, etc.',
+'Minor feature 2 info'		=>	'ModernBB 2.1 will take less space on your host than ModernBB 2.0, we\'ve cleaned up the core, merged files, simplified our code, cleaned up even more files, and more. ModernBB will now use less requests, so pages load faster.',
+'Minor feature 3 head'		=>	'New header settings.',
+'Minor feature 3 info'		=>	'We\'ve reworked the whole header, making it more clean and simple, with dropdown menus, and more. However, those changes give you also more options to customize the header to your likes.',
 
 // Language for backstage.php
 'Update settings head'		=>	'Update settings',
