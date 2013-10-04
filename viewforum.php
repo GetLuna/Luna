@@ -242,12 +242,9 @@ else
 	$colspan = ($pun_config['o_topic_views'] == '1') ? 4 : 3;
 
 ?>
-    <div class="row">
+    <div class="row topic-row">
         <div class="col-xs-12">
-            <div class="icon inone"><div class="nosize"></div></div>
-            <div>
-                <strong><?php echo $lang['Empty forum'] ?></strong>
-            </div>
+            <strong><?php echo $lang['Empty forum'] ?></strong>
         </div>
     </div>
 <?php
