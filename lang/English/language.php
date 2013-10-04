@@ -50,7 +50,6 @@ $lang = array(
 'New posts info'					=>	'Go to the first new post in this topic.', // The popup text for new posts links
 'Username'							=>	'Username',
 'Password'							=>	'Password',
-'Email'								=>	'Email',
 'Send email'						=>	'Send email',
 'Moderated by'						=>	'Moderated by',
 'Registered'						=>	'Registered',
