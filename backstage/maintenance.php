@@ -20,8 +20,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 $action = isset($_REQUEST['action']) ? pun_trim($_REQUEST['action']) : '';
 
@@ -34,7 +34,7 @@ if ($action == 'rebuild')
 	if ($per_page < 1)
 	{
 		generate_admin_menu('maintenance');
-		message($lang_back['Posts must be integer message']);
+		message($lang['Posts must be integer message']);
 	}
 
 	@set_time_limit(0);
@@ -60,7 +60,7 @@ if ($action == 'rebuild')
 		}
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Rebuilding search index']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Rebuilding search index']);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -84,7 +84,7 @@ h1 {
 </head>
 <body>
 
-<h1><?php echo $lang_back['Rebuilding index info'] ?></h1>
+<h1><?php echo $lang['Rebuilding index info'] ?></h1>
 <hr />
 
 <?php
@@ -99,7 +99,7 @@ h1 {
 	$end_at = 0;
 	while ($cur_item = $db->fetch_assoc($result))
 	{
-		echo '<p><span>'.sprintf($lang_back['Processing post'], $cur_item['id']).'</span></p>'."\n";
+		echo '<p><span>'.sprintf($lang['Processing post'], $cur_item['id']).'</span></p>'."\n";
 
 		if ($cur_item['id'] == $cur_item['first_post_id'])
 			update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
@@ -121,7 +121,7 @@ h1 {
 	$db->end_transaction();
 	$db->close();
 
-	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf($lang_back['Javascript redirect failed'], '<a href="maintenance.php'.$query_str.'">'.$lang_back['Click here'].'</a>').'</p>');
+	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf($lang['Javascript redirect failed'], '<a href="maintenance.php'.$query_str.'">'.$lang['Click here'].'</a>').'</p>');
 }
 
 if ($action == 'prune')
@@ -168,14 +168,14 @@ if ($action == 'prune')
 			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
-		redirect('backstage/maintenance.php', $lang_back['Posts pruned redirect']);
+		redirect('backstage/maintenance.php', $lang['Posts pruned redirect']);
 	}
 
 	$prune_days = pun_trim($_POST['req_prune_days']);
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
 	{
 		generate_admin_menu('maintenance');
-		message($lang_back['Days must be integer message']);
+		message($lang['Days must be integer message']);
 	}
 
 	$prune_date = time() - ($prune_days * 86400);
@@ -196,7 +196,7 @@ if ($action == 'prune')
 		$forum = '"'.pun_htmlspecialchars($db->result($result)).'"';
 	}
 	else
-		$forum = $lang_back['All forums'];
+		$forum = $lang['All forums'];
 
 	$result = $db->query($sql) or error('Unable to fetch topic prune count', __FILE__, __LINE__, $db->error());
 	$num_topics = $db->result($result);
@@ -204,11 +204,11 @@ if ($action == 'prune')
 	if (!$num_topics)
 	{
 		generate_admin_menu('maintenance');
-		message(sprintf($lang_back['No old topics message'], $prune_days));
+		message(sprintf($lang['No old topics message'], $prune_days));
 	}
 
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Prune']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Prune']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('maintenance');
@@ -216,7 +216,7 @@ if ($action == 'prune')
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Prune head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Prune head'] ?></h3>
     </div>
 	<div class="panel-body">
         <form method="post" action="maintenance.php">
@@ -225,12 +225,12 @@ if ($action == 'prune')
             <input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
             <input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
             <fieldset>
-                <h3><?php echo $lang_back['Confirm prune subhead'] ?></h3>
-                <p><?php printf($lang_back['Confirm prune info'], $prune_days, $forum, forum_number_format($num_topics)) ?></p>
-                <p class="warntext"><?php echo $lang_back['Confirm prune warn'] ?></p>
+                <h3><?php echo $lang['Confirm prune subhead'] ?></h3>
+                <p><?php printf($lang['Confirm prune info'], $prune_days, $forum, forum_number_format($num_topics)) ?></p>
+                <p class="warntext"><?php echo $lang['Confirm prune warn'] ?></p>
             </fieldset>
-            <div class="control-group"><input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang_back['Prune'] ?>" />
-            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_back['Go back'] ?></a></div>
+            <div class="control-group"><input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang['Prune'] ?>" />
+            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
         </form>
     </div>
 </div>
@@ -295,80 +295,80 @@ $result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Maintenance']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('maintenance');
 
 ?>
-<h2><?php echo $lang_back['Maintenance'] ?></h2>
+<h2><?php echo $lang['Maintenance'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Rebuild index subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?></h3>
     </div>
 	<div class="panel-body">
         <form method="get" action="maintenance.php">
             <input type="hidden" name="action" value="rebuild" />
             <fieldset>
-                <p><?php printf($lang_back['Rebuild index info'], '<a href="options.php#maintenance">'.$lang_back['Maintenance mode'].'</a>') ?></p>
+                <p><?php printf($lang['Rebuild index info'], '<a href="options.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th width="16%"><?php echo $lang_back['Posts per cycle label'] ?></th>
+                        <th width="16%"><?php echo $lang['Posts per cycle label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="i_per_page" size="7" maxlength="7" value="300" tabindex="1" />
-                            <br /><span class="help-block"><?php echo $lang_back['Posts per cycle help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang['Posts per cycle help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Starting post label'] ?></th>
+                        <th><?php echo $lang['Starting post label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="i_start_at" size="7" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
-                            <br /><span class="help-block"><?php echo $lang_back['Starting post help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang['Starting post help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Empty index label'] ?></th>
+                        <th><?php echo $lang['Empty index label'] ?></th>
                         <td class="inputadmin">
-                            <label><input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked="checked" />&#160;&#160;<?php echo $lang_back['Empty index help'] ?></label>
+                            <label><input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked="checked" />&#160;&#160;<?php echo $lang['Empty index help'] ?></label>
                         </td>
                     </tr>
                 </table>
-                <p class="topspace"><?php echo $lang_back['Rebuild completed info'] ?></p>
-                <div class="control-group"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang_back['Rebuild index'] ?>" tabindex="4" /></div>
+                <p class="topspace"><?php echo $lang['Rebuild completed info'] ?></p>
+                <div class="control-group"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang['Rebuild index'] ?>" tabindex="4" /></div>
             </fieldset>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Prune subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Prune subhead'] ?></h3>
     </div>
 	<div class="panel-body">
         <form method="post" action="maintenance.php" onsubmit="return process_form(this)">
             <input type="hidden" name="action" value="prune" />
             <fieldset>
-                <p class="topspace"><?php printf($lang_back['Prune info'], '<a href="options.php#maintenance">'.$lang_back['Maintenance mode'].'</a>') ?></p>
+                <p class="topspace"><?php printf($lang['Prune info'], '<a href="options.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th width="16%"><?php echo $lang_back['Days old label'] ?></th>
+                        <th width="16%"><?php echo $lang['Days old label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="req_prune_days" size="3" maxlength="3" tabindex="5" />
-                            <br /><span class="help-block"><?php echo $lang_back['Days old help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang['Days old help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Prune sticky label'] ?></th>
+                        <th><?php echo $lang['Prune sticky label'] ?></th>
                         <td>
-                            <label><input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label><input type="radio" name="prune_sticky" value="0" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="help-block"><?php echo $lang_back['Prune sticky help'] ?></span>
+                            <label><input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label><input type="radio" name="prune_sticky" value="0" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="help-block"><?php echo $lang['Prune sticky help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Prune from label'] ?></th>
+                        <th><?php echo $lang['Prune from label'] ?></th>
                         <td>
                             <select class="form-control" name="prune_from" tabindex="7">
-                                <option value="all"><?php echo $lang_back['All forums'] ?></option>
+                                <option value="all"><?php echo $lang['All forums'] ?></option>
 <?php
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id WHERE f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -391,65 +391,65 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
                                 </optgroup>
                             </select>
-                            <br /><span class="help-block"><?php echo $lang_back['Prune from help'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang['Prune from help'] ?></span>
                         </td>
                     </tr>
                 </table>
-                <div class="control-group"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang_back['Prune'] ?>" tabindex="8" /></div>
+                <div class="control-group"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang['Prune'] ?>" tabindex="8" /></div>
             </fieldset>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Prune users head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Prune users head'] ?></h3>
     </div>
 	<div class="panel-body">
         <form id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
-                <p class="topspace"><?php printf($lang_back['Prune users info'], '<a href="options.php#maintenance">'.$lang_back['Maintenance mode'].'</a>') ?></p>
+                <p class="topspace"><?php printf($lang['Prune users info'], '<a href="options.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th class="col-xs-3"><?php echo $lang_back['Prune by'] ?></th>
+                        <th class="col-xs-3"><?php echo $lang['Prune by'] ?></th>
                         <td>
-                            <label><input type="radio" name="prune_by" value="1" checked="checked" />&#160;<strong><?php echo $lang_back['Registed date'] ?></strong></label>
-                            <label><input type="radio" name="prune_by" value="0" />&#160;<strong><?php echo $lang_back['Last login'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Prune by info'] ?></span>
+                            <label><input type="radio" name="prune_by" value="1" checked="checked" />&#160;<strong><?php echo $lang['Registed date'] ?></strong></label>
+                            <label><input type="radio" name="prune_by" value="0" />&#160;<strong><?php echo $lang['Last login'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang['Prune by info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Minimum days'] ?></th>
+                        <th><?php echo $lang['Minimum days'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="days" value="28" size="25" tabindex="1" />
-                            <br /><span class="help-block"><?php echo $lang_back['Minimum days info'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang['Minimum days info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Maximum posts'] ?></th>
+                        <th><?php echo $lang['Maximum posts'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="posts" value="1"  size="25" tabindex="1" />
-                            <br /><span class="help-block"><?php echo $lang_back['Maximum posts info'] ?></span>
+                            <br /><span class="help-block"><?php echo $lang['Maximum posts info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Delete admins'] ?></th>
+                        <th><?php echo $lang['Delete admins'] ?></th>
                         <td>
-                            <label><input type="radio" name="admods_delete" value="1" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label><input type="radio" name="admods_delete" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Delete admins info'] ?></span>
+                            <label><input type="radio" name="admods_delete" value="1" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label><input type="radio" name="admods_delete" value="0" checked="checked" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang['Delete admins info'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['User status'] ?></th>
+                        <th><?php echo $lang['User status'] ?></th>
                         <td>
-                            <label><input type="radio" name="verified" value="1" />&#160;<strong><?php echo $lang_back['Delete any'] ?></strong></label>
-                            <label><input type="radio" name="verified" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['Delete only verified'] ?></strong></label>
-                            <label><input type="radio" name="verified" value="2" />&#160;<strong><?php echo $lang_back['Delete only unverified'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['User status info'] ?></span>
+                            <label><input type="radio" name="verified" value="1" />&#160;<strong><?php echo $lang['Delete any'] ?></strong></label>
+                            <label><input type="radio" name="verified" value="0" checked="checked" />&#160;<strong><?php echo $lang['Delete only verified'] ?></strong></label>
+                            <label><input type="radio" name="verified" value="2" />&#160;<strong><?php echo $lang['Delete only unverified'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang['User status info'] ?></span>
                         </td>
                     </tr>
                 </table>
-                <p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang_back['Prune'] ?>" tabindex="2" /></p>
+                <p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang['Prune'] ?>" tabindex="2" /></p>
             </fieldset>
         </form>
     </div>

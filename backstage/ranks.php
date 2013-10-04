@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 // Add a rank
 if (isset($_POST['add_rank']))
@@ -28,15 +28,15 @@ if (isset($_POST['add_rank']))
 	$min_posts = pun_trim($_POST['new_min_posts']);
 
 	if ($rank == '')
-		message($lang_back['Must enter title message']);
+		message($lang['Must enter title message']);
 
 	if ($min_posts == '' || preg_match('%[^0-9]%', $min_posts))
-		message($lang_back['Must be integer message']);
+		message($lang['Must be integer message']);
 
 	// Make sure there isn't already a rank with the same min_posts value
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE min_posts='.$min_posts) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
-		message(sprintf($lang_back['Dupe min posts message'], $min_posts));
+		message(sprintf($lang['Dupe min posts message'], $min_posts));
 
 	$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($rank).'\', '.$min_posts.')') or error('Unable to add rank', __FILE__, __LINE__, $db->error());
 
@@ -46,7 +46,7 @@ if (isset($_POST['add_rank']))
 
 	generate_ranks_cache();
 
-	redirect('backstage/ranks.php', $lang_back['Rank added redirect']);
+	redirect('backstage/ranks.php', $lang['Rank added redirect']);
 }
 
 
@@ -59,15 +59,15 @@ else if (isset($_POST['update']))
 	$min_posts = pun_trim($_POST['min_posts'][$id]);
 
 	if ($rank == '')
-		message($lang_back['Must enter title message']);
+		message($lang['Must enter title message']);
 
 	if ($min_posts == '' || preg_match('%[^0-9]%', $min_posts))
-		message($lang_back['Must be integer message']);
+		message($lang['Must be integer message']);
 
 	// Make sure there isn't already a rank with the same min_posts value
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.$id.' AND min_posts='.$min_posts) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
-		message(sprintf($lang_back['Dupe min posts message'], $min_posts));
+		message(sprintf($lang['Dupe min posts message'], $min_posts));
 
 	$db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($rank).'\', min_posts='.$min_posts.' WHERE id='.$id) or error('Unable to update rank', __FILE__, __LINE__, $db->error());
 
@@ -77,7 +77,7 @@ else if (isset($_POST['update']))
 
 	generate_ranks_cache();
 
-	redirect('backstage/ranks.php', $lang_back['Rank updated redirect']);
+	redirect('backstage/ranks.php', $lang['Rank updated redirect']);
 }
 
 
@@ -94,38 +94,38 @@ else if (isset($_POST['remove']))
 
 	generate_ranks_cache();
 
-	redirect('backstage/ranks.php', $lang_back['Rank removed redirect']);
+	redirect('backstage/ranks.php', $lang['Rank removed redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Ranks']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Ranks']);
 $focus_element = array('ranks', 'new_rank');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('ranks');
 
 ?>
-<h2><?php echo $lang_back['Ranks head'] ?></h2>
+<h2><?php echo $lang['Ranks head'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Add rank subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Add rank subhead'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="ranks" method="post" action="ranks.php">
             <fieldset>
-                <p><?php echo $lang_back['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_back['Ranks enabled'], '<a href="features.php">'.$lang_common['Features'].'</a>') : sprintf($lang_back['Ranks disabled'], '<a href="features.php">'.$lang_common['Features'].'</a>')) ?></p>
+                <p><?php echo $lang['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang['Ranks enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="col-xs-4"><?php echo $lang_back['Rank title label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang_back['Minimum posts label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang_back['Actions label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang['Rank title label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang['Minimum posts label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang['Actions label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><input type="text" class="form-control"name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
                             <td><input type="text" class="form-control"name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
-                            <td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang_back['Add'] ?>" tabindex="3" /></td>
+                            <td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -135,7 +135,7 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Edit remove subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Edit remove subhead'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="ranks" method="post" action="ranks.php">
@@ -150,16 +150,16 @@ if ($db->num_rows($result))
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="col-xs-4"><?php echo $lang_back['Rank title label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang_back['Minimum posts label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang_back['Actions label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang['Rank title label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang['Minimum posts label'] ?></th>
+                            <th class="col-xs-4"><?php echo $lang['Actions label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
 <?php
 
 	while ($cur_rank = $db->fetch_assoc($result))
-		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td><input type="text" class="form-control"name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang_back['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang_back['Remove'].'" /></td></tr>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td><input type="text" class="form-control"name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang['Remove'].'" /></td></tr>'."\n";
 
 ?>
                     </tbody>
@@ -168,7 +168,7 @@ if ($db->num_rows($result))
 
 }
 else
-	echo "\t\t\t\t\t\t\t".'<p>'.$lang_back['No ranks in list'].'</p>'."\n";
+	echo "\t\t\t\t\t\t\t".'<p>'.$lang['No ranks in list'].'</p>'."\n";
 
 ?>
             </fieldset>

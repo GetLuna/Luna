@@ -71,23 +71,23 @@ if (get_magic_quotes_gpc())
 $install_lang = isset($_REQUEST['install_lang']) ? pun_trim($_REQUEST['install_lang']) : 'English';
 
 // If such a language pack doesn't exist, or isn't up-to-date enough to translate this page, default to English
-if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/install.php'))
+if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/language.php'))
 	$install_lang = 'English';
 
-require FORUM_ROOT.'lang/'.$install_lang.'/install.php';
+require FORUM_ROOT.'lang/'.$install_lang.'/language.php';
 
 if (file_exists(FORUM_ROOT.'config.php'))
 {
 	// Check to see whether ModernBB is already installed
 	include FORUM_ROOT.'config.php';
 
-	// This fixes incorrect defined PUN, from PunBB 1.1 and 1.2, FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
+	// This fixes incorrect defined PUN, FluxBB 1.4 and 1.5 and ModernBB 1.6
 	if (defined('PUN'))
 		define('FORUM', PUN);
 
 	// If FORUM is defined, config.php is probably valid and thus the software is installed
 	if (defined('FORUM'))
-		exit($lang_install['Already installed']);
+		exit($lang['Already installed']);
 }
 
 // Define FORUM because email.php requires it
@@ -99,7 +99,7 @@ if (!defined('FORUM_CACHE_DIR'))
 
 // Make sure we are running at least MIN_PHP_VERSION
 if (!function_exists('version_compare') || version_compare(PHP_VERSION, MIN_PHP_VERSION, '<'))
-	exit(sprintf($lang_install['You are running error'], 'PHP', PHP_VERSION, FORUM_VERSION, MIN_PHP_VERSION));
+	exit(sprintf($lang['You are running error'], 'PHP', PHP_VERSION, FORUM_VERSION, MIN_PHP_VERSION));
 
 
 //
@@ -144,8 +144,8 @@ if (!isset($_POST['form_sent']))
 
 	$db_type = $db_name = $db_username = $db_prefix = $username = $email = '';
 	$db_host = 'localhost';
-	$title = $lang_install['My ModernBB Forum'];
-	$description = '<p><span>'.$lang_install['Description'].'</span></p>';
+	$title = $lang['My ModernBB Forum'];
+	$description = '<p><span>'.$lang['Description'].'</span></p>';
 	$default_lang = $install_lang;
 	$default_style = 'Randomness';
 }
@@ -174,48 +174,48 @@ else
 
 	// Validate username and passwords
 	if (pun_strlen($username) < 2)
-		$alerts[] = $lang_install['Username 1'];
+		$alerts[] = $lang['Username 1'];
 	else if (pun_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
-		$alerts[] = $lang_install['Username 2'];
+		$alerts[] = $lang['Username 2'];
 	else if (!strcasecmp($username, 'Guest'))
-		$alerts[] = $lang_install['Username 3'];
+		$alerts[] = $lang['Username 3'];
 	else if (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
-		$alerts[] = $lang_install['Username 4'];
+		$alerts[] = $lang['Username 4'];
 	else if ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
-		$alerts[] = $lang_install['Username 5'];
+		$alerts[] = $lang['Username 5'];
 	else if (preg_match('%(?:\[/?(?:b|u|i|h|colou?r|quote|code|img|url|email|list)\]|\[(?:code|quote|list)=)%i', $username))
-		$alerts[] = $lang_install['Username 6'];
+		$alerts[] = $lang['Username 6'];
 
 	if (pun_strlen($password1) < 4)
-		$alerts[] = $lang_install['Short password'];
+		$alerts[] = $lang['Short password'];
 	else if ($password1 != $password2)
-		$alerts[] = $lang_install['Passwords not match'];
+		$alerts[] = $lang['Passwords not match'];
 
 	// Validate email
 	require FORUM_ROOT.'include/email.php';
 
 	if (!is_valid_email($email))
-		$alerts[] = $lang_install['Wrong email'];
+		$alerts[] = $lang['Wrong email'];
 
 	if ($title == '')
-		$alerts[] = $lang_install['No board title'];
+		$alerts[] = $lang['No board title'];
 
 	$languages = forum_list_langs();
 	if (!in_array($default_lang, $languages))
-		$alerts[] = $lang_install['Error default language'];
+		$alerts[] = $lang['Error default language'];
 
 	$styles = forum_list_styles();
 	if (!in_array($default_style, $styles))
-		$alerts[] = $lang_install['Error default style'];
+		$alerts[] = $lang['Error default style'];
 }
 
 // Check if the cache directory is writable
 if (!forum_is_writable(FORUM_CACHE_DIR))
-	$alerts[] = sprintf($lang_install['Alert cache'], FORUM_CACHE_DIR);
+	$alerts[] = sprintf($lang['Alert cache'], FORUM_CACHE_DIR);
 
 // Check if default avatar directory is writable
 if (!forum_is_writable(FORUM_ROOT.'img/avatars/'))
-	$alerts[] = sprintf($lang_install['Alert avatar'], FORUM_ROOT.'img/avatars/');
+	$alerts[] = sprintf($lang['Alert avatar'], FORUM_ROOT.'img/avatars/');
 
 if (!isset($_POST['form_sent']) || !empty($alerts))
 {
@@ -246,7 +246,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 		$db_extensions[] = array('pgsql', 'PostgreSQL');
 
 	if (empty($db_extensions))
-		error($lang_install['No DB extensions']);
+		error($lang['No DB extensions']);
 
 	// Fetch a list of installed languages
 	$languages = forum_list_langs();
@@ -256,7 +256,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang_install['ModernBB Installation'] ?></title>
+        <title><?php echo $lang['ModernBB Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <script type="text/javascript">
@@ -264,15 +264,15 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
         function process_form(the_form)
         {
             var required_fields = {
-                "req_db_type": "<?php echo $lang_install['Database type'] ?>",
-                "req_db_host": "<?php echo $lang_install['Database server hostname'] ?>",
-                "req_db_name": "<?php echo $lang_install['Database name'] ?>",
-                "req_username": "<?php echo $lang_install['Administrator username'] ?>",
-                "req_password1": "<?php echo $lang_install['Administrator password 1'] ?>",
-                "req_password2": "<?php echo $lang_install['Administrator password 2'] ?>",
-                "req_email": "<?php echo $lang_install['Administrator email'] ?>",
-                "req_title": "<?php echo $lang_install['Board title'] ?>",
-                "req_base_url": "<?php echo $lang_install['Base URL'] ?>",
+                "req_db_type": "<?php echo $lang['Database type'] ?>",
+                "req_db_host": "<?php echo $lang['Database server hostname'] ?>",
+                "req_db_name": "<?php echo $lang['Database name'] ?>",
+                "req_username": "<?php echo $lang['Administrator username'] ?>",
+                "req_password1": "<?php echo $lang['Administrator password 1'] ?>",
+                "req_password2": "<?php echo $lang['Administrator password 2'] ?>",
+                "req_email": "<?php echo $lang['Administrator email'] ?>",
+                "req_title": "<?php echo $lang['Board title'] ?>",
+                "req_base_url": "<?php echo $lang['Base URL'] ?>",
             };
             if (document.all || document.getElementById)
             {
@@ -281,7 +281,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
                     var elem = the_form.elements[i];
                     if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type)))
                     {
-                        alert('"' + required_fields[elem.name] + '" <?php echo $lang_install['Required field'] ?>');
+                        alert('"' + required_fields[elem.name] + '" <?php echo $lang['Required field'] ?>');
                         elem.focus();
                         return false;
                     }
@@ -301,16 +301,16 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
     <body onload="document.getElementById('install').req_db_type.focus();document.getElementById('install').start.disabled=false;" onunload="">
     	<div class="container">
             <div class="row">
-                <h1><?php echo sprintf($lang_install['Install'], FORUM_VERSION) ?></h1>
+                <h1><?php echo sprintf($lang['Install'], FORUM_VERSION) ?></h1>
 				<?php if (count($languages) > 1): ?>
                 <form id="install" method="post" action="install.php">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo $lang_install['Choose install language'] ?></h3>
+                            <h3 class="panel-title"><?php echo $lang['Choose install language'] ?></h3>
                         </div>
                         <div class="panel-body">
                             <fieldset>
-                                <label><strong><?php echo $lang_install['Install language'] ?></strong><br />
+                                <label><strong><?php echo $lang['Install language'] ?></strong><br />
                                     <select class="form-control" name="install_lang">
 <?php
 
@@ -325,11 +325,11 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 ?>
                                     </select>
                                 </label>
-                                <br /><p class="help-block"><?php echo $lang_install['Choose install language info'] ?></p>
+                                <br /><p class="help-block"><?php echo $lang['Choose install language info'] ?></p>
                             </fieldset>
                         </div>
                         <div class="panel-footer">
-                        	<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang_install['Change language'] ?>" />
+                        	<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
                         </div>
                     </div>
                 </form>
@@ -338,7 +338,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 <?php if (!empty($alerts)): ?>
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo $lang_install['Errors'] ?></h3>
+                        <h3 class="panel-title"><?php echo $lang['Errors'] ?></h3>
                     </div>
                     <div class="panel-body">
                     	<div class="forminfo error-info">
@@ -355,11 +355,11 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 					<div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo pun_htmlspecialchars($install_lang) ?>" /></div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo $lang_install['Database setup'] ?></h3>
+                            <h3 class="panel-title"><?php echo $lang['Database setup'] ?></h3>
                         </div>
                         <div class="panel-body">
                             <fieldset>
-                                <label class="required"><strong><?php echo $lang_install['Database type'] ?></strong>
+                                <label class="required"><strong><?php echo $lang['Database type'] ?></strong>
                                     <br /><select class="form-control" name="req_db_type">
 <?php
 
@@ -374,53 +374,53 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 ?>
                                     </select>
                                 </label>
-                                <br /><p class="help-block"><?php echo $lang_install['Info 1'] ?></p>
+                                <br /><p class="help-block"><?php echo $lang['Info 1'] ?></p>
                             </fieldset><br />
                             <fieldset>
-                                <label class="required"><strong><?php echo $lang_install['Database server hostname'] ?></strong><br /><input type="text" class="form-control" name="req_db_host" value="<?php echo pun_htmlspecialchars($db_host) ?>" size="50" /></label>
-                                <br /><p class="help-block"><?php echo $lang_install['Info 2'] ?></p>
+                                <label class="required"><strong><?php echo $lang['Database server hostname'] ?></strong><br /><input type="text" class="form-control" name="req_db_host" value="<?php echo pun_htmlspecialchars($db_host) ?>" size="50" /></label>
+                                <br /><p class="help-block"><?php echo $lang['Info 2'] ?></p>
                             </fieldset><br />
                             <fieldset>
-                                <label class="required"><strong><?php echo $lang_install['Database name'] ?></strong><br /><input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo pun_htmlspecialchars($db_name) ?>" size="30" /></label>
-                                <br /><p class="help-block"><?php echo $lang_install['Info 3'] ?></p>
+                                <label class="required"><strong><?php echo $lang['Database name'] ?></strong><br /><input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo pun_htmlspecialchars($db_name) ?>" size="30" /></label>
+                                <br /><p class="help-block"><?php echo $lang['Info 3'] ?></p>
                             </fieldset><br />
                             <fieldset>
-                                <label class="conl"><?php echo $lang_install['Database username'] ?><br /><input type="text" class="form-control" name="db_username" value="<?php echo pun_htmlspecialchars($db_username) ?>" size="30" /></label>
-                                <label class="conl"><?php echo $lang_install['Database password'] ?><br /><input type="password" class="form-control" name="db_password" size="30" /></label>
-                                <br /><p class="help-block"><?php echo $lang_install['Info 4'] ?></p>
+                                <label class="conl"><?php echo $lang['Database username'] ?><br /><input type="text" class="form-control" name="db_username" value="<?php echo pun_htmlspecialchars($db_username) ?>" size="30" /></label>
+                                <label class="conl"><?php echo $lang['Database password'] ?><br /><input type="password" class="form-control" name="db_password" size="30" /></label>
+                                <br /><p class="help-block"><?php echo $lang['Info 4'] ?></p>
                             </fieldset><br />
                             <fieldset>
-                                <label><?php echo $lang_install['Table prefix'] ?><br /><input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix) ?>" size="20" maxlength="30" /></label>
-                                <br /><p class="help-block"><?php echo $lang_install['Info 5'] ?></p>
+                                <label><?php echo $lang['Table prefix'] ?><br /><input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix) ?>" size="20" maxlength="30" /></label>
+                                <br /><p class="help-block"><?php echo $lang['Info 5'] ?></p>
                             </fieldset>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo $lang_install['Administration setup'] ?></h3>
+                            <h3 class="panel-title"><?php echo $lang['Administration setup'] ?></h3>
                         </div>
                         <div class="panel-body">
                             <fieldset>
-                                <label class="required"><strong><?php echo $lang_install['Administrator username'] ?></strong><br /><input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /></label>
-                                <br /><p class="help-block"><?php echo $lang_install['Info 6'] ?></p><br /><br />
-                                <label class="conl required"><strong><?php echo $lang_install['Password'] ?></strong><br /><input id="req_password1" type="password" class="form-control" name="req_password1" size="16" /></label>
-                                <label class="conl required"><strong><?php echo $lang_install['Confirm password'] ?></strong><br /><input type="password" class="form-control" name="req_password2" size="16" /></label><br /><br />
-                                <label class="required"><strong><?php echo $lang_install['Administrator email'] ?></strong><br /><input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" size="50" maxlength="80" /></label>
+                                <label class="required"><strong><?php echo $lang['Administrator username'] ?></strong><br /><input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /></label>
+                                <br /><p class="help-block"><?php echo $lang['Info 6'] ?></p><br /><br />
+                                <label class="conl required"><strong><?php echo $lang['Password'] ?></strong><br /><input id="req_password1" type="password" class="form-control" name="req_password1" size="16" /></label>
+                                <label class="conl required"><strong><?php echo $lang['Confirm password'] ?></strong><br /><input type="password" class="form-control" name="req_password2" size="16" /></label><br /><br />
+                                <label class="required"><strong><?php echo $lang['Administrator email'] ?></strong><br /><input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" size="50" maxlength="80" /></label>
                             </fieldset>
                         </div>
                     </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang_install['Board setup'] ?></h3>
+                    <h3 class="panel-title"><?php echo $lang['Board setup'] ?></h3>
                 </div>
                 <div class="panel-body">
                     <fieldset>
-                        <label class="required"><strong><?php echo $lang_install['Board title'] ?></strong><br /><input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo pun_htmlspecialchars($title) ?>" size="60" maxlength="255" /></label><br /><br />
-                        <label><?php echo $lang_install['Board description'] ?><br /><input id="desc" type="text" class="form-control" name="desc" value="<?php echo pun_htmlspecialchars($description) ?>" size="60" maxlength="255" /></label><br /><br />
-                        <label class="required"><strong><?php echo $lang_install['Base URL'] ?></strong><br /><input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo pun_htmlspecialchars($base_url) ?>" size="60" maxlength="100" /></label>
+                        <label class="required"><strong><?php echo $lang['Board title'] ?></strong><br /><input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo pun_htmlspecialchars($title) ?>" size="60" maxlength="255" /></label><br /><br />
+                        <label><?php echo $lang['Board description'] ?><br /><input id="desc" type="text" class="form-control" name="desc" value="<?php echo pun_htmlspecialchars($description) ?>" size="60" maxlength="255" /></label><br /><br />
+                        <label class="required"><strong><?php echo $lang['Base URL'] ?></strong><br /><input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo pun_htmlspecialchars($base_url) ?>" size="60" maxlength="100" /></label>
                     </fieldset><br />
                     <fieldset>
-                        <label class="required"><strong><?php echo $lang_install['Default language'] ?></strong><br /><select id="req_default_lang" class="form-control" name="req_default_lang">
+                        <label class="required"><strong><?php echo $lang['Default language'] ?></strong><br /><select id="req_default_lang" class="form-control" name="req_default_lang">
 <?php
 
 		$languages = forum_list_langs();
@@ -434,7 +434,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 ?>
                             </select></label>
-                            <label class="required"><strong><?php echo $lang_install['Default style'] ?></strong><br /><select id="req_default_style" class="form-control" name="req_default_style">
+                            <label class="required"><strong><?php echo $lang['Default style'] ?></strong><br /><select id="req_default_style" class="form-control" name="req_default_style">
 <?php
 
 		$styles = forum_list_styles();
@@ -448,11 +448,11 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 ?>
                         </select></label>
-                        <br /><p class="help-block"><?php echo $lang_install['Info 7'] ?></p>
+                        <br /><p class="help-block"><?php echo $lang['Info 7'] ?></p>
                     </fieldset>
                 </div>
             </div>
-            <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang_install['Start install'] ?>" /></div>
+            <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" /></div>
             </form>
         </div>
     </body>
@@ -494,7 +494,7 @@ else
 			break;
 
 		default:
-			error(sprintf($lang_install['DB type not valid'], pun_htmlspecialchars($db_type)));
+			error(sprintf($lang['DB type not valid'], pun_htmlspecialchars($db_type)));
 	}
 
 	// Create the database object (and connect/select db)
@@ -502,7 +502,7 @@ else
 
 	// Validate prefix
 	if (strlen($db_prefix) > 0 && (!preg_match('%^[a-zA-Z_][a-zA-Z0-9_]*$%', $db_prefix) || strlen($db_prefix) > 40))
-		error(sprintf($lang_install['Table prefix error'], $db->prefix));
+		error(sprintf($lang['Table prefix error'], $db->prefix));
 
 	// Do some DB type specific checks
 	switch ($db_type)
@@ -513,24 +513,24 @@ else
 		case 'mysqli_innodb':
 			$mysql_info = $db->get_version();
 			if (version_compare($mysql_info['version'], MIN_MYSQL_VERSION, '<'))
-				error(sprintf($lang_install['You are running error'], 'MySQL', $mysql_info['version'], FORUM_VERSION, MIN_MYSQL_VERSION));
+				error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], FORUM_VERSION, MIN_MYSQL_VERSION));
 			break;
 			
 		case 'mariadb':
 			$mysql_info = $db->get_version();
 			if (version_compare($mariadb_info['version'], MIN_MARIADB_VERSION, '<'))
-				error(sprintf($lang_install['You are running error'], 'MariaDB', $mariadb_info['version'], FORUM_VERSION, MIN_MARIADB_VERSION));
+				error(sprintf($lang['You are running error'], 'MariaDB', $mariadb_info['version'], FORUM_VERSION, MIN_MARIADB_VERSION));
 			break;
 
 		case 'pgsql':
 			$pgsql_info = $db->get_version();
 			if (version_compare($pgsql_info['version'], MIN_PGSQL_VERSION, '<'))
-				error(sprintf($lang_install['You are running error'], 'PostgreSQL', $pgsql_info['version'], FORUM_VERSION, MIN_PGSQL_VERSION));
+				error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], FORUM_VERSION, MIN_PGSQL_VERSION));
 			break;
 
 		case 'sqlite':
 			if (strtolower($db_prefix) == 'sqlite_')
-				error($lang_install['Prefix reserved']);
+				error($lang['Prefix reserved']);
 			break;
 	}
 
@@ -538,7 +538,7 @@ else
 	// Make sure ModernBB isn't already installed
 	$result = $db->query('SELECT 1 FROM '.$db_prefix.'users WHERE id=1');
 	if ($db->num_rows($result))
-		error(sprintf($lang_install['Existing table error'], $db_prefix, $db_name));
+		error(sprintf($lang['Existing table error'], $db_prefix, $db_name));
 
 	// Check if InnoDB is available
 	if ($db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
@@ -546,7 +546,7 @@ else
 		$result = $db->query('SHOW VARIABLES LIKE \'have_innodb\'');
 		list (, $result) = $db->fetch_row($result);
 		if ((strtoupper($result) != 'YES'))
-			error($lang_install['InnoDB off']);
+			error($lang['InnoDB off']);
 	}
 
 
@@ -1556,16 +1556,16 @@ else
 	$now = time();
 
 	// Insert the four preset groups
-	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape($lang_install['Administrators']).'\', \''.$db->escape($lang_install['Administrator']).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape($lang['Administrators']).'\', \''.$db->escape($lang['Administrator']).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape($lang_install['Moderators']).'\', \''.$db->escape($lang_install['Moderator']).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape($lang['Moderators']).'\', \''.$db->escape($lang['Moderator']).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape($lang_install['Guests']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape($lang['Guests']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape($lang_install['Members']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape($lang['Members']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 
 	// Insert guest and first admin user
-	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape($lang_install['Guest']).'\', \''.$db->escape($lang_install['Guest']).'\', \''.$db->escape($lang_install['Guest']).'\')')
+	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\')')
 		or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.pun_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
@@ -1634,11 +1634,11 @@ else
 		'o_regs_allow'				=> 1,
 		'o_regs_verify'				=> 0,
 		'o_announcement'			=> 0,
-		'o_announcement_message'	=> $lang_install['Announcement'],
+		'o_announcement_message'	=> $lang['Announcement'],
 		'o_rules'					=> 0,
-		'o_rules_message'			=> $lang_install['Rules'],
+		'o_rules_message'			=> $lang['Rules'],
 		'o_maintenance'				=> 0,
-		'o_maintenance_message'		=> $lang_install['Maintenance message'],
+		'o_maintenance_message'		=> $lang['Maintenance message'],
 		'o_default_dst'				=> 0,
 		'o_feed_type'				=> 2,
 		'o_feed_ttl'				=> 0,
@@ -1704,13 +1704,13 @@ else
 		$db->query('INSERT INTO '.$db->prefix.'toolbar_tags (name, code, enable_form, enable_quick, image, func, position) VALUES ('.$tag.')') or error('Unable to insert in toolbar_tags table', __FILE__, __LINE__, $db->error());
 
 	// Insert some other default data
-	$subject = $lang_install['Test post'];
-	$message = $lang_install['Message'];
+	$subject = $lang['Test post'];
+	$message = $lang['Message'];
 
-	$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang_install['New member']).'\', 0)')
+	$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
 		or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang_install['Member']).'\', 10)')
+	$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
 		or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Index the test post so searching for it works
@@ -1724,7 +1724,7 @@ else
 
 	// Check if we disabled uploading avatars because file_uploads was disabled
 	if ($avatars == '0')
-		$alerts[] = $lang_install['Alert upload'];
+		$alerts[] = $lang['Alert upload'];
 
 	// Add some random bytes at the end of the cookie name to prevent collisions
 	$cookie_name = 'pun_cookie_'.random_key(6, false, true);
@@ -1752,7 +1752,7 @@ else
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang_install['ModernBB Installation'] ?></title>
+        <title><?php echo $lang['ModernBB Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="style/Randomness.css" />
     </head>
@@ -1760,15 +1760,15 @@ else
         <div class="container">
             <div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang_install['ModernBB Installation'] ?></h3>
+					<h3 class="panel-title"><?php echo $lang['ModernBB Installation'] ?></h3>
 				</div>
                 <div class="panel-body">
-					<p><?php echo $lang_install['ModernBB has been installed'] ?></p>
+					<p><?php echo $lang['ModernBB has been installed'] ?></p>
                 </div>
             </div>
             <div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang_install['Final instructions'] ?></h3>
+					<h3 class="panel-title"><?php echo $lang['Final instructions'] ?></h3>
 				</div>
                 <div class="panel-body">
 <?php
@@ -1778,8 +1778,8 @@ if (!$written)
 
 ?>
                     <form method="post" action="install.php">
-                        <p><?php echo $lang_install['Info 8'] ?></p>
-                        <p><?php echo $lang_install['Info 9'] ?></p>
+                        <p><?php echo $lang['Info 8'] ?></p>
+                        <p><?php echo $lang['Info 9'] ?></p>
 						<input type="hidden" name="generate_config" value="1" />
 						<input type="hidden" name="db_type" value="<?php echo $db_type; ?>" />
 						<input type="hidden" name="db_host" value="<?php echo $db_host; ?>" />
@@ -1800,7 +1800,7 @@ foreach ($alerts as $cur_alert)
                         		</ul>
 							</div>
 <?php endif; ?>						</div>
-						<input type="submit" class="btn btn-primary" value="<?php echo $lang_install['Download config.php file'] ?>" />
+						<input type="submit" class="btn btn-primary" value="<?php echo $lang['Download config.php file'] ?>" />
 					</form>
 
 <?php
@@ -1810,7 +1810,7 @@ else
 {
 
 ?>
-					<p><?php echo $lang_install['ModernBB fully installed'] ?></p>
+					<p><?php echo $lang['ModernBB fully installed'] ?></p>
 <?php
 
 }

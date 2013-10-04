@@ -12,11 +12,10 @@ require FORUM_ROOT.'include/common.php';
 
 
 if ($pun_user['g_read_board'] == '0')
-	message($lang_common['No view'], false, '403 Forbidden');
+	message($lang['No view'], false, '403 Forbidden');
 
-
-// Load the frontend.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
 
 // Get list of forums and topics with new posts since last visit
 if (!$pun_user['is_guest'])
@@ -31,15 +30,15 @@ if (!$pun_user['is_guest'])
 }
 
 if ($pun_config['o_feed_type'] == '1')
-	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;type=rss" title="'.$lang_common['RSS active topics feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;type=rss" title="'.$lang['RSS active topics feed'].'" />');
 else if ($pun_config['o_feed_type'] == '2')
-	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;type=atom" title="'.$lang_common['Atom active topics feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;type=atom" title="'.$lang['Atom active topics feed'].'" />');
 
 $forum_actions = array();
 
 // Display a "mark all as read" link
 if (!$pun_user['is_guest'])
-	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang_common['Mark all as read'].'</a>';
+	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark all as read'].'</a>';
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']));
 define('FORUM_ALLOW_INDEX', 1);
@@ -69,9 +68,9 @@ while ($cur_forum = $db->fetch_assoc($result))
     <div class="category-box">
         <div class="row category-header">
             <div class="col-xs-8"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></div>
-            <div class="col-xs-1"><?php echo $lang_front['Topics'] ?></div>
-            <div class="col-xs-1"><?php echo $lang_common['Posts'] ?></div>
-            <div class="col-xs-2"><?php echo $lang_common['Last post'] ?></div>
+            <div class="col-xs-1"><?php echo $lang['Topics'] ?></div>
+            <div class="col-xs-1"><?php echo $lang['Posts'] ?></div>
+            <div class="col-xs-2"><?php echo $lang['Last post'] ?></div>
         </div>
 <?php
 
@@ -92,7 +91,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 			if ((empty($tracked_topics['topics'][$check_topic_id]) || $tracked_topics['topics'][$check_topic_id] < $check_last_post) && (empty($tracked_topics['forums'][$cur_forum['fid']]) || $tracked_topics['forums'][$cur_forum['fid']] < $check_last_post))
 			{
 				$item_status .= ' inew';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang_common['New posts'].'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 
 				break;
@@ -103,7 +102,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 	// Is this a redirect forum?
 	if ($cur_forum['redirect_url'] != '')
 	{
-		$forum_field = '<span class="redirtext">'.$lang_front['Link to'].'</span> <a href="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" title="'.$lang_front['Link to'].' '.pun_htmlspecialchars($cur_forum['redirect_url']).'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>';
+		$forum_field = '<span class="redirtext">'.$lang['Link to'].'</span> <a href="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" title="'.$lang['Link to'].' '.pun_htmlspecialchars($cur_forum['redirect_url']).'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>';
 		$num_topics = $num_posts = '-';
 		$item_status .= ' iredirect';
 		$icon_type = 'icon';
@@ -120,11 +119,11 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 	// If there is a last_post/last_poster
 	if ($cur_forum['last_post'] != '')
-		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.format_time($cur_forum['last_post']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_forum['last_poster']).'</span>';
+		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.format_time($cur_forum['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_forum['last_poster']).'</span>';
 	else if ($cur_forum['redirect_url'] != '')
 		$last_post = '- - -';
 	else
-		$last_post = $lang_common['Never'];
+		$last_post = $lang['Never'];
 
 	if ($cur_forum['moderators'] != '')
 	{
@@ -139,7 +138,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 				$moderators[] = pun_htmlspecialchars($mod_username);
 		}
 
-		$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">(<em>'.$lang_common['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
+		$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">(<em>'.$lang['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
 	}
 
 ?>
@@ -164,7 +163,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 if ($cur_category > 0)
 	echo "\t\t\t".'</div>'."\n".'</div>'."\n\n";
 else
-	echo '<div id="idx0" class="block"><div class="box"><div class="inbox"><p>'.$lang_front['Empty board'].'</p></div></div></div>';
+	echo '<div id="idx0" class="block"><div class="box"><div class="inbox"><p>'.$lang['Empty board'].'</p></div></div></div>';
 
 // Collect some statistics from the database
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
@@ -190,14 +189,14 @@ else
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_front['Board stats'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Board stats'] ?></h3>
     </div>
     <div class="panel-body">
     <div class="row">
-        <div class="col-xs-2"><span><?php printf($lang_front['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
-        <div class="col-xs-2"><span><?php printf($lang_front['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
-        <div class="col-xs-2"><span><?php printf($lang_front['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
-        <div class="col-xs-2"><span><?php printf($lang_front['Newest user'], $stats['newest_user']) ?></span></div>
+        <div class="col-xs-2"><span><?php printf($lang['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
+        <div class="col-xs-2"><span><?php printf($lang['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
+        <div class="col-xs-2"><span><?php printf($lang['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
+        <div class="col-xs-2"><span><?php printf($lang['Newest user'], $stats['newest_user']) ?></span></div>
 <?php
 
 if ($pun_config['o_users_online'] == '1')
@@ -221,13 +220,13 @@ if ($pun_config['o_users_online'] == '1')
 	}
 	
 	$num_users = count($users);
-	echo "\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang_front['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
+	echo "\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
 	?>
     </div>
     <div class="row">
     <?php
 	if ($num_users > 0)
-		echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang_front['Online'].': </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
+		echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].': </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
 }
 
 ?>

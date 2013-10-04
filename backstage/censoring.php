@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 // Add a censor word
 if (isset($_POST['add_word']))
@@ -28,7 +28,7 @@ if (isset($_POST['add_word']))
 	$replace_with = pun_trim($_POST['new_replace_with']);
 
 	if ($search_for == '')
-		message($lang_back['Must enter word message']);
+		message($lang['Must enter word message']);
 
 	$db->query('INSERT INTO '.$db->prefix.'censoring (search_for, replace_with) VALUES (\''.$db->escape($search_for).'\', \''.$db->escape($replace_with).'\')') or error('Unable to add censor word', __FILE__, __LINE__, $db->error());
 
@@ -38,7 +38,7 @@ if (isset($_POST['add_word']))
 
 	generate_censoring_cache();
 
-	redirect('backstage/censoring.php', $lang_back['Word added redirect']);
+	redirect('backstage/censoring.php', $lang['Word added redirect']);
 }
 
 // Update a censor word
@@ -50,7 +50,7 @@ else if (isset($_POST['update']))
 	$replace_with = pun_trim($_POST['replace_with'][$id]);
 
 	if ($search_for == '')
-		message($lang_back['Must enter word message']);
+		message($lang['Must enter word message']);
 
 	$db->query('UPDATE '.$db->prefix.'censoring SET search_for=\''.$db->escape($search_for).'\', replace_with=\''.$db->escape($replace_with).'\' WHERE id='.$id) or error('Unable to update censor word', __FILE__, __LINE__, $db->error());
 
@@ -60,7 +60,7 @@ else if (isset($_POST['update']))
 
 	generate_censoring_cache();
 
-	redirect('backstage/censoring.php', $lang_back['Word updated redirect']);
+	redirect('backstage/censoring.php', $lang['Word updated redirect']);
 }
 
 // Remove a censor word
@@ -76,38 +76,38 @@ else if (isset($_POST['remove']))
 
 	generate_censoring_cache();
 
-	redirect('backstage/censoring.php',  $lang_back['Word removed redirect']);
+	redirect('backstage/censoring.php',  $lang['Word removed redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Censoring']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Censoring']);
 $focus_element = array('censoring', 'new_search_for');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('censoring');
 
 ?>
-<h2><?php echo $lang_back['Censoring head'] ?></h2>
+<h2><?php echo $lang['Censoring head'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Add word subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Add word subhead'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="censoring" method="post" action="censoring.php">
             <fieldset>
-                <p><?php echo $lang_back['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang_back['Censoring enabled'], '<a href="features.php">'.$lang_common['Features'].'</a>') : sprintf($lang_back['Censoring disabled'], '<a href="features.php">'.$lang_common['Features'].'</a>')) ?></p>
+                <p><?php echo $lang['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang['Censoring enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Censoring disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th><?php echo $lang_back['Censored word label'] ?></th>
-                            <th><?php echo $lang_back['Replacement label'] ?></th>
-                            <th><?php echo $lang_back['Action label'] ?></th>
+                            <th><?php echo $lang['Censored word label'] ?></th>
+                            <th><?php echo $lang['Replacement label'] ?></th>
+                            <th><?php echo $lang['Action label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><input type="text" class="form-control"name="new_search_for" size="24" maxlength="60" tabindex="1" /></td>
                             <td><input type="text" class="form-control"name="new_replace_with" size="24" maxlength="60" tabindex="2" /></td>
-                            <td><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang_back['Add'] ?>" tabindex="3" /></td>
+                            <td><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -117,7 +117,7 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Edit remove subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Edit remove subhead'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="censoring" method="post" action="censoring.php">
@@ -132,16 +132,16 @@ if ($db->num_rows($result))
                 <table class="table">
                     <thead>
                         <tr>
-                            <th><?php echo $lang_back['Censored word label'] ?></th>
-                            <th><?php echo $lang_back['Replacement label'] ?></th>
-                            <th><?php echo $lang_back['Action label'] ?></th>
+                            <th><?php echo $lang['Censored word label'] ?></th>
+                            <th><?php echo $lang['Replacement label'] ?></th>
+                            <th><?php echo $lang['Action label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
 <?php
 
 while ($cur_word = $db->fetch_assoc($result))
-echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control"name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang_back['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang_back['Remove'].'" /></td></tr>'."\n";
+echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control"name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></td></tr>'."\n";
 
 ?>
                     </tbody>
@@ -150,7 +150,7 @@ echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="se
 
 }
 else
-echo "\t\t\t\t\t\t\t".'<p>'.$lang_back['No words in list'].'</p>'."\n";
+echo "\t\t\t\t\t\t\t".'<p>'.$lang['No words in list'].'</p>'."\n";
 
 ?>
             </fieldset>

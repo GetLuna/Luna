@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 // Add/edit a group (stage 1)
 if (isset($_POST['add_group']) || isset($_GET['edit_group']))
@@ -37,11 +37,11 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	{
 		$group_id = intval($_GET['edit_group']);
 		if ($group_id < 1)
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang['Bad request'], false, '404 Not Found');
 
 		$result = $db->query('SELECT * FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch user group info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang['Bad request'], false, '404 Not Found');
 
 		$group = $db->fetch_assoc($result);
 
@@ -49,18 +49,18 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	}
 
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['User groups']);
-	$required_fields = array('req_title' => $lang_back['Group title label']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+	$required_fields = array('req_title' => $lang['Group title label']);
 	$focus_element = array('groups2', 'req_title');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
 
 ?>
-<h2><?php echo $lang_back['Group settings head'] ?></h2>
+<h2><?php echo $lang['Group settings head'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Group settings subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Group settings subhead'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
@@ -68,186 +68,186 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
     <?php if ($mode == 'edit'): ?>					<input type="hidden" name="group_id" value="<?php echo $group_id ?>" />
     <?php endif; ?><?php if ($mode == 'add'): ?>					<input type="hidden" name="base_group" value="<?php echo $base_group ?>" />
     <?php endif; ?>					<fieldset>
-                <p><?php echo $lang_back['Group settings info'] ?></p>
+                <p><?php echo $lang['Group settings info'] ?></p>
                 <table class="table">
                     <tr>
-                        <th><?php echo $lang_back['Group title label'] ?></th>
+                        <th><?php echo $lang['Group title label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="req_title" size="25" maxlength="50" value="<?php if ($mode == 'edit') echo pun_htmlspecialchars($group['g_title']); ?>" tabindex="1" />
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['User title label'] ?></th>
+                        <th><?php echo $lang['User title label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="user_title" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
-                            <br /><span><?php echo $lang_back['User title help'] ?></span>
+                            <br /><span><?php echo $lang['User title help'] ?></span>
                         </td>
                     </tr>
     <?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $pun_config['o_default_user_group'] != $group['g_id']): ?>
                     <tr>
-                        <th> <?php echo $lang_back['Mod privileges label'] ?></th>
+                        <th> <?php echo $lang['Mod privileges label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked="checked"' ?> tabindex="5" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="moderator" value="0"<?php if ($group['g_moderator'] == '0') echo ' checked="checked"' ?> tabindex="6" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Mod privileges help'] ?></span>
+                            <label class="conl"><input type="radio" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked="checked"' ?> tabindex="5" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="moderator" value="0"<?php if ($group['g_moderator'] == '0') echo ' checked="checked"' ?> tabindex="6" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Mod privileges help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Edit profile label'] ?></th>
+                        <th><?php echo $lang['Edit profile label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked="checked"' ?> tabindex="7" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="mod_edit_users" value="0"<?php if ($group['g_mod_edit_users'] == '0') echo ' checked="checked"' ?> tabindex="8" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Edit profile help'] ?></span>
+                            <label class="conl"><input type="radio" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked="checked"' ?> tabindex="7" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="mod_edit_users" value="0"<?php if ($group['g_mod_edit_users'] == '0') echo ' checked="checked"' ?> tabindex="8" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Edit profile help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Rename users label'] ?></th>
+                        <th><?php echo $lang['Rename users label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked="checked"' ?> tabindex="9" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="mod_rename_users" value="0"<?php if ($group['g_mod_rename_users'] == '0') echo ' checked="checked"' ?> tabindex="10" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Rename users help'] ?></span>
+                            <label class="conl"><input type="radio" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked="checked"' ?> tabindex="9" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="mod_rename_users" value="0"<?php if ($group['g_mod_rename_users'] == '0') echo ' checked="checked"' ?> tabindex="10" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Rename users help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Change passwords label'] ?></th>
+                        <th><?php echo $lang['Change passwords label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked="checked"' ?> tabindex="11" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="mod_change_passwords" value="0"<?php if ($group['g_mod_change_passwords'] == '0') echo ' checked="checked"' ?> tabindex="12" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Change passwords help'] ?></span>
+                            <label class="conl"><input type="radio" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked="checked"' ?> tabindex="11" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="mod_change_passwords" value="0"<?php if ($group['g_mod_change_passwords'] == '0') echo ' checked="checked"' ?> tabindex="12" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Change passwords help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Ban users label'] ?></th>
+                        <th><?php echo $lang['Ban users label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked="checked"' ?> tabindex="13" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="mod_ban_users" value="0"<?php if ($group['g_mod_ban_users'] == '0') echo ' checked="checked"' ?> tabindex="14" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Ban users help'] ?></span>
+                            <label class="conl"><input type="radio" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked="checked"' ?> tabindex="13" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="mod_ban_users" value="0"<?php if ($group['g_mod_ban_users'] == '0') echo ' checked="checked"' ?> tabindex="14" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Ban users help'] ?></span>
                         </td>
                     </tr>
     <?php endif; endif; ?>								<tr>
-                        <th><?php echo $lang_back['Read board label'] ?></th>
+                        <th><?php echo $lang['Read board label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked="checked"' ?> tabindex="15" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="read_board" value="0"<?php if ($group['g_read_board'] == '0') echo ' checked="checked"' ?> tabindex="16" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Read board help'] ?></span>
+                            <label class="conl"><input type="radio" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked="checked"' ?> tabindex="15" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="read_board" value="0"<?php if ($group['g_read_board'] == '0') echo ' checked="checked"' ?> tabindex="16" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Read board help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['View user info label'] ?></th>
+                        <th><?php echo $lang['View user info label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked="checked"' ?> tabindex="17" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="view_users" value="0"<?php if ($group['g_view_users'] == '0') echo ' checked="checked"' ?> tabindex="18" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['View user info help'] ?></span>
+                            <label class="conl"><input type="radio" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked="checked"' ?> tabindex="17" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="view_users" value="0"<?php if ($group['g_view_users'] == '0') echo ' checked="checked"' ?> tabindex="18" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['View user info help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Post replies label'] ?></th>
+                        <th><?php echo $lang['Post replies label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked="checked"' ?> tabindex="19" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="post_replies" value="0"<?php if ($group['g_post_replies'] == '0') echo ' checked="checked"' ?> tabindex="20" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Post replies help'] ?></span>
+                            <label class="conl"><input type="radio" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked="checked"' ?> tabindex="19" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="post_replies" value="0"<?php if ($group['g_post_replies'] == '0') echo ' checked="checked"' ?> tabindex="20" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Post replies help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Post topics label'] ?></th>
+                        <th><?php echo $lang['Post topics label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked="checked"' ?> tabindex="21" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="post_topics" value="0"<?php if ($group['g_post_topics'] == '0') echo ' checked="checked"' ?> tabindex="22" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Post topics help'] ?></span>
+                            <label class="conl"><input type="radio" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked="checked"' ?> tabindex="21" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="post_topics" value="0"<?php if ($group['g_post_topics'] == '0') echo ' checked="checked"' ?> tabindex="22" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Post topics help'] ?></span>
                         </td>
                     </tr>
     <?php if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
-                        <th><?php echo $lang_back['Edit posts label'] ?></th>
+                        <th><?php echo $lang['Edit posts label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked="checked"' ?> tabindex="23" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="edit_posts" value="0"<?php if ($group['g_edit_posts'] == '0') echo ' checked="checked"' ?> tabindex="24" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Edit posts help'] ?></span>
+                            <label class="conl"><input type="radio" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked="checked"' ?> tabindex="23" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="edit_posts" value="0"<?php if ($group['g_edit_posts'] == '0') echo ' checked="checked"' ?> tabindex="24" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Edit posts help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Delete posts label'] ?></th>
+                        <th><?php echo $lang['Delete posts label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked="checked"' ?> tabindex="25" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="delete_posts" value="0"<?php if ($group['g_delete_posts'] == '0') echo ' checked="checked"' ?> tabindex="26" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Delete posts help'] ?></span>
+                            <label class="conl"><input type="radio" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked="checked"' ?> tabindex="25" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="delete_posts" value="0"<?php if ($group['g_delete_posts'] == '0') echo ' checked="checked"' ?> tabindex="26" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Delete posts help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Delete topics label'] ?></th>
+                        <th><?php echo $lang['Delete topics label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked="checked"' ?> tabindex="27" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="delete_topics" value="0"<?php if ($group['g_delete_topics'] == '0') echo ' checked="checked"' ?> tabindex="28" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Delete topics help'] ?></span>
+                            <label class="conl"><input type="radio" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked="checked"' ?> tabindex="27" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="delete_topics" value="0"<?php if ($group['g_delete_topics'] == '0') echo ' checked="checked"' ?> tabindex="28" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Delete topics help'] ?></span>
                         </td>
                     </tr>
     <?php endif;
     if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
-                        <th><?php echo $lang_back['Set own title label'] ?></th>
+                        <th><?php echo $lang['Set own title label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked="checked"' ?> tabindex="31" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="set_title" value="0"<?php if ($group['g_set_title'] == '0') echo ' checked="checked"' ?> tabindex="32" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Set own title help'] ?></span>
+                            <label class="conl"><input type="radio" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked="checked"' ?> tabindex="31" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="set_title" value="0"<?php if ($group['g_set_title'] == '0') echo ' checked="checked"' ?> tabindex="32" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Set own title help'] ?></span>
                         </td>
                     </tr>
     <?php endif; ?>								<tr>
-                        <th><?php echo $lang_back['User search label'] ?></th>
+                        <th><?php echo $lang['User search label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked="checked"' ?> tabindex="33" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="search" value="0"<?php if ($group['g_search'] == '0') echo ' checked="checked"' ?> tabindex="34" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['User search help'] ?></span>
+                            <label class="conl"><input type="radio" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked="checked"' ?> tabindex="33" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="search" value="0"<?php if ($group['g_search'] == '0') echo ' checked="checked"' ?> tabindex="34" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['User search help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['User list search label'] ?></th>
+                        <th><?php echo $lang['User list search label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked="checked"' ?> tabindex="35" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="search_users" value="0"<?php if ($group['g_search_users'] == '0') echo ' checked="checked"' ?> tabindex="36" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['User list search help'] ?></span>
+                            <label class="conl"><input type="radio" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked="checked"' ?> tabindex="35" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="search_users" value="0"<?php if ($group['g_search_users'] == '0') echo ' checked="checked"' ?> tabindex="36" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['User list search help'] ?></span>
                         </td>
                     </tr>
     <?php if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
-                        <th><?php echo $lang_back['Send e-mails label'] ?></th>
+                        <th><?php echo $lang['Send e-mails label'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked="checked"' ?> tabindex="37" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="send_email" value="0"<?php if ($group['g_send_email'] == '0') echo ' checked="checked"' ?> tabindex="38" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
-                            <br /><span class="clearb"><?php echo $lang_back['Send e-mails help'] ?></span>
+                            <label class="conl"><input type="radio" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked="checked"' ?> tabindex="37" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="send_email" value="0"<?php if ($group['g_send_email'] == '0') echo ' checked="checked"' ?> tabindex="38" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
+                            <br /><span class="clearb"><?php echo $lang['Send e-mails help'] ?></span>
                         </td>
                     </tr>
     <?php endif; ?>								<tr>
-                        <th><?php echo $lang_back['Post flood label'] ?></th>
+                        <th><?php echo $lang['Post flood label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="post_flood" size="5" maxlength="4" value="<?php echo $group['g_post_flood'] ?>" tabindex="35" />
-                            <br /><span><?php echo $lang_back['Post flood help'] ?></span>
+                            <br /><span><?php echo $lang['Post flood help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Search flood label'] ?></th>
+                        <th><?php echo $lang['Search flood label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="search_flood" size="5" maxlength="4" value="<?php echo $group['g_search_flood'] ?>" tabindex="36" />
-                            <br /><span><?php echo $lang_back['Search flood help'] ?></span>
+                            <br /><span><?php echo $lang['Search flood help'] ?></span>
                         </td>
                     </tr>
     <?php if ($group['g_id'] != FORUM_GUEST): ?>								<tr>
-                        <th><?php echo $lang_back['E-mail flood label'] ?></th>
+                        <th><?php echo $lang['E-mail flood label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="email_flood" size="5" maxlength="4" value="<?php echo $group['g_email_flood'] ?>" tabindex="37" />
-                            <br /><span><?php echo $lang_back['E-mail flood help'] ?></span>
+                            <br /><span><?php echo $lang['E-mail flood help'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Report flood label'] ?></th>
+                        <th><?php echo $lang['Report flood label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="report_flood" size="5" maxlength="4" value="<?php echo $group['g_report_flood'] ?>" tabindex="38" />
-                            <br /><span><?php echo $lang_back['Report flood help'] ?></span>
+                            <br /><span><?php echo $lang['Report flood help'] ?></span>
                         </td>
                     </tr>
     <?php endif; endif; ?>
                 </table>
-    <?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo $lang_back['Moderator info'] ?></p>
+    <?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo $lang['Moderator info'] ?></p>
     <?php endif; ?>	
             </fieldset>
             <div class="control-group">
-                <input class="btn btn-primary" type="submit" name="add_edit_group" value="<?php echo $lang_back['Save'] ?>" tabindex="39" />
+                <input class="btn btn-primary" type="submit" name="add_edit_group" value="<?php echo $lang['Save'] ?>" tabindex="39" />
             </div>
         </form>
     </div>
@@ -288,7 +288,7 @@ else if (isset($_POST['add_edit_group']))
 	$report_flood = (isset($_POST['report_flood']) && $_POST['report_flood'] >= 0) ? intval($_POST['report_flood']) : '0';
 
 	if ($title == '')
-		message($lang_back['Must enter title message']);
+		message($lang['Must enter title message']);
 
 	$user_title = ($user_title != '') ? '\''.$db->escape($user_title).'\'' : 'NULL';
 
@@ -296,7 +296,7 @@ else if (isset($_POST['add_edit_group']))
 	{
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\'') or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
-			message(sprintf($lang_back['Title already exists message'], pun_htmlspecialchars($title)));
+			message(sprintf($lang['Title already exists message'], pun_htmlspecialchars($title)));
 
 		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$post_replies.', '.$post_topics.', '.$edit_posts.', '.$delete_posts.', '.$delete_topics.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$post_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		$new_group_id = $db->insert_id();
@@ -310,7 +310,7 @@ else if (isset($_POST['add_edit_group']))
 	{
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\' AND g_id!='.intval($_POST['group_id'])) or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
-			message(sprintf($lang_back['Title already exists message'], pun_htmlspecialchars($title)));
+			message(sprintf($lang['Title already exists message'], pun_htmlspecialchars($title)));
 
 		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_post_replies='.$post_replies.', g_post_topics='.$post_topics.', g_edit_posts='.$edit_posts.', g_delete_posts='.$delete_posts.', g_delete_topics='.$delete_topics.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_post_flood='.$post_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	}
@@ -323,9 +323,9 @@ else if (isset($_POST['add_edit_group']))
 	generate_quickjump_cache($group_id);
 
 	if ($_POST['mode'] == 'edit')
-		redirect('backstage/groups.php', $lang_back['Group edited redirect']);
+		redirect('backstage/groups.php', $lang['Group edited redirect']);
 	else
-		redirect('backstage/groups.php', $lang_back['Group added redirect']);
+		redirect('backstage/groups.php', $lang['Group added redirect']);
 }
 
 
@@ -336,12 +336,12 @@ else if (isset($_POST['set_default_group']))
 
 	// Make sure it's not the admin or guest groups
 	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
-		message($lang_common['Bad request'], false, '404 Not Found');
+		message($lang['Bad request'], false, '404 Not Found');
 
 	// Make sure it's not a moderator group
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_id='.$group_id.' AND g_moderator=0') or error('Unable to check group moderator status', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
-		message($lang_common['Bad request'], false, '404 Not Found');
+		message($lang['Bad request'], false, '404 Not Found');
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$group_id.' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
@@ -351,7 +351,7 @@ else if (isset($_POST['set_default_group']))
 
 	generate_config_cache();
 
-	redirect('backstage/groups.php', $lang_back['Default group redirect']);
+	redirect('backstage/groups.php', $lang['Default group redirect']);
 }
 
 
@@ -360,11 +360,11 @@ else if (isset($_GET['del_group']))
 {
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
-		message($lang_common['Bad request'], false, '404 Not Found');
+		message($lang['Bad request'], false, '404 Not Found');
 
 	// Make sure we don't remove the default group
 	if ($group_id == $pun_config['o_default_user_group'])
-		message($lang_back['Cannot remove default message']);
+		message($lang['Cannot remove default message']);
 
 	// Check if this group has any members
 	$result = $db->query('SELECT g.g_title, COUNT(u.id) FROM '.$db->prefix.'groups AS g INNER JOIN '.$db->prefix.'users AS u ON g.g_id=u.group_id WHERE g.g_id='.$group_id.' GROUP BY g.g_id, g_title') or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -384,14 +384,14 @@ else if (isset($_GET['del_group']))
 			$db->query('DELETE FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to delete group', __FILE__, __LINE__, $db->error());
 			$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$group_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
-			redirect('backstage/groups.php', $lang_back['Group removed redirect']);
+			redirect('backstage/groups.php', $lang['Group removed redirect']);
 		}
 		else
 		{
 			$result = $db->query('SELECT g_title FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group title', __FILE__, __LINE__, $db->error());
 			$group_title = $db->result($result);
 
-			$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['User groups']);
+			$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 			define('FORUM_ACTIVE_PAGE', 'admin');
 			require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
@@ -399,18 +399,18 @@ else if (isset($_GET['del_group']))
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Group delete head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Group delete head'] ?></h3>
     </div>
     <div class="panel-body">
         <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
             <input type="hidden" name="group_to_delete" value="<?php echo $group_id ?>" />
                 <fieldset>
-                    <p><?php printf($lang_back['Confirm delete info'], pun_htmlspecialchars($group_title)) ?></p>
-                    <div class="alert alert-danger"><?php echo $lang_back['Confirm delete warn'] ?></div>
+                    <p><?php printf($lang['Confirm delete info'], pun_htmlspecialchars($group_title)) ?></p>
+                    <div class="alert alert-danger"><?php echo $lang['Confirm delete warn'] ?></div>
                 </fieldset>
             <div class="control-group">
-                <input class="btn btn-danger" type="submit" name="del_group_comply" value="<?php echo $lang_back['Delete'] ?>" tabindex="1" />
-                <a class="btn" href="javascript:history.go(-1)" tabindex="2"><?php echo $lang_back['Go back'] ?></a>
+                <input class="btn btn-danger" type="submit" name="del_group_comply" value="<?php echo $lang['Delete'] ?>" tabindex="1" />
+                <a class="btn" href="javascript:history.go(-1)" tabindex="2"><?php echo $lang['Go back'] ?></a>
             </div>
         </form>
     </div>
@@ -423,20 +423,20 @@ else if (isset($_GET['del_group']))
 
 	list($group_title, $group_members) = $db->fetch_row($result);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['User groups']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Delete group head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Delete group head'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php?del_group=<?php echo $group_id ?>">
             <fieldset>
-                <p><?php printf($lang_back['Move users info'], pun_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
-                <label><?php echo $lang_back['Move users label'] ?>
+                <p><?php printf($lang['Move users info'], pun_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
+                <label><?php echo $lang['Move users label'] ?>
                     <select class="form-control" name="move_to_group">
 <?php
 
@@ -455,8 +455,8 @@ else if (isset($_GET['del_group']))
                 </label>
             </fieldset>
             <p class="control-group">
-                <input class="btn btn-danger" type="submit" name="del_group" value="<?php echo $lang_back['Delete group'] ?>" />
-                <a class="btn" href="javascript:history.go(-1)"><?php echo $lang_back['Go back'] ?></a>
+                <input class="btn btn-danger" type="submit" name="del_group" value="<?php echo $lang['Delete group'] ?>" />
+                <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
             </p>
         </form>
     </div>
@@ -467,16 +467,16 @@ else if (isset($_GET['del_group']))
 }
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['User groups']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
 
 ?>
-<h2><?php echo $lang_back['Groups'] ?></h2>
+<h2><?php echo $lang['Groups'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Add group subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Add group subhead'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php">
@@ -496,15 +496,15 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 
 ?>
                 </select>
-                <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang_back['Add'] ?>" tabindex="2" />
-                <span class="help-block"><?php echo $lang_back['Create new group'] ?></span>
+                <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang['Add'] ?>" tabindex="2" />
+                <span class="help-block"><?php echo $lang['Create new group'] ?></span>
             </fieldset>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Default group subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Default group subhead'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php">
@@ -524,19 +524,19 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 
 ?>
                 </select>
-                <input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang_back['Save'] ?>" tabindex="4" />
-                <span class="help-block"><?php echo $lang_back['Default group help'] ?></span>
+                <input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang['Save'] ?>" tabindex="4" />
+                <span class="help-block"><?php echo $lang['Default group help'] ?></span>
             </fieldset>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Existing groups head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Existing groups head'] ?></h3>
     </div>
     <div class="panel-body">
         <fieldset>
-            <p><?php echo $lang_back['Edit groups info'] ?></p>
+            <p><?php echo $lang['Edit groups info'] ?></p>
             <table class="table">
 <?php
 
@@ -545,7 +545,7 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><th class="col-xs-2"><a class="btn btn-primary btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_back['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang_back['Delete link'].'</a>' : '').'</th><td class="col-xs-10">'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><th class="col-xs-2"><a class="btn btn-primary btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Delete link'].'</a>' : '').'</th><td class="col-xs-10">'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
 
 ?>
             </table>

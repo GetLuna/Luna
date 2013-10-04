@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 //
 // Increase maximum execution time, but don't complain about it if it isn't
@@ -564,11 +564,11 @@ elseif ( isset($_POST['restore_start']) ) {
 	{
 ?>
 	<div class="block">
-	<h2 class="block2"><span><?php echo $lang_back['Restore complete'] ?></span></h2>
+	<h2 class="block2"><span><?php echo $lang['Restore complete'] ?></span></h2>
 		<div class="box">
 			<div class="inbox">
 				<p>
-					<a href="database.php"><?php echo $lang_common['Go back'] ?></a>
+					<a href="database.php"><?php echo $lang['Go back'] ?></a>
 				</p>
 			</div>
 		</div>
@@ -649,66 +649,66 @@ elseif (isset($_POST['optimizeall']))
 else {
 	
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Database']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Database']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 ?>
-<h2><?php echo $lang_back['Database'] ?></h2>
+<h2><?php echo $lang['Database'] ?></h2>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang_back['Backup options'] ?></h3>
+		<h3 class="panel-title"><?php echo $lang['Backup options'] ?></h3>
 	</div>
 	<div class="panel-body">
         <form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
-                <p><?php echo $lang_back['Backup info 1'] ?></p>
+                <p><?php echo $lang['Backup info 1'] ?></p>
                 <table class="table">
                     <tr>
-                        <th class="col-xs-2"><?php echo $lang_back['Backup type'] ?></th>
+                        <th class="col-xs-2"><?php echo $lang['Backup type'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang_back['Full'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang_back['Structure only'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang_back['Data only'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang_back['Backup info 2'] ?></span>
+                            <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang['Full'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang['Structure only'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang['Data only'] ?></strong></label>
+                            <span class="help-block"><?php echo $lang['Backup info 2'] ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $lang_back['Gzip compression'] ?></th>
+                        <th><?php echo $lang['Gzip compression'] ?></th>
                         <td>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang_back['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang_back['No'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
+                            <label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
                         </td>
                     </tr>
                 </table>
             </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang_back['Start backup'] ?>" class="mainoption" /></p>
+            <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></p>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang_back['Restore options'] ?></h3>
+		<h3 class="panel-title"><?php echo $lang['Restore options'] ?></h3>
 	</div>
 	<div class="panel-body">
         <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
-                <p><?php echo $lang_back['Restore info 1'] ?></p>
+                <p><?php echo $lang['Restore info 1'] ?></p>
                 <input type="file" name="backup_file" />
-				<input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang_back['Start restore'] ?>" class="mainoption" />
+				<input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" />
             </fieldset>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Additional functions'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Additional functions'] ?></h3>
     </div>
 	<div class="panel-body">
         <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
             <fieldset>
-                <p><?php echo $lang_back['Additional info 1'] ?></p>
-                <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang_back['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang_back['Optimise all tables'] ?>" />
+                <p><?php echo $lang['Additional info 1'] ?></p>
+                <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" />
             </fieldset>
         </form>
     </div>

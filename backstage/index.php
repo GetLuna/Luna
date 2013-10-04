@@ -42,11 +42,11 @@ if ($stats['total_topics'] == 0) {
 	$stats['total_topics'] == '0';
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Index']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Index']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('index');
@@ -56,19 +56,19 @@ if ($pun_config['o_index_update_check'] == 1) {
 	$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
 	if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 		<div class="alert alert-warning">
-			<h4><?php echo sprintf($lang_back['Available'], $latest_version) ?></h4>
+			<h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
 			<div class="btn-group">
-				<a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_back['Download'], $latest_version) ?></a>
-				<a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang_back['Changelog'] ?></a>
+				<a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
+				<a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
 			</div>
-			<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang_back['Download'], FORUM_VERSION) ?></a>
+			<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
 		</div>
 	<?php } else { ?>
 		<div class="alert alert-info">
-			<h4><?php echo $lang_back['ModernBB intro'] ?> <?php echo FORUM_VERSION ?></h4>
+			<h4><?php echo $lang['ModernBB intro'] ?> <?php echo FORUM_VERSION ?></h4>
 			<div class="btn-group">
-				<a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang_back['Changelog'] ?></a>
-				<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang_back['Download'], FORUM_VERSION) ?></a>
+				<a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+				<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
 			</div>
 		</div>
 <?php }
@@ -79,26 +79,26 @@ if ($pun_config['o_index_update_check'] == 1) {
         <div class="col-xs-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang_back['Backup head'] ?></h3>
+                    <h3 class="panel-title"><?php echo $lang['Backup head'] ?></h3>
                 </div>
                 <div class="panel-body">
-                    <p><?php echo $lang_back['Backup info'] ?></p>
-                    <a class="btn btn-block btn-primary" href="database.php"><?php echo $lang_back['Backup button'] ?></a>
+                    <p><?php echo $lang['Backup info'] ?></p>
+                    <a class="btn btn-block btn-primary" href="database.php"><?php echo $lang['Backup button'] ?></a>
                 </div>
              </div>
         </div>
         <div class="col-xs-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang_back['Reports head'] ?> - <a href="reports.php"><?php echo $lang_back['View all'] ?></a></h3>
+                    <h3 class="panel-title"><?php echo $lang['Reports head'] ?> - <a href="reports.php"><?php echo $lang['View all'] ?></a></h3>
                 </div>
                 <div class="panel-body">
                     <table class="table" cellspacing="0">
                         <thead>
                             <tr>
-                                <th><?php echo $lang_back['Reported by'] ?></th>
-                                <th><?php echo $lang_back['Date and time'] ?></th>
-                                <th><?php echo $lang_back['Message'] ?></th>
+                                <th><?php echo $lang['Reported by'] ?></th>
+                                <th><?php echo $lang['Date and time'] ?></th>
+                                <th><?php echo $lang['Message'] ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,7 +110,7 @@ if ($db->num_rows($result))
 {
 	while ($cur_report = $db->fetch_assoc($result))
 	{
-		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.pun_htmlspecialchars($cur_report['reporter']).'</a>' : $lang_admin_reports['Deleted user'];
+		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.pun_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
 		$post = str_replace("\n", '<br />', pun_htmlspecialchars($cur_report['message']));
 		$report_location = array($forum, $topic, $post_id);
 
@@ -129,7 +129,7 @@ else
 
 ?>
                         <tr>
-                            <td colspan="4"><p><?php echo $lang_back['No new reports'] ?></p></td>
+                            <td colspan="4"><p><?php echo $lang['No new reports'] ?></p></td>
                         </tr>
 <?php
 
@@ -146,20 +146,20 @@ else
         <div class="col-xs-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang_back['About head'] ?></h3>
+                    <h3 class="panel-title"><?php echo $lang['About head'] ?></h3>
                 </div>
                 <div class="panel-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-xs-6"><?php echo $lang_back['ModernBB version label'] ?></th>
-                                <th class="col-xs-6"><?php echo $lang_back['Server statistics label'] ?></th>
+                                <th class="col-xs-6"><?php echo $lang['ModernBB version label'] ?></th>
+                                <th class="col-xs-6"><?php echo $lang['Server statistics label'] ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><?php printf($lang_back['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
-                                <td><a href="statistics.php"><?php echo $lang_back['View server statistics'] ?></a></td>
+                                <td><?php printf($lang['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
+                                <td><a href="statistics.php"><?php echo $lang['View server statistics'] ?></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -169,15 +169,15 @@ else
         <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang_back['Statistics head'] ?></h3>
+                    <h3 class="panel-title"><?php echo $lang['Statistics head'] ?></h3>
                 </div>
                 <div class="panel-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br /><?php echo $lang_back['posts'] ?></h4></td>
-                                <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br /><?php echo $lang_back['topics'] ?></h4></td>
-                                <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br /><?php echo $lang_back['users'] ?></h4></td>
+                                <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br /><?php echo $lang['posts'] ?></h4></td>
+                                <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br /><?php echo $lang['topics'] ?></h4></td>
+                                <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br /><?php echo $lang['users'] ?></h4></td>
                             </tr>
                         </thead>
                     </table>

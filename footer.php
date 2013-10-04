@@ -30,22 +30,22 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 
 	if ($footer_style == 'viewforum')
 	{
-		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang_common['Moderate forum'].'</a>'."\n";
+		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang['Moderate forum'].'</a>'."\n";
 	}
 	else if ($footer_style == 'viewtopic')
 	{
-		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang_common['Moderate topic'].'</a>'."\n";
-		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;move_topics='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Move topic'].'</a>'."\n";
+		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang['Moderate topic'].'</a>'."\n";
+		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;move_topics='.$id.'" class="btn btn-primary btn-mini">'.$lang['Move topic'].'</a>'."\n";
 
 		if ($cur_topic['closed'] == '1')
-			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;open='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Open topic'].'</a>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;open='.$id.'" class="btn btn-primary btn-mini">'.$lang['Open topic'].'</a>'."\n";
 		else
-			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;close='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Close topic'].'</a>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;close='.$id.'" class="btn btn-primary btn-mini">'.$lang['Close topic'].'</a>'."\n";
 
 		if ($cur_topic['sticky'] == '1')
-			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;unstick='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Unstick topic'].'</a>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;unstick='.$id.'" class="btn btn-primary btn-mini">'.$lang['Unstick topic'].'</a>'."\n";
 		else
-			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;stick='.$id.'" class="btn btn-primary btn-mini">'.$lang_common['Stick topic'].'</a>'."\n";
+			echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;stick='.$id.'" class="btn btn-primary btn-mini">'.$lang['Stick topic'].'</a>'."\n";
 	}
 
 	echo "\t\t\t\n\t\t".'</div>'."\n";
@@ -57,27 +57,27 @@ $footer_style = isset($footer_style) ? $footer_style : NULL;
 if ($footer_style == 'index')
 {
 	if ($pun_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;type=rss">'.$lang_common['RSS active topics feed'].'</a></span>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;type=rss">'.$lang['RSS active topics feed'].'</a></span>'."\n";
 	else if ($pun_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;type=atom">'.$lang_common['Atom active topics feed'].'</a></span>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;type=atom">'.$lang['Atom active topics feed'].'</a></span>'."\n";
 }
 else if ($footer_style == 'viewforum')
 {
 	if ($pun_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=rss">'.$lang_common['RSS forum feed'].'</a></span>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=rss">'.$lang['RSS forum feed'].'</a></span>'."\n";
 	else if ($pun_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=atom">'.$lang_common['Atom forum feed'].'</a></span>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=atom">'.$lang['Atom forum feed'].'</a></span>'."\n";
 }
 else if ($footer_style == 'viewtopic')
 {
 	if ($pun_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss">'.$lang_common['RSS topic feed'].'</a></span>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="rss"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss">'.$lang['RSS topic feed'].'</a></span>'."\n";
 	else if ($pun_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom">'.$lang_common['Atom topic feed'].'</a></span>'."\n";
+		echo "\t\t\t\t".'<p id="feedlinks"><span class="atom"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom">'.$lang['Atom topic feed'].'</a></span>'."\n";
 }
 
 ?>
-        <span class="pull-right" id="poweredby"><?php printf($lang_common['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></span></p>
+        <span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></span></p>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="include/bootstrap/jquery.js"></script>
     <script src="include/bootstrap/bootstrap.js"></script>
@@ -91,14 +91,14 @@ if (defined('FORUM_DEBUG'))
 
 	// Calculate script generation time
 	$time_diff = sprintf('%.3f', get_microtime() - $pun_start);
-	echo sprintf($lang_common['Querytime'], $time_diff, $db->get_num_queries());
+	echo sprintf($lang['Querytime'], $time_diff, $db->get_num_queries());
 
 	if (function_exists('memory_get_usage'))
 	{
-		echo ' - '.sprintf($lang_common['Memory usage'], file_size(memory_get_usage()));
+		echo ' - '.sprintf($lang['Memory usage'], file_size(memory_get_usage()));
 
 		if (function_exists('memory_get_peak_usage'))
-			echo ' '.sprintf($lang_common['Peak usage'], file_size(memory_get_peak_usage()));
+			echo ' '.sprintf($lang['Peak usage'], file_size(memory_get_peak_usage()));
 	}
 
 	echo ' ]</p>'."\n";

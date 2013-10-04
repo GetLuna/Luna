@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 if (isset($_POST['form_sent']))
 {
@@ -55,45 +55,45 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/features.php', $lang_back['Options updated redirect']);
+	redirect('backstage/features.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Options']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('features');
 
 ?>
 <form method="post" action="features.php">
-    <h2><?php echo $lang_back['Features head'] ?></h2>
+    <h2><?php echo $lang['Features head'] ?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">General<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title">General<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
             	<h4>Topics and posts</h4>
-				<input type="checkbox" name="form[quickpost]" value="1" <?php if ($pun_config['o_quickpost'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Quick post help'] ?><br />
-				<input type="checkbox" name="form[censoring]" value="1" <?php if ($pun_config['o_censoring'] == '1') echo ' checked="checked"' ?> /> <?php  printf($lang_back['Censor words help'], '<a href="admin_censoring.php">'.$lang_back['Censoring'].'</a>') ?><br />
-				<input type="checkbox" name="form[topic_views]" value="1" <?php if ($pun_config['o_topic_views'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Topic views help'] ?><br /><br />
+				<input type="checkbox" name="form[quickpost]" value="1" <?php if ($pun_config['o_quickpost'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Quick post help'] ?><br />
+				<input type="checkbox" name="form[censoring]" value="1" <?php if ($pun_config['o_censoring'] == '1') echo ' checked="checked"' ?> /> <?php  printf($lang['Censor words help'], '<a href="admin_censoring.php">'.$lang['Censoring'].'</a>') ?><br />
+				<input type="checkbox" name="form[topic_views]" value="1" <?php if ($pun_config['o_topic_views'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Topic views help'] ?><br /><br />
 				<h4>User features</h4>
-				<input type="checkbox" name="form[users_online]" value="1" <?php if ($pun_config['o_users_online'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Users online help'] ?><br />
-				<input type="checkbox" name="form[signatures]" value="1" <?php if ($pun_config['o_signatures'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Signatures help'] ?><br />
-				<input type="checkbox" name="form[ranks]" value="1" <?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> /> <?php printf($lang_back['User ranks help'], '<a href="admin_ranks.php">'.$lang_back['Ranks'].'</a>') ?><br /><br />
+				<input type="checkbox" name="form[users_online]" value="1" <?php if ($pun_config['o_users_online'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Users online help'] ?><br />
+				<input type="checkbox" name="form[signatures]" value="1" <?php if ($pun_config['o_signatures'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Signatures help'] ?><br />
+				<input type="checkbox" name="form[ranks]" value="1" <?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> /> <?php printf($lang['User ranks help'], '<a href="admin_ranks.php">'.$lang['Ranks'].'</a>') ?><br /><br />
                 <h4>Others</h4>
-				<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($pun_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Search all help'] ?>
+				<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($pun_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Search all help'] ?>
             </fieldset>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Advanced<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title">Advanced<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
-				<input type="checkbox" name="form[gzip]" value="1" <?php if ($pun_config['o_gzip'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['GZip help'] ?><br />
+				<input type="checkbox" name="form[gzip]" value="1" <?php if ($pun_config['o_gzip'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['GZip help'] ?><br />
             </fieldset>
         </div>
     </div>

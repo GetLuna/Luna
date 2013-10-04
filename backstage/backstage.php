@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 if (isset($_POST['form_sent']))
 {
@@ -48,25 +48,25 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/backstage.php', $lang_back['Options updated redirect']);
+	redirect('backstage/backstage.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Backstage settings']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Backstage settings']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('backstage');
 
 ?>
-<h2><?php echo $lang_back['Backstage settings'] ?></h2>
+<h2><?php echo $lang['Backstage settings'] ?></h2>
 <form method="post" action="backstage.php">
     <input type="hidden" name="form_sent" value="1" />
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang_back['Update settings head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang_back['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Update settings head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-				<input type="checkbox" name="form[index_update_check]" value="1" <?php if ($pun_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang_back['Index update check'] ?>
+				<input type="checkbox" name="form[index_update_check]" value="1" <?php if ($pun_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Index update check'] ?>
             </fieldset>
 		</div>
 	</div>

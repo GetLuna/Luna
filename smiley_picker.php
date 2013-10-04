@@ -1,19 +1,21 @@
 <?php
-/***********************************************************************
 
-  Copyright (C) 2010-2011 Mpok
-  javascript code Copyright (C) 2003-2005 Frosty
-  License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
-
-************************************************************************/
-
+/**
+ * Copyright (C) 2013 ModernBB
+ * Based on code by Mpok copyright (C) 2010-2013 Mpok
+ * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
+ * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
+ */
+ 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 if ($pun_user['g_read_board'] == '0')
-	message($lang_common['No view']);
+	message($lang['No view']);
 
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/common.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
 
 if ($pun_config['o_smilies'] == '1')
 {
@@ -42,10 +44,10 @@ if ($pun_config['o_smilies'] == '1')
 	$smiley_img = array_values($smiley_img);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang_common['lang_identifier'] ?>" lang="<?php echo $lang_common['lang_identifier'] ?>" dir="<?php echo $lang_common['lang_direction'] ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang['lang_identifier'] ?>" lang="<?php echo $lang['lang_identifier'] ?>" dir="<?php echo $lang['lang_direction'] ?>">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title><?php echo $lang_ftb['all_smilies'] ?></title>
+  <title><?php echo $lang['all_smilies'] ?></title>
   <style type="text/css">
   body {
 	background-color: #dddddd;
@@ -148,7 +150,7 @@ if ($pun_config['o_smilies'] == '1')
 /* ]]> */
   </script>
  </div>
- <p><input type="button" name="btn_cancel" value="<?php echo $lang_ftb['Cancel'] ?>" onclick="window.close();" /></p>
+ <p><input type="button" name="btn_cancel" value="<?php echo $lang['Cancel'] ?>" onclick="window.close();" /></p>
 </body>
 </html>
 <?php
@@ -157,10 +159,10 @@ else
 {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang_common['lang_identifier'] ?>" lang="<?php echo $lang_common['lang_identifier'] ?>" dir="<?php echo $lang_common['lang_direction'] ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang['lang_identifier'] ?>" lang="<?php echo $lang['lang_identifier'] ?>" dir="<?php echo $lang['lang_direction'] ?>">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title><?php echo $lang_ftb['all_smilies'] ?></title>
+  <title><?php echo $lang['all_smilies'] ?></title>
   <style type="text/css">
   body {
 	text-align: center;
@@ -170,8 +172,8 @@ else
   </style>
 </head>
 <body>
- <p><?php echo $lang_common['Smilies'].' '.$lang_common['off'] ?></p>
- <p><input type="button" name="btn_cancel" value="<?php echo $lang_ftb['Cancel'] ?>" onclick="window.close();" /></p>
+ <p><?php echo $lang['Smilies'].' '.$lang['off'] ?></p>
+ <p><input type="button" name="btn_cancel" value="<?php echo $lang['Cancel'] ?>" onclick="window.close();" /></p>
 </body>
 </html>
 <?php

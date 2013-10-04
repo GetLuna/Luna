@@ -23,8 +23,8 @@ ob_start();
 ?>
 <footer>
 	<p>
-		<?php printf($lang_common['Thanks'], '<a href="http://modernbb.be/">ModernBB</a>') ?>
-        <span class="pull-right"><?php echo $lang_common['Version'].'&nbsp;'.$pun_config['o_cur_version'] ?></span>
+		<?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a>') ?>
+        <span class="pull-right"><?php echo $lang['Version'].'&nbsp;'.$pun_config['o_cur_version'] ?></span>
     </p>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="../include/bootstrap/jquery.js"></script>
@@ -39,14 +39,14 @@ if (defined('FORUM_DEBUG'))
 
 	// Calculate script generation time
 	$time_diff = sprintf('%.3f', get_microtime() - $pun_start);
-	echo sprintf($lang_common['Querytime'], $time_diff, $db->get_num_queries());
+	echo sprintf($lang['Querytime'], $time_diff, $db->get_num_queries());
 
 	if (function_exists('memory_get_usage'))
 	{
-		echo ' - '.sprintf($lang_common['Memory usage'], file_size(memory_get_usage()));
+		echo ' - '.sprintf($lang['Memory usage'], file_size(memory_get_usage()));
 
 		if (function_exists('memory_get_peak_usage'))
-			echo ' '.sprintf($lang_common['Peak usage'], file_size(memory_get_peak_usage()));
+			echo ' '.sprintf($lang['Peak usage'], file_size(memory_get_peak_usage()));
 	}
 
 	echo ' ]</p>'."\n";

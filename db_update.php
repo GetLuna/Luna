@@ -123,17 +123,16 @@ while ($cur_config_item = $db->fetch_row($result))
 // Load language file
 $default_lang = $pun_config['o_default_lang'];
 
-if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/update.php'))
+if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/language.php'))
 	$default_lang = 'English';
 
-require FORUM_ROOT.'lang/'.$default_lang.'/common.php';
-require FORUM_ROOT.'lang/'.$default_lang.'/update.php';
+require FORUM_ROOT.'lang/'.$default_lang.'/language.php';
 
 // Check current version
 $cur_version = $pun_config['o_cur_version'];
 
 if (version_compare($cur_version, '1.4', '<'))
-	error(sprintf($lang_update['Version mismatch error'], $db_name));
+	error(sprintf($lang['Version mismatch error'], $db_name));
 
 // Do some DB type specific checks
 $mysql = false;
@@ -145,7 +144,7 @@ switch ($db_type)
 	case 'mysqli_innodb':
 		$mysql_info = $db->get_version();
 		if (version_compare($mysql_info['version'], MIN_MYSQL_VERSION, '<'))
-			error(sprintf($lang_update['You are running error'], 'MySQL', $mysql_info['version'], UPDATE_TO, MIN_MYSQL_VERSION));
+			error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], UPDATE_TO, MIN_MYSQL_VERSION));
 
 		$mysql = true;
 		break;
@@ -153,7 +152,7 @@ switch ($db_type)
 	case 'mariadb':
 		$mariadb_info = $db->get_version();
 		if (version_compare($mariadb_info['version'], MIN_MARIADB_VERSION, '<'))
-			error(sprintf($lang_update['You are running error'], 'MardiaDB', $mariadb_info['version'], UPDATE_TO, MIN_MARIADB_VERSION));
+			error(sprintf($lang['You are running error'], 'MardiaDB', $mariadb_info['version'], UPDATE_TO, MIN_MARIADB_VERSION));
 
 		$mariadb = true;
 		break;
@@ -161,7 +160,7 @@ switch ($db_type)
 	case 'pgsql':
 		$pgsql_info = $db->get_version();
 		if (version_compare($pgsql_info['version'], MIN_PGSQL_VERSION, '<'))
-			error(sprintf($lang_update['You are running error'], 'PostgreSQL', $pgsql_info['version'], UPDATE_TO, MIN_PGSQL_VERSION));
+			error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], UPDATE_TO, MIN_PGSQL_VERSION));
 
 		break;
 }
@@ -171,7 +170,7 @@ if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revisio
 		isset($pun_config['o_searchindex_revision']) && $pun_config['o_searchindex_revision'] >= UPDATE_TO_SI_REVISION &&
 		isset($pun_config['o_parser_revision']) && $pun_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION &&
 		version_compare($pun_config['o_cur_version'], UPDATE_TO, '>='))
-	error($lang_update['No update error']);
+	error($lang['No update error']);
 
 //
 // Determines whether $str is UTF-8 encoded or not
@@ -273,21 +272,21 @@ if (empty($stage))
 		// Deal with newlines, tabs and multiple spaces
 		$pattern = array("\t", '  ', '  ');
 		$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
-		$message = str_replace($pattern, $replace, $lang_update['Down']);
+		$message = str_replace($pattern, $replace, $lang['Down']);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-        <title><?php echo $lang_update['Maintenance'] ?></title>
+        <title><?php echo $lang['Maintenance'] ?></title>
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="alert alert-info">
-            <h3><?php echo $lang_update['Maintenance'] ?></h3>
-			<p><?php echo $lang_update['Down'] ?></p>
+            <h3><?php echo $lang['Maintenance'] ?></h3>
+			<p><?php echo $lang['Down'] ?></p>
         </div>
     </body>
 </html>
@@ -302,7 +301,7 @@ if (empty($stage))
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>ModernBB &middot; <?php echo $lang_update['Update'] ?></title>
+		<title>ModernBB &middot; <?php echo $lang['Update'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
@@ -311,12 +310,12 @@ if (empty($stage))
 	<body onload="document.getElementById('install');document.getElementById('install').start.disabled=false;">
 		<!-- Content start -->
         <form class="form" id="install" method="post" action="db_update.php">
-            <h1 class="form-heading"><?php echo $lang_update['Update'] ?></h1>
+            <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
-                <p><?php echo $lang_update['Database update info'] ?></p>
+                <p><?php echo $lang['Database update info'] ?></p>
             </fieldset>
-			<div><input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang_update['Start update'] ?>" /></div>
+			<div><input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" /></div>
 		</form>
 	</body>
 </html>
@@ -615,24 +614,24 @@ switch ($stage)
 				$username = pun_trim($_POST['dupe_users'][$id]);
 
 				if (pun_strlen($username) < 2)
-					$errors[$id][] = $lang_update['Username too short error'];
+					$errors[$id][] = $lang['Username too short error'];
 				else if (pun_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
-					$errors[$id][] = $lang_update['Username too long error'];
+					$errors[$id][] = $lang['Username too long error'];
 				else if (!strcasecmp($username, 'Guest'))
-					$errors[$id][] = $lang_update['Username Guest reserved error'];
+					$errors[$id][] = $lang['Username Guest reserved error'];
 				else if (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
-					$errors[$id][] = $lang_update['Username IP format error'];
+					$errors[$id][] = $lang['Username IP format error'];
 				else if ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
-					$errors[$id][] = $lang_update['Username bad characters error'];
+					$errors[$id][] = $lang['Username bad characters error'];
 				else if (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*)\]|\[(?:img|url|quote|list)=)%i', $username))
-					$errors[$id][] = $lang_update['Username BBCode error'];
+					$errors[$id][] = $lang['Username BBCode error'];
 
 				$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE (UPPER(username)=UPPER(\''.$db->escape($username).'\') OR UPPER(username)=UPPER(\''.$db->escape(ucp_preg_replace('%[^\p{L}\p{N}]%u', '', $username)).'\')) AND id>1') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 
 				if ($db->num_rows($result))
 				{
 					$busy = $db->result($result);
-					$errors[$id][] = sprintf($lang_update['Username duplicate error'], pun_htmlspecialchars($busy));
+					$errors[$id][] = sprintf($lang['Username duplicate error'], pun_htmlspecialchars($busy));
 				}
 
 				if (empty($errors[$id]))
@@ -715,20 +714,20 @@ switch ($stage)
 <html lang="en">
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang_update['Update'] ?></title>
+        <title><?php echo $lang['Update'] ?></title>
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="style/<?php echo $default_style ?>.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="panel panel-danger">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang_update['Error converting users'] ?></h3>
+                <h3 class="panel-title"><?php echo $lang['Error converting users'] ?></h3>
             </div>
             <div class="panel-body">
                 <form method="post" action="db_update.php?stage=conv_users_dupe&amp;uid=<?php echo $uid ?>">
                     <input type="hidden" name="form_sent" value="1" />
-                        <p><?php echo $lang_update['Error info 1'] ?></p>
-                        <p><?php echo $lang_update['Error info 2'] ?></p>
+                        <p><?php echo $lang['Error info 1'] ?></p>
+                        <p><?php echo $lang['Error info 2'] ?></p>
 <?php
 
 			foreach ($_SESSION['dupe_users'] as $id => $cur_user)
@@ -737,10 +736,10 @@ switch ($stage)
 ?>
                     <fieldset>
                         <legend><?php echo pun_htmlspecialchars($cur_user['username']); ?></legend>
-                        <label class="required"><strong><?php echo $lang_update['New username'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo pun_htmlspecialchars($_POST['dupe_users'][$id]); ?>" size="25" maxlength="25" /><br /></label>
+                        <label class="required"><strong><?php echo $lang['New username'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo pun_htmlspecialchars($_POST['dupe_users'][$id]); ?>" size="25" maxlength="25" /><br /></label>
                     </fieldset>
 <?php if (!empty($errors[$id])): ?>
-                    <h3><?php echo $lang_update['Correct errors'] ?></h3>
+                    <h3><?php echo $lang['Correct errors'] ?></h3>
                     <ul class="error-list">
 <?php
 
@@ -754,7 +753,7 @@ foreach ($errors[$id] as $cur_error)
 			}
 
 ?>
-                    <input type="submit" class="btn btn-primary" name="rename" value="<?php echo $lang_update['Rename users'] ?>" />
+                    <input type="submit" class="btn btn-primary" name="rename" value="<?php echo $lang['Rename users'] ?>" />
                 </form>
             </div>
         </div>
@@ -784,7 +783,7 @@ foreach ($errors[$id] as $cur_error)
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result))
 		{
-			echo sprintf($lang_update['Preparsing item'], $lang_update['post'], $cur_item['id']).'<br />'."\n";
+			echo sprintf($lang['Preparsing item'], $lang['post'], $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'posts SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
@@ -819,7 +818,7 @@ foreach ($errors[$id] as $cur_error)
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result))
 		{
-			echo sprintf($lang_update['Preparsing item'], $lang_update['signature'], $cur_item['id']).'<br />'."\n";
+			echo sprintf($lang['Preparsing item'], $lang['signature'], $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'users SET signature = \''.$db->escape(preparse_bbcode($cur_item['signature'], $temp, true)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
@@ -876,7 +875,7 @@ foreach ($errors[$id] as $cur_error)
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result))
 		{
-			echo sprintf($lang_update['Rebuilding index item'], $lang_update['post'], $cur_item['id']).'<br />'."\n";
+			echo sprintf($lang['Rebuilding index item'], $lang['post'], $cur_item['id']).'<br />'."\n";
 
 			if ($cur_item['id'] == $cur_item['first_post_id'])
 				update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
@@ -937,7 +936,7 @@ foreach ($errors[$id] as $cur_error)
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title><?php echo $lang_update['Update'] ?></title>
+		<title><?php echo $lang['Update'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
@@ -945,8 +944,8 @@ foreach ($errors[$id] as $cur_error)
 	</head>
 	<body>
         <div class="form">
-            <h1 class="form-heading"><?php echo $lang_update['Update'] ?></h1>
-            <p><?php printf($lang_update['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang_update['go to index'])) ?></p>
+            <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
+            <p><?php printf($lang['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang['go to index'])) ?></p>
 		</div>
 	</body>
 </html>

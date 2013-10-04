@@ -50,10 +50,10 @@ foreach ($pun_includes as $cur_include)
 	$file_info = pathinfo($cur_include[1]);
 	
     if (!in_array($file_info['extension'], array('php', 'php4', 'php5', 'inc', 'html', 'txt'))) // Allow some extensions  
-       error(sprintf($lang_common['Pun include extension'], htmlspecialchars($cur_include[0]), basename($tpl_file), htmlspecialchars($file_info['extension'])));  
+       error(sprintf($lang['Pun include extension'], htmlspecialchars($cur_include[0]), basename($tpl_file), htmlspecialchars($file_info['extension'])));  
          
     if (strpos($file_info['dirname'], '..') !== false) // Don't allow directory traversal  
-       error(sprintf($lang_common['Pun include directory'], htmlspecialchars($cur_include[0]), basename($tpl_file))); 
+       error(sprintf($lang['Pun include directory'], htmlspecialchars($cur_include[0]), basename($tpl_file))); 
 
 	// Allow for overriding user includes, too.
 	if (file_exists($tpl_inc_dir.$cur_include[1]))  
@@ -61,7 +61,7 @@ foreach ($pun_includes as $cur_include)
 	else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1]))  
 		require FORUM_ROOT.'include/user/'.$cur_include[1];  
 	else
-		error(sprintf($lang_common['Pun include error'], pun_htmlspecialchars($cur_include[0]), basename($tpl_file)));
+		error(sprintf($lang['Pun include error'], pun_htmlspecialchars($cur_include[0]), basename($tpl_file)));
 
 	$tpl_temp = ob_get_contents();
 	$tpl_main = str_replace($cur_include[0], $tpl_temp, $tpl_main);
@@ -71,12 +71,12 @@ foreach ($pun_includes as $cur_include)
 
 
 // START SUBST - <pun_language>
-$tpl_main = str_replace('<pun_language>', $lang_common['lang_identifier'], $tpl_main);
+$tpl_main = str_replace('<pun_language>', $lang['lang_identifier'], $tpl_main);
 // END SUBST - <pun_language>
 
 
 // START SUBST - <pun_content_direction>
-$tpl_main = str_replace('<pun_content_direction>', $lang_common['lang_direction'], $tpl_main);
+$tpl_main = str_replace('<pun_content_direction>', $lang['lang_direction'], $tpl_main);
 // END SUBST - <pun_content_direction>
 
 
@@ -122,7 +122,7 @@ function process_form(the_form)
 			var elem = the_form.elements[i];
 			if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type)))
 			{
-				alert('"' + required_fields[elem.name] + '" <?php echo $lang_common['required field'] ?>');
+				alert('"' + required_fields[elem.name] + '" <?php echo $lang['required field'] ?>');
 				elem.focus();
 				return false;
 			}
@@ -176,16 +176,16 @@ $tpl_main = str_replace('<pun_desc>', '<div id="brddesc">'.$pun_config['o_board_
 $links = array();
 
 // Index should always be displayed
-$links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang_common['Index'].'</a></li>';
+$links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang['Index'].'</a></li>';
 
 if ($pun_user['g_read_board'] == '1' && $pun_user['g_view_users'] == '1')
-	$links[] = '<li id="navuserlist"'.((FORUM_ACTIVE_PAGE == 'userlist') ? ' class="active"' : '').'><a href="userlist.php">'.$lang_common['User list'].'</a></li>';
+	$links[] = '<li id="navuserlist"'.((FORUM_ACTIVE_PAGE == 'userlist') ? ' class="active"' : '').'><a href="userlist.php">'.$lang['User list'].'</a></li>';
 
 if ($pun_config['o_rules'] == '1' && (!$pun_user['is_guest'] || $pun_user['g_read_board'] == '1' || $pun_config['o_regs_allow'] == '1'))
-	$links[] = '<li id="navrules"'.((FORUM_ACTIVE_PAGE == 'rules') ? ' class="active"' : '').'><a href="misc.php?action=rules">'.$lang_common['Rules'].'</a></li>';
+	$links[] = '<li id="navrules"'.((FORUM_ACTIVE_PAGE == 'rules') ? ' class="active"' : '').'><a href="misc.php?action=rules">'.$lang['Rules'].'</a></li>';
 
 if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
-	$links[] = '<li id="navsearch"'.((FORUM_ACTIVE_PAGE == 'search') ? ' class="active"' : '').'><a href="search.php">'.$lang_common['Search'].'</a></li>';
+	$links[] = '<li id="navsearch"'.((FORUM_ACTIVE_PAGE == 'search') ? ' class="active"' : '').'><a href="search.php">'.$lang['Search'].'</a></li>';
 
 // Are there any additional navlinks we should insert into the array before imploding it?
 if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != '')
@@ -201,21 +201,21 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != 
 // The user menu
 if ($pun_user['is_guest'])
 {
-	$usermenu[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang_common['Register'].'</a></li>';
-	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang_common['Login'].'</a></li>';
+	$usermenu[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>';
+	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang['Login'].'</a></li>';
 } else {
-	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang_common['Welcome'].', '.(pun_htmlspecialchars($pun_user['username'])).'<b class="caret"></b></a>';
+	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang['Welcome'].', '.(pun_htmlspecialchars($pun_user['username'])).'<b class="caret"></b></a>';
 	$usermenu[] = '<ul class="dropdown-menu">';
-	$usermenu[] = '<li><a href="profile.php?id='.$pun_user['id'].'">'.$lang_common['Profile'].'</a></li>';
-	$usermenu[] = '<li><a href="help.php">'.$lang_common['Help'].'</a></li>';
+	$usermenu[] = '<li><a href="profile.php?id='.$pun_user['id'].'">'.$lang['Profile'].'</a></li>';
+	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';
 	$usermenu[] = '<li class="divider"></li>';
 	if ($pun_user['is_admmod']) {
-		$usermenu[] = '<li><a href="backstage/">'.$lang_common['Backstage'].'</a></li>';
-		$usermenu[] = '<li><a href="http://modernbb.be">'.$lang_common['Support'].'</a></li>';
-		$usermenu[] = '<li><a href="backstage/about.php">'.$lang_common['About'].'</a></li>';
+		$usermenu[] = '<li><a href="backstage/">'.$lang['Backstage'].'</a></li>';
+		$usermenu[] = '<li><a href="http://modernbb.be">'.$lang['Support'].'</a></li>';
+		$usermenu[] = '<li><a href="backstage/about.php">'.$lang['About'].'</a></li>';
 		$usermenu[] = '<li class="divider"></li>';
 	}
-	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang_common['Logout'].'</a></li>';
+	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
 	$usermenu[] = '</ul>';
 }
 
@@ -267,25 +267,25 @@ if (!$pun_user['is_guest'])
 			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
 
 			if ($db->result($result_header))
-				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.$lang_common['New reports'].'</a></strong></span></li>';
+				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.$lang['New reports'].'</a></strong></span></li>';
 		}
 
 		if ($pun_config['o_maintenance'] == '1')
-			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/options.php#maintenance">'.$lang_common['Maintenance mode enabled'].'</a></strong></span></li>';
+			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/options.php#maintenance">'.$lang['Maintenance mode enabled'].'</a></strong></span></li>';
 	}
 
 	if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
 	{
-		$page_topicsearches[] = '<a href="search.php?action=show_replies" title="'.$lang_common['Show posted topics'].'">'.$lang_common['Posted topics'].'</a>';
-		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang_common['Show new posts'].'">'.$lang_common['New posts header'].'</a>';
+		$page_topicsearches[] = '<a href="search.php?action=show_replies" title="'.$lang['Show posted topics'].'">'.$lang['Posted topics'].'</a>';
+		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new posts'].'">'.$lang['New posts header'].'</a>';
 	}
 }
 
 // Quick searches
 if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
 {
-	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang_common['Show active topics'].'">'.$lang_common['Active topics'].'</a>';
-	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang_common['Show unanswered topics'].'">'.$lang_common['Unanswered topics'].'</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">'.$lang['Active topics'].'</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">'.$lang['Unanswered topics'].'</a>';
 }
 
 

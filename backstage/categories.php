@@ -18,19 +18,19 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 // Add a new category
 if (isset($_POST['add_cat']))
 {
 	$new_cat_name = pun_trim($_POST['new_cat_name']);
 	if ($new_cat_name == '')
-		message($lang_back['Must enter name message']);
+		message($lang['Must enter name message']);
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
-	redirect('backstage/categories.php', $lang_back['Category added redirect']);
+	redirect('backstage/categories.php', $lang['Category added redirect']);
 }
 
 // Delete a category
@@ -38,7 +38,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 {
 	$cat_to_delete = intval($_POST['cat_to_delete']);
 	if ($cat_to_delete < 1)
-		message($lang_common['Bad request'], false, '404 Not Found');
+		message($lang['Bad request'], false, '404 Not Found');
 
 	if (isset($_POST['del_cat_comply'])) // Delete a category with all forums and posts
 	{
@@ -79,28 +79,28 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		generate_quickjump_cache();
 
-		redirect('backstage/categories.php', $lang_back['Category deleted redirect']);
+		redirect('backstage/categories.php', $lang['Category deleted redirect']);
 	}
 	else // If the user hasn't confirmed the delete
 	{
 		$result = $db->query('SELECT cat_name FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to fetch category info', __FILE__, __LINE__, $db->error());
 		$cat_name = $db->result($result);
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Categories']);
+		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Categories']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('categories');
 
 ?>
-<h2><?php echo $lang_back['Confirm delete cat head'] ?></h2>
+<h2><?php echo $lang['Confirm delete cat head'] ?></h2>
 <form class="alert alert-danger" method="post" action="categories.php">
     <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
     <fieldset>
-        <p><?php printf($lang_back['Confirm delete cat info'], pun_htmlspecialchars($cat_name)) ?></p>
-        <p class="warntext"><?php echo $lang_back['Delete category warn'] ?></p>
+        <p><?php printf($lang['Confirm delete cat info'], pun_htmlspecialchars($cat_name)) ?></p>
+        <p class="warntext"><?php echo $lang['Delete category warn'] ?></p>
     </fieldset>
     <p class="control-group">
-        <input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang_back['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang_back['Go back'] ?></a>
+        <input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
     </p>
 </form>
 <?php
@@ -113,7 +113,7 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 {
 	$categories = $_POST['cat'];
 	if (empty($categories))
-		message($lang_common['Bad request'], false, '404 Not Found');
+		message($lang['Bad request'], false, '404 Not Found');
 
 	foreach ($categories as $cat_id => $cur_cat)
 	{
@@ -121,10 +121,10 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 		$cur_cat['order'] = pun_trim($cur_cat['order']);
 
 		if ($cur_cat['name'] == '')
-			message($lang_back['Must enter name message']);
+			message($lang['Must enter name message']);
 
 		if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order']))
-			message($lang_back['Must enter integer message']);
+			message($lang['Must enter integer message']);
 
 		$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
 	}
@@ -135,7 +135,7 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 
 	generate_quickjump_cache();
 
-	redirect('backstage/categories.php', $lang_back['Categories updated redirect']);
+	redirect('backstage/categories.php', $lang['Categories updated redirect']);
 }
 
 // Generate an array with all categories
@@ -145,23 +145,23 @@ $num_cats = $db->num_rows($result);
 for ($i = 0; $i < $num_cats; ++$i)
 	$cat_list[] = $db->fetch_assoc($result);
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Categories']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Categories']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('categories');
 
 ?>
-<h2><?php echo $lang_back['Categories'] ?></h2>
+<h2><?php echo $lang['Categories'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Add categories head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Add categories head'] ?></h3>
     </div>
     <div class="panel-body">
         <form method="post" action="categories.php">
             <fieldset>
                 <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
-                <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang_back['Add new submit'] ?>" tabindex="2" />
-                <br /><span class="help-block"><?php printf($lang_back['Add category help'], '<a href="forums.php">'.$lang_back['Forums'].'</a>') ?></span>
+                <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add new submit'] ?>" tabindex="2" />
+                <br /><span class="help-block"><?php printf($lang['Add category help'], '<a href="forums.php">'.$lang['Forums'].'</a>') ?></span>
             </fieldset>
         </form>
     </div>
@@ -169,7 +169,7 @@ require FORUM_ROOT.'backstage/header.php';
 <?php if ($num_cats): ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Delete categories head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Delete categories head'] ?></h3>
     </div>
     <div class="panel-body">
         <form method="post" action="categories.php">
@@ -180,8 +180,8 @@ require FORUM_ROOT.'backstage/header.php';
 					echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 ?>
                 </select>
-                <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang_back['Delete'] ?>" tabindex="4" />
-                <br /><span class="help-block"><?php echo $lang_back['Delete category help'] ?></span>
+                <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang['Delete'] ?>" tabindex="4" />
+                <br /><span class="help-block"><?php echo $lang['Delete category help'] ?></span>
             </fieldset>
         </form>
     </div>
@@ -190,7 +190,7 @@ require FORUM_ROOT.'backstage/header.php';
 <?php if ($num_cats): ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang_back['Update positions'] ?>" /></span></h3>
+        <h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
     </div>
     <div class="panel-body">
         <form method="post" action="categories.php">
@@ -198,8 +198,8 @@ require FORUM_ROOT.'backstage/header.php';
                 <table class="table">
                     <thead>
                         <tr>
-                            <th><?php echo $lang_back['Category name label'] ?></th>
-                            <th><?php echo $lang_back['Category position label'] ?></th>
+                            <th><?php echo $lang['Category name label'] ?></th>
+                            <th><?php echo $lang['Category position label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>

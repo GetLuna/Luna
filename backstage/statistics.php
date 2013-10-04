@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the backstage.php language file
-require FORUM_ROOT.'lang/'.$admin_language.'/backstage.php';
+// Load the language file
+require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -29,7 +29,7 @@ if ($action == 'phpinfo' && $pun_user['g_id'] == FORUM_ADMIN)
 {
 	// Is phpinfo() a disabled function?
 	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
-		message($lang_back['PHPinfo disabled message']);
+		message($lang['PHPinfo disabled message']);
 
 	phpinfo();
 	exit;
@@ -53,12 +53,12 @@ if (@file_exists('/proc/loadavg') && is_readable('/proc/loadavg'))
 		$load_averages = '';
 
 	$load_averages = @explode(' ', $load_averages);
-	$server_load = isset($load_averages[2]) ? $load_averages[0].' '.$load_averages[1].' '.$load_averages[2] : $lang_back['Not available'];
+	$server_load = isset($load_averages[2]) ? $load_averages[0].' '.$load_averages[1].' '.$load_averages[2] : $lang['Not available'];
 }
 else if (!in_array(PHP_OS, array('WINNT', 'WIN32')) && preg_match('%averages?: ([0-9\.]+),?\s+([0-9\.]+),?\s+([0-9\.]+)%i', @exec('uptime'), $load_averages))
 	$server_load = $load_averages[1].' '.$load_averages[2].' '.$load_averages[3];
 else
-	$server_load = $lang_back['Not available'];
+	$server_load = $lang['Not available'];
 
 
 // Get number of current visitors
@@ -85,22 +85,22 @@ if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' ||
 
 // Check for the existence of various PHP opcode caches/optimizers
 if (function_exists('mmcache'))
-	$php_accelerator = '<a href="http://'.$lang_back['Turck MMCache link'].'">'.$lang_back['Turck MMCache'].'</a>';
+	$php_accelerator = '<a href="http://'.$lang['Turck MMCache link'].'">'.$lang['Turck MMCache'].'</a>';
 else if (isset($_PHPA))
-	$php_accelerator = '<a href="http://'.$lang_back['ionCube PHP Accelerator link'].'">'.$lang_back['ionCube PHP Accelerator'].'</a>';
+	$php_accelerator = '<a href="http://'.$lang['ionCube PHP Accelerator link'].'">'.$lang['ionCube PHP Accelerator'].'</a>';
 else if (ini_get('apc.enabled'))
-	$php_accelerator ='<a href="http://'.$lang_back['Alternative PHP Cache (APC) link'].'">'.$lang_back['Alternative PHP Cache (APC)'].'</a>';
+	$php_accelerator ='<a href="http://'.$lang['Alternative PHP Cache (APC) link'].'">'.$lang['Alternative PHP Cache (APC)'].'</a>';
 else if (ini_get('zend_optimizer.optimization_level'))
-	$php_accelerator = '<a href="http://'.$lang_back['Zend Optimizer link'].'">'.$lang_back['Zend Optimizer'].'</a>';
+	$php_accelerator = '<a href="http://'.$lang['Zend Optimizer link'].'">'.$lang['Zend Optimizer'].'</a>';
 else if (ini_get('eaccelerator.enable'))
-	$php_accelerator = '<a href="http://'.$lang_back['eAccelerator link'].'">'.$lang_back['eAccelerator'].'</a>';
+	$php_accelerator = '<a href="http://'.$lang['eAccelerator link'].'">'.$lang['eAccelerator'].'</a>';
 else if (ini_get('xcache.cacher'))
-	$php_accelerator = '<a href="http://'.$lang_back['XCache link'].'">'.$lang_back['XCache'].'</a>';
+	$php_accelerator = '<a href="http://'.$lang['XCache link'].'">'.$lang['XCache'].'</a>';
 else
-	$php_accelerator = $lang_back['NA'];
+	$php_accelerator = $lang['NA'];
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_back['Admin'], $lang_back['Server statistics']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Server statistics']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('stats');
@@ -108,30 +108,30 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang_back['Server statistics head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Server statistics head'] ?></h3>
     </div>
 	<div class="panel-body">
         <table class="table">
             <tr>
-                <th><?php echo $lang_back['Server load label'] ?></th>
-                <td><?php printf($lang_back['Server load data']."\n", $server_load, $num_online) ?></td>
+                <th><?php echo $lang['Server load label'] ?></th>
+                <td><?php printf($lang['Server load data']."\n", $server_load, $num_online) ?></td>
             </tr>
             <tr>
                 <?php if ($pun_user['g_id'] == FORUM_ADMIN): ?>
-                <th><?php echo $lang_back['Environment label'] ?></th>
+                <th><?php echo $lang['Environment label'] ?></th>
                 <td>
-                    <?php printf($lang_back['Environment data OS'], PHP_OS) ?><br />
-                    <?php printf($lang_back['Environment data version'], phpversion(), '<a href="statistics.php?action=phpinfo">'.$lang_back['Show info'].'</a>') ?><br />
-                    <?php printf($lang_back['Environment data acc']."\n", $php_accelerator) ?>
+                    <?php printf($lang['Environment data OS'], PHP_OS) ?><br />
+                    <?php printf($lang['Environment data version'], phpversion(), '<a href="statistics.php?action=phpinfo">'.$lang['Show info'].'</a>') ?><br />
+                    <?php printf($lang['Environment data acc']."\n", $php_accelerator) ?>
                 </td>
             </tr>
             <tr>
-                <th><?php echo $lang_back['Database label'] ?></th>
+                <th><?php echo $lang['Database label'] ?></th>
                 <td>
                     <?php echo implode(' ', $db->get_version())."\n" ?>
                     <?php if (isset($total_records) && isset($total_size)): ?>
-                    <br /><?php printf($lang_back['Database data rows']."\n", forum_number_format($total_records)) ?>
-                    <br /><?php printf($lang_back['Database data size']."\n", $total_size) ?>
+                    <br /><?php printf($lang['Database data rows']."\n", forum_number_format($total_records)) ?>
+                    <br /><?php printf($lang['Database data size']."\n", $total_size) ?>
                     <?php endif; ?>
                 </td>
                 <?php endif; ?>
