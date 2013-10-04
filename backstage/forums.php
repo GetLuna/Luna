@@ -190,6 +190,7 @@ else if (isset($_GET['edit_forum']))
 	generate_admin_menu('forums');
 
 ?>
+<h2><?php echo $lang['Forum settings'] ?></h2>
 <form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -233,10 +234,12 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'
                             </select>
                         </td>
                     </tr>
+                    <?php if (($cur_forum['num_topics']) == '0') { ?>
                     <tr>
                         <th><?php echo $lang['Redirect label'] ?></th>
                         <td><?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?></td>
                     </tr>
+                    <?php }; ?>
                 </table>
             </fieldset>
         </div>

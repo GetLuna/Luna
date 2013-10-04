@@ -1756,6 +1756,7 @@ $lang = array(
 'Dashboard'				=>	'Backstage',
 'Content'				=>	'Content',
 'Forums'				=>	'Forums',
+'Forum settings'		=>	'Forum settings',
 'Categories'			=>	'Categories',
 'Censoring'				=>	'Censoring',
 'Reports'				=>	'Reports',
