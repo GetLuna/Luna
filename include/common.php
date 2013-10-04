@@ -189,7 +189,7 @@ update_users_online();
 
 // Check to see if we logged in without a cookie being set
 if ($pun_user['is_guest'] && isset($_GET['login']))
-	message($lang_common['No cookie']);
+	message($lang['No cookie']);
 
 // The maximum size of a post, in bytes, since the field is now MEDIUMTEXT this allows ~16MB but lets cap at 1MB...
 if (!defined('FORUM_MAX_POSTSIZE'))
