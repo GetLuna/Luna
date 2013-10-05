@@ -187,6 +187,9 @@ if ($pun_config['o_rules'] == '1' && (!$pun_user['is_guest'] || $pun_user['g_rea
 if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
 	$links[] = '<li id="navsearch"'.((FORUM_ACTIVE_PAGE == 'search') ? ' class="active"' : '').'><a href="search.php">'.$lang['Search'].'</a></li>';
 
+if ($pun_user['is_admmod'])
+	$links[] = '<li id="navadmin"'.((FORUM_ACTIVE_PAGE == 'admin') ? ' class="active"' : '').'><a href="backstage/index.php">'.$lang['Backstage'].'</a></li>';
+
 // Are there any additional navlinks we should insert into the array before imploding it?
 if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != '')
 {
@@ -210,7 +213,6 @@ if ($pun_user['is_guest'])
 	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';
 	$usermenu[] = '<li class="divider"></li>';
 	if ($pun_user['is_admmod']) {
-		$usermenu[] = '<li><a href="backstage/">'.$lang['Backstage'].'</a></li>';
 		$usermenu[] = '<li><a href="http://modernbb.be">'.$lang['Support'].'</a></li>';
 		$usermenu[] = '<li><a href="backstage/about.php">'.$lang['About'].'</a></li>';
 		$usermenu[] = '<li class="divider"></li>';
