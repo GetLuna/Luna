@@ -311,7 +311,7 @@ $lang = array(
 
 /////////////////////////////////////////////////// Language for updating ///////////////////////////////////////////////////
 
-'Update'						=>	'Update ModernBB',
+'Update ModernBB'				=>	'Update ModernBB',
 'Database update info'			=>	'You\'re ready to update ModernBB. To perform the database update, hit "Start update" to start the update.',
 'Maintenance'					=>	'Maintenance',
 'Next'							=>	'Next',

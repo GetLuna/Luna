@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.1-beta');
 
-define('UPDATE_TO_DB_REVISION', 38);
+define('UPDATE_TO_DB_REVISION', 39);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 5);
 
@@ -301,7 +301,7 @@ if (empty($stage))
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>ModernBB &middot; <?php echo $lang['Update'] ?></title>
+		<title>ModernBB &middot; <?php echo $lang['Update ModernBB'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
@@ -310,7 +310,7 @@ if (empty($stage))
 	<body onload="document.getElementById('install');document.getElementById('install').start.disabled=false;">
 		<!-- Content start -->
         <form class="form" id="install" method="post" action="db_update.php">
-            <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
+            <h1 class="form-heading"><?php echo $lang['Update ModernBB'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
                 <p><?php echo $lang['Database update info'] ?></p>
@@ -714,7 +714,7 @@ switch ($stage)
 <html lang="en">
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang['Update'] ?></title>
+        <title><?php echo $lang['Update ModernBB'] ?></title>
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="style/<?php echo $default_style ?>.css" type="text/css" rel="stylesheet">
     </head>
@@ -936,17 +936,23 @@ foreach ($errors[$id] as $cur_error)
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title><?php echo $lang['Update'] ?></title>
+		<title><?php echo $lang['Update ModernBB'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="style/Randomness.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
-        <div class="form">
-            <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
-            <p><?php printf($lang['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang['go to index'])) ?></p>
-		</div>
+    	<div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $lang['Update ModernBB'] ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p><?php printf($lang['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang['go to index'])) ?></p>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>
 <?php
