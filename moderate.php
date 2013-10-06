@@ -349,7 +349,7 @@ if (isset($_GET['tid']))
             <td class="col-xs-10 post-content">
                 <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
                 <div class="postmsg">
-                    <?php echo $lang['Message'] ?>
+                    <?php echo $cur_post['message']."\n" ?>
                     <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
                 </div>
             </td>
