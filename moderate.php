@@ -27,7 +27,7 @@ if (isset($_GET['get_host']))
 	{
 		$get_host = intval($_GET['get_host']);
 		if ($get_host < 1)
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		$result = $db->query('SELECT poster_ip FROM '.$db->prefix.'posts WHERE id='.$get_host) or error('Unable to fetch post IP address', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
@@ -56,11 +56,7 @@ if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] == '0' || !arr
 // Get topic/forum tracking data
 if (!$pun_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
-
-// Load the misc.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/misc.php';
-
-
+	
 // All other topic moderation features require a topic ID in GET
 if (isset($_GET['tid']))
 {
@@ -87,14 +83,14 @@ if (isset($_GET['tid']))
 			confirm_referrer('moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
-				message($lang_common['Bad request'], false, '404 Not Found');
+				message($lang_common['Bad request']);
 
 			// Verify that the post IDs are valid
 			$admins_sql = ($pun_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
-				message($lang_common['Bad request'], false, '404 Not Found');
+				message($lang_common['Bad request']);
 
 			// Delete the posts
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
@@ -155,11 +151,11 @@ if (isset($_GET['tid']))
 			confirm_referrer('moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
-				message($lang_common['Bad request'], false, '404 Not Found');
+				message($lang_common['Bad request']);
 
 			$move_to_forum = isset($_POST['move_to_forum']) ? intval($_POST['move_to_forum']) : 0;
 			if ($move_to_forum < 1)
-				message($lang_common['Bad request'], false, '404 Not Found');
+				message($lang_common['Bad request']);
 
 			// How many posts did we just split off?
 			$num_posts_splitted = substr_count($posts, ',') + 1;
@@ -167,12 +163,12 @@ if (isset($_GET['tid']))
 			// Verify that the post IDs are valid
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result) != $num_posts_splitted)
-				message($lang_common['Bad request'], false, '404 Not Found');
+				message($lang_common['Bad request']);
 
 			// Verify that the move to forum ID is valid
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$pun_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE f.redirect_url IS NULL AND (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
-				message($lang_common['Bad request'], false, '404 Not Found');
+				message($lang_common['Bad request']);
 
 			// Load the post.php language file
 			require FORUM_ROOT.'lang/'.$pun_user['language'].'/post.php';
@@ -272,9 +268,6 @@ if (isset($_GET['tid']))
 
 	// Show the moderate posts view
 
-	// Load the viewtopic.php language file
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/topic.php';
-
 	// Used to disable the Move and Delete buttons if there are no replies to this topic
 	$button_status = ($cur_topic['num_replies'] == 0) ? ' disabled="disabled"' : '';
 
@@ -298,19 +291,14 @@ if (isset($_GET['tid']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_front['Moderate'] ?></strong></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-		</div>
-		<div class="clearer"></div>
-	</div>
+<ul class="breadcrumb">
+	<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+	<li class="active"><?php echo $lang_front['Moderate'] ?></li>
+</ul>
+<div class="pagepost">
+    <p><?php echo $paging_links ?></p>
 </div>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
@@ -360,33 +348,28 @@ if (isset($_GET['tid']))
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
 ?>
-
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
-	<h2><span><span class="conr">#<?php echo ($start_from + $post_count) ?></span> <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<div class="postbody">
-				<div class="postleft">
-					<dl>
-						<dt><strong><?php echo $poster ?></strong></dt>
-						<dd class="usertitle"><strong><?php echo $user_title ?></strong></dd>
-					</dl>
-				</div>
-				<div class="postright">
-					<h3 class="nosize"><?php echo $lang_common['Message'] ?></h3>
-					<div class="postmsg">
-						<?php echo $cur_post['message']."\n" ?>
-<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="inbox">
-			<div class="postfoot clearb">
-				<div class="postfootright"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang_front['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang_front['Cannot select first'].'</p>' ?></div>
-			</div>
-		</div>
-	</div>
+	<table class="table postview">
+        <tr>
+            <td class="col-xs-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
+                <dd class="usertitle"><strong><?php echo $poster ?><br /><?php echo $user_title ?></strong></dd>
+            </td>
+            <td class="col-xs-10 post-content">
+                <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
+                <div class="postmsg">
+                    <?php echo $lang_common['Message'] ?>
+                    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang_topic['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
+                </div>
+            </td>
+        </tr>
+        <?php if (!$pun_user['is_guest']) { ?>
+        <tr>
+            <td colspan="2" class="postfooter" style="padding-bottom: 0;">
+                <p class="pull-right"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang_front['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang_front['Cannot select first'].'</p>' ?></p>
+            </td>
+        </tr>
+        <?php } ?>
+	</table>
 </div>
 
 <?php
@@ -394,22 +377,17 @@ if (isset($_GET['tid']))
 	}
 
 ?>
-<div class="postlinksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-			<p class="conr modbuttons"><input type="submit" name="split_posts" value="<?php echo $lang_front['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" name="delete_posts" value="<?php echo $lang_front['Delete'] ?>"<?php echo $button_status ?> /></p>
-			<div class="clearer"></div>
-		</div>
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_front['Moderate'] ?></strong></li>
-		</ul>
-		<div class="clearer"></div>
-	</div>
+<p><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang_front['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang_front['Delete'] ?>"<?php echo $button_status ?> /></p>
+
+<div class="pagepost">
+    <p><?php echo $paging_links ?></p>
 </div>
+<ul class="breadcrumb">
+	<li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li>
+	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+	<li class="active"><?php echo $lang_front['Moderate'] ?></li>
+</ul>
 </form>
 <?php
 
@@ -425,23 +403,23 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		$topics = explode(',', $_POST['topics']);
 		$move_to_forum = isset($_POST['move_to_forum']) ? intval($_POST['move_to_forum']) : 0;
 		if (empty($topics) || $move_to_forum < 1)
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		// Verify that the topic IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.implode(',',$topics).') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) != count($topics))
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		// Verify that the move to forum ID is valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$pun_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE f.redirect_url IS NULL AND (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		// Delete any redirect topics if there are any (only if we moved/copied the topic back to where it was once moved from)
 		$db->query('DELETE FROM '.$db->prefix.'topics WHERE forum_id='.$move_to_forum.' AND moved_to IN('.implode(',',$topics).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
@@ -483,7 +461,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	{
 		$topics = intval($_GET['move_topics']);
 		if ($topics < 1)
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		$action = 'single';
 	}
@@ -553,7 +531,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		$topics = explode(',', $_POST['topics']);
 		if (count($topics) < 2)
@@ -562,7 +540,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 		// Verify that the topic IDs are valid (redirect links will point to the merged topic after the merge)
 		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid.' ORDER BY id ASC') or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result) != count($topics))
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		// The topic that we are merging into is the one with the smallest ID
 		$merge_to_tid = $db->result($result);
@@ -657,7 +635,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $topics))
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		require FORUM_ROOT.'include/search_idx.php';
 
@@ -665,7 +643,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.$topics.') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) != substr_count($topics, ',') + 1)
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 			
 		// Verify that the posts are not by admins  
 		if ($pun_user['g_id'] != FORUM_ADMIN)  
@@ -756,7 +734,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
-			message($lang_common['Bad request'], false, '404 Not Found');
+			message($lang_common['Bad request']);
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
@@ -773,7 +751,7 @@ else if (isset($_GET['stick']))
 
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
-		message($lang_common['Bad request'], false, '404 Not Found');
+		message($lang_common['Bad request']);
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to stick topic', __FILE__, __LINE__, $db->error());
 
@@ -788,7 +766,7 @@ else if (isset($_GET['unstick']))
 
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)
-		message($lang_common['Bad request'], false, '404 Not Found');
+		message($lang_common['Bad request']);
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
 
@@ -810,7 +788,7 @@ $cur_forum = $db->fetch_assoc($result);
 
 // Is this a redirect forum? In that case, abort!
 if ($cur_forum['redirect_url'] != '')
-	message($lang_common['Bad request'], false, '404 Not Found');
+	message($lang_common['Bad request']);
 
 switch ($cur_forum['sort_by'])
 {
