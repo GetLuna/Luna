@@ -49,7 +49,6 @@ if (!defined('FORUM_PLUGIN_LOADED'))
 
 // Output the clearer div
 ?>
-	<div class="clearer"></div>
 </div>
 <?php
 
