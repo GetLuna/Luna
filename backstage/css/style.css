@@ -1,6 +1,6 @@
 /* Essential structure */
 html, body {
-	background: #e3e3e3;
+	background: #eeeeee;
 	font-family: Segoe UI;
 }
 
@@ -63,7 +63,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .navbar {
 	border-bottom: 6px solid #006dc2;
-	box-shadow: 0 5px 5px 0px rgba(0,0,0,0.1);
 	background: #47a9f5;
 	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
 	background-repeat: repeat-x;
