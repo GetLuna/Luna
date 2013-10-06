@@ -56,11 +56,7 @@ if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] == '0' || !arr
 // Get topic/forum tracking data
 if (!$pun_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
-
-// Load the misc.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/misc.php';
-
-
+	
 // All other topic moderation features require a topic ID in GET
 if (isset($_GET['tid']))
 {
@@ -84,8 +80,6 @@ if (isset($_GET['tid']))
 
 		if (isset($_POST['delete_posts_comply']))
 		{
-			confirm_referrer('moderate.php');
-
 			if (@preg_match('%[^0-9,]%', $posts))
 				message($lang['Bad request'], false, '404 Not Found');
 
@@ -152,8 +146,6 @@ if (isset($_GET['tid']))
 
 		if (isset($_POST['split_posts_comply']))
 		{
-			confirm_referrer('moderate.php');
-
 			if (@preg_match('%[^0-9,]%', $posts))
 				message($lang['Bad request'], false, '404 Not Found');
 
@@ -173,9 +165,6 @@ if (isset($_GET['tid']))
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$pun_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE f.redirect_url IS NULL AND (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
 				message($lang['Bad request'], false, '404 Not Found');
-
-			// Load the post.php language file
-			require FORUM_ROOT.'lang/'.$pun_user['language'].'/post.php';
 
 			// Check subject
 			$new_subject = isset($_POST['new_subject']) ? pun_trim($_POST['new_subject']) : '';
@@ -223,18 +212,17 @@ if (isset($_GET['tid']))
 		require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><span><?php echo $lang['Split posts'] ?></span></h2>
-	<div class="box">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang['Split posts'] ?></h3>
+    </div>
+    <div class="panel-body">
 		<form id="subject" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang['Confirm split legend'] ?></legend>
-					<div class="infldset">
-						<input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-						<label class="required"><strong><?php echo $lang['New subject'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" name="new_subject" size="80" maxlength="70" /><br /></label>
-						<label><?php echo $lang['Move to'] ?>
-						<br /><select name="move_to_forum">
+            <fieldset>
+                <input type="hidden" class="form-control" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
+                <label class="required"><strong><?php echo $lang['New subject'] ?> </strong><input class="form-control" type="text" name="new_subject" size="80" maxlength="70" /></label>
+                <label><?php echo $lang['Move to'] ?>
+                <br /><select class="form-control" name="move_to_forum">
 <?php
 
 	$cur_category = 0;
@@ -253,14 +241,12 @@ if (isset($_GET['tid']))
 	}
 
 ?>
-							</optgroup>
-						</select>
-						<br /></label>
-						<p><?php echo $lang['Split posts comply'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+                    </optgroup>
+                </select>
+                </label>
+                <p><?php echo $lang['Split posts comply'] ?></p>
+            </fieldset>
+			<input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -271,9 +257,6 @@ if (isset($_GET['tid']))
 
 
 	// Show the moderate posts view
-
-	// Load the viewtopic.php language file
-	require FORUM_ROOT.'lang/'.$pun_user['language'].'/topic.php';
 
 	// Used to disable the Move and Delete buttons if there are no replies to this topic
 	$button_status = ($cur_topic['num_replies'] == 0) ? ' disabled="disabled"' : '';
@@ -298,19 +281,16 @@ if (isset($_GET['tid']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang['Moderate'] ?></strong></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-		</div>
-		<div class="clearer"></div>
-	</div>
+<ul class="breadcrumb">
+	<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
+	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+	<li class="active"><?php echo $lang['Moderate'] ?></li>
+</ul>
+<div class="pagepost">
+	<?php if ($num_pages < 1): ?>
+        <p><?php echo $paging_links ?></p>
+	<?php endif; ?>
 </div>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
@@ -360,33 +340,28 @@ if (isset($_GET['tid']))
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
 ?>
-
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
-	<h2><span><span class="conr">#<?php echo ($start_from + $post_count) ?></span> <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<div class="postbody">
-				<div class="postleft">
-					<dl>
-						<dt><strong><?php echo $poster ?></strong></dt>
-						<dd class="usertitle"><strong><?php echo $user_title ?></strong></dd>
-					</dl>
-				</div>
-				<div class="postright">
-					<h3 class="nosize"><?php echo $lang['Message'] ?></h3>
-					<div class="postmsg">
-						<?php echo $cur_post['message']."\n" ?>
-<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="inbox">
-			<div class="postfoot clearb">
-				<div class="postfootright"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang['Cannot select first'].'</p>' ?></div>
-			</div>
-		</div>
-	</div>
+	<table class="table postview">
+        <tr>
+            <td class="col-xs-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
+                <dd class="usertitle"><strong><?php echo $poster ?><br /><?php echo $user_title ?></strong></dd>
+            </td>
+            <td class="col-xs-10 post-content">
+                <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
+                <div class="postmsg">
+                    <?php echo $lang['Message'] ?>
+                    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
+                </div>
+            </td>
+        </tr>
+        <?php if (!$pun_user['is_guest']) { ?>
+        <tr>
+            <td colspan="2" class="postfooter" style="padding-bottom: 0;">
+                <p class="pull-right"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang['Cannot select first'].'</p>' ?></p>
+            </td>
+        </tr>
+        <?php } ?>
+	</table>
 </div>
 
 <?php
@@ -394,22 +369,19 @@ if (isset($_GET['tid']))
 	}
 
 ?>
-<div class="postlinksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-			<p class="conr modbuttons"><input type="submit" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></p>
-			<div class="clearer"></div>
-		</div>
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang['Moderate'] ?></strong></li>
-		</ul>
-		<div class="clearer"></div>
-	</div>
+<p><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></p>
+
+<div class="pagepost">
+	<?php if ($num_pages < 1): ?>
+        <p><?php echo $paging_links ?></p>
+	<?php endif; ?>
 </div>
+<ul class="breadcrumb">
+	<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
+	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+	<li class="active"><?php echo $lang['Moderate'] ?></li>
+</ul>
 </form>
 <?php
 
@@ -422,8 +394,6 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 {
 	if (isset($_POST['move_topics_to']))
 	{
-		confirm_referrer('moderate.php');
-
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -497,17 +467,16 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><span><?php echo ($action == 'single') ? $lang['Move topic'] : $lang['Move topics'] ?></span></h2>
-	<div class="box">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo ($action == 'single') ? $lang['Move topic'] : $lang['Move topics'] ?></h3>
+    </div>
+    <div class="panel-body">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-			<div class="inform">
 			<input type="hidden" name="topics" value="<?php echo $topics ?>" />
 				<fieldset>
-					<legend><?php echo $lang['Move legend'] ?></legend>
-					<div class="infldset">
-						<label><?php echo $lang['Move to'] ?>
-						<br /><select name="move_to_forum">
+                    <label><?php echo $lang['Move to'] ?>
+                    <br /><select class="form-control" name="move_to_forum">
 <?php
 
 	$cur_category = 0;
@@ -527,16 +496,12 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	}
 
 ?>
-							</optgroup>
-						</select>
-						<br /></label>
-						<div class="rbox">
-							<label><input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /><?php echo $lang['Leave redirect'] ?><br /></label>
-						</div>
-					</div>
+                        </optgroup>
+                    </select>
+                    </label>
+                    <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /> <?php echo $lang['Leave redirect'] ?><br />
 				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+			<p><input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>
@@ -550,8 +515,6 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 {
 	if (isset($_POST['merge_topics_comply']))
 	{
-		confirm_referrer('moderate.php');
-
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -621,22 +584,17 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><span><?php echo $lang['Merge topics'] ?></span></h2>
-	<div class="box">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang['Merge topics'] ?></h3>
+    </div>
+    <div class="panel-body">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang['Confirm merge legend'] ?></legend>
-					<div class="infldset">
-						<div class="rbox">
-							<label><input type="checkbox" name="with_redirect" value="1" /><?php echo $lang['Leave redirect'] ?><br /></label>
-						</div>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="merge_topics_comply" value="<?php echo $lang['Merge'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+            <fieldset>
+                <input type="checkbox" name="with_redirect" value="1" /> <?php echo $lang['Leave redirect'] ?><br /><br />
+            </fieldset>
+			<input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php echo $lang['Merge'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -654,8 +612,6 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 	if (isset($_POST['delete_topics_comply']))
 	{
-		confirm_referrer('moderate.php');
-
 		if (@preg_match('%[^0-9,]%', $topics))
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -707,20 +663,17 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><span><?php echo $lang['Delete topics'] ?></span></h2>
-	<div class="box">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang['Delete topics'] ?></h3>
+    </div>
+    <div class="panel-body">
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang['Confirm delete legend'] ?></legend>
-					<div class="infldset">
-						<p><?php echo $lang['Delete topics comply'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /><a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+            <fieldset>
+                <p><?php echo $lang['Delete topics comply'] ?></p>
+            </fieldset>
+			<input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -738,8 +691,6 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 	// There could be an array of topic IDs in $_POST
 	if (isset($_POST['open']) || isset($_POST['close']))
 	{
-		confirm_referrer('moderate.php');
-
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
 		if (empty($topics))
 			message($lang['No topics selected']);
@@ -752,8 +703,6 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 	// Or just one in $_GET
 	else
 	{
-		confirm_referrer('viewtopic.php');
-
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
 			message($lang['Bad request'], false, '404 Not Found');
@@ -769,8 +718,6 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 // Stick a topic
 else if (isset($_GET['stick']))
 {
-	confirm_referrer('viewtopic.php');
-
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
 		message($lang['Bad request'], false, '404 Not Found');
@@ -784,8 +731,6 @@ else if (isset($_GET['stick']))
 // Unstick a topic
 else if (isset($_GET['unstick']))
 {
-	confirm_referrer('viewtopic.php');
-
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)
 		message($lang['Bad request'], false, '404 Not Found');
@@ -797,9 +742,6 @@ else if (isset($_GET['unstick']))
 
 
 // No specific forum moderation action was specified in the query string, so we'll display the moderator forum
-
-// Load the viewforum.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/forum.php';
 
 // Fetch some info about the forum
 $result = $db->query('SELECT f.forum_name, f.redirect_url, f.num_topics, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
@@ -842,36 +784,29 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang['Moderate'] ?></strong></li>
-		</ul>
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-		</div>
-		<div class="clearer"></div>
-	</div>
+<div class="pagepost">
+	<?php if ($num_pages < 1): ?>
+        <p><?php echo $paging_links ?></p>
+	<?php endif; ?>
 </div>
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
+    <li class="active"><?php echo $lang['Moderate'] ?></li>
+</ul>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-<div id="vf" class="blocktable">
-	<h2><span><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang['Topic'] ?></th>
-					<th class="tc2" scope="col"><?php echo $lang['Replies'] ?></th>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<th class="tc3" scope="col"><?php echo $lang['Views'] ?></th>
-<?php endif; ?>					<th class="tcr"><?php echo $lang['Last post'] ?></th>
-					<th class="tcmod" scope="col"><?php echo $lang['Select'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+    
+<div class="forum-box">
+    <div class="row forum-header">
+        <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
+        <div class="col-xs-1"><?php echo $lang['Replies'] ?></div>
+        <?php if ($pun_config['o_topic_views'] == '1'): ?>
+            <div class="col-xs-1"><?php echo $lang['Views'] ?></div>
+        <?php endif; ?>
+        <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
+		<div class="col-xs-1"><?php echo $lang['Select'] ?></div>
+    </div>
 <?php
 
 
@@ -961,20 +896,20 @@ if ($db->num_rows($result))
 		}
 
 ?>
-				<tr class="<?php echo $item_status ?>">
-					<td class="tcl">
-						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
-						<div class="tclcon">
-							<div>
-								<?php echo $subject."\n" ?>
-							</div>
-						</div>
-					</td>
-					<td class="tc2"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></td>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<td class="tc3"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></td>
-<?php endif; ?>					<td class="tcr"><?php echo $last_post ?></td>
-					<td class="tcmod"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></td>
-				</tr>
+    <div class="row topic-row <?php echo $item_status ?>">
+        <div class="col-xs-6">
+            <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
+            <div class="tclcon">
+                <div>
+                    <?php echo $subject."\n" ?>
+                </div>
+            </div>
+        </div>
+					<div class="col-xs-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+<?php endif; ?>					<div class="col-xs-3"><?php echo $last_post ?></div>
+					<div class="col-xs-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
+    </div>
 <?php
 
 	}
@@ -987,26 +922,19 @@ else
 }
 
 ?>
-			</tbody>
-			</table>
-		</div>
-	</div>
 </div>
 
-<div class="linksb">
-	<div class="inbox crumbsplus">
-		<div class="pagepost">
-			<p class="pagelink conl"><?php echo $paging_links ?></p>
-			<p class="conr modbuttons"><input type="submit" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /> <input type="submit" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /> <input type="submit" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /> <input type="submit" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></p>
-			<div class="clearer"></div>
-		</div>
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang['Moderate'] ?></strong></li>
-		</ul>
-		<div class="clearer"></div>
-	</div>
+<br /><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /><br /><br />
+
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
+    <li><?php echo $lang['Moderate'] ?></li>
+</ul>
+<div class="pagepost">
+	<?php if ($num_pages < 1): ?>
+        <p><?php echo $paging_links ?></p>
+	<?php endif; ?>
 </div>
 </form>
 <?php
