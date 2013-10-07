@@ -304,7 +304,7 @@ if (isset($_GET['show_users']))
 			{
 				$user_title = get_title($user_data[$cur_poster['poster_id']]);
 
-			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results view IP link'].'</a> | <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results show posts link'].'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results view IP link'].'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Posts table'].'</a>';
 ?>
                     <tr>
                         <td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
@@ -925,7 +925,7 @@ else if (isset($_GET['find_user']))
 			if (($user_data['g_id'] == '' || $user_data['g_id'] == FORUM_UNVERIFIED) && $user_title != $lang['Banned'])
 				$user_title = '<span class="warntext">'.$lang['Not verified'].'</span>';
 
-			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang['Results view IP link'].'</a> | <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang['Results show posts link'].'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang['Results view IP link'].'</a> &middot <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang['Posts table'].'</a>';
 
 ?>
                 <tr>
