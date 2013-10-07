@@ -16,9 +16,8 @@ if ($pun_user['g_read_board'] == '0')
 else if ($pun_user['g_view_users'] == '0')
 	message($lang['No permission'], false, '403 Forbidden');
 
-// Load the frontend.php language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/frontend.php';
-
+// Load the language file
+require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
 
 // Determine if we are allowed to view post counts
 $show_post_count = ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod']) ? true : false;
@@ -153,8 +152,8 @@ while ($cur_group = $db->fetch_assoc($result))
                 <tr>
                     <th><?php echo $lang['Username'] ?></th>
                     <th><?php echo $lang['Title'] ?></th>
-<?php if ($show_post_count): ?>                <th><?php echo $lang['Posts'] ?></th>
-<?php endif; ?>                <th><?php echo $lang['Registered'] ?></th>
+<?php if ($show_post_count): ?>                <th><?php echo $lang['Posts table'] ?></th>
+<?php endif; ?>                <th><?php echo $lang['Registered table'] ?></th>
                 </tr>
             </thead>
             <tbody>
