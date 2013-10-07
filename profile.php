@@ -124,11 +124,11 @@ if ($action == 'change_pass')
 <form id="change_pass" method="post" action="profile.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
     <input type="hidden" name="form_sent" value="1" />
     <fieldset>
-    	<?php if (!$pun_user['is_admmod']): ?>        <label class="required"><strong><?php echo $lang['Old pass'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
+    	<?php if (!$pun_user['is_admmod']): ?>        <label><strong><?php echo $lang['Old pass'] ?></strong><br />
         <input class="form-control" type="password" name="req_old_password" size="16" /></label>
-<?php endif; ?>						<label class="conl required"><strong><?php echo $lang['New pass'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
+<?php endif; ?>						<label><strong><?php echo $lang['New pass'] ?></strong><br />
         <input class="form-control" type="password" name="req_new_password1" size="16" /></label>
-        <label class="conl required"><strong><?php echo $lang['Confirm new pass'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
+        <label><strong><?php echo $lang['Confirm new pass'] ?></strong><br />
         <input class="form-control" type="password" name="req_new_password2" size="16" /></label>
         <p class="clearb"><?php echo $lang['Pass info'] ?></p>
     </fieldset>
@@ -275,8 +275,8 @@ else if ($action == 'change_email')
     <fieldset>
         <h3><?php echo $lang['Email legend'] ?></h3>
         <input type="hidden" name="form_sent" value="1" />
-        <label class="required"><strong><?php echo $lang['New email'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" class="form-control" name="req_new_email" size="50" maxlength="80" /></label>
-        <label class="required"><strong><?php echo $lang['Password'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="password" name="req_password" size="16" /></label>
+        <label><strong><?php echo $lang['New email'] ?></strong><br /><input type="text" class="form-control" name="req_new_email" size="50" maxlength="80" /></label>
+        <label><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" name="req_password" size="16" /></label>
         <p><?php echo $lang['Email instructions'] ?></p>
     </fieldset>
     <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
@@ -397,7 +397,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
-                <label class="required"><strong><?php echo $lang['File'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input name="req_file" class="form-control" type="file" size="40" /></label>
+                <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" class="form-control" type="file" size="40" /></label>
                 <span class="help-block"><?php echo $lang['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></span>
             </fieldset>
             <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
@@ -1132,11 +1132,11 @@ else
 		if ($pun_user['is_admmod'])
 		{
 			if ($pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_mod_rename_users'] == '1')
-				$username_field = '<label class="required"><strong>'.$lang['Username'].' <span>'.$lang['Required'].'</span></strong><br /><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /></label>'."\n";
+				$username_field = '<label><strong>'.$lang['Username'].'</strong><br /><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /></label>'."\n";
 			else
 				$username_field = '<p>'.sprintf($lang['Username info'], pun_htmlspecialchars($user['username'])).'</p>'."\n";
 
-			$email_field = '<label class="required"><strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong><br /><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></p>'."\n";
+			$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></p>'."\n";
 		}
 		else
 		{
@@ -1145,7 +1145,7 @@ else
 			if ($pun_config['o_regs_verify'] == '1')
 				$email_field = '<p>'.sprintf($lang['Email info'], pun_htmlspecialchars($user['email']).' - <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
 			else
-				$email_field = '<label class="required"><strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong><br /><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" size="40" maxlength="80" /></label>'."\n";
+				$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" size="40" maxlength="80" /></label>'."\n";
 		}
 
 		$posts_field = '';
