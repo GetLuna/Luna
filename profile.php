@@ -522,10 +522,10 @@ else if (isset($_POST['ban']))
 	if ($db->num_rows($result))
 	{
 		$ban_id = $db->result($result);
-		redirect('bans.php?edit_ban='.$ban_id.'&amp;exists', $lang['Ban redirect']);
+		redirect('backstage/bans.php?edit_ban='.$ban_id.'&amp;exists', $lang['Ban redirect']);
 	}
 	else
-		redirect('bans.php?add_ban='.$id, $lang['Ban redirect']);
+		redirect('backstage/bans.php?add_ban='.$id, $lang['Ban redirect']);
 }
 
 
@@ -1799,7 +1799,7 @@ if (count($languages) > 1)
             </div>
             <div class="panel-body">
                 <fieldset>
-                    <select id="group_id" name="group_id">
+                    <select id="group_id" class="form-control" name="group_id">
 <?php
 
 				$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
