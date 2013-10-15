@@ -10,11 +10,10 @@
 // Make sure no one attempts to run this script "directly"
 if (!defined('FORUM'))
 	exit;
-	
+
 // Define line breaks in mail headers; possible values can be PHP_EOL, "\r\n", "\n" or "\r"
 if (!defined('FORUM_EOL'))
 	define('FORUM_EOL', PHP_EOL);
-
 
 require FORUM_ROOT.'include/utf8/utils/ascii.php';
 
@@ -236,7 +235,7 @@ function pun_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name 
 	$subject = encode_mail_text($subject);
 
 	$headers = 'From: '.$from.FORUM_EOL.'Date: '.gmdate('r').FORUM_EOL.'MIME-Version: 1.0'.FORUM_EOL.'Content-transfer-encoding: 8bit'.FORUM_EOL.'Content-type: text/plain; charset=utf-8'.FORUM_EOL.'X-Mailer: ModernBB Mailer';
-	
+
 	// If we specified a reply-to email, we deal with it here
 	if (!empty($reply_to_email))
 	{
@@ -289,6 +288,7 @@ function server_parse($socket, $expected_response)
 function smtp_mail($to, $subject, $message, $headers = '')
 {
 	global $pun_config;
+	static $local_host;
 
 	$recipients = explode(',', $to);
 
@@ -313,7 +313,7 @@ function smtp_mail($to, $subject, $message, $headers = '')
 
 	server_parse($socket, '220');
 
-	if ($pun_config['o_smtp_user'] != '' && $pun_config['o_smtp_pass'] != '')
+	if (!isset($local_host))
 	{
 		// Here we try to determine the *real* hostname (reverse DNS entry preferably)
 		$local_host = php_uname('n');
@@ -323,11 +323,12 @@ function smtp_mail($to, $subject, $message, $headers = '')
 		{
 			// Able to resolve IP back to name
 			if (($local_name = @gethostbyaddr($local_addr)) !== $local_addr)
-			{
 				$local_host = $local_name;
-			}
 		}
+	}
 
+	if ($pun_config['o_smtp_user'] != '' && $pun_config['o_smtp_pass'] != '')
+	{
 		fwrite($socket, 'EHLO '.$local_host."\r\n");
 		server_parse($socket, '250');
 
@@ -342,7 +343,7 @@ function smtp_mail($to, $subject, $message, $headers = '')
 	}
 	else
 	{
-		fwrite($socket, 'HELO '.$smtp_host."\r\n");
+		fwrite($socket, 'HELO '.$local_host."\r\n");
 		server_parse($socket, '250');
 	}
 
