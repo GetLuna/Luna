@@ -10,6 +10,8 @@
     	<div class="container">
             <div class="row">
                 <pun_main>
+            </div>
+            <div class="row">
                 <pun_footer>
             </div>
 		</div>
