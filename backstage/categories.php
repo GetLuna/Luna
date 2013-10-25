@@ -77,8 +77,6 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 			require FORUM_ROOT.'include/cache.php';
 
-		generate_quickjump_cache();
-
 		redirect('backstage/categories.php', $lang['Category deleted redirect']);
 	}
 	else // If the user hasn't confirmed the delete
@@ -132,8 +130,6 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 	// Regenerate the quick jump cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
-
-	generate_quickjump_cache();
 
 	redirect('backstage/categories.php', $lang['Categories updated redirect']);
 }
