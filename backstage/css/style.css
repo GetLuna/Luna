@@ -22,7 +22,7 @@ h4:first-child {
 }
 
 .container {
-	width: 960px;
+	width: 1200px;
 	margin: 65px auto 0;
 }
 
@@ -37,7 +37,7 @@ p {
 
 /* Navbar */
 .nav-inner {
-	width: 977px;
+	width: 1200px;
 	margin: 0 auto;
 }
 
@@ -51,10 +51,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  background: #47a9f5;
-  background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
-  background-repeat: repeat-x;
-  filter: none;
+	background: #47a9f5;
+	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
+	background-repeat: repeat-x;
+	filter: none;
 }
 
 .dropdown-menu {
@@ -73,7 +73,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	background-image: linear-gradient(to bottom, #0072ca, #006dc1);
 	background-repeat: repeat-x;
 	color: #fff;
-	margin-left: 0;
+	margin-left: 11px;
 	margin-right: 0;
 	text-transform: lowercase;
 	padding-left: 12px;
@@ -409,25 +409,6 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 }
 
 /* Panels */
-.index > .row {
-	width: 990px;
-	margin-left: -5px;
-}
-
-.about > .row {
-	margin-left: -5px;
-	width: 990px;
-}
-
-.about > .row .panel .row {
-	width: 960px;
-}
-
-.row {
-	margin-left: -30px;
-	width: 980px;
-}
-
 .panel {
 	border-radius: 0;
 	border: none;
@@ -454,7 +435,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 }
 
 .panel-body {
-  padding: 10px;
+	padding: 10px;
 }
 
 .row .panel .row {
@@ -466,6 +447,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 .alert, #redirect {
 	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
 	border: none;
+	margin: 0 -10px 10px -10px;
 	border-radius: 0;
 	margin-bottom: 10px;
 	background-color: #ffffff;
