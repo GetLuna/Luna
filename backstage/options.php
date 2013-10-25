@@ -186,7 +186,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-xs-2"><?php echo $lang['Board title label'] ?></th>
+                        <th class="col-lg-2"><?php echo $lang['Board title label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
                         </td>
@@ -243,7 +243,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-xs-2"><?php echo $lang['Time format label'] ?></th>
+                        <th class="col-lg-2"><?php echo $lang['Time format label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
                             <br /><span class="help-block"><?php printf($lang['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
@@ -381,7 +381,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-xs-2"><?php echo $lang['Use avatars label'] ?></th>
+                        <th class="col-lg-2"><?php echo $lang['Use avatars label'] ?></th>
                         <td>
                         	<input type="checkbox" name="form[avatars]" value="1" <?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Use avatars help'] ?>
                         </td>
@@ -426,7 +426,7 @@ generate_admin_menu('global');
             <fieldset>
                 <table class="table">
                     <tr>
-                        <th class="col-xs-2"><?php echo $lang['Allow new label'] ?></th>
+                        <th class="col-lg-2"><?php echo $lang['Allow new label'] ?></th>
                         <td>
                         	<input type="checkbox" name="form[regs_allow]" value="1" <?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Allow new help'] ?>
                         </td> 

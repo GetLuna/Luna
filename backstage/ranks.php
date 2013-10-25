@@ -116,9 +116,9 @@ require FORUM_ROOT.'backstage/header.php';
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="col-xs-4"><?php echo $lang['Rank title label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang['Minimum posts label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang['Actions label'] ?></th>
+                            <th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
+                            <th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
+                            <th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -150,9 +150,9 @@ if ($db->num_rows($result))
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="col-xs-4"><?php echo $lang['Rank title label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang['Minimum posts label'] ?></th>
-                            <th class="col-xs-4"><?php echo $lang['Actions label'] ?></th>
+                            <th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
+                            <th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
+                            <th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
                         </tr>
                     </thead>
                     <tbody>

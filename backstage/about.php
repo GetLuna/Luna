@@ -51,7 +51,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 <h2><?php echo $lang['What new'] ?> <?php echo FORUM_VERSION ?></h2>
 <div class="about">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['Headline feature 1 title'] ?></h3>
@@ -61,11 +61,11 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                         <img src="../img/backstage/headline1.png" width="997" height="215" />
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-lg-6">
                             <p><b><?php echo $lang['Headline feature 1 head 1'] ?></b><br />
                             <?php echo $lang['Headline feature 1 info 1'] ?></p>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-lg-6">
                             <p><b><?php echo $lang['Headline feature 1 head 2'] ?></b><br />
                             <?php echo $lang['Headline feature 1 info 2'] ?></p>
                         </div>
@@ -75,7 +75,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['Headline feature 2 title'] ?></h3>
@@ -87,22 +87,22 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['Other new'] ?></h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-lg-4">
                             <p><b><?php echo $lang['Minor feature 1 head'] ?></b>
                             <br /><?php echo $lang['Minor feature 1 info'] ?></p>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-lg-4">
                             <p><b><?php echo $lang['Minor feature 2 head'] ?></b>
                             <br /><?php echo $lang['Minor feature 2 info'] ?></p>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-lg-4">
                             <p><b><?php echo $lang['Minor feature 3 head'] ?></b>
                             <br /><?php echo $lang['Minor feature 3 info'] ?></p>
                         </div>

@@ -76,7 +76,7 @@ if ($pun_config['o_index_update_check'] == 1) {
 ?>
 <div class="index">
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-lg-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['Backup head'] ?></h3>
@@ -87,7 +87,7 @@ if ($pun_config['o_index_update_check'] == 1) {
                 </div>
              </div>
         </div>
-        <div class="col-xs-9">
+        <div class="col-lg-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['Reports head'] ?> - <a href="reports.php"><?php echo $lang['View all'] ?></a></h3>
@@ -143,7 +143,7 @@ else
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['About head'] ?></h3>
@@ -152,8 +152,8 @@ else
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-xs-6"><?php echo $lang['ModernBB version label'] ?></th>
-                                <th class="col-xs-6"><?php echo $lang['Server statistics label'] ?></th>
+                                <th class="col-lg-6"><?php echo $lang['ModernBB version label'] ?></th>
+                                <th class="col-lg-6"><?php echo $lang['Server statistics label'] ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -166,7 +166,7 @@ else
                 </div>
             </div>
         </div>
-        <div class="col-xs-4">
+        <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['Statistics head'] ?></h3>

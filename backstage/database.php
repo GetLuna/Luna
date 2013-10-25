@@ -665,7 +665,7 @@ require FORUM_ROOT.'backstage/header.php';
                 <p><?php echo $lang['Backup info 1'] ?></p>
                 <table class="table">
                     <tr>
-                        <th class="col-xs-2"><?php echo $lang['Backup type'] ?></th>
+                        <th class="col-lg-2"><?php echo $lang['Backup type'] ?></th>
                         <td>
                             <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang['Full'] ?></strong></label>
                             <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang['Structure only'] ?></strong></label>

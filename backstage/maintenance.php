@@ -410,7 +410,7 @@ require FORUM_ROOT.'backstage/header.php';
                 <p class="topspace"><?php printf($lang['Prune users info'], '<a href="options.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <table class="table" cellspacing="0">
                     <tr>
-                        <th class="col-xs-3"><?php echo $lang['Prune by'] ?></th>
+                        <th class="col-lg-3"><?php echo $lang['Prune by'] ?></th>
                         <td>
                             <label><input type="radio" name="prune_by" value="1" checked="checked" />&#160;<strong><?php echo $lang['Registed date'] ?></strong></label>
                             <label><input type="radio" name="prune_by" value="0" />&#160;<strong><?php echo $lang['Last login'] ?></strong></label>
