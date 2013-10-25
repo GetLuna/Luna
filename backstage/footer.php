@@ -21,7 +21,7 @@ ob_end_clean();
 ob_start();
 
 ?>
-<footer>
+<footer class="col-lg-12">
 	<p>
 		<?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a>') ?>
         <span class="pull-right"><?php echo $lang['Version'].'&nbsp;'.$pun_config['o_cur_version'] ?></span>
