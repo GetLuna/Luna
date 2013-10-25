@@ -37,23 +37,13 @@ p {
 
 /* Navbar */
 .nav-inner {
-	width: 1200px;
+	max-width: 1160px;
 	margin: 0 auto;
-}
-
-.navbar-fixed-top {
-	margin-left: -12px;
-}
-
-ul.nav li.dropdown:hover > ul.dropdown-menu{
-    display: block;    
 }
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-	background: #47a9f5;
-	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
-	background-repeat: repeat-x;
+	background: #2690e1;
 	filter: none;
 }
 
@@ -62,18 +52,13 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 }
 
 .navbar {
-	border-bottom: 6px solid #006dc2;
-	background: #47a9f5;
-	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
-	background-repeat: repeat-x;
+	border-bottom: 6px solid #0e0e0e;
+	background: #2a2a2a;
 }
 
 .navbar-brand {
-	background: #0072ca;
-	background-image: linear-gradient(to bottom, #0072ca, #006dc1);
-	background-repeat: repeat-x;
+	background: #0e0e0e;
 	color: #fff;
-	margin-left: 11px;
 	margin-right: 0;
 	text-transform: lowercase;
 	padding-left: 12px;
@@ -84,6 +69,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 .navbar-brand:focus {
 	text-decoration: none;
 	color: #fff;
+}
+
+.navbar-right {
+	padding-right: -20px;
 }
 
 .nav > li {
@@ -101,9 +90,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
 	color: #fff;
-	background: #2690e1;
-	background-image: linear-gradient(to bottom, #2690e1, #0b7bd2);
-	background-repeat: repeat-x;
+	background: #006dc2;
 }
 
 .nav .navbar-nav .pull-right {
@@ -128,16 +115,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 	height: 3px;
 	border-radius: 1px;
 	background-color: #fff;
-}
-
-.navbar-toggle .icon-bar + .icon-bar {
-	margin-top: 4px;
-}
-
-@media (min-width: 768px) {
-	.navbar-toggle {
-		display: none;
-	}
 }
 
 /* Input and forms */
@@ -423,9 +400,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 .panel-default .panel-heading {
 	border-radius: 0;
 	border: none;
-	background: #0b8ada;
-	background-image: linear-gradient(#46b8ff, #0b8ada);
-	background-repeat: repeat-x;
+	background: #131313;
 	color: #fff;
 }
 
@@ -443,13 +418,16 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	margin-left: -5px;
 }
 
+.row h2 {
+	margin-left: 5px;
+}
+
 /* Alerts and redirects */
 .alert, #redirect {
 	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
 	border: none;
-	margin: 0 -10px 10px -10px;
 	border-radius: 0;
-	margin-bottom: 10px;
+	margin: 0 5px 10px 5px;
 	background-color: #ffffff;
 	border-left: #555 5px solid;
 }
