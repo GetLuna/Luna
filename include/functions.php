@@ -1709,7 +1709,7 @@ function forum_list_langs()
 		if ($entry{0} == '.')
 			continue;
 
-		if (is_dir(FORUM_ROOT.'lang/'.$entry) && file_exists(FORUM_ROOT.'lang/'.$entry.'/common.php'))
+		if (is_dir(FORUM_ROOT.'lang/'.$entry) && file_exists(FORUM_ROOT.'lang/'.$entry.'/language.php'))
 			$languages[] = $entry;
 	}
 	$d->close();
