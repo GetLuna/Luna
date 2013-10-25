@@ -88,7 +88,7 @@ if ($pun_config['o_index_update_check'] == 1) {
 <div class="col-lg-9">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Reports head'] ?> - <a href="reports.php"><?php echo $lang['View all'] ?></a></h3>
+            <h3 class="panel-title"><?php echo $lang['Reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['View all'] ?></a></span></h3>
         </div>
         <div class="panel-body">
             <table class="table" cellspacing="0">
