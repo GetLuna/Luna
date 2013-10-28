@@ -33,7 +33,7 @@ h1 {
 
 /* Header */
 #header {
-	background: #fff;
+	background: #92c820;
 	background-image: url(Awesomeness/img/header.png);
 	color: #fff;
 	box-shadow: 0 -10px 30px rgba(0,0,0,.15) inset;
@@ -69,7 +69,7 @@ h1 {
 
 #header .dropdown-menu > li > a:hover,
 #header .dropdown-menu > li > a:focus {
-	background: #88bf1c;
+	background: #92c820;
 	background: linear-gradient(#88bf1c, #69a00e);
 	background-repeat: repeat-x;
 	filter: none;
@@ -180,7 +180,7 @@ h1 {
 .panel-default .panel-heading {
 	border-radius: 0;
 	border: none;
-	background: #20a3f6;
+	background: #92c820;
 	background: linear-gradient(#88bf1c, #69a00e);
 	color: #fff;
 }
@@ -381,14 +381,14 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .table > thead > tr.active {
 	color: #fff;
-	background-color: #078cdb;
+	background-color: #92c820;
 	background-image: url(Awesomeness/img/header.png);
 	color: #fff;
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background-color: #078cdb;
+	background-color: #92c820;
 	background-image: url(Awesomeness/img/header.png);
 	color: #fff;
 	box-shadow: 0 0 30px rgba(0,0,0,.3) inset;
