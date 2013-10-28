@@ -309,18 +309,19 @@ if (empty($stage))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="backstage/style/css.css" type="text/css" rel="stylesheet">
+        <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
-		<!-- Content start -->
         <form class="form" id="install" method="post" action="db_update.php">
             <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
-                <p><?php echo $lang['Database password info'] ?></p>
-                <input class="form-control full-form" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
+                <p><?php echo $lang['Database update info'] ?></p>
+                <div class="input-group">
+                    <input class="form-control full-form" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
+                    <input class="btn btn-primary btn-block" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
+                </div>
             </fieldset>
-			<div><input class="btn btn-primary btn-block" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" /></div>
 		</form>
 	</body>
 </html>
