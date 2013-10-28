@@ -33,7 +33,7 @@ h1 {
 
 /* Header */
 #header {
-	background: #fff;
+	background: #f96a00;
 	background-image: url(Radicalness/img/header.png);
 	color: #fff;
 	box-shadow: 0 -10px 30px rgba(0,0,0,.15) inset;
@@ -59,13 +59,17 @@ h1 {
 	opacity: 1;
 }
 
+#header .navbar {
+	border-radius: 0;
+}
+
 #header .navbar a {
 	opacity: 1;
 }
 
 #header .dropdown-menu > li > a:hover,
 #header .dropdown-menu > li > a:focus {
-	background: #fd7700;
+	background: #f96a00;
 	background: linear-gradient(#fd7700, #fd4d00);
 	background-repeat: repeat-x;
 	filter: none;
@@ -176,7 +180,7 @@ h1 {
 .panel-default .panel-heading {
 	border-radius: 0;
 	border: none;
-	background: #fd7700;
+	background: #f96a00;
 	background: linear-gradient(#fd7700, #fd4d00);
 	color: #fff;
 }
@@ -377,14 +381,14 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 
 .table > thead > tr.active {
 	color: #fff;
-	background-color: #078cdb;
+	background-color: #f96a00;
 	background-image: url(Radicalness/img/header.png);
 	color: #fff;
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background-color: #078cdb;
+	background-color: #f96a00;
 	background-image: url(Radicalness/img/header.png);
 	color: #fff;
 	box-shadow: 0 0 30px rgba(0,0,0,.3) inset;

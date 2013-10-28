@@ -522,7 +522,7 @@ elseif ( isset($_POST['restore_start']) ) {
 		$pieces = split_sql_file($sql_query, ";");
 		if(defined('FORUM_DEBUG'))
 		{
-		generate_admin_menu($plugin);
+		generate_admin_menu(database);
 ?>
 	<div class="block">
 		<h2><span>Debug info</span></h2>
