@@ -55,61 +55,61 @@ if (isset($_POST['form_sent']))
 
 	generate_config_cache();
 
-	redirect('backstage/permissions.php', ['Perms updated redirect']);
+	redirect('backstage/permissions.php', $lang['Perms updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), ['Admin'], ['Permissions']);
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Permissions']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('permissions');
 
 ?>
-<h2><?php echo ['Permissions head'] ?></h2>
+<h2><?php echo $lang['Permissions head'] ?></h2>
 <form method="post" action="permissions.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo ['Posting subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo ['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Posting subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
             	<h4>BBCode</h4>
-                <input type="checkbox" name="form[message_bbcode]" value="1" <?php if ($pun_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> /> <?php echo ['BBCode help'] ?><br />
-                <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($pun_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> /> <?php echo ['Image tag help'] ?><br />
+                <input type="checkbox" name="form[message_bbcode]" value="1" <?php if ($pun_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['BBCode help'] ?><br />
+                <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($pun_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Image tag help'] ?><br />
                 <h4>All caps</h4>
-                <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($pun_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> /> <?php echo ['All caps message help'] ?><br />
-                <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($pun_config['p_subject_all_caps'] == '1') echo ' checked="checked"' ?> /> <?php echo ['All caps subject help'] ?><br />
+                <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($pun_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['All caps message help'] ?><br />
+                <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($pun_config['p_subject_all_caps'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['All caps subject help'] ?><br />
                 <h4>Guests</h4>
-                <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($pun_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> /> <?php echo ['Require e-mail help'] ?>
+                <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($pun_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Require e-mail help'] ?>
             </fieldset>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo ['Signatures subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo ['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Signatures subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($pun_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> /> <?php echo ['BBCode sigs help'] ?><br />
-                <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($pun_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> /> <?php echo ['Image tag sigs help'] ?><br />
-                <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($pun_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> /> <?php echo ['All caps sigs help'] ?><br />
-                <br /><b><?php echo ['Max sig length label'] ?></b><br />
+                <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($pun_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['BBCode sigs help'] ?><br />
+                <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($pun_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Image tag sigs help'] ?><br />
+                <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($pun_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['All caps sigs help'] ?><br />
+                <br /><b><?php echo $lang['Max sig length label'] ?></b><br />
                 <input type="text" class="form-control"name="form[sig_length]" size="5" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
-                <br /><span class="help-block"><?php echo ['Max sig length help'] ?></span>
-                <br /><b><?php echo ['Max sig lines label'] ?></b><br />
+                <br /><span class="help-block"><?php echo $lang['Max sig length help'] ?></span>
+                <br /><b><?php echo $lang['Max sig lines label'] ?></b><br />
                 <input type="text" class="form-control"name="form[sig_lines]" size="3" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
-                <br /><span class="help-block"><?php echo ['Max sig lines help'] ?></span>
+                <br /><span class="help-block"><?php echo $lang['Max sig lines help'] ?></span>
             </fieldset>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo ['Registration subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo ['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Registration subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($pun_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> /> <?php echo ['Banned e-mail help'] ?><br /><br />
-                <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($pun_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> /> <?php echo ['Duplicate e-mail help'] ?>
+                <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($pun_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Banned e-mail help'] ?><br /><br />
+                <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($pun_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Duplicate e-mail help'] ?>
             </fieldset>
         </div>
     </div>
