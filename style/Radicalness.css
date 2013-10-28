@@ -59,6 +59,10 @@ h1 {
 	opacity: 1;
 }
 
+#header .navbar {
+	border-radius: 0;
+}
+
 #header .navbar a {
 	opacity: 1;
 }
