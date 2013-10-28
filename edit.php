@@ -211,9 +211,9 @@ else if (isset($_POST['preview']))
         <div class="panel-body">
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
-<?php if ($can_edit_subject): ?>						<label class="required"><strong><?php echo $lang['Subject'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
+<?php if ($can_edit_subject): ?>						<label class="required"><strong><?php echo $lang['Subject'] ?></strong><br />
                 <input class="form-control full-form" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" /></label>
-<?php endif; ?>						<label class="required"><strong><?php echo $lang['Message'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
+<?php endif; ?>						<label class="required">
 				<textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea></label>
 <?php
 if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_form.php'))
@@ -239,25 +239,25 @@ $checkboxes = array();
 if ($can_edit_subject && $is_admmod)
 {
 	if (isset($_POST['stick_topic']) || $cur_post['sticky'] == '1')
-		$checkboxes[] = '<label><input type="checkbox" name="stick_topic" value="1" checked="checked" tabindex="'.($cur_index++).'" />'.$lang['Stick topic'].'</label>';
+		$checkboxes[] = '<input type="checkbox" name="stick_topic" value="1" checked="checked" tabindex="'.($cur_index++).'" /> '.$lang['Stick topic'].'<br />';
 	else
-		$checkboxes[] = '<label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'" />'.$lang['Stick topic'].'</label>';
+		$checkboxes[] = '<input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'" /> '.$lang['Stick topic'].'<br />';
 }
 
 if ($pun_config['o_smilies'] == '1')
 {
 	if (isset($_POST['hide_smilies']) || $cur_post['hide_smilies'] == '1')
-		$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" checked="checked" tabindex="'.($cur_index++).'" />'.$lang['Hide smilies'].'</label>';
+		$checkboxes[] = '<input type="checkbox" name="hide_smilies" value="1" checked="checked" tabindex="'.($cur_index++).'" /> '.$lang['Hide smilies'].'<br />';
 	else
-		$checkboxes[] = '<label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'" />'.$lang['Hide smilies'].'</label>';
+		$checkboxes[] = '<input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'" /> '.$lang['Hide smilies'].'<br />';
 }
 
 if ($is_admmod)
 {
 	if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent']))
-		$checkboxes[] = '<label><input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" checked="checked" />'.$lang['Silent edit'].'</label>';
+		$checkboxes[] = '<input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" checked="checked" /> '.$lang['Silent edit'];
 	else
-		$checkboxes[] = '<label><input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" />'.$lang['Silent edit'].'</label>';
+		$checkboxes[] = '<input type="checkbox" name="silent" value="1" tabindex="'.($cur_index++).'" /> '.$lang['Silent edit'];
 }
 
 if (!empty($checkboxes))
