@@ -910,30 +910,3 @@ q:before {
 q:after {
   content: "\201D";
 }
-
-/* Disable responsiveness */
-.container {
-	max-width: none !important;
-}
-
-.navbar-collapse {
-	display: block !important;
-	height: auto !important;
-	padding-bottom: 0;
-	overflow: visible !important;
-	padding-right: 29px;
-}
-
-.navbar-toggle {
-	display: none;
-}
-
-.navbar .open .dropdown-menu > li > a:hover, .navbar .open .dropdown-menu > li > a:focus, .navbar .open .dropdown-menu > .active > a, .navbar .open .dropdown-menu > .active > a:hover, .navbar .open .dropdown-menu > .active > a:focus {
-	color: #fff !important;
-	background-color: #428bca !important;
-}
-
-.navbar .open .dropdown-menu > .disabled > a, .navbar .open .dropdown-menu > .disabled > a:hover, .navbar .open .dropdown-menu > .disabled > a:focus {
-	color: #999 !important;
-	background-color: transparent !important;
-}
