@@ -93,7 +93,20 @@ p {
 	border-bottom-color: #fff;
 }
 
+@media (max-width:768px){
+	.dropdown-menu > li > a, .dropdown-menu > li > a:focus {
+		color: #fff;
+	}
+}
+
 .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+	color: #fff;
+	background: #2690e1;
+	background-image: linear-gradient(to bottom, #2690e1, #0b7bd2);
+	background-repeat: repeat-x;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
 	color: #fff;
 	background: #2690e1;
 	background-image: linear-gradient(to bottom, #2690e1, #0b7bd2);
