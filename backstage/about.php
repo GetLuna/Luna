@@ -54,6 +54,20 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $lang['Maintenance releases'] ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <?php echo sprintf($lang['Version release'], '2.1.1') ?> <?php echo sprintf($lang['Maintenance version'], '8') ?>
+                    </p>
+                </div>
+			</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $lang['Headline feature 1 title'] ?></h3>
                 </div>
                 <div class="panel-body">
