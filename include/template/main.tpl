@@ -8,7 +8,7 @@
         <div id="<pun_page>">
             <div id="header">
 				<pun_navlinks>
-            	<div id="header-container">
+            	<div class="container">
 					<div class="box">
                         <div id="brdtitle" class="inbox">
                             <pun_title>
