@@ -492,7 +492,6 @@ footer {
 /* Forms */
 .form-control {
 	width: auto;
-	min-width: 200px;
 	display: inline;
 }
 

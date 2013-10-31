@@ -293,7 +293,6 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
         </script>
         <style>
 		.container {
-			width: 960px;
 			margin: 0 auto 30px;
 		}
 		</style>
@@ -402,7 +401,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                         <div class="panel-body">
                             <fieldset>
                                 <label class="required"><strong><?php echo $lang['Administrator username'] ?></strong><br /><input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /></label>
-                                <br /><p class="help-block"><?php echo $lang['Info 6'] ?></p><br /><br />
+                                <br /><p class="help-block"><?php echo $lang['Info 6'] ?></p><br />
                                 <label class="conl required"><strong><?php echo $lang['Password'] ?></strong><br /><input id="req_password1" type="password" class="form-control" name="req_password1" size="16" /></label>
                                 <label class="conl required"><strong><?php echo $lang['Confirm password'] ?></strong><br /><input type="password" class="form-control" name="req_password2" size="16" /></label><br /><br />
                                 <label class="required"><strong><?php echo $lang['Administrator email'] ?></strong><br /><input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" size="50" maxlength="80" /></label>
@@ -451,8 +450,10 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                         <br /><p class="help-block"><?php echo $lang['Info 7'] ?></p>
                     </fieldset>
                 </div>
+                <div class="panel-footer">
+                	<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
+                </div>
             </div>
-            <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" /></div>
             </form>
         </div>
     </body>
