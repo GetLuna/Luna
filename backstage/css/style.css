@@ -18,7 +18,7 @@ h4 {
 }
 
 h4:first-child {
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 .container {
@@ -81,7 +81,7 @@ p {
 }
 
 .nav > li {
-	margin-left: 0px;
+	margin-left: 0;
 }
 
 .nav > li > a {
@@ -410,7 +410,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	border-radius: 0;
 	border: none;
 	margin-bottom: 10px;
-	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
+	box-shadow: 3px 3px 7px 0 rgba(0,0,0,0.1);
 }
 
 .panel-heading {
@@ -446,7 +446,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 /* Alerts and redirects */
 .alert, #redirect {
-	box-shadow: 3px 3px 7px 0px rgba(0,0,0,0.1);
+	box-shadow: 3px 3px 7px 0 rgba(0,0,0,0.1);
 	border: none;
 	border-radius: 0;
 	margin: 0 5px 10px 5px;
@@ -507,12 +507,12 @@ footer {
 
 /* Update and login form */
 .form {
-	max-width: 340px;
-	padding: 19px 29px 9px 29px;
+	max-width: 330px;
+	padding: 20px 30px 9px 30px;
 	margin: 60px auto 20px;
 	background-color: #fff;
-	border-left: #2ca0e9 5px solid;
-	box-shadow: 0 7px 7px 0px rgba(221,221,221,0.37);
+	border: #ddd 1px solid;
+	box-shadow: 5px 5px 7px 0 rgba(221,221,221,0.37);
 }
 
 .form .form-heading, .form .checkbox {
@@ -522,18 +522,23 @@ footer {
 .form input[type="text"], .form input[type="password"] {
 	font-size: 16px;
 	height: auto;
-	margin-bottom: 5px;
+	margin-bottom: -1px;
 	padding: 7px 9px;
 }
 
 .form-heading {
 	color: #2ca0e9;
-	text-transform: lowercase;
 	margin-top: 0;
+	font-weight: 100;
+}
+
+.remember label {
+	font-weight: 100 !important;
 }
 
 .form .btn {
 	margin-top: -65px;
+	margin-right: 5px;
 }
 
 .form .btn-update {

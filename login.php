@@ -271,22 +271,16 @@ require FORUM_ROOT.'header.php';
 ?>
 <form class="form" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
     <fieldset>
-        <h1 class="form-heading"><?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?></h1>
+        <h1 class="form-heading"><?php echo $lang['Login'] ?></h1>
         <input type="hidden" name="form_sent" value="1" />
         <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
         <div class"control-group">
-            <label class="control-label"><?php echo $lang['Username'] ?></label>
             <div class="controls">
-                <input class="form-control full-form" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
+                <input class="form-control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
+                <input class="form-control" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" /> 
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label"><?php echo $lang['Password'] ?></label>
-            <div class="controls">
-                <input class="form-control full-form" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" />
-            </div>
-        </div>
-        <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a> &middot; <a href="index.php" tabindex="4"><?php echo $lang['Go back'] ?></a></p>
+        <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
         <div class="control-group">
             <div class="controls remember">
                 <label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
