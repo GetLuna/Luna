@@ -13,7 +13,7 @@ if (!defined('FORUM_ROOT'))
 // Define the version and database revision that this code was written for
 define('FORUM_VERSION', '2.1.1');
 
-define('FORUM_DB_REVISION', 39);
+define('FORUM_DB_REVISION', 40);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 5);
 

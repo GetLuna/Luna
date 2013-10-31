@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.1.1');
 
-define('UPDATE_TO_DB_REVISION', 39);
+define('UPDATE_TO_DB_REVISION', 40);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 5);
 
@@ -317,9 +317,9 @@ if (empty($stage))
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
                 <p><?php echo $lang['Database update info'] ?></p>
-                <div class="input-group">
-                    <input class="form-control full-form" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
-                    <input class="btn btn-primary btn-block" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
+                <div class="control-group">
+                    <input class="form-control full-form db-password" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
+                    <input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
                 </div>
             </fieldset>
 		</form>
