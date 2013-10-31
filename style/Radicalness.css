@@ -693,6 +693,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 .form-control {
 	border-radius: 0;
 	width: auto;
+	max-width: 100%;
 }
 
 .full-form {
