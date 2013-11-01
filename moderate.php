@@ -342,10 +342,10 @@ if (isset($_GET['tid']))
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
 	<table class="table postview">
         <tr>
-            <td class="col-xs-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
+            <td class="col-lg-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
                 <dd class="usertitle"><strong><?php echo $poster ?><br /><?php echo $user_title ?></strong></dd>
             </td>
-            <td class="col-xs-10 post-content">
+            <td class="col-lg-10 post-content">
                 <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
                 <div class="postmsg">
                     <?php echo $cur_post['message']."\n" ?>
@@ -798,13 +798,13 @@ require FORUM_ROOT.'header.php';
     
 <div class="forum-box">
     <div class="row forum-header">
-        <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
-        <div class="col-xs-1"><?php echo $lang['Replies'] ?></div>
+        <div class="col-lg-6"><?php echo $lang['Topic'] ?></div>
+        <div class="col-lg-1"><?php echo $lang['Replies'] ?></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-xs-1"><?php echo $lang['Views'] ?></div>
+            <div class="col-lg-1"><?php echo $lang['Views'] ?></div>
         <?php endif; ?>
-        <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
-		<div class="col-xs-1"><?php echo $lang['Select'] ?></div>
+        <div class="col-lg-3"><?php echo $lang['Last post'] ?></div>
+		<div class="col-lg-1"><?php echo $lang['Select'] ?></div>
     </div>
 <?php
 
@@ -896,7 +896,7 @@ if ($db->num_rows($result))
 
 ?>
     <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-xs-6">
+        <div class="col-lg-6">
             <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
             <div class="tclcon">
                 <div>
@@ -904,10 +904,10 @@ if ($db->num_rows($result))
                 </div>
             </div>
         </div>
-					<div class="col-xs-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
-<?php endif; ?>					<div class="col-xs-3"><?php echo $last_post ?></div>
-					<div class="col-xs-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
+					<div class="col-lg-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-lg-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+<?php endif; ?>					<div class="col-lg-3"><?php echo $last_post ?></div>
+					<div class="col-lg-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
     </div>
 <?php
 

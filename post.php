@@ -713,11 +713,11 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 ?>
 		<table class="table postview">
 			<tr>
-				<td class="col-xs-2  user-data">
+				<td class="col-lg-2  user-data">
 					<h4 class="username"><?php echo pun_htmlspecialchars($cur_post['poster']) ?></h4>
 					<span><?php echo format_time($cur_post['posted']) ?></span>
 				</td>
-				<td class="col-xs-10 post-content">
+				<td class="col-lg-10 post-content">
 					<?php echo $cur_post['message']."\n" ?>
 				</td>
 			<tr>

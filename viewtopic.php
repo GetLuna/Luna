@@ -349,7 +349,7 @@ while ($cur_post = $db->fetch_assoc($result))
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?>">
 	<table class="table postview <?php if ($cur_post['marked'] == true) echo 'marked'; ?>">
         <tr>
-            <td class="col-xs-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
+            <td class="col-lg-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
                 <dd class="usertitle"><strong><?php echo $username ?><?php echo $user_title ?></strong></dd>
                 <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
                 <span class="user-info">
@@ -357,7 +357,7 @@ while ($cur_post = $db->fetch_assoc($result))
                     <?php if (count($user_contacts)) echo "\t\t\t\t\t\t".'<dd class="usercontacts">'.implode(' ', $user_contacts).'</dd>'."\n"; ?>
                 </span>
             </td>
-            <td class="col-xs-10 post-content">
+            <td class="col-lg-10 post-content">
                 <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
                 <div class="postmsg">
                     <?php echo $cur_post['message']."\n" ?>

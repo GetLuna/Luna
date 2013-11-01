@@ -573,10 +573,10 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 ?>
     <div class="forum-box">
         <div class="row forum-header">
-            <div class="col-xs-5"><?php echo $lang['Topic'] ?></div>
-            <div class="col-xs-3"><?php echo $lang['Forum'] ?></div>
-            <div class="col-xs-1"><?php echo $lang['Replies'] ?></div>
-            <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
+            <div class="col-lg-5"><?php echo $lang['Topic'] ?></div>
+            <div class="col-lg-3"><?php echo $lang['Forum'] ?></div>
+            <div class="col-lg-1"><?php echo $lang['Replies'] ?></div>
+            <div class="col-lg-3"><?php echo $lang['Last post'] ?></div>
         </div>
 <?php
 
@@ -644,13 +644,13 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
             </td>
         </tr>
         <tr>
-            <td class="col-xs-2 user-data">
+            <td class="col-lg-2 user-data">
                 <?php echo $pposter ?><br />
 				<?php if ($cur_search['pid'] == $cur_search['first_post_id']) : ?>                    
                     <?php echo $lang['Replies'].' '.forum_number_format($cur_search['num_replies']) ?>
                 <?php endif; ?>
             </td>
-            <td class="col-xs-10">
+            <td class="col-lg-10">
 				<?php echo $message."\n" ?>
             </td>
         </tr>
@@ -717,7 +717,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
         <div class="row topic-row <?php echo $item_status ?>">
-            <div class="col-xs-5">
+            <div class="col-lg-5">
                 <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
                 <div class="tclcon">
                     <div>
@@ -725,9 +725,9 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
                     </div>
                 </div>
             </div>
-            <div class="col-xs-3"><?php echo $forum ?></div>
-            <div class="col-xs-1"><?php echo forum_number_format($cur_search['num_replies']) ?></div>
-            <div class="col-xs-3"><?php echo '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_search['last_poster']) ?></span></div>
+            <div class="col-lg-3"><?php echo $forum ?></div>
+            <div class="col-lg-1"><?php echo forum_number_format($cur_search['num_replies']) ?></div>
+            <div class="col-lg-3"><?php echo '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_search['last_poster']) ?></span></div>
         </div>
 <?php
 
