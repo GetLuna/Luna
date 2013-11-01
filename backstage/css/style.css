@@ -40,6 +40,12 @@ p {
 	margin: 0 auto;
 }
 
+@media(min-width:767px) {
+	ul.nav li.dropdown:hover > ul.dropdown-menu{
+		display: block;    
+	}
+}
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
 	background: #47a9f5;
