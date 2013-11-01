@@ -117,12 +117,12 @@ require FORUM_ROOT.'header.php';
 </div>
 <div class="forum-box">
     <div class="row forum-header">
-        <div class="col-lg-7"><?php echo $lang['Topic'] ?></div>
-        <div class="col-lg-1"><?php echo $lang['Replies'] ?></div>
+        <div class="col-xs-7"><?php echo $lang['Topic'] ?></div>
+        <div class="col-xs-1"><?php echo $lang['Replies'] ?></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-lg-1"><?php echo $lang['Views'] ?></div>
+            <div class="col-xs-1"><?php echo $lang['Views'] ?></div>
         <?php endif; ?>
-        <div class="col-lg-3"><?php echo $lang['Last post'] ?></div>
+        <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
     </div>
 <?php
 
@@ -219,7 +219,7 @@ if ($db->num_rows($result))
 
 ?>
     <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-lg-7">
+        <div class="col-xs-7">
             <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
             <div class="tclcon">
                 <div>
@@ -227,11 +227,11 @@ if ($db->num_rows($result))
                 </div>
             </div>
         </div>
-        <div class="col-lg-1"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
+        <div class="col-xs-1"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-lg-1"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+            <div class="col-xs-1"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
         <?php endif; ?>
-        <div class="col-lg-3"><?php echo $last_post ?></div>
+        <div class="col-xs-3"><?php echo $last_post ?></div>
     </div>
 <?php
 
@@ -243,7 +243,7 @@ else
 
 ?>
     <div class="row topic-row">
-        <div class="col-lg-12">
+        <div class="col-xs-12">
             <strong><?php echo $lang['Empty forum'] ?></strong>
         </div>
     </div>
