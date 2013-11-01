@@ -214,17 +214,7 @@ else if (isset($_POST['preview']))
 <?php if ($can_edit_subject): ?>						<label class="required"><strong><?php echo $lang['Subject'] ?></strong><br />
                 <input class="form-control full-form" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" /></label>
 <?php endif; ?>						<label class="required">
-				<textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea></label>
-<?php
-if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_form.php'))
-include FORUM_CACHE_DIR.'cache_toolbar_form.php';
-else
-{
-require_once FORUM_ROOT.'include/cache.php';
-generate_ftb_cache('form');
-require FORUM_CACHE_DIR.'cache_toolbar_form.php';
-}
-?>
+				<textarea name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea><br /></label>
                 <ul class="bblinks">
                     <li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
                     <li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a> <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>

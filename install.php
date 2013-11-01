@@ -10,7 +10,7 @@
 // The ModernBB version this script installs
 define('FORUM_VERSION', '2.1.1');
 
-define('FORUM_DB_REVISION', 40);
+define('FORUM_DB_REVISION', 41);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 5);
 
@@ -1284,67 +1284,6 @@ else
 	);
 
 	$db->create_table('topics', $schema) or error('Unable to create topics table', __FILE__, __LINE__, $db->error());
-
-	$schema = array(
-		'FIELDS' => array(
-			'conf_name' => array(
-				'datatype' => 'VARCHAR(40)',
-				'allow_null' => false,
-				'default' => '\'\''
-			),
-			'conf_value' => array(
-				'datatype' => 'VARCHAR(40)',
-				'allow_null' => false,
-				'default' => '\'\''
-			)
-		),
-		'PRIMARY KEY' => array('conf_name')
-	);
-
-	$db->create_table('toolbar_conf', $schema) or error('Unable to create toolbar_conf table', __FILE__, __LINE__, $db->error());
-	
-	$schema = array(
-		'FIELDS' => array(
-			'name' => array(
-				'datatype' => 'VARCHAR(20)',
-				'allow_null' => false,
-				'default' => '\'\''
-			),
-			'code' => array(
-				'datatype' => 'VARCHAR(20)',
-				'allow_null' => false,
-				'default' => '\'\''
-			),
-			'enable_form' => array(
-				'datatype' => 'TINYINT(1)',
-				'allow_null' => false,
-				'default' => '0'
-			),
-			'enable_quick' => array(
-				'datatype' => 'TINYINT(1)',
-				'allow_null' => false,
-				'default' => '0'
-			),
-			'image' => array(
-				'datatype' => 'VARCHAR(40)',
-				'allow_null' => false,
-				'default' => '\'\''
-			),
-			'func' => array(
-				'datatype' => 'TINYINT(1)',
-				'allow_null' => false,
-				'default' => '0'
-			),
-			'position' => array(
-				'datatype' => 'TINYINT(2) UNSIGNED',
-				'allow_null' => false,
-				'default' => '1'
-			)
-		),
-		'PRIMARY KEY' => array('name')
-	);
-	
-	$db->create_table('toolbar_tags', $schema) or error('Unable to create toolbar_tags table', __FILE__, __LINE__, $db->error());
 
 	$schema = array(
 		'FIELDS'		=> array(
