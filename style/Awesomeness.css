@@ -183,9 +183,12 @@ h1 {
 	visibility: .2;
 }
 
-ul.nav li.dropdown:hover > ul.dropdown-menu{
-    display: block;    
+@media(min-width:767px) {
+	ul.nav li.dropdown:hover > ul.dropdown-menu{
+		display: block;    
+	}
 }
+
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
