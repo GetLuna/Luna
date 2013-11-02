@@ -293,21 +293,21 @@ if (!empty($errors))
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
                 <label class="required usernamefield"><strong><?php echo $lang['If human'] ?></strong><br /><input type="text" class="form-control" name="req_username" value="" size="25" maxlength="25" /><br /></label>
-                <label class="required"><strong><?php echo $lang['Username'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" size="25" maxlength="25" /></label>
+                <label class="required"><strong><?php echo $lang['Username'] ?></strong><br /><input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" size="25" maxlength="25" /></label>
                 <p class="help-block"><?php echo $lang['Username legend'] ?></p>
             </fieldset>
 <?php if ($pun_config['o_regs_verify'] == '0'): ?>
             <fieldset>
-                <label class="conl required"><strong><?php echo $lang['Password'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" size="16" /></label>
-                <label class="conl required"><strong><?php echo $lang['Confirm pass'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" size="16" /></label>
+                <label class="conl required"><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" size="16" /></label>
+                <label class="conl required"><strong><?php echo $lang['Confirm pass'] ?></strong><br /><input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" size="16" /></label>
                 <p class="help-block"><?php echo $lang['Pass info'] ?></p>
             </fieldset>
 <?php endif; ?>
             <fieldset>
 <?php if ($pun_config['o_regs_verify'] == '1'): ?>				<p><?php echo $lang['Email info'] ?></p>
-<?php endif; ?>				<label class="required"><strong><?php echo $lang['Email'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
+<?php endif; ?>				<label class="required"><strong><?php echo $lang['Email'] ?></strong><br />
                 <input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" size="50" maxlength="80" /></label>
-<?php if ($pun_config['o_regs_verify'] == '1'): ?>				<label class="required"><strong><?php echo $lang['Confirm email'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
+<?php if ($pun_config['o_regs_verify'] == '1'): ?>				<label class="required"><strong><?php echo $lang['Confirm email'] ?></strong><br />
                 <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" size="50" maxlength="80" /></label>
 <?php endif; ?>
             </fieldset>
@@ -321,7 +321,7 @@ if (!empty($errors))
 
 ?>
             <fieldset>
-                <label><label class="conl required"><strong><?php echo $lang['Language'] ?> <span><?php echo $lang['Required'] ?></span></strong>
+                <label><label class="conl required"><strong><?php echo $lang['Language'] ?></strong>
                 <br /><select class="form-control" name="language">
 <?php
 
