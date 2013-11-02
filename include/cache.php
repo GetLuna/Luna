@@ -50,7 +50,6 @@ function generate_bans_cache()
 	fluxbb_write_cache_file('cache_bans.php', $content);
 }
 
-
 //
 // Generate the ranks cache PHP script
 //
@@ -198,3 +197,6 @@ function clear_feed_cache()
 	}
 	$d->close();
 }
+
+
+define('FORUM_CACHE_FUNCTIONS_LOADED', true);
