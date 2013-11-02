@@ -224,8 +224,8 @@ h1 {
 	background: rgba(0,0,0,.2);
 }
 
-.nav .navbar-nav .pull-right {
-	padding-right: -10px;
+.navbar-right > .dropdown {
+	margin-right: 15px;
 }
 
 .navbar-toggle {
