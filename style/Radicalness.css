@@ -4,12 +4,7 @@ body, html {
 }
 
 .forum-list {
-	margin: 0;
-	margin-bottom: -5px;
-}
-
-.forum-list-border {
-	height: 300px;
+	margin: 3px 0 5px 0;
 }
 
 #brdmain {

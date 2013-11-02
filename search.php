@@ -818,6 +818,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
                 <p class="help-block"><?php echo $lang['Search info'] ?></p>
             </fieldset>
             <fieldset>
+            	<div class="row">
 <?php
 
 $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.redirect_url FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -825,9 +826,9 @@ $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name,
 // We either show a list of forums of which multiple can be selected
 if ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'])
 {
-	echo "\t\t\t\t\t\t".'<div class="conl multiselect">'.$lang['Forum search']."\n";
+	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.$lang['Forum search'].'</b>'."\n";
 	echo "\t\t\t\t\t\t".'<br />'."\n";
-	echo "\t\t\t\t\t\t".'<div class="checklist form-control forum-list-border">'."\n";
+	echo "\t\t\t\t\t\t".'<div>'."\n";
 
 	$cur_category = 0;
 	while ($cur_forum = $db->fetch_assoc($result))
@@ -843,7 +844,7 @@ if ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'])
 			echo "\t\t\t\t\t\t\t\t".'<div class="rbox">'; 
 			$cur_category = $cur_forum['cid'];
 		}
-		echo "\t\t\t\t\t\t\t\t".'<label class="forum-list"><input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" />'.pun_htmlspecialchars($cur_forum['forum_name']).'</label>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.pun_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
  	}
 	
 	if ($cur_category)
@@ -853,12 +854,12 @@ if ($pun_config['o_search_all_forums'] == '1' || $pun_user['is_admmod'])
 	}
 	
 	echo "\t\t\t\t\t\t".'</div>'."\n";
-	echo "\t\t\t\t\t\t".'</div>'."\n";
+	echo "\t\t\t\t\t\t".'</div></div>'."\n";
 }
 // ... or a simple select list for one forum only
 else
 {
-	echo "\t\t\t\t\t\t".'<label class="conl">'.$lang['Forum search']."\n";
+	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.$lang['Forum search']."\n";
 	echo "\t\t\t\t\t\t".'<br />'."\n";
 	echo "\t\t\t\t\t\t".'<select id="forum" name="forum">'."\n";
 
@@ -879,54 +880,54 @@ else
 
 	echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
 	echo "\t\t\t\t\t\t".'</select>'."\n";
-	echo "\t\t\t\t\t\t".'<br /></label>'."\n";
+	echo "\t\t\t\t\t\t".'<br /></label></div>'."\n";
 }
 
 ?>
-                <label class="conl"><?php echo $lang['Search in']."\n" ?>
-                <br /><select class="form-control" id="search_in" name="search_in">
-                    <option value="0"><?php echo $lang['Message and subject'] ?></option>
-                    <option value="1"><?php echo $lang['Message only'] ?></option>
-                    <option value="-1"><?php echo $lang['Topic only'] ?></option>
-                </select>
-                <br /></label>
-                <p class="help-block"><?php echo $lang['Search in info'] ?></p>
-            </fieldset>
-            <fieldset>
-            	<table>
-                	<thead>
-                    	<tr>
-                        	<th><?php echo $lang['Sort by'] ?></th>
-                            <th><?php echo $lang['Sort order'] ?></th>
-                            <th><?php echo $lang['Show as'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    	<tr>
-                        	<td>
-                                <select class="form-control" name="sort_by">
-                                    <option value="0"><?php echo $lang['Sort by post time'] ?></option>
-                                    <option value="1"><?php echo $lang['Sort by author'] ?></option>
-                                    <option value="2"><?php echo $lang['Sort by subject'] ?></option>
-                                    <option value="3"><?php echo $lang['Sort by forum'] ?></option>
-                                </select>
-                            </td>
-                        	<td>
-                                <select class="form-control" name="sort_dir">
-                                    <option value="DESC"><?php echo $lang['Descending'] ?></option>
-                                    <option value="ASC"><?php echo $lang['Ascending'] ?></option>
-                                </select>
-                            </td>
-                        	<td>
-                                <select class="form-control" name="show_as">
-                                    <option value="topics"><?php echo $lang['Show as topics'] ?></option>
-                                    <option value="posts"><?php echo $lang['Show as posts'] ?></option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p class="help-block"><?php echo $lang['Search results info'] ?></p>
+                    <div class="col-xs-8">
+                        <label class="conl"><?php echo $lang['Search in']."\n" ?>
+                        <br /><select class="form-control" id="search_in" name="search_in">
+                            <option value="0"><?php echo $lang['Message and subject'] ?></option>
+                            <option value="1"><?php echo $lang['Message only'] ?></option>
+                            <option value="-1"><?php echo $lang['Topic only'] ?></option>
+                        </select>
+                        </label>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th><?php echo $lang['Sort by'] ?></th>
+                                    <th><?php echo $lang['Sort order'] ?></th>
+                                    <th><?php echo $lang['Show as'] ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select class="form-control" name="sort_by">
+                                            <option value="0"><?php echo $lang['Sort by post time'] ?></option>
+                                            <option value="1"><?php echo $lang['Sort by author'] ?></option>
+                                            <option value="2"><?php echo $lang['Sort by subject'] ?></option>
+                                            <option value="3"><?php echo $lang['Sort by forum'] ?></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="sort_dir">
+                                            <option value="DESC"><?php echo $lang['Descending'] ?></option>
+                                            <option value="ASC"><?php echo $lang['Ascending'] ?></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="show_as">
+                                            <option value="topics"><?php echo $lang['Show as topics'] ?></option>
+                                            <option value="posts"><?php echo $lang['Show as posts'] ?></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="help-block"><?php echo $lang['Search results info'] ?></p>
+                    </div>
+                </div>
             </fieldset>
         </div>
     </div>
