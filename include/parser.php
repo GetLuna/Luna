@@ -227,7 +227,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'acronym', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
+	$tags = array('size', 'font', 'hr', 'quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'acronym', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
 	// List of tags that we need to check are open (You could not put b,i,u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -797,6 +797,9 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[right\](.*?)\[/right\]%ms';
 	$pattern[] = '%\[center\](.*?)\[/center\]%ms';
 	$pattern[] = '%\[justify\](.*?)\[/justify\]%ms';
+	$pattern[] = '%\[size=([0-9])\](.*?)\[/size\]%ms';
+	$pattern[] = '%\[font=(.*?)\](.*?)\[/font\]%ms';
+	$pattern[] = '%\[hr\]%ms';
 	
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
@@ -826,6 +829,9 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '</p><p style="text-align: right">$1</p><p>';
 	$replace[] = '</p><p style="text-align: center">$1</p><p>';
 	$replace[] = '</p><p style="text-align: justify">$1</p><p>';
+	$replace[] = '<font size="$1">$2</font>';
+	$replace[] = '<font face="$1">$2</font>';
+	$replace[] = '</p><hr><p>';
 	
 	// DailyMotion videos
 	$replace[] = '<iframe width="480" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';  

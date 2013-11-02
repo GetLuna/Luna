@@ -12,7 +12,7 @@ define('UPDATE_TO', '2.1.1');
 
 define('UPDATE_TO_DB_REVISION', 41);
 define('UPDATE_TO_SI_REVISION', 2);
-define('UPDATE_TO_PARSER_REVISION', 5);
+define('UPDATE_TO_PARSER_REVISION', 6);
 
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '5.0.1');

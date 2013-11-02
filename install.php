@@ -12,7 +12,7 @@ define('FORUM_VERSION', '2.1.1');
 
 define('FORUM_DB_REVISION', 41);
 define('FORUM_SI_REVISION', 2);
-define('FORUM_PARSER_REVISION', 5);
+define('FORUM_PARSER_REVISION', 6);
 
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '5.0.1');

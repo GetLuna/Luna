@@ -15,7 +15,7 @@ define('FORUM_VERSION', '2.1.1');
 
 define('FORUM_DB_REVISION', 41);
 define('FORUM_SI_REVISION', 2);
-define('FORUM_PARSER_REVISION', 5);
+define('FORUM_PARSER_REVISION', 6);
 
 // Block prefetch requests
 if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
