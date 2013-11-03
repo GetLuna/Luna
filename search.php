@@ -679,12 +679,12 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				if ($cur_search['sticky'] == '1')
 				{
 					$item_status .= ' isticky';
-					$status_text[] = '<span class="stickytext">'.$lang['Sticky'].'</span>';
+					$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 				}
 
 				if ($cur_search['closed'] != '0')
 				{
-					$status_text[] = '<span class="closedtext">'.$lang['Closed'].'</span>';
+					$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 					$item_status .= ' iclosed';
 				}
 

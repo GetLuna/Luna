@@ -172,13 +172,13 @@ if ($db->num_rows($result))
 		if ($cur_topic['sticky'] == '1')
 		{
 			$item_status .= ' isticky';
-			$status_text[] = '<span class="stickytext">'.$lang['Sticky'].'</span>';
+			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 		}
 
 		if ($cur_topic['moved_to'] != 0)
 		{
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
-			$status_text[] = '<span class="movedtext">'.$lang['Moved'].'</span>';
+			$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 			$item_status .= ' imoved';
 		}
 		else if ($cur_topic['closed'] == '0')
@@ -186,7 +186,7 @@ if ($db->num_rows($result))
 		else
 		{
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
-			$status_text[] = '<span class="closedtext">'.$lang['Closed'].'</span>';
+			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 			$item_status .= ' iclosed';
 		}
 
