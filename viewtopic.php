@@ -253,23 +253,28 @@ while ($cur_post = $db->fetch_assoc($result))
 
 			// Now let's deal with the contact links (Email and URL)
 			if ((($cur_post['email_setting'] == '0' && !$pun_user['is_guest']) || $pun_user['is_admmod']) && $pun_user['g_send_email'] == '1')
-				$user_contacts[] = '<span class="email"><a href="mailto:'.pun_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a></span>';
+				$user_actions[] = '<a class="btn btn-primary btn-mini" href="mailto:'.pun_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a>';
 			else if ($cur_post['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-				$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_post['poster_id'].'">'.$lang['Email'].'</a></span>';
+				$user_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?email='.$cur_post['poster_id'].'">'.$lang['Email'].'</a>';
 
 			if ($cur_post['url'] != '')
 			{
 				if ($pun_config['o_censoring'] == '1')
 					$cur_post['url'] = censor_words($cur_post['url']);
 
-				$user_contacts[] = '<span class="website"><a href="'.pun_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a></span>';
+				$user_actions[] = '<a class="btn btn-primary btn-mini" href="'.pun_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a>';
+			}
+			
+
+			if ($pun_user['is_admmod'])
+			{
+				$user_actions[] = '<a class="btn btn-primary btn-mini" href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a>';
 			}
 		}
+			
 
 		if ($pun_user['is_admmod'])
 		{
-			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a></span></dd>';
-
 			if ($cur_post['admin_note'] != '')
 				$user_info[] = '<dd><span>'.$lang['Note'].' <strong>'.pun_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 		}
@@ -352,7 +357,6 @@ while ($cur_post = $db->fetch_assoc($result))
                 <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
                 <span class="user-info">
                     <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
-                    <?php if (count($user_contacts)) echo "\t\t\t\t\t\t".'<dd class="usercontacts">'.implode(' ', $user_contacts).'</dd>'."\n"; ?>
                 </span>
             </td>
             <td class="col-lg-10 post-content">
@@ -367,6 +371,7 @@ while ($cur_post = $db->fetch_assoc($result))
         <?php if (!$pun_user['is_guest']) { ?>
         <tr>
             <td colspan="2" class="postfooter" style="padding-bottom: 0;">
+				<?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?>
                 <p class="pull-right"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></p>
             </td>
         </tr>

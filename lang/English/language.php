@@ -20,6 +20,7 @@ $lang = array(
 'Pun include directory'				=>  'Unable to process user include %s from template %s. Directory traversal is not allowed',  
 'Pun include error'					=>  'Unable to process user include %s from template %s. There is no such file in neither the template directory nor in the user include directory',  
 
+
 // Miscellaneous
 'Announcement'						=>	'Announcement',
 'Options'							=>	'Global settings',
@@ -449,6 +450,7 @@ $lang = array(
 // Subscriptions
 'Subscribe redirect'			=>	'Your subscription has been added. Redirecting …',
 'Unsubscribe redirect'			=>	'Your subscription has been removed. Redirecting …',
+'Not subscribed topic'			=>	'You\re not subscribed to this topic.',
 
 // General forum and topic moderation
 'Moderate'						=>	'Moderate',
@@ -846,10 +848,9 @@ $lang = array(
 'Post reply'		=>	'Post reply',
 'Topic closed'		=>	'Topic closed',
 'From'				=>	'From:', // User location
-'IP address logged'	=>	'IP address logged',
+'IP address logged'	=>	'IP log',
 'Note'				=>	'Note:', // Admin note
 'Posts'				=>	'Posts:',
-'Registered'		=>	'Registered:',
 'Replies'			=>	'Replies:',
 'Website'			=>	'Website',
 'Guest'				=>	'Guest',
