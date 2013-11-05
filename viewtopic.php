@@ -248,8 +248,6 @@ while ($cur_post = $db->fetch_assoc($result))
 				$user_info[] = '<dd><span>'.$lang['From'].' '.pun_htmlspecialchars($cur_post['location']).'</span></dd>';
 			}
 
-			$user_info[] = '<dd><span>'.$lang['Registered'].' '.format_time($cur_post['registered'], true).'</span></dd>';
-
 			if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
 				$user_info[] = '<dd><span>'.$lang['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 
