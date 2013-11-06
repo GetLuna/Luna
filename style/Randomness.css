@@ -382,6 +382,7 @@ h1 {
 .category-box, .forum-box {
 	padding-left: 15px;
 	padding-right: 15px;
+	margin-bottom: 10px;
 }
 
 .forum-row, .topic-row {
@@ -644,6 +645,11 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	text-decoration: none;
 }
 
+.btn-post {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
 /* Labels */
 .label-success, .label-info, .label-danger {
 	padding-top: 4px;
@@ -770,6 +776,7 @@ fieldset label {
 	background-color: #009dff;
 	border-radius: 0;
 	color: #d0e7ff;
+	margin-bottom: 10px;
 }
 
 .breadcrumb > li + li::before, .breadcrumb .active {

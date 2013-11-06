@@ -62,7 +62,7 @@ switch ($cur_forum['sort_by'])
 
 // Can we or can we not post new topics?
 if (($cur_forum['post_topics'] == '' && $pun_user['g_post_topics'] == '1') || $cur_forum['post_topics'] == '1' || $is_admmod)
-	$post_link = "\t\t\t".'<p class="postlink conr"><a href="post.php?fid='.$id.'">'.$lang['Post topic'].'</a></p>'."\n";
+	$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?fid='.$id.'">'.$lang['Post topic'].'</a>'."\n";
 else
 	$post_link = '';
 

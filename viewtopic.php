@@ -99,7 +99,7 @@ $admin_ids = get_admin_ids();
 if ($cur_topic['closed'] == '0')
 {
 	if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)
-		$post_link = "\t\t\t".'<p class="postlink conr"><a href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a></p>'."\n";
+		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a>'."\n";
 	else
 		$post_link = '';
 }
@@ -110,7 +110,7 @@ else
 	if ($is_admmod)
 		$post_link .= ' / <a href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a>';
 
-	$post_link = "\t\t\t".'<p class="postlink conr">'.$post_link.'</p>'."\n";
+	$post_link = "\t\t\t".$post_link."\n";
 }
 
 
