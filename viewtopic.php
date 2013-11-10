@@ -208,7 +208,7 @@ while ($cur_post = $db->fetch_assoc($result))
 	$post_count++;
 	$user_avatar = '';
 	$user_info = array();
-	$user_contacts = array();
+	$user_actions = array();
 	$post_actions = array();
 	$is_online = '';
 	$signature = '';
@@ -289,7 +289,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a></span></dd>';
 
 		if ($pun_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-			$user_contacts[] = '<span class="email"><a href="mailto:'.pun_htmlspecialchars($cur_post['poster_email']).'">'.$lang['Email'].'</a></span>';
+			$user_actions[] = '<span class="email"><a href="mailto:'.pun_htmlspecialchars($cur_post['poster_email']).'">'.$lang['Email'].'</a></span>';
 	}
 
 	// Generation post action array (quote, edit, delete etc.)
