@@ -330,17 +330,19 @@ require FORUM_ROOT.'backstage/header.php';
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) > 0)
-	{
+	{ ?>
+                <select class="form-control" name="add_to_cat" tabindex="1">
+    <?php
 		while ($cur_cat = $db->fetch_assoc($result))
 			{ ?>
-                <select class="form-control" name="add_to_cat" tabindex="1">
-                <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n"; ?>
+                <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+			} ?>
                 </select>
                 <input type="text" class="form-control" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
                 <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang['Add forum'] ?>" tabindex="2" />
                 <span class="help-block"><?php echo $lang['Add forum help'] ?></span>
             <?php }
-	} else {
+	if (!$db->num_rows($result) > 0) {
 		echo $lang['No categories exist'];
 	}
 ?>
