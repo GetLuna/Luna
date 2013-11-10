@@ -1144,7 +1144,7 @@ $lang = array(
 // Entry page
 'Add forum'					=>	'Add forum',
 'Add forum help'			=>	'Select the category to which you wish to add a forum and give it a name.',
-'No categories exist'		=>	'No categories exist',
+'No categories exist'		=>	'No categories exist, you\'ll have to create new categories before you can add a new forum.',
 'Edit forums head'			=>	'Edit forums',
 'Forum label'				=>	'Forum',
 'Edit link'					=>	'Edit',
