@@ -1464,9 +1464,9 @@ if (count($languages) > 1)
                     <label><?php printf($lang['Sig max size'], forum_number_format($pun_config['p_sig_length']), $pun_config['p_sig_lines']) ?><br />
                     <textarea class="form-control full-form" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
                     <ul class="bblinks">
-                        <li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a> <?php echo ($pun_config['p_sig_bbcode'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-                        <li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a> <?php echo ($pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-                        <li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a> <?php echo ($pun_config['o_smilies_sig'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
+                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
+                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
+                        <li><a class="label <?php echo ($pun_config['o_smilies_sig'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
                     </ul>
                     <?php echo $signature_preview ?>
                 </fieldset>
