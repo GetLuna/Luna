@@ -283,13 +283,6 @@ h1 {
 	display: inline;
 }
 
-.bblinks li span {
-	background: url(Randomness/img/help.png) center left no-repeat;
-	margin-right: 8px;
-	padding-left: 20px;
-	display: inline-block;
-}
-
 .blockpost .postbody {
 	border-left-style: solid;
 	border-left-width: 1px;
