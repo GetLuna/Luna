@@ -28,26 +28,28 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('about');
 
 //Update checking
-$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
-if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
-	<div class="alert alert-warning">
-		<h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
-		<div class="btn-group">
-			<a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
-			<a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
-		</div>
-		<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
-	</div>
-<?php } else { ?>
-	<div class="alert alert-info">
-		<h4><?php echo $lang['ModernBB intro'] ?> <?php echo FORUM_VERSION ?></h4>
-		<div class="btn-group">
-			<a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
-			<a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
-      </div>
-	</div>
-<?php }
 ?>
+<div class="alert alert-info">
+<?php
+    if ($pun_config['o_index_update_check'] == 1) {
+        $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
+        if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
+            <h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
+            <div class="btn-group">
+                <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
+                <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+            </div>
+            <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
+        <?php } else { ?>
+            <h4><?php echo $lang['ModernBB intro'].' '.FORUM_VERSION ?></h4>
+            <div class="btn-group">
+                <a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+                <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
+            </div>
+<?php	}
+    }
+?>
+</div>
 <h2><?php echo $lang['What new'] ?> <?php echo FORUM_VERSION ?></h2>
 <div class="col-lg-12">
     <div class="panel panel-default">
