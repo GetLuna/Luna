@@ -550,7 +550,7 @@ $lang = array(
 'Date format'				=>	'Date format',
 'Default'					=>	'Default',
 'Language'					=>	'Language',
-'Email setting info'		=>	'Select whether you want your email address to be viewable to other users or not and if you want other users to be able to send you email via the forum (form email) or not.',
+'Email setting info'		=>	'Email settings',
 'Email setting 1'			=>	'Display your email address.',
 'Email setting 2'			=>	'Hide your email address but allow form email.',
 'Email setting 3'			=>	'Hide your email address and disallow form email.',
@@ -616,11 +616,8 @@ $lang = array(
 // Language for profile.php
 // Navigation and sections
 'Section essentials'			=>	'Essentials',
-'Section personal'				=>	'Personal',
-'Section messaging'				=>	'Messaging',
+'Section settings'				=>	'Settings',
 'Section personality'			=>	'Personality',
-'Section display'				=>	'Display',
-'Section privacy'				=>	'Privacy',
 'Section view' 					=>  'View profile',
 'Section admin'					=>	'Administration',
 
@@ -727,8 +724,7 @@ $lang = array(
 'Styles'						=>	'Styles',
 'Admin note'					=>	'Admin note',
 'Pagination legend'				=>	'Enter your pagination options',
-'Post display legend'			=>	'Set your options for viewing posts',
-'Post display info'				=>	'If you are on a slow connection, disabling these options, particularly showing images in posts and signatures, will make pages load faster.',
+'Post display'					=>	'Post display',
 'Instructions'					=>	'When you update your profile, you will be redirected back to this page.',
 
 // Administration stuff
