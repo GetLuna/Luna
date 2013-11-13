@@ -176,7 +176,7 @@ generate_admin_menu('global');
 
 ?>
 <h2><?php echo $lang['Options head'] ?></h2>
-<form method="post" action="options.php">
+<form class="form-horizontal" method="post" action="options.php">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Essentials subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
@@ -301,7 +301,12 @@ generate_admin_menu('global');
                                 <option value="13"<?php if ($pun_config['o_default_timezone'] == 13) echo ' selected="selected"' ?>><?php echo $lang['UTC+13:00'] ?></option>
                                 <option value="14"<?php if ($pun_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang['UTC+14:00'] ?></option>
                             </select>
-                            <br /><input type="checkbox" name="form[default_dst]" value="1" <?php if ($pun_config['o_default_dst'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['DST help'] ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="form[default_dst]" value="1" <?php if ($pun_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />
+                                    <?php echo $lang['DST help'] ?>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -335,14 +340,29 @@ generate_admin_menu('global');
         </div>
         <div class="panel-body">
             <fieldset>
-                <b><?php echo $lang['Default feed label'] ?></b><br />
-                <label><input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang['None'] ?></strong></label>
-                <label><input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang['RSS'] ?></strong></label>
-                <label><input type="radio" name="form[feed_type]" value="2"<?php if ($pun_config['o_feed_type'] == '2') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang['Atom'] ?></strong></label>
-                <br /><span class="help-block"><?php echo $lang['Default feed help'] ?></span><br />
-				<b><?php echo $lang['Feed TTL label'] ?></b><br />
-                <select class="form-control" name="form[feed_ttl]">
-                    <option value="0"<?php if ($pun_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang['No cache'] ?></option>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Default feed label'] ?></label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?>>
+                            <?php echo $lang['None'] ?>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?>>
+                            <?php echo $lang['RSS'] ?>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="form[feed_type]" value="2"<?php if ($pun_config['o_feed_type'] == '2') echo ' checked="checked"' ?>>
+                            <?php echo $lang['Atom'] ?>
+                        </label>
+                        <span class="help-block"><?php echo $lang['Default feed help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Feed TTL label'] ?></label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="form[feed_ttl]">
+                            <option value="0"<?php if ($pun_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang['No cache'] ?></option>
 <?php
 
 		$times = array(5, 15, 30, 60);
@@ -351,8 +371,10 @@ generate_admin_menu('global');
 			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_ttl'] == $time ? ' selected="selected"' : '').'>'.sprintf($lang['Minutes'], $time).'</option>'."\n";
 
 ?>
-                </select>
-                <br /><span class="help-block"><?php echo $lang['Feed TTL help'] ?></span>
+                        </select>
+                        <span class="help-block"><?php echo $lang['Feed TTL help'] ?></span>
+                    </div>
+                </div>
             </fieldset>
         </div>
     </div>
@@ -362,14 +384,31 @@ generate_admin_menu('global');
         </div>
         <div class="panel-body">
             <fieldset>
-				<b><?php echo $lang['Reporting method label'] ?></b><br />
-                <label><input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang['Internal'] ?></strong></label>
-                <label><input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang['By e-mail'] ?></strong></label>
-                <label><input type="radio" name="form[report_method]" value="2"<?php if ($pun_config['o_report_method'] == '2') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang['Both'] ?></strong></label><br />
-                <span class="help-block"><?php echo $lang['Reporting method help'] ?></span><br />
-                <b><?php echo $lang['Mailing list label'] ?></b><br />
-                <textarea class="form-control" name="form[mailing_list]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_mailing_list']) ?></textarea>
-                <span class="help-block"><?php echo $lang['Mailing list help'] ?></span>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Reporting method label'] ?></label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />
+                            <?php echo $lang['Internal'] ?>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />
+                            <?php echo $lang['By e-mail'] ?>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="form[report_method]" value="2"<?php if ($pun_config['o_report_method'] == '2') echo ' checked="checked"' ?> />
+                            <?php echo $lang['Both'] ?>
+                        </label>
+                        <span class="help-block"><?php echo $lang['Reporting method help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Mailing list label'] ?></label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="form[mailing_list]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_mailing_list']) ?></textarea>
+                        <span class="help-block"><?php echo $lang['Mailing list help'] ?></span>
+                    </div>
+                </div>
             </fieldset>
         </div>
     </div>
@@ -383,7 +422,12 @@ generate_admin_menu('global');
                     <tr>
                         <th class="col-lg-2"><?php echo $lang['Use avatars label'] ?></th>
                         <td>
-                        	<input type="checkbox" name="form[avatars]" value="1" <?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Use avatars help'] ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="form[avatars]" value="1" <?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />
+                                    <?php echo $lang['Use avatars help'] ?>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -428,25 +472,45 @@ generate_admin_menu('global');
                     <tr>
                         <th class="col-lg-2"><?php echo $lang['Allow new label'] ?></th>
                         <td>
-                        	<input type="checkbox" name="form[regs_allow]" value="1" <?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Allow new help'] ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />
+                                    <?php echo $lang['Allow new help'] ?>
+                                </label>
+                            </div>
                         </td> 
                     </tr>
                     <tr>
                         <th><?php echo $lang['Verify label'] ?></th>
                         <td>
-                        	<input type="checkbox" name="form[regs_verify]" value="1" <?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Verify help'] ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />
+									<?php echo $lang['Verify help'] ?>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['Report new label'] ?></th>
                         <td>
-                        	<input type="checkbox" name="form[regs_report]" value="1" <?php if ($pun_config['o_regs_report'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Report new help'] ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="form[regs_report]" value="1" <?php if ($pun_config['o_regs_report'] == '1') echo ' checked="checked"' ?> />
+									<?php echo $lang['Report new help'] ?>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['Use rules label'] ?></th>
                         <td>
-                        	<input type="checkbox" name="form[rules]" value="1" <?php if ($pun_config['o_rules'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Use rules help'] ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="form[rules]" value="1" <?php if ($pun_config['o_rules'] == '1') echo ' checked="checked"' ?> />
+									<?php echo $lang['Use rules help'] ?>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -460,9 +524,24 @@ generate_admin_menu('global');
                         <th><?php echo $lang['E-mail default label'] ?></th>
                         <td>
                             <span class="help-block"><?php echo $lang['E-mail default help'] ?></span>
-                            <label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />&#160;<?php echo $lang['Display e-mail label'] ?></label>
-                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($pun_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />&#160;<?php echo $lang['Hide allow form label'] ?></label>
-                            <br /><label><input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($pun_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />&#160;<?php echo $lang['Hide both label'] ?></label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />
+                                    <?php echo $lang['Display e-mail label'] ?>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($pun_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />
+									<?php echo $lang['Hide allow form label'] ?>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($pun_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />
+									<?php echo $lang['Hide both label'] ?>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -482,9 +561,14 @@ generate_admin_menu('global');
         </div>
         <div class="panel-body">
             <fieldset>
-                <input type="checkbox" name="form[announcement]" value="1" <?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Display announcement help'] ?>
-                <br /><textarea class="form-control full-form" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
-                <br /><span class="help-block"><?php echo $lang['Announcement message help'] ?></span>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="form[announcement]" value="1" <?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />
+                        <?php echo $lang['Display announcement help'] ?>
+                    </label>
+                </div>
+                <textarea class="form-control full-form" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
+                <span class="help-block"><?php echo $lang['Announcement message help'] ?></span>
             </fieldset>
         </div>
     </div>
@@ -494,9 +578,14 @@ generate_admin_menu('global');
         </div>
         <div class="panel-body">
             <fieldset>
-                <input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Maintenance mode help'] ?>
-                <br /><textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
-                <br /><span class="help-block"><?php echo $lang['Maintenance message help'] ?></span>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />
+                        <?php echo $lang['Maintenance mode help'] ?>
+                    </label>
+                </div>
+                <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
+                <span class="help-block"><?php echo $lang['Maintenance message help'] ?></span>
             </fieldset>
         </div>
     </div>
