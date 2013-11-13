@@ -191,56 +191,64 @@ else if (isset($_GET['edit_forum']))
 
 ?>
 <h2><?php echo $lang['Forum settings'] ?></h2>
-<form id="edit_forum" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
+<form id="edit_forum" class="form-horizontal" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th><?php echo $lang['Forum name label'] ?></th>
-                        <td><input type="text" class="form-control"name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Forum description label'] ?></th>
-                        <td><textarea class="form-control" name="forum_desc" rows="3" cols="80" tabindex="2"><?php echo pun_htmlspecialchars($cur_forum['forum_desc']) ?></textarea></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Category label'] ?></th>
-                        <td>
-                            <select class="form-control" name="cat_id" tabindex="3">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Forum name label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Forum description label'] ?></label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="forum_desc" rows="3" cols="80" tabindex="2"><?php echo pun_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Category label'] ?></label>
+                    <div class="col-sm-10">
+						<select class="form-control" name="cat_id" tabindex="3">
 <?php
 
-$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
-while ($cur_cat = $db->fetch_assoc($result))
-{
-$selected = ($cur_cat['id'] == $cur_forum['cat_id']) ? ' selected="selected"' : '';
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
-}
+	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
+	while ($cur_cat = $db->fetch_assoc($result))
+	{
+		$selected = ($cur_cat['id'] == $cur_forum['cat_id']) ? ' selected="selected"' : '';
+		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+	}
 
 ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Sort by label'] ?></th>
-                        <td>
-                            <select class="form-control" name="sort_by" tabindex="4">
-                                <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected="selected"' ?>><?php echo $lang['Last post'] ?></option>
-                                <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected="selected"' ?>><?php echo $lang['Topic start'] ?></option>
-                                <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected="selected"' ?>><?php echo $lang['Subject'] ?></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <?php if (($cur_forum['num_topics']) == '0') { ?>
-                    <tr>
-                        <th><?php echo $lang['Redirect label'] ?></th>
-                        <td><?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?></td>
-                    </tr>
-                    <?php }; ?>
-                </table>
+						</select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Sort by label'] ?></label>
+					<div class="col-sm-10">
+                        <select class="form-control" name="sort_by" tabindex="4">
+                            <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected="selected"' ?>><?php echo $lang['Last post'] ?></option>
+                            <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected="selected"' ?>><?php echo $lang['Topic start'] ?></option>
+                            <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected="selected"' ?>><?php echo $lang['Subject'] ?></option>
+                        </select>
+                    </div>
+                </div>
+				<?php if (($cur_forum['num_topics']) == '0'): ?>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Sort by label'] ?></label>
+					<div class="col-sm-10">
+                        <select class="form-control" name="sort_by" tabindex="4">
+                            <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected="selected"' ?>><?php echo $lang['Last post'] ?></option>
+                            <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected="selected"' ?>><?php echo $lang['Topic start'] ?></option>
+                            <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected="selected"' ?>><?php echo $lang['Subject'] ?></option>
+                        </select>
+                    </div>
+                </div>
+				<?php endif; ?>
             </fieldset>
         </div>
     </div>
