@@ -1472,6 +1472,7 @@ $lang = array(
 'Maintenance message help'			=>	'The message that will be displayed to users when the board is in maintenance mode. If left blank, a default message will be used. You can use HTML here.',
 
 // Language for permissions.php
+'All caps'					=>	'All caps',
 'Perms updated redirect'	=>	'Permissions updated. Redirecting …',
 'Permissions head'			=>	'Permissions',
 'Posting subhead'			=>	'Posting',
@@ -1660,10 +1661,8 @@ $lang = array(
 // Create new user
 'Add user head'				=>	'Add user',
 'Username'					=>	'Username',
-'Random password'			=>	'Generate random password',
-'Random password info'		=>	'Generate a random password and it will be emailed to the above address.',
+'Random password info'		=>	'Generate a random password, this will be emailed to the above address. When checked, leave "Password" empty.',
 'Password'					=>	'Password',
-'Password info'				=>	'Give up a password, keep empty for a random password.',
 
 // Common language used in /backstage/
 // Main menu
