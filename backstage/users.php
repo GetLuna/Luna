@@ -1110,22 +1110,37 @@ else
         </form>
     </div>
 </div>
-<form id="example" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+<form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Add user head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_user" value="<?php echo $lang['Submit'] ?>" tabindex="4" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <b><?php echo $lang['Username'] ?></b><br />
-                <input type="text" class="form-control" name="username" size="25" tabindex="3" /><br /><br />
-                <b><?php echo $lang['Email'] ?></b><br />
-                <input type="text" class="form-control" name="email" size="50" tabindex="3" /><br /><br />
-                <b><?php echo $lang['Random password'] ?></b><br />
-                <input type="checkbox" name="random_pass" value="1" /> <?php echo $lang['Random password info'] ?><br /><br />
-                <b><?php echo $lang['Password'] ?></b><br />
-                <input type="password" class="form-control" name="password" size="25" tabindex="3" />
-                <br /><span class="help-block"><?php echo $lang['Password info'] ?></span>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="username" size="25" tabindex="3" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="email" size="50" tabindex="3" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="password" size="25" tabindex="3" />
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="random_pass" value="1" />
+                                <?php echo $lang['Random password info'] ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
         </div>
     </div>
