@@ -1110,6 +1110,11 @@ $lang = array(
 // Language for features.php
 'Features head'						=>	'Features settings',
 'Features subhead'					=>	'Features',
+'General'							=>	'General',
+'Topics and posts'					=>	'Topics and posts',
+'User features'						=>	'User features',
+'Others'							=>	'Others',
+'Advanced'							=>	'Advanced',
 'Quick post label'					=>	'Quick post',
 'Quick post help'					=>	'When enabled, ModernBB will add a quick post form at the bottom of topics, so users can post directly from the topic view.',
 'Users online label'				=>	'Users online',
