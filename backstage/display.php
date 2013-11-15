@@ -90,7 +90,7 @@ generate_admin_menu('display');
 
 ?>
 <h2><?php echo $lang['Appearance'] ?></h2>
-<form method="post" action="display.php">
+<form class="form-horizontal" method="post" action="display.php">
     <input type="hidden" name="form_sent" value="1" />
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -98,8 +98,10 @@ generate_admin_menu('display');
         </div>
         <div class="panel-body">
             <fieldset>
-                <h4><?php echo $lang['Default style label'] ?></h4>
-				<select class="form-control" name="form[default_style]">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Default style label'] ?></label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="form[default_style]">
 <?php
 
 		$styles = forum_list_styles();
@@ -113,8 +115,10 @@ generate_admin_menu('display');
 		}
 
 ?>
-				</select>
-				<br /><span class="help-block"><?php echo $lang['Default style help'] ?></span>
+                        </select>
+						<span class="help-block"><?php echo $lang['Default style help'] ?></span>
+                    </div>
+                </div>
             </fieldset>
 		</div>
 	</div>
@@ -124,12 +128,30 @@ generate_admin_menu('display');
         </div>
         <div class="panel-body">
             <fieldset>
-				<h4><?php echo $lang['Menu items head'] ?></h4>
-				<textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
-				<p class="help-block"><?php echo $lang['Menu items help'] ?></p>
-				<h4><?php echo $lang['Title settings head'] ?></h4>
-                <input type="checkbox" name="form[menu_title]" value="1" <?php if ($pun_config['o_menu_title'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Title in menu'] ?><br />
-				<input type="checkbox" name="form[header_title]" value="1" <?php if ($pun_config['o_header_title'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Title in header'] ?></p>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Menu items head'] ?></label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
+						<span class="help-block"><?php echo $lang['Menu items help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Title settings head'] ?></label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+								<input type="checkbox" name="form[header_title]" value="1" <?php if ($pun_config['o_header_title'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Title in header'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+								<input type="checkbox" name="form[menu_title]" value="1" <?php if ($pun_config['o_menu_title'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Title in menu'] ?>
+                            </label>
+                        </div>                        
+                    </div>
+                </div>
             </fieldset>
 		</div>
 	</div>
@@ -139,7 +161,12 @@ generate_admin_menu('display');
         </div>
         <div class="panel-body">
             <fieldset>
-        	    <input type="checkbox" name="form[show_version]" value="1" <?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Version number help'] ?>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="form[show_version]" value="1" <?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> />
+                        <?php echo $lang['Version number help'] ?>
+                    </label>
+                </div>
             </fieldset>
 		</div>
 	</div>
@@ -149,28 +176,82 @@ generate_admin_menu('display');
         </div>
         <div class="panel-body">
             <fieldset>
-            	<h4><?php echo $lang['User profile head'] ?></h4>
-				<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Info in posts help'] ?><br />
-				<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Post count help'] ?>
-            	<h4><?php echo $lang['Topics posts head'] ?></h4>
-				<input type="checkbox" name="form[smilies]" value="1" <?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Smilies help'] ?><br />
-				<input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Smilies sigs help'] ?><br />
-				<input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Clickable links help'] ?><br /><br />
-                <b><?php echo $lang['Topic review label'] ?></b><br />
-                <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
-                <br /><span class="help-block"><?php echo $lang['Topic review help'] ?></span><br />
-                <b><?php echo $lang['Topics per page label'] ?></b><br />
-                <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
-                <br /><span class="help-block"><?php echo $lang['Topics per page help'] ?></span><br />
-                <b><?php echo $lang['Posts per page label'] ?></b><br />
-                <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
-                <br /><span class="help-block"><?php echo $lang['Posts per page help'] ?></span><br />
-                <b><?php echo $lang['Indent label'] ?></b><br />
-                <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
-                <br /><span class="help-block"><?php echo $lang['Indent help'] ?></span><br />
-                <b><?php echo $lang['Quote depth label'] ?></b><br />
-                <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
-                <br /><span class="help-block"><?php echo $lang['Quote depth help'] ?></span>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['User profile head'] ?></label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Info in posts help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Post count help'] ?>
+                            </label>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Topics posts head'] ?></label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[smilies]" value="1" <?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Smilies help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Smilies sigs help'] ?>
+                            </label>
+                        </div>   
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Clickable links help'] ?>
+                            </label>
+                        </div>                     
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Topic review label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
+                        <span class="help-block"><?php echo $lang['Topic review help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Topics per page label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
+                        <span class="help-block"><?php echo $lang['Topics per page help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Posts per page label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
+                        <span class="help-block"><?php echo $lang['Posts per page help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Indent label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
+                        <span class="help-block"><?php echo $lang['Indent help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Quote depth label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
+                        <span class="help-block"><?php echo $lang['Quote depth help'] ?></span>
+                    </div>
+                </div>
             </fieldset>
         </div>
     </div>
