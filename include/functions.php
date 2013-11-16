@@ -454,6 +454,9 @@ function check_username($username, $exclude_id = null)
 {
 	global $db, $pun_config, $errors, $lang, $pun_bans;
 
+	// Include UTF-8 function
+	require FORUM_ROOT.'include/utf8/strcasecmp.php';
+	
 	// Convert multiple whitespace characters into one (to prevent people from registering with indistinguishable usernames)
 	$username = preg_replace('%\s+%s', ' ', $username);
 
@@ -462,7 +465,7 @@ function check_username($username, $exclude_id = null)
 		$errors[] = $lang['Username too short'];
 	else if (pun_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
 		$errors[] = $lang['Username too long'];
-	else if (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang['Guest']))
+	else if (!strcasecmp($username, 'Guest') || !utf8_strcasecmp($username, $lang['Guest']))
 		$errors[] = $lang['Username guest'];
 	else if (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
 		$errors[] = $lang['Username IP'];
@@ -831,7 +834,7 @@ function get_title($user)
 		$ban_list = array();
 
 		foreach ($pun_bans as $cur_ban)
-			$ban_list[] = strtolower($cur_ban['username']);
+			$ban_list[] = utf8_strtolower($cur_ban['username']);
 	}
 
 	// If not already loaded in a previous call, load the cached ranks
@@ -854,7 +857,7 @@ function get_title($user)
 	if ($user['title'] != '')
 		$user_title = pun_htmlspecialchars($user['title']);
 	// If the user is banned
-	else if (in_array(strtolower($user['username']), $ban_list))
+	else if (in_array(utf8_strtolower($user['username']), $ban_list))
 		$user_title = $lang['Banned'];
 	// If the user group has a default user title
 	else if ($user['g_user_title'] != '')

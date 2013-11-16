@@ -106,9 +106,10 @@ else if (isset($_GET['email']))
 			message($lang['No email subject']);
 		else if ($message == '')
 			message($lang['No email message']);
-		else if (pun_strlen($message) > FORUM_MAX_POSTSIZE)
+		// Here we use strlen() not pun_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+		else if (strlen($message) > FORUM_MAX_POSTSIZE)
 			message($lang['Too long email message']);
-
+			
 		if ($pun_user['last_email_sent'] != '' && (time() - $pun_user['last_email_sent']) < $pun_user['g_email_flood'] && (time() - $pun_user['last_email_sent']) >= 0)
 			message(sprintf($lang['Email flood'], $pun_user['g_email_flood'], $pun_user['g_email_flood'] - (time() - $pun_user['last_email_sent'])));
 
