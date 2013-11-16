@@ -118,7 +118,7 @@ require FORUM_ROOT.'header.php';
 <div class="forum-box">
     <div class="row forum-header">
         <div class="col-xs-7"><?php echo $lang['Topic'] ?></div>
-        <div class="col-xs-1"><?php echo $lang['Replies'] ?></div>
+        <div class="col-xs-1"><?php echo $lang['Replies forum'] ?></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
             <div class="col-xs-1"><?php echo $lang['Views'] ?></div>
         <?php endif; ?>
