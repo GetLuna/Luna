@@ -76,7 +76,7 @@ generate_admin_menu('email');
 
 ?>
 <h2><?php echo $lang['Email'] ?></h2>
-<form method="post" action="email.php">
+<form class="form-horizontal" method="post" action="email.php">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Contact head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
@@ -84,12 +84,19 @@ generate_admin_menu('email');
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
-                <b><?php echo $lang['Admin e-mail label'] ?></b><br />
-                <input type="text" class="form-control" name="form[admin_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
-                <br /><span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span>
-                <br /><b><?php echo $lang['Webmaster e-mail label'] ?></b><br />
-                <input type="text" class="form-control" name="form[webmaster_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_webmaster_email'] ?>" />
-                <br /><span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Admin e-mail label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[admin_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
+                        <span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Webmaster e-mail label'] ?></label>
+						<div class="col-sm-10"><input type="text" class="form-control" name="form[webmaster_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_webmaster_email'] ?>" />
+						<span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span>
+                    </div>
+                </div>
             </fieldset>
 		</div>
     </div>
@@ -100,8 +107,23 @@ generate_admin_menu('email');
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
-                <input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($pun_config['o_forum_subscriptions'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Forum subscriptions help'] ?><br />
-                <input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($pun_config['o_topic_subscriptions'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Topic subscriptions help'] ?>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Subscriptions head'] ?></label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+								<input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($pun_config['o_forum_subscriptions'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Forum subscriptions help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+								<input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($pun_config['o_topic_subscriptions'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Topic subscriptions help'] ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
 		</div>
     </div>
@@ -112,19 +134,41 @@ generate_admin_menu('email');
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
-                <b><?php echo $lang['SMTP address label'] ?></b><br  />
-                <input type="text" class="form-control" name="form[smtp_host]" size="30" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_host']) ?>" />
-                <br /><span class="help-block"><?php echo $lang['SMTP address help'] ?></span><br  />
-                <b><?php echo $lang['SMTP username label'] ?></b><br  />
-                <input type="text" class="form-control" name="form[smtp_user]" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
-                <br /><span class="help-block"><?php echo $lang['SMTP username help'] ?></span><br  />
-				<b><?php echo $lang['SMTP password label'] ?></b><br  />
-                <span><input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" /> <?php echo $lang['SMTP change password help'] ?></span>
-<?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
-                <br /><input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                <input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                <br /><span class="help-block"><?php echo $lang['SMTP password help'] ?></span><br  />
-                <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($pun_config['o_smtp_ssl'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['SMTP SSL help'] ?>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['SMTP address label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[smtp_host]" size="30" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_host']) ?>" />
+                        <span class="help-block"><?php echo $lang['SMTP address help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"<?php echo $lang['SMTP username label'] ?>></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="form[smtp_user]" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
+                        <span class="help-block"><?php echo $lang['SMTP username help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['SMTP password label'] ?></label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                            	<input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />
+                                <?php echo $lang['SMTP change password help'] ?>
+                            </label>
+                        </div>
+						<input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
+						<input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
+                        <span class="help-block"><?php echo $lang['SMTP password help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($pun_config['o_smtp_ssl'] == '1') echo ' checked="checked"' ?> />
+						<?php echo $lang['SMTP SSL help'] ?>
+                    </div>
+                </div>
             </fieldset>
 		</div>
     </div>
