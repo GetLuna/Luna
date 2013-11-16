@@ -914,7 +914,7 @@ function do_clickable($text)
 //
 function do_smilies($text)
 {
-	global $pun_config, $smilies;
+	global $smilies;
 
 	$text = ' '.$text.' ';
 
