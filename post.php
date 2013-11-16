@@ -574,7 +574,9 @@ else if (isset($_POST['preview']))
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Post preview'] ?></h3>
         </div>
-        <?php echo $preview_message."\n" ?>
+        <div class="panel-body">
+			<?php echo $preview_message."\n" ?>
+		</div>
     </div>
 
 <?php
