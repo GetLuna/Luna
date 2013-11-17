@@ -66,7 +66,12 @@ generate_admin_menu('backstage');
         </div>
         <div class="panel-body">
             <fieldset>
-				<input type="checkbox" name="form[index_update_check]" value="1" <?php if ($pun_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> /> <?php echo $lang['Index update check'] ?>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="form[index_update_check]" value="1" <?php if ($pun_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> />
+						<?php echo $lang['Index update check'] ?>
+                    </label>
+                </div>
             </fieldset>
 		</div>
 	</div>
