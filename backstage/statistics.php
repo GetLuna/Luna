@@ -113,7 +113,7 @@ require FORUM_ROOT.'backstage/header.php';
 	<div class="panel-body">
         <table class="table">
             <tr>
-                <th><?php echo $lang['Server load label'] ?></th>
+                <th class="col-md-2"><?php echo $lang['Server load label'] ?></th>
                 <td><?php printf($lang['Server load data']."\n", $server_load, $num_online) ?></td>
             </tr>
             <tr>
