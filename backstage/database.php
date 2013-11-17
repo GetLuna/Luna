@@ -660,27 +660,40 @@ require FORUM_ROOT.'backstage/header.php';
 		<h3 class="panel-title"><?php echo $lang['Backup options'] ?></h3>
 	</div>
 	<div class="panel-body">
-        <form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+        <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
                 <p><?php echo $lang['Backup info 1'] ?></p>
-                <table class="table">
-                    <tr>
-                        <th class="col-lg-2"><?php echo $lang['Backup type'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="backup_type" value="full" checked="checked" />&#160;<strong><?php echo $lang['Full'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="structure" />&#160;<strong><?php echo $lang['Structure only'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="backup_type" value="data" />&#160;<strong><?php echo $lang['Data only'] ?></strong></label>
-                            <span class="help-block"><?php echo $lang['Backup info 2'] ?></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Gzip compression'] ?></th>
-                        <td>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="1" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
-                            <label class="conl"><input type="radio" name="gzipcompress" value="0" checked="checked" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
-                        </td>
-                    </tr>
-                </table>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Backup type'] ?></label>
+                    <div class="col-sm-10">
+						<label class="radio-inline">
+                            <input type="radio" name="backup_type" value="full" checked="checked" />
+                            <?php echo $lang['Full'] ?>
+                        </label>
+						<label class="radio-inline">
+                            <input type="radio" name="backup_type" value="structure" />
+                            <?php echo $lang['Structure only'] ?>
+                        </label>
+						<label class="radio-inline">
+                            <input type="radio" name="backup_type" value="data" />
+                            <?php echo $lang['Data only'] ?>
+                        </label>
+						<span class="help-block"><?php echo $lang['Backup info 2'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Gzip compression'] ?></label>
+                    <div class="col-sm-10">
+						<label class="radio-inline">
+                            <input type="radio" name="gzipcompress" value="1" />
+                            <?php echo $lang['Yes'] ?>
+                        </label>
+						<label class="radio-inline">
+                            <input type="radio" name="gzipcompress" value="0" checked="checked" />
+                            <?php echo $lang['No'] ?>
+                        </label>
+                    </div>
+                </div>
             </fieldset>
             <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></p>
         </form>
