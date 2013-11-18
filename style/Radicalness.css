@@ -99,8 +99,12 @@ h1 {
 }
 
 @media(max-width:767px) {
-	.col-xs-2{
+	.col-xs-2 {
 		width: 33.33333333333333%;
+	}
+	
+	.col-xs-3 {
+		width: 41.66666666666667%;
 	}
 }
 
