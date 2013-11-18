@@ -36,7 +36,7 @@ if (isset($_GET['get_host']))
 		$ip = $db->result($result);
 	}
 	
-	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a href="users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
+	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
 }
 
 
