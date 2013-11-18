@@ -310,7 +310,7 @@ require FORUM_ROOT.'backstage/header.php';
         <form class="form-horizontal" method="get" action="maintenance.php">
             <input type="hidden" name="action" value="rebuild" />
             <fieldset>
-                <p><?php printf($lang['Rebuild index info'], '<a href="options.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+                <p><?php printf($lang['Rebuild index info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Posts per cycle label'] ?></label>
                     <div class="col-sm-10">
@@ -350,7 +350,7 @@ require FORUM_ROOT.'backstage/header.php';
         <form class="form-horizontal" method="post" action="maintenance.php" onsubmit="return process_form(this)">
             <input type="hidden" name="action" value="prune" />
             <fieldset>
-                <p><?php printf($lang['Prune info'], '<a href="options.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+                <p><?php printf($lang['Prune info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Days old label'] ?></label>
                     <div class="col-sm-10">
@@ -414,7 +414,7 @@ require FORUM_ROOT.'backstage/header.php';
 	<div class="panel-body">
         <form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
-                <p><?php printf($lang['Prune users info'], '<a href="options.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+                <p><?php printf($lang['Prune users info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Prune by'] ?></label>
                     <div class="col-sm-10">

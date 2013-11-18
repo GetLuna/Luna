@@ -166,7 +166,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/options.php', $lang['Options updated redirect']);
+	redirect('backstage/settings.php', $lang['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Options']);
@@ -176,7 +176,7 @@ generate_admin_menu('global');
 
 ?>
 <h2><?php echo $lang['Options head'] ?></h2>
-<form class="form-horizontal" method="post" action="options.php">
+<form class="form-horizontal" method="post" action="settings.php">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Essentials subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>

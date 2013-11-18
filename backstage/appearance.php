@@ -80,7 +80,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/display.php', $lang['Options updated redirect']);
+	redirect('backstage/appearance.php', $lang['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Options']);
@@ -90,7 +90,7 @@ generate_admin_menu('display');
 
 ?>
 <h2><?php echo $lang['Appearance'] ?></h2>
-<form class="form-horizontal" method="post" action="display.php">
+<form class="form-horizontal" method="post" action="appearance.php">
     <input type="hidden" name="form_sent" value="1" />
     <div class="panel panel-default">
         <div class="panel-heading">
