@@ -132,7 +132,7 @@ if ($action == 'change_pass')
         <input class="form-control input-sm" type="password" name="req_new_password2" size="16" /></label>
         <p class="clearb"><?php echo $lang['Pass info'] ?></p>
     </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang['Submit'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+    <p><input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 </form>
 <?php
 
@@ -279,7 +279,7 @@ else if ($action == 'change_email')
         <label><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" name="req_password" size="16" /></label>
         <p><?php echo $lang['Email instructions'] ?></p>
     </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+    <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 </form>
 <?php
 
@@ -400,7 +400,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
                 <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" class="form-control input-sm" type="file" size="40" /></label>
                 <span class="help-block"><?php echo $lang['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></span>
             </fieldset>
-            <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
         </form>
     </div>
 </div>
@@ -632,7 +632,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
         </div>
 		<label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang['Delete posts'] ?></label>
     </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+    <p><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 </form>
 <?php
 
@@ -721,7 +721,7 @@ else if (isset($_POST['form_sent']))
 			break;
 		}
 
-		case 'personal':
+		case 'personality':
 		{
 			$form = array(
 				'realname'		=> pun_trim($_POST['form']['realname']),
@@ -996,7 +996,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
 		$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
 	else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-		$email_field = '<a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
+		$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
 	else
 		$email_field = '';
 	if ($email_field != '')
@@ -1068,11 +1068,11 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 		$quick_searches = array();
 		if ($user['num_posts'] > 0)
 		{
-			$quick_searches[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
-			$quick_searches[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
 		}
 		if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
-			$quick_searches[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
 
 		if (!empty($quick_searches))
 			$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
@@ -1136,7 +1136,7 @@ else
 			else
 				$username_field = '<p>'.sprintf($lang['Username info'], pun_htmlspecialchars($user['username'])).'</p>'."\n";
 
-			$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control input-sm" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></p>'."\n";
+			$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control input-sm" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></p>'."\n";
 		}
 		else
 		{
@@ -1158,11 +1158,11 @@ else
 
 		if ($pun_user['g_search'] == '1' || $pun_user['g_id'] == FORUM_ADMIN)
 		{
-			$posts_actions[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
-			$posts_actions[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+			$posts_actions[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
+			$posts_actions[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
 
 			if ($pun_config['o_topic_subscriptions'] == '1')
-				$posts_actions[] = '<a class="btn btn-primary btn-small" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
+				$posts_actions[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
 		}
 
 		$posts_field .= (!empty($posts_actions) ? '<p class="actions">'.implode(' ', $posts_actions).'</p>' : '')."\n";
@@ -1188,16 +1188,9 @@ else
                     <input type="hidden" name="form_sent" value="1" />
                     <?php echo $username_field ?>
 					<?php if ($pun_user['id'] == $id || $pun_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>
-                        <p><a class="btn btn-primary btn-small" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a></p>
+                        <p><a class="btn btn-primary" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a></p>
                     <?php endif; ?>
                 </fieldset>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Email legend'] ?></h3>
-            </div>
-            <div class="panel-body">
                 <fieldset>
                     <?php echo $email_field ?>
                 </fieldset>
@@ -1224,10 +1217,25 @@ else
 <?php
 
 	}
-	else if ($section == 'personal')
+	else if ($section == 'personality')
 	{
 		if ($pun_user['g_set_title'] == '1')
 			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input type="text" class="form-control input-sm" name="form[realname]" value="'.pun_htmlspecialchars($user['title']).'" size="40" maxlength="40" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
+		if ($pun_config['o_avatars'] == '0' && $pun_config['o_signatures'] == '0')
+			message($lang['Bad request'], false, '404 Not Found');
+
+		$avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
+
+		$user_avatar = generate_avatar_markup($id);
+		if ($user_avatar)
+			$avatar_field .= ' <a class="btn btn-primary" href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
+		else
+			$avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
+
+		if ($user['signature'] != '')
+			$signature_preview = '<p>'.$lang['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
+		else
+			$signature_preview = '<p>'.$lang['No sig'].'</p>'."\n";
 			
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
 		define('FORUM_ACTIVE_PAGE', 'profile');
@@ -1301,6 +1309,41 @@ else
                     </div>
                 </fieldset>
             </div>
+        </div>
+<?php if ($pun_config['o_avatars'] == '1'): ?>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+                <h3 class="panel-title"><?php echo $lang['Avatar legend'] ?></h3>
+            </div>
+            <div class="panel-body">
+                <fieldset id="profileavatar">
+<?php if ($user_avatar): ?>
+					<div class="useravatar"><?php echo $user_avatar ?></div>
+<?php endif; ?>
+					<p><?php echo $lang['Avatar info'] ?></p>
+                    <p><?php echo $avatar_field ?></p>
+                </fieldset>
+            </div>
+        </div>
+<?php endif; if ($pun_config['o_signatures'] == '1'): ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $lang['Signature legend'] ?></h3>
+            </div>
+            <div class="panel-body">
+                <fieldset>
+                    <p><?php echo $lang['Signature info'] ?></p>
+                    <label><?php printf($lang['Sig max size'], forum_number_format($pun_config['p_sig_length']), $pun_config['p_sig_lines']) ?><br />
+                    <textarea class="form-control input-sm full-form" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
+                    <ul class="bblinks">
+                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
+                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
+                        <li><a class="label <?php echo ($pun_config['o_smilies_sig'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
+                    </ul>
+                    <?php echo $signature_preview ?>
+                </fieldset>
+<?php endif; ?>
+			</div>
         </div>
         <div class="alert alert-info">
 			<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" />
@@ -1583,73 +1626,6 @@ else
 <?php
 
 	}
-	else if ($section == 'personality')
-	{
-		if ($pun_config['o_avatars'] == '0' && $pun_config['o_signatures'] == '0')
-			message($lang['Bad request'], false, '404 Not Found');
-
-		$avatar_field = '<a href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
-
-		$user_avatar = generate_avatar_markup($id);
-		if ($user_avatar)
-			$avatar_field .= ' <a class="btn btn-primary btn-small" href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
-		else
-			$avatar_field = '<a class="btn btn-primary btn-small" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
-
-		if ($user['signature'] != '')
-			$signature_preview = '<p>'.$lang['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
-		else
-			$signature_preview = '<p>'.$lang['No sig'].'</p>'."\n";
-
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
-		define('FORUM_ACTIVE_PAGE', 'profile');
-		require FORUM_ROOT.'header.php';
-
-		generate_profile_menu('personality');
-
-
-?>
-<div class="col-md-10">
-    <h2 class="profile-h2"><?php echo $lang['Section personality'] ?></h2>
-    <form id="profile4" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
-        <div><input type="hidden" name="form_sent" value="1" /></div>
-<?php if ($pun_config['o_avatars'] == '1'): ?>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Avatar legend'] ?></h3>
-            </div>
-            <div class="panel-body">
-                <fieldset id="profileavatar">
-<?php if ($user_avatar): ?>                <div class="useravatar"><?php echo $user_avatar ?></div>
-<?php endif; ?>                <p><?php echo $lang['Avatar info'] ?></p>
-                    <p><?php echo $avatar_field ?></p>
-                </fieldset>
-            </div>
-        </div>
-<?php endif; if ($pun_config['o_signatures'] == '1'): ?>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Signature legend'] ?></h3>
-            </div>
-            <div class="panel-body">
-                <fieldset>
-                    <p><?php echo $lang['Signature info'] ?></p>
-                    <label><?php printf($lang['Sig max size'], forum_number_format($pun_config['p_sig_length']), $pun_config['p_sig_lines']) ?><br />
-                    <textarea class="form-control input-sm full-form" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
-                    <ul class="bblinks">
-                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-                        <li><a class="label <?php echo ($pun_config['o_smilies_sig'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
-                    </ul>
-                    <?php echo $signature_preview ?>
-                </fieldset>
-<?php endif; ?>				</div>
-		</div>
-        <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang['Submit'] ?>" /></div>
-    </form>
-<?php
-
-	}
 	else if ($section == 'view')
 	{
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang['title view own profile']);
@@ -1661,7 +1637,7 @@ else
 	if ($user['email_setting'] == '0' && !$pun_user['is_guest'])
 		$email_field = '<a href="mailto:'.$user['email'].'">'.$user['email'].'</a>';
 	else if ($user['email_setting'] == '1' && !$pun_user['is_guest'])
-		$email_field = '<a class="btn btn-primary btn-small" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
+		$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
 	else
 		$email_field = $lang['Private'];
 
@@ -1695,7 +1671,7 @@ else
 	if ($pun_config['o_show_post_count'] == '1' || $pun_user['g_id'] < FORUM_GUEST)
 		$posts_field = $user['num_posts'];
 	if ($pun_user['g_search'] == '1')
-		$posts_field .= (($posts_field != '') ? ' - ' : '').'<a class="btn btn-primary btn-small" href="search.php?action=show_user&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+		$posts_field .= (($posts_field != '') ? ' - ' : '').'<a class="btn btn-primary" href="search.php?action=show_user&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
 
 ?>
 
