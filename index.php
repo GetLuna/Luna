@@ -68,8 +68,8 @@ while ($cur_forum = $db->fetch_assoc($result))
     <div class="category-box">
         <div class="row category-header">
             <div class="col-xs-8"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></div>
-            <div class="col-xs-1"><?php echo $lang['Topics'] ?></div>
-            <div class="col-xs-1"><?php echo $lang['Posts table'] ?></div>
+            <div class="col-xs-1 hidden-xs"><?php echo $lang['Topics'] ?></div>
+            <div class="col-xs-1 hidden-xs"><?php echo $lang['Posts table'] ?></div>
             <div class="col-xs-2"><?php echo $lang['Last post'] ?></div>
         </div>
 <?php
@@ -151,8 +151,8 @@ while ($cur_forum = $db->fetch_assoc($result))
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-1"><?php echo forum_number_format($num_topics) ?></div>
-                <div class="col-xs-1"><?php echo forum_number_format($num_posts) ?></div>
+                <div class="col-xs-1 hidden-xs"><?php echo forum_number_format($num_topics) ?></div>
+                <div class="col-xs-1 hidden-xs"><?php echo forum_number_format($num_posts) ?></div>
                 <div class="col-xs-2"><?php echo $last_post ?></div>
             </div>
 <?php
@@ -193,10 +193,10 @@ else
     </div>
     <div class="panel-body">
     <div class="row">
-        <div class="col-xs-2"><span><?php printf($lang['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
-        <div class="col-xs-2"><span><?php printf($lang['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
-        <div class="col-xs-2"><span><?php printf($lang['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
-        <div class="col-xs-2"><span><?php printf($lang['Newest user'], $stats['newest_user']) ?></span></div>
+        <div class="col-md-2"><span><?php printf($lang['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
+        <div class="col-md-2"><span><?php printf($lang['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
+        <div class="col-md-2"><span><?php printf($lang['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
+        <div class="col-md-2"><span><?php printf($lang['Newest user'], $stats['newest_user']) ?></span></div>
 <?php
 
 if ($pun_config['o_users_online'] == '1')
@@ -220,7 +220,7 @@ if ($pun_config['o_users_online'] == '1')
 	}
 	
 	$num_users = count($users);
-	echo "\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-xs-2"><span>'.sprintf($lang['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
+	echo "\t\t\t\t".'<div class="col-md-2"><span>'.sprintf($lang['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-md-2"><span>'.sprintf($lang['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
 	?>
     </div>
     <div class="row">

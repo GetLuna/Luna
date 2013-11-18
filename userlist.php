@@ -74,13 +74,13 @@ require FORUM_ROOT.'header.php';
                                     <?php echo $lang['Username'] ?>
                                 </th>
                             <?php endif; ?>
-                            <th>
+                            <th class="hidden-xs">
 								<?php echo $lang['User group']."\n" ?>
                     		</th>
-                            <th>
+                            <th class="hidden-xs">
                     			<?php echo $lang['Sort by']."\n" ?>
                     		</th>
-                            <th>
+                            <th class="hidden-xs">
                     			<?php echo $lang['Sort order']."\n" ?>
                     		</th>
                             <th></th>
@@ -91,7 +91,7 @@ require FORUM_ROOT.'header.php';
 							<?php if ($pun_user['g_search_users'] == '1'): ?>
                                 <td><input class="form-control" type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /></td>
                             <?php endif; ?>
-                        	<td>
+                        	<td class="hidden-xs">
                             	<select class="form-control" name="show_group">
                                     <option value="-1"<?php if ($show_group == -1) echo ' selected="selected"' ?>><?php echo $lang['All users'] ?></option>
 <?php
@@ -109,7 +109,7 @@ while ($cur_group = $db->fetch_assoc($result))
 ?>
                                 </select>
                             </td>
-                        	<td>
+                        	<td class="hidden-xs">
                             	<select class="form-control" name="sort_by">
                                     <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang['Username'] ?></option>
                                     <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Registered'] ?></option>
@@ -118,7 +118,7 @@ while ($cur_group = $db->fetch_assoc($result))
 									<?php endif; ?>
 								</select>
                             </td>
-                        	<td>
+                        	<td class="hidden-xs">
                             	<select class="form-control" name="sort_dir">
                                     <option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang['Ascending'] ?></option>
                                     <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang['Descending'] ?></option>

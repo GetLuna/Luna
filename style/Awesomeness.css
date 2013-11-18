@@ -98,6 +98,12 @@ h1 {
 	margin-right: 15px;
 }
 
+@media(max-width:767px) {
+	.col-xs-2{
+		width: 33.33333333333333%;
+	}
+}
+
 /* Welcome box and header */
 #brddesc {
 	border-bottom-style: dotted;

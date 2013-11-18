@@ -776,7 +776,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
             <fieldset class="search">
                 <input type="hidden" name="action" value="search" />
             	<input class="search-form" type="text" name="keywords" size="40" maxlength="100" /><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" />
-                <br /><a href="search.php?section=advanced"><?php echo $lang['Advanced search'] ?></a>
+                <a class="hidden-xs" href="search.php?section=advanced"><?php echo $lang['Advanced search'] ?></a>
             </fieldset>
         </div>
     </div>
