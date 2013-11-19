@@ -130,7 +130,7 @@ $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : in
 $start_from = $pun_user['disp_posts'] * ($p - 1);
 
 // Generate paging links
-$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'viewtopic.php?id='.$id);
+$paging_links = paginate($num_pages, $p, 'viewtopic.php?id='.$id);
 
 
 if ($pun_config['o_censoring'] == '1')
@@ -179,9 +179,9 @@ require FORUM_ROOT.'header.php';
     <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink conl"><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 	<?php echo $post_link ?>
 </div>
 <?php
@@ -390,9 +390,9 @@ while ($cur_post = $db->fetch_assoc($result))
 
 ?>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink conl"><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 	<?php echo $post_link ?>
 </div>
 <ul class="breadcrumb">

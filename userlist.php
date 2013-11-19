@@ -51,7 +51,7 @@ if ($pun_user['g_search_users'] == '1')
 	$focus_element = array('userlist', 'username');
 
 // Generate paging links
-$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'userlist.php?username='.urlencode($username).'&amp;show_group='.$show_group.'&amp;sort_by='.$sort_by.'&amp;sort_dir='.$sort_dir);
+$paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($username).'&amp;show_group='.$show_group.'&amp;sort_by='.$sort_by.'&amp;sort_dir='.$sort_dir);
 
 
 define('FORUM_ALLOW_INDEX', 1);
@@ -142,11 +142,9 @@ while ($cur_group = $db->fetch_assoc($result))
         <h3 class="panel-title"><?php echo $lang['User list'] ?></h3>
     </div>
     <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
+        <ul class="pagination">
+            <?php echo $paging_links ?>
+        </ul>
         <table class="table">
             <thead>
                 <tr>

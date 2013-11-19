@@ -341,11 +341,9 @@ if (isset($_GET['show_users']))
                 </tbody>
             </table>
         </div>
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
+        <ul class="pagination">
+            <?php echo $paging_links ?>
+        </ul>
     </div>
 </div>
 <?php
@@ -873,7 +871,7 @@ else if (isset($_GET['find_user']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
+	$paging_links = paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
 
 	// Some helper variables for permissions
 	$can_delete = $can_move = $pun_user['g_id'] == FORUM_ADMIN;
@@ -892,11 +890,9 @@ else if (isset($_GET['find_user']))
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
+        <ul class="pagination">
+            <?php echo $paging_links ?>
+        </ul>
         <form id="search-users-form" action="users.php" method="post">
             <table class="table">
             <thead>

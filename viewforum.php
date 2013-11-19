@@ -77,7 +77,7 @@ $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : in
 $start_from = $pun_user['disp_topics'] * ($p - 1);
 
 // Generate paging links
-$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'viewforum.php?id='.$id);
+$paging_links = paginate($num_pages, $p, 'viewforum.php?id='.$id);
 
 if ($pun_config['o_feed_type'] == '1')
 	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=rss" title="'.$lang['RSS forum feed'].'" />');
@@ -110,9 +110,9 @@ require FORUM_ROOT.'header.php';
     <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink conl"><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
     <?php echo $post_link ?>
 </div>
 <div class="forum-box">
@@ -206,7 +206,7 @@ if ($db->num_rows($result))
 		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $pun_user['disp_posts']);
 
 		if ($num_pages_topic > 1)
-			$subject_multipage = '<span class="pagestext">[ '.paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).' ]</span>';
+			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
 		else
 			$subject_multipage = null;
 
@@ -255,9 +255,9 @@ else
 </div>
 
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink conl"><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 	<?php echo $post_link ?>
 </div>
 <ul class="breadcrumb">
