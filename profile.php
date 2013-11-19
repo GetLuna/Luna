@@ -125,11 +125,11 @@ if ($action == 'change_pass')
     <input type="hidden" name="form_sent" value="1" />
     <fieldset>
     	<?php if (!$pun_user['is_admmod']): ?>        <label><strong><?php echo $lang['Old pass'] ?></strong><br />
-        <input class="form-control input-sm" type="password" name="req_old_password" size="16" /></label>
+        <input class="form-control" type="password" name="req_old_password" size="16" /></label>
 <?php endif; ?>						<label><strong><?php echo $lang['New pass'] ?></strong><br />
-        <input class="form-control input-sm" type="password" name="req_new_password1" size="16" /></label>
+        <input class="form-control" type="password" name="req_new_password1" size="16" /></label>
         <label><strong><?php echo $lang['Confirm new pass'] ?></strong><br />
-        <input class="form-control input-sm" type="password" name="req_new_password2" size="16" /></label>
+        <input class="form-control" type="password" name="req_new_password2" size="16" /></label>
         <p class="clearb"><?php echo $lang['Pass info'] ?></p>
     </fieldset>
     <p><input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
@@ -275,7 +275,7 @@ else if ($action == 'change_email')
     <fieldset>
         <h3><?php echo $lang['Email legend'] ?></h3>
         <input type="hidden" name="form_sent" value="1" />
-        <label><strong><?php echo $lang['New email'] ?></strong><br /><input type="text" class="form-control input-sm" name="req_new_email" size="50" maxlength="80" /></label>
+        <label><strong><?php echo $lang['New email'] ?></strong><br /><input type="text" class="form-control" name="req_new_email" size="50" maxlength="80" /></label>
         <label><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" name="req_password" size="16" /></label>
         <p><?php echo $lang['Email instructions'] ?></p>
     </fieldset>
@@ -397,7 +397,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
-                <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" class="form-control input-sm" type="file" size="40" /></label>
+                <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" class="form-control" type="file" size="40" /></label>
                 <span class="help-block"><?php echo $lang['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></span>
             </fieldset>
             <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
@@ -664,21 +664,7 @@ else if (isset($_POST['form_sent']))
 	{
 		case 'essentials':
 		{
-			$form = array(
-				'timezone'		=> floatval($_POST['form']['timezone']),
-				'dst'			=> isset($_POST['form']['dst']) ? '1' : '0',
-				'time_format'	=> intval($_POST['form']['time_format']),
-				'date_format'	=> intval($_POST['form']['date_format']),
-			);
-
-			// Make sure we got a valid language string
-			if (isset($_POST['form']['language']))
-			{
-				$languages = forum_list_langs();
-				$form['language'] = pun_trim($_POST['form']['language']);
-				if (!in_array($form['language'], $languages))
-					message($lang['Bad request'], false, '404 Not Found');
-			}
+			$form = array();
 
 			if ($pun_user['is_admmod'])
 			{
@@ -727,6 +713,11 @@ else if (isset($_POST['form_sent']))
 				'realname'		=> pun_trim($_POST['form']['realname']),
 				'url'			=> pun_trim($_POST['form']['url']),
 				'location'		=> pun_trim($_POST['form']['location']),
+				'jabber'		=> pun_trim($_POST['form']['jabber']),
+				'icq'			=> pun_trim($_POST['form']['icq']),
+				'msn'			=> pun_trim($_POST['form']['msn']),
+				'aim'			=> pun_trim($_POST['form']['aim']),
+				'yahoo'			=> pun_trim($_POST['form']['yahoo']),
 			);
 
 			// Add http:// if the URL doesn't contain it already (while allowing https://, too)
@@ -757,29 +748,9 @@ else if (isset($_POST['form_sent']))
 				}
 			}
 
-			break;
-		}
-
-		case 'messaging':
-		{
-			$form = array(
-				'jabber'		=> pun_trim($_POST['form']['jabber']),
-				'icq'			=> pun_trim($_POST['form']['icq']),
-				'msn'			=> pun_trim($_POST['form']['msn']),
-				'aim'			=> pun_trim($_POST['form']['aim']),
-				'yahoo'			=> pun_trim($_POST['form']['yahoo']),
-			);
-
 			// If the ICQ UIN contains anything other than digits it's invalid
 			if (preg_match('%[^0-9]%', $form['icq']))
 				message($lang['Bad ICQ']);
-
-			break;
-		}
-
-		case 'personality':
-		{
-			$form = array();
 
 			// Clean up signature from POST
 			if ($pun_config['o_signatures'] == '1')
@@ -807,13 +778,17 @@ else if (isset($_POST['form_sent']))
 						message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
 				}
 			}
-
+				
 			break;
 		}
 
-		case 'display':
+		case 'settings':
 		{
 			$form = array(
+				'timezone'			=> floatval($_POST['form']['timezone']),
+				'dst'				=> isset($_POST['form']['dst']) ? '1' : '0',
+				'time_format'		=> intval($_POST['form']['time_format']),
+				'date_format'		=> intval($_POST['form']['date_format']),
 				'disp_topics'		=> pun_trim($_POST['form']['disp_topics']),
 				'disp_posts'		=> pun_trim($_POST['form']['disp_posts']),
 				'show_smilies'		=> isset($_POST['form']['show_smilies']) ? '1' : '0',
@@ -821,6 +796,9 @@ else if (isset($_POST['form_sent']))
 				'show_img_sig'		=> isset($_POST['form']['show_img_sig']) ? '1' : '0',
 				'show_avatars'		=> isset($_POST['form']['show_avatars']) ? '1' : '0',
 				'show_sig'			=> isset($_POST['form']['show_sig']) ? '1' : '0',
+				'email_setting'		=> intval($_POST['form']['email_setting']),
+				'notify_with_post'	=> isset($_POST['form']['notify_with_post']) ? '1' : '0',
+				'auto_notify'		=> isset($_POST['form']['auto_notify']) ? '1' : '0',
 			);
 
 			if ($form['disp_topics'] != '')
@@ -841,6 +819,15 @@ else if (isset($_POST['form_sent']))
 					$form['disp_posts'] = 75;
 			}
 
+			// Make sure we got a valid language string
+			if (isset($_POST['form']['language']))
+			{
+				$languages = forum_list_langs();
+				$form['language'] = pun_trim($_POST['form']['language']);
+				if (!in_array($form['language'], $languages))
+					message($lang['Bad request'], false, '404 Not Found');
+			}
+
 			// Make sure we got a valid style string
 			if (isset($_POST['form']['style']))
 			{
@@ -849,17 +836,6 @@ else if (isset($_POST['form_sent']))
 				if (!in_array($form['style'], $styles))
 					message($lang['Bad request'], false, '404 Not Found');
 			}
-
-			break;
-		}
-
-		case 'privacy':
-		{
-			$form = array(
-				'email_setting'			=> intval($_POST['form']['email_setting']),
-				'notify_with_post'		=> isset($_POST['form']['notify_with_post']) ? '1' : '0',
-				'auto_notify'			=> isset($_POST['form']['auto_notify']) ? '1' : '0',
-			);
 
 			if ($form['email_setting'] < 0 || $form['email_setting'] > 2)
 				$form['email_setting'] = $pun_config['o_default_email_setting'];
@@ -1132,11 +1108,11 @@ else
 		if ($pun_user['is_admmod'])
 		{
 			if ($pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_mod_rename_users'] == '1')
-				$username_field = '<label><strong>'.$lang['Username'].'</strong><br /><input type="text" class="form-control input-sm" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /></label>'."\n";
+				$username_field = '<label><strong>'.$lang['Username'].'</strong><br /><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /></label>'."\n";
 			else
 				$username_field = '<p>'.sprintf($lang['Username info'], pun_htmlspecialchars($user['username'])).'</p>'."\n";
 
-			$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control input-sm" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></p>'."\n";
+			$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></p>'."\n";
 		}
 		else
 		{
@@ -1145,14 +1121,14 @@ else
 			if ($pun_config['o_regs_verify'] == '1')
 				$email_field = '<p>'.sprintf($lang['Email info'], pun_htmlspecialchars($user['email']).' - <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
 			else
-				$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control input-sm" name="req_email" value="'.$user['email'].'" size="40" maxlength="80" /></label>'."\n";
+				$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" size="40" maxlength="80" /></label>'."\n";
 		}
 
 		$posts_field = '';
 		$posts_actions = array();
 
 		if ($pun_user['g_id'] == FORUM_ADMIN)
-			$posts_field .= '<label>'.$lang['Posts'].'<br /><input type="text" class="form-control input-sm" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></label><br />';
+			$posts_field .= '<label>'.$lang['Posts'].'<br /><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></label><br />';
 		else if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
 			$posts_actions[] = sprintf($lang['Posts info'], forum_number_format($user['num_posts']));
 
@@ -1207,7 +1183,7 @@ else
                     <p><?php printf($lang['Last visit info'], format_time($user['last_visit'])) ?></p>
                     <?php echo $posts_field ?><br />
 <?php if ($pun_user['is_admmod']): ?>							<label><?php echo $lang['Admin note'] ?><br />
-                        <input id="admin_note" type="text" class="form-control input-sm" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" size="30" maxlength="30" /></label>
+                        <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" size="30" maxlength="30" /></label>
 <?php endif; ?>
                 </fieldset>
             </div>
@@ -1220,7 +1196,8 @@ else
 	else if ($section == 'personality')
 	{
 		if ($pun_user['g_set_title'] == '1')
-			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input type="text" class="form-control input-sm" name="form[realname]" value="'.pun_htmlspecialchars($user['title']).'" size="40" maxlength="40" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
+			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input class="form-control" type="text" class="form-control" name="title" value="'.pun_htmlspecialchars($user['title']).'" size="30" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
+			
 		if ($pun_config['o_avatars'] == '0' && $pun_config['o_signatures'] == '0')
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -1246,7 +1223,7 @@ else
 ?>
 <div class="col-md-10">
     <h2 class="profile-h2"><?php echo $lang['Section personality'] ?></h2>
-    <form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personal&amp;id=<?php echo $id ?>">
+    <form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Modify your personal and contact details</h3>
@@ -1257,7 +1234,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Realname'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" name="form[realname]" value="<?php echo pun_htmlspecialchars($user['realname']) ?>" size="40" maxlength="40" />
+                            <input type="text" class="form-control" name="form[realname]" value="<?php echo pun_htmlspecialchars($user['realname']) ?>" size="40" maxlength="40" />
                         </div>
                     </div>
                     <?php if (isset($title_field)): ?>
@@ -1266,45 +1243,45 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Location'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" name="form[location]" value="<?php echo pun_htmlspecialchars($user['location']) ?>" size="30" maxlength="30" />
+                            <input type="text" class="form-control" name="form[location]" value="<?php echo pun_htmlspecialchars($user['location']) ?>" size="30" maxlength="30" />
                         </div>
                     </div>
                     <hr />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Website'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" name="form[url]" value="<?php echo pun_htmlspecialchars($user['url']) ?>" size="50" maxlength="80" />
+                            <input type="text" class="form-control" name="form[url]" value="<?php echo pun_htmlspecialchars($user['url']) ?>" size="50" maxlength="80" />
                         </div>
                     </div>
                     <hr />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Jabber'] ?></label>
                         <div class="col-sm-10">
-                            <input id="jabber" type="text" class="form-control input-sm" name="form[jabber]" value="<?php echo pun_htmlspecialchars($user['jabber']) ?>" size="40" maxlength="75" />
+                            <input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo pun_htmlspecialchars($user['jabber']) ?>" size="40" maxlength="75" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['ICQ'] ?></label>
                         <div class="col-sm-10">
-                            <input id="icq" type="text" class="form-control input-sm" name="form[icq]" value="<?php echo $user['icq'] ?>" size="12" maxlength="12" />
+                            <input id="icq" type="text" class="form-control" name="form[icq]" value="<?php echo $user['icq'] ?>" size="12" maxlength="12" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['MSN'] ?></label>
                         <div class="col-sm-10">
-                            <input id="msn" type="text" class="form-control input-sm" name="form[msn]" value="<?php echo pun_htmlspecialchars($user['msn']) ?>" size="40" maxlength="50" />
+                            <input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo pun_htmlspecialchars($user['msn']) ?>" size="40" maxlength="50" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['AOL IM'] ?></label>
                         <div class="col-sm-10">
-                            <input id="aim" type="text" class="form-control input-sm" name="form[aim]" value="<?php echo pun_htmlspecialchars($user['aim']) ?>" size="20" maxlength="30" />
+                            <input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo pun_htmlspecialchars($user['aim']) ?>" size="20" maxlength="30" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Yahoo'] ?></label>
                         <div class="col-sm-10">
-                            <input id="yahoo" type="text" class="form-control input-sm" name="form[yahoo]" value="<?php echo pun_htmlspecialchars($user['yahoo']) ?>" size="20" maxlength="30" />
+                            <input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo pun_htmlspecialchars($user['yahoo']) ?>" size="20" maxlength="30" />
                         </div>
                     </div>
                 </fieldset>
@@ -1334,7 +1311,7 @@ else
                 <fieldset>
                     <p><?php echo $lang['Signature info'] ?></p>
                     <label><?php printf($lang['Sig max size'], forum_number_format($pun_config['p_sig_length']), $pun_config['p_sig_lines']) ?><br />
-                    <textarea class="form-control input-sm full-form" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
+                    <textarea class="form-control full-form" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
                     <ul class="bblinks">
                         <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
                         <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
@@ -1352,19 +1329,19 @@ else
 <?php
 
 	}
-	else if ($section == 'messaging')
+	else if ($section == 'settings')
 	{
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section settings']);
 		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
-		generate_profile_menu('messaging');
+		generate_profile_menu('settings');
 
 ?>
 <div class="col-md-10">
     <h2 class="profile-h2"><?php echo $lang['Section settings'] ?></h2>
-    <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=messaging&amp;id=<?php echo $id ?>">
+    <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang['Contact details legend'] ?></h3>
@@ -1374,7 +1351,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Time zone'] ?></label>
                         <div class="col-sm-10">
-                            <select class="form-control input-sm" name="form[timezone]">
+                            <select class="form-control" name="form[timezone]">
                                 <option value="-12"<?php if ($user['timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang['UTC-12:00'] ?></option>
                                 <option value="-11"<?php if ($user['timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang['UTC-11:00'] ?></option>
                                 <option value="-10"<?php if ($user['timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang['UTC-10:00'] ?></option>
@@ -1427,7 +1404,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Time format'] ?></label>
                         <div class="col-sm-10">
-                            <select class="form-control input-sm" name="form[time_format]">
+                            <select class="form-control" name="form[time_format]">
 <?php
                         foreach (array_unique($forum_time_formats) as $key => $time_format)
                         {
@@ -1446,7 +1423,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Date format'] ?></label>
                         <div class="col-sm-10">
-                            <select class="form-control input-sm" name="form[date_format]">
+                            <select class="form-control" name="form[date_format]">
 <?php
                         foreach (array_unique($forum_date_formats) as $key => $date_format)
                         {
@@ -1472,7 +1449,7 @@ else
                     <div class="form-group">
                     	<label><?php echo $lang['Language'] ?></label>
                         <div class="col-sm-10">
-                    		<select class="form-control input-sm" name="form[language]">
+                    		<select class="form-control" name="form[language]">
 <?php
 			foreach ($languages as $temp)
 			{
@@ -1499,7 +1476,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Styles'] ?></label>
                         <div class="col-sm-10">
-                            <select class="form-control input-sm" name="form[style]">
+                            <select class="form-control" name="form[style]">
 <?php
 			foreach ($styles as $temp)
 			{
@@ -1562,13 +1539,13 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Topics per page'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" size="6" maxlength="3" />
+                            <input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" size="6" maxlength="3" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Posts per page'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" size="6" maxlength="3" />
+                            <input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" size="6" maxlength="3" />
                         </div>
                     </div>
                     <hr  />
@@ -1811,7 +1788,7 @@ else
             </div>
             <div class="panel-body">
                 <fieldset>
-                    <select id="group_id" class="form-control input-sm" name="group_id">
+                    <select id="group_id" class="form-control" name="group_id">
 <?php
 
 				$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
