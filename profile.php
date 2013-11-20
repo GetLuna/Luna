@@ -1341,13 +1341,14 @@ else
 ?>
 <div class="col-md-10">
     <h2 class="profile-h2"><?php echo $lang['Section settings'] ?></h2>
-    <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>">
+    <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang['Contact details legend'] ?></h3>
             </div>
             <div class="panel-body">
                 <fieldset>
+                    <input type="hidden" name="form_sent" value="1" />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Time zone'] ?></label>
                         <div class="col-sm-10">
@@ -1597,7 +1598,7 @@ else
             </div>
         </div>
         <div class="alert alert-info">
-			<input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang['Submit'] ?>" />
+			<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" />
         </div>
     </form>
 <?php
