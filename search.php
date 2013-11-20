@@ -485,7 +485,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		$start_from = $per_page * ($p - 1);
 
 		// Generate paging links
-		$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'search.php?search_id='.$search_id);
+		$paging_links = paginate($num_pages, $p, 'search.php?search_id='.$search_id);
 
 		// throw away the first $start_from of $search_ids, only keep the top $per_page of $search_ids
 		$search_ids = array_slice($search_ids, $start_from, $per_page);
@@ -559,9 +559,9 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
         <li><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
         <li class="active"><?php echo $crumbs_text['search_type'] ?></li>
     </ul>
-    <div class="pagepost">
-        <p class="pagelink"><?php echo $paging_links ?></p>
-    </div>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 </div>
 
 <?php
@@ -704,7 +704,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				$num_pages_topic = ceil(($cur_search['num_replies'] + 1) / $pun_user['disp_posts']);
 
 				if ($num_pages_topic > 1)
-					$subject_multipage = '<span class="pagestext">[ '.paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).' ]</span>';
+					$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).'</span>';
 				else
 					$subject_multipage = null;
 
@@ -739,9 +739,9 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <div class="<?php echo ($show_as == 'topics') ? 'linksb' : 'postlinksb'; ?>">
-    <div class="pagepost">
-        <p class="pagelink"><?php echo $paging_links ?></p>
-    </div>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
     <ul class="breadcrumb">
         <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
         <li><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
