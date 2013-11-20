@@ -370,6 +370,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 				message($lang['Too wide or high'].' '.$pun_config['o_avatars_width'].'x'.$pun_config['o_avatars_height'].' '.$lang['pixels'].'.');
 			}
 
+
 			// Delete any old avatars and put the new one in place
 			delete_avatar($id);
 			@rename(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension);
@@ -662,7 +663,7 @@ else if (isset($_POST['form_sent']))
 	// Validate input depending on section
 	switch ($section)
 	{
-		case 'essentials':
+		case 'admin':
 		{
 			$form = array();
 
@@ -670,38 +671,9 @@ else if (isset($_POST['form_sent']))
 			{
 				$form['admin_note'] = pun_trim($_POST['admin_note']);
 
-				// Are we allowed to change usernames?
-				if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_rename_users'] == '1'))
-				{
-					$form['username'] = pun_trim($_POST['req_username']);
-
-					if ($form['username'] != $old_username)
-					{
-						// Check username
-						require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
-
-						$errors = array();
-						check_username($form['username'], $id);
-						if (!empty($errors))
-							message($errors[0]);
-
-						$username_updated = true;
-					}
-				}
-
 				// We only allow administrators to update the post count
 				if ($pun_user['g_id'] == FORUM_ADMIN)
 					$form['num_posts'] = intval($_POST['num_posts']);
-			}
-
-			if ($pun_config['o_regs_verify'] == '0' || $pun_user['is_admmod'])
-			{
-				require FORUM_ROOT.'include/email.php';
-
-				// Validate the email address
-				$form['email'] = strtolower(pun_trim($_POST['req_email']));
-				if (!is_valid_email($form['email']))
-					message($lang['Invalid email']);
 			}
 
 			break;
@@ -719,6 +691,38 @@ else if (isset($_POST['form_sent']))
 				'aim'			=> pun_trim($_POST['form']['aim']),
 				'yahoo'			=> pun_trim($_POST['form']['yahoo']),
 			);
+
+			if ($pun_user['is_admmod'])
+			{
+				// Are we allowed to change usernames?
+				if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_rename_users'] == '1'))
+				{
+					$form['username'] = pun_trim($_POST['req_username']);
+
+					if ($form['username'] != $old_username)
+					{
+						// Check username
+						require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
+
+						$errors = array();
+						check_username($form['username'], $id);
+						if (!empty($errors))
+							message($errors[0]);
+
+						$username_updated = true;
+					}
+				}
+			}
+
+			if ($pun_config['o_regs_verify'] == '0' || $pun_user['is_admmod'])
+			{
+				require FORUM_ROOT.'include/email.php';
+
+				// Validate the email address
+				$form['email'] = strtolower(pun_trim($_POST['req_email']));
+				if (!is_valid_email($form['email']))
+					message($lang['Invalid email']);
+			}
 
 			// Add http:// if the URL doesn't contain it already (while allowing https://, too)
 			if ($form['url'] != '')
@@ -1096,80 +1100,186 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 }
 else
 {
-	if (!$section || $section == 'essentials')
-	{
-		if ($pun_user['is_admmod'])
+	if (!$section || $section == 'view')
+	{	
+	
+		$user_personality = array();
+	
+		$user_personality[] = '<tr><th class="col-md-2">'.$lang['Username'].'</th>';
+		$user_personality[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
+	
+		$user_title_field = get_title($user);
+		$user_personality[] = '<tr><th>'.$lang['Title'].'</th>';
+		$user_personality[] = '<td>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
+	
+		if ($user['realname'] != '')
 		{
-			if ($pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_mod_rename_users'] == '1')
-				$username_field = '<label><strong>'.$lang['Username'].'</strong><br /><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /></label>'."\n";
-			else
-				$username_field = '<p>'.sprintf($lang['Username info'], pun_htmlspecialchars($user['username'])).'</p>'."\n";
-
-			$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /></label><p><span class="email"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></p>'."\n";
+			$user_personality[] = '<tr><th>'.$lang['Realname'].'</th>';
+			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
 		}
+	
+		if ($user['location'] != '')
+		{
+			$user_personality[] = '<tr><th>'.$lang['Location'].'</th>';
+			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
+		}
+	
+		if ($user['url'] != '')
+		{
+			$user['url'] = pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
+			$user_personality[] = '<tr><th>'.$lang['Website'].'</th>';
+			$user_personality[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
+		}
+	
+		if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
+			$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
+		else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
+			$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
 		else
+			$email_field = '';
+		if ($email_field != '')
 		{
-			$username_field = '<p>'.$lang['Username'].': '.pun_htmlspecialchars($user['username']).'</p>'."\n";
-
-			if ($pun_config['o_regs_verify'] == '1')
-				$email_field = '<p>'.sprintf($lang['Email info'], pun_htmlspecialchars($user['email']).' - <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
-			else
-				$email_field = '<label><strong>'.$lang['Email'].'</strong><br /><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" size="40" maxlength="80" /></label>'."\n";
+			$user_personality[] = '<tr><th>'.$lang['Email'].'</th>';
+			$user_personality[] = '<td><span class="email">'.$email_field.'</span></td></tr>';
 		}
-
-		if ($pun_user['g_id'] == FORUM_ADMIN) {
-			$posts_field = '<label>'.$lang['Posts'].'<br /><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></label><br />';
+	
+		$user_messaging = array();
+	
+		if ($user['jabber'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['Jabber'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
 		}
+	
+		if ($user['icq'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['ICQ'].'</th>';
+			$user_messaging[] = '<td>'.$user['icq'].'</td></tr>';
+		}
+	
+		if ($user['msn'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['MSN'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
+		}
+	
+		if ($user['aim'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['AOL IM'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
+		}
+	
+		if ($user['yahoo'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['Yahoo'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
+		}
+	
+		if ($pun_config['o_avatars'] == '1')
+		{
+			$avatar_field = generate_avatar_markup($id);
+			if ($avatar_field != '')
+			{
+				$user_personality[] = '<tr><th>'.$lang['Avatar'].'</th>';
+				$user_personality[] = '<td>'.$avatar_field.'</td></tr>';
+			}
+		}
+	
+		if ($pun_config['o_signatures'] == '1')
+		{
+			if (isset($parsed_signature))
+			{
+				$user_personality[] = '<tr><th>'.$lang['Signature'].'</th>';
+				$user_personality[] = '<td><div class="postsignature postmsg">'.$parsed_signature.'</div></td></tr>';
+			}
+		}
+	
+		$user_activity = array();
+	
+		$posts_field = '';
+		if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
+			$posts_field = forum_number_format($user['num_posts']);
+		if ($pun_user['g_search'] == '1')
+		{
+			$quick_searches = array();
+			if ($user['num_posts'] > 0)
+			{
+				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
+				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+			}
+			if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
+				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
+	
+			if (!empty($quick_searches))
+				$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
+		}
+		if ($posts_field != '')
+		{
+			$user_activity[] = '<tr><th>'.$lang['Posts table'].'</th>';
+			$user_activity[] = '<td>'.$posts_field.'</td></tr>';
+		}
+	
+		if ($user['num_posts'] > 0)
+		{
+			$user_activity[] = '<tr><th>'.$lang['Last post'].'</th>';
+			$user_activity[] = '<td>'.$last_post.'</td></tr>';
+		}
+	
+		$user_activity[] = '<tr><th>'.$lang['Registered table'].'</th>';
+		$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
+	
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang['title view own profile']);
+	define('FORUM_ACTIVE_PAGE', 'profile');
+	require FORUM_ROOT.'header.php';
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section essentials']);
-		$required_fields = array('req_username' => $lang['Username'], 'req_email' => $lang['Email']);
-		define('FORUM_ACTIVE_PAGE', 'profile');
-		require FORUM_ROOT.'header.php';
-
-		generate_profile_menu('essentials');
+	generate_profile_menu('view');
 
 ?>
+
 <div class="col-md-10">
-    <h2 class="profile-h2"><?php echo $lang['Section essentials'] ?></h2>
-    <form id="profile1" method="post" action="profile.php?section=essentials&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Username and pass legend'] ?></h3>
-            </div>
-            <div class="panel-body">
-                <fieldset>
-                    <input type="hidden" name="form_sent" value="1" />
-                    <?php echo $username_field ?>
-					<?php if ($pun_user['id'] == $id || $pun_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>
-                        <p><a class="btn btn-primary" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a></p>
-                    <?php endif; ?>
-                </fieldset>
-                <fieldset>
-                    <?php echo $email_field ?>
-                </fieldset>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['User activity'] ?></h3>
-            </div>
-            <div class="panel-body">
-                <fieldset>
-                    <p><?php printf($lang['Last visit info'], format_time($user['last_visit'])) ?></p>
-                    <?php echo $posts_field ?>
-<?php if ($pun_user['is_admmod']): ?>							<label><?php echo $lang['Admin note'] ?><br />
-                        <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" size="30" maxlength="30" /></label>
-<?php endif; ?>
-                </fieldset>
-            </div>
-        </div>
-        <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></div>
-    </form>
+	<h2><?php echo $lang['Profile'] ?> <small><?php echo $lang['View info'] ?></small></h2>
+    <table class="table">
+        <tr><td class="active" colspan="2"><h4><?php echo $lang['Section personality'] ?></h4></td></tr>
+        <tr>
+            <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
+        </tr>
+    <?php if (!empty($user_messaging)): ?>
+        <tr><td class="active" colspan="2"><h4><?php echo $lang['Section messaging'] ?></h4></td></tr>
+        <tr>
+            <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
+        </tr>
+    <?php endif; ?>
+        <tr><td class="active" colspan="2"><h4><?php echo $lang['User activity'] ?></h4></td></tr>
+        <tr>
+            <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
+        </tr>
+    </table>
+</div>
+
 <?php
 
 	}
 	else if ($section == 'personality')
 	{
+		if ($pun_user['is_admmod'])
+		{
+			if ($pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_mod_rename_users'] == '1')
+				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /></div></div>'."\n";
+			else
+				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10">'.pun_htmlspecialchars($user['username']).'</div></div>'."\n";
+
+			$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /> <a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></div></div>'."\n";
+		}
+		else
+		{
+			$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input class="form-control" type="text"  value="'.pun_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
+
+			if ($pun_config['o_regs_verify'] == '1')
+				$email_field = '<p>'.sprintf($lang['Email info'], pun_htmlspecialchars($user['email']).' &middot; <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
+			else
+				$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" size="40" maxlength="80" /></div></div>'."\n";
+		}
+		
 		if ($pun_user['g_set_title'] == '1')
 			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input class="form-control" type="text" class="form-control" name="title" value="'.pun_htmlspecialchars($user['title']).'" size="30" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
 			
@@ -1201,10 +1311,22 @@ else
     <form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Modify your personal and contact details</h3>
+                <h3 class="panel-title"><?php echo $lang['Personal details legend'] ?></h3>
             </div>
             <div class="panel-body">
                 <fieldset>
+                    <input type="hidden" name="form_sent" value="1" />
+                    <?php echo $username_field ?>
+					<?php if ($pun_user['id'] == $id || $pun_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
+                        <div class="col-sm-10">
+                            <a class="btn btn-primary" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php echo $email_field ?>
+                	<hr />
                     <input type="hidden" name="form_sent" value="1" />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Realname'] ?></label>
@@ -1319,7 +1441,7 @@ else
     <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Contact details legend'] ?></h3>
+                <h3 class="panel-title"><?php echo $lang['Settings legend'] ?></h3>
             </div>
             <div class="panel-body">
                 <fieldset>
@@ -1484,6 +1606,7 @@ else
                                 <label>
                                     <input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked="checked"' ?> />
                                     <?php echo $lang['Show sigs'] ?>
+
                                 </label>
                             </div>
 <?php endif; if ($pun_config['o_avatars'] == '1'): ?>
@@ -1580,132 +1703,132 @@ else
 
 	}
 	else if ($section == 'view')
-	{		
+	{	
 	
-	$user_personality = array();
-
-	$user_personality[] = '<tr><th class="col-md-2">'.$lang['Username'].'</th>';
-	$user_personality[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
-
-	$user_title_field = get_title($user);
-	$user_personality[] = '<tr><th>'.$lang['Title'].'</th>';
-	$user_personality[] = '<td>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
-
-	if ($user['realname'] != '')
-	{
-		$user_personality[] = '<tr><th>'.$lang['Realname'].'</th>';
-		$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
-	}
-
-	if ($user['location'] != '')
-	{
-		$user_personality[] = '<tr><th>'.$lang['Location'].'</th>';
-		$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
-	}
-
-	if ($user['url'] != '')
-	{
-		$user['url'] = pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
-		$user_personality[] = '<tr><th>'.$lang['Website'].'</th>';
-		$user_personality[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
-	}
-
-	if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-		$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
-	else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-		$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
-	else
-		$email_field = '';
-	if ($email_field != '')
-	{
-		$user_personality[] = '<tr><th>'.$lang['Email'].'</th>';
-		$user_personality[] = '<td><span class="email">'.$email_field.'</span></td></tr>';
-	}
-
-	$user_messaging = array();
-
-	if ($user['jabber'] != '')
-	{
-		$user_messaging[] = '<tr><th>'.$lang['Jabber'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
-	}
-
-	if ($user['icq'] != '')
-	{
-		$user_messaging[] = '<tr><th>'.$lang['ICQ'].'</th>';
-		$user_messaging[] = '<td>'.$user['icq'].'</td></tr>';
-	}
-
-	if ($user['msn'] != '')
-	{
-		$user_messaging[] = '<tr><th>'.$lang['MSN'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
-	}
-
-	if ($user['aim'] != '')
-	{
-		$user_messaging[] = '<tr><th>'.$lang['AOL IM'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
-	}
-
-	if ($user['yahoo'] != '')
-	{
-		$user_messaging[] = '<tr><th>'.$lang['Yahoo'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
-	}
-
-	if ($pun_config['o_avatars'] == '1')
-	{
-		$avatar_field = generate_avatar_markup($id);
-		if ($avatar_field != '')
+		$user_personality = array();
+	
+		$user_personality[] = '<tr><th class="col-md-2">'.$lang['Username'].'</th>';
+		$user_personality[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
+	
+		$user_title_field = get_title($user);
+		$user_personality[] = '<tr><th>'.$lang['Title'].'</th>';
+		$user_personality[] = '<td>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
+	
+		if ($user['realname'] != '')
 		{
-			$user_personality[] = '<tr><th>'.$lang['Avatar'].'</th>';
-			$user_personality[] = '<td>'.$avatar_field.'</td></tr>';
+			$user_personality[] = '<tr><th>'.$lang['Realname'].'</th>';
+			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
 		}
-	}
-
-	if ($pun_config['o_signatures'] == '1')
-	{
-		if (isset($parsed_signature))
+	
+		if ($user['location'] != '')
 		{
-			$user_personality[] = '<tr><th>'.$lang['Signature'].'</th>';
-			$user_personality[] = '<td><div class="postsignature postmsg">'.$parsed_signature.'</div></td></tr>';
+			$user_personality[] = '<tr><th>'.$lang['Location'].'</th>';
+			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
 		}
-	}
-
-	$user_activity = array();
-
-	$posts_field = '';
-	if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
-		$posts_field = forum_number_format($user['num_posts']);
-	if ($pun_user['g_search'] == '1')
-	{
-		$quick_searches = array();
+	
+		if ($user['url'] != '')
+		{
+			$user['url'] = pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
+			$user_personality[] = '<tr><th>'.$lang['Website'].'</th>';
+			$user_personality[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
+		}
+	
+		if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
+			$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
+		else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
+			$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
+		else
+			$email_field = '';
+		if ($email_field != '')
+		{
+			$user_personality[] = '<tr><th>'.$lang['Email'].'</th>';
+			$user_personality[] = '<td><span class="email">'.$email_field.'</span></td></tr>';
+		}
+	
+		$user_messaging = array();
+	
+		if ($user['jabber'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['Jabber'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
+		}
+	
+		if ($user['icq'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['ICQ'].'</th>';
+			$user_messaging[] = '<td>'.$user['icq'].'</td></tr>';
+		}
+	
+		if ($user['msn'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['MSN'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
+		}
+	
+		if ($user['aim'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['AOL IM'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
+		}
+	
+		if ($user['yahoo'] != '')
+		{
+			$user_messaging[] = '<tr><th>'.$lang['Yahoo'].'</th>';
+			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
+		}
+	
+		if ($pun_config['o_avatars'] == '1')
+		{
+			$avatar_field = generate_avatar_markup($id);
+			if ($avatar_field != '')
+			{
+				$user_personality[] = '<tr><th>'.$lang['Avatar'].'</th>';
+				$user_personality[] = '<td>'.$avatar_field.'</td></tr>';
+			}
+		}
+	
+		if ($pun_config['o_signatures'] == '1')
+		{
+			if (isset($parsed_signature))
+			{
+				$user_personality[] = '<tr><th>'.$lang['Signature'].'</th>';
+				$user_personality[] = '<td><div class="postsignature postmsg">'.$parsed_signature.'</div></td></tr>';
+			}
+		}
+	
+		$user_activity = array();
+	
+		$posts_field = '';
+		if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
+			$posts_field = forum_number_format($user['num_posts']);
+		if ($pun_user['g_search'] == '1')
+		{
+			$quick_searches = array();
+			if ($user['num_posts'] > 0)
+			{
+				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
+				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+			}
+			if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
+				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
+	
+			if (!empty($quick_searches))
+				$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
+		}
+		if ($posts_field != '')
+		{
+			$user_activity[] = '<tr><th>'.$lang['Posts table'].'</th>';
+			$user_activity[] = '<td>'.$posts_field.'</td></tr>';
+		}
+	
 		if ($user['num_posts'] > 0)
 		{
-			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
-			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+			$user_activity[] = '<tr><th>'.$lang['Last post'].'</th>';
+			$user_activity[] = '<td>'.$last_post.'</td></tr>';
 		}
-		if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
-			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
-
-		if (!empty($quick_searches))
-			$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
-	}
-	if ($posts_field != '')
-	{
-		$user_activity[] = '<tr><th>'.$lang['Posts table'].'</th>';
-		$user_activity[] = '<td>'.$posts_field.'</td></tr>';
-	}
-
-	if ($user['num_posts'] > 0)
-	{
-		$user_activity[] = '<tr><th>'.$lang['Last post'].'</th>';
-		$user_activity[] = '<td>'.$last_post.'</td></tr>';
-	}
-
-	$user_activity[] = '<tr><th>'.$lang['Registered table'].'</th>';
-	$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
+	
+		$user_activity[] = '<tr><th>'.$lang['Registered table'].'</th>';
+		$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
 	
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang['title view own profile']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
@@ -1742,6 +1865,10 @@ else
 	{
 		if (!$pun_user['is_admmod'] || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '0'))
 			message($lang['Bad request'], false, '403 Forbidden');
+
+		if ($pun_user['g_id'] == FORUM_ADMIN) {
+			$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></div></div>';
+		}
 
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
 		define('FORUM_ACTIVE_PAGE', 'profile');
@@ -1867,6 +1994,28 @@ else
 		}
 
 ?>
+    </form>
+    <form id="profile1" class="form-horizontal" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $lang['User tools'] ?></h3>
+            </div>
+            <div class="panel-body">
+                <input type="hidden" name="form_sent" value="1" />
+                <fieldset>
+                    <?php echo $posts_field ?>
+					<?php if ($pun_user['is_admmod']): ?>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><?php echo $lang['Admin note'] ?></label>
+                        <div class="col-sm-10">
+                            <input id="admin_note" type="text" class="form-control full-form" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" size="30" maxlength="30" />
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </fieldset>
+            </div>
+        </div>
+        <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></div>
     </form>
 <?php
 
