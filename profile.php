@@ -13,7 +13,6 @@ require FORUM_ROOT.'include/common.php';
 // Include UTF-8 function
 require FORUM_ROOT.'include/utf8/substr_replace.php';
 require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
-require FORUM_ROOT.'include/utf8/strcasecmp.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $section = isset($_GET['section']) ? $_GET['section'] : null;
@@ -702,8 +701,6 @@ else if (isset($_POST['form_sent']))
 					if ($form['username'] != $old_username)
 					{
 						// Check username
-						require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 						$errors = array();
 						check_username($form['username'], $id);
 						if (!empty($errors))
@@ -1384,6 +1381,9 @@ else
                 </fieldset>
             </div>
         </div>
+        <div class="alert alert-info">
+			<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" />
+		</div>
 <?php if ($pun_config['o_avatars'] == '1'): ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -1416,12 +1416,12 @@ else
                     </ul>
                     <?php echo $signature_preview ?>
                 </fieldset>
-<?php endif; ?>
 			</div>
         </div>
         <div class="alert alert-info">
 			<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" />
 		</div>
+<?php endif; ?>
     </form>
 <?php
 
