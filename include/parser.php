@@ -797,8 +797,6 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[right\](.*?)\[/right\]%ms';
 	$pattern[] = '%\[center\](.*?)\[/center\]%ms';
 	$pattern[] = '%\[justify\](.*?)\[/justify\]%ms';
-	$pattern[] = '%\[size=([0-9])\](.*?)\[/size\]%ms';
-	$pattern[] = '%\[font=(.*?)\](.*?)\[/font\]%ms';
 	$pattern[] = '%\[hr\]%ms';
 	
 	// DailyMotion Videos
@@ -829,8 +827,6 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '</p><p style="text-align: right">$1</p><p>';
 	$replace[] = '</p><p style="text-align: center">$1</p><p>';
 	$replace[] = '</p><p style="text-align: justify">$1</p><p>';
-	$replace[] = '<font size="$1">$2</font>';
-	$replace[] = '<font face="$1">$2</font>';
 	$replace[] = '</p><hr><p>';
 	
 	// DailyMotion videos
