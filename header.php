@@ -225,7 +225,7 @@ if ($pun_config['o_menu_title'] == 1) {
 	$menu_title = '<a href="#" class="navbar-brand">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a>';
 }
 
-$tpl_temp = '<div class="navbar">
+$tpl_temp = '<div class="navbar navbar-default">
 	<div class="nav-inner">
 		'.$menu_title.'
 		<div class="navbar-header">

@@ -473,6 +473,15 @@ function check_username($username, $exclude_id = null)
 		$errors[] = $lang['Username reserved chars'];
 	else if (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|topic|post|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
 		$errors[] = $lang['Username BBCode'];
+		
+	if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_tag_check.php'))
+		include FORUM_CACHE_DIR.'cache_toolbar_tag_check.php';
+	else
+	{
+		require_once FORUM_ROOT.'include/cache_toolbar.php';
+		generate_ftb_cache('tags');
+		require FORUM_CACHE_DIR.'cache_toolbar_tag_check.php';
+	}
 
 	// Check username for any censored words
 	if ($pun_config['o_censoring'] == '1' && censor_words($username) != $username)

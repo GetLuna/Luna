@@ -7,7 +7,7 @@ ModernBB is an open source forum application released under the GNU General Publ
 ## Requirements
  - A webserver
  - PHP 5.0.1 or later
- - A database running MySQL 5.0.1 or later, MariaDB 5.3.4 of later, PostgreSQL 7.0 or later or SQLite 2
+ - A database, MySQL 5.0.1 or later, MariaDB 5.3.4 of later, PostgreSQL 7.0 or later or SQLite 2
 
 ## Recommendations
  - Make use of a PHP accelerator such as APC or XCache

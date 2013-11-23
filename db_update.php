@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.2-beta');
 
-define('UPDATE_TO_DB_REVISION', 41);
+define('UPDATE_TO_DB_REVISION', 42);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 6);
 
@@ -508,14 +508,6 @@ switch ($stage)
 		// Rename the subscription table
 		$db->rename_table('subscriptions', 'topic_subscriptions');
 
-		// Since 2.2-beta Remove the toolbar_conf table
-		if ($db->table_exists('toolbar_conf'))
-			$db->drop_table('toolbar_conf') or error('Unable to drop toolbar_conf table', __FILE__, __LINE__, $db->error());
-
-		// Since 2.2-beta Remove the toolbar_tags table
-		if ($db->table_exists('toolbar_tags'))
-			$db->drop_table('toolbar_tags') or error('Unable to drop toolbar_tags table', __FILE__, __LINE__, $db->error());
-
 		// If we don't have the forum_subscriptions table, create it
 		if (!$db->table_exists('forum_subscriptions'))
 		{
@@ -536,6 +528,112 @@ switch ($stage)
 			);
 
 			$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
+		}
+		
+		// Since ModernBB 2.0-beta.3 - If we don't have the toolbar_conf table, create it
+		if (!$db->table_exists('toolbar_conf'))
+		{
+			$schema = array(
+				'FIELDS' => array(
+					'conf_name' => array(
+						'datatype' => 'VARCHAR(40)',
+						'allow_null' => false,
+						'default' => '\'\''
+					),
+					'conf_value' => array(
+						'datatype' => 'VARCHAR(40)',
+						'allow_null' => false,
+						'default' => '\'\''
+					)
+				),
+				'PRIMARY KEY' => array('conf_name')
+			);
+			$db->create_table('toolbar_conf', $schema) or error('Unable to create toolbar_conf table', __FILE__, __LINE__, $db->error());
+			
+			$config = array(
+				'enable_form'		=>	'1',
+				'enable_quickform'	=>	'0',
+				'img_pack'			=>	'Default',
+				'nb_smilies'		=>	'16',
+			);
+			
+			while (list($conf_name, $conf_value) = @each($config))
+				$db->query('INSERT INTO '.$db->prefix.'toolbar_conf (conf_name, conf_value) VALUES(\''.$db->escape($conf_name).'\', \''.$db->escape($conf_value).'\')') or error('Unable to insert in toolbar_conf table', __FILE__, __LINE__, $db->error());
+		}
+		
+		// Since ModernBB 2.0-beta.3 - If we don't have the toolbar_tags table, create it
+		if (!$db->table_exists('toolbar_tags'))
+		{
+			$schema = array(
+				'FIELDS' => array(
+					'name' => array(
+						'datatype' => 'VARCHAR(20)',
+						'allow_null' => false,
+						'default' => '\'\''
+					),
+					'code' => array(
+						'datatype' => 'VARCHAR(20)',
+						'allow_null' => false,
+						'default' => '\'\''
+					),
+					'enable_form' => array(
+						'datatype' => 'TINYINT(1)',
+						'allow_null' => false,
+						'default' => '0'
+					),
+					'enable_quick' => array(
+						'datatype' => 'TINYINT(1)',
+						'allow_null' => false,
+						'default' => '0'
+					),
+					'image' => array(
+						'datatype' => 'VARCHAR(40)',
+						'allow_null' => false,
+						'default' => '\'\''
+					),
+					'func' => array(
+						'datatype' => 'TINYINT(1)',
+						'allow_null' => false,
+						'default' => '0'
+					),
+					'position' => array(
+						'datatype' => 'TINYINT(2) UNSIGNED',
+						'allow_null' => false,
+						'default' => '1'
+					)
+				),
+				'PRIMARY KEY' => array('name')
+			);
+			$db->create_table('toolbar_tags', $schema) or error('Unable to create toolbar_tags table', __FILE__, __LINE__, $db->error());
+			
+			$tags = array(
+				"'smilies', '', '1', '1', 'smilies.png', '0', '0'",
+				"'bold', 'b', '1', '1', 'bold.png', '0', '1'",
+				"'italic', 'i', '1', '1', 'italic.png', '0', '2'",
+				"'underline', 'u', '1', '1', 'underline.png', '0', '3'",
+				"'strike', 's', '1', '1', 'strike.png', '0', '4'",
+				"'sup', 'sup', '1', '0', 'sup.png', '0', '5'",
+				"'sub', 'sub', '1', '0', 'sub.png', '0', '6'",
+				"'heading', 'h', '1', '1', 'size_plus.png', '0', '7'",
+				"'left', 'left', '1', '0', 'align_left.png', '0', '8'",
+				"'right', 'right', '1', '0', 'align_right.png', '0', '9'",
+				"'center', 'center', '1', '0', 'align_center.png', '0', '10'",
+				"'justify', 'justify', '1', '0', 'align_justify.png', '0', '11'",
+				"'color', 'color', '1', '1', 'color.png', '0', '12'",
+				"'q', 'q', '1', '0', 'quote.png', '0', '13'",
+				"'acronym', 'acronym', '1', '0', 'acronym.png', '1', '14'",
+				"'img', 'img', '1', '1', 'img.png', '2', '15'",
+				"'code', 'code', '1', '1', 'pre.png', '0', '16'",
+				"'quote', 'quote', '1', '1', 'bquote.png', '1', '17'",
+				"'link', 'url', '1', '1', 'link.png', '2', '18'",
+				"'email', 'email', '1', '1', 'email.png', '2', '19'",
+				"'video', 'video', '1', '0', 'video.png', '3', '20'",
+				"'li', '*', '1', '1', 'li.png', '0', '21'",
+				"'list', 'list', '1', '1', 'ul.png', '1', '22'"
+			);
+			
+			foreach ($tags as $tag)
+				$db->query('INSERT INTO '.$db->prefix.'toolbar_tags (name, code, enable_form, enable_quick, image, func, position) VALUES ('.$tag.')') or error('Unable to insert in toolbar_tags table', __FILE__, __LINE__, $db->error());
 		}
 
 		// Insert new config option o_forum_subscriptions

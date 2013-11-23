@@ -49,7 +49,16 @@ define('FORUM_CJK_HANGUL_REGEX', '['.
 function split_words($text, $idx)
 {
 	// Remove BBCode
-	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|topic|post|forum|user)(?:\=[^\]]*)?\]%', ' ', $text);
+	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|topic|post|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
+	
+	if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_tag_search.php'))
+		include FORUM_CACHE_DIR.'cache_toolbar_tag_search.php';
+	else
+	{
+		require_once FORUM_ROOT.'include/cache.php';
+		generate_ftb_cache('tags');
+		require FORUM_CACHE_DIR.'cache_toolbar_tag_search.php';
+	}
 
 	// Remove any apostrophes or dashes which aren't part of words
 	$text = substr(ucp_preg_replace('%((?<=[^\p{L}\p{N}])[\'\-]|[\'\-](?=[^\p{L}\p{N}]))%u', '', ' '.$text.' '), 1, -1);

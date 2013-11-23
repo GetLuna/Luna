@@ -75,6 +75,7 @@ function generate_admin_menu($page = '')
                         <li><a href="settings.php"><?php echo $lang['Global'] ?></a></li>
                         <li><a href="appearance.php"><?php echo $lang['Appearance'] ?></a></li>
                         <li><a href="features.php"><?php echo $lang['Features'] ?></a></li>
+                        <li><a href="toolbar.php"><?php echo $lang['Toolbar'] ?></a></li>
                         <li><a href="email.php"><?php echo $lang['Email'] ?></a></li>
                         <li class="divider"></li>
                         <li><a href="maintenance.php"><?php echo $lang['Maintenance'] ?></a></li>
