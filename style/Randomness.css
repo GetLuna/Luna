@@ -732,6 +732,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	border-radius: 0;
 	width: auto;
 	max-width: 100%;
+	display: inline;
 }
 
 .full-form {
