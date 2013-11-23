@@ -54,32 +54,21 @@ require FORUM_ROOT.'backstage/header.php';
 <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Maintenance releases'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <p>
-                <?php echo sprintf($lang['Version release'], '2.1.1') ?> <?php echo sprintf($lang['Maintenance version'], '8') ?>
-            </p>
-        </div>
-    </div>
-</div>
-<div class="col-lg-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Headline feature 1 title'] ?></h3>
 		</div>
         <div class="panel-body">
-            <div class="thumbnail">
-                <img src="../img/backstage/headline1.png" width="997" height="215" />
-            </div>
             <div class="row">
                 <div class="col-lg-6">
                     <p><b><?php echo $lang['Headline feature 1 head 1'] ?></b><br />
                     <?php echo $lang['Headline feature 1 info 1'] ?></p>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <p><b><?php echo $lang['Headline feature 1 head 2'] ?></b><br />
                     <?php echo $lang['Headline feature 1 info 2'] ?></p>
+                </div>
+                <div class="col-lg-3">
+                    <p><b><?php echo $lang['Headline feature 1 head 3'] ?></b><br />
+                    <?php echo $lang['Headline feature 1 info 3'] ?></p>
                 </div>
             </div>
         </div>
@@ -91,7 +80,16 @@ require FORUM_ROOT.'backstage/header.php';
             <h3 class="panel-title"><?php echo $lang['Headline feature 2 title'] ?></h3>
         </div>
         <div class="panel-body">
-            <p><?php echo $lang['Headline feature 2 info'] ?></p>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p><b><?php echo $lang['Headline feature 2 head 1'] ?></b><br />
+                    <?php echo $lang['Headline feature 2 info 1'] ?></p>
+                </div>
+                <div class="col-lg-6">
+                    <p><b><?php echo $lang['Headline feature 2 head 2'] ?></b><br />
+                    <?php echo $lang['Headline feature 2 info 2'] ?></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
