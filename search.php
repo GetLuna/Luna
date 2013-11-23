@@ -773,9 +773,9 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
             <h3 class="panel-title"><?php echo $lang['Search criteria legend'] ?></h3>
         </div>
         <div class="panel-body">
-            <fieldset class="search">
+            <fieldset>
                 <input type="hidden" name="action" value="search" />
-            	<input class="search-form" type="text" name="keywords" size="40" maxlength="100" /><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" />
+            	<div class="input-group"><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /><span class="input-group-btn"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" /></span></div>
                 <a class="hidden-xs" href="search.php?section=advanced"><?php echo $lang['Advanced search'] ?></a>
             </fieldset>
         </div>

@@ -376,8 +376,8 @@ while ($cur_post = $db->fetch_assoc($result))
         <?php if (!$pun_user['is_guest']) { ?>
         <tr>
             <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-				<?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?>
-                <p class="pull-right"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></p>
+				<div class="btn-group"><?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?></div>
+                <p class="pull-right btn-group"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></p>
             </td>
         </tr>
         <?php } ?>
@@ -455,7 +455,7 @@ else
                     <li><a class="label <?php echo ($pun_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
                 </ul>
             </fieldset>
-            <p class="actions"><input class="btn btn-primary" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang['Submit'] ?>" accesskey="s" /> <input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></p>
+            <div class="btn-group actions"><input class="btn btn-primary" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div>
         </form>
     </div>
 </div>
