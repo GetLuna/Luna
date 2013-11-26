@@ -214,7 +214,7 @@ if ($pun_user['is_guest'])
 	$usermenu[] = '<li class="divider"></li>';
 	if ($pun_user['is_admmod']) {
 		$usermenu[] = '<li><a href="http://modernbb.be">'.$lang['Support'].'</a></li>';
-		$usermenu[] = '<li><a href="backstage/about.php">'.$lang['About'].'</a></li>';
+		$usermenu[] = '<li><a href="http://modernbb.be/docs">'.$lang['Documentation'].'</a></li>';
 		$usermenu[] = '<li class="divider"></li>';
 	}
 	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
@@ -254,7 +254,7 @@ if (!$pun_user['is_guest'])
 {
 	if (!empty($forum_actions))
 	{
-		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</span></li>';
+		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</li></span>';
 	}
 	
 	if (!empty($topic_actions))

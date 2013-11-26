@@ -96,7 +96,6 @@ $lang = array(
 // User menu
 'Welcome'							=>	'Welcome',
 'Support'							=>	'Support',
-'About'								=>	'About ModernBB',
 'Help'								=>	'Help',
 
 'Index'								=>	'Index',
@@ -930,40 +929,6 @@ $lang = array(
 
 /////////////////////////////////////////////////// Language for Backstage ///////////////////////////////////////////////////
 
-// Language for about.php
-'ModernBB intro'			=>	'Welcome to ModernBB',
-'What new'					=>	'What\'s new in ModernBB',
-'More new'					=>	'More improvements',
-'Other new'					=>	'Other small improvements',
-
-'Maintenance releases'		=>	'Maintenance and security releases',
-'Version release'			=>	'<b>Version %s</b>:',
-'Maintenance version'		=>	'addressed some issues and fixed %s bugs.',
-'Security version'			=>	'addressed some security issues and fixed %s bugs.',
-
-'Headline feature 1 title'	=>	'Responsive design and other design improvements',
-'Headline feature 1 head 1'	=>	'Awesome everywhere.',
-'Headline feature 1 head 2'	=>	'For admins and mods.',
-'Headline feature 1 head 3'	=>	'Navigate in style.',
-'Headline feature 1 info 1'	=>	'ModernBB 2.2 was focused on brining a responsive design to the system. With Bootstrap, we had a great base to start from, and well: we did it. If you are using one of the default styles, or your, you will find yourself in a responsive website. We recomend you to update custome styles too.',
-'Headline feature 1 info 2'	=>	'Of course, the Backstage got some love too. Just like the frontend, the Backstage will now change appearance when it has less screen to display.',
-'Headline feature 1 info 3'	=>	'Not only that, we also made some serious improvements to other visual elements, like the pagination, multiple buttons, BBCode help labels and more.',
-
-'Headline feature 2 title'	=>	'The new profile',
-'Headline feature 2 head 1'	=>	'Make it yours.',
-'Headline feature 2 info 1'	=>	'We worked hard on the new profile, and we are proud with the result. The settings pages have been cleaned up, instead of 8 pages, the profile will now have just 4: the profile itself, personal settings, forum settings and admin settings.',
-'Headline feature 2 head 2'	=>	'Be yourself.',
-'Headline feature 2 info 2'	=>	'We worked hard on the "View profile" view, which is now called "Profile". It features a new and much better interface and it won\'t display informaiton that you didn\'t add to your profile (previously, that would be showed as "Unknown").',
-
-'Minor feature 1 head'		=>	'Improved Backstage.',
-'Minor feature 1 info'		=>	'The Backstage has been updated with some serious improvements, forms look better, radio buttons and checkboxes have clickable labels and more. The "Forums" page won\'t be available if no categories are created.',
-'Minor feature 2 head'		=>	'HoRizontal Lines.',
-'Minor feature 2 info'		=>	'The parser has been updated with a new option. When the BBCode [hr] is entered, it will display a horizontal line. However, we did not add this option to the toolbar.',
-'Minor feature 3 head'		=>	'New login form.',
-'Minor feature 3 info'		=>	'We also updated the interface of the login form (again). It now features a more sleek design. Those changes also aply to the update form.',
-'Minor feature 3 head'		=>	'Multiple bugfixes.',
-'Minor feature 3 info'		=>	'With Bootstrap 3.0.2 and all of our own bugfixes, more then 100 bugs have been fixed! That makes ModernBB 2.2 the most stable version yet!',
-
 // Language for backstage.php
 'Update settings head'		=>	'Update settings',
 'Index update check'		=>	'When enabled, every time you visit the Backstage index, ModernBB will check for updates. When this feature is disabled, you won\'t see any update message on the index.',
@@ -1304,8 +1269,7 @@ $lang = array(
 'Moderator info'				=>	'Please note that in order for a user in this group to have moderator abilities, he/she must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.',
 
 // Language used in index.php
-'Welcome head'						=>	'Welcome to your Backstage',
-'Welcome info'						=>	'Welcome to the ModernBB dashboard: Backstage. This is where you control your forums while thinking "yay".',
+'ModernBB intro'					=>	'Welcome to ModernBB',
 'Backup head'						=>	'Back-up',
 'Backup info'						=>	'Create new database backup.',
 'Backup button'						=>	'Create new backup',
@@ -1784,7 +1748,7 @@ $lang = array(
 'Profile'				=>	'Profile',
 'Forum'					=>	'Forum',
 'Support'				=>	'Support',
-'About'					=>	'About ModernBB',
+'Documentation'			=>	'Documentation',
 'Logout'				=>	'Logout',
 
 // Others

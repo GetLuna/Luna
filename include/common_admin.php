@@ -116,7 +116,7 @@ function generate_admin_menu($page = '')
                         <li><a href="../index.php"><?php echo $lang['Forum'] ?></a></li>
                         <li class="divider"></li>
                         <li><a href="http://modernbb.be"><?php echo $lang['Support'] ?></a></li>
-                        <li><a href="about.php"><?php echo $lang['About'] ?></a></li>
+                        <li><a href="http://modernbb.be/docs/"><?php echo $lang['Documentation'] ?></a></li>
                         <li class="divider"></li>
                         <li><?php echo '<a href="../login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">' ?><?php echo $lang['Logout'] ?></a></li>
                     </ul>
