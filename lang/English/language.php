@@ -1793,6 +1793,7 @@ $lang = array(
 
 // Update service
 'Available'				=>	'An update, ModernBB v%s, is available',
+'Development'			=>	'You are running version %s, the latest stable release is version %s.',
 'Download'				=>	'Download v%s',
 'Changelog'				=>	'Changelog',
 
