@@ -207,7 +207,7 @@ if ($pun_user['is_guest'])
 	$usermenu[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>';
 	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang['Login'].'</a></li>';
 } else {
-	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang['Welcome'].', '.(pun_htmlspecialchars($pun_user['username'])).'<b class="caret"></b></a>';
+	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang['Welcome'].', '.(pun_htmlspecialchars($pun_user['username'])).' <b class="caret"></b></a>';
 	$usermenu[] = '<ul class="dropdown-menu">';
 	$usermenu[] = '<li><a href="profile.php?id='.$pun_user['id'].'">'.$lang['Profile'].'</a></li>';
 	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';
