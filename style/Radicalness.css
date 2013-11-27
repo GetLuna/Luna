@@ -313,6 +313,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #ccc;
 }
 
+.modlist {
+	font-size: 70%;
+	margin-bottom: 0;
+}
+
 .postview {
 	margin-bottom: 10px;
 }
