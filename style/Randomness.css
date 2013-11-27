@@ -184,13 +184,6 @@ h1 {
 	}
 }
 
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-	background: rgba(0,0,0,.4);
-	background-image: none;
-	filter: none;
-}
-
 .dropdown-menu {
 	border-radius: 0;
 }
@@ -215,11 +208,6 @@ h1 {
 .navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret, .navbar-default .navbar-nav > .dropdown > a .caret {
 	border-top-color: #fff;
 	border-bottom-color: #fff;
-}
-
-.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
-	color: #fff;
-	background: rgba(0,0,0,.2);
 }
 
 .navbar-right > .dropdown {
@@ -377,7 +365,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #fff;
 	background: #057ed4;
 	background: linear-gradient(to right, #057ed4, #10c1f0);
-	color: #fff;
 }
 
 .category-header, .forum-header {
