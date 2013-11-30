@@ -326,12 +326,12 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
                                 </label>
                                 <br /><p class="help-block"><?php echo $lang['Choose install language info'] ?></p>
                             </fieldset>
-                        </div>
                         <div class="panel-footer">
                         	<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
                         </div>
-                    </div>
-                </form>
+					</div>
+				</div>
+			</form>
 <?php endif; ?>
                         
 <?php if (!empty($alerts)): ?>
@@ -446,14 +446,14 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		}
 
 ?>
-                        </select></label>
-                        <br /><p class="help-block"><?php echo $lang['Info 7'] ?></p>
-                    </fieldset>
-                </div>
-                <div class="panel-footer">
-                	<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
-                </div>
-            </div>
+							</select></label>
+							<br /><p class="help-block"><?php echo $lang['Info 7'] ?></p>
+						</fieldset>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
+				</div>
             </form>
         </div>
     </body>
@@ -918,6 +918,7 @@ else
 				'allow_null'	=> true
 			),
 		),
+
 		'UNIQUE KEYS'	=> array(
 			'user_id_ident_idx'	=> array('user_id', 'ident')
 		),
@@ -1284,6 +1285,67 @@ else
 	);
 
 	$db->create_table('topics', $schema) or error('Unable to create topics table', __FILE__, __LINE__, $db->error());
+
+	$schema = array(
+		'FIELDS' => array(
+			'conf_name' => array(
+				'datatype' => 'VARCHAR(40)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'conf_value' => array(
+				'datatype' => 'VARCHAR(40)',
+				'allow_null' => false,
+				'default' => '\'\''
+			)
+		),
+		'PRIMARY KEY' => array('conf_name')
+	);
+
+	$db->create_table('toolbar_conf', $schema) or error('Unable to create toolbar_conf table', __FILE__, __LINE__, $db->error());
+	
+	$schema = array(
+		'FIELDS' => array(
+			'name' => array(
+				'datatype' => 'VARCHAR(20)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'code' => array(
+				'datatype' => 'VARCHAR(20)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'enable_form' => array(
+				'datatype' => 'TINYINT(1)',
+				'allow_null' => false,
+				'default' => '0'
+			),
+			'enable_quick' => array(
+				'datatype' => 'TINYINT(1)',
+				'allow_null' => false,
+				'default' => '0'
+			),
+			'image' => array(
+				'datatype' => 'VARCHAR(40)',
+				'allow_null' => false,
+				'default' => '\'\''
+			),
+			'func' => array(
+				'datatype' => 'TINYINT(1)',
+				'allow_null' => false,
+				'default' => '0'
+			),
+			'position' => array(
+				'datatype' => 'TINYINT(2) UNSIGNED',
+				'allow_null' => false,
+				'default' => '1'
+			)
+		),
+		'PRIMARY KEY' => array('name')
+	);
+	
+	$db->create_table('toolbar_tags', $schema) or error('Unable to create toolbar_tags table', __FILE__, __LINE__, $db->error());
 
 	$schema = array(
 		'FIELDS'		=> array(
