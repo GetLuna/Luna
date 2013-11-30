@@ -799,7 +799,7 @@ $lang = array(
 'Agree'						=>	'Agree',
 'Cancel'					=>	'Cancel',
 'Register'					=>	'Register',
-'Register legend'			=>	'Enter the requisted data',
+'Register legend'			=>	'Enter the requested data',
 
 // Form validation stuff (some of these are also used in post.php)
 'Registration errors'		=>	'Registration errors',
