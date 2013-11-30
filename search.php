@@ -575,7 +575,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
         <div class="row forum-header">
             <div class="col-lg-5"><?php echo $lang['Topic'] ?></div>
             <div class="col-lg-3"><?php echo $lang['Forum'] ?></div>
-            <div class="col-lg-1"><?php echo $lang['Replies'] ?></div>
+            <div class="col-lg-1"><?php echo $lang['Replies forum'] ?></div>
             <div class="col-lg-3"><?php echo $lang['Last post'] ?></div>
         </div>
 <?php
