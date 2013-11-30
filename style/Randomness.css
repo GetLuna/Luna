@@ -51,7 +51,6 @@ h1 {
 #header .dropdown-menu > li > a:focus {
 	background: #47a9f5;
 	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
-	background-repeat: repeat-x;
 	filter: none;
 	color: #fff;
 }
