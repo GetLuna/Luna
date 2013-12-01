@@ -164,7 +164,7 @@ else
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?php printf($lang['ModernBB version data'].'<a href="about.php">'.$pun_config['o_cur_version'].'</a>') ?></td>
+                        <td><?php printf($lang['ModernBB version data'].$pun_config['o_cur_version']) ?></td>
                         <td><a href="statistics.php"><?php echo $lang['View server statistics'] ?></a></td>
                     </tr>
                 </tbody>
