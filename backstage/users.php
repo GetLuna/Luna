@@ -164,7 +164,7 @@ if (isset($_GET['ip_stats']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?ip_stats='.$ip_stats );
+	$paging_links = paginate($num_pages, $p, 'users.php?ip_stats='.$ip_stats );
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -177,11 +177,9 @@ if (isset($_GET['ip_stats']))
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
         <table class="table">
             <thead>
                 <tr>
@@ -218,11 +216,9 @@ if (isset($_GET['ip_stats']))
             </tbody>
         </table>
     </div>
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </p>
-    <?php endif; ?>
+	<ul class="pagination">
+		<?php echo $paging_links ?>
+	</ul>
 </div>
 <?php
 
@@ -248,7 +244,7 @@ if (isset($_GET['show_users']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'users.php?show_users='.$ip);
+	$paging_links = paginate($num_pages, $p, 'users.php?show_users='.$ip);
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -261,23 +257,21 @@ if (isset($_GET['show_users']))
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th><?php echo $lang['Results username head'] ?></th>
-                        <th><?php echo $lang['Results e-mail head'] ?></th>
-                        <th><?php echo $lang['Results title head'] ?></th>
-                        <th><?php echo $lang['Results posts head'] ?></th>
-                        <th><?php echo $lang['Results admin note head'] ?></th>
-                        <th><?php echo $lang['Results actions head'] ?></th>
-                    </tr>
-                </thead>
-                <tbody>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+		<table class="table">
+			<thead>
+				<tr>
+					<th><?php echo $lang['Results username head'] ?></th>
+					<th><?php echo $lang['Results e-mail head'] ?></th>
+					<th><?php echo $lang['Results title head'] ?></th>
+					<th><?php echo $lang['Results posts head'] ?></th>
+					<th><?php echo $lang['Results admin note head'] ?></th>
+					<th><?php echo $lang['Results actions head'] ?></th>
+				</tr>
+			</thead>
+			<tbody>
 <?php
 
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -306,14 +300,14 @@ if (isset($_GET['show_users']))
 
 			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results view IP link'].'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Posts table'].'</a>';
 ?>
-                    <tr>
-                        <td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-                        <td><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
-                        <td><?php echo $user_title ?></td>
-                        <td><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-                        <td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
-                        <td><?php echo $actions ?></td>
-                    </tr>
+				<tr>
+					<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
+					<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
+					<td><?php echo $user_title ?></td>
+					<td><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
+					<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+					<td><?php echo $actions ?></td>
+				</tr>
 <?php
 
 			}
@@ -321,14 +315,14 @@ if (isset($_GET['show_users']))
 			{
 
 ?>
-                    <tr>
-                        <td><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
-                        <td>&#160;</td>
-                        <td><?php echo $lang['Results guest'] ?></td>
-                        <td>&#160;</td>
-                        <td>&#160;</td>
-                        <td>&#160;</td>
-                    </tr>
+				<tr>
+					<td><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
+					<td>&#160;</td>
+					<td><?php echo $lang['Results guest'] ?></td>
+					<td>&#160;</td>
+					<td>&#160;</td>
+					<td>&#160;</td>
+				</tr>
 <?php
 
 			}
@@ -338,12 +332,11 @@ if (isset($_GET['show_users']))
 		echo "\t\t\t\t".'<tr><td colspan="6">'.$lang['Results no IP found'].'</td></tr>'."\n";
 
 ?>
-                </tbody>
-            </table>
-        </div>
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
+			</tbody>
+		</table>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
     </div>
 </div>
 <?php
@@ -945,11 +938,9 @@ else if (isset($_GET['find_user']))
             </table>
     
             <div class="pagepost">
-				<?php if ($num_pages < 1): ?>
-                    <p class="pagelink">
-                        <p class="pagelink"><?php echo $paging_links ?></p>
-                    </p>
-                <?php endif; ?>
+				<ul class="pagination">
+					<?php echo $paging_links ?>
+				</ul>
 				<?php if ($can_action): ?>
                     <div class="btn-toolbar">
                         <div class="btn-group">

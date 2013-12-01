@@ -375,7 +375,7 @@ else if (isset($_GET['find_ban']))
 	$start_from = 50 * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
+	$paging_links = paginate($num_pages, $p, 'bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Bans'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -388,10 +388,10 @@ else if (isset($_GET['find_ban']))
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-        <div class="pagepost">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </div>
-            <table class="table">
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+		<table class="table">
             <thead>
                 <tr>
                     <th class="tcl" scope="col"><?php echo $lang['Results username head'] ?></th>
@@ -435,9 +435,9 @@ else if (isset($_GET['find_ban']))
 ?>
             </tbody>
         </table>
-        <div class="pagepost">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </div>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
     </div>
 </div>
 <?php
