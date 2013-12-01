@@ -238,7 +238,7 @@ function generate_ftb_cache($form = 'form')
 			if (!empty($tags_prompt))
 				$output_check .= '|\[(?:'.implode($tags_prompt, '|').')=';
 			$output_check .= ')%i\', $username))'."\n";
-			$output_check .= "\t".'$errors[] = $lang_prof_reg[\'Username BBCode\'];'."\n";
+			$output_check .= "\t".'$errors[] = $lang[\'Username BBCode\'];'."\n";
 
 			// Output for search
 			$output_search .= '$text = preg_replace(\'%\[/?('.implode($tags, '|').')(?:\=[^\]]*)?\]%\', \' \', $text);'."\n";
@@ -279,7 +279,7 @@ function generate_ftb_cache($form = 'form')
 	$output .=
 		'<script type="text/javascript" src="include/toolbar_func.js"></script>'."\n".
 		'<script type="text/javascript" src="include/jscolor/jscolor.js"></script>'."\n".
-		'<noscript><p><strong><?php echo $lang_common[\'enable_js\'] ?></strong></p></noscript>'."\n".
+		'<noscript><p><strong><?php echo $lang[\'enable_js\'] ?></strong></p></noscript>'."\n".
 		'<script type="text/javascript">'."\n".
 		'/* <![CDATA[ */'."\n";
 	$output .= 
@@ -356,7 +356,7 @@ function generate_ftb_cache($form = 'form')
 				continue;
 			$msg_1 = 'bt_'.$button['name'].'_msg_1';
 			$msg_2 = 'bt_'.$button['name'].'_msg_2';
-			$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_2.'\']) ?>\', 1);'."\n";
+			$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$msg_2.'\']) ?>\', 1);'."\n";
 		}
 
 		// Stop if bbcode not enabled
@@ -365,7 +365,7 @@ function generate_ftb_cache($form = 'form')
 
 		// Color stuff
 		else if	($button['name'] == 'color')
-			$output .= "\t".'tb.btColor(\''.$button['image'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\');'."\n";
+			$output .= "\t".'tb.btColor(\''.$button['image'].'\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$name.'\']) ?>\');'."\n";
 
 		// All other buttons
 		else
@@ -373,20 +373,20 @@ function generate_ftb_cache($form = 'form')
 			{
 				case '3' :
 					$msg_1 = 'bt_'.$button['name'].'_msg_1';
-					$output .= "\t".'tb.btPrompt_1inside(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\');'."\n";
+					$output .= "\t".'tb.btPrompt_1inside(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$msg_1.'\']) ?>\');'."\n";
 					break;
 				case '2' :
 					$msg_1 = 'bt_'.$button['name'].'_msg_1';
 					$msg_2 = 'bt_'.$button['name'].'_msg_2';
-					$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_2.'\']) ?>\', 0);'."\n";
+					$output .= "\t".'tb.btPrompt_2(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$msg_1.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$msg_2.'\']) ?>\', 0);'."\n";
 					break;
 				case '1' :
 					$msg_1 = 'bt_'.$button['name'].'_msg_1';
-					$output .= "\t".'tb.btPrompt_1(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$msg_1.'\']) ?>\');'."\n";
+					$output .= "\t".'tb.btPrompt_1(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$name.'\']) ?>\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$msg_1.'\']) ?>\');'."\n";
 					break;
 				case '0' :
 				default :
-					$output .= "\t".'tb.btSingle(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang_common[\''.$name.'\']) ?>\');'."\n";
+					$output .= "\t".'tb.btSingle(\''.$button['image'].'\', \''.$button['code'].'\', \'<?php echo str_replace("\'","\\\'", $lang[\''.$name.'\']) ?>\');'."\n";
 					break;
 			}
 	}
@@ -395,7 +395,7 @@ function generate_ftb_cache($form = 'form')
 	if ($do_smilies)
 	{
 		$output .= 
-			"\t".'tb.btSmilies(\''.$img_smilies.'\', \'<?php echo str_replace("\'","\\\'",$lang_common[\'bt_smilies\']) ?>\');'."\n".
+			"\t".'tb.btSmilies(\''.$img_smilies.'\', \'<?php echo str_replace("\'","\\\'",$lang[\'bt_smilies\']) ?>\');'."\n".
 			"\t".'tb.barSmilies(smilies);'."\n";
 	}
 
@@ -404,7 +404,7 @@ function generate_ftb_cache($form = 'form')
 
 	// Add "All smilies" link
 	if ($do_smilies && $more_smilies)
-		$output .= "\t".'tb.moreSmilies(\'<?php echo str_replace("\'","\\\'",$lang_common[\'all_smilies\']) ?>\');'."\n";
+		$output .= "\t".'tb.moreSmilies(\'<?php echo str_replace("\'","\\\'",$lang[\'all_smilies\']) ?>\');'."\n";
 
 	// End JS
 	$output .=
