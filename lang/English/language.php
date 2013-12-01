@@ -1691,14 +1691,14 @@ $lang = array(
 'Permissions'			=>	'Permissions',
 'Bans'					=>	'Bans',
 'Settings'				=>	'Settings',
-'Global'				=>	'Global settings',
+'Global'				=>	'Global',
 'Appearance'			=>	'Appearance',
 'Features'				=>	'Features',
 'Toolbar'				=>  'Toolbar',
 'Email'					=>	'Email',
 'Maintenance'			=>	'Maintenance',
 'Database'				=>	'Database management',
-'Backstage settings'	=>	'Backstage settings',
+'Backstage settings'	=>	'Backstage',
 'Extensions'			=>	'Extensions',
 
 // User menu
