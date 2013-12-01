@@ -21,6 +21,7 @@ if ($pun_user['g_read_board'] == '0')
 require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Help']);
+define('FORUM_ACTIVE_PAGE', 'help');
 require FORUM_ROOT.'header.php';
 
 ?>
