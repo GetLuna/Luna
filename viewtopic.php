@@ -358,7 +358,7 @@ while ($cur_post = $db->fetch_assoc($result))
         </tr>
         <tr>
             <td class="col-lg-2 user-data hidden-xs <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
-                <dd class="usertitle"><strong><?php echo $username ?><?php echo $user_title ?></strong></dd>
+                <dd class="usertitle"><strong><?php echo $username ?></strong></dd><?php echo $user_title ?>
                 <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
                 <span class="user-info">
                     <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
