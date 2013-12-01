@@ -254,12 +254,12 @@ if (!$pun_user['is_guest'])
 {
 	if (!empty($forum_actions))
 	{
-		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</li></span>';
+		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</span></li>';
 	}
 	
 	if (!empty($topic_actions))
 	{
-		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $topic_actions).'</li></span>';
+		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $topic_actions).'</span></li>';
 	}
 
 	if ($pun_user['is_admmod'])
