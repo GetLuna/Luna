@@ -280,7 +280,7 @@ require FORUM_ROOT.'header.php';
                 <input class="form-control" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" /> 
             </div>
         </div>
-        <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a></span> &middot; <span><?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
+        <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a> &middot; <?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
         <div class="control-group">
             <div class="controls remember">
                 <label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
