@@ -173,7 +173,7 @@ else if (isset($_GET['edit_forum']))
 	{
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
-		redirect('forums.php?edit_forum='.$forum_id, $lang['Perms reverted redirect']);
+		redirect('backstage/forums.php?edit_forum='.$forum_id, $lang['Perms reverted redirect']);
 	}
 
 	// Fetch forum info
