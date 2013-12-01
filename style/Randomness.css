@@ -528,8 +528,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border-color: #2f76e7 #2f76e7 #1553b5;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
@@ -549,8 +547,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border: 1px solid #f0af00;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning.disabled, .btn-warning[disabled] {
@@ -571,8 +567,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border-bottom: 1px solid #9a161a;
 	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .btn-danger.disabled, .btn-danger[disabled] {
@@ -592,8 +586,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border-bottom: 1px solid #59822c;
 	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled] {
@@ -613,8 +605,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border: 1px solid #59cbf1;
 	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
