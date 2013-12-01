@@ -23,8 +23,6 @@ require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
 
 if (isset($_POST['form_sent']))
 {
-	$form = array_map('intval', $_POST['form']);
-	
 	$form = array(
 		'message_bbcode'		=> isset($_POST['form']['message_bbcode']) ? '1' : '0',
 		'message_img_tag'		=> isset($_POST['form']['message_img_tag']) ? '1' : '0',
@@ -36,6 +34,8 @@ if (isset($_POST['form_sent']))
 		'sig_all_caps'			=> isset($_POST['form']['sig_all_caps']) ? '1' : '0',
 		'allow_banned_email'	=> isset($_POST['form']['allow_banned_email']) ? '1' : '0',
 		'allow_dupe_email'		=> isset($_POST['form']['allow_dupe_email']) ? '1' : '0',
+		'sig_length'			=> pun_trim($_POST['form']['sig_length']),
+		'sig_lines'				=> pun_trim($_POST['form']['sig_lines']),
 	);
 
 	foreach ($form as $key => $input)
