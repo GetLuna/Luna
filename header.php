@@ -273,7 +273,7 @@ if (!$pun_user['is_guest'])
 		}
 
 		if ($pun_config['o_maintenance'] == '1')
-			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/options.php#maintenance">'.$lang['Maintenance mode enabled'].'</a></strong></span></li>';
+			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/settings.php#maintenance">'.$lang['Maintenance mode enabled'].'</a></strong></span></li>';
 	}
 
 	if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
