@@ -223,6 +223,8 @@ if ($pun_user['is_guest'])
 
 if ($pun_config['o_menu_title'] == 1) {
 	$menu_title = '<a href="#" class="navbar-brand">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a>';
+} else {
+	$menu_title = '';
 }
 
 $tpl_temp = '<div class="navbar navbar-default">
