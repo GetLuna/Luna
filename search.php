@@ -739,7 +739,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <div class="<?php echo ($show_as == 'topics') ? 'linksb' : 'postlinksb'; ?>">
-    <ul class="pagination">
+    <ul class="pagination pagination-fix">
         <?php echo $paging_links ?>
     </ul>
     <ul class="breadcrumb">
