@@ -400,7 +400,6 @@ while ($cur_post = $db->fetch_assoc($result))
     <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
     <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
 </ul>
-<?php echo $subscraction ?>
 
 <?php
 
