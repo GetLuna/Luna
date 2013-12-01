@@ -184,12 +184,12 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <?php endif; ?>
 <?php if ($num_cats): ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
-    </div>
-    <div class="panel-body">
-        <form method="post" action="categories.php">
+<form method="post" action="categories.php">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
+		</div>
+		<div class="panel-body">
             <fieldset>
                 <table class="table">
                     <thead>
@@ -217,9 +217,9 @@ foreach ($cat_list as $cur_cat)
 					</tbody>
 				</table>
 			</fieldset>
-		</form>
-    </div>
-</div>
+		</div>
+	</div>
+</form>
 <?php endif; 
 
 require FORUM_ROOT.'backstage/footer.php';
