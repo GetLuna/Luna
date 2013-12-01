@@ -27,12 +27,12 @@ if (defined('FORUM_ADMIN_CONSOLE'))
 $tpl_main = file_get_contents($tpl_file);
 
 // START SUBST - <pun_language>
-$tpl_main = str_replace('<pun_language>', $lang_common['lang_identifier'], $tpl_main);
+$tpl_main = str_replace('<pun_language>', $lang['lang_identifier'], $tpl_main);
 // END SUBST - <pun_language>
 
 
 // START SUBST - <pun_content_direction>
-$tpl_main = str_replace('<pun_content_direction>', $lang_common['lang_direction'], $tpl_main);
+$tpl_main = str_replace('<pun_content_direction>', $lang['lang_direction'], $tpl_main);
 // END SUBST - <pun_content_direction>
 
 
@@ -78,7 +78,7 @@ function process_form(the_form)
 			var elem = the_form.elements[i];
 			if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type)))
 			{
-				alert('"' + required_fields[elem.name] + '" <?php echo $lang_common['required field'] ?>');
+				alert('"' + required_fields[elem.name] + '" <?php echo $lang['required field'] ?>');
 				elem.focus();
 				return false;
 			}
