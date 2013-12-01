@@ -787,6 +787,10 @@ fieldset label {
 	border-color: #81c400;
 }
 
+#redirect {
+	border-left: #7fcc00 5px solid !important;
+}
+
 /* Generic Float Clear */
 * html #brdmain {
 	display: inline-block;
