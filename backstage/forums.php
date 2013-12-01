@@ -367,12 +367,12 @@ if ($db->num_rows($result) > 0)
 {
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
-    </div>
-    <div class="panel-body">
-        <form id="edforum" method="post" action="forums.php?action=edit">
+<form id="edforum" method="post" action="forums.php?action=edit">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+		</div>
+		<div class="panel-body">
             <fieldset>
 <?php
 
@@ -413,9 +413,9 @@ while ($cur_forum = $db->fetch_assoc($result))
                     </tbody>
                 </table>
             </fieldset>
-        </form>
-    </div>
-</div>
+		</div>
+	</div>
+</form>
 <?php
 }
 
