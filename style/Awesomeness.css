@@ -97,6 +97,10 @@ h1 {
 	.col-xs-3 {
 		width: 41.66666666666667%;
 	}
+	
+	.col-search {
+		width: 50% !important;
+	}
 }
 
 /* Welcome box and header */
