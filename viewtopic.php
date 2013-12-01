@@ -105,12 +105,12 @@ if ($cur_topic['closed'] == '0')
 }
 else
 {
-	$post_link = $lang['Topic closed'];
+	$post_link = '<a class="btn disabled btn-warning btn-post pull-right">'.$lang['Topic closed'].'</a>';
 
 	if ($is_admmod)
-		$post_link .= ' / <a href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a>';
+		$post_link .= '<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a>';
 
-	$post_link = "\t\t\t".$post_link."\n";
+	$post_link = $post_link."\n";
 }
 
 
