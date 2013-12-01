@@ -239,13 +239,9 @@ else if (isset($_GET['edit_forum']))
                 </div>
 				<?php if (($cur_forum['num_topics']) == '0'): ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Sort by label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Redirect label'] ?></label>
 					<div class="col-sm-10">
-                        <select class="form-control" name="sort_by" tabindex="4">
-                            <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected="selected"' ?>><?php echo $lang['Last post'] ?></option>
-                            <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected="selected"' ?>><?php echo $lang['Topic start'] ?></option>
-                            <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected="selected"' ?>><?php echo $lang['Subject'] ?></option>
-                        </select>
+                        <?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?>
                     </div>
                 </div>
 				<?php endif; ?>
