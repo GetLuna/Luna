@@ -85,7 +85,7 @@ generate_admin_menu('features');
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[censoring]" value="1" <?php if ($pun_config['o_censoring'] == '1') echo ' checked="checked"' ?> />
-								<?php printf($lang['Censor words help'], '<a href="admin_censoring.php">'.$lang['Censoring'].'</a>') ?>
+								<?php printf($lang['Censor words help'], '<a href="censoring.php">'.$lang['Censoring'].'</a>') ?>
                             </label>
                         </div>   
                         <div class="checkbox">
@@ -114,7 +114,7 @@ generate_admin_menu('features');
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[ranks]" value="1" <?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> />
-								<?php printf($lang['User ranks help'], '<a href="admin_ranks.php">'.$lang['Ranks'].'</a>') ?>
+								<?php printf($lang['User ranks help'], '<a href="ranks.php">'.$lang['Ranks'].'</a>') ?>
                             </label>
                         </div>                     
                     </div>
