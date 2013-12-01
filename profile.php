@@ -1226,7 +1226,7 @@ else
 		$user_activity[] = '<tr><th>'.$lang['Registered table'].'</th>';
 		$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
 	
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang['title view own profile']);
+	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang['Profile']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
