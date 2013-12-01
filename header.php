@@ -207,6 +207,7 @@ if ($pun_user['is_guest'])
 	$usermenu[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>';
 	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang['Login'].'</a></li>';
 } else {
+	$usermenu[] = '<li class="dropdown">';
 	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang['Welcome'].', '.(pun_htmlspecialchars($pun_user['username'])).' <b class="caret"></b></a>';
 	$usermenu[] = '<ul class="dropdown-menu">';
 	$usermenu[] = '<li><a href="profile.php?id='.$pun_user['id'].'">'.$lang['Profile'].'</a></li>';
@@ -219,6 +220,7 @@ if ($pun_user['is_guest'])
 	}
 	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
 	$usermenu[] = '</ul>';
+	$usermenu[] = '</li>';
 }
 
 if ($pun_config['o_menu_title'] == 1) {
@@ -240,7 +242,7 @@ $tpl_temp = '<div class="navbar navbar-default">
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t", $links)."\n\t\t\t\t\t\t".'</ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t", $usermenu)."\n\t\t\t\t\t\t".'</li>
+				'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t", $usermenu)."\n\t\t\t\t\t\t".'
             </ul>
 		</div>
 	</div>
