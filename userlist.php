@@ -112,7 +112,7 @@ while ($cur_group = $db->fetch_assoc($result))
                         	<td class="hidden-xs">
                             	<select class="form-control" name="sort_by">
                                     <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang['Username'] ?></option>
-                                    <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Registered'] ?></option>
+                                    <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Registered table'] ?></option>
 									<?php if ($show_post_count): ?>
                                         <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang['No of posts'] ?></option>
 									<?php endif; ?>
