@@ -52,10 +52,9 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('index');
 
 //Update checking
-?>
-<div class="alert alert-info">
-<?php
-    if ($pun_config['o_index_update_check'] == 1) {
+    if ($pun_config['o_index_update_check'] == 1) { ?>
+		<div class="alert alert-info">
+		<?php
         $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
         if (version_compare(FORUM_VERSION, $latest_version, 'lt')) { ?>
             <h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
@@ -80,10 +79,11 @@ require FORUM_ROOT.'backstage/header.php';
                 <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
                 <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-default"><?php echo $lang['Changelog'] ?></a>
             </div>
-<?php	}
+<?php	} ?>
+		</div>
+<?php
     }
 ?>
-</div>
 <div class="col-lg-3">
     <div class="panel panel-default">
         <div class="panel-heading">
