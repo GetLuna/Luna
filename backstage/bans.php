@@ -120,21 +120,21 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                     <tr>
                         <th width="15%"><?php echo $lang['Username label'] ?></th>
                         <td>
-                            <input type="text" class="form-control"name="ban_user" size="25" maxlength="25" value="<?php if (isset($ban_user)) echo pun_htmlspecialchars($ban_user); ?>" tabindex="1" />
+                            <input type="text" class="form-control" name="ban_user" size="25" maxlength="25" value="<?php if (isset($ban_user)) echo pun_htmlspecialchars($ban_user); ?>" tabindex="1" />
                             <br /><span><?php echo $lang['Username help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['IP label'] ?></th>
                         <td>
-                            <input type="text" class="form-control"name="ban_ip" size="45" maxlength="255" value="<?php if (isset($ban_ip)) echo pun_htmlspecialchars($ban_ip); ?>" tabindex="2" />
+                            <input type="text" class="form-control" name="ban_ip" size="45" maxlength="255" value="<?php if (isset($ban_ip)) echo pun_htmlspecialchars($ban_ip); ?>" tabindex="2" />
                             <br /><span><?php echo $lang['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang['IP help link'], '<a href="../users.php?ip_stats='.$user_id.'">'.$lang['here'].'</a>') ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['E-mail label'] ?></th>
                         <td>
-                            <input type="text" class="form-control"name="ban_email" size="40" maxlength="80" value="<?php if (isset($ban_email)) echo $ban_email; ?>" tabindex="3" />
+                            <input type="text" class="form-control" name="ban_email" size="40" maxlength="80" value="<?php if (isset($ban_email)) echo $ban_email; ?>" tabindex="3" />
                             <br /><span><?php echo $lang['E-mail help'] ?></span>
                         </td>
                     </tr>
@@ -153,14 +153,14 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                     <tr>
                         <th width="15%"><?php echo $lang['Ban message label'] ?></th>
                         <td>
-                            <input type="text" class="form-control"name="ban_message" size="50" maxlength="255" value="<?php if (isset($ban_message)) echo pun_htmlspecialchars($ban_message); ?>" tabindex="4" />
+                            <input type="text" class="form-control" name="ban_message" size="50" maxlength="255" value="<?php if (isset($ban_message)) echo pun_htmlspecialchars($ban_message); ?>" tabindex="4" />
                             <br /><span><?php echo $lang['Ban message help'] ?></span>
                         </td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['Expire date label'] ?></th>
                         <td>
-                            <input type="text" class="form-control"name="ban_expire" size="17" maxlength="10" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
+                            <input type="text" class="form-control" name="ban_expire" size="17" maxlength="10" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
                             <br /><span><?php echo $lang['Expire date help'] ?></span>
                         </td>
                     </tr>
@@ -460,7 +460,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form id="bans" method="post" action="bans.php?action=more">
             <fieldset>
-                <input type="text" class="form-control"name="new_ban_user" size="25" maxlength="25" tabindex="1" />
+                <input type="text" class="form-control" name="new_ban_user" size="25" maxlength="25" tabindex="1" />
                 <input class="btn btn-danger" type="submit" name="add_ban" value="<?php echo $lang['Add'] ?>" tabindex="2" />
                 <span class="help-block"><?php echo $lang['Username advanced help'] ?></span>
             </fieldset>
@@ -478,31 +478,31 @@ require FORUM_ROOT.'backstage/header.php';
                 <table class="table">
                     <tr>
                         <th><?php echo $lang['Username label'] ?></th>
-                        <td><input type="text" class="form-control"name="form[username]" size="25" maxlength="25" tabindex="4" /></td>
+                        <td><input type="text" class="form-control" name="form[username]" size="25" maxlength="25" tabindex="4" /></td>
                         <th><?php echo $lang['IP label'] ?></th>
-                        <td><input type="text" class="form-control"name="form[ip]" size="30" maxlength="255" tabindex="5" /></td>
+                        <td><input type="text" class="form-control" name="form[ip]" size="30" maxlength="255" tabindex="5" /></td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['E-mail label'] ?></th>
-                        <td><input type="text" class="form-control"name="form[email]" size="30" maxlength="80" tabindex="6" /></td>
+                        <td><input type="text" class="form-control" name="form[email]" size="30" maxlength="80" tabindex="6" /></td>
                         <th><?php echo $lang['Message label'] ?></th>
-                        <td><input type="text" class="form-control"name="form[message]" size="30" maxlength="255" tabindex="7" /></td>
+                        <td><input type="text" class="form-control" name="form[message]" size="30" maxlength="255" tabindex="7" /></td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['Expire after label'] ?></th>
-                        <td><input type="text" class="form-control"name="expire_after" size="10" maxlength="10" tabindex="8" placeholder="<?php echo $lang['Date help'] ?>" /></td>
+                        <td><input type="text" class="form-control" name="expire_after" size="10" maxlength="10" tabindex="8" placeholder="<?php echo $lang['Date help'] ?>" /></td>
                         <th><?php echo $lang['Expire before label'] ?></th>
-                        <td><input type="text" class="form-control"name="expire_before" size="10" maxlength="10" tabindex="9" placeholder="<?php echo $lang['Date help'] ?>" /></td>
+                        <td><input type="text" class="form-control" name="expire_before" size="10" maxlength="10" tabindex="9" placeholder="<?php echo $lang['Date help'] ?>" /></td>
                     </tr>
                     <tr>
                         <th><?php echo $lang['Order by label'] ?></th>
                         <td colspan="3">
-                            <select class="form-control"name="order_by" tabindex="10">
+                            <select class="form-control" name="order_by" tabindex="10">
                                 <option value="username" selected="selected"><?php echo $lang['Order by username'] ?></option>
                                 <option value="ip"><?php echo $lang['Order by ip'] ?></option>
                                 <option value="email"><?php echo $lang['Order by e-mail'] ?></option>
                                 <option value="expire"><?php echo $lang['Order by expire'] ?></option>
-                            </select>&#160;&#160;&#160;<select class="form-control"name="direction" tabindex="11">
+                            </select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="11">
                                 <option value="ASC" selected="selected"><?php echo $lang['Ascending'] ?></option>
                                 <option value="DESC"><?php echo $lang['Descending'] ?></option>
                             </select>

@@ -155,7 +155,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form method="post" action="categories.php">
             <fieldset>
-                <input type="text" class="form-control"name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
+                <input type="text" class="form-control" name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
                 <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add new submit'] ?>" tabindex="2" />
                 <br /><span class="help-block"><?php printf($lang['Add category help'], '<a href="forums.php">'.$lang['Forums'].'</a>') ?></span>
             </fieldset>
@@ -206,8 +206,8 @@ foreach ($cat_list as $cur_cat)
 
 ?>
                         <tr>
-                            <td><input type="text" class="form-control"name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
-                            <td><input type="text" class="form-control"name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
+                            <td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
+                            <td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
                         </tr>
 <?php
 

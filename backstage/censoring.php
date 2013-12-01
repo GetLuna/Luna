@@ -105,8 +105,8 @@ require FORUM_ROOT.'backstage/header.php';
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text" class="form-control"name="new_search_for" size="24" maxlength="60" tabindex="1" /></td>
-                            <td><input type="text" class="form-control"name="new_replace_with" size="24" maxlength="60" tabindex="2" /></td>
+                            <td><input type="text" class="form-control" name="new_search_for" size="24" maxlength="60" tabindex="1" /></td>
+                            <td><input type="text" class="form-control" name="new_replace_with" size="24" maxlength="60" tabindex="2" /></td>
                             <td><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
                         </tr>
                     </tbody>
@@ -141,7 +141,7 @@ if ($db->num_rows($result))
 <?php
 
 while ($cur_word = $db->fetch_assoc($result))
-echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control"name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control"name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></td></tr>'."\n";
+echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></td></tr>'."\n";
 
 ?>
                     </tbody>

@@ -201,7 +201,7 @@ else if (isset($_GET['edit_forum']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Forum name label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
+                        <input type="text" class="form-control" name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -402,7 +402,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 ?>
                         <tr>
                             <td class="col-lg-2"><a class="btn btn-primary" href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-primary" href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></td>
-                            <td class="col-lg-4"><input type="text" class="form-control"name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+                            <td class="col-lg-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 							<td><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
                         </tr>
 <?php
