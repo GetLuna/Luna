@@ -907,6 +907,7 @@ $lang = array(
 'Ban removed redirect'		=>	'Ban removed. Redirecting …',
 
 'New ban head'				=>	'Add ban',
+'Username help'				=>	'The username to ban (case-insensitive).',
 'Username advanced help'	=>	'The username to ban. The next page will let you enter a custom IP and email. If you want to ban a specific IP/IP-range or email, leave it blank.',
 
 'Ban search head'			=>	'Ban search',
