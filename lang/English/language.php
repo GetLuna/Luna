@@ -291,7 +291,6 @@ $lang = array(
 'Member'						=>	'Member',
 'New member'					=>	'New member',
 'Announcement'					=>	'Enter your announcement here.',
-'Rules'							=>	'Enter your rules here',
 'Maintenance message'			=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 'Test post'						=>	'Test topic',
 'Message'						=>	'If you are looking at this (which I guess you are), the install of ModernBB appears to have worked! Now log in and head over to the administration control panel to configure your forum.',
