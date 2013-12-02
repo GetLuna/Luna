@@ -179,9 +179,7 @@ require FORUM_ROOT.'header.php';
     <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink conl"><?php echo $paging_links ?></p>
-	<?php endif; ?>
+	<p class="pagelink conl"><?php echo $paging_links ?></p>
 	<?php echo $post_link ?>
 </div>
 <?php
@@ -382,9 +380,7 @@ while ($cur_post = $db->fetch_assoc($result))
 
 ?>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink conl"><?php echo $paging_links ?></p>
-	<?php endif; ?>
+	<p class="pagelink conl"><?php echo $paging_links ?></p>
 	<?php echo $post_link ?>
 </div>
 <ul class="breadcrumb">
