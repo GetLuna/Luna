@@ -67,10 +67,10 @@ while ($cur_forum = $db->fetch_assoc($result))
 <div id="idx<?php echo $cat_count ?>">
     <div class="category-box">
         <div class="row category-header">
-            <div class="col-xs-8"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></div>
+            <div class="col-xs-7"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></div>
             <div class="col-xs-1 hidden-xs"><?php echo $lang['Topics'] ?></div>
             <div class="col-xs-1 hidden-xs"><?php echo $lang['Posts table'] ?></div>
-            <div class="col-xs-2"><?php echo $lang['Last post'] ?></div>
+            <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
         </div>
 <?php
 
@@ -143,7 +143,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 ?>
             <div class="<?php echo $item_status ?> row forum-row">
-                <div class="col-xs-8">
+                <div class="col-xs-7">
                     <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
                     <div class="tclcon">
                         <div>
@@ -153,7 +153,7 @@ while ($cur_forum = $db->fetch_assoc($result))
                 </div>
                 <div class="col-xs-1 hidden-xs"><?php echo forum_number_format($num_topics) ?></div>
                 <div class="col-xs-1 hidden-xs"><?php echo forum_number_format($num_posts) ?></div>
-                <div class="col-xs-2"><?php echo $last_post ?></div>
+                <div class="col-xs-3"><?php echo $last_post ?></div>
             </div>
 <?php
 
