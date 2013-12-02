@@ -58,6 +58,7 @@ if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
                 </div>
                 <div class="panel-body">
                     <p>
+                        <?php echo sprintf($lang['Version release'], '2.1.2') ?> <?php echo sprintf($lang['Maintenance version'], '9') ?><br />
                         <?php echo sprintf($lang['Version release'], '2.1.1') ?> <?php echo sprintf($lang['Maintenance version'], '8') ?>
                     </p>
                 </div>
