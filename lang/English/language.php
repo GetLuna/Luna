@@ -1294,7 +1294,7 @@ $lang = array(
 
 'Prune users head'			=>	'Prune users',
 'Prune by'					=>	'Prune by',
-'Registed date'				=>	'Registed date',
+'Registed date'				=>	'Registered date',
 'Last login'				=>	'Last login',
 'Prune by info'				=>	'This decides if the minimum number of days is calculated since the last login or the registered date.',
 'Minimum days'				=>	'Minimum days since registration/last login',
