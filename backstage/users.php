@@ -177,11 +177,9 @@ if (isset($_GET['ip_stats']))
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
             <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
+				<p class="pagelink"><?php echo $paging_links ?></p>
             </p>
-		<?php endif; ?>
         <table class="table">
             <thead>
                 <tr>
@@ -218,11 +216,9 @@ if (isset($_GET['ip_stats']))
             </tbody>
         </table>
     </div>
-	<?php if ($num_pages < 1): ?>
-        <p class="pagelink">
-            <p class="pagelink"><?php echo $paging_links ?></p>
-        </p>
-    <?php endif; ?>
+	<p class="pagelink">
+		<p class="pagelink"><?php echo $paging_links ?></p>
+	</p>
 </div>
 <?php
 
@@ -261,11 +257,9 @@ if (isset($_GET['show_users']))
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
             <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
+				<p class="pagelink"><?php echo $paging_links ?></p>
             </p>
-		<?php endif; ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -341,11 +335,9 @@ if (isset($_GET['show_users']))
                 </tbody>
             </table>
         </div>
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
+		<p class="pagelink">
+			<p class="pagelink"><?php echo $paging_links ?></p>
+		</p>
     </div>
 </div>
 <?php
@@ -891,12 +883,10 @@ else if (isset($_GET['find_user']))
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
-    <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
+	<div class="panel-body">
+		<p class="pagelink">
+			<p class="pagelink"><?php echo $paging_links ?></p>
+		</p>
         <form id="search-users-form" action="users.php" method="post">
             <table class="table">
             <thead>
@@ -949,11 +939,9 @@ else if (isset($_GET['find_user']))
             </table>
     
             <div class="pagepost">
-				<?php if ($num_pages < 1): ?>
-                    <p class="pagelink">
-                        <p class="pagelink"><?php echo $paging_links ?></p>
-                    </p>
-                <?php endif; ?>
+				<p class="pagelink">
+					<p class="pagelink"><?php echo $paging_links ?></p>
+				</p>
 				<?php if ($can_action): ?>
                     <div class="btn-toolbar">
                         <div class="btn-group">

@@ -142,11 +142,7 @@ while ($cur_group = $db->fetch_assoc($result))
         <h3 class="panel-title"><?php echo $lang['User list'] ?></h3>
     </div>
     <div class="panel-body">
-		<?php if ($num_pages < 1): ?>
-            <p class="pagelink">
-                <p class="pagelink"><?php echo $paging_links ?></p>
-            </p>
-		<?php endif; ?>
+		<p class="pagelink"><?php echo $paging_links ?></p>
         <table class="table">
             <thead>
                 <tr>

@@ -287,9 +287,7 @@ if (isset($_GET['tid']))
 	<li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+	<p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
@@ -371,9 +369,7 @@ if (isset($_GET['tid']))
 <p><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></p>
 
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+	<p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 <ul class="breadcrumb">
 	<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
@@ -784,9 +780,7 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+<p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
@@ -931,9 +925,7 @@ else
     <li><?php echo $lang['Moderate'] ?></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+	<p class="pagelink"><?php echo $paging_links ?></p>
 </div>
 </form>
 <?php
