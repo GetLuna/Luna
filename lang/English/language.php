@@ -1471,7 +1471,7 @@ $lang = array(
 'Max sig lines label'		=>	'Maximum signature lines',
 'Max sig lines help'		=>	'The maximum number of lines a user signature may contain.',
 'Registration subhead'		=>	'Registration',
-'Banned e-mail help'		=>	'Allow users to register with or change to a banned email address/domain. If left at its default setting (yes), this action will be allowed, but an alert email will be sent to the mailing list.',
+'Banned e-mail help'		=>	'Allow users to register with or change to a banned email address/domain. If allowed, an alert email will be sent to the mailing list.',
 'Duplicate e-mail help'		=>	'Controls whether users should be allowed to register with an email address that another user already has. If allowed, an alert email will be sent to the mailing list if a duplicate is detected.',
 
 // Language for ranks.php
