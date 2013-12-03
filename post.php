@@ -612,7 +612,7 @@ if ($pun_user['is_guest'])
 if ($fid): ?>
                 <label class="required"><strong><?php echo $lang['Subject'] ?></strong><br /><input class="longinput form-control full-form" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" /></label>
 <?php endif; ?>	
-                        <textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea></label>
+                        <textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
 <?php
 	if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_form.php'))
 		include FORUM_CACHE_DIR.'cache_toolbar_form.php';
