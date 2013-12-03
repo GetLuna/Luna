@@ -798,7 +798,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
         </div>
         <div class="panel-body">
             <fieldset>
-                <input class="form-control" type="hidden" name="action" value="search" />
+                <input type="hidden"  name="action" value="search" />
             	<table>
                 	<thead>
                     	<tr>
