@@ -356,7 +356,7 @@ if (isset($_GET['tid']))
         <?php if (!$pun_user['is_guest']) { ?>
         <tr>
             <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-                <p class="pull-right"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang['Cannot select first'].'</p>' ?></p>
+                <?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
             </td>
         </tr>
         <?php } ?>
