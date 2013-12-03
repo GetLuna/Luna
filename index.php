@@ -192,11 +192,11 @@ else
         <h3 class="panel-title"><?php echo $lang['Board stats'] ?></h3>
     </div>
     <div class="panel-body">
-    <div class="row">
-        <div class="col-md-2"><span><?php printf($lang['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
-        <div class="col-md-2"><span><?php printf($lang['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
-        <div class="col-md-2"><span><?php printf($lang['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
-        <div class="col-md-2"><span><?php printf($lang['Newest user'], $stats['newest_user']) ?></span></div>
+		<div class="row">
+			<div class="col-md-2"><span><?php printf($lang['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
+			<div class="col-md-2"><span><?php printf($lang['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>') ?></span></div>
+			<div class="col-md-2"><span><?php printf($lang['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>') ?></span></div>
+			<div class="col-md-2"><span><?php printf($lang['Newest user'], $stats['newest_user']) ?></span></div>
 <?php
 
 if ($pun_config['o_users_online'] == '1')
@@ -222,14 +222,15 @@ if ($pun_config['o_users_online'] == '1')
 	$num_users = count($users);
 	echo "\t\t\t\t".'<div class="col-md-2"><span>'.sprintf($lang['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-md-2"><span>'.sprintf($lang['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
 	?>
-    </div>
-    <div class="row">
+		</div>
+		<div class="row">
     <?php
 	if ($num_users > 0)
 		echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].': </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
 }
 
 ?>
+		</div>
 	</div>
 </div>
 <?php
