@@ -36,7 +36,7 @@ if (isset($_GET['get_host']))
 		$ip = $db->result($result);
 	}
 	
-	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
+	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
 }
 
 
@@ -129,7 +129,7 @@ if (isset($_GET['tid']))
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+			<input class="btn btn-primary" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -500,7 +500,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
                     </label>
                     <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /> <?php echo $lang['Leave redirect'] ?><br />
 				</fieldset>
-			<p><input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+			<input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
