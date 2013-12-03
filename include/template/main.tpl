@@ -1,6 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<pun_language>" lang="<pun_language>" dir="<pun_content_direction>">
+<!DOCTYPE html>
+<html>
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!--[if lt IE 9]>

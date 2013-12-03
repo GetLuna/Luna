@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />

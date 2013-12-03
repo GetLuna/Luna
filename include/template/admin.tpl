@@ -1,6 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>ModernBB &middot; Backstage</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="../include/bootstrap/bootstrap.css" />

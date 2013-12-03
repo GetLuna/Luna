@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>ModernBB &middot; Login</title>
         <meta name="robots" content="noindex, nofollow">
 		<link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
