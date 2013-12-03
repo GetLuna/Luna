@@ -1077,19 +1077,13 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 <h2 class="profile-h2"><?php echo $lang['Profile'] ?></h2>
 <table class="table">
     <tr><td class="active" colspan="2"><h4><?php echo $lang['Section personality'] ?></h4></td></tr>
-    <tr>
-        <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-    </tr>
+	<?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
 <?php if (!empty($user_messaging)): ?>
     <tr><td class="active" colspan="2"><h4><?php echo $lang['Section messaging'] ?></h4></td></tr>
-    <tr>
-        <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-    </tr>
+	<?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
 <?php endif; ?>
     <tr><td class="active" colspan="2"><h4><?php echo $lang['User activity'] ?></h4></td></tr>
-    <tr>
-        <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-    </tr>
+	<?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
 </table>
 
 <?php
