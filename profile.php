@@ -1988,6 +1988,9 @@ else
 			}
 		}
 
+		if ($pun_user['g_id'] == PUN_ADMIN)
+			$posts_field .= '<label>'.$lang_common['Posts'].'<br /><input type="text" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /><br /></label>';
+
 ?>
     </form>
     <form id="profile1" class="form-horizontal" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
