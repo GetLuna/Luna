@@ -157,6 +157,7 @@ generate_admin_menu('email');
                                 <?php echo $lang['SMTP change password help'] ?>
                             </label>
                         </div>
+<?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
 						<input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
 						<input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
                         <span class="help-block"><?php echo $lang['SMTP password help'] ?></span>
