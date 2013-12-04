@@ -184,6 +184,8 @@ else if (isset($_GET['edit_forum']))
 
 	$cur_forum = $db->fetch_assoc($result);
 	
+	$cur_index = 7;
+	
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Forums']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
@@ -269,8 +271,6 @@ else if (isset($_GET['edit_forum']))
 <?php
 
 	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_post_replies, g.g_post_topics, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.FORUM_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
-
-	$cur_index = 7;
 
 	while ($cur_perm = $db->fetch_assoc($result))
 	{
