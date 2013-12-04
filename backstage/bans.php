@@ -412,7 +412,7 @@ else if (isset($_GET['find_ban']))
 		while ($ban_data = $db->fetch_assoc($result))
 		{
 
-			$actions = '<a href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a> | <a href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a>';
+			$actions = '<a class="btn btn-primary btn-mini" href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a><a class="btn btn-primary btn-mini" href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a>';
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
