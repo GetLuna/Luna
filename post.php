@@ -95,10 +95,6 @@ if (isset($_POST['form_sent']))
 		$email = strtolower(pun_trim(($pun_config['p_force_guest_email'] == '1') ? $_POST['req_email'] : $_POST['email']));
 		$banned_email = false;
 
-		// Load the register.php/prof_reg.php language files
-		require FORUM_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
-		require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
-
 		// It's a guest, so we have to validate the username
 		check_username($username);
 
