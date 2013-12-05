@@ -314,7 +314,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			}
 
 			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+				$post_actions[] = '<a class="btn btn-primary btn-mini" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 		}
 	}
 	else
