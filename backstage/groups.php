@@ -21,9 +21,6 @@ if (!$pun_user['is_admmod']) {
 if ($pun_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
-
 // Add/edit a group (stage 1)
 if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 {

@@ -14,9 +14,6 @@ require FORUM_ROOT.'include/common.php';
 if ($pun_user['g_read_board'] == '0')
 	message($lang['No view']);
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 if ($pun_config['o_smilies'] == '1')
 {
 	// Retrieve smilies

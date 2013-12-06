@@ -472,9 +472,6 @@ if ($action == 'feed')
 // Show users online
 else if ($action == 'online' || $action == 'online_full')
 {
-	// Load the index.php language file
-	require FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/index.php';
-
 	// Fetch users online info and generate strings for output
 	$num_guests = $num_users = 0;
 	$users = array();
@@ -511,9 +508,6 @@ else if ($action == 'online' || $action == 'online_full')
 // Show board statistics
 else if ($action == 'stats')
 {
-	// Load the index.php language file
-	require FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/index.php';
-
 	// Collect some statistics from the database
 	if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 		include FORUM_CACHE_DIR.'cache_users_info.php';

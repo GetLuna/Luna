@@ -16,9 +16,6 @@ if (isset($_GET['action']))
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if (isset($_POST['form_sent']) && $action == 'in')

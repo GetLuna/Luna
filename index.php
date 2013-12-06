@@ -14,9 +14,6 @@ require FORUM_ROOT.'include/common.php';
 if ($pun_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // Get list of forums and topics with new posts since last visit
 if (!$pun_user['is_guest'])
 {

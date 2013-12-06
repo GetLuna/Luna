@@ -18,9 +18,6 @@ if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun
     header("Location: ../login.php");
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
-
 // Add/edit a ban (stage 1)
 if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 {

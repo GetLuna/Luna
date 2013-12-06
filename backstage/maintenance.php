@@ -23,9 +23,6 @@ if (!$pun_user['is_admmod']) {
 if ($pun_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
-
 $action = isset($_REQUEST['action']) ? pun_trim($_REQUEST['action']) : '';
 
 if ($action == 'rebuild')

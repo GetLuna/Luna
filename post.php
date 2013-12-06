@@ -50,9 +50,6 @@ if ((($tid && (($cur_posting['post_replies'] == '' && $pun_user['g_post_replies'
 	!$is_admmod)
 	message($lang['No permission'], false, '403 Forbidden');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // Start with a clean slate
 $errors = array();
 

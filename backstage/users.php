@@ -18,9 +18,6 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
-
 // Create new user
 if (isset($_POST['add_user']))
 {

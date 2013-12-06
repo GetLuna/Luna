@@ -42,9 +42,6 @@ if ($stats['total_topics'] == 0) {
 	$stats['total_topics'] == '0';
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
-
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Index']);
 define('FORUM_ACTIVE_PAGE', 'admin');

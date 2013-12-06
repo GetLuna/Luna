@@ -29,9 +29,6 @@ if ($action != 'change_pass' || !isset($_GET['key']))
 		message($lang['No permission'], false, '403 Forbidden');
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 if ($action == 'change_pass')
 {
 	if (isset($_GET['key']))

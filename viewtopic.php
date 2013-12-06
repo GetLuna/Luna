@@ -21,9 +21,6 @@ $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 if ($id < 1 && $pid < 1)
 	message($lang['Bad request'], false, '404 Not Found');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // If a post ID is specified we determine topic ID and page number so we can redirect to the correct message
 if ($pid)
 {

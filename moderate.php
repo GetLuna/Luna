@@ -10,9 +10,6 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins
 if (isset($_GET['get_host']))
