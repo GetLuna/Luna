@@ -1988,8 +1988,8 @@ else
 			}
 		}
 
-		if ($pun_user['g_id'] == PUN_ADMIN)
-			$posts_field .= '<label>'.$lang_common['Posts'].'<br /><input type="text" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /><br /></label>';
+		if ($pun_user['g_id'] == FORUM_ADMIN)
+			$posts_field .= '<label>'.$lang['Posts'].'<br /><input type="text" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /><br /></label>';
 
 ?>
     </form>
