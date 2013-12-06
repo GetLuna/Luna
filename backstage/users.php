@@ -914,7 +914,7 @@ else if (isset($_GET['find_user']))
 
 ?>
                 <tr>
-                    <td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+                    <td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
                     <td><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td><?php echo $user_title ?></td>
                     <td><?php echo forum_number_format($user_data['num_posts']) ?></td>
                     <td><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
