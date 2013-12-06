@@ -83,6 +83,7 @@ require FORUM_ROOT.'backstage/header.php';
 		</div>
 <?php
     }
+if ($pun_user['g_id'] == FORUM_ADMIN) {
 ?>
 <div class="col-lg-3">
     <div class="panel panel-default">
@@ -94,8 +95,11 @@ require FORUM_ROOT.'backstage/header.php';
             <a class="btn btn-block btn-primary" href="database.php"><?php echo $lang['Backup button'] ?></a>
         </div>
      </div>
-</div>
+</div> 
 <div class="col-lg-9">
+<?php } else { ?>
+<div class="col-lg-12">
+<?php } ?>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['View all'] ?></a></span></h3>
