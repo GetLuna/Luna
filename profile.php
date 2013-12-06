@@ -1229,19 +1229,13 @@ else
 	<h2><?php echo $lang['Profile'] ?> <small><?php echo $lang['View info'] ?></small></h2>
     <table class="table">
         <tr><td class="active" colspan="2"><h4><?php echo $lang['Section personality'] ?></h4></td></tr>
-        <tr>
-            <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-        </tr>
+        <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
     <?php if (!empty($user_messaging)): ?>
         <tr><td class="active" colspan="2"><h4><?php echo $lang['Section messaging'] ?></h4></td></tr>
-        <tr>
-            <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-        </tr>
+        <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
     <?php endif; ?>
         <tr><td class="active" colspan="2"><h4><?php echo $lang['User activity'] ?></h4></td></tr>
-        <tr>
-            <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-        </tr>
+        <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
     </table>
 </div>
 
@@ -1858,10 +1852,6 @@ else
 		if (!$pun_user['is_admmod'] || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '0'))
 			message($lang['Bad request'], false, '403 Forbidden');
 
-		if ($pun_user['g_id'] == FORUM_ADMIN) {
-			$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></div></div>';
-		}
-
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
 		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
@@ -1986,7 +1976,7 @@ else
 		}
 
 		if ($pun_user['g_id'] == FORUM_ADMIN)
-			$posts_field .= '<label>'.$lang['Posts'].'<br /><input type="text" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /><br /></label>';
+			$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></div></div>';
 
 ?>
     </form>
