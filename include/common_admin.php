@@ -62,9 +62,9 @@ function generate_admin_menu($page = '')
                         <li><a href="users.php"><?php echo $lang['Users'] ?></a></li>
                         <?php if ($is_admin) { ?><li><a href="ranks.php"><?php echo $lang['Ranks'] ?></a></li>
                         <li><a href="groups.php"><?php echo $lang['Groups'] ?></a></li><?php }; ?>
-                        <li class="divider"></li>
+                        <?php if ($pun_user['g_mod_ban_users'] == '1') { ?><li class="divider"></li>
                         <?php if ($is_admin) { ?><li><a href="permissions.php"><?php echo $lang['Permissions'] ?></a></li><?php }; ?>
-                        <li><a href="bans.php"><?php echo $lang['Bans'] ?></a></li>
+                        <li><a href="bans.php"><?php echo $lang['Bans'] ?></a></li><?php }; ?>
                     </ul>
                 </li>
                 <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'toolbar' || $page == 'email' || $page == 'backstage' || $page == 'maintenance') echo 'active'; ?>">
