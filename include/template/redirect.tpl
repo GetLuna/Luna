@@ -17,5 +17,13 @@
         <div id="redirect">
 			<pun_redir_main>
         </div>
+        <!-- Javascript start -->
+        <script src="include/bootstrap/bootstrap.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("#user").focus();
+        });
+        </script>
+        <!-- Javascript end -->
     </body>
 </html>
