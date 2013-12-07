@@ -162,6 +162,8 @@ $tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SE
 // START SUBST - <pun_title>
 if ($pun_config['o_header_title'] == 1) {
 	$tpl_main = str_replace('<pun_title>', '<h1><a href="index.php">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a></h1>', $tpl_main);
+} else {
+	$tpl_main = str_replace('<pun_title>', '', $tpl_main);
 }
 
 // END SUBST - <pun_title>
