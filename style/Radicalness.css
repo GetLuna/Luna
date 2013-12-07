@@ -779,9 +779,7 @@ fieldset label {
 }
 
 .iredirect .icon {
-	border-color: #dcdcdc;
-	border-width: 1px;
-	padding: 7px;
+	border-color: #818181;
 }
 
 .inew .icon {
