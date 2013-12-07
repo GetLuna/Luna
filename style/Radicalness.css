@@ -285,7 +285,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 /* Post messages */
 .bblinks {
-	padding-top: 0;
+	padding-top: 5px;
 	float: right;
 }
 
