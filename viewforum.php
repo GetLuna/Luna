@@ -224,8 +224,6 @@ if ($db->num_rows($result))
 }
 else
 {
-	$colspan = ($pun_config['o_topic_views'] == '1') ? 4 : 3;
-
 ?>
     <div class="row topic-row">
         <div class="col-xs-12">
