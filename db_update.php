@@ -469,6 +469,10 @@ switch ($stage)
 		// Since 2.1-beta: Insert new config option o_index_update_check
 		if (!array_key_exists('o_index_update_check', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 2.2.02: Add o_ranks if updating from FluxBB 1.5
+		if (!array_key_exists('o_ranks', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 			
 		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
 		if (!array_key_exists('o_base_url', $pun_config))
