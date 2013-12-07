@@ -27,14 +27,14 @@ if (isset($_POST['add_user']))
 
 	if ($_POST['random_pass'] == '1')
 	{
-		$password1 = random_pass(8);
-		$password2 = $password1;
+		$password = random_pass(8);
 	}
 	else
 	{
-		$password1 = trim($_POST['password']);
-		$password2 = trim($_POST['password']);
+		$password = trim($_POST['password']);
 	}
+	
+	$errors = array();
 
 	// Convert multiple whitespace characters into one (to prevent people from registering with indistinguishable usernames)
 	$username = preg_replace('#\s+#s', ' ', $username);
@@ -44,10 +44,8 @@ if (isset($_POST['add_user']))
 		message($lang['Username too short']);
 	else if (pun_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
 	    message($lang['Bad request'], false, '404 Not Found');
-	else if (strlen($password1) < 4)
+	else if (strlen($password) < 4)
 		message($lang['Pass too short']);
-	else if ($password1 != $password2)
-		message($lang['Pass not match']);
 	else if (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang['Guest']))
 		message($lang['Username guest']);
 	else if (preg_match('/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/', $username))
@@ -99,7 +97,7 @@ if (isset($_POST['add_user']))
 	$now = time();
 
 	$intial_group_id = ($_POST['random_pass'] == '0') ? $pun_config['o_default_user_group'] : FORUM_UNVERIFIED;
-	$password_hash = pun_hash($password1);
+	$password_hash = pun_hash($password);
 
 	// Add the user
 	$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$email1.'\', '.$email_setting.', '.$timezone.' , \''.$language.'\', \''.$pun_config['o_default_style'].'\', '.$now.', \''.get_remote_address().'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
@@ -127,7 +125,7 @@ if (isset($_POST['add_user']))
 		$mail_subject = str_replace('<board_title>', $pun_config['o_board_title'], $mail_subject);
 		$mail_message = str_replace('<base_url>', $pun_config['o_base_url'].'/', $mail_message);
 		$mail_message = str_replace('<username>', $username, $mail_message);
-		$mail_message = str_replace('<password>', $password1, $mail_message);
+		$mail_message = str_replace('<password>', $password, $mail_message);
 		$mail_message = str_replace('<login_url>', $pun_config['o_base_url'].'/login.php', $mail_message);
 		$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
 		pun_mail($email1, $mail_subject, $mail_message);
