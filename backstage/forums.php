@@ -359,6 +359,8 @@ require FORUM_ROOT.'backstage/header.php';
 // Display all the categories and forums
 $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.disp_position FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
+$cur_index = 4;
+
 if ($db->num_rows($result) > 0)
 {
 
