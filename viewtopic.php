@@ -159,9 +159,9 @@ $topic_actions = array();
 if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
 {
 	if ($cur_topic['is_subscribed'])
-		$topic_actions[] = '<a href="misc.php?action=subscribe&tid='.$id.'">'.$lang['Unsubscribe'].'</a>';
+		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang['Unsubscribe'].'</a>';
 	else
-		$topic_actions[] = '<a href="misc.php?action=subscribe&tid='.$id.'">'.$lang['Subscribe'].'</a>';
+		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang['Subscribe'].'</a>';
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
