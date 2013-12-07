@@ -125,7 +125,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                         <th><?php echo $lang['IP label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="ban_ip" size="45" maxlength="255" value="<?php if (isset($ban_ip)) echo pun_htmlspecialchars($ban_ip); ?>" tabindex="2" />
-                            <br /><span><?php echo $lang['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang['IP help link'], '<a href="../users.php?ip_stats='.$user_id.'">'.$lang['here'].'</a>') ?></span>
+                            <br /><span><?php echo $lang['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang['IP help link'], '<a href="users.php?ip_stats='.$user_id.'">'.$lang['here'].'</a>') ?></span>
                         </td>
                     </tr>
                     <tr>
