@@ -117,5 +117,4 @@ $tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SE
 // START SUBST - <pun_main>
 ob_start();
 
-
 define('FORUM_HEADER', 1);
