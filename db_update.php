@@ -439,6 +439,12 @@ switch ($stage)
 		// Since 1.4-beta.1: Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
+			
+		// Since 2.2.02, Since 2.0-beta.2: Update style to Randomness when updating from FluxBB 1.4, 1.5 or ModernBB 1.6
+		if (version_compare($cur_version, '2.0', '<')) {
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape("Randomness").'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'users SET style = \''.$db->escape("Randomness").'\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
+		}
 
 		// Since 2.0-beta.2: Insert new config option o_antispam_api
 		if (!array_key_exists('o_antispam_api', $pun_config))
