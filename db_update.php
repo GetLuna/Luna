@@ -645,6 +645,33 @@ switch ($stage)
 			foreach ($tags as $tag)
 				$db->query('INSERT INTO '.$db->prefix.'toolbar_tags (name, code, enable_form, enable_quick, image, func, position) VALUES ('.$tag.')') or error('Unable to insert in toolbar_tags table', __FILE__, __LINE__, $db->error());
 		}
+		
+		
+		// Since ModernBB 2.2.02: Recreate ranks table when removed in FluxBB 1.5
+		if (!$db->table_exists('ranks'))
+		{
+			$schema = array(
+				'FIELDS'		=> array(
+					'id'			=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'rank'			=> array(
+						'datatype'		=> 'VARCHAR(50)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'min_posts'		=> array(
+						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('id')
+			);
+		}
+	
+		$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
 
 		// Insert new config option o_forum_subscriptions
 		if (!array_key_exists('o_forum_subscriptions', $pun_config))
