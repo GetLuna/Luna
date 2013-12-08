@@ -271,7 +271,7 @@ require FORUM_ROOT.'header.php';
         <h1 class="form-heading"><?php echo $lang['Login'] ?></h1>
         <input type="hidden" name="form_sent" value="1" />
         <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
-        <div class"control-group">
+        <div class="control-group">
             <div class="controls">
                 <input class="form-control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
                 <input class="form-control" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" /> 
