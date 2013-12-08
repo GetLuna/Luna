@@ -265,7 +265,7 @@ if (isset($_GET['tid']))
 	$start_from = $pun_user['disp_posts'] * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
+	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
 
 
 	if ($pun_config['o_censoring'] == '1')
@@ -284,9 +284,9 @@ if (isset($_GET['tid']))
 	<li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 </div>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
@@ -368,9 +368,9 @@ if (isset($_GET['tid']))
 <p><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></p>
 
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 </div>
 <ul class="breadcrumb">
 	<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
@@ -773,7 +773,7 @@ $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : in
 $start_from = $pun_user['disp_topics'] * ($p - 1);
 
 // Generate paging links
-$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'moderate.php?fid='.$fid);
+$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_forum['forum_name']));
 define('FORUM_ACTIVE_PAGE', 'index');
@@ -781,9 +781,9 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 </div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
@@ -928,9 +928,9 @@ else
     <li><?php echo $lang['Moderate'] ?></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 </div>
 </form>
 <?php
