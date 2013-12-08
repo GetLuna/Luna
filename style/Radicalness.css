@@ -210,6 +210,11 @@ h1 {
 	background-color: #b62b00;
 }
 
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #b62b00;
+    color: #fff;
+}
+
 .navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret, .navbar-default .navbar-nav > .dropdown > a .caret {
 	border-top-color: #fff;
 	border-bottom-color: #fff;
