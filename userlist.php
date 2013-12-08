@@ -188,6 +188,9 @@ else
 ?>
             </tbody>
         </table>
+        <ul class="pagination">
+            <?php echo $paging_links ?>
+        </ul>
     </div>
 </div>
 <?php
