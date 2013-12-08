@@ -353,7 +353,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .is-offline {
-	border-left: 4px #ff5700 solid;
+	border-left: 4px #aaa solid;
 	padding-left: 4px;
 }
 
