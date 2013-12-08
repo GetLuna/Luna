@@ -95,6 +95,10 @@ h1 {
 		width: 41.66666666666667%;
 	}
 	
+	.col-xs-6 {
+		width: 83.33333333333334%;
+	}
+	
 	.col-search {
 		width: 50% !important;
 	}

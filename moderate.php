@@ -795,13 +795,13 @@ require FORUM_ROOT.'header.php';
     
 <div class="forum-box">
     <div class="row forum-header">
-        <div class="col-lg-6"><?php echo $lang['Topic'] ?></div>
-        <div class="col-lg-1"><?php echo $lang['Replies'] ?></div>
+        <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
+        <div class="col-xs-1 hidden-xs"><?php echo $lang['Replies forum'] ?></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-lg-1"><?php echo $lang['Views'] ?></div>
+            <div class="col-xs-1 hidden-xs"><?php echo $lang['Views'] ?></div>
         <?php endif; ?>
-        <div class="col-lg-3"><?php echo $lang['Last post'] ?></div>
-		<div class="col-lg-1"><?php echo $lang['Select'] ?></div>
+        <div class="col-xs-3 hidden-xs"><?php echo $lang['Last post'] ?></div>
+		<div class="col-xs-1"><?php echo $lang['Select'] ?></div>
     </div>
 <?php
 
@@ -880,7 +880,7 @@ if ($db->num_rows($result))
 		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $pun_user['disp_posts']);
 
 		if ($num_pages_topic > 1)
-			$subject_multipage = '<span class="pagestext">[ '.paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).' ]</span>';
+			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
 		else
 			$subject_multipage = null;
 
@@ -893,7 +893,7 @@ if ($db->num_rows($result))
 
 ?>
     <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-lg-6">
+        <div class="col-xs-6">
             <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
             <div class="tclcon">
                 <div>
@@ -901,10 +901,10 @@ if ($db->num_rows($result))
                 </div>
             </div>
         </div>
-					<div class="col-lg-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-lg-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
-<?php endif; ?>					<div class="col-lg-3"><?php echo $last_post ?></div>
-					<div class="col-lg-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
+					<div class="col-xs-1 hidden-xs"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1 hidden-xs"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+<?php endif; ?>					<div class="col-xs-3 hidden-xs"><?php echo $last_post ?></div>
+					<div class="col-xs-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
     </div>
 <?php
 
