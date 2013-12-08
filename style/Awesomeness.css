@@ -348,6 +348,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	font-size: 80%;
 }
 
+.is-online {
+	border-left: 4px #93dd00 solid;
+	padding-left: 4px;
+}
+
+.is-offline {
+	border-left: 4px #ff5700 solid;
+	padding-left: 4px;
+}
+
 .postsignature hr {
 	margin-bottom: 0;
 }
