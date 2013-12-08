@@ -61,7 +61,7 @@ if (!defined('FORUM'))
 // Record the start time (will be used to calculate the generation time for the page)
 $pun_start = get_microtime();
 
-// Make sure PHP reports all errors except E_NOTICE. FluxBB supports E_ALL, but a lot of scripts it may interact with, do not
+// Make sure PHP reports all errors except E_NOTICE. ModernBB supports E_ALL, but a lot of scripts it may interact with, do not
 error_reporting(E_ALL ^ E_NOTICE);
 
 // Force POSIX locale (to prevent functions such as strtolower() from messing up UTF-8 strings)
