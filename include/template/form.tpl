@@ -20,7 +20,6 @@
         </div>
         <!-- Content end -->
         <!-- Javascript start -->
-        <script src="include/bootstrap/bootstrap.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
             $("#user").focus();
