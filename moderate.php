@@ -304,7 +304,7 @@ if (isset($_GET['tid']))
 		$post_ids[] = $cur_post_id;
 
 	// Retrieve the posts (and their respective poster)
-	$result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 	while ($cur_post = $db->fetch_assoc($result))
 	{
@@ -332,6 +332,9 @@ if (isset($_GET['tid']))
 			$user_title = $lang['Guest'];
 		}
 
+		// Format the online indicator, those are ment as CSS classes
+		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
+
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
@@ -339,8 +342,8 @@ if (isset($_GET['tid']))
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
 	<table class="table postview">
         <tr>
-            <td class="col-lg-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
-                <dd class="usertitle"><strong><?php echo $poster ?><br /><?php echo $user_title ?></strong></dd>
+            <td class="col-lg-2 user-data">
+                <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $poster ?></strong></dd><?php echo $user_title ?>
             </td>
             <td class="col-lg-10 post-content">
                 <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
