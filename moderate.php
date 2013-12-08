@@ -780,16 +780,16 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div class="pagepost">
-    <ul class="pagination">
-        <?php echo $paging_links ?>
-    </ul>
-</div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
     <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
     <li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
+<div class="pagepost">
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
+</div>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>">
     
@@ -920,18 +920,17 @@ else
 ?>
 </div>
 
-<br /><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /><br /><br />
-
-<ul class="breadcrumb">
-    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
-    <li><?php echo $lang['Moderate'] ?></li>
-</ul>
+<span class="pull-right"><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></span>
 <div class="pagepost">
     <ul class="pagination">
         <?php echo $paging_links ?>
     </ul>
 </div>
+<ul class="breadcrumb">
+    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
+    <li><?php echo $lang['Moderate'] ?></li>
+</ul>
 </form>
 <?php
 
