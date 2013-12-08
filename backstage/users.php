@@ -209,10 +209,10 @@ if (isset($_GET['ip_stats']))
 ?>
             </tbody>
         </table>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
     </div>
-	<ul class="pagination">
-		<?php echo $paging_links ?>
-	</ul>
 </div>
 <?php
 
