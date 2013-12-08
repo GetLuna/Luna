@@ -1977,6 +1977,9 @@ else
 
 		if ($pun_user['g_id'] == FORUM_ADMIN)
 			$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></div></div>';
+		else
+			$posts_field = '';
+		
 
 ?>
     </form>
