@@ -194,7 +194,7 @@ if (isset($_GET['ip_stats']))
 
 ?>
                 <tr>
-                    <td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+                    <td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
                     <td><?php echo format_time($cur_ip['last_used']) ?></td>
                     <td><?php echo $cur_ip['used_times'] ?></td>
                     <td><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang['Results find more link'] ?></a></td>
