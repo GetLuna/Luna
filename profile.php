@@ -107,7 +107,7 @@ if ($action == 'change_pass')
 		if ($pun_user['id'] == $id)
 			pun_setcookie($pun_user['id'], $new_password_hash, time() + $pun_config['o_timeout_visit']);
 
-		redirect('profile.php?section=essentials&amp;id='.$id, $lang['Pass updated redirect']);
+		redirect('profile.php?section=personality&amp;id='.$id, $lang['Pass updated redirect']);
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Change pass']);
