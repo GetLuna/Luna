@@ -415,7 +415,7 @@ switch ($stage)
 		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
 		
 		// Since 2.0-rc.1: Change style from anything to Randomness when updating from ModernBB 2.0-beta.3 or lower
-		if (FORUM_VERSION < '2.0-rc.1') {
+		if (version_compare($cur_version, '2.0-beta.3', '<')) {
 			$db->query('UPDATE '.$db->prefix.'users SET style = Randomness WHERE style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'config SET o_default_style = Randomness WHERE o_default_style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
 		}
@@ -669,12 +669,13 @@ switch ($stage)
 				),
 				'PRIMARY KEY'	=> array('id')
 			);
-			
+
 			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
 				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
+			
 			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
 				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+
 		}
 	
 		$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
