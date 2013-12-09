@@ -413,12 +413,6 @@ switch ($stage)
 
 		// Since 2.0-rc.1: Add the parent_forum_id column to the forums table
 		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
-		
-		// Since 2.0-rc.1: Change style from anything to Randomness when updating from ModernBB 2.0-beta.3 or lower
-		if (version_compare($cur_version, '2.0-beta.3', '<')) {
-			$db->query('UPDATE '.$db->prefix.'users SET style = Randomness WHERE style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'config SET o_default_style = Randomness WHERE o_default_style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-		}
 
 		// Since 1.4-beta.1: Add search index revision number
 		if (!array_key_exists('o_searchindex_revision', $pun_config))
@@ -440,10 +434,10 @@ switch ($stage)
 		if (!array_key_exists('o_feed_ttl', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 			
-		// Since 2.2.02, Since 2.0-beta.2: Update style to Randomness when updating from FluxBB 1.4, 1.5 or ModernBB 1.6
-		if (version_compare($cur_version, '2.0', '<')) {
-			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape("Randomness").'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'users SET style = \''.$db->escape("Randomness").'\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
+		// Since 2.2.02, Since 2.0-beta.3: Update style to Randomness when updating from FluxBB 1.4, 1.5 or ModernBB 1.6
+		if (version_compare($cur_version, '2.0-beta.3', '<')) {
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Randomness\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'users SET style = \'Randomness\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
 		}
 
 		// Since 2.0-beta.2: Insert new config option o_antispam_api
