@@ -25,14 +25,10 @@ if (isset($_POST['add_user']))
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
 
-	if ($_POST['random_pass'] == '1')
-	{
+	if (isset($_POST['random_pass']) == '1')
 		$password = random_pass(8);
-	}
 	else
-	{
 		$password = trim($_POST['password']);
-	}
 	
 	$errors = array();
 
