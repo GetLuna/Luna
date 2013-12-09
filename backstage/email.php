@@ -142,7 +142,7 @@ generate_admin_menu('email');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"<?php echo $lang['SMTP username label'] ?>></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['SMTP username label'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[smtp_user]" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
                         <span class="help-block"><?php echo $lang['SMTP username help'] ?></span>
