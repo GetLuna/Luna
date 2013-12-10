@@ -117,7 +117,7 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Edit remove subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Edit remove words'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="censoring" method="post" action="censoring.php">

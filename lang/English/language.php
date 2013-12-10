@@ -614,7 +614,6 @@ $lang = array(
 
 // Language for profile.php
 // Navigation and sections
-'Section essentials'			=>	'Essentials',
 'Section settings'				=>	'Settings',
 'Section personality'			=>	'Personality',
 'Section view' 					=>  'Profile',
@@ -983,7 +982,7 @@ $lang = array(
 'Censored word label'		=>	'Censored word',
 'Replacement label'			=>	'Replacement word(s)',
 'Action label'				=>	'Action',
-'Edit remove subhead'		=>	'Edit or remove words',
+'Edit remove words'			=>	'Edit or remove words',
 'No words in list'			=>	'No censor words in list.',
 
 // Language fox database.php
