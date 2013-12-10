@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
+if ($pun_user['g_id'] != FORUM_ADMIN)
+	message($lang['No permission'], false, '403 Forbidden');
 
 // Add a censor word
 if (isset($_POST['add_word']))
@@ -117,7 +117,7 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Edit remove subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Edit remove words'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="censoring" method="post" action="censoring.php">

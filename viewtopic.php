@@ -21,9 +21,6 @@ $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 if ($id < 1 && $pid < 1)
 	message($lang['Bad request'], false, '404 Not Found');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // If a post ID is specified we determine topic ID and page number so we can redirect to the correct message
 if ($pid)
 {
@@ -162,9 +159,9 @@ $topic_actions = array();
 if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
 {
 	if ($cur_topic['is_subscribed'])
-		$topic_actions[] = '<a href="misc.php?action=subscribe&tid='.$id.'">'.$lang['Unsubscribe'].'</a>';
+		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang['Unsubscribe'].'</a>';
 	else
-		$topic_actions[] = '<a href="misc.php?action=subscribe&tid='.$id.'">'.$lang['Subscribe'].'</a>';
+		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang['Subscribe'].'</a>';
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
@@ -226,8 +223,8 @@ while ($cur_post = $db->fetch_assoc($result))
 		if ($pun_config['o_censoring'] == '1')
 			$user_title = censor_words($user_title);
 
-		// Format the online indicator
-		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? '<strong>'.$lang['Online'].'</strong>' : '<span>'.$lang['Offline'].'</span>';
+		// Format the online indicator, those are ment as CSS classes
+		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
 
 		if ($pun_config['o_avatars'] == '1' && $pun_user['show_avatars'] != '0')
 		{
@@ -314,7 +311,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			}
 
 			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+				$post_actions[] = '<a class="btn btn-primary btn-mini" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 		}
 	}
 	else
@@ -353,12 +350,12 @@ while ($cur_post = $db->fetch_assoc($result))
 	<table class="table postview <?php if ($cur_post['marked'] == true) echo 'marked'; ?>">
 		<tr colspan="2" class="user-data active visible-xs">
         	<td>
-				<strong><?php echo $username ?></strong>
+				<dd class="<?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd>
             </td>
         </tr>
         <tr>
-            <td class="col-lg-2 user-data hidden-xs <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
-                <dd class="usertitle"><strong><?php echo $username ?></strong></dd><?php echo $user_title ?>
+            <td class="col-lg-2 user-data hidden-xs">
+                <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd><?php echo $user_title ?>
                 <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
                 <span class="user-info">
                     <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>

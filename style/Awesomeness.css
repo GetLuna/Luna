@@ -12,6 +12,7 @@ body, html {
 }
 
 footer {
+	padding-top: 10px;
 	padding-bottom: 15px;
 }
 
@@ -90,12 +91,12 @@ h1 {
 }
 
 @media(max-width:767px) {
-	.col-xs-2 {
-		width: 33.33333333333333%;
-	}
-	
 	.col-xs-3 {
 		width: 41.66666666666667%;
+	}
+	
+	.col-xs-6 {
+		width: 83.33333333333334%;
 	}
 	
 	.col-search {
@@ -209,6 +210,11 @@ h1 {
 	background-color: #4c7c00;
 }
 
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #4c7c00;
+    color: #fff;
+}
+
 .navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret, .navbar-default .navbar-nav > .dropdown > a .caret {
 	border-top-color: #fff;
 	border-bottom-color: #fff;
@@ -289,7 +295,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 /* Post messages */
 .bblinks {
-	padding-top: 0;
+	padding-top: 5px;
 	float: right;
 }
 
@@ -345,6 +351,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .user-info {
 	font-size: 80%;
+}
+
+.is-online {
+	border-left: 4px #93dd00 solid;
+	padding-left: 4px;
+}
+
+.is-offline {
+	border-left: 4px #aaa solid;
+	padding-left: 4px;
 }
 
 .postsignature hr {
@@ -778,9 +794,9 @@ fieldset label {
 }
 
 .iredirect .icon {
-	border-color: #dcdcdc;
-	border-width: 1px;
-	padding: 7px;
+	border-color: #818181;
+	border-width: 4px;
+	padding: 4px;
 }
 
 .inew .icon {

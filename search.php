@@ -13,9 +13,6 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 $section = isset($_GET['section']) ? $_GET['section'] : null;
 
 if ($pun_user['g_read_board'] == '0')
@@ -798,7 +795,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
         </div>
         <div class="panel-body">
             <fieldset>
-                <input class="form-control" type="hidden" name="action" value="search" />
+                <input type="hidden"  name="action" value="search" />
             	<table>
                 	<thead>
                     	<tr>

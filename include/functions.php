@@ -920,10 +920,10 @@ function paginate($num_pages, $cur_page, $link)
 
 		if ($cur_page > 3)
 		{
-			$pages[] = '<a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p=1">1</a>';
+			$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p=1">1</a></li>';
 
 			if ($cur_page > 5)
-				$pages[] = '<span class="spacer">'.$lang['Spacer'].'</span>';
+				$pages[] = '<li class="disabled"><span class="spacer">'.$lang['Spacer'].'</span></li>';
 		}
 
 		// Don't ask me how the following works. It just does, OK? :-)
@@ -940,14 +940,14 @@ function paginate($num_pages, $cur_page, $link)
 		if ($cur_page <= ($num_pages-3))
 		{
 			if ($cur_page != ($num_pages-3) && $cur_page != ($num_pages-4))
-				$pages[] = '<span class="spacer">'.$lang['Spacer'].'</span>';
+				$pages[] = '<li class="disabled"><span class="spacer">'.$lang['Spacer'].'</span></li>';
 
-			$pages[] = '<li class="active"><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a></li>';
+			$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a></li>';
 		}
 
 		// Add a next page link
 		if ($num_pages > 1 && !$link_to_all && $cur_page < $num_pages)
-			$pages[] = '<li><a <a rel="next" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page +1).'">&raquo;</a></li>';
+			$pages[] = '<li><a rel="next" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page +1).'">&raquo;</a></li>';
 		else
 			$pages[] = '<li class="disabled"><a href="#">&raquo;</a></li>';
 	}

@@ -614,7 +614,6 @@ $lang = array(
 
 // Language for profile.php
 // Navigation and sections
-'Section essentials'			=>	'Essentials',
 'Section settings'				=>	'Settings',
 'Section personality'			=>	'Personality',
 'Section view' 					=>  'Profile',
@@ -857,7 +856,7 @@ $lang = array(
 'Delete'			=>	'Delete',
 'Edit'				=>	'Edit',
 'Quote'				=>	'Quote',
-'Is subscribed'		=>	'You are currently subscribed to this topic',
+'Is subscribed'		=>	'You are subscribed to this topic',
 'Unsubscribe'		=>	'Unsubscribe',
 'Subscribe'			=>	'Subscribe to this topic',
 'Quick post'		=>	'Quick post',
@@ -983,7 +982,7 @@ $lang = array(
 'Censored word label'		=>	'Censored word',
 'Replacement label'			=>	'Replacement word(s)',
 'Action label'				=>	'Action',
-'Edit remove subhead'		=>	'Edit or remove words',
+'Edit remove words'			=>	'Edit or remove words',
 'No words in list'			=>	'No censor words in list.',
 
 // Language fox database.php
@@ -1041,7 +1040,7 @@ $lang = array(
 'Default style label'				=>	'Default style',
 'Default style help'				=>	'The default style for guests and users who haven\'t changed from the default in their profile.',
 'Version number help'				=>	'Show ModernBB version number in footer.',
-'Info in posts help'				=>	'Show information about the poster under the username in topic view. The information affected is location, register date, post count and the contact links.',
+'Info in posts help'				=>	'Show information about the poster under the username in topic view. The information affected is location, post count and the contact links.',
 'Post count help'					=>	'Show the number of posts a user has made in topic view, profile and user list.',
 'Smilies help'						=>	'Convert smilies to small graphic icons in forum posts.',
 'Smilies sigs help'					=>	'Convert smilies to small graphic icons in user signatures.',
@@ -1089,7 +1088,7 @@ $lang = array(
 'General'							=>	'General',
 'Topics and posts'					=>	'Topics and posts',
 'User features'						=>	'User features',
-'Others'							=>	'Others',
+'Others'							=>	'Search all forums',
 'Advanced'							=>	'Advanced',
 'Quick post label'					=>	'Quick post',
 'Quick post help'					=>	'When enabled, ModernBB will add a quick post form at the bottom of topics, so users can post directly from the topic view.',
@@ -1294,7 +1293,7 @@ $lang = array(
 
 'Prune users head'			=>	'Prune users',
 'Prune by'					=>	'Prune by',
-'Registed date'				=>	'Registed date',
+'Registed date'				=>	'Registered date',
 'Last login'				=>	'Last login',
 'Prune by info'				=>	'This decides if the minimum number of days is calculated since the last login or the registered date.',
 'Minimum days'				=>	'Minimum days since registration/last login',
@@ -1471,7 +1470,7 @@ $lang = array(
 'Max sig lines label'		=>	'Maximum signature lines',
 'Max sig lines help'		=>	'The maximum number of lines a user signature may contain.',
 'Registration subhead'		=>	'Registration',
-'Banned e-mail help'		=>	'Allow users to register with or change to a banned email address/domain. If left at its default setting (yes), this action will be allowed, but an alert email will be sent to the mailing list.',
+'Banned e-mail help'		=>	'Allow users to register with or change to a banned email address/domain. If allowed, an alert email will be sent to the mailing list.',
 'Duplicate e-mail help'		=>	'Controls whether users should be allowed to register with an email address that another user already has. If allowed, an alert email will be sent to the mailing list if a duplicate is detected.',
 
 // Language for ranks.php

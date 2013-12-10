@@ -50,9 +50,6 @@ if ((($tid && (($cur_posting['post_replies'] == '' && $pun_user['g_post_replies'
 	!$is_admmod)
 	message($lang['No permission'], false, '403 Forbidden');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // Start with a clean slate
 $errors = array();
 
@@ -94,10 +91,6 @@ if (isset($_POST['form_sent']))
 		$username = pun_trim($_POST['req_username']);
 		$email = strtolower(pun_trim(($pun_config['p_force_guest_email'] == '1') ? $_POST['req_email'] : $_POST['email']));
 		$banned_email = false;
-
-		// Load the register.php/prof_reg.php language files
-		require FORUM_ROOT.'lang/'.$pun_user['language'].'/prof_reg.php';
-		require FORUM_ROOT.'lang/'.$pun_user['language'].'/register.php';
 
 		// It's a guest, so we have to validate the username
 		check_username($username);
@@ -612,7 +605,7 @@ if ($pun_user['is_guest'])
 if ($fid): ?>
                 <label class="required"><strong><?php echo $lang['Subject'] ?></strong><br /><input class="longinput form-control full-form" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" /></label>
 <?php endif; ?>	
-                        <textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea></label>
+                        <textarea class="form-control full-form" id="req_message" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
 <?php
 	if (file_exists(FORUM_CACHE_DIR.'cache_toolbar_form.php'))
 		include FORUM_CACHE_DIR.'cache_toolbar_form.php';

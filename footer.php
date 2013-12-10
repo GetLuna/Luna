@@ -80,7 +80,7 @@ else if ($footer_style == 'viewtopic')
 	<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></span>
     <script src="include/bootstrap/jquery.js"></script>
     <script src="include/bootstrap/bootstrap.js"></script>
-<footer>
+</footer>
 <?php
 
 // Display debug info (if enabled/defined)

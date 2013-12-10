@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.2.1');
+define('UPDATE_TO', '2.2.02');
 
 define('UPDATE_TO_DB_REVISION', 42);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -413,12 +413,6 @@ switch ($stage)
 
 		// Since 2.0-rc.1: Add the parent_forum_id column to the forums table
 		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
-		
-		// Since 2.0-rc.1: Change style from anything to Randomness when updating from ModernBB 2.0-beta.3 or lower
-		if (FORUM_VERSION < '2.0-rc.1') {
-			$db->query('UPDATE '.$db->prefix.'users SET style = Randomness WHERE style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-			$db->query('UPDATE '.$db->prefix.'config SET o_default_style = Randomness WHERE o_default_style != Randomness') or error('Unable to update group ID', __FILE__, __LINE__, $db->error());
-		}
 
 		// Since 1.4-beta.1: Add search index revision number
 		if (!array_key_exists('o_searchindex_revision', $pun_config))
@@ -439,6 +433,12 @@ switch ($stage)
 		// Since 1.4-beta.1: Insert new config option o_feed_ttl
 		if (!array_key_exists('o_feed_ttl', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
+			
+		// Since 2.2.02, Since 2.0-beta.3: Update style to Randomness when updating from FluxBB 1.4, 1.5 or ModernBB 1.6
+		if (version_compare($cur_version, '2.0-beta.3', '<')) {
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Randomness\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'users SET style = \'Randomness\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
+		}
 
 		// Since 2.0-beta.2: Insert new config option o_antispam_api
 		if (!array_key_exists('o_antispam_api', $pun_config))
@@ -463,6 +463,10 @@ switch ($stage)
 		// Since 2.1-beta: Insert new config option o_index_update_check
 		if (!array_key_exists('o_index_update_check', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 2.2.02: Add o_ranks if updating from FluxBB 1.5
+		if (!array_key_exists('o_ranks', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 			
 		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
 		if (!array_key_exists('o_base_url', $pun_config))
@@ -634,6 +638,38 @@ switch ($stage)
 			
 			foreach ($tags as $tag)
 				$db->query('INSERT INTO '.$db->prefix.'toolbar_tags (name, code, enable_form, enable_quick, image, func, position) VALUES ('.$tag.')') or error('Unable to insert in toolbar_tags table', __FILE__, __LINE__, $db->error());
+		}
+		
+		
+		// Since ModernBB 2.2.02: Recreate ranks table when removed in FluxBB 1.5
+		if (!$db->table_exists('ranks'))
+		{
+			$schema = array(
+				'FIELDS'		=> array(
+					'id'			=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'rank'			=> array(
+						'datatype'		=> 'VARCHAR(50)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'min_posts'		=> array(
+						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('id')
+			);
+			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
+
+			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
+				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+			
+			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
+				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
 
 		// Insert new config option o_forum_subscriptions

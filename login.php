@@ -16,9 +16,6 @@ if (isset($_GET['action']))
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if (isset($_POST['form_sent']) && $action == 'in')
@@ -274,7 +271,7 @@ require FORUM_ROOT.'header.php';
         <h1 class="form-heading"><?php echo $lang['Login'] ?></h1>
         <input type="hidden" name="form_sent" value="1" />
         <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
-        <div class"control-group">
+        <div class="control-group">
             <div class="controls">
                 <input class="form-control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
                 <input class="form-control" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" /> 

@@ -18,8 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
+if ($pun_user['g_id'] != FORUM_ADMIN)
+	message($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
 {
@@ -142,7 +142,7 @@ generate_admin_menu('email');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"<?php echo $lang['SMTP username label'] ?>></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['SMTP username label'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[smtp_user]" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
                         <span class="help-block"><?php echo $lang['SMTP username help'] ?></span>
@@ -157,6 +157,7 @@ generate_admin_menu('email');
                                 <?php echo $lang['SMTP change password help'] ?>
                             </label>
                         </div>
+<?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
 						<input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
 						<input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
                         <span class="help-block"><?php echo $lang['SMTP password help'] ?></span>

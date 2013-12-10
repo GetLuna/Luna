@@ -162,6 +162,8 @@ $tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SE
 // START SUBST - <pun_title>
 if ($pun_config['o_header_title'] == 1) {
 	$tpl_main = str_replace('<pun_title>', '<h1><a href="index.php">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a></h1>', $tpl_main);
+} else {
+	$tpl_main = str_replace('<pun_title>', '', $tpl_main);
 }
 
 // END SUBST - <pun_title>
@@ -224,7 +226,7 @@ if ($pun_user['is_guest'])
 }
 
 if ($pun_config['o_menu_title'] == 1) {
-	$menu_title = '<a href="#" class="navbar-brand">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a>';
+	$menu_title = '<a href="index.php" class="navbar-brand">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a>';
 } else {
 	$menu_title = '';
 }

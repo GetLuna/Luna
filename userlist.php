@@ -16,9 +16,6 @@ if ($pun_user['g_read_board'] == '0')
 else if ($pun_user['g_view_users'] == '0')
 	message($lang['No permission'], false, '403 Forbidden');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // Determine if we are allowed to view post counts
 $show_post_count = ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod']) ? true : false;
 
@@ -191,6 +188,9 @@ else
 ?>
             </tbody>
         </table>
+        <ul class="pagination">
+            <?php echo $paging_links ?>
+        </ul>
     </div>
 </div>
 <?php

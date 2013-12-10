@@ -26,7 +26,6 @@ ob_start();
 		<?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a>') ?>
         <span class="pull-right"><?php echo $lang['Version'].'&nbsp;'.$pun_config['o_cur_version'] ?></span>
     </p>
-    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="../include/bootstrap/jquery.js"></script>
     <script src="../include/bootstrap/bootstrap.js"></script>
 </footer>

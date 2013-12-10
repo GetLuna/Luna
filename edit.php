@@ -48,9 +48,6 @@ if (($pun_user['g_edit_posts'] == '0' ||
 if ($is_admmod && $pun_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
 	message($lang['No permission'], false, '403 Forbidden');
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // Start with a clean slate
 $errors = array();
 

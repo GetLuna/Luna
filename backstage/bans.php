@@ -18,9 +18,6 @@ if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun
     header("Location: ../login.php");
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
-
 // Add/edit a ban (stage 1)
 if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 {
@@ -128,7 +125,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                         <th><?php echo $lang['IP label'] ?></th>
                         <td>
                             <input type="text" class="form-control" name="ban_ip" size="45" maxlength="255" value="<?php if (isset($ban_ip)) echo pun_htmlspecialchars($ban_ip); ?>" tabindex="2" />
-                            <br /><span><?php echo $lang['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang['IP help link'], '<a href="../users.php?ip_stats='.$user_id.'">'.$lang['here'].'</a>') ?></span>
+                            <br /><span><?php echo $lang['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang['IP help link'], '<a href="users.php?ip_stats='.$user_id.'">'.$lang['here'].'</a>') ?></span>
                         </td>
                     </tr>
                     <tr>
@@ -412,7 +409,7 @@ else if (isset($_GET['find_ban']))
 		while ($ban_data = $db->fetch_assoc($result))
 		{
 
-			$actions = '<a href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a> | <a href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a>';
+			$actions = '<a class="btn btn-primary btn-mini" href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a><a class="btn btn-primary btn-mini" href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a>';
 			$expire = format_time($ban_data['expire'], true);
 
 ?>

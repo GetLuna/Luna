@@ -17,9 +17,6 @@ if (!$pun_user['is_guest'])
 	exit;
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 if ($pun_config['o_regs_allow'] == '0')
 	message($lang['No new regs']);
 

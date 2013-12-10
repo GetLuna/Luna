@@ -42,9 +42,6 @@ if ($stats['total_topics'] == 0) {
 	$stats['total_topics'] == '0';
 }
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$admin_language.'/language.php';
-
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Index']);
 define('FORUM_ACTIVE_PAGE', 'admin');
@@ -60,29 +57,30 @@ require FORUM_ROOT.'backstage/header.php';
             <h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
             <div class="btn-group">
                 <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
-                <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+                <a href="http://modernbb.be/releases/modernbb<?php echo $latest_version ?>.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
             </div>
             <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
         <?php } elseif (version_compare(FORUM_VERSION, $latest_version, 'eq')) { ?>
             <h4><?php echo $lang['ModernBB intro'].' '.FORUM_VERSION ?></h4>
             <div class="btn-group">
-                <a href="http://modernbb.be/changelog.php#modernbb<?php echo FORUM_VERSION ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+                <a href="http://modernbb.be/releases/modernbb<?php echo FORUM_VERSION ?>.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
                 <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
             </div>
 		<?php	} else { ?>
             <h4><?php echo sprintf($lang['Development'], FORUM_VERSION, $latest_version) ?></h4>
             <div class="btn-group">
                 <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
-                <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+                <a href="http://modernbb.be/releases/modernbb<?php echo $latest_version ?>.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
             </div>
             <div class="btn-group">
                 <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
-                <a href="http://modernbb.be/changelog.php#modernbb<?php echo $latest_version ?>" class="btn btn-default"><?php echo $lang['Changelog'] ?></a>
+                <a href="http://modernbb.be/releases/modernbb<?php echo FORUM_VERSION ?>.php" class="btn btn-default"><?php echo $lang['Changelog'] ?></a>
             </div>
 <?php	} ?>
 		</div>
 <?php
     }
+if ($pun_user['g_id'] == FORUM_ADMIN) {
 ?>
 <div class="col-lg-3">
     <div class="panel panel-default">
@@ -94,8 +92,11 @@ require FORUM_ROOT.'backstage/header.php';
             <a class="btn btn-block btn-primary" href="database.php"><?php echo $lang['Backup button'] ?></a>
         </div>
      </div>
-</div>
+</div> 
 <div class="col-lg-9">
+<?php } else { ?>
+<div class="col-lg-12">
+<?php } ?>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['View all'] ?></a></span></h3>
@@ -119,7 +120,10 @@ if ($db->num_rows($result))
 	while ($cur_report = $db->fetch_assoc($result))
 	{
 		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.pun_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
+		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.pun_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
+		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.pun_htmlspecialchars($cur_report['subject']).'</a></span>' : '<span>»&#160;'.$lang['Deleted'].'</span>';
 		$post = str_replace("\n", '<br />', pun_htmlspecialchars($cur_report['message']));
+		$post_id = ($cur_report['pid'] != '') ? '<span><a href="viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf($lang['Post ID'], $cur_report['pid']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
@@ -181,9 +185,9 @@ else
             <table class="table">
                 <thead>
                     <tr>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_posts'])) ?></b></b><br /><?php echo $lang['posts'] ?></h4></td>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_topics'])) ?></b></b><br /><?php echo $lang['topics'] ?></h4></td>
-                        <td style="text-align:center;"><h4><b><b><?php printf(forum_number_format($stats['total_users'])) ?></b></b><br /><?php echo $lang['users'] ?></h4></td>
+                        <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo $lang['posts'] ?></h4></td>
+                        <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo $lang['topics'] ?></h4></td>
+                        <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo $lang['users'] ?></h4></td>
                     </tr>
                 </thead>
             </table>

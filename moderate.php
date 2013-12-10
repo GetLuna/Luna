@@ -10,9 +10,6 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins
 if (isset($_GET['get_host']))
@@ -36,7 +33,7 @@ if (isset($_GET['get_host']))
 		$ip = $db->result($result);
 	}
 	
-	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
+	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
 }
 
 
@@ -129,7 +126,7 @@ if (isset($_GET['tid']))
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+			<input class="btn btn-primary" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -268,7 +265,7 @@ if (isset($_GET['tid']))
 	$start_from = $pun_user['disp_posts'] * ($p - 1);
 
 	// Generate paging links
-	$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
+	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
 
 
 	if ($pun_config['o_censoring'] == '1')
@@ -287,9 +284,9 @@ if (isset($_GET['tid']))
 	<li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 </div>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
@@ -307,7 +304,7 @@ if (isset($_GET['tid']))
 		$post_ids[] = $cur_post_id;
 
 	// Retrieve the posts (and their respective poster)
-	$result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 	while ($cur_post = $db->fetch_assoc($result))
 	{
@@ -335,6 +332,9 @@ if (isset($_GET['tid']))
 			$user_title = $lang['Guest'];
 		}
 
+		// Format the online indicator, those are ment as CSS classes
+		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
+
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
@@ -342,8 +342,8 @@ if (isset($_GET['tid']))
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
 	<table class="table postview">
         <tr>
-            <td class="col-lg-2 user-data <?php if ($cur_post['poster_id'] > 1) echo 'is-online'; ?>">
-                <dd class="usertitle"><strong><?php echo $poster ?><br /><?php echo $user_title ?></strong></dd>
+            <td class="col-lg-2 user-data">
+                <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $poster ?></strong></dd><?php echo $user_title ?>
             </td>
             <td class="col-lg-10 post-content">
                 <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
@@ -356,7 +356,7 @@ if (isset($_GET['tid']))
         <?php if (!$pun_user['is_guest']) { ?>
         <tr>
             <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-                <p class="pull-right"><?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<p class="multidelete"><label><strong>'.$lang['Select'].'</strong>&#160;<input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /></label></p>' : '<p>'.$lang['Cannot select first'].'</p>' ?></p>
+                <?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
             </td>
         </tr>
         <?php } ?>
@@ -371,9 +371,9 @@ if (isset($_GET['tid']))
 <p><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></p>
 
 <div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
 </div>
 <ul class="breadcrumb">
 	<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
@@ -500,7 +500,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
                     </label>
                     <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /> <?php echo $lang['Leave redirect'] ?><br />
 				</fieldset>
-			<p><input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+			<input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -776,35 +776,35 @@ $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : in
 $start_from = $pun_user['disp_topics'] * ($p - 1);
 
 // Generate paging links
-$paging_links = '<span class="pages-label">'.$lang['Pages'].' </span>'.paginate($num_pages, $p, 'moderate.php?fid='.$fid);
+$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_forum['forum_name']));
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
-</div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
     <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
     <li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
+<div class="pagepost">
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
+</div>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>">
     
 <div class="forum-box">
     <div class="row forum-header">
-        <div class="col-lg-6"><?php echo $lang['Topic'] ?></div>
-        <div class="col-lg-1"><?php echo $lang['Replies'] ?></div>
+        <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
+        <div class="col-xs-1 hidden-xs"><?php echo $lang['Replies forum'] ?></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-lg-1"><?php echo $lang['Views'] ?></div>
+            <div class="col-xs-1 hidden-xs"><?php echo $lang['Views'] ?></div>
         <?php endif; ?>
-        <div class="col-lg-3"><?php echo $lang['Last post'] ?></div>
-		<div class="col-lg-1"><?php echo $lang['Select'] ?></div>
+        <div class="col-xs-3 hidden-xs"><?php echo $lang['Last post'] ?></div>
+		<div class="col-xs-1"><?php echo $lang['Select'] ?></div>
     </div>
 <?php
 
@@ -883,7 +883,7 @@ if ($db->num_rows($result))
 		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $pun_user['disp_posts']);
 
 		if ($num_pages_topic > 1)
-			$subject_multipage = '<span class="pagestext">[ '.paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).' ]</span>';
+			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
 		else
 			$subject_multipage = null;
 
@@ -896,7 +896,7 @@ if ($db->num_rows($result))
 
 ?>
     <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-lg-6">
+        <div class="col-xs-6">
             <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
             <div class="tclcon">
                 <div>
@@ -904,10 +904,10 @@ if ($db->num_rows($result))
                 </div>
             </div>
         </div>
-					<div class="col-lg-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-lg-1"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
-<?php endif; ?>					<div class="col-lg-3"><?php echo $last_post ?></div>
-					<div class="col-lg-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
+					<div class="col-xs-1 hidden-xs"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1 hidden-xs"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+<?php endif; ?>					<div class="col-xs-3 hidden-xs"><?php echo $last_post ?></div>
+					<div class="col-xs-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
     </div>
 <?php
 
@@ -923,18 +923,17 @@ else
 ?>
 </div>
 
-<br /><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /><br /><br />
-
+<span class="pull-right"><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></span>
+<div class="pagepost">
+    <ul class="pagination">
+        <?php echo $paging_links ?>
+    </ul>
+</div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
     <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
     <li><?php echo $lang['Moderate'] ?></li>
 </ul>
-<div class="pagepost">
-	<?php if ($num_pages < 1): ?>
-        <p><?php echo $paging_links ?></p>
-	<?php endif; ?>
-</div>
 </form>
 <?php
 

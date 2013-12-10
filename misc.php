@@ -13,9 +13,6 @@ if (isset($_GET['action']))
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-// Load the language file
-require FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
-
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 
@@ -96,8 +93,6 @@ else if (isset($_GET['email']))
 
 	if (isset($_POST['form_sent']))
 	{
-		confirm_referrer('misc.php');
-		
 		// Clean up message and subject from POST
 		$subject = pun_trim($_POST['req_subject']);
 		$message = pun_trim($_POST['req_message']);
@@ -339,7 +334,7 @@ else if ($action == 'subscribe')
 
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$pun_user['id'].' AND topic_id='.$topic_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
-			message($lang['Already subscribed topic']);
+			message($lang['Is subscribed']);
 
 		$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$pun_user['id'].' ,'.$topic_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
