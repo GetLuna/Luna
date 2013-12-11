@@ -419,12 +419,12 @@ generate_admin_menu('global');
                     <label class="col-sm-2 control-label"><?php echo $lang['Use avatars label'] ?></label>
                     <div class="col-sm-10">
                         <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="form[avatars]" value="1" <?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />
-                                    <?php echo $lang['Use avatars help'] ?>
-                                </label>
-                            </div>
-                    </div>
+							<label>
+								<input type="checkbox" name="form[avatars]" value="1" <?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Use avatars help'] ?>
+							</label>
+						</div>
+					</div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Upload directory label'] ?></label>
