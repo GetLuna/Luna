@@ -1,6 +1,6 @@
 /* Essential structure */
 html, body {
-	background: #f8f8f8;
+	background: #e5e5e5;
 	font-family: Segoe UI;
 }
 
@@ -55,14 +55,10 @@ p {
 	color: #fff;
 }
 
-.dropdown-menu {
-	border-radius: 0;
-}
-
 .navbar {
-	border-bottom: 6px solid #006dc2;
-	background: #47a9f5;
-	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
+	border-bottom: 5px solid #006dc2;
+	background: #333;
+	background: linear-gradient(to bottom,  #444, #333);
 	background-repeat: repeat-x;
 }
 
@@ -109,7 +105,7 @@ p {
 .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
 	color: #fff;
 	background: #2690e1;
-	background-image: linear-gradient(to bottom, #2690e1, #0b7bd2);
+	background: linear-gradient(to bottom, #47a9f5, #2690e1);
 	background-repeat: repeat-x;
 }
 
@@ -178,17 +174,6 @@ p {
 	border-radius: 0;
 }
 
-.btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075);
-	box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 1px rgba(0,0,0,0.075);
-}
-
-.btn-default:active, .btn-primary:active, .btn-success:active, .btn-info:active, .btn-warning:active, .btn-danger:active, .btn-default.active, .btn-primary.active, .btn-success.active, .btn-info.active, .btn-warning.active, .btn-danger.active {
-	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-	box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
-}
-
 .btn:active, .btn.active {
 	background: none;
 }
@@ -198,7 +183,6 @@ p {
 	background-image: linear-gradient(to bottom,#fff 0%,#e0e0e0 100%);
 	background-repeat: repeat-x;
 	border-color: #ccc;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .btn-default:hover, .btn-default:focus {
@@ -215,7 +199,6 @@ p {
 	background-image: linear-gradient(to bottom,#428bca 0%,#2d6ca2 100%);
 	background-repeat: repeat-x;
 	border-color: #2b669a;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .btn-primary:hover, .btn-primary:focus {
@@ -232,7 +215,6 @@ p {
 	background-image: linear-gradient(to bottom,#5cb85c 0%,#419641 100%);
 	background-repeat: repeat-x;
 	border-color: #3e8f3e;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .btn-success:hover, .btn-success:focus {
@@ -249,7 +231,6 @@ p {
 	background-image: linear-gradient(to bottom,#f0ad4e 0%,#eb9316 100%);
 	background-repeat: repeat-x;
 	border-color: #e38d13;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .btn-warning:hover, .btn-warning:focus {
@@ -266,7 +247,6 @@ p {
 	background-image: linear-gradient(to bottom,#d9534f 0%,#c12e2a 100%);
 	background-repeat: repeat-x;
 	border-color: #b92c28;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .btn-danger:hover, .btn-danger:focus {
@@ -283,7 +263,6 @@ p {
 	background-image: linear-gradient(to bottom,#5bc0de 0%,#2aabd2 100%);
 	background-repeat: repeat-x;
 	border-color: #28a4c9;
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .btn-info:hover, .btn-info:focus {
@@ -299,7 +278,8 @@ p {
 .panel-title .btn {
 	margin-top: -10px;
 	margin-right: -15px;
-	padding: 9px 14px;
+	padding: 8px 14px 9px 14px;
+	border-top-right-radius: 3px;
 	border: none;
 	border-left: #155ac9;
 }
@@ -314,10 +294,7 @@ p {
 
 /* Panels */
 .panel {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
 	margin-bottom: 10px;
-	background: #eee;
 }
 
 .panel-heading {
@@ -325,10 +302,8 @@ p {
 }
 
 .panel-default .panel-heading {
-	border-radius: 0;
-	border: none;
 	background: #0b8ada;
-	background-image: linear-gradient(#46b8ff, #0b8ada);
+	background-image: linear-gradient(#444, #333);
 	background-repeat: repeat-x;
 	color: #fff;
 }
@@ -345,7 +320,6 @@ p {
 /* Alerts and redirects */
 .alert, #redirect {
 	border: none;
-	border-radius: 0;
 	margin: 0 5px 10px 5px;
 	background-color: #fff;
 	border-left: #555 5px solid;
@@ -395,7 +369,6 @@ footer {
 /* Breadcrumb */
 .breadcrumb {
 	margin-bottom: 5px;
-	border-radius: 0;
 	color: #a8a8a8;
 	padding: 7px 15px;
 }
