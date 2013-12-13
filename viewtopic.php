@@ -250,22 +250,22 @@ while ($cur_post = $db->fetch_assoc($result))
 
 			// Now let's deal with the contact links (Email and URL)
 			if ((($cur_post['email_setting'] == '0' && !$pun_user['is_guest']) || $pun_user['is_admmod']) && $pun_user['g_send_email'] == '1')
-				$user_actions[] = '<a class="btn btn-primary btn-mini" href="mailto:'.pun_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a>';
+				$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.pun_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a>';
 			else if ($cur_post['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-				$user_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?email='.$cur_post['poster_id'].'">'.$lang['Email'].'</a>';
+				$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_post['poster_id'].'">'.$lang['Email'].'</a>';
 
 			if ($cur_post['url'] != '')
 			{
 				if ($pun_config['o_censoring'] == '1')
 					$cur_post['url'] = censor_words($cur_post['url']);
 
-				$user_actions[] = '<a class="btn btn-primary btn-mini" href="'.pun_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a>';
+				$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.pun_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a>';
 			}
 			
 
 			if ($pun_user['is_admmod'])
 			{
-				$user_actions[] = '<a class="btn btn-primary btn-mini" href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a>';
+				$user_actions[] = '<a class="btn btn-primary btn-xs" href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a>';
 			}
 		}
 			
@@ -294,9 +294,9 @@ while ($cur_post = $db->fetch_assoc($result))
 	{
 		if (!$pun_user['is_guest']) {
 			if ($cur_post['marked'] == false) {
-				$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			} else {
-				$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			}
 		}
 
@@ -305,29 +305,29 @@ while ($cur_post = $db->fetch_assoc($result))
 			if ($cur_post['poster_id'] == $pun_user['id'])
 			{
 				if ((($start_from + $post_count) == 1 && $pun_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $pun_user['g_delete_posts'] == '1'))
-					$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
+					$post_actions[] = '<a class="btn btn-primary btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
 				if ($pun_user['g_edit_posts'] == '1')
-					$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
+					$post_actions[] = '<a class="btn btn-primary btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 			}
 
 			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a class="btn btn-primary btn-mini" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+				$post_actions[] = '<a class="btn btn-primary btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 		}
 	}
 	else
 	{
 		if ($cur_post['marked'] == false)
 		{
-			$post_actions[] = '<a class="btn btn-primary btn-mini" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+			$post_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		} else {
-			$post_actions[] = '<a class="btn btn-danger btn-mini" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+			$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		}
 		if ($pun_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
 		{  
-			$post_actions[] = '<a class="btn btn-primary btn-mini" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';  
-			$post_actions[] = '<a class="btn btn-primary btn-mini" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';  
+			$post_actions[] = '<a class="btn btn-primary btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';  
+			$post_actions[] = '<a class="btn btn-primary btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';  
 		}  
-		$post_actions[] = '<a class="btn btn-primary btn-mini" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+		$post_actions[] = '<a class="btn btn-primary btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 	}
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
