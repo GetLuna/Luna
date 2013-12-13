@@ -145,7 +145,7 @@ if (!isset($_POST['form_sent']))
 	$db_type = $db_name = $db_username = $db_prefix = $username = $email = '';
 	$db_host = 'localhost';
 	$title = $lang['My ModernBB Forum'];
-	$description = '<p><span>'.$lang['Description'].'</span></p>';
+	$description = $lang['Description'];
 	$default_lang = $install_lang;
 	$default_style = 'Randomness';
 }
