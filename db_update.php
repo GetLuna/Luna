@@ -401,38 +401,12 @@ switch ($stage)
 		// If we don't need to update the database, skip this stage
 		if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revision'] >= UPDATE_TO_DB_REVISION)
 			break;
-
-		// Make the message field MEDIUMTEXT to allow proper conversion of 65535 character posts to UTF-8
-		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
-
-		// Add the DST option to the users table
-		$db->add_field('users', 'dst', 'TINYINT(1)', false, 0, 'timezone') or error('Unable to add dst field', __FILE__, __LINE__, $db->error());
 		
 		// Since 2.0-beta.1: Add the marked column to the posts table
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
 		// Since 2.0-rc.1: Add the parent_forum_id column to the forums table
 		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
-
-		// Since 1.4-beta.1: Add search index revision number
-		if (!array_key_exists('o_searchindex_revision', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_searchindex_revision\', \'0\')') or error('Unable to insert config value \'o_searchindex_revision\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.4-beta.1: Add parser revision number
-		if (!array_key_exists('o_parser_revision', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_parser_revision\', \'0\')') or error('Unable to insert config value \'o_parser_revision\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.4-beta.1: Insert new config option o_quote_depth
-		if (!array_key_exists('o_quote_depth', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_quote_depth\', \'3\')') or error('Unable to insert config value \'o_quote_depth\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.4-beta.1: Insert new config option o_feed_type
-		if (!array_key_exists('o_feed_type', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_type\', \'2\')') or error('Unable to insert config value \'o_feed_type\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.4-beta.1: Insert new config option o_feed_ttl
-		if (!array_key_exists('o_feed_ttl', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 			
 		// Since 2.2.02, Since 2.0-beta.3: Update style to Randomness when updating from FluxBB 1.4, 1.5 or ModernBB 1.6
 		if (version_compare($cur_version, '2.0-beta.3', '<')) {
@@ -467,74 +441,8 @@ switch ($stage)
 		// Since 2.2.02: Add o_ranks if updating from FluxBB 1.5
 		if (!array_key_exists('o_ranks', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
-			
-		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
-		if (!array_key_exists('o_base_url', $pun_config))
-		{
-			// If it isn't in $pun_config['o_base_url'] it should be in $base_url, but just in-case it isn't we can make a guess at it
-			if (!isset($base_url))
-			{
-				// Make an educated guess regarding base_url
-				$base_url  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';	// protocol
-				$base_url .= preg_replace('%:(80|443)$%', '', $_SERVER['HTTP_HOST']);							// host[:port]
-				$base_url .= str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));							// path
-			}
-
-			if (substr($base_url, -1) == '/')
-				$base_url = substr($base_url, 0, -1);
-
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_base_url\', \''.$db->escape($base_url).'\')') or error('Unable to insert config value \'o_base_url\'', __FILE__, __LINE__, $db->error());
-		}
 		
-		// Add an index to username on the bans table
-		if ($mysql || $mariadb)
-			$db->add_index('bans', 'username_idx', array('username(25)')) or error('Unable to add username_idx index', __FILE__, __LINE__, $db->error());
-		else
-			$db->add_index('bans', 'username_idx', array('username')) or error('Unable to add username_idx index', __FILE__, __LINE__, $db->error());
-
-		// Change the username_idx on users to a unique index of max size 25
-		$db->drop_index('users', 'username_idx') or error('Unable to drop old username_idx index', __FILE__, __LINE__, $db->error());
-		$field = $mysql || $mariadb ? 'username(25)' : 'username';
-
-		// Attempt to add a unique index. If the user doesn't use a transactional database this can fail due to multiple matching usernames in the
-		// users table. This is bad, but just giving up if it happens is even worse! If it fails just add a regular non-unique index.
-		if (!$db->add_index('users', 'username_idx', array($field), true))
-			$db->add_index('users', 'username_idx', array($field)) or error('Unable to add username_idx field', __FILE__, __LINE__, $db->error());
-
-		// Add the last_report_sent column to the users table and the g_report_flood
-		// column to the groups table
-		$db->add_field('users', 'last_report_sent', 'INT(10) UNSIGNED', true, null, 'last_email_sent') or error('Unable to add last_report_sent field', __FILE__, __LINE__, $db->error());
-		$db->add_field('groups', 'g_report_flood', 'SMALLINT(6)', false, 60, 'g_email_flood') or error('Unable to add g_report_flood field', __FILE__, __LINE__, $db->error());
-
-		// Change the search_data column to mediumtext
-		$db->alter_field('search_cache', 'search_data', 'MEDIUMTEXT', true) or error('Unable to alter search_data field', __FILE__, __LINE__, $db->error());
-
-		// Rename the subscription table
-		$db->rename_table('subscriptions', 'topic_subscriptions');
-
-		// If we don't have the forum_subscriptions table, create it
-		if (!$db->table_exists('forum_subscriptions'))
-		{
-			$schema = array(
-				'FIELDS'		=> array(
-					'user_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'forum_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					)
-				),
-				'PRIMARY KEY'	=> array('user_id', 'forum_id')
-			);
-
-			$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
-		}
-		
-		// Since ModernBB 2.0-beta.3 - If we don't have the toolbar_conf table, create it
+		// Since 2.0-beta.3 - If we don't have the toolbar_conf table, create it
 		if (!$db->table_exists('toolbar_conf'))
 		{
 			$schema = array(
@@ -671,15 +579,7 @@ switch ($stage)
 			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
 				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
-
-		// Insert new config option o_forum_subscriptions
-		if (!array_key_exists('o_forum_subscriptions', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
-
-		// Rename config option o_subscriptions to o_topic_subscriptions
-		if (!array_key_exists('o_topic_subscriptions', $pun_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_topic_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
-
+		
 		// Change the default style if the old doesn't exist anymore
 		if ($pun_config['o_default_style'] != $default_style)
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
