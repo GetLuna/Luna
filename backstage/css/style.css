@@ -278,6 +278,20 @@ p {
 	border-left: #155ac9;
 }
 
+/* Input */
+.input-group .form-control, .input-group {
+	width: auto;
+}
+
+.input-group-addon, .input-group-btn {
+	width: 0;
+}
+
+/* Tables */
+.table-forums {
+	margin-top: -1px !important;
+}
+
 .panel .table {
 	margin-bottom: 5px;
 }
@@ -330,6 +344,7 @@ p {
 .alert-danger {
 	border-left: #ff5a00 5px solid;
 	color: #d33200;
+	margin: 0 0 10px 0;
 }
 
 .alert-success {
