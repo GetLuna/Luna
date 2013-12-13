@@ -88,7 +88,6 @@ if ($pun_user['g_id'] == FORUM_ADMIN) {
             <h3 class="panel-title"><?php echo $lang['Backup head'] ?></h3>
         </div>
         <div class="panel-body">
-            <p><?php echo $lang['Backup info'] ?></p>
             <a class="btn btn-block btn-primary" href="database.php"><?php echo $lang['Backup button'] ?></a>
         </div>
      </div>
@@ -101,16 +100,15 @@ if ($pun_user['g_id'] == FORUM_ADMIN) {
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['View all'] ?></a></span></h3>
         </div>
-        <div class="panel-body">
-            <table class="table" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th><?php echo $lang['Reported by'] ?></th>
-                        <th><?php echo $lang['Date and time'] ?></th>
-                        <th><?php echo $lang['Message'] ?></th>
-                    </tr>
-                </thead>
-                <tbody>
+		<table class="table" cellspacing="0">
+			<thead>
+				<tr>
+					<th><?php echo $lang['Reported by'] ?></th>
+					<th><?php echo $lang['Date and time'] ?></th>
+					<th><?php echo $lang['Message'] ?></th>
+				</tr>
+			</thead>
+			<tbody>
 <?php
 
 $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'topics AS t ON r.topic_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
@@ -127,11 +125,11 @@ if ($db->num_rows($result))
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
-                    <tr>
-                        <td><?php printf($reporter) ?></td>
-                        <td><?php printf(format_time($cur_report['created'])) ?></td>
-                        <td><?php echo $post ?></td>
-                    </tr>
+				<tr>
+					<td><?php printf($reporter) ?></td>
+					<td><?php printf(format_time($cur_report['created'])) ?></td>
+					<td><?php echo $post ?></td>
+				</tr>
 <?php
 
 	}
@@ -140,17 +138,16 @@ else
 {
 
 ?>
-                        <tr>
-                            <td colspan="4"><p><?php echo $lang['No new reports'] ?></p></td>
-                        </tr>
+					<tr>
+						<td colspan="4"><p><?php echo $lang['No new reports'] ?></p></td>
+					</tr>
 <?php
 
 }
 
 ?>
-                </tbody>
-            </table>
-        </div>
+			</tbody>
+		</table>
     </div>
 </div>
 <div class="col-lg-8">
@@ -158,22 +155,20 @@ else
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['About head'] ?></h3>
         </div>
-        <div class="panel-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="col-lg-6"><?php echo $lang['ModernBB version label'] ?></th>
-                        <th class="col-lg-6"><?php echo $lang['Server statistics label'] ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?php printf($lang['ModernBB version data'].$pun_config['o_cur_version']) ?></td>
-                        <td><a href="statistics.php"><?php echo $lang['View server statistics'] ?></a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-lg-6"><?php echo $lang['ModernBB version label'] ?></th>
+					<th class="col-lg-6"><?php echo $lang['Server statistics label'] ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><?php printf($lang['ModernBB version data'].$pun_config['o_cur_version']) ?></td>
+					<td><a href="statistics.php"><?php echo $lang['View server statistics'] ?></a></td>
+				</tr>
+			</tbody>
+		</table>
     </div>
 </div>
 <div class="col-lg-4">

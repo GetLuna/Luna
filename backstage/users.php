@@ -426,23 +426,23 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
         <h3 class="panel-title"><?php echo $lang['Move users'] ?></h3>
     </div>
     <div class="panel-body">
-        <form name="confirm_move_users" method="post" action="users.php">
+        <form class="form-horizontal" name="confirm_move_users" method="post" action="users.php">
             <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th><?php echo $lang['New group label'] ?></th>
-                        <td>
-                            <select class="form-control" name="new_group" tabindex="1">
-    <?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo pun_htmlspecialchars($group) ?></option>
-    <?php endforeach; ?>
-                            </select>
-                            <br /><span><?php echo $lang['New group help'] ?></span>
-                        </td>
-                    </tr>
-                </table>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['New group label'] ?></label>
+                    <div class="col-sm-10">
+						<div class="input-group">
+							<select class="form-control" name="new_group" tabindex="1">
+	<?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo pun_htmlspecialchars($group) ?></option>
+	<?php endforeach; ?>
+							</select>
+							<span class="input-group-btn"><input class="btn btn-primary" type="submit" name="move_users_comply" value="<?php echo $lang['Save'] ?>" tabindex="2" /></span>
+						</div>
+                        <span class="help-block"><?php echo $lang['New group help'] ?></span>
+                    </div>
+                </div>
             </fieldset>
-            <div class="control-group"><input class="btn btn-primary" type="submit" name="move_users_comply" value="<?php echo $lang['Save'] ?>" tabindex="2" /></div>
         </form>
 	</div>
 </div>
@@ -689,38 +689,41 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Ban users'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Ban users'] ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php echo $lang['Ban'] ?>" tabindex="3" /></span></h3>
     </div>
     <div class="panel-body">
-        <form id="bans2" name="confirm_ban_users" method="post" action="users.php">
+        <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
             <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
             <fieldset>
-                <table class="table">
-                    <tr>
-                        <th><?php echo $lang['Ban message label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="ban_message" size="50" maxlength="255" tabindex="1" />
-                            <p><?php echo $lang['Ban message help'] ?></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Expire date label'] ?></th>
-                        <td>
-                            <input type="text" class="form-control" name="ban_expire" size="17" maxlength="10" tabindex="2" />
-                            <p><?php echo $lang['Expire date help'] ?></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Ban IP label'] ?></th>
-                        <td>
-                            <label><input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />&#160;<strong><?php echo $lang['Yes'] ?></strong></label>
-                            <label><input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />&#160;<strong><?php echo $lang['No'] ?></strong></label>
-                            <p class="clearb"><?php echo $lang['Ban IP help'] ?></p>
-                        </td>
-                    </tr>
-                </table>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Ban message label'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="ban_message" size="50" maxlength="255" tabindex="1" />
+						<span class="help-block"><?php echo $lang['Ban message help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Expire date label'] ?></label>
+                    <div class="col-sm-10">
+						<input type="text" class="form-control" name="ban_expire" size="17" maxlength="10" tabindex="2" />
+						<span class="help-block"><?php echo $lang['Expire date help'] ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Default feed label'] ?></label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />
+							<?php echo $lang['Yes'] ?>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />
+							<?php echo $lang['No'] ?>
+                        </label>
+                        <span class="help-block"><?php echo $lang['Ban IP help'] ?></span>
+                    </div>
+                </div>
             </fieldset>
-            <p class="control-group"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php echo $lang['Save'] ?>" tabindex="3" /></p>
         </form>
      </div>
 </div>
@@ -872,11 +875,25 @@ else if (isset($_GET['find_user']))
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
-    <div class="panel-body">
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
-        <form id="search-users-form" action="users.php" method="post">
+	<form id="search-users-form" action="users.php" method="post">
+		<div class="panel-body">
+			<ul class="pagination">
+				<?php echo $paging_links ?>
+			</ul>
+			<?php if ($can_action): ?>
+				<span class="btn-toolbar pull-right">
+					<div class="btn-group">
+						<?php if ($can_ban) : ?>
+						<input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang['Ban'] ?>" />
+						<?php endif; if ($can_delete) : ?>
+						<input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang['Delete'] ?>" />
+						<?php endif; if ($can_move) : ?>
+						<input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang['Change group'] ?>" />
+						<?php endif; ?>
+					</div>
+				</span>
+			<?php endif; ?>
+		</div>
             <table class="table">
             <thead>
                 <tr>
@@ -925,28 +942,26 @@ else if (isset($_GET['find_user']))
 
 ?>
             </tbody>
-            </table>
-    
-            <div class="pagepost">
-				<ul class="pagination">
-					<?php echo $paging_links ?>
-				</ul>
-				<?php if ($can_action): ?>
-                    <div class="btn-toolbar">
-                        <div class="btn-group">
-							<?php if ($can_ban) : ?>
-                            <input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang['Ban'] ?>" />
-                            <?php endif; if ($can_delete) : ?>
-                            <input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang['Delete'] ?>" />
-                            <?php endif; if ($can_move) : ?>
-                            <input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang['Change group'] ?>" />
-                            <?php endif; ?>
-                        </div>
-                    </div>
-            <?php endif; ?>
-            </div>
-        </form>
-    </div>
+		</table>
+		<div class="panel-body">
+			<ul class="pagination">
+				<?php echo $paging_links ?>
+			</ul>
+			<?php if ($can_action): ?>
+				<span class="btn-toolbar pull-right">
+					<div class="btn-group">
+						<?php if ($can_ban) : ?>
+						<input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang['Ban'] ?>" />
+						<?php endif; if ($can_delete) : ?>
+						<input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang['Delete'] ?>" />
+						<?php endif; if ($can_move) : ?>
+						<input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang['Change group'] ?>" />
+						<?php endif; ?>
+					</div>
+				</span>
+			<?php endif; ?>
+		</div>
+	</form>
 </div>
 <?php
 
@@ -969,108 +984,108 @@ else
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['User search head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang['Submit search'] ?>" tabindex="1" /></span></h3>
         </div>
-        <div class="panel-body">
-            <fieldset>
+		<fieldset>
+			<div class="panel-body">
                 <p><?php echo $lang['User search info'] ?></p>
-                <table class="table">
-                    <tr>
-                        <th><?php echo $lang['Username label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[username]" size="25" maxlength="25" tabindex="2" /></td>
-                        <th><?php echo $lang['E-mail address label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[email]" size="30" maxlength="80" tabindex="3" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Title label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[title]" size="30" maxlength="50" tabindex="4" /></td>
-                        <th><?php echo $lang['Real name label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[realname]" size="30" maxlength="40" tabindex="5" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Website label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[url]" size="35" maxlength="100" tabindex="6" /></td>
-                        <th><?php echo $lang['Jabber label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[jabber]" size="30" maxlength="75" tabindex="7" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['ICQ label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[icq]" size="12" maxlength="12" tabindex="8" /></td>
-                        <th><?php echo $lang['MSN label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[msn]" size="30" maxlength="50" tabindex="9" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['AOL label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[aim]" size="20" maxlength="20" tabindex="10" /></td>
-                        <th><?php echo $lang['Yahoo label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[yahoo]" size="20" maxlength="20" tabindex="11" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Location label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[location]" size="30" maxlength="30" tabindex="12" /></td>
-                        <th><?php echo $lang['Signature label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[signature]" size="35" maxlength="512" tabindex="13" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Admin note label'] ?></th>
-                        <td><input type="text" class="form-control" name="form[admin_note]" size="30" maxlength="30" tabindex="14" /></td>
-                        <th><?php echo $lang['User group label'] ?></th>
-                        <td>
-                            <select class="form-control" name="user_group" tabindex="23">
-                                <option value="-1" selected="selected"><?php echo $lang['All groups'] ?></option>
-                                <option value="0"><?php echo $lang['Unverified users'] ?></option>
-    <?php
-    
-        $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
-    
-        while ($cur_group = $db->fetch_assoc($result))
-            echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-    
-    ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Posts less than label'] ?></th>
-                        <td><input type="text" class="form-control" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
-                        <th><?php echo $lang['Posts more than label'] ?></th>
-                        <td><input type="text" class="form-control" name="posts_greater" size="5" maxlength="8" tabindex="15" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Last post before label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_post_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
-                        <th><?php echo $lang['Last post after label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_post_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Last visit before label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_visit_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
-                        <th><?php echo $lang['Last visit after label'] ?></th>
-                        <td><input type="text" class="form-control" name="last_visit_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Registered before label'] ?></th>
-                        <td><input type="text" class="form-control" name="registered_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="20" /></td>
-                        <th><?php echo $lang['Registered after label'] ?></th>
-                        <td><input type="text" class="form-control" name="registered_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="19" /></td>
-                    </tr>
-                    <tr>
-                        <th><?php echo $lang['Order by label'] ?></th>
-                        <td colspan="3">
-                            <select class="form-control" name="order_by" tabindex="21">
-                                <option value="username" selected="selected"><?php echo $lang['Order by username'] ?></option>
-                                <option value="email"><?php echo $lang['Order by e-mail'] ?></option>
-                                <option value="num_posts"><?php echo $lang['Order by posts'] ?></option>
-                                <option value="last_post"><?php echo $lang['Order by last post'] ?></option>
-                                <option value="last_visit"><?php echo $lang['Order by last visit'] ?></option>
-                                <option value="registered"><?php echo $lang['Order by registered'] ?></option>
-                            </select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="22">
-                                <option value="ASC" selected="selected"><?php echo $lang['Ascending'] ?></option>
-                                <option value="DESC"><?php echo $lang['Descending'] ?></option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-        </div>
+			</div>
+			<table class="table">
+				<tr>
+					<th><?php echo $lang['Username label'] ?></th>
+					<td><input type="text" class="form-control" name="form[username]" size="25" maxlength="25" tabindex="2" /></td>
+					<th><?php echo $lang['E-mail address label'] ?></th>
+					<td><input type="text" class="form-control" name="form[email]" size="30" maxlength="80" tabindex="3" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Title label'] ?></th>
+					<td><input type="text" class="form-control" name="form[title]" size="30" maxlength="50" tabindex="4" /></td>
+					<th><?php echo $lang['Real name label'] ?></th>
+					<td><input type="text" class="form-control" name="form[realname]" size="30" maxlength="40" tabindex="5" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Website label'] ?></th>
+					<td><input type="text" class="form-control" name="form[url]" size="35" maxlength="100" tabindex="6" /></td>
+					<th><?php echo $lang['Jabber label'] ?></th>
+					<td><input type="text" class="form-control" name="form[jabber]" size="30" maxlength="75" tabindex="7" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['ICQ label'] ?></th>
+					<td><input type="text" class="form-control" name="form[icq]" size="12" maxlength="12" tabindex="8" /></td>
+					<th><?php echo $lang['MSN label'] ?></th>
+					<td><input type="text" class="form-control" name="form[msn]" size="30" maxlength="50" tabindex="9" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['AOL label'] ?></th>
+					<td><input type="text" class="form-control" name="form[aim]" size="20" maxlength="20" tabindex="10" /></td>
+					<th><?php echo $lang['Yahoo label'] ?></th>
+					<td><input type="text" class="form-control" name="form[yahoo]" size="20" maxlength="20" tabindex="11" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Location label'] ?></th>
+					<td><input type="text" class="form-control" name="form[location]" size="30" maxlength="30" tabindex="12" /></td>
+					<th><?php echo $lang['Signature label'] ?></th>
+					<td><input type="text" class="form-control" name="form[signature]" size="35" maxlength="512" tabindex="13" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Admin note label'] ?></th>
+					<td><input type="text" class="form-control" name="form[admin_note]" size="30" maxlength="30" tabindex="14" /></td>
+					<th><?php echo $lang['User group label'] ?></th>
+					<td>
+						<select class="form-control" name="user_group" tabindex="23">
+							<option value="-1" selected="selected"><?php echo $lang['All groups'] ?></option>
+							<option value="0"><?php echo $lang['Unverified users'] ?></option>
+<?php
+
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+
+	while ($cur_group = $db->fetch_assoc($result))
+		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+
+?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Posts less than label'] ?></th>
+					<td><input type="text" class="form-control" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
+					<th><?php echo $lang['Posts more than label'] ?></th>
+					<td><input type="text" class="form-control" name="posts_greater" size="5" maxlength="8" tabindex="15" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Last post before label'] ?></th>
+					<td><input type="text" class="form-control" name="last_post_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
+					<th><?php echo $lang['Last post after label'] ?></th>
+					<td><input type="text" class="form-control" name="last_post_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Last visit before label'] ?></th>
+					<td><input type="text" class="form-control" name="last_visit_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
+					<th><?php echo $lang['Last visit after label'] ?></th>
+					<td><input type="text" class="form-control" name="last_visit_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Registered before label'] ?></th>
+					<td><input type="text" class="form-control" name="registered_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="20" /></td>
+					<th><?php echo $lang['Registered after label'] ?></th>
+					<td><input type="text" class="form-control" name="registered_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="19" /></td>
+				</tr>
+				<tr>
+					<th><?php echo $lang['Order by label'] ?></th>
+					<td colspan="3">
+						<select class="form-control" name="order_by" tabindex="21">
+							<option value="username" selected="selected"><?php echo $lang['Order by username'] ?></option>
+							<option value="email"><?php echo $lang['Order by e-mail'] ?></option>
+							<option value="num_posts"><?php echo $lang['Order by posts'] ?></option>
+							<option value="last_post"><?php echo $lang['Order by last post'] ?></option>
+							<option value="last_visit"><?php echo $lang['Order by last visit'] ?></option>
+							<option value="registered"><?php echo $lang['Order by registered'] ?></option>
+						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="22">
+							<option value="ASC" selected="selected"><?php echo $lang['Ascending'] ?></option>
+							<option value="DESC"><?php echo $lang['Descending'] ?></option>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
     </div>
 </form>
 <div class="panel panel-default">
@@ -1080,9 +1095,13 @@ else
     <div class="panel-body">
         <form method="get" action="users.php">
             <fieldset>
-                <input type="text" class="form-control" name="show_users" size="18" maxlength="15" tabindex="24" />
-                <input class="btn btn-primary" type="submit" value="<?php echo $lang['Find IP address'] ?>" tabindex="26" />
-                <br /><span class="help-block"><?php echo $lang['IP address help'] ?></span>
+                <div class="input-group">
+					<input type="text" class="form-control" name="show_users" size="18" maxlength="15" tabindex="24" />
+					<span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" value="<?php echo $lang['Find IP address'] ?>" tabindex="26" />
+					</span>
+				</div>
+                <span class="help-block"><?php echo $lang['IP address help'] ?></span>
             </fieldset>
         </form>
     </div>

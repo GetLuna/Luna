@@ -155,9 +155,13 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form method="post" action="categories.php">
             <fieldset>
-                <input type="text" class="form-control" name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
-                <input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add new submit'] ?>" tabindex="2" />
-                <br /><span class="help-block"><?php printf($lang['Add category help'], '<a href="forums.php">'.$lang['Forums'].'</a>') ?></span>
+                <div class="input-group">
+					<input type="text" class="form-control" name="new_cat_name" size="35" maxlength="80" placeholder="Category name" tabindex="1" />
+					<span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add new submit'] ?>" tabindex="2" />
+					</span>
+				</div>
+                <span class="help-block"><?php printf($lang['Add category help'], '<a href="forums.php">'.$lang['Forums'].'</a>') ?></span>
             </fieldset>
         </form>
     </div>
@@ -170,14 +174,18 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form method="post" action="categories.php">
             <fieldset>
-                <select class="form-control" name="cat_to_delete" tabindex="3">
+                <div class="input-group">
+					<select class="form-control" name="cat_to_delete" tabindex="3">
 <?php
 				foreach ($cat_list as $cur_cat)
 					echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 ?>
-                </select>
-                <input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang['Delete'] ?>" tabindex="4" />
-                <br /><span class="help-block"><?php echo $lang['Delete category help'] ?></span>
+					</select>
+					<span class="input-group-btn">
+						<input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang['Delete'] ?>" tabindex="4" />
+					</span>
+				</div>
+                <span class="help-block"><?php echo $lang['Delete category help'] ?></span>
             </fieldset>
         </form>
     </div>
@@ -189,35 +197,33 @@ require FORUM_ROOT.'backstage/header.php';
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
 		</div>
-		<div class="panel-body">
-            <fieldset>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><?php echo $lang['Category name label'] ?></th>
-                            <th><?php echo $lang['Category position label'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+		<fieldset>
+			<table class="table">
+				<thead>
+					<tr>
+						<th><?php echo $lang['Category name label'] ?></th>
+						<th><?php echo $lang['Category position label'] ?></th>
+					</tr>
+				</thead>
+				<tbody>
 <?php
 
 foreach ($cat_list as $cur_cat)
 {
 
 ?>
-                        <tr>
-                            <td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
-                            <td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
-                        </tr>
+					<tr>
+						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
+						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
+					</tr>
 <?php
 
 }
 
 ?>
-					</tbody>
-				</table>
-			</fieldset>
-		</div>
+				</tbody>
+			</table>
+		</fieldset>
 	</div>
 </form>
 <?php endif; 

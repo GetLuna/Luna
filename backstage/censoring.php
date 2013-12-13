@@ -90,38 +90,37 @@ require FORUM_ROOT.'backstage/header.php';
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Add word subhead'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form id="censoring" method="post" action="censoring.php">
-            <fieldset>
-                <p><?php echo $lang['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang['Censoring enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Censoring disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><?php echo $lang['Censored word label'] ?></th>
-                            <th><?php echo $lang['Replacement label'] ?></th>
-                            <th><?php echo $lang['Action label'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" class="form-control" name="new_search_for" size="24" maxlength="60" tabindex="1" /></td>
-                            <td><input type="text" class="form-control" name="new_replace_with" size="24" maxlength="60" tabindex="2" /></td>
-                            <td><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-        </form>
-    </div>
+	</div>
+	<form id="censoring" method="post" action="censoring.php">
+		<fieldset>
+		<div class="panel-body">
+			<p><?php echo $lang['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang['Censoring enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Censoring disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
+		</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th><?php echo $lang['Censored word label'] ?></th>
+						<th><?php echo $lang['Replacement label'] ?></th>
+						<th><?php echo $lang['Action label'] ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" class="form-control" name="new_search_for" size="24" maxlength="60" tabindex="1" /></td>
+						<td><input type="text" class="form-control" name="new_replace_with" size="24" maxlength="60" tabindex="2" /></td>
+						<td><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Edit remove words'] ?></h3>
     </div>
-    <div class="panel-body">
-        <form id="censoring" method="post" action="censoring.php">
-            <fieldset>
+	<form id="censoring" method="post" action="censoring.php">
+		<fieldset>
 <?php
 
 $result = $db->query('SELECT id, search_for, replace_with FROM '.$db->prefix.'censoring ORDER BY id') or error('Unable to fetch censor word list', __FILE__, __LINE__, $db->error());
@@ -129,33 +128,32 @@ if ($db->num_rows($result))
 {
 
 ?>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><?php echo $lang['Censored word label'] ?></th>
-                            <th><?php echo $lang['Replacement label'] ?></th>
-                            <th><?php echo $lang['Action label'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+			<table class="table">
+				<thead>
+					<tr>
+						<th><?php echo $lang['Censored word label'] ?></th>
+						<th><?php echo $lang['Replacement label'] ?></th>
+						<th><?php echo $lang['Action label'] ?></th>
+					</tr>
+				</thead>
+				<tbody>
 <?php
 
 while ($cur_word = $db->fetch_assoc($result))
 echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></td></tr>'."\n";
 
 ?>
-                    </tbody>
-                </table>
+				</tbody>
+			</table>
 <?php
 
 }
 else
-echo "\t\t\t\t\t\t\t".'<p>'.$lang['No words in list'].'</p>'."\n";
+echo "\t\t\t\t\t\t\t".'<div class="panel-body"><p>'.$lang['No words in list'].'</p></div>'."\n";
 
 ?>
             </fieldset>
         </form>
-    </div>
 </div>
 <?php
 

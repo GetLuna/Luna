@@ -109,37 +109,36 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Add rank subhead'] ?></h3>
     </div>
-    <div class="panel-body">
-        <form id="ranks" method="post" action="ranks.php">
-            <fieldset>
+	<form id="ranks" method="post" action="ranks.php">
+		<fieldset>
+			<div class="panel-body">
                 <p><?php echo $lang['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang['Ranks enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
-                            <th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-                            <th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" class="form-control" name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
-                            <td><input type="text" class="form-control" name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
-                            <td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-        </form>
-    </div>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" class="form-control" name="new_rank" size="24" maxlength="50" tabindex="1" /></td>
+						<td><input type="text" class="form-control" name="new_min_posts" size="7" maxlength="7" tabindex="2" /></td>
+						<td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Edit remove subhead'] ?></h3>
     </div>
-    <div class="panel-body">
-        <form id="ranks" method="post" action="ranks.php">
-            <fieldset>
+	<form id="ranks" method="post" action="ranks.php">
+		<fieldset>
 <?php
 
 $result = $db->query('SELECT id, rank, min_posts FROM '.$db->prefix.'ranks ORDER BY min_posts') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
@@ -147,33 +146,32 @@ if ($db->num_rows($result))
 {
 
 ?>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
-                            <th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-                            <th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
+					</tr>
+				</thead>
+				<tbody>
 <?php
 
 	while ($cur_rank = $db->fetch_assoc($result))
-		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td><input type="text" class="form-control" name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang['Remove'].'" /></td></tr>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" size="24" maxlength="50" /></td><td><input type="text" class="form-control" name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" size="7" maxlength="7" /></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
 
 ?>
-                    </tbody>
-                </table>
+				</tbody>
+			</table>
 <?php
 
 }
 else
-	echo "\t\t\t\t\t\t\t".'<p>'.$lang['No ranks in list'].'</p>'."\n";
+	echo "\t\t\t\t\t\t\t".'<div class="panel-body"><p>'.$lang['No ranks in list'].'</p></div>'."\n";
 
 ?>
-            </fieldset>
-        </form>
-    </div>
+		</fieldset>
+	</form>
 </div>
 <?php
 

@@ -572,7 +572,8 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php">
             <fieldset>
-                <select class="form-control" id="base_group" name="base_group" tabindex="1">
+				<div class="input-group">
+					<select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -586,8 +587,11 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 }
 
 ?>
-                </select>
-                <input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang['Add'] ?>" tabindex="2" />
+					</select>
+					<span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang['Add'] ?>" tabindex="2" />
+					</span>
+				</div>
                 <span class="help-block"><?php echo $lang['Create new group'] ?></span>
             </fieldset>
         </form>
@@ -600,7 +604,8 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php">
         <fieldset>
-            <select class="form-control" id="default_group" name="default_group" tabindex="3">
+			<div class="input-group">
+				<select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.FORUM_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -614,8 +619,11 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
 }
 
 ?>
-                </select>
-                <input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang['Save'] ?>" tabindex="4" />
+					</select>
+					<span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang['Save'] ?>" tabindex="4" />
+					</span>
+				</div>
                 <span class="help-block"><?php echo $lang['Default group help'] ?></span>
             </fieldset>
         </form>
@@ -626,9 +634,10 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_html
         <h3 class="panel-title"><?php echo $lang['Existing groups head'] ?></h3>
     </div>
     <div class="panel-body">
-        <fieldset>
-            <p><?php echo $lang['Edit groups info'] ?></p>
-            <table class="table">
+		<p><?php echo $lang['Edit groups info'] ?></p>
+	</div>
+	<table class="table">
+		<tbody>
 <?php
 
 $cur_index = 5;
@@ -636,12 +645,11 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><th class="col-lg-2"><a class="btn btn-primary btn-mini" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger btn-mini" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Delete link'].'</a>' : '').'</th><td class="col-lg-10">'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><td class="col-lg-2"><a class="btn btn-primary" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Delete link'].'</a>' : '').'</td><td class="col-lg-10">'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
 
 ?>
-            </table>
-        </fieldset>
-    </div>
+		</tbody>
+	</table>
 </div>
 <?php
 

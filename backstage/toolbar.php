@@ -180,19 +180,18 @@ require FORUM_ROOT.'backstage/header.php';
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['button_conf'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="edit_pos" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
         </div>
-        <div class="panel-body">
-            <input type="hidden" name="form_button" value="1" />
-            <fieldset>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col" style="width: 6em"><?php echo $lang['position'] ?></th>
-                            <th scope="col" style="width: 6em"><?php echo $lang['button'] ?></th>
-                            <th scope="col"><?php echo $lang['classic_form'] ?></th>
-                            <th scope="col"><?php echo $lang['quickreply_form'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+		<input type="hidden" name="form_button" value="1" />
+		<fieldset>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col" style="width: 6em"><?php echo $lang['position'] ?></th>
+						<th scope="col" style="width: 6em"><?php echo $lang['button'] ?></th>
+						<th scope="col"><?php echo $lang['classic_form'] ?></th>
+						<th scope="col"><?php echo $lang['quickreply_form'] ?></th>
+					</tr>
+				</thead>
+				<tbody>
 <?php
 	// Retrieve buttons
 	$result = $db->query('SELECT position, name, enable_form, enable_quick, image FROM '.$db->prefix.'toolbar_tags ORDER by position') or error('Unable to retrieve toolbar buttons', __FILE__, __LINE__, $db->error());
@@ -224,10 +223,9 @@ require FORUM_ROOT.'backstage/header.php';
 		echo "\t\t\t\t\t\t\t\t".'</tr>'."\n";
 	}
 ?>
-                    </tbody>
-                </table>
-            </fieldset>
-        </div>
+				</tbody>
+			</table>
+		</fieldset>
     </div>
 </form>
 <?php

@@ -656,7 +656,7 @@ require FORUM_ROOT.'backstage/header.php';
 <h2><?php echo $lang['Database'] ?></h2>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Backup options'] ?></h3>
+		<h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></span></h3>
 	</div>
 	<div class="panel-body">
         <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
@@ -694,20 +694,18 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
             </fieldset>
-            <p class="control-group"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></p>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Restore options'] ?></h3>
+		<h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" /></span></h3>
 	</div>
 	<div class="panel-body">
         <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
             <fieldset>
                 <p><?php echo $lang['Restore info 1'] ?></p>
                 <input type="file" name="backup_file" />
-				<input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" />
             </fieldset>
         </form>
     </div>
@@ -720,7 +718,7 @@ require FORUM_ROOT.'backstage/header.php';
         <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
             <fieldset>
                 <p><?php echo $lang['Additional info 1'] ?></p>
-                <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" />
+                <div class="btn-group"><input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" /></div>
             </fieldset>
         </form>
     </div>

@@ -304,7 +304,7 @@ require FORUM_ROOT.'backstage/header.php';
 <h2><?php echo $lang['Maintenance'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang['Rebuild index'] ?>" tabindex="4" /></span></h3>
     </div>
 	<div class="panel-body">
         <form class="form-horizontal" method="get" action="maintenance.php">
@@ -337,14 +337,13 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <p><?php echo $lang['Rebuild completed info'] ?></p>
-                <div class="control-group"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang['Rebuild index'] ?>" tabindex="4" /></div>
             </fieldset>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Prune subhead'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Prune subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang['Prune'] ?>" tabindex="8" /></span></h3>
     </div>
 	<div class="panel-body">
         <form class="form-horizontal" method="post" action="maintenance.php" onsubmit="return process_form(this)">
@@ -402,14 +401,13 @@ require FORUM_ROOT.'backstage/header.php';
                         <span class="help-block"><?php echo $lang['Prune from help'] ?></span>
                     </div>
                 </div>
-                <div class="control-group"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang['Prune'] ?>" tabindex="8" /></div>
             </fieldset>
         </form>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Prune users head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Prune users head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang['Prune'] ?>" tabindex="2" /></span></h3>
     </div>
 	<div class="panel-body">
         <form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
@@ -474,7 +472,6 @@ require FORUM_ROOT.'backstage/header.php';
 						<span class="help-block"><?php echo $lang['User status info'] ?></span>
                     </div>
                 </div>
-                <p class="control-group"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang['Prune'] ?>" tabindex="2" /></p>
             </fieldset>
         </form>
     </div>

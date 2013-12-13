@@ -254,20 +254,21 @@ else if (isset($_GET['edit_forum']))
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Group permissions subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
         </div>
-        <div class="panel-body">
-            <fieldset>
+		<fieldset>
+			<div class="panel-body">
                 <p><?php printf($lang['Group permissions info'], '<a href="groups.php">'.$lang['User groups'].'</a>') ?></p>
                 <div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php echo $lang['Revert to default'] ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th class="atcl">&#160;</th>
-                            <th><?php echo $lang['Read forum label'] ?></th>
-                            <th><?php echo $lang['Post replies label'] ?></th>
-                            <th><?php echo $lang['Post topics label'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="atcl">&#160;</th>
+						<th><?php echo $lang['Read forum label'] ?></th>
+						<th><?php echo $lang['Post replies label'] ?></th>
+						<th><?php echo $lang['Post topics label'] ?></th>
+					</tr>
+				</thead>
+				<tbody>
 <?php
 
 	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_post_replies, g.g_post_topics, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.FORUM_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
@@ -284,30 +285,29 @@ else if (isset($_GET['edit_forum']))
 		$post_topics_def = (($post_topics && $cur_perm['g_post_topics'] == '0') || (!$post_topics && ($cur_perm['g_post_topics'] == '' || $cur_perm['g_post_topics'] == '1'))) ? false : true;
 
 ?>
-                        <tr>
-                            <th class="atcl"><?php echo pun_htmlspecialchars($cur_perm['g_title']) ?></th>
-                            <td<?php if (!$read_forum_def) echo ' class="danger"'; ?>>
-                                <input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
-                                <input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked="checked"' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-                            </td>
-                            <td<?php if (!$post_replies_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
-                                <input type="hidden" name="post_replies_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_replies) ? '1' : '0'; ?>" />
-                                <input type="checkbox" name="post_replies_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_replies) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-                            </td>
-                            <td<?php if (!$post_topics_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
-                                <input type="hidden" name="post_topics_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_topics) ? '1' : '0'; ?>" />
-                                <input type="checkbox" name="post_topics_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_topics) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
-                            </td>
-                        </tr>
+					<tr>
+						<th class="atcl"><?php echo pun_htmlspecialchars($cur_perm['g_title']) ?></th>
+						<td<?php if (!$read_forum_def) echo ' class="danger"'; ?>>
+							<input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
+							<input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked="checked"' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+						</td>
+						<td<?php if (!$post_replies_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
+							<input type="hidden" name="post_replies_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_replies) ? '1' : '0'; ?>" />
+							<input type="checkbox" name="post_replies_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_replies) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+						</td>
+						<td<?php if (!$post_topics_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
+							<input type="hidden" name="post_topics_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_topics) ? '1' : '0'; ?>" />
+							<input type="checkbox" name="post_topics_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_topics) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+						</td>
+					</tr>
 <?php
 
 }
 
 ?>
-                    </tbody>
-                </table>
-            </fieldset>
-        </div>
+				</tbody>
+			</table>
+		</fieldset>
     </div>
 </form>
 
@@ -335,15 +335,23 @@ require FORUM_ROOT.'backstage/header.php';
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) > 0)
 	{ ?>
-                <select class="form-control" name="add_to_cat" tabindex="1">
+				<div class="col-xs-2">
+					<select class="form-control" name="add_to_cat" tabindex="1">
     <?php
 		while ($cur_cat = $db->fetch_assoc($result))
 			{ ?>
                 <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 			} ?>
-                </select>
-                <input type="text" class="form-control" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
-                <input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang['Add forum'] ?>" tabindex="2" />
+					</select>
+				</div>
+				<div class="col-xs-10">
+					<div class="input-group">
+						<input type="text" class="form-control" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
+						<span class="input-group-btn">
+							<input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang['Add forum'] ?>" tabindex="2" />
+						</span>
+					</div>
+				</div>
                 <span class="help-block"><?php echo $lang['Add forum help'] ?></span>
             <?php }
 	if (!$db->num_rows($result) > 0) {
@@ -370,8 +378,7 @@ if ($db->num_rows($result) > 0)
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
 		</div>
-		<div class="panel-body">
-            <fieldset>
+		<fieldset>
 <?php
 
 $cur_index = 4;
@@ -385,33 +392,32 @@ while ($cur_forum = $db->fetch_assoc($result))
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-                <table class="table">
-                    <tbody>
-                    	<tr>
-                        	<th colspan="3" class="active">
-								<h4><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
-                            </th>
-                        </tr>
+			<table class="table table-forums">
+				<tbody>
+					<tr>
+						<th colspan="3" class="active">
+							<h4><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
+						</th>
+					</tr>
 <?php
 
 		$cur_category = $cur_forum['cid'];
 	}
 
 ?>
-                        <tr>
-                            <td class="col-lg-2"><a class="btn btn-primary" href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-primary" href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></td>
-                            <td class="col-lg-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
-							<td><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-                        </tr>
+					<tr>
+						<td class="col-lg-2"><div class="btn-group"><a class="btn btn-primary" href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-primary" href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></div></td>
+						<td class="col-lg-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+						<td><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+					</tr>
 <?php
 
 }
 
 ?>
-                    </tbody>
-                </table>
-            </fieldset>
-		</div>
+				</tbody>
+			</table>
+		</fieldset>
 	</div>
 </form>
 <?php
