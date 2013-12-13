@@ -31,7 +31,7 @@ if (isset($_POST['add_forum']))
 
 	$db->query('INSERT INTO '.$db->prefix.'forums (forum_name, cat_id) VALUES(\''.$db->escape($forum_name).'\', '.$add_to_cat.')') or error('Unable to create forum', __FILE__, __LINE__, $db->error());
 
-	redirect('backstage/forums.php', $lang['Forum added redirect']);
+	redirect('backstage/board.php', $lang['Forum added redirect']);
 }
 
 // Delete a forum
@@ -67,7 +67,7 @@ else if (isset($_GET['del_forum']))
 		// Delete any subscriptions for this forum
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
-		redirect('backstage/forums.php', $lang['Forum deleted redirect']);
+		redirect('backstage/board.php', $lang['Forum deleted redirect']);
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -82,7 +82,7 @@ else if (isset($_GET['del_forum']))
 ?>
 <div class="content">
     <h2><?php echo $lang['Confirm delete head'] ?></h2>
-    <form class="alert alert-danger" method="post" action="forums.php?del_forum=<?php echo $forum_id ?>">
+    <form class="alert alert-danger" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
         <fieldset>
             <p><?php printf($lang['Confirm delete forum info'], $forum_name) ?></p>
             <p class="warntext"><?php echo $lang['Confirm delete forum'] ?></p>
@@ -110,7 +110,7 @@ else if (isset($_POST['update_positions']))
 		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 	}
 
-	redirect('backstage/forums.php', $lang['Forums updated redirect']);
+	redirect('backstage/board.php', $lang['Forums updated redirect']);
 }
 
 else if (isset($_GET['edit_forum']))
@@ -167,13 +167,13 @@ else if (isset($_GET['edit_forum']))
 			}
 		}
 
-		redirect('backstage/forums.php', $lang['Forum updated redirect']);
+		redirect('backstage/board.php', $lang['Forum updated redirect']);
 	}
 	else if (isset($_POST['revert_perms']))
 	{
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
-		redirect('backstage/forums.php?edit_forum='.$forum_id, $lang['Perms reverted redirect']);
+		redirect('backstage/board.php?edit_forum='.$forum_id, $lang['Perms reverted redirect']);
 	}
 
 	// Fetch forum info
@@ -193,7 +193,7 @@ else if (isset($_GET['edit_forum']))
 
 ?>
 <h2><?php echo $lang['Forum settings'] ?></h2>
-<form id="edit_forum" class="form-horizontal" method="post" action="forums.php?edit_forum=<?php echo $forum_id ?>">
+<form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
@@ -316,51 +316,197 @@ else if (isset($_GET['edit_forum']))
 	require FORUM_ROOT.'backstage/footer.php';
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Forums']);
-define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('forums');
+
+
+// Add a new category
+if (isset($_POST['add_cat']))
+{
+	$new_cat_name = pun_trim($_POST['new_cat_name']);
+	if ($new_cat_name == '')
+		message($lang['Must enter name message']);
+
+	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
+
+	redirect('backstage/board.php', $lang['Category added redirect']);
+}
+
+// Delete a category
+else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
+{
+	$cat_to_delete = intval($_POST['cat_to_delete']);
+	if ($cat_to_delete < 1)
+		message($lang['Bad request'], false, '404 Not Found');
+
+	if (isset($_POST['del_cat_comply'])) // Delete a category with all forums and posts
+	{
+		@set_time_limit(0);
+
+		$result = $db->query('SELECT id FROM '.$db->prefix.'forums WHERE cat_id='.$cat_to_delete) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+		$num_forums = $db->num_rows($result);
+
+		for ($i = 0; $i < $num_forums; ++$i)
+		{
+			$cur_forum = $db->result($result, $i);
+
+			// Prune all posts and topics
+			prune($cur_forum, 1, -1);
+
+			// Delete the forum
+			$db->query('DELETE FROM '.$db->prefix.'forums WHERE id='.$cur_forum) or error('Unable to delete forum', __FILE__, __LINE__, $db->error());
+		}
+
+		// Locate any "orphaned redirect topics" and delete them
+		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
+		$num_orphans = $db->num_rows($result);
+
+		if ($num_orphans)
+		{
+			for ($i = 0; $i < $num_orphans; ++$i)
+				$orphans[] = $db->result($result, $i);
+
+			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
+		}
+
+		// Delete the category
+		$db->query('DELETE FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to delete category', __FILE__, __LINE__, $db->error());
+
+		// Regenerate the quick jump cache
+		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+			require FORUM_ROOT.'include/cache.php';
+
+		redirect('backstage/board.php', $lang['Category deleted redirect']);
+	}
+	else // If the user hasn't confirmed the delete
+	{
+		$result = $db->query('SELECT cat_name FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to fetch category info', __FILE__, __LINE__, $db->error());
+		$cat_name = $db->result($result);
+
+		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Categories']);
+		define('FORUM_ACTIVE_PAGE', 'admin');
+		require FORUM_ROOT.'backstage/header.php';
+	generate_admin_menu('categories');
 
 ?>
-<h2><?php echo $lang['Forums'] ?></h2>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Add forum'] ?></h3>
+<h2><?php echo $lang['Confirm delete cat head'] ?></h2>
+<form class="alert alert-danger" method="post" action="board.php">
+    <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
+    <fieldset>
+        <p><?php printf($lang['Confirm delete cat info'], pun_htmlspecialchars($cat_name)) ?></p>
+        <p class="warntext"><?php echo $lang['Delete category warn'] ?></p>
+    </fieldset>
+    <div class="btn-group">
+        <input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
     </div>
-    <div class="panel-body">
-        <form method="post" action="forums.php?action=adddel">
-            <fieldset>
+</form>
+<?php
+
+		require FORUM_ROOT.'backstage/footer.php';
+	}
+}
+
+// Generate an array with all categories
+$result = $db->query('SELECT id, cat_name, disp_position FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
+$num_cats = $db->num_rows($result);
+
+for ($i = 0; $i < $num_cats; ++$i)
+	$cat_list[] = $db->fetch_assoc($result);
+
+$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Board']);
+define('FORUM_ACTIVE_PAGE', 'admin');
+require FORUM_ROOT.'backstage/header.php';
+	generate_admin_menu('board');
+
+?>
+<h2><?php echo $lang['Board structure'] ?></h2>
+<div class="row">
+	<div class="<?php if (($num_cats) > '1') { ?>col-md-5<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $lang['Add forum'] ?></h3>
+			</div>
+			<div class="panel-body">
+				<form method="post" action="board.php?action=adddel">
+					<fieldset>
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) > 0)
 	{ ?>
-				<div class="col-xs-2">
-					<select class="form-control" name="add_to_cat" tabindex="1">
+						<div class="col-xs-5">
+							<select class="form-control" name="add_to_cat" tabindex="1">
     <?php
 		while ($cur_cat = $db->fetch_assoc($result))
 			{ ?>
                 <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 			} ?>
-					</select>
-				</div>
-				<div class="col-xs-10">
-					<div class="input-group">
-						<input type="text" class="form-control" name="new_forum" size="30" maxlength="80" placeholder="Forum name" required="required" />
-						<span class="input-group-btn">
-							<input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang['Add forum'] ?>" tabindex="2" />
-						</span>
-					</div>
-				</div>
-                <span class="help-block"><?php echo $lang['Add forum help'] ?></span>
+							</select>
+						</div>
+						<div class="col-xs-7">
+							<div class="input-group">
+								<input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="Forum name" required="required" />
+								<span class="input-group-btn">
+									<input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang['Add'] ?>" tabindex="2" />
+								</span>
+							</div>
+						</div>
+						<span class="help-block"><?php echo $lang['Add forum help'] ?></span>
             <?php }
 	if (!$db->num_rows($result) > 0) {
 		echo $lang['No categories exist'];
 	}
 ?>
-            </fieldset>
-        </form>
-    </div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="<?php if (($num_cats) > '1') { ?>col-md-4<?php } else { ?>col-md-12<?php }; ?>">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $lang['Add categories head'] ?></h3>
+			</div>
+			<div class="panel-body">
+				<form method="post" action="board.php">
+					<fieldset>
+						<div class="input-group">
+							<input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="Category name" tabindex="1" />
+							<span class="input-group-btn">
+								<input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add new submit'] ?>" tabindex="2" />
+							</span>
+						</div>
+						<span class="help-block"><?php printf($lang['Add category help'], '<a href="board.php">'.$lang['Forums'].'</a>') ?></span>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<?php if ($num_cats): ?>
+	<div class="<?php if (($num_cats) > '1') { ?>col-md-3<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $lang['Delete categories head'] ?></h3>
+			</div>
+			<div class="panel-body">
+				<form method="post" action="board.php">
+					<fieldset>
+						<div class="input-group">
+							<select class="form-control" name="cat_to_delete" tabindex="3">
+		<?php
+						foreach ($cat_list as $cur_cat)
+							echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+		?>
+							</select>
+							<span class="input-group-btn">
+								<input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang['Delete'] ?>" tabindex="4" />
+							</span>
+						</div>
+						<span class="help-block"><?php echo $lang['Delete category help'] ?></span>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<?php endif; ?>
 </div>
 <?php
 
@@ -373,7 +519,7 @@ if ($db->num_rows($result) > 0)
 {
 
 ?>
-<form id="edforum" method="post" action="forums.php?action=edit">
+<form id="edforum" method="post" action="board.php?action=edit">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
@@ -406,8 +552,8 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 ?>
 					<tr>
-						<td class="col-lg-2"><div class="btn-group"><a class="btn btn-primary" href="forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-primary" href="forums.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></div></td>
-						<td class="col-lg-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+						<td class="col-lg-2"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-primary" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></div></td>
+						<td class="col-lg-1"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 						<td><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
 					</tr>
 <?php

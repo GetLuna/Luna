@@ -154,6 +154,12 @@ p {
 	background-color: #269feb;
 }
 
+/* Rows en cols */
+.row > .row {
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
 /* Input and forms */
 .full-form {
 	width: 100%;
