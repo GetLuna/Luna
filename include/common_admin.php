@@ -42,13 +42,12 @@ function generate_admin_menu($page = '')
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="index.php"><?php echo $lang['Dashboard'] ?></a></li>
-                <li class="dropdown <?php if ($page == 'forums' || $page == 'categories' || $page == 'censoring' || $page == 'reports') echo 'active'; ?>">
+                <li class="dropdown <?php if ($page == 'censoring' || $page == 'reports' || $page == 'board') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?php echo $lang['Content'] ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <?php if ($is_admin) { ?><li><a href="forums.php"><?php echo $lang['Forums'] ?></a></li>
-                        <li><a href="categories.php"><?php echo $lang['Categories'] ?></a></li>
+                        <?php if ($is_admin) { ?><li><a href="board.php"><?php echo $lang['Board structure'] ?></a></li>
                         <li class="divider"></li>
                         <li><a href="censoring.php"><?php echo $lang['Censoring'] ?></a></li><?php }; ?>
                         <li><a href="reports.php"><?php echo $lang['Reports'] ?></a></li>
