@@ -156,13 +156,6 @@ switch ($db_type)
 
 		$mariadb = true;
 		break;
-
-	case 'pgsql':
-		$pgsql_info = $db->get_version();
-		if (version_compare($pgsql_info['version'], MIN_PGSQL_VERSION, '<'))
-			error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], UPDATE_TO, MIN_PGSQL_VERSION));
-
-		break;
 }
 
 // Check the database, search index and parser revision and the current version
@@ -856,10 +849,6 @@ foreach ($errors[$id] as $cur_error)
 				case 'mysqli_innodb':
 				case 'mariadb':
 					$db->query('ALTER TABLE '.$db->prefix.'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
-					break;
-
-				case 'pgsql';
-					$db->query('SELECT setval(\''.$db->prefix.'search_words_id_seq\', 1, false)') or error('Unable to update sequence', __FILE__, __LINE__, $db->error());
 					break;
 			}
 		}

@@ -242,8 +242,6 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 		$db_extensions[] = array('mariadb', 'MardiaDB');;
 	if (function_exists('sqlite_open'))
 		$db_extensions[] = array('sqlite', 'SQLite');
-	if (function_exists('pg_connect'))
-		$db_extensions[] = array('pgsql', 'PostgreSQL');
 
 	if (empty($db_extensions))
 		error($lang['No DB extensions']);
@@ -486,10 +484,6 @@ else
 			require FORUM_ROOT.'include/dblayer/mariadb.php';
 			break;
 
-		case 'pgsql':
-			require FORUM_ROOT.'include/dblayer/pgsql.php';
-			break;
-
 		case 'sqlite':
 			require FORUM_ROOT.'include/dblayer/sqlite.php';
 			break;
@@ -521,12 +515,6 @@ else
 			$mysql_info = $db->get_version();
 			if (version_compare($mariadb_info['version'], MIN_MARIADB_VERSION, '<'))
 				error(sprintf($lang['You are running error'], 'MariaDB', $mariadb_info['version'], FORUM_VERSION, MIN_MARIADB_VERSION));
-			break;
-
-		case 'pgsql':
-			$pgsql_info = $db->get_version();
-			if (version_compare($pgsql_info['version'], MIN_PGSQL_VERSION, '<'))
-				error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], FORUM_VERSION, MIN_PGSQL_VERSION));
 			break;
 
 		case 'sqlite':
