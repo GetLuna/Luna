@@ -80,18 +80,13 @@ else if (isset($_GET['del_forum']))
 	generate_admin_menu('forums');
 
 ?>
-<div class="content">
-    <h2><?php echo $lang['Confirm delete head'] ?></h2>
-    <form class="alert alert-danger" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
-        <fieldset>
-            <p><?php printf($lang['Confirm delete forum info'], $forum_name) ?></p>
-            <p class="warntext"><?php echo $lang['Confirm delete forum'] ?></p>
-        </fieldset>
-        <div>
-        	<input class="btn btn-danger" type="submit" name="del_forum_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </div>
-    </form>
-</div>
+<h2><?php echo $lang['Confirm delete head'] ?></h2>
+<form class="alert alert-danger" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
+	<fieldset>
+		<p><?php printf($lang['Confirm delete forum info'], $forum_name) ?> <?php echo $lang['Confirm delete forum'] ?></p>
+	</fieldset>
+	<input class="btn btn-danger" type="submit" name="del_forum_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+</form>
 <?php
 
 		require FORUM_ROOT.'backstage/footer.php';
@@ -391,12 +386,9 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 <form class="alert alert-danger" method="post" action="board.php">
     <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
     <fieldset>
-        <p><?php printf($lang['Confirm delete cat info'], pun_htmlspecialchars($cat_name)) ?></p>
-        <p class="warntext"><?php echo $lang['Delete category warn'] ?></p>
+        <p><?php printf($lang['Confirm delete cat info'], pun_htmlspecialchars($cat_name)) ?> <?php echo $lang['Delete category warn'] ?></p>
     </fieldset>
-    <div class="btn-group">
-        <input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-    </div>
+	<input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 </form>
 <?php
 
@@ -496,10 +488,10 @@ require FORUM_ROOT.'backstage/header.php';
 						<div class="input-group">
 							<input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="Category name" tabindex="1" />
 							<span class="input-group-btn">
-								<input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add new submit'] ?>" tabindex="2" />
+								<input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add'] ?>" tabindex="2" />
 							</span>
 						</div>
-						<span class="help-block"><?php printf($lang['Add category help'], '<a href="board.php">'.$lang['Forums'].'</a>') ?></span>
+						<span class="help-block"><?php echo $lang['Add category help'] ?></span>
 					</fieldset>
 				</form>
 			</div>

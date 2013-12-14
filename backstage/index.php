@@ -49,7 +49,7 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['A
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('index');
-
+?><h2>Backstage</h2><?php
 //Update checking
     if ($pun_config['o_index_update_check'] == 1) { ?>
 		<?php

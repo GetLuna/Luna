@@ -140,7 +140,7 @@ if ($db->num_rows($result))
 <?php
 
 while ($cur_word = $db->fetch_assoc($result))
-echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></td><td><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></td><td><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></td></tr>'."\n";
+echo "\t\t\t\t\t\t\t\t".'<tr><td><div class="btn-group"><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" size="24" maxlength="60" /></div></td><td><div class="btn-group"><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" size="24" maxlength="60" /></div></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
 
 ?>
 				</tbody>

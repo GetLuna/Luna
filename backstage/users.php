@@ -569,6 +569,8 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	generate_admin_menu('users');
 
 ?>
+<h2><?php echo $lang['Users'] ?></h2>
+<div class="alert alert-danger"><?php echo $lang['Delete warning'] ?></div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Delete users'] ?></h3>
@@ -576,10 +578,14 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
     <div class="panel-body">
         <form name="confirm_del_users" method="post" action="users.php">
             <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-                <fieldset>
-                    <label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang['Delete posts'] ?><br /></label>
-                    <div class="alert alert-danger"><?php echo $lang['Delete warning'] ?></div>
-                </fieldset>
+			<fieldset>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="delete_posts" value="1" checked="checked" />
+						<?php echo $lang['Delete posts'] ?>
+					</label>
+				</div>
+			</fieldset>
             <div class="control-group">
                 <input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang['Delete'] ?>" />
                 <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
@@ -687,46 +693,47 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	generate_admin_menu('users');
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Ban users'] ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php echo $lang['Ban'] ?>" tabindex="3" /></span></h3>
-    </div>
-    <div class="panel-body">
-        <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
-            <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Ban message label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="ban_message" size="50" maxlength="255" tabindex="1" />
+<h2><?php echo $lang['Users'] ?></h2>
+<form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Ban users'] ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php echo $lang['Ban'] ?>" tabindex="3" /></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><?php echo $lang['Ban message label'] ?></label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="ban_message" size="50" maxlength="255" tabindex="1" />
 						<span class="help-block"><?php echo $lang['Ban message help'] ?></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Expire date label'] ?></label>
-                    <div class="col-sm-10">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><?php echo $lang['Expire date label'] ?></label>
+					<div class="col-sm-10">
 						<input type="text" class="form-control" name="ban_expire" size="17" maxlength="10" tabindex="2" />
 						<span class="help-block"><?php echo $lang['Expire date help'] ?></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Default feed label'] ?></label>
-                    <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><?php echo $lang['Ban IP label'] ?></label>
+					<div class="col-sm-10">
+						<label class="radio-inline">
+							<input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />
 							<?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />
 							<?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Ban IP help'] ?></span>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-     </div>
-</div>
+						</label>
+						<span class="help-block"><?php echo $lang['Ban IP help'] ?></span>
+					</div>
+				</div>
+			</fieldset>
+		 </div>
+	</div>
+</form>
 <?php
 
 	require FORUM_ROOT.'backstage/footer.php';
@@ -871,6 +878,7 @@ else if (isset($_GET['find_user']))
 	generate_admin_menu('users');
 
 ?>
+<h2><?php echo $lang['Users'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
