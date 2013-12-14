@@ -378,6 +378,7 @@ else if (isset($_GET['find_ban']))
 	generate_admin_menu('bans');
 
 ?>
+<h2><?php echo $lang['Bans'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
@@ -386,19 +387,20 @@ else if (isset($_GET['find_ban']))
 		<ul class="pagination">
 			<?php echo $paging_links ?>
 		</ul>
-		<table class="table">
-            <thead>
-                <tr>
-                    <th class="tcl" scope="col"><?php echo $lang['Results username head'] ?></th>
-                    <th class="tc2" scope="col"><?php echo $lang['Results e-mail head'] ?></th>
-                    <th class="tc3" scope="col"><?php echo $lang['Results IP address head'] ?></th>
-                    <th class="tc4" scope="col"><?php echo $lang['Results expire head'] ?></th>
-                    <th class="tc5" scope="col"><?php echo $lang['Results message head'] ?></th>
-                    <th class="tc6" scope="col"><?php echo $lang['Results banned by head'] ?></th>
-                    <th class="tcr" scope="col"><?php echo $lang['Results actions head'] ?></th>
-                </tr>
-            </thead>
-            <tbody>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="tcl" scope="col"><?php echo $lang['Results username head'] ?></th>
+				<th class="tc2" scope="col"><?php echo $lang['Results e-mail head'] ?></th>
+				<th class="tc3" scope="col"><?php echo $lang['Results IP address head'] ?></th>
+				<th class="tc4" scope="col"><?php echo $lang['Results expire head'] ?></th>
+				<th class="tc5" scope="col"><?php echo $lang['Results message head'] ?></th>
+				<th class="tc6" scope="col"><?php echo $lang['Results banned by head'] ?></th>
+				<th class="tcr" scope="col"><?php echo $lang['Results actions head'] ?></th>
+			</tr>
+		</thead>
+		<tbody>
     <?php
 
 	$result = $db->query('SELECT b.id, b.username, b.ip, b.email, b.message, b.expire, b.ban_creator, u.username AS ban_creator_username FROM '.$db->prefix.'bans AS b LEFT JOIN '.$db->prefix.'users AS u ON b.ban_creator=u.id WHERE b.id>0'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
@@ -407,19 +409,19 @@ else if (isset($_GET['find_ban']))
 		while ($ban_data = $db->fetch_assoc($result))
 		{
 
-			$actions = '<a class="btn btn-primary btn-mini" href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a><a class="btn btn-primary btn-mini" href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a>';
+			$actions = '<div class="btn-group"><a class="btn btn-primary btn-mini" href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a><a class="btn btn-primary btn-mini" href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a></div>';
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
-                <tr>
-                    <td class="tcl"><?php echo ($ban_data['username'] != '') ? pun_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
-                    <td class="tc2"><?php echo ($ban_data['email'] != '') ? $ban_data['email'] : '&#160;' ?></td>
-                    <td class="tc3"><?php echo ($ban_data['ip'] != '') ? pun_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
-                    <td class="tc4"><?php echo $expire ?></td>
-                    <td class="tc5"><?php echo ($ban_data['message'] != '') ? pun_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-                    <td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang['Unknown'] ?></td>
-                    <td class="tcr"><?php echo $actions ?></td>
-                </tr>
+			<tr>
+				<td class="tcl"><?php echo ($ban_data['username'] != '') ? pun_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
+				<td class="tc2"><?php echo ($ban_data['email'] != '') ? $ban_data['email'] : '&#160;' ?></td>
+				<td class="tc3"><?php echo ($ban_data['ip'] != '') ? pun_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
+				<td class="tc4"><?php echo $expire ?></td>
+				<td class="tc5"><?php echo ($ban_data['message'] != '') ? pun_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
+				<td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.pun_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang['Unknown'] ?></td>
+				<td class="tcr"><?php echo $actions ?></td>
+			</tr>
 <?php
 
 		}
@@ -428,8 +430,9 @@ else if (isset($_GET['find_ban']))
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="7">'.$lang['No match'].'</td></tr>'."\n";
 
 ?>
-            </tbody>
-        </table>
+		</tbody>
+	</table>
+	<div class="panel-body">
 		<ul class="pagination">
 			<?php echo $paging_links ?>
 		</ul>
@@ -466,14 +469,14 @@ require FORUM_ROOT.'backstage/header.php';
         </form>
     </div>
 </div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Ban search head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_ban" value="<?php echo $lang['Submit search'] ?>" tabindex="12" /></span></h3>
-    </div>
-	<form id="find_bans" method="get" action="bans.php">
+<form id="find_bans" method="get" action="bans.php">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Ban search head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_ban" value="<?php echo $lang['Submit search'] ?>" tabindex="12" /></span></h3>
+		</div>
 		<fieldset>
 			<div class="panel-body">
-                <p><?php echo $lang['Ban search info'] ?></p>
+				<p><?php echo $lang['Ban search info'] ?></p>
 			</div>
 			<table class="table">
 				<tr>
@@ -510,8 +513,8 @@ require FORUM_ROOT.'backstage/header.php';
 				</tr>
 			</table>
 		</fieldset>
-	</form>
-</div>
+	</div>
+</form>
 <?php
 
 require FORUM_ROOT.'backstage/footer.php';

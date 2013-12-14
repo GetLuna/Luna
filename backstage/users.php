@@ -162,6 +162,7 @@ if (isset($_GET['ip_stats']))
 	generate_admin_menu('users');
 
 ?>
+<h2><?php echo $lang['Users'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
@@ -170,16 +171,17 @@ if (isset($_GET['ip_stats']))
 		<ul class="pagination">
 			<?php echo $paging_links ?>
 		</ul>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th><?php echo $lang['Results IP address head'] ?></th>
-                    <th><?php echo $lang['Results last used head'] ?></th>
-                    <th><?php echo $lang['Results times found head'] ?></th>
-                    <th><?php echo $lang['Results action head'] ?></th>
-                </tr>
-            </thead>
-            <tbody>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th><?php echo $lang['Results IP address head'] ?></th>
+				<th><?php echo $lang['Results last used head'] ?></th>
+				<th><?php echo $lang['Results times found head'] ?></th>
+				<th><?php echo $lang['Results action head'] ?></th>
+			</tr>
+		</thead>
+		<tbody>
 <?php
 
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -189,12 +191,12 @@ if (isset($_GET['ip_stats']))
 		{
 
 ?>
-                <tr>
-                    <td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
-                    <td><?php echo format_time($cur_ip['last_used']) ?></td>
-                    <td><?php echo $cur_ip['used_times'] ?></td>
-                    <td><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang['Results find more link'] ?></a></td>
-                </tr>
+			<tr>
+				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+				<td><?php echo format_time($cur_ip['last_used']) ?></td>
+				<td><?php echo $cur_ip['used_times'] ?></td>
+				<td><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang['Results find more link'] ?></a></td>
+			</tr>
 <?php
 
 		}
@@ -203,12 +205,13 @@ if (isset($_GET['ip_stats']))
 		echo "\t\t\t\t".'<tr><td colspan="4">'.$lang['Results no posts found'].'</td></tr>'."\n";
 
 ?>
-            </tbody>
-        </table>
+		</tbody>
+	</table>
+	<div class="panel-body">
 		<ul class="pagination">
 			<?php echo $paging_links ?>
 		</ul>
-    </div>
+	</div>
 </div>
 <?php
 
@@ -242,6 +245,7 @@ if (isset($_GET['show_users']))
 	generate_admin_menu('users');
 
 ?>
+<h2><?php echo $lang['Users'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
@@ -250,18 +254,19 @@ if (isset($_GET['show_users']))
 		<ul class="pagination">
 			<?php echo $paging_links ?>
 		</ul>
-		<table class="table">
-			<thead>
-				<tr>
-					<th><?php echo $lang['Results username head'] ?></th>
-					<th><?php echo $lang['Results e-mail head'] ?></th>
-					<th><?php echo $lang['Results title head'] ?></th>
-					<th><?php echo $lang['Results posts head'] ?></th>
-					<th><?php echo $lang['Results admin note head'] ?></th>
-					<th><?php echo $lang['Results actions head'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th><?php echo $lang['Results username head'] ?></th>
+				<th><?php echo $lang['Results e-mail head'] ?></th>
+				<th><?php echo $lang['Results title head'] ?></th>
+				<th><?php echo $lang['Results posts head'] ?></th>
+				<th><?php echo $lang['Results admin note head'] ?></th>
+				<th><?php echo $lang['Results actions head'] ?></th>
+			</tr>
+		</thead>
+		<tbody>
 <?php
 
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -290,14 +295,14 @@ if (isset($_GET['show_users']))
 
 			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results view IP link'].'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Posts table'].'</a>';
 ?>
-				<tr>
-					<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-					<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
-					<td><?php echo $user_title ?></td>
-					<td><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-					<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
-					<td><?php echo $actions ?></td>
-				</tr>
+			<tr>
+				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
+				<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
+				<td><?php echo $user_title ?></td>
+				<td><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
+				<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+				<td><?php echo $actions ?></td>
+			</tr>
 <?php
 
 			}
@@ -305,14 +310,14 @@ if (isset($_GET['show_users']))
 			{
 
 ?>
-				<tr>
-					<td><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
-					<td>&#160;</td>
-					<td><?php echo $lang['Results guest'] ?></td>
-					<td>&#160;</td>
-					<td>&#160;</td>
-					<td>&#160;</td>
-				</tr>
+			<tr>
+				<td><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
+				<td>&#160;</td>
+				<td><?php echo $lang['Results guest'] ?></td>
+				<td>&#160;</td>
+				<td>&#160;</td>
+				<td>&#160;</td>
+			</tr>
 <?php
 
 			}
@@ -322,12 +327,13 @@ if (isset($_GET['show_users']))
 		echo "\t\t\t\t".'<tr><td colspan="6">'.$lang['Results no IP found'].'</td></tr>'."\n";
 
 ?>
-			</tbody>
-		</table>
+		</tbody>
+	</table>
+	<div class="panel-body">
 		<ul class="pagination">
 			<?php echo $paging_links ?>
 		</ul>
-    </div>
+	</div>
 </div>
 <?php
 	require FORUM_ROOT.'backstage/footer.php';
@@ -902,20 +908,20 @@ else if (isset($_GET['find_user']))
 				</span>
 			<?php endif; ?>
 		</div>
-            <table class="table">
-            <thead>
-                <tr>
-                    <th><?php echo $lang['Results username head'] ?></th>
-                    <th><?php echo $lang['Results e-mail head'] ?></th>
-                    <th><?php echo $lang['Results title head'] ?></th>
-                    <th><?php echo $lang['Results posts head'] ?></th>
-                    <th><?php echo $lang['Results admin note head'] ?></th>
-                    <th><?php echo $lang['Results actions head'] ?></th>
-        <?php if ($can_action): ?>					<th><?php echo $lang['Select'] ?></th>
-        <?php endif; ?>
-                </tr>
-            </thead>
-            <tbody>
+		<table class="table">
+			<thead>
+				<tr>
+					<th><?php echo $lang['Results username head'] ?></th>
+					<th><?php echo $lang['Results e-mail head'] ?></th>
+					<th><?php echo $lang['Results title head'] ?></th>
+					<th><?php echo $lang['Results posts head'] ?></th>
+					<th><?php echo $lang['Results admin note head'] ?></th>
+					<th><?php echo $lang['Results actions head'] ?></th>
+		<?php if ($can_action): ?>					<th><?php echo $lang['Select'] ?></th>
+		<?php endif; ?>
+				</tr>
+			</thead>
+			<tbody>
 <?php
 
 	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -932,15 +938,15 @@ else if (isset($_GET['find_user']))
 			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang['Results view IP link'].'</a> &middot <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang['Posts table'].'</a>';
 
 ?>
-                <tr>
-                    <td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
-                    <td><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td><?php echo $user_title ?></td>
-                    <td><?php echo forum_number_format($user_data['num_posts']) ?></td>
-                    <td><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
-                    <td><?php echo $actions ?></td>
-        <?php if ($can_action): ?>					<td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
-        <?php endif; ?>
-                </tr>
+				<tr>
+					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+					<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td><?php echo $user_title ?></td>
+					<td><?php echo forum_number_format($user_data['num_posts']) ?></td>
+					<td><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+					<td><?php echo $actions ?></td>
+		<?php if ($can_action): ?>					<td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
+		<?php endif; ?>
+				</tr>
 <?php
 
 		}
@@ -949,7 +955,7 @@ else if (isset($_GET['find_user']))
 		echo "\t\t\t\t".'<tr><td colspan="6">'.$lang['No match'].'</td></tr>'."\n";
 
 ?>
-            </tbody>
+			</tbody>
 		</table>
 		<div class="panel-body">
 			<ul class="pagination">

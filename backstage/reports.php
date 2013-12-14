@@ -86,13 +86,13 @@ if ($db->num_rows($result))
 
 ?>
 					<tr>
-						<td><?php printf($reporter) ?></td>
-						<td><?php printf(format_time($cur_report['created'])) ?></td>
-						<td>
+						<td class="col-xs-2"><?php printf($reporter) ?></td>
+						<td class="col-xs-2"><?php printf(format_time($cur_report['created'])) ?></td>
+						<td class="col-xs-6">
 							<div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
 							<?php echo $post ?>
 						</td>
-						<td><input class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]" value="<?php echo $lang['Zap'] ?>" /></td>
+						<td class="col-xs-2"><input class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]" value="<?php echo $lang['Zap'] ?>" /></td>
 					</tr>
 <?php
 
@@ -122,10 +122,10 @@ else
 	<table class="table">
 		<thead>
             <tr>
-                <th><?php echo $lang['Reported by'] ?></th>
-                <th><?php echo $lang['Readed by'] ?></th>
-                <th><?php echo $lang['Date and time'] ?></th>
-                <th><?php echo $lang['Message'] ?></th>
+                <th class="col-xs-2"><?php echo $lang['Reported by'] ?></th>
+                <th class="col-xs-2"><?php echo $lang['Readed by'] ?></th>
+                <th class="col-xs-2"><?php echo $lang['Date and time'] ?></th>
+                <th class="col-xs-6"><?php echo $lang['Message'] ?></th>
             </tr>
 		</thead>
 		<tbody>

@@ -10,6 +10,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 {
 	margin-top: 0;
+	margin-left: 4px;
+	color: #0072ca;
 }
 
 h4 {
@@ -271,6 +273,10 @@ p {
 .btn-info:active, .btn-info.active {
 	background: #2aabd2;
 	border-color: #28a4c9;
+}
+
+.btn-update {
+	margin-right: 6px;
 }
 
 .panel-title .btn {

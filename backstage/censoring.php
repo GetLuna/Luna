@@ -99,9 +99,9 @@ require FORUM_ROOT.'backstage/header.php';
 			<table class="table">
 				<thead>
 					<tr>
-						<th><?php echo $lang['Censored word label'] ?></th>
-						<th><?php echo $lang['Replacement label'] ?></th>
-						<th><?php echo $lang['Action label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Action label'] ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -131,9 +131,9 @@ if ($db->num_rows($result))
 			<table class="table">
 				<thead>
 					<tr>
-						<th><?php echo $lang['Censored word label'] ?></th>
-						<th><?php echo $lang['Replacement label'] ?></th>
-						<th><?php echo $lang['Action label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Action label'] ?></th>
 					</tr>
 				</thead>
 				<tbody>
