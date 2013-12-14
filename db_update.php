@@ -347,6 +347,7 @@ if (isset($_POST['req_db_pass']))
 	{
 		// For SQLite we compare against the database file name, since the password is left blank
 		case 'sqlite':
+		case 'sqlite3':
 			if ($req_db_pass != strtolower($db_name))
 				error(sprintf($lang['Invalid file error'], 'config.php'));
 
