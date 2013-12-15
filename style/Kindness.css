@@ -267,6 +267,11 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 }
 
+.pagination-fix {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
 .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span {
 	border-radius: 0;
 }
@@ -440,7 +445,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 /* Buttons */
 .btn {
 	display: inline-block;
-	padding: 6px 12px;
 	margin-bottom: 0;
 	font-size: 14px;
 	line-height: 20px;
@@ -487,33 +491,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	opacity: 0.65;
 }
 
-.btn-large {
-	padding: 11px 19px;
-	font-size: 17.5px;
-}
-
-.btn-large [class^="icon-"], .btn-large [class*=" icon-"] {
-	margin-top: 4px;
-}
-
-.btn-small {
-	padding: 2px 10px;
-	font-size: 11.9px;
-}
-
-.btn-small [class^="icon-"], .btn-small [class*=" icon-"] {
-	margin-top: 0;
-}
-
-.btn-mini [class^="icon-"], .btn-mini [class*=" icon-"] {
-	margin-top: -1px;
-}
-
-.btn-mini {
-	padding: 0 6px;
-	font-size: 10.5px;
-}
-
 .btn-block {
 	display: block;
 	width: 100%;
@@ -531,7 +508,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .btn-primary.active, .btn-warning.active, .btn-danger.active, .btn-success.active, .btn-info.active, .btn-inverse.active {
-	color: rgba(255,255,255,0.75);
+	color: #fff;
 }
 
 .btn-default {
@@ -558,8 +535,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border: 1px solid #f0af00;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
@@ -599,8 +574,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border-bottom: 1px solid #9a161a;
 	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .btn-danger.disabled, .btn-danger[disabled] {
@@ -620,8 +593,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border-bottom: 1px solid #59822c;
 	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled] {
@@ -641,8 +612,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	border: 1px solid #59cbf1;
 	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
 	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
 }
 
 .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
@@ -681,8 +650,12 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	text-decoration: none;
 }
 
+.btn-xs {
+	font-size: 80%;
+}
+
 .btn-post {
-	margin-top: 0px;
+	margin-top: 0;
 	margin-bottom: 10px;
 }
 
