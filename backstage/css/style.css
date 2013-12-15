@@ -16,7 +16,7 @@ h2 {
 
 h4 {
 	margin-bottom: 3px;
-	color: #1f99e6;
+	color: #428bca;
 }
 
 h4:first-child {
@@ -51,23 +51,20 @@ p {
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
 	background: #47a9f5;
-	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
+	background-image: linear-gradient(to bottom,#428bca 0%,#2d6ca2 100%);
 	background-repeat: repeat-x;
 	filter: none;
 	color: #fff;
 }
 
 .navbar {
-	border-bottom: 5px solid #006dc2;
+	border-bottom: 5px solid #2d6ca2;
 	background: #333;
 	background: linear-gradient(to bottom,  #444, #333);
 	background-repeat: repeat-x;
 }
 
 .navbar-brand {
-	background: #0072ca;
-	background-image: linear-gradient(to bottom, #0072ca, #006dc1);
-	background-repeat: repeat-x;
 	color: #fff;
 	margin-right: 0;
 	text-transform: lowercase;
@@ -93,7 +90,7 @@ p {
 	color: #fff;
 }
 
-.navbar-nav > .dropdown > a .caret, .navbar-nav > .dropdown > a:hover .caret, .navbar-nav > .dropdown > a:focus .caret {
+.navbar-nav > .dropdown > a .care, .navbar-nav > .dropdown > a:hover .caret, .navbar-nav > .dropdown > a:focus .caret, .navbar-nav > .active > a .caret {
 	border-top-color: #fff;
 	border-bottom-color: #fff;
 }
@@ -104,10 +101,17 @@ p {
 	}
 }
 
-.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+.navbar-nav > .active > a, .navbar-nav > .active > a:focus {
 	color: #fff;
-	background: #2690e1;
-	background: linear-gradient(to bottom, #47a9f5, #2690e1);
+	background: #2d6ca2;
+	background-image: linear-gradient(to bottom,#428bca 0%,#2d6ca2 100%);
+	background-repeat: repeat-x;
+}
+
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus, .navbar-nav > .active > a:hover {
+	color: #fff;
+	background: #444;
+	background: linear-gradient(to bottom,  #555, #444);
 	background-repeat: repeat-x;
 }
 
