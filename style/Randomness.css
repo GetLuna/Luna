@@ -488,6 +488,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 .btn.disabled, .btn[disabled] {
 	cursor: default;
 	background: none;
+	opacity: 0.65;
 }
 
 .btn-block {
