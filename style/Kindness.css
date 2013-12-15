@@ -552,29 +552,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 .btn-primary {
 	color: #fff;
-	background-color: #f04400;
-	background-image: linear-gradient(#f07700, #f04400);
-	background-repeat: repeat-x;
-	border: 1px solid #f0af00;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	transition: background-image .2s;
-	padding-top: 8px;
-	padding-bottom: 7px;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #f02d00;
-	background-image: linear-gradient(#f02d00, #e10b00);
-	border: 1px solid #f06000;
-	color: #fff;
-}
-
-.btn-primary:active, .btn-primary.active {
-	background-color: #bd1600 9;
-}
-
-.btn-warning {
-	color: #fff;
 	background-color: #f08200;
 	background-image: linear-gradient(#f0af00, #f08200);
 	background-repeat: no-repeat;
@@ -585,14 +562,33 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	padding-bottom: 7px;
 }
 
-.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning.disabled, .btn-warning[disabled] {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
 	color: #fff;
 	background-image: linear-gradient(#f08200, #f06000);
 	background-color: #b54800;
 }
 
-.btn-warning:active, .btn-warning.active {
+.btn-primary:active, .btn-primary.active {
 	background-color: #aa4200 9;
+}
+
+.btn-warning {
+	color: #fff;
+	background: #65a643;
+	background-image: linear-gradient(#88c149, #699934);
+	background-repeat: repeat-x;
+	border-color: #2f76e7 #2f76e7 #1553b5;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	transition: background-image .2s;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .btn-warning.disabled, .btn-warning[disabled] {
+	background-image: linear-gradient(#699934, #4f8513);
+	color: #fff;
+}
+
+.btn-warning:active, .btn-warning.active {
+	background-color: #408140 9;
 }
 
 .btn-danger {
@@ -896,7 +892,7 @@ a {
 }
 
 a:hover, a:active {
-	color: #f11700;
+	color: #f0af00;
 }
 
 a.list-group-item:hover, a.list-group-item:active {
