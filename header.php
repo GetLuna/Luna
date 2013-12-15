@@ -170,7 +170,7 @@ if ($pun_config['o_header_title'] == 1) {
 
 
 // START SUBST - <pun_desc>
-$tpl_main = str_replace('<pun_desc>', '<div id="brddesc"><p><span>'.$pun_config['o_board_desc'].'</span><p></div>', $tpl_main);
+$tpl_main = str_replace('<pun_desc>', '<div id="brddesc"><p>'.$pun_config['o_board_desc'].'</p></div>', $tpl_main);
 // END SUBST - <pun_desc>
 
 
