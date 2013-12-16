@@ -808,6 +808,11 @@ fieldset label {
 	visibility: hidden;
 }
 
+/* Userlist */
+.usersearch {
+	margin: 0 auto 10px auto;	
+}
+
 /* Forumview, index */
 #index .byuser {
 	display: block;

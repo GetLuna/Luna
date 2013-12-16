@@ -58,35 +58,16 @@ require FORUM_ROOT.'header.php';
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['User search'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['User list'] ?></h3>
     </div>
     <div class="panel-body">
-        <form id="userlist" method="get" action="userlist.php">
+        <form id="userlist" class="usersearch" method="get" action="userlist.php">
             <fieldset>
-            	<table>
-                	<thead>
-                    	<tr>
-                        	<?php if ($pun_user['g_search_users'] == '1'): ?>
-                                <th>
-                                    <?php echo $lang['Username'] ?>
-                                </th>
-                            <?php endif; ?>
-                            <th class="hidden-xs">
-								<?php echo $lang['User group']."\n" ?>
-                    		</th>
-                            <th class="hidden-xs">
-                    			<?php echo $lang['Sort by']."\n" ?>
-                    		</th>
-                            <th class="hidden-xs">
-                    			<?php echo $lang['Sort order']."\n" ?>
-                    		</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+            	<table class="usersearch">
                     <tbody>
                         <tr>
 							<?php if ($pun_user['g_search_users'] == '1'): ?>
-                                <td><input class="form-control" type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /></td>
+                                <td><input class="form-control" type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" size="25" maxlength="25" /></td>
                             <?php endif; ?>
                         	<td class="hidden-xs">
                             	<select class="form-control" name="show_group">
@@ -127,18 +108,8 @@ while ($cur_group = $db->fetch_assoc($result))
                         </tr>
                      </tbody>
                  </table>
-                <p class="help-block"><?php echo ($pun_user['g_search_users'] == '1' ? $lang['User search info'].' ' : '') ?></p>
             </fieldset>
         </form>
-    </div>
-</div>
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['User list'] ?></h3>
-    </div>
-    <div class="panel-body">
         <ul class="pagination">
             <?php echo $paging_links ?>
         </ul>
