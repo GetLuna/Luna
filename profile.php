@@ -649,7 +649,7 @@ else if (isset($_POST['form_sent']))
 
 	if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
 		(!$pun_user['is_admmod'] ||																	// and we are not an admin or mod
-		($pun_user['g_id'] != FORUM_ADMIN &&															// or we aren't an admin and ...
+		($pun_user['g_id'] != FORUM_ADMIN &&														// or we aren't an admin and ...
 		($pun_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
 		$group_id == FORUM_ADMIN ||																	// or the user is an admin
 		$is_moderator))))																			// or the user is another mod
@@ -836,6 +836,15 @@ else if (isset($_POST['form_sent']))
 					message($lang['Bad request'], false, '404 Not Found');
 			}
 
+			// Make sure we got a valid Backstage style string
+			if (isset($_POST['form']['backstage_style']))
+			{
+				$backstage_styles = backstage_list_styles();
+				$form['backstage_style'] = pun_trim($_POST['form']['backstage_style']);
+				if (!in_array($form['backstage_style'], $backstage_styles))
+					message($lang['Bad request'], false, '404 Not Found');
+			}
+
 			if ($form['email_setting'] < 0 || $form['email_setting'] > 2)
 				$form['email_setting'] = $pun_config['o_default_email_setting'];
 
@@ -917,7 +926,7 @@ else if (isset($_POST['form_sent']))
 }
 
 
-$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.backstage_style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message($lang['Bad request'], false, '404 Not Found');
 
@@ -1558,7 +1567,7 @@ else
 ?>
 					<hr />
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo $lang['Styles'] ?></label>
+                        <label class="col-sm-2 control-label"><?php echo $lang['Style'] ?></label>
                         <div class="col-sm-10">
                             <select class="form-control" name="form[style]">
 <?php
@@ -1574,6 +1583,34 @@ else
                         </div>
                     </div>
 <?php
+		}
+		if ($pun_user['is_admmod']) {
+			$backstage_styles = backstage_list_styles();
+	
+			// Only display the style selection box if there's more than one style available
+			if (count($backstage_styles) == 1)
+				echo "\t\t\t".'<div><input type="hidden" name="form[backstage_style]" value="'.$backstage_styles[0].'" /></div>'."\n";
+			else if (count($backstage_styles) > 1)
+			{
+?>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><?php echo $lang['Backstage style'] ?></label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="form[backstage_style]">
+<?php
+				foreach ($backstage_styles as $temp)
+				{
+					if ($user['backstage_style'] == $temp)
+						echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
+					else
+						echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
+				}
+?>
+							</select>
+                        </div>
+                    </div>
+<?php
+			}
 		}
 		if ($pun_config['o_smilies'] == '1' || $pun_config['o_smilies_sig'] == '1' || $pun_config['o_signatures'] == '1' || $pun_config['o_avatars'] == '1' || ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1')): ?>
                     <hr />

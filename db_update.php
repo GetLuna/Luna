@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.2.02');
 
-define('UPDATE_TO_DB_REVISION', 43);
+define('UPDATE_TO_DB_REVISION', 44);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 6);
 
@@ -443,6 +443,9 @@ switch ($stage)
 		// Since 3.0-alpha.1 Remove the toolbar_conf table
 		if ($db->table_exists('toolbar_tags'))
 			$db->drop_table('toolbar_tags') or error('Unable to drop toolbar_tags table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.0-alpha.1: Add the backstage_style column to the users table
+		$db->add_field('users', 'backstage_style', 'VARCHAR(25)', false, 'ModernBB') or error('Unable to add backstage_style field', __FILE__, __LINE__, $db->error());
 		
 		// Since ModernBB 2.2.02: Recreate ranks table when removed in FluxBB 1.5
 		if (!$db->table_exists('ranks'))

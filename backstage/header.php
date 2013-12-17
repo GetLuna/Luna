@@ -45,6 +45,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
+<link rel="stylesheet" type="text/css" href="css/color/<?php echo $pun_user['backstage_style'].'.css' ?>" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <?php
 

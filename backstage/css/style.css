@@ -1,6 +1,5 @@
 /* Essential structure */
 html, body {
-	background: #e5e5e5;
 	font-family: Segoe UI;
 }
 
@@ -11,12 +10,10 @@ h1, h2, h3, h4, h5, h6 {
 h2 {
 	margin-top: 0;
 	margin-left: 4px;
-	color: #0072ca;
 }
 
 h4 {
 	margin-bottom: 3px;
-	color: #428bca;
 }
 
 h4:first-child {
@@ -48,24 +45,7 @@ p {
 	}
 }
 
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-	background: #47a9f5;
-	background-image: linear-gradient(to bottom,#428bca 0%,#2d6ca2 100%);
-	background-repeat: repeat-x;
-	filter: none;
-	color: #fff;
-}
-
-.navbar {
-	border-bottom: 5px solid #2d6ca2;
-	background: #333;
-	background: linear-gradient(to bottom,  #444, #333);
-	background-repeat: repeat-x;
-}
-
 .navbar-brand {
-	color: #fff;
 	margin-right: 0;
 	text-transform: lowercase;
 	padding-left: 12px;
@@ -75,7 +55,6 @@ p {
 .navbar-brand:hover,
 .navbar-brand:focus {
 	text-decoration: none;
-	color: #fff;
 }
 
 .navbar-right {
@@ -84,42 +63,6 @@ p {
 
 .nav > li {
 	margin-left: 0;
-}
-
-.nav > li > a {
-	color: #fff;
-}
-
-.navbar-nav > .dropdown > a .care, .navbar-nav > .dropdown > a:hover .caret, .navbar-nav > .dropdown > a:focus .caret, .navbar-nav > .active > a .caret {
-	border-top-color: #fff;
-	border-bottom-color: #fff;
-}
-
-@media (max-width:768px){
-	.dropdown-menu > li > a, .dropdown-menu > li > a:focus {
-		color: #fff;
-	}
-}
-
-.navbar-nav > .active > a, .navbar-nav > .active > a:focus {
-	color: #fff;
-	background: #2d6ca2;
-	background-image: linear-gradient(to bottom,#428bca 0%,#2d6ca2 100%);
-	background-repeat: repeat-x;
-}
-
-.navbar-nav > li > a:hover, .navbar-nav > li > a:focus, .navbar-nav > .active > a:hover {
-	color: #fff;
-	background: #444;
-	background: linear-gradient(to bottom,  #555, #444);
-	background-repeat: repeat-x;
-}
-
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-	color: #fff;
-	background: #2690e1;
-	background-image: linear-gradient(to bottom, #2690e1, #0b7bd2);
-	background-repeat: repeat-x;
 }
 
 .nav .navbar-nav .pull-right {
@@ -143,7 +86,6 @@ p {
 	width: 24px;
 	height: 3px;
 	border-radius: 1px;
-	background-color: #fff;
 }
 
 /* Pagination */
@@ -153,11 +95,6 @@ p {
 
 .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span {
 	border-radius: 0;
-}
-
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #269feb;
-	background-color: #269feb;
 }
 
 /* Rows en cols */
@@ -178,107 +115,6 @@ p {
 }
 
 /* Buttons */
-.btn:active, .btn.active {
-	background: none;
-}
-
-.btn-default {
-	text-shadow: 0 1px 0 #fff;
-	background-image: linear-gradient(to bottom,#fff 0%,#e0e0e0 100%);
-	background-repeat: repeat-x;
-	border-color: #ccc;
-}
-
-.btn-default:hover, .btn-default:focus {
-	background-color: #e0e0e0;
-	background-position: 0 -15px;
-}
-
-.btn-default:active, .btn-default.active {
-	background: #e0e0e0;
-	border-color: #dbdbdb;
-}
-
-.btn-primary {
-	background-image: linear-gradient(to bottom,#428bca 0%,#2d6ca2 100%);
-	background-repeat: repeat-x;
-	border-color: #2b669a;
-}
-
-.btn-primary:hover, .btn-primary:focus {
-	background-color: #2d6ca2;
-	background-position: 0 -15px;
-}
-
-.btn-primary:active, .btn-primary.active {
-	background: #2d6ca2;
-	border-color: #2b669a;
-}
-
-.btn-success {
-	background-image: linear-gradient(to bottom,#5cb85c 0%,#419641 100%);
-	background-repeat: repeat-x;
-	border-color: #3e8f3e;
-}
-
-.btn-success:hover, .btn-success:focus {
-	background-color: #419641;
-	background-position: 0 -15px;
-}
-
-.btn-success:active, .btn-success.active {
-	background: #419641;
-	border-color: #3e8f3e;
-}
-
-.btn-warning {
-	background-image: linear-gradient(to bottom,#f0ad4e 0%,#eb9316 100%);
-	background-repeat: repeat-x;
-	border-color: #e38d13;
-}
-
-.btn-warning:hover, .btn-warning:focus {
-	background-color: #eb9316;
-	background-position: 0 -15px;
-}
-
-.btn-warning:active, .btn-warning.active {
-	background: #eb9316;
-	border-color: #e38d13;
-}
-
-.btn-danger {
-	background-image: linear-gradient(to bottom,#d9534f 0%,#c12e2a 100%);
-	background-repeat: repeat-x;
-	border-color: #b92c28;
-}
-
-.btn-danger:hover, .btn-danger:focus {
-	background-color: #c12e2a;
-	background-position: 0 -15px;
-}
-
-.btn-danger:active, .btn-danger.active {
-	background: #c12e2a;
-	border-color: #b92c28;
-}
-
-.btn-info {
-	background-image: linear-gradient(to bottom,#5bc0de 0%,#2aabd2 100%);
-	background-repeat: repeat-x;
-	border-color: #28a4c9;
-}
-
-.btn-info:hover, .btn-info:focus {
-	background-color: #2aabd2;
-	background-position: 0 -15px;
-}
-
-.btn-info:active, .btn-info.active {
-	background: #2aabd2;
-	border-color: #28a4c9;
-}
-
 .btn-update {
 	margin-right: 6px;
 }
@@ -291,7 +127,6 @@ p {
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 	border: none;
-	border-left: #155ac9;
 }
 
 /* Input */
@@ -325,18 +160,6 @@ p {
 	height: 38px;
 }
 
-.panel-default .panel-heading {
-	background: #0b8ada;
-	background-image: linear-gradient(#444, #333);
-	background-repeat: repeat-x;
-	color: #fff;
-}
-
-.panel-warning .panel-heading {
-	background: #ff9c00;
-	color: #fff;
-}
-
 .panel-body {
 	padding: 10px;
 }
@@ -345,27 +168,9 @@ p {
 .alert, #redirect {
 	border: none;
 	margin: 0 5px 10px 5px;
-	background-color: #fff;
-	border-left: #555 5px solid;
 }
-
-.alert-warning {
-	border-left: #f79f13 5px solid;
-}	
-
-.alert-info, #redirect {
-	border-left: #2ca0e9 5px solid;
-}
-
 .alert-danger {
-	border-left: #ff5a00 5px solid;
-	color: #d33200;
 	margin: 0 0 10px 0;
-}
-
-.alert-success {
-	border-left: #41d300 5px solid;
-	color: #4e9e00;
 }
 
 #redirect {
@@ -394,7 +199,6 @@ footer {
 /* Breadcrumb */
 .breadcrumb {
 	margin-bottom: 5px;
-	color: #a8a8a8;
 	padding: 7px 15px;
 }
 
@@ -403,8 +207,6 @@ footer {
 	max-width: 330px;
 	padding: 20px 30px 9px 30px;
 	margin: 60px auto 20px;
-	background-color: #fff;
-	border: #ddd 1px solid;
 }
 
 .form .form-heading, .form .checkbox {
@@ -419,7 +221,6 @@ footer {
 }
 
 .form-heading {
-	color: #2ca0e9;
 	margin-top: 0;
 	font-weight: 100;
 }

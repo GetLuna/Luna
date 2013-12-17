@@ -10,7 +10,7 @@
 // The ModernBB version this script installs
 define('FORUM_VERSION', '2.2.02');
 
-define('FORUM_DB_REVISION', 43);
+define('FORUM_DB_REVISION', 44);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 6);
 
@@ -1433,6 +1433,11 @@ else
 				'datatype'		=> 'VARCHAR(25)',
 				'allow_null'	=> false,
 				'default'		=> '\''.$db->escape($default_style).'\''
+			),
+			'backstage_style'	=> array(
+				'datatype'		=> 'VARCHAR(25)',
+				'allow_null'	=> false,
+				'default'		=> 'ModernBB'
 			),
 			'num_posts'			=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
