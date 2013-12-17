@@ -82,9 +82,14 @@ h4 {
 	background: none;
 }
 
+.btn:active, .btn.active {
+	background: none;
+}
+
 .btn-default {
 	text-shadow: 0 1px 0 #fff;
 	background-image: linear-gradient(to bottom,#fff 0%,#e0e0e0 100%);
+	background-repeat: repeat-x;
 	border-color: #ccc;
 }
 
@@ -100,6 +105,7 @@ h4 {
 
 .btn-primary {
 	background-image: linear-gradient(to bottom,#428bca 0%,#2d6ca2 100%);
+	background-repeat: repeat-x;
 	border-color: #2b669a;
 }
 
@@ -115,6 +121,7 @@ h4 {
 
 .btn-success {
 	background-image: linear-gradient(to bottom,#5cb85c 0%,#419641 100%);
+	background-repeat: repeat-x;
 	border-color: #3e8f3e;
 }
 
@@ -130,6 +137,7 @@ h4 {
 
 .btn-warning {
 	background-image: linear-gradient(to bottom,#f0ad4e 0%,#eb9316 100%);
+	background-repeat: repeat-x;
 	border-color: #e38d13;
 }
 
@@ -145,6 +153,7 @@ h4 {
 
 .btn-danger {
 	background-image: linear-gradient(to bottom,#d9534f 0%,#c12e2a 100%);
+	background-repeat: repeat-x;
 	border-color: #b92c28;
 }
 
@@ -160,6 +169,7 @@ h4 {
 
 .btn-info {
 	background-image: linear-gradient(to bottom,#5bc0de 0%,#2aabd2 100%);
+	background-repeat: repeat-x;
 	border-color: #28a4c9;
 }
 
