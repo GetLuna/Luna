@@ -21,9 +21,7 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 header('Content-type: text/html; charset=utf-8');
 
 // Load the template
-if (defined('FORUM_ADMIN_CONSOLE'))
-	$tpl_file = 'admin.tpl';
-else if (defined ('FORUM_FORM'))
+if (defined ('FORUM_FORM'))
 	$tpl_file = 'form.tpl';
 else
 	$tpl_file = 'main.tpl';

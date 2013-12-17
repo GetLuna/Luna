@@ -21,10 +21,7 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 header('Content-type: text/html; charset=utf-8');
 
 // Load the template
-if (defined('FORUM_ADMIN_CONSOLE'))
-	$tpl_file = '../include/template/admin.tpl';
-
-$tpl_main = file_get_contents($tpl_file);
+$tpl_main = file_get_contents('../include/template/admin.tpl');
 
 // START SUBST - <pun_language>
 $tpl_main = str_replace('<pun_language>', $lang['lang_identifier'], $tpl_main);
