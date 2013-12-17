@@ -337,8 +337,13 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .time-nr {
-	font-size: 70%;
-	color: #ccc;
+	font-size: 80%;
+	color: #aaa;
+}
+
+.post-div {
+	margin-top: 2px;
+	margin-bottom: 5px;
 }
 
 .modlist {
@@ -374,10 +379,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 .is-offline {
 	border-left: 4px #aaa solid;
 	padding-left: 4px;
-}
-
-.postsignature hr {
-	margin-bottom: 0;
 }
 
 .modcontrols {

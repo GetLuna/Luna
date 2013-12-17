@@ -362,12 +362,13 @@ while ($cur_post = $db->fetch_assoc($result))
                 </span>
             </td>
             <td class="col-lg-10 post-content">
-                <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
+                <p class="time-nr"><a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a><span class="pull-right">#<?php echo ($start_from + $post_count) ?></span></p>
+				<hr class="post-div" />
                 <div class="postmsg">
                     <?php echo $cur_post['message']."\n" ?>
 <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
                 </div>
-                <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
+                <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr class="post-div" />'.$signature.'</div>'."\n"; ?>
             </td>
         </tr>
         <?php if (!$pun_user['is_guest']) { ?>
