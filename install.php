@@ -257,6 +257,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
         <title><?php echo $lang['ModernBB Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="backstage/css/color/ModernBB.css" />
         <script type="text/javascript">
         /* <![CDATA[ */
         function process_form(the_form)
@@ -324,12 +325,12 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
                                 </label>
                                 <br /><p class="help-block"><?php echo $lang['Choose install language info'] ?></p>
                             </fieldset>
-                        <div class="panel-footer">
-                        	<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
                         </div>
-					</div>
-				</div>
-			</form>
+                        <div class="panel-footer">
+                            <input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
+                        </div>
+                    </div>
+                </form>
 <?php endif; ?>
                         
 <?php if (!empty($alerts)): ?>
@@ -448,9 +449,9 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 							<br /><p class="help-block"><?php echo $lang['Info 7'] ?></p>
 						</fieldset>
 					</div>
-				</div>
-				<div class="panel-footer">
-					<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
+                    <div class="panel-footer">
+                        <input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
+                    </div>
 				</div>
             </form>
         </div>
@@ -1273,22 +1274,6 @@ else
 	);
 
 	$db->create_table('topics', $schema) or error('Unable to create topics table', __FILE__, __LINE__, $db->error());
-
-	$schema = array(
-		'FIELDS' => array(
-			'conf_name' => array(
-				'datatype' => 'VARCHAR(40)',
-				'allow_null' => false,
-				'default' => '\'\''
-			),
-			'conf_value' => array(
-				'datatype' => 'VARCHAR(40)',
-				'allow_null' => false,
-				'default' => '\'\''
-			)
-		),
-		'PRIMARY KEY' => array('conf_name')
-	);
 
 	$schema = array(
 		'FIELDS'		=> array(
