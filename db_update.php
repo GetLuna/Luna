@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '2.2.02');
 
-define('UPDATE_TO_DB_REVISION', 44);
+define('UPDATE_TO_DB_REVISION', 45);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 6);
 
