@@ -11,7 +11,7 @@
  /* General fixes */
 body, html {
 	background-color: #f2f2f2;
-	font-family: "Segoe UI";
+	font-family: "Segoe UI", Arial;
 }
 
 .forum-list {
@@ -36,7 +36,8 @@ h2 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Segoe UI Light";
+	font-family: "Segoe UI Light", "Segoe UI", Arial;
+	font-weight: 100;
 }
 
 /* Header */
