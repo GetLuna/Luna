@@ -88,6 +88,10 @@ p {
 	border-radius: 1px;
 }
 
+.usermenu {
+	margin-right: 15px;
+}
+
 /* Pagination */
 .pagination {
 	margin: 0;
@@ -207,6 +211,7 @@ footer {
 	max-width: 330px;
 	padding: 20px 30px 9px 30px;
 	margin: 60px auto 20px;
+	border-radius: 3px;
 }
 
 .form .form-heading, .form .checkbox {
@@ -246,3 +251,13 @@ footer {
 .form .actions, .form .remember {
 	margin-top: 10px;
 }
+
+.top-form {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.bottom-form {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}	

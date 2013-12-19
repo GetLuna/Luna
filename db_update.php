@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.2.02');
+define('UPDATE_TO', '2.9.0');
 
 define('UPDATE_TO_DB_REVISION', 45);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -303,6 +303,7 @@ if (empty($stage))
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
         <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
+        <link href="backstage/css/color/ModernBB.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
         <form class="form" id="install" method="post" action="db_update.php">
@@ -310,9 +311,9 @@ if (empty($stage))
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
                 <p><?php echo $lang['Database update info'] ?></p>
-                <div class="control-group">
-                    <input class="form-control full-form db-password" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
-                    <input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
+                <div>
+                    <input class="form-control full-form db-password top-form" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
+                    <input class="btn btn-primary btn-block btn-update bottom-form" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
                 </div>
             </fieldset>
 		</form>

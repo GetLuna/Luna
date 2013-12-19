@@ -271,11 +271,9 @@ require FORUM_ROOT.'header.php';
         <h1 class="form-heading"><?php echo $lang['Login'] ?></h1>
         <input type="hidden" name="form_sent" value="1" />
         <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
-        <div class="control-group">
-            <div class="controls">
-                <input class="form-control" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="Username" />
-                <input class="form-control" type="password" name="req_password" size="25" tabindex="2" placeholder="Password" /> 
-            </div>
+        <div>
+            <input class="form-control top-form" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
+            <input class="form-control bottom-form" type="password" name="req_password" size="25" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" /> 
         </div>
         <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a> &middot; <?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
         <div class="control-group">

@@ -105,7 +105,7 @@ function generate_admin_menu($page = '')
 <?php } ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
+                <li class="dropdown usermenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?php echo $lang['Welcome'] ?>, <?php print(pun_htmlspecialchars($pun_user['username'])) ?> <b class="caret"></b>
                     </a>
