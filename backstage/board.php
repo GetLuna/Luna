@@ -311,8 +311,6 @@ else if (isset($_GET['edit_forum']))
 	require FORUM_ROOT.'backstage/footer.php';
 }
 
-
-
 // Add a new category
 if (isset($_POST['add_cat']))
 {
@@ -436,7 +434,7 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
 <h2><?php echo $lang['Board structure'] ?></h2>
 <div class="row">
-	<div class="<?php if (($num_cats) > '1') { ?>col-md-5<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
+	<div class="<?php if (($num_cats) > '0') { ?>col-md-5<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php echo $lang['Add forum'] ?></h3>
@@ -477,7 +475,7 @@ require FORUM_ROOT.'backstage/header.php';
 			</div>
 		</div>
 	</div>
-	<div class="<?php if (($num_cats) > '1') { ?>col-md-4<?php } else { ?>col-md-12<?php }; ?>">
+	<div class="<?php if (($num_cats) > '0') { ?>col-md-4<?php } else { ?>col-md-12<?php }; ?>">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php echo $lang['Add categories head'] ?></h3>
@@ -498,7 +496,7 @@ require FORUM_ROOT.'backstage/header.php';
 		</div>
 	</div>
 	<?php if ($num_cats): ?>
-	<div class="<?php if (($num_cats) > '1') { ?>col-md-3<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
+	<div class="<?php if (($num_cats) > '0') { ?>col-md-3<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php echo $lang['Delete categories head'] ?></h3>
