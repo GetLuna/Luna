@@ -1540,7 +1540,7 @@ else
 		{
 ?>
                     <div class="form-group">
-                    	<label><?php echo $lang['Language'] ?></label>
+                    	<label class="col-sm-2 control-label"><?php echo $lang['Language'] ?></label>
                         <div class="col-sm-10">
                     		<select class="form-control" name="form[language]">
 <?php
