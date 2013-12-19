@@ -378,6 +378,17 @@ h2 {
 	border-color: #2ca0e9;
 }
 
+/* Buttons */
+.panel-title .btn {
+	margin-top: -10px;
+	margin-right: -15px;
+	padding: 8px 14px 9px 14px;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border: none;
+}
+
 /* Generic Float Clear */
 * html #brdmain {
 	display: inline-block;

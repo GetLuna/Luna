@@ -1080,17 +1080,25 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	require FORUM_ROOT.'header.php';
 
 ?>
-<h2 class="profile-h2"><?php echo $lang['Profile'] ?></h2>
-<table class="table">
-    <tr><td class="active" colspan="2"><h4><?php echo $lang['Section personality'] ?></h4></td></tr>
-	<?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-<?php if (!empty($user_messaging)): ?>
-    <tr><td class="active" colspan="2"><h4><?php echo $lang['Section messaging'] ?></h4></td></tr>
-	<?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-<?php endif; ?>
-    <tr><td class="active" colspan="2"><h4><?php echo $lang['User activity'] ?></h4></td></tr>
-	<?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-</table>
+<h2><?php echo $lang['Profile'] ?></h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
+    </div>
+    <table class="table">
+        <thead></thead>
+        <tbody>
+            <tr><th class="active" colspan="2"><h3><?php echo $lang['Section personality'] ?></h3></th></tr>
+            <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
+            <?php if (!empty($user_messaging)): ?>
+                <tr><th class="active" colspan="2"><h3><?php echo $lang['Section messaging'] ?></h3></th></tr>
+                <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
+            <?php endif; ?>
+            <tr><th class="active" colspan="2"><h3><?php echo $lang['User activity'] ?></h3></th></tr>
+            <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
+        </tbody>
+    </table>
+</div>
 
 <?php
 
@@ -1236,16 +1244,24 @@ else
 
 <div class="col-md-10">
 	<h2><?php echo $lang['Profile'] ?> <small><?php echo $lang['View info'] ?></small></h2>
-    <table class="table">
-        <tr><td class="active" colspan="2"><h4><?php echo $lang['Section personality'] ?></h4></td></tr>
-        <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-    <?php if (!empty($user_messaging)): ?>
-        <tr><td class="active" colspan="2"><h4><?php echo $lang['Section messaging'] ?></h4></td></tr>
-        <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-    <?php endif; ?>
-        <tr><td class="active" colspan="2"><h4><?php echo $lang['User activity'] ?></h4></td></tr>
-        <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
+        </div>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr><th class="active" colspan="2"><h3><?php echo $lang['Section personality'] ?></h3></th></tr>
+                <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
+				<?php if (!empty($user_messaging)): ?>
+                    <tr><th class="active" colspan="2"><h3><?php echo $lang['Section messaging'] ?></h3></th></tr>
+                    <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
+				<?php endif; ?>
+                <tr><th class="active" colspan="2"><h3><?php echo $lang['User activity'] ?></h3></th></tr>
+                <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?php
@@ -1303,7 +1319,7 @@ else
     <form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Personal details legend'] ?></h3>
+                <h3 class="panel-title"><?php echo $lang['Personal details legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
             </div>
             <div class="panel-body">
                 <fieldset>
@@ -1376,9 +1392,6 @@ else
                 </fieldset>
             </div>
         </div>
-        <div class="alert alert-info">
-			<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" />
-		</div>
 <?php if ($pun_config['o_avatars'] == '1'): ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -1397,7 +1410,7 @@ else
 <?php endif; if ($pun_config['o_signatures'] == '1'): ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Signature legend'] ?></h3>
+                <h3 class="panel-title"><?php echo $lang['Signature legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
             </div>
             <div class="panel-body">
                 <fieldset>
@@ -1413,9 +1426,6 @@ else
                 </fieldset>
 			</div>
         </div>
-        <div class="alert alert-info">
-			<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" />
-		</div>
 <?php endif; ?>
     </form>
 <?php
@@ -1436,7 +1446,7 @@ else
     <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Settings legend'] ?></h3>
+                <h3 class="panel-title"><?php echo $lang['Settings legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
             </div>
             <div class="panel-body">
                 <fieldset>
@@ -1718,9 +1728,6 @@ else
                 </fieldset>
             </div>
         </div>
-        <div class="alert alert-info">
-			<input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" />
-        </div>
     </form>
 <?php
 
@@ -1860,25 +1867,26 @@ else
 	generate_profile_menu('view');
 
 ?>
-
 <div class="col-md-10">
 	<h2><?php echo $lang['Profile'] ?> <small><?php echo $lang['View info'] ?></small></h2>
-    <table class="table">
-        <tr><td class="active" colspan="2"><h4><?php echo $lang['Section personality'] ?></h4></td></tr>
-        <tr>
-            <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-        </tr>
-    <?php if (!empty($user_messaging)): ?>
-        <tr><td class="active" colspan="2"><h4><?php echo $lang['Section messaging'] ?></h4></td></tr>
-        <tr>
-            <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-        </tr>
-    <?php endif; ?>
-        <tr><td class="active" colspan="2"><h4><?php echo $lang['User activity'] ?></h4></td></tr>
-        <tr>
-            <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-        </tr>
-    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
+        </div>
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr><th class="active" colspan="2"><h3><?php echo $lang['Section personality'] ?></h3></th></tr>
+                <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
+				<?php if (!empty($user_messaging)): ?>
+                    <tr><th class="active" colspan="2"><h3><?php echo $lang['Section messaging'] ?></h3></th></tr>
+                    <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
+				<?php endif; ?>
+                <tr><th class="active" colspan="2"><h3><?php echo $lang['User activity'] ?></h3></th></tr>
+                <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?php
@@ -1973,7 +1981,7 @@ else
 ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Set mods legend'] ?></h3>
+                <h3 class="panel-title"><?php echo $lang['Set mods legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="update_forums" value="<?php echo $lang['Update forums'] ?>" /></span></h3>
             </div>
             <div class="panel-body">
                 <fieldset>
@@ -2003,7 +2011,6 @@ else
 				}
 
 ?>
-                    <br /><input type="submit" class="btn btn-primary" name="update_forums" value="<?php echo $lang['Update forums'] ?>" />
                 </fieldset>
             </div>
         </div>
@@ -2023,7 +2030,7 @@ else
     <form id="profile1" class="form-horizontal" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['User tools'] ?></h3>
+                <h3 class="panel-title"><?php echo $lang['User tools'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
             </div>
             <div class="panel-body">
                 <input type="hidden" name="form_sent" value="1" />
@@ -2040,7 +2047,6 @@ else
                 </fieldset>
             </div>
         </div>
-        <div class="alert alert-info"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></div>
     </form>
 <?php
 
