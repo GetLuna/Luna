@@ -148,7 +148,6 @@ if (!isset($_POST['form_sent']))
 	$description = $lang['Description'];
 	$default_lang = $install_lang;
 	$default_style = 'Randomness';
-	$default_color = 'ModernBB';
 }
 else
 {
@@ -539,9 +538,6 @@ else
 		if ((strtoupper($result) != 'YES'))
 			error($lang['InnoDB off']);
 	}
-	
-	// Define the default color
-	$default_color = 'ModernBB';
 
 	// Start a transaction
 	$db->start_transaction();
@@ -1425,7 +1421,7 @@ else
 			'backstage_style'	=> array(
 				'datatype'		=> 'VARCHAR(25)',
 				'allow_null'	=> false,
-				'default'		=> '\''.$db->escape($default_color).'\''
+				'default'		=> '\'ModernBB\''
 			),
 			'num_posts'			=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
@@ -1506,7 +1502,7 @@ else
 	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\')')
 		or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, backstage_style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.pun_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', \''.$db->escape($default_color).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, backstage_style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.pun_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', \'ModernBB\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
 		or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Enable/disable avatars depending on file_uploads setting in PHP configuration
