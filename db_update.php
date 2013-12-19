@@ -305,15 +305,14 @@ if (empty($stage))
         <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
         <link href="backstage/css/color/ModernBB.css" type="text/css" rel="stylesheet">
 	</head>
-	<body onload="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
+	<body onload="document.getElementById('install').start.disabled=false;">
         <form class="form" id="install" method="post" action="db_update.php">
             <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
                 <p><?php echo $lang['Database update info'] ?></p>
                 <div>
-                    <input class="form-control full-form db-password top-form" type="password" id="req_db_pass" name="req_db_pass" placeholder="Database password" />
-                    <input class="btn btn-primary btn-block btn-update bottom-form" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
+                    <input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
                 </div>
             </fieldset>
 		</form>
@@ -327,65 +326,6 @@ if (empty($stage))
 	exit;
 
 }
-
-// Read the lock file
-$lock = file_exists(FORUM_CACHE_DIR.'db_update.lock') ? trim(file_get_contents(FORUM_CACHE_DIR.'db_update.lock')) : false;
-$lock_error = false;
-
-// Generate or fetch the UID - this confirms we have a valid admin
-if (isset($_POST['req_db_pass']))
-{
-	$req_db_pass = strtolower(pun_trim($_POST['req_db_pass']));
-
-	switch ($db_type)
-	{
-		// For SQLite we compare against the database file name, since the password is left blank
-		case 'sqlite':
-		case 'sqlite3':
-			if ($req_db_pass != strtolower($db_name))
-				error(sprintf($lang['Invalid file error'], 'config.php'));
-
-			break;
-		// For everything else, check the password matches
-		default:
-			if ($req_db_pass != strtolower($db_password))
-				error(sprintf($lang['Invalid password error'], 'config.php'));
-
-			break;
-	}
-
-	// Generate a unique id to identify this session, only if this is a valid session
-	$uid = pun_hash($req_db_pass.'|'.uniqid(rand(), true));
-	if ($lock) // We already have a lock file
-		$lock_error = true;
-	else // Create the lock file
-	{
-		$fh = @fopen(FORUM_CACHE_DIR.'db_update.lock', 'wb');
-		if (!$fh)
-			error(sprintf($lang['Unable to lock error'], 'cache'));
-
-		fwrite($fh, $uid);
-		fclose($fh);
-
-		// Regenerate the config cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
-
-		generate_config_cache();
-	}
-}
-else if (isset($_GET['uid']))
-{
-	$uid = pun_trim($_GET['uid']);
-	if (!$lock || $lock != $uid) // The lock doesn't exist or doesn't match the given UID
-		$lock_error = true;
-}
-else
-	error($lang['No password error']);
-
-// If there is an error with the lock file
-if ($lock_error)
-	error(sprintf($lang['Script runs error'], FORUM_CACHE_DIR.'db_update.lock'));
 
 switch ($stage)
 {
@@ -619,7 +559,7 @@ switch ($stage)
                 <h3 class="panel-title"><?php echo $lang['Error converting users'] ?></h3>
             </div>
             <div class="panel-body">
-                <form method="post" action="db_update.php?stage=conv_users_dupe&amp;uid=<?php echo $uid ?>">
+                <form method="post" action="db_update.php?stage=conv_users_dupe">
                     <input type="hidden" name="form_sent" value="1" />
                         <p><?php echo $lang['Error info 1'] ?></p>
                         <p><?php echo $lang['Error info 2'] ?></p>
@@ -855,5 +795,5 @@ $db->end_transaction();
 $db->close();
 
 if ($query_str != '')
-	exit('<script type="text/javascript">window.location="db_update.php'.$query_str.'&uid='.$uid.'"</script><noscript><meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'&uid='.$uid.'" /></noscript>');
+	exit('<script type="text/javascript">window.location="db_update.php'.$query_str.'"</script><noscript><meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /></noscript>');
 
