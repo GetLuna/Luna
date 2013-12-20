@@ -276,7 +276,7 @@ else if ($action == 'change_email')
         <label><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" name="req_password" size="16" /></label>
         <p><?php echo $lang['Email instructions'] ?></p>
     </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+    <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 </form>
 <?php
 
@@ -398,7 +398,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
                 <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" type="file" size="40" /></label>
                 <span class="help-block"><?php echo $lang['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></span>
             </fieldset>
-            <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
         </form>
     </div>
 </div>
@@ -630,7 +630,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
         </div>
 		<label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang['Delete posts'] ?></label>
     </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+    <p><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 </form>
 <?php
 

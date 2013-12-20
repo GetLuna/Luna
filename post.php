@@ -660,7 +660,7 @@ if (!empty($checkboxes))
         </div>
     </div>
     <div class="alert alert-info">
-        <input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+        <input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-primary" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
     </div>
 </form>
 <?php

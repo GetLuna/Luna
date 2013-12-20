@@ -126,7 +126,7 @@ if (isset($_GET['tid']))
 					</div>
 				</fieldset>
 			</div>
-			<input class="btn btn-primary" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+			<input class="btn btn-primary" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -242,7 +242,7 @@ if (isset($_GET['tid']))
                 </label>
                 <p><?php echo $lang['Split posts comply'] ?></p>
             </fieldset>
-			<input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+			<input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -500,7 +500,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
                     </label>
                     <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /> <?php echo $lang['Leave redirect'] ?><br />
 				</fieldset>
-			<input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+			<input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -593,7 +593,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
             <fieldset>
                 <input type="checkbox" name="with_redirect" value="1" /> <?php echo $lang['Leave redirect'] ?><br /><br />
             </fieldset>
-			<input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php echo $lang['Merge'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+			<input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php echo $lang['Merge'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>
@@ -672,7 +672,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
             <fieldset>
                 <p><?php echo $lang['Delete topics comply'] ?></p>
             </fieldset>
-			<input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+			<input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 		</form>
 	</div>
 </div>

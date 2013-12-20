@@ -95,7 +95,7 @@ $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smili
 	<div class="panel-body">
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
             <p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '<strong>'.$lang['Warning'].'</strong>' ?><br /><?php echo $lang['Delete info'] ?></p>
-			<div><input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" /> <a href="javascript:history.go(-1)" class="btn btn-default"><?php echo $lang['Go back'] ?></a></div>
+			<div><input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" /> <a href="javascript:history.go(-1)" class="btn btn-link"><?php echo $lang['Go back'] ?></a></div>
 		</form>
 	</div>
 </div>

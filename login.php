@@ -212,7 +212,7 @@ if (!empty($errors))
         <input type="hidden" name="form_sent" value="1" />
         <label class="required"><input class="form-control" type="text" name="req_email" placeholder="<?php echo $lang['Email'] ?>" /></label>
         <div class="pull-right" style="margin-top: 60px;">
-            <?php if (empty($errors)): ?><a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a><?php endif; ?><input class="btn btn-primary" type="submit" name="request_pass" value="<?php echo $lang['Submit'] ?>" />
+            <?php if (empty($errors)): ?><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a><?php endif; ?><input class="btn btn-primary" type="submit" name="request_pass" value="<?php echo $lang['Submit'] ?>" />
         </div>
     </fieldset>
 </form>

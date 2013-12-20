@@ -185,7 +185,7 @@ else if (isset($_GET['email']))
                 <textarea name="req_message" class="form-control full-form" rows="10" cols="75" tabindex="2"></textarea></label>
                 <p class="help-block"><?php echo $lang['Email disclosure note'] ?></p>
             </fieldset>
-			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="3" accesskey="s" /><a href="javascript:history.go(-1)" class="btn btn-defaullt"><?php echo $lang['Go back'] ?></a></div>
+			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="3" accesskey="s" /><a href="javascript:history.go(-1)" class="btn btn-link"><?php echo $lang['Go back'] ?></a></div>
 		</form>
 	</div>
 </div>
@@ -302,7 +302,7 @@ else if (isset($_GET['report']))
                 <input type="hidden" name="form_sent" value="1" />
                 <label class="required"><?php echo $lang['Reason'] ?> <br /><textarea class="form-control" name="req_reason" rows="5" cols="60"></textarea><br /></label>
             </fieldset>
-			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
+			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
 		</form>
 	</div>
 </div>
