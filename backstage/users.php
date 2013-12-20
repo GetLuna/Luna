@@ -594,7 +594,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 			</fieldset>
             <div class="control-group">
                 <input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang['Delete'] ?>" />
-                <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+                <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
             </div>
         </form>
     </div>

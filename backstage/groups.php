@@ -501,7 +501,7 @@ else if (isset($_GET['del_group']))
                 </fieldset>
             <div class="control-group">
                 <input class="btn btn-danger" type="submit" name="del_group_comply" value="<?php echo $lang['Delete'] ?>" tabindex="1" />
-                <a class="btn" href="javascript:history.go(-1)" tabindex="2"><?php echo $lang['Go back'] ?></a>
+                <a class="btn btn-link" href="javascript:history.go(-1)" tabindex="2"><?php echo $lang['Go back'] ?></a>
             </div>
         </form>
     </div>
@@ -547,7 +547,7 @@ else if (isset($_GET['del_group']))
             </fieldset>
             <p class="control-group">
                 <input class="btn btn-danger" type="submit" name="del_group" value="<?php echo $lang['Delete group'] ?>" />
-                <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+                <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
             </p>
         </form>
     </div>

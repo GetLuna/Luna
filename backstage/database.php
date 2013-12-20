@@ -567,7 +567,7 @@ elseif ( isset($_POST['restore_start']) ) {
 		<div class="box">
 			<div class="inbox">
 				<p>
-					<a href="database.php"><?php echo $lang['Go back'] ?></a>
+					<a class="btn btn-link" href="database.php"><?php echo $lang['Go back'] ?></a>
 				</p>
 			</div>
 		</div>

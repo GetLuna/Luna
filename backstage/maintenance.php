@@ -63,30 +63,27 @@ if ($action == 'rebuild')
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Rebuilding search index']);
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo generate_page_title($page_title) ?></title>
-<style type="text/css">
-body {
-	font: 12px Verdana, Arial, Helvetica, sans-serif;
-	color: #333333;
-	background-color: #FFFFFF
-}
-
-h1 {
-	font-size: 16px;
-	font-weight: normal;
-}
-</style>
-</head>
-<body>
-
-<h1><?php echo $lang['Rebuilding index info'] ?></h1>
-<hr />
-
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo generate_page_title($page_title) ?></title>
+        <style type="text/css">
+			body {
+				font: 12px "Segoe UI Light", "Segoe UI", Arial, Helvetica, sans-serif;
+				color: #333333;
+				background-color: #FFFFFF
+			}
+			
+			h1 {
+				font-size: 16px;
+				font-weight: normal;
+			}
+        </style>
+    </head>
+    <body>
+        <h1><?php echo $lang['Rebuilding index info'] ?></h1>
+        <hr />
 <?php
 
 	$query_str = '';
@@ -214,6 +211,7 @@ if ($action == 'prune')
 	generate_admin_menu('maintenance');
 
 ?>
+<h2><?php echo $lang['Maintenance'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Prune head'] ?></h3>
@@ -229,8 +227,10 @@ if ($action == 'prune')
                 <p><?php printf($lang['Confirm prune info'], $prune_days, $forum, forum_number_format($num_topics)) ?></p>
                 <p class="warntext"><?php echo $lang['Confirm prune warn'] ?></p>
             </fieldset>
-            <div class="control-group"><input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang['Prune'] ?>" />
-            <a class="btn" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
+            <div class="btn-group">
+                <input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang['Prune'] ?>" />
+                <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            </div>
         </form>
     </div>
 </div>
