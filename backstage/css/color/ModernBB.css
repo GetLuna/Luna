@@ -202,24 +202,24 @@ h4 {
 /* Alerts and redirects */
 .alert, #redirect {
 	background-color: #fff;
-	border-left: #555 5px solid;
+	border-left: #555 5px solid !important;
 }
 
 .alert-warning {
-	border-left: #f79f13 5px solid;
+	border-left: #f79f13 5px solid !important;
 }	
 
 .alert-info, #redirect {
-	border-left: #2ca0e9 5px solid;
+	border-left: #2ca0e9 5px solid !important;
 }
 
 .alert-danger {
-	border-left: #ff5a00 5px solid;
+	border-left: #ff5a00 5px solid !important;
 	color: #d33200;
 }
 
 .alert-success {
-	border-left: #41d300 5px solid;
+	border-left: #41d300 5px solid !important;
 	color: #4e9e00;
 }
 
