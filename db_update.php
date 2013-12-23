@@ -16,8 +16,6 @@ define('UPDATE_TO_PARSER_REVISION', 6);
 
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '5.0.1');
-define('MIN_MARIADB_VERSION', '5.3.4');
-define('MIN_PGSQL_VERSION', '7.0.0');
 define('FORUM_SEARCH_MIN_WORD', 3);
 define('FORUM_SEARCH_MAX_WORD', 20);
 
@@ -147,14 +145,6 @@ switch ($db_type)
 			error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], UPDATE_TO, MIN_MYSQL_VERSION));
 
 		$mysql = true;
-		break;
-		
-	case 'mariadb':
-		$mariadb_info = $db->get_version();
-		if (version_compare($mariadb_info['version'], MIN_MARIADB_VERSION, '<'))
-			error(sprintf($lang['You are running error'], 'MardiaDB', $mariadb_info['version'], UPDATE_TO, MIN_MARIADB_VERSION));
-
-		$mariadb = true;
 		break;
 }
 
@@ -433,7 +423,7 @@ switch ($stage)
 	case 'conv_users_dupe':
 		$query_str = '?stage=preparse_posts';
 
-		if (!$mysql || !$mariadb || empty($_SESSION['dupe_users']))
+		if (!$mysql || empty($_SESSION['dupe_users']))
 			break;
 
 		if (isset($_POST['form_sent']))
@@ -692,7 +682,6 @@ foreach ($errors[$id] as $cur_error)
 				case 'mysqli':
 				case 'mysql_innodb':
 				case 'mysqli_innodb':
-				case 'mariadb':
 					$db->query('ALTER TABLE '.$db->prefix.'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
 					break;
 			}

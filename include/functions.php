@@ -90,14 +90,13 @@ function check_cookie(&$pun_user)
 			{
 				$pun_user['logged'] = $now;
 
-				// With MySQL/MySQLi/MariaDB/SQLite, REPLACE INTO avoids a user having two rows in the online table
+				// With MySQL/MySQLi/SQLite, REPLACE INTO avoids a user having two rows in the online table
 				switch ($db_type)
 				{
 					case 'mysql':
 					case 'mysqli':
 					case 'mysql_innodb':
 					case 'mysqli_innodb':
-					case 'mariadb':
 					case 'sqlite':
 					case 'sqlite3':
 						$db->query('REPLACE INTO '.$db->prefix.'online (user_id, ident, logged) VALUES('.$pun_user['id'].', \''.$db->escape($pun_user['username']).'\', '.$pun_user['logged'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
@@ -279,14 +278,13 @@ function set_default_user()
 	{
 		$pun_user['logged'] = time();
 
-		// With MySQL/MySQLi/MariaDB/SQLite, REPLACE INTO avoids a user having two rows in the online table
+		// With MySQL/MySQLi/QLite, REPLACE INTO avoids a user having two rows in the online table
 		switch ($db_type)
 		{
 			case 'mysql':
 			case 'mysqli':
 			case 'mysql_innodb':
 			case 'mysqli_innodb':
-			case 'mariadb':
 			case 'sqlite':
 			case 'sqlite3':
 				$db->query('REPLACE INTO '.$db->prefix.'online (user_id, ident, logged) VALUES(1, \''.$db->escape($remote_addr).'\', '.$pun_user['logged'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
