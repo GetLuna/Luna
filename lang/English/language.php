@@ -1376,7 +1376,7 @@ $lang = array(
 'Max size help'						=>	'The maximum allowed size of avatars in bytes.',
 
 // Registration Section
-'Registration subhead'				=>	'Registration',
+'Registration subhead'				=>	'Registration settings',
 'Allow new label'					=>	'Allow new registrations',
 'Allow new help'					=>	'Controls whether this board accepts new registrations.',
 'Verify label'						=>	'Verify registrations',
@@ -1622,6 +1622,7 @@ $lang = array(
 'Global'				=>	'Global',
 'Appearance'			=>	'Appearance',
 'Features'				=>	'Features',
+'Registration'			=>	'Registration',
 'Email'					=>	'Email',
 'Maintenance'			=>	'Maintenance',
 'Database'				=>	'Database management',

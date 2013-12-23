@@ -66,7 +66,7 @@ function generate_admin_menu($page = '')
                         <li><a href="bans.php"><?php echo $lang['Bans'] ?></a></li><?php }; ?>
                     </ul>
                 </li>
-                <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'email' || $page == 'backstage' || $page == 'maintenance') echo 'active'; ?>">
+                <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'registration' || $page == 'email' || $page == 'backstage' || $page == 'database' || $page == 'maintenance') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?php echo $lang['Settings'] ?> <b class="caret"></b>
                     </a>
@@ -74,6 +74,7 @@ function generate_admin_menu($page = '')
                         <li><a href="settings.php"><?php echo $lang['Global'] ?></a></li>
                         <li><a href="appearance.php"><?php echo $lang['Appearance'] ?></a></li>
                         <li><a href="features.php"><?php echo $lang['Features'] ?></a></li>
+                        <li><a href="registration.php"><?php echo $lang['Registration'] ?></a></li>
                         <li><a href="email.php"><?php echo $lang['Email'] ?></a></li>
                         <li class="divider"></li>
                         <li><a href="maintenance.php"><?php echo $lang['Maintenance'] ?></a></li>

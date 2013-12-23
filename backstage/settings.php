@@ -45,9 +45,6 @@ if (isset($_POST['form_sent']))
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
-		'regs_allow'			=> isset($_POST['form']['regs_allow']) ? '1' : '0',
-		'regs_verify'			=> isset($_POST['form']['regs_verify']) ? '1' : '0',
-		'regs_report'			=> isset($_POST['form']['regs_report']) ? '1' : '0',
 		'rules'					=> isset($_POST['form']['rules']) ? '1' : '0',
 		'rules_message'			=> pun_trim($_POST['form']['rules_message']),
 		'antispam_api'			=> pun_trim($_POST['form']['antispam_api']),
@@ -442,100 +439,6 @@ generate_admin_menu('global');
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[avatars_size]" size="6" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
                         <span class="help-block"><?php echo $lang['Max size help'] ?></span>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Registration subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Allow new label'] ?></label>
-                    <div class="col-sm-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($pun_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Allow new help'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Verify label'] ?></label>
-                    <div class="col-sm-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Verify help'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Report new label'] ?></label>
-                    <div class="col-sm-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[regs_report]" value="1" <?php if ($pun_config['o_regs_report'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Report new help'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Use rules label'] ?></label>
-                    <div class="col-sm-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[rules]" value="1" <?php if ($pun_config['o_rules'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Use rules help'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Rules label'] ?></label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="form[rules_message]" rows="10" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_rules_message']) ?></textarea>
-						<span class="help-block"><?php echo $lang['Rules help'] ?></span>
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['E-mail default label'] ?></label>
-                    <div class="col-sm-10">
-                        <span class="help-block"><?php echo $lang['E-mail default help'] ?></span>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($pun_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Display e-mail label'] ?>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($pun_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Hide allow form label'] ?>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($pun_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Hide both label'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Antispam API label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[antispam_api]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
-                        <span class="help-block"><?php printf($lang['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                     </div>
                 </div>
             </fieldset>
