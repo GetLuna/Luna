@@ -295,6 +295,47 @@ $result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
+
+if (isset($_POST['form_sent']))
+{
+
+	$form = array(
+		'maintenance'			=> isset($_POST['form']['maintenance']) ? '1' : '0',
+		'maintenance_message'	=> pun_trim($_POST['form']['maintenance_message']),
+	);
+
+	if ($form['maintenance_message'] != '')
+		$form['maintenance_message'] = pun_linebreaks($form['maintenance_message']);
+	else
+	{
+		$form['maintenance_message'] = $lang['Default maintenance message'];
+		$form['maintenance'] = '0';
+	}
+
+	foreach ($form as $key => $input)
+	{
+		// Only update values that have changed
+		if (array_key_exists('o_'.$key, $pun_config) && $pun_config['o_'.$key] != $input)
+		{
+			if ($input != '' || is_int($input))
+				$value = '\''.$db->escape($input).'\'';
+			else
+				$value = 'NULL';
+
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
+		}
+	}
+
+	// Regenerate the config cache
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_config_cache();
+	clear_feed_cache();
+
+	redirect('backstage/maintenance.php', $lang['Options updated redirect']);
+}
+
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
@@ -302,12 +343,32 @@ require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <h2><?php echo $lang['Maintenance'] ?></h2>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang['Rebuild index'] ?>" tabindex="4" /></span></h3>
+<form class="form-horizontal" method="post" action="maintenance.php">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" id="maintenance"><?php echo $lang['Maintenance subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+        </div>
+        <div class="panel-body">
+            <input type="hidden" name="form_sent" value="1" />
+            <fieldset>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />
+                        <?php echo $lang['Maintenance mode help'] ?>
+                    </label>
+                </div>
+                <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
+                <span class="help-block"><?php echo $lang['Maintenance message help'] ?></span>
+            </fieldset>
+        </div>
     </div>
-	<div class="panel-body">
-        <form class="form-horizontal" method="get" action="maintenance.php">
+</form>
+<form class="form-horizontal" method="get" action="maintenance.php">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang['Rebuild index'] ?>" tabindex="4" /></span></h3>
+        </div>
+        <div class="panel-body">
             <input type="hidden" name="action" value="rebuild" />
             <fieldset>
                 <p><?php printf($lang['Rebuild index info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
@@ -338,15 +399,15 @@ require FORUM_ROOT.'backstage/header.php';
                 </div>
                 <p><?php echo $lang['Rebuild completed info'] ?></p>
             </fieldset>
-        </form>
+        </div>
     </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Prune subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang['Prune'] ?>" tabindex="8" /></span></h3>
-    </div>
-	<div class="panel-body">
-        <form class="form-horizontal" method="post" action="maintenance.php" onsubmit="return process_form(this)">
+</form>
+<form class="form-horizontal" method="post" action="maintenance.php" onsubmit="return process_form(this)">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Prune subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="prune" value="<?php echo $lang['Prune'] ?>" tabindex="8" /></span></h3>
+        </div>
+        <div class="panel-body">
             <input type="hidden" name="action" value="prune" />
             <fieldset>
                 <p><?php printf($lang['Prune info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
@@ -402,15 +463,15 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
             </fieldset>
-        </form>
+        </div>
     </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Prune users head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang['Prune'] ?>" tabindex="2" /></span></h3>
-    </div>
-	<div class="panel-body">
-        <form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+</form>
+<form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Prune users head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="userprune" value="<?php echo $lang['Prune'] ?>" tabindex="2" /></span></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <p><?php printf($lang['Prune users info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
@@ -473,9 +534,9 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
             </fieldset>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 <?php
 
 require FORUM_ROOT.'backstage/footer.php';

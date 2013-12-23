@@ -54,8 +54,6 @@ if (isset($_POST['form_sent']))
 		'default_email_setting'	=> intval($_POST['form']['default_email_setting']),
 		'announcement'			=> isset($_POST['form']['announcement']) ? '1' : '0',
 		'announcement_message'	=> pun_trim($_POST['form']['announcement_message']),
-		'maintenance'			=> isset($_POST['form']['maintenance']) ? '1' : '0',
-		'maintenance_message'	=> pun_trim($_POST['form']['maintenance_message']),
 	);
 
 	if ($form['board_title'] == '')
@@ -120,14 +118,6 @@ if (isset($_POST['form_sent']))
 	{
 		$form['rules_message'] = $lang['Enter rules here'];
 		$form['rules'] = '0';
-	}
-
-	if ($form['maintenance_message'] != '')
-		$form['maintenance_message'] = pun_linebreaks($form['maintenance_message']);
-	else
-	{
-		$form['maintenance_message'] = $lang['Default maintenance message'];
-		$form['maintenance'] = '0';
 	}
 
 	if ($form['feed_type'] < 0 || $form['feed_type'] > 2)
@@ -565,23 +555,6 @@ generate_admin_menu('global');
                 </div>
                 <textarea class="form-control full-form" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
                 <span class="help-block"><?php echo $lang['Announcement message help'] ?></span>
-            </fieldset>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title" id="maintenance"><?php echo $lang['Maintenance subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />
-                        <?php echo $lang['Maintenance mode help'] ?>
-                    </label>
-                </div>
-                <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
-                <span class="help-block"><?php echo $lang['Maintenance message help'] ?></span>
             </fieldset>
         </div>
     </div>
