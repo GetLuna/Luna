@@ -624,13 +624,24 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 <h2 class="profile-h2"><?php echo $lang['Confirm delete user'] ?></h2>
 <form id="confirm_del_user" method="post" action="profile.php?id=<?php echo $id ?>">
     <fieldset>
-        <div class="alert alert-danger">
-        	<h4><?php echo $lang['Confirmation info'].' <strong>'.pun_htmlspecialchars($username).'</strong>.' ?></h4>
-			<?php echo $lang['Delete warning'] ?>
+        <div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.pun_htmlspecialchars($username).'</strong>' ?></h3>
+            </div>
+            <div class="panel-body">
+				<?php echo $lang['Delete warning'] ?>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="delete_posts" value="1" checked="checked" />
+                        <?php echo $lang['Delete posts'] ?>
+                    </label>
+                </div>
+			</div>
+            <div class="panel-footer">
+				<input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+    		</div>
         </div>
-		<label><input type="checkbox" name="delete_posts" value="1" checked="checked" /><?php echo $lang['Delete posts'] ?></label>
     </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 </form>
 <?php
 
