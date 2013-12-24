@@ -643,6 +643,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 .btn-link, .btn-link:active, .btn-link[disabled] {
 	background: transparent none;
+	box-shadow: none;
 }
 
 .btn-link {
