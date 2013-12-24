@@ -281,33 +281,40 @@ if (!empty($errors))
 }
 ?>
 <h2><?php echo $lang['Register'] ?></h2>
-<form id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
+<form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Register legend'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang['Register legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="register" value="<?php echo $lang['Register'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
-                <label class="required usernamefield"><strong><?php echo $lang['If human'] ?></strong><br /><input type="text" class="form-control" name="req_username" value="" size="25" maxlength="25" /><br /></label>
-                <label class="required"><strong><?php echo $lang['Username'] ?></strong><br /><input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" size="25" maxlength="25" /></label>
-                <p class="help-block"><?php echo $lang['Username legend'] ?></p>
-            </fieldset>
+                <label class="required usernamefield"><?php echo $lang['If human'] ?><input type="text" class="form-control" name="req_username" value="" size="25" maxlength="25" /></label>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" size="25" maxlength="25" />
+                        <span class="help-block"><?php echo $lang['Username legend'] ?></span>
+                    </div>
+                </div>
 <?php if ($pun_config['o_regs_verify'] == '0'): ?>
-            <fieldset>
-                <label class="conl required"><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" size="16" /></label>
-                <label class="conl required"><strong><?php echo $lang['Confirm pass'] ?></strong><br /><input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" size="16" /></label>
-                <p class="help-block"><?php echo $lang['Pass info'] ?></p>
-            </fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
+                    <div class="col-sm-10">
+						<input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" size="16" />
+                        <input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" size="16" />
+                        <span class="help-block"><?php echo $lang['Pass info'] ?></span>
+                    </div>
+                </div>
 <?php endif; ?>
-            <fieldset>
-<?php if ($pun_config['o_regs_verify'] == '1'): ?>				<p><?php echo $lang['Email info'] ?></p>
-<?php endif; ?>				<label class="required"><strong><?php echo $lang['Email'] ?></strong><br />
-                <input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" size="50" maxlength="80" /></label>
-<?php if ($pun_config['o_regs_verify'] == '1'): ?>				<label class="required"><strong><?php echo $lang['Confirm email'] ?></strong><br />
-                <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" size="50" maxlength="80" /></label>
-<?php endif; ?>
-            </fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
+                    <div class="col-sm-10">
+						<?php if ($pun_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" size="50" maxlength="80" /><?php endif; ?>
+                        <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" size="50" maxlength="80" />
+                        <?php if ($pun_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email info'] ?></span><?php endif; ?>
+                    </div>
+                </div>
 <?php
 
 		$languages = forum_list_langs();
@@ -317,9 +324,10 @@ if (!empty($errors))
 		{
 
 ?>
-            <fieldset>
-                <label><label class="conl required"><strong><?php echo $lang['Language'] ?></strong>
-                <br /><select class="form-control" name="language">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Language'] ?></label>
+                    <div class="col-sm-10">
+						<select class="form-control" name="language">
 <?php
 
 			foreach ($languages as $temp)
@@ -331,16 +339,16 @@ if (!empty($errors))
 			}
 
 ?>
-                </select>
-                </label>
-            </fieldset>
+						</select>
+                    </div>
+                </div>
 <?php
 
 		}
 ?>
+            </fieldset>
         </div>
     </div>
-    <p class="alert alert-info"><input type="submit" class="btn btn-primary" name="register" value="<?php echo $lang['Register'] ?>" /></p>
 </form>
 <?php
 
