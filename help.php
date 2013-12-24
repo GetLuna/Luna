@@ -46,7 +46,6 @@ require FORUM_ROOT.'header.php';
 		<p><code>[em]<?php echo $lang['Emphasised text'] ?>[/em]</code> <?php echo $lang['produces'] ?> <em><?php echo $lang['Emphasised text'] ?></em></p>
 		<p><code>[color=#FF0000]<?php echo $lang['Red text'] ?>[/color]</code> <?php echo $lang['produces'] ?> <span style="color: #ff0000"><?php echo $lang['Red text'] ?></span></p>
 		<p><code>[color=blue]<?php echo $lang['Blue text'] ?>[/color]</code> <?php echo $lang['produces'] ?> <span style="color: blue"><?php echo $lang['Blue text'] ?></span></p>
-		<p><code>[acronym=<?php echo $lang['Acronym'] ?>]<?php echo $lang['Acronym text'] ?>[/acronym]</code> <?php echo $lang['produces'] ?> <acronym title="<?php echo $lang['Acronym'] ?>"><?php echo $lang['Acronym text'] ?></acronym></p>
 		<p><code>[sub]<?php echo $lang['Sub text'] ?>[/sub]</code> <?php echo $lang['produces'] ?> <sub><?php echo $lang['Sub text'] ?></sub></p>
 		<p><code>[sup]<?php echo $lang['Sup text'] ?>[/sup]</code> <?php echo $lang['produces'] ?> <sup><?php echo $lang['Sup text'] ?></sup></p>
 		<p><code>[h]<?php echo $lang['Heading text'] ?>[/h]</code> <?php echo $lang['produces'] ?></p> <h4><?php echo $lang['Heading text'] ?></h4>
