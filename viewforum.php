@@ -115,9 +115,9 @@ require FORUM_ROOT.'header.php';
 <div class="forum-box">
     <div class="row forum-header">
         <div class="col-xs-7"><?php echo $lang['Topic'] ?></div>
-        <div class="col-xs-1 hidden-xs"><?php echo $lang['Replies forum'] ?></div>
+        <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-xs-1 hidden-xs"><?php echo $lang['Views'] ?></div>
+            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Views'] ?></p></div>
         <?php endif; ?>
         <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
     </div>
@@ -212,9 +212,9 @@ if ($db->num_rows($result))
                 </div>
             </div>
         </div>
-        <div class="col-xs-1 hidden-xs"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
+        <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></p></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-xs-1 hidden-xs"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></p></div>
         <?php endif; ?>
         <div class="col-xs-3"><?php echo $last_post ?></div>
     </div>

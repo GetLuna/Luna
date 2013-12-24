@@ -30,6 +30,10 @@ h2 {
 	margin-top: 0;
 }
 
+.text-center {
+	margin-bottom: 0;
+}
+
 /* Header */
 #header .alert {
 	padding: 5px 10px;

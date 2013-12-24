@@ -65,8 +65,8 @@ while ($cur_forum = $db->fetch_assoc($result))
     <div class="category-box">
         <div class="row category-header">
             <div class="col-xs-7"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></div>
-            <div class="col-xs-1 hidden-xs"><?php echo $lang['Topics'] ?></div>
-            <div class="col-xs-1 hidden-xs"><?php echo $lang['Posts table'] ?></div>
+            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Topics'] ?></p></div>
+            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
             <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
         </div>
 <?php
@@ -148,8 +148,8 @@ while ($cur_forum = $db->fetch_assoc($result))
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-1 hidden-xs"><?php echo forum_number_format($num_topics) ?></div>
-                <div class="col-xs-1 hidden-xs"><?php echo forum_number_format($num_posts) ?></div>
+                <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo forum_number_format($num_topics) ?></p></div>
+                <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo forum_number_format($num_posts) ?></p></div>
                 <div class="col-xs-3"><?php echo $last_post ?></div>
             </div>
 <?php
