@@ -710,19 +710,24 @@ require FORUM_ROOT.'backstage/header.php';
         </form>
     </div>
 </div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Additional functions'] ?></h3>
-    </div>
-	<div class="panel-body">
-        <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Additional functions'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <p><?php echo $lang['Additional info 1'] ?></p>
+        </div>
+        <div class="panel-footer">
             <fieldset>
-                <p><?php echo $lang['Additional info 1'] ?></p>
-                <div class="btn-group"><input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />&nbsp;<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" /></div>
+                <span class="btn-group">
+                    <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />
+                    <input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" />
+                </span>
             </fieldset>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 <?php
 }
 require FORUM_ROOT.'backstage/footer.php';

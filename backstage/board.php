@@ -81,11 +81,20 @@ else if (isset($_GET['del_forum']))
 
 ?>
 <h2><?php echo $lang['Confirm delete head'] ?></h2>
-<form class="alert alert-danger" method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
+<form method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
 	<fieldset>
-		<p><?php printf($lang['Confirm delete forum info'], $forum_name) ?> <?php echo $lang['Confirm delete forum'] ?></p>
+    	<div class="panel panel-danger">
+        	<div class="panel-heading">
+            	<h3 class="panel-title"><?php echo $lang['Confirm delete head'] ?></h3>
+            </div>
+            <div class="panel-body">
+				<p><?php printf($lang['Confirm delete forum info'], $forum_name) ?> <?php echo $lang['Confirm delete forum'] ?></p>
+            </div>
+            <div class="panel-footer">
+            	<input class="btn btn-danger" type="submit" name="del_forum_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            </div>
+        </div>
 	</fieldset>
-	<input class="btn btn-danger" type="submit" name="del_forum_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 </form>
 <?php
 
@@ -381,12 +390,21 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 ?>
 <h2><?php echo $lang['Confirm delete cat head'] ?></h2>
-<form class="alert alert-danger" method="post" action="board.php">
+<form method="post" action="board.php">
     <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
     <fieldset>
-        <p><?php printf($lang['Confirm delete cat info'], pun_htmlspecialchars($cat_name)) ?> <?php echo $lang['Delete category warn'] ?></p>
+    	<div class="panel panel-danger">
+        	<div class="panel-heading">
+            	<h3 class="panel-title"><?php echo $lang['Confirm delete cat head'] ?></h3>
+            </div>
+            <div class="panel-body">
+				<p><?php printf($lang['Confirm delete cat info'], $forum_name) ?> <?php echo $lang['Delete category warn'] ?></p>
+            </div>
+            <div class="panel-footer">
+            	<input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            </div>
+        </div>
     </fieldset>
-	<input class="btn btn-danger" type="submit" name="del_cat_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 </form>
 <?php
 
