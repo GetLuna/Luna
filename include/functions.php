@@ -925,7 +925,7 @@ function paginate($num_pages, $cur_page, $link)
 			else if ($current != $cur_page || $link_to_all)
 				$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$current.'">'.forum_number_format($current).'</a></li>';
 			else
-				$pages[] = '<li class="active"><a>'.forum_number_format($current).'</a></li>';
+				$pages[] = '<li class="active"><a>'.forum_number_format($current).' <span class="sr-only">(current)</span></a></li>';
 		}
 
 		if ($cur_page <= ($num_pages-3))
