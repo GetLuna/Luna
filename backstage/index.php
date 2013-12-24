@@ -49,17 +49,13 @@ $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['A
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('index');
-?><h2>Backstage<span class="pull-right"><a href="update.php" class="btn <?php if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>btn-warning<?php } else { ?>btn-default<?php }; ?> btn-update"><?php echo $lang['Updates'] ?></a></span></h2><?php
+?><h2>Backstage<span class="pull-right"><a href="update.php" class="btn <?php if ($pun_config['o_index_update_check'] == 1) { if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>btn-warning<?php } else { ?>btn-default<?php }; }; ?> btn-update"><?php echo $lang['Updates'] ?></a></span></h2><?php
 //Update checking
     if ($pun_config['o_index_update_check'] == 1) { ?>
 		<?php
         if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
 		<div class="alert alert-info">
             <h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
-		</div>
-        <?php } elseif (version_compare(FORUM_VERSION, $latest_version, '>')) { ?>
-		<div class="alert alert-info">
-            <h4><?php echo sprintf($lang['Development'], FORUM_VERSION, $latest_version) ?></h4>
 		</div>
 <?php	}
     }
