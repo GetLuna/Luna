@@ -576,15 +576,15 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 ?>
 <h2><?php echo $lang['Users'] ?></h2>
-<div class="alert alert-danger"><?php echo $lang['Delete warning'] ?></div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Delete users'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form name="confirm_del_users" method="post" action="users.php">
+<form name="confirm_del_users" method="post" action="users.php">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Delete users'] ?></h3>
+        </div>
+        <div class="panel-body">
             <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
 			<fieldset>
+            	<p><?php echo $lang['Delete warning'] ?></p>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="delete_posts" value="1" checked="checked" />
@@ -592,13 +592,13 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 					</label>
 				</div>
 			</fieldset>
-            <div class="control-group">
-                <input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang['Delete'] ?>" />
-                <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-            </div>
-        </form>
+        </div>
+        <div class="panel-footer">
+            <input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang['Delete'] ?>" />
+            <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+        </div>
     </div>
-</div>
+</form>
 <?php
 
 	require FORUM_ROOT.'backstage/footer.php';
