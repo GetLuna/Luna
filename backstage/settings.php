@@ -45,10 +45,7 @@ if (isset($_POST['form_sent']))
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
-		'rules'					=> isset($_POST['form']['rules']) ? '1' : '0',
-		'rules_message'			=> pun_trim($_POST['form']['rules_message']),
 		'antispam_api'			=> pun_trim($_POST['form']['antispam_api']),
-		'default_email_setting'	=> intval($_POST['form']['default_email_setting']),
 		'announcement'			=> isset($_POST['form']['announcement']) ? '1' : '0',
 		'announcement_message'	=> pun_trim($_POST['form']['announcement_message']),
 	);
@@ -109,14 +106,6 @@ if (isset($_POST['form_sent']))
 		$form['announcement'] = '0';
 	}
 
-	if ($form['rules_message'] != '')
-		$form['rules_message'] = pun_linebreaks($form['rules_message']);
-	else
-	{
-		$form['rules_message'] = $lang['Enter rules here'];
-		$form['rules'] = '0';
-	}
-
 	if ($form['feed_type'] < 0 || $form['feed_type'] > 2)
 		message($lang['Bad request'], false, '404 Not Found');
 
@@ -124,9 +113,6 @@ if (isset($_POST['form_sent']))
 		message($lang['Bad request'], false, '404 Not Found');
 
 	if ($form['report_method'] < 0 || $form['report_method'] > 2)
-		message($lang['Bad request'], false, '404 Not Found');
-
-	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2)
 		message($lang['Bad request'], false, '404 Not Found');
 
 	if ($form['timeout_online'] >= $form['timeout_visit'])

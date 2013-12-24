@@ -28,7 +28,21 @@ if (isset($_POST['form_sent']))
 		'regs_allow'			=> isset($_POST['form']['regs_allow']) ? '1' : '0',
 		'regs_verify'			=> isset($_POST['form']['regs_verify']) ? '1' : '0',
 		'regs_report'			=> isset($_POST['form']['regs_report']) ? '1' : '0',
+		'rules'					=> isset($_POST['form']['rules']) ? '1' : '0',
+		'rules_message'			=> pun_trim($_POST['form']['rules_message']),
+		'default_email_setting'	=> intval($_POST['form']['default_email_setting']),
 	);
+
+	if ($form['rules_message'] != '')
+		$form['rules_message'] = pun_linebreaks($form['rules_message']);
+	else
+	{
+		$form['rules_message'] = $lang['Enter rules here'];
+		$form['rules'] = '0';
+	}
+
+	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2)
+		message($lang['Bad request'], false, '404 Not Found');
 
 	foreach ($form as $key => $input)
 	{
@@ -51,7 +65,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/settings.php', $lang['Options updated redirect']);
+	redirect('backstage/registration.php', $lang['Options updated redirect']);
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Registration']);
@@ -61,13 +75,14 @@ generate_admin_menu('global');
 
 ?>
 <h2><?php echo $lang['Registration'] ?></h2>
-<form class="form-horizontal" method="post" action="settings.php">
+<form class="form-horizontal" method="post" action="registration.php">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Registration subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
+            <input type="hidden" name="form_sent" value="1" />
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Allow new label'] ?></label>
                     <div class="col-sm-10">
