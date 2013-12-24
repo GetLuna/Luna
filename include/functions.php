@@ -900,14 +900,14 @@ function paginate($num_pages, $cur_page, $link)
 	}
 
 	if ($num_pages <= 1)
-		$pages = array('<li class="disabled"><a href="#">&laquo;</a></li><li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li><li class="disabled"><a href="#">&raquo;</a></li>');
+		$pages = array('<li class="disabled"><span>&laquo;</span></li><li class="active"><span>1 <span class="sr-only">(current)</span></span></li><li class="disabled"><span>&raquo;</span></li>');
 	else
 	{
 		// Add a previous page link
 		if ($num_pages > 1 && $cur_page > 1)
 			$pages[] = '<li><a rel="prev" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page - 1).'">&laquo;</a></li>';
 		else
-			$pages[] = '<li class="disabled"><a href="#">&laquo;</a></li>';
+			$pages[] = '<li class="disabled"><span>&laquo;</span></li>';
 
 		if ($cur_page > 3)
 		{
@@ -925,7 +925,7 @@ function paginate($num_pages, $cur_page, $link)
 			else if ($current != $cur_page || $link_to_all)
 				$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$current.'">'.forum_number_format($current).'</a></li>';
 			else
-				$pages[] = '<li class="active"><a>'.forum_number_format($current).' <span class="sr-only">(current)</span></a></li>';
+				$pages[] = '<li class="active"><span>'.forum_number_format($current).' <span class="sr-only">(current)</span></span></li>';
 		}
 
 		if ($cur_page <= ($num_pages-3))
@@ -940,7 +940,7 @@ function paginate($num_pages, $cur_page, $link)
 		if ($num_pages > 1 && !$link_to_all && $cur_page < $num_pages)
 			$pages[] = '<li><a rel="next" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page +1).'">&raquo;</a></li>';
 		else
-			$pages[] = '<li class="disabled"><a href="#">&raquo;</a></li>';
+			$pages[] = '<li class="disabled"><span>&raquo;</span></li>';
 	}
 
 	return implode(' ', $pages);
