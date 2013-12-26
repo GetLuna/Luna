@@ -103,6 +103,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('stats');
 
 ?>
+<h2><?php echo $lang['Server statistics head'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Server statistics head'] ?></h3>
