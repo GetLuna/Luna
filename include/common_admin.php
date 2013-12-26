@@ -41,10 +41,10 @@ function generate_admin_menu($page = '')
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="index.php"><?php echo $lang['Dashboard'] ?></a></li>
+                <li class="<?php if ($page == 'index' || $page == 'about' || $page == 'stats') echo 'active'; ?>"><a href="index.php"><span class="glyphicon glyphicon-dashboard"></span> <?php echo $lang['Dashboard'] ?></a></li>
                 <li class="dropdown <?php if ($page == 'censoring' || $page == 'reports' || $page == 'board') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php echo $lang['Content'] ?> <b class="caret"></b>
+                        <span class="glyphicon glyphicon-file"></span> <?php echo $lang['Content'] ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <?php if ($is_admin) { ?><li><a href="board.php"><?php echo $lang['Board structure'] ?></a></li>
@@ -55,7 +55,7 @@ function generate_admin_menu($page = '')
                 </li>
                 <li class="dropdown <?php if ($page == 'users' || $page == 'ranks' || $page == 'groups' || $page == 'permissions' || $page == 'bans') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php echo $lang['Users'] ?> <b class="caret"></b>
+                        <span class="glyphicon glyphicon-user"></span> <?php echo $lang['Users'] ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="users.php"><?php echo $lang['Users'] ?></a></li>
@@ -68,7 +68,7 @@ function generate_admin_menu($page = '')
                 </li>
                 <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'registration' || $page == 'email' || $page == 'backstage' || $page == 'database' || $page == 'maintenance') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php echo $lang['Settings'] ?> <b class="caret"></b>
+                        <span class="glyphicon glyphicon-cog"></span> <?php echo $lang['Settings'] ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="settings.php"><?php echo $lang['Global'] ?></a></li>
@@ -94,7 +94,7 @@ function generate_admin_menu($page = '')
 ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php echo $lang['Extensions'] ?> <b class="caret"></b>
+                        <span class="glyphicon glyphicon-flash"></span> <?php echo $lang['Extensions'] ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
 <?php
