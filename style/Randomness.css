@@ -831,7 +831,7 @@ fieldset label {
 }
 
 /* Forumview, index */
-#index .byuser {
+.buindex {
 	display: block;
 }
 

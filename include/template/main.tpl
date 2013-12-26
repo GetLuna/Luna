@@ -12,26 +12,24 @@
         <pun_head>
 	</head>
 	<body>
-        <div id="<pun_page>">
-            <div id="header">
-				<pun_navlinks>
-            	<div class="container">
-					<div class="box">
-                        <div id="brdtitle" class="inbox">
-                            <pun_title>
-                            <pun_desc>
-                        </div>
-                        <pun_status>
-                    </div>
-                    <pun_announcement>
-                </div>
-            </div>
+        <div id="header">
+            <pun_navlinks>
             <div class="container">
-                <div id="brdmain">
-                    <pun_main>
+                <div class="box">
+                    <div id="brdtitle" class="inbox">
+                        <pun_title>
+                        <pun_desc>
+                    </div>
+                    <pun_status>
                 </div>
-                <pun_footer>
+                <pun_announcement>
             </div>
+        </div>
+        <div class="container">
+            <div id="brdmain">
+                <pun_main>
+            </div>
+            <pun_footer>
         </div>
         <!-- Javascript start -->
         <script type="text/javascript">

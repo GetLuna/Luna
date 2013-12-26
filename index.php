@@ -116,7 +116,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 	// If there is a last_post/last_poster
 	if ($cur_forum['last_post'] != '')
-		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.format_time($cur_forum['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_forum['last_poster']).'</span>';
+		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.format_time($cur_forum['last_post']).'</a> <span class="byuser buindex">'.$lang['by'].' '.pun_htmlspecialchars($cur_forum['last_poster']).'</span>';
 	else if ($cur_forum['redirect_url'] != '')
 		$last_post = '- - -';
 	else
