@@ -35,7 +35,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 if (file_exists(FORUM_ROOT.'config.php'))
 	include FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN, from FluxBB 1.4 and 1.5 and ModernBB 1.6
+// This fixes incorrect defined PUN, from FluxBB 1.5 and ModernBB 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 
@@ -159,93 +159,8 @@ $default_style = $pun_config['o_default_style'];
 if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
 	$default_style = 'Randomness';
 
-//
-// Determines whether $str is UTF-8 encoded or not
-//
-function seems_utf8($str)
-{
-	$str_len = strlen($str);
-	for ($i = 0; $i < $str_len; ++$i)
-	{
-		if (ord($str[$i]) < 0x80) continue; # 0bbbbbbb
-		else if ((ord($str[$i]) & 0xE0) == 0xC0) $n=1; # 110bbbbb
-		else if ((ord($str[$i]) & 0xF0) == 0xE0) $n=2; # 1110bbbb
-		else if ((ord($str[$i]) & 0xF8) == 0xF0) $n=3; # 11110bbb
-		else if ((ord($str[$i]) & 0xFC) == 0xF8) $n=4; # 111110bb
-		else if ((ord($str[$i]) & 0xFE) == 0xFC) $n=5; # 1111110b
-		else return false; # Does not match any model
-
-		for ($j = 0; $j < $n; ++$j) # n bytes matching 10bbbbbb follow ?
-		{
-			if ((++$i == strlen($str)) || ((ord($str[$i]) & 0xC0) != 0x80))
-				return false;
-		}
-	}
-
-	return true;
-}
-
-
-//
-// Translates the number from a HTML numeric entity into an UTF-8 character
-//
-function dcr2utf8($src)
-{
-	$dest = '';
-	if ($src < 0)
-		return false;
-	else if ($src <= 0x007f)
-		$dest .= chr($src);
-	else if ($src <= 0x07ff)
-	{
-		$dest .= chr(0xc0 | ($src >> 6));
-		$dest .= chr(0x80 | ($src & 0x003f));
-	}
-	else if ($src == 0xFEFF)
-	{
-		// nop -- zap the BOM
-	}
-	else if ($src >= 0xD800 && $src <= 0xDFFF)
-	{
-		// found a surrogate
-		return false;
-	}
-	else if ($src <= 0xffff)
-	{
-		$dest .= chr(0xe0 | ($src >> 12));
-		$dest .= chr(0x80 | (($src >> 6) & 0x003f));
-		$dest .= chr(0x80 | ($src & 0x003f));
-	}
-	else if ($src <= 0x10ffff)
-	{
-		$dest .= chr(0xf0 | ($src >> 18));
-		$dest .= chr(0x80 | (($src >> 12) & 0x3f));
-		$dest .= chr(0x80 | (($src >> 6) & 0x3f));
-		$dest .= chr(0x80 | ($src & 0x3f));
-	}
-	else
-	{
-		// out of range
-		return false;
-	}
-
-	return $dest;
-}
-
-function utf8_callback_1($matches)
-{
-	return dcr2utf8($matches[1]);
-}
-
-
-function utf8_callback_2($matches)
-{
-	return dcr2utf8(hexdec($matches[1]));
-}
-
 // Empty all output buffers and stop buffering
 while (@ob_end_clean());
-
 
 $stage = isset($_REQUEST['stage']) ? $_REQUEST['stage'] : '';
 $old_charset = isset($_REQUEST['req_old_charset']) ? str_replace('ISO8859', 'ISO-8859', strtoupper($_REQUEST['req_old_charset'])) : 'ISO-8859-1';
@@ -330,7 +245,7 @@ switch ($stage)
 		// Since 2.0-rc.1: Add the parent_forum_id column to the forums table
 		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
 			
-		// Since 2.2.02, Since 2.0-beta.3: Update style to Randomness when updating from FluxBB 1.4, 1.5 or ModernBB 1.6
+		// Since 2.2.02, Since 2.0-beta.3: Update style to Randomness when updating from FluxBB 1.5 or ModernBB 1.6
 		if (version_compare($cur_version, '2.0-beta.3', '<')) {
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Randomness\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'users SET style = \'Randomness\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
