@@ -291,19 +291,20 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 		}
 		</style>
     </head>
-    <body onload="document.getElementById('install').req_db_type.focus();document.getElementById('install').start.disabled=false;" onunload="">
+    <body onload="document.getElementById('install').start.disabled=false;" onunload="">
     	<div class="container">
-            <div class="row">
-                <h1><?php echo sprintf($lang['Install'], FORUM_VERSION) ?></h1>
-				<?php if (count($languages) > 1): ?>
-                <form id="install" method="post" action="install.php">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo $lang['Choose install language'] ?></h3>
-                        </div>
-                        <div class="panel-body">
-                            <fieldset>
-                                <label><strong><?php echo $lang['Install language'] ?></strong><br />
+            <h1><?php echo sprintf($lang['Install'], FORUM_VERSION) ?></h1>
+            <?php if (count($languages) > 1): ?>
+            <form  class="form-horizontal" id="install" method="post" action="install.php">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php echo $lang['Choose install language'] ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Install language'] ?></label>
+                                <div class="col-sm-10">
                                     <select class="form-control" name="install_lang">
 <?php
 
@@ -317,43 +318,45 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 
 ?>
                                     </select>
-                                </label>
-                                <br /><p class="help-block"><?php echo $lang['Choose install language info'] ?></p>
-                            </fieldset>
-                        </div>
-                        <div class="panel-footer">
-                        	<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
-                        </div>
+                                    <span class="help-block"><?php echo $lang['Choose install language info'] ?></span>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                </form>
+                    <div class="panel-footer">
+                        <input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
+                    </div>
+                </div>
+            </form>
 <?php endif; ?>
-                        
 <?php if (!empty($alerts)): ?>
-                <div class="panel panel-warning">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo $lang['Errors'] ?></h3>
-                    </div>
-                    <div class="panel-body">
-                    	<div class="forminfo error-info">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $lang['Errors'] ?></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="forminfo error-info">
 <?php
 
 foreach ($alerts as $cur_alert)
 echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 ?>
-                        </div>
                     </div>
                 </div>
+            </div>
 <?php endif; ?>
-				<form id="install" method="post" action="install.php" onsubmit="this.start.disabled=true;if(process_form(this)){return true;}else{this.start.disabled=false;return false;}">
-					<div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo pun_htmlspecialchars($install_lang) ?>" /></div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo $lang['Database setup'] ?></h3>
-                        </div>
-                        <div class="panel-body">
-                            <fieldset>
-                                <label class="required"><strong><?php echo $lang['Database type'] ?></strong>
-                                    <br /><select class="form-control" name="req_db_type">
+            <form  class="form-horizontal" id="install" method="post" action="install.php" onsubmit="this.start.disabled=true;if(process_form(this)){return true;}else{this.start.disabled=false;return false;}">
+                <div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo pun_htmlspecialchars($install_lang) ?>" /></div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php echo $lang['Database setup'] ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Database type'] ?></label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="req_db_type">
 <?php
 
 	foreach ($db_extensions as $temp)
@@ -366,54 +369,104 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 ?>
                                     </select>
-                                </label>
-                                <br /><p class="help-block"><?php echo $lang['Info 1'] ?></p>
-                            </fieldset><br />
-                            <fieldset>
-                                <label class="required"><strong><?php echo $lang['Database server hostname'] ?></strong><br /><input type="text" class="form-control" name="req_db_host" value="<?php echo pun_htmlspecialchars($db_host) ?>" size="50" /></label>
-                                <br /><p class="help-block"><?php echo $lang['Info 2'] ?></p>
-                            </fieldset><br />
-                            <fieldset>
-                                <label class="required"><strong><?php echo $lang['Database name'] ?></strong><br /><input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo pun_htmlspecialchars($db_name) ?>" size="30" /></label>
-                                <br /><p class="help-block"><?php echo $lang['Info 3'] ?></p>
-                            </fieldset><br />
-                            <fieldset>
-                                <label class="conl"><?php echo $lang['Database username'] ?><br /><input type="text" class="form-control" name="db_username" value="<?php echo pun_htmlspecialchars($db_username) ?>" size="30" /></label>
-                                <label class="conl"><?php echo $lang['Database password'] ?><br /><input type="password" class="form-control" name="db_password" size="30" /></label>
-                                <br /><p class="help-block"><?php echo $lang['Info 4'] ?></p>
-                            </fieldset><br />
-                            <fieldset>
-                                <label><?php echo $lang['Table prefix'] ?><br /><input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix) ?>" size="20" maxlength="30" /></label>
-                                <br /><p class="help-block"><?php echo $lang['Info 5'] ?></p>
-                            </fieldset>
-                        </div>
+                                    <span class="help-block"><?php echo $lang['Info 1'] ?></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Database server hostname'] ?></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="req_db_host" value="<?php echo pun_htmlspecialchars($db_host) ?>" size="50" />
+                                    <span class="help-block"><?php echo $lang['Info 2'] ?></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Database name'] ?></label>
+                                <div class="col-sm-10">
+                                    <input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo pun_htmlspecialchars($db_name) ?>" size="30" />
+                                    <span class="help-block"><?php echo $lang['Info 3'] ?></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Database username'] ?></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="db_username" value="<?php echo pun_htmlspecialchars($db_username) ?>" size="30" />
+                                    <span class="help-block"><?php echo $lang['Info 4'] ?></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Database password'] ?></label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" name="db_password" size="30" />
+                                    <span class="help-block"><?php echo $lang['Info 4'] ?></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Table prefix'] ?></label>
+                                <div class="col-sm-10">
+                                    <input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix) ?>" size="20" maxlength="30" />
+                                    <span class="help-block"><?php echo $lang['Info 5'] ?></span>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo $lang['Administration setup'] ?></h3>
-                        </div>
-                        <div class="panel-body">
-                            <fieldset>
-                                <label class="required"><strong><?php echo $lang['Administrator username'] ?></strong><br /><input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" /></label>
-                                <br /><p class="help-block"><?php echo $lang['Info 6'] ?></p><br />
-                                <label class="conl required"><strong><?php echo $lang['Password'] ?></strong><br /><input id="req_password1" type="password" class="form-control" name="req_password1" size="16" /></label>
-                                <label class="conl required"><strong><?php echo $lang['Confirm password'] ?></strong><br /><input type="password" class="form-control" name="req_password2" size="16" /></label><br /><br />
-                                <label class="required"><strong><?php echo $lang['Administrator email'] ?></strong><br /><input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" size="50" maxlength="80" /></label>
-                            </fieldset>
-                        </div>
-                    </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang['Board setup'] ?></h3>
                 </div>
-                <div class="panel-body">
-                    <fieldset>
-                        <label class="required"><strong><?php echo $lang['Board title'] ?></strong><br /><input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo pun_htmlspecialchars($title) ?>" size="60" maxlength="255" /></label><br /><br />
-                        <label><?php echo $lang['Board description'] ?><br /><input id="desc" type="text" class="form-control" name="desc" value="<?php echo pun_htmlspecialchars($description) ?>" size="60" maxlength="255" /></label><br /><br />
-                        <label class="required"><strong><?php echo $lang['Base URL'] ?></strong><br /><input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo pun_htmlspecialchars($base_url) ?>" size="60" maxlength="100" /></label>
-                    </fieldset><br />
-                    <fieldset>
-                        <label class="required"><strong><?php echo $lang['Default language'] ?></strong><br /><select id="req_default_lang" class="form-control" name="req_default_lang">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php echo $lang['Administration setup'] ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Administrator username'] ?></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" />
+                                    <span class="help-block"><?php echo $lang['Info 6'] ?></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
+                                <div class="col-sm-10">
+                                    <input id="req_password1" type="password" class="form-control" name="req_password1" size="16" /> <input type="password" class="form-control" name="req_password2" size="16" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Administrator email'] ?></label>
+                                <div class="col-sm-10">
+                                    <input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" size="50" maxlength="80" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php echo $lang['Board setup'] ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Board title'] ?></label>
+                                <div class="col-sm-10">
+                                    <input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo pun_htmlspecialchars($title) ?>" size="60" maxlength="255" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Board description'] ?></label>
+                                <div class="col-sm-10">
+                                    <input id="desc" type="text" class="form-control" name="desc" value="<?php echo pun_htmlspecialchars($description) ?>" size="60" maxlength="255" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Base URL label'] ?></label>
+                                <div class="col-sm-10">
+                                    <input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo pun_htmlspecialchars($base_url) ?>" size="60" maxlength="100" />
+                                    <span class="help-block"><?php echo $lang['Base URL'] ?><span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Default language'] ?></label>
+                                <div class="col-sm-10">
+                                    <select id="req_default_lang" class="form-control" name="req_default_lang">
 <?php
 
 		$languages = forum_list_langs();
@@ -426,8 +479,13 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		}
 
 ?>
-                            </select></label>
-                            <label class="required"><strong><?php echo $lang['Default style'] ?></strong><br /><select id="req_default_style" class="form-control" name="req_default_style">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><?php echo $lang['Default style'] ?></label>
+                                <div class="col-sm-10">
+                                    <select id="req_default_style" class="form-control" name="req_default_style">
 <?php
 
 		$styles = forum_list_styles();
@@ -440,14 +498,16 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		}
 
 ?>
-							</select></label>
-							<br /><p class="help-block"><?php echo $lang['Info 7'] ?></p>
-						</fieldset>
-					</div>
+                                    </select>
+                                    <span class="help-block"><?php echo $lang['Info 7'] ?><span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
                     <div class="panel-footer">
                         <input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
                     </div>
-				</div>
+                </div>
             </form>
         </div>
     </body>
@@ -1657,7 +1717,7 @@ if (!$written)
 {
 
 ?>
-                    <form method="post" action="install.php">
+                    <form  class="form-horizontal" method="post" action="install.php">
                         <p><?php echo $lang['Info 8'] ?></p>
                         <p><?php echo $lang['Info 9'] ?></p>
 						<input type="hidden" name="generate_config" value="1" />
