@@ -113,23 +113,23 @@ if (isset($_GET['tid']))
 		require FORUM_ROOT.'header.php';
 
 ?>
-<div class="blockform">
-	<h2><span><?php echo $lang['Delete posts'] ?></span></h2>
-	<div class="box">
-		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang['Confirm delete legend'] ?></legend>
-					<div class="infldset">
-						<input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-						<p><?php echo $lang['Delete posts comply'] ?></p>
-					</div>
-				</fieldset>
-			</div>
-			<input class="btn btn-primary" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-		</form>
-	</div>
-</div>
+<h2><?php echo $lang['Moderate'] ?></h2>
+<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Delete posts'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
+                <p><?php echo $lang['Delete posts comply'] ?></p>
+            </fieldset>
+        </div>
+        <div class="panel-footer">
+            <input class="btn btn-primary" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+        </div>
+    </div>
+</form>
 <?php
 
 		require FORUM_ROOT.'footer.php';
@@ -208,17 +208,19 @@ if (isset($_GET['tid']))
 		require FORUM_ROOT.'header.php';
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Split posts'] ?></h3>
-    </div>
-    <div class="panel-body">
-		<form id="subject" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+<h2><?php echo $lang['Moderate'] ?></h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Split posts'] ?></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <input type="hidden" class="form-control" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-                <label class="required"><strong><?php echo $lang['New subject'] ?> </strong><input class="form-control" type="text" name="new_subject" size="80" maxlength="70" /></label>
-                <label><?php echo $lang['Move to'] ?>
-                <br /><select class="form-control" name="move_to_forum">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Move to'] ?></label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="move_to_forum">
 <?php
 
 	$cur_category = 0;
@@ -237,15 +239,23 @@ if (isset($_GET['tid']))
 	}
 
 ?>
-                    </optgroup>
-                </select>
-                </label>
-                <p><?php echo $lang['Split posts comply'] ?></p>
+							</optgroup>
+						</select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['New subject'] ?></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="new_subject" size="80" maxlength="70" />
+                    </div>
+                </div>
             </fieldset>
+        </div>
+        <div class="panel-footer">
 			<input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-		</form>
-	</div>
-</div>
+        </div>
+    </div>
+</form>
 <?php
 
 		require FORUM_ROOT.'footer.php';
@@ -466,16 +476,19 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo ($action == 'single') ? $lang['Move topic'] : $lang['Move topics'] ?></h3>
-    </div>
-    <div class="panel-body">
-		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+<h2><?php echo $lang['Moderate'] ?></h2>
+<form class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo ($action == 'single') ? $lang['Move topic'] : $lang['Move topics'] ?></h3>
+        </div>
+        <div class="panel-body">
 			<input type="hidden" name="topics" value="<?php echo $topics ?>" />
-				<fieldset>
-                    <label><?php echo $lang['Move to'] ?>
-                    <br /><select class="form-control" name="move_to_forum">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Move to'] ?></label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="move_to_forum">
 <?php
 
 	$cur_category = 0;
@@ -495,15 +508,23 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	}
 
 ?>
-                        </optgroup>
-                    </select>
-                    </label>
-                    <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> /> <?php echo $lang['Leave redirect'] ?><br />
-				</fieldset>
-			<input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-		</form>
-	</div>
-</div>
+                            </optgroup>
+                        </select>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Leave redirect'] ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+        </div>
+    </div>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
@@ -583,20 +604,28 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Merge topics'] ?></h3>
-    </div>
-    <div class="panel-body">
-		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+<h2><?php echo $lang['Moderate'] ?></h2>
+<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Merge topics'] ?></h3>
+        </div>
+        <div class="panel-body">
 			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
             <fieldset>
-                <input type="checkbox" name="with_redirect" value="1" /> <?php echo $lang['Leave redirect'] ?><br /><br />
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="with_redirect" value="1" />
+                        <?php echo $lang['Leave redirect'] ?>
+                    </label>
+                </div>
             </fieldset>
+        </div>
+        <div class="panel-footer">
 			<input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php echo $lang['Merge'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-		</form>
-	</div>
-</div>
+        </div>
+    </div>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
@@ -662,20 +691,23 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Delete topics'] ?></h3>
-    </div>
-    <div class="panel-body">
-		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+    <h2><?php echo $lang['Moderate'] ?></h2>
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Delete topics'] ?></h3>
+        </div>
+        <div class="panel-body">
 			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
             <fieldset>
                 <p><?php echo $lang['Delete topics comply'] ?></p>
             </fieldset>
+        </div>
+        <div class="panel-footer">
 			<input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-		</form>
-	</div>
-</div>
+        </div>
+    </div>
+</form>
 <?php
 
 	require FORUM_ROOT.'footer.php';
