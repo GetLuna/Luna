@@ -20,7 +20,6 @@ $lang = array(
 'Pun include directory'				=>  'Unable to process user include %s from template %s. Directory traversal is not allowed',  
 'Pun include error'					=>  'Unable to process user include %s from template %s. There is no such file in neither the template directory nor in the user include directory',  
 
-
 // Miscellaneous
 'Announcement'						=>	'Announcement',
 'Options'							=>	'Global settings',
@@ -268,7 +267,6 @@ $lang = array(
 /////////////////////////////////////////////////// Language for updating ///////////////////////////////////////////////////
 
 'Update ModernBB'				=>	'Update ModernBB',
-'Database update info'			=>	'You\'re ready to update ModernBB. To perform the database update, fill in your password and hit "Start update" to start the update.',
 'Maintenance'					=>	'Maintenance',
 'Next'							=>	'Next',
 'Down'							=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',

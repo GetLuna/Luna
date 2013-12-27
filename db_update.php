@@ -300,10 +300,7 @@ if (empty($stage))
             <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
-                <p><?php echo $lang['Database update info'] ?></p>
-                <div>
-                    <input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
-                </div>
+				<input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
             </fieldset>
 		</form>
 	</body>
