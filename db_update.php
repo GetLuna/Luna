@@ -245,7 +245,7 @@ switch ($stage)
 		// Since 2.0-rc.1: Add the parent_forum_id column to the forums table
 		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drio parent_forum_id field', __FILE__, __LINE__, $db->error());
 			
-		// Since 2.2.02, Since 2.0-beta.3: Update style to Randomness when updating from FluxBB 1.5 or ModernBB 1.6
+		// Since 2.2.2, Since 2.0-beta.3: Update style to Randomness when updating from FluxBB 1.5 or ModernBB 1.6
 		if (version_compare($cur_version, '2.0-beta.3', '<')) {
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Randomness\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'users SET style = \'Randomness\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
@@ -275,7 +275,7 @@ switch ($stage)
 		if (!array_key_exists('o_index_update_check', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
 		
-		// Since 2.2.02: Add o_ranks if updating from FluxBB 1.5
+		// Since 2.2.2: Add o_ranks if updating from FluxBB 1.5
 		if (!array_key_exists('o_ranks', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 			
@@ -290,7 +290,7 @@ switch ($stage)
 		// Since 3.0-alpha.1: Add the backstage_style column to the users table
 		$db->add_field('users', 'backstage_style', 'VARCHAR(25)', false, 'ModernBB') or error('Unable to add backstage_style field', __FILE__, __LINE__, $db->error());
 		
-		// Since ModernBB 2.2.02: Recreate ranks table when removed in FluxBB 1.5
+		// Since ModernBB 2.2.2: Recreate ranks table when removed in FluxBB 1.5
 		if (!$db->table_exists('ranks'))
 		{
 			$schema = array(
