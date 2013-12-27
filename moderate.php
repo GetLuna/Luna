@@ -831,12 +831,12 @@ require FORUM_ROOT.'header.php';
 <div class="forum-box">
     <div class="row forum-header">
         <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
-        <div class="col-xs-1 hidden-xs"><?php echo $lang['Replies forum'] ?></div>
+        <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
         <?php if ($pun_config['o_topic_views'] == '1'): ?>
-            <div class="col-xs-1 hidden-xs"><?php echo $lang['Views'] ?></div>
+            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Views'] ?></p></div>
         <?php endif; ?>
         <div class="col-xs-3 hidden-xs"><?php echo $lang['Last post'] ?></div>
-		<div class="col-xs-1"><?php echo $lang['Select'] ?></div>
+		<div class="col-xs-1"><p class="text-center"><?php echo $lang['Select'] ?></p></div>
     </div>
 <?php
 
@@ -936,10 +936,10 @@ if ($db->num_rows($result))
                 </div>
             </div>
         </div>
-					<div class="col-xs-1 hidden-xs"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></div>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1 hidden-xs"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></div>
+					<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></p></div>
+<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></p></div>
 <?php endif; ?>					<div class="col-xs-3 hidden-xs"><?php echo $last_post ?></div>
-					<div class="col-xs-1"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></div>
+					<div class="col-xs-1"><p class="text-center"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></p></div>
     </div>
 <?php
 

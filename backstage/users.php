@@ -261,7 +261,7 @@ if (isset($_GET['show_users']))
 				<th><?php echo $lang['Results username head'] ?></th>
 				<th><?php echo $lang['Results e-mail head'] ?></th>
 				<th><?php echo $lang['Results title head'] ?></th>
-				<th><?php echo $lang['Results posts head'] ?></th>
+				<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
 				<th><?php echo $lang['Results admin note head'] ?></th>
 				<th><?php echo $lang['Results actions head'] ?></th>
 			</tr>
@@ -299,7 +299,7 @@ if (isset($_GET['show_users']))
 				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
 				<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
 				<td><?php echo $user_title ?></td>
-				<td><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
+				<td class="text-center"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
 				<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
 				<td><?php echo $actions ?></td>
 			</tr>
@@ -914,7 +914,7 @@ else if (isset($_GET['find_user']))
 					<th><?php echo $lang['Results username head'] ?></th>
 					<th><?php echo $lang['Results e-mail head'] ?></th>
 					<th><?php echo $lang['Results title head'] ?></th>
-					<th><?php echo $lang['Results posts head'] ?></th>
+					<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
 					<th><?php echo $lang['Results admin note head'] ?></th>
 					<th><?php echo $lang['Results actions head'] ?></th>
 		<?php if ($can_action): ?>					<th><?php echo $lang['Select'] ?></th>
@@ -941,7 +941,7 @@ else if (isset($_GET['find_user']))
 				<tr>
 					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
 					<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td><?php echo $user_title ?></td>
-					<td><?php echo forum_number_format($user_data['num_posts']) ?></td>
+					<td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
 					<td><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
 					<td><?php echo $actions ?></td>
 		<?php if ($can_action): ?>					<td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>

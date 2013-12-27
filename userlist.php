@@ -118,7 +118,7 @@ while ($cur_group = $db->fetch_assoc($result))
                 <tr>
                     <th><?php echo $lang['Username'] ?></th>
                     <th><?php echo $lang['Title'] ?></th>
-<?php if ($show_post_count): ?>                <th><?php echo $lang['Posts table'] ?></th>
+<?php if ($show_post_count): ?>                <th class="text-center"><?php echo $lang['Posts table'] ?></th>
 <?php endif; ?>                <th><?php echo $lang['Registered table'] ?></th>
                 </tr>
             </thead>
@@ -145,7 +145,7 @@ if ($db->num_rows($result))
                 <tr>
                     <td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
                     <td><?php echo $user_title_field ?></td>
-<?php if ($show_post_count): ?>                <td><?php echo forum_number_format($user_data['num_posts']) ?></td>
+<?php if ($show_post_count): ?>                <td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
 <?php endif; ?>
                     <td><?php echo format_time($user_data['registered'], true) ?></td>
                 </tr>
