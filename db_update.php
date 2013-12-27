@@ -129,7 +129,7 @@ require FORUM_ROOT.'lang/'.$default_lang.'/language.php';
 // Check current version
 $cur_version = $pun_config['o_cur_version'];
 
-if (version_compare($cur_version, '1.4', '<'))
+if (version_compare($cur_version, '1.5', '<'))
 	error(sprintf($lang['Version mismatch error'], $db_name));
 
 // Do some DB type specific checks
