@@ -287,9 +287,16 @@ h2 {
 }
 
 /* Quick post */
-.actions {
-	margin-top: -30px;
-	margin-bottom: 0;
+.quickpostfield textarea, .quickpostfield textarea:focus {
+	border: none;
+	box-shadow: none;
+	height: 140px;
+}
+
+.quickpostfield input[type="text"] {
+	border: none;
+	border-bottom: #eee solid 1px;
+	box-shadow: none;
 }
 
 /* Table */
