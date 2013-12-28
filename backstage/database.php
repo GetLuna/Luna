@@ -98,6 +98,7 @@ function get_table_def_mysql($table, $crlf)
 	$result = $db->query($field_query);
 	if(!$result)
 	{
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Failed to get field list');
 	}
@@ -134,6 +135,7 @@ function get_table_def_mysql($table, $crlf)
 	$result = $db->query($key_query);
 	if(!$result)
 	{
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Failed to get Indexed Fields');
 	}
@@ -195,6 +197,7 @@ function get_table_content_mysql($table, $handler)
 	// Grab the data from the table.
 	if (!($result = $db->query("SELECT * FROM $table")))
 	{
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Failed to get table content');
 	}
@@ -392,8 +395,9 @@ switch($db_type)
 	case 'mysqli':
 		break;
 	default:
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Sorry your database type is not yet supported');
+		message('Sorry your database type is not supported');
 }
 //Start actual db stuff
 if (isset($_POST['backupstart'])) {
@@ -473,6 +477,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "")
 	{
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('No file was uploaed or the upload failed, the database was not restored');
 	}
@@ -500,6 +505,7 @@ elseif ( isset($_POST['restore_start']) ) {
 			}
 			else
 			{
+				require FORUM_ROOT.'backstage/header.php';
 				generate_admin_menu('database');
 				message('Sorry the database could not be restored');
 			}
@@ -511,6 +517,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	}
 	else
 	{
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Error the file name or file format caused an error, the database was not restored');
 	}
@@ -521,7 +528,8 @@ elseif ( isset($_POST['restore_start']) ) {
 		$pieces = split_sql_file($sql_query, ";");
 		if(defined('FORUM_DEBUG'))
 		{
-		generate_admin_menu(database);
+		require FORUM_ROOT.'backstage/header.php';
+		generate_admin_menu('database');
 ?>
 	<div class="block">
 		<h2><span>Debug info</span></h2>
@@ -544,6 +552,7 @@ elseif ( isset($_POST['restore_start']) ) {
 				$result = $db->query($sql);
 				if(!$result)
 				{
+					require FORUM_ROOT.'backstage/header.php';
 					generate_admin_menu('database');
 					message('Error imported backup file, the database probably has not been restored');
 				}
@@ -576,6 +585,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	}
 	else
 	{
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Restore Complete');
 	}
@@ -588,6 +598,7 @@ elseif (isset($_POST['repairall']))
 	if (!$result = $db->query($sql))
 	{
 		// This makes no sense, the board would be dead... :P
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Tables error, repair failed');
 	}
@@ -606,10 +617,12 @@ elseif (isset($_POST['repairall']))
 		$sql = 'REPAIR TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
 		{
+			require FORUM_ROOT.'backstage/header.php';
 			generate_admin_menu('database');
 			message('SQL error, repair failed');
 		}
 	}
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 	message('All tables repaired');
 }
@@ -620,6 +633,7 @@ elseif (isset($_POST['optimizeall']))
 	if (!$result = $db->query($sql))
 	{
 		// This makes no sense, the board would be dead... :P
+		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Tables error, optimise failed');
 	}
@@ -638,10 +652,12 @@ elseif (isset($_POST['optimizeall']))
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
 		{
+			require FORUM_ROOT.'backstage/header.php';
 			generate_admin_menu('database');
 			message('SQL error, optimise failed');
 		}
 	}
+	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 	message('All tables optimised');
 }
