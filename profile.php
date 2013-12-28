@@ -1091,7 +1091,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	require FORUM_ROOT.'header.php';
 
 ?>
-<h2><?php echo $lang['Profile'] ?></h2>
+<h2><?php echo pun_htmlspecialchars($user['username']) ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
@@ -1254,7 +1254,7 @@ else
 ?>
 
 <div class="col-md-10">
-	<h2><?php echo $lang['Profile'] ?> <small><?php echo $lang['View info'] ?></small></h2>
+	<h2><?php echo pun_htmlspecialchars($user['username']) ?> <small><?php echo $lang['View info'] ?></small></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
@@ -1740,166 +1740,6 @@ else
             </div>
         </div>
     </form>
-<?php
-
-	}
-	else if ($section == 'view')
-	{	
-	
-		$user_personality = array();
-	
-		$user_personality[] = '<tr><th class="col-md-2">'.$lang['Username'].'</th>';
-		$user_personality[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
-	
-		$user_title_field = get_title($user);
-		$user_personality[] = '<tr><th>'.$lang['Title'].'</th>';
-		$user_personality[] = '<td>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
-	
-		if ($user['realname'] != '')
-		{
-			$user_personality[] = '<tr><th>'.$lang['Realname'].'</th>';
-			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
-		}
-	
-		if ($user['location'] != '')
-		{
-			$user_personality[] = '<tr><th>'.$lang['Location'].'</th>';
-			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
-		}
-	
-		if ($user['url'] != '')
-		{
-			$user['url'] = pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
-			$user_personality[] = '<tr><th>'.$lang['Website'].'</th>';
-			$user_personality[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
-		}
-	
-		if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-			$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
-		else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-			$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
-		else
-			$email_field = '';
-		if ($email_field != '')
-		{
-			$user_personality[] = '<tr><th>'.$lang['Email'].'</th>';
-			$user_personality[] = '<td><span class="email">'.$email_field.'</span></td></tr>';
-		}
-	
-		$user_messaging = array();
-	
-		if ($user['jabber'] != '')
-		{
-			$user_messaging[] = '<tr><th>'.$lang['Jabber'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
-		}
-	
-		if ($user['icq'] != '')
-		{
-			$user_messaging[] = '<tr><th>'.$lang['ICQ'].'</th>';
-			$user_messaging[] = '<td>'.$user['icq'].'</td></tr>';
-		}
-	
-		if ($user['msn'] != '')
-		{
-			$user_messaging[] = '<tr><th>'.$lang['MSN'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
-		}
-	
-		if ($user['aim'] != '')
-		{
-			$user_messaging[] = '<tr><th>'.$lang['AOL IM'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
-		}
-	
-		if ($user['yahoo'] != '')
-		{
-			$user_messaging[] = '<tr><th>'.$lang['Yahoo'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
-		}
-	
-		if ($pun_config['o_avatars'] == '1')
-		{
-			$avatar_field = generate_avatar_markup($id);
-			if ($avatar_field != '')
-			{
-				$user_personality[] = '<tr><th>'.$lang['Avatar'].'</th>';
-				$user_personality[] = '<td>'.$avatar_field.'</td></tr>';
-			}
-		}
-	
-		if ($pun_config['o_signatures'] == '1')
-		{
-			if (isset($parsed_signature))
-			{
-				$user_personality[] = '<tr><th>'.$lang['Signature'].'</th>';
-				$user_personality[] = '<td><div class="postsignature postmsg">'.$parsed_signature.'</div></td></tr>';
-			}
-		}
-	
-		$user_activity = array();
-	
-		$posts_field = '';
-		if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
-			$posts_field = forum_number_format($user['num_posts']);
-		if ($pun_user['g_search'] == '1')
-		{
-			$quick_searches = array();
-			if ($user['num_posts'] > 0)
-			{
-				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
-				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
-			}
-			if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
-				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
-	
-			if (!empty($quick_searches))
-				$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
-		}
-		if ($posts_field != '')
-		{
-			$user_activity[] = '<tr><th>'.$lang['Posts table'].'</th>';
-			$user_activity[] = '<td>'.$posts_field.'</td></tr>';
-		}
-	
-		if ($user['num_posts'] > 0)
-		{
-			$user_activity[] = '<tr><th>'.$lang['Last post'].'</th>';
-			$user_activity[] = '<td>'.$last_post.'</td></tr>';
-		}
-	
-		$user_activity[] = '<tr><th>'.$lang['Registered table'].'</th>';
-		$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
-	
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang['title view own profile']);
-	define('FORUM_ACTIVE_PAGE', 'profile');
-	require FORUM_ROOT.'header.php';
-
-	generate_profile_menu('view');
-
-?>
-<div class="col-md-10">
-	<h2><?php echo $lang['Profile'] ?> <small><?php echo $lang['View info'] ?></small></h2>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
-        </div>
-        <table class="table">
-            <thead></thead>
-            <tbody>
-                <tr><th class="active" colspan="2"><h3><?php echo $lang['Section personality'] ?></h3></th></tr>
-                <?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-				<?php if (!empty($user_messaging)): ?>
-                    <tr><th class="active" colspan="2"><h3><?php echo $lang['Section messaging'] ?></h3></th></tr>
-                    <?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-				<?php endif; ?>
-                <tr><th class="active" colspan="2"><h3><?php echo $lang['User activity'] ?></h3></th></tr>
-                <?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-            </tbody>
-        </table>
-    </div>
-</div>
-
 <?php
 
 	}
