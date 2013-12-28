@@ -585,7 +585,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 ?>
 					<tr>
-						<td class="col-xs-2"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-primary" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></div></td>
+						<td class="col-xs-2"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></div></td>
 						<td class="col-xs-3"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
 						<td class="col-xs-7"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 					</tr>
