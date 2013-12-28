@@ -103,9 +103,8 @@ require FORUM_ROOT.'header.php';
 		<p><?php echo $lang['Code info'] ?></p>
 		<p><code>[code]<?php echo $lang['Code text'] ?>[/code]</code></p>
 		<p><?php echo $lang['produces code box'] ?></p>
-		<div class="postmsg">
-			<div class="codebox"><pre><code><?php echo $lang['Code text'] ?></code></pre></div>
-		</div>
+		<pre><?php echo $lang['Code text'] ?></pre>
+		<p><code>[c]<?php echo $lang['Code text'] ?>[/c]</code> <?php echo $lang['produces code box'] ?> <code><?php echo $lang['Code text'] ?></code></p>
 	</div>
 </div>
 <div class="panel panel-default">
