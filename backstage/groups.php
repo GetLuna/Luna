@@ -488,24 +488,22 @@ else if (isset($_GET['del_group']))
 	generate_admin_menu('groups');
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Group delete head'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
+<h2><?php echo $lang['Group delete head'] ?></h2>
+<form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php printf($lang['Confirm delete info'], pun_htmlspecialchars($group_title)) ?></h3>
+        </div>
+        <div class="panel-body">
             <input type="hidden" name="group_to_delete" value="<?php echo $group_id ?>" />
-                <fieldset>
-                    <p><?php printf($lang['Confirm delete info'], pun_htmlspecialchars($group_title)) ?></p>
-                    <div class="alert alert-danger"><?php echo $lang['Confirm delete warn'] ?></div>
-                </fieldset>
-            <div class="control-group">
-                <input class="btn btn-danger" type="submit" name="del_group_comply" value="<?php echo $lang['Delete'] ?>" tabindex="1" />
-                <a class="btn btn-link" href="javascript:history.go(-1)" tabindex="2"><?php echo $lang['Go back'] ?></a>
-            </div>
-        </form>
+            <p><?php echo $lang['Confirm delete warn'] ?></p>
+        </div>
+        <div class="panel-footer">
+            <input class="btn btn-danger" type="submit" name="del_group_comply" value="<?php echo $lang['Delete'] ?>" tabindex="1" />
+            <a class="btn btn-link" href="javascript:history.go(-1)" tabindex="2"><?php echo $lang['Go back'] ?></a>
+        </div>
     </div>
-</div>
+</form>
 <?php
 
 			require FORUM_ROOT.'backstage/footer.php';
