@@ -77,7 +77,7 @@ else if (isset($_GET['del_forum']))
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Forums']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('forums');
+	generate_admin_menu('board');
 
 ?>
 <h2><?php echo $lang['Confirm delete head'] ?></h2>
@@ -193,7 +193,7 @@ else if (isset($_GET['edit_forum']))
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Forums']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('forums');
+	generate_admin_menu('board');
 
 ?>
 <h2><?php echo $lang['Forum settings'] ?></h2>
@@ -386,7 +386,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Categories']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('categories');
+	generate_admin_menu('board');
 
 ?>
 <h2><?php echo $lang['Confirm delete cat head'] ?></h2>
