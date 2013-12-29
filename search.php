@@ -925,9 +925,9 @@ else
                 </div>
             </fieldset>
         </div>
-    </div>
-    <div class="alert alert-info">
-		<input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" />
+        <div class="panel-footer">
+            <input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" />
+        </div>
     </div>
 </form>
 <?php
