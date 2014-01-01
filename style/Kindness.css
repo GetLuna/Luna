@@ -431,11 +431,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	background-color: #f7f7f7;
 }
 
-.table > tbody > tr > td.postfooter {
-	padding-bottom: 0;
-	background-color: #dfdfdf;
-}
-
 .table > thead > tr.active {
 	color: #fff;
 	background: #ffb900;

@@ -346,6 +346,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #aaa;
 }
 
+.btn-actions {
+	padding-top: 0;
+	padding-bottom: 0;
+	font-size: 80%;
+}
+
 .post-div {
 	margin-top: 2px;
 	margin-bottom: 5px;
@@ -429,11 +435,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;
-}
-
-.table > tbody > tr > td.postfooter {
-	padding-bottom: 0;
-	background-color: #dfdfdf;
 }
 
 .table > thead > tr.active {

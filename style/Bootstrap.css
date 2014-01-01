@@ -307,10 +307,6 @@ h2 {
 }
 
 /* Table */
-.table > tbody > tr > td.postfooter {
-	padding-bottom: 0;
-}
-
 .category-header, .forum-header {
 	padding: 8px 0;
 }

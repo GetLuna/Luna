@@ -181,6 +181,7 @@ require FORUM_ROOT.'header.php';
     </ul>
 	<?php echo $post_link ?>
 </div>
+<div class="postview">
 <?php
 
 
@@ -294,9 +295,9 @@ while ($cur_post = $db->fetch_assoc($result))
 	{
 		if (!$pun_user['is_guest']) {
 			if ($cur_post['marked'] == false) {
-				$post_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			} else {
-				$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a class="btn btn-danger btn-actions btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			}
 		}
 
@@ -305,29 +306,29 @@ while ($cur_post = $db->fetch_assoc($result))
 			if ($cur_post['poster_id'] == $pun_user['id'])
 			{
 				if ((($start_from + $post_count) == 1 && $pun_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $pun_user['g_delete_posts'] == '1'))
-					$post_actions[] = '<a class="btn btn-primary btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
+					$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
 				if ($pun_user['g_edit_posts'] == '1')
-					$post_actions[] = '<a class="btn btn-primary btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
+					$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 			}
 
 			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a class="btn btn-primary btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+				$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 		}
 	}
 	else
 	{
 		if ($cur_post['marked'] == false)
 		{
-			$post_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+			$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		} else {
-			$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+			$post_actions[] = '<a class="btn btn-danger btn-actions btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		}
 		if ($pun_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
 		{  
-			$post_actions[] = '<a class="btn btn-primary btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';  
-			$post_actions[] = '<a class="btn btn-primary btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';  
+			$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';  
+			$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';  
 		}  
-		$post_actions[] = '<a class="btn btn-primary btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+		$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 	}
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
@@ -346,47 +347,38 @@ while ($cur_post = $db->fetch_assoc($result))
 	}
 	
 ?>
-<div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?>">
-	<table class="table postview <?php if ($cur_post['marked'] == true) echo 'marked'; ?>">
-		<tr colspan="2" class="user-data active visible-xs">
-        	<td>
-				<dd class="<?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd>
-            </td>
-        </tr>
-        <tr>
-            <td class="col-lg-2 user-data hidden-xs">
-                <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd><?php echo $user_title ?>
-                <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
-                <span class="user-info">
-                    <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
-                </span>
-            </td>
-            <td class="col-lg-10 post-content">
-                <p class="time-nr"><a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a><span class="pull-right">#<?php echo ($start_from + $post_count) ?></span></p>
-				<hr class="post-div" />
-                <div class="postmsg">
-                    <?php echo $cur_post['message']."\n" ?>
-<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
-                </div>
-                <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr class="post-div" />'.$signature.'</div>'."\n"; ?>
-            </td>
-        </tr>
-        <?php if (!$pun_user['is_guest']) { ?>
-        <tr>
-            <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-				<div class="btn-group"><?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?></div>
-                <p class="pull-right btn-group"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></p>
-            </td>
-        </tr>
-        <?php } ?>
-	</table>
-</div>
-
+    <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?>">
+        <table class="table <?php if ($cur_post['marked'] == true) echo 'marked'; ?>">
+            <tr colspan="2" class="user-data active visible-xs">
+                <td>
+                    <dd class="<?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-2 user-data hidden-xs">
+                    <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd><?php echo $user_title ?>
+                    <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
+                    <span class="user-info">
+                        <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
+                    </span>
+                    <?php if (!$pun_user['is_guest']) { ?><div class="btn-group"><?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?></div><?php } ?>
+                </td>
+                <td class="col-lg-10 post-content">
+                    <p><a class="time-nr" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a><span class="pull-right"><span class="time-nr">#<?php echo ($start_from + $post_count) ?><?php if (!$pun_user['is_guest']) { ?> &middot;</span> <span class="btn-group"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></span><?php } ?></span></p>
+                    <hr class="post-div" />
+                    <div class="postmsg">
+                        <?php echo $cur_post['message']."\n" ?>
+    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
+                    </div>
+                    <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr class="post-div" />'.$signature.'</div>'."\n"; ?>
+                </td>
+            </tr>
+        </table>
+    </div>
 <?php
-
 }
-
 ?>
+</div>
 <div class="pagepost">
     <ul class="pagination">
         <?php echo $paging_links ?>
