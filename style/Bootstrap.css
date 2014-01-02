@@ -535,6 +535,11 @@ q:after {
 	padding-right: 18px;
 }
 
+.form-text {
+	margin: 0;
+	padding: 20px;
+}
+
 .form .btn {
 	margin-top: -65px;
 	margin-right: 5px;

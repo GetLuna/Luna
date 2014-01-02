@@ -992,6 +992,11 @@ q:after {
 	font-weight: 500 !important;
 }
 
+.form-text {
+	margin: 0;
+	padding: 20px;
+}
+
 .form .btn {
 	margin-top: -65px;
 	margin-right: 5px;

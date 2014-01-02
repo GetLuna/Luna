@@ -671,19 +671,13 @@ foreach ($errors[$id] as $cur_error)
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="style/Randomness.css" type="text/css" rel="stylesheet">
+        <link href="style/<?php echo $default_style ?>.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
-    	<div class="container">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang['Update ModernBB'] ?></h3>
-                </div>
-                <div class="panel-body">
-                    <p><?php printf($lang['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang['go to index'])) ?></p>
-                </div>
-            </div>
-        </div>
+        <div class="form">
+            <h1 class="form-heading"><?php echo $lang['Update ModernBB'] ?></h1>
+            <p class="form-text"><?php printf($lang['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang['go to index'])) ?></p>
+		</div>
 	</body>
 </html>
 <?php
