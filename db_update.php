@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '2.9.1');
+define('UPDATE_TO', '2.9.2');
 
 define('UPDATE_TO_DB_REVISION', 45);
 define('UPDATE_TO_SI_REVISION', 2);
@@ -207,15 +207,14 @@ if (empty($stage))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/bootstrap.css" type="text/css" rel="stylesheet">
-        <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
-        <link href="backstage/css/color/ModernBB.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
         <form class="form" id="install" method="post" action="db_update.php">
-            <h1 class="form-heading"><?php echo $lang['Update'] ?></h1>
+            <h1 class="form-heading"><?php echo $lang['Update ModernBB'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
-				<input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
+				<input class="btn btn-default btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
             </fieldset>
 		</form>
 	</body>

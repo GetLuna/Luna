@@ -995,11 +995,6 @@ q:after {
 
 .form .btn-update {
 	margin-top: 0 !important;
-	margin-bottom: 20px;
-}
-
-.db-password {
-	width: 100%;
 }
 
 .form .actions, .form .remember {
