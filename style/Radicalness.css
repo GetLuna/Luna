@@ -959,3 +959,66 @@ q:before {
 q:after {
   content: "\201D";
 }
+
+/* Update and login form */
+.form {
+	max-width: 330px;
+	margin: 60px auto 20px;
+	border-radius: 3px;
+	background-color: #fff;
+}
+
+.form input[type="text"], .form input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: -1px;
+	padding: 7px 9px;
+	width: 100%;
+	box-shadow: none;
+}
+
+.form-heading {
+	margin-bottom: 0px;
+	font-weight: 100;
+	background: #ea3700;
+	background: linear-gradient(to right, #ea3700, #fd8300);
+	color: #fff;
+	padding: 20px;
+}
+
+.form-content {
+	padding-left: 20px;
+	padding-right: 18px;
+}
+
+.remember {
+	font-weight: 500 !important;
+}
+
+.form .btn {
+	margin-top: -65px;
+	margin-right: 5px;
+}
+
+.form .btn-update {
+	margin-top: 0 !important;
+	margin-bottom: 20px;
+}
+
+.db-password {
+	width: 100%;
+}
+
+.form .actions, .form .remember {
+	margin-top: 10px;
+}
+
+.top-form {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.bottom-form {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}

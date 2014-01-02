@@ -227,13 +227,3 @@ h4 {
 .breadcrumb {
 	color: #a8a8a8;
 }
-
-/* Update and login form */
-.form {
-	background-color: #fff;
-	border: #ccc 1px solid;
-}
-
-.form-heading {
-	color: #2ca0e9;
-}

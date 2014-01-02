@@ -274,14 +274,16 @@ require FORUM_ROOT.'header.php';
             <input class="form-control top-form" type="text" name="req_username" size="25" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
             <input class="form-control bottom-form" type="password" name="req_password" size="25" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" /> 
         </div>
-        <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a> &middot; <?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
-        <div class="control-group">
-            <div class="controls remember">
-                <label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
+        <div class="form-content">
+            <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a> &middot; <?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
+            <div class="control-group">
+                <div class="controls remember">
+                    <label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
+                </div>
             </div>
-        </div>
-        <div class="control-group pull-right">
-            <input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
+            <div class="control-group pull-right">
+                <input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
+            </div>
         </div>
     </fieldset>
 </form>
