@@ -1,5 +1,5 @@
 <?php
 
-define(REMOTE_VERSION, '2.2.02');
+define('REMOTE_VERSION', '2.2.02');
 
 ?>
