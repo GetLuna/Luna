@@ -18,6 +18,8 @@ if (!$pun_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
+require 'https://raw.github.com/ModernBB/ModernBB/version3.0/version.php';
+
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Index']);
 define('FORUM_ACTIVE_PAGE', 'admin');
@@ -31,7 +33,7 @@ require FORUM_ROOT.'backstage/header.php';
 	?>
 		<div class="alert alert-info">
 		<?php
-        $latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
+        $latest_version = trim(@file_get_contents(REMOTE_VERSION));
         if (version_compare(FORUM_VERSION, $latest_version, 'lt')) { ?>
             <h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
             <div class="btn-group">
