@@ -75,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .dropdown-menu > li > a:hover,
 #header .dropdown-menu > li > a:focus {
 	background: #47a9f5;
-	background: linear-gradient(to bottom,  #47a9f5 0%,#2690e1 100%);
+	background: linear-gradient(to bottom, #47a9f5, #2690e1);
 	filter: none;
 	color: #fff;
 }
@@ -225,11 +225,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #0085ce;
+	background-color: #0068b0;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #0085ce;
+    background-color: #0068b0;
     color: #fff;
 }
 
