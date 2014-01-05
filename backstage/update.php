@@ -38,6 +38,31 @@ elseif ($action == 'soft_reset')
 	unlink(FORUM_ROOT.'config.php');
 	header("Location: ../install.php?action=softreset");
 }
+elseif ($action == 'hard_reset')
+{
+	$db->drop_table('bans') or error('Unable to drop bans table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('categories') or error('Unable to drop categories table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('censoring') or error('Unable to drop censoring table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('config') or error('Unable to drop config table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('forums') or error('Unable to drop forums table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('forum_perms') or error('Unable to drop forum_perms table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('groups') or error('Unable to drop groups table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('online') or error('Unable to drop online table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('posts') or error('Unable to drop posts table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('posts') or error('Unable to drop posts table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('ranks') or error('Unable to drop ranks table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('reports') or error('Unable to drop reports table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('search_cache') or error('Unable to drop search_cache table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('search_matches') or error('Unable to drop search_matches table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('search_words') or error('Unable to drop search_words table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('topic_subscriptions') or error('Unable to drop topic_subscriptions table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('forum_subscriptions') or error('Unable to drop forum_subscriptions table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('topics') or error('Unable to drop topics table', __FILE__, __LINE__, $db->error());
+	$db->drop_table('users') or error('Unable to drop users table', __FILE__, __LINE__, $db->error());
+	
+	unlink(FORUM_ROOT.'config.php');
+	header("Location: ../install.php?action=softreset");
+}
 
 if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
 	include FORUM_CACHE_DIR.'cache_update.php';
@@ -111,7 +136,7 @@ require FORUM_ROOT.'backstage/header.php';
         <a href="update.php?action=soft_reset" class="btn btn-danger">Reset config.php</a>
     	<h3><br />Hard reset</h3>
         <p>The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. This can't be undone. Be sure you made a back-up before doing this.</p>
-        <a href="#" class="btn btn-danger">Reset</a>
+        <a href="update.php?action=hard_reset" class="btn btn-danger">Reset</a>
     	<h3><br />Re-install</h3>
         <p>This button will download the most recent ModernBB package from the servers and launch the update screen if required. This will undo changes you made to the ModernBB core files. This can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="#" class="btn btn-danger">Re-install</a>
