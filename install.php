@@ -36,6 +36,9 @@ forum_remove_bad_characters();
 // Reverse the effect of register_globals
 forum_unregister_globals();
 
+// It might happen you are redirected to this page from backstage/update.php
+$action = isset($_GET['action']) ? $_GET['action'] : null;
+
 // Disable error reporting for uninitialized variables
 error_reporting(E_ALL);
 
@@ -294,6 +297,9 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
     <body onload="document.getElementById('install').start.disabled=false;" onunload="">
     	<div class="container">
             <h1><?php echo sprintf($lang['Install'], FORUM_VERSION) ?></h1>
+            <?php if ($action == 'softreset') { ?>
+            <div class="alert alert-success"><h4>The config.php file has been deleted.</h4></div>
+			<?php } ?>
             <?php if (count($languages) > 1): ?>
             <form  class="form-horizontal" id="install" method="post" action="install.php">
                 <div class="panel panel-default">

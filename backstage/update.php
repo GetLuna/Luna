@@ -19,6 +19,15 @@ if (!$pun_user['is_admmod']) {
 }
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
+
+if ($action == 'softreset')
+{
+	$config = FORUM_ROOT.'config.php';
+	unlink(FORUM_ROOT.'config.php');
+	header("Location: ../install.php?action=softreset");
+}
+
+$action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Update']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
@@ -75,7 +84,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
     	<h3>Soft reset</h3>
         <p>The button below will remove the config.php file, this will cause the install to start so you can install ModernBB again. This will not drop the current database. This might be effective if your config.php file is corrupt.</p>
-        <a href="#" class="btn btn-danger">Reset config.php</a>
+        <a href="update.php?action=softreset" class="btn btn-danger">Reset config.php</a>
     	<h3><br />Hard reset</h3>
         <p>The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. A hard reset can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="#" class="btn btn-danger">Reset</a>
