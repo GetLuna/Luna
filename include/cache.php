@@ -35,8 +35,6 @@ function generate_config_cache()
 //
 function generate_update_cache()
 {
-	global $db;
-
 	// Get the version number from GitHub
 	$output = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
 
