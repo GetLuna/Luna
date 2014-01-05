@@ -30,6 +30,21 @@ function generate_config_cache()
 	fluxbb_write_cache_file('cache_config.php', $content);
 }
 
+//
+// Generate the update cache
+//
+function generate_update_cache()
+{
+	global $db;
+
+	// Get the version number from GitHub
+	$output = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
+
+	// Output version as PHP code
+	$content = '<?php'."\n\n".'define(\'FORUM_UPDATE_LOADED\', 1);'."\n\n".'$update_cache = '.var_export($output, true).';'."\n".'$last_check_time = '.time().';'."\n\n".'?>';
+	fluxbb_write_cache_file('cache_update.php', $content);
+}
+
 
 //
 // Generate the bans cache PHP script

@@ -20,11 +20,29 @@ if (!$pun_user['is_admmod']) {
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
-if ($action == 'softreset')
+if ($action == 'update_check')
 {
-	$config = FORUM_ROOT.'config.php';
+	// Regenerate the update cache
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_update_cache();
+	require FORUM_ROOT.'cache/cache_update.php';
+	header("Location: update.php");
+}
+elseif ($action == 'soft_reset')
+{
 	unlink(FORUM_ROOT.'config.php');
 	header("Location: ../install.php?action=softreset");
+}
+
+if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() - (60 * 60 * 24))))
+{
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_update_cache();
+	require FORUM_ROOT.'cache/cache_update.php';
 }
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
@@ -37,11 +55,11 @@ require FORUM_ROOT.'backstage/header.php';
 <h2>ModernBB software updates</h2>
 <div class="panel panel-default">
 	<div class="panel-heading">
-    	<h3 class="panel-title">ModernBB updates</h3>
+    	<h3 class="panel-title">ModernBB updates<span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary">Check for updates</a></span></h3>
     </div>
     <div class="panel-body">
 <?php
-	$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
+	$latest_version = $update_cache;
 	if (version_compare(FORUM_VERSION, $latest_version, 'lt')) {
 ?>
 		<h3>It's time to update, a new version is available</h3>
@@ -84,7 +102,7 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-body">
     	<h3>Soft reset</h3>
         <p>The button below will remove the config.php file, this will cause the install to start so you can install ModernBB again. This will not drop the current database. This might be effective if your config.php file is corrupt.</p>
-        <a href="update.php?action=softreset" class="btn btn-danger">Reset config.php</a>
+        <a href="update.php?action=soft_reset" class="btn btn-danger">Reset config.php</a>
     	<h3><br />Hard reset</h3>
         <p>The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. A hard reset can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="#" class="btn btn-danger">Reset</a>

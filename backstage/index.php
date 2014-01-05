@@ -31,6 +31,15 @@ if (!defined('FORUM_USERS_INFO_LOADED'))
 	require FORUM_CACHE_DIR.'cache_users_info.php';
 }
 
+if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() - (60 * 60 * 24))))
+{
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_update_cache();
+	require FORUM_ROOT.'cache/cache_update.php';
+}
+
 $result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
 list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->fetch_row($result));
 
@@ -42,22 +51,20 @@ if ($stats['total_topics'] == 0) {
 	$stats['total_topics'] == '0';
 }
 
-$latest_version = trim(@file_get_contents('https://raw.github.com/ModernBB/ModernBB/master/version.txt'));
+$latest_version = $update_cache;
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Index']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('index');
-?><h2><?php echo $lang['Backstage'] ?><span class="pull-right"><a href="update.php" class="btn <?php if ($pun_config['o_index_update_check'] == 1) { if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>btn-warning<?php } else { ?>btn-default<?php }; }; ?> btn-update"><?php echo $lang['Updates'] ?></a></span></h2><?php
+?><h2><?php echo $lang['Backstage'] ?><span class="pull-right"><a href="update.php" class="btn <?php if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>btn-warning<?php } else { ?>btn-default<?php }; ?> btn-update"><?php echo $lang['Updates'] ?></a></span></h2><?php
 //Update checking
-    if ($pun_config['o_index_update_check'] == 1) { ?>
-		<?php
-        if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
-		<div class="alert alert-info">
-            <h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
-		</div>
-<?php	}
+	if (version_compare(FORUM_VERSION, $latest_version, '<')) { ?>
+	<div class="alert alert-info">
+		<h4><?php echo sprintf($lang['Available'], $latest_version) ?></h4>
+	</div>
+<?php
     }
 if ($pun_user['g_id'] == FORUM_ADMIN) {
 ?>
