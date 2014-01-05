@@ -22,12 +22,15 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if ($action == 'update_check')
 {
-	// Regenerate the update cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
-
-	generate_update_cache();
-	require FORUM_ROOT.'cache/cache_update.php';
+	// Regenerate the update cache		
+	if (!defined('FORUM_UPDATE_LOADED'))
+	{
+		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+			require FORUM_ROOT.'include/cache.php';
+	
+		generate_update_cache();
+		require FORUM_CACHE_DIR.'cache_update.php';
+	}
 	header("Location: update.php");
 }
 elseif ($action == 'soft_reset')
@@ -36,13 +39,16 @@ elseif ($action == 'soft_reset')
 	header("Location: ../install.php?action=softreset");
 }
 
-if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() - (60 * 60 * 24))))
+if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
+	include FORUM_CACHE_DIR.'cache_update.php';
+	
+if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24))))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
 
 	generate_update_cache();
-	require FORUM_ROOT.'cache/cache_update.php';
+	require FORUM_CACHE_DIR.'cache_update.php';
 }
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
@@ -101,16 +107,16 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
     <div class="panel-body">
     	<h3>Soft reset</h3>
-        <p>The button below will remove the config.php file, this will cause the install to start so you can install ModernBB again. This will not drop the current database. This might be effective if your config.php file is corrupt.</p>
+        <p>The button below will remove the config.php file, this will cause the install to start so you can install ModernBB again. This will not drop the current database. This might be effective if your config.php file is corrupt. This can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="update.php?action=soft_reset" class="btn btn-danger">Reset config.php</a>
     	<h3><br />Hard reset</h3>
-        <p>The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. A hard reset can't be undone. Be sure you made a back-up before doing this.</p>
+        <p>The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. This can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="#" class="btn btn-danger">Reset</a>
     	<h3><br />Re-install</h3>
-        <p>This button will download the most recent ModernBB package from the servers and launch the update screen if required. This will undo changes you made to the ModernBB core files.</p>
+        <p>This button will download the most recent ModernBB package from the servers and launch the update screen if required. This will undo changes you made to the ModernBB core files. This can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="#" class="btn btn-danger">Re-install</a>
     	<h3><br />Clean install</h3>
-        <p>The button below will remove the config.php file and database, and will download the most recent ModernBB package from the servers and launch the installer. This will undo changes you made to the ModernBB core files. This is the same as an update, but you will also lose your data, both database as config.php.</p>
+        <p>The button below will remove the config.php file and database, and will download the most recent ModernBB package from the servers and launch the installer. This will undo changes you made to the ModernBB core files. This is the same as an update, but you will also lose your data, both database as config.php. This can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="#" class="btn btn-danger">Clean install</a>
     </div>
 </div>

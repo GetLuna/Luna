@@ -31,13 +31,16 @@ if (!defined('FORUM_USERS_INFO_LOADED'))
 	require FORUM_CACHE_DIR.'cache_users_info.php';
 }
 
-if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() - (60 * 60 * 24))))
+if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
+	include FORUM_CACHE_DIR.'cache_update.php';
+
+if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24))))
 {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
 
 	generate_update_cache();
-	require FORUM_ROOT.'cache/cache_update.php';
+	require FORUM_CACHE_DIR.'cache_update.php';
 }
 
 $result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
