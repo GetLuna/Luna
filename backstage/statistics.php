@@ -108,23 +108,25 @@ require FORUM_ROOT.'backstage/header.php';
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Server statistics head'] ?></h3>
     </div>
-	<div class="panel-body">
-        <table class="table">
+    <table class="table">
+        <thead>
             <tr>
-                <th class="col-md-2"><?php echo $lang['Server load label'] ?></th>
-                <td><?php printf($lang['Server load data']."\n", $server_load, $num_online) ?></td>
-            </tr>
-            <tr>
+                <th class="col-md-4"><?php echo $lang['Server load label'] ?></th>
                 <?php if ($pun_user['g_id'] == FORUM_ADMIN): ?>
-                <th><?php echo $lang['Environment label'] ?></th>
+                <th class="col-md-4"><?php echo $lang['Environment label'] ?></th>
+                <th class="col-md-4"><?php echo $lang['Database label'] ?></th>
+                <?php endif; ?>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?php printf($lang['Server load data']."\n", $server_load, $num_online) ?></td>
+                <?php if ($pun_user['g_id'] == FORUM_ADMIN): ?>
                 <td>
                     <?php printf($lang['Environment data OS'], PHP_OS) ?><br />
                     <?php printf($lang['Environment data version'], phpversion(), '<a href="statistics.php?action=phpinfo">'.$lang['Show info'].'</a>') ?><br />
                     <?php printf($lang['Environment data acc']."\n", $php_accelerator) ?>
                 </td>
-            </tr>
-            <tr>
-                <th><?php echo $lang['Database label'] ?></th>
                 <td>
                     <?php echo implode(' ', $db->get_version())."\n" ?>
                     <?php if (isset($total_records) && isset($total_size)): ?>
@@ -134,8 +136,8 @@ require FORUM_ROOT.'backstage/header.php';
                 </td>
                 <?php endif; ?>
             </tr>
-        </table>
-	</div>
+        </tbody>
+    </table>
 </div>
 <?php
 
