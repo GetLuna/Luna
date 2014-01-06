@@ -102,6 +102,7 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
+<h2><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></h2>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
     <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
