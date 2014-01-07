@@ -1016,6 +1016,8 @@ $lang = array(
 'Title settings head'				=>	'Title settings',
 'Title in menu'						=>	'Show board title in menu.',
 'Title in header'					=>	'Show board title in header.',
+'Description in header'				=>	'Show board description in header.',
+'Description settings head'			=>	'Description settings',
 
 // Language for email.php
 'Contact head'						=>	'Contact settings',

@@ -21,10 +21,7 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 header('Content-type: text/html; charset=utf-8');
 
 // Load the template
-if (defined ('FORUM_FORM'))
-	$tpl_file = 'form.tpl';
-else
-	$tpl_file = 'main.tpl';
+$tpl_file = 'main.tpl';
 
 if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/'.$tpl_file))
 {
@@ -152,6 +149,7 @@ if (isset($focus_element))
 // END SUBST - <body>
 
 
+if (!defined ('FORUM_FORM')) {
 // START SUBST - <pun_page>
 $tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
 // END SUBST - <pun_page>
@@ -168,7 +166,12 @@ if ($pun_config['o_header_title'] == 1) {
 
 
 // START SUBST - <pun_desc>
-$tpl_main = str_replace('<pun_desc>', '<div id="brddesc"><p>'.$pun_config['o_board_desc'].'</p></div>', $tpl_main);
+if ($pun_config['o_header_desc'] == 1) {
+	$tpl_main = str_replace('<pun_desc>', '<div id="brddesc"><p>'.$pun_config['o_board_desc'].'</p></div>', $tpl_main);
+} else {
+	$tpl_main = str_replace('<pun_desc>', '', $tpl_main);
+}
+
 // END SUBST - <pun_desc>
 
 
@@ -340,7 +343,7 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_announcement'] == '1')
 else
 	$tpl_main = str_replace('<pun_announcement>', '', $tpl_main);
 // END SUBST - <pun_announcement>
-
+}
 
 // START SUBST - <pun_main>
 ob_start();

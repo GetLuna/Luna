@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '3.00-dev.1534');
+define('FORUM_VERSION', '3.00-dev.1562');
 
-define('FORUM_DB_REVISION', 45);
+define('FORUM_DB_REVISION', 47);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 6);
 
@@ -1597,6 +1597,7 @@ else
 		'o_additional_navlinks'		=> '',
 		'o_menu_title'				=> 0,
 		'o_header_title'			=> 1,
+		'o_header_desc'				=> 1,
 		'o_report_method'			=> 0,
 		'o_regs_report'				=> 0,
 		'o_default_email_setting'	=> 1,

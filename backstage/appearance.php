@@ -32,6 +32,7 @@ if (isset($_POST['form_sent']))
 		'smilies_sig'			=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
 		'make_links'			=> isset($_POST['form']['make_links']) ? '1' : '0',
 		'header_title'			=> isset($_POST['form']['header_title']) ? '1' : '0',
+		'header_desc'			=> isset($_POST['form']['header_desc']) ? '1' : '0',
 		'menu_title'			=> isset($_POST['form']['menu_title']) ? '1' : '0',
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
@@ -150,6 +151,17 @@ generate_admin_menu('display');
 								<?php echo $lang['Title in menu'] ?>
                             </label>
                         </div>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Description settings head'] ?></label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+								<input type="checkbox" name="form[header_desc]" value="1" <?php if ($pun_config['o_header_desc'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Description in header'] ?>
+                            </label>
+                        </div>                       
                     </div>
                 </div>
             </fieldset>

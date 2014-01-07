@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '3.00-dev.1534');
+define('UPDATE_TO', '3.00-dev.1562');
 
-define('UPDATE_TO_DB_REVISION', 45);
+define('UPDATE_TO_DB_REVISION', 47);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 6);
 
@@ -269,6 +269,10 @@ switch ($stage)
 		// Since 2.1-beta: Insert new config option o_header_title
 		if (!array_key_exists('o_header_title', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_title\', \'1\')') or error('Unable to insert config value \'o_header_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.00-alpha.2: Insert new config option o_header_desc
+		if (!array_key_exists('o_header_desc', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_desc\', \'1\')') or error('Unable to insert config value \'o_header_desc\'', __FILE__, __LINE__, $db->error());
 		
 		// Since 2.1-beta: Insert new config option o_index_update_check
 		if (!array_key_exists('o_index_update_check', $pun_config))
