@@ -76,10 +76,15 @@ else if ($footer_style == 'viewtopic')
 		echo "\t\t\t\t".'<span class="atom"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom">'.$lang['Atom topic feed'].'</a></span>'."\n";
 }
 
-?>
+
+if (!defined('FORUM_FORM'))
+{ ?>
 	<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($pun_config['o_show_version'] == '1') ? ' '.$pun_config['o_cur_version'] : '')) ?></span>
     <script src="include/bootstrap/jquery.js"></script>
     <script src="include/bootstrap/bootstrap.js"></script>
+<?php
+}
+?>
 </footer>
 <?php
 
