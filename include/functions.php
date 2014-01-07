@@ -1335,13 +1335,13 @@ function maintenance_message()
 	ob_start();
 
 ?>
-<div class="block">
-	<h2><?php echo $lang['Maintenance'] ?></h2>
-	<div class="box">
-		<div class="inbox">
-			<p><?php echo $message ?></p>
-		</div>
-	</div>
+<div class="container">
+    <div class="form">
+        <h1 class="form-heading"><?php echo $lang['Maintenance'] ?></h1>
+        <div class="form-content">
+            <p><?php echo $message ?></p>
+        </div>
+    </div>
 </div>
 <?php
 

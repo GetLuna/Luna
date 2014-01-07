@@ -984,8 +984,7 @@ q:after {
 }
 
 .form-content {
-	padding-left: 20px;
-	padding-right: 18px;
+	padding: 15px 18px 10px 20px;
 }
 
 .remember {
