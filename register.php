@@ -154,15 +154,15 @@ if (isset($_POST['form_sent']))
 		// Add the user
 		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$db->escape($language).'\', \''.$pun_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 		$new_uid = $db->insert_id();
-		
-		if ($pun_config['o_regs_verify'] == '0')  
-		{  
-			// Regenerate the users info cache  
-			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))  
-				require FORUM_ROOT.'include/cache.php';  
-	
-			generate_users_info_cache();  
-		}  
+
+		if ($pun_config['o_regs_verify'] == '0')
+		{
+			// Regenerate the users info cache
+			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+				require FORUM_ROOT.'include/cache.php';
+
+			generate_users_info_cache();
+		}
 
 		// If the mailing list isn't empty, we may need to send out some alerts
 		if ($pun_config['o_mailing_list'] != '')
