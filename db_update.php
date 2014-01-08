@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '3.00-dev.1562');
+define('UPDATE_TO', '3.00-dev.1579');
 
-define('UPDATE_TO_DB_REVISION', 47);
+define('UPDATE_TO_DB_REVISION', 48);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 6);
 
@@ -292,6 +292,24 @@ switch ($stage)
 
 		// Since 3.0-alpha.1: Add the backstage_style column to the users table
 		$db->add_field('users', 'backstage_style', 'VARCHAR(25)', false, 'ModernBB') or error('Unable to add backstage_style field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.0-alpha.2: Add the last_topic column to the forums table
+		$db->add_field('forums', 'last_topic', 'VARCHAR(255)', true, null, 'last_poster');
+		
+		// Since 3.0-alpha.2: Update last_topic for each forum
+		$result = $db->query('SELECT id, last_post_id FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+		while ($cur_forum = $db->fetch_assoc($result))
+		{
+			if ($cur_forum['last_post_id'] > 0)
+			{
+				$result_subject = $db->query('SELECT t.subject FROM '.$db->prefix.'posts AS p LEFT JOIN '.$db->prefix.'topics AS t ON p.topic_id=t.id WHERE p.id='.$cur_forum['last_post_id']) or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
+				if ($db->num_rows($result_subject))
+				{
+					$subject = $db->result($result_subject);
+					$db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.$db->escape($subject).'\' WHERE id='.$cur_forum['id']) or error('Unable to update last topic', __FILE__, __LINE__, $db->error());
+				}
+			}
+		}
 		
 		// Since ModernBB 2.2.2: Recreate ranks table when removed in FluxBB 1.5
 		if (!$db->table_exists('ranks'))

@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '3.00-dev.1562');
+define('FORUM_VERSION', '3.00-dev.1579');
 
-define('FORUM_DB_REVISION', 47);
+define('FORUM_DB_REVISION', 48);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 6);
 
@@ -790,12 +790,17 @@ else
 			'disp_position'	=> array(
 				'datatype'		=> 'INT(10)',
 				'allow_null'	=> false,
-				'default'		=>	'0'
+				'default'		=> '0'
 			),
 			'cat_id'		=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
 				'allow_null'	=> false,
-				'default'		=>	'0'
+				'default'		=> '0'
+			),
+			'last_topic'	=> array(
+				'datatype'		=> 'VARCHAR(255)',
+				'allow_null'	=> false,
+				'default'		=> '0'
 			)
 		),
 		'PRIMARY KEY'	=> array('id')
