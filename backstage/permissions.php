@@ -23,6 +23,8 @@ if ($pun_user['g_id'] != FORUM_ADMIN)
 
 if (isset($_POST['form_sent']))
 {
+	confirm_referrer('backstage/permissions.php');
+	
 	$form = array(
 		'message_bbcode'		=> isset($_POST['form']['message_bbcode']) ? '1' : '0',
 		'message_img_tag'		=> isset($_POST['form']['message_img_tag']) ? '1' : '0',

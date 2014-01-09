@@ -359,6 +359,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 // Add/edit a group (stage 2)
 else if (isset($_POST['add_edit_group']))
 {
+	confirm_referrer('backstage/groups.php');
+	
 	// Is this the admin group? (special rules apply)
 	$is_admin_group = (isset($_POST['group_id']) && $_POST['group_id'] == FORUM_ADMIN) ? true : false;
 
@@ -423,6 +425,8 @@ else if (isset($_POST['add_edit_group']))
 // Set default group
 else if (isset($_POST['set_default_group']))
 {
+	confirm_referrer('backstage/groups.php');
+	
 	$group_id = intval($_POST['default_group']);
 
 	// Make sure it's not the admin or guest groups
@@ -449,6 +453,8 @@ else if (isset($_POST['set_default_group']))
 // Remove a group
 else if (isset($_GET['del_group']))
 {
+	confirm_referrer('backstage/groups.php');
+	
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
 		message($lang['Bad request'], false, '404 Not Found');

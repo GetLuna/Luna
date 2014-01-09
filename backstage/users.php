@@ -345,6 +345,8 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 {
 	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
+		
+	confirm_referrer('backstage/users.php');
 
 	if (isset($_POST['users']))
 	{
@@ -463,6 +465,8 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 {
 	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
+		
+	confirm_referrer('backstage/users.php');
 
 	if (isset($_POST['users']))
 	{
@@ -610,6 +614,8 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 {
 	if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
+		
+	confirm_referrer('backstage/users.php');
 
 	if (isset($_POST['users']))
 	{

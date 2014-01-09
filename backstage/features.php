@@ -23,6 +23,8 @@ if ($pun_user['g_id'] != FORUM_ADMIN)
 
 if (isset($_POST['form_sent']))
 {
+	confirm_referrer('backstage/features.php', $lang['Bad HTTP Referer message']);
+	
 	$form = array(
 		'quickpost'				=> isset($_POST['form']['quickpost']) ? '1' : '0',
 		'users_online'			=> isset($_POST['form']['users_online']) ? '1' : '0',

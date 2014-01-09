@@ -23,6 +23,7 @@ if ($pun_user['g_id'] != FORUM_ADMIN)
 
 if (isset($_POST['form_sent']))
 {
+	confirm_referrer('backstage/settings.php', $lang['Bad HTTP Referer message']);
 
 	$form = array(
 		'board_title'			=> pun_trim($_POST['form']['board_title']),

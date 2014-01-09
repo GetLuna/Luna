@@ -23,7 +23,8 @@ if ($pun_user['g_id'] != FORUM_ADMIN)
 
 if (isset($_POST['form_sent']))
 {
-
+	confirm_referrer('backstage/registration.php', $lang['Bad HTTP Referer message']);
+	
 	$form = array(
 		'regs_allow'			=> isset($_POST['form']['regs_allow']) ? '1' : '0',
 		'regs_verify'			=> isset($_POST['form']['regs_verify']) ? '1' : '0',

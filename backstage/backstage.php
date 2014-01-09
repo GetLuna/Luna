@@ -20,6 +20,8 @@ if (!$pun_user['is_admmod']) {
 
 if (isset($_POST['form_sent']))
 {
+	confirm_referrer('backstage/backstage.php');
+	
 	$form = array(
 		'index_update_check'	=> isset($_POST['form']['index_update_check']) ? '1' : '0',
 	);

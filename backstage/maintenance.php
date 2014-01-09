@@ -42,6 +42,8 @@ if ($action == 'rebuild')
 	// If this is the first cycle of posts we empty the search index before we proceed
 	if (isset($_GET['i_empty_index']))
 	{
+		confirm_referrer('backstage/maintenance.php');
+	
 		$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
 		$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
 
@@ -128,6 +130,8 @@ if ($action == 'prune')
 
 	if (isset($_POST['prune_comply']))
 	{
+		confirm_referrer('backstage/maintenance.php');
+		
 		$prune_days = intval($_POST['prune_days']);
 		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
 
@@ -298,6 +302,7 @@ if ($db->num_rows($result))
 
 if (isset($_POST['form_sent']))
 {
+	confirm_referrer('backstage/maintenance.php');
 
 	$form = array(
 		'maintenance'			=> isset($_POST['form']['maintenance']) ? '1' : '0',

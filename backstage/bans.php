@@ -173,6 +173,8 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 // Add/edit a ban (stage 2)
 else if (isset($_POST['add_edit_ban']))
 {
+	confirm_referrer('backstage/bans.php');
+	
 	$ban_user = pun_trim($_POST['ban_user']);
 	$ban_ip = pun_trim($_POST['ban_ip']);
 	$ban_email = strtolower(pun_trim($_POST['ban_email']));
@@ -295,6 +297,8 @@ else if (isset($_POST['add_edit_ban']))
 // Remove a ban
 else if (isset($_GET['del_ban']))
 {
+	confirm_referrer('backstage/bans.php');
+	
 	$ban_id = intval($_GET['del_ban']);
 	if ($ban_id < 1)
 		message($lang['Bad request'], false, '404 Not Found');

@@ -21,6 +21,8 @@ if (!$pun_user['is_admmod']) {
 // Zap a report
 if (isset($_POST['zap_id']))
 {
+	confirm_referrer('backstage/reports.php');
+	
 	$zap_id = intval(key($_POST['zap_id']));
 
 	$result = $db->query('SELECT zapped FROM '.$db->prefix.'reports WHERE id='.$zap_id) or error('Unable to fetch report info', __FILE__, __LINE__, $db->error());

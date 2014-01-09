@@ -23,6 +23,8 @@ if ($pun_user['g_id'] != FORUM_ADMIN)
 
 if (isset($_POST['form_sent']))
 {
+	confirm_referrer('backstage/email.php', $lang['Bad HTTP Referer message']);
+	
 	$form = array(
 		'admin_email'			=> strtolower(pun_trim($_POST['form']['admin_email'])),
 		'webmaster_email'		=> strtolower(pun_trim($_POST['form']['webmaster_email'])),

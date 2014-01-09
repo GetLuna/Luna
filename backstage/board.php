@@ -24,6 +24,8 @@ if ($pun_user['g_id'] != FORUM_ADMIN)
 // Add a "default" forum
 if (isset($_POST['add_forum']))
 {
+	confirm_referrer('backstage/board.php');
+	
 	$forum_name = pun_trim($_POST['new_forum']); 
 	$add_to_cat = intval($_POST['add_to_cat']);
 	if ($add_to_cat < 1)
@@ -37,6 +39,8 @@ if (isset($_POST['add_forum']))
 // Delete a forum
 else if (isset($_GET['del_forum']))
 {
+	confirm_referrer('backstage/board.php');
+	
 	$forum_id = intval($_GET['del_forum']);
 	if ($forum_id < 1)
 		message($lang['Bad request'], false, '404 Not Found');
@@ -105,6 +109,8 @@ else if (isset($_GET['del_forum']))
 // Update forum positions
 else if (isset($_POST['update_positions']))
 {
+	confirm_referrer('backstage/board.php');
+	
 	foreach ($_POST['position'] as $forum_id => $disp_position)
 	{
 		$disp_position = trim($disp_position);
@@ -126,6 +132,8 @@ else if (isset($_GET['edit_forum']))
 	// Update group permissions for $forum_id
 	if (isset($_POST['save']))
 	{
+		confirm_referrer('backstage/board.php');
+	
 		// Start with the forum details
 		$forum_name = pun_trim($_POST['forum_name']);
 		$forum_desc = pun_linebreaks(pun_trim($_POST['forum_desc']));
@@ -175,6 +183,8 @@ else if (isset($_GET['edit_forum']))
 	}
 	else if (isset($_POST['revert_perms']))
 	{
+		confirm_referrer('backstage/board.php');
+	
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
 		redirect('backstage/board.php?edit_forum='.$forum_id, $lang['Perms reverted redirect']);
@@ -323,6 +333,8 @@ else if (isset($_GET['edit_forum']))
 // Add a new category
 if (isset($_POST['add_cat']))
 {
+	confirm_referrer('backstage/board.php');
+	
 	$new_cat_name = pun_trim($_POST['new_cat_name']);
 	if ($new_cat_name == '')
 		message($lang['Must enter name message']);
@@ -335,6 +347,8 @@ if (isset($_POST['add_cat']))
 // Delete a category
 else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 {
+	confirm_referrer('backstage/board.php');
+	
 	$cat_to_delete = intval($_POST['cat_to_delete']);
 	if ($cat_to_delete < 1)
 		message($lang['Bad request'], false, '404 Not Found');
@@ -421,6 +435,8 @@ for ($i = 0; $i < $num_cats; ++$i)
 
 if (isset($_POST['update'])) // Change position and name of the categories
 {
+	confirm_referrer('backstage/board.php');
+	
 	$categories = $_POST['cat'];
 	if (empty($categories))
 		message($lang['Bad request'], false, '404 Not Found');

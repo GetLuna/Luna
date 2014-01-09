@@ -1114,6 +1114,43 @@ function random_key($len, $readable = false, $hash = false)
 
 
 //
+// Make sure that HTTP_REFERER matches base_url/script
+//
+function confirm_referrer($scripts, $error_msg = false)
+{
+	global $pun_config, $lang;
+
+	if (!is_array($scripts))
+		$scripts = array($scripts);
+
+	// There is no referrer
+	if (empty($_SERVER['HTTP_REFERER']))
+		message($error_msg ? $error_msg : $lang['Bad referrer']);
+
+	$referrer = parse_url(strtolower($_SERVER['HTTP_REFERER']));
+	// Remove www subdomain if it exists
+	if (strpos($referrer['host'], 'www.') === 0)
+		$referrer['host'] = substr($referrer['host'], 4);
+
+	$valid_paths = array();
+	foreach ($scripts as $script)
+	{
+		$valid = parse_url(strtolower(get_base_url().'/'.$script));
+		// Remove www subdomain if it exists
+		if (strpos($valid['host'], 'www.') === 0)
+			$valid['host'] = substr($valid['host'], 4);
+
+		$valid_host = $valid['host'];
+		$valid_paths[] = $valid['path'];
+	}
+
+	// Check the host and path match. Ignore the scheme, port, etc.
+	if ($referrer['host'] != $valid_host || !in_array($referrer['path'], $valid_paths))
+		message($error_msg ? $error_msg : $lang['Bad referrer']);
+}
+
+
+//
 // Generate a random password of length $len
 // Compatibility wrapper for random_key
 //
