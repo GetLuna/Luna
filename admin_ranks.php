@@ -120,7 +120,7 @@ generate_admin_menu('ranks');
 						<legend><?php echo $lang_admin_ranks['Add rank subhead'] ?></legend>
 						<div class="infldset">
 							<p><?php echo $lang_admin_ranks['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang_admin_ranks['Ranks enabled'], '<a href="admin_options.php#ranks">'.$lang_admin_common['Options'].'</a>') : sprintf($lang_admin_ranks['Ranks disabled'], '<a href="admin_options.php#ranks">'.$lang_admin_common['Options'].'</a>')) ?></p>
-							<table cellspacing="0">
+							<table>
 							<thead>
 								<tr>
 									<th class="tcl" scope="col"><?php echo $lang_admin_ranks['Rank title label'] ?></th>
@@ -150,7 +150,7 @@ if ($db->num_rows($result))
 {
 
 ?>
-							<table cellspacing="0">
+							<table>
 							<thead>
 								<tr>
 									<th class="tcl" scope="col"><?php echo $lang_admin_ranks['Rank title label'] ?></th>
