@@ -592,6 +592,9 @@ function generate_avatar_markup($user_id)
 function generate_page_title($page_title, $p = null)
 {
 	global $pun_config, $lang_common;
+	
+	if (!is_array($page_title))
+		$page_title = array($page_title);
 
 	$page_title = array_reverse($page_title);
 
