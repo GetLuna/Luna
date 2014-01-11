@@ -360,6 +360,10 @@ h2 {
 	padding-bottom: 7px;
 }
 
+textarea {
+    resize: vertical;
+}
+
 .checklist {
 	border-width: 1px;
 	border-style: solid;

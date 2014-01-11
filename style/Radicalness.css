@@ -781,6 +781,10 @@ fieldset label {
 	padding: 0 0 7px 0;
 }
 
+textarea {
+    resize: vertical;
+}
+
 .multiselect {
 	float: left;
 	padding-bottom: 7px;
