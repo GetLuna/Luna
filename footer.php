@@ -34,7 +34,7 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 	}
 	else if ($footer_style == 'viewtopic')
 	{
-		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang['Moderate topic'].'</a>'."\n";
+		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;p='.$p.'" class="btn btn-primary btn-mini">'.$lang['Moderate topic'].'</a>'.($num_pages > 1 ? ' (<a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;action=all" class="btn btn-primary btn-mini">'.$lang['All'].'</a>)' : '')."\n";
 		echo "\t\t\t\t".'<a href="moderate.php?fid='.$forum_id.'&amp;move_topics='.$id.'" class="btn btn-primary btn-mini">'.$lang['Move topic'].'</a>'."\n";
 
 		if ($cur_topic['closed'] == '1')
