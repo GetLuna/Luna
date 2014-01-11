@@ -77,6 +77,8 @@ if (isset($_GET['tid']))
 
 		if (isset($_POST['delete_posts_comply']))
 		{
+			confirm_referrer('moderate.php');
+
 			if (@preg_match('%[^0-9,]%', $posts))
 				message($lang['Bad request'], false, '404 Not Found');
 
@@ -142,6 +144,8 @@ if (isset($_GET['tid']))
 
 		if (isset($_POST['split_posts_comply']))
 		{
+			confirm_referrer('moderate.php');
+
 			if (@preg_match('%[^0-9,]%', $posts))
 				message($lang['Bad request'], false, '404 Not Found');
 
@@ -405,6 +409,8 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 {
 	if (isset($_POST['move_topics_to']))
 	{
+		confirm_referrer('moderate.php');
+
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -537,6 +543,8 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 {
 	if (isset($_POST['merge_topics_comply']))
 	{
+		confirm_referrer('moderate.php');
+
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -642,6 +650,8 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 	if (isset($_POST['delete_topics_comply']))
 	{
+		confirm_referrer('moderate.php');
+
 		if (@preg_match('%[^0-9,]%', $topics))
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -724,6 +734,8 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 	// There could be an array of topic IDs in $_POST
 	if (isset($_POST['open']) || isset($_POST['close']))
 	{
+		confirm_referrer('moderate.php');
+
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
 		if (empty($topics))
 			message($lang['No topics selected']);
@@ -736,6 +748,8 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 	// Or just one in $_GET
 	else
 	{
+		confirm_referrer('viewtopic.php');
+
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
 			message($lang['Bad request'], false, '404 Not Found');
@@ -751,6 +765,8 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 // Stick a topic
 else if (isset($_GET['stick']))
 {
+	confirm_referrer('viewtopic.php');
+
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
 		message($lang['Bad request'], false, '404 Not Found');
@@ -764,6 +780,8 @@ else if (isset($_GET['stick']))
 // Unstick a topic
 else if (isset($_GET['unstick']))
 {
+	confirm_referrer('viewtopic.php');
+
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)
 		message($lang['Bad request'], false, '404 Not Found');

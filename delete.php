@@ -48,6 +48,9 @@ if ($is_admmod && $pun_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster
 
 if (isset($_POST['delete']))
 {
+	// Make sure they got here from the site
+	confirm_referrer('delete.php');
+
 	require FORUM_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post)

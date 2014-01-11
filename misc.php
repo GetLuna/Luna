@@ -93,6 +93,8 @@ else if (isset($_GET['email']))
 
 	if (isset($_POST['form_sent']))
 	{
+		confirm_referrer('misc.php');
+
 		// Clean up message and subject from POST
 		$subject = pun_trim($_POST['req_subject']);
 		$message = pun_trim($_POST['req_message']);
@@ -206,6 +208,8 @@ else if (isset($_GET['report']))
 
 	if (isset($_POST['form_sent']))
 	{
+		confirm_referrer('misc.php');
+
 		// Clean up reason from POST
 		$reason = pun_linebreaks(pun_trim($_POST['req_reason']));
 		if ($reason == '')

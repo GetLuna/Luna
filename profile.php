@@ -75,6 +75,9 @@ if ($action == 'change_pass')
 
 	if (isset($_POST['form_sent']))
 	{
+		// Make sure they got here from the site
+		confirm_referrer('profile.php');
+
 		$old_password = isset($_POST['req_old_password']) ? pun_trim($_POST['req_old_password']) : '';
 		$new_password1 = pun_trim($_POST['req_new_password1']);
 		$new_password2 = pun_trim($_POST['req_new_password2']);
@@ -177,6 +180,9 @@ else if ($action == 'change_email')
 	{
 		if (pun_hash($_POST['req_password']) !== $pun_user['password'])
 			message($lang['Wrong pass']);
+
+		// Make sure they got here from the site
+		confirm_referrer('profile.php');
 
 		require FORUM_ROOT.'include/email.php';
 
@@ -297,6 +303,9 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 		if (!isset($_FILES['req_file']))
 			message($lang['No file']);
 
+		// Make sure they got here from the site
+		confirm_referrer('profile.php');
+
 		$uploaded_file = $_FILES['req_file'];
 
 		// Make sure the upload went smooth
@@ -412,6 +421,8 @@ else if ($action == 'delete_avatar')
 {
 	if ($pun_user['id'] != $id && !$pun_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
+
+	confirm_referrer('profile.php');
 		
 	delete_avatar($id);
 
@@ -423,6 +434,8 @@ else if (isset($_POST['update_group_membership']))
 {
 	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
+
+	confirm_referrer('profile.php');
 
 	$new_group_id = intval($_POST['group_id']);
 	
@@ -472,6 +485,8 @@ else if (isset($_POST['update_forums']))
 	if ($pun_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
+	confirm_referrer('profile.php');
+
 	// Get the username of the user we are processing
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	$username = $db->result($result);
@@ -510,6 +525,8 @@ else if (isset($_POST['ban']))
 {
 	if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
+
+	confirm_referrer('profile.php');
 
 	// Get the username of the user we are banning
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch username', __FILE__, __LINE__, $db->error());
@@ -665,6 +682,9 @@ else if (isset($_POST['form_sent']))
 		$group_id == FORUM_ADMIN ||																	// or the user is an admin
 		$is_moderator))))																			// or the user is another mod
 		message($lang['No permission'], false, '403 Forbidden');
+
+	// Make sure they got here from the site
+	confirm_referrer('profile.php');
 		
 	$username_updated = false;
 
