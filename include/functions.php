@@ -1579,29 +1579,23 @@ function error($message, $file = null, $line = null, $db_error = false)
 	header('Content-type: text/html; charset=utf-8');
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?php $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), 'Error') ?>
-<title><?php echo generate_page_title($page_title) ?></title>
-<style type="text/css">
-body {
-	margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px;
-}
-h2 {
-	margin: 0; color: #00a5f5; font-size: 26px; padding: 0 4px; font-weight: 100;
-}
-#errorbox div {
-	padding: 0 5px;
-}
-</style>
-</head>
-<body>
-
-<div id="errorbox">
-	<h2>An error was encountered</h2>
-	<div>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<?php $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), 'Error') ?>
+        <title><?php echo generate_page_title($page_title) ?></title>
+		<style type="text/css">
+			body { margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px; }
+			h2 { margin: 0; color: #00a5f5; font-size: 26px; padding: 0 4px; font-weight: 100; }
+			#errorbox div { padding: 0 5px; }
+        </style>
+    </head>
+    <body>
+        <div id="errorbox">
+            <h2>An error was encountered</h2>
+            <div>
 <?php
 
 	if (defined('FORUM_DEBUG') && !is_null($file) && !is_null($line))
@@ -1620,10 +1614,9 @@ h2 {
 		echo "\t\t".'Error: <strong>'.$message.'.</strong>'."\n";
 
 ?>
-	</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>
 <?php
 
