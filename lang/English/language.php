@@ -122,9 +122,6 @@ $lang = array(
 'Title separator'					=>	' / ',
 
 // Stuff for the page footer
-'Board footer'						=>	'Board footer',
-'Jump to'							=>	'Jump to',
-'Go'								=>	' Go ', // Submit button in forum jump
 'Moderate topic'					=>	'Moderate topic',
 'All'								=>	'All',
 'Move topic'						=>	'Move topic',
