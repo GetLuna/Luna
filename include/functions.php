@@ -345,7 +345,7 @@ function forum_hmac($data, $key, $raw_output = false)
 
 
 //
-// Set a cookie, FluxBB style!
+// Set a cookie, ModernBB style!
 // Wrapper for forum_setcookie
 //
 function pun_setcookie($user_id, $password_hash, $expire)
@@ -357,7 +357,7 @@ function pun_setcookie($user_id, $password_hash, $expire)
 
 
 //
-// Set a cookie, FluxBB style!
+// Set a cookie, ModernBB style!
 //
 function forum_setcookie($name, $value, $expire)
 {
@@ -1548,7 +1548,7 @@ function error($message, $file = null, $line = null, $db_error = false)
 	if (empty($pun_config))
 	{
 		$pun_config = array(
-			'o_board_title'	=> 'FluxBB',
+			'o_board_title'	=> 'ModernBB',
 			'o_gzip'		=> '0'
 		);
 	}
@@ -1586,12 +1586,15 @@ function error($message, $file = null, $line = null, $db_error = false)
 <?php $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), 'Error') ?>
 <title><?php echo generate_page_title($page_title) ?></title>
 <style type="text/css">
-<!--
-BODY {MARGIN: 10% 20% auto 20%; font: 10px Verdana, Arial, Helvetica, sans-serif}
-#errorbox {BORDER: 1px solid #B84623}
-H2 {MARGIN: 0; COLOR: #FFFFFF; BACKGROUND-COLOR: #B84623; FONT-SIZE: 1.1em; PADDING: 5px 4px}
-#errorbox DIV {PADDING: 6px 5px; BACKGROUND-COLOR: #F1F1F1}
--->
+body {
+	margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px;
+}
+h2 {
+	margin: 0; color: #00a5f5; font-size: 26px; padding: 0 4px; font-weight: 100;
+}
+#errorbox div {
+	padding: 0 5px;
+}
 </style>
 </head>
 <body>
@@ -1603,7 +1606,7 @@ H2 {MARGIN: 0; COLOR: #FFFFFF; BACKGROUND-COLOR: #B84623; FONT-SIZE: 1.1em; PADD
 
 	if (defined('FORUM_DEBUG') && !is_null($file) && !is_null($line))
 	{
-		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>FluxBB reported</strong>: '.$message."\n";
+		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>ModernBB reported</strong>: '.$message."\n";
 
 		if ($db_error)
 		{
