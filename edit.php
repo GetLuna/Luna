@@ -149,12 +149,12 @@ require FORUM_ROOT.'header.php';
 $cur_index = 1;
 
 ?>
-<ul class="breadcrumb">
+<ol class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
     <li><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo pun_htmlspecialchars($cur_post['forum_name']) ?></a></li>
     <li><a href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><?php echo pun_htmlspecialchars($cur_post['subject']) ?></a></li>
     <li class="active"><?php echo $lang['Edit post'] ?></li>
-</ul>
+</ol>
 
 <?php
 

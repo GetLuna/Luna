@@ -551,11 +551,11 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 <div class="linkst">
-    <ul class="breadcrumb">
+    <ol class="breadcrumb">
         <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
         <li><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
         <li class="active"><?php echo $crumbs_text['search_type'] ?></li>
-    </ul>
+    </ol>
     <ul class="pagination">
         <?php echo $paging_links ?>
     </ul>
@@ -633,11 +633,11 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
     <table class="table">
     	<tr>
             <td colspan="2" class="postbreadcrumb" style="padding-bottom: 0px;">
-                <ul class="breadcrumb">
+                <ol class="breadcrumb">
                     <li><?php if ($cur_search['pid'] != $cur_search['first_post_id']) echo $lang['Re'].' ' ?><?php echo $forum ?></li>
                     <li><a href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo pun_htmlspecialchars($cur_search['subject']) ?></a></li>
                     <li><a href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php echo format_time($cur_search['pposted']) ?></a></li>
-                </ul>
+                </ol>
             </td>
         </tr>
         <tr>
@@ -737,11 +737,11 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
     <ul class="pagination pagination-fix">
         <?php echo $paging_links ?>
     </ul>
-    <ul class="breadcrumb">
+    <ol class="breadcrumb">
         <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
         <li><a href="search.php"><?php echo $crumbs_text['show_as'] ?></a></li>
         <li class="active"><?php echo $crumbs_text['search_type'] ?></li>
-    </ul>
+    </ol>
     <?php echo (!empty($forum_actions) ? "\t\t".'<p class="subscribelink clearb">'.implode(' - ', $forum_actions).'</p>'."\n" : '') ?>
 </div>
 <?php

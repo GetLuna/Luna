@@ -171,11 +171,11 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <h2><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h2>
-<ul class="breadcrumb">
+<ol class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
     <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
     <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-</ul>
+</ol>
 <div class="pagepost">
     <ul class="pagination">
         <?php echo $paging_links ?>
@@ -386,11 +386,11 @@ while ($cur_post = $db->fetch_assoc($result))
     </ul>
 	<?php echo $post_link ?>
 </div>
-<ul class="breadcrumb">
+<ol class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
     <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
     <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
-</ul>
+</ol>
 
 <?php
 
