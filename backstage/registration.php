@@ -30,6 +30,7 @@ if (isset($_POST['form_sent']))
 		'regs_verify'			=> isset($_POST['form']['regs_verify']) ? '1' : '0',
 		'regs_report'			=> isset($_POST['form']['regs_report']) ? '1' : '0',
 		'rules'					=> isset($_POST['form']['rules']) ? '1' : '0',
+		'antispam_api'			=> pun_trim($_POST['form']['antispam_api']),
 		'rules_message'			=> pun_trim($_POST['form']['rules_message']),
 		'default_email_setting'	=> intval($_POST['form']['default_email_setting']),
 	);

@@ -46,7 +46,6 @@ if (isset($_POST['form_sent']))
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
-		'antispam_api'			=> pun_trim($_POST['form']['antispam_api']),
 		'announcement'			=> isset($_POST['form']['announcement']) ? '1' : '0',
 		'announcement_message'	=> pun_trim($_POST['form']['announcement_message']),
 	);
