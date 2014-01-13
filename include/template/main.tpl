@@ -28,8 +28,18 @@
             <pun_footer>
         </div>
         <!-- Javascript start -->
+        <script src="include/tinymce/tinymce.min.js"></script>
         <script type="text/javascript">
-        $(document).ready(function() {
+		tinymce.init({
+			plugins: [
+				["bbcode advlist autolink link image lists print hr anchor"],
+				["searchreplace wordcount code fullscreen insertdatetime media"],
+				["save contextmenu paste"]
+			],
+			selector: 'textarea',
+			toolbar: "undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | subscript superscript | link image | fullscreen ",
+		});
+        $(document).ready(function(){
             $("#user").focus();
         });
         </script>
