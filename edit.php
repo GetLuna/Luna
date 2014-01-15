@@ -208,19 +208,20 @@ else if (isset($_POST['preview']))
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Edit post'] ?></h3>
         </div>
-        <div class="panel-body">
-            <fieldset>
-                <input type="hidden" name="form_sent" value="1" />
-<?php if ($can_edit_subject): ?>						<label class="required"><strong><?php echo $lang['Subject'] ?></strong><br />
-                <input class="form-control full-form" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" /></label>
+        <fieldset>
+            <input type="hidden" name="form_sent" value="1" />
+<?php if ($can_edit_subject): ?>						<label class="required">
+            <input class="form-control full-form" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" /></label>
 <?php endif; ?>						<label class="required">
-				<textarea class="form-control full-form" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea></label>
-                <ul class="bblinks">
-                    <li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-                    <li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-                    <li><a class="label <?php echo ($pun_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
-                </ul>
-            </fieldset>
+            <textarea class="form-control full-form" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea></label>
+        </fieldset>
+        <div class="panel-footer">
+        	<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" class="btn btn-primary" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            <ul class="bblinks">
+                <li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
+                <li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
+                <li><a class="label <?php echo ($pun_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
+            </ul>
         </div>
     </div>
 <?php
@@ -269,7 +270,6 @@ if (!empty($checkboxes))
 	}
 
 ?>
-    <div class="alert alert-info"><div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" class="btn btn-primary" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
 </form>
 <?php
 
