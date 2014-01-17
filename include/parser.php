@@ -183,7 +183,7 @@ function strip_empty_bbcode($text)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|colou?r|quote|c|img|url|email|list|topic|post|forum|user|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|h1|h2|h3|h4|h5|h6|colou?r|quote|c|img|url|email|list|topic|post|forum|user|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -830,7 +830,7 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<em>$1</em>';
 	$replace[] = '<span style="color: $1">$2</span>';
 	$replace[] = '</p><h4>$1</h4><p>';
-	$replace[] = '</p><h1>$1</h1><>';
+	$replace[] = '</p><h1>$1</h1><p>';
 	$replace[] = '</p><h2>$1</h2><p>';
 	$replace[] = '</p><h3>$1</h3><p>';
 	$replace[] = '</p><h4>$1</h4><p>';
