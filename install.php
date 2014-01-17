@@ -8,11 +8,11 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '3.00-dev.1579');
+define('FORUM_VERSION', '3.00-dev.1613');
 
 define('FORUM_DB_REVISION', 48);
 define('FORUM_SI_REVISION', 2);
-define('FORUM_PARSER_REVISION', 6);
+define('FORUM_PARSER_REVISION', 7);
 
 define('MIN_PHP_VERSION', '5.0.0');
 define('MIN_MYSQL_VERSION', '5.0.1');
