@@ -4,14 +4,14 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 if (!defined('FORUM_ROOT'))
 	exit('The constant FORUM_ROOT must be defined and point to a valid ModernBB installation root directory.');
 
 // Define the version and database revision that this code was written for
-define('FORUM_VERSION', '3.00-dev.1613');
+define('FORUM_VERSION', '3.00-dev.1644');
 
 define('FORUM_DB_REVISION', 48);
 define('FORUM_SI_REVISION', 2);

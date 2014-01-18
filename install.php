@@ -4,11 +4,11 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '3.00-dev.1613');
+define('FORUM_VERSION', '3.00-dev.1644');
 
 define('FORUM_DB_REVISION', 48);
 define('FORUM_SI_REVISION', 2);
