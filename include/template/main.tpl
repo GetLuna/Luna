@@ -32,12 +32,9 @@
         <script type="text/javascript">
 		tinymce.init({
 			plugins: [
-				["bbcode advlist autolink link image lists print hr anchor"],
-				["searchreplace wordcount code fullscreen insertdatetime media"],
-				["save contextmenu paste"]
+				["bbcode advlist autolink link image lists print hr wordcount code fullscreen insertdatetime media contextmenu paste"]
 			],
 			selector: 'textarea',
-			toolbar: "undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | subscript superscript | link image | fullscreen ",
 		});
         $(document).ready(function(){
             $("#user").focus();
