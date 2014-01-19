@@ -8,7 +8,7 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '3.00-dev.1644');
+define('FORUM_VERSION', '3.00-dev.1651');
 
 define('FORUM_DB_REVISION', 48);
 define('FORUM_SI_REVISION', 2);
