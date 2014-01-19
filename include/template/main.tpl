@@ -32,9 +32,10 @@
         <script type="text/javascript">
 		tinymce.init({
 			plugins: [
-				["bbcode advlist autolink link image lists print hr wordcount code fullscreen insertdatetime media contextmenu paste"]
+				["bbcode advlist autolink link image lists print hr wordcount code fullscreen media paste emoticons"]
 			],
 			selector: 'textarea',
+			skins: 'lightgrey',
 		});
         $(document).ready(function(){
             $("#user").focus();
