@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
@@ -372,7 +372,7 @@ if (isset($_GET['tid']))
         <?php if (!$pun_user['is_guest']) { ?>
         <tr>
             <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-                <?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
+                <?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<div class="checkbox pull-right" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label></div>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
             </td>
         </tr>
         <?php } ?>
@@ -384,7 +384,7 @@ if (isset($_GET['tid']))
 	}
 
 ?>
-<p><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></p>
+<span class="pull-right btn-group"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></span>
 
 <div class="pagepost">
     <ul class="pagination">
