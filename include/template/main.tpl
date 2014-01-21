@@ -32,7 +32,7 @@
         <script type="text/javascript">
 		tinymce.init({
 			plugins: [
-				["bbcode advlist autolink link image lists print wordcount code fullscreen media paste emoticons"]
+				["bbcode advlist autolink link image lists print wordcount code fullscreen media paste"]
 			],
 			selector: 'textarea',
 			skins: 'lightgrey',
