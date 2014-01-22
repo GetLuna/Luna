@@ -359,9 +359,7 @@ while ($cur_post = $db->fetch_assoc($result))
                 <td class="col-lg-2 user-data hidden-xs">
                     <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd><?php echo $user_title ?>
                     <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
-                    <span class="user-info">
-                        <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
-                    </span>
+                    <?php if (count($user_info)) echo "<span class=\"user-info\">"."\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"."</span>"; ?>
                     <?php if (!$pun_user['is_guest']) { ?><div class="btn-group"><?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?></div><?php } ?>
                 </td>
                 <td class="col-lg-10 post-content">
