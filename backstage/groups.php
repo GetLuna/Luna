@@ -86,171 +86,135 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"> <?php echo $lang['Mod privileges label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked="checked"' ?> tabindex="5" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="moderator" value="0"<?php if ($group['g_moderator'] == '0') echo ' checked="checked"' ?> tabindex="6" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Mod privileges help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked="checked"' ?> tabindex="5" />
+                                <?php echo $lang['Mod privileges help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Edit profile label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked="checked"' ?> tabindex="7" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_edit_users" value="0"<?php if ($group['g_mod_edit_users'] == '0') echo ' checked="checked"' ?> tabindex="8" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Edit profile help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked="checked"' ?> tabindex="7" />
+                                <?php echo $lang['Edit profile help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Rename users label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked="checked"' ?> tabindex="9" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_rename_users" value="0"<?php if ($group['g_mod_rename_users'] == '0') echo ' checked="checked"' ?> tabindex="10" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Rename users help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked="checked"' ?> tabindex="9" />
+								<?php echo $lang['Rename users help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Change passwords label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked="checked"' ?> tabindex="11" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_change_passwords" value="0"<?php if ($group['g_mod_change_passwords'] == '0') echo ' checked="checked"' ?> tabindex="12" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Change passwords help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked="checked"' ?> tabindex="11" />
+                            	<?php echo $lang['Change passwords help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Ban users label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked="checked"' ?> tabindex="13" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="mod_ban_users" value="0"<?php if ($group['g_mod_ban_users'] == '0') echo ' checked="checked"' ?> tabindex="14" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Ban users help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked="checked"' ?> tabindex="13" />
+                            	<?php echo $lang['Ban users help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
     <?php endif; endif; ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Read board label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked="checked"' ?> tabindex="15" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="read_board" value="0"<?php if ($group['g_read_board'] == '0') echo ' checked="checked"' ?> tabindex="16" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Read board help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked="checked"' ?> tabindex="15" />
+                                <?php echo $lang['Read board help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['View user info label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked="checked"' ?> tabindex="17" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="view_users" value="0"<?php if ($group['g_view_users'] == '0') echo ' checked="checked"' ?> tabindex="18" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['View user info help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked="checked"' ?> tabindex="17" />
+                            	<?php echo $lang['View user info help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Post replies label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked="checked"' ?> tabindex="19" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="post_replies" value="0"<?php if ($group['g_post_replies'] == '0') echo ' checked="checked"' ?> tabindex="20" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Post replies help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked="checked"' ?> tabindex="19" />
+                            	<?php echo $lang['Post replies help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Post topics label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked="checked"' ?> tabindex="21" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="post_topics" value="0"<?php if ($group['g_post_topics'] == '0') echo ' checked="checked"' ?> tabindex="22" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Post topics help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked="checked"' ?> tabindex="21" />
+                            	<?php echo $lang['Post topics help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
     <?php if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Edit posts label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked="checked"' ?> tabindex="23" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="edit_posts" value="0"<?php if ($group['g_edit_posts'] == '0') echo ' checked="checked"' ?> tabindex="24" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Edit posts help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked="checked"' ?> tabindex="23" />
+                            	<?php echo $lang['Edit posts help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Delete posts label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked="checked"' ?> tabindex="25" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="delete_posts" value="0"<?php if ($group['g_delete_posts'] == '0') echo ' checked="checked"' ?> tabindex="26" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Delete posts help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked="checked"' ?> tabindex="25" />
+                            	<?php echo $lang['Delete posts help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Delete topics label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked="checked"' ?> tabindex="27" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="delete_topics" value="0"<?php if ($group['g_delete_topics'] == '0') echo ' checked="checked"' ?> tabindex="28" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Delete topics help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked="checked"' ?> tabindex="27" />
+                            	<?php echo $lang['Delete topics help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
     <?php endif;
@@ -258,59 +222,47 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Set own title label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked="checked"' ?> tabindex="31" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="set_title" value="0"<?php if ($group['g_set_title'] == '0') echo ' checked="checked"' ?> tabindex="32" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Set own title help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked="checked"' ?> tabindex="31" />
+                            	<?php echo $lang['Set own title help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
     <?php endif; ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['User search label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked="checked"' ?> tabindex="33" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="search" value="0"<?php if ($group['g_search'] == '0') echo ' checked="checked"' ?> tabindex="34" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['User search help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked="checked"' ?> tabindex="33" />
+                            	<?php echo $lang['User search help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['User list search label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked="checked"' ?> tabindex="35" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="search_users" value="0"<?php if ($group['g_search_users'] == '0') echo ' checked="checked"' ?> tabindex="36" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['User list search help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked="checked"' ?> tabindex="35" />
+                            	<?php echo $lang['User list search help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
     <?php if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Send e-mails label'] ?></label>
                     <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked="checked"' ?> tabindex="37" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="send_email" value="0"<?php if ($group['g_send_email'] == '0') echo ' checked="checked"' ?> tabindex="38" />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                        <span class="help-block"><?php echo $lang['Send e-mails help'] ?></span>
+                    	<div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked="checked"' ?> tabindex="37" />
+								<?php echo $lang['Send e-mails help'] ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
     <?php endif; ?>
@@ -371,16 +323,16 @@ else if (isset($_POST['add_edit_group']))
 	$mod_rename_users = $moderator == '1' && isset($_POST['mod_rename_users']) && $_POST['mod_rename_users'] == '1' ? '1' : '0';
 	$mod_change_passwords = $moderator == '1' && isset($_POST['mod_change_passwords']) && $_POST['mod_change_passwords'] == '1' ? '1' : '0';
 	$mod_ban_users = $moderator == '1' && isset($_POST['mod_ban_users']) && $_POST['mod_ban_users'] == '1' ? '1' : '0';
-	$read_board = isset($_POST['read_board']) ? intval($_POST['read_board']) : '1';
+	$read_board = isset($_POST['read_board']) && $_POST['read_board'] == '1' ? '1' : '0';
 	$view_users = (isset($_POST['view_users']) && $_POST['view_users'] == '1') || $is_admin_group ? '1' : '0';
-	$post_replies = isset($_POST['post_replies']) ? intval($_POST['post_replies']) : '1';
-	$post_topics = isset($_POST['post_topics']) ? intval($_POST['post_topics']) : '1';
+	$post_replies = isset($_POST['post_replies']) && $_POST['post_replies'] == '1' ? '1' : '0';
+	$post_topics = isset($_POST['post_topics']) && $_POST['post_topics'] == '1' ? '1' : '0';
 	$edit_posts = isset($_POST['edit_posts']) ? intval($_POST['edit_posts']) : ($is_admin_group) ? '1' : '0';
 	$delete_posts = isset($_POST['delete_posts']) ? intval($_POST['delete_posts']) : ($is_admin_group) ? '1' : '0';
 	$delete_topics = isset($_POST['delete_topics']) ? intval($_POST['delete_topics']) : ($is_admin_group) ? '1' : '0';
 	$set_title = isset($_POST['set_title']) ? intval($_POST['set_title']) : ($is_admin_group) ? '1' : '0';
-	$search = isset($_POST['search']) ? intval($_POST['search']) : '1';
-	$search_users = isset($_POST['search_users']) ? intval($_POST['search_users']) : '1';
+	$search = isset($_POST['search']) && $_POST['search'] == '1' ? '1' : '0';
+	$search_users = isset($_POST['search_users']) && $_POST['search_users'] == '1' ? '1' : '0';
 	$send_email = (isset($_POST['send_email']) && $_POST['send_email'] == '1') || $is_admin_group ? '1' : '0';
 	$post_flood = (isset($_POST['post_flood']) && $_POST['post_flood'] >= 0) ? intval($_POST['post_flood']) : '0';
 	$search_flood = (isset($_POST['search_flood']) && $_POST['search_flood'] >= 0) ? intval($_POST['search_flood']) : '0';
