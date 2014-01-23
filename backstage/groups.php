@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -82,6 +82,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         <span class="help-block"><?php echo $lang['User title help'] ?></span>
                     </div>
                 </div>
+                <hr />
     <?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $pun_config['o_default_user_group'] != $group['g_id']): ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"> <?php echo $lang['Mod privileges label'] ?></label>
@@ -138,6 +139,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         </div>
                     </div>
                 </div>
+                <hr />
     <?php endif; endif; ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Read board label'] ?></label>
@@ -183,6 +185,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         </div>
                     </div>
                 </div>
+                <hr />
     <?php if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Edit posts label'] ?></label>
@@ -217,6 +220,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         </div>
                     </div>
                 </div>
+                <hr />
     <?php endif;
     if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
@@ -230,6 +234,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         </div>
                     </div>
                 </div>
+                <hr />
     <?php endif; ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['User search label'] ?></label>
@@ -253,6 +258,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         </div>
                     </div>
                 </div>
+                <hr />
     <?php if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Send e-mails label'] ?></label>
@@ -265,6 +271,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                         </div>
                     </div>
                 </div>
+                <hr />
     <?php endif; ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Post flood label'] ?></label>
