@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * Licensed under GPLv3
  */
 
 if (isset($_GET['action']))
@@ -176,20 +176,19 @@ else if (isset($_GET['email']))
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Send email to'] ?> <?php echo pun_htmlspecialchars($recipient) ?></h3>
     </div>
-	<div class="panel-body">
-		<form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-            <fieldset>
-                <input type="hidden" name="form_sent" value="1" />
-                <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
-                <label class="required"><?php echo $lang['Email subject'] ?>
-                <input class="form-control full-form" type="text" name="req_subject" size="75" maxlength="70" tabindex="1" /></label>
-                <label class="required"><?php echo $lang['Email message'] ?>
-                <textarea name="req_message" class="form-control full-form" rows="10" cols="75" tabindex="2"></textarea></label>
-                <p class="help-block"><?php echo $lang['Email disclosure note'] ?></p>
-            </fieldset>
-			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="3" accesskey="s" /><a href="javascript:history.go(-1)" class="btn btn-link"><?php echo $lang['Go back'] ?></a></div>
-		</form>
-	</div>
+    <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+        <fieldset class="postfield">
+            <input type="hidden" name="form_sent" value="1" />
+            <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
+            <label class="required hidden"><?php echo $lang['Email subject'] ?></label>
+            <input class="form-control full-form" placeholder="<?php echo $lang['Email subject'] ?>" type="text" name="req_subject" size="75" maxlength="70" tabindex="1" />
+            <label class="required hidden"><?php echo $lang['Email message'] ?></label>
+            <textarea name="req_message" class="form-control full-form" rows="10" cols="75" tabindex="2"></textarea>
+        </fieldset>
+        <div class="panel-footer">
+            <div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="3" accesskey="s" /><a href="javascript:history.go(-1)" class="btn btn-link"><?php echo $lang['Go back'] ?></a></div>
+        </div>
+    </form>
 </div>
 <?php
 
