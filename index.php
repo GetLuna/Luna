@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * Licensed under GPLv3
  */
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
@@ -112,7 +112,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 	}
 
 	if ($cur_forum['forum_desc'] != '')
-		$forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc">'.$cur_forum['forum_desc'].'</div>';
+		$forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc hidden-xs">'.$cur_forum['forum_desc'].'</div>';
 
 	// If there is a last_post/last_poster
 	if ($cur_forum['last_post'] != '')
@@ -120,7 +120,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 		if (pun_strlen($cur_forum['last_topic']) > 30)
 			$cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 30).'...';
 
-		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.pun_htmlspecialchars($cur_forum['last_topic']).'</a><br />'.format_time($cur_forum['last_post']).' <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_forum['last_poster']).'</span>';
+		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.pun_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_forum['last_poster']).'</span>';
 	}
 	else if ($cur_forum['redirect_url'] != '')
 		$last_post = '- - -';
