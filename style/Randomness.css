@@ -418,6 +418,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border-bottom: #eee solid 1px;
 	box-shadow: none;
 	font-size: 20px;
+	line-height: 0.8;
 }
 
 .quickpostfield textarea::-webkit-input-placeholder, .postfield textarea::-webkit-input-placeholder {
