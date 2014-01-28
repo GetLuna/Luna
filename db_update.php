@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '3.00-dev.1676');
+define('UPDATE_TO', '3.00-dev.1682');
 
-define('UPDATE_TO_DB_REVISION', 48);
+define('UPDATE_TO_DB_REVISION', 49);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 7);
 
@@ -310,6 +310,10 @@ switch ($stage)
 				}
 			}
 		}
+
+		// Since 3.0-alpha.3: Insert new config option o_show_index_stats
+		if (!array_key_exists('o_show_index_stats', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_index_stats\', \'1\')') or error('Unable to insert config value \'o_show_index_stats\'', __FILE__, __LINE__, $db->error());
 		
 		// Since ModernBB 2.2.2: Recreate ranks table when removed in FluxBB 1.5
 		if (!$db->table_exists('ranks'))

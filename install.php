@@ -8,9 +8,9 @@
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '3.00-dev.1676');
+define('FORUM_VERSION', '3.00-dev.1682');
 
-define('FORUM_DB_REVISION', 48);
+define('FORUM_DB_REVISION', 49);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 7);
 
@@ -1579,6 +1579,7 @@ else
 		'o_timeout_online'			=> 300,
 		'o_redirect_delay'			=> 1,
 		'o_show_version'			=> 1,
+		'o_show_index_stats'		=> 1,
 		'o_show_user_info'			=> 1,
 		'o_show_post_count'			=> 1,
 		'o_signatures'				=> 1,
