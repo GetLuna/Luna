@@ -188,6 +188,8 @@ if ($pun_user['g_view_users'] == '1')
 else
 	$stats['newest_user'] = pun_htmlspecialchars($stats['last_user']['username']);
 
+
+if ($pun_config['o_show_index_stats'] == 1) {
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -236,6 +238,7 @@ if ($pun_config['o_users_online'] == '1')
 	</div>
 </div>
 <?php
+}
 
 $footer_style = 'index';
 require FORUM_ROOT.'footer.php';

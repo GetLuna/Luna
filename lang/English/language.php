@@ -429,7 +429,6 @@ $lang = array(
 'Send email to'					=>	'Send email to',
 'Email subject'					=>	'Subject',
 'Email message'					=>	'Message',
-'Email disclosure note'			=>	'Note that by using this form, your email address will be disclosed to the recipient.',
 
 // Report
 'No reason'						=>	'You must enter a reason.',
@@ -1005,6 +1004,8 @@ $lang = array(
 'Posts per page label'				=>	'Posts per page',
 'Posts per page help'				=>	'The default number of posts to display per page in a topic. Users can personalize this setting.',
 'Indent label'						=>	'Indent size',
+'Index panels head'					=>	'Index settings',
+'Index statistics help'				=>	'Show the statistics panel on the index.',
 'Indent help'						=>	'If set to 8, a regular tab will be used when displaying text within the [code][/code] tag. Otherwise this many spaces will be used to indent the text.',
 'Quote depth label'					=>	'Maximum [quote] depth',
 'Quote depth help'					=>	'The maximum times a [quote] tag can go inside other [quote] tags, any tags deeper than this will be discarded.',

@@ -36,6 +36,7 @@ if (isset($_POST['form_sent']))
 		'header_title'			=> isset($_POST['form']['header_title']) ? '1' : '0',
 		'header_desc'			=> isset($_POST['form']['header_desc']) ? '1' : '0',
 		'menu_title'			=> isset($_POST['form']['menu_title']) ? '1' : '0',
+		'show_index_stats'		=> isset($_POST['form']['show_index_stats']) ? '1' : '0',
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
@@ -204,7 +205,7 @@ generate_admin_menu('display');
 								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Post count help'] ?>
                             </label>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -227,7 +228,18 @@ generate_admin_menu('display');
                                 <input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Clickable links help'] ?>
                             </label>
-                        </div>                     
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><?php echo $lang['Index panels head'] ?></label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[show_index_stats]" value="1" <?php if ($pun_config['o_show_index_stats'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Index statistics help'] ?>
+                            </label>
+                        </div>           
                     </div>
                 </div>
                 <hr />

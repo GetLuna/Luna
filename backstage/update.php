@@ -61,7 +61,7 @@ elseif ($action == 'hard_reset')
 	$db->drop_table('users') or error('Unable to drop users table', __FILE__, __LINE__, $db->error());
 	
 	unlink(FORUM_ROOT.'config.php');
-	header("Location: ../install.php?action=softreset");
+	header("Location: ../install.php?action=hardreset");
 }
 
 if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
