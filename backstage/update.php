@@ -137,12 +137,6 @@ require FORUM_ROOT.'backstage/header.php';
     	<h3><br />Hard reset</h3>
         <p>The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. This can't be undone. Be sure you made a back-up before doing this.</p>
         <a href="update.php?action=hard_reset" class="btn btn-danger">Reset</a>
-    	<h3><br />Re-install</h3>
-        <p>This button will download the most recent ModernBB package from the servers and launch the update screen if required. This will undo changes you made to the ModernBB core files. This can't be undone. Be sure you made a back-up before doing this.</p>
-        <a href="#" class="btn btn-danger">Re-install</a>
-    	<h3><br />Clean install</h3>
-        <p>The button below will remove the config.php file and database, and will download the most recent ModernBB package from the servers and launch the installer. This will undo changes you made to the ModernBB core files. This is the same as an update, but you will also lose your data, both database as config.php. This can't be undone. Be sure you made a back-up before doing this.</p>
-        <a href="#" class="btn btn-danger">Clean install</a>
     </div>
 </div>
 <?php
