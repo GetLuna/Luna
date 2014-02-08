@@ -211,7 +211,7 @@ else if (isset($_POST['preview']))
         <fieldset class="postfield">
             <input type="hidden" name="form_sent" value="1" />
 <?php if ($can_edit_subject): ?>
-            <input class="longinput form-control full-form" type="text" name="req_subject" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" />
+            <input class="longinput form-control full-form" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" />
 <?php endif; ?>
             <textarea class="form-control full-form" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea>
         </fieldset>

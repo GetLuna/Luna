@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // The contents of this file are very much inspired by the file search.php
@@ -770,7 +770,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
         <div class="panel-body">
             <fieldset>
                 <input type="hidden" name="action" value="search" />
-            	<div class="input-group"><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /><span class="input-group-btn"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" /></span></div>
+            	<div class="input-group"><input class="form-control" type="text" name="keywords" maxlength="100" /><span class="input-group-btn"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" /></span></div>
                 <a class="hidden-xs" href="search.php?section=advanced"><?php echo $lang['Advanced search'] ?></a>
             </fieldset>
         </div>
@@ -805,8 +805,8 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
                     </thead>
                     <tbody>
                     	<tr>
-                        	<td><input class="form-control" type="text" name="keywords" size="40" maxlength="100" /></td>
-                        	<td><input class="form-control" id="author" type="text" name="author" size="25" maxlength="25" /></td>
+                        	<td><input class="form-control" type="text" name="keywords" maxlength="100" /></td>
+                        	<td><input class="form-control" id="author" type="text" name="author" maxlength="25" /></td>
                         </tr>
                     </tbody>
                 </table>

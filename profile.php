@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
@@ -125,11 +125,11 @@ if ($action == 'change_pass')
     <input type="hidden" name="form_sent" value="1" />
     <fieldset>
     	<?php if (!$pun_user['is_admmod']): ?>        <label><strong><?php echo $lang['Old pass'] ?></strong><br />
-        <input class="form-control" type="password" name="req_old_password" size="16" /></label>
+        <input class="form-control" type="password" name="req_old_password" /></label>
 <?php endif; ?>						<label><strong><?php echo $lang['New pass'] ?></strong><br />
-        <input class="form-control" type="password" name="req_new_password1" size="16" /></label>
+        <input class="form-control" type="password" name="req_new_password1" /></label>
         <label><strong><?php echo $lang['Confirm new pass'] ?></strong><br />
-        <input class="form-control" type="password" name="req_new_password2" size="16" /></label>
+        <input class="form-control" type="password" name="req_new_password2" /></label>
         <p class="clearb"><?php echo $lang['Pass info'] ?></p>
     </fieldset>
     <p><input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-default" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
@@ -278,8 +278,8 @@ else if ($action == 'change_email')
     <fieldset>
         <h3><?php echo $lang['Email legend'] ?></h3>
         <input type="hidden" name="form_sent" value="1" />
-        <label><strong><?php echo $lang['New email'] ?></strong><br /><input type="text" class="form-control" name="req_new_email" size="50" maxlength="80" /></label>
-        <label><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" name="req_password" size="16" /></label>
+        <label><strong><?php echo $lang['New email'] ?></strong><br /><input type="text" class="form-control" name="req_new_email" maxlength="80" /></label>
+        <label><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" name="req_password" /></label>
         <p><?php echo $lang['Email instructions'] ?></p>
     </fieldset>
     <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
@@ -404,7 +404,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
-                <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" type="file" size="40" /></label>
+                <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" type="file" /></label>
                 <span class="help-block"><?php echo $lang['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></span>
             </fieldset>
             <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
@@ -1303,11 +1303,11 @@ else
 		if ($pun_user['is_admmod'])
 		{
 			if ($pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_mod_rename_users'] == '1')
-				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" size="25" maxlength="25" /></div></div>'."\n";
+				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" maxlength="25" /></div></div>'."\n";
 			else
 				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10">'.pun_htmlspecialchars($user['username']).'</div></div>'."\n";
 
-			$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" size="40" maxlength="80" /> <a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></div></div>'."\n";
+			$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" maxlength="80" /> <a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></div></div>'."\n";
 		}
 		else
 		{
@@ -1316,11 +1316,11 @@ else
 			if ($pun_config['o_regs_verify'] == '1')
 				$email_field = '<p>'.sprintf($lang['Email info'], pun_htmlspecialchars($user['email']).' &middot; <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
 			else
-				$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" size="40" maxlength="80" /></div></div>'."\n";
+				$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
 		}
 		
 		if ($pun_user['g_set_title'] == '1')
-			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input class="form-control" type="text" class="form-control" name="title" value="'.pun_htmlspecialchars($user['title']).'" size="30" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
+			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input class="form-control" type="text" class="form-control" name="title" value="'.pun_htmlspecialchars($user['title']).'" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
 			
 		if ($pun_config['o_avatars'] == '0' && $pun_config['o_signatures'] == '0')
 			message($lang['Bad request'], false, '404 Not Found');
@@ -1370,7 +1370,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Realname'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[realname]" value="<?php echo pun_htmlspecialchars($user['realname']) ?>" size="40" maxlength="40" />
+                            <input type="text" class="form-control" name="form[realname]" value="<?php echo pun_htmlspecialchars($user['realname']) ?>" maxlength="40" />
                         </div>
                     </div>
                     <?php if (isset($title_field)): ?>
@@ -1379,45 +1379,45 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Location'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[location]" value="<?php echo pun_htmlspecialchars($user['location']) ?>" size="30" maxlength="30" />
+                            <input type="text" class="form-control" name="form[location]" value="<?php echo pun_htmlspecialchars($user['location']) ?>" maxlength="30" />
                         </div>
                     </div>
                     <hr />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Website'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[url]" value="<?php echo pun_htmlspecialchars($user['url']) ?>" size="50" maxlength="80" />
+                            <input type="text" class="form-control" name="form[url]" value="<?php echo pun_htmlspecialchars($user['url']) ?>" maxlength="80" />
                         </div>
                     </div>
                     <hr />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Jabber'] ?></label>
                         <div class="col-sm-10">
-                            <input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo pun_htmlspecialchars($user['jabber']) ?>" size="40" maxlength="75" />
+                            <input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo pun_htmlspecialchars($user['jabber']) ?>" maxlength="75" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['ICQ'] ?></label>
                         <div class="col-sm-10">
-                            <input id="icq" type="text" class="form-control" name="form[icq]" value="<?php echo $user['icq'] ?>" size="12" maxlength="12" />
+                            <input id="icq" type="text" class="form-control" name="form[icq]" value="<?php echo $user['icq'] ?>" maxlength="12" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['MSN'] ?></label>
                         <div class="col-sm-10">
-                            <input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo pun_htmlspecialchars($user['msn']) ?>" size="40" maxlength="50" />
+                            <input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo pun_htmlspecialchars($user['msn']) ?>" maxlength="50" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['AOL IM'] ?></label>
                         <div class="col-sm-10">
-                            <input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo pun_htmlspecialchars($user['aim']) ?>" size="20" maxlength="30" />
+                            <input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo pun_htmlspecialchars($user['aim']) ?>" maxlength="30" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Yahoo'] ?></label>
                         <div class="col-sm-10">
-                            <input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo pun_htmlspecialchars($user['yahoo']) ?>" size="20" maxlength="30" />
+                            <input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo pun_htmlspecialchars($user['yahoo']) ?>" maxlength="30" />
                         </div>
                     </div>
                 </fieldset>
@@ -1702,13 +1702,13 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Topics per page'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" size="6" maxlength="3" />
+                            <input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Posts per page'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" size="6" maxlength="3" />
+                            <input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" maxlength="3" />
                         </div>
                     </div>
                     <hr  />
@@ -1891,7 +1891,7 @@ else
 		}
 
 		if ($pun_user['g_id'] == FORUM_ADMIN)
-			$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" size="8" maxlength="8" /></div></div>';
+			$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" maxlength="8" /></div></div>';
 		else
 			$posts_field = '';
 		
@@ -1911,7 +1911,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Admin note'] ?></label>
                         <div class="col-sm-10">
-                            <input id="admin_note" type="text" class="form-control full-form" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" size="30" maxlength="30" />
+                            <input id="admin_note" type="text" class="form-control full-form" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
                         </div>
                     </div>
                     <?php endif; ?>

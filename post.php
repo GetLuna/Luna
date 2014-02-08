@@ -598,14 +598,14 @@ if ($pun_user['is_guest'])
 	$email_form_name = ($pun_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
-            <label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" size="25" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
-            <label class="conl<?php echo ($pun_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo pun_htmlspecialchars($email); ?>" size="50" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="conl<?php echo ($pun_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo pun_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php
 
 }
 
 if ($fid): ?>
-            <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control full-form" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" size="80" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control full-form" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
 <?php endif; ?>	
             <textarea class="form-control full-form" placeholder="Start typing..." name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
         </fieldset>

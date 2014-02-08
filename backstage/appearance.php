@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -246,35 +246,35 @@ generate_admin_menu('display');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Topic review label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[topic_review]" size="3" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
+                        <input type="text" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
                         <span class="help-block"><?php echo $lang['Topic review help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Topics per page label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[disp_topics_default]" size="3" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
+                        <input type="text" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
                         <span class="help-block"><?php echo $lang['Topics per page help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Posts per page label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[disp_posts_default]" size="3" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
+                        <input type="text" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
                         <span class="help-block"><?php echo $lang['Posts per page help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Indent label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[indent_num_spaces]" size="3" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
+                        <input type="text" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
                         <span class="help-block"><?php echo $lang['Indent help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Quote depth label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[quote_depth]" size="3" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
+                        <input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
                         <span class="help-block"><?php echo $lang['Quote depth help'] ?></span>
                     </div>
                 </div>

@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
@@ -289,11 +289,11 @@ if (!empty($errors))
         <div class="panel-body">
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
-                <label class="required usernamefield"><?php echo $lang['If human'] ?><input type="text" class="form-control" name="req_username" value="" size="25" maxlength="25" /></label>
+                <label class="required usernamefield"><?php echo $lang['If human'] ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" size="25" maxlength="25" />
+                        <input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
                         <span class="help-block"><?php echo $lang['Username legend'] ?></span>
                     </div>
                 </div>
@@ -301,8 +301,8 @@ if (!empty($errors))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
                     <div class="col-sm-10">
-						<input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" size="16" />
-                        <input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" size="16" />
+						<input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" />
+                        <input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" />
                         <span class="help-block"><?php echo $lang['Pass info'] ?></span>
                     </div>
                 </div>
@@ -310,8 +310,8 @@ if (!empty($errors))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
                     <div class="col-sm-10">
-						<?php if ($pun_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" size="50" maxlength="80" /><?php endif; ?>
-                        <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" size="50" maxlength="80" />
+						<?php if ($pun_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" /><?php endif; ?>
+                        <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
                         <?php if ($pun_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email info'] ?></span><?php endif; ?>
                     </div>
                 </div>

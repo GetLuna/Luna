@@ -250,7 +250,7 @@ if (isset($_GET['tid']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['New subject'] ?></label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" name="new_subject" size="80" maxlength="70" />
+                        <input class="form-control" type="text" name="new_subject" maxlength="70" />
                     </div>
                 </div>
             </fieldset>

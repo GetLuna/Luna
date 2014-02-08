@@ -498,7 +498,7 @@ switch ($stage)
 ?>
                     <fieldset>
                         <legend><?php echo pun_htmlspecialchars($cur_user['username']); ?></legend>
-                        <label class="required"><strong><?php echo $lang['New username'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo pun_htmlspecialchars($_POST['dupe_users'][$id]); ?>" size="25" maxlength="25" /><br /></label>
+                        <label class="required"><strong><?php echo $lang['New username'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo pun_htmlspecialchars($_POST['dupe_users'][$id]); ?>" maxlength="25" /><br /></label>
                     </fieldset>
 <?php if (!empty($errors[$id])): ?>
                     <h3><?php echo $lang['Correct errors'] ?></h3>

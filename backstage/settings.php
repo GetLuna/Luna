@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -160,20 +160,20 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Board title label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[board_title]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
+                        <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Board desc label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[board_desc]" size="50" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_desc']) ?>" />
+                        <input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_desc']) ?>" />
                         <span class="help-block"><?php echo $lang['Board desc help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Base URL label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[base_url]" size="50" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
+                        <input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -215,14 +215,14 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Time format label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[time_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
+                        <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
                         <span class="help-block"><?php printf($lang['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Date format label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[date_format]" size="25" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_date_format']) ?>" />
+                        <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_date_format']) ?>" />
                         <span class="help-block"><?php printf($lang['Date format help'], gmdate($pun_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
                     </div>
                 </div>
@@ -283,21 +283,21 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Visit timeout label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[timeout_visit]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_visit'] ?>" />
+                        <input type="text" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $pun_config['o_timeout_visit'] ?>" />
                         <span class="help-block"><?php echo $lang['Visit timeout help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Online timeout label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[timeout_online]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
+                        <input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
                         <span class="help-block"><?php echo $lang['Online timeout help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Redirect time label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[redirect_delay]" size="3" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
+                        <input type="text" class="form-control" name="form[redirect_delay]" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
                         <span class="help-block"><?php echo $lang['Redirect time help'] ?></span>
                     </div>
                 </div>
@@ -402,28 +402,28 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Upload directory label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_dir]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_avatars_dir']) ?>" />
+                        <input type="text" class="form-control" name="form[avatars_dir]" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_avatars_dir']) ?>" />
                         <span class="help-block"><?php echo $lang['Upload directory help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max width label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_width]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_width'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $pun_config['o_avatars_width'] ?>" />
                         <span class="help-block"><?php echo $lang['Max width help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max height label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_height]" size="5" maxlength="5" value="<?php echo $pun_config['o_avatars_height'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $pun_config['o_avatars_height'] ?>" />
                         <span class="help-block"><?php echo $lang['Max height help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max size label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_size]" size="6" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
                         <span class="help-block"><?php echo $lang['Max size help'] ?></span>
                     </div>
                 </div>

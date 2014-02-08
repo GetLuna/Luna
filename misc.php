@@ -181,7 +181,7 @@ else if (isset($_GET['email']))
             <input type="hidden" name="form_sent" value="1" />
             <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
             <label class="required hidden"><?php echo $lang['Email subject'] ?></label>
-            <input class="form-control full-form" placeholder="<?php echo $lang['Email subject'] ?>" type="text" name="req_subject" size="75" maxlength="70" tabindex="1" />
+            <input class="form-control full-form" placeholder="<?php echo $lang['Email subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
             <label class="required hidden"><?php echo $lang['Email message'] ?></label>
             <textarea name="req_message" class="form-control full-form" rows="10" cols="75" tabindex="2"></textarea>
         </fieldset>

@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -380,14 +380,14 @@ require FORUM_ROOT.'backstage/header.php';
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Posts per cycle label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="i_per_page" size="7" maxlength="7" value="300" tabindex="1" />
+                        <input type="text" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
 						<span class="help-block"><?php echo $lang['Posts per cycle help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Starting post label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="i_start_at" size="7" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
+                        <input type="text" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
 						<span class="help-block"><?php echo $lang['Starting post help'] ?></span>
                     </div>
                 </div>
@@ -419,7 +419,7 @@ require FORUM_ROOT.'backstage/header.php';
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Days old label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="req_prune_days" size="3" maxlength="3" tabindex="5" />
+                        <input type="text" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
 						<span class="help-block"><?php echo $lang['Days old help'] ?></span>
                     </div>
                 </div>
@@ -496,14 +496,14 @@ require FORUM_ROOT.'backstage/header.php';
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Minimum days'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="days" value="28" size="25" tabindex="1" />
+                        <input type="text" class="form-control" name="days" value="28" tabindex="1" />
 						<span class="help-block"><?php echo $lang['Minimum days info'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Maximum posts'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="posts" value="1"  size="25" tabindex="1" />
+                        <input type="text" class="form-control" name="posts" value="1"  tabindex="1" />
 						<span class="help-block"><?php echo $lang['Maximum posts info'] ?></span>
                     </div>
                 </div>

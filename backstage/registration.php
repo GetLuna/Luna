@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -166,7 +166,7 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Antispam API label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[antispam_api]" size="35" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
+                        <input type="text" class="form-control" name="form[antispam_api]" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_antispam_api']) ?>" />
                         <span class="help-block"><?php printf($lang['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                     </div>
                 </div>

@@ -72,13 +72,13 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Group title label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="req_title" size="25" maxlength="50" value="<?php if ($mode == 'edit') echo pun_htmlspecialchars($group['g_title']); ?>" tabindex="1" />
+                        <input type="text" class="form-control" name="req_title" maxlength="50" value="<?php if ($mode == 'edit') echo pun_htmlspecialchars($group['g_title']); ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['User title label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="user_title" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
+                        <input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo pun_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
                         <span class="help-block"><?php echo $lang['User title help'] ?></span>
                     </div>
                 </div>
@@ -276,14 +276,14 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Post flood label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="post_flood" size="5" maxlength="4" value="<?php echo $group['g_post_flood'] ?>" tabindex="35" />
+                        <input type="text" class="form-control" name="post_flood" maxlength="4" value="<?php echo $group['g_post_flood'] ?>" tabindex="35" />
                         <span class="help-block"><?php echo $lang['Post flood help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Search flood label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="search_flood" size="5" maxlength="4" value="<?php echo $group['g_search_flood'] ?>" tabindex="36" />
+                        <input type="text" class="form-control" name="search_flood" maxlength="4" value="<?php echo $group['g_search_flood'] ?>" tabindex="36" />
                         <span class="help-block"><?php echo $lang['Search flood help'] ?></span>
                     </div>
                 </div>
@@ -291,14 +291,14 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['E-mail flood label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="email_flood" size="5" maxlength="4" value="<?php echo $group['g_email_flood'] ?>" tabindex="37" />
+                        <input type="text" class="form-control" name="email_flood" maxlength="4" value="<?php echo $group['g_email_flood'] ?>" tabindex="37" />
                         <span class="help-block"><?php echo $lang['E-mail flood help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Report flood label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="report_flood" size="5" maxlength="4" value="<?php echo $group['g_report_flood'] ?>" tabindex="38" />
+                        <input type="text" class="form-control" name="report_flood" maxlength="4" value="<?php echo $group['g_report_flood'] ?>" tabindex="38" />
                         <span class="help-block"><?php echo $lang['Report flood help'] ?></span>
                     </div>
                 </div>

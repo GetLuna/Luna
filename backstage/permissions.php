@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -155,14 +155,14 @@ require FORUM_ROOT.'backstage/header.php';
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max sig length label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[sig_length]" size="5" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
+                        <input type="text" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
                         <span class="help-block"><?php echo $lang['Max sig length help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max sig lines label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[sig_lines]" size="3" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
+                        <input type="text" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
                         <span class="help-block"><?php echo $lang['Max sig lines help'] ?></span>
                     </div>
                 </div>

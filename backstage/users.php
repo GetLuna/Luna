@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -717,14 +717,14 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 				<div class="form-group">
 					<label class="col-sm-2 control-label"><?php echo $lang['Ban message label'] ?></label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="ban_message" size="50" maxlength="255" tabindex="1" />
+						<input type="text" class="form-control" name="ban_message" maxlength="255" tabindex="1" />
 						<span class="help-block"><?php echo $lang['Ban message help'] ?></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label"><?php echo $lang['Expire date label'] ?></label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="ban_expire" size="17" maxlength="10" tabindex="2" />
+						<input type="text" class="form-control" name="ban_expire" maxlength="10" tabindex="2" />
 						<span class="help-block"><?php echo $lang['Expire date help'] ?></span>
 					</div>
 				</div>
@@ -1011,43 +1011,43 @@ else
 			<table class="table">
 				<tr>
 					<th><?php echo $lang['Username label'] ?></th>
-					<td><input type="text" class="form-control" name="form[username]" size="25" maxlength="25" tabindex="2" /></td>
+					<td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="2" /></td>
 					<th><?php echo $lang['E-mail address label'] ?></th>
-					<td><input type="text" class="form-control" name="form[email]" size="30" maxlength="80" tabindex="3" /></td>
+					<td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="3" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Title label'] ?></th>
-					<td><input type="text" class="form-control" name="form[title]" size="30" maxlength="50" tabindex="4" /></td>
+					<td><input type="text" class="form-control" name="form[title]" maxlength="50" tabindex="4" /></td>
 					<th><?php echo $lang['Real name label'] ?></th>
-					<td><input type="text" class="form-control" name="form[realname]" size="30" maxlength="40" tabindex="5" /></td>
+					<td><input type="text" class="form-control" name="form[realname]" maxlength="40" tabindex="5" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Website label'] ?></th>
-					<td><input type="text" class="form-control" name="form[url]" size="35" maxlength="100" tabindex="6" /></td>
+					<td><input type="text" class="form-control" name="form[url]" maxlength="100" tabindex="6" /></td>
 					<th><?php echo $lang['Jabber label'] ?></th>
-					<td><input type="text" class="form-control" name="form[jabber]" size="30" maxlength="75" tabindex="7" /></td>
+					<td><input type="text" class="form-control" name="form[jabber]" maxlength="75" tabindex="7" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['ICQ label'] ?></th>
-					<td><input type="text" class="form-control" name="form[icq]" size="12" maxlength="12" tabindex="8" /></td>
+					<td><input type="text" class="form-control" name="form[icq]" maxlength="12" tabindex="8" /></td>
 					<th><?php echo $lang['MSN label'] ?></th>
-					<td><input type="text" class="form-control" name="form[msn]" size="30" maxlength="50" tabindex="9" /></td>
+					<td><input type="text" class="form-control" name="form[msn]" maxlength="50" tabindex="9" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['AOL label'] ?></th>
-					<td><input type="text" class="form-control" name="form[aim]" size="20" maxlength="20" tabindex="10" /></td>
+					<td><input type="text" class="form-control" name="form[aim]" maxlength="20" tabindex="10" /></td>
 					<th><?php echo $lang['Yahoo label'] ?></th>
-					<td><input type="text" class="form-control" name="form[yahoo]" size="20" maxlength="20" tabindex="11" /></td>
+					<td><input type="text" class="form-control" name="form[yahoo]" maxlength="20" tabindex="11" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Location label'] ?></th>
-					<td><input type="text" class="form-control" name="form[location]" size="30" maxlength="30" tabindex="12" /></td>
+					<td><input type="text" class="form-control" name="form[location]" maxlength="30" tabindex="12" /></td>
 					<th><?php echo $lang['Signature label'] ?></th>
-					<td><input type="text" class="form-control" name="form[signature]" size="35" maxlength="512" tabindex="13" /></td>
+					<td><input type="text" class="form-control" name="form[signature]" maxlength="512" tabindex="13" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Admin note label'] ?></th>
-					<td><input type="text" class="form-control" name="form[admin_note]" size="30" maxlength="30" tabindex="14" /></td>
+					<td><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="14" /></td>
 					<th><?php echo $lang['User group label'] ?></th>
 					<td>
 						<select class="form-control" name="user_group" tabindex="23">
@@ -1066,27 +1066,27 @@ else
 				</tr>
 				<tr>
 					<th><?php echo $lang['Posts less than label'] ?></th>
-					<td><input type="text" class="form-control" name="posts_less" size="5" maxlength="8" tabindex="16" /></td>
+					<td><input type="text" class="form-control" name="posts_less" maxlength="8" tabindex="16" /></td>
 					<th><?php echo $lang['Posts more than label'] ?></th>
-					<td><input type="text" class="form-control" name="posts_greater" size="5" maxlength="8" tabindex="15" /></td>
+					<td><input type="text" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Last post before label'] ?></th>
-					<td><input type="text" class="form-control" name="last_post_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
+					<td><input type="text" class="form-control" name="last_post_before" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
 					<th><?php echo $lang['Last post after label'] ?></th>
-					<td><input type="text" class="form-control" name="last_post_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
+					<td><input type="text" class="form-control" name="last_post_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Last visit before label'] ?></th>
-					<td><input type="text" class="form-control" name="last_visit_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
+					<td><input type="text" class="form-control" name="last_visit_before" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
 					<th><?php echo $lang['Last visit after label'] ?></th>
-					<td><input type="text" class="form-control" name="last_visit_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
+					<td><input type="text" class="form-control" name="last_visit_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Registered before label'] ?></th>
-					<td><input type="text" class="form-control" name="registered_before" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="20" /></td>
+					<td><input type="text" class="form-control" name="registered_before" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="20" /></td>
 					<th><?php echo $lang['Registered after label'] ?></th>
-					<td><input type="text" class="form-control" name="registered_after" size="24" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="19" /></td>
+					<td><input type="text" class="form-control" name="registered_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="19" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Order by label'] ?></th>
@@ -1116,7 +1116,7 @@ else
         <form method="get" action="users.php">
             <fieldset>
                 <div class="input-group">
-					<input type="text" class="form-control" name="show_users" size="18" maxlength="15" tabindex="24" />
+					<input type="text" class="form-control" name="show_users" maxlength="15" tabindex="24" />
 					<span class="input-group-btn">
 						<input class="btn btn-primary" type="submit" value="<?php echo $lang['Find IP address'] ?>" tabindex="26" />
 					</span>
@@ -1136,19 +1136,19 @@ else
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="username" size="25" tabindex="3" />
+                        <input type="text" class="form-control" name="username" tabindex="3" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="email" size="50" tabindex="3" />
+                        <input type="text" class="form-control" name="email" tabindex="3" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" name="password" size="25" tabindex="3" />
+                        <input type="password" class="form-control" name="password" tabindex="3" />
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="random_pass" value="1" />

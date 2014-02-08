@@ -381,35 +381,35 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Database server hostname'] ?></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="req_db_host" value="<?php echo pun_htmlspecialchars($db_host) ?>" size="50" />
+                                    <input type="text" class="form-control" name="req_db_host" value="<?php echo pun_htmlspecialchars($db_host) ?>" />
                                     <span class="help-block"><?php echo $lang['Info 2'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Database name'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo pun_htmlspecialchars($db_name) ?>" size="30" />
+                                    <input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo pun_htmlspecialchars($db_name) ?>" />
                                     <span class="help-block"><?php echo $lang['Info 3'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Database username'] ?></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="db_username" value="<?php echo pun_htmlspecialchars($db_username) ?>" size="30" />
+                                    <input type="text" class="form-control" name="db_username" value="<?php echo pun_htmlspecialchars($db_username) ?>" />
                                     <span class="help-block"><?php echo $lang['Info 4'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Database password'] ?></label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" name="db_password" size="30" />
+                                    <input type="password" class="form-control" name="db_password" />
                                     <span class="help-block"><?php echo $lang['Info 4'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Table prefix'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix) ?>" size="20" maxlength="30" />
+                                    <input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix) ?>" maxlength="30" />
                                     <span class="help-block"><?php echo $lang['Info 5'] ?></span>
                                 </div>
                             </div>
@@ -425,20 +425,20 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Administrator username'] ?></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" size="25" maxlength="25" />
+                                    <input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" maxlength="25" />
                                     <span class="help-block"><?php echo $lang['Info 6'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_password1" type="password" class="form-control" name="req_password1" size="16" /> <input type="password" class="form-control" name="req_password2" size="16" />
+                                    <input id="req_password1" type="password" class="form-control" name="req_password1" /> <input type="password" class="form-control" name="req_password2" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Administrator email'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" size="50" maxlength="80" />
+                                    <input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" maxlength="80" />
                                 </div>
                             </div>
                         </fieldset>
@@ -453,19 +453,19 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Board title'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo pun_htmlspecialchars($title) ?>" size="60" maxlength="255" />
+                                    <input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo pun_htmlspecialchars($title) ?>" maxlength="255" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Board description'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="desc" type="text" class="form-control" name="desc" value="<?php echo pun_htmlspecialchars($description) ?>" size="60" maxlength="255" />
+                                    <input id="desc" type="text" class="form-control" name="desc" value="<?php echo pun_htmlspecialchars($description) ?>" maxlength="255" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Base URL label'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo pun_htmlspecialchars($base_url) ?>" size="60" maxlength="100" />
+                                    <input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo pun_htmlspecialchars($base_url) ?>" maxlength="100" />
                                     <span class="help-block"><?php echo $lang['Base URL'] ?><span>
                                 </div>
                             </div>

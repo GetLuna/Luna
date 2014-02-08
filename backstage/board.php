@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -217,7 +217,7 @@ else if (isset($_GET['edit_forum']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Forum name label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="forum_name" size="35" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
+                        <input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -257,7 +257,7 @@ else if (isset($_GET['edit_forum']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Redirect label'] ?></label>
 					<div class="col-sm-10">
-                        <?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?>
+                        <?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?>
                     </div>
                 </div>
 				<?php endif; ?>
@@ -474,7 +474,7 @@ require FORUM_ROOT.'backstage/header.php';
 				<h3 class="panel-title"><?php echo $lang['Add forum'] ?></h3>
 			</div>
 			<div class="panel-body">
-				<form method="post" action="board.php?action=adddel">
+				<form method="post" action="board.php?action=add_forum">
 					<fieldset>
 <?php
 
@@ -603,7 +603,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 					<tr>
 						<td class="col-xs-2"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></div></td>
 						<td class="col-xs-3"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-						<td class="col-xs-7"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+						<td class="col-xs-7"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 					</tr>
 <?php
 
@@ -637,8 +637,8 @@ foreach ($cat_list as $cur_cat)
 
 ?>
 					<tr>
-						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" size="35" maxlength="80" /></td>
-						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" size="3" maxlength="3" /></td>
+						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
+						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
 					</tr>
 <?php
 

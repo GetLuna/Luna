@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
@@ -67,7 +67,7 @@ require FORUM_ROOT.'header.php';
                     <tbody>
                         <tr>
 							<?php if ($pun_user['g_search_users'] == '1'): ?>
-                                <td><input class="form-control" type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" size="25" maxlength="25" /></td>
+                                <td><input class="form-control" type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" maxlength="25" /></td>
                             <?php endif; ?>
                         	<td class="hidden-xs">
                             	<select class="form-control" name="show_group">

@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License: http://opensource.org/licenses/MIT MIT
+ * License under GPLv3
  */
 
 // Tell header.php to use the admin template
@@ -89,13 +89,13 @@ generate_admin_menu('email');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Admin e-mail label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[admin_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
+                        <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
                         <span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Webmaster e-mail label'] ?></label>
-						<div class="col-sm-10"><input type="text" class="form-control" name="form[webmaster_email]" size="50" maxlength="80" value="<?php echo $pun_config['o_webmaster_email'] ?>" />
+						<div class="col-sm-10"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo $pun_config['o_webmaster_email'] ?>" />
 						<span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span>
                     </div>
                 </div>
@@ -139,14 +139,14 @@ generate_admin_menu('email');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['SMTP address label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[smtp_host]" size="30" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_host']) ?>" />
+                        <input type="text" class="form-control" name="form[smtp_host]" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_host']) ?>" />
                         <span class="help-block"><?php echo $lang['SMTP address help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['SMTP username label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[smtp_user]" size="25" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
+                        <input type="text" class="form-control" name="form[smtp_user]" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
                         <span class="help-block"><?php echo $lang['SMTP username help'] ?></span>
                     </div>
                 </div>
@@ -160,8 +160,8 @@ generate_admin_menu('email');
                             </label>
                         </div>
 <?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
-						<input class="form-control" type="password" name="form[smtp_pass1]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
-						<input class="form-control" type="password" name="form[smtp_pass2]" size="25" maxlength="50" value="<?php echo $smtp_pass ?>" />
+						<input class="form-control" type="password" name="form[smtp_pass1]" maxlength="50" value="<?php echo $smtp_pass ?>" />
+						<input class="form-control" type="password" name="form[smtp_pass2]" maxlength="50" value="<?php echo $smtp_pass ?>" />
                         <span class="help-block"><?php echo $lang['SMTP password help'] ?></span>
                     </div>
                 </div>
