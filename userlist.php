@@ -56,6 +56,7 @@ define('FORUM_ACTIVE_PAGE', 'userlist');
 require FORUM_ROOT.'header.php';
 
 ?>
+<h2><?php echo $lang['User list'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['User list'] ?></h3>
@@ -113,16 +114,17 @@ while ($cur_group = $db->fetch_assoc($result))
         <ul class="pagination">
             <?php echo $paging_links ?>
         </ul>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th><?php echo $lang['Username'] ?></th>
-                    <th><?php echo $lang['Title'] ?></th>
+    </div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th><?php echo $lang['Username'] ?></th>
+				<th><?php echo $lang['Title'] ?></th>
 <?php if ($show_post_count): ?>                <th class="text-center"><?php echo $lang['Posts table'] ?></th>
 <?php endif; ?>                <th><?php echo $lang['Registered table'] ?></th>
-                </tr>
-            </thead>
-            <tbody>
+			</tr>
+		</thead>
+		<tbody>
 <?php
 
 // Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
@@ -142,13 +144,13 @@ if ($db->num_rows($result))
 		$user_title_field = get_title($user_data);
 
 ?>
-                <tr>
-                    <td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
-                    <td><?php echo $user_title_field ?></td>
+			<tr>
+				<td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
+				<td><?php echo $user_title_field ?></td>
 <?php if ($show_post_count): ?>                <td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
 <?php endif; ?>
-                    <td><?php echo format_time($user_data['registered'], true) ?></td>
-                </tr>
+				<td><?php echo format_time($user_data['registered'], true) ?></td>
+			</tr>
 <?php
 
 	}
@@ -157,8 +159,9 @@ else
 	echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang['No hits'].'</td></tr>'."\n";
 
 ?>
-            </tbody>
-        </table>
+		</tbody>
+	</table>
+	<div class="panel-body">
         <ul class="pagination">
             <?php echo $paging_links ?>
         </ul>
