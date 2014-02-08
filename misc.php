@@ -299,15 +299,15 @@ else if (isset($_GET['report']))
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Reason desc'] ?></h3>
     </div>
-    <div class="panel-body">
-		<form id="report" method="post" action="misc.php?report=<?php echo $post_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-            <fieldset>
-                <input type="hidden" name="form_sent" value="1" />
-                <label class="required"><?php echo $lang['Reason'] ?> <br /><textarea class="form-control" name="req_reason" rows="5" cols="60"></textarea><br /></label>
-            </fieldset>
-			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
-		</form>
-	</div>
+	<form id="report" method="post" action="misc.php?report=<?php echo $post_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+		<fieldset>
+			<input type="hidden" name="form_sent" value="1" />
+			<textarea class="form-control" name="req_reason" rows="5" cols="60"></textarea>
+		</fieldset>
+		<div class="panel-footer">
+			<input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+		</div>
+	</form>
 </div>
 <?php
 
