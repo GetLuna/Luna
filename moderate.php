@@ -14,7 +14,7 @@ require FORUM_ROOT.'include/common.php';
 // by all moderators and admins
 if (isset($_GET['get_host']))
 {
-	if (!$pun_user['is_admmod'])
+	if (!$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	// Is get_host an IP address or a post ID?
@@ -47,11 +47,11 @@ $result = $db->query('SELECT moderators FROM '.$db->prefix.'forums WHERE id='.$f
 $moderators = $db->result($result);
 $mods_array = ($moderators != '') ? unserialize($moderators) : array();
 
-if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] == '0' || !array_key_exists($pun_user['username'], $mods_array)))
+if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] == '0' || !array_key_exists($luna_user['username'], $mods_array)))
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Get topic/forum tracking data
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
 	
 // All other topic moderation features require a topic ID in GET
@@ -62,7 +62,7 @@ if (isset($_GET['tid']))
 		message($lang['Bad request'], false, '404 Not Found');
 
 	// Fetch some info about the topic
-	$result = $db->query('SELECT t.subject, t.num_replies, t.first_post_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.num_replies, t.first_post_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message($lang['Bad request'], false, '404 Not Found');
 
@@ -83,7 +83,7 @@ if (isset($_GET['tid']))
 				message($lang['Bad request'], false, '404 Not Found');
 
 			// Verify that the post IDs are valid
-			$admins_sql = ($pun_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
+			$admins_sql = ($luna_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
@@ -110,7 +110,7 @@ if (isset($_GET['tid']))
 			redirect('viewtopic.php?id='.$tid, $lang['Delete posts redirect']);
 		}
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Moderate']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
@@ -162,16 +162,16 @@ if (isset($_GET['tid']))
 				message($lang['Bad request'], false, '404 Not Found');
 
 			// Verify that the move to forum ID is valid
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$pun_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE f.redirect_url IS NULL AND (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$luna_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE f.redirect_url IS NULL AND (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
 				message($lang['Bad request'], false, '404 Not Found');
 
 			// Check subject
-			$new_subject = isset($_POST['new_subject']) ? pun_trim($_POST['new_subject']) : '';
+			$new_subject = isset($_POST['new_subject']) ? luna_trim($_POST['new_subject']) : '';
 
 			if ($new_subject == '')
 				message($lang['No subject']);
-			else if (pun_strlen($new_subject) > 70)
+			else if (luna_strlen($new_subject) > 70)
 				message($lang['Too long subject']);
 
 			// Get data from the new first post
@@ -204,9 +204,9 @@ if (isset($_GET['tid']))
 			redirect('viewtopic.php?id='.$new_tid, $lang['Split posts redirect']);
 		}
 
-		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Moderate']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
 		$focus_element = array('subject','new_subject');
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
@@ -235,11 +235,11 @@ if (isset($_GET['tid']))
 			if ($cur_category)
 				echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
 
-			echo "\t\t\t\t\t\t\t".'<optgroup label="'.pun_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
+			echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
 			$cur_category = $cur_forum['cid'];
 		}
 
-		echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected="selected"' : '').'>'.pun_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected="selected"' : '').'>'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
 	}
 
 ?>
@@ -272,31 +272,31 @@ if (isset($_GET['tid']))
 	$button_status = ($cur_topic['num_replies'] == 0) ? ' disabled="disabled"' : '';
 
 	if (isset($_GET['action']) && $_GET['action'] == 'all')
-		$pun_user['disp_posts'] = $cur_topic['num_replies'] + 1;
+		$luna_user['disp_posts'] = $cur_topic['num_replies'] + 1;
 
 	// Determine the post offset (based on $_GET['p'])
-	$num_pages = ceil(($cur_topic['num_replies'] + 1) / $pun_user['disp_posts']);
+	$num_pages = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 
 	$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-	$start_from = $pun_user['disp_posts'] * ($p - 1);
+	$start_from = $luna_user['disp_posts'] * ($p - 1);
 
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
 
 
-	if ($pun_config['o_censoring'] == '1')
+	if ($luna_config['o_censoring'] == '1')
 		$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
 <ul class="breadcrumb">
 	<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a></li>
 	<li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
 <div class="pagepost">
@@ -313,7 +313,7 @@ if (isset($_GET['tid']))
 	$post_count = 0; // Keep track of post numbers
 
 	// Retrieve a list of post IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$pun_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
 	$post_ids = array();
 	for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
@@ -329,22 +329,22 @@ if (isset($_GET['tid']))
 		// If the poster is a registered user
 		if ($cur_post['poster_id'] > 1)
 		{
-			if ($pun_user['g_view_users'] == '1')
-				$poster = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.pun_htmlspecialchars($cur_post['poster']).'</a>';
+			if ($luna_user['g_view_users'] == '1')
+				$poster = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
 			else
-				$poster = pun_htmlspecialchars($cur_post['poster']);
+				$poster = luna_htmlspecialchars($cur_post['poster']);
 
 			// get_title() requires that an element 'username' be present in the array
 			$cur_post['username'] = $cur_post['poster'];
 			$user_title = get_title($cur_post);
 
-			if ($pun_config['o_censoring'] == '1')
+			if ($luna_config['o_censoring'] == '1')
 				$user_title = censor_words($user_title);
 		}
 		// If the poster is a guest (or a user that has been deleted)
 		else
 		{
-			$poster = pun_htmlspecialchars($cur_post['poster']);
+			$poster = luna_htmlspecialchars($cur_post['poster']);
 			$user_title = $lang['Guest'];
 		}
 
@@ -365,11 +365,11 @@ if (isset($_GET['tid']))
                 <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
                 <div class="postmsg">
                     <?php echo $cur_post['message']."\n" ?>
-                    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
+                    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
                 </div>
             </td>
         </tr>
-        <?php if (!$pun_user['is_guest']) { ?>
+        <?php if (!$luna_user['is_guest']) { ?>
         <tr>
             <td colspan="2" class="postfooter" style="padding-bottom: 0;">
                 <?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<div class="checkbox pull-right" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label></div>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
@@ -393,8 +393,8 @@ if (isset($_GET['tid']))
 </div>
 <ul class="breadcrumb">
 	<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+	<li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a></li>
 	<li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
 </form>
@@ -426,7 +426,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 			message($lang['Bad request'], false, '404 Not Found');
 
 		// Verify that the move to forum ID is valid
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$pun_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE f.redirect_url IS NULL AND (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$luna_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE f.redirect_url IS NULL AND (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message($lang['Bad request'], false, '404 Not Found');
 
@@ -475,11 +475,11 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 		$action = 'single';
 	}
 
-	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) < 2)
 		message($lang['Nowhere to move']);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Moderate']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
@@ -507,12 +507,12 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 			if ($cur_category)
 				echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
 
-			echo "\t\t\t\t\t\t\t".'<optgroup label="'.pun_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
+			echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
 			$cur_category = $cur_forum['cid'];
 		}
 
 		if ($cur_forum['fid'] != $fid)
-			echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
+			echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
 	}
 
 ?>
@@ -609,7 +609,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 	if (count($topics) < 2)
 		message($lang['Not enough topics selected']);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Moderate']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
@@ -664,7 +664,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 			message($lang['Bad request'], false, '404 Not Found');
 			
 		// Verify that the posts are not by admins  
-		if ($pun_user['g_id'] != FORUM_ADMIN)  
+		if ($luna_user['g_id'] != FORUM_ADMIN)  
 		{  
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))  
@@ -698,7 +698,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 	}
 
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Moderate']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
@@ -795,7 +795,7 @@ else if (isset($_GET['unstick']))
 // No specific forum moderation action was specified in the query string, so we'll display the moderator forum
 
 // Fetch some info about the forum
-$result = $db->query('SELECT f.forum_name, f.redirect_url, f.num_topics, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.forum_name, f.redirect_url, f.num_topics, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message($lang['Bad request'], false, '404 Not Found');
 
@@ -822,22 +822,22 @@ switch ($cur_forum['sort_by'])
 }
 
 // Determine the topic offset (based on $_GET['p'])
-$num_pages = ceil($cur_forum['num_topics'] / $pun_user['disp_topics']);
+$num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $pun_user['disp_topics'] * ($p - 1);
+$start_from = $luna_user['disp_topics'] * ($p - 1);
 
 // Generate paging links
 $paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_forum['forum_name']));
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
     <li class="active"><?php echo $lang['Moderate'] ?></li>
 </ul>
 <div class="pagepost">
@@ -852,7 +852,7 @@ require FORUM_ROOT.'header.php';
     <div class="row forum-header">
         <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
         <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
-        <?php if ($pun_config['o_topic_views'] == '1'): ?>
+        <?php if ($luna_config['o_topic_views'] == '1'): ?>
             <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Views'] ?></p></div>
         <?php endif; ?>
         <div class="col-xs-3 hidden-xs"><?php echo $lang['Last post'] ?></div>
@@ -862,7 +862,7 @@ require FORUM_ROOT.'header.php';
 
 
 // Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$fid.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$pun_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$fid.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 
 // If there are topics in this forum
 if ($db->num_rows($result))
@@ -886,7 +886,7 @@ if ($db->num_rows($result))
 
 		if (is_null($cur_topic['moved_to']))
 		{
-			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_topic['last_poster']).'</span>';
+			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 			$ghost_topic = false;
 		}
 		else
@@ -895,7 +895,7 @@ if ($db->num_rows($result))
 			$ghost_topic = true;
 		}
 
-		if ($pun_config['o_censoring'] == '1')
+		if ($luna_config['o_censoring'] == '1')
 			$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 		if ($cur_topic['sticky'] == '1')
@@ -906,20 +906,20 @@ if ($db->num_rows($result))
 
 		if ($cur_topic['moved_to'] != 0)
 		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 			$item_status .= ' imoved';
 		}
 		else if ($cur_topic['closed'] == '0')
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 		else
 		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.pun_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 			$item_status .= ' iclosed';
 		}
 
-		if (!$ghost_topic && $cur_topic['last_post'] > $pun_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$fid]) || $tracked_topics['forums'][$fid] < $cur_topic['last_post']))
+		if (!$ghost_topic && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$fid]) || $tracked_topics['forums'][$fid] < $cur_topic['last_post']))
 		{
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
@@ -932,7 +932,7 @@ if ($db->num_rows($result))
 		// Insert the status text before the subject
 		$subject = implode(' ', $status_text).' '.$subject;
 
-		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $pun_user['disp_posts']);
+		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 
 		if ($num_pages_topic > 1)
 			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
@@ -957,7 +957,7 @@ if ($db->num_rows($result))
             </div>
         </div>
 					<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></p></div>
-<?php if ($pun_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></p></div>
+<?php if ($luna_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></p></div>
 <?php endif; ?>					<div class="col-xs-3 hidden-xs"><?php echo $last_post ?></div>
 					<div class="col-xs-1"><p class="text-center"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></p></div>
     </div>
@@ -967,7 +967,7 @@ if ($db->num_rows($result))
 }
 else
 {
-	$colspan = ($pun_config['o_topic_views'] == '1') ? 5 : 4;
+	$colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
 	$button_status = ' disabled="disabled"';
 	echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.$lang['Empty forum'].'</td></tr>'."\n";
 }
@@ -983,7 +983,7 @@ else
 </div>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
     <li><?php echo $lang['Moderate'] ?></li>
 </ul>
 </form>

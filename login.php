@@ -20,8 +20,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if (isset($_POST['form_sent']) && $action == 'in')
 {
-	$form_username = pun_trim($_POST['req_username']);
-	$form_password = pun_trim($_POST['req_password']);
+	$form_username = luna_trim($_POST['req_username']);
+	$form_password = luna_trim($_POST['req_password']);
 	$save_pass = isset($_POST['save_pass']);
 
 	$username_sql = ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb') ? 'username=\''.$db->escape($form_username).'\'' : 'LOWER(username)=LOWER(\''.$db->escape($form_username).'\')';
@@ -33,7 +33,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 
 	if (!empty($cur_user['password']))
 	{
-		$form_password_hash = pun_hash($form_password); // Will result in a SHA-1 hash
+		$form_password_hash = luna_hash($form_password); // Will result in a SHA-1 hash
 
 		// If there is a salt in the database we have upgraded from 1.3-legacy though haven't yet logged in
 		if (!empty($cur_user['salt']))
@@ -66,7 +66,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Update the status if this is the first time the user logged in
 	if ($cur_user['group_id'] == FORUM_UNVERIFIED)
 	{
-		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$pun_config['o_default_user_group'].' WHERE id='.$cur_user['id']) or error('Unable to update user status', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$luna_config['o_default_user_group'].' WHERE id='.$cur_user['id']) or error('Unable to update user status', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the users info cache
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
@@ -78,32 +78,32 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Remove this user's guest entry from the online list
 	$db->query('DELETE FROM '.$db->prefix.'online WHERE ident=\''.$db->escape(get_remote_address()).'\'') or error('Unable to delete from online list', __FILE__, __LINE__, $db->error());
 
-	$expire = ($save_pass == '1') ? time() + 1209600 : time() + $pun_config['o_timeout_visit'];
-	pun_setcookie($cur_user['id'], $form_password_hash, $expire);
+	$expire = ($save_pass == '1') ? time() + 1209600 : time() + $luna_config['o_timeout_visit'];
+	luna_setcookie($cur_user['id'], $form_password_hash, $expire);
 
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang['Login redirect']);
+	redirect(luna_htmlspecialchars($_POST['redirect_url']), $lang['Login redirect']);
 }
 
 
 else if ($action == 'out')
 {
-	if ($pun_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $pun_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != pun_hash($pun_user['id'].pun_hash(get_remote_address())))
+	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address())))
 	{
 		header('Location: index.php');
 		exit;
 	}
 
 	// Remove user from "users online" list
-	$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id='.$pun_user['id']) or error('Unable to delete from online list', __FILE__, __LINE__, $db->error());
+	$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id='.$luna_user['id']) or error('Unable to delete from online list', __FILE__, __LINE__, $db->error());
 
 	// Update last_visit (make sure there's something to update it with)
-	if (isset($pun_user['logged']))
-		$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$pun_user['logged'].' WHERE id='.$pun_user['id']) or error('Unable to update user visit data', __FILE__, __LINE__, $db->error());
+	if (isset($luna_user['logged']))
+		$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$luna_user['logged'].' WHERE id='.$luna_user['id']) or error('Unable to update user visit data', __FILE__, __LINE__, $db->error());
 
-	pun_setcookie(1, pun_hash(uniqid(rand(), true)), time() + 31536000);
+	luna_setcookie(1, luna_hash(uniqid(rand(), true)), time() + 31536000);
 
 	redirect('index.php', $lang['Logout redirect']);
 }
@@ -111,7 +111,7 @@ else if ($action == 'out')
 
 else if ($action == 'forget' || $action == 'forget_2')
 {
-	if (!$pun_user['is_guest'])
+	if (!$luna_user['is_guest'])
 	{
 		header('Location: index.php');
 		exit;
@@ -125,7 +125,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 		require FORUM_ROOT.'include/email.php';
 
 		// Validate the email address
-		$email = strtolower(pun_trim($_POST['req_email']));
+		$email = strtolower(luna_trim($_POST['req_email']));
 		if (!is_valid_email($email))
 			$errors[] = $lang['Invalid email'];
 
@@ -137,7 +137,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 			if ($db->num_rows($result))
 			{
 				// Load the "activate password" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/activate_password.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/activate_password.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -146,7 +146,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 
 				// Do the generic replacements first (they apply to all emails sent out here)
 				$mail_message = str_replace('<base_url>', get_base_url().'/', $mail_message);
-				$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				// Loop through users we found
 				while ($cur_hit = $db->fetch_assoc($result))
@@ -158,24 +158,24 @@ else if ($action == 'forget' || $action == 'forget_2')
 					$new_password = random_pass(8);
 					$new_password_key = random_pass(8);
 
-					$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.pun_hash($new_password).'\', activate_key=\''.$new_password_key.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id']) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
+					$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.luna_hash($new_password).'\', activate_key=\''.$new_password_key.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id']) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 					// Do the user specific replacements to the template
 					$cur_mail_message = str_replace('<username>', $cur_hit['username'], $mail_message);
 					$cur_mail_message = str_replace('<activation_url>', get_base_url().'/profile.php?id='.$cur_hit['id'].'&action=change_pass&key='.$new_password_key, $cur_mail_message);
 					$cur_mail_message = str_replace('<new_password>', $new_password, $cur_mail_message);
 
-					pun_mail($email, $mail_subject, $cur_mail_message);
+					luna_mail($email, $mail_subject, $cur_mail_message);
 				}
 
-				message($lang['Forget mail'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
+				message($lang['Forget mail'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 			}
 			else
 				$errors[] = $lang['No email match'].' '.htmlspecialchars($email).'.';
 			}
 		}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Request pass']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Request pass']);
 	$required_fields = array('req_email' => $lang['Email']);
 	$focus_element = array('request_pass', 'req_email');
 	define ('FORUM_ACTIVE_PAGE', 'login');
@@ -222,7 +222,7 @@ if (!empty($errors))
 }
 
 
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 	{
 		header('Location: index.php');
 		exit;
@@ -258,7 +258,7 @@ if (!isset($redirect_url))
 else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))  
     $redirect_url .= '#p'.$matches[1];
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Login']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Login']);
 $required_fields = array('req_username' => $lang['Username'], 'req_password' => $lang['Password']);
 $focus_element = array('login', 'req_username');
 define('FORUM_ACTIVE_PAGE', 'login');
@@ -269,13 +269,13 @@ require FORUM_ROOT.'header.php';
     <fieldset>
         <h1 class="form-heading"><?php echo $lang['Login'] ?></h1>
         <input type="hidden" name="form_sent" value="1" />
-        <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
+        <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
         <div>
             <input class="form-control top-form" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
             <input class="form-control bottom-form" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" /> 
         </div>
         <div class="form-content">
-            <p class="actions"><?php if ($pun_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a> &middot; <?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
+            <p class="actions"><?php if ($luna_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Not registered'] ?></a> &middot; <?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
             <div class="control-group">
                 <div class="controls remember">
                     <label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>

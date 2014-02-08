@@ -11,15 +11,15 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 
-if ($pun_user['g_read_board'] == '0')
+if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
-else if ($pun_user['g_view_users'] == '0')
+else if ($luna_user['g_view_users'] == '0')
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Determine if we are allowed to view post counts
-$show_post_count = ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod']) ? true : false;
+$show_post_count = ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod']) ? true : false;
 
-$username = isset($_GET['username']) && $pun_user['g_search_users'] == '1' ? pun_trim($_GET['username']) : '';
+$username = isset($_GET['username']) && $luna_user['g_search_users'] == '1' ? luna_trim($_GET['username']) : '';
 $show_group = isset($_GET['show_group']) ? intval($_GET['show_group']) : -1;
 $sort_by = isset($_GET['sort_by']) && (in_array($_GET['sort_by'], array('username', 'registered')) || ($_GET['sort_by'] == 'num_posts' && $show_post_count)) ? $_GET['sort_by'] : 'username';
 $sort_dir = isset($_GET['sort_dir']) && $_GET['sort_dir'] == 'DESC' ? 'DESC' : 'ASC';
@@ -43,8 +43,8 @@ $num_pages = ceil($num_users / 50);
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
 $start_from = 50 * ($p - 1);
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['User list']);
-if ($pun_user['g_search_users'] == '1')
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['User list']);
+if ($luna_user['g_search_users'] == '1')
 	$focus_element = array('userlist', 'username');
 
 // Generate paging links
@@ -66,8 +66,8 @@ require FORUM_ROOT.'header.php';
             	<table class="usersearch">
                     <tbody>
                         <tr>
-							<?php if ($pun_user['g_search_users'] == '1'): ?>
-                                <td><input class="form-control" type="text" name="username" value="<?php echo pun_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" maxlength="25" /></td>
+							<?php if ($luna_user['g_search_users'] == '1'): ?>
+                                <td><input class="form-control" type="text" name="username" value="<?php echo luna_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" maxlength="25" /></td>
                             <?php endif; ?>
                         	<td class="hidden-xs">
                             	<select class="form-control" name="show_group">
@@ -79,9 +79,9 @@ $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id
 while ($cur_group = $db->fetch_assoc($result))
 {
 	if ($cur_group['g_id'] == $show_group)
-		echo "\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+		echo "\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 	else
-		echo "\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+		echo "\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 }
 
 ?>
@@ -143,7 +143,7 @@ if ($db->num_rows($result))
 
 ?>
                 <tr>
-                    <td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
+                    <td><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
                     <td><?php echo $user_title_field ?></td>
 <?php if ($show_post_count): ?>                <td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
 <?php endif; ?>

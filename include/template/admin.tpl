@@ -6,15 +6,15 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="../include/bootstrap/bootstrap.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<pun_head>
+		<luna_head>
 	</head>
 	<body>
     	<div class="container">
             <div class="row">
-                <pun_main>
+                <luna_main>
             </div>
             <div class="row">
-                <pun_footer>
+                <luna_footer>
             </div>
 		</div>
         <!-- Javascript start -->

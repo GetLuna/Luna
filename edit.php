@@ -11,7 +11,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 
-if ($pun_user['g_read_board'] == '0')
+if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
 
@@ -20,7 +20,7 @@ if ($id < 1)
 	message($lang['Bad request'], false, '404 Not Found');
 
 // Fetch some info about the post, the topic and the forum
-$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.redirect_url, fp.post_replies, fp.post_topics, t.id AS tid, t.subject, t.posted, t.first_post_id, t.sticky, t.closed, p.poster, p.poster_id, p.message, p.hide_smilies FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.redirect_url, fp.post_replies, fp.post_topics, t.id AS tid, t.subject, t.posted, t.first_post_id, t.sticky, t.closed, p.poster, p.poster_id, p.message, p.hide_smilies FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message($lang['Bad request'], false, '404 Not Found');
 
@@ -28,24 +28,24 @@ $cur_post = $db->fetch_assoc($result);
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_post['moderators'] != '') ? unserialize($cur_post['moderators']) : array();
-$is_admmod = ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
 $can_edit_subject = $id == $cur_post['first_post_id'];
 
-if ($pun_config['o_censoring'] == '1')
+if ($luna_config['o_censoring'] == '1')
 {
 	$cur_post['subject'] = censor_words($cur_post['subject']);
 	$cur_post['message'] = censor_words($cur_post['message']);
 }
 
 // Do we have permission to edit this post?
-if (($pun_user['g_edit_posts'] == '0' ||
-	$cur_post['poster_id'] != $pun_user['id'] ||
+if (($luna_user['g_edit_posts'] == '0' ||
+	$cur_post['poster_id'] != $luna_user['id'] ||
 	$cur_post['closed'] == '1') &&
 	!$is_admmod)
 	message($lang['No permission'], false, '403 Forbidden');
 	
-if ($is_admmod && $pun_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
+if ($is_admmod && $luna_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Start with a clean slate
@@ -60,32 +60,32 @@ if (isset($_POST['form_sent']))
 	// If it's a topic it must contain a subject
 	if ($can_edit_subject)
 	{
-		$subject = pun_trim($_POST['req_subject']);
+		$subject = luna_trim($_POST['req_subject']);
 
-		if ($pun_config['o_censoring'] == '1')
-			$censored_subject = pun_trim(censor_words($subject));
+		if ($luna_config['o_censoring'] == '1')
+			$censored_subject = luna_trim(censor_words($subject));
 
 		if ($subject == '')
 			$errors[] = $lang['No subject'];
-		else if ($pun_config['o_censoring'] == '1' && $censored_subject == '')
+		else if ($luna_config['o_censoring'] == '1' && $censored_subject == '')
 			$errors[] = $lang['No subject after censoring'];
-		else if (pun_strlen($subject) > 70)
+		else if (luna_strlen($subject) > 70)
 			$errors[] = $lang['Too long subject'];
-		else if ($pun_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$pun_user['is_admmod'])
+		else if ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
 			$errors[] = $lang['All caps subject'];
 	}
 
 	// Clean up message from POST
-	$message = pun_linebreaks(pun_trim($_POST['req_message']));
+	$message = luna_linebreaks(luna_trim($_POST['req_message']));
 
-	// Here we use strlen() not pun_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 	if (strlen($message) > FORUM_MAX_POSTSIZE)
 		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
-	else if ($pun_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$pun_user['is_admmod'])
+	else if ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = $lang['All caps message'];
 
 	// Validate BBCode syntax
-	if ($pun_config['p_message_bbcode'] == '1')
+	if ($luna_config['p_message_bbcode'] == '1')
 	{
 		require FORUM_ROOT.'include/parser.php';
 		$message = preparse_bbcode($message, $errors);
@@ -95,10 +95,10 @@ if (isset($_POST['form_sent']))
 	{
 		if ($message == '')
 			$errors[] = $lang['No message'];
-		else if ($pun_config['o_censoring'] == '1')
+		else if ($luna_config['o_censoring'] == '1')
 		{
 			// Censor message to see if that causes problems
-			$censored_message = pun_trim(censor_words($message));
+			$censored_message = luna_trim(censor_words($message));
 
 			if ($censored_message == '')
 				$errors[] = $lang['No message after censoring'];
@@ -116,7 +116,7 @@ if (isset($_POST['form_sent']))
 	// Did everything go according to plan?
 	if (empty($errors) && !isset($_POST['preview']))
 	{
-		$edited_sql = (!isset($_POST['silent']) || !$is_admmod) ? ', edited='.time().', edited_by=\''.$db->escape($pun_user['username']).'\'' : '';
+		$edited_sql = (!isset($_POST['silent']) || !$is_admmod) ? ', edited='.time().', edited_by=\''.$db->escape($luna_user['username']).'\'' : '';
 
 		require FORUM_ROOT.'include/search_idx.php';
 
@@ -140,7 +140,7 @@ if (isset($_POST['form_sent']))
 
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Edit post']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Edit post']);
 $required_fields = array('req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 $focus_element = array('edit', 'req_message');
 define('FORUM_ACTIVE_PAGE', 'index');
@@ -151,8 +151,8 @@ $cur_index = 1;
 ?>
 <ol class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo pun_htmlspecialchars($cur_post['forum_name']) ?></a></li>
-    <li><a href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><?php echo pun_htmlspecialchars($cur_post['subject']) ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo luna_htmlspecialchars($cur_post['forum_name']) ?></a></li>
+    <li><a href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><?php echo luna_htmlspecialchars($cur_post['subject']) ?></a></li>
     <li class="active"><?php echo $lang['Edit post'] ?></li>
 </ol>
 
@@ -211,16 +211,16 @@ else if (isset($_POST['preview']))
         <fieldset class="postfield">
             <input type="hidden" name="form_sent" value="1" />
 <?php if ($can_edit_subject): ?>
-            <input class="longinput form-control full-form" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo pun_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" />
+            <input class="longinput form-control full-form" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" value="<?php echo luna_htmlspecialchars(isset($_POST['req_subject']) ? $_POST['req_subject'] : $cur_post['subject']) ?>" />
 <?php endif; ?>
-            <textarea class="form-control full-form" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo pun_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea>
+            <textarea class="form-control full-form" name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']) ?></textarea>
         </fieldset>
         <div class="panel-footer">
         	<div class="btn-group"><input type="submit" onclick="tinyMCE.triggerSave(false);" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" onclick="tinyMCE.triggerSave(false);" class="btn btn-primary" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
             <ul class="bblinks">
-                <li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-                <li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-                <li><a class="label <?php echo ($pun_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
+                <li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
+                <li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
+                <li><a class="label <?php echo ($luna_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
             </ul>
         </div>
     </div>
@@ -235,7 +235,7 @@ if ($can_edit_subject && $is_admmod)
 		$checkboxes[] = '<input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'" /> '.$lang['Stick topic'].'<br />';
 }
 
-if ($pun_config['o_smilies'] == '1')
+if ($luna_config['o_smilies'] == '1')
 {
 	if (isset($_POST['hide_smilies']) || $cur_post['hide_smilies'] == '1')
 		$checkboxes[] = '<input type="checkbox" name="hide_smilies" value="1" checked="checked" tabindex="'.($cur_index++).'" /> '.$lang['Hide smilies'].'<br />';

@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
@@ -26,20 +26,20 @@ if (isset($_POST['form_sent']))
 	confirm_referrer('backstage/email.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
-		'admin_email'			=> strtolower(pun_trim($_POST['form']['admin_email'])),
-		'webmaster_email'		=> strtolower(pun_trim($_POST['form']['webmaster_email'])),
+		'admin_email'			=> strtolower(luna_trim($_POST['form']['admin_email'])),
+		'webmaster_email'		=> strtolower(luna_trim($_POST['form']['webmaster_email'])),
 		'forum_subscriptions'	=> isset($_POST['form']['forum_subscriptions']) ? '1' : '0',
 		'topic_subscriptions'	=> isset($_POST['form']['topic_subscriptions']) ? '1' : '0',
-		'smtp_host'				=> pun_trim($_POST['form']['smtp_host']),
-		'smtp_user'				=> pun_trim($_POST['form']['smtp_user']),
+		'smtp_host'				=> luna_trim($_POST['form']['smtp_host']),
+		'smtp_user'				=> luna_trim($_POST['form']['smtp_user']),
 		'smtp_ssl'				=> isset($_POST['form']['smtp_ssl']) ? '1' : '0',
 	);
 	
 	// Change or enter a SMTP password
 	if (isset($_POST['form']['smtp_change_pass']))
 	{
-		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? pun_trim($_POST['form']['smtp_pass1']) : '';
-		$smtp_pass2 = isset($_POST['form']['smtp_pass2']) ? pun_trim($_POST['form']['smtp_pass2']) : '';
+		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? luna_trim($_POST['form']['smtp_pass1']) : '';
+		$smtp_pass2 = isset($_POST['form']['smtp_pass2']) ? luna_trim($_POST['form']['smtp_pass2']) : '';
 
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
@@ -50,7 +50,7 @@ if (isset($_POST['form_sent']))
 	foreach ($form as $key => $input)
 	{
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $pun_config) && $pun_config['o_'.$key] != $input)
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
 		{
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
@@ -71,7 +71,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/email.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Options']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('email');
@@ -89,13 +89,13 @@ generate_admin_menu('email');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Admin e-mail label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo $pun_config['o_admin_email'] ?>" />
+                        <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo $luna_config['o_admin_email'] ?>" />
                         <span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Webmaster e-mail label'] ?></label>
-						<div class="col-sm-10"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo $pun_config['o_webmaster_email'] ?>" />
+						<div class="col-sm-10"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo $luna_config['o_webmaster_email'] ?>" />
 						<span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span>
                     </div>
                 </div>
@@ -114,13 +114,13 @@ generate_admin_menu('email');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($pun_config['o_forum_subscriptions'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($luna_config['o_forum_subscriptions'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Forum subscriptions help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($pun_config['o_topic_subscriptions'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($luna_config['o_topic_subscriptions'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Topic subscriptions help'] ?>
                             </label>
                         </div>
@@ -139,14 +139,14 @@ generate_admin_menu('email');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['SMTP address label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[smtp_host]" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_host']) ?>" />
+                        <input type="text" class="form-control" name="form[smtp_host]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
                         <span class="help-block"><?php echo $lang['SMTP address help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['SMTP username label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[smtp_user]" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_smtp_user']) ?>" />
+                        <input type="text" class="form-control" name="form[smtp_user]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
                         <span class="help-block"><?php echo $lang['SMTP username help'] ?></span>
                     </div>
                 </div>
@@ -159,7 +159,7 @@ generate_admin_menu('email');
                                 <?php echo $lang['SMTP change password help'] ?>
                             </label>
                         </div>
-<?php $smtp_pass = !empty($pun_config['o_smtp_pass']) ? random_key(pun_strlen($pun_config['o_smtp_pass']), true) : ''; ?>
+<?php $smtp_pass = !empty($luna_config['o_smtp_pass']) ? random_key(luna_strlen($luna_config['o_smtp_pass']), true) : ''; ?>
 						<input class="form-control" type="password" name="form[smtp_pass1]" maxlength="50" value="<?php echo $smtp_pass ?>" />
 						<input class="form-control" type="password" name="form[smtp_pass2]" maxlength="50" value="<?php echo $smtp_pass ?>" />
                         <span class="help-block"><?php echo $lang['SMTP password help'] ?></span>
@@ -168,7 +168,7 @@ generate_admin_menu('email');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
-                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($pun_config['o_smtp_ssl'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') echo ' checked="checked"' ?> />
 						<?php echo $lang['SMTP SSL help'] ?>
                     </div>
                 </div>

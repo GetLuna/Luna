@@ -11,7 +11,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 
-if ($pun_user['g_read_board'] == '0')
+if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
 
@@ -34,17 +34,17 @@ if ($pid)
 	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE topic_id='.$id.' AND posted<'.$posted) or error('Unable to count previous posts', __FILE__, __LINE__, $db->error());
 	$num_posts = $db->result($result) + 1;
 
-	$_GET['p'] = ceil($num_posts / $pun_user['disp_posts']);
+	$_GET['p'] = ceil($num_posts / $luna_user['disp_posts']);
 }
 
 // If action=new, we redirect to the first new post (if any)
 else if ($action == 'new')
 {
-	if (!$pun_user['is_guest'])
+	if (!$luna_user['is_guest'])
 	{
 		// We need to check if this topic has been viewed recently by the user
 		$tracked_topics = get_tracked_topics();
-		$last_viewed = isset($tracked_topics['topics'][$id]) ? $tracked_topics['topics'][$id] : $pun_user['last_visit'];
+		$last_viewed = isset($tracked_topics['topics'][$id]) ? $tracked_topics['topics'][$id] : $luna_user['last_visit'];
 
 		$result = $db->query('SELECT MIN(id) FROM '.$db->prefix.'posts WHERE topic_id='.$id.' AND posted>'.$last_viewed) or error('Unable to fetch first new post info', __FILE__, __LINE__, $db->error());
 		$first_new_post_id = $db->result($result);
@@ -76,10 +76,10 @@ else if ($action == 'last')
 
 
 // Fetch some info about the topic
-if (!$pun_user['is_guest'])
-	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$pun_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+if (!$luna_user['is_guest'])
+	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, 0 AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, 0 AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message($lang['Bad request'], false, '404 Not Found');
@@ -88,14 +88,14 @@ $cur_topic = $db->fetch_assoc($result);
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_topic['moderators'] != '') ? unserialize($cur_topic['moderators']) : array();
-$is_admmod = ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 if ($is_admmod)  
 $admin_ids = get_admin_ids();
 
 // Can we or can we not post replies?
 if ($cur_topic['closed'] == '0')
 {
-	if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)
+	if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)
 		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a>'."\n";
 	else
 		$post_link = '';
@@ -112,7 +112,7 @@ else
 
 
 // Add/update this topic in our list of tracked topics
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 {
 	$tracked_topics = get_tracked_topics();
 	$tracked_topics['topics'][$id] = time();
@@ -121,42 +121,42 @@ if (!$pun_user['is_guest'])
 
 
 // Determine the post offset (based on $_GET['p'])
-$num_pages = ceil(($cur_topic['num_replies'] + 1) / $pun_user['disp_posts']);
+$num_pages = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $pun_user['disp_posts'] * ($p - 1);
+$start_from = $luna_user['disp_posts'] * ($p - 1);
 
 // Generate paging links
 $paging_links = paginate($num_pages, $p, 'viewtopic.php?id='.$id);
 
 
-if ($pun_config['o_censoring'] == '1')
+if ($luna_config['o_censoring'] == '1')
 	$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 
 $quickpost = false;
-if ($pun_config['o_quickpost'] == '1' &&
-	($cur_topic['post_replies'] == '1' || ($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1')) &&
+if ($luna_config['o_quickpost'] == '1' &&
+	($cur_topic['post_replies'] == '1' || ($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1')) &&
 	($cur_topic['closed'] == '0' || $is_admmod))
 {
 	$required_fields = array('req_message' => $lang['Message']);
-	if ($pun_user['is_guest'])
+	if ($luna_user['is_guest'])
 	{
 		$required_fields['req_username'] = $lang['Guest name'];
-		if ($pun_config['p_force_guest_email'] == '1')
+		if ($luna_config['p_force_guest_email'] == '1')
 			$required_fields['req_email'] = $lang['Email'];
 	}
 	$quickpost = true;
 }
 
-if ($pun_config['o_feed_type'] == '1')
+if ($luna_config['o_feed_type'] == '1')
 	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.$lang['RSS topic feed'].'" />');
-else if ($pun_config['o_feed_type'] == '2')
+else if ($luna_config['o_feed_type'] == '2')
 	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.$lang['Atom topic feed'].'" />');
 
 $topic_actions = array();
 
-if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
+if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1')
 {
 	if ($cur_topic['is_subscribed'])
 		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang['Unsubscribe'].'</a>';
@@ -164,17 +164,17 @@ if (!$pun_user['is_guest'] && $pun_config['o_topic_subscriptions'] == '1')
 		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang['Subscribe'].'</a>';
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), pun_htmlspecialchars($cur_topic['forum_name']), pun_htmlspecialchars($cur_topic['subject']));
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-<h2><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></h2>
+<h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
 <ol class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a></li>
 </ol>
 <div class="pagepost">
     <ul class="pagination">
@@ -191,7 +191,7 @@ require FORUM_ROOT.'include/parser.php';
 $post_count = 0; // Keep track of post numbers
 
 // Retrieve a list of post IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$pun_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$id.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
 $post_ids = array();
 for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
@@ -215,20 +215,20 @@ while ($cur_post = $db->fetch_assoc($result))
 	// If the poster is a registered user
 	if ($cur_post['poster_id'] > 1)
 	{
-		if ($pun_user['g_view_users'] == '1')
-			$username = '<a href="profile.php?id='.$cur_post['poster_id'].'"><h4 class="username">'.pun_htmlspecialchars($cur_post['username']).'</h4></a>';
+		if ($luna_user['g_view_users'] == '1')
+			$username = '<a href="profile.php?id='.$cur_post['poster_id'].'"><h4 class="username">'.luna_htmlspecialchars($cur_post['username']).'</h4></a>';
 		else
-			$username = pun_htmlspecialchars($cur_post['username']);
+			$username = luna_htmlspecialchars($cur_post['username']);
 
 		$user_title = get_title($cur_post);
 
-		if ($pun_config['o_censoring'] == '1')
+		if ($luna_config['o_censoring'] == '1')
 			$user_title = censor_words($user_title);
 
 		// Format the online indicator, those are ment as CSS classes
 		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
 
-		if ($pun_config['o_avatars'] == '1' && $pun_user['show_avatars'] != '0')
+		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0')
 		{
 			if (isset($user_avatar_cache[$cur_post['poster_id']]))
 				$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
@@ -237,64 +237,64 @@ while ($cur_post = $db->fetch_assoc($result))
 		}
 
 		// We only show location, register date, post count and the contact links if "Show user info" is enabled
-		if ($pun_config['o_show_user_info'] == '1')
+		if ($luna_config['o_show_user_info'] == '1')
 		{
 			if ($cur_post['location'] != '')
 			{
-				if ($pun_config['o_censoring'] == '1')
+				if ($luna_config['o_censoring'] == '1')
 					$cur_post['location'] = censor_words($cur_post['location']);
 
-				$user_info[] = '<dd><span>'.$lang['From'].' '.pun_htmlspecialchars($cur_post['location']).'</span></dd>';
+				$user_info[] = '<dd><span>'.$lang['From'].' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
 			}
 
-			if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
+			if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
 				$user_info[] = '<dd><span>'.$lang['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 
 			// Now let's deal with the contact links (Email and URL)
-			if ((($cur_post['email_setting'] == '0' && !$pun_user['is_guest']) || $pun_user['is_admmod']) && $pun_user['g_send_email'] == '1')
-				$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.pun_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a>';
-			else if ($cur_post['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
+			if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
+				$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a>';
+			else if ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 				$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_post['poster_id'].'">'.$lang['Email'].'</a>';
 
 			if ($cur_post['url'] != '')
 			{
-				if ($pun_config['o_censoring'] == '1')
+				if ($luna_config['o_censoring'] == '1')
 					$cur_post['url'] = censor_words($cur_post['url']);
 
-				$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.pun_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a>';
+				$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.luna_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a>';
 			}
 			
 
-			if ($pun_user['is_admmod'])
+			if ($luna_user['is_admmod'])
 			{
-				$user_actions[] = '<a class="btn btn-primary btn-xs" href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a>';
+				$user_actions[] = '<a class="btn btn-primary btn-xs" href="moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a>';
 			}
 		}
 			
 
-		if ($pun_user['is_admmod'])
+		if ($luna_user['is_admmod'])
 		{
 			if ($cur_post['admin_note'] != '')
-				$user_info[] = '<dd><span>'.$lang['Note'].' <strong>'.pun_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+				$user_info[] = '<dd><span>'.$lang['Note'].' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 		}
 	}
 	// If the poster is a guest (or a user that has been deleted)
 	else
 	{
-		$username = pun_htmlspecialchars($cur_post['username']);
+		$username = luna_htmlspecialchars($cur_post['username']);
 		$user_title = get_title($cur_post);
 
-		if ($pun_user['is_admmod'])
-			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.pun_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a></span></dd>';
+		if ($luna_user['is_admmod'])
+			$user_info[] = '<dd><span><a href="moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a></span></dd>';
 
-		if ($pun_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-			$user_actions[] = '<span class="email"><a href="mailto:'.pun_htmlspecialchars($cur_post['poster_email']).'">'.$lang['Email'].'</a></span>';
+		if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+			$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_post['poster_email']).'">'.$lang['Email'].'</a></span>';
 	}
 
 	// Generation post action array (quote, edit, delete etc.)
 	if (!$is_admmod)
 	{
-		if (!$pun_user['is_guest']) {
+		if (!$luna_user['is_guest']) {
 			if ($cur_post['marked'] == false) {
 				$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			} else {
@@ -304,15 +304,15 @@ while ($cur_post = $db->fetch_assoc($result))
 
 		if ($cur_topic['closed'] == '0')
 		{
-			if ($cur_post['poster_id'] == $pun_user['id'])
+			if ($cur_post['poster_id'] == $luna_user['id'])
 			{
-				if ((($start_from + $post_count) == 1 && $pun_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $pun_user['g_delete_posts'] == '1'))
+				if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == '1'))
 					$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
-				if ($pun_user['g_edit_posts'] == '1')
+				if ($luna_user['g_edit_posts'] == '1')
 					$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 			}
 
-			if (($cur_topic['post_replies'] == '' && $pun_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
+			if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
 				$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 		}
 	}
@@ -324,7 +324,7 @@ while ($cur_post = $db->fetch_assoc($result))
 		} else {
 			$post_actions[] = '<a class="btn btn-danger btn-actions btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		}
-		if ($pun_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
+		if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
 		{  
 			$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';  
 			$post_actions[] = '<a class="btn btn-primary btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';  
@@ -336,7 +336,7 @@ while ($cur_post = $db->fetch_assoc($result))
 	$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
 	// Do signature parsing/caching
-	if ($pun_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $pun_user['show_sig'] != '0')
+	if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0')
 	{
 		if (isset($signature_cache[$cur_post['poster_id']]))
 			$signature = $signature_cache[$cur_post['poster_id']];
@@ -360,14 +360,14 @@ while ($cur_post = $db->fetch_assoc($result))
                     <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd><?php echo $user_title ?>
                     <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
                     <?php if (count($user_info)) echo "<span class=\"user-info\">"."\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"."</span>"; ?>
-                    <?php if (!$pun_user['is_guest']) { ?><div class="btn-group"><?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?></div><?php } ?>
+                    <?php if (!$luna_user['is_guest']) { ?><div class="btn-group"><?php if (count($user_actions)) echo "\t\t\t\t\t\t".implode(' ', $user_actions)."\n"; ?></div><?php } ?>
                 </td>
                 <td class="col-lg-10 post-content">
-                    <p><a class="time-nr" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a><span class="pull-right"><span class="time-nr">#<?php echo ($start_from + $post_count) ?><?php if (!$pun_user['is_guest']) { ?> &middot;</span> <span class="btn-group"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></span><?php } ?></span></p>
+                    <p><a class="time-nr" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a><span class="pull-right"><span class="time-nr">#<?php echo ($start_from + $post_count) ?><?php if (!$luna_user['is_guest']) { ?> &middot;</span> <span class="btn-group"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></span><?php } ?></span></p>
                     <hr class="post-div" />
                     <div class="postmsg">
                         <?php echo $cur_post['message']."\n" ?>
-    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.pun_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
+    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
                     </div>
                     <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr class="post-div" />'.$signature.'</div>'."\n"; ?>
                 </td>
@@ -386,8 +386,8 @@ while ($cur_post = $db->fetch_assoc($result))
 </div>
 <ol class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo pun_htmlspecialchars($cur_topic['subject']) ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
+    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a></li>
 </ol>
 
 <?php
@@ -406,18 +406,18 @@ $cur_index = 1;
         </div>
         <fieldset class="quickpostfield">
             <input type="hidden" name="form_sent" value="1" />
-<?php if ($pun_config['o_topic_subscriptions'] == '1' && ($pun_user['auto_notify'] == '1' || $cur_topic['is_subscribed'])): ?>						<input type="hidden" name="subscribe" value="1" />
+<?php if ($luna_config['o_topic_subscriptions'] == '1' && ($luna_user['auto_notify'] == '1' || $cur_topic['is_subscribed'])): ?>						<input type="hidden" name="subscribe" value="1" />
 <?php endif; ?>
 <?php
 
-if ($pun_user['is_guest'])
+if ($luna_user['is_guest'])
 {
-	$email_label = ($pun_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong>' : $lang['Email'];
-	$email_form_name = ($pun_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
+	$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong>' : $lang['Email'];
+	$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
-            <label class="conl required hidden"><?php echo $lang['Guest name'] ?></label><input type="text" placeholder="<?php echo $lang['Guest name'] ?>" class="form-control full-form" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
-            <label class="conl<?php echo ($pun_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input type="text" placeholder="<?php echo $lang['Email'] ?>" class="form-control full-form" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo pun_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="conl required hidden"><?php echo $lang['Guest name'] ?></label><input type="text" placeholder="<?php echo $lang['Guest name'] ?>" class="form-control full-form" name="req_username" value="<?php if (isset($_POST['req_username'])) echo luna_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input type="text" placeholder="<?php echo $lang['Email'] ?>" class="form-control full-form" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo luna_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php
 
 	echo "\t\t\t\t\t\t".'<label class="required hidden"><strong>'.$lang['Message'].' <span>'.$lang['Required'].'</span></strong></label>';
@@ -429,9 +429,9 @@ if ($pun_user['is_guest'])
         <div class="panel-footer">
             <div class="btn-group"><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input class="btn btn-default" onclick="tinyMCE.triggerSave(false);" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div>
 			<ul class="bblinks">
-				<li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-				<li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-				<li><a class="label <?php echo ($pun_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
+				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
+				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
+				<li><a class="label <?php echo ($luna_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
 			</ul>
         </div>
     </div>
@@ -441,7 +441,7 @@ if ($pun_user['is_guest'])
 }
 
 // Increment "num_views" for topic
-if ($pun_config['o_topic_views'] == '1')
+if ($luna_config['o_topic_views'] == '1')
 	$db->query('UPDATE '.$db->prefix.'topics SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 $forum_id = $cur_topic['forum_id'];

@@ -12,19 +12,19 @@ if (!defined('FORUM'))
 	exit;
 
 $tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<pun_main>', $tpl_temp, $tpl_main);
+$tpl_main = str_replace('<luna_main>', $tpl_temp, $tpl_main);
 ob_end_clean();
-// END SUBST - <pun_main>
+// END SUBST - <luna_main>
 
 
-// START SUBST - <pun_footer>
+// START SUBST - <luna_footer>
 ob_start();
 
 ?>
 <footer class="col-lg-12">
 	<p>
 		<?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a>') ?>
-        <span class="pull-right"><?php echo $lang['Version'].'&nbsp;'.$pun_config['o_cur_version'] ?></span>
+        <span class="pull-right"><?php echo $lang['Version'].'&nbsp;'.$luna_config['o_cur_version'] ?></span>
     </p>
     <script src="../include/bootstrap/jquery.js"></script>
     <script src="../include/bootstrap/bootstrap.js"></script>
@@ -37,7 +37,7 @@ if (defined('FORUM_DEBUG'))
 	echo '<p id="debugtime">[ ';
 
 	// Calculate script generation time
-	$time_diff = sprintf('%.3f', get_microtime() - $pun_start);
+	$time_diff = sprintf('%.3f', get_microtime() - $luna_start);
 	echo sprintf($lang['Querytime'], $time_diff, $db->get_num_queries());
 
 	if (function_exists('memory_get_usage'))
@@ -60,9 +60,9 @@ if (defined('FORUM_SHOW_QUERIES'))
 	display_saved_queries();
 
 $tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<pun_footer>', $tpl_temp, $tpl_main);
+$tpl_main = str_replace('<luna_footer>', $tpl_temp, $tpl_main);
 ob_end_clean();
-// END SUBST - <pun_footer>
+// END SUBST - <luna_footer>
 
 
 // Close the db connection (and free up any result data)

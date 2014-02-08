@@ -11,13 +11,13 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 // If we are logged in, we shouldn't be here
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 {
 	header('Location: index.php');
 	exit;
 }
 
-if ($pun_config['o_regs_allow'] == '0')
+if ($luna_config['o_regs_allow'] == '0')
 	message($lang['No new regs']);
 
 
@@ -26,9 +26,9 @@ if (isset($_GET['cancel']))
 	redirect('index.php', $lang['Reg cancel redirect']);
 
 
-else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent']))
+else if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent']))
 {
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Register'], $lang['Forum rules']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register'], $lang['Forum rules']);
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require FORUM_ROOT.'header.php';
 
@@ -41,7 +41,7 @@ else if ($pun_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
         </div>
         <div class="panel-body">
             <fieldset>
-                <div class="usercontent"><?php echo $pun_config['o_rules_message'] ?></div>
+                <div class="usercontent"><?php echo $luna_config['o_rules_message'] ?></div>
             </fieldset>
         </div>
     </div>
@@ -64,26 +64,26 @@ if (isset($_POST['form_sent']))
 		message($lang['Registration flood']);
 
 
-	$username = pun_trim($_POST['req_user']);
-	$email1 = strtolower(pun_trim($_POST['req_email1']));
+	$username = luna_trim($_POST['req_user']);
+	$email1 = strtolower(luna_trim($_POST['req_email1']));
 
-	if ($pun_config['o_regs_verify'] == '1')
+	if ($luna_config['o_regs_verify'] == '1')
 	{
-		$email2 = strtolower(pun_trim($_POST['req_email2']));
+		$email2 = strtolower(luna_trim($_POST['req_email2']));
 
 		$password1 = random_pass(8);
 		$password2 = $password1;
 	}
 	else
 	{
-		$password1 = pun_trim($_POST['req_password1']);
-		$password2 = pun_trim($_POST['req_password2']);
+		$password1 = luna_trim($_POST['req_password1']);
+		$password2 = luna_trim($_POST['req_password2']);
 	}
 
 	// Validate username and passwords
 	check_username($username);
 
-	if (pun_strlen($password1) < 4)
+	if (luna_strlen($password1) < 4)
 		$errors[] = $lang['Pass too short'];
 	else if ($password1 != $password2)
 		$errors[] = $lang['Pass not match'];
@@ -93,13 +93,13 @@ if (isset($_POST['form_sent']))
 
 	if (!is_valid_email($email1))
 		$errors[] = $lang['Invalid email'];
-	else if ($pun_config['o_regs_verify'] == '1' && $email1 != $email2)
+	else if ($luna_config['o_regs_verify'] == '1' && $email1 != $email2)
 		$errors[] = $lang['Email not match'];
 
 	// Check if it's a banned email address
 	if (is_banned_email($email1))
 	{
-		if ($pun_config['p_allow_banned_email'] == '0')
+		if ($luna_config['p_allow_banned_email'] == '0')
 			$errors[] = $lang['Banned email'];
 
 		$banned_email = true; // Used later when we send an alert email
@@ -113,7 +113,7 @@ if (isset($_POST['form_sent']))
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE email=\''.$db->escape($email1).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
 	{
-		if ($pun_config['p_allow_dupe_email'] == '0')
+		if ($luna_config['p_allow_dupe_email'] == '0')
 			$errors[] = $lang['Dupe email'];
 
 		while ($cur_dupe = $db->fetch_assoc($result))
@@ -128,18 +128,18 @@ if (isset($_POST['form_sent']))
 			message($lang['Bad request'], false, '404 Not Found');
 	}
 	else
-		$language = $pun_config['o_default_lang'];
+		$language = $luna_config['o_default_lang'];
 
   	// Include the antispam library
   	require FORUM_ROOT.'include/nospam.php';
 
-	$req_username = empty($username) ? pun_trim($_POST['req_username']) : $username;
+	$req_username = empty($username) ? luna_trim($_POST['req_username']) : $username;
 	if (!empty($_POST['req_username']) || stopforumspam_check(get_remote_address(), $email1, $req_username))
   	{
   		// Since we found a spammer, lets report the bastard!
   		stopforumspam_report(get_remote_address(), $email1, $req_username);
 
-  		message($lang['Spam catch'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
+  		message($lang['Spam catch'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
   	}
 
 	// Did everything go according to plan?
@@ -148,14 +148,14 @@ if (isset($_POST['form_sent']))
 		// Insert the new user into the database. We do this now to get the last inserted ID for later use
 		$now = time();
 
-		$intial_group_id = ($pun_config['o_regs_verify'] == '0') ? $pun_config['o_default_user_group'] : FORUM_UNVERIFIED;
-		$password_hash = pun_hash($password1);
+		$intial_group_id = ($luna_config['o_regs_verify'] == '0') ? $luna_config['o_default_user_group'] : FORUM_UNVERIFIED;
+		$password_hash = luna_hash($password1);
 
 		// Add the user
-		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$db->escape($language).'\', \''.$pun_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$db->escape($language).'\', \''.$luna_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 		$new_uid = $db->insert_id();
 
-		if ($pun_config['o_regs_verify'] == '0')
+		if ($luna_config['o_regs_verify'] == '0')
 		{
 			// Regenerate the users info cache
 			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
@@ -165,13 +165,13 @@ if (isset($_POST['form_sent']))
 		}
 
 		// If the mailing list isn't empty, we may need to send out some alerts
-		if ($pun_config['o_mailing_list'] != '')
+		if ($luna_config['o_mailing_list'] != '')
 		{
 			// If we previously found out that the email was banned
 			if ($banned_email)
 			{
 				// Load the "banned email register" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_register.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/banned_email_register.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -181,16 +181,16 @@ if (isset($_POST['form_sent']))
 				$mail_message = str_replace('<username>', $username, $mail_message);
 				$mail_message = str_replace('<email>', $email1, $mail_message);
 				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$new_uid, $mail_message);
-				$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-				pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 			}
 
 			// If we previously found out that the email was a dupe
 			if (!empty($dupe_list))
 			{
 				// Load the "dupe email register" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/dupe_email_register.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/dupe_email_register.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -200,16 +200,16 @@ if (isset($_POST['form_sent']))
 				$mail_message = str_replace('<username>', $username, $mail_message);
 				$mail_message = str_replace('<dupe_list>', implode(', ', $dupe_list), $mail_message);
 				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$new_uid, $mail_message);
-				$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-				pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 			}
 
 			// Should we alert people on the admin mailing list that a new user has registered?
-			if ($pun_config['o_regs_report'] == '1')
+			if ($luna_config['o_regs_report'] == '1')
 			{
 				// Load the "new user" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/new_user.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_user.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -219,43 +219,43 @@ if (isset($_POST['form_sent']))
 				$mail_message = str_replace('<username>', $username, $mail_message);
 				$mail_message = str_replace('<base_url>', get_base_url().'/', $mail_message);
 				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$new_uid, $mail_message);
-				$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-				pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 			}
 		}
 
 		// Must the user verify the registration or do we log him/her in right now?
-		if ($pun_config['o_regs_verify'] == '1')
+		if ($luna_config['o_regs_verify'] == '1')
 		{
 			// Load the "welcome" template
-			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/welcome.tpl'));
+			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/welcome.tpl'));
 
 			// The first row contains the subject
 			$first_crlf = strpos($mail_tpl, "\n");
 			$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
 			$mail_message = trim(substr($mail_tpl, $first_crlf));
 
-			$mail_subject = str_replace('<board_title>', $pun_config['o_board_title'], $mail_subject);
+			$mail_subject = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject);
 			$mail_message = str_replace('<base_url>', get_base_url().'/', $mail_message);
 			$mail_message = str_replace('<username>', $username, $mail_message);
 			$mail_message = str_replace('<password>', $password1, $mail_message);
 			$mail_message = str_replace('<login_url>', get_base_url().'/login.php', $mail_message);
-			$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+			$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-			pun_mail($email1, $mail_subject, $mail_message);
+			luna_mail($email1, $mail_subject, $mail_message);
 
-			message($lang['Reg email'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
+			message($lang['Reg email'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 		}
 
-		pun_setcookie($new_uid, $password_hash, time() + $pun_config['o_timeout_visit']);
+		luna_setcookie($new_uid, $password_hash, time() + $luna_config['o_timeout_visit']);
 
 		redirect('index.php', $lang['Reg complete']);
 	}
 }
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Register']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register']);
 $required_fields = array('req_user' => $lang['Username'], 'req_password1' => $lang['Password'], 'req_password2' => $lang['Confirm pass'], 'req_email1' => $lang['Email'], 'req_email2' => $lang['Email'].' 2');
 $focus_element = array('register', 'req_user');
 $page_head = array('<style type="text/css">#register label.usernamefield { display: none }</style>');
@@ -293,16 +293,16 @@ if (!empty($errors))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo pun_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
+                        <input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
                         <span class="help-block"><?php echo $lang['Username legend'] ?></span>
                     </div>
                 </div>
-<?php if ($pun_config['o_regs_verify'] == '0'): ?>
+<?php if ($luna_config['o_regs_verify'] == '0'): ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
                     <div class="col-sm-10">
-						<input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo pun_htmlspecialchars($_POST['req_password1']); ?>" />
-                        <input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo pun_htmlspecialchars($_POST['req_password2']); ?>" />
+						<input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo luna_htmlspecialchars($_POST['req_password1']); ?>" />
+                        <input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo luna_htmlspecialchars($_POST['req_password2']); ?>" />
                         <span class="help-block"><?php echo $lang['Pass info'] ?></span>
                     </div>
                 </div>
@@ -310,9 +310,9 @@ if (!empty($errors))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
                     <div class="col-sm-10">
-						<?php if ($pun_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo pun_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" /><?php endif; ?>
-                        <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo pun_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
-                        <?php if ($pun_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email info'] ?></span><?php endif; ?>
+						<?php if ($luna_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" /><?php endif; ?>
+                        <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
+                        <?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email info'] ?></span><?php endif; ?>
                     </div>
                 </div>
 <?php
@@ -332,7 +332,7 @@ if (!empty($errors))
 
 			foreach ($languages as $temp)
 			{
-				if ($pun_config['o_default_lang'] == $temp)
+				if ($luna_config['o_default_lang'] == $temp)
 					echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
 				else
 					echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";

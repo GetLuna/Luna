@@ -23,10 +23,10 @@ header('Content-type: text/html; charset=utf-8');
 // Load the template
 $tpl_file = 'main.tpl';
 
-if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/'.$tpl_file))
+if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file))
 {
-	$tpl_file = FORUM_ROOT.'style/'.$pun_user['style'].'/'.$tpl_file;
-	$tpl_inc_dir = FORUM_ROOT.'style/'.$pun_user['style'].'/';
+	$tpl_file = FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file;
+	$tpl_inc_dir = FORUM_ROOT.'style/'.$luna_user['style'].'/';
 }
 else
 {
@@ -36,10 +36,10 @@ else
 
 $tpl_main = file_get_contents($tpl_file);
 
-// START SUBST - <pun_include "*">
-preg_match_all('%<pun_include "([^"]+)">%i', $tpl_main, $pun_includes, PREG_SET_ORDER);
+// START SUBST - <luna_include "*">
+preg_match_all('%<luna_include "([^"]+)">%i', $tpl_main, $luna_includes, PREG_SET_ORDER);
 
-foreach ($pun_includes as $cur_include)
+foreach ($luna_includes as $cur_include)
 {
 	ob_start();
 	$file_info = pathinfo($cur_include[1]);
@@ -56,26 +56,26 @@ foreach ($pun_includes as $cur_include)
 	else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1]))  
 		require FORUM_ROOT.'include/user/'.$cur_include[1];  
 	else
-		error(sprintf($lang['Pun include error'], pun_htmlspecialchars($cur_include[0]), basename($tpl_file)));
+		error(sprintf($lang['Pun include error'], luna_htmlspecialchars($cur_include[0]), basename($tpl_file)));
 
 	$tpl_temp = ob_get_contents();
 	$tpl_main = str_replace($cur_include[0], $tpl_temp, $tpl_main);
 	ob_end_clean();
 }
-// END SUBST - <pun_include "*">
+// END SUBST - <luna_include "*">
 
 
-// START SUBST - <pun_language>
-$tpl_main = str_replace('<pun_language>', $lang['lang_identifier'], $tpl_main);
-// END SUBST - <pun_language>
+// START SUBST - <luna_language>
+$tpl_main = str_replace('<luna_language>', $lang['lang_identifier'], $tpl_main);
+// END SUBST - <luna_language>
 
 
-// START SUBST - <pun_content_direction>
-$tpl_main = str_replace('<pun_content_direction>', $lang['lang_direction'], $tpl_main);
-// END SUBST - <pun_content_direction>
+// START SUBST - <luna_content_direction>
+$tpl_main = str_replace('<luna_content_direction>', $lang['lang_direction'], $tpl_main);
+// END SUBST - <luna_content_direction>
 
 
-// START SUBST - <pun_head>
+// START SUBST - <luna_head>
 ob_start();
 
 // Define $p if it's not set to avoid a PHP notice
@@ -87,7 +87,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $pun_user['style'].'.css' ?>" />
+<link rel="stylesheet" type="text/css" href="style/<?php echo $luna_user['style'].'.css' ?>" />
 <?php
 
 if (isset($required_fields))
@@ -135,9 +135,9 @@ if (isset($page_head))
 	echo implode("\n", $page_head)."\n";
 
 $tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<pun_head>', $tpl_temp, $tpl_main);
+$tpl_main = str_replace('<luna_head>', $tpl_temp, $tpl_main);
 ob_end_clean();
-// END SUBST - <pun_head>
+// END SUBST - <luna_head>
 
 
 // START SUBST - <body>
@@ -150,53 +150,53 @@ if (isset($focus_element))
 
 
 if (!defined ('FORUM_FORM')) {
-// START SUBST - <pun_page>
-$tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
-// END SUBST - <pun_page>
+// START SUBST - <luna_page>
+$tpl_main = str_replace('<luna_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
+// END SUBST - <luna_page>
 
 
-// START SUBST - <pun_title>
-if ($pun_config['o_header_title'] == 1) {
-	$tpl_main = str_replace('<pun_title>', '<h1><a href="index.php">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a></h1>', $tpl_main);
+// START SUBST - <luna_title>
+if ($luna_config['o_header_title'] == 1) {
+	$tpl_main = str_replace('<luna_title>', '<h1><a href="index.php">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a></h1>', $tpl_main);
 } else {
-	$tpl_main = str_replace('<pun_title>', '', $tpl_main);
+	$tpl_main = str_replace('<luna_title>', '', $tpl_main);
 }
 
-// END SUBST - <pun_title>
+// END SUBST - <luna_title>
 
 
-// START SUBST - <pun_desc>
-if ($pun_config['o_header_desc'] == 1) {
-	$tpl_main = str_replace('<pun_desc>', '<div id="brddesc"><p>'.$pun_config['o_board_desc'].'</p></div>', $tpl_main);
+// START SUBST - <luna_desc>
+if ($luna_config['o_header_desc'] == 1) {
+	$tpl_main = str_replace('<luna_desc>', '<div id="brddesc"><p>'.$luna_config['o_board_desc'].'</p></div>', $tpl_main);
 } else {
-	$tpl_main = str_replace('<pun_desc>', '', $tpl_main);
+	$tpl_main = str_replace('<luna_desc>', '', $tpl_main);
 }
 
-// END SUBST - <pun_desc>
+// END SUBST - <luna_desc>
 
 
-// START SUBST - <pun_navlinks>
+// START SUBST - <luna_navlinks>
 $links = array();
 
 // Index should always be displayed
 $links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang['Index'].'</a></li>';
 
-if ($pun_user['g_read_board'] == '1' && $pun_user['g_view_users'] == '1')
+if ($luna_user['g_read_board'] == '1' && $luna_user['g_view_users'] == '1')
 	$links[] = '<li id="navuserlist"'.((FORUM_ACTIVE_PAGE == 'userlist') ? ' class="active"' : '').'><a href="userlist.php">'.$lang['User list'].'</a></li>';
 
-if ($pun_config['o_rules'] == '1' && (!$pun_user['is_guest'] || $pun_user['g_read_board'] == '1' || $pun_config['o_regs_allow'] == '1'))
+if ($luna_config['o_rules'] == '1' && (!$luna_user['is_guest'] || $luna_user['g_read_board'] == '1' || $luna_config['o_regs_allow'] == '1'))
 	$links[] = '<li id="navrules"'.((FORUM_ACTIVE_PAGE == 'rules') ? ' class="active"' : '').'><a href="misc.php?action=rules">'.$lang['Rules'].'</a></li>';
 
-if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
+if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
 	$links[] = '<li id="navsearch"'.((FORUM_ACTIVE_PAGE == 'search') ? ' class="active"' : '').'><a href="search.php">'.$lang['Search'].'</a></li>';
 
-if ($pun_user['is_admmod'])
+if ($luna_user['is_admmod'])
 	$links[] = '<li id="navadmin"'.((FORUM_ACTIVE_PAGE == 'admin') ? ' class="active"' : '').'><a href="backstage/index.php">'.$lang['Backstage'].'</a></li>';
 
 // Are there any additional navlinks we should insert into the array before imploding it?
-if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != '')
+if ($luna_user['g_read_board'] == '1' && $luna_config['o_additional_navlinks'] != '')
 {
-	if (preg_match_all('%([0-9]+)\s*=\s*(.*?)\n%s', $pun_config['o_additional_navlinks']."\n", $extra_links))
+	if (preg_match_all('%([0-9]+)\s*=\s*(.*?)\n%s', $luna_config['o_additional_navlinks']."\n", $extra_links))
 	{
 		// Insert any additional links into the $links array (at the correct index)
 		$num_links = count($extra_links[1]);
@@ -205,29 +205,29 @@ if ($pun_user['g_read_board'] == '1' && $pun_config['o_additional_navlinks'] != 
 	}
 }
 // The user menu
-if ($pun_user['is_guest'])
+if ($luna_user['is_guest'])
 {
 	$usermenu[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>';
 	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang['Login'].'</a></li>';
 } else {
 	$usermenu[] = '<li class="dropdown">';
-	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang['Welcome'].', '.(pun_htmlspecialchars($pun_user['username'])).' <b class="caret"></b></a>';
+	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang['Welcome'].', '.(luna_htmlspecialchars($luna_user['username'])).' <b class="caret"></b></a>';
 	$usermenu[] = '<ul class="dropdown-menu">';
-	$usermenu[] = '<li><a href="profile.php?id='.$pun_user['id'].'">'.$lang['Profile'].'</a></li>';
+	$usermenu[] = '<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>';
 	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';
 	$usermenu[] = '<li class="divider"></li>';
-	if ($pun_user['is_admmod']) {
+	if ($luna_user['is_admmod']) {
 		$usermenu[] = '<li><a href="http://modernbb.be">'.$lang['Support'].'</a></li>';
 		$usermenu[] = '<li><a href="http://modernbb.be/docs">'.$lang['Documentation'].'</a></li>';
 		$usermenu[] = '<li class="divider"></li>';
 	}
-	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
+	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
 	$usermenu[] = '</ul>';
 	$usermenu[] = '</li>';
 }
 
-if ($pun_config['o_menu_title'] == 1) {
-	$menu_title = '<a href="index.php" class="navbar-brand">'.pun_htmlspecialchars($pun_config['o_board_title']).'</a>';
+if ($luna_config['o_menu_title'] == 1) {
+	$menu_title = '<a href="index.php" class="navbar-brand">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a>';
 } else {
 	$menu_title = '';
 }
@@ -250,14 +250,14 @@ $tpl_temp = '<div class="navbar navbar-default">
 		</div>
 	</div>
 </div>';
-$tpl_main = str_replace('<pun_navlinks>', $tpl_temp, $tpl_main);
-// END SUBST - <pun_navlinks>
+$tpl_main = str_replace('<luna_navlinks>', $tpl_temp, $tpl_main);
+// END SUBST - <luna_navlinks>
 
 
-// START SUBST - <pun_status>
+// START SUBST - <luna_status>
 $page_statusinfo = $page_topicsearches = array();
 
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 {
 	if (!empty($forum_actions))
 	{
@@ -269,9 +269,9 @@ if (!$pun_user['is_guest'])
 		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $topic_actions).'</span></li>';
 	}
 
-	if ($pun_user['is_admmod'])
+	if ($luna_user['is_admmod'])
 	{
-		if ($pun_config['o_report_method'] == '0' || $pun_config['o_report_method'] == '2')
+		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2')
 		{
 			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
 
@@ -279,11 +279,11 @@ if (!$pun_user['is_guest'])
 				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.$lang['New reports'].'</a></strong></span></li>';
 		}
 
-		if ($pun_config['o_maintenance'] == '1')
+		if ($luna_config['o_maintenance'] == '1')
 			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/settings.php#maintenance">'.$lang['Maintenance mode enabled'].'</a></strong></span></li>';
 	}
 
-	if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
+	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
 	{
 		$page_topicsearches[] = '<a href="search.php?action=show_replies" title="'.$lang['Show posted topics'].'">'.$lang['Posted topics'].'</a>';
 		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new posts'].'">'.$lang['New posts header'].'</a>';
@@ -291,7 +291,7 @@ if (!$pun_user['is_guest'])
 }
 
 // Quick searches
-if ($pun_user['g_read_board'] == '1' && $pun_user['g_search'] == '1')
+if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
 {
 	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">'.$lang['Active topics'].'</a>';
 	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">'.$lang['Unanswered topics'].'</a>';
@@ -321,31 +321,31 @@ if (!empty($page_topicsearches))
 
 $tpl_temp .= "\n\t\t\t".'<div class="clearer"></div>'."\n\t\t".'</div>';
 
-$tpl_main = str_replace('<pun_status>', $tpl_temp, $tpl_main);
-// END SUBST - <pun_status>
+$tpl_main = str_replace('<luna_status>', $tpl_temp, $tpl_main);
+// END SUBST - <luna_status>
 
 
-// START SUBST - <pun_announcement>
-if ($pun_user['g_read_board'] == '1' && $pun_config['o_announcement'] == '1')
+// START SUBST - <luna_announcement>
+if ($luna_user['g_read_board'] == '1' && $luna_config['o_announcement'] == '1')
 {
 	ob_start();
 
 ?>
 <div class="alert alert-info announcement">
-	<div><?php echo $pun_config['o_announcement_message'] ?></div>
+	<div><?php echo $luna_config['o_announcement_message'] ?></div>
 </div>
 <?php
 
 	$tpl_temp = trim(ob_get_contents());
-	$tpl_main = str_replace('<pun_announcement>', $tpl_temp, $tpl_main);
+	$tpl_main = str_replace('<luna_announcement>', $tpl_temp, $tpl_main);
 	ob_end_clean();
 }
 else
-	$tpl_main = str_replace('<pun_announcement>', '', $tpl_main);
-// END SUBST - <pun_announcement>
+	$tpl_main = str_replace('<luna_announcement>', '', $tpl_main);
+// END SUBST - <luna_announcement>
 }
 
-// START SUBST - <pun_main>
+// START SUBST - <luna_main>
 ob_start();
 
 

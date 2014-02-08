@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
@@ -39,7 +39,7 @@ if (isset($_POST['form_sent']))
 	foreach ($form as $key => $input)
 	{
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $pun_config) && $pun_config['o_'.$key] != $input)
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
 		{
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
@@ -60,7 +60,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/features.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Options']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('features');
@@ -80,19 +80,19 @@ generate_admin_menu('features');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[quickpost]" value="1" <?php if ($pun_config['o_quickpost'] == '1') echo ' checked="checked"' ?> />
+                            	<input type="checkbox" name="form[quickpost]" value="1" <?php if ($luna_config['o_quickpost'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Quick post help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[censoring]" value="1" <?php if ($pun_config['o_censoring'] == '1') echo ' checked="checked"' ?> />
+                            	<input type="checkbox" name="form[censoring]" value="1" <?php if ($luna_config['o_censoring'] == '1') echo ' checked="checked"' ?> />
 								<?php printf($lang['Censor words help'], '<a href="censoring.php">'.$lang['Censoring'].'</a>') ?>
                             </label>
                         </div>   
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[topic_views]" value="1" <?php if ($pun_config['o_topic_views'] == '1') echo ' checked="checked"' ?> />
+                            	<input type="checkbox" name="form[topic_views]" value="1" <?php if ($luna_config['o_topic_views'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Topic views help'] ?>
                             </label>
                         </div>                     
@@ -103,19 +103,19 @@ generate_admin_menu('features');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[users_online]" value="1" <?php if ($pun_config['o_users_online'] == '1') echo ' checked="checked"' ?> />
+                            	<input type="checkbox" name="form[users_online]" value="1" <?php if ($luna_config['o_users_online'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Users online help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[signatures]" value="1" <?php if ($pun_config['o_signatures'] == '1') echo ' checked="checked"' ?> />
+                            	<input type="checkbox" name="form[signatures]" value="1" <?php if ($luna_config['o_signatures'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Signatures help'] ?>
                             </label>
                         </div>   
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[ranks]" value="1" <?php if ($pun_config['o_ranks'] == '1') echo ' checked="checked"' ?> />
+                            	<input type="checkbox" name="form[ranks]" value="1" <?php if ($luna_config['o_ranks'] == '1') echo ' checked="checked"' ?> />
 								<?php printf($lang['User ranks help'], '<a href="ranks.php">'.$lang['Ranks'].'</a>') ?>
                             </label>
                         </div>                     
@@ -126,7 +126,7 @@ generate_admin_menu('features');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($pun_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />
+                            	<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Search all help'] ?>
                             </label>
                         </div>                  
@@ -144,7 +144,7 @@ generate_admin_menu('features');
             <fieldset>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="form[gzip]" value="1" <?php if ($pun_config['o_gzip'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[gzip]" value="1" <?php if ($luna_config['o_gzip'] == '1') echo ' checked="checked"' ?> />
 						<?php echo $lang['GZip help'] ?>
                     </label>
                 </div>

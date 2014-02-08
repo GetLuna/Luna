@@ -14,10 +14,10 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 
-if ($pun_user['g_read_board'] == '0')
+if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Help']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Help']);
 define('FORUM_ACTIVE_PAGE', 'help');
 require FORUM_ROOT.'header.php';
 
@@ -61,21 +61,21 @@ require FORUM_ROOT.'header.php';
     </div>
     <div class="panel-body">
 		<p><?php echo $lang['Links info'] ?></p>
-		<p><code>[url=<?php echo pun_htmlspecialchars(get_base_url(true).'/') ?>]<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?></a></p>
-		<p><code>[url]<?php echo pun_htmlspecialchars(get_base_url(true).'/') ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo pun_htmlspecialchars(get_base_url(true).'/') ?></a></p>
-		<p><code>[url=/help.php]<?php echo $lang['This help page'] ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/help.php') ?>"><?php echo $lang['This help page'] ?></a></p>
+		<p><code>[url=<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>]<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?></a></p>
+		<p><code>[url]<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/') ?></a></p>
+		<p><code>[url=/help.php]<?php echo $lang['This help page'] ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/help.php') ?>"><?php echo $lang['This help page'] ?></a></p>
 		<p><code>[email]myname@example.com[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com">myname@example.com</a></p>
 		<p><code>[email=myname@example.com]<?php echo $lang['My email address'] ?>[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com"><?php echo $lang['My email address'] ?></a></p>
-<p><code>[topic=1]<?php echo $lang['Test topic'] ?>[/topic]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/viewtopic.php?id=1') ?>"><?php echo $lang['Test topic'] ?></a></p>
-		<p><code>[topic]1[/topic]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/viewtopic.php?id=1') ?>"><?php echo pun_htmlspecialchars(get_base_url(true).'/viewtopic.php?id=1') ?></a></p>
-		<p><code>[post=1]<?php echo $lang['Test post'] ?>[/post]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/viewtopic.php?pid=1#p1') ?>"><?php echo $lang['Test post'] ?></a></p>
-		<p><code>[post]1[/post]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/viewtopic.php?pid=1#p1') ?>"><?php echo pun_htmlspecialchars(get_base_url(true).'/viewtopic.php?pid=1#p1') ?></a></p>
-		<p><code>[forum=1]<?php echo $lang['Test forum'] ?>[/forum]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/viewforum.php?id=1') ?>"><?php echo $lang['Test forum'] ?></a></p>
-		<p><code>[forum]1[/forum]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/viewforum.php?id=1') ?>"><?php echo pun_htmlspecialchars(get_base_url(true).'/viewforum.php?id=1') ?></a></p>
-		<p><code>[user=2]<?php echo $lang['Test user'] ?>[/user]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/profile.php?id=2') ?>"><?php echo $lang['Test user'] ?></a></p>
-		<p><code>[user]2[/user]</code> <?php echo $lang['produces'] ?> <a href="<?php echo pun_htmlspecialchars(get_base_url(true).'/profile.php?id=2') ?>"><?php echo pun_htmlspecialchars(get_base_url(true).'/profile.php?id=2') ?></a></p><br />
+<p><code>[topic=1]<?php echo $lang['Test topic'] ?>[/topic]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/viewtopic.php?id=1') ?>"><?php echo $lang['Test topic'] ?></a></p>
+		<p><code>[topic]1[/topic]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/viewtopic.php?id=1') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/viewtopic.php?id=1') ?></a></p>
+		<p><code>[post=1]<?php echo $lang['Test post'] ?>[/post]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/viewtopic.php?pid=1#p1') ?>"><?php echo $lang['Test post'] ?></a></p>
+		<p><code>[post]1[/post]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/viewtopic.php?pid=1#p1') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/viewtopic.php?pid=1#p1') ?></a></p>
+		<p><code>[forum=1]<?php echo $lang['Test forum'] ?>[/forum]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/viewforum.php?id=1') ?>"><?php echo $lang['Test forum'] ?></a></p>
+		<p><code>[forum]1[/forum]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/viewforum.php?id=1') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/viewforum.php?id=1') ?></a></p>
+		<p><code>[user=2]<?php echo $lang['Test user'] ?>[/user]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/profile.php?id=2') ?>"><?php echo $lang['Test user'] ?></a></p>
+		<p><code>[user]2[/user]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/profile.php?id=2') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/profile.php?id=2') ?></a></p><br />
 		<p><a name="img"></a><?php echo $lang['Images info'] ?></p>
-		<p><code>[img=<?php echo $lang['ModernBB bbcode test'] ?>]<?php echo pun_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php echo $lang['produces'] ?> <img style="height: 21px" src="<?php echo pun_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php echo $lang['ModernBB bbcode test'] ?>" /></p><br />
+		<p><code>[img=<?php echo $lang['ModernBB bbcode test'] ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php echo $lang['produces'] ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php echo $lang['ModernBB bbcode test'] ?>" /></p><br />
 		<p><a name="img"></a><?php echo $lang['Video info'] ?></p>
 		<p><code>[video=(x,y)][url]<?php echo $lang['Video link'] ?>[/url][/video]</code>
 	</div> 
@@ -156,7 +156,7 @@ foreach ($smilies as $smiley_text => $smiley_img)
 	$smiley_groups[$smiley_img][] = $smiley_text;
 
 foreach ($smiley_groups as $smiley_img => $smiley_texts)
-	echo "\t\t".'<p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <img src="'.pun_htmlspecialchars(get_base_url(true)).'/img/smilies/'.$smiley_img.'" width="15" height="15" alt="'.$smiley_texts[0].'" /></p>'."\n";
+	echo "\t\t".'<p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <img src="'.luna_htmlspecialchars(get_base_url(true)).'/img/smilies/'.$smiley_img.'" width="15" height="15" alt="'.$smiley_texts[0].'" /></p>'."\n";
 
 ?>
 	</div>

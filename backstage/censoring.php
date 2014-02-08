@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Add a censor word
@@ -26,8 +26,8 @@ if (isset($_POST['add_word']))
 {
 	confirm_referrer('backstage/censoring.php');
 	
-	$search_for = pun_trim($_POST['new_search_for']);
-	$replace_with = pun_trim($_POST['new_replace_with']);
+	$search_for = luna_trim($_POST['new_search_for']);
+	$replace_with = luna_trim($_POST['new_replace_with']);
 
 	if ($search_for == '')
 		message($lang['Must enter word message']);
@@ -50,8 +50,8 @@ else if (isset($_POST['update']))
 	
 	$id = intval(key($_POST['update']));
 
-	$search_for = pun_trim($_POST['search_for'][$id]);
-	$replace_with = pun_trim($_POST['replace_with'][$id]);
+	$search_for = luna_trim($_POST['search_for'][$id]);
+	$replace_with = luna_trim($_POST['replace_with'][$id]);
 
 	if ($search_for == '')
 		message($lang['Must enter word message']);
@@ -85,7 +85,7 @@ else if (isset($_POST['remove']))
 	redirect('backstage/censoring.php',  $lang['Word removed redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Censoring']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Censoring']);
 $focus_element = array('censoring', 'new_search_for');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
@@ -100,7 +100,7 @@ require FORUM_ROOT.'backstage/header.php';
 	<form id="censoring" method="post" action="censoring.php">
 		<fieldset>
 		<div class="panel-body">
-			<p><?php echo $lang['Add word info'].' '.($pun_config['o_censoring'] == '1' ? sprintf($lang['Censoring enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Censoring disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
+			<p><?php echo $lang['Add word info'].' '.($luna_config['o_censoring'] == '1' ? sprintf($lang['Censoring enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Censoring disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
 		</div>
 			<table class="table">
 				<thead>
@@ -146,7 +146,7 @@ if ($db->num_rows($result))
 <?php
 
 while ($cur_word = $db->fetch_assoc($result))
-echo "\t\t\t\t\t\t\t\t".'<tr><td><div class="btn-group"><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['search_for']).'" maxlength="60" /></div></td><td><div class="btn-group"><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.pun_htmlspecialchars($cur_word['replace_with']).'" maxlength="60" /></div></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
+echo "\t\t\t\t\t\t\t\t".'<tr><td><div class="btn-group"><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['search_for']).'" maxlength="60" /></div></td><td><div class="btn-group"><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['replace_with']).'" maxlength="60" /></div></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
 
 ?>
 				</tbody>

@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Add a "default" forum
@@ -26,7 +26,7 @@ if (isset($_POST['add_forum']))
 {
 	confirm_referrer('backstage/board.php');
 	
-	$forum_name = pun_trim($_POST['new_forum']); 
+	$forum_name = luna_trim($_POST['new_forum']); 
 	$add_to_cat = intval($_POST['add_to_cat']);
 	if ($add_to_cat < 1)
 		message($lang['Bad request'], false, '404 Not Found');
@@ -76,9 +76,9 @@ else if (isset($_GET['del_forum']))
 	else // If the user hasn't confirmed the delete
 	{
 		$result = $db->query('SELECT forum_name FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
-		$forum_name = pun_htmlspecialchars($db->result($result));
+		$forum_name = luna_htmlspecialchars($db->result($result));
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Forums']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Forums']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('board');
@@ -135,11 +135,11 @@ else if (isset($_GET['edit_forum']))
 		confirm_referrer('backstage/board.php');
 	
 		// Start with the forum details
-		$forum_name = pun_trim($_POST['forum_name']);
-		$forum_desc = pun_linebreaks(pun_trim($_POST['forum_desc']));
+		$forum_name = luna_trim($_POST['forum_name']);
+		$forum_desc = luna_linebreaks(luna_trim($_POST['forum_desc']));
 		$cat_id = intval($_POST['cat_id']);
 		$sort_by = intval($_POST['sort_by']);
-		$redirect_url = isset($_POST['redirect_url']) ? pun_trim($_POST['redirect_url']) : null;
+		$redirect_url = isset($_POST['redirect_url']) ? luna_trim($_POST['redirect_url']) : null;
 
 		if ($forum_name == '')
 			message($lang['Must enter name message']);
@@ -200,7 +200,7 @@ else if (isset($_GET['edit_forum']))
 	
 	$cur_index = 7;
 	
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Forums']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Forums']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('board');
@@ -217,13 +217,13 @@ else if (isset($_GET['edit_forum']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Forum name label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
+                        <input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Forum description label'] ?></label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="forum_desc" rows="3" cols="80" tabindex="2"><?php echo pun_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
+                        <textarea class="form-control" name="forum_desc" rows="3" cols="80" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -236,7 +236,7 @@ else if (isset($_GET['edit_forum']))
 	while ($cur_cat = $db->fetch_assoc($result))
 	{
 		$selected = ($cur_cat['id'] == $cur_forum['cat_id']) ? ' selected="selected"' : '';
-		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 	}
 
 ?>
@@ -257,7 +257,7 @@ else if (isset($_GET['edit_forum']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Redirect label'] ?></label>
 					<div class="col-sm-10">
-                        <?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?>
+                        <?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" maxlength="100" value="'.luna_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?>
                     </div>
                 </div>
 				<?php endif; ?>
@@ -300,7 +300,7 @@ else if (isset($_GET['edit_forum']))
 
 ?>
 					<tr>
-						<th class="atcl"><?php echo pun_htmlspecialchars($cur_perm['g_title']) ?></th>
+						<th class="atcl"><?php echo luna_htmlspecialchars($cur_perm['g_title']) ?></th>
 						<td<?php if (!$read_forum_def) echo ' class="danger"'; ?>>
 							<input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
 							<input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked="checked"' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
@@ -335,7 +335,7 @@ if (isset($_POST['add_cat']))
 {
 	confirm_referrer('backstage/board.php');
 	
-	$new_cat_name = pun_trim($_POST['new_cat_name']);
+	$new_cat_name = luna_trim($_POST['new_cat_name']);
 	if ($new_cat_name == '')
 		message($lang['Must enter name message']);
 
@@ -397,7 +397,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		$result = $db->query('SELECT cat_name FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to fetch category info', __FILE__, __LINE__, $db->error());
 		$cat_name = $db->result($result);
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Categories']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Categories']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('board');
@@ -443,8 +443,8 @@ if (isset($_POST['update'])) // Change position and name of the categories
 
 	foreach ($categories as $cat_id => $cur_cat)
 	{
-		$cur_cat['name'] = pun_trim($cur_cat['name']);
-		$cur_cat['order'] = pun_trim($cur_cat['order']);
+		$cur_cat['name'] = luna_trim($cur_cat['name']);
+		$cur_cat['order'] = luna_trim($cur_cat['order']);
 
 		if ($cur_cat['name'] == '')
 			message($lang['Must enter name message']);
@@ -460,7 +460,7 @@ if (isset($_POST['update'])) // Change position and name of the categories
 
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Board']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Board']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('board');
@@ -486,7 +486,7 @@ require FORUM_ROOT.'backstage/header.php';
     <?php
 		while ($cur_cat = $db->fetch_assoc($result))
 			{ ?>
-                <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+                <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 			} ?>
 							</select>
 						</div>
@@ -542,7 +542,7 @@ require FORUM_ROOT.'backstage/header.php';
 							<select class="form-control" name="cat_to_delete" tabindex="3">
 		<?php
 						foreach ($cat_list as $cur_cat)
-							echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.pun_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+							echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 		?>
 							</select>
 							<span class="input-group-btn">
@@ -591,7 +591,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 				<tbody>
 					<tr>
 						<th colspan="3" class="active">
-							<h4><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></h4>
+							<h4><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h4>
 						</th>
 					</tr>
 <?php
@@ -602,7 +602,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 ?>
 					<tr>
 						<td class="col-xs-2"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit link'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete link'] ?></a></div></td>
-						<td class="col-xs-3"><strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+						<td class="col-xs-3"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
 						<td class="col-xs-7"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 					</tr>
 <?php
@@ -637,7 +637,7 @@ foreach ($cat_list as $cur_cat)
 
 ?>
 					<tr>
-						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo pun_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
+						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo luna_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
 						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
 					</tr>
 <?php

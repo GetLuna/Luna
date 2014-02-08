@@ -14,7 +14,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
@@ -77,7 +77,7 @@ if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 
 }
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Update']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Update']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('update');

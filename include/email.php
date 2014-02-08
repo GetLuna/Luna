@@ -34,9 +34,9 @@ function is_valid_email($email)
 //
 function is_banned_email($email)
 {
-	global $pun_bans;
+	global $luna_bans;
 
-	foreach ($pun_bans as $cur_ban)
+	foreach ($luna_bans as $cur_ban)
 	{
 		if ($cur_ban['email'] != '' &&
 			($email == $cur_ban['email'] ||
@@ -70,7 +70,7 @@ function bbcode2email($text, $wrap_length = 72)
 	if (!isset($base_url))
 		$base_url = get_base_url();
 
-	$text = pun_trim($text, "\t\n ");
+	$text = luna_trim($text, "\t\n ");
 
 	$shortcut_urls = array(
 		'topic' => '/viewtopic.php?id=$1',
@@ -214,21 +214,21 @@ function bbcode2email($text, $wrap_length = 72)
 //
 // Wrapper for PHP's mail()
 //
-function pun_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '')
+function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '')
 {
-	global $pun_config, $lang;
+	global $luna_config, $lang;
 
 	// Default sender/return address
-	$from_name = sprintf($lang['Mailer'], $pun_config['o_board_title']);
-	$from_email = $pun_config['o_webmaster_email'];
+	$from_name = sprintf($lang['Mailer'], $luna_config['o_board_title']);
+	$from_email = $luna_config['o_webmaster_email'];
 
 	// Do a little spring cleaning
-	$to = pun_trim(preg_replace('%[\n\r]+%s', '', $to));
-	$subject = pun_trim(preg_replace('%[\n\r]+%s', '', $subject));
-	$from_email = pun_trim(preg_replace('%[\n\r:]+%s', '', $from_email));
-	$from_name = pun_trim(preg_replace('%[\n\r:]+%s', '', str_replace('"', '', $from_name)));
-	$reply_to_email = pun_trim(preg_replace('%[\n\r:]+%s', '', $reply_to_email));
-	$reply_to_name = pun_trim(preg_replace('%[\n\r:]+%s', '', str_replace('"', '', $reply_to_name)));
+	$to = luna_trim(preg_replace('%[\n\r]+%s', '', $to));
+	$subject = luna_trim(preg_replace('%[\n\r]+%s', '', $subject));
+	$from_email = luna_trim(preg_replace('%[\n\r:]+%s', '', $from_email));
+	$from_name = luna_trim(preg_replace('%[\n\r:]+%s', '', str_replace('"', '', $from_name)));
+	$reply_to_email = luna_trim(preg_replace('%[\n\r:]+%s', '', $reply_to_email));
+	$reply_to_name = luna_trim(preg_replace('%[\n\r:]+%s', '', str_replace('"', '', $reply_to_name)));
 
 	// Set up some headers to take advantage of UTF-8
 	$from = '"'.encode_mail_text($from_name).'" <'.$from_email.'>';
@@ -245,9 +245,9 @@ function pun_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name 
 	}
 
 	// Make sure all linebreaks are LF in message (and strip out any NULL bytes)
-	$message = str_replace("\0", '', pun_linebreaks($message));
+	$message = str_replace("\0", '', luna_linebreaks($message));
 
-	if ($pun_config['o_smtp_host'] != '')
+	if ($luna_config['o_smtp_host'] != '')
 	{
 		// Headers should be \r\n
 		// Message should be ??
@@ -287,7 +287,7 @@ function server_parse($socket, $expected_response)
 //
 function smtp_mail($to, $subject, $message, $headers = '')
 {
-	global $pun_config;
+	global $luna_config;
 	static $local_host;
 
 	$recipients = explode(',', $to);
@@ -297,19 +297,19 @@ function smtp_mail($to, $subject, $message, $headers = '')
 	$message = (substr($message, 0, 1) == '.' ? '.'.$message : $message);
 
 	// Are we using port 25 or a custom port?
-	if (strpos($pun_config['o_smtp_host'], ':') !== false)
-		list($smtp_host, $smtp_port) = explode(':', $pun_config['o_smtp_host']);
+	if (strpos($luna_config['o_smtp_host'], ':') !== false)
+		list($smtp_host, $smtp_port) = explode(':', $luna_config['o_smtp_host']);
 	else
 	{
-		$smtp_host = $pun_config['o_smtp_host'];
+		$smtp_host = $luna_config['o_smtp_host'];
 		$smtp_port = 25;
 	}
 
-	if ($pun_config['o_smtp_ssl'] == '1')
+	if ($luna_config['o_smtp_ssl'] == '1')
 		$smtp_host = 'ssl://'.$smtp_host;
 
 	if (!($socket = fsockopen($smtp_host, $smtp_port, $errno, $errstr, 15)))
-		error('Could not connect to smtp host "'.$pun_config['o_smtp_host'].'" ('.$errno.') ('.$errstr.')', __FILE__, __LINE__);
+		error('Could not connect to smtp host "'.$luna_config['o_smtp_host'].'" ('.$errno.') ('.$errstr.')', __FILE__, __LINE__);
 
 	server_parse($socket, '220');
 
@@ -327,7 +327,7 @@ function smtp_mail($to, $subject, $message, $headers = '')
 		}
 	}
 
-	if ($pun_config['o_smtp_user'] != '' && $pun_config['o_smtp_pass'] != '')
+	if ($luna_config['o_smtp_user'] != '' && $luna_config['o_smtp_pass'] != '')
 	{
 		fwrite($socket, 'EHLO '.$local_host."\r\n");
 		server_parse($socket, '250');
@@ -335,10 +335,10 @@ function smtp_mail($to, $subject, $message, $headers = '')
 		fwrite($socket, 'AUTH LOGIN'."\r\n");
 		server_parse($socket, '334');
 
-		fwrite($socket, base64_encode($pun_config['o_smtp_user'])."\r\n");
+		fwrite($socket, base64_encode($luna_config['o_smtp_user'])."\r\n");
 		server_parse($socket, '334');
 
-		fwrite($socket, base64_encode($pun_config['o_smtp_pass'])."\r\n");
+		fwrite($socket, base64_encode($luna_config['o_smtp_pass'])."\r\n");
 		server_parse($socket, '235');
 	}
 	else
@@ -347,7 +347,7 @@ function smtp_mail($to, $subject, $message, $headers = '')
 		server_parse($socket, '250');
 	}
 
-	fwrite($socket, 'MAIL FROM: <'.$pun_config['o_webmaster_email'].'>'."\r\n");
+	fwrite($socket, 'MAIL FROM: <'.$luna_config['o_webmaster_email'].'>'."\r\n");
 	server_parse($socket, '250');
 
 	foreach ($recipients as $email)

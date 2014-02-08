@@ -18,10 +18,10 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if ($action == 'rules')
 {
-	if ($pun_config['o_rules'] == '0' || ($pun_user['is_guest'] && $pun_user['g_read_board'] == '0' && $pun_config['o_regs_allow'] == '0'))
+	if ($luna_config['o_rules'] == '0' || ($luna_user['is_guest'] && $luna_user['g_read_board'] == '0' && $luna_config['o_regs_allow'] == '0'))
 		message($lang['Bad request'], false, '404 Not Found');
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Forum rules']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Forum rules']);
 	define('FORUM_ACTIVE_PAGE', 'rules');
 	require FORUM_ROOT.'header.php';
 
@@ -31,7 +31,7 @@ if ($action == 'rules')
         <h3 class="panel-title"><?php echo $lang['Forum rules'] ?></h3>
     </div>
     <div class="panel-body">
-        <div class="usercontent"><?php echo $pun_config['o_rules_message'] ?></div>
+        <div class="usercontent"><?php echo $luna_config['o_rules_message'] ?></div>
     </div>
 </div>
 <?php
@@ -42,10 +42,10 @@ if ($action == 'rules')
 
 else if ($action == 'markread')
 {
-	if ($pun_user['is_guest'])
+	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
-	$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$pun_user['logged'].' WHERE id='.$pun_user['id']) or error('Unable to update user last visit data', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$luna_user['logged'].' WHERE id='.$luna_user['id']) or error('Unable to update user last visit data', __FILE__, __LINE__, $db->error());
 
 	// Reset tracked topics
 	set_tracked_topics(null);
@@ -57,7 +57,7 @@ else if ($action == 'markread')
 // Mark the topics/posts in a forum as read?
 else if ($action == 'markforumread')
 {
-	if ($pun_user['is_guest'])
+	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	$fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
@@ -74,7 +74,7 @@ else if ($action == 'markforumread')
 
 else if (isset($_GET['email']))
 {
-	if ($pun_user['is_guest'] || $pun_user['g_send_email'] == '0')
+	if ($luna_user['is_guest'] || $luna_user['g_send_email'] == '0')
 		message($lang['No permission'], false, '403 Forbidden');
 
 	$recipient_id = intval($_GET['email']);
@@ -87,7 +87,7 @@ else if (isset($_GET['email']))
 
 	list($recipient, $recipient_email, $email_setting) = $db->fetch_row($result);
 
-	if ($email_setting == 2 && !$pun_user['is_admmod'])
+	if ($email_setting == 2 && !$luna_user['is_admmod'])
 		message($lang['Form email disabled']);
 
 
@@ -96,41 +96,41 @@ else if (isset($_GET['email']))
 		confirm_referrer('misc.php');
 
 		// Clean up message and subject from POST
-		$subject = pun_trim($_POST['req_subject']);
-		$message = pun_trim($_POST['req_message']);
+		$subject = luna_trim($_POST['req_subject']);
+		$message = luna_trim($_POST['req_message']);
 
 		if ($subject == '')
 			message($lang['No email subject']);
 		else if ($message == '')
 			message($lang['No email message']);
-		// Here we use strlen() not pun_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+		// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 		else if (strlen($message) > FORUM_MAX_POSTSIZE)
 			message($lang['Too long email message']);
 
-		if ($pun_user['last_email_sent'] != '' && (time() - $pun_user['last_email_sent']) < $pun_user['g_email_flood'] && (time() - $pun_user['last_email_sent']) >= 0)
-			message(sprintf($lang['Email flood'], $pun_user['g_email_flood'], $pun_user['g_email_flood'] - (time() - $pun_user['last_email_sent'])));
+		if ($luna_user['last_email_sent'] != '' && (time() - $luna_user['last_email_sent']) < $luna_user['g_email_flood'] && (time() - $luna_user['last_email_sent']) >= 0)
+			message(sprintf($lang['Email flood'], $luna_user['g_email_flood'], $luna_user['g_email_flood'] - (time() - $luna_user['last_email_sent'])));
 
 		// Load the "form email" template
-		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/form_email.tpl'));
+		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/form_email.tpl'));
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");
-		$mail_subject = pun_trim(substr($mail_tpl, 8, $first_crlf-8));
-		$mail_message = pun_trim(substr($mail_tpl, $first_crlf));
+		$mail_subject = luna_trim(substr($mail_tpl, 8, $first_crlf-8));
+		$mail_message = luna_trim(substr($mail_tpl, $first_crlf));
 
 		$mail_subject = str_replace('<mail_subject>', $subject, $mail_subject);
-		$mail_message = str_replace('<sender>', $pun_user['username'], $mail_message);
-		$mail_message = str_replace('<board_title>', $pun_config['o_board_title'], $mail_message);
+		$mail_message = str_replace('<sender>', $luna_user['username'], $mail_message);
+		$mail_message = str_replace('<board_title>', $luna_config['o_board_title'], $mail_message);
 		$mail_message = str_replace('<mail_message>', $message, $mail_message);
-		$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+		$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 		require_once FORUM_ROOT.'include/email.php';
 
-		pun_mail($recipient_email, $mail_subject, $mail_message, $pun_user['email'], $pun_user['username']);
+		luna_mail($recipient_email, $mail_subject, $mail_message, $luna_user['email'], $luna_user['username']);
 
-		$db->query('UPDATE '.$db->prefix.'users SET last_email_sent='.time().' WHERE id='.$pun_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET last_email_sent='.time().' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-		redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang['Email sent redirect']);
+		redirect(luna_htmlspecialchars($_POST['redirect_url']), $lang['Email sent redirect']);
 	}
 
 
@@ -164,7 +164,7 @@ else if (isset($_GET['email']))
 	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Send email to'].' '.pun_htmlspecialchars($recipient));
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Send email to'].' '.luna_htmlspecialchars($recipient));
 	$required_fields = array('req_subject' => $lang['Email subject'], 'req_message' => $lang['Email message']);
 	$focus_element = array('email', 'req_subject');
 	define('FORUM_ACTIVE_PAGE', 'index');
@@ -174,12 +174,12 @@ else if (isset($_GET['email']))
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Send email to'] ?> <?php echo pun_htmlspecialchars($recipient) ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Send email to'] ?> <?php echo luna_htmlspecialchars($recipient) ?></h3>
     </div>
     <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
         <fieldset class="postfield">
             <input type="hidden" name="form_sent" value="1" />
-            <input type="hidden" name="redirect_url" value="<?php echo pun_htmlspecialchars($redirect_url) ?>" />
+            <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
             <label class="required hidden"><?php echo $lang['Email subject'] ?></label>
             <input class="form-control full-form" placeholder="<?php echo $lang['Email subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
             <label class="required hidden"><?php echo $lang['Email message'] ?></label>
@@ -198,7 +198,7 @@ else if (isset($_GET['email']))
 
 else if (isset($_GET['report']))
 {
-	if ($pun_user['is_guest'])
+	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	$post_id = intval($_GET['report']);
@@ -210,14 +210,14 @@ else if (isset($_GET['report']))
 		confirm_referrer('misc.php');
 
 		// Clean up reason from POST
-		$reason = pun_linebreaks(pun_trim($_POST['req_reason']));
+		$reason = luna_linebreaks(luna_trim($_POST['req_reason']));
 		if ($reason == '')
 			message($lang['No reason']);
 		else if (strlen($reason) > 65535) // TEXT field can only hold 65535 bytes
 			message($lang['Reason too long']);
 
-		if ($pun_user['last_report_sent'] != '' && (time() - $pun_user['last_report_sent']) < $pun_user['g_report_flood'] && (time() - $pun_user['last_report_sent']) >= 0)
-			message(sprintf($lang['Report flood'], $pun_user['g_report_flood'], $pun_user['g_report_flood'] - (time() - $pun_user['last_report_sent'])));
+		if ($luna_user['last_report_sent'] != '' && (time() - $luna_user['last_report_sent']) < $luna_user['g_report_flood'] && (time() - $luna_user['last_report_sent']) >= 0)
+			message(sprintf($lang['Report flood'], $luna_user['g_report_flood'], $luna_user['g_report_flood'] - (time() - $luna_user['last_report_sent'])));
 
 		// Get the topic ID
 		$result = $db->query('SELECT topic_id FROM '.$db->prefix.'posts WHERE id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -235,18 +235,18 @@ else if (isset($_GET['report']))
 		define('MARKED', '1');
 
 		// Should we use the internal report handling?
-		if ($pun_config['o_report_method'] == '0' || $pun_config['o_report_method'] == '2')
-			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, topic_id, forum_id, reported_by, created, message) VALUES('.$post_id.', '.$topic_id.', '.$forum_id.', '.$pun_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
+		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2')
+			$db->query('INSERT INTO '.$db->prefix.'reports (post_id, topic_id, forum_id, reported_by, created, message) VALUES('.$post_id.', '.$topic_id.', '.$forum_id.', '.$luna_user['id'].', '.time().', \''.$db->escape($reason).'\')' ) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'posts SET marked = 1 WHERE id='.$post_id) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 
 		// Should we email the report?
-		if ($pun_config['o_report_method'] == '1' || $pun_config['o_report_method'] == '2')
+		if ($luna_config['o_report_method'] == '1' || $luna_config['o_report_method'] == '2')
 		{
 			// We send it to the complete mailing-list in one swoop
-			if ($pun_config['o_mailing_list'] != '')
+			if ($luna_config['o_mailing_list'] != '')
 			{
 				// Load the "new report" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/new_report.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_report.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -255,33 +255,33 @@ else if (isset($_GET['report']))
 
 				$mail_subject = str_replace('<forum_id>', $forum_id, $mail_subject);
 				$mail_subject = str_replace('<topic_subject>', $subject, $mail_subject);
-				$mail_message = str_replace('<username>', $pun_user['username'], $mail_message);
+				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 				$mail_message = str_replace('<post_url>', get_base_url().'/viewtopic.php?pid='.$post_id.'#p'.$post_id, $mail_message);
 				$mail_message = str_replace('<reason>', $reason, $mail_message);
-				$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				require FORUM_ROOT.'include/email.php';
 
-				pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 			}
 		}
 
-		$db->query('UPDATE '.$db->prefix.'users SET last_report_sent='.time().' WHERE id='.$pun_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'users SET last_report_sent='.time().' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 		redirect('viewforum.php?id='.$forum_id, $lang['Report redirect']);
 	}
 
 	// Fetch some info about the post, the topic and the forum
-	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message($lang['Bad request'], false, '404 Not Found');
 
 	$cur_post = $db->fetch_assoc($result);
 
-	if ($pun_config['o_censoring'] == '1')
+	if ($luna_config['o_censoring'] == '1')
 		$cur_post['subject'] = censor_words($cur_post['subject']);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Report post']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Report post']);
 	$required_fields = array('req_reason' => $lang['Reason']);
 	$focus_element = array('report', 'req_reason');
 	define('FORUM_ACTIVE_PAGE', 'index');
@@ -290,8 +290,8 @@ else if (isset($_GET['report']))
 ?>
 <ul class="breadcrumb">
     <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo pun_htmlspecialchars($cur_post['forum_name']) ?></a></li>
-    <li><a href="viewtopic.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>"><?php echo pun_htmlspecialchars($cur_post['subject']) ?></a></li>
+    <li><a href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo luna_htmlspecialchars($cur_post['forum_name']) ?></a></li>
+    <li><a href="viewtopic.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>"><?php echo luna_htmlspecialchars($cur_post['subject']) ?></a></li>
     <li class="active"><?php echo $lang['Report post'] ?></li>
 </ul>
 
@@ -317,7 +317,7 @@ else if (isset($_GET['report']))
 
 else if ($action == 'subscribe')
 {
-	if ($pun_user['is_guest'])
+	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	$topic_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
@@ -327,38 +327,38 @@ else if ($action == 'subscribe')
 
 	if ($topic_id)
 	{
-		if ($pun_config['o_topic_subscriptions'] != '1')
+		if ($luna_config['o_topic_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
 		// Make sure the user can view the topic
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$topic_id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$topic_id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message($lang['Bad request'], false, '404 Not Found');
 
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$pun_user['id'].' AND topic_id='.$topic_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$topic_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			message($lang['Is subscribed']);
 
-		$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$pun_user['id'].' ,'.$topic_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$topic_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
 		redirect('viewtopic.php?id='.$topic_id, $lang['Subscribe redirect']);
 	}
 
 	if ($forum_id)
 	{
-		if ($pun_config['o_forum_subscriptions'] != '1')
+		if ($luna_config['o_forum_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
 		// Make sure the user can view the forum
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message($lang['Bad request'], false, '404 Not Found');
 
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$pun_user['id'].' AND forum_id='.$forum_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$luna_user['id'].' AND forum_id='.$forum_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			message($lang['Already subscribed forum']);
 
-		$db->query('INSERT INTO '.$db->prefix.'forum_subscriptions (user_id, forum_id) VALUES('.$pun_user['id'].' ,'.$forum_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'forum_subscriptions (user_id, forum_id) VALUES('.$luna_user['id'].' ,'.$forum_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
 		redirect('viewforum.php?id='.$forum_id, $lang['Subscribe redirect']);
 	}
@@ -367,7 +367,7 @@ else if ($action == 'subscribe')
 
 else if ($action == 'unsubscribe')
 {
-	if ($pun_user['is_guest'])
+	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	$topic_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
@@ -377,28 +377,28 @@ else if ($action == 'unsubscribe')
 
 	if ($topic_id)
 	{
-		if ($pun_config['o_topic_subscriptions'] != '1')
+		if ($luna_config['o_topic_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$pun_user['id'].' AND topic_id='.$topic_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$topic_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message($lang['Not subscribed topic']);
 
-		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$pun_user['id'].' AND topic_id='.$topic_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$topic_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 
 		redirect('viewtopic.php?id='.$topic_id, $lang['Unsubscribe redirect']);
 	}
 
 	if ($forum_id)
 	{
-		if ($pun_config['o_forum_subscriptions'] != '1')
+		if ($luna_config['o_forum_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$pun_user['id'].' AND forum_id='.$forum_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$luna_user['id'].' AND forum_id='.$forum_id) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message($lang['Not subscribed forum']);
 
-		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$pun_user['id'].' AND forum_id='.$forum_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$luna_user['id'].' AND forum_id='.$forum_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 
 		redirect('viewforum.php?id='.$forum_id, $lang['Unsubscribe redirect']);
 	}

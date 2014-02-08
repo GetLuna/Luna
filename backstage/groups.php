@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Add/edit a group (stage 1)
@@ -49,7 +49,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	}
 
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 	$required_fields = array('req_title' => $lang['Group title label']);
 	$focus_element = array('groups2', 'req_title');
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -72,18 +72,18 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Group title label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="req_title" maxlength="50" value="<?php if ($mode == 'edit') echo pun_htmlspecialchars($group['g_title']); ?>" tabindex="1" />
+                        <input type="text" class="form-control" name="req_title" maxlength="50" value="<?php if ($mode == 'edit') echo luna_htmlspecialchars($group['g_title']); ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['User title label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo pun_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
+                        <input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo luna_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
                         <span class="help-block"><?php echo $lang['User title help'] ?></span>
                     </div>
                 </div>
                 <hr />
-    <?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $pun_config['o_default_user_group'] != $group['g_id']): ?>
+    <?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"> <?php echo $lang['Mod privileges label'] ?></label>
                     <div class="col-sm-10">
@@ -323,8 +323,8 @@ else if (isset($_POST['add_edit_group']))
 	// Is this the admin group? (special rules apply)
 	$is_admin_group = (isset($_POST['group_id']) && $_POST['group_id'] == FORUM_ADMIN) ? true : false;
 
-	$title = pun_trim($_POST['req_title']);
-	$user_title = pun_trim($_POST['user_title']);
+	$title = luna_trim($_POST['req_title']);
+	$user_title = luna_trim($_POST['user_title']);
 	$moderator = isset($_POST['moderator']) && $_POST['moderator'] == '1' ? '1' : '0';
 	$mod_edit_users = $moderator == '1' && isset($_POST['mod_edit_users']) && $_POST['mod_edit_users'] == '1' ? '1' : '0';
 	$mod_rename_users = $moderator == '1' && isset($_POST['mod_rename_users']) && $_POST['mod_rename_users'] == '1' ? '1' : '0';
@@ -355,7 +355,7 @@ else if (isset($_POST['add_edit_group']))
 	{
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\'') or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
-			message(sprintf($lang['Title already exists message'], pun_htmlspecialchars($title)));
+			message(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
 
 		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$post_replies.', '.$post_topics.', '.$edit_posts.', '.$delete_posts.', '.$delete_topics.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$post_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		$new_group_id = $db->insert_id();
@@ -369,7 +369,7 @@ else if (isset($_POST['add_edit_group']))
 	{
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\' AND g_id!='.intval($_POST['group_id'])) or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
-			message(sprintf($lang['Title already exists message'], pun_htmlspecialchars($title)));
+			message(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
 
 		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_post_replies='.$post_replies.', g_post_topics='.$post_topics.', g_edit_posts='.$edit_posts.', g_delete_posts='.$delete_posts.', g_delete_topics='.$delete_topics.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_post_flood='.$post_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	}
@@ -419,7 +419,7 @@ else if (isset($_GET['del_group']))
 		message($lang['Bad request'], false, '404 Not Found');
 
 	// Make sure we don't remove the default group
-	if ($group_id == $pun_config['o_default_user_group'])
+	if ($group_id == $luna_config['o_default_user_group'])
 		message($lang['Cannot remove default message']);
 
 	// Check if this group has any members
@@ -447,7 +447,7 @@ else if (isset($_GET['del_group']))
 			$result = $db->query('SELECT g_title FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group title', __FILE__, __LINE__, $db->error());
 			$group_title = $db->result($result);
 
-			$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 			define('FORUM_ACTIVE_PAGE', 'admin');
 			require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
@@ -457,7 +457,7 @@ else if (isset($_GET['del_group']))
 <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
     <div class="panel panel-danger">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php printf($lang['Confirm delete info'], pun_htmlspecialchars($group_title)) ?></h3>
+            <h3 class="panel-title"><?php printf($lang['Confirm delete info'], luna_htmlspecialchars($group_title)) ?></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="group_to_delete" value="<?php echo $group_id ?>" />
@@ -477,7 +477,7 @@ else if (isset($_GET['del_group']))
 
 	list($group_title, $group_members) = $db->fetch_row($result);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 
@@ -489,7 +489,7 @@ else if (isset($_GET['del_group']))
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php?del_group=<?php echo $group_id ?>">
             <fieldset>
-                <p><?php printf($lang['Move users info'], pun_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
+                <p><?php printf($lang['Move users info'], luna_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
                 <label><?php echo $lang['Move users label'] ?>
                     <select class="form-control" name="move_to_group">
 <?php
@@ -499,9 +499,9 @@ else if (isset($_GET['del_group']))
 	while ($cur_group = $db->fetch_assoc($result))
 	{
 		if ($cur_group['g_id'] == FORUM_MEMBER) // Pre-select the pre-defined Members group
-			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 		else
-			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 	}
 
 ?>
@@ -521,7 +521,7 @@ else if (isset($_GET['del_group']))
 }
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
@@ -543,10 +543,10 @@ $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id
 
 while ($cur_group = $db->fetch_assoc($result))
 {
-if ($cur_group['g_id'] == $pun_config['o_default_user_group'])
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
+echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 else
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 }
 
 ?>
@@ -575,10 +575,10 @@ $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id
 
 while ($cur_group = $db->fetch_assoc($result))
 {
-if ($cur_group['g_id'] == $pun_config['o_default_user_group'])
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
+echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 else
-echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 }
 
 ?>
@@ -609,7 +609,7 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><td class="col-lg-2"><div class="btn-group"><a class="btn btn-primary" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Delete link'].'</a>' : '').'</div></td><td class="col-lg-10">'.pun_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><td class="col-lg-2"><div class="btn-group"><a class="btn btn-primary" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit link'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Delete link'].'</a>' : '').'</div></td><td class="col-lg-10">'.luna_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
 
 ?>
 		</tbody>

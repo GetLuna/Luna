@@ -16,14 +16,14 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
-$action = isset($_REQUEST['action']) ? pun_trim($_REQUEST['action']) : '';
+$action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'rebuild')
 {
@@ -62,7 +62,7 @@ if ($action == 'rebuild')
 		}
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Rebuilding search index']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Rebuilding search index']);
 
 ?>
 <!DOCTYPE html>
@@ -125,7 +125,7 @@ if ($action == 'rebuild')
 
 if ($action == 'prune')
 {
-	$prune_from = pun_trim($_POST['prune_from']);
+	$prune_from = luna_trim($_POST['prune_from']);
 	$prune_sticky = intval($_POST['prune_sticky']);
 
 	if (isset($_POST['prune_comply']))
@@ -172,7 +172,7 @@ if ($action == 'prune')
 		redirect('backstage/maintenance.php', $lang['Posts pruned redirect']);
 	}
 
-	$prune_days = pun_trim($_POST['req_prune_days']);
+	$prune_days = luna_trim($_POST['req_prune_days']);
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
 	{
 		generate_admin_menu('maintenance');
@@ -194,7 +194,7 @@ if ($action == 'prune')
 
 		// Fetch the forum name (just for cosmetic reasons)
 		$result = $db->query('SELECT forum_name FROM '.$db->prefix.'forums WHERE id='.$prune_from) or error('Unable to fetch forum name', __FILE__, __LINE__, $db->error());
-		$forum = '"'.pun_htmlspecialchars($db->result($result)).'"';
+		$forum = '"'.luna_htmlspecialchars($db->result($result)).'"';
 	}
 	else
 		$forum = $lang['All forums'];
@@ -209,7 +209,7 @@ if ($action == 'prune')
 	}
 
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Prune']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Prune']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('maintenance');
@@ -306,11 +306,11 @@ if (isset($_POST['form_sent']))
 
 	$form = array(
 		'maintenance'			=> isset($_POST['form']['maintenance']) ? '1' : '0',
-		'maintenance_message'	=> pun_trim($_POST['form']['maintenance_message']),
+		'maintenance_message'	=> luna_trim($_POST['form']['maintenance_message']),
 	);
 
 	if ($form['maintenance_message'] != '')
-		$form['maintenance_message'] = pun_linebreaks($form['maintenance_message']);
+		$form['maintenance_message'] = luna_linebreaks($form['maintenance_message']);
 	else
 	{
 		$form['maintenance_message'] = $lang['Default maintenance message'];
@@ -320,7 +320,7 @@ if (isset($_POST['form_sent']))
 	foreach ($form as $key => $input)
 	{
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $pun_config) && $pun_config['o_'.$key] != $input)
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
 		{
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
@@ -341,7 +341,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/maintenance.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('maintenance');
@@ -358,11 +358,11 @@ require FORUM_ROOT.'backstage/header.php';
             <fieldset>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="form[maintenance]" value="1" <?php if ($pun_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[maintenance]" value="1" <?php if ($luna_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />
                         <?php echo $lang['Maintenance mode help'] ?>
                     </label>
                 </div>
-                <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea>
+                <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
                 <span class="help-block"><?php echo $lang['Maintenance message help'] ?></span>
             </fieldset>
         </div>
@@ -454,11 +454,11 @@ require FORUM_ROOT.'backstage/header.php';
 			if ($cur_category)
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'</optgroup>'."\n";
 
-			echo "\t\t\t\t\t\t\t\t\t\t\t".'<optgroup label="'.pun_htmlspecialchars($forum['cat_name']).'">'."\n";
+			echo "\t\t\t\t\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($forum['cat_name']).'">'."\n";
 			$cur_category = $forum['cid'];
 		}
 
-		echo "\t\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$forum['fid'].'">'.pun_htmlspecialchars($forum['forum_name']).'</option>'."\n";
+		echo "\t\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$forum['fid'].'">'.luna_htmlspecialchars($forum['forum_name']).'</option>'."\n";
 	}
 
 ?>

@@ -26,7 +26,7 @@ function generate_config_cache()
 		$output[$cur_config_item[0]] = $cur_config_item[1];
 
 	// Output config as PHP code
-	$content = '<?php'."\n\n".'define(\'FORUM_CONFIG_LOADED\', 1);'."\n\n".'$pun_config = '.var_export($output, true).';'."\n\n".'?>';
+	$content = '<?php'."\n\n".'define(\'FORUM_CONFIG_LOADED\', 1);'."\n\n".'$luna_config = '.var_export($output, true).';'."\n\n".'?>';
 	fluxbb_write_cache_file('cache_config.php', $content);
 }
 
@@ -59,7 +59,7 @@ function generate_bans_cache()
 		$output[] = $cur_ban;
 
 	// Output ban list as PHP code
-	$content = '<?php'."\n\n".'define(\'FORUM_BANS_LOADED\', 1);'."\n\n".'$pun_bans = '.var_export($output, true).';'."\n\n".'?>';
+	$content = '<?php'."\n\n".'define(\'FORUM_BANS_LOADED\', 1);'."\n\n".'$luna_bans = '.var_export($output, true).';'."\n\n".'?>';
 	fluxbb_write_cache_file('cache_bans.php', $content);
 }
 
@@ -79,7 +79,7 @@ function generate_ranks_cache()
 		$output[] = $cur_rank;
 
 	// Output ranks list as PHP code
-	$content = '<?php'."\n\n".'define(\'FORUM_RANKS_LOADED\', 1);'."\n\n".'$pun_ranks = '.var_export($output, true).';'."\n\n".'?>';
+	$content = '<?php'."\n\n".'define(\'FORUM_RANKS_LOADED\', 1);'."\n\n".'$luna_ranks = '.var_export($output, true).';'."\n\n".'?>';
 	fluxbb_write_cache_file('cache_ranks.php', $content);
 }
 
@@ -126,7 +126,7 @@ function generate_stopwords_cache()
 	$d->close();
 
 	// Tidy up and filter the stopwords
-	$stopwords = array_map('pun_trim', $stopwords);
+	$stopwords = array_map('luna_trim', $stopwords);
 	$stopwords = array_filter($stopwords);
 
 	// Output stopwords as PHP code
@@ -171,7 +171,7 @@ function generate_admins_cache()
 		$output[] = $row[0];
 
 	// Output admin list as PHP code
-	$content = '<?php'."\n\n".'define(\'FORUM_ADMINS_LOADED\', 1);'."\n\n".'$pun_admins = '.var_export($output, true).';'."\n\n".'?>';
+	$content = '<?php'."\n\n".'define(\'FORUM_ADMINS_LOADED\', 1);'."\n\n".'$luna_admins = '.var_export($output, true).';'."\n\n".'?>';
 	fluxbb_write_cache_file('cache_admins.php', $content);
 }
 
@@ -183,7 +183,7 @@ function fluxbb_write_cache_file($file, $content)
 {
 	$fh = @fopen(FORUM_CACHE_DIR.$file, 'wb');
 	if (!$fh)
-		error('Unable to write cache file '.pun_htmlspecialchars($file).' to cache directory. Please make sure PHP has write access to the directory \''.pun_htmlspecialchars(FORUM_CACHE_DIR).'\'', __FILE__, __LINE__);
+		error('Unable to write cache file '.luna_htmlspecialchars($file).' to cache directory. Please make sure PHP has write access to the directory \''.luna_htmlspecialchars(FORUM_CACHE_DIR).'\'', __FILE__, __LINE__);
 
 	flock($fh, LOCK_EX);
 	ftruncate($fh, 0);

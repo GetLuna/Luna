@@ -23,17 +23,17 @@ header('Content-type: text/html; charset=utf-8');
 // Load the template
 $tpl_main = file_get_contents('../include/template/admin.tpl');
 
-// START SUBST - <pun_language>
-$tpl_main = str_replace('<pun_language>', $lang['lang_identifier'], $tpl_main);
-// END SUBST - <pun_language>
+// START SUBST - <luna_language>
+$tpl_main = str_replace('<luna_language>', $lang['lang_identifier'], $tpl_main);
+// END SUBST - <luna_language>
 
 
-// START SUBST - <pun_content_direction>
-$tpl_main = str_replace('<pun_content_direction>', $lang['lang_direction'], $tpl_main);
-// END SUBST - <pun_content_direction>
+// START SUBST - <luna_content_direction>
+$tpl_main = str_replace('<luna_content_direction>', $lang['lang_direction'], $tpl_main);
+// END SUBST - <luna_content_direction>
 
 
-// START SUBST - <pun_head>
+// START SUBST - <luna_head>
 ob_start();
 
 // Define $p if it's not set to avoid a PHP notice
@@ -45,7 +45,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
-<link rel="stylesheet" type="text/css" href="css/color/<?php echo $pun_user['backstage_style'].'.css' ?>" />
+<link rel="stylesheet" type="text/css" href="css/color/<?php echo $luna_user['backstage_style'].'.css' ?>" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <?php
 
@@ -94,9 +94,9 @@ if (isset($page_head))
 	echo implode("\n", $page_head)."\n";
 
 $tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<pun_head>', $tpl_temp, $tpl_main);
+$tpl_main = str_replace('<luna_head>', $tpl_temp, $tpl_main);
 ob_end_clean();
-// END SUBST - <pun_head>
+// END SUBST - <luna_head>
 
 
 // START SUBST - <body>
@@ -108,11 +108,11 @@ if (isset($focus_element))
 // END SUBST - <body>
 
 
-// START SUBST - <pun_page>
-$tpl_main = str_replace('<pun_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
-// END SUBST - <pun_page>
+// START SUBST - <luna_page>
+$tpl_main = str_replace('<luna_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
+// END SUBST - <luna_page>
 
-// START SUBST - <pun_main>
+// START SUBST - <luna_main>
 ob_start();
 
 define('FORUM_HEADER', 1);

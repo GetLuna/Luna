@@ -14,7 +14,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
@@ -29,7 +29,7 @@ if (isset($_POST['form_sent']))
 	foreach ($form as $key => $input)
 	{
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $pun_config) && $pun_config['o_'.$key] != $input)
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
 		{
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
@@ -50,7 +50,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/backstage.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Backstage settings']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Backstage settings']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('backstage');
@@ -67,7 +67,7 @@ generate_admin_menu('backstage');
             <fieldset>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="form[index_update_check]" value="1" <?php if ($pun_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[index_update_check]" value="1" <?php if ($luna_config['o_index_update_check'] == '1') echo ' checked="checked"' ?> />
 						<?php echo $lang['Index update check'] ?>
                     </label>
                 </div>

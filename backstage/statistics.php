@@ -14,7 +14,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
@@ -22,7 +22,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 
 // Show phpinfo() output
-if ($action == 'phpinfo' && $pun_user['g_id'] == FORUM_ADMIN)
+if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN)
 {
 	// Is phpinfo() a disabled function?
 	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
@@ -97,7 +97,7 @@ else
 	$php_accelerator = $lang['NA'];
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Server statistics']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Server statistics']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('stats');
@@ -112,7 +112,7 @@ require FORUM_ROOT.'backstage/header.php';
         <thead>
             <tr>
                 <th class="col-md-4"><?php echo $lang['Server load label'] ?></th>
-                <?php if ($pun_user['g_id'] == FORUM_ADMIN): ?>
+                <?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
                 <th class="col-md-4"><?php echo $lang['Environment label'] ?></th>
                 <th class="col-md-4"><?php echo $lang['Database label'] ?></th>
                 <?php endif; ?>
@@ -121,7 +121,7 @@ require FORUM_ROOT.'backstage/header.php';
         <tbody>
             <tr>
                 <td><?php printf($lang['Server load data']."\n", $server_load, $num_online) ?></td>
-                <?php if ($pun_user['g_id'] == FORUM_ADMIN): ?>
+                <?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
                 <td>
                     <?php printf($lang['Environment data OS'], PHP_OS) ?><br />
                     <?php printf($lang['Environment data version'], phpversion(), '<a href="statistics.php?action=phpinfo">'.$lang['Show info'].'</a>') ?><br />

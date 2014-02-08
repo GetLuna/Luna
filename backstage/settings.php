@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
@@ -26,28 +26,28 @@ if (isset($_POST['form_sent']))
 	confirm_referrer('backstage/settings.php', $lang['Bad HTTP Referer message']);
 
 	$form = array(
-		'board_title'			=> pun_trim($_POST['form']['board_title']),
-		'board_desc'			=> pun_trim($_POST['form']['board_desc']),
-		'base_url'				=> pun_trim($_POST['form']['base_url']),
+		'board_title'			=> luna_trim($_POST['form']['board_title']),
+		'board_desc'			=> luna_trim($_POST['form']['board_desc']),
+		'base_url'				=> luna_trim($_POST['form']['base_url']),
 		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
 		'default_dst'			=> isset($_POST['form']['default_dst']) ? '1' : '0',
-		'default_lang'			=> pun_trim($_POST['form']['default_lang']),
-		'time_format'			=> pun_trim($_POST['form']['time_format']),
-		'date_format'			=> pun_trim($_POST['form']['date_format']),
+		'default_lang'			=> luna_trim($_POST['form']['default_lang']),
+		'time_format'			=> luna_trim($_POST['form']['time_format']),
+		'date_format'			=> luna_trim($_POST['form']['date_format']),
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
 		'timeout_online'		=> (intval($_POST['form']['timeout_online']) > 0) ? intval($_POST['form']['timeout_online']) : 1,
 		'redirect_delay'		=> (intval($_POST['form']['redirect_delay']) >= 0) ? intval($_POST['form']['redirect_delay']) : 0,
 		'feed_type'				=> intval($_POST['form']['feed_type']),
 		'feed_ttl'				=> intval($_POST['form']['feed_ttl']),
 		'report_method'			=> intval($_POST['form']['report_method']),
-		'mailing_list'			=> pun_trim($_POST['form']['mailing_list']),
+		'mailing_list'			=> luna_trim($_POST['form']['mailing_list']),
 		'avatars'				=> isset($_POST['form']['avatars']) ? '1' : '0',
-		'avatars_dir'			=> pun_trim($_POST['form']['avatars_dir']),
+		'avatars_dir'			=> luna_trim($_POST['form']['avatars_dir']),
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
 		'avatars_height'		=> (intval($_POST['form']['avatars_height']) > 0) ? intval($_POST['form']['avatars_height']) : 1,
 		'avatars_size'			=> (intval($_POST['form']['avatars_size']) > 0) ? intval($_POST['form']['avatars_size']) : 1,
 		'announcement'			=> isset($_POST['form']['announcement']) ? '1' : '0',
-		'announcement_message'	=> pun_trim($_POST['form']['announcement_message']),
+		'announcement_message'	=> luna_trim($_POST['form']['announcement_message']),
 	);
 
 	if ($form['board_title'] == '')
@@ -89,8 +89,8 @@ if (isset($_POST['form_sent']))
 	// Change or enter a SMTP password
 	if (isset($_POST['form']['smtp_change_pass']))
 	{
-		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? pun_trim($_POST['form']['smtp_pass1']) : '';
-		$smtp_pass2 = isset($_POST['form']['smtp_pass2']) ? pun_trim($_POST['form']['smtp_pass2']) : '';
+		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? luna_trim($_POST['form']['smtp_pass1']) : '';
+		$smtp_pass2 = isset($_POST['form']['smtp_pass2']) ? luna_trim($_POST['form']['smtp_pass2']) : '';
 
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
@@ -99,7 +99,7 @@ if (isset($_POST['form_sent']))
 	}
 
 	if ($form['announcement_message'] != '')
-		$form['announcement_message'] = pun_linebreaks($form['announcement_message']);
+		$form['announcement_message'] = luna_linebreaks($form['announcement_message']);
 	else
 	{
 		$form['announcement_message'] = $lang['Enter announcement here'];
@@ -121,7 +121,7 @@ if (isset($_POST['form_sent']))
 	foreach ($form as $key => $input)
 	{
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $pun_config) && $pun_config['o_'.$key] != $input)
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
 		{
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
@@ -142,7 +142,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/settings.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Options']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('global');
@@ -160,20 +160,20 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Board title label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_title']) ?>" />
+                        <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Board desc label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo pun_htmlspecialchars($pun_config['o_board_desc']) ?>" />
+                        <input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
                         <span class="help-block"><?php echo $lang['Board desc help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Base URL label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo pun_htmlspecialchars($pun_config['o_base_url']) ?>" />
+                        <input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -186,7 +186,7 @@ generate_admin_menu('global');
 
 		foreach ($languages as $temp)
 		{
-			if ($pun_config['o_default_lang'] == $temp)
+			if ($luna_config['o_default_lang'] == $temp)
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
 			else
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
@@ -202,7 +202,7 @@ generate_admin_menu('global');
     </div>
 <?php
 
-	$diff = ($pun_user['timezone'] + $pun_user['dst']) * 3600;
+	$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 	$timestamp = time() + $diff;
 
 ?>
@@ -215,65 +215,65 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Time format label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_time_format']) ?>" />
-                        <span class="help-block"><?php printf($lang['Time format help'], gmdate($pun_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
+                        <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
+                        <span class="help-block"><?php printf($lang['Time format help'], gmdate($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Date format label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo pun_htmlspecialchars($pun_config['o_date_format']) ?>" />
-                        <span class="help-block"><?php printf($lang['Date format help'], gmdate($pun_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
+                        <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
+                        <span class="help-block"><?php printf($lang['Date format help'], gmdate($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Timezone label'] ?></label>
                     <div class="col-sm-10">
                         <select class="form-control" name="form[default_timezone]">
-                            <option value="-12"<?php if ($pun_config['o_default_timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang['UTC-12:00'] ?></option>
-                            <option value="-11"<?php if ($pun_config['o_default_timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang['UTC-11:00'] ?></option>
-                            <option value="-10"<?php if ($pun_config['o_default_timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang['UTC-10:00'] ?></option>
-                            <option value="-9.5"<?php if ($pun_config['o_default_timezone'] == -9.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-09:30'] ?></option>
-                            <option value="-9"<?php if ($pun_config['o_default_timezone'] == -9) echo ' selected="selected"' ?>><?php echo $lang['UTC-09:00'] ?></option>
-                            <option value="-8.5"<?php if ($pun_config['o_default_timezone'] == -8.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-08:30'] ?></option>
-                            <option value="-8"<?php if ($pun_config['o_default_timezone'] == -8) echo ' selected="selected"' ?>><?php echo $lang['UTC-08:00'] ?></option>
-                            <option value="-7"<?php if ($pun_config['o_default_timezone'] == -7) echo ' selected="selected"' ?>><?php echo $lang['UTC-07:00'] ?></option>
-                            <option value="-6"<?php if ($pun_config['o_default_timezone'] == -6) echo ' selected="selected"' ?>><?php echo $lang['UTC-06:00'] ?></option>
-                            <option value="-5"<?php if ($pun_config['o_default_timezone'] == -5) echo ' selected="selected"' ?>><?php echo $lang['UTC-05:00'] ?></option>
-                            <option value="-4"<?php if ($pun_config['o_default_timezone'] == -4) echo ' selected="selected"' ?>><?php echo $lang['UTC-04:00'] ?></option>
-                            <option value="-3.5"<?php if ($pun_config['o_default_timezone'] == -3.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-03:30'] ?></option>
-                            <option value="-3"<?php if ($pun_config['o_default_timezone'] == -3) echo ' selected="selected"' ?>><?php echo $lang['UTC-03:00'] ?></option>
-                            <option value="-2"<?php if ($pun_config['o_default_timezone'] == -2) echo ' selected="selected"' ?>><?php echo $lang['UTC-02:00'] ?></option>
-                            <option value="-1"<?php if ($pun_config['o_default_timezone'] == -1) echo ' selected="selected"' ?>><?php echo $lang['UTC-01:00'] ?></option>
-                            <option value="0"<?php if ($pun_config['o_default_timezone'] == 0) echo ' selected="selected"' ?>><?php echo $lang['UTC'] ?></option>
-                            <option value="1"<?php if ($pun_config['o_default_timezone'] == 1) echo ' selected="selected"' ?>><?php echo $lang['UTC+01:00'] ?></option>
-                            <option value="2"<?php if ($pun_config['o_default_timezone'] == 2) echo ' selected="selected"' ?>><?php echo $lang['UTC+02:00'] ?></option>
-                            <option value="3"<?php if ($pun_config['o_default_timezone'] == 3) echo ' selected="selected"' ?>><?php echo $lang['UTC+03:00'] ?></option>
-                            <option value="3.5"<?php if ($pun_config['o_default_timezone'] == 3.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+03:30'] ?></option>
-                            <option value="4"<?php if ($pun_config['o_default_timezone'] == 4) echo ' selected="selected"' ?>><?php echo $lang['UTC+04:00'] ?></option>
-                            <option value="4.5"<?php if ($pun_config['o_default_timezone'] == 4.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+04:30'] ?></option>
-                            <option value="5"<?php if ($pun_config['o_default_timezone'] == 5) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:00'] ?></option>
-                            <option value="5.5"<?php if ($pun_config['o_default_timezone'] == 5.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:30'] ?></option>
-                            <option value="5.75"<?php if ($pun_config['o_default_timezone'] == 5.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:45'] ?></option>
-                            <option value="6"<?php if ($pun_config['o_default_timezone'] == 6) echo ' selected="selected"' ?>><?php echo $lang['UTC+06:00'] ?></option>
-                            <option value="6.5"<?php if ($pun_config['o_default_timezone'] == 6.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+06:30'] ?></option>
-                            <option value="7"<?php if ($pun_config['o_default_timezone'] == 7) echo ' selected="selected"' ?>><?php echo $lang['UTC+07:00'] ?></option>
-                            <option value="8"<?php if ($pun_config['o_default_timezone'] == 8) echo ' selected="selected"' ?>><?php echo $lang['UTC+08:00'] ?></option>
-                            <option value="8.75"<?php if ($pun_config['o_default_timezone'] == 8.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+08:45'] ?></option>
-                            <option value="9"<?php if ($pun_config['o_default_timezone'] == 9) echo ' selected="selected"' ?>><?php echo $lang['UTC+09:00'] ?></option>
-                            <option value="9.5"<?php if ($pun_config['o_default_timezone'] == 9.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+09:30'] ?></option>
-                            <option value="10"<?php if ($pun_config['o_default_timezone'] == 10) echo ' selected="selected"' ?>><?php echo $lang['UTC+10:00'] ?></option>
-                            <option value="10.5"<?php if ($pun_config['o_default_timezone'] == 10.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+10:30'] ?></option>
-                            <option value="11"<?php if ($pun_config['o_default_timezone'] == 11) echo ' selected="selected"' ?>><?php echo $lang['UTC+11:00'] ?></option>
-                            <option value="11.5"<?php if ($pun_config['o_default_timezone'] == 11.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+11:30'] ?></option>
-                            <option value="12"<?php if ($pun_config['o_default_timezone'] == 12) echo ' selected="selected"' ?>><?php echo $lang['UTC+12:00'] ?></option>
-                            <option value="12.75"<?php if ($pun_config['o_default_timezone'] == 12.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+12:45'] ?></option>
-                            <option value="13"<?php if ($pun_config['o_default_timezone'] == 13) echo ' selected="selected"' ?>><?php echo $lang['UTC+13:00'] ?></option>
-                            <option value="14"<?php if ($pun_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang['UTC+14:00'] ?></option>
+                            <option value="-12"<?php if ($luna_config['o_default_timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang['UTC-12:00'] ?></option>
+                            <option value="-11"<?php if ($luna_config['o_default_timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang['UTC-11:00'] ?></option>
+                            <option value="-10"<?php if ($luna_config['o_default_timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang['UTC-10:00'] ?></option>
+                            <option value="-9.5"<?php if ($luna_config['o_default_timezone'] == -9.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-09:30'] ?></option>
+                            <option value="-9"<?php if ($luna_config['o_default_timezone'] == -9) echo ' selected="selected"' ?>><?php echo $lang['UTC-09:00'] ?></option>
+                            <option value="-8.5"<?php if ($luna_config['o_default_timezone'] == -8.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-08:30'] ?></option>
+                            <option value="-8"<?php if ($luna_config['o_default_timezone'] == -8) echo ' selected="selected"' ?>><?php echo $lang['UTC-08:00'] ?></option>
+                            <option value="-7"<?php if ($luna_config['o_default_timezone'] == -7) echo ' selected="selected"' ?>><?php echo $lang['UTC-07:00'] ?></option>
+                            <option value="-6"<?php if ($luna_config['o_default_timezone'] == -6) echo ' selected="selected"' ?>><?php echo $lang['UTC-06:00'] ?></option>
+                            <option value="-5"<?php if ($luna_config['o_default_timezone'] == -5) echo ' selected="selected"' ?>><?php echo $lang['UTC-05:00'] ?></option>
+                            <option value="-4"<?php if ($luna_config['o_default_timezone'] == -4) echo ' selected="selected"' ?>><?php echo $lang['UTC-04:00'] ?></option>
+                            <option value="-3.5"<?php if ($luna_config['o_default_timezone'] == -3.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-03:30'] ?></option>
+                            <option value="-3"<?php if ($luna_config['o_default_timezone'] == -3) echo ' selected="selected"' ?>><?php echo $lang['UTC-03:00'] ?></option>
+                            <option value="-2"<?php if ($luna_config['o_default_timezone'] == -2) echo ' selected="selected"' ?>><?php echo $lang['UTC-02:00'] ?></option>
+                            <option value="-1"<?php if ($luna_config['o_default_timezone'] == -1) echo ' selected="selected"' ?>><?php echo $lang['UTC-01:00'] ?></option>
+                            <option value="0"<?php if ($luna_config['o_default_timezone'] == 0) echo ' selected="selected"' ?>><?php echo $lang['UTC'] ?></option>
+                            <option value="1"<?php if ($luna_config['o_default_timezone'] == 1) echo ' selected="selected"' ?>><?php echo $lang['UTC+01:00'] ?></option>
+                            <option value="2"<?php if ($luna_config['o_default_timezone'] == 2) echo ' selected="selected"' ?>><?php echo $lang['UTC+02:00'] ?></option>
+                            <option value="3"<?php if ($luna_config['o_default_timezone'] == 3) echo ' selected="selected"' ?>><?php echo $lang['UTC+03:00'] ?></option>
+                            <option value="3.5"<?php if ($luna_config['o_default_timezone'] == 3.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+03:30'] ?></option>
+                            <option value="4"<?php if ($luna_config['o_default_timezone'] == 4) echo ' selected="selected"' ?>><?php echo $lang['UTC+04:00'] ?></option>
+                            <option value="4.5"<?php if ($luna_config['o_default_timezone'] == 4.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+04:30'] ?></option>
+                            <option value="5"<?php if ($luna_config['o_default_timezone'] == 5) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:00'] ?></option>
+                            <option value="5.5"<?php if ($luna_config['o_default_timezone'] == 5.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:30'] ?></option>
+                            <option value="5.75"<?php if ($luna_config['o_default_timezone'] == 5.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:45'] ?></option>
+                            <option value="6"<?php if ($luna_config['o_default_timezone'] == 6) echo ' selected="selected"' ?>><?php echo $lang['UTC+06:00'] ?></option>
+                            <option value="6.5"<?php if ($luna_config['o_default_timezone'] == 6.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+06:30'] ?></option>
+                            <option value="7"<?php if ($luna_config['o_default_timezone'] == 7) echo ' selected="selected"' ?>><?php echo $lang['UTC+07:00'] ?></option>
+                            <option value="8"<?php if ($luna_config['o_default_timezone'] == 8) echo ' selected="selected"' ?>><?php echo $lang['UTC+08:00'] ?></option>
+                            <option value="8.75"<?php if ($luna_config['o_default_timezone'] == 8.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+08:45'] ?></option>
+                            <option value="9"<?php if ($luna_config['o_default_timezone'] == 9) echo ' selected="selected"' ?>><?php echo $lang['UTC+09:00'] ?></option>
+                            <option value="9.5"<?php if ($luna_config['o_default_timezone'] == 9.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+09:30'] ?></option>
+                            <option value="10"<?php if ($luna_config['o_default_timezone'] == 10) echo ' selected="selected"' ?>><?php echo $lang['UTC+10:00'] ?></option>
+                            <option value="10.5"<?php if ($luna_config['o_default_timezone'] == 10.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+10:30'] ?></option>
+                            <option value="11"<?php if ($luna_config['o_default_timezone'] == 11) echo ' selected="selected"' ?>><?php echo $lang['UTC+11:00'] ?></option>
+                            <option value="11.5"<?php if ($luna_config['o_default_timezone'] == 11.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+11:30'] ?></option>
+                            <option value="12"<?php if ($luna_config['o_default_timezone'] == 12) echo ' selected="selected"' ?>><?php echo $lang['UTC+12:00'] ?></option>
+                            <option value="12.75"<?php if ($luna_config['o_default_timezone'] == 12.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+12:45'] ?></option>
+                            <option value="13"<?php if ($luna_config['o_default_timezone'] == 13) echo ' selected="selected"' ?>><?php echo $lang['UTC+13:00'] ?></option>
+                            <option value="14"<?php if ($luna_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang['UTC+14:00'] ?></option>
                         </select>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[default_dst]" value="1" <?php if ($pun_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[default_dst]" value="1" <?php if ($luna_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['DST help'] ?>
                             </label>
                         </div>
@@ -283,21 +283,21 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Visit timeout label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $pun_config['o_timeout_visit'] ?>" />
+                        <input type="text" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
                         <span class="help-block"><?php echo $lang['Visit timeout help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Online timeout label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
+                        <input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
                         <span class="help-block"><?php echo $lang['Online timeout help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Redirect time label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[redirect_delay]" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
+                        <input type="text" class="form-control" name="form[redirect_delay]" maxlength="3" value="<?php echo $luna_config['o_redirect_delay'] ?>" />
                         <span class="help-block"><?php echo $lang['Redirect time help'] ?></span>
                     </div>
                 </div>
@@ -314,15 +314,15 @@ generate_admin_menu('global');
                     <label class="col-sm-2 control-label"><?php echo $lang['Default feed label'] ?></label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
-                            <input type="radio" name="form[feed_type]" value="0"<?php if ($pun_config['o_feed_type'] == '0') echo ' checked="checked"' ?>>
+                            <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') echo ' checked="checked"' ?>>
                             <?php echo $lang['None'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[feed_type]" value="1"<?php if ($pun_config['o_feed_type'] == '1') echo ' checked="checked"' ?>>
+                            <input type="radio" name="form[feed_type]" value="1"<?php if ($luna_config['o_feed_type'] == '1') echo ' checked="checked"' ?>>
                             <?php echo $lang['RSS'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[feed_type]" value="2"<?php if ($pun_config['o_feed_type'] == '2') echo ' checked="checked"' ?>>
+                            <input type="radio" name="form[feed_type]" value="2"<?php if ($luna_config['o_feed_type'] == '2') echo ' checked="checked"' ?>>
                             <?php echo $lang['Atom'] ?>
                         </label>
                         <span class="help-block"><?php echo $lang['Default feed help'] ?></span>
@@ -332,13 +332,13 @@ generate_admin_menu('global');
                     <label class="col-sm-2 control-label"><?php echo $lang['Feed TTL label'] ?></label>
                     <div class="col-sm-10">
                         <select class="form-control" name="form[feed_ttl]">
-                            <option value="0"<?php if ($pun_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang['No cache'] ?></option>
+                            <option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang['No cache'] ?></option>
 <?php
 
 		$times = array(5, 15, 30, 60);
 
 		foreach ($times as $time)
-			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($pun_config['o_feed_ttl'] == $time ? ' selected="selected"' : '').'>'.sprintf($lang['Minutes'], $time).'</option>'."\n";
+			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$time.'"'.($luna_config['o_feed_ttl'] == $time ? ' selected="selected"' : '').'>'.sprintf($lang['Minutes'], $time).'</option>'."\n";
 
 ?>
                         </select>
@@ -358,15 +358,15 @@ generate_admin_menu('global');
                     <label class="col-sm-2 control-label"><?php echo $lang['Reporting method label'] ?></label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
-                            <input type="radio" name="form[report_method]" value="0"<?php if ($pun_config['o_report_method'] == '0') echo ' checked="checked"' ?> />
+                            <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') echo ' checked="checked"' ?> />
                             <?php echo $lang['Internal'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[report_method]" value="1"<?php if ($pun_config['o_report_method'] == '1') echo ' checked="checked"' ?> />
+                            <input type="radio" name="form[report_method]" value="1"<?php if ($luna_config['o_report_method'] == '1') echo ' checked="checked"' ?> />
                             <?php echo $lang['By e-mail'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[report_method]" value="2"<?php if ($pun_config['o_report_method'] == '2') echo ' checked="checked"' ?> />
+                            <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') echo ' checked="checked"' ?> />
                             <?php echo $lang['Both'] ?>
                         </label>
                         <span class="help-block"><?php echo $lang['Reporting method help'] ?></span>
@@ -375,7 +375,7 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Mailing list label'] ?></label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="form[mailing_list]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_mailing_list']) ?></textarea>
+                        <textarea class="form-control" name="form[mailing_list]" rows="5" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
                         <span class="help-block"><?php echo $lang['Mailing list help'] ?></span>
                     </div>
                 </div>
@@ -393,7 +393,7 @@ generate_admin_menu('global');
                     <div class="col-sm-10">
                         <div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[avatars]" value="1" <?php if ($pun_config['o_avatars'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[avatars]" value="1" <?php if ($luna_config['o_avatars'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Use avatars help'] ?>
 							</label>
 						</div>
@@ -402,28 +402,28 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Upload directory label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_dir]" maxlength="50" value="<?php echo pun_htmlspecialchars($pun_config['o_avatars_dir']) ?>" />
+                        <input type="text" class="form-control" name="form[avatars_dir]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_avatars_dir']) ?>" />
                         <span class="help-block"><?php echo $lang['Upload directory help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max width label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $pun_config['o_avatars_width'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
                         <span class="help-block"><?php echo $lang['Max width help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max height label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $pun_config['o_avatars_height'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
                         <span class="help-block"><?php echo $lang['Max height help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max size label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $pun_config['o_avatars_size'] ?>" />
+                        <input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
                         <span class="help-block"><?php echo $lang['Max size help'] ?></span>
                     </div>
                 </div>
@@ -438,11 +438,11 @@ generate_admin_menu('global');
             <fieldset>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="form[announcement]" value="1" <?php if ($pun_config['o_announcement'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') echo ' checked="checked"' ?> />
                         <?php echo $lang['Display announcement help'] ?>
                     </label>
                 </div>
-                <textarea class="form-control full-form" name="form[announcement_message]" rows="5" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_announcement_message']) ?></textarea>
+                <textarea class="form-control full-form" name="form[announcement_message]" rows="5" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
                 <span class="help-block"><?php echo $lang['Announcement message help'] ?></span>
             </fieldset>
         </div>

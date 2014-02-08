@@ -66,10 +66,10 @@ if (!defined('FORUM_EXTERN_MAX_SUBJECT_LENGTH'))
 	define('FORUM_EXTERN_MAX_SUBJECT_LENGTH', 30);
 
 // If we're a guest and we've sent a username/pass, we can try to authenticate using those details
-if ($pun_user['is_guest'] && isset($_SERVER['PHP_AUTH_USER']))
+if ($luna_user['is_guest'] && isset($_SERVER['PHP_AUTH_USER']))
 	authenticate_user($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
 
-if ($pun_user['g_read_board'] == '0')
+if ($luna_user['g_read_board'] == '0')
 {
 	http_authenticate_user();
 	exit($lang['No view']);
@@ -96,12 +96,12 @@ switch ($action)
 //
 function http_authenticate_user()
 {
-	global $pun_config, $pun_user;
+	global $luna_config, $luna_user;
 
-	if (!$pun_user['is_guest'])
+	if (!$luna_user['is_guest'])
 		return;
 
-	header('WWW-Authenticate: Basic realm="'.$pun_config['o_board_title'].' External Syndication"');
+	header('WWW-Authenticate: Basic realm="'.$luna_config['o_board_title'].' External Syndication"');
 	header('HTTP/1.0 401 Unauthorized');
 }
 
@@ -111,7 +111,7 @@ function http_authenticate_user()
 //
 function output_rss($feed)
 {
-	global $lang, $pun_config;
+	global $lang, $luna_config;
 
 	// Send XML/no cache headers
 	header('Content-Type: application/xml; charset=utf-8');
@@ -122,14 +122,14 @@ function output_rss($feed)
 	echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
 	echo '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'."\n";
 	echo "\t".'<channel>'."\n";
-	echo "\t\t".'<atom:link href="'.pun_htmlspecialchars(get_current_url()).'" rel="self" type="application/rss+xml" />'."\n";
+	echo "\t\t".'<atom:link href="'.luna_htmlspecialchars(get_current_url()).'" rel="self" type="application/rss+xml" />'."\n";
 	echo "\t\t".'<title><![CDATA['.escape_cdata($feed['title']).']]></title>'."\n";
-	echo "\t\t".'<link>'.pun_htmlspecialchars($feed['link']).'</link>'."\n";
+	echo "\t\t".'<link>'.luna_htmlspecialchars($feed['link']).'</link>'."\n";
 	echo "\t\t".'<description><![CDATA['.escape_cdata($feed['description']).']]></description>'."\n";
 	echo "\t\t".'<lastBuildDate>'.gmdate('r', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</lastBuildDate>'."\n";
 
-	if ($pun_config['o_show_version'] == '1')
-		echo "\t\t".'<generator>ModernBB '.$pun_config['o_cur_version'].'</generator>'."\n";
+	if ($luna_config['o_show_version'] == '1')
+		echo "\t\t".'<generator>ModernBB '.$luna_config['o_cur_version'].'</generator>'."\n";
 	else
 		echo "\t\t".'<generator>ModernBB</generator>'."\n";
 
@@ -137,11 +137,11 @@ function output_rss($feed)
 	{
 		echo "\t\t".'<item>'."\n";
 		echo "\t\t\t".'<title><![CDATA['.escape_cdata($item['title']).']]></title>'."\n";
-		echo "\t\t\t".'<link>'.pun_htmlspecialchars($item['link']).'</link>'."\n";
+		echo "\t\t\t".'<link>'.luna_htmlspecialchars($item['link']).'</link>'."\n";
 		echo "\t\t\t".'<description><![CDATA['.escape_cdata($item['description']).']]></description>'."\n";
 		echo "\t\t\t".'<author><![CDATA['.(isset($item['author']['email']) ? escape_cdata($item['author']['email']) : 'dummy@example.com').' ('.escape_cdata($item['author']['name']).')]]></author>'."\n";
 		echo "\t\t\t".'<pubDate>'.gmdate('r', $item['pubdate']).'</pubDate>'."\n";
-		echo "\t\t\t".'<guid>'.pun_htmlspecialchars($item['link']).'</guid>'."\n";
+		echo "\t\t\t".'<guid>'.luna_htmlspecialchars($item['link']).'</guid>'."\n";
 
 		echo "\t\t".'</item>'."\n";
 	}
@@ -156,7 +156,7 @@ function output_rss($feed)
 //
 function output_atom($feed)
 {
-	global $lang, $pun_config;
+	global $lang, $luna_config;
 
 	// Send XML/no cache headers
 	header('Content-Type: application/atom+xml; charset=utf-8');
@@ -168,16 +168,16 @@ function output_atom($feed)
 	echo '<feed xmlns="http://www.w3.org/2005/Atom">'."\n";
 
 	echo "\t".'<title type="html"><![CDATA['.escape_cdata($feed['title']).']]></title>'."\n";
-	echo "\t".'<link rel="self" href="'.pun_htmlspecialchars(get_current_url()).'"/>'."\n";
-	echo "\t".'<link href="'.pun_htmlspecialchars($feed['link']).'"/>'."\n";
+	echo "\t".'<link rel="self" href="'.luna_htmlspecialchars(get_current_url()).'"/>'."\n";
+	echo "\t".'<link href="'.luna_htmlspecialchars($feed['link']).'"/>'."\n";
 	echo "\t".'<updated>'.gmdate('Y-m-d\TH:i:s\Z', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</updated>'."\n";
 
-	if ($pun_config['o_show_version'] == '1')
-		echo "\t".'<generator version="'.$pun_config['o_cur_version'].'">ModernBB</generator>'."\n";
+	if ($luna_config['o_show_version'] == '1')
+		echo "\t".'<generator version="'.$luna_config['o_cur_version'].'">ModernBB</generator>'."\n";
 	else
 		echo "\t".'<generator>ModernBB</generator>'."\n";
 
-	echo "\t".'<id>'.pun_htmlspecialchars($feed['link']).'</id>'."\n";
+	echo "\t".'<id>'.luna_htmlspecialchars($feed['link']).'</id>'."\n";
 
 	$content_tag = ($feed['type'] == 'posts') ? 'content' : 'summary';
 
@@ -185,7 +185,7 @@ function output_atom($feed)
 	{
 		echo "\t".'<entry>'."\n";
 		echo "\t\t".'<title type="html"><![CDATA['.escape_cdata($item['title']).']]></title>'."\n";
-		echo "\t\t".'<link rel="alternate" href="'.pun_htmlspecialchars($item['link']).'"/>'."\n";
+		echo "\t\t".'<link rel="alternate" href="'.luna_htmlspecialchars($item['link']).'"/>'."\n";
 		echo "\t\t".'<'.$content_tag.' type="html"><![CDATA['.escape_cdata($item['description']).']]></'.$content_tag.'>'."\n";
 		echo "\t\t".'<author>'."\n";
 		echo "\t\t\t".'<name><![CDATA['.escape_cdata($item['author']['name']).']]></name>'."\n";
@@ -194,12 +194,12 @@ function output_atom($feed)
 			echo "\t\t\t".'<email><![CDATA['.escape_cdata($item['author']['email']).']]></email>'."\n";
 
 		if (isset($item['author']['uri']))
-			echo "\t\t\t".'<uri>'.pun_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
+			echo "\t\t\t".'<uri>'.luna_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
 
 		echo "\t\t".'</author>'."\n";
 		echo "\t\t".'<updated>'.gmdate('Y-m-d\TH:i:s\Z', $item['pubdate']).'</updated>'."\n";
 
-		echo "\t\t".'<id>'.pun_htmlspecialchars($item['link']).'</id>'."\n";
+		echo "\t\t".'<id>'.luna_htmlspecialchars($item['link']).'</id>'."\n";
 		echo "\t".'</entry>'."\n";
 	}
 
@@ -212,7 +212,7 @@ function output_atom($feed)
 //
 function output_xml($feed)
 {
-	global $lang, $pun_config;
+	global $lang, $luna_config;
 
 	// Send XML/no cache headers
 	header('Content-Type: application/xml; charset=utf-8');
@@ -222,7 +222,7 @@ function output_xml($feed)
 
 	echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
 	echo '<source>'."\n";
-	echo "\t".'<url>'.pun_htmlspecialchars($feed['link']).'</url>'."\n";
+	echo "\t".'<url>'.luna_htmlspecialchars($feed['link']).'</url>'."\n";
 
 	$forum_tag = ($feed['type'] == 'posts') ? 'post' : 'topic';
 
@@ -231,7 +231,7 @@ function output_xml($feed)
 		echo "\t".'<'.$forum_tag.' id="'.$item['id'].'">'."\n";
 
 		echo "\t\t".'<title><![CDATA['.escape_cdata($item['title']).']]></title>'."\n";
-		echo "\t\t".'<link>'.pun_htmlspecialchars($item['link']).'</link>'."\n";
+		echo "\t\t".'<link>'.luna_htmlspecialchars($item['link']).'</link>'."\n";
 		echo "\t\t".'<content><![CDATA['.escape_cdata($item['description']).']]></content>'."\n";
 		echo "\t\t".'<author>'."\n";
 		echo "\t\t\t".'<name><![CDATA['.escape_cdata($item['author']['name']).']]></name>'."\n";
@@ -240,7 +240,7 @@ function output_xml($feed)
 			echo "\t\t\t".'<email><![CDATA['.escape_cdata($item['author']['email']).']]></email>'."\n";
 
 		if (isset($item['author']['uri']))
-			echo "\t\t\t".'<uri>'.pun_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
+			echo "\t\t\t".'<uri>'.luna_htmlspecialchars($item['author']['uri']).'</uri>'."\n";
 
 		echo "\t\t".'</author>'."\n";
 		echo "\t\t".'<posted>'.gmdate('r', $item['pubdate']).'</posted>'."\n";
@@ -267,11 +267,11 @@ function output_html($feed)
 	foreach ($feed['items'] as $item)
 	{
 		if (utf8_strlen($item['title']) > FORUM_EXTERN_MAX_SUBJECT_LENGTH)
-			$subject_truncated = pun_htmlspecialchars(pun_trim(utf8_substr($item['title'], 0, (FORUM_EXTERN_MAX_SUBJECT_LENGTH - 5)))).' …';
+			$subject_truncated = luna_htmlspecialchars(luna_trim(utf8_substr($item['title'], 0, (FORUM_EXTERN_MAX_SUBJECT_LENGTH - 5)))).' …';
 		else
-			$subject_truncated = pun_htmlspecialchars($item['title']);
+			$subject_truncated = luna_htmlspecialchars($item['title']);
 
-		echo '<li><a href="'.pun_htmlspecialchars($item['link']).'" title="'.pun_htmlspecialchars($item['title']).'">'.$subject_truncated.'</a></li>'."\n";
+		echo '<li><a href="'.luna_htmlspecialchars($item['link']).'" title="'.luna_htmlspecialchars($item['title']).'">'.$subject_truncated.'</a></li>'."\n";
 	}
 }
 
@@ -295,7 +295,7 @@ if ($action == 'feed')
 		$tid = intval($_GET['tid']);
 
 		// Fetch topic subject
-		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 		{
 			http_authenticate_user();
@@ -304,12 +304,12 @@ if ($action == 'feed')
 
 		$cur_topic = $db->fetch_assoc($result);
 
-		if ($pun_config['o_censoring'] == '1')
+		if ($luna_config['o_censoring'] == '1')
 			$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 		// Setup the feed
 		$feed = array(
-			'title' 		=>	$pun_config['o_board_title'].$lang['Title separator'].$cur_topic['subject'],
+			'title' 		=>	$luna_config['o_board_title'].$lang['Title separator'].$cur_topic['subject'],
 			'link'			=>	get_base_url(true).'/viewtopic.php?id='.$tid,
 			'description'		=>	sprintf($lang['RSS description topic'], $cur_topic['subject']),
 			'items'			=>	array(),
@@ -335,12 +335,12 @@ if ($action == 'feed')
 
 			if ($cur_post['poster_id'] > 1)
 			{
-				if ($cur_post['email_setting'] == '0' && !$pun_user['is_guest'])
+				if ($cur_post['email_setting'] == '0' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_post['email'];
 
 				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_post['poster_id'];
 			}
-			else if ($cur_post['poster_email'] != '' && !$pun_user['is_guest'])
+			else if ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
 				$item['author']['email'] = $cur_post['poster_email'];
 
 			$feed['items'][] = $item;
@@ -358,7 +358,7 @@ if ($action == 'feed')
 		// Were any forum IDs supplied?
 		if (isset($_GET['fid']) && is_scalar($_GET['fid']) && $_GET['fid'] != '')
 		{
-			$fids = explode(',', pun_trim($_GET['fid']));
+			$fids = explode(',', luna_trim($_GET['fid']));
 			$fids = array_map('intval', $fids);
 
 			if (!empty($fids))
@@ -367,7 +367,7 @@ if ($action == 'feed')
 			if (count($fids) == 1)
 			{
 				// Fetch forum name
-				$result = $db->query('SELECT f.forum_name FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fids[0]) or error('Unable to fetch forum name', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT f.forum_name FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fids[0]) or error('Unable to fetch forum name', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
 					$forum_name = $lang['Title separator'].$db->result($result);
 			}
@@ -376,7 +376,7 @@ if ($action == 'feed')
 		// Any forum IDs to exclude?
 		if (isset($_GET['nfid']) && is_scalar($_GET['nfid']) && $_GET['nfid'] != '')
 		{
-			$nfids = explode(',', pun_trim($_GET['nfid']));
+			$nfids = explode(',', luna_trim($_GET['nfid']));
 			$nfids = array_map('intval', $nfids);
 
 			if (!empty($nfids))
@@ -384,8 +384,8 @@ if ($action == 'feed')
 		}
 
 		// Only attempt to cache if caching is enabled and we have all or a single forum
-		if ($pun_config['o_feed_ttl'] > 0 && ($forum_sql == '' || ($forum_name != '' && !isset($_GET['nfid']))))
-			$cache_id = 'feed'.sha1($pun_user['g_id'].'|'.$lang['lang_identifier'].'|'.($order_posted ? '1' : '0').($forum_name == '' ? '' : '|'.$fids[0]));
+		if ($luna_config['o_feed_ttl'] > 0 && ($forum_sql == '' || ($forum_name != '' && !isset($_GET['nfid']))))
+			$cache_id = 'feed'.sha1($luna_user['g_id'].'|'.$lang['lang_identifier'].'|'.($order_posted ? '1' : '0').($forum_name == '' ? '' : '|'.$fids[0]));
 
 		// Load cached feed
 		if (isset($cache_id) && file_exists(FORUM_CACHE_DIR.'cache_'.$cache_id.'.php'))
@@ -396,18 +396,18 @@ if ($action == 'feed')
 		{
 			// Setup the feed
 			$feed = array(
-				'title' 		=>	$pun_config['o_board_title'].$forum_name,
+				'title' 		=>	$luna_config['o_board_title'].$forum_name,
 				'link'			=>	'/index.php',
-				'description'	=>	sprintf($lang['RSS description'], $pun_config['o_board_title']),
+				'description'	=>	sprintf($lang['RSS description'], $luna_config['o_board_title']),
 				'items'			=>	array(),
 				'type'			=>	'topics'
 			);
 
 			// Fetch $show topics
-			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 			while ($cur_topic = $db->fetch_assoc($result))
 			{
-				if ($pun_config['o_censoring'] == '1')
+				if ($luna_config['o_censoring'] == '1')
 					$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 				$cur_topic['message'] = parse_message($cur_topic['message'], $cur_topic['hide_smilies']);
@@ -425,12 +425,12 @@ if ($action == 'feed')
 
 				if ($cur_topic['poster_id'] > 1)
 				{
-					if ($cur_topic['email_setting'] == '0' && !$pun_user['is_guest'])
+					if ($cur_topic['email_setting'] == '0' && !$luna_user['is_guest'])
 						$item['author']['email'] = $cur_topic['email'];
 
 					$item['author']['uri'] = '/profile.php?id='.$cur_topic['poster_id'];
 				}
-				else if ($cur_topic['poster_email'] != '' && !$pun_user['is_guest'])
+				else if ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_topic['poster_email'];
 
 				$feed['items'][] = $item;
@@ -442,7 +442,7 @@ if ($action == 'feed')
 				if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 					require FORUM_ROOT.'include/cache.php';
 
-				$content = '<?php'."\n\n".'$feed = '.var_export($feed, true).';'."\n\n".'$cache_expire = '.($now + ($pun_config['o_feed_ttl'] * 60)).';'."\n\n".'?>';
+				$content = '<?php'."\n\n".'$feed = '.var_export($feed, true).';'."\n\n".'$cache_expire = '.($now + ($luna_config['o_feed_ttl'] * 60)).';'."\n\n".'?>';
 				fluxbb_write_cache_file('cache_'.$cache_id.'.php', $content);
 			}
 		}
@@ -478,11 +478,11 @@ else if ($action == 'online' || $action == 'online_full')
 
 	$result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 
-	while ($pun_user_online = $db->fetch_assoc($result))
+	while ($luna_user_online = $db->fetch_assoc($result))
 	{
-		if ($pun_user_online['user_id'] > 1)
+		if ($luna_user_online['user_id'] > 1)
 		{
-			$users[] = ($pun_user['g_view_users'] == '1') ? '<a href="'.pun_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$pun_user_online['user_id'].'">'.pun_htmlspecialchars($pun_user_online['ident']).'</a>' : pun_htmlspecialchars($pun_user_online['ident']);
+			$users[] = ($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>' : luna_htmlspecialchars($luna_user_online['ident']);
 			++$num_users;
 		}
 		else
@@ -531,7 +531,7 @@ else if ($action == 'stats')
 	header('Pragma: public');
 
 	echo sprintf($lang['No of users'], forum_number_format($stats['total_users'])).'<br />'."\n";
-	echo sprintf($lang['Newest user'], (($pun_user['g_view_users'] == '1') ? '<a href="'.pun_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$stats['last_user']['id'].'">'.pun_htmlspecialchars($stats['last_user']['username']).'</a>' : pun_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
+	echo sprintf($lang['Newest user'], (($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
 	echo sprintf($lang['No of topics'], forum_number_format($stats['total_topics'])).'<br />'."\n";
 	echo sprintf($lang['No of posts'], forum_number_format($stats['total_posts'])).'<br />'."\n";
 

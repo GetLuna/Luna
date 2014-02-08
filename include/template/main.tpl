@@ -5,27 +5,27 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <pun_head>
+        <luna_head>
 	</head>
 	<body>
         <div id="header">
-            <pun_navlinks>
+            <luna_navlinks>
             <div class="container">
                 <div class="box">
                     <div id="brdtitle" class="inbox">
-                        <pun_title>
-                        <pun_desc>
+                        <luna_title>
+                        <luna_desc>
                     </div>
-                    <pun_status>
+                    <luna_status>
                 </div>
-                <pun_announcement>
+                <luna_announcement>
             </div>
         </div>
         <div class="container">
             <div id="brdmain">
-                <pun_main>
+                <luna_main>
             </div>
-            <pun_footer>
+            <luna_footer>
         </div>
         <!-- Javascript start -->
         <script src="include/tinymce/tinymce.min.js"></script>

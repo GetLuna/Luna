@@ -11,13 +11,13 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 
-if ($pun_user['g_read_board'] == '0')
+if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
 // Get list of forums and topics with new posts since last visit
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 {
-	$result = $db->query('SELECT t.forum_id, t.id, t.last_post FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.$pun_user['last_visit'].' AND t.moved_to IS NULL') or error('Unable to fetch new topics', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.forum_id, t.id, t.last_post FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.$luna_user['last_visit'].' AND t.moved_to IS NULL') or error('Unable to fetch new topics', __FILE__, __LINE__, $db->error());
 
 	$new_topics = array();
 	while ($cur_topic = $db->fetch_assoc($result))
@@ -26,24 +26,24 @@ if (!$pun_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
 }
 
-if ($pun_config['o_feed_type'] == '1')
+if ($luna_config['o_feed_type'] == '1')
 	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;type=rss" title="'.$lang['RSS active topics feed'].'" />');
-else if ($pun_config['o_feed_type'] == '2')
+else if ($luna_config['o_feed_type'] == '2')
 	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;type=atom" title="'.$lang['Atom active topics feed'].'" />');
 
 $forum_actions = array();
 
 // Display a "mark all as read" link
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark all as read'].'</a>';
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']));
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 // Print the categories and forums
-$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.redirect_url, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster, f.last_topic FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.redirect_url, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster, f.last_topic FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 $cur_category = 0;
 $cat_count = 0;
@@ -64,7 +64,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 <div id="idx<?php echo $cat_count ?>">
     <div class="category-box">
         <div class="row category-header">
-            <div class="col-xs-7"><?php echo pun_htmlspecialchars($cur_forum['cat_name']) ?></div>
+            <div class="col-xs-7"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></div>
             <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Topics'] ?></p></div>
             <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
             <div class="col-xs-3"><?php echo $lang['Last post'] ?></div>
@@ -80,7 +80,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 	$icon_type = 'icon';
 
 	// Are there new posts since our last visit?
-	if (!$pun_user['is_guest'] && $cur_forum['last_post'] > $pun_user['last_visit'] && (empty($tracked_topics['forums'][$cur_forum['fid']]) || $cur_forum['last_post'] > $tracked_topics['forums'][$cur_forum['fid']]))
+	if (!$luna_user['is_guest'] && $cur_forum['last_post'] > $luna_user['last_visit'] && (empty($tracked_topics['forums'][$cur_forum['fid']]) || $cur_forum['last_post'] > $tracked_topics['forums'][$cur_forum['fid']]))
 	{
 		// There are new posts in this forum, but have we read all of them already?
 		foreach ($new_topics[$cur_forum['fid']] as $check_topic_id => $check_last_post)
@@ -99,14 +99,14 @@ while ($cur_forum = $db->fetch_assoc($result))
 	// Is this a redirect forum?
 	if ($cur_forum['redirect_url'] != '')
 	{
-		$forum_field = '<span class="redirtext">'.$lang['Link to'].'</span> <a href="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" title="'.$lang['Link to'].' '.pun_htmlspecialchars($cur_forum['redirect_url']).'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>';
+		$forum_field = '<span class="redirtext">'.$lang['Link to'].'</span> <a href="'.luna_htmlspecialchars($cur_forum['redirect_url']).'" title="'.$lang['Link to'].' '.luna_htmlspecialchars($cur_forum['redirect_url']).'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>';
 		$num_topics = $num_posts = '-';
 		$item_status .= ' iredirect';
 		$icon_type = 'icon';
 	}
 	else
 	{
-		$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.pun_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+		$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		$num_topics = $cur_forum['num_topics'];
 		$num_posts = $cur_forum['num_posts'];
 	}
@@ -117,10 +117,10 @@ while ($cur_forum = $db->fetch_assoc($result))
 	// If there is a last_post/last_poster
 	if ($cur_forum['last_post'] != '')
 	{
-		if (pun_strlen($cur_forum['last_topic']) > 30)
+		if (luna_strlen($cur_forum['last_topic']) > 30)
 			$cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 30).'...';
 
-		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.pun_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.pun_htmlspecialchars($cur_forum['last_poster']).'</span>';
+		$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['last_poster']).'</span>';
 	}
 	else if ($cur_forum['redirect_url'] != '')
 		$last_post = '- - -';
@@ -134,10 +134,10 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 		foreach ($mods_array as $mod_username => $mod_id)
 		{
-			if ($pun_user['g_view_users'] == '1')
-				$moderators[] = '<a href="profile.php?id='.$mod_id.'">'.pun_htmlspecialchars($mod_username).'</a>';
+			if ($luna_user['g_view_users'] == '1')
+				$moderators[] = '<a href="profile.php?id='.$mod_id.'">'.luna_htmlspecialchars($mod_username).'</a>';
 			else
-				$moderators[] = pun_htmlspecialchars($mod_username);
+				$moderators[] = luna_htmlspecialchars($mod_username);
 		}
 
 		$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">(<em>'.$lang['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
@@ -183,13 +183,13 @@ if (!defined('FORUM_USERS_INFO_LOADED'))
 $result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
 list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->fetch_row($result));
 
-if ($pun_user['g_view_users'] == '1')
-	$stats['newest_user'] = '<a href="profile.php?id='.$stats['last_user']['id'].'">'.pun_htmlspecialchars($stats['last_user']['username']).'</a>';
+if ($luna_user['g_view_users'] == '1')
+	$stats['newest_user'] = '<a href="profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>';
 else
-	$stats['newest_user'] = pun_htmlspecialchars($stats['last_user']['username']);
+	$stats['newest_user'] = luna_htmlspecialchars($stats['last_user']['username']);
 
 
-if ($pun_config['o_show_index_stats'] == 1) {
+if ($luna_config['o_show_index_stats'] == 1) {
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -203,21 +203,21 @@ if ($pun_config['o_show_index_stats'] == 1) {
 			<div class="col-md-2"><span><?php printf($lang['Newest user'], $stats['newest_user']) ?></span></div>
 <?php
 
-if ($pun_config['o_users_online'] == '1')
+if ($luna_config['o_users_online'] == '1')
 {
 	// Fetch users online info and generate strings for output
 	$num_guests = 0;
 	$users = array();
 	$result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 
-	while ($pun_user_online = $db->fetch_assoc($result))
+	while ($luna_user_online = $db->fetch_assoc($result))
 	{
-		if ($pun_user_online['user_id'] > 1)
+		if ($luna_user_online['user_id'] > 1)
 		{
-			if ($pun_user['g_view_users'] == '1')
-				$users[] = "\n\t\t\t\t".'<a href="profile.php?id='.$pun_user_online['user_id'].'">'.pun_htmlspecialchars($pun_user_online['ident']).'</a>';
+			if ($luna_user['g_view_users'] == '1')
+				$users[] = "\n\t\t\t\t".'<a href="profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>';
 			else
-				$users[] = "\n\t\t\t\t".pun_htmlspecialchars($pun_user_online['ident']);
+				$users[] = "\n\t\t\t\t".luna_htmlspecialchars($luna_user_online['ident']);
 		}
 		else
 			++$num_guests;

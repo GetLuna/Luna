@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
@@ -36,8 +36,8 @@ if (isset($_POST['form_sent']))
 		'sig_all_caps'			=> isset($_POST['form']['sig_all_caps']) ? '1' : '0',
 		'allow_banned_email'	=> isset($_POST['form']['allow_banned_email']) ? '1' : '0',
 		'allow_dupe_email'		=> isset($_POST['form']['allow_dupe_email']) ? '1' : '0',
-		'sig_length'			=> pun_trim($_POST['form']['sig_length']),
-		'sig_lines'				=> pun_trim($_POST['form']['sig_lines']),
+		'sig_length'			=> luna_trim($_POST['form']['sig_length']),
+		'sig_lines'				=> luna_trim($_POST['form']['sig_lines']),
 	);
 
 	foreach ($form as $key => $input)
@@ -47,7 +47,7 @@ if (isset($_POST['form_sent']))
 			$input = 0;
 
 		// Only update values that have changed
-		if (array_key_exists('p_'.$key, $pun_config) && $pun_config['p_'.$key] != $input)
+		if (array_key_exists('p_'.$key, $luna_config) && $luna_config['p_'.$key] != $input)
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$input.' WHERE conf_name=\'p_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 	}
 
@@ -60,7 +60,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/permissions.php', $lang['Perms updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Permissions']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Permissions']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('permissions');
@@ -80,13 +80,13 @@ require FORUM_ROOT.'backstage/header.php';
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[message_bbcode]" value="1" <?php if ($pun_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[message_bbcode]" value="1" <?php if ($luna_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['BBCode help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($pun_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['Image tag help'] ?>
                             </label>
                         </div>
@@ -97,13 +97,13 @@ require FORUM_ROOT.'backstage/header.php';
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($pun_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['All caps message help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($pun_config['p_subject_all_caps'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($luna_config['p_subject_all_caps'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['All caps subject help'] ?>
                             </label>
                         </div>
@@ -114,7 +114,7 @@ require FORUM_ROOT.'backstage/header.php';
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($pun_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['Require e-mail help'] ?>
                             </label>
                         </div>
@@ -134,19 +134,19 @@ require FORUM_ROOT.'backstage/header.php';
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($pun_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($luna_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['All caps sigs help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($pun_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['Image tag sigs help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($pun_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($luna_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['All caps sigs help'] ?>
                             </label>
                         </div>
@@ -155,14 +155,14 @@ require FORUM_ROOT.'backstage/header.php';
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max sig length label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $pun_config['p_sig_length'] ?>" />
+                        <input type="text" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['p_sig_length'] ?>" />
                         <span class="help-block"><?php echo $lang['Max sig length help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Max sig lines label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $pun_config['p_sig_lines'] ?>" />
+                        <input type="text" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['p_sig_lines'] ?>" />
                         <span class="help-block"><?php echo $lang['Max sig lines help'] ?></span>
                     </div>
                 </div>
@@ -177,13 +177,13 @@ require FORUM_ROOT.'backstage/header.php';
             <fieldset>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($pun_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />
                         <?php echo $lang['Banned e-mail help'] ?>
                     </label>
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($pun_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />
                         <?php echo $lang['Duplicate e-mail help'] ?>
                     </label>
                 </div>

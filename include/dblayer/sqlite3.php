@@ -36,7 +36,7 @@ class DBLayer
 	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect)
 	{
 		// Prepend $db_name with the path to the forum root directory
-		$db_name = PUN_ROOT.$db_name;
+		$db_name = FORUM_ROOT.$db_name;
 
 		$this->prefix = $db_prefix;
 
@@ -74,7 +74,7 @@ class DBLayer
 
 	function query($sql, $unbuffered = false)
 	{
-		if (defined('PUN_SHOW_QUERIES'))
+		if (defined('FORUM_SHOW_QUERIES'))
 			$q_start = get_microtime();
 
 		// TODO: What about unbuffered queries?
@@ -84,7 +84,7 @@ class DBLayer
 
 		if ($this->query_result)
 		{
-			if (defined('PUN_SHOW_QUERIES'))
+			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, sprintf('%.5f', get_microtime() - $q_start));
 
 			++$this->num_queries;
@@ -93,7 +93,7 @@ class DBLayer
 		}
 		else
 		{
-			if (defined('PUN_SHOW_QUERIES'))
+			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, 0);
 
 			$error = $this->pdo->errorInfo();
@@ -205,7 +205,7 @@ class DBLayer
 		{
 			if ($this->pdo->inTransaction())
 			{
-				if (defined('PUN_SHOW_QUERIES'))
+				if (defined('FORUM_SHOW_QUERIES'))
 					$this->saved_queries[] = array('COMMIT', 0);
 
 				$this->pdo->commit();

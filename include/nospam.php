@@ -36,7 +36,7 @@ function stopforumspam_check($ip, $email, $username)
 //
 function stopforumspam_report($ip, $email, $username)
 {
-	global $pun_config;
+	global $luna_config;
 	
 	$context = stream_context_create(array('http' => array(
 		'method'	=> 'POST',
@@ -45,7 +45,7 @@ function stopforumspam_report($ip, $email, $username)
 			'ip_addr'	=> $ip,
 			'email'		=> $email,
 			'username'	=> $username,
-			'api_key'	=> $pun_config['o_antispam_api'],
+			'api_key'	=> $luna_config['o_antispam_api'],
 		)),
 	)));
 

@@ -68,7 +68,7 @@ if (get_magic_quotes_gpc())
 
 
 // If we've been passed a default language, use it
-$install_lang = isset($_REQUEST['install_lang']) ? pun_trim($_REQUEST['install_lang']) : 'English';
+$install_lang = isset($_REQUEST['install_lang']) ? luna_trim($_REQUEST['install_lang']) : 'English';
 
 // If such a language pack doesn't exist, or isn't up-to-date enough to translate this page, default to English
 if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/language.php'))
@@ -152,20 +152,20 @@ if (!isset($_POST['form_sent']))
 else
 {
 	$db_type = $_POST['req_db_type'];
-	$db_host = pun_trim($_POST['req_db_host']);
-	$db_name = pun_trim($_POST['req_db_name']);
-	$db_username = pun_trim($_POST['db_username']);
-	$db_password = pun_trim($_POST['db_password']);
-	$db_prefix = pun_trim($_POST['db_prefix']);
-	$username = pun_trim($_POST['req_username']);
-	$email = strtolower(pun_trim($_POST['req_email']));
-	$password1 = pun_trim($_POST['req_password1']);
-	$password2 = pun_trim($_POST['req_password2']);
-	$title = pun_trim($_POST['req_title']);
-	$description = pun_trim($_POST['desc']);
-	$base_url = pun_trim($_POST['req_base_url']);
-	$default_lang = pun_trim($_POST['req_default_lang']);
-	$default_style = pun_trim($_POST['req_default_style']);
+	$db_host = luna_trim($_POST['req_db_host']);
+	$db_name = luna_trim($_POST['req_db_name']);
+	$db_username = luna_trim($_POST['db_username']);
+	$db_password = luna_trim($_POST['db_password']);
+	$db_prefix = luna_trim($_POST['db_prefix']);
+	$username = luna_trim($_POST['req_username']);
+	$email = strtolower(luna_trim($_POST['req_email']));
+	$password1 = luna_trim($_POST['req_password1']);
+	$password2 = luna_trim($_POST['req_password2']);
+	$title = luna_trim($_POST['req_title']);
+	$description = luna_trim($_POST['desc']);
+	$base_url = luna_trim($_POST['req_base_url']);
+	$default_lang = luna_trim($_POST['req_default_lang']);
+	$default_style = luna_trim($_POST['req_default_style']);
 	$alerts = array();
 
 	// Make sure base_url doesn't end with a slash
@@ -173,9 +173,9 @@ else
 		$base_url = substr($base_url, 0, -1);
 
 	// Validate username and passwords
-	if (pun_strlen($username) < 2)
+	if (luna_strlen($username) < 2)
 		$alerts[] = $lang['Username 1'];
-	else if (pun_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
+	else if (luna_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
 		$alerts[] = $lang['Username 2'];
 	else if (!strcasecmp($username, 'Guest'))
 		$alerts[] = $lang['Username 3'];
@@ -186,7 +186,7 @@ else
 	else if (preg_match('%(?:\[/?(?:b|u|i|h|colou?r|quote|code|img|url|email|list)\]|\[(?:code|quote|list)=)%i', $username))
 		$alerts[] = $lang['Username 6'];
 
-	if (pun_strlen($password1) < 4)
+	if (luna_strlen($password1) < 4)
 		$alerts[] = $lang['Short password'];
 	else if ($password1 != $password2)
 		$alerts[] = $lang['Passwords not match'];
@@ -352,7 +352,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
             </div>
 <?php endif; ?>
             <form  class="form-horizontal" id="install" method="post" action="install.php" onsubmit="this.start.disabled=true;if(process_form(this)){return true;}else{this.start.disabled=false;return false;}">
-                <div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo pun_htmlspecialchars($install_lang) ?>" /></div>
+                <div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo luna_htmlspecialchars($install_lang) ?>" /></div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><?php echo $lang['Database setup'] ?></h3>
@@ -381,21 +381,21 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Database server hostname'] ?></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="req_db_host" value="<?php echo pun_htmlspecialchars($db_host) ?>" />
+                                    <input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
                                     <span class="help-block"><?php echo $lang['Info 2'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Database name'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo pun_htmlspecialchars($db_name) ?>" />
+                                    <input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo luna_htmlspecialchars($db_name) ?>" />
                                     <span class="help-block"><?php echo $lang['Info 3'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Database username'] ?></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="db_username" value="<?php echo pun_htmlspecialchars($db_username) ?>" />
+                                    <input type="text" class="form-control" name="db_username" value="<?php echo luna_htmlspecialchars($db_username) ?>" />
                                     <span class="help-block"><?php echo $lang['Info 4'] ?></span>
                                 </div>
                             </div>
@@ -409,7 +409,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Table prefix'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix) ?>" maxlength="30" />
+                                    <input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix) ?>" maxlength="30" />
                                     <span class="help-block"><?php echo $lang['Info 5'] ?></span>
                                 </div>
                             </div>
@@ -425,7 +425,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Administrator username'] ?></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="req_username" value="<?php echo pun_htmlspecialchars($username) ?>" maxlength="25" />
+                                    <input type="text" class="form-control" name="req_username" value="<?php echo luna_htmlspecialchars($username) ?>" maxlength="25" />
                                     <span class="help-block"><?php echo $lang['Info 6'] ?></span>
                                 </div>
                             </div>
@@ -438,7 +438,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Administrator email'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo pun_htmlspecialchars($email) ?>" maxlength="80" />
+                                    <input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo luna_htmlspecialchars($email) ?>" maxlength="80" />
                                 </div>
                             </div>
                         </fieldset>
@@ -453,19 +453,19 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Board title'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo pun_htmlspecialchars($title) ?>" maxlength="255" />
+                                    <input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo luna_htmlspecialchars($title) ?>" maxlength="255" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Board description'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="desc" type="text" class="form-control" name="desc" value="<?php echo pun_htmlspecialchars($description) ?>" maxlength="255" />
+                                    <input id="desc" type="text" class="form-control" name="desc" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><?php echo $lang['Base URL label'] ?></label>
                                 <div class="col-sm-10">
-                                    <input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo pun_htmlspecialchars($base_url) ?>" maxlength="100" />
+                                    <input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
                                     <span class="help-block"><?php echo $lang['Base URL'] ?><span>
                                 </div>
                             </div>
@@ -547,7 +547,7 @@ else
 			break;
 
 		default:
-			error(sprintf($lang['DB type not valid'], pun_htmlspecialchars($db_type)));
+			error(sprintf($lang['DB type not valid'], luna_htmlspecialchars($db_type)));
 	}
 
 	// Create the database object (and connect/select db)
@@ -1558,14 +1558,14 @@ else
 	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\')')
 		or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, backstage_style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.pun_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', \'ModernBB\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, backstage_style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', \'ModernBB\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
 		or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Enable/disable avatars depending on file_uploads setting in PHP configuration
 	$avatars = in_array(strtolower(@ini_get('file_uploads')), array('on', 'true', '1')) ? 1 : 0;
 
 	// Insert config data
-	$pun_config = array(
+	$luna_config = array(
 		'o_cur_version'				=> FORUM_VERSION,
 		'o_database_revision'		=> FORUM_DB_REVISION,
 		'o_searchindex_revision'	=> FORUM_SI_REVISION,
@@ -1650,7 +1650,7 @@ else
 		'p_force_guest_email'		=> 1
 	);
 
-	foreach ($pun_config as $conf_name => $conf_value)
+	foreach ($luna_config as $conf_name => $conf_value)
 	{
 		$db->query('INSERT INTO '.$db_prefix.'config (conf_name, conf_value) VALUES(\''.$conf_name.'\', '.(is_null($conf_value) ? 'NULL' : '\''.$db->escape($conf_value).'\'').')')
 			or error('Unable to insert into table '.$db_prefix.'config. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
@@ -1680,7 +1680,7 @@ else
 		$alerts[] = $lang['Alert upload'];
 
 	// Add some random bytes at the end of the cookie name to prevent collisions
-	$cookie_name = 'pun_cookie_'.random_key(6, false, true);
+	$cookie_name = 'luna_cookie_'.random_key(6, false, true);
 
 	// Generate the config.php file data
 	$config = generate_config_file();
@@ -1736,12 +1736,12 @@ if (!$written)
 						<input type="hidden" name="generate_config" value="1" />
 						<input type="hidden" name="db_type" value="<?php echo $db_type; ?>" />
 						<input type="hidden" name="db_host" value="<?php echo $db_host; ?>" />
-						<input type="hidden" name="db_name" value="<?php echo pun_htmlspecialchars($db_name); ?>" />
-						<input type="hidden" name="db_username" value="<?php echo pun_htmlspecialchars($db_username); ?>" />
-						<input type="hidden" name="db_password" value="<?php echo pun_htmlspecialchars($db_password); ?>" />
-						<input type="hidden" name="db_prefix" value="<?php echo pun_htmlspecialchars($db_prefix); ?>" />
-						<input type="hidden" name="cookie_name" value="<?php echo pun_htmlspecialchars($cookie_name); ?>" />
-						<input type="hidden" name="cookie_seed" value="<?php echo pun_htmlspecialchars($cookie_seed); ?>" />
+						<input type="hidden" name="db_name" value="<?php echo luna_htmlspecialchars($db_name); ?>" />
+						<input type="hidden" name="db_username" value="<?php echo luna_htmlspecialchars($db_username); ?>" />
+						<input type="hidden" name="db_password" value="<?php echo luna_htmlspecialchars($db_password); ?>" />
+						<input type="hidden" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix); ?>" />
+						<input type="hidden" name="cookie_name" value="<?php echo luna_htmlspecialchars($cookie_name); ?>" />
+						<input type="hidden" name="cookie_seed" value="<?php echo luna_htmlspecialchars($cookie_seed); ?>" />
 
 <?php if (!empty($alerts)): ?>                        	<div class="alert alert-danger">
                         		<ul>

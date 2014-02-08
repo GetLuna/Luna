@@ -11,7 +11,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 
-if ($pun_user['g_read_board'] == '0')
+if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
 
@@ -22,9 +22,9 @@ if ($tid < 1 && $fid < 1 || $tid > 0 && $fid > 0)
 
 // Fetch some info about the topic and/or the forum
 if ($tid)
-	$result = $db->query('SELECT f.id, f.forum_name, f.moderators, f.redirect_url, fp.post_replies, fp.post_topics, t.subject, t.closed, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$pun_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id, f.forum_name, f.moderators, f.redirect_url, fp.post_replies, fp.post_topics, t.subject, t.closed, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT f.id, f.forum_name, f.moderators, f.redirect_url, fp.post_replies, fp.post_topics FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id, f.forum_name, f.moderators, f.redirect_url, fp.post_replies, fp.post_topics FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message($lang['Bad request'], false, '404 Not Found');
@@ -38,14 +38,14 @@ if ($cur_posting['redirect_url'] != '')
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_posting['moderators'] != '') ? unserialize($cur_posting['moderators']) : array();
-$is_admmod = ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && array_key_exists($pun_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
-if ($tid && $pun_config['o_censoring'] == '1')
+if ($tid && $luna_config['o_censoring'] == '1')
 	$cur_posting['subject'] = censor_words($cur_posting['subject']);
 
 // Do we have permission to post?
-if ((($tid && (($cur_posting['post_replies'] == '' && $pun_user['g_post_replies'] == '0') || $cur_posting['post_replies'] == '0')) ||
-	($fid && (($cur_posting['post_topics'] == '' && $pun_user['g_post_topics'] == '0') || $cur_posting['post_topics'] == '0')) ||
+if ((($tid && (($cur_posting['post_replies'] == '' && $luna_user['g_post_replies'] == '0') || $cur_posting['post_replies'] == '0')) ||
+	($fid && (($cur_posting['post_topics'] == '' && $luna_user['g_post_topics'] == '0') || $cur_posting['post_topics'] == '0')) ||
 	(isset($cur_posting['closed']) && $cur_posting['closed'] == '1')) &&
 	!$is_admmod)
 	message($lang['No permission'], false, '403 Forbidden');
@@ -58,8 +58,8 @@ $errors = array();
 if (isset($_POST['form_sent']))
 {
 	// Flood protection
-	if (!isset($_POST['preview']) && $pun_user['last_post'] != '' && (time() - $pun_user['last_post']) < $pun_user['g_post_flood'])
-		$errors[] = sprintf($lang['Flood start'], $pun_user['g_post_flood'], $pun_user['g_post_flood'] - (time() - $pun_user['last_post']));
+	if (!isset($_POST['preview']) && $luna_user['last_post'] != '' && (time() - $luna_user['last_post']) < $luna_user['g_post_flood'])
+		$errors[] = sprintf($lang['Flood start'], $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
 
 	// Make sure they got here from the site
 	confirm_referrer(array('post.php', 'viewtopic.php'));
@@ -67,38 +67,38 @@ if (isset($_POST['form_sent']))
 	// If it's a new topic
 	if ($fid)
 	{
-		$subject = pun_trim($_POST['req_subject']);
+		$subject = luna_trim($_POST['req_subject']);
 
-		if ($pun_config['o_censoring'] == '1')
-			$censored_subject = pun_trim(censor_words($subject));
+		if ($luna_config['o_censoring'] == '1')
+			$censored_subject = luna_trim(censor_words($subject));
 
 		if ($subject == '')
 			$errors[] = $lang['No subject'];
-		else if ($pun_config['o_censoring'] == '1' && $censored_subject == '')
+		else if ($luna_config['o_censoring'] == '1' && $censored_subject == '')
 			$errors[] = $lang['No subject after censoring'];
-		else if (pun_strlen($subject) > 70)
+		else if (luna_strlen($subject) > 70)
 			$errors[] = $lang['Too long subject'];
-		else if ($pun_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$pun_user['is_admmod'])
+		else if ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
 			$errors[] = $lang['All caps subject'];
 	}
 
-	// If the user is logged in we get the username and email from $pun_user
-	if (!$pun_user['is_guest'])
+	// If the user is logged in we get the username and email from $luna_user
+	if (!$luna_user['is_guest'])
 	{
-		$username = $pun_user['username'];
-		$email = $pun_user['email'];
+		$username = $luna_user['username'];
+		$email = $luna_user['email'];
 	}
 	// Otherwise it should be in $_POST
 	else
 	{
-		$username = pun_trim($_POST['req_username']);
-		$email = strtolower(pun_trim(($pun_config['p_force_guest_email'] == '1') ? $_POST['req_email'] : $_POST['email']));
+		$username = luna_trim($_POST['req_username']);
+		$email = strtolower(luna_trim(($luna_config['p_force_guest_email'] == '1') ? $_POST['req_email'] : $_POST['email']));
 		$banned_email = false;
 
 		// It's a guest, so we have to validate the username
 		check_username($username);
 
-		if ($pun_config['p_force_guest_email'] == '1' || $email != '')
+		if ($luna_config['p_force_guest_email'] == '1' || $email != '')
 		{
 			require FORUM_ROOT.'include/email.php';
 			if (!is_valid_email($email))
@@ -106,9 +106,9 @@ if (isset($_POST['form_sent']))
 
 			// Check if it's a banned email address
 			// we should only check guests because members' addresses are already verified
-			if ($pun_user['is_guest'] && is_banned_email($email))
+			if ($luna_user['is_guest'] && is_banned_email($email))
 			{
-				if ($pun_config['p_allow_banned_email'] == '0')
+				if ($luna_config['p_allow_banned_email'] == '0')
 					$errors[] = $lang['Banned email'];
 
 				$banned_email = true; // Used later when we send an alert email
@@ -117,16 +117,16 @@ if (isset($_POST['form_sent']))
 	}
 
 	// Clean up message from POST
-	$orig_message = $message = pun_linebreaks(pun_trim($_POST['req_message']));
+	$orig_message = $message = luna_linebreaks(luna_trim($_POST['req_message']));
 
-	// Here we use strlen() not pun_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 	if (strlen($message) > FORUM_MAX_POSTSIZE)
 		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
-	else if ($pun_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$pun_user['is_admmod'])
+	else if ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = $lang['All caps message'];
 
 	// Validate BBCode syntax
-	if ($pun_config['p_message_bbcode'] == '1')
+	if ($luna_config['p_message_bbcode'] == '1')
 	{
 		require FORUM_ROOT.'include/parser.php';
 		$message = preparse_bbcode($message, $errors);
@@ -136,10 +136,10 @@ if (isset($_POST['form_sent']))
 	{
 		if ($message == '')
 			$errors[] = $lang['No message'];
-		else if ($pun_config['o_censoring'] == '1')
+		else if ($luna_config['o_censoring'] == '1')
 		{
 			// Censor message to see if that causes problems
-			$censored_message = pun_trim(censor_words($message));
+			$censored_message = luna_trim(censor_words($message));
 
 			if ($censored_message == '')
 				$errors[] = $lang['No message after censoring'];
@@ -163,27 +163,27 @@ if (isset($_POST['form_sent']))
 		// If it's a reply
 		if ($tid)
 		{
-			if (!$pun_user['is_guest'])
+			if (!$luna_user['is_guest'])
 			{
 				$new_tid = $tid;
 
 				// Insert the new post
-				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$pun_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 
 				// To subscribe or not to subscribe, that ...
-				if ($pun_config['o_topic_subscriptions'] == '1')
+				if ($luna_config['o_topic_subscriptions'] == '1')
 				{
 					if ($subscribe && !$is_subscribed)
-						$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$pun_user['id'].' ,'.$tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
+						$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 					else if (!$subscribe && $is_subscribed)
-						$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$pun_user['id'].' AND topic_id='.$tid) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
+						$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$tid) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 				}
 			}
 			else
 			{
 				// It's a guest. Insert the new post
-				$email_sql = ($pun_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
+				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 			}
@@ -196,21 +196,21 @@ if (isset($_POST['form_sent']))
 			update_forum($cur_posting['id']);
 
 			// Should we send out notifications?
-			if ($pun_config['o_topic_subscriptions'] == '1')
+			if ($luna_config['o_topic_subscriptions'] == '1')
 			{
 				// Get the post time for the previous post in this topic
 				$result = $db->query('SELECT posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 				$previous_post_time = $db->result($result);
 
 				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$pun_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
 				{
 					require_once FORUM_ROOT.'include/email.php';
 
 					$notification_emails = array();
 
-					if ($pun_config['o_censoring'] == '1')
+					if ($luna_config['o_censoring'] == '1')
 						$cleaned_message = bbcode2email($censored_message, -1);
 					else
 						$cleaned_message = bbcode2email($message, -1);
@@ -243,7 +243,7 @@ if (isset($_POST['form_sent']))
 								$mail_message = str_replace('<replier>', $username, $mail_message);
 								$mail_message = str_replace('<post_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
 								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message);
-								$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 								$mail_subject_full = str_replace('<topic_subject>', $cur_posting['subject'], $mail_subject_full);
 								$mail_message_full = str_replace('<topic_subject>', $cur_posting['subject'], $mail_message_full);
@@ -251,7 +251,7 @@ if (isset($_POST['form_sent']))
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
 								$mail_message_full = str_replace('<post_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message_full);
 								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message_full);
-								$mail_message_full = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message_full);
+								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
 								$notification_emails[$cur_subscriber['language']][0] = $mail_subject;
 								$notification_emails[$cur_subscriber['language']][1] = $mail_message;
@@ -266,9 +266,9 @@ if (isset($_POST['form_sent']))
 						if (isset($notification_emails[$cur_subscriber['language']]))
 						{
 							if ($cur_subscriber['notify_with_post'] == '0')
-								pun_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
+								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
 							else
-								pun_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][2], $notification_emails[$cur_subscriber['language']][3]);
+								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][2], $notification_emails[$cur_subscriber['language']][3]);
 						}
 					}
 
@@ -283,19 +283,19 @@ if (isset($_POST['form_sent']))
 			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, last_post, last_poster, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
-			if (!$pun_user['is_guest'])
+			if (!$luna_user['is_guest'])
 			{
 				// To subscribe or not to subscribe, that ...
-				if ($pun_config['o_topic_subscriptions'] == '1' && $subscribe)
-					$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$pun_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
+				if ($luna_config['o_topic_subscriptions'] == '1' && $subscribe)
+					$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
 				// Create the post ("topic post")
-				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$pun_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			}
 			else
 			{
 				// Create the post ("topic post")
-				$email_sql = ($pun_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
+				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			}
 			$new_pid = $db->insert_id();
@@ -308,17 +308,17 @@ if (isset($_POST['form_sent']))
 			update_forum($fid);
 
 			// Should we send out notifications?
-			if ($pun_config['o_forum_subscriptions'] == '1')
+			if ($luna_config['o_forum_subscriptions'] == '1')
 			{
 				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['id'].' AND u.id!='.$pun_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['id'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
 				{
 					require_once FORUM_ROOT.'include/email.php';
 
 					$notification_emails = array();
 
-					if ($pun_config['o_censoring'] == '1')
+					if ($luna_config['o_censoring'] == '1')
 						$cleaned_message = bbcode2email($censored_message, -1);
 					else
 						$cleaned_message = bbcode2email($message, -1);
@@ -347,21 +347,21 @@ if (isset($_POST['form_sent']))
 								$mail_message_full = trim(substr($mail_tpl_full, $first_crlf));
 
 								$mail_subject = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_subject);
-								$mail_message = str_replace('<topic_subject>', $pun_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message);
+								$mail_message = str_replace('<topic_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message);
 								$mail_message = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_message);
 								$mail_message = str_replace('<poster>', $username, $mail_message);
 								$mail_message = str_replace('<topic_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message);
 								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['id'], $mail_message);
-								$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 								$mail_subject_full = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_subject_full);
-								$mail_message_full = str_replace('<topic_subject>', $pun_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message_full);
+								$mail_message_full = str_replace('<topic_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message_full);
 								$mail_message_full = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_message_full);
 								$mail_message_full = str_replace('<poster>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
 								$mail_message_full = str_replace('<topic_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message_full);
 								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['id'], $mail_message_full);
-								$mail_message_full = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message_full);
+								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
 								$notification_emails[$cur_subscriber['language']][0] = $mail_subject;
 								$notification_emails[$cur_subscriber['language']][1] = $mail_message;
@@ -376,9 +376,9 @@ if (isset($_POST['form_sent']))
 						if (isset($notification_emails[$cur_subscriber['language']]))
 						{
 							if ($cur_subscriber['notify_with_post'] == '0')
-								pun_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
+								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
 							else
-								pun_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][2], $notification_emails[$cur_subscriber['language']][3]);
+								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][2], $notification_emails[$cur_subscriber['language']][3]);
 						}
 					}
 
@@ -388,10 +388,10 @@ if (isset($_POST['form_sent']))
 		}
 
 		// If we previously found out that the email was banned
-		if ($pun_user['is_guest'] && $banned_email && $pun_config['o_mailing_list'] != '')
+		if ($luna_user['is_guest'] && $banned_email && $luna_config['o_mailing_list'] != '')
 		{
 			// Load the "banned email post" template
-			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_post.tpl'));
+			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/banned_email_post.tpl'));
 
 			// The first row contains the subject
 			$first_crlf = strpos($mail_tpl, "\n");
@@ -401,15 +401,15 @@ if (isset($_POST['form_sent']))
 			$mail_message = str_replace('<username>', $username, $mail_message);
 			$mail_message = str_replace('<email>', $email, $mail_message);
 			$mail_message = str_replace('<post_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
-			$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+			$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-			pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+			luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 		}
 
 		// If the posting user is logged in, increment his/her post count
-		if (!$pun_user['is_guest'])
+		if (!$luna_user['is_guest'])
 		{
-			$db->query('UPDATE '.$db->prefix.'users SET num_posts=num_posts+1, last_post='.$now.' WHERE id='.$pun_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'users SET num_posts=num_posts+1, last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 			$tracked_topics = get_tracked_topics();
 			$tracked_topics['topics'][$new_tid] = time();
@@ -472,12 +472,12 @@ if ($tid)
 			unset($inside);
 		}
 
-		if ($pun_config['o_censoring'] == '1')
+		if ($luna_config['o_censoring'] == '1')
 			$q_message = censor_words($q_message);
 
-		$q_message = pun_htmlspecialchars($q_message);
+		$q_message = luna_htmlspecialchars($q_message);
 
-		if ($pun_config['p_message_bbcode'] == '1')
+		if ($luna_config['p_message_bbcode'] == '1')
 		{
 			// If username contains a square bracket, we add "" or '' around it (so we know when it starts and ends)
 			if (strpos($q_poster, '[') !== false || strpos($q_poster, ']') !== false)
@@ -515,11 +515,11 @@ else
 	message($lang['Bad request'], false, '404 Not Found');
 
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $action);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $action);
 $required_fields = array('req_email' => $lang['Email'], 'req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 $focus_element = array('post');
 
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 	$focus_element[] = ($fid) ? 'req_subject' : 'req_message';
 else
 {
@@ -533,8 +533,8 @@ require FORUM_ROOT.'header.php';
 ?>
     <ol class="breadcrumb">
         <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-        <li><a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo pun_htmlspecialchars($cur_posting['forum_name']) ?></a></li>
-    <?php if (isset($cur_posting['subject'])): ?>			<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo pun_htmlspecialchars($cur_posting['subject']) ?></a></li>
+        <li><a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo luna_htmlspecialchars($cur_posting['forum_name']) ?></a></li>
+    <?php if (isset($cur_posting['subject'])): ?>			<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_posting['subject']) ?></a></li>
     <?php endif; ?>			<li class="active"><?php echo $action ?></li>
     </ol>
 
@@ -592,29 +592,29 @@ $cur_index = 1;
             <input type="hidden" name="form_sent" value="1" />
 <?php
 
-if ($pun_user['is_guest'])
+if ($luna_user['is_guest'])
 {
-	$email_label = ($pun_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].'</strong>' : $lang['Email'];
-	$email_form_name = ($pun_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
+	$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].'</strong>' : $lang['Email'];
+	$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
-            <label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" value="<?php if (isset($_POST['req_username'])) echo pun_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
-            <label class="conl<?php echo ($pun_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo pun_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" value="<?php if (isset($_POST['req_username'])) echo luna_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="form-control full-form" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo luna_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php
 
 }
 
 if ($fid): ?>
-            <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control full-form" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo pun_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control full-form" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
 <?php endif; ?>	
-            <textarea class="form-control full-form" placeholder="Start typing..." name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? pun_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
+            <textarea class="form-control full-form" placeholder="Start typing..." name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
         </fieldset>
         <div class="panel-footer">
             <div class="btn-group"><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
 			<ul class="bblinks">
-				<li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-				<li><a class="label <?php echo ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-				<li><a class="label <?php echo ($pun_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
+				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
+				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
+				<li><a class="label <?php echo ($luna_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
 			</ul>
         </div>
     </div>
@@ -624,12 +624,12 @@ $checkboxes = array();
 if ($fid && $is_admmod)
 	$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /> '.$lang['Stick topic'].'</label></div>';
 
-if (!$pun_user['is_guest'])
+if (!$luna_user['is_guest'])
 {
-	if ($pun_config['o_smilies'] == '1')
+	if ($luna_config['o_smilies'] == '1')
 		$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
 
-	if ($pun_config['o_topic_subscriptions'] == '1')
+	if ($luna_config['o_topic_subscriptions'] == '1')
 	{
 		$subscr_checked = false;
 
@@ -637,7 +637,7 @@ if (!$pun_user['is_guest'])
 		if (isset($_POST['preview']))
 			$subscr_checked = isset($_POST['subscribe']) ? true : false;
 		// If auto subscribed
-		else if ($pun_user['auto_notify'])
+		else if ($luna_user['auto_notify'])
 			$subscr_checked = true;
 		// If already subscribed to the topic
 		else if ($is_subscribed)
@@ -646,7 +646,7 @@ if (!$pun_user['is_guest'])
 		$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang['Stay subscribed'] : $lang['Subscribe topic']).'</label></div>';
 	}
 }
-else if ($pun_config['o_smilies'] == '1')
+else if ($luna_config['o_smilies'] == '1')
 	$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
 
 if (!empty($checkboxes))
@@ -673,11 +673,11 @@ if (!empty($checkboxes))
 <?php
 
 // Check to see if the topic review is to be displayed
-if ($tid && $pun_config['o_topic_review'] != '0')
+if ($tid && $luna_config['o_topic_review'] != '0')
 {
 	require_once FORUM_ROOT.'include/parser.php';
 
-	$result = $db->query('SELECT poster, message, hide_smilies, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT '.$pun_config['o_topic_review']) or error('Unable to fetch topic review', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT poster, message, hide_smilies, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT '.$luna_config['o_topic_review']) or error('Unable to fetch topic review', __FILE__, __LINE__, $db->error());
 
 ?>
 <div class="panel panel-default">
@@ -700,7 +700,7 @@ if ($tid && $pun_config['o_topic_review'] != '0')
 		<table class="table postview">
 			<tr>
 				<td class="col-lg-2  user-data">
-					<h4 class="username"><?php echo pun_htmlspecialchars($cur_post['poster']) ?></h4>
+					<h4 class="username"><?php echo luna_htmlspecialchars($cur_post['poster']) ?></h4>
 					<span><?php echo format_time($cur_post['posted']) ?></span>
 				</td>
 				<td class="col-lg-10 post-content">

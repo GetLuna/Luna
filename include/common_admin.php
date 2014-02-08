@@ -12,10 +12,10 @@ if (!defined('FORUM'))
 	exit;
 
 // Make sure we have a usable language pack for admin.
-if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php'))
-	$admin_language = $pun_user['language'];
-else if (file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/language.php'))
-	$admin_language = $pun_config['o_default_lang'];
+if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php'))
+	$admin_language = $luna_user['language'];
+else if (file_exists(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/language.php'))
+	$admin_language = $luna_config['o_default_lang'];
 else
 	$admin_language = 'English';
 
@@ -24,9 +24,9 @@ else
 //
 function generate_admin_menu($page = '')
 {
-	global $pun_config, $pun_user, $lang;
+	global $luna_config, $luna_user, $lang;
 
-	$is_admin = $pun_user['g_id'] == FORUM_ADMIN ? true : false;
+	$is_admin = $luna_user['g_id'] == FORUM_ADMIN ? true : false;
 
 ?>
 <div class="navbar navbar-fixed-top">
@@ -61,7 +61,7 @@ function generate_admin_menu($page = '')
                         <li><a href="users.php"><?php echo $lang['Users'] ?></a></li>
                         <?php if ($is_admin) { ?><li><a href="ranks.php"><?php echo $lang['Ranks'] ?></a></li>
                         <li><a href="groups.php"><?php echo $lang['Groups'] ?></a></li><?php }; ?>
-                        <?php if (($pun_user['g_mod_ban_users'] == '1') || ($is_admin)) { ?><li class="divider"></li>
+                        <?php if (($luna_user['g_mod_ban_users'] == '1') || ($is_admin)) { ?><li class="divider"></li>
                         <?php if ($is_admin) { ?><li><a href="permissions.php"><?php echo $lang['Permissions'] ?></a></li><?php }; ?>
                         <li><a href="bans.php"><?php echo $lang['Bans'] ?></a></li><?php }; ?>
                     </ul>
@@ -108,16 +108,16 @@ function generate_admin_menu($page = '')
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown usermenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php echo $lang['Welcome'] ?>, <?php print(pun_htmlspecialchars($pun_user['username'])) ?> <b class="caret"></b>
+                        <?php echo $lang['Welcome'] ?>, <?php print(luna_htmlspecialchars($luna_user['username'])) ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><?php echo '<a href="../profile.php?id='.$pun_user['id'].'">' ?><?php echo $lang['Profile'] ?></a></li>
+                        <li><?php echo '<a href="../profile.php?id='.$luna_user['id'].'">' ?><?php echo $lang['Profile'] ?></a></li>
                         <li><a href="../index.php"><?php echo $lang['Forum'] ?></a></li>
                         <li class="divider"></li>
                         <li><a href="http://modernbb.be"><?php echo $lang['Support'] ?></a></li>
                         <li><a href="http://modernbb.be/docs/"><?php echo $lang['Documentation'] ?></a></li>
                         <li class="divider"></li>
-                        <li><?php echo '<a href="../login.php?action=out&amp;id='.$pun_user['id'].'&amp;csrf_token='.pun_hash($pun_user['id'].pun_hash(get_remote_address())).'">' ?><?php echo $lang['Logout'] ?></a></li>
+                        <li><?php echo '<a href="../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">' ?><?php echo $lang['Logout'] ?></a></li>
                     </ul>
                 </li>
             </ul>

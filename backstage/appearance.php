@@ -14,11 +14,11 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
@@ -26,7 +26,7 @@ if (isset($_POST['form_sent']))
 	confirm_referrer('backstage/appearance.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
-		'default_style'			=> pun_trim($_POST['form']['default_style']),
+		'default_style'			=> luna_trim($_POST['form']['default_style']),
 		'show_version'			=> isset($_POST['form']['show_version']) ? '1' : '0',
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
@@ -42,11 +42,11 @@ if (isset($_POST['form_sent']))
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
 		'indent_num_spaces'		=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'			=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
-		'additional_navlinks'	=> pun_trim($_POST['form']['additional_navlinks']),
+		'additional_navlinks'	=> luna_trim($_POST['form']['additional_navlinks']),
 	);
 
 	if ($form['additional_navlinks'] != '')
-		$form['additional_navlinks'] = pun_trim(pun_linebreaks($form['additional_navlinks']));
+		$form['additional_navlinks'] = luna_trim(luna_linebreaks($form['additional_navlinks']));
 
 	// Make sure the number of displayed topics and posts is between 3 and 75
 	if ($form['disp_topics_default'] < 3)
@@ -66,7 +66,7 @@ if (isset($_POST['form_sent']))
 	foreach ($form as $key => $input)
 	{
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $pun_config) && $pun_config['o_'.$key] != $input)
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
 		{
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
@@ -87,7 +87,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/appearance.php', $lang['Options updated redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Options']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('display');
@@ -112,7 +112,7 @@ generate_admin_menu('display');
 
 		foreach ($styles as $temp)
 		{
-			if ($pun_config['o_default_style'] == $temp)
+			if ($luna_config['o_default_style'] == $temp)
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
 			else
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
@@ -135,7 +135,7 @@ generate_admin_menu('display');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Menu items head'] ?></label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo pun_htmlspecialchars($pun_config['o_additional_navlinks']) ?></textarea>
+                        <textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_additional_navlinks']) ?></textarea>
 						<span class="help-block"><?php echo $lang['Menu items help'] ?></span>
                     </div>
                 </div>
@@ -144,13 +144,13 @@ generate_admin_menu('display');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[header_title]" value="1" <?php if ($pun_config['o_header_title'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[header_title]" value="1" <?php if ($luna_config['o_header_title'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Title in header'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[menu_title]" value="1" <?php if ($pun_config['o_menu_title'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[menu_title]" value="1" <?php if ($luna_config['o_menu_title'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Title in menu'] ?>
                             </label>
                         </div>                        
@@ -161,7 +161,7 @@ generate_admin_menu('display');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[header_desc]" value="1" <?php if ($pun_config['o_header_desc'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[header_desc]" value="1" <?php if ($luna_config['o_header_desc'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Description in header'] ?>
                             </label>
                         </div>                       
@@ -178,7 +178,7 @@ generate_admin_menu('display');
             <fieldset>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="form[show_version]" value="1" <?php if ($pun_config['o_show_version'] == '1') echo ' checked="checked"' ?> />
+                        <input type="checkbox" name="form[show_version]" value="1" <?php if ($luna_config['o_show_version'] == '1') echo ' checked="checked"' ?> />
                         <?php echo $lang['Version number help'] ?>
                     </label>
                 </div>
@@ -196,13 +196,13 @@ generate_admin_menu('display');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($pun_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Info in posts help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($pun_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($luna_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Post count help'] ?>
                             </label>
                         </div>
@@ -213,19 +213,19 @@ generate_admin_menu('display');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[smilies]" value="1" <?php if ($pun_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[smilies]" value="1" <?php if ($luna_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Smilies help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($pun_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Smilies sigs help'] ?>
                             </label>
                         </div>   
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[make_links]" value="1" <?php if ($pun_config['o_make_links'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[make_links]" value="1" <?php if ($luna_config['o_make_links'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Clickable links help'] ?>
                             </label>
                         </div>
@@ -236,7 +236,7 @@ generate_admin_menu('display');
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[show_index_stats]" value="1" <?php if ($pun_config['o_show_index_stats'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[show_index_stats]" value="1" <?php if ($luna_config['o_show_index_stats'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Index statistics help'] ?>
                             </label>
                         </div>           
@@ -246,35 +246,35 @@ generate_admin_menu('display');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Topic review label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $pun_config['o_topic_review'] ?>" />
+                        <input type="text" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $luna_config['o_topic_review'] ?>" />
                         <span class="help-block"><?php echo $lang['Topic review help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Topics per page label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $pun_config['o_disp_topics_default'] ?>" />
+                        <input type="text" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $luna_config['o_disp_topics_default'] ?>" />
                         <span class="help-block"><?php echo $lang['Topics per page help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Posts per page label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $pun_config['o_disp_posts_default'] ?>" />
+                        <input type="text" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $luna_config['o_disp_posts_default'] ?>" />
                         <span class="help-block"><?php echo $lang['Posts per page help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Indent label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $pun_config['o_indent_num_spaces'] ?>" />
+                        <input type="text" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
                         <span class="help-block"><?php echo $lang['Indent help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Quote depth label'] ?></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $pun_config['o_quote_depth'] ?>" />
+                        <input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
                         <span class="help-block"><?php echo $lang['Quote depth help'] ?></span>
                     </div>
                 </div>

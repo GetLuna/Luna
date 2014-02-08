@@ -14,7 +14,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
@@ -25,7 +25,7 @@ if (!preg_match('%^AM?P_(\w*?)\.php$%i', $plugin))
 
 // AP_ == Admins only, AMP_ == admins and moderators
 $prefix = substr($plugin, 0, strpos($plugin, '_'));
-if ($pun_user['g_moderator'] == '1' && $prefix == 'AP')
+if ($luna_user['g_moderator'] == '1' && $prefix == 'AP')
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Make sure the file actually exists
@@ -36,7 +36,7 @@ if (!file_exists(FORUM_ROOT.'plugins/'.$plugin))
 if (!isset($_SERVER['REQUEST_URI']))
 	$_SERVER['REQUEST_URI'] = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').'?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '');
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], str_replace('_', ' ', substr($plugin, strpos($plugin, '_') + 1, -4)));
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], str_replace('_', ' ', substr($plugin, strpos($plugin, '_') + 1, -4)));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 

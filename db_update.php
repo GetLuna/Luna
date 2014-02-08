@@ -88,7 +88,7 @@ if (get_magic_quotes_gpc())
 
 // If a cookie name is not specified in config.php, we use the default (forum_cookie)
 if (empty($cookie_name))
-	$cookie_name = 'pun_cookie';
+	$cookie_name = 'luna_cookie';
 
 // If the cache directory is not specified, we use the default setting
 if (!defined('FORUM_CACHE_DIR'))
@@ -116,10 +116,10 @@ $db->set_names('utf8');
 // Get the forum config
 $result = $db->query('SELECT * FROM '.$db->prefix.'config') or error('Unable to fetch config.', __FILE__, __LINE__, $db->error());
 while ($cur_config_item = $db->fetch_row($result))
-	$pun_config[$cur_config_item[0]] = $cur_config_item[1];
+	$luna_config[$cur_config_item[0]] = $cur_config_item[1];
 
 // Load language file
-$default_lang = $pun_config['o_default_lang'];
+$default_lang = $luna_config['o_default_lang'];
 
 if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/language.php'))
 	$default_lang = 'English';
@@ -127,7 +127,7 @@ if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/language.php'))
 require FORUM_ROOT.'lang/'.$default_lang.'/language.php';
 
 // Check current version
-$cur_version = $pun_config['o_cur_version'];
+$cur_version = $luna_config['o_cur_version'];
 
 if (version_compare($cur_version, '1.5', '<'))
 	error(sprintf($lang['Version mismatch error'], $db_name));
@@ -149,13 +149,13 @@ switch ($db_type)
 }
 
 // Check the database, search index and parser revision and the current version
-if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revision'] >= UPDATE_TO_DB_REVISION &&
-		isset($pun_config['o_searchindex_revision']) && $pun_config['o_searchindex_revision'] >= UPDATE_TO_SI_REVISION &&
-		isset($pun_config['o_parser_revision']) && $pun_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION &&
-		version_compare($pun_config['o_cur_version'], UPDATE_TO, '>='))
+if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= UPDATE_TO_DB_REVISION &&
+		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= UPDATE_TO_SI_REVISION &&
+		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION &&
+		version_compare($luna_config['o_cur_version'], UPDATE_TO, '>='))
 	error($lang['No update error']);
 
-$default_style = $pun_config['o_default_style'];
+$default_style = $luna_config['o_default_style'];
 if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
 	$default_style = 'Randomness';
 
@@ -235,7 +235,7 @@ switch ($stage)
 		$query_str = '?stage=preparse_posts';
 
 		// If we don't need to update the database, skip this stage
-		if (isset($pun_config['o_database_revision']) && $pun_config['o_database_revision'] >= UPDATE_TO_DB_REVISION)
+		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= UPDATE_TO_DB_REVISION)
 			break;
 		
 		// Since 2.0-beta.1: Add the marked column to the posts table
@@ -251,35 +251,35 @@ switch ($stage)
 		}
 
 		// Since 2.0-beta.2: Insert new config option o_antispam_api
-		if (!array_key_exists('o_antispam_api', $pun_config))
+		if (!array_key_exists('o_antispam_api', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_antispam_api\', NULL)') or error('Unable to insert config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
 			
 		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
-		if (array_key_exists('o_quickjump', $pun_config))
+		if (array_key_exists('o_quickjump', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
 			
 		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
-		if (array_key_exists('o_show_dot', $pun_config))
+		if (array_key_exists('o_show_dot', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
 
 		// Since 2.1-beta: Insert new config option o_menu_title
-		if (!array_key_exists('o_menu_title', $pun_config))
+		if (!array_key_exists('o_menu_title', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_menu_title\', \'0\')') or error('Unable to insert config value \'o_menu_title\'', __FILE__, __LINE__, $db->error());
 
 		// Since 2.1-beta: Insert new config option o_header_title
-		if (!array_key_exists('o_header_title', $pun_config))
+		if (!array_key_exists('o_header_title', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_title\', \'1\')') or error('Unable to insert config value \'o_header_title\'', __FILE__, __LINE__, $db->error());
 
 		// Since 3.00-alpha.2: Insert new config option o_header_desc
-		if (!array_key_exists('o_header_desc', $pun_config))
+		if (!array_key_exists('o_header_desc', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_desc\', \'1\')') or error('Unable to insert config value \'o_header_desc\'', __FILE__, __LINE__, $db->error());
 		
 		// Since 2.1-beta: Insert new config option o_index_update_check
-		if (!array_key_exists('o_index_update_check', $pun_config))
+		if (!array_key_exists('o_index_update_check', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
 		
 		// Since 2.2.2: Add o_ranks if updating from FluxBB 1.5
-		if (!array_key_exists('o_ranks', $pun_config))
+		if (!array_key_exists('o_ranks', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 			
 		// Since 3.0-alpha.1 Remove the toolbar_conf table
@@ -312,7 +312,7 @@ switch ($stage)
 		}
 
 		// Since 3.0-alpha.3: Insert new config option o_show_index_stats
-		if (!array_key_exists('o_show_index_stats', $pun_config))
+		if (!array_key_exists('o_show_index_stats', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_index_stats\', \'1\')') or error('Unable to insert config value \'o_show_index_stats\'', __FILE__, __LINE__, $db->error());
 		
 		// Since ModernBB 2.2.2: Recreate ranks table when removed in FluxBB 1.5
@@ -347,7 +347,7 @@ switch ($stage)
 		}
 		
 		// Change the default style if the old doesn't exist anymore
-		if ($pun_config['o_default_style'] != $default_style)
+		if ($luna_config['o_default_style'] != $default_style)
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
@@ -373,11 +373,11 @@ switch ($stage)
 			{
 				$errors[$id] = array();
 
-				$username = pun_trim($_POST['dupe_users'][$id]);
+				$username = luna_trim($_POST['dupe_users'][$id]);
 
-				if (pun_strlen($username) < 2)
+				if (luna_strlen($username) < 2)
 					$errors[$id][] = $lang['Username too short error'];
-				else if (pun_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
+				else if (luna_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
 					$errors[$id][] = $lang['Username too long error'];
 				else if (!strcasecmp($username, 'Guest'))
 					$errors[$id][] = $lang['Username Guest reserved error'];
@@ -393,7 +393,7 @@ switch ($stage)
 				if ($db->num_rows($result))
 				{
 					$busy = $db->result($result);
-					$errors[$id][] = sprintf($lang['Username duplicate error'], pun_htmlspecialchars($busy));
+					$errors[$id][] = sprintf($lang['Username duplicate error'], luna_htmlspecialchars($busy));
 				}
 
 				if (empty($errors[$id]))
@@ -444,8 +444,8 @@ switch ($stage)
 					// Email the user alerting them of the change
 					if (file_exists(FORUM_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'))
 						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'));
-					else if (file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/mail_templates/rename.tpl'))
-						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/mail_templates/rename.tpl'));
+					else if (file_exists(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/mail_templates/rename.tpl'))
+						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/mail_templates/rename.tpl'));
 					else
 						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/English/mail_templates/rename.tpl'));
 
@@ -454,13 +454,13 @@ switch ($stage)
 					$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
 					$mail_message = trim(substr($mail_tpl, $first_crlf));
 
-					$mail_subject = str_replace('<board_title>', $pun_config['o_board_title'], $mail_subject);
+					$mail_subject = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject);
 					$mail_message = str_replace('<base_url>', get_base_url().'/', $mail_message);
 					$mail_message = str_replace('<old_username>', $old_username, $mail_message);
 					$mail_message = str_replace('<new_username>', $username, $mail_message);
-					$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+					$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-					pun_mail($cur_user['email'], $mail_subject, $mail_message);
+					luna_mail($cur_user['email'], $mail_subject, $mail_message);
 
 					unset($_SESSION['dupe_users'][$id]);
 				}
@@ -497,8 +497,8 @@ switch ($stage)
 
 ?>
                     <fieldset>
-                        <legend><?php echo pun_htmlspecialchars($cur_user['username']); ?></legend>
-                        <label class="required"><strong><?php echo $lang['New username'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo pun_htmlspecialchars($_POST['dupe_users'][$id]); ?>" maxlength="25" /><br /></label>
+                        <legend><?php echo luna_htmlspecialchars($cur_user['username']); ?></legend>
+                        <label class="required"><strong><?php echo $lang['New username'] ?> <span><?php echo $lang['Required'] ?></span></strong><br /><input type="text" name="<?php echo 'dupe_users['.$id.']'; ?>" value="<?php if (isset($_POST['dupe_users'][$id])) echo luna_htmlspecialchars($_POST['dupe_users'][$id]); ?>" maxlength="25" /><br /></label>
                     </fieldset>
 <?php if (!empty($errors[$id])): ?>
                     <h3><?php echo $lang['Correct errors'] ?></h3>
@@ -533,7 +533,7 @@ foreach ($errors[$id] as $cur_error)
 		$query_str = '?stage=preparse_sigs';
 
 		// If we don't need to parse the posts, skip this stage
-		if (isset($pun_config['o_parser_revision']) && $pun_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
+		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
 			break;
 
 		require FORUM_ROOT.'include/parser.php';
@@ -568,7 +568,7 @@ foreach ($errors[$id] as $cur_error)
 		$query_str = '?stage=rebuild_idx';
 
 		// If we don't need to parse the sigs, skip this stage
-		if (isset($pun_config['o_parser_revision']) && $pun_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
+		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
 			break;
 
 		require FORUM_ROOT.'include/parser.php';
@@ -602,7 +602,7 @@ foreach ($errors[$id] as $cur_error)
 		$query_str = '?stage=finish';
 
 		// If we don't need to update the search index, skip this stage
-		if (isset($pun_config['o_searchindex_revision']) && $pun_config['o_searchindex_revision'] >= UPDATE_TO_SI_REVISION)
+		if (isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= UPDATE_TO_SI_REVISION)
 			break;
 
 		if ($start_at == 0)
@@ -669,11 +669,11 @@ foreach ($errors[$id] as $cur_error)
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.UPDATE_TO_PARSER_REVISION.'\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
 
 		// Check the default language still exists!
-		if (!file_exists(FORUM_ROOT.'lang/'.$pun_config['o_default_lang'].'/common.php'))
+		if (!file_exists(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/common.php'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'English\' WHERE conf_name = \'o_default_lang\'') or error('Unable to update default language', __FILE__, __LINE__, $db->error());
 
 		// Check the default style still exists!
-		if (!file_exists(FORUM_ROOT.'style/'.$pun_config['o_default_style'].'.css'))
+		if (!file_exists(FORUM_ROOT.'style/'.$luna_config['o_default_style'].'.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Randomness\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 
 		// This feels like a good time to synchronize the forums

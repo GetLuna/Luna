@@ -14,14 +14,14 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
 // Create new user
 if (isset($_POST['add_user']))
 {
-	$username = pun_trim($_POST['username']);
+	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
 
@@ -38,7 +38,7 @@ if (isset($_POST['add_user']))
 	// Validate username and passwords
 	if (strlen($username) < 2)
 		message($lang['Username too short']);
-	else if (pun_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
+	else if (luna_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
 	    message($lang['Bad request'], false, '404 Not Found');
 	else if (strlen($password) < 4)
 		message($lang['Pass too short']);
@@ -52,7 +52,7 @@ if (isset($_POST['add_user']))
 		message($lang['Username BBCode']);
 
 	// Check username for any censored words
-	if ($pun_config['o_censoring'] == '1')
+	if ($luna_config['o_censoring'] == '1')
 	{
 		// If the censored username differs from the username
 		if (censor_words($username) != $username)
@@ -65,7 +65,7 @@ if (isset($_POST['add_user']))
 	if ($db->num_rows($result))
 	{
 		$busy = $db->result($result);
-		message($lang['Username dupe 1'].' '.pun_htmlspecialchars($busy).'. '.$lang['Username dupe 2']);
+		message($lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2']);
 	}
 
 	// Validate e-mail
@@ -85,46 +85,46 @@ if (isset($_POST['add_user']))
 	}
 
 	$timezone = '0';
-	$language = isset($_POST['language']) ? $_POST['language'] : $pun_config['o_default_lang'];
+	$language = isset($_POST['language']) ? $_POST['language'] : $luna_config['o_default_lang'];
 
 	$email_setting = intval(1);
 
 	// Insert the new user into the database. We do this now to get the last inserted id for later use.
 	$now = time();
 
-	$intial_group_id = ($_POST['random_pass'] == '0') ? $pun_config['o_default_user_group'] : FORUM_UNVERIFIED;
-	$password_hash = pun_hash($password);
+	$intial_group_id = ($_POST['random_pass'] == '0') ? $luna_config['o_default_user_group'] : FORUM_UNVERIFIED;
+	$password_hash = luna_hash($password);
 
 	// Add the user
-	$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$email1.'\', '.$email_setting.', '.$timezone.' , \''.$language.'\', \''.$pun_config['o_default_style'].'\', '.$now.', \''.get_remote_address().'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$email1.'\', '.$email_setting.', '.$timezone.' , \''.$language.'\', \''.$luna_config['o_default_style'].'\', '.$now.', \''.get_remote_address().'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 	$new_uid = $db->insert_id();
 
 	// Should we alert people on the admin mailing list that a new user has registered?
-	if ($pun_config['o_regs_report'] == '1')
+	if ($luna_config['o_regs_report'] == '1')
 	{
 		$mail_subject = 'Alert - New registration';
-		$mail_message = 'User \''.$username.'\' registered in the forums at '.$pun_config['o_base_url']."\n\n".'User profile: '.$pun_config['o_base_url'].'/profile.php?id='.$new_uid."\n\n".'-- '."\n".'Forum Mailer'."\n".'(Do not reply to this message)';
+		$mail_message = 'User \''.$username.'\' registered in the forums at '.$luna_config['o_base_url']."\n\n".'User profile: '.$luna_config['o_base_url'].'/profile.php?id='.$new_uid."\n\n".'-- '."\n".'Forum Mailer'."\n".'(Do not reply to this message)';
 
-		pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+		luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 	}
 
 	// Must the user verify the registration or do we log him/her in right now?
 	if ($_POST['random_pass'] == '1')
 	{
 		// Load the "welcome" template
-		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/welcome.tpl'));
+		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/welcome.tpl'));
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");
 		$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
 		$mail_message = trim(substr($mail_tpl, $first_crlf));
-		$mail_subject = str_replace('<board_title>', $pun_config['o_board_title'], $mail_subject);
-		$mail_message = str_replace('<base_url>', $pun_config['o_base_url'].'/', $mail_message);
+		$mail_subject = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject);
+		$mail_message = str_replace('<base_url>', $luna_config['o_base_url'].'/', $mail_message);
 		$mail_message = str_replace('<username>', $username, $mail_message);
 		$mail_message = str_replace('<password>', $password, $mail_message);
-		$mail_message = str_replace('<login_url>', $pun_config['o_base_url'].'/login.php', $mail_message);
-		$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
-		pun_mail($email1, $mail_subject, $mail_message);
+		$mail_message = str_replace('<login_url>', $luna_config['o_base_url'].'/login.php', $mail_message);
+		$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
+		luna_mail($email1, $mail_subject, $mail_message);
 	}
 
 	// Regenerate the users info cache
@@ -156,7 +156,7 @@ if (isset($_GET['ip_stats']))
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'users.php?ip_stats='.$ip_stats );
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users');
@@ -192,10 +192,10 @@ if (isset($_GET['ip_stats']))
 
 ?>
 			<tr>
-				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
+				<td><a href="../moderate.php?get_host=<?php echo $cur_ip['poster_ip'] ?>"><?php echo luna_htmlspecialchars($cur_ip['poster_ip']) ?></a></td>
 				<td><?php echo format_time($cur_ip['last_used']) ?></td>
 				<td><?php echo $cur_ip['used_times'] ?></td>
-				<td><a href="users.php?show_users=<?php echo pun_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang['Results find more link'] ?></a></td>
+				<td><a href="users.php?show_users=<?php echo luna_htmlspecialchars($cur_ip['poster_ip']) ?>"><?php echo $lang['Results find more link'] ?></a></td>
 			</tr>
 <?php
 
@@ -221,7 +221,7 @@ if (isset($_GET['ip_stats']))
 
 if (isset($_GET['show_users']))
 {
-	$ip = pun_trim($_GET['show_users']);
+	$ip = luna_trim($_GET['show_users']);
 
 	if (!@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $ip) && !@preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $ip))
 		message($lang['Bad IP message']);
@@ -239,7 +239,7 @@ if (isset($_GET['show_users']))
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'users.php?show_users='.$ip);
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users');
@@ -296,11 +296,11 @@ if (isset($_GET['show_users']))
 			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results view IP link'].'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Posts table'].'</a>';
 ?>
 			<tr>
-				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-				<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
+				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
+				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
 				<td><?php echo $user_title ?></td>
 				<td class="text-center"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
-				<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? pun_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
+				<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
 				<td><?php echo $actions ?></td>
 			</tr>
 <?php
@@ -311,7 +311,7 @@ if (isset($_GET['show_users']))
 
 ?>
 			<tr>
-				<td><?php echo pun_htmlspecialchars($cur_poster['poster']) ?></td>
+				<td><?php echo luna_htmlspecialchars($cur_poster['poster']) ?></td>
 				<td>&#160;</td>
 				<td><?php echo $lang['Results guest'] ?></td>
 				<td>&#160;</td>
@@ -343,7 +343,7 @@ if (isset($_GET['show_users']))
 // Move multiple users to other user groups
 else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 {
-	if ($pun_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 		
 	confirm_referrer('backstage/users.php');
@@ -423,7 +423,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 		redirect('backstage/users.php', $lang['Users move redirect']);
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Move users']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Move users']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users');
@@ -442,7 +442,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
                     <div class="col-sm-10">
 						<div class="input-group">
 							<select class="form-control" name="new_group" tabindex="1">
-	<?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo pun_htmlspecialchars($group) ?></option>
+	<?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo luna_htmlspecialchars($group) ?></option>
 	<?php endforeach; ?>
 							</select>
 							<span class="input-group-btn"><input class="btn btn-primary" type="submit" name="move_users_comply" value="<?php echo $lang['Save'] ?>" tabindex="2" /></span>
@@ -463,7 +463,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 // Delete multiple users
 else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 {
-	if ($pun_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 		
 	confirm_referrer('backstage/users.php');
@@ -573,7 +573,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 		redirect('backstage/users.php', $lang['Users delete redirect']);
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Delete users']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Delete users']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users');
@@ -612,7 +612,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 // Ban multiple users
 else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 {
-	if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
+	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
 		
 	confirm_referrer('backstage/users.php');
@@ -643,8 +643,8 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 
 	if (isset($_POST['ban_users_comply']))
 	{
-		$ban_message = pun_trim($_POST['ban_message']);
-		$ban_expire = pun_trim($_POST['ban_expire']);
+		$ban_message = luna_trim($_POST['ban_message']);
+		$ban_expire = luna_trim($_POST['ban_expire']);
 		$ban_the_ip = isset($_POST['ban_the_ip']) ? intval($_POST['ban_the_ip']) : 0;
 
 		if ($ban_expire != '' && $ban_expire != 'Never')
@@ -654,7 +654,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 			if ($ban_expire == -1 || !$ban_expire)
 				message($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
 
-			$diff = ($pun_user['timezone'] + $pun_user['dst']) * 3600;
+			$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 			$ban_expire -= $diff;
 
 			if ($ban_expire <= time())
@@ -686,7 +686,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 			$ban_email = '\''.$db->escape($user_info[$user_id]['email']).'\'';
 			$ban_ip = ($ban_the_ip != 0) ? '\''.$db->escape($user_info[$user_id]['ip']).'\'' : 'NULL';
 
-			$db->query('INSERT INTO '.$db->prefix.'bans (username, ip, email, message, expire, ban_creator) VALUES('.$ban_username.', '.$ban_ip.', '.$ban_email.', '.$ban_message.', '.$ban_expire.', '.$pun_user['id'].')') or error('Unable to add ban', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'bans (username, ip, email, message, expire, ban_creator) VALUES('.$ban_username.', '.$ban_ip.', '.$ban_email.', '.$ban_message.', '.$ban_expire.', '.$luna_user['id'].')') or error('Unable to add ban', __FILE__, __LINE__, $db->error());
 		}
 
 		// Regenerate the bans cache
@@ -698,7 +698,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 		redirect('backstage/users.php', $lang['Users banned redirect']);
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Bans']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
 	$focus_element = array('bans2', 'ban_message');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
@@ -757,17 +757,17 @@ else if (isset($_GET['find_user']))
 	$form = isset($_GET['form']) ? $_GET['form'] : array();
 
 	// trim() all elements in $form
-	$form = array_map('pun_trim', $form);
+	$form = array_map('luna_trim', $form);
 	$conditions = $query_str = array();
 
-	$posts_greater = isset($_GET['posts_greater']) ? pun_trim($_GET['posts_greater']) : '';
-	$posts_less = isset($_GET['posts_less']) ? pun_trim($_GET['posts_less']) : '';
-	$last_post_after = isset($_GET['last_post_after']) ? pun_trim($_GET['last_post_after']) : '';
-	$last_post_before = isset($_GET['last_post_before']) ? pun_trim($_GET['last_post_before']) : '';
-	$last_visit_after = isset($_GET['last_visit_after']) ? pun_trim($_GET['last_visit_after']) : '';
-	$last_visit_before = isset($_GET['last_visit_before']) ? pun_trim($_GET['last_visit_before']) : '';
-	$registered_after = isset($_GET['registered_after']) ? pun_trim($_GET['registered_after']) : '';
-	$registered_before = isset($_GET['registered_before']) ? pun_trim($_GET['registered_before']) : '';
+	$posts_greater = isset($_GET['posts_greater']) ? luna_trim($_GET['posts_greater']) : '';
+	$posts_less = isset($_GET['posts_less']) ? luna_trim($_GET['posts_less']) : '';
+	$last_post_after = isset($_GET['last_post_after']) ? luna_trim($_GET['last_post_after']) : '';
+	$last_post_before = isset($_GET['last_post_before']) ? luna_trim($_GET['last_post_before']) : '';
+	$last_visit_after = isset($_GET['last_visit_after']) ? luna_trim($_GET['last_visit_after']) : '';
+	$last_visit_before = isset($_GET['last_visit_before']) ? luna_trim($_GET['last_visit_before']) : '';
+	$registered_after = isset($_GET['registered_after']) ? luna_trim($_GET['registered_after']) : '';
+	$registered_before = isset($_GET['registered_before']) ? luna_trim($_GET['registered_before']) : '';
 	$order_by = isset($_GET['order_by']) && in_array($_GET['order_by'], array('username', 'email', 'num_posts', 'last_post', 'last_visit', 'registered')) ? $_GET['order_by'] : 'username';
 	$direction = isset($_GET['direction']) && $_GET['direction'] == 'DESC' ? 'DESC' : 'ASC';
 	$user_group = isset($_GET['user_group']) ? intval($_GET['user_group']) : -1;
@@ -879,11 +879,11 @@ else if (isset($_GET['find_user']))
 	$paging_links = paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
 
 	// Some helper variables for permissions
-	$can_delete = $can_move = $pun_user['g_id'] == FORUM_ADMIN;
-	$can_ban = $pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1');
+	$can_delete = $can_move = $luna_user['g_id'] == FORUM_ADMIN;
+	$can_ban = $luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
@@ -945,10 +945,10 @@ else if (isset($_GET['find_user']))
 
 ?>
 				<tr>
-					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.pun_htmlspecialchars($user_data['username']).'</a>' ?></td>
-					<td><a href="mailto:<?php echo pun_htmlspecialchars($user_data['email']) ?>"><?php echo pun_htmlspecialchars($user_data['email']) ?></a></td>                 <td><?php echo $user_title ?></td>
+					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
+					<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>                 <td><?php echo $user_title ?></td>
 					<td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
-					<td><?php echo ($user_data['admin_note'] != '') ? pun_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
+					<td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
 					<td><?php echo $actions ?></td>
 		<?php if ($can_action): ?>					<td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
 		<?php endif; ?>
@@ -991,7 +991,7 @@ else if (isset($_GET['find_user']))
 
 else
 {
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Users']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users']);
 	$focus_element = array('find_user', 'form[username]');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
@@ -1058,7 +1058,7 @@ else
 	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_group = $db->fetch_assoc($result))
-		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 
 ?>
 						</select>

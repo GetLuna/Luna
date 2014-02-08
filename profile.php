@@ -23,9 +23,9 @@ if ($id < 2)
 
 if ($action != 'change_pass' || !isset($_GET['key']))
 {
-	if ($pun_user['g_read_board'] == '0')
+	if ($luna_user['g_read_board'] == '0')
 		message($lang['No view'], false, '403 Forbidden');
-	else if ($pun_user['g_view_users'] == '0' && ($pun_user['is_guest'] || $pun_user['id'] != $id))
+	else if ($luna_user['g_view_users'] == '0' && ($luna_user['is_guest'] || $luna_user['id'] != $id))
 		message($lang['No permission'], false, '403 Forbidden');
 }
 
@@ -34,7 +34,7 @@ if ($action == 'change_pass')
 	if (isset($_GET['key']))
 	{
 		// If the user is already logged in we shouldn't be here :)
-		if (!$pun_user['is_guest'])
+		if (!$luna_user['is_guest'])
 		{
 			header('Location: index.php');
 			exit;
@@ -46,7 +46,7 @@ if ($action == 'change_pass')
 		$cur_user = $db->fetch_assoc($result);
 
 		if ($key == '' || $key != $cur_user['activate_key'])
-			message($lang['Pass key bad'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.');
+			message($lang['Pass key bad'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
 		else
 		{
 			$db->query('UPDATE '.$db->prefix.'users SET password=\''.$cur_user['activate_string'].'\', activate_string=NULL, activate_key=NULL'.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
@@ -56,11 +56,11 @@ if ($action == 'change_pass')
 	}
 
 	// Make sure we are allowed to change this user's password
-	if ($pun_user['id'] != $id)
+	if ($luna_user['id'] != $id)
 	{
-		if (!$pun_user['is_admmod']) // A regular user trying to change another user's password?
+		if (!$luna_user['is_admmod']) // A regular user trying to change another user's password?
 			message($lang['No permission'], false, '403 Forbidden');
-		else if ($pun_user['g_moderator'] == '1') // A moderator trying to change a user's password?
+		else if ($luna_user['g_moderator'] == '1') // A moderator trying to change a user's password?
 		{
 			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
@@ -68,7 +68,7 @@ if ($action == 'change_pass')
 
 			list($group_id, $is_moderator) = $db->fetch_row($result);
 
-			if ($pun_user['g_mod_edit_users'] == '0' || $pun_user['g_mod_change_passwords'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
+			if ($luna_user['g_mod_edit_users'] == '0' || $luna_user['g_mod_change_passwords'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
 				message($lang['No permission'], false, '403 Forbidden');
 		}
 	}
@@ -78,13 +78,13 @@ if ($action == 'change_pass')
 		// Make sure they got here from the site
 		confirm_referrer('profile.php');
 
-		$old_password = isset($_POST['req_old_password']) ? pun_trim($_POST['req_old_password']) : '';
-		$new_password1 = pun_trim($_POST['req_new_password1']);
-		$new_password2 = pun_trim($_POST['req_new_password2']);
+		$old_password = isset($_POST['req_old_password']) ? luna_trim($_POST['req_old_password']) : '';
+		$new_password1 = luna_trim($_POST['req_new_password1']);
+		$new_password2 = luna_trim($_POST['req_new_password2']);
 
 		if ($new_password1 != $new_password2)
 			message($lang['Pass not match']);
-		if (pun_strlen($new_password1) < 4)
+		if (luna_strlen($new_password1) < 4)
 			message($lang['Pass too short']);
 
 		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch password', __FILE__, __LINE__, $db->error());
@@ -94,28 +94,28 @@ if ($action == 'change_pass')
 
 		if (!empty($cur_user['password']))
 		{
-			$old_password_hash = pun_hash($old_password);
+			$old_password_hash = luna_hash($old_password);
 
-			if ($cur_user['password'] == $old_password_hash || $pun_user['is_admmod'])
+			if ($cur_user['password'] == $old_password_hash || $luna_user['is_admmod'])
 				$authorized = true;
 		}
 
 		if (!$authorized)
 			message($lang['Wrong pass']);
 
-		$new_password_hash = pun_hash($new_password1);
+		$new_password_hash = luna_hash($new_password1);
 
 		$db->query('UPDATE '.$db->prefix.'users SET password=\''.$new_password_hash.'\''.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
 
-		if ($pun_user['id'] == $id)
-			pun_setcookie($pun_user['id'], $new_password_hash, time() + $pun_config['o_timeout_visit']);
+		if ($luna_user['id'] == $id)
+			luna_setcookie($luna_user['id'], $new_password_hash, time() + $luna_config['o_timeout_visit']);
 
 		redirect('profile.php?section=personality&amp;id='.$id, $lang['Pass updated redirect']);
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Change pass']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change pass']);
 	$required_fields = array('req_old_password' => $lang['Old pass'], 'req_new_password1' => $lang['New pass'], 'req_new_password2' => $lang['Confirm new pass']);
-	$focus_element = array('change_pass', ((!$pun_user['is_admmod']) ? 'req_old_password' : 'req_new_password1'));
+	$focus_element = array('change_pass', ((!$luna_user['is_admmod']) ? 'req_old_password' : 'req_new_password1'));
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
@@ -124,7 +124,7 @@ if ($action == 'change_pass')
 <form id="change_pass" method="post" action="profile.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
     <input type="hidden" name="form_sent" value="1" />
     <fieldset>
-    	<?php if (!$pun_user['is_admmod']): ?>        <label><strong><?php echo $lang['Old pass'] ?></strong><br />
+    	<?php if (!$luna_user['is_admmod']): ?>        <label><strong><?php echo $lang['Old pass'] ?></strong><br />
         <input class="form-control" type="password" name="req_old_password" /></label>
 <?php endif; ?>						<label><strong><?php echo $lang['New pass'] ?></strong><br />
         <input class="form-control" type="password" name="req_new_password1" /></label>
@@ -143,11 +143,11 @@ if ($action == 'change_pass')
 else if ($action == 'change_email')
 {
 	// Make sure we are allowed to change this user's email
-	if ($pun_user['id'] != $id)
+	if ($luna_user['id'] != $id)
 	{
-		if (!$pun_user['is_admmod']) // A regular user trying to change another user's email?
+		if (!$luna_user['is_admmod']) // A regular user trying to change another user's email?
 			message($lang['No permission'], false, '403 Forbidden');
-		else if ($pun_user['g_moderator'] == '1') // A moderator trying to change a user's email?
+		else if ($luna_user['g_moderator'] == '1') // A moderator trying to change a user's email?
 		{
 			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
@@ -155,7 +155,7 @@ else if ($action == 'change_email')
 
 			list($group_id, $is_moderator) = $db->fetch_row($result);
 
-			if ($pun_user['g_mod_edit_users'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
+			if ($luna_user['g_mod_edit_users'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
 				message($lang['No permission'], false, '403 Forbidden');
 		}
 	}
@@ -168,7 +168,7 @@ else if ($action == 'change_email')
 		list($new_email, $new_email_key) = $db->fetch_row($result);
 
 		if ($key == '' || $key != $new_email_key)
-			message($lang['Email key bad'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.');
+			message($lang['Email key bad'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
 		else
 		{
 			$db->query('UPDATE '.$db->prefix.'users SET email=activate_string, activate_string=NULL, activate_key=NULL WHERE id='.$id) or error('Unable to update email address', __FILE__, __LINE__, $db->error());
@@ -178,7 +178,7 @@ else if ($action == 'change_email')
 	}
 	else if (isset($_POST['form_sent']))
 	{
-		if (pun_hash($_POST['req_password']) !== $pun_user['password'])
+		if (luna_hash($_POST['req_password']) !== $luna_user['password'])
 			message($lang['Wrong pass']);
 
 		// Make sure they got here from the site
@@ -187,31 +187,31 @@ else if ($action == 'change_email')
 		require FORUM_ROOT.'include/email.php';
 
 		// Validate the email address
-		$new_email = strtolower(pun_trim($_POST['req_new_email']));
+		$new_email = strtolower(luna_trim($_POST['req_new_email']));
 		if (!is_valid_email($new_email))
 			message($lang['Invalid email']);
 
 		// Check if it's a banned email address
 		if (is_banned_email($new_email))
 		{
-			if ($pun_config['p_allow_banned_email'] == '0')
+			if ($luna_config['p_allow_banned_email'] == '0')
 				message($lang['Banned email']);
-			else if ($pun_config['o_mailing_list'] != '')
+			else if ($luna_config['o_mailing_list'] != '')
 			{
 				// Load the "banned email change" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/banned_email_change.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/banned_email_change.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
 				$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
 				$mail_message = trim(substr($mail_tpl, $first_crlf));
 
-				$mail_message = str_replace('<username>', $pun_user['username'], $mail_message);
+				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 				$mail_message = str_replace('<email>', $new_email, $mail_message);
 				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$id, $mail_message);
-				$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-				pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 			}
 		}
 
@@ -219,27 +219,27 @@ else if ($action == 'change_email')
 		$result = $db->query('SELECT id, username FROM '.$db->prefix.'users WHERE email=\''.$db->escape($new_email).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 		{
-			if ($pun_config['p_allow_dupe_email'] == '0')
+			if ($luna_config['p_allow_dupe_email'] == '0')
 				message($lang['Dupe email']);
-			else if ($pun_config['o_mailing_list'] != '')
+			else if ($luna_config['o_mailing_list'] != '')
 			{
 				while ($cur_dupe = $db->fetch_assoc($result))
 					$dupe_list[] = $cur_dupe['username'];
 
 				// Load the "dupe email change" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/dupe_email_change.tpl'));
+				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/dupe_email_change.tpl'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
 				$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
 				$mail_message = trim(substr($mail_tpl, $first_crlf));
 
-				$mail_message = str_replace('<username>', $pun_user['username'], $mail_message);
+				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 				$mail_message = str_replace('<dupe_list>', implode(', ', $dupe_list), $mail_message);
 				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$id, $mail_message);
-				$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-				pun_mail($pun_config['o_mailing_list'], $mail_subject, $mail_message);
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 			}
 		}
 
@@ -249,24 +249,24 @@ else if ($action == 'change_email')
 		$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($new_email).'\', activate_key=\''.$new_email_key.'\' WHERE id='.$id) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 		// Load the "activate email" template
-		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$pun_user['language'].'/mail_templates/activate_email.tpl'));
+		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/activate_email.tpl'));
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");
 		$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
 		$mail_message = trim(substr($mail_tpl, $first_crlf));
 
-		$mail_message = str_replace('<username>', $pun_user['username'], $mail_message);
+		$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 		$mail_message = str_replace('<base_url>', get_base_url(), $mail_message);
 		$mail_message = str_replace('<activation_url>', get_base_url().'/profile.php?action=change_email&id='.$id.'&key='.$new_email_key, $mail_message);
-		$mail_message = str_replace('<board_mailer>', $pun_config['o_board_title'], $mail_message);
+		$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-		pun_mail($new_email, $mail_subject, $mail_message);
+		luna_mail($new_email, $mail_subject, $mail_message);
 
-		message($lang['Activate email sent'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
+		message($lang['Activate email sent'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Change email']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change email']);
 	$required_fields = array('req_new_email' => $lang['New email'], 'req_password' => $lang['Password']);
 	$focus_element = array('change_email', 'req_new_email');
 	define('FORUM_ACTIVE_PAGE', 'profile');
@@ -292,10 +292,10 @@ else if ($action == 'change_email')
 
 else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 {
-	if ($pun_config['o_avatars'] == '0')
+	if ($luna_config['o_avatars'] == '0')
 		message($lang['Avatars disabled']);
 
-	if ($pun_user['id'] != $id && !$pun_user['is_admmod'])
+	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	if (isset($_POST['form_sent']))
@@ -346,14 +346,14 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 				message($lang['Bad type']);
 
 			// Make sure the file isn't too big
-			if ($uploaded_file['size'] > $pun_config['o_avatars_size'])
-				message($lang['Too large'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang['bytes'].'.');
+			if ($uploaded_file['size'] > $luna_config['o_avatars_size'])
+				message($lang['Too large'].' '.forum_number_format($luna_config['o_avatars_size']).' '.$lang['bytes'].'.');
 
 			// Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
-			if (!@move_uploaded_file($uploaded_file['tmp_name'], FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp'))
-				message($lang['Move failed'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.');
+			if (!@move_uploaded_file($uploaded_file['tmp_name'], FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp'))
+				message($lang['Move failed'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
 
-			list($width, $height, $type,) = @getimagesize(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
+			list($width, $height, $type,) = @getimagesize(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
 
 			// Determine type
 			if ($type == IMAGETYPE_GIF)
@@ -365,22 +365,22 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 			else
 			{
 				// Invalid type
-				@unlink(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
+				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
 				message($lang['Bad type']);
 			}
 
 			// Now check the width/height
-			if (empty($width) || empty($height) || $width > $pun_config['o_avatars_width'] || $height > $pun_config['o_avatars_height'])
+			if (empty($width) || empty($height) || $width > $luna_config['o_avatars_width'] || $height > $luna_config['o_avatars_height'])
 			{
-				@unlink(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp');
-				message($lang['Too wide or high'].' '.$pun_config['o_avatars_width'].'x'.$pun_config['o_avatars_height'].' '.$lang['pixels'].'.');
+				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
+				message($lang['Too wide or high'].' '.$luna_config['o_avatars_width'].'x'.$luna_config['o_avatars_height'].' '.$lang['pixels'].'.');
 			}
 
 
 			// Delete any old avatars and put the new one in place
 			delete_avatar($id);
-			@rename(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension);
-			@chmod(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$id.$extension, 0644);
+			@rename(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension);
+			@chmod(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension, 0644);
 		}
 		else
 			message($lang['Unknown failure']);
@@ -388,7 +388,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 		redirect('profile.php?section=personality&amp;id='.$id, $lang['Avatar upload redirect']);
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Upload avatar']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Upload avatar']);
 	$required_fields = array('req_file' => $lang['File']);
 	$focus_element = array('upload_avatar', 'req_file');
 	define('FORUM_ACTIVE_PAGE', 'profile');
@@ -403,9 +403,9 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
         <form id="upload_avatar" method="post" enctype="multipart/form-data" action="profile.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
-                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $pun_config['o_avatars_size'] ?>" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $luna_config['o_avatars_size'] ?>" />
                 <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" type="file" /></label>
-                <span class="help-block"><?php echo $lang['Avatar desc'].' '.$pun_config['o_avatars_width'].' x '.$pun_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($pun_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($pun_config['o_avatars_size']).').' ?></span>
+                <span class="help-block"><?php echo $lang['Avatar desc'].' '.$luna_config['o_avatars_width'].' x '.$luna_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($luna_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($luna_config['o_avatars_size']).').' ?></span>
             </fieldset>
             <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
         </form>
@@ -419,7 +419,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 
 else if ($action == 'delete_avatar')
 {
-	if ($pun_user['id'] != $id && !$pun_user['is_admmod'])
+	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
@@ -432,7 +432,7 @@ else if ($action == 'delete_avatar')
 
 else if (isset($_POST['update_group_membership']))
 {
-	if ($pun_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
@@ -482,7 +482,7 @@ else if (isset($_POST['update_group_membership']))
 
 else if (isset($_POST['update_forums']))
 {
-	if ($pun_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
@@ -523,7 +523,7 @@ else if (isset($_POST['update_forums']))
 
 else if (isset($_POST['ban']))
 {
-	if ($pun_user['g_id'] != FORUM_ADMIN && ($pun_user['g_moderator'] != '1' || $pun_user['g_mod_ban_users'] == '0'))
+	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
@@ -546,7 +546,7 @@ else if (isset($_POST['ban']))
 
 else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 {
-	if ($pun_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
 	// Get the username and group of the user we are deleting
@@ -633,7 +633,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 		redirect('index.php', $lang['User delete redirect']);
 	}
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Confirm delete user']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Confirm delete user']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
@@ -643,7 +643,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
     <fieldset>
         <div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.pun_htmlspecialchars($username).'</strong>' ?></h3>
+				<h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.luna_htmlspecialchars($username).'</strong>' ?></h3>
             </div>
             <div class="panel-body">
 				<?php echo $lang['Delete warning'] ?>
@@ -675,10 +675,10 @@ else if (isset($_POST['form_sent']))
 
 	list($old_username, $group_id, $is_moderator) = $db->fetch_row($result);
 
-	if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
-		(!$pun_user['is_admmod'] ||																	// and we are not an admin or mod
-		($pun_user['g_id'] != FORUM_ADMIN &&														// or we aren't an admin and ...
-		($pun_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
+	if ($luna_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
+		(!$luna_user['is_admmod'] ||																	// and we are not an admin or mod
+		($luna_user['g_id'] != FORUM_ADMIN &&														// or we aren't an admin and ...
+		($luna_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
 		$group_id == FORUM_ADMIN ||																	// or the user is an admin
 		$is_moderator))))																			// or the user is another mod
 		message($lang['No permission'], false, '403 Forbidden');
@@ -695,12 +695,12 @@ else if (isset($_POST['form_sent']))
 		{
 			$form = array();
 
-			if ($pun_user['is_admmod'])
+			if ($luna_user['is_admmod'])
 			{
-				$form['admin_note'] = pun_trim($_POST['admin_note']);
+				$form['admin_note'] = luna_trim($_POST['admin_note']);
 
 				// We only allow administrators to update the post count
-				if ($pun_user['g_id'] == FORUM_ADMIN)
+				if ($luna_user['g_id'] == FORUM_ADMIN)
 					$form['num_posts'] = intval($_POST['num_posts']);
 			}
 
@@ -710,22 +710,22 @@ else if (isset($_POST['form_sent']))
 		case 'personality':
 		{
 			$form = array(
-				'realname'		=> pun_trim($_POST['form']['realname']),
-				'url'			=> pun_trim($_POST['form']['url']),
-				'location'		=> pun_trim($_POST['form']['location']),
-				'jabber'		=> pun_trim($_POST['form']['jabber']),
-				'icq'			=> pun_trim($_POST['form']['icq']),
-				'msn'			=> pun_trim($_POST['form']['msn']),
-				'aim'			=> pun_trim($_POST['form']['aim']),
-				'yahoo'			=> pun_trim($_POST['form']['yahoo']),
+				'realname'		=> luna_trim($_POST['form']['realname']),
+				'url'			=> luna_trim($_POST['form']['url']),
+				'location'		=> luna_trim($_POST['form']['location']),
+				'jabber'		=> luna_trim($_POST['form']['jabber']),
+				'icq'			=> luna_trim($_POST['form']['icq']),
+				'msn'			=> luna_trim($_POST['form']['msn']),
+				'aim'			=> luna_trim($_POST['form']['aim']),
+				'yahoo'			=> luna_trim($_POST['form']['yahoo']),
 			);
 
-			if ($pun_user['is_admmod'])
+			if ($luna_user['is_admmod'])
 			{
 				// Are we allowed to change usernames?
-				if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_rename_users'] == '1'))
+				if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1'))
 				{
-					$form['username'] = pun_trim($_POST['req_username']);
+					$form['username'] = luna_trim($_POST['req_username']);
 
 					if ($form['username'] != $old_username)
 					{
@@ -740,12 +740,12 @@ else if (isset($_POST['form_sent']))
 				}
 			}
 
-			if ($pun_config['o_regs_verify'] == '0' || $pun_user['is_admmod'])
+			if ($luna_config['o_regs_verify'] == '0' || $luna_user['is_admmod'])
 			{
 				require FORUM_ROOT.'include/email.php';
 
 				// Validate the email address
-				$form['email'] = strtolower(pun_trim($_POST['req_email']));
+				$form['email'] = strtolower(luna_trim($_POST['req_email']));
 				if (!is_valid_email($form['email']))
 					message($lang['Invalid email']);
 			}
@@ -761,11 +761,11 @@ else if (isset($_POST['form_sent']))
 				$form['url'] = $url['url'];
 			}
 
-			if ($pun_user['g_id'] == FORUM_ADMIN)
-				$form['title'] = pun_trim($_POST['title']);
-			else if ($pun_user['g_set_title'] == '1')
+			if ($luna_user['g_id'] == FORUM_ADMIN)
+				$form['title'] = luna_trim($_POST['title']);
+			else if ($luna_user['g_set_title'] == '1')
 			{
-				$form['title'] = pun_trim($_POST['title']);
+				$form['title'] = luna_trim($_POST['title']);
 
 				if ($form['title'] != '')
 				{
@@ -783,20 +783,20 @@ else if (isset($_POST['form_sent']))
 				message($lang['Bad ICQ']);
 
 			// Clean up signature from POST
-			if ($pun_config['o_signatures'] == '1')
+			if ($luna_config['o_signatures'] == '1')
 			{
-				$form['signature'] = pun_linebreaks(pun_trim($_POST['signature']));
+				$form['signature'] = luna_linebreaks(luna_trim($_POST['signature']));
 
 				// Validate signature
-				if (pun_strlen($form['signature']) > $pun_config['p_sig_length'])
-					message(sprintf($lang['Sig too long'], $pun_config['p_sig_length'], pun_strlen($form['signature']) - $pun_config['p_sig_length']));
-				else if (substr_count($form['signature'], "\n") > ($pun_config['p_sig_lines']-1))
-					message(sprintf($lang['Sig too many lines'], $pun_config['p_sig_lines']));
-				else if ($form['signature'] && $pun_config['p_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$pun_user['is_admmod'])
+				if (luna_strlen($form['signature']) > $luna_config['p_sig_length'])
+					message(sprintf($lang['Sig too long'], $luna_config['p_sig_length'], luna_strlen($form['signature']) - $luna_config['p_sig_length']));
+				else if (substr_count($form['signature'], "\n") > ($luna_config['p_sig_lines']-1))
+					message(sprintf($lang['Sig too many lines'], $luna_config['p_sig_lines']));
+				else if ($form['signature'] && $luna_config['p_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$luna_user['is_admmod'])
 					$form['signature'] = utf8_ucwords(utf8_strtolower($form['signature']));
 
 				// Validate BBCode syntax
-				if ($pun_config['p_sig_bbcode'] == '1')
+				if ($luna_config['p_sig_bbcode'] == '1')
 				{
 					require FORUM_ROOT.'include/parser.php';
 
@@ -819,8 +819,8 @@ else if (isset($_POST['form_sent']))
 				'dst'				=> isset($_POST['form']['dst']) ? '1' : '0',
 				'time_format'		=> intval($_POST['form']['time_format']),
 				'date_format'		=> intval($_POST['form']['date_format']),
-				'disp_topics'		=> pun_trim($_POST['form']['disp_topics']),
-				'disp_posts'		=> pun_trim($_POST['form']['disp_posts']),
+				'disp_topics'		=> luna_trim($_POST['form']['disp_topics']),
+				'disp_posts'		=> luna_trim($_POST['form']['disp_posts']),
 				'show_smilies'		=> isset($_POST['form']['show_smilies']) ? '1' : '0',
 				'show_img'			=> isset($_POST['form']['show_img']) ? '1' : '0',
 				'show_img_sig'		=> isset($_POST['form']['show_img_sig']) ? '1' : '0',
@@ -853,7 +853,7 @@ else if (isset($_POST['form_sent']))
 			if (isset($_POST['form']['language']))
 			{
 				$languages = forum_list_langs();
-				$form['language'] = pun_trim($_POST['form']['language']);
+				$form['language'] = luna_trim($_POST['form']['language']);
 				if (!in_array($form['language'], $languages))
 					message($lang['Bad request'], false, '404 Not Found');
 			}
@@ -862,7 +862,7 @@ else if (isset($_POST['form_sent']))
 			if (isset($_POST['form']['style']))
 			{
 				$styles = forum_list_styles();
-				$form['style'] = pun_trim($_POST['form']['style']);
+				$form['style'] = luna_trim($_POST['form']['style']);
 				if (!in_array($form['style'], $styles))
 					message($lang['Bad request'], false, '404 Not Found');
 			}
@@ -871,13 +871,13 @@ else if (isset($_POST['form_sent']))
 			if (isset($_POST['form']['backstage_style']))
 			{
 				$backstage_styles = backstage_list_styles();
-				$form['backstage_style'] = pun_trim($_POST['form']['backstage_style']);
+				$form['backstage_style'] = luna_trim($_POST['form']['backstage_style']);
 				if (!in_array($form['backstage_style'], $backstage_styles))
 					message($lang['Bad request'], false, '404 Not Found');
 			}
 
 			if ($form['email_setting'] < 0 || $form['email_setting'] > 2)
-				$form['email_setting'] = $pun_config['o_default_email_setting'];
+				$form['email_setting'] = $luna_config['o_default_email_setting'];
 
 			break;
 		}
@@ -973,44 +973,44 @@ if ($user['signature'] != '')
 
 
 // View or edit?
-if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
-	(!$pun_user['is_admmod'] ||																	// and we are not an admin or mod
-	($pun_user['g_id'] != FORUM_ADMIN &&															// or we aren't an admin and ...
-	($pun_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
+if ($luna_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
+	(!$luna_user['is_admmod'] ||																	// and we are not an admin or mod
+	($luna_user['g_id'] != FORUM_ADMIN &&															// or we aren't an admin and ...
+	($luna_user['g_mod_edit_users'] == '0' ||													// mods aren't allowed to edit users
 	$user['g_id'] == FORUM_ADMIN ||																// or the user is an admin
 	$user['g_moderator'] == '1'))))																// or the user is another mod
 {
 	$user_personality = array();
 
 	$user_personality[] = '<tr><th class="col-md-2">'.$lang['Username'].'</th>';
-	$user_personality[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
+	$user_personality[] = '<td>'.luna_htmlspecialchars($user['username']).'</td></tr>';
 
 	$user_title_field = get_title($user);
 	$user_personality[] = '<tr><th>'.$lang['Title'].'</th>';
-	$user_personality[] = '<td>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
+	$user_personality[] = '<td>'.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
 
 	if ($user['realname'] != '')
 	{
 		$user_personality[] = '<tr><th>'.$lang['Realname'].'</th>';
-		$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
+		$user_personality[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
 	}
 
 	if ($user['location'] != '')
 	{
 		$user_personality[] = '<tr><th>'.$lang['Location'].'</th>';
-		$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
+		$user_personality[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
 	}
 
 	if ($user['url'] != '')
 	{
-		$user['url'] = pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
+		$user['url'] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
 		$user_personality[] = '<tr><th>'.$lang['Website'].'</th>';
 		$user_personality[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
 	}
 
-	if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-		$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
-	else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
+	if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+		$email_field = '<a href="mailto:'.luna_htmlspecialchars($user['email']).'">'.luna_htmlspecialchars($user['email']).'</a>';
+	else if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 		$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
 	else
 		$email_field = '';
@@ -1025,7 +1025,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	if ($user['jabber'] != '')
 	{
 		$user_messaging[] = '<tr><th>'.$lang['Jabber'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
+		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
 	}
 
 	if ($user['icq'] != '')
@@ -1037,22 +1037,22 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	if ($user['msn'] != '')
 	{
 		$user_messaging[] = '<tr><th>'.$lang['MSN'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
+		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
 	}
 
 	if ($user['aim'] != '')
 	{
 		$user_messaging[] = '<tr><th>'.$lang['AOL IM'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
+		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
 	}
 
 	if ($user['yahoo'] != '')
 	{
 		$user_messaging[] = '<tr><th>'.$lang['Yahoo'].'</th>';
-		$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
+		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
 	}
 
-	if ($pun_config['o_avatars'] == '1')
+	if ($luna_config['o_avatars'] == '1')
 	{
 		$avatar_field = generate_avatar_markup($id);
 		if ($avatar_field != '')
@@ -1062,7 +1062,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 		}
 	}
 
-	if ($pun_config['o_signatures'] == '1')
+	if ($luna_config['o_signatures'] == '1')
 	{
 		if (isset($parsed_signature))
 		{
@@ -1074,9 +1074,9 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	$user_activity = array();
 
 	$posts_field = '';
-	if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
+	if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
 		$posts_field = forum_number_format($user['num_posts']);
-	if ($pun_user['g_search'] == '1')
+	if ($luna_user['g_search'] == '1')
 	{
 		$quick_searches = array();
 		if ($user['num_posts'] > 0)
@@ -1084,7 +1084,7 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
 			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
 		}
-		if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
+		if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
 			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
 
 		if (!empty($quick_searches))
@@ -1105,13 +1105,13 @@ if ($pun_user['id'] != $id &&																	// If we aren't the user (i.e. edi
 	$user_activity[] = '<tr><th>'.$lang['Registered table'].'</th>';
 	$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), sprintf($lang['Users profile'], pun_htmlspecialchars($user['username'])));
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), sprintf($lang['Users profile'], luna_htmlspecialchars($user['username'])));
 	define('FORUM_ALLOW_INDEX', 1);
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
 ?>
-<h2><?php echo pun_htmlspecialchars($user['username']) ?></h2>
+<h2><?php echo luna_htmlspecialchars($user['username']) ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
@@ -1143,34 +1143,34 @@ else
 		$user_personality = array();
 	
 		$user_personality[] = '<tr><th class="col-md-2">'.$lang['Username'].'</th>';
-		$user_personality[] = '<td>'.pun_htmlspecialchars($user['username']).'</td></tr>';
+		$user_personality[] = '<td>'.luna_htmlspecialchars($user['username']).'</td></tr>';
 	
 		$user_title_field = get_title($user);
 		$user_personality[] = '<tr><th>'.$lang['Title'].'</th>';
-		$user_personality[] = '<td>'.(($pun_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
+		$user_personality[] = '<td>'.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
 	
 		if ($user['realname'] != '')
 		{
 			$user_personality[] = '<tr><th>'.$lang['Realname'].'</th>';
-			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
+			$user_personality[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
 		}
 	
 		if ($user['location'] != '')
 		{
 			$user_personality[] = '<tr><th>'.$lang['Location'].'</th>';
-			$user_personality[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
+			$user_personality[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
 		}
 	
 		if ($user['url'] != '')
 		{
-			$user['url'] = pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
+			$user['url'] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
 			$user_personality[] = '<tr><th>'.$lang['Website'].'</th>';
 			$user_personality[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
 		}
 	
-		if ($user['email_setting'] == '0' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
-			$email_field = '<a href="mailto:'.pun_htmlspecialchars($user['email']).'">'.pun_htmlspecialchars($user['email']).'</a>';
-		else if ($user['email_setting'] == '1' && !$pun_user['is_guest'] && $pun_user['g_send_email'] == '1')
+		if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+			$email_field = '<a href="mailto:'.luna_htmlspecialchars($user['email']).'">'.luna_htmlspecialchars($user['email']).'</a>';
+		else if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 			$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
 		else
 			$email_field = '';
@@ -1185,7 +1185,7 @@ else
 		if ($user['jabber'] != '')
 		{
 			$user_messaging[] = '<tr><th>'.$lang['Jabber'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
+			$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
 		}
 	
 		if ($user['icq'] != '')
@@ -1197,22 +1197,22 @@ else
 		if ($user['msn'] != '')
 		{
 			$user_messaging[] = '<tr><th>'.$lang['MSN'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
+			$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
 		}
 	
 		if ($user['aim'] != '')
 		{
 			$user_messaging[] = '<tr><th>'.$lang['AOL IM'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
+			$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
 		}
 	
 		if ($user['yahoo'] != '')
 		{
 			$user_messaging[] = '<tr><th>'.$lang['Yahoo'].'</th>';
-			$user_messaging[] = '<td>'.pun_htmlspecialchars(($pun_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
+			$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
 		}
 	
-		if ($pun_config['o_avatars'] == '1')
+		if ($luna_config['o_avatars'] == '1')
 		{
 			$avatar_field = generate_avatar_markup($id);
 			if ($avatar_field != '')
@@ -1222,7 +1222,7 @@ else
 			}
 		}
 	
-		if ($pun_config['o_signatures'] == '1')
+		if ($luna_config['o_signatures'] == '1')
 		{
 			if (isset($parsed_signature))
 			{
@@ -1234,9 +1234,9 @@ else
 		$user_activity = array();
 	
 		$posts_field = '';
-		if ($pun_config['o_show_post_count'] == '1' || $pun_user['is_admmod'])
+		if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
 			$posts_field = forum_number_format($user['num_posts']);
-		if ($pun_user['g_search'] == '1')
+		if ($luna_user['g_search'] == '1')
 		{
 			$quick_searches = array();
 			if ($user['num_posts'] > 0)
@@ -1244,7 +1244,7 @@ else
 				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
 				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
 			}
-			if ($pun_user['is_admmod'] && $pun_config['o_topic_subscriptions'] == '1')
+			if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
 				$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
 	
 			if (!empty($quick_searches))
@@ -1265,7 +1265,7 @@ else
 		$user_activity[] = '<tr><th>'.$lang['Registered table'].'</th>';
 		$user_activity[] = '<td>'.format_time($user['registered'], true).'</td></tr>';
 	
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang['Profile']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
@@ -1274,7 +1274,7 @@ else
 ?>
 
 <div class="col-md-10">
-	<h2><?php echo pun_htmlspecialchars($user['username']) ?> <small><?php echo $lang['View info'] ?></small></h2>
+	<h2><?php echo luna_htmlspecialchars($user['username']) ?> <small><?php echo $lang['View info'] ?></small></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
@@ -1300,29 +1300,29 @@ else
 	}
 	else if ($section == 'personality')
 	{
-		if ($pun_user['is_admmod'])
+		if ($luna_user['is_admmod'])
 		{
-			if ($pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_mod_rename_users'] == '1')
-				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_username" value="'.pun_htmlspecialchars($user['username']).'" maxlength="25" /></div></div>'."\n";
+			if ($luna_user['g_id'] == FORUM_ADMIN || $luna_user['g_mod_rename_users'] == '1')
+				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user['username']).'" maxlength="25" /></div></div>'."\n";
 			else
-				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10">'.pun_htmlspecialchars($user['username']).'</div></div>'."\n";
+				$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10">'.luna_htmlspecialchars($user['username']).'</div></div>'."\n";
 
-			$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.pun_htmlspecialchars($user['email']).'" maxlength="80" /> <a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></div></div>'."\n";
+			$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" /> <a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></div></div>'."\n";
 		}
 		else
 		{
-			$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input class="form-control" type="text"  value="'.pun_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
+			$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
 
-			if ($pun_config['o_regs_verify'] == '1')
-				$email_field = '<p>'.sprintf($lang['Email info'], pun_htmlspecialchars($user['email']).' &middot; <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
+			if ($luna_config['o_regs_verify'] == '1')
+				$email_field = '<p>'.sprintf($lang['Email info'], luna_htmlspecialchars($user['email']).' &middot; <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
 			else
 				$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
 		}
 		
-		if ($pun_user['g_set_title'] == '1')
-			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input class="form-control" type="text" class="form-control" name="title" value="'.pun_htmlspecialchars($user['title']).'" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
+		if ($luna_user['g_set_title'] == '1')
+			$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
 			
-		if ($pun_config['o_avatars'] == '0' && $pun_config['o_signatures'] == '0')
+		if ($luna_config['o_avatars'] == '0' && $luna_config['o_signatures'] == '0')
 			message($lang['Bad request'], false, '404 Not Found');
 
 		$avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
@@ -1338,7 +1338,7 @@ else
 		else
 			$signature_preview = '<p>'.$lang['No sig'].'</p>'."\n";
 			
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
 		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
@@ -1356,7 +1356,7 @@ else
                 <fieldset>
                     <input type="hidden" name="form_sent" value="1" />
                     <?php echo $username_field ?>
-					<?php if ($pun_user['id'] == $id || $pun_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $pun_user['g_mod_change_passwords'] == '1')): ?>
+					<?php if ($luna_user['id'] == $id || $luna_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')): ?>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
                         <div class="col-sm-10">
@@ -1370,7 +1370,7 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Realname'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[realname]" value="<?php echo pun_htmlspecialchars($user['realname']) ?>" maxlength="40" />
+                            <input type="text" class="form-control" name="form[realname]" value="<?php echo luna_htmlspecialchars($user['realname']) ?>" maxlength="40" />
                         </div>
                     </div>
                     <?php if (isset($title_field)): ?>
@@ -1379,21 +1379,21 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Location'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[location]" value="<?php echo pun_htmlspecialchars($user['location']) ?>" maxlength="30" />
+                            <input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
                         </div>
                     </div>
                     <hr />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Website'] ?></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="form[url]" value="<?php echo pun_htmlspecialchars($user['url']) ?>" maxlength="80" />
+                            <input type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" />
                         </div>
                     </div>
                     <hr />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Jabber'] ?></label>
                         <div class="col-sm-10">
-                            <input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo pun_htmlspecialchars($user['jabber']) ?>" maxlength="75" />
+                            <input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo luna_htmlspecialchars($user['jabber']) ?>" maxlength="75" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -1405,25 +1405,25 @@ else
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['MSN'] ?></label>
                         <div class="col-sm-10">
-                            <input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo pun_htmlspecialchars($user['msn']) ?>" maxlength="50" />
+                            <input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['AOL IM'] ?></label>
                         <div class="col-sm-10">
-                            <input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo pun_htmlspecialchars($user['aim']) ?>" maxlength="30" />
+                            <input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo luna_htmlspecialchars($user['aim']) ?>" maxlength="30" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Yahoo'] ?></label>
                         <div class="col-sm-10">
-                            <input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo pun_htmlspecialchars($user['yahoo']) ?>" maxlength="30" />
+                            <input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo luna_htmlspecialchars($user['yahoo']) ?>" maxlength="30" />
                         </div>
                     </div>
                 </fieldset>
             </div>
         </div>
-<?php if ($pun_config['o_avatars'] == '1'): ?>
+<?php if ($luna_config['o_avatars'] == '1'): ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang['Avatar legend'] ?></h3>
@@ -1438,7 +1438,7 @@ else
                 </fieldset>
             </div>
         </div>
-<?php endif; if ($pun_config['o_signatures'] == '1'): ?>
+<?php endif; if ($luna_config['o_signatures'] == '1'): ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang['Signature legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
@@ -1446,12 +1446,12 @@ else
             <div class="panel-body">
                 <fieldset>
                     <p><?php echo $lang['Signature info'] ?></p>
-                    <label><?php printf($lang['Sig max size'], forum_number_format($pun_config['p_sig_length']), $pun_config['p_sig_lines']) ?><br />
-                    <textarea class="form-control full-form" name="signature" rows="4" cols="65"><?php echo pun_htmlspecialchars($user['signature']) ?></textarea></label>
+                    <label><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?><br />
+                    <textarea class="form-control full-form" name="signature" rows="4" cols="65"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea></label>
                     <ul class="bblinks">
-                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-                        <li><a class="label <?php echo ($pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-                        <li><a class="label <?php echo ($pun_config['o_smilies_sig'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
+                        <li><a class="label <?php echo ($luna_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
+                        <li><a class="label <?php echo ($luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
+                        <li><a class="label <?php echo ($luna_config['o_smilies_sig'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
                     </ul>
                     <?php echo $signature_preview ?>
                 </fieldset>
@@ -1465,7 +1465,7 @@ else
 	else if ($section == 'settings')
 	{
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section settings']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section settings']);
 		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
@@ -1625,7 +1625,7 @@ else
                     </div>
 <?php
 		}
-		if ($pun_user['is_admmod']) {
+		if ($luna_user['is_admmod']) {
 			$backstage_styles = backstage_list_styles();
 	
 			// Only display the style selection box if there's more than one style available
@@ -1653,19 +1653,19 @@ else
 <?php
 			}
 		}
-		if ($pun_config['o_smilies'] == '1' || $pun_config['o_smilies_sig'] == '1' || $pun_config['o_signatures'] == '1' || $pun_config['o_avatars'] == '1' || ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1')): ?>
+		if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1')): ?>
                     <hr />
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Post display'] ?></label>
                         <div class="col-sm-10">
-<?php if ($pun_config['o_smilies'] == '1' || $pun_config['o_smilies_sig'] == '1'): ?>
+<?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1'): ?>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked="checked"' ?> />
                                     <?php echo $lang['Show smilies'] ?>
                                 </label>
                             </div>
-<?php endif; if ($pun_config['o_signatures'] == '1'): ?>
+<?php endif; if ($luna_config['o_signatures'] == '1'): ?>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked="checked"' ?> />
@@ -1673,21 +1673,21 @@ else
 
                                 </label>
                             </div>
-<?php endif; if ($pun_config['o_avatars'] == '1'): ?>
+<?php endif; if ($luna_config['o_avatars'] == '1'): ?>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked="checked"' ?> />
                                     <?php echo $lang['Show avatars'] ?>
                                 </label>
                             </div>
-<?php endif; if ($pun_config['p_message_bbcode'] == '1' && $pun_config['p_message_img_tag'] == '1'): ?>
+<?php endif; if ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1'): ?>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked="checked"' ?> />
                                     <?php echo $lang['Show images'] ?>
                                 </label>
                             </div>
-<?php endif; if ($pun_config['o_signatures'] == '1' && $pun_config['p_sig_bbcode'] == '1' && $pun_config['p_sig_img_tag'] == '1'): ?>
+<?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> />
@@ -1735,7 +1735,7 @@ else
 							</div>
                         </div>
                     </div>
-<?php if ($pun_config['o_forum_subscriptions'] == '1' || $pun_config['o_topic_subscriptions'] == '1'): ?>
+<?php if ($luna_config['o_forum_subscriptions'] == '1' || $luna_config['o_topic_subscriptions'] == '1'): ?>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Subscriptions head'] ?></label>
                         <div class="col-sm-10">
@@ -1745,7 +1745,7 @@ else
                                     <?php echo $lang['Notify full'] ?>
                                 </label>
 							</div>
-<?php if ($pun_config['o_topic_subscriptions'] == '1'): ?>
+<?php if ($luna_config['o_topic_subscriptions'] == '1'): ?>
 							<div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked="checked"' ?> />
@@ -1765,10 +1765,10 @@ else
 	}
 	else if ($section == 'admin')
 	{
-		if (!$pun_user['is_admmod'] || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '0'))
+		if (!$luna_user['is_admmod'] || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '0'))
 			message($lang['Bad request'], false, '403 Forbidden');
 
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
 		define('FORUM_ACTIVE_PAGE', 'profile');
 		require FORUM_ROOT.'header.php';
 
@@ -1780,7 +1780,7 @@ else
     <form id="profile7" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>">
 <?php
 
-		if ($pun_user['g_moderator'] == '1')
+		if ($luna_user['g_moderator'] == '1')
 		{
 
 ?>
@@ -1800,7 +1800,7 @@ else
 		}
 		else
 		{
-			if ($pun_user['id'] != $id)
+			if ($luna_user['id'] != $id)
 			{
 
 ?>
@@ -1817,10 +1817,10 @@ else
 
 				while ($cur_group = $db->fetch_assoc($result))
 				{
-					if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $pun_config['o_default_user_group'] && $user['g_id'] == ''))
-						echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+					if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
+						echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 					else
-						echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.pun_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+						echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 				}
 
 ?>
@@ -1872,13 +1872,13 @@ else
 						if ($cur_category != 0)
 							echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
 
-						echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.pun_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'<div>';
+						echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'<div>';
 						$cur_category = $cur_forum['cid'];
 					}
 
 					$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
-					echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked="checked"' : '').' /> '.pun_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
+					echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked="checked"' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
 				}
 
 ?>
@@ -1890,7 +1890,7 @@ else
 			}
 		}
 
-		if ($pun_user['g_id'] == FORUM_ADMIN)
+		if ($luna_user['g_id'] == FORUM_ADMIN)
 			$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" maxlength="8" /></div></div>';
 		else
 			$posts_field = '';
@@ -1907,11 +1907,11 @@ else
                 <input type="hidden" name="form_sent" value="1" />
                 <fieldset>
                     <?php echo $posts_field ?>
-					<?php if ($pun_user['is_admmod']): ?>
+					<?php if ($luna_user['is_admmod']): ?>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><?php echo $lang['Admin note'] ?></label>
                         <div class="col-sm-10">
-                            <input id="admin_note" type="text" class="form-control full-form" name="admin_note" value="<?php echo pun_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
+                            <input id="admin_note" type="text" class="form-control full-form" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
                         </div>
                     </div>
                     <?php endif; ?>

@@ -21,9 +21,9 @@ function get_microtime()
 //
 // Cookie stuff!
 //
-function check_cookie(&$pun_user)
+function check_cookie(&$luna_user)
 {
-	global $db, $db_type, $pun_config, $cookie_name, $cookie_seed;
+	global $db, $db_type, $luna_config, $cookie_name, $cookie_seed;
 
 	$now = time();
 
@@ -45,7 +45,7 @@ function check_cookie(&$pun_user)
 		if (forum_hmac($cookie['user_id'].'|'.$cookie['expiration_time'], $cookie_seed.'_cookie_hash') != $cookie['cookie_hash'])
 		{
 			$expire = $now + 31536000; // The cookie expires after a year
-			pun_setcookie(1, pun_hash(uniqid(rand(), true)), $expire);
+			luna_setcookie(1, luna_hash(uniqid(rand(), true)), $expire);
 			set_default_user();
 
 			return;
@@ -53,42 +53,42 @@ function check_cookie(&$pun_user)
 
 		// Check if there's a user with the user ID and password hash from the cookie
 		$result = $db->query('SELECT u.*, g.*, o.logged, o.idle FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id LEFT JOIN '.$db->prefix.'online AS o ON o.user_id=u.id WHERE u.id='.intval($cookie['user_id'])) or error('Unable to fetch user information', __FILE__, __LINE__, $db->error());
-		$pun_user = $db->fetch_assoc($result);
+		$luna_user = $db->fetch_assoc($result);
 
 		// If user authorisation failed
-		if (!isset($pun_user['id']) || forum_hmac($pun_user['password'], $cookie_seed.'_password_hash') !== $cookie['password_hash'])
+		if (!isset($luna_user['id']) || forum_hmac($luna_user['password'], $cookie_seed.'_password_hash') !== $cookie['password_hash'])
 		{
 			$expire = $now + 31536000; // The cookie expires after a year
-			pun_setcookie(1, pun_hash(uniqid(rand(), true)), $expire);
+			luna_setcookie(1, luna_hash(uniqid(rand(), true)), $expire);
 			set_default_user();
 
 			return;
 		}
 
 		// Send a new, updated cookie with a new expiration timestamp
-		$expire = ($cookie['expiration_time'] > $now + $pun_config['o_timeout_visit']) ? $now + 1209600 : $now + $pun_config['o_timeout_visit'];
-		pun_setcookie($pun_user['id'], $pun_user['password'], $expire);
+		$expire = ($cookie['expiration_time'] > $now + $luna_config['o_timeout_visit']) ? $now + 1209600 : $now + $luna_config['o_timeout_visit'];
+		luna_setcookie($luna_user['id'], $luna_user['password'], $expire);
 
 		// Set a default language if the user selected language no longer exists
-		if (!file_exists(FORUM_ROOT.'lang/'.$pun_user['language']))
-			$pun_user['language'] = $pun_config['o_default_lang'];
+		if (!file_exists(FORUM_ROOT.'lang/'.$luna_user['language']))
+			$luna_user['language'] = $luna_config['o_default_lang'];
 
 		// Set a default style if the user selected style no longer exists
-		if (!file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'.css'))
-			$pun_user['style'] = $pun_config['o_default_style'];
+		if (!file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'.css'))
+			$luna_user['style'] = $luna_config['o_default_style'];
 
-		if (!$pun_user['disp_topics'])
-			$pun_user['disp_topics'] = $pun_config['o_disp_topics_default'];
-		if (!$pun_user['disp_posts'])
-			$pun_user['disp_posts'] = $pun_config['o_disp_posts_default'];
+		if (!$luna_user['disp_topics'])
+			$luna_user['disp_topics'] = $luna_config['o_disp_topics_default'];
+		if (!$luna_user['disp_posts'])
+			$luna_user['disp_posts'] = $luna_config['o_disp_posts_default'];
 
 		// Define this if you want this visit to affect the online list and the users last visit data
 		if (!defined('FORUM_QUIET_VISIT'))
 		{
 			// Update the online list
-			if (!$pun_user['logged'])
+			if (!$luna_user['logged'])
 			{
-				$pun_user['logged'] = $now;
+				$luna_user['logged'] = $now;
 
 				// With MySQL/MySQLi/SQLite, REPLACE INTO avoids a user having two rows in the online table
 				switch ($db_type)
@@ -99,11 +99,11 @@ function check_cookie(&$pun_user)
 					case 'mysqli_innodb':
 					case 'sqlite':
 					case 'sqlite3':
-						$db->query('REPLACE INTO '.$db->prefix.'online (user_id, ident, logged) VALUES('.$pun_user['id'].', \''.$db->escape($pun_user['username']).'\', '.$pun_user['logged'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
+						$db->query('REPLACE INTO '.$db->prefix.'online (user_id, ident, logged) VALUES('.$luna_user['id'].', \''.$db->escape($luna_user['username']).'\', '.$luna_user['logged'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
 						break;
 
 					default:
-						$db->query('INSERT INTO '.$db->prefix.'online (user_id, ident, logged) SELECT '.$pun_user['id'].', \''.$db->escape($pun_user['username']).'\', '.$pun_user['logged'].' WHERE NOT EXISTS (SELECT 1 FROM '.$db->prefix.'online WHERE user_id='.$pun_user['id'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
+						$db->query('INSERT INTO '.$db->prefix.'online (user_id, ident, logged) SELECT '.$luna_user['id'].', \''.$db->escape($luna_user['username']).'\', '.$luna_user['logged'].' WHERE NOT EXISTS (SELECT 1 FROM '.$db->prefix.'online WHERE user_id='.$luna_user['id'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
 						break;
 				}
 
@@ -113,28 +113,28 @@ function check_cookie(&$pun_user)
 			else
 			{
 				// Special case: We've timed out, but no other user has browsed the forums since we timed out
-				if ($pun_user['logged'] < ($now-$pun_config['o_timeout_visit']))
+				if ($luna_user['logged'] < ($now-$luna_config['o_timeout_visit']))
 				{
-					$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$pun_user['logged'].' WHERE id='.$pun_user['id']) or error('Unable to update user visit data', __FILE__, __LINE__, $db->error());
-					$pun_user['last_visit'] = $pun_user['logged'];
+					$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$luna_user['logged'].' WHERE id='.$luna_user['id']) or error('Unable to update user visit data', __FILE__, __LINE__, $db->error());
+					$luna_user['last_visit'] = $luna_user['logged'];
 				}
 
-				$idle_sql = ($pun_user['idle'] == '1') ? ', idle=0' : '';
-				$db->query('UPDATE '.$db->prefix.'online SET logged='.$now.$idle_sql.' WHERE user_id='.$pun_user['id']) or error('Unable to update online list', __FILE__, __LINE__, $db->error());
+				$idle_sql = ($luna_user['idle'] == '1') ? ', idle=0' : '';
+				$db->query('UPDATE '.$db->prefix.'online SET logged='.$now.$idle_sql.' WHERE user_id='.$luna_user['id']) or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 
 				// Update tracked topics with the current expire time
 				if (isset($_COOKIE[$cookie_name.'_track']))
-					forum_setcookie($cookie_name.'_track', $_COOKIE[$cookie_name.'_track'], $now + $pun_config['o_timeout_visit']);
+					forum_setcookie($cookie_name.'_track', $_COOKIE[$cookie_name.'_track'], $now + $luna_config['o_timeout_visit']);
 			}
 		}
 		else
 		{
-			if (!$pun_user['logged'])
-				$pun_user['logged'] = $pun_user['last_visit'];
+			if (!$luna_user['logged'])
+				$luna_user['logged'] = $luna_user['last_visit'];
 		}
 
-		$pun_user['is_guest'] = false;
-		$pun_user['is_admmod'] = $pun_user['g_id'] == FORUM_ADMIN || $pun_user['g_moderator'] == '1';
+		$luna_user['is_guest'] = false;
+		$luna_user['is_admmod'] = $luna_user['g_id'] == FORUM_ADMIN || $luna_user['g_moderator'] == '1';
 	}
 	else
 		set_default_user();
@@ -157,18 +157,18 @@ function escape_cdata($str)
 //
 function authenticate_user($user, $password, $password_is_hash = false)
 {
-	global $db, $pun_user;
+	global $db, $luna_user;
 
 	// Check if there's a user matching $user and $password
 	$result = $db->query('SELECT u.*, g.*, o.logged, o.idle FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON o.user_id=u.id WHERE '.(is_int($user) ? 'u.id='.intval($user) : 'u.username=\''.$db->escape($user).'\'')) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-	$pun_user = $db->fetch_assoc($result);
+	$luna_user = $db->fetch_assoc($result);
 
-	if (!isset($pun_user['id']) ||
-		($password_is_hash && $password != $pun_user['password']) ||
-		(!$password_is_hash && pun_hash($password) != $pun_user['password']))
+	if (!isset($luna_user['id']) ||
+		($password_is_hash && $password != $luna_user['password']) ||
+		(!$password_is_hash && luna_hash($password) != $luna_user['password']))
 		set_default_user();
 	else
-		$pun_user['is_guest'] = false;
+		$luna_user['is_guest'] = false;
 }
 
 
@@ -221,16 +221,16 @@ function get_current_protocol()
 //
 function get_base_url($support_https = false)
 {
-	global $pun_config;
+	global $luna_config;
 	static $base_url;
 
 	if (!$support_https)
-		return $pun_config['o_base_url'];
+		return $luna_config['o_base_url'];
 
 	if (!isset($base_url))
 	{
 		// Make sure we are using the correct protocol
-		$base_url = str_replace(array('http://', 'https://'), get_current_protocol().'://', $pun_config['o_base_url']);
+		$base_url = str_replace(array('http://', 'https://'), get_current_protocol().'://', $luna_config['o_base_url']);
 	}
 
 	return $base_url;
@@ -254,15 +254,15 @@ function get_admin_ids()
 		require FORUM_CACHE_DIR.'cache_admins.php';  
 	}
 	
-	return $pun_admins;  
+	return $luna_admins;  
 }
 
 //
-// Fill $pun_user with default values (for guests)
+// Fill $luna_user with default values (for guests)
 //
 function set_default_user()
 {
-	global $db, $db_type, $pun_user, $pun_config;
+	global $db, $db_type, $luna_user, $luna_config;
 
 	$remote_addr = get_remote_address();
 
@@ -271,12 +271,12 @@ function set_default_user()
 	if (!$db->num_rows($result))
 		exit('Unable to fetch guest information. Your database must contain both a guest user and a guest user group.');
 
-	$pun_user = $db->fetch_assoc($result);
+	$luna_user = $db->fetch_assoc($result);
 
 	// Update online list
-	if (!$pun_user['logged'])
+	if (!$luna_user['logged'])
 	{
-		$pun_user['logged'] = time();
+		$luna_user['logged'] = time();
 
 		// With MySQL/MySQLi/QLite, REPLACE INTO avoids a user having two rows in the online table
 		switch ($db_type)
@@ -287,25 +287,25 @@ function set_default_user()
 			case 'mysqli_innodb':
 			case 'sqlite':
 			case 'sqlite3':
-				$db->query('REPLACE INTO '.$db->prefix.'online (user_id, ident, logged) VALUES(1, \''.$db->escape($remote_addr).'\', '.$pun_user['logged'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
+				$db->query('REPLACE INTO '.$db->prefix.'online (user_id, ident, logged) VALUES(1, \''.$db->escape($remote_addr).'\', '.$luna_user['logged'].')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
 				break;
 
 			default:
-				$db->query('INSERT INTO '.$db->prefix.'online (user_id, ident, logged) SELECT 1, \''.$db->escape($remote_addr).'\', '.$pun_user['logged'].' WHERE NOT EXISTS (SELECT 1 FROM '.$db->prefix.'online WHERE ident=\''.$db->escape($remote_addr).'\')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'online (user_id, ident, logged) SELECT 1, \''.$db->escape($remote_addr).'\', '.$luna_user['logged'].' WHERE NOT EXISTS (SELECT 1 FROM '.$db->prefix.'online WHERE ident=\''.$db->escape($remote_addr).'\')') or error('Unable to insert into online list', __FILE__, __LINE__, $db->error());
 				break;
 		}
 	}
 	else
 		$db->query('UPDATE '.$db->prefix.'online SET logged='.time().' WHERE ident=\''.$db->escape($remote_addr).'\'') or error('Unable to update online list', __FILE__, __LINE__, $db->error());
 
-	$pun_user['disp_topics'] = $pun_config['o_disp_topics_default'];
-	$pun_user['disp_posts'] = $pun_config['o_disp_posts_default'];
-	$pun_user['timezone'] = $pun_config['o_default_timezone'];
-	$pun_user['dst'] = $pun_config['o_default_dst'];
-	$pun_user['language'] = $pun_config['o_default_lang'];
-	$pun_user['style'] = $pun_config['o_default_style'];
-	$pun_user['is_guest'] = true;
-	$pun_user['is_admmod'] = false;
+	$luna_user['disp_topics'] = $luna_config['o_disp_topics_default'];
+	$luna_user['disp_posts'] = $luna_config['o_disp_posts_default'];
+	$luna_user['timezone'] = $luna_config['o_default_timezone'];
+	$luna_user['dst'] = $luna_config['o_default_dst'];
+	$luna_user['language'] = $luna_config['o_default_lang'];
+	$luna_user['style'] = $luna_config['o_default_style'];
+	$luna_user['is_guest'] = true;
+	$luna_user['is_admmod'] = false;
 }
 
 
@@ -348,7 +348,7 @@ function forum_hmac($data, $key, $raw_output = false)
 // Set a cookie, ModernBB style!
 // Wrapper for forum_setcookie
 //
-function pun_setcookie($user_id, $password_hash, $expire)
+function luna_setcookie($user_id, $password_hash, $expire)
 {
 	global $cookie_name, $cookie_seed;
 
@@ -361,9 +361,9 @@ function pun_setcookie($user_id, $password_hash, $expire)
 //
 function forum_setcookie($name, $value, $expire)
 {
-	global $cookie_path, $cookie_domain, $cookie_secure, $pun_config;  
+	global $cookie_path, $cookie_domain, $cookie_secure, $luna_config;  
   
-	if ($expire - time() - $pun_config['o_timeout_visit'] < 1)  
+	if ($expire - time() - $luna_config['o_timeout_visit'] < 1)  
 		$expire = 0;
 
 	// Enable sending of a P3P header
@@ -381,10 +381,10 @@ function forum_setcookie($name, $value, $expire)
 //
 function check_bans()
 {
-	global $db, $pun_config, $lang, $pun_user, $pun_bans;
+	global $db, $luna_config, $lang, $luna_user, $luna_bans;
 
 	// Admins and moderators aren't affected
-	if ($pun_user['is_admmod'] || !$pun_bans)
+	if ($luna_user['is_admmod'] || !$luna_bans)
 		return;
 
 	// Add a dot or a colon (depending on IPv4/IPv6) at the end of the IP address to prevent banned address
@@ -395,7 +395,7 @@ function check_bans()
 	$bans_altered = false;
 	$is_banned = false;
 
-	foreach ($pun_bans as $cur_ban)
+	foreach ($luna_bans as $cur_ban)
 	{
 		// Has this ban expired?
 		if ($cur_ban['expire'] != '' && $cur_ban['expire'] <= time())
@@ -405,7 +405,7 @@ function check_bans()
 			continue;
 		}
 
-		if ($cur_ban['username'] != '' && utf8_strtolower($pun_user['username']) == utf8_strtolower($cur_ban['username']))
+		if ($cur_ban['username'] != '' && utf8_strtolower($luna_user['username']) == utf8_strtolower($cur_ban['username']))
 			$is_banned = true;
 
 		if ($cur_ban['ip'] != '')
@@ -431,8 +431,8 @@ function check_bans()
 
 		if ($is_banned)
 		{
-			$db->query('DELETE FROM '.$db->prefix.'online WHERE ident=\''.$db->escape($pun_user['username']).'\'') or error('Unable to delete from online list', __FILE__, __LINE__, $db->error());
-			message($lang['Ban message'].' '.(($cur_ban['expire'] != '') ? $lang['Ban message 2'].' '.strtolower(format_time($cur_ban['expire'], true)).'. ' : '').(($cur_ban['message'] != '') ? $lang['Ban message 3'].'<br /><br /><strong>'.pun_htmlspecialchars($cur_ban['message']).'</strong><br /><br />' : '<br /><br />').$lang['Ban message 4'].' <a href="mailto:'.pun_htmlspecialchars($pun_config['o_admin_email']).'">'.pun_htmlspecialchars($pun_config['o_admin_email']).'</a>.', true);
+			$db->query('DELETE FROM '.$db->prefix.'online WHERE ident=\''.$db->escape($luna_user['username']).'\'') or error('Unable to delete from online list', __FILE__, __LINE__, $db->error());
+			message($lang['Ban message'].' '.(($cur_ban['expire'] != '') ? $lang['Ban message 2'].' '.strtolower(format_time($cur_ban['expire'], true)).'. ' : '').(($cur_ban['message'] != '') ? $lang['Ban message 3'].'<br /><br /><strong>'.luna_htmlspecialchars($cur_ban['message']).'</strong><br /><br />' : '<br /><br />').$lang['Ban message 4'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 		}
 	}
 
@@ -452,7 +452,7 @@ function check_bans()
 //
 function check_username($username, $exclude_id = null)
 {
-	global $db, $pun_config, $errors, $lang, $pun_bans;
+	global $db, $luna_config, $errors, $lang, $luna_bans;
 
 	// Include UTF-8 function
 	require_once FORUM_ROOT.'include/utf8/strcasecmp.php';
@@ -461,9 +461,9 @@ function check_username($username, $exclude_id = null)
 	$username = preg_replace('%\s+%s', ' ', $username);
 
 	// Validate username
-	if (pun_strlen($username) < 2)
+	if (luna_strlen($username) < 2)
 		$errors[] = $lang['Username too short'];
-	else if (pun_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
+	else if (luna_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
 		$errors[] = $lang['Username too long'];
 	else if (!strcasecmp($username, 'Guest') || !utf8_strcasecmp($username, $lang['Guest']))
 		$errors[] = $lang['Username guest'];
@@ -475,7 +475,7 @@ function check_username($username, $exclude_id = null)
 		$errors[] = $lang['Username BBCode'];
 
 	// Check username for any censored words
-	if ($pun_config['o_censoring'] == '1' && censor_words($username) != $username)
+	if ($luna_config['o_censoring'] == '1' && censor_words($username) != $username)
 		$errors[] = $lang['Username censor'];
 
 	// Check that the username (or a too similar username) is not already registered
@@ -486,11 +486,11 @@ function check_username($username, $exclude_id = null)
 	if ($db->num_rows($result))
 	{
 		$busy = $db->result($result);
-		$errors[] = $lang['Username dupe 1'].' '.pun_htmlspecialchars($busy).'. '.$lang['Username dupe 2'];
+		$errors[] = $lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2'];
 	}
 
 	// Check username for any banned usernames
-	foreach ($pun_bans as $cur_ban)
+	foreach ($luna_bans as $cur_ban)
 	{
 		if ($cur_ban['username'] != '' && utf8_strtolower($username) == utf8_strtolower($cur_ban['username']))
 		{
@@ -506,12 +506,12 @@ function check_username($username, $exclude_id = null)
 //
 function update_users_online()
 {
-	global $db, $pun_config;
+	global $db, $luna_config;
 
 	$now = time();
 
 	// Fetch all online list entries that are older than "o_timeout_online"
-	$result = $db->query('SELECT user_id, ident, logged, idle FROM '.$db->prefix.'online WHERE logged<'.($now-$pun_config['o_timeout_online'])) or error('Unable to fetch old entries from online list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT user_id, ident, logged, idle FROM '.$db->prefix.'online WHERE logged<'.($now-$luna_config['o_timeout_online'])) or error('Unable to fetch old entries from online list', __FILE__, __LINE__, $db->error());
 	while ($cur_user = $db->fetch_assoc($result))
 	{
 		// If the entry is a guest, delete it
@@ -520,7 +520,7 @@ function update_users_online()
 		else
 		{
 			// If the entry is older than "o_timeout_visit", update last_visit for the user in question, then delete him/her from the online list
-			if ($cur_user['logged'] < ($now-$pun_config['o_timeout_visit']))
+			if ($cur_user['logged'] < ($now-$luna_config['o_timeout_visit']))
 			{
 				$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$cur_user['logged'].' WHERE id='.$cur_user['user_id']) or error('Unable to update user visit data', __FILE__, __LINE__, $db->error());
 				$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id='.$cur_user['user_id']) or error('Unable to delete from online list', __FILE__, __LINE__, $db->error());
@@ -537,7 +537,7 @@ function update_users_online()
 //
 function generate_profile_menu($page = '')
 {
-	global $lang, $pun_config, $pun_user, $id;
+	global $lang, $luna_config, $luna_user, $id;
 
 ?>
 <div class="col-md-2 profile-nav">
@@ -545,7 +545,7 @@ function generate_profile_menu($page = '')
         <a class="<?php if ($page == 'view') echo 'active'; ?> list-group-item" href="profile.php?section=view&amp;id=<?php echo $id ?>"><?php echo $lang['Section view'] ?></a>
         <a class="<?php if ($page == 'personality') echo 'active'; ?> list-group-item" href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang['Section personality'] ?></a>
         <a class="<?php if ($page == 'settings') echo 'active'; ?> list-group-item" href="profile.php?section=settings&amp;id=<?php echo $id ?>"><?php echo $lang['Section settings'] ?></a>
-		<?php if ($pun_user['g_id'] == FORUM_ADMIN || ($pun_user['g_moderator'] == '1' && $pun_user['g_mod_ban_users'] == '1')): ?>
+		<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
             <a class="<?php if ($page == 'admin') echo 'active'; ?> list-group-item" href="profile.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang['Section admin'] ?></a>
 		<?php endif; ?>
     </div>
@@ -560,18 +560,18 @@ function generate_profile_menu($page = '')
 //
 function generate_avatar_markup($user_id)
 {
-	global $pun_config;
+	global $luna_config;
 
 	$filetypes = array('jpg', 'gif', 'png');
 	$avatar_markup = '';
 
 	foreach ($filetypes as $cur_type)
 	{
-		$path = $pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
+		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
 		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path))
 		{
-			$avatar_markup = '<img src="'.pun_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
+			$avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		}
 	}
@@ -585,7 +585,7 @@ function generate_avatar_markup($user_id)
 //
 function generate_page_title($page_title, $p = null)
 {
-	global $pun_config, $lang;
+	global $luna_config, $lang;
 	
 	if (!is_array($page_title))
 		$page_title = array($page_title);
@@ -606,7 +606,7 @@ function generate_page_title($page_title, $p = null)
 //
 function set_tracked_topics($tracked_topics)
 {
-	global $cookie_name, $cookie_path, $cookie_domain, $cookie_secure, $pun_config;
+	global $cookie_name, $cookie_path, $cookie_domain, $cookie_secure, $luna_config;
 
 	$cookie_data = '';
 	if (!empty($tracked_topics))
@@ -629,7 +629,7 @@ function set_tracked_topics($tracked_topics)
 		}
 	}
 
-	forum_setcookie($cookie_name.'_track', $cookie_data, time() + $pun_config['o_timeout_visit']);
+	forum_setcookie($cookie_name.'_track', $cookie_data, time() + $luna_config['o_timeout_visit']);
 	$_COOKIE[$cookie_name.'_track'] = $cookie_data; // Set it directly in $_COOKIE as well
 }
 
@@ -693,15 +693,15 @@ function update_forum($forum_id)
 //
 function delete_avatar($user_id)
 {
-	global $pun_config;
+	global $luna_config;
 
 	$filetypes = array('jpg', 'gif', 'png');
 
 	// Delete user avatar
 	foreach ($filetypes as $cur_type)
 	{
-		if (file_exists(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type))
-			@unlink(FORUM_ROOT.$pun_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type);
+		if (file_exists(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type))
+			@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type);
 	}
 }
 
@@ -824,20 +824,20 @@ function censor_words($text)
 //
 function get_title($user)
 {
-	global $db, $pun_config, $pun_bans, $lang;
-	static $ban_list, $pun_ranks;
+	global $db, $luna_config, $luna_bans, $lang;
+	static $ban_list, $luna_ranks;
 
 	// If not already built in a previous call, build an array of lowercase banned usernames
 	if (empty($ban_list))
 	{
 		$ban_list = array();
 
-		foreach ($pun_bans as $cur_ban)
+		foreach ($luna_bans as $cur_ban)
 			$ban_list[] = utf8_strtolower($cur_ban['username']);
 	}
 
 	// If not already loaded in a previous call, load the cached ranks
-	if ($pun_config['o_ranks'] == '1' && !defined('FORUM_RANKS_LOADED'))
+	if ($luna_config['o_ranks'] == '1' && !defined('FORUM_RANKS_LOADED'))
 	{
 		if (file_exists(FORUM_CACHE_DIR.'cache_ranks.php'))
 			include FORUM_CACHE_DIR.'cache_ranks.php';
@@ -854,25 +854,25 @@ function get_title($user)
 
 	// If the user has a custom title
 	if ($user['title'] != '')
-		$user_title = pun_htmlspecialchars($user['title']);
+		$user_title = luna_htmlspecialchars($user['title']);
 	// If the user is banned
 	else if (in_array(utf8_strtolower($user['username']), $ban_list))
 		$user_title = $lang['Banned'];
 	// If the user group has a default user title
 	else if ($user['g_user_title'] != '')
-		$user_title = pun_htmlspecialchars($user['g_user_title']);
+		$user_title = luna_htmlspecialchars($user['g_user_title']);
 	// If the user is a guest
 	else if ($user['g_id'] == FORUM_GUEST)
 		$user_title = $lang['Guest'];
 	else
 	{
 		// Are there any ranks?
-		if ($pun_config['o_ranks'] == '1' && !empty($pun_ranks))
+		if ($luna_config['o_ranks'] == '1' && !empty($luna_ranks))
 		{
-			foreach ($pun_ranks as $cur_rank)
+			foreach ($luna_ranks as $cur_rank)
 			{
 				if ($user['num_posts'] >= $cur_rank['min_posts'])
-					$user_title = pun_htmlspecialchars($cur_rank['rank']);
+					$user_title = luna_htmlspecialchars($cur_rank['rank']);
 			}
 		}
 
@@ -1006,7 +1006,7 @@ function simple_paginate($num_pages, $cur_page, $link)
 //
 function message($message, $no_back_link = false, $http_status = null)
 {
-	global $db, $lang, $pun_config, $pun_start, $tpl_main, $pun_user;
+	global $db, $lang, $luna_config, $luna_start, $tpl_main, $luna_user;
 
 	// Did we receive a custom header?
 	if(!is_null($http_status)) {
@@ -1015,7 +1015,7 @@ function message($message, $no_back_link = false, $http_status = null)
 
 	if (!defined('FORUM_HEADER'))
 	{
-		$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Info']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Info']);
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 	}
@@ -1042,20 +1042,20 @@ function message($message, $no_back_link = false, $http_status = null)
 //
 function format_time($timestamp, $date_only = false, $date_format = null, $time_format = null, $time_only = false, $no_text = false)
 {
-	global $pun_config, $lang, $pun_user, $forum_date_formats, $forum_time_formats;
+	global $luna_config, $lang, $luna_user, $forum_date_formats, $forum_time_formats;
 
 	if ($timestamp == '')
 		return $lang['Never'];
 
-	$diff = ($pun_user['timezone'] + $pun_user['dst']) * 3600;
+	$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 	$timestamp += $diff;
 	$now = time();
 
 	if(is_null($date_format))
-		$date_format = $forum_date_formats[$pun_user['date_format']];
+		$date_format = $forum_date_formats[$luna_user['date_format']];
 
 	if(is_null($time_format))
-		$time_format = $forum_time_formats[$pun_user['time_format']];
+		$time_format = $forum_time_formats[$luna_user['time_format']];
 
 	$date = gmdate($date_format, $timestamp);
 	$today = gmdate($date_format, $now+$diff);
@@ -1118,7 +1118,7 @@ function random_key($len, $readable = false, $hash = false)
 //
 function confirm_referrer($scripts, $error_msg = false)
 {
-	global $pun_config, $lang;
+	global $luna_config, $lang;
 
 	if (!is_array($scripts))
 		$scripts = array($scripts);
@@ -1163,7 +1163,7 @@ function random_pass($len)
 //
 // Compute a hash of $str
 //
-function pun_hash($str)
+function luna_hash($str)
 {
 	return sha1($str);
 }
@@ -1200,7 +1200,7 @@ function get_remote_address()
 //
 // Calls htmlspecialchars with a few options already set
 //
-function pun_htmlspecialchars($str)
+function luna_htmlspecialchars($str)
 {
 	return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
@@ -1209,7 +1209,7 @@ function pun_htmlspecialchars($str)
 //
 // Calls htmlspecialchars_decode with a few options already set
 //
-function pun_htmlspecialchars_decode($str)
+function luna_htmlspecialchars_decode($str)
 {
 	if (function_exists('htmlspecialchars_decode'))
 		return htmlspecialchars_decode($str, ENT_QUOTES);
@@ -1229,7 +1229,7 @@ function pun_htmlspecialchars_decode($str)
 //
 // A wrapper for utf8_strlen for compatibility
 //
-function pun_strlen($str)
+function luna_strlen($str)
 {
 	return utf8_strlen($str);
 }
@@ -1238,7 +1238,7 @@ function pun_strlen($str)
 //
 // Convert \r\n and \r to \n
 //
-function pun_linebreaks($str)
+function luna_linebreaks($str)
 {
 	return str_replace("\r", "\n", str_replace("\r\n", "\n", $str));
 }
@@ -1247,7 +1247,7 @@ function pun_linebreaks($str)
 //
 // A wrapper for utf8_trim for compatibility
 //
-function pun_trim($str, $charlist = false)
+function luna_trim($str, $charlist = false)
 {
 	return is_string($str) ? utf8_trim($str, $charlist) : '';
 }
@@ -1291,7 +1291,7 @@ function array_insert(&$input, $offset, $element, $key = null)
 //
 function maintenance_message()
 {
-	global $db, $pun_config, $lang, $pun_user;
+	global $db, $luna_config, $lang, $luna_user;
 
 	// Send no-cache headers
 	header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
@@ -1305,12 +1305,12 @@ function maintenance_message()
 	// Deal with newlines, tabs and multiple spaces
 	$pattern = array("\t", '  ', '  ');
 	$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
-	$message = str_replace($pattern, $replace, $pun_config['o_maintenance_message']);
+	$message = str_replace($pattern, $replace, $luna_config['o_maintenance_message']);
 
-	if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/maintenance.tpl'))
+	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/maintenance.tpl'))
 	{
-		$tpl_file = FORUM_ROOT.'style/'.$pun_user['style'].'/maintenance.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'style/'.$pun_user['style'].'/';
+		$tpl_file = FORUM_ROOT.'style/'.$luna_user['style'].'/maintenance.tpl';
+		$tpl_inc_dir = FORUM_ROOT.'style/'.$luna_user['style'].'/';
 	}
 	else
 	{
@@ -1320,10 +1320,10 @@ function maintenance_message()
 
 	$tpl_maint = file_get_contents($tpl_file);
 
-	// START SUBST - <pun_include "*">
-	preg_match_all('%<pun_include "([^/\\\\]*?)\.(php[45]?|inc|html?|txt)">%i', $tpl_maint, $pun_includes, PREG_SET_ORDER);
+	// START SUBST - <luna_include "*">
+	preg_match_all('%<luna_include "([^/\\\\]*?)\.(php[45]?|inc|html?|txt)">%i', $tpl_maint, $luna_includes, PREG_SET_ORDER);
 
-	foreach ($pun_includes as $cur_include)
+	foreach ($luna_includes as $cur_include)
 	{
 		ob_start();
 
@@ -1339,36 +1339,36 @@ function maintenance_message()
 		$tpl_maint = str_replace($cur_include[0], $tpl_temp, $tpl_maint);
 		ob_end_clean();
 	}
-	// END SUBST - <pun_include "*">
+	// END SUBST - <luna_include "*">
 
 
-	// START SUBST - <pun_language>
-	$tpl_maint = str_replace('<pun_language>', $lang['lang_identifier'], $tpl_maint);
-	// END SUBST - <pun_language>
+	// START SUBST - <luna_language>
+	$tpl_maint = str_replace('<luna_language>', $lang['lang_identifier'], $tpl_maint);
+	// END SUBST - <luna_language>
 
 
-	// START SUBST - <pun_content_direction>
-	$tpl_maint = str_replace('<pun_content_direction>', $lang['lang_direction'], $tpl_maint);
-	// END SUBST - <pun_content_direction>
+	// START SUBST - <luna_content_direction>
+	$tpl_maint = str_replace('<luna_content_direction>', $lang['lang_direction'], $tpl_maint);
+	// END SUBST - <luna_content_direction>
 
 
-	// START SUBST - <pun_head>
+	// START SUBST - <luna_head>
 	ob_start();
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Maintenance']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Maintenance']);
 
 ?>
 <title><?php echo generate_page_title($page_title) ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $pun_user['style'].'.css' ?>" />
+<link rel="stylesheet" type="text/css" href="style/<?php echo $luna_user['style'].'.css' ?>" />
 <?php
 
 	$tpl_temp = trim(ob_get_contents());
-	$tpl_maint = str_replace('<pun_head>', $tpl_temp, $tpl_maint);
+	$tpl_maint = str_replace('<luna_head>', $tpl_temp, $tpl_maint);
 	ob_end_clean();
-	// END SUBST - <pun_head>
+	// END SUBST - <luna_head>
 
 
-	// START SUBST - <pun_maint_main>
+	// START SUBST - <luna_maint_main>
 	ob_start();
 
 ?>
@@ -1383,9 +1383,9 @@ function maintenance_message()
 <?php
 
 	$tpl_temp = trim(ob_get_contents());
-	$tpl_maint = str_replace('<pun_maint_main>', $tpl_temp, $tpl_maint);
+	$tpl_maint = str_replace('<luna_maint_main>', $tpl_temp, $tpl_maint);
 	ob_end_clean();
-	// END SUBST - <pun_maint_main>
+	// END SUBST - <luna_maint_main>
 
 
 	// End the transaction
@@ -1404,7 +1404,7 @@ function maintenance_message()
 //
 function redirect($destination_url, $message)
 {
-	global $db, $pun_config, $lang, $pun_user;
+	global $db, $luna_config, $lang, $luna_user;
 
 	// Prefix with base_url (unless there's already a valid URI)
 	if (strpos($destination_url, 'http://') !== 0 && strpos($destination_url, 'https://') !== 0 && strpos($destination_url, '/') !== 0)
@@ -1414,7 +1414,7 @@ function redirect($destination_url, $message)
 	$destination_url = preg_replace('%([\r\n])|(\%0[ad])|(;\s*data\s*:)%i', '', $destination_url);
 
 	// If the delay is 0 seconds, we might as well skip the redirect all together
-	if ($pun_config['o_redirect_delay'] == '0')
+	if ($luna_config['o_redirect_delay'] == '0')
 	{
 		$db->end_transaction();
 		$db->close();
@@ -1432,10 +1432,10 @@ function redirect($destination_url, $message)
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
 
-	if (file_exists(FORUM_ROOT.'style/'.$pun_user['style'].'/redirect.tpl'))
+	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/redirect.tpl'))
 	{
-		$tpl_file = FORUM_ROOT.'style/'.$pun_user['style'].'/redirect.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'style/'.$pun_user['style'].'/';
+		$tpl_file = FORUM_ROOT.'style/'.$luna_user['style'].'/redirect.tpl';
+		$tpl_inc_dir = FORUM_ROOT.'style/'.$luna_user['style'].'/';
 	}
 	else
 	{
@@ -1445,10 +1445,10 @@ function redirect($destination_url, $message)
 
 	$tpl_redir = file_get_contents($tpl_file);
 
-	// START SUBST - <pun_include "*">
-	preg_match_all('%<pun_include "([^/\\\\]*?)\.(php[45]?|inc|html?|txt)">%i', $tpl_redir, $pun_includes, PREG_SET_ORDER);
+	// START SUBST - <luna_include "*">
+	preg_match_all('%<luna_include "([^/\\\\]*?)\.(php[45]?|inc|html?|txt)">%i', $tpl_redir, $luna_includes, PREG_SET_ORDER);
 
-	foreach ($pun_includes as $cur_include)
+	foreach ($luna_includes as $cur_include)
 	{
 		ob_start();
 
@@ -1464,37 +1464,37 @@ function redirect($destination_url, $message)
 		$tpl_redir = str_replace($cur_include[0], $tpl_temp, $tpl_redir);
 		ob_end_clean();
 	}
-	// END SUBST - <pun_include "*">
+	// END SUBST - <luna_include "*">
 
 
-	// START SUBST - <pun_language>
-	$tpl_redir = str_replace('<pun_language>', $lang['lang_identifier'], $tpl_redir);
-	// END SUBST - <pun_language>
+	// START SUBST - <luna_language>
+	$tpl_redir = str_replace('<luna_language>', $lang['lang_identifier'], $tpl_redir);
+	// END SUBST - <luna_language>
 
 
-	// START SUBST - <pun_content_direction>
-	$tpl_redir = str_replace('<pun_content_direction>', $lang['lang_direction'], $tpl_redir);
-	// END SUBST - <pun_content_direction>
+	// START SUBST - <luna_content_direction>
+	$tpl_redir = str_replace('<luna_content_direction>', $lang['lang_direction'], $tpl_redir);
+	// END SUBST - <luna_content_direction>
 
 
-	// START SUBST - <pun_head>
+	// START SUBST - <luna_head>
 	ob_start();
 
-	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Redirecting']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Redirecting']);
 
 ?>
-<meta http-equiv="refresh" content="<?php echo $pun_config['o_redirect_delay'] ?>;URL=<?php echo $destination_url ?>" />
+<meta http-equiv="refresh" content="<?php echo $luna_config['o_redirect_delay'] ?>;URL=<?php echo $destination_url ?>" />
 <title><?php echo generate_page_title($page_title) ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $pun_user['style'].'.css' ?>" />
+<link rel="stylesheet" type="text/css" href="style/<?php echo $luna_user['style'].'.css' ?>" />
 <?php
 
 	$tpl_temp = trim(ob_get_contents());
-	$tpl_redir = str_replace('<pun_head>', $tpl_temp, $tpl_redir);
+	$tpl_redir = str_replace('<luna_head>', $tpl_temp, $tpl_redir);
 	ob_end_clean();
-	// END SUBST - <pun_head>
+	// END SUBST - <luna_head>
 
 
-	// START SUBST - <pun_redir_main>
+	// START SUBST - <luna_redir_main>
 	ob_start();
 
 ?>
@@ -1509,12 +1509,12 @@ function redirect($destination_url, $message)
 <?php
 
 	$tpl_temp = trim(ob_get_contents());
-	$tpl_redir = str_replace('<pun_redir_main>', $tpl_temp, $tpl_redir);
+	$tpl_redir = str_replace('<luna_redir_main>', $tpl_temp, $tpl_redir);
 	ob_end_clean();
-	// END SUBST - <pun_redir_main>
+	// END SUBST - <luna_redir_main>
 
 
-	// START SUBST - <pun_footer>
+	// START SUBST - <luna_footer>
 	ob_start();
 
 	// End the transaction
@@ -1525,9 +1525,9 @@ function redirect($destination_url, $message)
 		display_saved_queries();
 
 	$tpl_temp = trim(ob_get_contents());
-	$tpl_redir = str_replace('<pun_footer>', $tpl_temp, $tpl_redir);
+	$tpl_redir = str_replace('<luna_footer>', $tpl_temp, $tpl_redir);
 	ob_end_clean();
-	// END SUBST - <pun_footer>
+	// END SUBST - <luna_footer>
 
 
 	// Close the db connection (and free up any result data)
@@ -1542,12 +1542,12 @@ function redirect($destination_url, $message)
 //
 function error($message, $file = null, $line = null, $db_error = false)
 {
-	global $pun_config, $lang;
+	global $luna_config, $lang;
 
-	// Set some default settings if the script failed before $pun_config could be populated
-	if (empty($pun_config))
+	// Set some default settings if the script failed before $luna_config could be populated
+	if (empty($luna_config))
 	{
-		$pun_config = array(
+		$luna_config = array(
 			'o_board_title'	=> 'ModernBB',
 			'o_gzip'		=> '0'
 		);
@@ -1566,7 +1566,7 @@ function error($message, $file = null, $line = null, $db_error = false)
 	while (@ob_end_clean());
 
 	// "Restart" output buffering if we are using ob_gzhandler (since the gzip header is already sent)
-	if ($pun_config['o_gzip'] && extension_loaded('zlib'))
+	if ($luna_config['o_gzip'] && extension_loaded('zlib'))
 		ob_start('ob_gzhandler');
 
 	// Send no-cache headers
@@ -1584,7 +1584,7 @@ function error($message, $file = null, $line = null, $db_error = false)
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<?php $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), 'Error') ?>
+		<?php $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), 'Error') ?>
         <title><?php echo generate_page_title($page_title) ?></title>
 		<style type="text/css">
 			body { margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px; }
@@ -1604,10 +1604,10 @@ function error($message, $file = null, $line = null, $db_error = false)
 
 		if ($db_error)
 		{
-			echo "\t\t".'<br /><br /><strong>Database reported:</strong> '.pun_htmlspecialchars($db_error['error_msg']).(($db_error['error_no']) ? ' (Errno: '.$db_error['error_no'].')' : '')."\n";
+			echo "\t\t".'<br /><br /><strong>Database reported:</strong> '.luna_htmlspecialchars($db_error['error_msg']).(($db_error['error_no']) ? ' (Errno: '.$db_error['error_no'].')' : '')."\n";
 
 			if ($db_error['error_sql'] != '')
-				echo "\t\t".'<br /><br /><strong>Failed query:</strong> '.pun_htmlspecialchars($db_error['error_sql'])."\n";
+				echo "\t\t".'<br /><br /><strong>Failed query:</strong> '.luna_htmlspecialchars($db_error['error_sql'])."\n";
 		}
 	}
 	else
@@ -1876,7 +1876,7 @@ function forum_list_plugins($is_admin)
 //
 function split_text($text, $start, $end, $retab = true)
 {
-	global $pun_config, $lang;
+	global $luna_config, $lang;
 
 	$result = array(0 => array(), 1 => array()); // 0 = inside, 1 = outside
 
@@ -1888,9 +1888,9 @@ function split_text($text, $start, $end, $retab = true)
 	for ($i = 0;$i < $num_parts;$i++)
 		$result[1 - ($i % 2)][] = $parts[$i];
 
-	if ($pun_config['o_indent_num_spaces'] != 8 && $retab)
+	if ($luna_config['o_indent_num_spaces'] != 8 && $retab)
 	{
-		$spaces = str_repeat(' ', $pun_config['o_indent_num_spaces']);
+		$spaces = str_repeat(' ', $luna_config['o_indent_num_spaces']);
 		$result[1] = str_replace("\t", $spaces, $result[1]);
 	}
 
@@ -1904,7 +1904,7 @@ function split_text($text, $start, $end, $retab = true)
 //
 function extract_blocks($text, $start, $end, $retab = true)
 {
-	global $pun_config;
+	global $luna_config;
 
 	$code = array();
 	$start_len = strlen($start);
@@ -1945,9 +1945,9 @@ function extract_blocks($text, $start, $end, $retab = true)
 		}
 	}
 
-	if ($pun_config['o_indent_num_spaces'] != 8 && $retab)
+	if ($luna_config['o_indent_num_spaces'] != 8 && $retab)
 	{
-		$spaces = str_repeat(' ', $pun_config['o_indent_num_spaces']);
+		$spaces = str_repeat(' ', $luna_config['o_indent_num_spaces']);
 		$text = str_replace("\t", $spaces, $text);
 	}
 
@@ -2198,7 +2198,7 @@ function display_saved_queries()
 ?>
 				<tr>
 					<td class="tcl"><?php echo ($cur_query[1] != 0) ? $cur_query[1] : '&#160;' ?></td>
-					<td class="tcr"><?php echo pun_htmlspecialchars($cur_query[0]) ?></td>
+					<td class="tcr"><?php echo luna_htmlspecialchars($cur_query[0]) ?></td>
 				</tr>
 <?php
 

@@ -78,7 +78,7 @@ $smilies = array(
 //
 function preparse_bbcode($text, &$errors, $is_signature = false)
 {
-	global $pun_config, $lang, $re_list;
+	global $luna_config, $lang, $re_list;
 
 	// Remove empty tags
 	while (($new_text = strip_empty_bbcode($text)) !== false)
@@ -102,11 +102,11 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 
 		if (preg_match('%\[/?(?:quote|code|list|h)\b[^\]]*\]%i', $text))
 			$errors[] = $lang['Signature quote/code/list/h'];
-		global $pun_user;
+		global $luna_user;
 		if (preg_match('%\[/?(?:video|left|right|center|justify)\b[^\]]*\]%i', $text))
 		{
-			if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar.php'))
-				require FORUM_ROOT.'lang/'.$pun_user['language'].'/fluxtoolbar.php';
+			if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/fluxtoolbar.php'))
+				require FORUM_ROOT.'lang/'.$luna_user['language'].'/fluxtoolbar.php';
 			else
 				require FORUM_ROOT.'lang/English/fluxtoolbar.php';
 			$errors[] = $lang['Signature balises'];
@@ -126,7 +126,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 	else
 		$text = str_replace('*'."\0".']', '*]', $temp);
 
-	if ($pun_config['o_make_links'] == '1')
+	if ($luna_config['o_make_links'] == '1')
 		$text = do_clickable($text);
 
 	$temp_text = false;
@@ -169,7 +169,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 			break;
 	}
 
-	return pun_trim($text);
+	return luna_trim($text);
 }
 
 
@@ -222,7 +222,7 @@ function strip_empty_bbcode($text)
 //
 function preparse_tags($text, &$errors, $is_signature = false)
 {
-	global $lang, $pun_config;
+	global $lang, $luna_config;
 
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
@@ -233,7 +233,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// and tags we need to check are closed (the same as above, added it just in case)
 	$tags_closed = $tags;
 	// Tags we can nest and the depth they can be nested to
-	$tags_nested = array('quote' => $pun_config['o_quote_depth'], 'list' => 5, '*' => 5);
+	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5);
 	// Tags to ignore the contents of completely (just code)
 	$tags_ignore = array('code', 'c');
 	// Tags not allowed
@@ -302,7 +302,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 				$split_current = preg_split('%(\n\n+)%', $current, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 				$current = '';
 
-				if (!pun_trim($split_current[0], "\n")) // The first part is a linebreak so we need to handle any open tags first
+				if (!luna_trim($split_current[0], "\n")) // The first part is a linebreak so we need to handle any open tags first
 					array_unshift($split_current, '');
 
 				for ($i = 1; $i < count($split_current); $i += 2)
@@ -349,7 +349,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 			}
 
 			if (in_array($open_tags[$opened_tag], $tags_trim))
-				$new_text .= pun_trim($current);
+				$new_text .= luna_trim($current);
 			else
 				$new_text .= $current;
 
@@ -663,8 +663,8 @@ function preparse_list_tag($content, $type = '*')
 	$content = '';
 	foreach ($items as $item)
 	{
-		if (pun_trim($item) != '')
-			$content .= '[*'."\0".']'.str_replace('[/*]', '', pun_trim($item)).'[/*'."\0".']'."\n";
+		if (luna_trim($item) != '')
+			$content .= '[*'."\0".']'.str_replace('[/*]', '', luna_trim($item)).'[/*'."\0".']'."\n";
 	}
 
 	return '[list='.$type.']'."\n".$content.'[/list]';
@@ -676,7 +676,7 @@ function preparse_list_tag($content, $type = '*')
 //
 function handle_url_tag($url, $link = '', $bbcode = false)
 {
-	$url = pun_trim($url);
+	$url = luna_trim($url);
 
 	// Deal with [url][img]http://example.com/test.png[/img][/url]
 	if (preg_match('%<img class="img-responsive" src=\\\\"(.*?)\\\\"%', $url, $matches))
@@ -704,9 +704,9 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 	{
 		if ($link == '' || $link == $url)
 		{
-			$url = pun_htmlspecialchars_decode($url);
+			$url = luna_htmlspecialchars_decode($url);
 			$link = utf8_strlen($url) > 55 ? utf8_substr($url, 0 , 39).' … '.utf8_substr($url, -10) : $url;
-			$link = pun_htmlspecialchars($link);
+			$link = luna_htmlspecialchars($link);
 		}
 		else
 			$link = stripslashes($link);
@@ -721,16 +721,16 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 //
 function handle_img_tag($url, $is_signature = false, $alt = null)
 {
-	global $lang, $pun_user;
+	global $lang, $luna_user;
 
 	if (is_null($alt))
 		$alt = basename($url);
 
 	$img_tag = '<a href="'.$url.'" rel="nofollow">&lt;'.$lang['Image link'].' - '.$alt.'&gt;</a>';
 
-	if ($is_signature && $pun_user['show_img_sig'] != '0')
+	if ($is_signature && $luna_user['show_img_sig'] != '0')
 		$img_tag = '<img class="sigimage img-responsive" src="'.$url.'" alt="'.$alt.'" />';
-	else if (!$is_signature && $pun_user['show_img'] != '0')
+	else if (!$is_signature && $luna_user['show_img'] != '0')
 		$img_tag = '<span class="postimg"><img class="img-responsive" src="'.$url.'" alt="'.$alt.'" /></span>';
 
 	return $img_tag;
@@ -752,7 +752,7 @@ function handle_list_tag($content, $type = '*')
 		$content = preg_replace_callback($re_list, create_function('$matches', 'return handle_list_tag($matches[2], $matches[1]);'), $content);
 	}
 
-	$content = preg_replace('#\s*\[\*\](.*?)\[/\*\]\s*#s', '<li><p>$1</p></li>', pun_trim($content));
+	$content = preg_replace('#\s*\[\*\](.*?)\[/\*\]\s*#s', '<li><p>$1</p></li>', luna_trim($content));
 
 	if ($type == '*')
 		$content = '<ul>'.$content.'</ul>';
@@ -771,7 +771,7 @@ function handle_list_tag($content, $type = '*')
 //
 function do_bbcode($text, $is_signature = false)
 {
-	global $lang, $pun_user, $pun_config, $re_list;
+	global $lang, $luna_user, $luna_config, $re_list;
 
 	if (strpos($text, '[quote') !== false)
 	{
@@ -853,7 +853,7 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<iframe width="480" height="360" src="http://player.vimeo.com/video/$4"></iframe>';
 	$replace[] = '<iframe width="$1" height="$2" src="http://player.vimeo.com/video/$6"></iframe>';
 
-	if (($is_signature && $pun_config['p_sig_img_tag'] == '1') || (!$is_signature && $pun_config['p_message_img_tag'] == '1'))
+	if (($is_signature && $luna_config['p_sig_img_tag'] == '1') || (!$is_signature && $luna_config['p_message_img_tag'] == '1'))
 	{
 		$pattern_callback[] = '%\[img\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
 		$pattern_callback[] = '%\[img=([^\[]*?)\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
@@ -931,7 +931,7 @@ function do_smilies($text)
 	foreach ($smilies as $smiley_text => $smiley_img)
 	{
 		if (strpos($text, $smiley_text) !== false)
-			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.pun_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
+			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
 	}
 
 	return substr($text, 1, -1);
@@ -943,22 +943,22 @@ function do_smilies($text)
 //
 function parse_message($text, $hide_smilies)
 {
-	global $pun_config, $lang, $pun_user;
+	global $luna_config, $lang, $luna_user;
 
-	if ($pun_config['o_censoring'] == '1')
+	if ($luna_config['o_censoring'] == '1')
 		$text = censor_words($text);
 
 	// Convert applicable characters to HTML entities
-	$text = pun_htmlspecialchars($text);
+	$text = luna_htmlspecialchars($text);
 
 	// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
 	if (strpos($text, '[code]') !== false && strpos($text, '[/code]') !== false)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
-	if ($pun_config['p_message_bbcode'] == '1' && strpos($text, '[') !== false && strpos($text, ']') !== false)
+	if ($luna_config['p_message_bbcode'] == '1' && strpos($text, '[') !== false && strpos($text, ']') !== false)
 		$text = do_bbcode($text);
 
-	if ($pun_config['o_smilies'] == '1' && $pun_user['show_smilies'] == '1' && $hide_smilies == '0')
+	if ($luna_config['o_smilies'] == '1' && $luna_user['show_smilies'] == '1' && $hide_smilies == '0')
 		$text = do_smilies($text);
 
 	// Deal with newlines, tabs and multiple spaces
@@ -977,7 +977,7 @@ function parse_message($text, $hide_smilies)
 			if (isset($inside[$i]))
 			{
 				$num_lines = (substr_count($inside[$i], "\n"));
-				$text .= '</p><div class="codebox"><pre'.(($num_lines > 28) ? ' class="vscroll"' : '').'><code>'.pun_trim($inside[$i], "\n\r").'</code></pre></div><p>';
+				$text .= '</p><div class="codebox"><pre'.(($num_lines > 28) ? ' class="vscroll"' : '').'><code>'.luna_trim($inside[$i], "\n\r").'</code></pre></div><p>';
 			}
 		}
 	}
@@ -1017,18 +1017,18 @@ function clean_paragraphs($text)
 //
 function parse_signature($text)
 {
-	global $pun_config, $lang, $pun_user;
+	global $luna_config, $lang, $luna_user;
 
-	if ($pun_config['o_censoring'] == '1')
+	if ($luna_config['o_censoring'] == '1')
 		$text = censor_words($text);
 
 	// Convert applicable characters to HTML entities
-	$text = pun_htmlspecialchars($text);
+	$text = luna_htmlspecialchars($text);
 
-	if ($pun_config['p_sig_bbcode'] == '1' && strpos($text, '[') !== false && strpos($text, ']') !== false)
+	if ($luna_config['p_sig_bbcode'] == '1' && strpos($text, '[') !== false && strpos($text, ']') !== false)
 		$text = do_bbcode($text, true);
 
-	if ($pun_config['o_smilies_sig'] == '1' && $pun_user['show_smilies'] == '1')
+	if ($luna_config['o_smilies_sig'] == '1' && $luna_user['show_smilies'] == '1')
 		$text = do_smilies($text);
 
 

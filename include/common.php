@@ -59,7 +59,7 @@ if (!defined('FORUM'))
 }
 
 // Record the start time (will be used to calculate the generation time for the page)
-$pun_start = get_microtime();
+$luna_start = get_microtime();
 
 // Make sure PHP reports all errors except E_NOTICE. ModernBB supports E_ALL, but a lot of scripts it may interact with, do not
 error_reporting(E_ALL ^ E_NOTICE);
@@ -92,9 +92,9 @@ if (!defined('FORUM_DISABLE_STRIPSLASHES') && get_magic_quotes_gpc())
 	}
 }
 
-// If a cookie name is not specified in config.php, we use the default (pun_cookie)
+// If a cookie name is not specified in config.php, we use the default (luna_cookie)
 if (empty($cookie_name))
-	$cookie_name = 'pun_cookie';
+	$cookie_name = 'luna_cookie';
 
 // If the cache directory is not specified, we use the default setting
 if (!defined('FORUM_CACHE_DIR'))
@@ -127,10 +127,10 @@ if (!defined('FORUM_CONFIG_LOADED'))
 }
 
 // Verify that we are running the proper database schema revision
-if (!isset($pun_config['o_database_revision']) || $pun_config['o_database_revision'] < FORUM_DB_REVISION ||
-	!isset($pun_config['o_searchindex_revision']) || $pun_config['o_searchindex_revision'] < FORUM_SI_REVISION ||
-	!isset($pun_config['o_parser_revision']) || $pun_config['o_parser_revision'] < FORUM_PARSER_REVISION ||
-	version_compare($pun_config['o_cur_version'], FORUM_VERSION, '<'))
+if (!isset($luna_config['o_database_revision']) || $luna_config['o_database_revision'] < FORUM_DB_REVISION ||
+	!isset($luna_config['o_searchindex_revision']) || $luna_config['o_searchindex_revision'] < FORUM_SI_REVISION ||
+	!isset($luna_config['o_parser_revision']) || $luna_config['o_parser_revision'] < FORUM_PARSER_REVISION ||
+	version_compare($luna_config['o_cur_version'], FORUM_VERSION, '<'))
 {
 	if (defined('FORUM_ADMIN_CONSOLE')) {
 		header('Location: '.FORUM_ROOT.'db_update.php');
@@ -144,28 +144,28 @@ if (!isset($pun_config['o_database_revision']) || $pun_config['o_database_revisi
 if (!defined('FORUM_DISABLE_BUFFERING'))
 {
 	// Should we use gzip output compression?
-	if ($pun_config['o_gzip'] && extension_loaded('zlib'))
+	if ($luna_config['o_gzip'] && extension_loaded('zlib'))
 		ob_start('ob_gzhandler');
 	else
 		ob_start();
 }
 
 // Define standard date/time formats
-$forum_time_formats = array($pun_config['o_time_format'], 'H:i:s', 'H:i', 'g:i:s a', 'g:i a');
-$forum_date_formats = array($pun_config['o_date_format'], 'Y-m-d', 'Y-d-m', 'd-m-Y', 'm-d-Y', 'M j Y', 'jS M Y');
+$forum_time_formats = array($luna_config['o_time_format'], 'H:i:s', 'H:i', 'g:i:s a', 'g:i a');
+$forum_date_formats = array($luna_config['o_date_format'], 'Y-m-d', 'Y-d-m', 'd-m-Y', 'm-d-Y', 'M j Y', 'jS M Y');
 
 // Check/update/set cookie and fetch user info
-$pun_user = array();
-check_cookie($pun_user);
+$luna_user = array();
+check_cookie($luna_user);
 
 // Attempt to load the language file
-if (file_exists(FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php'))
-	include FORUM_ROOT.'lang/'.$pun_user['language'].'/language.php';
+if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php'))
+	include FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
 else
-	error('There is no valid language pack \''.pun_htmlspecialchars($pun_user['language']).'\' installed. Please reinstall a language of that name');
+	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
 
 // Check if we are to display a maintenance message
-if ($pun_config['o_maintenance'] && $pun_user['g_id'] > FORUM_ADMIN && !defined('FORUM_TURN_OFF_MAINT'))
+if ($luna_config['o_maintenance'] && $luna_user['g_id'] > FORUM_ADMIN && !defined('FORUM_TURN_OFF_MAINT'))
 	maintenance_message();
 
 // Load cached bans
@@ -188,7 +188,7 @@ check_bans();
 update_users_online();
 
 // Check to see if we logged in without a cookie being set
-if ($pun_user['is_guest'] && isset($_GET['login']))
+if ($luna_user['is_guest'] && isset($_GET['login']))
 	message($lang['No cookie']);
 
 // The maximum size of a post, in bytes, since the field is now MEDIUMTEXT this allows ~16MB but lets cap at 1MB...

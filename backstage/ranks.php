@@ -14,18 +14,18 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/common_admin.php';
 
-if (!$pun_user['is_admmod']) {
+if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($pun_user['g_id'] != FORUM_ADMIN)
+if ($luna_user['g_id'] != FORUM_ADMIN)
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Add a rank
 if (isset($_POST['add_rank']))
 {
-	$rank = pun_trim($_POST['new_rank']);
-	$min_posts = pun_trim($_POST['new_min_posts']);
+	$rank = luna_trim($_POST['new_rank']);
+	$min_posts = luna_trim($_POST['new_min_posts']);
 
 	if ($rank == '')
 		message($lang['Must enter title message']);
@@ -55,8 +55,8 @@ else if (isset($_POST['update']))
 {
 	$id = intval(key($_POST['update']));
 
-	$rank = pun_trim($_POST['rank'][$id]);
-	$min_posts = pun_trim($_POST['min_posts'][$id]);
+	$rank = luna_trim($_POST['rank'][$id]);
+	$min_posts = luna_trim($_POST['min_posts'][$id]);
 
 	if ($rank == '')
 		message($lang['Must enter title message']);
@@ -97,7 +97,7 @@ else if (isset($_POST['remove']))
 	redirect('backstage/ranks.php', $lang['Rank removed redirect']);
 }
 
-$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang['Admin'], $lang['Ranks']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Ranks']);
 $focus_element = array('ranks', 'new_rank');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
@@ -112,7 +112,7 @@ require FORUM_ROOT.'backstage/header.php';
 	<form id="ranks" method="post" action="ranks.php">
 		<fieldset>
 			<div class="panel-body">
-                <p><?php echo $lang['Add rank info'].' '.($pun_config['o_ranks'] == '1' ? sprintf($lang['Ranks enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
+                <p><?php echo $lang['Add rank info'].' '.($luna_config['o_ranks'] == '1' ? sprintf($lang['Ranks enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
 			</div>
 			<table class="table">
 				<thead>
@@ -158,7 +158,7 @@ if ($db->num_rows($result))
 <?php
 
 	while ($cur_rank = $db->fetch_assoc($result))
-		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="rank['.$cur_rank['id'].']" value="'.pun_htmlspecialchars($cur_rank['rank']).'" maxlength="50" /></td><td><input type="text" class="form-control" name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" maxlength="7" /></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
+		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="rank['.$cur_rank['id'].']" value="'.luna_htmlspecialchars($cur_rank['rank']).'" maxlength="50" /></td><td><input type="text" class="form-control" name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" maxlength="7" /></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
 
 ?>
 				</tbody>

@@ -9,11 +9,11 @@
 		<link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <pun_head>
+        <luna_head>
     </head>
     <body>
         <div id="redirect">
-			<pun_redir_main>
+			<luna_redir_main>
         </div>
     </body>
 </html>
