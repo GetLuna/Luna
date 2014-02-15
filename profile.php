@@ -1452,7 +1452,7 @@ else
                 <fieldset>
                     <p><?php echo $lang['Signature info'] ?></p>
                     <label><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?><br />
-                    <textarea class="form-control full-form" name="signature" rows="4" cols="65"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea></label>
+                    <textarea class="form-control full-form" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea></label>
                     <ul class="bblinks">
                         <li><a class="label <?php echo ($luna_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
                         <li><a class="label <?php echo ($luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>

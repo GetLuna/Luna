@@ -380,7 +380,7 @@ generate_admin_menu('global');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Mailing list label'] ?></label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="form[mailing_list]" rows="5" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
+                        <textarea class="form-control" name="form[mailing_list]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
                         <span class="help-block"><?php echo $lang['Mailing list help'] ?></span>
                     </div>
                 </div>
@@ -447,7 +447,7 @@ generate_admin_menu('global');
                         <?php echo $lang['Display announcement help'] ?>
                     </label>
                 </div>
-                <textarea class="form-control full-form" name="form[announcement_message]" rows="5" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
+                <textarea class="form-control full-form" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
                 <span class="help-block"><?php echo $lang['Announcement message help'] ?></span>
             </fieldset>
         </div>

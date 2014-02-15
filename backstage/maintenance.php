@@ -367,7 +367,7 @@ require FORUM_ROOT.'backstage/header.php';
                         <?php echo $lang['Maintenance mode help'] ?>
                     </label>
                 </div>
-                <textarea class="form-control" name="form[maintenance_message]" rows="5" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
+                <textarea class="form-control" name="form[maintenance_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
                 <span class="help-block"><?php echo $lang['Maintenance message help'] ?></span>
             </fieldset>
         </div>

@@ -228,7 +228,7 @@ else if (isset($_GET['edit_forum']))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Forum description label'] ?></label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="forum_desc" rows="3" cols="80" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
+                        <textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">

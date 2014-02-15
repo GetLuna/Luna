@@ -140,7 +140,7 @@ generate_admin_menu('display');
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Menu items head'] ?></label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="form[additional_navlinks]" rows="3" cols="55"><?php echo luna_htmlspecialchars($luna_config['o_additional_navlinks']) ?></textarea>
+                        <textarea class="form-control" name="form[additional_navlinks]" rows="3"><?php echo luna_htmlspecialchars($luna_config['o_additional_navlinks']) ?></textarea>
 						<span class="help-block"><?php echo $lang['Menu items help'] ?></span>
                     </div>
                 </div>
