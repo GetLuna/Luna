@@ -1,9 +1,14 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB
+ * Copyright is different for each file
+ ***********************
+ * Copyright (C) 2013-2014 ModernBB Group
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
+ * License under GPLv3
+ ***********************
+ * Copyright (C) 2014 ModernBB Group
  * License under GPLv3
  */
 
@@ -607,7 +612,7 @@ if ($luna_user['is_guest'])
 if ($fid): ?>
             <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control full-form" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
 <?php endif; ?>	
-            <textarea class="form-control full-form" placeholder="Start typing..." name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
+            <textarea class="form-control full-form tinymce"  placeholder="Start typing..." name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
         </fieldset>
         <div class="panel-footer">
             <div class="btn-group"><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>

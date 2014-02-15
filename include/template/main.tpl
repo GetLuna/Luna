@@ -34,7 +34,7 @@
 			plugins: [
 				["bbcode autolink link image lists wordcount code fullscreen media"]
 			],
-			selector: 'textarea',
+			selector: 'textarea.tinymce',
 			skins: 'lightgrey',
 		});
         $(document).ready(function(){
