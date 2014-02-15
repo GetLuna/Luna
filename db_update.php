@@ -13,7 +13,7 @@
  */
 
 // The ModernBB version this script updates to
-define('UPDATE_TO', '3.0-dev.1718');
+define('UPDATE_TO', '3.0-beta');
 
 define('UPDATE_TO_DB_REVISION', 49);
 define('UPDATE_TO_SI_REVISION', 2);
