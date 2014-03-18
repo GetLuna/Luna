@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Copyright (C) 2013 ModernBB
+ * Copyright (C) 2013-2014 ModernBB Group
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * License: http://www.gnu.org/licenses/gpl.html GPL version 3 or higher
  */
 
 // The ModernBB version this script installs
-define('FORUM_VERSION', '2.2.02');
+define('FORUM_VERSION', '2.2.3');
 
 define('FORUM_DB_REVISION', 41);
 define('FORUM_SI_REVISION', 2);
