@@ -348,8 +348,8 @@ while ($cur_post = $db->fetch_assoc($result))
 ?>
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?>">
 	<table class="table postview <?php if ($cur_post['marked'] == true) echo 'marked'; ?>">
-		<tr colspan="2" class="user-data active visible-xs">
-        	<td>
+		<tr class="user-data active visible-xs">
+        	<td colspan="2">
 				<dd class="<?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd>
             </td>
         </tr>
