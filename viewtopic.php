@@ -422,7 +422,7 @@ if ($luna_user['is_guest'])
 }
 
 ?>
-            <textarea placeholder="Start typing..." class="form-control full-form" name="req_message" rows="7" tabindex="<?php echo $cur_index++ ?>"></textarea>
+            <textarea placeholder="Start typing..." class="form-control full-form tinymce" name="req_message" rows="7" tabindex="<?php echo $cur_index++ ?>"></textarea>
         </fieldset>
         <div class="panel-footer">
             <div class="btn-group"><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input class="btn btn-default" onclick="tinyMCE.triggerSave(false);" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div>
