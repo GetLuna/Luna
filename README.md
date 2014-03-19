@@ -6,8 +6,8 @@ ModernBB is an open source forum application released under the MIT license. It 
 
 ## Requirements
  - A webserver
- - PHP 5.0 or later
- - A database, MySQL 5.0.1 or later or SQLite 2 or 3
+ - PHP 5.1 or later
+ - A database, MySQL 5.0 or later or SQLite 2
 
 ## Recommendations
  - Make use of a PHP accelerator such as APC or XCache
