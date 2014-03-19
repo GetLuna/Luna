@@ -63,7 +63,6 @@ require FORUM_ROOT.'header.php';
 		<p><?php echo $lang['Links info'] ?></p>
 		<p><code>[url=<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>]<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?></a></p>
 		<p><code>[url]<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/') ?></a></p>
-		<p><code>[url=/help.php]<?php echo $lang['This help page'] ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/help.php') ?>"><?php echo $lang['This help page'] ?></a></p>
 		<p><code>[email]myname@example.com[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com">myname@example.com</a></p>
 		<p><code>[email=myname@example.com]<?php echo $lang['My email address'] ?>[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com"><?php echo $lang['My email address'] ?></a></p>
 		<p><a name="img"></a><?php echo $lang['Images info'] ?></p>
