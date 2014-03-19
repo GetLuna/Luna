@@ -243,34 +243,28 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: 15px;
 }
 
-.navbar-toggle {
-	position: relative;
-	float: right;
-	padding: 0;
-	margin-top: 13px;
-	margin-right: 15px;
-	margin-bottom: 5px;
-	background-color: transparent;
-	border: none;
-	border-radius: 0;
-}
-
-.navbar-toggle .icon-bar {
-	display: block;
-	width: 24px;
-	height: 3px;
-	border-radius: 1px;
-	background-color: #fff;
-}
-
-.navbar-toggle .icon-bar + .icon-bar {
-	margin-top: 4px;
-}
-
 @media (min-width: 768px) {
 	.navbar-toggle {
 		display: none;
 	}
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	border: none;
+}
+
+/* Toggle */
+.navbar-default .navbar-toggle {
+	border: none;
+	border-radius: 0;
+}
+
+.navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	background-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #0073c4;
 }
 
 /* Pagination */
