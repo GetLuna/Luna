@@ -1,14 +1,9 @@
 <?php
 
 /**
- * Copyright is different for each file
- ***********************
  * Copyright (C) 2013-2014 ModernBB Group
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License under GPLv3
- ***********************
- * Copyright (C) 2014 ModernBB Group
  * License under GPLv3
  */
 
@@ -307,11 +302,14 @@ if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
 $tpl_temp = '<div id="brdwelcome" class="inbox">';
 
 // The status information
-if (is_array($page_statusinfo)) {
+if (is_array($page_statusinfo))
+{
 	$tpl_temp .= "\n\t\t\t".'<ul class="conl">';
 	$tpl_temp .= "\n\t\t\t\t".implode("\n\t\t\t\t", $page_statusinfo);
 	$tpl_temp .= "\n\t\t\t".'</ul>';
 }
+else
+	$tpl_temp .= "\n\t\t\t".$page_statusinfo;
 
 // Generate quicklinks
 if (!empty($page_topicsearches))

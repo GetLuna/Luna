@@ -1,24 +1,17 @@
 <?php
 
 /**
- * Copyright is different for each file
- ***********************
  * Copyright (C) 2013-2014 ModernBB Group
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License under GPLv3
- ***********************
- * Copyright (C) 2014 ModernBB Group
  * License under GPLv3
  */
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-
 if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
-
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -355,8 +348,8 @@ while ($cur_post = $db->fetch_assoc($result))
 ?>
     <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' blockpost1'; ?>">
         <table class="table <?php if ($cur_post['marked'] == true) echo 'marked'; ?>">
-            <tr class="user-data active visible-xs">
-                <td colspan="2">
+            <tr colspan="2" class="user-data active visible-xs">
+                <td>
                     <dd class="<?php echo $is_online; ?>"><strong><?php echo $username ?></strong></dd>
                 </td>
             </tr>

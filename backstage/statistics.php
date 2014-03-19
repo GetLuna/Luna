@@ -1,14 +1,9 @@
 <?php
 
 /**
- * Copyright is different for each file
- ***********************
  * Copyright (C) 2013-2014 ModernBB Group
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License under GPLv3
- ***********************
- * Copyright (C) 2014 ModernBB Group
  * License under GPLv3
  */
 
