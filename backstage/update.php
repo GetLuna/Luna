@@ -83,17 +83,17 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('update');
 	
 	?>
-<h2>ModernBB software updates</h2>
+<h2><?php echo $lang['ModernBB software updates'] ?></h2>
 <div class="panel panel-default">
 	<div class="panel-heading">
-    	<h3 class="panel-title">ModernBB updates<span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary">Check for updates</a></span></h3>
+    	<h3 class="panel-title"><?php echo $lang['ModernBB updates'] ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><?php echo $lang['Check for updates'] ?></a></span></h3>
     </div>
     <div class="panel-body">
 <?php
 	$latest_version = $update_cache;
 	if (version_compare(FORUM_VERSION, $latest_version, 'lt')) {
 ?>
-		<h3>It's time to update, a new version is available</h3>
+		<h3><?php echo $lang['New version'] ?></h3>
         <p><?php echo sprintf($lang['Available'], $latest_version) ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
@@ -101,14 +101,14 @@ require FORUM_ROOT.'backstage/header.php';
         </div>
         <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
 <?php } elseif (version_compare(FORUM_VERSION, $latest_version, 'eq')) { ?>
-		<h3>Thanks for using the latest version of ModernBB</h3>
+		<h3><?php echo $lang['Latest version'] ?></h3>
         <p><?php echo $lang['ModernBB intro'].' '.FORUM_VERSION ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/releases/modernbb<?php echo FORUM_VERSION ?>.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
             <a href="http://modernbb.be/downloads/<?php echo FORUM_VERSION ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], FORUM_VERSION) ?></a>
         </div>
 <?php } else { ?>
-        <h3>You're using a development release</h3>
+        <h3><?php echo $lang['Development version'] ?></h3>
         <p><?php echo sprintf($lang['Development'], FORUM_VERSION, $latest_version) ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/downloads/<?php echo $latest_version ?>.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
@@ -128,15 +128,15 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
-    	<h3 class="panel-title">ModernBB reset features</h3>
+    	<h3 class="panel-title"><?php echo $lang['Reset head'] ?></h3>
     </div>
     <div class="panel-body">
-    	<h3>Soft reset</h3>
-        <p>The button below will remove the config.php file, this will cause the install to start so you can install ModernBB again. This will not drop the current database. This might be effective if your config.php file is corrupt. This can't be undone. Be sure you made a back-up before doing this.</p>
-        <a href="update.php?action=soft_reset" class="btn btn-danger">Reset config.php</a>
-    	<h3><br />Hard reset</h3>
-        <p>The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. This can't be undone. Be sure you made a back-up before doing this.</p>
-        <a href="update.php?action=hard_reset" class="btn btn-danger">Reset</a>
+    	<h3><?php echo $lang['Soft reset'] ?></h3>
+        <p><?php echo $lang['Soft reset help'] ?></p>
+        <a href="update.php?action=soft_reset" class="btn btn-danger"><?php echo $lang['Reset config'] ?></a>
+    	<h3><br /><?php echo $lang['Hard reset'] ?></h3>
+        <p><?php echo $lang['Hard reset help'] ?></p>
+        <a href="update.php?action=hard_reset" class="btn btn-danger"><?php echo $lang['Reset'] ?></a>
     </div>
 </div>
 <?php

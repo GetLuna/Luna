@@ -1182,7 +1182,7 @@ $lang = array(
 'Report flood help'				=>	'Number of seconds that users in this group have to wait between reports. Set to 0 to disable.',
 'Moderator info'				=>	'Please note that in order for a user in this group to have moderator abilities, he/she must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.',
 
-// Language used in index.php
+// Language used in index.php and update.php for Backstage
 'ModernBB intro'					=>	'Welcome to ModernBB',
 'Backup head'						=>	'Back-up',
 'Backup info'						=>	'Create new database backup.',
@@ -1204,6 +1204,21 @@ $lang = array(
 'ModernBB version data'				=>	'ModernBB version ',
 'Server statistics label'			=>	'Server statistics',
 'View server statistics'			=>	'View server statistics',
+
+'ModernBB software updates'			=>	'ModernBB software updates',
+'ModernBB updates'					=>	'ModernBB updates',
+'Check for updates'					=>	'Check for updates',
+'New version'						=>	'It\'s time to update, a new version is available',
+'Latest version'					=>	'Thanks for using the latest version of ModernBB',
+'Development version'				=>	'You\'re using a development release',
+
+'Reset head'						=>	'ModernBB reset features',
+'Soft reset'						=>	'Soft reset',
+'Soft reset help'					=>	'The button below will remove the config.php file, this will cause the install to start so you can install ModernBB again. This will not drop the current database. This might be effective if your config.php file is corrupt. This can\'t be undone. Be sure you made a back-up before doing this.',
+'Hard reset'						=>	'Hard reset',
+'Reset config'						=>	'Reset config.php',
+'Hard reset help'					=>	'The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. This can\'t be undone. Be sure you made a back-up before doing this.',
+'Reset'								=>	'Reset',
 
 // Reports
 'Reported by'						=>	'By',
