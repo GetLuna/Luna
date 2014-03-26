@@ -1,11 +1,11 @@
 /****************************
  * Name:		Awesomeness
- * Version:		2.2-dev
- * Date:		15 December 2013
+ * Version:		2.2
+ * Date:		26 March 2014
  * Designer:	ModernBB Developers
  * Discription: A nice green default theme that uses ModernBB optimal.
  * ModernBB:	3.0
- * Bootstrap:	3.1-dev
+ * Bootstrap:	3.1.1
  ****************************/
  
  /* General fixes */
@@ -240,8 +240,8 @@ h1, h2, h3, h4, h5, h6 {
 	border-bottom-color: #fff;
 }
 
-.navbar-right > .dropdown {
-	margin-right: 15px;
+.navbar-right > .dropdown, :last-child.navbar-right.navbar-nav {
+	margin-right: 0;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
