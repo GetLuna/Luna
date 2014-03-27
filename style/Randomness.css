@@ -943,7 +943,7 @@ textarea {
 }
 
 .profile-card-head {
-	background-color: #00c55a;
+	background-color: #057ed4;
 	color: #fff;
 }
 
@@ -976,6 +976,7 @@ textarea {
 
 .profile-card-body {
 	padding: 9px;
+	background-color: #fff;
 	border: #ddd 1px solid;
 	border-top: none;
 }
@@ -995,11 +996,27 @@ textarea {
     left: 4px;
     margin-top: -2px;
     border-left-width: 0px;
-    border-right-color: #00c55a;
+    border-right-color: #057ed4;;
+}
+
+.topic .panel-heading {
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
 }
 
 .post-actions {
     margin-top: 5px;
+}
+
+@media(max-width:991px) {
+	.topic .panel {
+		margin-top: 0;
+	}
+
+	.profile-card-head {
+		background: #057ed4;
+		background: linear-gradient(to right, #057ed4, #10c1f0);
+	}
 }
 
 /* Forumview, index */
