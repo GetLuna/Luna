@@ -1,10 +1,10 @@
 /****************************
  * Name:		Radicalness
- * Version:		2.2
+ * Version:		2.3
  * Date:		26 March 2014
  * Designer:	ModernBB Developers
  * Discription: A nice red default theme that uses ModernBB optimal.
- * ModernBB:	3.0
+ * ModernBB:	3.1
  * Bootstrap:	3.1.1
  ****************************/
  
@@ -851,6 +851,168 @@ textarea {
 /* Userlist */
 .usersearch {
 	margin: 0 auto 10px auto;	
+}
+
+/* Topicview */
+.topic h1 a:hover, .topic h2 a:hover, .topic h3 a:hover, .topic h4 a:hover, .topic h5 a:hover, .topic h6 a:hover, .topic h1 a:active, .topic h2 a:active, .topic h3 a:active, .topic h4 a:active, .topic h5 a:active, .topic h6 a:active, .topic h1 a:focus, .topic h2 a:focus, .topic h3 a:focus, .topic h4 a:focus, .topic h5 a:focus, .topic h6 a:focus {
+    text-decoration: none;
+    color: #ddd;
+}
+
+.topic h2 a, .topic h3, .topic h3 a {
+    color: #fff;
+}
+
+.topic .panel, .topic .profile-card {
+	margin-bottom: 0;
+}
+
+.panel-topic {
+    margin-top: 10px;
+}
+
+.topic .profile-card {
+	margin-top: 10px;
+}
+
+.topic .panel-body {
+	padding: 7px;
+}
+
+.topic .profile-card-head .user-avatar {
+	max-width: 54px;
+	margin-top: 4px;
+	margin-left: 4px;
+	position: absolute;
+	border-radius: 0;
+	min-height: 50px;
+	min-width: 54px;
+}
+
+.topic .profile-card-head .noavatar {
+	border: 0;
+	background: 0;
+}
+
+.topic .profile-card-head .is-online {
+	border-left: 4px #93dd00 solid;
+}
+
+.topic .profile-card-head .is-offline {
+	border-left: 4px #eee solid;
+}
+
+.profile-card-head h2 {
+	color: #fff;
+}
+
+.profile-card-head h3 {
+	color: #fff;
+}
+
+.topic .profile-card-head h2 {
+	padding-left: 64px;
+	padding-top: 3px;
+}
+
+.topic .profile-card-head h3 {
+	padding-left: 64px;
+	padding-bottom: 7px;
+}
+
+.topic .profile-card-head h2.noavatar, .topic .profile-card-head h3.noavatar {
+	padding-left: 12px;
+}
+
+.topic hr {
+	margin-top: 9px;
+	margin-bottom: 1px;
+}
+.profile, .topic {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.profile-card {
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+
+.profile-card-head {
+	background-color: #ea3700;
+	color: #fff;
+}
+
+.profile-card-head .thumbnail {
+	max-width: 100px;
+	margin-top: -50px;
+	margin-left: 9px;
+	position: absolute;
+	border-radius: 0;
+}
+
+.profile-card-head h2 {
+	padding-left: 120px;
+	padding-top: 3px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.profile-card-head h3 {
+	padding-left: 120px;
+	padding-bottom: 7px;
+	margin-top: 0;
+	font-size: 100%;
+	margin-bottom: 0;
+}
+
+.profile-card-head h2.noavatar, .profile-card-head h3.noavatar {
+	padding-left: 10px;
+}
+
+.profile-card-body {
+	padding: 9px;
+	background-color: #fff;
+	border: #ddd 1px solid;
+	border-top: none;
+}
+
+.profile-card-body p, .panel-body p {
+	margin: 0;
+}
+
+.comment-arrow {
+    position: absolute;
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 11px;
+    left: 4px;
+    margin-top: -2px;
+    border-left-width: 0px;
+    border-right-color: #ea3700;;
+}
+
+.topic .panel-heading {
+	background: #ea3700;
+	background: linear-gradient(to right, #ea3700, #fd8300);
+}
+
+.post-actions {
+    margin-top: 5px;
+}
+
+@media(max-width:991px) {
+	.topic .panel {
+		margin-top: 0;
+	}
+
+	.profile-card-head {
+		background: #ea3700;
+		background: linear-gradient(to right, #ea3700, #fd8300);
+	}
 }
 
 /* Forumview, index */
