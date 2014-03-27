@@ -1004,6 +1004,11 @@ textarea {
     margin-top: 5px;
 }
 
+.topic .thumbnail {
+    padding: 0;
+    border: 1px solid #fff;
+}
+
 @media(max-width:991px) {
 	.topic .panel {
 		margin-top: 0;
