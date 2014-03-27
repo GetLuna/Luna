@@ -10,12 +10,8 @@
 if (!defined('FORUM_ROOT'))
 	exit('The constant FORUM_ROOT must be defined and point to a valid ModernBB installation root directory.');
 
-// Define the version and database revision that this code was written for
-define('FORUM_VERSION', '3.0.0');
-
-define('FORUM_DB_REVISION', 49);
-define('FORUM_SI_REVISION', 2);
-define('FORUM_PARSER_REVISION', 7);
+// Load the version class
+require FORUM_ROOT.'include/version.php';
 
 // Block prefetch requests
 if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
@@ -127,10 +123,10 @@ if (!defined('FORUM_CONFIG_LOADED'))
 }
 
 // Verify that we are running the proper database schema revision
-if (!isset($luna_config['o_database_revision']) || $luna_config['o_database_revision'] < FORUM_DB_REVISION ||
-	!isset($luna_config['o_searchindex_revision']) || $luna_config['o_searchindex_revision'] < FORUM_SI_REVISION ||
-	!isset($luna_config['o_parser_revision']) || $luna_config['o_parser_revision'] < FORUM_PARSER_REVISION ||
-	version_compare($luna_config['o_cur_version'], FORUM_VERSION, '<'))
+if (!isset($luna_config['o_database_revision']) || $luna_config['o_database_revision'] < Version::FORUM_DB_VERSION ||
+	!isset($luna_config['o_searchindex_revision']) || $luna_config['o_searchindex_revision'] < Version::FORUM_SI_VERSION ||
+	!isset($luna_config['o_parser_revision']) || $luna_config['o_parser_revision'] < Version::FORUM_PARSER_VERSION ||
+	version_compare($luna_config['o_cur_version'], Version::FORUM_VERSION, '<'))
 {
 	if (defined('FORUM_ADMIN_CONSOLE')) {
 		header('Location: '.FORUM_ROOT.'db_update.php');

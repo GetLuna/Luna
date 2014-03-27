@@ -7,17 +7,13 @@
  * License under GPLv3
  */
 
-// The ModernBB version this script updates to
-define('UPDATE_TO', '3.0.0');
-
-define('UPDATE_TO_DB_REVISION', 49);
-define('UPDATE_TO_SI_REVISION', 2);
-define('UPDATE_TO_PARSER_REVISION', 7);
-
-define('MIN_PHP_VERSION', '5.0.0');
-define('MIN_MYSQL_VERSION', '5.0.1');
 define('FORUM_SEARCH_MIN_WORD', 3);
 define('FORUM_SEARCH_MAX_WORD', 20);
+
+define('FORUM_ROOT', dirname(__FILE__).'/');
+
+// Load the version class
+require FORUM_ROOT.'include/version.php';
 
 // The number of items to process per page view
 define('PER_PAGE', 300);
@@ -25,11 +21,9 @@ define('PER_PAGE', 300);
 // Don't set to UTF-8 until after we've found out what the default character set is
 define('FORUM_NO_SET_NAMES', 1);
 
-// Make sure we are running at least MIN_PHP_VERSION
-if (!function_exists('version_compare') || version_compare(PHP_VERSION, MIN_PHP_VERSION, '<'))
-	exit('You are running PHP version '.PHP_VERSION.'. ModernBB '.UPDATE_TO.' requires at least PHP '.MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
-
-define('FORUM_ROOT', dirname(__FILE__).'/');
+// Make sure we are running at least Version::MIN_PHP_VERSION
+if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '<'))
+	exit('You are running PHP version '.PHP_VERSION.'. ModernBB '.Version::FORUM_VERSION.' requires at least PHP '.Version::MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
 
 // Attempt to load the configuration file config.php
 if (file_exists(FORUM_ROOT.'config.php'))
@@ -141,18 +135,18 @@ switch ($db_type)
 	case 'mysql_innodb':
 	case 'mysqli_innodb':
 		$mysql_info = $db->get_version();
-		if (version_compare($mysql_info['version'], MIN_MYSQL_VERSION, '<'))
-			error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], UPDATE_TO, MIN_MYSQL_VERSION));
+		if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
+			error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
 
 		$mysql = true;
 		break;
 }
 
 // Check the database, search index and parser revision and the current version
-if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= UPDATE_TO_DB_REVISION &&
-		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= UPDATE_TO_SI_REVISION &&
-		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION &&
-		version_compare($luna_config['o_cur_version'], UPDATE_TO, '>='))
+if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::FORUM_DB_VERSION &&
+		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION &&
+		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION &&
+		version_compare($luna_config['o_cur_version'], Version::FORUM_VERSION, '>='))
 	error($lang['No update error']);
 
 $default_style = $luna_config['o_default_style'];
@@ -235,7 +229,7 @@ switch ($stage)
 		$query_str = '?stage=preparse_posts';
 
 		// If we don't need to update the database, skip this stage
-		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= UPDATE_TO_DB_REVISION)
+		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::FORUM_DB_VERSION)
 			break;
 		
 		// Since 2.0-beta.1: Add the marked column to the posts table
@@ -533,7 +527,7 @@ foreach ($errors[$id] as $cur_error)
 		$query_str = '?stage=preparse_sigs';
 
 		// If we don't need to parse the posts, skip this stage
-		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
+		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION)
 			break;
 
 		require FORUM_ROOT.'include/parser.php';
@@ -568,7 +562,7 @@ foreach ($errors[$id] as $cur_error)
 		$query_str = '?stage=rebuild_idx';
 
 		// If we don't need to parse the sigs, skip this stage
-		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= UPDATE_TO_PARSER_REVISION)
+		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION)
 			break;
 
 		require FORUM_ROOT.'include/parser.php';
@@ -602,7 +596,7 @@ foreach ($errors[$id] as $cur_error)
 		$query_str = '?stage=finish';
 
 		// If we don't need to update the search index, skip this stage
-		if (isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= UPDATE_TO_SI_REVISION)
+		if (isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION)
 			break;
 
 		if ($start_at == 0)
@@ -657,16 +651,16 @@ foreach ($errors[$id] as $cur_error)
 	// Show results page
 	case 'finish':
 		// We update the version number
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.UPDATE_TO.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
 
 		// And the database revision number
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.UPDATE_TO_DB_REVISION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_DB_VERSION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
 
 		// And the search index revision number
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.UPDATE_TO_SI_REVISION.'\' WHERE conf_name = \'o_searchindex_revision\'') or error('Unable to update search index revision number', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_SI_VERSION.'\' WHERE conf_name = \'o_searchindex_revision\'') or error('Unable to update search index revision number', __FILE__, __LINE__, $db->error());
 
 		// And the parser revision number
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.UPDATE_TO_PARSER_REVISION.'\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_PARSER_VERSION.'\' WHERE conf_name = \'o_parser_revision\'') or error('Unable to update parser revision number', __FILE__, __LINE__, $db->error());
 
 		// Check the default language still exists!
 		if (!file_exists(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/common.php'))

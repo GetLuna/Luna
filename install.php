@@ -7,15 +7,6 @@
  * License under GPLv3
  */
 
-// The ModernBB version this script installs
-define('FORUM_VERSION', '3.0.0');
-
-define('FORUM_DB_REVISION', 49);
-define('FORUM_SI_REVISION', 2);
-define('FORUM_PARSER_REVISION', 7);
-
-define('MIN_PHP_VERSION', '5.0.0');
-define('MIN_MYSQL_VERSION', '5.0.1');
 define('FORUM_SEARCH_MIN_WORD', 3);
 define('FORUM_SEARCH_MAX_WORD', 20);
 
@@ -26,6 +17,9 @@ header('Content-type: text/html; charset=utf-8');
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
+
+// Load the version class
+require FORUM_ROOT.'include/version.php';
 
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
@@ -97,9 +91,9 @@ define('FORUM', 1);
 if (!defined('FORUM_CACHE_DIR'))
 	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
 
-// Make sure we are running at least MIN_PHP_VERSION
-if (!function_exists('version_compare') || version_compare(PHP_VERSION, MIN_PHP_VERSION, '<'))
-	exit(sprintf($lang['You are running error'], 'PHP', PHP_VERSION, FORUM_VERSION, MIN_PHP_VERSION));
+// Make sure we are running at least Version::MIN_PHP_VERSION
+if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '<'))
+	exit(sprintf($lang['You are running error'], 'PHP', PHP_VERSION, Version::FORUM_VERSION, Version::MIN_PHP_VERSION));
 
 
 //
@@ -296,7 +290,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
     </head>
     <body onload="document.getElementById('install').start.disabled=false;" onunload="">
     	<div class="container">
-            <h1><?php echo sprintf($lang['Install'], FORUM_VERSION) ?></h1>
+            <h1><?php echo sprintf($lang['Install'], Version::FORUM_VERSION) ?></h1>
             <?php if ($action == 'softreset') { ?>
             <div class="alert alert-success"><h4>The config.php file has been deleted.</h4></div>
 			<?php } ?>
@@ -565,8 +559,8 @@ else
 		case 'mysql_innodb':
 		case 'mysqli_innodb':
 			$mysql_info = $db->get_version();
-			if (version_compare($mysql_info['version'], MIN_MYSQL_VERSION, '<'))
-				error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], FORUM_VERSION, MIN_MYSQL_VERSION));
+			if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
+				error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
 			break;
 
 		case 'sqlite':
@@ -1566,10 +1560,10 @@ else
 
 	// Insert config data
 	$luna_config = array(
-		'o_cur_version'				=> FORUM_VERSION,
-		'o_database_revision'		=> FORUM_DB_REVISION,
-		'o_searchindex_revision'	=> FORUM_SI_REVISION,
-		'o_parser_revision'			=> FORUM_PARSER_REVISION,
+		'o_cur_version'				=> Version::FORUM_VERSION,
+		'o_database_revision'		=> Version::FORUM_DB_VERSION,
+		'o_searchindex_revision'	=> Version::FORUM_SI_VERSION,
+		'o_parser_revision'			=> Version::FORUM_PARSER_VERSION,
 		'o_board_title'				=> $title,
 		'o_board_desc'				=> $description,
 		'o_default_timezone'		=> 0,
