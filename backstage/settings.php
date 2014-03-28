@@ -442,7 +442,7 @@ generate_admin_menu('global');
                         <?php echo $lang['Display announcement help'] ?>
                     </label>
                 </div>
-                <textarea class="form-control full-form" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
+                <textarea class="form-control" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
                 <span class="help-block"><?php echo $lang['Announcement message help'] ?></span>
             </fieldset>
         </div>

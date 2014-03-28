@@ -109,10 +109,6 @@ p {
 }
 
 /* Input and forms */
-.full-form {
-	width: 100%;
-}
-
 .help-block {
 	margin-bottom: 0;
 	margin-top: 0;
@@ -193,12 +189,6 @@ footer {
 .table {
 	margin-top: -5px;
 	margin-bottom: -5px;
-}
-
-/* Forms */
-.form-control {
-	width: auto;
-	display: inline;
 }
 
 /* Breadcrumb */

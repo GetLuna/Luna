@@ -758,10 +758,6 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 	display: inline;
 }
 
-.full-form {
-	width: 100%;
-}
-
 fieldset label {
 	display: block;
 	padding: 0 0 7px 0;

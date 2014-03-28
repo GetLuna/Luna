@@ -181,9 +181,9 @@ else if (isset($_GET['email']))
             <input type="hidden" name="form_sent" value="1" />
             <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
             <label class="required hidden"><?php echo $lang['Email subject'] ?></label>
-            <input class="form-control full-form" placeholder="<?php echo $lang['Email subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
+            <input class="form-control" placeholder="<?php echo $lang['Email subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
             <label class="required hidden"><?php echo $lang['Email message'] ?></label>
-            <textarea name="req_message" class="form-control full-form" rows="10" tabindex="2"></textarea>
+            <textarea name="req_message" class="form-control" rows="10" tabindex="2"></textarea>
         </fieldset>
         <div class="panel-footer">
             <div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="3" accesskey="s" /><a href="javascript:history.go(-1)" class="btn btn-link"><?php echo $lang['Go back'] ?></a></div>
