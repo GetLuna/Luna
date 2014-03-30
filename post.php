@@ -534,8 +534,11 @@ require FORUM_ROOT.'header.php';
     <ol class="breadcrumb">
         <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
         <li><a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo luna_htmlspecialchars($cur_posting['forum_name']) ?></a></li>
-    <?php if (isset($cur_posting['subject'])): ?>			<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_posting['subject']) ?></a></li>
-    <?php endif; ?>			<li class="active"><?php echo $action ?></li>
+		<?php if (isset($_POST['req_subject'])): ?><li><?php echo luna_htmlspecialchars($_POST['req_subject']) ?></li><?php endif; ?>
+		<?php if (isset($cur_posting['subject'])): ?>
+        	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_posting['subject']) ?></a></li>
+		<?php endif; ?>
+		<?php if (!isset($_POST['req_subject'])): ?><li><?php echo $action ?></li><?php endif; ?>
     </ol>
 
 <?php
