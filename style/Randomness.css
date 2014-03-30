@@ -375,8 +375,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	padding-bottom: 8px;
 }
 
-.marked .post-content {
-	background-color: #fff0ed;
+.marked .panel-body {
+	background-color: #fff1eb;
+}
+
+.marked .panel-body hr {
+    border-top: 1px solid #ffc8b3;
 }
 
 /* Quick post and post */
@@ -958,8 +962,12 @@ textarea {
 	border-top: none;
 }
 
-.profile-card-body p, .panel-body p {
+.profile-card-body p {
 	margin: 0;
+}
+
+.panel-body p {
+	line-height: 1.6;
 }
 
 .comment-arrow {
