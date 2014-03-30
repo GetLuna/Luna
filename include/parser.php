@@ -711,7 +711,7 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 		else
 			$link = stripslashes($link);
 
-		return '<a href="'.$full_url.'" rel="nofollow">'.$link.'</a>';
+		return '<a href="'.$full_url.'" target="_blank" rel="nofollow">'.$link.'</a>';
 	}
 }
 
