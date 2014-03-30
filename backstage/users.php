@@ -40,7 +40,7 @@ if (isset($_POST['add_user']))
 		message($lang['Username too short']);
 	else if (luna_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
 	    message($lang['Bad request'], false, '404 Not Found');
-	else if (strlen($password) < 4)
+	else if (strlen($password) < 6)
 		message($lang['Pass too short']);
 	else if (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang['Guest']))
 		message($lang['Username guest']);

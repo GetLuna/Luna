@@ -83,7 +83,7 @@ if (isset($_POST['form_sent']))
 	// Validate username and passwords
 	check_username($username);
 
-	if (luna_strlen($password1) < 4)
+	if (luna_strlen($password1) < 6)
 		$errors[] = $lang['Pass too short'];
 	else if ($password1 != $password2)
 		$errors[] = $lang['Pass not match'];
