@@ -96,6 +96,25 @@ h1, h2, h3, h4, h5, h6 {
 	height: 50px;
 }
 
+@media screen and (max-width: 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #header .dropdown-menu > li > a {
+		color: #fff;
+	}
+	
+	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
+		background: #f96a00;
+	}
+	
+	.dropdown-menu .divider {
+		background-color: #b62b00;
+	}
+	
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		border: none;
+		box-shadow: none;
+	}
+}
+
 /* Index */
 .tclcon {
 	margin-left: 25px;
