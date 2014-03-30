@@ -110,20 +110,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: 15px;
 }
 
-@media(max-width:767px) {
-	.col-xs-3 {
-		width: 41.66666666666667%;
-	}
-	
-	.col-xs-6 {
-		width: 83.33333333333334%;
-	}
-	
-	.col-search {
-		width: 50% !important;
-	}
-}
-
 /* Welcome box and header */
 #brddesc {
 	border-bottom-style: dotted;
