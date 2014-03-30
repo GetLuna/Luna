@@ -360,27 +360,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #bbb;
 }
 
-.post-topic {
-	background-color: #fff;
-	padding: 5px;
-	padding-bottom: 0px;
-	margin-bottom: 10px;
-}
-
-.user-info {
-	font-size: 80%;
-}
-
-.is-online {
-	border-left: 4px #93dd00 solid;
-	padding-left: 4px;
-}
-
-.is-offline {
-	border-left: 4px #aaa solid;
-	padding-left: 4px;
-}
-
 .modcontrols {
 	padding-bottom: 8px;
 }
