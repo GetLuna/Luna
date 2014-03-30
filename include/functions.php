@@ -574,6 +574,10 @@ function generate_avatar_markup($user_id)
 			$avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		}
+                else
+                {
+                        $avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true)).'/'.$luna_config['o_avatars_dir'].'/placeholder.png" alt="placeholder avatar" />';
+                }
 	}
 
 	return $avatar_markup;
