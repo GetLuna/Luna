@@ -1,7 +1,7 @@
 /****************************
  * Name:		Kindness
  * Version:		2.3
- * Date:		26 March 2014
+ * Date:		1 April 2014
  * Designer:	ModernBB Developers
  * Discription: A nice yellow default theme that uses ModernBB optimal.
  * ModernBB:	3.1
@@ -24,6 +24,10 @@ body, html {
 
 footer {
 	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+footer .pull-right {
 	padding-bottom: 15px;
 }
 
