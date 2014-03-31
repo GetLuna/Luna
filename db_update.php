@@ -275,6 +275,22 @@ switch ($stage)
 		// Since 2.2.2: Add o_ranks if updating from FluxBB 1.5
 		if (!array_key_exists('o_ranks', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.1: Add o_show_index
+		if (!array_key_exists('o_show_index', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_index\', \'1\')') or error('Unable to insert config value \'o_show_index\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.1: Add o_show_userlist
+		if (!array_key_exists('o_show_userlist', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_userlist\', \'1\')') or error('Unable to insert config value \'o_show_userlist\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.1: Add o_show_search
+		if (!array_key_exists('o_show_search', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_search\', \'1\')') or error('Unable to insert config value \'o_show_search\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.1: Add o_show_rules
+		if (!array_key_exists('o_show_rules', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_rules\', \'1\')') or error('Unable to insert config value \'o_show_rules\'', __FILE__, __LINE__, $db->error());
 			
 		// Since 3.0-alpha.1 Remove the toolbar_conf table
 		if ($db->table_exists('toolbar_conf'))
