@@ -222,9 +222,17 @@ if ($luna_user['is_guest'])
 } else {
 	$usermenu[] = '<li class="dropdown">';
 	$usermenu[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$lang['Welcome'].', '.(luna_htmlspecialchars($luna_user['username'])).' <b class="caret"></b></a>';
+	// Responsive menu
 	$usermenu[] = '<ul class="dropdown-menu">';
+	$usermenu[] = '<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>';
+	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';
+	$usermenu[] = '<li class="divider"></li>';
+	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
+	$usermenu[] = '</ul>';
+	// Default
+	$usermenu[] = '<ul class="dropdown-menu hidden-xs">';
 	$usermenu[]= '
-                                                <div class="navbar-content">
+                                                <div class="navbar-content hidden-xs">
                                                     <div class="row">
                                                         <div class="col-md-5">
                                                             '.$user_avatar.'
