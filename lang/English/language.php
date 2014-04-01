@@ -1615,7 +1615,6 @@ $lang = array(
 
 // Create new user
 'Add user head'				=>	'Add user',
-'Username'					=>	'Username',
 'Random password info'		=>	'Generate a random password, this will be emailed to the above address. When checked, leave "Password" empty.',
 'Password'					=>	'Password',
 
