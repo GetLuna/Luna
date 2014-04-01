@@ -207,13 +207,7 @@ if ($luna_user['g_read_board'] == '1' && $luna_config['o_additional_navlinks'] !
 }
 
 // Generate avatar
-if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0')
-{
-	if (isset($user_avatar_cache[$cur_post['poster_id']]))
-		$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
-	else
-		$user_avatar = $user_avatar_cache[$cur_post['poster_id']] = generate_avatar_markup($cur_post['poster_id']);
-}
+$user_avatar = generate_avatar_markup($luna_user['id']);
 // The user menu
 if ($luna_user['is_guest'])
 {
