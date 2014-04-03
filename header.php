@@ -156,7 +156,9 @@ $tpl_main = str_replace('<luna_page>', htmlspecialchars(basename($_SERVER['PHP_S
 
 
 // START SUBST - <luna_title>
-if ($luna_config['o_header_title'] == 1) {
+if (($luna_config['o_header_title'] == 1) && ($luna_config['o_menu_title'] == 1)) {
+	$tpl_main = str_replace('<luna_title>', '<h1 class="hidden-xs"><a href="index.php">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a></h1>', $tpl_main);
+} elseif (($luna_config['o_header_title'] == 1) && ($luna_config['o_menu_title'] == 0)) {
 	$tpl_main = str_replace('<luna_title>', '<h1><a href="index.php">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a></h1>', $tpl_main);
 } else {
 	$tpl_main = str_replace('<luna_title>', '', $tpl_main);
