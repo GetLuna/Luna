@@ -230,10 +230,10 @@ if ($luna_user['is_guest'])
 	$usermenu[]= '
                                                 <div class="navbar-content hidden-xs">
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <div class="col-xs-5">
                                                             '.$user_avatar.'
                                                         </div>
-                                                        <div class="col-md-7">
+                                                        <div class="col-xs-7">
                                                             <span class="userpane-name">'.(luna_htmlspecialchars($luna_user['username'])).'</span>
                                                             <p class="text-muted small">'.(luna_htmlspecialchars($luna_user['email'])).'</p>
                                                             <div class="divider">
@@ -245,10 +245,10 @@ if ($luna_user['is_guest'])
                                                 <div class="navbar-footer">
                                                     <div class="navbar-footer-content">
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-xs-6">
 																<a href="help.php" class="btn btn-primary">Help</a>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-xs-6">
 																<a class="btn btn-default pull-right" href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a>
                                                             </div>
                                                         </div>
