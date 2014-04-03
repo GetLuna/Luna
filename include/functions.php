@@ -540,7 +540,7 @@ function generate_profile_menu($page = '')
 	global $lang, $luna_config, $luna_user, $id;
 
 ?>
-<div class="col-md-2 profile-nav">
+<div class="col-sm-2 profile-nav">
     <div class="list-group">
         <a class="<?php if ($page == 'view') echo 'active'; ?> list-group-item" href="profile.php?section=view&amp;id=<?php echo $id ?>"><?php echo $lang['Section view'] ?></a>
         <a class="<?php if ($page == 'personality') echo 'active'; ?> list-group-item" href="profile.php?section=personality&amp;id=<?php echo $id ?>"><?php echo $lang['Section personality'] ?></a>
@@ -574,10 +574,10 @@ function generate_avatar_markup($user_id)
 			$avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		}
-                else
-                {
-                        $avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true)).'/'.$luna_config['o_avatars_dir'].'/placeholder.png" alt="placeholder avatar" />';
-                }
+		else
+		{
+			$avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true)).'/'.$luna_config['o_avatars_dir'].'/placeholder.png" alt="placeholder avatar" />';
+		}
 	}
 
 	return $avatar_markup;
