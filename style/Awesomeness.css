@@ -49,10 +49,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media screen and (max-width: 767px) {
-	.col-sm-10 {
+	.col-profile {
 		padding-left: 0;
-		padding-right: 0;
 	}
+}
+
+.col-profile {
+	padding-right: 0;
 }
 
 /* Header */

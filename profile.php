@@ -1296,7 +1296,7 @@ else
 
 ?>
 
-<div class="col-sm-10">
+<div class="col-sm-10 col-profile">
 	<h2><?php echo luna_htmlspecialchars($user['username']) ?> <small><?php echo $lang['View info'] ?></small></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -1368,7 +1368,7 @@ else
 		generate_profile_menu('personality');
 
 ?>
-<div class="col-sm-10">
+<div class="col-sm-10 col-profile">
     <h2 class="profile-h2"><?php echo $lang['Section personality'] ?></h2>
     <form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
         <div class="panel panel-default">
@@ -1495,7 +1495,7 @@ else
 		generate_profile_menu('settings');
 
 ?>
-<div class="col-sm-10">
+<div class="col-sm-10 col-profile">
     <h2 class="profile-h2"><?php echo $lang['Section settings'] ?></h2>
     <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
         <div class="panel panel-default">
@@ -1798,7 +1798,7 @@ else
 		generate_profile_menu('admin');
 
 ?>
-<div class="col-sm-10">
+<div class="col-sm-10 col-profile">
     <h2 class="profile-h2"><?php echo $lang['Section admin'] ?></h2>
     <form id="profile7" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>">
 <?php
