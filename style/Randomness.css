@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: underline;
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 768px) {
 	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
 		background: #005d9e;
 		color: #fff;
