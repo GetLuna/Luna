@@ -108,15 +108,17 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: underline;
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-	background: #a22600;
-	color: #fff;
-	margin-left: 0;
-	margin-right: 0;
-	margin-left: 16px;
-	padding-left: 12px;
-	padding-right: 12px;
-	height: 50px;
+@media screen and (min-width: 767px) {
+	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+		background: #a22600;
+		color: #fff;
+		margin-left: 0;
+		margin-right: 0;
+		margin-left: 16px;
+		padding-left: 12px;
+		padding-right: 12px;
+		height: 50px;
+	}
 }
 
 /* Index */
