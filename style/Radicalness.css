@@ -1010,6 +1010,10 @@ textarea {
 	}
 }
 
+.onlypost > .col-md-3 > .profile-card, .onlypost > .col-md-9 > .panel {
+	margin-top: 0;
+}
+
 /* Forumview, index */
 .buindex {
 	display: block;
