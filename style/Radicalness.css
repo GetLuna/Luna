@@ -1,7 +1,7 @@
 /****************************
  * Name:		Radicalness
- * Version:		2.3
- * Date:		1 April 2014
+ * Version:		2.3.1
+ * Date:		5 April 2014
  * Designer:	ModernBB Developers
  * Discription: A nice red default theme that uses ModernBB optimal.
  * ModernBB:	3.1
@@ -877,17 +877,16 @@ textarea {
 
 .topic .profile-card-head .user-avatar {
 	max-width: 54px;
+	height: 50px;
 	margin-top: 4px;
 	margin-left: 4px;
 	position: absolute;
 	border-radius: 0;
-	min-height: 50px;
-	min-width: 54px;
 }
 
-.topic .profile-card-head .noavatar {
-	border: 0;
-	background: 0;
+.topic .profile-card-head .user-avatar img {
+	height: 48px;
+	width: 100%;
 }
 
 .topic .profile-card-head .is-online {
