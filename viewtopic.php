@@ -346,7 +346,7 @@ while ($cur_post = $db->fetch_assoc($result))
 	}
 	
 ?>
-	<div class="row topic <?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' onlypost'; ?><?php if ($cur_post['marked'] == true) echo ' marked'; ?>">
+	<div id="p<?php echo $cur_post['id'] ?>" class="row topic <?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' onlypost'; ?><?php if ($cur_post['marked'] == true) echo ' marked'; ?>">
 		<div class="col-md-3">
 			<div class="profile-card">
 				<div class="profile-card-head">
