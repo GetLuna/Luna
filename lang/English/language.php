@@ -12,7 +12,7 @@ $lang = array(
 'lang_thousands_sep'				=>	',',
 
 // Notices
-'Bad request'						=>	'Bad request. The link you followed is incorrect or outdated.',
+'Bad request'						=>	'Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.',
 'No view'							=>	'You do not have permission to view these forums.',
 'Bad referrer'						=>	'Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that \'Base URL\' is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the FluxBB documentation.',
 'No permission'						=>	'You do not have permission to access this page.',
@@ -123,7 +123,7 @@ $lang = array(
 
 // Stuff for the page footer
 'Moderate topic'					=>	'Moderate topic',
-'All'								=>	'All',
+'All'								=>	'Show all posts',
 'Move topic'						=>	'Move topic',
 'Open topic'						=>	'Open topic',
 'Close topic'						=>	'Close topic',
