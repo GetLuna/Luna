@@ -825,7 +825,7 @@ $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name,
 // We either show a list of forums of which multiple can be selected
 if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod'])
 {
-	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.$lang['Forum search'].'</b>'."\n";
+	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.$lang['Forum'].'</b>'."\n";
 	echo "\t\t\t\t\t\t".'<br />'."\n";
 	echo "\t\t\t\t\t\t".'<div>'."\n";
 
@@ -858,7 +858,7 @@ if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod'])
 // ... or a simple select list for one forum only
 else
 {
-	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.$lang['Forum search']."\n";
+	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.$lang['Forum']."\n";
 	echo "\t\t\t\t\t\t".'<br />'."\n";
 	echo "\t\t\t\t\t\t".'<select id="forum" name="forum">'."\n";
 
@@ -905,8 +905,8 @@ else
                                         <select class="form-control" name="sort_by">
                                             <option value="0"><?php echo $lang['Sort by post time'] ?></option>
                                             <option value="1"><?php echo $lang['Sort by author'] ?></option>
-                                            <option value="2"><?php echo $lang['Sort by subject'] ?></option>
-                                            <option value="3"><?php echo $lang['Sort by forum'] ?></option>
+                                            <option value="2"><?php echo $lang['Subject'] ?></option>
+                                            <option value="3"><?php echo $lang['Forum'] ?></option>
                                         </select>
                                     </td>
                                     <td>

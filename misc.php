@@ -165,7 +165,7 @@ else if (isset($_GET['email']))
 		$redirect_url .= '#p'.$matches[1];
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Send email to'].' '.luna_htmlspecialchars($recipient));
-	$required_fields = array('req_subject' => $lang['Email subject'], 'req_message' => $lang['Email message']);
+	$required_fields = array('req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 	$focus_element = array('email', 'req_subject');
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
@@ -180,9 +180,9 @@ else if (isset($_GET['email']))
         <fieldset class="postfield">
             <input type="hidden" name="form_sent" value="1" />
             <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
-            <label class="required hidden"><?php echo $lang['Email subject'] ?></label>
-            <input class="form-control" placeholder="<?php echo $lang['Email subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
-            <label class="required hidden"><?php echo $lang['Email message'] ?></label>
+            <label class="required hidden"><?php echo $lang['Subject'] ?></label>
+            <input class="form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
+            <label class="required hidden"><?php echo $lang['Message'] ?></label>
             <textarea name="req_message" class="form-control" rows="10" tabindex="2"></textarea>
         </fieldset>
         <div class="panel-footer">

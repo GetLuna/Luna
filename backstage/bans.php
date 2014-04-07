@@ -114,7 +114,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
     <?php if ($mode == 'edit'): ?>				<input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" />
     <?php endif; ?>				<fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Username label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="ban_user" maxlength="25" value="<?php if (isset($ban_user)) echo luna_htmlspecialchars($ban_user); ?>" tabindex="1" />
 						<span class="help-block"><?php echo $lang['Username help'] ?></span>
@@ -395,11 +395,11 @@ else if (isset($_GET['find_ban']))
 	<table class="table">
 		<thead>
 			<tr>
-				<th class="tcl" scope="col"><?php echo $lang['Results username head'] ?></th>
+				<th class="tcl" scope="col"><?php echo $lang['Username'] ?></th>
 				<th class="tc2" scope="col"><?php echo $lang['Results e-mail head'] ?></th>
 				<th class="tc3" scope="col"><?php echo $lang['Results IP address head'] ?></th>
 				<th class="tc4" scope="col"><?php echo $lang['Results expire head'] ?></th>
-				<th class="tc5" scope="col"><?php echo $lang['Results message head'] ?></th>
+				<th class="tc5" scope="col"><?php echo $lang['Message'] ?></th>
 				<th class="tc6" scope="col"><?php echo $lang['Results banned by head'] ?></th>
 				<th class="tcr" scope="col"><?php echo $lang['Results actions head'] ?></th>
 			</tr>
@@ -484,7 +484,7 @@ require FORUM_ROOT.'backstage/header.php';
 			</div>
 			<table class="table">
 				<tr>
-					<th><?php echo $lang['Username label'] ?></th>
+					<th><?php echo $lang['Username'] ?></th>
 					<td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="4" /></td>
 					<th><?php echo $lang['IP label'] ?></th>
 					<td><input type="text" class="form-control" name="form[ip]" maxlength="255" tabindex="5" /></td>
@@ -492,7 +492,7 @@ require FORUM_ROOT.'backstage/header.php';
 				<tr>
 					<th><?php echo $lang['E-mail label'] ?></th>
 					<td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="6" /></td>
-					<th><?php echo $lang['Message label'] ?></th>
+					<th><?php echo $lang['Message'] ?></th>
 					<td><input type="text" class="form-control" name="form[message]" maxlength="255" tabindex="7" /></td>
 				</tr>
 				<tr>
@@ -505,7 +505,7 @@ require FORUM_ROOT.'backstage/header.php';
 					<th><?php echo $lang['Order by label'] ?></th>
 					<td colspan="3">
 						<select class="form-control" name="order_by" tabindex="10">
-							<option value="username" selected="selected"><?php echo $lang['Order by username'] ?></option>
+							<option value="username" selected="selected"><?php echo $lang['Username'] ?></option>
 							<option value="ip"><?php echo $lang['Order by ip'] ?></option>
 							<option value="email"><?php echo $lang['Order by e-mail'] ?></option>
 							<option value="expire"><?php echo $lang['Order by expire'] ?></option>
