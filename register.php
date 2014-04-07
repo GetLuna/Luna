@@ -310,8 +310,8 @@ if (!empty($errors))
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
                     <div class="col-sm-10">
-						<?php if ($luna_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" /><?php endif; ?>
-                        <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
+						<input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
+                        <?php if ($luna_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" /><?php endif; ?>
                         <?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email info'] ?></span><?php endif; ?>
                     </div>
                 </div>
