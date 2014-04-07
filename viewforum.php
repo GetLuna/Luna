@@ -103,10 +103,10 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <h2><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
-<ol class="breadcrumb">
-    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
-</ol>
+<div class="btn-group btn-breadcrumb">
+    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+</div>
 <div class="pagepost">
     <ul class="pagination">
         <?php echo $paging_links ?>
@@ -244,10 +244,10 @@ else
     </ul>
 	<?php echo $post_link ?>
 </div>
-<ol class="breadcrumb">
-    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li class="active"><a href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a></li>
-</ol>
+<div class="btn-group btn-breadcrumb">
+    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+</div>
 <?php
 
 $forum_id = $id;

@@ -169,11 +169,11 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
-<ol class="breadcrumb">
-    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a></li>
-</ol>
+<div class="btn-group btn-breadcrumb">
+    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+    <a class="btn btn-primary" href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
+</div>
 <div class="pagepost">
     <ul class="pagination">
         <?php echo $paging_links ?>
@@ -386,11 +386,11 @@ while ($cur_post = $db->fetch_assoc($result))
     </ul>
 	<?php echo $post_link ?>
 </div>
-<ol class="breadcrumb">
-    <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-    <li><a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a></li>
-    <li class="active"><a href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a></li>
-</ol>
+<div class="btn-group btn-breadcrumb">
+    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+    <a class="btn btn-primary" href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
+</div>
 
 <?php
 

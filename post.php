@@ -531,15 +531,19 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-    <ol class="breadcrumb">
-        <li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-        <li><a href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo luna_htmlspecialchars($cur_posting['forum_name']) ?></a></li>
-		<?php if (isset($_POST['req_subject'])): ?><li><?php echo luna_htmlspecialchars($_POST['req_subject']) ?></li><?php endif; ?>
-		<?php if (isset($cur_posting['subject'])): ?>
-        	<li><a href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_posting['subject']) ?></a></li>
-		<?php endif; ?>
-		<?php if (!isset($_POST['req_subject'])): ?><li><?php echo $action ?></li><?php endif; ?>
-    </ol>
+<div class="btn-group btn-breadcrumb">
+    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_posting['id'] ?>"><?php echo luna_htmlspecialchars($cur_posting['forum_name']) ?></a>
+    <?php if (isset($_POST['req_subject'])): ?>
+		<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><?php echo luna_htmlspecialchars($_POST['req_subject']) ?></a>
+	<?php endif; ?>
+    <?php if (isset($cur_posting['subject'])): ?>
+		<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_posting['subject']) ?></a>
+	<?php endif; ?>
+    <?php if (!isset($_POST['req_subject'])): ?>
+		<a class="btn btn-primary" href="#"><?php echo $action ?></a>
+	<?php endif; ?>
+</div>
 
 <?php
 
@@ -613,7 +617,7 @@ if ($fid): ?>
             <textarea class="form-control tinymce"  placeholder="Start typing..." name="req_message" rows="20" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
         </fieldset>
         <div class="panel-footer">
-            <div class="btn-group"><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
+            <div class="btn-group"><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-default" onclick="tinyMCE.triggerSave(false);" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
 			<ul class="bblinks">
 				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
 				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
