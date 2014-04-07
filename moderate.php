@@ -293,15 +293,22 @@ if (isset($_GET['tid']))
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-    <a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-    <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+
+<div class="row row-nav-fix">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+			<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
+			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
-<ul class="pagination">
-	<?php echo $paging_links ?>
-</ul>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
@@ -384,14 +391,20 @@ if (isset($_GET['tid']))
 ?>
 <span class="pull-right btn-group"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></span>
 
-<ul class="pagination">
-	<?php echo $paging_links ?>
-</ul>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-    <a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-    <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+<div class="row row-nav-fix">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+			<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
+			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
 </form>
 <?php
@@ -831,14 +844,20 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 ?>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-    <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+<div class="row row-nav-fix">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
-<ul class="pagination">
-	<?php echo $paging_links ?>
-</ul>
 
 <form method="post" action="moderate.php?fid=<?php echo $fid ?>">
     
@@ -970,14 +989,21 @@ else
 </div>
 
 <span class="pull-right"><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></span>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-    <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+
+<div class="row row-nav-fix">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
-<ul class="pagination">
-	<?php echo $paging_links ?>
-</ul>
 </form>
 <?php
 
