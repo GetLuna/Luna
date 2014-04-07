@@ -550,7 +550,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		require FORUM_ROOT.'header.php';
 
 ?>
-<div class="row row-nav-search">
+<div class="row row-nav-fix">
 	<div class="col-sm-6">
 		<div class="btn-group btn-breadcrumb">
 			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
@@ -734,7 +734,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
 
-<div class="row row-nav-search">
+<div class="row row-nav-fix">
 	<div class="col-sm-6">
 		<div class="btn-group btn-breadcrumb">
 			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
