@@ -336,8 +336,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #0891dc;
-	border-color: #0891dc;
+	background-color: #a15dff;
+	border-color: #a15dff;
 }
 
 :first-child.list-group-item, :last-child.list-group-item {
