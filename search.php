@@ -550,14 +550,20 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		require FORUM_ROOT.'header.php';
 
 ?>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="search.php"><?php echo $crumbs_text['show_as'] ?></a>
-    <?php echo $crumbs_text['search_type'] ?>
+<div class="row row-nav-search">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="search.php"><?php echo $crumbs_text['show_as'] ?></a>
+			<?php echo $crumbs_text['search_type'] ?>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
-<ul class="pagination">
-	<?php echo $paging_links ?>
-</ul>
 
 <?php
 
@@ -727,14 +733,21 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			echo "\t\t\t".'</div>'."\n\n";
 
 ?>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="search.php"><?php echo $crumbs_text['show_as'] ?></a>
-    <?php echo $crumbs_text['search_type'] ?>
+
+<div class="row row-nav-search">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="search.php"><?php echo $crumbs_text['show_as'] ?></a>
+			<?php echo $crumbs_text['search_type'] ?>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
-<ul class="pagination pagination-fix">
-	<?php echo $paging_links ?>
-</ul>
 <?php
 
 		require FORUM_ROOT.'footer.php';

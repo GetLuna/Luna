@@ -312,6 +312,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Pagination */
 .pagination {
 	margin: 0;
+	float: right;
 }
 
 .pagination-fix {
@@ -702,6 +703,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 .btn-post {
 	margin-top: 0;
+	margin-left: 5px;
 	margin-bottom: 10px;
 }
 
@@ -803,6 +805,11 @@ textarea {
 }
 
 /* Breadcrumb */
+.row-nav {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .btn-breadcrumb .btn:not(:last-child):after {
 	content: " ";
 	display: block;

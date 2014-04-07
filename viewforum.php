@@ -103,15 +103,19 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <h2><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-</div>
-<div class="pagepost">
-    <ul class="pagination">
-        <?php echo $paging_links ?>
-    </ul>
-    <?php echo $post_link ?>
+<div class="row row-nav">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<?php echo $post_link ?>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
 <div class="forum-box">
     <div class="row forum-header">
@@ -238,16 +242,21 @@ else
 ?>
 </div>
 
-<div class="pagepost">
-    <ul class="pagination">
-        <?php echo $paging_links ?>
-    </ul>
-	<?php echo $post_link ?>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="btn-group btn-breadcrumb">
+			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<?php echo $post_link ?>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
-<div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-    <a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-</div>
+
 <?php
 
 $forum_id = $id;

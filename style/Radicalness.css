@@ -670,6 +670,7 @@ button.btn::-moz-focus-inner:, input[type="submit"].btn: {
 
 .btn-post {
 	margin-top: 0;
+	margin-left: 5px;
 	margin-bottom: 10px;
 }
 
@@ -772,6 +773,11 @@ textarea {
 }
 
 /* Breadcrumb */
+.row-nav-search {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .btn-breadcrumb .btn:not(:last-child):after {
 	content: " ";
 	display: block;
