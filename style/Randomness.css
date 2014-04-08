@@ -571,20 +571,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	color: #ffffff;
 }
 
-.btn-default {
-	background-color: #f5f5f5;
-	border-bottom: 1px solid #e6e6e6;
-	transition: background-image .2s;
-}
-
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .btn-default.disabled, .btn-default[disabled] {
-	background-color: #e2e2e2;
-}
-
-.btn-default:active, .btn-default.active {
-	background-color: #e2e2e2 9;
-}
-
 .btn-primary {
 	color: #fff;
 	background-color: #1764df;
