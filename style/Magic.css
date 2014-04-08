@@ -778,6 +778,8 @@ textarea {
 .profile-card-head {
 	background-color: #9345ff;
 	color: #fff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .profile-card-head .thumbnail {
@@ -812,6 +814,8 @@ textarea {
 	background-color: #fff;
 	border: #ddd 1px solid;
 	border-top: none;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .profile-card-body p {
@@ -858,6 +862,10 @@ textarea {
 	.profile-card-head {
 		background: #9345ff;
 		background: linear-gradient(to right, #9345ff, #cba6ff);
+	}
+	
+	.topic .panel-heading  {
+		border-radius: 0;
 	}
 }
 
