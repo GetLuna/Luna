@@ -570,10 +570,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Forms */
-.form-control {
-	border-radius: 0;
-}
-
 fieldset label {
 	display: block;
 	padding: 0 0 7px 0;
@@ -914,10 +910,6 @@ blockquote p {
 
 ol.alpha {
 	list-style: lower-alpha;
-}
-
-pre {
-	border-radius: 0;
 }
 
 q {
