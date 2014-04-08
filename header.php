@@ -264,7 +264,7 @@ if ($luna_config['o_menu_title'] == 1) {
 	$menu_title = '';
 }
 
-$tpl_temp = '<div class="navbar navbar-default">
+$tpl_temp = '<div class="navbar navbar-default navbar-fixed-top">
 	<div class="nav-inner">
 		'.$menu_title.'
 		<div class="navbar-header">

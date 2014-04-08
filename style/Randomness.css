@@ -104,10 +104,6 @@ h1, h2, h3, h4, h5, h6 {
 	color: #222;
 }
 
-#header .navbar {
-	border-radius: 0;
-}
-
 #header .dropdown-menu > li > a:hover,
 #header .dropdown-menu > li > a:focus {
 	background: #47a9f5;
