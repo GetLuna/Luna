@@ -58,6 +58,28 @@ h1, h2, h3, h4, h5, h6 {
 	padding-right: 0;
 }
 
+/* Navbar profile pane */
+.dropdown-menu {
+	padding: 0;
+}
+
+.navbar-content {
+	width: 320px;
+	padding: 15px;
+}
+
+.navbar-footer {
+	background-color: #DDD;
+}
+
+.navbar-footer-content {
+	padding: 15px 15px 15px 15px;
+}
+
+#header a.btn-default:hover, #header a.btn-default, .userpane-name {
+	color: #000 !important;
+}
+
 /* Header */
 #header {
 	background: #679e0d;
