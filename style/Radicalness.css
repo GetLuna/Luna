@@ -283,6 +283,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Pagination */
 .pagination {
 	margin: 0;
+	float: right;
 }
 
 .pagination-fix {
