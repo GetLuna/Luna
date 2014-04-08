@@ -531,11 +531,9 @@ elseif ( isset($_POST['restore_start']) ) {
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 ?>
-	<div class="block">
-		<h2><span>Debug info</span></h2>
-		<div class="box">
-			<div class="inbox">
-				<p>
+	<div>
+		<h2>Debug info</h2>
+		<p>
 <?php
 		}
 		$sql_count = count($pieces);
@@ -561,9 +559,7 @@ elseif ( isset($_POST['restore_start']) ) {
 		if(defined('FORUM_DEBUG'))
 		{
 ?>
-				</p>
-			</div>
-		</div>
+		</p>
 	</div>
 <?php
 		}
@@ -571,15 +567,11 @@ elseif ( isset($_POST['restore_start']) ) {
 	if(defined('FORUM_DEBUG'))
 	{
 ?>
-	<div class="block">
-	<h2 class="block2"><span><?php echo $lang['Restore complete'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<p>
-					<a class="btn btn-link" href="database.php"><?php echo $lang['Go back'] ?></a>
-				</p>
-			</div>
-		</div>
+	<div>
+	<h2><?php echo $lang['Restore complete'] ?></h2>
+		<p>
+			<a class="btn btn-link" href="database.php"><?php echo $lang['Go back'] ?></a>
+		</p>
 	</div>
 <?php
 	}

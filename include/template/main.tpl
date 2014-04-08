@@ -12,7 +12,7 @@
             <luna_navlinks>
             <div class="container">
                 <div class="box">
-                    <div id="brdtitle" class="inbox">
+                    <div id="brdtitle">
                         <luna_title>
                         <luna_desc>
                     </div>

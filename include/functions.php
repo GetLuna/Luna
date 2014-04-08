@@ -1028,14 +1028,12 @@ function message($message, $no_back_link = false, $http_status = null)
 
 ?>
 
-<div id="msg" class="block">
-	<h2><span><?php echo $lang['Info'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<p><?php echo $message ?></p>
-<?php if (!$no_back_link): ?>			<p><a href="javascript: history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
-<?php endif; ?>		</div>
-	</div>
+<div>
+	<h2><?php echo $lang['Info'] ?></h2>
+	<p><?php echo $message ?></p>
+	<?php if (!$no_back_link): ?>
+		<p><a href="javascript: history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+	<?php endif; ?>
 </div>
 <?php
 
@@ -1504,13 +1502,9 @@ function redirect($destination_url, $message)
 	ob_start();
 
 ?>
-<div class="block">
+<div>
 	<h2><?php echo $lang['Redirecting'] ?></h2>
-	<div class="box">
-		<div class="inbox">
-			<p><?php echo $message.'<br /><br /><a href="'.$destination_url.'">'.$lang['Click redirect'].'</a>' ?></p>
-		</div>
-	</div>
+	<p><?php echo $message.'<br /><br /><a href="'.$destination_url.'">'.$lang['Click redirect'].'</a>' ?></p>
 </div>
 <?php
 
@@ -2182,18 +2176,16 @@ function display_saved_queries()
 
 ?>
 
-<div id="debug" class="blocktable">
-	<h2><span><?php echo $lang['Debug table'] ?></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th class="tcl" scope="col"><?php echo $lang['Query times'] ?></th>
-					<th class="tcr" scope="col"><?php echo $lang['Query'] ?></th>
-				</tr>
-			</thead>
-			<tbody>
+<div id="debug">
+	<h2><?php echo $lang['Debug table'] ?>></h2>
+	<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="tcl" scope="col"><?php echo $lang['Query times'] ?></th>
+			<th class="tcr" scope="col"><?php echo $lang['Query'] ?></th>
+		</tr>
+	</thead>
+	<tbody>
 <?php
 
 	$query_time_total = 0.0;
@@ -2202,22 +2194,20 @@ function display_saved_queries()
 		$query_time_total += $cur_query[1];
 
 ?>
-				<tr>
-					<td class="tcl"><?php echo ($cur_query[1] != 0) ? $cur_query[1] : '&#160;' ?></td>
-					<td class="tcr"><?php echo luna_htmlspecialchars($cur_query[0]) ?></td>
-				</tr>
+		<tr>
+			<td class="tcl"><?php echo ($cur_query[1] != 0) ? $cur_query[1] : '&#160;' ?></td>
+			<td class="tcr"><?php echo luna_htmlspecialchars($cur_query[0]) ?></td>
+		</tr>
 <?php
 
 	}
 
 ?>
-				<tr>
-					<td class="tcl" colspan="2"><?php printf($lang['Total query time'], $query_time_total.' s') ?></td>
-				</tr>
-			</tbody>
-			</table>
-		</div>
-	</div>
+		<tr>
+			<td class="tcl" colspan="2"><?php printf($lang['Total query time'], $query_time_total.' s') ?></td>
+		</tr>
+	</tbody>
+	</table>
 </div>
 <?php
 

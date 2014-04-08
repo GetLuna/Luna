@@ -178,7 +178,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 if ($cur_category > 0)
 	echo "\t\t\t".'</div>'."\n".'</div>'."\n\n";
 else
-	echo '<div id="idx0" class="block"><div class="box"><div class="inbox"><p>'.$lang['Empty board'].'</p></div></div></div>';
+	echo '<div id="idx0"><p>'.$lang['Empty board'].'</p></div>';
 
 // Collect some statistics from the database
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))

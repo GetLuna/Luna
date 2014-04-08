@@ -331,7 +331,7 @@ if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
 
 
 // Generate all that jazz
-$tpl_temp = '<div id="brdwelcome" class="inbox">';
+$tpl_temp = '<div id="brdwelcome">';
 
 // The status information
 if (is_array($page_statusinfo))
