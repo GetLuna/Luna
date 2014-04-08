@@ -87,7 +87,7 @@ if ($luna_user['g_id'] == FORUM_ADMIN) {
 <?php } ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['View all'] ?></a></span></h3>
+            <h3 class="panel-title"><?php echo $lang['New reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['View all'] ?></a></span></h3>
         </div>
 		<table class="table" cellspacing="0">
 			<thead>

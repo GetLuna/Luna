@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 89 - 4.8% completed
+// Line 149 - 9.2% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -76,21 +76,17 @@ $lang = array(
 'Banned'							=>	'Banned',
 'Guest'								=>	'Guest',
 
-// Checked until this line
-
 // Stuff for include/parser.php
 'BBCode error no opening tag'		=>	'[/%1$s] was found without a matching [%1$s]',
 'BBCode error invalid nesting'		=>	'[%1$s] was opened within [%2$s], this is not allowed',
 'BBCode error invalid self-nesting'	=>	'[%s] was opened within itself, this is not allowed',
 'BBCode error no closing tag'		=>	'[%1$s] was found without a matching [/%1$s]',
 'BBCode error empty attribute'		=>	'[%s] tag had an empty attribute section',
-'BBCode code problem'				=>	'There is a problem with your [code] tags',
 'BBCode list size error'			=>	'Your list was too long to parse, please make it smaller!',
 
 // Stuff for the navigator (top of every page)
 
 // User menu
-'Welcome'							=>	'Welcome',
 'Support'							=>	'Support',
 'Help'								=>	'Help',
 'Index'								=>	'Index',
@@ -100,9 +96,7 @@ $lang = array(
 'Login'								=>	'Login',
 'Profile'							=>	'Profile',
 'Logout'							=>	'Logout',
-'Logged in as'						=>	'Logged in as',
 'Backstage'							=>	'Backstage',
-'Topic searches'					=>	'Topics:',
 'New posts header'					=>	'New',
 'Active topics'						=>	'Active',
 'Unanswered topics'					=>	'Unanswered',
@@ -152,17 +146,9 @@ $lang = array(
 'New reports'						=>	'There are new reports',
 'Maintenance mode enabled'			=>	'Maintenance mode is enabled!',
 
-// Units for file sizes
-'Size unit B'						=>	'%s B',
-'Size unit KiB'						=>	'%s KiB',
-'Size unit MiB'						=>	'%s MiB',
-'Size unit GiB'						=>	'%s GiB',
-'Size unit TiB'						=>	'%s TiB',
-'Size unit PiB'						=>	'%s PiB',
-'Size unit EiB'						=>	'%s EiB',
+// Checked until this line
 
-/////////////////////////////////////////////////// Language for installation ///////////////////////////////////////////////////
-
+// Language for installation
 'Choose install language'		=>	'Choose the install script language',
 'Choose install language info'	=>	'The language used for this install script. The default language used for the board itself can be set below.',
 'Install language'				=>	'Install language',
@@ -192,7 +178,6 @@ $lang = array(
 'Base URL'						=>	'The URL (without trailing slash) of your ModernBB forum. This must be correct.',
 'Required field'				=>	'is a required field in this form.',
 'ModernBB Installation'			=>	'ModernBB Installation',
-'Welcome'						=>	'You are about to install ModernBB. In order to install ModernBB, you must complete the form set out below. If you encounter any difficulties with the installation, please refer to the documentation.',
 'Install'						=>	'Install ModernBB %s',
 'Errors'						=>	'The following errors need to be corrected:',
 'Database setup'				=>	'Database setup',
@@ -300,7 +285,6 @@ $lang = array(
 'Topic del redirect'	=>	'Topic deleted. Redirecting …',
 
 // Language for help.php
-'Help'					=>	'Help',
 'produces'				=>	'produces',
 
 'BBCode info'			=>	'BBCode is a collection of formatting tags that are used to change the look of text in this forum. BBCode is based on the same principal as, and is very similar to, HTML. Below is a list of all the available BBCodes and instructions on how to use them. Administrators have the ability to enable or disable BBCode. You can tell if BBCode is enabled or disabled out in the left margin whenever you post a message or edit your signature.',
@@ -389,7 +373,6 @@ $lang = array(
 'Request pass'				=>	'Request password',
 'Request pass legend'		=>	'Enter the email address with which you registered',
 'Request pass info'			=>	'A new password together with a link to activate the new password will be sent to that address.',
-'Not registered'			=>	'Register',
 'Remember me'				=>	'Remember me',
 'New password errors'		=>	'Password request error',
 'New passworderrors info'	=>	'The following error needs to be corrected before a new password can be sent:',
@@ -435,7 +418,6 @@ $lang = array(
 // Moderate forum
 'Open'							=>	'Open',
 'Close'							=>	'Close',
-'Move topic'					=>	'Move topic',
 'Move topics'					=>	'Move topics',
 'Move legend'					=>	'Select destination of move',
 'Move to'						=>	'Move to',
@@ -548,7 +530,6 @@ $lang = array(
 // Navigation and sections
 'Section settings'				=>	'Settings',
 'Section personality'			=>	'Personality',
-'Section view' 					=>  'Profile',
 'Section admin'					=>	'Administration',
 'Section messaging'				=>	'Messaging',
 
@@ -687,7 +668,6 @@ $lang = array(
 'Registration flood'		=>	'A new user was registered with the same IP address as you within the last hour. To prevent registration flooding, at least an hour has to pass between registrations from the same IP. Sorry for the inconvenience.',
 'Agree'						=>	'Agree',
 'Cancel'					=>	'Cancel',
-'Register'					=>	'Register',
 'Register legend'			=>	'Enter the requested data',
 
 // Form validation stuff (some of these are also used in post.php)
@@ -1157,7 +1137,7 @@ $lang = array(
 'Backup head'						=>	'Back-up',
 'Backup info'						=>	'Create new database backup.',
 'Backup button'						=>	'Create new backup',
-'Reports head'						=>	'New reports',
+'New reports head'						=>	'New reports',
 'Statistics head'					=>	'Statistics',
 'Updates'							=>	'Updates',
 'View all'							=>	'View all',
@@ -1432,7 +1412,6 @@ $lang = array(
 
 // Language for reports.php
 'Report zapped redirect'	=>	'Report marked as read. Redirecting …',
-'New reports head'			=>	'New reports',
 'Deleted user'				=>	'Deleted user',
 'Deleted'					=>	'Deleted',
 'Post ID'					=>	'Post #%s',
@@ -1574,7 +1553,6 @@ $lang = array(
 
 // Common language used in /backstage/
 // Main menu
-'Dashboard'				=>	'Backstage',
 'Content'				=>	'Content',
 'Forums'				=>	'Forums',
 'Forum settings'		=>	'Forum settings',
@@ -1594,15 +1572,11 @@ $lang = array(
 'Registration'			=>	'Registration',
 'Email'					=>	'Email',
 'Database'				=>	'Database management',
-'Backstage settings'	=>	'Backstage',
+'Backstage settings'	=>	'Backstage settings',
 'Extensions'			=>	'Extensions',
 
 // User menu
-'Welcome'				=>	'Welcome',
-'Profile'				=>	'Profile',
-'Support'				=>	'Support',
 'Documentation'			=>	'Documentation',
-'Logout'				=>	'Logout',
 
 // Others
 'Prune'					=>	'Prune',
