@@ -59,6 +59,19 @@ $forum_actions = array();
 if (!$luna_user['is_guest'])
 	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark all as read'].'</a>';
 
+
+// Someone clicked "Do not show again"
+$action = isset($_GET['action']) ? $_GET['action'] : null;
+
+if ($action == 'do_not_show')
+{
+	confirm_referrer('index.php');
+
+	$db->query('UPDATE '.$db->prefix.'users SET first_run = 1 WHERE id='.$luna_user['id']) or error('Unable to disable first run', __FILE__, __LINE__, $db->error());
+
+	redirect('index.php', 'Updated');
+}
+
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
@@ -85,7 +98,7 @@ if (($luna_user['first_run'] == 0 && $luna_config['o_show_first_run'] == 1 && !$
 				<a href="profile.php?action=upload_avatar&id=<?php echo $luna_user['id'] ?>" class="list-group-item"><?php echo $lang['Change your avatar'] ?></a>
 				<a href="profile.php?section=personality&id=<?php echo $luna_user['id'] ?>" class="list-group-item"><?php echo $lang['Extend profile'] ?></a>
 				<a href="help.php" class="list-group-item"><?php echo $lang['Get help'] ?></a>
-				<a href="#" class="list-group-item active"><?php echo $lang['Do not show again'] ?></a>
+				<a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active"><?php echo $lang['Do not show again'] ?></a>
 			</div>
 		</div>
 		<?php } else { ?>
