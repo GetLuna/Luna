@@ -975,6 +975,11 @@ q:after {
 	background-color: #fff;
 }
 
+.form-first-run {
+	max-width: 100%;
+	margin: 0;
+}
+
 .form input[type="text"], .form input[type="password"] {
 	font-size: 16px;
 	height: auto;
@@ -997,6 +1002,11 @@ q:after {
 
 .form-content {
 	padding: 15px 18px 10px 20px;
+}
+
+.form-first-run .form-content {
+	padding: 0;
+	padding-right: 15px;
 }
 
 .remember {

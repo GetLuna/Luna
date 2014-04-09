@@ -985,7 +985,6 @@ q:after {
 .form-first-run {
 	max-width: 100%;
 	margin: 0;
-	background-color: #fff;
 }
 
 .form input[type="text"], .form input[type="password"] {
