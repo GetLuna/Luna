@@ -139,6 +139,46 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: 15px;
 }
 
+/* First run */
+.first-run-content {
+	min-height: 200px;
+	padding-left: 15px;
+}
+
+.first-run-content h3 {
+	margin-top: 15px;
+}
+
+.first-run-profile {
+	background-image: url(../img/core/firstrun.png);
+	background-size: cover;
+	min-height: 200px;
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.first-run-title {
+	color: #fff;
+	text-align: center;
+}
+
+.first-run-avatar {
+	background: none;
+	border: none;
+}
+
+.first-run-avatar img {
+	border-radius: 5px;
+}
+
+.first-run-list {
+	margin: 15px;
+}
+
+.first-run .list-group-item-danger {
+	text-align: center;
+}
+
 /* Welcome box and header */
 #brddesc {
 	border-bottom-style: dotted;
