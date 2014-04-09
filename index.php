@@ -69,21 +69,21 @@ require FORUM_ROOT.'header.php';
 <div class="first-run panel panel-default">
 	<div class="row first-run-content">
 		<div class="col-md-4 col-sm-6 first-run-profile">
-			<h3 class="first-run-title">Hey there, <?php echo $luna_user['username'] ?></h3>
+			<h3 class="first-run-title">Hi there, <?php echo $luna_user['username'] ?></h3>
 			<span class="first-run-avatar thumbnail">
 				<?php echo $user_avatar ?>
 			</span>
 		</div>
 		<div class="col-md-4 hidden-sm">
-			<h3 class="first-run-forumtitle">Welcome to ModernBB 3.2 Testdrive</h3>
+			<h3 class="first-run-forumtitle">Welcome to <?php echo $luna_config['o_board_title'] ?></h3>
 			<p>Wow, it's great to have you here, welcome and thanks for joining us. We've set up your account and you're ready to go. Through we like to point out some actions you might want to do first.</p>
 		</div>
 		<div class="col-md-4 col-sm-6">
 			<div class="list-group first-run-list">
-				<a href="#" class="list-group-item">Update profile picture</a>
-				<a href="#" class="list-group-item">Extend user details</a>
-				<a href="#" class="list-group-item">Get help</a>
-				<a href="#" class="list-group-item list-group-item-info">Don't show again</a>
+				<a href="profile.php?action=upload_avatar&id=<?php $luna_user['id'] ?>" class="list-group-item">Change your avatar</a>
+				<a href="profile.php?section=personality&id=<?php $luna_user['id'] ?>" class="list-group-item">Extend your details</a>
+				<a href="help.php" class="list-group-item">Get help</a>
+				<a href="#" class="list-group-item active">Don't show again</a>
 			</div>
 		</div>
 	</div>
