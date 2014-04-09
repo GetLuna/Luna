@@ -176,6 +176,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 15px;
 }
 
+.first-run-login{
+	margin-right: 15px;
+}
+
 .first-run .active {
 	text-align: center;
 }
@@ -197,6 +201,10 @@ h1, h2, h3, h4, h5, h6 {
 	
 	.first-run-list {
 		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.first-run-login {
 		margin-right: 0;
 	}
 }

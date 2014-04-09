@@ -196,6 +196,10 @@ h1, h2, h3, h4, h5, h6 {
 		margin-left: 0;
 		margin-right: 0;
 	}
+
+	.first-run-login {
+		margin-right: 0;
+	}
 }
 
 /* Welcome box and header */
