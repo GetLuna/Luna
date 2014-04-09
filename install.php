@@ -1521,6 +1521,11 @@ else
 				'datatype'		=> 'VARCHAR(8)',
 				'allow_null'	=> true
 			),
+			'first_run'		=> array(
+				'datatype'		=> 'TINYINT(1)',
+				'allow_null'	=> false,
+				'default'		=> '0'
+			),
 		),
 		'PRIMARY KEY'	=> array('id'),
 		'UNIQUE KEYS'	=> array(
