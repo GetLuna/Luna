@@ -32,6 +32,9 @@ if (isset($_POST['form_sent']))
 		'signatures'			=> isset($_POST['form']['signatures']) ? '1' : '0',
 		'ranks'					=> isset($_POST['form']['ranks']) ? '1' : '0',
 		'topic_views'			=> isset($_POST['form']['topic_views']) ? '1' : '0',
+		'show_first_run'		=> isset($_POST['form']['show_first_run']) ? '1' : '0',
+		'first_run_guests'		=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
+		'first_run_message'		=> luna_trim($_POST['form']['first_run_message']),
 		'gzip'					=> isset($_POST['form']['gzip']) ? '1' : '0',
 		'search_all_forums'		=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
 	);
@@ -130,6 +133,40 @@ generate_admin_menu('features');
 								<?php echo $lang['Search all help'] ?>
                             </label>
                         </div>                  
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">First run<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+        </div>
+        <div class="panel-body">
+            <input type="hidden" name="form_sent" value="1" />
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">General settings</label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                            	<input type="checkbox" name="form[show_first_run]" value="1" <?php if ($luna_config['o_show_first_run'] == '1') echo ' checked="checked"' ?> />
+								Show the first run panel when an user logs in for the first time.
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                            	<input type="checkbox" name="form[first_run_guests]" value="1" <?php if ($luna_config['o_first_run_guests'] == '1') echo ' checked="checked"' ?> />
+								Show the first run panel to guests with login field and registration button.
+                            </label>
+                        </div>
+					</div>
+				</div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Welcome text</label>
+                    <div class="col-sm-10">
+						<input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
+						<span class="help-block">The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.</span>           
                     </div>
                 </div>
             </fieldset>
