@@ -262,11 +262,15 @@ switch ($stage)
 		if (!array_key_exists('o_index_update_check', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
 		
+		// Since 2.1-beta: Insert new config option o_index_update_check
+		if (!array_key_exists('o_index_update_check', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
+		
 		// Since 2.2.2: Add o_ranks if updating from FluxBB 1.5
 		if (!array_key_exists('o_ranks', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 		
-		// Since ModernBB 2.2.2: Recreate ranks table when removed in FluxBB 1.5
+		// Since 2.2.2: Recreate ranks table when removed in FluxBB 1.5
 		if (!$db->table_exists('ranks'))
 		{
 			$schema = array(
@@ -353,9 +357,17 @@ switch ($stage)
 		// Since 3.2-beta: Add the first_run column to the users table
 		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
 		
-		// Change the default style if the old doesn't exist anymore
-		if ($luna_config['o_default_style'] != $default_style)
-			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
+		// Since 3.2-beta: Insert new config option o_show_first_run
+		if (!array_key_exists('o_show_first_run', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_first_run\', \'1\')') or error('Unable to insert config value \'o_show_first_run\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.2-beta: Insert new config option o_first_run_guests
+		if (!array_key_exists('o_show_first_run', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_guests\', \'1\')') or error('Unable to insert config value \'o_first_run_guests\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.2-beta: Insert new config option o_first_run_message
+		if (!array_key_exists('o_first_run_message', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_message\', \'\')') or error('Unable to insert config value \'o_first_run_message\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mardiadb')
