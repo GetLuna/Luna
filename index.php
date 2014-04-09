@@ -65,7 +65,7 @@ define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
 
-if ($luna_user['first_run'] == 0) {
+if (($luna_user['first_run'] == 0 && $luna_config['o_show_first_run'] == 1 && !$luna_user['is_guest']) || ($luna_config['o_first_run_guests'] == 1 && $luna_user['is_guest'])) {
 ?>
 
 <div class="first-run panel panel-default">
@@ -76,6 +76,7 @@ if ($luna_user['first_run'] == 0) {
 				<?php echo $user_avatar ?>
 			</span>
 		</div>
+		<?php if (!$luna_user['is_guest']) { ?>
 		<div class="col-md-4 hidden-sm">
 			<h3 class="first-run-forumtitle"><?php echo sprintf($lang['Welcome to'], $luna_config['o_board_title']) ?></h3>
 			<p><?php echo $luna_config['o_first_run_message']; ?></p>
@@ -88,6 +89,31 @@ if ($luna_user['first_run'] == 0) {
 				<a href="#" class="list-group-item active"><?php echo $lang['Do not show again'] ?></a>
 			</div>
 		</div>
+		<?php } else { ?>
+		<div class="col-md-4 hidden-sm">
+			<h3 class="first-run-forumtitle"><?php echo sprintf($lang['Welcome to'], $luna_config['o_board_title']) ?></h3>
+			<div class="list-group first-run-list">
+				<a href="register.php" class="list-group-item"><?php echo $lang['Register'] ?></a>
+				<a href="login.php?action=forget" class="list-group-item"><?php echo $lang['Forgotten pass'] ?></a>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6">
+			<form class="form" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
+				<fieldset>
+					<input class="form-control" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
+					<input class="form-control" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" /> 
+					<div class="control-group">
+						<div class="controls remember">
+							<label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
+						</div>
+					</div>
+					<div class="control-group pull-right">
+						<input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<?php } ?>
 	</div>
 </div>
 
