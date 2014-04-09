@@ -139,6 +139,78 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: 15px;
 }
 
+/* First run */
+.first-run-content {
+	padding-left: 15px;
+	height: 100%;
+}
+
+.first-run-content h3 {
+	margin-top: 15px;
+}
+
+.first-run-profile {
+	background-image: url(../img/core/firstrun.png);
+	background-size: cover;
+	height: 100%;
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+	padding-bottom: 16px;
+}
+
+.first-run-title {
+	color: #fff;
+	text-align: center;
+}
+
+.first-run-avatar {
+	background: none;
+	border: none;
+}
+
+.first-run-avatar img {
+	border-radius: 5px;
+}
+
+.first-run-list {
+	margin: 15px;
+}
+
+.first-run .active {
+	text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+	.first-run-content {
+		padding-right: 15px;
+	}
+
+	.first-run-profile {
+		margin-top: -15px;
+		min-height: 100%;
+		border-bottom-left-radius: 0;
+		border-top-right-radius: 3px;
+		padding-bottom: 0;
+	}
+	
+	.first-run-title {
+		padding-top: 15px;
+	}
+	
+	.first-run-forumtitle {
+		margin-top: 0 !important;
+	}
+	
+	.first-run-avatar {
+		padding-bottom: 25px;
+	}
+	
+	.first-run-list {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
 /* Welcome box and header */
 #brddesc {
 	border-bottom-style: dotted;

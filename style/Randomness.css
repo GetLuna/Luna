@@ -176,10 +176,8 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 15px;
 }
 
-.first-run .list-group-item-info {
+.first-run .active {
 	text-align: center;
-	color: #fff;
-	background-color: #009de9;
 }
 
 @media screen and (max-width: 767px) {
