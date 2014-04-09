@@ -131,6 +131,15 @@ $lang = array(
 'Query'								=>	'Query',
 'Total query time'					=>	'Total query time: %s',
 
+// First run
+'First run message'					=>	'Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Through we like to point out some actions you might want to do first.',
+'Hi there'							=>	'Hi there, %s',
+'Welcome to'						=>	'Welcome to %s',
+'Change your avatar'				=>	'Change your avatar',
+'Extend profile'					=>	'Extend your details',
+'Get help'							=>	'Get help',
+'Do not show again'					=>	'Don\'t show again',
+
 // For extern.php RSS feed
 'RSS description'					=>	'The most recent topics at %s.',
 'RSS description topic'				=>	'The most recent posts in %s.',
