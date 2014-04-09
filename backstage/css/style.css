@@ -105,6 +105,7 @@ p {
 /* Pagination */
 .pagination {
 	margin: 0;
+	float: right;
 }
 
 /* Rows en cols */
