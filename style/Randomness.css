@@ -141,8 +141,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* First run */
 .first-run-content {
-	min-height: 200px;
 	padding-left: 15px;
+	height: 100%;
 }
 
 .first-run-content h3 {
@@ -152,9 +152,10 @@ h1, h2, h3, h4, h5, h6 {
 .first-run-profile {
 	background-image: url(../img/core/firstrun.png);
 	background-size: cover;
-	min-height: 200px;
+	height: 100%;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
+	padding-bottom: 16px;
 }
 
 .first-run-title {
@@ -175,8 +176,41 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 15px;
 }
 
-.first-run .list-group-item-danger {
+.first-run .list-group-item-info {
 	text-align: center;
+	color: #fff;
+	background-color: #009de9;
+}
+
+@media screen and (max-width: 767px) {
+	.first-run-content {
+		padding-right: 15px;
+	}
+
+	.first-run-profile {
+		margin-top: -15px;
+		min-height: 100%;
+		border-bottom-left-radius: 0;
+		border-top-right-radius: 3px;
+		padding-bottom: 0;
+	}
+	
+	.first-run-title {
+		padding-top: 15px;
+	}
+	
+	.first-run-forumtitle {
+		margin-top: 0 !important;
+	}
+	
+	.first-run-avatar {
+		padding-bottom: 25px;
+	}
+	
+	.first-run-list {
+		margin-left: 0;
+		margin-right: 0;
+	}
 }
 
 /* Welcome box and header */
