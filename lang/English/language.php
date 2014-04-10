@@ -38,8 +38,6 @@ $lang = array(
 'Info'								=>	'Info', // A common table header
 'Go back'							=>	'Go back',
 'Maintenance'						=>	'Maintenance',
-'Redirecting'						=>	'Redirecting',
-'Click redirect'					=>	'Click here if you do not want to wait any longer (or if your browser does not automatically forward you)',
 'Invalid email'						=>	'The email address you entered is invalid.',
 'Required'							=>	'(Required)',
 'required field'					=>	'is a required field in this form.', // For javascript form validation
@@ -290,8 +288,6 @@ $lang = array(
 'Reply by'				=>	'Reply by %s - %s',
 'Topic by'				=>	'Topic started by %s - %s',
 'Delete'				=>	'Delete', // The submit button
-'Post del redirect'		=>	'Post deleted. Redirecting …',
-'Topic del redirect'	=>	'Topic deleted. Redirecting …',
 
 // Language for help.php
 'produces'				=>	'produces',
@@ -376,8 +372,6 @@ $lang = array(
 // Language for login.php
 'Wrong user/pass'			=>	'Wrong username and/or password.',
 'Forgotten pass'			=>	'Forgotten password',
-'Login redirect'			=>	'Logged in successfully. Redirecting …',
-'Logout redirect'			=>	'Logged out. Redirecting …',
 'No email match'			=>	'There is no user registered with the email address',
 'Request pass'				=>	'Request password',
 'Request pass legend'		=>	'Enter the email address with which you registered',
@@ -389,31 +383,23 @@ $lang = array(
 'Forget mail'				=>	'An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at',
 'Email flood'				=>  'This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again.',
 
-// Language for various scripts
-'Mark read redirect'			=>	'All topics and forums have been marked as read. Redirecting …',
-'Mark forum read redirect'		=>	'All topics in the specified forum have been marked as read. Redirecting …',
-
 // Send email
 'Form email disabled'			=>	'The user you are trying to send an email to has disabled form email.',
 'No email subject'				=>	'You must enter a subject.',
 'No email message'				=>	'You must enter a message.',
 'Too long email message'		=>	'Messages cannot be longer than 65535 characters (64 KB).',
 'Email flood'					=>  'At least %s seconds have to pass between sent emails. Please wait %s seconds and try sending again.',
-'Email sent redirect'			=>	'Email sent. Redirecting …',
 'Send email to'					=>	'Send email to',
 
 // Report
 'No reason'						=>	'You must enter a reason.',
 'Reason too long'				=>	'Your message must be under 65535 bytes (~64kb).',
 'Report flood'					=>  'At least %s seconds have to pass between reports. Please wait %s seconds and try sending again.',
-'Report redirect'				=>	'Post reported. Redirecting …',
 'Report post'					=>	'Report post',
 'Reason'						=>	'Reason',
 'Reason desc'					=>	'Please enter a short reason why you are reporting this post',
 
 // Subscriptions
-'Subscribe redirect'			=>	'Your subscription has been added. Redirecting …',
-'Unsubscribe redirect'			=>	'Your subscription has been removed. Redirecting …',
 'Not subscribed topic'			=>	'You\re not subscribed to this topic.',
 
 // General forum and topic moderation
@@ -432,22 +418,12 @@ $lang = array(
 'Move to'						=>	'Move to',
 'Nowhere to move'				=>	'There are no forums into which you can move topics.',
 'Leave redirect'				=>	'Leave redirect topic(s)',
-'Move topic redirect'			=>	'Topic moved. Redirecting …',
-'Move topics redirect'			=>	'Topics moved. Redirecting …',
 'Confirm delete legend'			=>	'Please confirm deletion',
 'Delete topics'					=>	'Delete topics',
 'Delete topics comply'			=>	'Are you sure you want to delete the selected topics?',
-'Delete topics redirect'		=>	'Topics deleted. Redirecting …',
-'Open topic redirect'			=>	'Topic opened. Redirecting …',
-'Open topics redirect'			=>	'Topics opened. Redirecting …',
-'Close topic redirect'			=>	'Topic closed. Redirecting …',
-'Close topics redirect'			=>	'Topics closed. Redirecting …',
 'No topics selected'			=>	'You must select at least one topic for move/delete/open/close.',
 'Not enough topics selected'	=>	'You must select at least two topics for merge.',
-'Stick topic redirect'			=>	'Topic sticked. Redirecting …',
-'Unstick topic redirect'		=>	'Topic unsticked. Redirecting …',
 'Merge topics'					=>	'Merge topics',
-'Merge topics redirect'			=>	'Topics merged. Redirecting …',
 'Confirm merge legend'			=>	'Please confirm merge',
 'New subject'					=>	'New subject',
 
@@ -455,13 +431,11 @@ $lang = array(
 'Confirm split legend'			=>	'Please confirm split of selected posts and select destination of move.',
 'Split posts'					=>	'Split posts',
 'Split posts comply'			=>	'Are you sure you want to split the selected posts?',
-'Split posts redirect'			=>	'Posts have been split. Redirecting …',
 
 // Delete multiple posts in topic
 'Delete posts'					=>	'Delete posts',
 'Cannot select first'			=>	'First post cannot be selected for split/delete.',
 'Delete posts comply'			=>	'Are you sure you want to delete the selected posts?',
-'Delete posts redirect'			=>	'Posts deleted. Redirecting …',
 'No posts selected'				=>	'You must select at least one post for split/delete.',
 
 // Get host
@@ -486,7 +460,6 @@ $lang = array(
 'Post errors info'	=>	'The following errors need to be corrected before the message can be posted:',
 'Post preview'		=>	'Post preview',
 'Guest name'		=>	'Name', // For guests (instead of Username)
-'Post redirect'		=>	'Post entered. Redirecting …',
 'Post a reply'		=>	'Post a reply',
 'Post new topic'	=>	'Post new topic',
 'Hide smilies'		=>	'Never show smilies as icons for this post',
@@ -500,7 +473,6 @@ $lang = array(
 'Edit post legend'	=>	'Edit the post and submit changes',
 'Silent edit'		=>	'Silent edit (don\'t display "Edited by ..." in topic view)',
 'Edit post'			=>	'Edit post',
-'Edit redirect'		=>	'Post updated. Redirecting …',
 
 // Language for both profile.php and register.php
 'Email legend'				=>	'Enter a valid email address',
@@ -555,7 +527,6 @@ $lang = array(
 // Password stuff
 'Pass key bad'					=>	'The specified password activation key was incorrect or has expired. Please re-request a new password. If that fails, contact the forum administrator at',
 'Pass updated'					=>	'Your password has been updated. You can now login with your new password.',
-'Pass updated redirect'			=>	'Password updated. Redirecting …',
 'Wrong pass'					=>	'Wrong old password.',
 'Change pass'					=>	'Change password',
 'Change pass legend'			=>	'Enter and confirm your new password',
@@ -586,8 +557,6 @@ $lang = array(
 'bytes'							=>	'bytes',
 'Move failed'					=>	'The server was unable to save the uploaded file. Please contact the forum administrator at',
 'Unknown failure'				=>	'An unknown error occurred. Please try again.',
-'Avatar upload redirect'		=>	'Avatar uploaded. Redirecting …',
-'Avatar deleted redirect'		=>	'Avatar deleted. Redirecting …',
 'Avatar desc'					=>	'An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than',
 'Upload avatar'					=>	'Upload avatar',
 'Upload avatar legend'			=>	'Enter an avatar file to upload',
@@ -597,7 +566,6 @@ $lang = array(
 
 // Form validation stuff
 'Forbidden title'				=>	'The title you entered contains a forbidden word. You must choose a different title.',
-'Profile redirect'				=>	'Profile updated. Redirecting …',
 
 // Profile display stuff
 'Users profile'					=>	'%s\'s profile',
@@ -663,15 +631,10 @@ $lang = array(
 'Delete warning'				=>	'Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by this user, the posts can only be deleted manually at a later time.',
 'Delete posts'					=>	'Delete any posts and topics this user has made',
 'Delete'						=>	'Delete', // submit button (confirm user delete)
-'User delete redirect'			=>	'User deleted. Redirecting …',
-'Group membership redirect'		=>	'Group membership saved. Redirecting …',
-'Update forums redirect'		=>	'Forum moderator rights updated. Redirecting …',
-'Ban redirect'					=>	'Redirecting …',
 'No delete admin message'		=>	'Administrators cannot be deleted. In order to delete this user, you must first move him/her to a different user group.',
 
 // Language for register.php
 'No new regs'				=>	'This forum is not accepting new registrations.',
-'Reg cancel redirect'		=>	'Registration cancelled. Redirecting …',
 'Forum rules'				=>	'Forum rules',
 'Rules legend'				=>	'You must agree to the following in order to register',
 'Registration flood'		=>	'A new user was registered with the same IP address as you within the last hour. To prevent registration flooding, at least an hour has to pass between registrations from the same IP. Sorry for the inconvenience.',
@@ -689,7 +652,6 @@ $lang = array(
 
 // Registration email stuff
 'Reg email'					=>	'Thank you for registering. Your password has been sent to the specified address. If it doesn\'t arrive you can contact the forum administrator at',
-'Reg complete'				=>	'Registration complete. Logging in and redirecting …',
 
 // Register info
 'Desc'						=>	'Registration will grant you access to a number of features and capabilities. These functions include the ability to edit and delete posts, design your own signature that accompanies your posts and much more. If you have any questions regarding this forum you should ask an administrator. Below is a form you must fill out in order to register. Once you are registered you should visit your profile and review the different settings you can change.',
@@ -815,9 +777,6 @@ $lang = array(
 'Invalid e-mail message'	=>	'The email address (e.g. user@domain.com) or partial email address domain (e.g. domain.com) you entered is invalid.',
 'Invalid date message'		=>	'You entered an invalid expire date.',
 'Invalid date reasons'		=>	'The format should be YYYY-MM-DD and the date must be at least one day in the future.',
-'Ban added redirect'		=>	'Ban added. Redirecting …' ,
-'Ban edited redirect'		=>	'Ban edited. Redirecting …',
-'Ban removed redirect'		=>	'Ban removed. Redirecting …',
 
 'New ban head'				=>	'Add ban',
 'Username help'				=>	'The username to ban (case-insensitive).',
@@ -862,14 +821,11 @@ $lang = array(
 
 // Language for categories.php
 'Must enter name message'		=>	'You must enter a name for the category',
-'Category added redirect'		=>	'Category added. Redirecting …',
-'Category deleted redirect'		=>	'Category deleted. Redirecting …',
 'Delete category head'			=>	'Delete category (together with all forums and posts it contains)',
 'Confirm delete cat head'		=>	'Confirm delete category',
 'Confirm delete cat info'		=>	'Are you sure that you want to delete the category <strong>%s</strong>?',
 'Delete category warn'			=>	'Deleting a category will delete all forums and posts (if any) in this category!',
 'Must enter integer message'	=>	'Position must be a positive integer value.',
-'Categories updated redirect'	=>	'Categories updated. Redirecting …',
 'Add categories head'			=>	'Add categories',
 'Add new submit'				=>	'Add new',
 'Add category help'				=>	'The name of the new category you want to add.',
@@ -881,9 +837,6 @@ $lang = array(
 
 // Language fox censoring.php
 'Must enter word message'	=>	'You must enter a word to censor.',
-'Word updated redirect'		=>	'Censor word updated. Redirecting …',
-'Word added redirect'		=>	'Censor word added. Redirecting …',
-'Word removed redirect'		=>	'Censor word removed. Redirecting …',
 'Censoring head'			=>	'Censoring',
 'Add word subhead'			=>	'Add word',
 'Add word info'				=>	'Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted (i.e. *some* would match somewhere and lonesome). Censor words also affect usernames. New users will not be able to register with usernames containing any censored words. The search is case insensitive.',
@@ -940,7 +893,6 @@ $lang = array(
 'Enter rules here'					=>	'Enter your rules here.',
 'Default maintenance message'		=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 'Timeout error message'				=>	'The value of "Timeout online" must be smaller than the value of "Timeout visit".',
-'Options updated redirect'			=>	'Settings updated. Redirecting …',
 
 // Language for display.php
 'General appearance'				=>	'Global appearance',
@@ -1033,11 +985,6 @@ $lang = array(
 'First run message'					=>	'The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.',
 
 // Language for forums.php
-'Forum added redirect'		=>	'Forum added. Redirecting …',
-'Forum deleted redirect'	=>	'Forum deleted. Redirecting …',
-'Forums updated redirect'	=>	'Forums updated. Redirecting …',
-'Forum updated redirect'	=>	'Forum updated. Redirecting …',
-'Perms reverted redirect'	=>	'Permissions reverted to defaults. Redirecting …',
 'Must enter name message'	=>	'You must enter a forum name.',
 'Must be integer message'	=>	'Position must be a positive integer value.',
 'New forum'					=>	'New forum',
@@ -1074,11 +1021,7 @@ $lang = array(
 // Language used in groups.php
 'Must enter title message'		=>	'You must enter a group title.',
 'Title already exists message'	=>	'There is already a group with the title <strong>%s</strong>.',
-'Default group redirect'		=>	'Default group set. Redirecting …',
 'Cannot remove default message'	=>	'The default group cannot be removed. In order to delete this group, you must first setup a different group as the default.',
-'Group removed redirect'		=>	'Group removed. Redirecting …',
-'Group added redirect'			=>	'Group added. Redirecting …',
-'Group edited redirect'			=>	'Group edited. Redirecting …',
 
 'Add group subhead'				=>	'Add new group',
 'New group label'				=>	'Base new group on',
@@ -1212,7 +1155,6 @@ $lang = array(
 'Posts must be integer message'	=>	'Posts per cycle must be a positive integer value.',
 'Days must be integer message'	=>	'Days to prune must be a positive integer value.',
 'No old topics message'			=>	'There are no topics that are %s days old. Please decrease the value of "Days old" and try again.',
-'Posts pruned redirect'			=>	'Posts pruned. Redirecting …',
 'Prune head'					=>	'Prune',
 'Prune subhead'					=>	'Prune old posts',
 'Days old label'				=>	'Days old',
@@ -1315,8 +1257,6 @@ $lang = array(
 'Visit timeout help'				=>	'Number of seconds a user must be idle before his/hers last visit data is updated.',
 'Online timeout label'				=>	'Online timeout',
 'Online timeout help'				=>	'Number of seconds a user must be idle before being removed from the online users list.',
-'Redirect time label'				=>	'Redirect time',
-'Redirect time help'				=>	'Number of seconds to wait when redirecting. If set to 0, no redirect page will be displayed (not recommended).',
 
 // Feeds section
 'Feed subhead'						=>	'Syndication',
@@ -1388,7 +1328,6 @@ $lang = array(
 
 // Language for permissions.php
 'All caps'					=>	'All caps',
-'Perms updated redirect'	=>	'Permissions updated. Redirecting …',
 'Permissions head'			=>	'Permissions',
 'Posting subhead'			=>	'Posting',
 'BBCode help'				=>	'Allow BBCode in posts (recommended).',
@@ -1412,9 +1351,6 @@ $lang = array(
 'Must be integer message'	=>	'Minimum posts must be a positive integer value.',
 'Dupe min posts message'	=>	'There is already a rank with a minimun posts value of %s.',
 'Must enter title message'	=>	'You must enter a rank title.',
-'Rank added redirect'		=>	'Rank added. Redirecting …',
-'Rank updated redirect'		=>	'Rank updated. Redirecting …',
-'Rank removed redirect'		=>	'Rank removed. Redirecting …',
 'Ranks head'				=>	'Ranks',
 'Add rank subhead'			=>	'Add rank',
 'Add rank info'				=>	'Enter a rank and the minimum number of posts a user must have made to attain the rank. Different ranks cannot have the same value for minimum posts. If a title is set for a user, the title will be displayed instead of any rank.',
@@ -1427,7 +1363,6 @@ $lang = array(
 'No ranks in list'			=>	'No ranks in list',
 
 // Language for reports.php
-'Report zapped redirect'	=>	'Report marked as read. Redirecting …',
 'Deleted user'				=>	'Deleted user',
 'Deleted'					=>	'Deleted',
 'Post ID'					=>	'Post #%s',
@@ -1483,13 +1418,11 @@ $lang = array(
 'New group label'			=>	'New group',
 'New group help'			=>	'Select the group to which the selected users will be moved. For security reasons, it is not possible to move multiple users to the administrator group.',
 'Invalid group message'		=>	'Invalid group ID.',
-'Users move redirect'		=>	'User group changed. Redirecting …',
 'Delete users'				=>	'Delete users',
 'Confirm delete legend'		=>	'Important: read before deleting users',
 'Confirm delete info'		=>	'Please confirm that you want to delete these users.',
 'Delete posts'				=>	'Delete any posts and topics these users have made.',
 'Delete warning'			=>	'Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by these users, the posts can only be deleted manually at a later time.',
-'Users delete redirect'		=>	'Users deleted. Redirecting …',
 'Ban users'					=>	'Ban users',
 'Message expiry subhead'	=>	'Ban message and expiry',
 'Ban message help'			=>	'A message that will be displayed to the banned users when they visit the board.',
@@ -1499,7 +1432,6 @@ $lang = array(
 'Ban IP help'				=>	'Also ban the IP addresses of the banned users to make registering a new account more difficult for them.',
 'Invalid date message'		=>	'You entered an invalid expire date.',
 'Invalid date reasons'		=>	'The format should be YYYY-MM-DD and the date must be at least one day in the future.',
-'Users banned redirect'		=>	'Users banned. Redirecting …',
 
 'User search head'			=>	'User search',
 'User search subhead'		=>	'Enter search criteria',

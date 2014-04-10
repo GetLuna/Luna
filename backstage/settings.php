@@ -36,7 +36,6 @@ if (isset($_POST['form_sent']))
 		'date_format'			=> luna_trim($_POST['form']['date_format']),
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
 		'timeout_online'		=> (intval($_POST['form']['timeout_online']) > 0) ? intval($_POST['form']['timeout_online']) : 1,
-		'redirect_delay'		=> (intval($_POST['form']['redirect_delay']) >= 0) ? intval($_POST['form']['redirect_delay']) : 0,
 		'feed_type'				=> intval($_POST['form']['feed_type']),
 		'feed_ttl'				=> intval($_POST['form']['feed_ttl']),
 		'report_method'			=> intval($_POST['form']['report_method']),
@@ -292,13 +291,6 @@ generate_admin_menu('global');
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
                         <span class="help-block"><?php echo $lang['Online timeout help'] ?></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Redirect time label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[redirect_delay]" maxlength="3" value="<?php echo $luna_config['o_redirect_delay'] ?>" />
-                        <span class="help-block"><?php echo $lang['Redirect time help'] ?></span>
                     </div>
                 </div>
             </fieldset>
