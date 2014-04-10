@@ -1086,7 +1086,7 @@ require FORUM_ROOT.'header.php';
 
 ?>
 
-<div class="col-md-3 profile-nav">
+<div class="col-sm-3 profile-nav">
 <?php
 	generate_profile_menu('view');
 	
@@ -1094,7 +1094,7 @@ require FORUM_ROOT.'header.php';
 	echo $user_website;
 ?>
 </div>
-<div class="col-md-9">
+<div class="col-sm-9 col-profile">
 	<div class="profile-card">
 		<div class="profile-card-head">
 			<?php if ($user_avatar): ?>
@@ -1192,7 +1192,7 @@ else if ($section == 'personality')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="col-md-3 profile-nav">
+<div class="col-sm-3 profile-nav">
 <?php
 	generate_profile_menu('personality');
 ?>
@@ -1324,7 +1324,7 @@ else if ($section == 'settings')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="col-md-3 profile-nav">
+<div class="col-sm-3 profile-nav">
 <?php
 	generate_profile_menu('settings');
 ?>
@@ -1630,7 +1630,7 @@ else if ($section == 'admin')
 	require FORUM_ROOT.'header.php';
 
 ?>
-<div class="col-md-3 profile-nav">
+<div class="col-sm-3 profile-nav">
 <?php
 	generate_profile_menu('admin');
 ?>
