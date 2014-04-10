@@ -40,7 +40,7 @@ if (isset($_POST['add_word']))
 
 	generate_censoring_cache();
 
-	redirect('backstage/censoring.php', $lang['Word added redirect']);
+	redirect('backstage/censoring.php');
 }
 
 // Update a censor word
@@ -64,7 +64,7 @@ else if (isset($_POST['update']))
 
 	generate_censoring_cache();
 
-	redirect('backstage/censoring.php', $lang['Word updated redirect']);
+	redirect('backstage/censoring.php');
 }
 
 // Remove a censor word
@@ -82,7 +82,7 @@ else if (isset($_POST['remove']))
 
 	generate_censoring_cache();
 
-	redirect('backstage/censoring.php',  $lang['Word removed redirect']);
+	redirect('backstage/censoring.php');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Censoring']);

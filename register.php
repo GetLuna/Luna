@@ -23,7 +23,7 @@ if ($luna_config['o_regs_allow'] == '0')
 
 // User pressed the cancel button
 if (isset($_GET['cancel']))
-	redirect('index.php', $lang['Reg cancel redirect']);
+	redirect('index.php');
 
 
 else if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent']))
@@ -250,7 +250,7 @@ if (isset($_POST['form_sent']))
 
 		luna_setcookie($new_uid, $password_hash, time() + $luna_config['o_timeout_visit']);
 
-		redirect('index.php', $lang['Reg complete']);
+		redirect('index.php');
 	}
 }
 

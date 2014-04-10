@@ -57,7 +57,7 @@ if (isset($_POST['form_sent']))
 
 	generate_config_cache();
 
-	redirect('backstage/permissions.php', $lang['Perms updated redirect']);
+	redirect('backstage/permissions.php');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Permissions']);

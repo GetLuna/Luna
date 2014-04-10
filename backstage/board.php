@@ -33,7 +33,7 @@ if (isset($_POST['add_forum']))
 
 	$db->query('INSERT INTO '.$db->prefix.'forums (forum_name, cat_id) VALUES(\''.$db->escape($forum_name).'\', '.$add_to_cat.')') or error('Unable to create forum', __FILE__, __LINE__, $db->error());
 
-	redirect('backstage/board.php', $lang['Forum added redirect']);
+	redirect('backstage/board.php');
 }
 
 // Delete a forum
@@ -71,7 +71,7 @@ else if (isset($_GET['del_forum']))
 		// Delete any subscriptions for this forum
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
-		redirect('backstage/board.php', $lang['Forum deleted redirect']);
+		redirect('backstage/board.php');
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -120,7 +120,7 @@ else if (isset($_POST['update_positions']))
 		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 	}
 
-	redirect('backstage/board.php', $lang['Forums updated redirect']);
+	redirect('backstage/board.php');
 }
 
 else if (isset($_GET['edit_forum']))
@@ -179,7 +179,7 @@ else if (isset($_GET['edit_forum']))
 			}
 		}
 
-		redirect('backstage/board.php', $lang['Forum updated redirect']);
+		redirect('backstage/board.php');
 	}
 	else if (isset($_POST['revert_perms']))
 	{
@@ -187,7 +187,7 @@ else if (isset($_GET['edit_forum']))
 	
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
-		redirect('backstage/board.php?edit_forum='.$forum_id, $lang['Perms reverted redirect']);
+		redirect('backstage/board.php?edit_forum='.$forum_id);
 	}
 
 	// Fetch forum info
@@ -341,7 +341,7 @@ if (isset($_POST['add_cat']))
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
-	redirect('backstage/board.php', $lang['Category added redirect']);
+	redirect('backstage/board.php');
 }
 
 // Delete a category
@@ -390,7 +390,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 			require FORUM_ROOT.'include/cache.php';
 
-		redirect('backstage/board.php', $lang['Category deleted redirect']);
+		redirect('backstage/board.php');
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -455,7 +455,7 @@ if (isset($_POST['update'])) // Change position and name of the categories
 		$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
 	}
 
-	redirect('backstage/board.php', $lang['Categories updated redirect']);
+	redirect('backstage/board.php');
 }
 
 

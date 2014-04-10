@@ -110,7 +110,7 @@ if ($action == 'change_pass')
 		if ($luna_user['id'] == $id)
 			luna_setcookie($luna_user['id'], $new_password_hash, time() + $luna_config['o_timeout_visit']);
 
-		redirect('profile.php?section=personality&amp;id='.$id, $lang['Pass updated redirect']);
+		redirect('profile.php?section=personality&amp;id='.$id);
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change pass']);
@@ -121,7 +121,7 @@ if ($action == 'change_pass')
 
 ?>
 <h2 class="profile-h2"><?php echo $lang['Change pass'] ?></h2>
-<form class="form-horizontal" id="change_pass" method="post" action="profile.php?action=change_pass&id=<?php echo $id ?>" onsubmit="return process_form(this)">
+<form class="form-horizontal" id="change_pass" method="post" action="profile.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
     	<div class="panel-heading">
         	<h3 class="panel-title"><?php echo $lang['Change pass'] ?></h3>
@@ -408,7 +408,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 		else
 			message($lang['Unknown failure']);
 
-		redirect('profile.php?section=personality&amp;id='.$id, $lang['Avatar upload redirect']);
+		redirect('profile.php?section=personality&amp;id='.$id);
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Upload avatar']);
@@ -446,10 +446,10 @@ else if ($action == 'delete_avatar')
 		message($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
-
+		
 	delete_avatar($id);
 
-	redirect('profile.php?section=personality&amp;id='.$id, $lang['Avatar deleted redirect']);
+	redirect('profile.php?section=personality&amp;id='.$id);
 }
 
 
@@ -461,9 +461,9 @@ else if (isset($_POST['update_group_membership']))
 	confirm_referrer('profile.php');
 
 	$new_group_id = intval($_POST['group_id']);
-
-	$result = $db->query('SELECT group_id FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user group', __FILE__, __LINE__, $db->error());
-	$old_group_id = $db->result($result);
+	
+	$result = $db->query('SELECT group_id FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user group', __FILE__, __LINE__, $db->error());  
+	$old_group_id = $db->result($result);  
 
 	$db->query('UPDATE '.$db->prefix.'users SET group_id='.$new_group_id.' WHERE id='.$id) or error('Unable to change user group', __FILE__, __LINE__, $db->error());
 
@@ -472,8 +472,8 @@ else if (isset($_POST['update_group_membership']))
 		require FORUM_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
-
-	if ($old_group_id == FORUM_ADMIN || $new_group_id == FORUM_ADMIN)
+	
+	if ($old_group_id == FORUM_ADMIN || $new_group_id == FORUM_ADMIN)  
 		generate_admins_cache();
 
 	$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$new_group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
@@ -499,7 +499,7 @@ else if (isset($_POST['update_group_membership']))
 		}
 	}
 
-	redirect('profile.php?section=admin&amp;id='.$id, $lang['Group membership redirect']);
+	redirect('profile.php?section=admin&amp;id='.$id);
 }
 
 
@@ -540,7 +540,7 @@ else if (isset($_POST['update_forums']))
 		}
 	}
 
-	redirect('profile.php?section=admin&amp;id='.$id, $lang['Update forums redirect']);
+	redirect('profile.php?section=admin&amp;id='.$id);
 }
 
 
@@ -560,10 +560,10 @@ else if (isset($_POST['ban']))
 	if ($db->num_rows($result))
 	{
 		$ban_id = $db->result($result);
-		redirect('backstage/bans.php?edit_ban='.$ban_id.'&amp;exists', $lang['Ban redirect']);
+		redirect('backstage/bans.php?edit_ban='.$ban_id.'&amp;exists');
 	}
 	else
-		redirect('backstage/bans.php?add_ban='.$id, $lang['Ban redirect']);
+		redirect('backstage/bans.php?add_ban='.$id);
 }
 
 
@@ -649,11 +649,11 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
-
-		if ($group_id == FORUM_ADMIN)
+		
+		if ($group_id == FORUM_ADMIN)  
 			generate_admins_cache();
-
-		redirect('index.php', $lang['User delete redirect']);
+		
+		redirect('index.php');
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Confirm delete user']);
@@ -708,7 +708,7 @@ else if (isset($_POST['form_sent']))
 
 	// Make sure they got here from the site
 	confirm_referrer('profile.php');
-
+		
 	$username_updated = false;
 
 	// Validate input depending on section
@@ -831,7 +831,7 @@ else if (isset($_POST['form_sent']))
 						message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
 				}
 			}
-
+				
 			break;
 		}
 
@@ -976,7 +976,7 @@ else if (isset($_POST['form_sent']))
 			generate_bans_cache();
 	}
 
-	redirect('profile.php?section='.$section.'&amp;id='.$id, $lang['Profile redirect']);
+	redirect('profile.php?section='.$section.'&amp;id='.$id);
 }
 
 
@@ -1759,6 +1759,7 @@ else if ($section == 'admin')
 		$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" maxlength="8" /></div></div>';
 	else
 		$posts_field = '';
+	
 
 ?>
 </form>

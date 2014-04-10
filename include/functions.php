@@ -1406,9 +1406,9 @@ function maintenance_message()
 //
 // Display $message and redirect user to $destination_url
 //
-function redirect($destination_url, $message)
+function redirect($destination_url)
 {
-	global $db, $luna_config, $lang, $luna_user;
+	global $db;
 
 	// Prefix with base_url (unless there's already a valid URI)
 	if (strpos($destination_url, 'http://') !== 0 && strpos($destination_url, 'https://') !== 0 && strpos($destination_url, '/') !== 0)
@@ -1417,123 +1417,11 @@ function redirect($destination_url, $message)
 	// Do a little spring cleaning
 	$destination_url = preg_replace('%([\r\n])|(\%0[ad])|(;\s*data\s*:)%i', '', $destination_url);
 
-	// If the delay is 0 seconds, we might as well skip the redirect all together
-	if ($luna_config['o_redirect_delay'] == '0')
-	{
-		$db->end_transaction();
-		$db->close();
-
-		header('Location: '.str_replace('&amp;', '&', $destination_url));
-		exit;
-	}
-
-	// Send no-cache headers
-	header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
-	header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-	header('Cache-Control: post-check=0, pre-check=0', false);
-	header('Pragma: no-cache'); // For HTTP/1.0 compatibility
-
-	// Send the Content-type header in case the web server is setup to send something else
-	header('Content-type: text/html; charset=utf-8');
-
-	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/redirect.tpl'))
-	{
-		$tpl_file = FORUM_ROOT.'style/'.$luna_user['style'].'/redirect.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'style/'.$luna_user['style'].'/';
-	}
-	else
-	{
-		$tpl_file = FORUM_ROOT.'include/template/redirect.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'include/user/';
-	}
-
-	$tpl_redir = file_get_contents($tpl_file);
-
-	// START SUBST - <luna_include "*">
-	preg_match_all('%<luna_include "([^/\\\\]*?)\.(php[45]?|inc|html?|txt)">%i', $tpl_redir, $luna_includes, PREG_SET_ORDER);
-
-	foreach ($luna_includes as $cur_include)
-	{
-		ob_start();
-
-		// Allow for overriding user includes, too.
-		if (file_exists($tpl_inc_dir.$cur_include[1].'.'.$cur_include[2]))
-			require $tpl_inc_dir.$cur_include[1].'.'.$cur_include[2];
-		else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2]))
-			require FORUM_ROOT.'include/user/'.$cur_include[1].'.'.$cur_include[2];
-		else
-			error(sprintf($lang['Pun include error'], htmlspecialchars($cur_include[0]), basename($tpl_file)));
-
-		$tpl_temp = ob_get_contents();
-		$tpl_redir = str_replace($cur_include[0], $tpl_temp, $tpl_redir);
-		ob_end_clean();
-	}
-	// END SUBST - <luna_include "*">
-
-
-	// START SUBST - <luna_language>
-	$tpl_redir = str_replace('<luna_language>', $lang['lang_identifier'], $tpl_redir);
-	// END SUBST - <luna_language>
-
-
-	// START SUBST - <luna_content_direction>
-	$tpl_redir = str_replace('<luna_content_direction>', $lang['lang_direction'], $tpl_redir);
-	// END SUBST - <luna_content_direction>
-
-
-	// START SUBST - <luna_head>
-	ob_start();
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Redirecting']);
-
-?>
-<meta http-equiv="refresh" content="<?php echo $luna_config['o_redirect_delay'] ?>;URL=<?php echo $destination_url ?>" />
-<title><?php echo generate_page_title($page_title) ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $luna_user['style'].'.css' ?>" />
-<?php
-
-	$tpl_temp = trim(ob_get_contents());
-	$tpl_redir = str_replace('<luna_head>', $tpl_temp, $tpl_redir);
-	ob_end_clean();
-	// END SUBST - <luna_head>
-
-
-	// START SUBST - <luna_redir_main>
-	ob_start();
-
-?>
-<div>
-	<h2><?php echo $lang['Redirecting'] ?></h2>
-	<p><?php echo $message.'<br /><br /><a href="'.$destination_url.'">'.$lang['Click redirect'].'</a>' ?></p>
-</div>
-<?php
-
-	$tpl_temp = trim(ob_get_contents());
-	$tpl_redir = str_replace('<luna_redir_main>', $tpl_temp, $tpl_redir);
-	ob_end_clean();
-	// END SUBST - <luna_redir_main>
-
-
-	// START SUBST - <luna_footer>
-	ob_start();
-
-	// End the transaction
 	$db->end_transaction();
-
-	// Display executed queries (if enabled)
-	if (defined('FORUM_SHOW_QUERIES'))
-		display_saved_queries();
-
-	$tpl_temp = trim(ob_get_contents());
-	$tpl_redir = str_replace('<luna_footer>', $tpl_temp, $tpl_redir);
-	ob_end_clean();
-	// END SUBST - <luna_footer>
-
-
-	// Close the db connection (and free up any result data)
 	$db->close();
 
-	exit($tpl_redir);
+	header('Location: '.str_replace('&amp;', '&', $destination_url));
+	exit;
 }
 
 

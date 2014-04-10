@@ -84,7 +84,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(luna_htmlspecialchars($_POST['redirect_url']), $lang['Login redirect']);
+	redirect(luna_htmlspecialchars($_POST['redirect_url']));
 }
 
 
@@ -105,7 +105,7 @@ else if ($action == 'out')
 
 	luna_setcookie(1, luna_hash(uniqid(rand(), true)), time() + 31536000);
 
-	redirect('index.php', $lang['Logout redirect']);
+	redirect('index.php');
 }
 
 

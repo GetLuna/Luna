@@ -59,7 +59,7 @@ if (isset($_POST['delete']))
 		delete_topic($cur_post['tid']);
 		update_forum($cur_post['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid'], $lang['Topic del redirect']);
+		redirect('viewforum.php?id='.$cur_post['fid']);
 	}
 	else
 	{
@@ -71,7 +71,7 @@ if (isset($_POST['delete']))
 		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		$post_id = $db->result($result);
 
-		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id, $lang['Post del redirect']);
+		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
 	}
 }
 

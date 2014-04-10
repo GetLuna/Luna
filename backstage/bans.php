@@ -289,9 +289,9 @@ else if (isset($_POST['add_edit_ban']))
 	generate_bans_cache();
 
 	if ($_POST['mode'] == 'edit')
-		redirect('backstage/bans.php', $lang['Ban edited redirect']);
+		redirect('backstage/bans.php');
 	else
-		redirect('backstage/bans.php', $lang['Ban added redirect']);
+		redirect('backstage/bans.php');
 }
 
 // Remove a ban
@@ -311,7 +311,7 @@ else if (isset($_GET['del_ban']))
 
 	generate_bans_cache();
 
-	redirect('backstage/bans.php', $lang['Ban removed redirect']);
+	redirect('backstage/bans.php');
 }
 
 // Find bans

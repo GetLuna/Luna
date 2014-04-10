@@ -107,7 +107,7 @@ if (isset($_GET['tid']))
 
 			update_forum($fid);
 
-			redirect('viewtopic.php?id='.$tid, $lang['Delete posts redirect']);
+			redirect('viewtopic.php?id='.$tid);
 		}
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
@@ -201,7 +201,7 @@ if (isset($_GET['tid']))
 			update_forum($fid);
 			update_forum($move_to_forum);
 
-			redirect('viewtopic.php?id='.$new_tid, $lang['Split posts redirect']);
+			redirect('viewtopic.php?id='.$new_tid);
 		}
 
 		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -463,7 +463,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 		update_forum($move_to_forum); // Update the forum TO which the topic was moved
 
 		$redirect_msg = (count($topics) > 1) ? $lang['Move topics redirect'] : $lang['Move topic redirect'];
-		redirect('viewforum.php?id='.$move_to_forum, $redirect_msg);
+		redirect('viewforum.php?id='.$move_to_forum);
 	}
 
 	if (isset($_POST['move_topics']))
@@ -611,7 +611,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 
 		// Update the forum FROM which the topic was moved and redirect
 		update_forum($fid);
-		redirect('viewforum.php?id='.$fid, $lang['Merge topics redirect']);
+		redirect('viewforum.php?id='.$fid);
 	}
 
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
@@ -703,7 +703,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 		update_forum($fid);
 
-		redirect('viewforum.php?id='.$fid, $lang['Delete topics redirect']);
+		redirect('viewforum.php?id='.$fid);
 	}
 
 
@@ -752,7 +752,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
 		$redirect_msg = ($action) ? $lang['Close topics redirect'] : $lang['Open topics redirect'];
-		redirect('moderate.php?fid='.$fid, $redirect_msg);
+		redirect('moderate.php?fid='.$fid);
 	}
 	// Or just one in $_GET
 	else
@@ -766,7 +766,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
 		$redirect_msg = ($action) ? $lang['Close topic redirect'] : $lang['Open topic redirect'];
-		redirect('viewtopic.php?id='.$topic_id, $redirect_msg);
+		redirect('viewtopic.php?id='.$topic_id);
 	}
 }
 
@@ -782,7 +782,7 @@ else if (isset($_GET['stick']))
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to stick topic', __FILE__, __LINE__, $db->error());
 
-	redirect('viewtopic.php?id='.$stick, $lang['Stick topic redirect']);
+	redirect('viewtopic.php?id='.$stick);
 }
 
 
@@ -797,7 +797,7 @@ else if (isset($_GET['unstick']))
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
 
-	redirect('viewtopic.php?id='.$unstick, $lang['Unstick topic redirect']);
+	redirect('viewtopic.php?id='.$unstick);
 }
 
 

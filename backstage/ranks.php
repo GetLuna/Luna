@@ -46,7 +46,7 @@ if (isset($_POST['add_rank']))
 
 	generate_ranks_cache();
 
-	redirect('backstage/ranks.php', $lang['Rank added redirect']);
+	redirect('backstage/ranks.php');
 }
 
 
@@ -77,7 +77,7 @@ else if (isset($_POST['update']))
 
 	generate_ranks_cache();
 
-	redirect('backstage/ranks.php', $lang['Rank updated redirect']);
+	redirect('backstage/ranks.php');
 }
 
 
@@ -94,7 +94,7 @@ else if (isset($_POST['remove']))
 
 	generate_ranks_cache();
 
-	redirect('backstage/ranks.php', $lang['Rank removed redirect']);
+	redirect('backstage/ranks.php');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Ranks']);

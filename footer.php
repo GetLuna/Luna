@@ -95,7 +95,7 @@ if (!defined('FORUM_FORM'))
 // Display debug info (if enabled/defined)
 if (defined('FORUM_DEBUG'))
 {
-	echo '<p id="debugtime">[ ';
+	echo '<p id="debug">[ ';
 
 	// Calculate script generation time
 	$time_diff = sprintf('%.3f', get_microtime() - $luna_start);

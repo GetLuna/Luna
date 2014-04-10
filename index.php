@@ -69,7 +69,7 @@ if ($action == 'do_not_show')
 
 	$db->query('UPDATE '.$db->prefix.'users SET first_run = 1 WHERE id='.$luna_user['id']) or error('Unable to disable first run', __FILE__, __LINE__, $db->error());
 
-	redirect('index.php', 'Updated');
+	redirect('index.php');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));

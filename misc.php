@@ -50,7 +50,7 @@ else if ($action == 'markread')
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect('index.php', $lang['Mark read redirect']);
+	redirect('index.php');
 }
 
 
@@ -68,7 +68,7 @@ else if ($action == 'markforumread')
 	$tracked_topics['forums'][$fid] = time();
 	set_tracked_topics($tracked_topics);
 
-	redirect('viewforum.php?id='.$fid, $lang['Mark forum read redirect']);
+	redirect('viewforum.php?id='.$fid);
 }
 
 
@@ -130,7 +130,7 @@ else if (isset($_GET['email']))
 
 		$db->query('UPDATE '.$db->prefix.'users SET last_email_sent='.time().' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-		redirect(luna_htmlspecialchars($_POST['redirect_url']), $lang['Email sent redirect']);
+		redirect(luna_htmlspecialchars($_POST['redirect_url']));
 	}
 
 
@@ -268,7 +268,7 @@ else if (isset($_GET['report']))
 
 		$db->query('UPDATE '.$db->prefix.'users SET last_report_sent='.time().' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-		redirect('viewforum.php?id='.$forum_id, $lang['Report redirect']);
+		redirect('viewforum.php?id='.$forum_id);
 	}
 
 	// Fetch some info about the post, the topic and the forum
@@ -341,7 +341,7 @@ else if ($action == 'subscribe')
 
 		$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$topic_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?id='.$topic_id, $lang['Subscribe redirect']);
+		redirect('viewtopic.php?id='.$topic_id);
 	}
 
 	if ($forum_id)
@@ -360,7 +360,7 @@ else if ($action == 'subscribe')
 
 		$db->query('INSERT INTO '.$db->prefix.'forum_subscriptions (user_id, forum_id) VALUES('.$luna_user['id'].' ,'.$forum_id.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewforum.php?id='.$forum_id, $lang['Subscribe redirect']);
+		redirect('viewforum.php?id='.$forum_id);
 	}
 }
 
@@ -386,7 +386,7 @@ else if ($action == 'unsubscribe')
 
 		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$topic_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?id='.$topic_id, $lang['Unsubscribe redirect']);
+		redirect('viewtopic.php?id='.$topic_id);
 	}
 
 	if ($forum_id)
@@ -400,7 +400,7 @@ else if ($action == 'unsubscribe')
 
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$luna_user['id'].' AND forum_id='.$forum_id) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 
-		redirect('viewforum.php?id='.$forum_id, $lang['Unsubscribe redirect']);
+		redirect('viewforum.php?id='.$forum_id);
 	}
 }
 

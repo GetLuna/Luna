@@ -420,7 +420,7 @@ if (isset($_POST['form_sent']))
 			$db->query('UPDATE '.$db->prefix.'online SET last_post='.$now.' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 		}
 
-		redirect('viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $lang['Post redirect']);
+		redirect('viewtopic.php?pid='.$new_pid.'#p'.$new_pid);
 	}
 }
 
