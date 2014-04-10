@@ -30,6 +30,12 @@ local.properties
 
 
 #################
+## Sublime Text
+#################
+
+*.sublime-*
+
+#################
 ## Visual Studio
 #################
 
@@ -164,11 +170,8 @@ pip-log.txt
 
 
 #############
-## ModernBB
+## Configuration file and cache
 #############
 
 cache/
 config.php
-style/Bootstrap.css
-img/avatars/2.png
-img/core/firstrun.jpg
