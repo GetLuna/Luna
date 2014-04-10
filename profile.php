@@ -1019,13 +1019,13 @@ if (!$section || $section == 'view')
 
 	if ($user['realname'] != '')
 	{
-		$user_personality[] = '<b>'.$lang['Realname'].':</b>';
+		$user_personality[] = '<br /><b>'.$lang['Realname'].':</b>';
 		$user_personality[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
 	}
 
 	if ($user['location'] != '')
 	{
-		$user_personality[] = '<b>'.$lang['Location'].':</b>';
+		$user_personality[] = '<br /><b>'.$lang['Location'].':</b>';
 		$user_personality[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']);
 	}
 
@@ -1056,25 +1056,25 @@ if (!$section || $section == 'view')
 
 	if ($user['icq'] != '')
 	{
-		$user_messaging[] = '<b>'.$lang['ICQ'].'</b>:';
+		$user_messaging[] = '<br /><b>'.$lang['ICQ'].'</b>:';
 		$user_messaging[] = $user['icq'];
 	}
 
 	if ($user['msn'] != '')
 	{
-		$user_messaging[] = '<b>'.$lang['MSN'].'</b>:';
+		$user_messaging[] = '<br /><b>'.$lang['MSN'].'</b>:';
 		$user_messaging[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
 	}
 
 	if ($user['aim'] != '')
 	{
-		$user_messaging[] = '<b>'.$lang['AOL IM'].'</b>:';
+		$user_messaging[] = '<br /><b>'.$lang['AOL IM'].'</b>:';
 		$user_messaging[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']);
 	}
 
 	if ($user['yahoo'] != '')
 	{
-		$user_messaging[] = '<b>'.$lang['Yahoo'].'</b>:';
+		$user_messaging[] = '<br /><b>'.$lang['Yahoo'].'</b>:';
 		$user_messaging[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']);
 	}
 
@@ -1094,11 +1094,11 @@ if (!$section || $section == 'view')
 		$quick_searches = array();
 		if ($user['num_posts'] > 0)
 		{
-			$quick_searches[] = '<a class="btn btn-primary btn-xs" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
-			$quick_searches[] = '<a class="btn btn-primary btn-xs" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
 		}
 		if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
-			$quick_searches[] = '<a class="btn btn-primary btn-xs" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
 
 		if (!empty($quick_searches))
 			$posts_field .= implode('', $quick_searches);

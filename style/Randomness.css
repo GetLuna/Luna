@@ -167,7 +167,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .first-run-avatar img {
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 .first-run-list {
@@ -732,12 +732,12 @@ textarea {
 
 /* Topicview */
 .topic h1 a:hover, .topic h2 a:hover, .topic h3 a:hover, .topic h4 a:hover, .topic h5 a:hover, .topic h6 a:hover, .topic h1 a:active, .topic h2 a:active, .topic h3 a:active, .topic h4 a:active, .topic h5 a:active, .topic h6 a:active, .topic h1 a:focus, .topic h2 a:focus, .topic h3 a:focus, .topic h4 a:focus, .topic h5 a:focus, .topic h6 a:focus {
-		text-decoration: none;
-		color: #ddd;
+	text-decoration: none;
+	color: #ddd;
 }
 
 .topic h2 a, .topic h3, .topic h3 a {
-		color: #fff;
+	color: #fff;
 }
 
 .topic .panel, .topic .profile-card {
@@ -745,7 +745,7 @@ textarea {
 }
 
 .panel-topic {
-		margin-top: 10px;
+	margin-top: 10px;
 }
 
 .topic .profile-card {
@@ -763,6 +763,7 @@ textarea {
 	margin-left: 4px;
 	position: absolute;
 	border-radius: 0;
+	border-top-left-radius: 3px;
 }
 
 .topic .profile-card-head .user-avatar img {
@@ -818,8 +819,8 @@ textarea {
 .profile-card-head {
 	background-color: #057ed4;
 	color: #fff;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 .profile-card-head .thumbnail {
@@ -854,8 +855,8 @@ textarea {
 	background-color: #fff;
 	border: #ddd 1px solid;
 	border-top: none;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .profile-card-body p {
@@ -978,7 +979,7 @@ q:after {
 .form {
 	max-width: 330px;
 	margin: 60px auto 20px;
-	border-radius: 5px;
+	border-radius: 3px;
 	background-color: #fff;
 }
 
@@ -1003,8 +1004,8 @@ q:after {
 	background: linear-gradient(to right, #057ed4, #10c1f0);
 	color: #fff;
 	padding: 20px;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 .form-content {

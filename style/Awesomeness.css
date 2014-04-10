@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .first-run-avatar img {
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 .first-run-list {
@@ -757,6 +757,7 @@ textarea {
 	margin-left: 4px;
 	position: absolute;
 	border-radius: 0;
+	border-top-left-radius: 3px;
 }
 
 .topic .profile-card-head .user-avatar img {
@@ -811,8 +812,8 @@ textarea {
 .profile-card-head {
 	background-color: #679e0d;
 	color: #fff;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 .profile-card-head .thumbnail {
@@ -847,8 +848,8 @@ textarea {
 	background-color: #fff;
 	border: #ddd 1px solid;
 	border-top: none;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .profile-card-body p {
@@ -971,7 +972,7 @@ q:after {
 .form {
 	max-width: 330px;
 	margin: 60px auto 20px;
-	border-radius: 5px;
+	border-radius: 3px;
 	background-color: #fff;
 }
 
@@ -996,8 +997,8 @@ q:after {
 	background: linear-gradient(to right, #679e0d, #a4da28);
 	color: #fff;
 	padding: 20px;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
 }
 
 .form-content {
