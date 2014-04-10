@@ -884,13 +884,12 @@ else
 
 ?>
                     <div class="col-xs-8">
-                        <label class="conl"><?php echo $lang['Search in']."\n" ?>
-                        <br /><select class="form-control" id="search_in" name="search_in">
+                        <label class="conl"><?php echo $lang['Search in']."\n" ?></label>
+                        <select class="form-control" id="search_in" name="search_in">
                             <option value="0"><?php echo $lang['Message and subject'] ?></option>
                             <option value="1"><?php echo $lang['Message only'] ?></option>
                             <option value="-1"><?php echo $lang['Topic only'] ?></option>
                         </select>
-                        </label>
                         <table>
                             <thead>
                                 <tr>
