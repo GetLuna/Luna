@@ -1025,6 +1025,13 @@ $lang = array(
 'Search all label'					=>	'Search all forums',
 'Search all help'					=>	'When disabled, searches will only be allowed in one forum at a time. Disable if server load is high due to excessive searching.',
 
+'First run'							=>	'First run',
+'General settings'					=>	'General settings',
+'Show first run label'				=>	'Show the first run panel when an user logs in for the first time.',
+'Show guests label'					=>	'Show the first run panel to guests with login field and registration button.',
+'Welcome text'						=>	'Welcome text',
+'First run message'					=>	'The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.',
+
 // Language for forums.php
 'Forum added redirect'		=>	'Forum added. Redirecting …',
 'Forum deleted redirect'	=>	'Forum deleted. Redirecting …',

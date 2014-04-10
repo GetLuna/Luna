@@ -115,13 +115,13 @@ generate_admin_menu('features');
                             	<input type="checkbox" name="form[signatures]" value="1" <?php if ($luna_config['o_signatures'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Signatures help'] ?>
                             </label>
-                        </div>   
+                        </div>
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[ranks]" value="1" <?php if ($luna_config['o_ranks'] == '1') echo ' checked="checked"' ?> />
 								<?php printf($lang['User ranks help'], '<a href="ranks.php">'.$lang['Ranks'].'</a>') ?>
                             </label>
-                        </div>                     
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -140,33 +140,33 @@ generate_admin_menu('features');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">First run<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['First run'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">General settings</label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['General settings'] ?></label>
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[show_first_run]" value="1" <?php if ($luna_config['o_show_first_run'] == '1') echo ' checked="checked"' ?> />
-								Show the first run panel when an user logs in for the first time.
+								<?php echo $lang['Show first run label'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[first_run_guests]" value="1" <?php if ($luna_config['o_first_run_guests'] == '1') echo ' checked="checked"' ?> />
-								Show the first run panel to guests with login field and registration button.
+								<?php echo $lang['Show guests label'] ?>
                             </label>
                         </div>
 					</div>
 				</div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Welcome text</label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Welcome text'] ?></label>
                     <div class="col-sm-10">
 						<input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
-						<span class="help-block">The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.</span>           
+						<span class="help-block"><?php echo $lang['First run message'] ?></span>           
                     </div>
                 </div>
             </fieldset>
