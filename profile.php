@@ -1001,113 +1001,107 @@ if (!$section || $section == 'view')
 
 	$user_personality = array();
 
-	$user_personality[] = '<tr><th class="col-md-2">'.$lang['Username'].'</th>';
-	$user_personality[] = '<td>'.luna_htmlspecialchars($user['username']).'</td></tr>';
+	$user_username = luna_htmlspecialchars($user['username']);
+	$user_usertitle = get_title($user);
 
 	$user_title_field = get_title($user);
-	$user_personality[] = '<tr><th>'.$lang['Title'].'</th>';
-	$user_personality[] = '<td>'.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field).'</td></tr>';
+	$user_personality[] = '<b>'.$lang['Title'].'</b>:';
+	$user_personality[] = (($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
+
+	$user_personality[] = '<br /><b>'.$lang['Posts table'].'</b>:';
+	$user_personality[] = $posts_field = forum_number_format($user['num_posts']);
+
+	$user_personality[] = '<br /><b>'.$lang['Last post'].'</b>:';
+	$user_personality[] = $last_post;
+
+	$user_personality[] = '<br /><b>'.$lang['Registered'].'</b>:';
+	$user_personality[] = format_time($user['registered'], true);
 
 	if ($user['realname'] != '')
 	{
-		$user_personality[] = '<tr><th>'.$lang['Realname'].'</th>';
-		$user_personality[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']).'</td></tr>';
+		$user_personality[] = '<b>'.$lang['Realname'].':</b>';
+		$user_personality[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
 	}
 
 	if ($user['location'] != '')
 	{
-		$user_personality[] = '<tr><th>'.$lang['Location'].'</th>';
-		$user_personality[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']).'</td></tr>';
+		$user_personality[] = '<b>'.$lang['Location'].':</b>';
+		$user_personality[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']);
 	}
 
-	if ($user['url'] != '')
-	{
-		$user['url'] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']);
-		$user_personality[] = '<tr><th>'.$lang['Website'].'</th>';
-		$user_personality[] = '<td><span class="website"><a href="'.$user['url'].'" rel="nofollow">'.$user['url'].'</a></span></td></tr>';
+	if ($user['url'] != '') {
+		$user_website = '<a class="btn btn-default btn-block" href="'.luna_htmlspecialchars($user['url']).'" rel="nofollow"><span class="glyphicon glyphicon-globe"></span> '.$lang['Website'].'</a>';
+	} else {
+		$user_website = '';
 	}
 
 	if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-		$email_field = '<a href="mailto:'.luna_htmlspecialchars($user['email']).'">'.luna_htmlspecialchars($user['email']).'</a>';
+		$email_field = '<a class="btn btn-default btn-block" href="mailto:'.luna_htmlspecialchars($user['email']).'"><span class="glyphicon glyphicon-send"></span> '.luna_htmlspecialchars($user['email']).'</a>';
 	else if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-		$email_field = '<a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a>';
+		$email_field = '<a class="btn btn-default btn-block" href="misc.php?email='.$id.'"><span class="glyphicon glyphicon-send"></span> '.$lang['Send email'].'</a>';
 	else
 		$email_field = '';
 	if ($email_field != '')
 	{
-		$user_personality[] = '<tr><th>'.$lang['Email'].'</th>';
-		$user_personality[] = '<td><span class="email">'.$email_field.'</span></td></tr>';
+		$email_field;
 	}
 
 	$user_messaging = array();
 
 	if ($user['jabber'] != '')
 	{
-		$user_messaging[] = '<tr><th>'.$lang['Jabber'].'</th>';
-		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']).'</td></tr>';
+		$user_messaging[] = '<b>'.$lang['Jabber'].'</b>:';
+		$user_messaging[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']);
 	}
 
 	if ($user['icq'] != '')
 	{
-		$user_messaging[] = '<tr><th>'.$lang['ICQ'].'</th>';
-		$user_messaging[] = '<td>'.$user['icq'].'</td></tr>';
+		$user_messaging[] = '<b>'.$lang['ICQ'].'</b>:';
+		$user_messaging[] = $user['icq'];
 	}
 
 	if ($user['msn'] != '')
 	{
-		$user_messaging[] = '<tr><th>'.$lang['MSN'].'</th>';
-		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'</td></tr>';
+		$user_messaging[] = '<b>'.$lang['MSN'].'</b>:';
+		$user_messaging[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
 	}
 
 	if ($user['aim'] != '')
 	{
-		$user_messaging[] = '<tr><th>'.$lang['AOL IM'].'</th>';
-		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']).'</td></tr>';
+		$user_messaging[] = '<b>'.$lang['AOL IM'].'</b>:';
+		$user_messaging[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']);
 	}
 
 	if ($user['yahoo'] != '')
 	{
-		$user_messaging[] = '<tr><th>'.$lang['Yahoo'].'</th>';
-		$user_messaging[] = '<td>'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']).'</td></tr>';
-	}
-
-	if ($luna_config['o_avatars'] == '1')
-	{
-		$avatar_field = generate_avatar_markup($id);
-		if ($avatar_field != '')
-		{
-			$user_personality[] = '<tr><th>'.$lang['Avatar'].'</th>';
-			$user_personality[] = '<td>'.$avatar_field.'</td></tr>';
-		}
+		$user_messaging[] = '<b>'.$lang['Yahoo'].'</b>:';
+		$user_messaging[] = luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']);
 	}
 
 	if ($luna_config['o_signatures'] == '1')
 	{
 		if (isset($parsed_signature))
 		{
-			$user_personality[] = '<tr><th>'.$lang['Signature'].'</th>';
-			$user_personality[] = '<td><div class="postsignature postmsg">'.$parsed_signature.'</div></td></tr>';
+			$user_signature[] = $parsed_signature;
 		}
 	}
 
 	$user_activity = array();
 
 	$posts_field = '';
-	if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
-		$posts_field = forum_number_format($user['num_posts']);
 	if ($luna_user['g_search'] == '1')
 	{
 		$quick_searches = array();
 		if ($user['num_posts'] > 0)
 		{
-			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
-			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-xs" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-xs" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
 		}
 		if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
-			$quick_searches[] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
+			$quick_searches[] = '<a class="btn btn-primary btn-xs" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
 
 		if (!empty($quick_searches))
-			$posts_field .= (($posts_field != '') ? ' &middot; ' : '').implode(' &middot; ', $quick_searches);
+			$posts_field .= implode('', $quick_searches);
 	}
 	if ($posts_field != '')
 	{
@@ -1128,30 +1122,61 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$
 define('FORUM_ACTIVE_PAGE', 'profile');
 require FORUM_ROOT.'header.php';
 
-generate_profile_menu('view');
-
 ?>
 
-<div class="col-sm-10 col-profile">
-<h2><?php echo luna_htmlspecialchars($user['username']) ?> <small><?php echo $lang['View info'] ?></small></h2>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Profile'] ?></h3>
-	</div>
-	<table class="table">
-		<thead></thead>
-		<tbody>
-			<tr><th class="active" colspan="2"><h3><?php echo $lang['Section personality'] ?></h3></th></tr>
-			<?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
-			<?php if (!empty($user_messaging)): ?>
-				<tr><th class="active" colspan="2"><h3><?php echo $lang['Section messaging'] ?></h3></th></tr>
-				<?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?>
-			<?php endif; ?>
-			<tr><th class="active" colspan="2"><h3><?php echo $lang['User activity'] ?></h3></th></tr>
-			<?php echo implode("\n\t\t\t\t\t\t\t", $user_activity)."\n" ?>
-		</tbody>
-	</table>
+<div class="col-md-3 profile-nav">
+<?php
+	generate_profile_menu('view');
+	
+	echo $email_field;
+	echo $user_website;
+?>
 </div>
+<div class="col-md-9">
+	<div class="profile-card">
+		<div class="profile-card-head">
+			<?php if ($user_avatar): ?>
+			<div class="user-avatar thumbnail">
+				<?php echo $user_avatar; ?>
+			</div>
+			<?php endif; ?>
+			<h2><?php echo $user_username; ?></h2>
+			<h3><?php echo $user_usertitle; ?></h3>
+		</div>
+		<div class="profile-card-body">
+			<?php echo implode("\n\t\t\t\t\t\t\t", $user_personality)."\n" ?>
+			<br /><br /><div class="btn-group"><?php echo $posts_field; ?></div>
+		</div>
+	</div>
+<?php if (!empty($user_messaging)): ?>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Contact</h3>
+		</div>
+		<div class="panel-body">
+			<p><?php echo implode("\n\t\t\t\t\t\t\t", $user_messaging)."\n" ?></p>
+		</div>
+	</div>
+<?php
+	endif;
+
+	if ($luna_config['o_signatures'] == '1')
+	{
+		if (isset($parsed_signature))
+		{
+?>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Signature</h3>
+		</div>
+		<div class="panel-body">
+			<p><?php echo implode("\n\t\t\t\t\t\t\t", $user_signature)."\n" ?></p>
+		</div>
+	</div>
+<?php
+		}
+	}
+?>
 </div>
 
 <?php
@@ -1205,10 +1230,13 @@ else if ($section == 'personality')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	generate_profile_menu('personality');
-
 ?>
-<div class="col-sm-10 col-profile">
+<div class="col-md-3 profile-nav">
+<?php
+	generate_profile_menu('personality');
+?>
+</div>
+<div class="col-sm-9 col-profile">
 <h2 class="profile-h2"><?php echo $lang['Section personality'] ?></h2>
 <form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
 	<div class="panel panel-default">
@@ -1334,10 +1362,13 @@ else if ($section == 'settings')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	generate_profile_menu('settings');
-
 ?>
-<div class="col-sm-10 col-profile">
+<div class="col-md-3 profile-nav">
+<?php
+	generate_profile_menu('settings');
+?>
+</div>
+<div class="col-sm-9 col-profile">
 <h2 class="profile-h2"><?php echo $lang['Section settings'] ?></h2>
 <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
@@ -1637,10 +1668,13 @@ else if ($section == 'admin')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	generate_profile_menu('admin');
-
 ?>
-<div class="col-sm-10 col-profile">
+<div class="col-md-3 profile-nav">
+<?php
+	generate_profile_menu('admin');
+?>
+</div>
+<div class="col-sm-9 col-profile">
 <h2 class="profile-h2"><?php echo $lang['Section admin'] ?></h2>
 <form id="profile7" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>">
 <?php
