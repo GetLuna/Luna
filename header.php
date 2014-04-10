@@ -181,7 +181,7 @@ if ($luna_config['o_header_desc'] == 1) {
 $links = array();
 
 // Index should always be displayed
-if ($luna_config['o_show_userlist'] == '1')
+if ($luna_config['o_show_index'] == '1')
 	$links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang['Index'].'</a></li>';
 
 if ($luna_user['g_read_board'] == '1' && $luna_user['g_view_users'] == '1' && $luna_config['o_show_userlist'] == '1')
