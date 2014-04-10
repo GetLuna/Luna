@@ -1576,7 +1576,6 @@ else
 		'o_date_format'				=> 'd/m/Y',
 		'o_timeout_visit'			=> 1800,
 		'o_timeout_online'			=> 300,
-		'o_redirect_delay'			=> 1,
 		'o_show_version'			=> 0,
 		'o_show_index_stats'		=> 1,
 		'o_show_user_info'			=> 1,

@@ -368,6 +368,10 @@ switch ($stage)
 		// Since 3.2-beta: Insert new config option o_first_run_message
 		if (!array_key_exists('o_first_run_message', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_message\', \'\')') or error('Unable to insert config value \'o_first_run_message\'', __FILE__, __LINE__, $db->error());
+			
+		// Since 3.2-beta: Remove obsolete o_redirect_delay permission from config table
+		if (array_key_exists('o_redirect_delay', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_redirect_delay\'') or error('Unable to remove config value \'o_redirect_delay\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mardiadb')
