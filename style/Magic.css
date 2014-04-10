@@ -545,12 +545,13 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 .btn-primary {
 	color: #fff;
 	background-color: #6b1ed6;
-	border-color: #410693 #410693 #9345ff;
+	border-color: #410693;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #7821f0;
+	background-color: #893df1;
 	color: #fff;
+	border-color: #410693;
 }
 
 .btn-primary:active, .btn-primary.active {
