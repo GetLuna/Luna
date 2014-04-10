@@ -161,3 +161,14 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+
+#############
+## ModernBB
+#############
+
+cache/
+config.php
+style/Bootstrap.css
+img/avatars/2.png
+img/core/firstrun.jpg
