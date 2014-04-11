@@ -1036,7 +1036,6 @@ function message($message, $no_back_link = false, $http_status = null)
 	<?php endif; ?>
 </div>
 <?php
-
 	if( FORUM_ACTIVE_PAGE === 'admin' )
 	{
 		require FORUM_ROOT .'backstage/footer.php';
