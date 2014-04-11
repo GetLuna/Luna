@@ -21,6 +21,11 @@ if (!$luna_user['is_admmod']) {
 // Create new user
 if (isset($_POST['add_user']))
 {
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
+	define('FORUM_ACTIVE_PAGE', 'admin');
+	require FORUM_ROOT.'backstage/header.php';
+	generate_admin_menu('users');
+
 	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
@@ -29,7 +34,7 @@ if (isset($_POST['add_user']))
 		$password = random_pass(8);
 	else
 		$password = trim($_POST['password']);
-	
+
 	$errors = array();
 
 	// Convert multiple whitespace characters into one (to prevent people from registering with indistinguishable usernames)
@@ -297,7 +302,7 @@ if (isset($_GET['show_users']))
 ?>
 			<tr>
 				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
-				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td> 
+				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td>
 				<td><?php echo $user_title ?></td>
 				<td class="text-center"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
 				<td><?php echo ($user_data[$cur_poster['poster_id']]['admin_note'] != '') ? luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['admin_note']) : '&#160;' ?></td>
@@ -345,7 +350,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
-		
+
 	confirm_referrer('backstage/users.php');
 
 	if (isset($_POST['users']))
@@ -465,7 +470,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
-		
+
 	confirm_referrer('backstage/users.php');
 
 	if (isset($_POST['users']))
@@ -614,7 +619,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
-		
+
 	confirm_referrer('backstage/users.php');
 
 	if (isset($_POST['users']))
