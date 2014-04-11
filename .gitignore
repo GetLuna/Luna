@@ -30,6 +30,12 @@ local.properties
 
 
 #################
+## Sublime Text
+#################
+
+*.sublime-*
+
+#################
 ## Visual Studio
 #################
 
@@ -161,3 +167,11 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+
+#############
+## Configuration file and cache
+#############
+
+cache/
+config.php
