@@ -737,6 +737,65 @@ textarea {
 	margin: 0 auto 10px auto;	
 }
 
+.user-row .user-avatar {
+	max-width: 50px;
+	margin-top: 0;
+	margin-left: -6px;
+	position: absolute;
+	border-radius: 0;
+	height: 50px;
+	min-height: 50px;
+	min-width: 50px;
+}
+
+.userlist-name {
+	margin-left: 60px;
+	font-size: 24px;
+	line-height: 2;
+	font-family: "Segoe UI Light", "Segoe UI", "Segoe WP";
+}
+
+.userlist-name small {
+	font-size: 16px;
+	color: #999;
+}
+
+.user-row .thumbnail {
+	padding: 2px;
+}
+
+.user-row {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-bottom: 1px #eee solid;
+	border-left: 1px #ddd solid;
+	border-right: 1px #ddd solid;
+}
+
+.user-row:last-child {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-bottom: 1px #ddd solid;
+}
+
+.user-row .collum-count {
+	padding-top: 15px;
+}
+
+.row-space-top {
+	margin-top: 15px;
+}
+
+.pagination-user-top {
+	margin-bottom: 10px;
+}
+
+.pagination-user-bottom {
+	margin-top: 10px;
+}
+
 /* Topicview */
 .topic h1 a:hover, .topic h2 a:hover, .topic h3 a:hover, .topic h4 a:hover, .topic h5 a:hover, .topic h6 a:hover, .topic h1 a:active, .topic h2 a:active, .topic h3 a:active, .topic h4 a:active, .topic h5 a:active, .topic h6 a:active, .topic h1 a:focus, .topic h2 a:focus, .topic h3 a:focus, .topic h4 a:focus, .topic h5 a:focus, .topic h6 a:focus {
     text-decoration: none;
