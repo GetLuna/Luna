@@ -41,9 +41,7 @@ require FORUM_ROOT.'header.php';
 		<p><code>[u]<?php echo $lang['Underlined text'] ?>[/u]</code> <?php echo $lang['produces'] ?> <span class="bbu"><?php echo $lang['Underlined text'] ?></span></p>
 		<p><code>[i]<?php echo $lang['Italic text'] ?>[/i]</code> <?php echo $lang['produces'] ?> <em><?php echo $lang['Italic text'] ?></em></p>
 		<p><code>[s]<?php echo $lang['Strike-through text'] ?>[/s]</code> <?php echo $lang['produces'] ?> <span class="bbs"><?php echo $lang['Strike-through text'] ?></span></p>
-		<p><code>[del]<?php echo $lang['Deleted text'] ?>[/del]</code> <?php echo $lang['produces'] ?> <del><?php echo $lang['Deleted text'] ?></del></p>
 		<p><code>[ins]<?php echo $lang['Inserted text'] ?>[/ins]</code> <?php echo $lang['produces'] ?> <ins><?php echo $lang['Inserted text'] ?></ins></p>
-		<p><code>[em]<?php echo $lang['Emphasised text'] ?>[/em]</code> <?php echo $lang['produces'] ?> <em><?php echo $lang['Emphasised text'] ?></em></p>
 		<p><code>[color=#FF0000]<?php echo $lang['Red text'] ?>[/color]</code> <?php echo $lang['produces'] ?> <span style="color: #ff0000"><?php echo $lang['Red text'] ?></span></p>
 		<p><code>[color=blue]<?php echo $lang['Blue text'] ?>[/color]</code> <?php echo $lang['produces'] ?> <span style="color: blue"><?php echo $lang['Blue text'] ?></span></p>
 		<p><code>[sub]<?php echo $lang['Sub text'] ?>[/sub]</code> <?php echo $lang['produces'] ?> <sub><?php echo $lang['Sub text'] ?></sub></p>
