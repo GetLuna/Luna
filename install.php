@@ -1599,7 +1599,7 @@ else
 		'o_topic_views'				=> 1,
 		'o_gzip'					=> 0,
 		'o_additional_navlinks'		=> '',
-		'o_menu_title'				=> 0,
+		'o_menu_title'				=> 1,
 		'o_header_title'			=> 1,
 		'o_header_desc'				=> 1,
 		'o_show_index'				=> 0,
