@@ -166,7 +166,7 @@ generate_admin_menu('features');
                     <label class="col-sm-2 control-label"><?php echo $lang['Welcome text'] ?></label>
                     <div class="col-sm-10">
 						<input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
-						<span class="help-block"><?php echo $lang['First run message'] ?></span>           
+						<span class="help-block"><?php echo $lang['First run help message'] ?></span>           
                     </div>
                 </div>
             </fieldset>

@@ -983,7 +983,7 @@ $lang = array(
 'Show first run label'				=>	'Show the first run panel when an user logs in for the first time.',
 'Show guests label'					=>	'Show the first run panel to guests with login field and registration button.',
 'Welcome text'						=>	'Welcome text',
-'First run message'					=>	'The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.',
+'First run help message'			=>	'The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.',
 
 // Language for forums.php
 'Must enter name message'	=>	'You must enter a forum name.',
