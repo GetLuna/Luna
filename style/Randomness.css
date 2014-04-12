@@ -505,6 +505,8 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	background: #057ed4;
 	background: linear-gradient(to right, #057ed4, #10c1f0);
 	padding: 8px 0;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 .category-box, .forum-box {
@@ -517,7 +519,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #232323;
 	background-color: #fff;
 	padding: 8px 0;
-	border-top: 1px #ddd solid;
+	border-bottom: 1px #eee solid;
+	border-left: 1px #ddd solid;
+	border-right: 1px #ddd solid;
+}
+
+.forum-row:last-child, .topic-row:last-child {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-bottom: 1px #ddd solid;
 }
 
 .table > tbody > tr > td {
@@ -865,8 +876,6 @@ textarea {
 	background-color: #fff;
 	border: #ddd 1px solid;
 	border-top: none;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
 }
 
 .profile-card-body p {
