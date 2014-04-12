@@ -618,6 +618,12 @@ fieldset label {
 	padding: 0 0 7px 0;
 }
 
+label .help-block {
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-size: 85%;
+}
+
 textarea {
     resize: vertical;
 }

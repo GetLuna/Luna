@@ -1169,7 +1169,7 @@ else if ($section == 'personality')
 	}
 	
 	if ($luna_user['g_set_title'] == '1')
-		$title_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Title'].'</label><div class="col-sm-9"><input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
+		$title_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Title'].'<span class="help-block">'.$lang['Leave blank'].'</span></label><div class="col-sm-9"><input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" /></div></div>'."\n";
 		
 	if ($luna_config['o_avatars'] == '0' && $luna_config['o_signatures'] == '0')
 		message($lang['Bad request'], false, '404 Not Found');
