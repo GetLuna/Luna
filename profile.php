@@ -131,21 +131,21 @@ if ($action == 'change_pass')
             <fieldset>
 				<?php if (!$luna_user['is_admmod']): ?>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"><?php echo $lang['Old pass'] ?></label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label"><?php echo $lang['Old pass'] ?></label>
+                        <div class="col-sm-9">
                             <input class="form-control" type="password" name="req_old_password" />
                         </div>
                     </div>
 				<?php endif; ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['New pass'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['New pass'] ?></label>
+                    <div class="col-sm-9">
                         <input class="form-control" type="password" name="req_new_password1" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Confirm new pass'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Confirm new pass'] ?></label>
+                    <div class="col-sm-9">
                         <input class="form-control" type="password" name="req_new_password2" />
                     </div>
                 </div>
@@ -1152,24 +1152,24 @@ else if ($section == 'personality')
 	if ($luna_user['is_admmod'])
 	{
 		if ($luna_user['g_id'] == FORUM_ADMIN || $luna_user['g_mod_rename_users'] == '1')
-			$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user['username']).'" maxlength="25" /></div></div>'."\n";
+			$username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user['username']).'" maxlength="25" /></div></div>'."\n";
 		else
-			$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10">'.luna_htmlspecialchars($user['username']).'</div></div>'."\n";
+			$username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9">'.luna_htmlspecialchars($user['username']).'</div></div>'."\n";
 
-		$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><div class="input-group"><input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" /><span class="input-group-btn"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></div></div></div>'."\n";
+		$email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><div class="input-group"><input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" /><span class="input-group-btn"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></div></div></div>'."\n";
 	}
 	else
 	{
-		$username_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Username'].'</label><div class="col-sm-10"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
+		$username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
 
 		if ($luna_config['o_regs_verify'] == '1')
 			$email_field = '<p>'.sprintf($lang['Email info'], luna_htmlspecialchars($user['email']).' &middot; <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
 		else
-			$email_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Email'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
+			$email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
 	}
 	
 	if ($luna_user['g_set_title'] == '1')
-		$title_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Title'].'</label><div class="col-sm-10"><input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
+		$title_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Title'].'</label><div class="col-sm-9"><input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" /><span class="help-block">'.$lang['Leave blank'].'</div></div>'."\n";
 		
 	if ($luna_config['o_avatars'] == '0' && $luna_config['o_signatures'] == '0')
 		message($lang['Bad request'], false, '404 Not Found');
@@ -1210,8 +1210,8 @@ else if ($section == 'personality')
 				<?php echo $username_field ?>
 				<?php if ($luna_user['id'] == $id || $luna_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')): ?>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Password'] ?></label>
+					<div class="col-sm-9">
 						<a class="btn btn-primary" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a>
 					</div>
 				</div>
@@ -1220,8 +1220,8 @@ else if ($section == 'personality')
 				<hr />
 				<input type="hidden" name="form_sent" value="1" />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Realname'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Realname'] ?></label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[realname]" value="<?php echo luna_htmlspecialchars($user['realname']) ?>" maxlength="40" />
 					</div>
 				</div>
@@ -1229,46 +1229,46 @@ else if ($section == 'personality')
 					<?php echo $title_field ?>
 				<?php endif; ?>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Location'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Location'] ?></label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Website'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Website'] ?></label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" />
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Jabber'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Jabber'] ?></label>
+					<div class="col-sm-9">
 						<input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo luna_htmlspecialchars($user['jabber']) ?>" maxlength="75" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['ICQ'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['ICQ'] ?></label>
+					<div class="col-sm-9">
 						<input id="icq" type="text" class="form-control" name="form[icq]" value="<?php echo $user['icq'] ?>" maxlength="12" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['MSN'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['MSN'] ?></label>
+					<div class="col-sm-9">
 						<input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['AOL IM'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['AOL IM'] ?></label>
+					<div class="col-sm-9">
 						<input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo luna_htmlspecialchars($user['aim']) ?>" maxlength="30" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Yahoo'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Yahoo'] ?></label>
+					<div class="col-sm-9">
 						<input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo luna_htmlspecialchars($user['yahoo']) ?>" maxlength="30" />
 					</div>
 				</div>
@@ -1340,8 +1340,8 @@ else if ($section == 'settings')
 			<fieldset>
 				<input type="hidden" name="form_sent" value="1" />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Time zone'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Time zone'] ?></label>
+					<div class="col-sm-9">
 						<select class="form-control" name="form[timezone]">
 							<option value="-12"<?php if ($user['timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang['UTC-12:00'] ?></option>
 							<option value="-11"<?php if ($user['timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang['UTC-11:00'] ?></option>
@@ -1393,8 +1393,8 @@ else if ($section == 'settings')
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Time format'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Time format'] ?></label>
+					<div class="col-sm-9">
 						<select class="form-control" name="form[time_format]">
 <?php
 					foreach (array_unique($forum_time_formats) as $key => $time_format)
@@ -1412,8 +1412,8 @@ else if ($section == 'settings')
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Date format'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Date format'] ?></label>
+					<div class="col-sm-9">
 						<select class="form-control" name="form[date_format]">
 <?php
 					foreach (array_unique($forum_date_formats) as $key => $date_format)
@@ -1438,8 +1438,8 @@ if (count($languages) > 1)
 	{
 ?>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Language'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Language'] ?></label>
+					<div class="col-sm-9">
 						<select class="form-control" name="form[language]">
 <?php
 		foreach ($languages as $temp)
@@ -1465,8 +1465,8 @@ if (count($languages) > 1)
 ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Style'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Style'] ?></label>
+					<div class="col-sm-9">
 						<select class="form-control" name="form[style]">
 <?php
 		foreach ($styles as $temp)
@@ -1492,8 +1492,8 @@ if (count($languages) > 1)
 		{
 ?>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Backstage style'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Backstage style'] ?></label>
+					<div class="col-sm-9">
 						<select class="form-control" name="form[backstage_style]">
 <?php
 			foreach ($backstage_styles as $temp)
@@ -1513,8 +1513,8 @@ if (count($languages) > 1)
 	if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1')): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Post display'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Post display'] ?></label>
+					<div class="col-sm-9">
 <?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1'): ?>
 						<div class="checkbox">
 							<label>
@@ -1557,21 +1557,21 @@ if (count($languages) > 1)
 <?php endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Topics per page'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Topics per page'] ?></label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Posts per page'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Posts per page'] ?></label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" maxlength="3" />
 					</div>
 				</div>
 				<hr  />
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Email setting info'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Email setting info'] ?></label>
+					<div class="col-sm-9">
 						<div class="radio">
 							<label>
 								<input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked="checked"' ?> />
@@ -1594,8 +1594,8 @@ if (count($languages) > 1)
 				</div>
 <?php if ($luna_config['o_forum_subscriptions'] == '1' || $luna_config['o_topic_subscriptions'] == '1'): ?>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Subscriptions head'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Subscriptions head'] ?></label>
+					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked="checked"' ?> />
@@ -1751,7 +1751,7 @@ else if ($section == 'admin')
 	}
 
 	if ($luna_user['g_id'] == FORUM_ADMIN)
-		$posts_field = '<div class="form-group"><label class="col-sm-2 control-label">'.$lang['Posts table'].'</label><div class="col-sm-10"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" maxlength="8" /></div></div>';
+		$posts_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Posts table'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" maxlength="8" /></div></div>';
 	else
 		$posts_field = '';
 	
@@ -1769,8 +1769,8 @@ else if ($section == 'admin')
 				<?php echo $posts_field ?>
 				<?php if ($luna_user['is_admmod']): ?>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Admin note'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Admin note'] ?></label>
+					<div class="col-sm-9">
 						<input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
 					</div>
 				</div>
