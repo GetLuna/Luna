@@ -11,8 +11,8 @@ $lang = array(
 // Number and date formatting
 'lang_decimal_point'				=>	'.',
 'lang_thousands_sep'				=>	',',
-'lang_time'							=>	'H:i:s',
-'lang_date'							=>	'd/m/Y',
+'lang_time'							=>	'H:i',
+'lang_date'							=>	'j M Y',
 
 // Notices
 'Bad request'						=>	'Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.',
