@@ -8,9 +8,11 @@ $lang = array(
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
 'lang_identifier'					=>	'en',
 
-// Number formatting
+// Number and date formatting
 'lang_decimal_point'				=>	'.',
 'lang_thousands_sep'				=>	',',
+'lang_time'							=>	'H:i:s',
+'lang_date'							=>	'd/m/Y',
 
 // Notices
 'Bad request'						=>	'Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.',
@@ -1097,7 +1099,7 @@ $lang = array(
 'Backup head'						=>	'Back-up',
 'Backup info'						=>	'Create new database backup.',
 'Backup button'						=>	'Create new backup',
-'New reports head'						=>	'New reports',
+'New reports head'					=>	'New reports',
 'Statistics head'					=>	'Statistics',
 'Updates'							=>	'Updates',
 'View all'							=>	'View all',
