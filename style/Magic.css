@@ -68,16 +68,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-content {
-		width: 320px;
-		padding: 15px;
+	width: 320px;
+	padding: 15px;
 }
 
 .navbar-footer {
-		background-color: #DDD;
+	background-color: #DDD;
 }
 
 .navbar-footer-content {
-		padding: 15px 15px 15px 15px;
+	padding: 15px 15px 15px 15px;
 }
 
 #header a.btn-default:hover, #header a.btn-default, .userpane-name {
@@ -555,14 +555,14 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #6b1ed6;
-	border-color: #410693;
+	background-color: #a361ff;
+	border-color: #9345ff;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #893df1;
+	background-color: #9345ff;
 	color: #fff;
-	border-color: #410693;
+	border-color: #822afc;
 }
 
 .btn-primary:active, .btn-primary.active {
@@ -719,15 +719,15 @@ textarea {
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
-	border-left: 10px solid #6b1ed6;
+	border-left: 10px solid #a361ff;
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):before, .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
-	border-left: 10px solid #410693;
+	border-left: 10px solid #9345ff;
 }
 
 .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
-	border-left: 10px solid #7821f0;
+	border-left: 10px solid #9345ff;
 }
 
 /* Status Indicators */
