@@ -120,7 +120,7 @@ while ($cur_group = $db->fetch_assoc($result))
 <div class="col-xs-12">
     <div class="row forum-header">
         <div class="col-sm-8 col-xs-9"><?php echo $lang['Username'] ?></div>
-        <div class="col-sm-1 align-center hidden-xs"><?php echo $lang['Posts table'] ?></div>
+        <div class="col-sm-1 align-center hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
         <div class="col-sm-3 col-xs-3"><?php echo $lang['Registered table'] ?></div>
     </div>
     <div class="userlist">
@@ -150,7 +150,7 @@ if ($db->num_rows($result))
                 </span>
                 <span class="userlist-name"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?> <small><?php echo $user_title_field ?></small></span>
             </div>
-            <div class="col-sm-1 collum-count align-center hidden-xs"><?php echo forum_number_format($user_data['num_posts']) ?></div>
+            <div class="col-sm-1 collum-count align-center hidden-xs"><p class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></p></div>
             <div class="col-sm-3 col-xs-3 collum-count"><?php echo format_time($user_data['registered'], true) ?></div>
         </div>
 <?php
