@@ -161,10 +161,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 <div id="idx<?php echo $cat_count ?>">
     <div class="category-box">
         <div class="row category-header">
-            <div class="col-sm-7 col-xs-6"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></div>
-            <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo $lang['Topics'] ?></p></div>
-            <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
-            <div class="col-sm-3 col-xs-6"><?php echo $lang['Last post'] ?></div>
+            <div class="col-xs-12"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></div>
         </div>
 <?php
 
@@ -230,10 +227,23 @@ while ($cur_forum = $db->fetch_assoc($result))
 
 		$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">(<em>'.$lang['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
 	}
+	
+	if (forum_number_format($num_topics) == '1') {
+		$topics_label = $lang['topic'];
+	} else {
+		$topics_label = $lang['topics'];
+	}
+	
+	if (forum_number_format($num_topics) == '1') {
+		$posts_label = $lang['post'];
+	} else {
+		$posts_label = $lang['posts'];
+	}
+		
 
 ?>
             <div class="<?php echo $item_status ?> row forum-row">
-                <div class="col-sm-7 col-xs-6">
+                <div class="col-sm-6 col-xs-6">
                     <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
                     <div class="tclcon">
                         <div>
@@ -241,9 +251,8 @@ while ($cur_forum = $db->fetch_assoc($result))
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo forum_number_format($num_topics) ?></p></div>
-                <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo forum_number_format($num_posts) ?></p></div>
-                <div class="col-sm-3 col-xs-6"><?php echo $last_post ?></div>
+                <div class="col-sm-2 hidden-xs"><b><?php echo forum_number_format($num_topics) ?></b> <?php echo $topics_label ?><br /><b><?php echo forum_number_format($num_posts) ?></b> <?php echo $posts_label ?></div>
+                <div class="col-sm-4 col-xs-6"><?php echo $last_post ?></div>
             </div>
 <?php
 
