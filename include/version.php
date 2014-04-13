@@ -2,7 +2,7 @@
 
 /**
  * Copyright (C) 2014 ModernBB
- * Based on work by PunBB (2002-2009), FluxBB (2009-2012) and Vanellope (2014)
+ * Based on work by PunBB (2002-2009), FluxBB (2009-2012)
  * Licensed under GPLv3
  */
  
@@ -13,7 +13,7 @@ class Version
 	// But a "z" is required whenever a build number is in the version and no affix is used. Ex. 3.1.0.1587, and not 3.1.1587
 	// Every time a change is made to the core, even when it's just a fix for a patch or a fast change, requires
 	// this number to be changed to anything higher than the original state.
-	const FORUM_VERSION = '3.1.3';
+	const FORUM_VERSION = '3.2-alpha';
 
 	// Internal revision number of services
 	// The database version number, every change in the database requires this number to go one up
