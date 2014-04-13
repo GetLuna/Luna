@@ -128,7 +128,12 @@ if (!isset($luna_config['o_database_revision']) || $luna_config['o_database_revi
 	!isset($luna_config['o_parser_revision']) || $luna_config['o_parser_revision'] < Version::FORUM_PARSER_VERSION ||
 	version_compare($luna_config['o_cur_version'], Version::FORUM_VERSION, '<'))
 {
-	header('Location: '.FORUM_ROOT.'db_update.php');
+	if (FORUM_ADMIN_CONSOLE == 1) {
+		header('Location: '.FORUM_ROOT.'db_update.php');
+	} else {
+		header('Location: db_update.php');
+	}
+	exit;
 }
 
 // Enable output buffering
