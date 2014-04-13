@@ -22,7 +22,7 @@ define('FORUM_ACTIVE_PAGE', 'help');
 require FORUM_ROOT.'header.php';
 
 ?>
-<h2><?php echo $lang['BBCode'] ?></h2>
+<h2><?php echo $lang['Help'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['BBCode'] ?></h3>
@@ -117,15 +117,6 @@ require FORUM_ROOT.'header.php';
 		<div class="postmsg">
 			<ol class="alpha"><li><p><?php echo $lang['List text 1'] ?></p></li><li><p><?php echo $lang['List text 2'] ?></p></li><li><p><?php echo $lang['List text 3'] ?></p></li></ol>
 		</div>
-	</div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Nested tags'] ?></h3>
-    </div>
-    <div class="panel-body">
-		<p><?php echo $lang['Nested tags info'] ?></p>
-		<p><code>[b][u]<?php echo $lang['Bold, underlined text'] ?>[/u][/b]</code> <?php echo $lang['produces'] ?> <strong><span class="bbu"><?php echo $lang['Bold, underlined text'] ?></span></strong></p>
 	</div>
 </div>
 <div class="panel panel-default">

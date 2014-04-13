@@ -295,7 +295,7 @@ $lang = array(
 // Language for help.php
 'produces'				=>	'produces',
 
-'BBCode info'			=>	'BBCode is a collection of formatting tags that are used to change the look of text in this forum. BBCode is based on the same principal as, and is very similar to, HTML. Below is a list of all the available BBCodes and instructions on how to use them. Administrators have the ability to enable or disable BBCode. You can tell if BBCode is enabled or disabled out in the left margin whenever you post a message or edit your signature.',
+'BBCode info'			=>	'BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature.',
 
 'Text style'			=>	'Text style',
 'Text style info'		=>	'The following tags change the appearance of text:',
@@ -1104,7 +1104,11 @@ $lang = array(
 'Updates'							=>	'Updates',
 'View all'							=>	'View all',
 'posts'								=>	'posts',
+'replies'							=>	'replies',
+'reply'								=>	'reply',
 'topics'							=>	'topics',
+'views'								=>	'views',
+'view'								=>	'view',
 'users'								=>	'users',
 
 'Not available'						=>	'Not available',
