@@ -119,12 +119,7 @@ require FORUM_ROOT.'header.php';
 </div>
 <div class="forum-box">
     <div class="row forum-header">
-        <div class="col-sm-7 col-xs-7"><?php echo $lang['Topic'] ?></div>
-        <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
-        <?php if ($luna_config['o_topic_views'] == '1'): ?>
-            <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo $lang['Views'] ?></p></div>
-        <?php endif; ?>
-        <div class="col-sm-3 col-xs-5"><?php echo $lang['Last post'] ?></div>
+        <div class="col-xs-12"><?php echo $lang['Topic'] ?></div>
     </div>
 <?php
 
@@ -154,7 +149,7 @@ if ($db->num_rows($result))
 		if (is_null($cur_topic['moved_to']))
 			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 		else
-			$last_post = '- - -';
+			$last_post = '';
 
 		if ($luna_config['o_censoring'] == '1')
 			$cur_topic['subject'] = censor_words($cur_topic['subject']);
@@ -165,17 +160,18 @@ if ($db->num_rows($result))
 			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 		}
 
+		// TODO: Rewrite this part of the source code, as this will give bugs
 		if ($cur_topic['moved_to'] != 0)
 		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 			$item_status .= ' imoved';
 		}
 		else if ($cur_topic['closed'] == '0')
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 		else
 		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 			$item_status .= ' iclosed';
 		}
@@ -206,22 +202,31 @@ if ($db->num_rows($result))
 			$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
 			$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
 		}
+	
+		if (forum_number_format($cur_topic['num_replies']) == '1') {
+			$replies_label = $lang['reply'];
+		} else {
+			$replies_label = $lang['replies'];
+		}
+		
+		if (forum_number_format($num_topics) == '1') {
+			$views_label = $lang['view'];
+		} else {
+			$views_label = $lang['views'];
+		}
 
 ?>
     <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-sm-7 col-xs-7">
-            <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
+        <div class="col-sm-6 col-xs-6">
+            <div class="<?php echo $icon_type ?>"><?php echo forum_number_format($topic_count + $start_from) ?></div>
             <div class="tclcon">
                 <div>
                     <?php echo $subject."\n" ?>
                 </div>
             </div>
         </div>
-        <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_replies']) : '-' ?></p></div>
-        <?php if ($luna_config['o_topic_views'] == '1'): ?>
-            <div class="col-sm-1 hidden-xs"><p class="text-center"><?php echo (is_null($cur_topic['moved_to'])) ? forum_number_format($cur_topic['num_views']) : '-' ?></p></div>
-        <?php endif; ?>
-        <div class="col-sm-3 col-xs-5"><?php echo $last_post ?></div>
+        <div class="col-sm-2 hidden-xs"><?php if (is_null($cur_topic['moved_to'])) { ?><b><?php echo forum_number_format($cur_topic['num_replies']) ?></b> <?php echo $replies_label ?><br /><b><?php echo forum_number_format($cur_topic['num_views']) ?></b> <?php echo $views_label ?><?php } ?></div>
+        <div class="col-sm-4 col-xs-6"><?php echo $last_post ?></div>
     </div>
 <?php
 
