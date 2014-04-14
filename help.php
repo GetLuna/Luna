@@ -121,6 +121,65 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
 		</div>
     </div>
 </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">General use</h3>
+    </div>
+    <div class="panel-body">
+        <p>Allow us to explain some of the basics on how to work with this forum software.</p>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#forums" data-toggle="tab">Forums and topics</a></li>
+			<li><a href="#profile" data-toggle="tab">Profile</a></li>
+			<li><a href="#search" data-toggle="tab">Search</a></li>
+		</ul>
+		<div class="tab-content">
+		  <div class="tab-pane active" id="forums">
+                <h3>What do those labels in front of topic titles mean?</h3>
+                <p>You'll see that some of the topics are labeled, different labels have different meanings.</p>
+				<table class="table">
+                	<thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Explenation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="label label-success">sticky</span></td>
+                            <td>Sticky topics are important, you are probably suposed to read those topics. It's worth it to take a look here.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="label label-danger">closed</span></td>
+                            <td>When a topic is closed, you can't add a new comment to it, except if you have a permission that overwrites this. The topic is still available to read, through.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="label label-info">moved</span></td>
+                            <td>This topic is moved to another forum. Admins and moderators can choose to show this notification, or simply not show it at all. The original forum where this topic was located in, won't show any topic stats anymore.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>I can't see the WYSIWYG editor!</h3>
+                <p>You probably did not enable JavaScript in your browser, you can find this under settings in your browser. It could be that you are using an unsupported browser that doesn't hancle the editor properly, too.</p>
+                <h3>Smilies, signatures, avatars and images are not visible?</h3>
+                <p>You can change the behavior of the topic view in your profiles settings. Here you can enable smilies, signatures, avatars and images in posts. Through by default, those settings are enabled. Your forums admin might have disabled those features. You can see if images and smilies are disabled below the editor. If the labels have a red background, those features aren't available for you.</p>
+                <h3>Why can't I see any topics or forums?</h3>
+                <p>You might not have the correct permissions to do so, ask the forums administrator for more help.</p>
+            </div>
+			<div class="tab-pane" id="profile">
+                <h3>Why can't I see any profiles?</h3>
+                <p>You might not have the correct permissions to do so, ask the forums administrator for more help.</p>
+                <h3>My profile doesn't contain as much as others?</h3>
+                <p>You're profile will only display fields that are enabled and filled in on your profiles personality page. You might want to take a look over there and check if you missed some fields.</p>
+            </div>
+			<div class="tab-pane" id="search">
+                <h3>Are there more options to search?</h3>
+                <p>When you go to the search page, you'll find yourself on a page with 1 searchbox. Below that search box, there is a link to Advanced search, here you can find more search options! Note that this feature isn't available on small devices or is disabled on all devices by the forums admin.</p>
+                <h3>I can't search in more then 1 forum at once?</h3>
+                <p>You might not have the correct permissions to do so, ask the forums administrator for more help.</p>
+            </div>
+		</div>
+    </div>
+</div>
 <?php
 
 require FORUM_ROOT.'footer.php';
