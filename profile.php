@@ -1015,6 +1015,8 @@ if (!$section || $section == 'view')
 	$user_activity[] = '<b>'.$lang['Registered table'].':</b> '.format_time($user['registered'], true);
 
 	$user_personality[] = '<b>'.$lang['Registered'].':</b> '.format_time($user['registered'], true);
+	
+	$user_personality[] = '<b>'.$lang['Last visit info'].':</b> '.format_time($user['last_visit'], true);
 
 	if ($user['realname'] != '')
 		$user_personality[] = '<b>'.$lang['Realname'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
