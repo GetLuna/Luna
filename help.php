@@ -190,6 +190,36 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
 		</div>
     </div>
 </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Moderating</h3>
+    </div>
+    <div class="panel-body">
+        <p>Admins and moderators like help too, sometimes. So, allow us to explain those basics here.</p>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#forums" data-toggle="tab">Forums</a></li>
+			<li><a href="#topics" data-toggle="tab">Topics</a></li>
+			<li><a href="#users" data-toggle="tab">Users</a></li>
+		</ul>
+		<div class="tab-content">
+		  <div class="tab-pane active" id="forums">
+                <h3>How do I moderate a forum?</h3>
+                <p>The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once.</p>
+            </div>
+			<div class="tab-pane" id="topics">
+                <h3>How do I moderate a topic?</h3>
+                <p>The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once.</p>
+                <p>Next to the "Moderate topic" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it.</p>
+            </div>
+			<div class="tab-pane" id="users">
+                <h3>How do I moderate an user?</h3>
+                <p>Moderator options are available in the users profile. You can find the moderation options under "Administration" in the users profile menu. Those features aren't available for all moderators.</p>
+                <p>The Administration page allow you to check if the user has any admin note, and if required, you can change that note. You can also change the post count of this user. At this page, the user can also be given moderator permissions on a per-forum base, through the user must have a moderator account to be able to actualy use those permissions.</p>
+                <p>Finaly, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better of with the advanced user management features in the Backstage.</p>
+            </div>
+		</div>
+    </div>
+</div>
 <?php
 
 require FORUM_ROOT.'footer.php';

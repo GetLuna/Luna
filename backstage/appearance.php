@@ -107,7 +107,7 @@ generate_admin_menu('display');
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Default style label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Default style'] ?></label>
                     <div class="col-sm-10">
                         <select class="form-control" name="form[default_style]">
 <?php

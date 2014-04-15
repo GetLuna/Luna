@@ -157,13 +157,13 @@ generate_admin_menu('global');
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Board title label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Board title'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Board desc label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Board description'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
                         <span class="help-block"><?php echo $lang['Board desc help'] ?></span>
@@ -176,7 +176,7 @@ generate_admin_menu('global');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Language label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Default language'] ?></label>
                     <div class="col-sm-10">
                         <select class="form-control" name="form[default_lang]">
 <?php
