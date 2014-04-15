@@ -1,4 +1,4 @@
-ModernBB 3.1 "Mellow"
+ModernBB 3.2 "Mellow"
 =====================
 
 ## About

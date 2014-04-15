@@ -160,7 +160,6 @@ if ($db->num_rows($result))
 			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 		}
 
-		// TODO: Rewrite this part of the source code, as this will give bugs
 		if ($cur_topic['moved_to'] != 0)
 		{
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';

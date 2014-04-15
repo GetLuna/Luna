@@ -256,7 +256,7 @@ if (isset($_POST['form_sent']))
 
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register']);
-$required_fields = array('req_user' => $lang['Username'], 'req_password1' => $lang['Password'], 'req_password2' => $lang['Confirm pass'], 'req_email1' => $lang['Email'], 'req_email2' => $lang['Email'].' 2');
+$required_fields = array('req_user' => $lang['Username'], 'req_password1' => $lang['Password'], 'req_password2' => $lang['Confirm password'], 'req_email1' => $lang['Email'], 'req_email2' => $lang['Email'].' 2');
 $focus_element = array('register', 'req_user');
 $page_head = array('<style type="text/css">#register label.usernamefield { display: none }</style>');
 define('FORUM_ACTIVE_PAGE', 'register');

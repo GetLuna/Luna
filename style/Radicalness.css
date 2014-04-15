@@ -298,14 +298,6 @@ h1, h2, h3, h4, h5, h6 {
 	background: #d33200;
 }
 
-.nav > li {
-	margin-left: 0px;
-}
-
-.nav > li > a {
-	color: #fff;
-}
-
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
 	background-color: #b62b00;
 }

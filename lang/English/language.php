@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 149 - 9.2% completed
+// Line 256 - 16.7% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -156,8 +156,6 @@ $lang = array(
 'New reports'						=>	'There are new reports',
 'Maintenance mode enabled'			=>	'Maintenance mode is enabled!',
 
-// Checked until this line
-
 // Language for installation
 'Choose install language'		=>	'Choose the install script language',
 'Choose install language info'	=>	'The language used for this install script. The default language used for the board itself can be set below.',
@@ -193,25 +191,19 @@ $lang = array(
 'Database setup'				=>	'Database setup',
 'Select database'				=>	'Select your database type',
 'Info 1'						=>	'Select a database. We support SQLite, MySQL and PostgreSQL.',
-'Database type'					=>	'Database type',
-'Database hostname'				=>	'Enter your database server hostname',
 'Info 2'						=>	'You should be able to get this info from your web host, if <code>localhost</code> does not work.',
-'Database server hostname'		=>	'Database server hostname',
-'Database enter name'			=>	'Enter the name of your database',
 'Info 3'						=>	'The name of the database you want to install ModernBB on.',
 'Database name'					=>	'Database name',
 'Database enter informations'	=>	'Enter your database username and password',
 'Database username'				=>	'Database username',
 'Info 4'						=>	'Your MySQL username and password (ignore of SQLite).',
 'Database password'				=>	'Database password',
-'Database enter prefix'			=>	'Enter database table prefix',
 'Info 5'						=>	'If you want to run multiple ModernBB installations in a single database, change this.',
 'Table prefix'					=>	'Table prefix',
 'Administration setup'			=>	'Administration setup',
 'Info 6'						=>	'Your username should be between 2 and 25 characters long. Your password must be at least 6 characters long. Remember that passwords are case-sensitive.',
 'Confirm password'				=>	'Confirm password',
 'Board setup'					=>	'Board setup',
-'General information'			=>	'Enter your board\'s title and description.',
 'Board description'				=>	'Board description',
 'Appearance'					=>	'Appearance',
 'Info 7'						=>	'Make your forum yours. Choose a language and a style for your board.',
@@ -230,10 +222,6 @@ $lang = array(
 'New member'					=>	'New member',
 'Maintenance message'			=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 'Test post'						=>	'Test topic',
-'Test message'					=>	'If you are looking at this (which I guess you are), the install of ModernBB appears to have worked! Now log in and head over to the administration control panel to configure your forum.',
-'Test category'					=>	'Test category',
-'Test forum'					=>	'Test forum',
-'This is just a test forum'		=>	'This is just a test forum',
 'Alert cache'					=>	'<strong>The cache directory is currently not writable!</strong> In order for ModernBB to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.',
 'Alert avatar'					=>	'<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.',
 'Alert upload'					=>	'<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features.',
@@ -244,17 +232,11 @@ $lang = array(
 'Download config.php file'		=>	'Download config.php file',
 'ModernBB fully installed'		=>	'ModernBB has been fully installed! You may now <a href="index.php">go to the forum index</a>.',
 
-/////////////////////////////////////////////////// Language for updating ///////////////////////////////////////////////////
-
+// Language for updating
 'Update ModernBB'				=>	'Update ModernBB',
 'Down'							=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 
-'You are running error'			=>	'You are running %1$s version %2$s. ModernBB %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.',
 'Version mismatch error'		=>	'Version mismatch. The database \'%s\' doesn\'t seem to be running a ModernBB database schema supported by this update script.',
-'Invalid file error'			=>	'Invalid database file name. When using SQLite the database file name must be entered exactly as it appears in your \'%s\'',
-'Invalid password error'		=>	'Invalid database password. To upgrade ModernBB you must enter your database password exactly as it appears in your \'%s\'',
-'No password error'				=>	'No database password provided',
-'Script runs error'				=>	'It appears the update script is already being ran by someone else. If this is not the case, please manually delete the file \'%s\' and try again',
 'No update error'				=>	'Your forum is already as up-to-date as this script can make it',
 
 'Start update'					=>	'Start update',
@@ -262,27 +244,16 @@ $lang = array(
 'Successfully updated'			=>	'Your forum database was successfully updated. You may now %s.',
 'go to index'					=>	'go to the forum index',
 
-'Unable to lock error'			=>	'Unable to write update lock. Please make sure PHP has write access to the directory \'%s\' and no-one else is currently running the update script.',
-
-'Converting'					=>	'Converting %s …',
-'Converting item'				=>	'Converting %1$s %2$s …',
 'Preparsing item'				=>	'Preparsing %1$s %2$s …',
 'Rebuilding index item'			=>	'Rebuilding index for %1$s %2$s',
 
-'ban'							=>	'ban',
-'categories'					=>	'categories',
-'censor words'					=>	'censor words',
-'configuration'					=>	'configuration',
-'forums'						=>	'forums',
-'groups'						=>	'groups',
 'post'							=>	'post',
-'ranks'							=>	'ranks',
-'report'						=>	'report',
 'topic'							=>	'topic',
-'user'							=>	'user',
 'signature'						=>	'signature',
 
-/////////////////////////////////////////////////// Language for frontend ///////////////////////////////////////////////////
+// Language for frontend
+
+// Checked until this line
 
 // Language for delete.php
 'Delete post'			=>	'Delete post',
@@ -295,7 +266,7 @@ $lang = array(
 // Language for help.php
 'produces'				=>	'produces',
 
-'BBCode info'			=>	'BBCode is a collection of formatting tags that are used to change the look of text in this forum. BBCode is based on the same principal as, and is very similar to, HTML. Below is a list of all the available BBCodes and instructions on how to use them. Administrators have the ability to enable or disable BBCode. You can tell if BBCode is enabled or disabled out in the left margin whenever you post a message or edit your signature.',
+'BBCode info'			=>	'BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature.',
 
 'Text style'			=>	'Text style',
 'Text style info'		=>	'The following tags change the appearance of text:',
@@ -326,8 +297,6 @@ $lang = array(
 'Video link'			=>  'Put the link to the video here', 
 
 'Test topic'			=>	'Test topic',
-'Test post'				=>	'Test post',
-'Test forum'			=>	'Test forum',
 'Test user'				=>	'Test user',
 
 'Quotes'				=>	'Quotes',
@@ -493,7 +462,6 @@ $lang = array(
 'Email setting 2'			=>	'Hide your email address but allow form email.',
 'Email setting 3'			=>	'Hide your email address and disallow form email.',
 'Privacy options legend'	=>	'Set your privacy options',
-'Confirm pass'				=>	'Confirm password',
 
 'Username too short'		=>	'Usernames must be at least 2 characters long. Please choose another (longer) username.',
 'Username too long'			=>	'Usernames must not be more than 25 characters long. Please choose another (shorter) username.',
@@ -902,7 +870,6 @@ $lang = array(
 'Header appearance'					=>	'Header appearance',
 'Footer appearance'					=>	'Footer appearance',
 'Display head'						=>	'Display settings',
-'Default style label'				=>	'Default style',
 'Default style help'				=>	'The default style for guests and users who haven\'t changed from the default in their profile.',
 'Version number help'				=>	'Show ModernBB version number in footer.',
 'Info in posts help'				=>	'Show information about the poster under the username in topic view. The information affected is location, post count and the contact links.',
@@ -1104,7 +1071,11 @@ $lang = array(
 'Updates'							=>	'Updates',
 'View all'							=>	'View all',
 'posts'								=>	'posts',
+'replies'							=>	'replies',
+'reply'								=>	'reply',
 'topics'							=>	'topics',
+'views'								=>	'views',
+'view'								=>	'view',
 'users'								=>	'users',
 
 'Not available'						=>	'Not available',
@@ -1195,8 +1166,6 @@ $lang = array(
 
 // Essentials section
 'Essentials subhead'				=>	'Essentials',
-'Board title label'					=>	'Board title',
-'Board desc label'					=>	'Board description',
 'Board desc help'					=>	'In a few words, explain what this site is about. HTML is enabled.',
 'Base URL label'					=>	'ModernBB Address (URL)',
 'Base URL problem'					=>  'Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter.',
@@ -1204,7 +1173,6 @@ $lang = array(
 'Timezone help'						=>	'Choose a city in the same timezone as you. Users can change this setting in their profile.',
 'DST label'							=>	'Adjust for DST',
 'DST help'							=>	'Check if daylight savings is in effect (advances times by 1 hour).',
-'Language label'					=>	'Default language',
 'Language help'						=>	'The default language for guests and users who haven\'t changed from the default. Update this when removing a language pack.',
 
 // Essentials section timezone options
@@ -1519,7 +1487,6 @@ $lang = array(
 'Bans'					=>	'Bans',
 'Settings'				=>	'Settings',
 'Global'				=>	'Global',
-'Appearance'			=>	'Appearance',
 'Registration'			=>	'Registration',
 'Email'					=>	'Email',
 'Database'				=>	'Database management',
