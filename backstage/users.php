@@ -597,7 +597,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="delete_posts" value="1" checked="checked" />
-						<?php echo $lang['Delete posts'] ?>
+						<?php echo $lang['Delete all posts'] ?>
 					</label>
 				</div>
 			</fieldset>

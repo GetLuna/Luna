@@ -673,7 +673,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="delete_posts" value="1" checked="checked" />
-                        <?php echo $lang['Delete posts'] ?>
+                        <?php echo $lang['Delete all posts'] ?>
                     </label>
                 </div>
 			</div>
@@ -1557,7 +1557,7 @@ if (count($languages) > 1)
 <?php endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Topics per page'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Topics'] ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
 					</div>

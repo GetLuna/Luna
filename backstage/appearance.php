@@ -284,7 +284,7 @@ generate_admin_menu('display');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Topics per page label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Topics'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $luna_config['o_disp_topics_default'] ?>" />
                         <span class="help-block"><?php echo $lang['Topics per page help'] ?></span>

@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 256 - 16.7% completed
+// Line 396 - 26.5% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -253,15 +253,13 @@ $lang = array(
 
 // Language for frontend
 
-// Checked until this line
-
 // Language for delete.php
 'Delete post'			=>	'Delete post',
 'Topic warning'			=>	'Warning! This is the first post in the topic, the whole topic will be permanently deleted.',
 'Delete info'			=>	'The post you have chosen to delete is set out below for you to review before proceeding.',
 'Reply by'				=>	'Reply by %s - %s',
 'Topic by'				=>	'Topic started by %s - %s',
-'Delete'				=>	'Delete', // The submit button
+'Delete'				=>	'Delete',
 
 // Language for help.php
 'produces'				=>	'produces',
@@ -277,27 +275,21 @@ $lang = array(
 'Red text'				=>	'Red text',
 'Blue text'				=>	'Blue text',
 'Heading text'			=>	'Heading text',
-'Deleted text'			=>	'Deleted text',
 'Inserted text'			=>	'Inserted text',
 'Sub text'				=>	'Subscript text',
 'Sup text'				=>	'Superscript text',
-'Emphasised text'		=>	'Emphasised text',
 'Left text'				=>	'Left text',
 'Center text'			=>	'Center text',
 'Right text'			=>	'Right text',
 'Justify text'			=>	'Justify text',
 
-'Links, images and video'  =>  'Links, images and video',
+'Multimedia'			=>  'Multimedia',
 'Links info'			=>	'You can create links to other documents or to email addresses using the following tags:',
-'This help page'		=>	'This help page',
 'My email address'		=>	'My email address',
 'Images info'			=>	'If you want to display an image you can use the img tag. The text appearing after the "=" sign in the opening tag is used for the alt attribute and should be included whenever possible.',
 'ModernBB bbcode test'  =>  'ModernBB BBCode Test',
 'Video info'			=>  'ModernBB supports embedding from DailyMotion, Vimeo and YouTube. With the structure as seen below, you can embed a video from one of those platforms. "(x,y)" represents width and heigth.',
 'Video link'			=>  'Put the link to the video here', 
-
-'Test topic'			=>	'Test topic',
-'Test user'				=>	'Test user',
 
 'Quotes'				=>	'Quotes',
 'Quotes info'			=>	'If you want to quote someone, you should use the quote tag.',
@@ -310,10 +302,6 @@ $lang = array(
 'Code info'				=>	'When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.',
 'Code text'				=>	'This is some code.',
 'produces code box'		=>	'produces a code box like this:',
-
-'Nested tags'			=>	'Nested tags',
-'Nested tags info'		=>	'BBCode can be nested to create more advanced formatting. For example:',
-'Bold, underlined text'	=>	'Bold, underlined text',
 
 'Lists'					=>	'Lists',
 'List info'				=>	'To create a list you can use the list tag. You can create 3 types of lists using the list tag.',
@@ -337,23 +325,19 @@ $lang = array(
 'No of topics'	=>	'Total topics: %s',
 'No of post'	=>	'Total posts: %s',
 'Online'		=>	'Online:', // As in "Online: User A, User B etc."
-'Board info'	=>	'Board information',
 'Board stats'	=>	'Board statistics',
-'User info'		=>	'User information',
 
 // Language for login.php
 'Wrong user/pass'			=>	'Wrong username and/or password.',
 'Forgotten pass'			=>	'Forgotten password',
 'No email match'			=>	'There is no user registered with the email address',
 'Request pass'				=>	'Request password',
-'Request pass legend'		=>	'Enter the email address with which you registered',
-'Request pass info'			=>	'A new password together with a link to activate the new password will be sent to that address.',
 'Remember me'				=>	'Remember me',
 'New password errors'		=>	'Password request error',
 'New passworderrors info'	=>	'The following error needs to be corrected before a new password can be sent:',
 
 'Forget mail'				=>	'An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at',
-'Email flood'				=>  'This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again.',
+'Password request flood'	=>  'This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again.',
 
 // Send email
 'Form email disabled'			=>	'The user you are trying to send an email to has disabled form email.',
@@ -379,30 +363,24 @@ $lang = array(
 'Select'						=>	'Select', // the header of a column of checkboxes
 'Move'							=>	'Move',
 'Split'							=>	'Split',
-'Delete'						=>	'Delete',
 'Merge'							=>	'Merge',
 
 // Moderate forum
 'Open'							=>	'Open',
 'Close'							=>	'Close',
 'Move topics'					=>	'Move topics',
-'Move legend'					=>	'Select destination of move',
 'Move to'						=>	'Move to',
 'Nowhere to move'				=>	'There are no forums into which you can move topics.',
 'Leave redirect'				=>	'Leave redirect topic(s)',
-'Confirm delete legend'			=>	'Please confirm deletion',
 'Delete topics'					=>	'Delete topics',
 'Delete topics comply'			=>	'Are you sure you want to delete the selected topics?',
 'No topics selected'			=>	'You must select at least one topic for move/delete/open/close.',
 'Not enough topics selected'	=>	'You must select at least two topics for merge.',
 'Merge topics'					=>	'Merge topics',
-'Confirm merge legend'			=>	'Please confirm merge',
 'New subject'					=>	'New subject',
 
 // Split multiple posts in topic
-'Confirm split legend'			=>	'Please confirm split of selected posts and select destination of move.',
 'Split posts'					=>	'Split posts',
-'Split posts comply'			=>	'Are you sure you want to split the selected posts?',
 
 // Delete multiple posts in topic
 'Delete posts'					=>	'Delete posts',
@@ -414,6 +392,8 @@ $lang = array(
 'Host info 1'					=>	'The IP address is: %s',
 'Host info 2'					=>	'The host name is: %s',
 'Show more users'				=>	'Show more users for this IP',
+
+// Checked until this line
 
 // Language for post.php and edit.php
 // Post validation stuff (many are similiar to those in edit.php)
@@ -569,7 +549,6 @@ $lang = array(
 'Sig preview'					=>	'Current signature preview:',
 'No sig'						=>	'No signature currently stored in profile.',
 'Signature quote/code/list/h'	=>	'The quote, code, list, and heading BBCodes are not allowed in signatures.',
-'Topics per page'				=>	'Topics',
 'Posts per page'				=>	'Posts',
 'Leave blank'					=>	'Leave blank to use default',
 'Subscription legend'			=>	'Set your subscription options',
@@ -596,12 +575,10 @@ $lang = array(
 'Delete ban legend'				=>	'Delete or ban user',
 'Delete user'					=>	'Delete user',
 'Ban user'						=>	'Ban user',
-'Confirm delete legend'			=>	'Important: read before deleting user',
 'Confirm delete user'			=>	'Confirm delete user',
 'Confirmation info'				=>	'Please confirm that you want to delete the user', // the username will be appended to this string
 'Delete warning'				=>	'Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by this user, the posts can only be deleted manually at a later time.',
-'Delete posts'					=>	'Delete any posts and topics this user has made',
-'Delete'						=>	'Delete', // submit button (confirm user delete)
+'Delete all posts'				=>	'Delete any posts and topics this user has made',
 'No delete admin message'		=>	'Administrators cannot be deleted. In order to delete this user, you must first move him/her to a different user group.',
 
 // Language for register.php
@@ -657,7 +634,6 @@ $lang = array(
 'Ascending'							=>	'Ascending',
 'Descending'						=>	'Descending',
 'Show as'							=>	'Show as',
-'Show as topics'					=>	'Topics',
 'Show as posts'						=>	'Posts',
 'Advanced search'					=>	'Advanced search',
 
@@ -696,11 +672,9 @@ $lang = array(
 'Posts'				=>	'Posts:',
 'Replies'			=>	'Replies:',
 'Website'			=>	'Website',
-'Online'			=>	'Online',
 'Offline'			=>	'Offline',
 'Last edit'			=>	'Last edited by',
 'Report'			=>	'Report',
-'Delete'			=>	'Delete',
 'Edit'				=>	'Edit',
 'Quote'				=>	'Quote',
 'Is subscribed'		=>	'You are subscribed to this topic',
@@ -879,8 +853,7 @@ $lang = array(
 'Clickable links help'				=>	'Convert URLs automatically to clickable hyperlinks.',
 'Topic review label'				=>	'Topic review',
 'Topic review help'					=>	'Maximum number of posts to display when posting. Set to 0 to disable.',
-'Topics per page label'				=>	'Topics per page',
-'Topics per page help'				=>	'The default number of topics to display per page in a forum. Users can personalize this setting.',
+-'Topics per page help'				=>	'The default number of topics to display per page in a forum. Users can personalize this setting.',
 'Posts per page label'				=>	'Posts per page',
 'Posts per page help'				=>	'The default number of posts to display per page in a topic. Users can personalize this setting.',
 'Indent label'						=>	'Indent size',
@@ -965,7 +938,6 @@ $lang = array(
 'No categories exist'		=>	'No categories exist, you\'ll have to create new categories before you can add a new forum.',
 'Edit forums head'			=>	'Edit forums',
 'Edit link'					=>	'Edit',
-'Delete link'				=>	'Delete',
 'Update positions'			=>	'Update positions',
 'Confirm delete head'		=>	'Confirm delete forum',
 'Confirm delete forum info'	=>	'Are you sure that you want to delete the forum <strong>%s</strong>?',
@@ -1002,7 +974,6 @@ $lang = array(
 'Edit groups subhead'			=>	'Edit/delete groups',
 'Edit groups info'				=>	'The pre-defined groups Guests, Administrators, Moderators and Members cannot be removed. However, they can be edited. Please note that in some groups, some options are unavailable (e.g. the <em>edit posts</em> permission for guests). Administrators always have full permissions.',
 'Edit link'						=>	'Edit',
-'Delete link'					=>	'Delete',
 'Group delete head'				=>	'Group delete',
 'Confirm delete subhead'		=>	'Confirm delete group',
 'Confirm delete info'			=>	'Are you sure that you want to delete the group <strong>%s</strong>?',
@@ -1039,9 +1010,7 @@ $lang = array(
 'Post topics help'				=>	'Allow users in this group to post new topics.',
 'Edit posts label'				=>	'Edit posts',
 'Edit posts help'				=>	'Allow users in this group to edit their own posts.',
-'Delete posts label'			=>	'Delete posts',
 'Delete posts help'				=>	'Allow users in this group to delete their own posts.',
-'Delete topics label'			=>	'Delete topics',
 'Delete topics help'			=>	'Allow users in this group to delete their own topics (including any replies).',
 'Set own title label'			=>	'Set own user title',
 'Set own title help'			=>	'Allow users in this group to set their own user title.',
@@ -1390,9 +1359,7 @@ $lang = array(
 'New group help'			=>	'Select the group to which the selected users will be moved. For security reasons, it is not possible to move multiple users to the administrator group.',
 'Invalid group message'		=>	'Invalid group ID.',
 'Delete users'				=>	'Delete users',
-'Confirm delete legend'		=>	'Important: read before deleting users',
 'Confirm delete info'		=>	'Please confirm that you want to delete these users.',
-'Delete posts'				=>	'Delete any posts and topics these users have made.',
 'Delete warning'			=>	'Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by these users, the posts can only be deleted manually at a later time.',
 'Ban users'					=>	'Ban users',
 'Message expiry subhead'	=>	'Ban message and expiry',
@@ -1455,11 +1422,9 @@ $lang = array(
 'Results action head'		=>	'Action',
 'Results find more link'	=>	'Find more users for this ip',
 'Results no posts found'	=>	'There are currently no posts by that user in the forum.',
-'Select'					=>	'Select',
 'Select all'				=>	'Select all',
 'Unselect all'				=>	'Unselect all',
 'Ban'						=>	'Ban',
-'Delete'					=>	'Delete',
 'Change group'				=>	'Change group',
 'Bad IP message'			=>	'The supplied IP address is not correctly formatted.',
 'Results view IP link'		=>	'IP stats',
@@ -1509,7 +1474,6 @@ $lang = array(
 // General actions and more
 'Admin'					=>	'Admin',
 'Go back'				=>	'Go back',
-'Delete'				=>	'Delete',
 'Update'				=>	'Update',
 'Add'					=>	'Add',
 'Edit'					=>	'Edit',
