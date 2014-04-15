@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 396 - 26.5% completed
+// Line 503 - 34.1% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -393,8 +393,6 @@ $lang = array(
 'Host info 2'					=>	'The host name is: %s',
 'Show more users'				=>	'Show more users for this IP',
 
-// Checked until this line
-
 // Language for post.php and edit.php
 // Post validation stuff (many are similiar to those in edit.php)
 'No subject'		=>	'Topics must contain a subject.',
@@ -409,7 +407,6 @@ $lang = array(
 
 // Posting
 'Post errors'		=>	'Post errors',
-'Post errors info'	=>	'The following errors need to be corrected before the message can be posted:',
 'Post preview'		=>	'Post preview',
 'Guest name'		=>	'Name', // For guests (instead of Username)
 'Post a reply'		=>	'Post a reply',
@@ -419,19 +416,15 @@ $lang = array(
 'Stay subscribed'	=>	'Stay subscribed to this topic',
 'Topic review'		=>	'Topic review (newest first)',
 'Flood start'		=>  'At least %s seconds have to pass between posts. Please wait %s seconds and try posting again.',
-'Preview'			=>	'Preview', // submit button to preview message
+'Preview'			=>	'Preview',
 
 // Edit post
-'Edit post legend'	=>	'Edit the post and submit changes',
 'Silent edit'		=>	'Silent edit (don\'t display "Edited by ..." in topic view)',
 'Edit post'			=>	'Edit post',
 
 // Language for both profile.php and register.php
 'Email legend'				=>	'Enter a valid email address',
-'Email legend 2'			=>	'Enter and confirm a valid email address',
-'Localisation legend'		=>	'Set your localisation options',
 'Time zone'					=>	'Time zone',
-'Time zone info'			=>	'For the forum to display times correctly you must select your local time zone. If Daylight Savings Time is in effect you should also check the option provided which will advance times by 1 hour.',
 'DST'						=>	'Advance time by 1 hour for daylight saving.',
 'Time format'				=>	'Time format',
 'Date format'				=>	'Date format',
@@ -441,7 +434,6 @@ $lang = array(
 'Email setting 1'			=>	'Display your email address.',
 'Email setting 2'			=>	'Hide your email address but allow form email.',
 'Email setting 3'			=>	'Hide your email address and disallow form email.',
-'Privacy options legend'	=>	'Set your privacy options',
 
 'Username too short'		=>	'Usernames must be at least 2 characters long. Please choose another (longer) username.',
 'Username too long'			=>	'Usernames must not be more than 25 characters long. Please choose another (shorter) username.',
@@ -459,19 +451,13 @@ $lang = array(
 'Bad ICQ'					=>	'You entered an invalid ICQ UIN. Please go back and correct.',
 
 // Language for profile.php
-// Navigation and sections
-'Section settings'				=>	'Settings',
 'Section personality'			=>	'Personality',
 'Section admin'					=>	'Administration',
-'Section messaging'				=>	'Messaging',
 
 // Miscellaneous
 'Personal details legend'		=>	'Modify your personal and contact details',
 'Settings legend'				=>	'Enter your settings',
-'User activity'					=>	'User activity',
 'User tools'					=>	'User tools',
-'Paginate info'					=>	'Enter the number of topics and posts you wish to view on each page.',
-'Private'						=>  'Private',
 'Unknown'          				=>  'Unknown',
 
 // Password stuff
@@ -479,7 +465,6 @@ $lang = array(
 'Pass updated'					=>	'Your password has been updated. You can now login with your new password.',
 'Wrong pass'					=>	'Wrong old password.',
 'Change pass'					=>	'Change password',
-'Change pass legend'			=>	'Enter and confirm your new password',
 'Old pass'						=>	'Old password',
 'New pass'						=>	'New password',
 'Confirm new pass'				=>	'Confirm new password',
@@ -489,7 +474,6 @@ $lang = array(
 'Email key bad'					=>	'The specified email activation key was incorrect or has expired. Please re-request change of email address. If that fails, contact the forum administrator at',
 'Email updated'					=>	'Your email address has been updated.',
 'Activate email sent'			=>	'An email has been sent to the specified address with instructions on how to activate the new email address. If it doesn\'t arrive you can contact the forum administrator at',
-'Email legend'					=>	'Enter your new email address',
 'Email instructions'			=>	'An email will be sent to your new address with an activation link. You must click the link in the email you receive to activate the new address.',
 'Change email'					=>	'Change email address',
 'New email'						=>	'New email',
@@ -509,13 +493,14 @@ $lang = array(
 'Unknown failure'				=>	'An unknown error occurred. Please try again.',
 'Avatar desc'					=>	'An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than',
 'Upload avatar'					=>	'Upload avatar',
-'Upload avatar legend'			=>	'Enter an avatar file to upload',
 'Delete avatar'					=>	'Delete avatar', // only for admins
 'File'							=>	'File',
 'Upload'						=>	'Upload', // submit button
 
 // Form validation stuff
 'Forbidden title'				=>	'The title you entered contains a forbidden word. You must choose a different title.',
+
+// Checked until this line
 
 // Profile display stuff
 'Users profile'					=>	'%s\'s profile',
@@ -684,7 +669,6 @@ $lang = array(
 'Mod controls'		=>	'Moderator controls',
 'New icon'			=>	'New post',
 'Re'				=>	'Re:',
-'Preview'			=>	'Preview',
 
 // Language for userlist.php
 'User find legend'	=>	'Find and sort users',
@@ -694,7 +678,6 @@ $lang = array(
 'All users'			=>	'All groups',
 
 // Language for viewforum.php
-'Post topic'	=>	'Post new topic',
 'Views'			=>	'Views',
 'Moved'			=>	'Moved',
 'Sticky'		=>	'Sticky',
@@ -762,7 +745,6 @@ $lang = array(
 'Results banned by head'	=>	'Banned by',
 'Results actions head'		=>	'Actions',
 'No match'					=>	'No match',
-'Unknown'					=>	'Unknown',
 
 // Language for categories.php
 'Must enter name message'		=>	'You must enter a name for the category',
@@ -1188,10 +1170,8 @@ $lang = array(
 
 // Timeout Section
 'Timeouts subhead'					=>	'Time and timeouts',
-'Time format label'					=>	'Time format',
 'PHP manual'						=>	'PHP manual',
 'Time format help'					=>	'Current format: %s. See %s for formatting options.',
-'Date format label'					=>	'Date format',
 'Date format help'					=>	'Current format: %s. See %s for formatting options.',
 'Visit timeout label'				=>	'Visit timeout',
 'Visit timeout help'				=>	'Number of seconds a user must be idle before his/hers last visit data is updated.',

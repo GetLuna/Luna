@@ -1319,7 +1319,7 @@ else if ($section == 'settings')
 	if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
 		message($lang['Bad request'], false, '403 Forbidden');
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section settings']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
@@ -1330,7 +1330,7 @@ else if ($section == 'settings')
 ?>
 </div>
 <div class="col-sm-9 col-profile">
-<h2 class="profile-h2"><?php echo $lang['Section settings'] ?></h2>
+<h2 class="profile-h2"><?php echo $lang['Settings'] ?></h2>
 <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
