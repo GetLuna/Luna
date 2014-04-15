@@ -267,7 +267,7 @@ if (isset($_GET['show_users']))
 				<th><?php echo $lang['Results e-mail head'] ?></th>
 				<th><?php echo $lang['Results title head'] ?></th>
 				<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
-				<th><?php echo $lang['Results admin note head'] ?></th>
+				<th><?php echo $lang['Admin note'] ?></th>
 				<th><?php echo $lang['Results actions head'] ?></th>
 			</tr>
 		</thead>
@@ -597,7 +597,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="delete_posts" value="1" checked="checked" />
-						<?php echo $lang['Delete posts'] ?>
+						<?php echo $lang['Delete all posts'] ?>
 					</label>
 				</div>
 			</fieldset>
@@ -926,7 +926,7 @@ else if (isset($_GET['find_user']))
 					<th><?php echo $lang['Results e-mail head'] ?></th>
 					<th><?php echo $lang['Results title head'] ?></th>
 					<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
-					<th><?php echo $lang['Results admin note head'] ?></th>
+					<th><?php echo $lang['Admin note'] ?></th>
 					<th><?php echo $lang['Results actions head'] ?></th>
 		<?php if ($can_action): ?>					<th><?php echo $lang['Select'] ?></th>
 		<?php endif; ?>
@@ -1007,7 +1007,7 @@ else
     <h2><?php echo $lang['Users'] ?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['User search head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang['Submit search'] ?>" tabindex="1" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['User search'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang['Submit search'] ?>" tabindex="1" /></span></h3>
         </div>
 		<fieldset>
 			<div class="panel-body">
@@ -1027,33 +1027,33 @@ else
 					<td><input type="text" class="form-control" name="form[realname]" maxlength="40" tabindex="5" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['Website label'] ?></th>
+					<th><?php echo $lang['Website'] ?></th>
 					<td><input type="text" class="form-control" name="form[url]" maxlength="100" tabindex="6" /></td>
-					<th><?php echo $lang['Jabber label'] ?></th>
+					<th><?php echo $lang['Jabber'] ?></th>
 					<td><input type="text" class="form-control" name="form[jabber]" maxlength="75" tabindex="7" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['ICQ label'] ?></th>
+					<th><?php echo $lang['ICQ'] ?></th>
 					<td><input type="text" class="form-control" name="form[icq]" maxlength="12" tabindex="8" /></td>
-					<th><?php echo $lang['MSN label'] ?></th>
+					<th><?php echo $lang['MSN'] ?></th>
 					<td><input type="text" class="form-control" name="form[msn]" maxlength="50" tabindex="9" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['AOL label'] ?></th>
+					<th><?php echo $lang['AOL'] ?></th>
 					<td><input type="text" class="form-control" name="form[aim]" maxlength="20" tabindex="10" /></td>
-					<th><?php echo $lang['Yahoo label'] ?></th>
+					<th><?php echo $lang['Yahoo'] ?></th>
 					<td><input type="text" class="form-control" name="form[yahoo]" maxlength="20" tabindex="11" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['Location label'] ?></th>
+					<th><?php echo $lang['Location'] ?></th>
 					<td><input type="text" class="form-control" name="form[location]" maxlength="30" tabindex="12" /></td>
-					<th><?php echo $lang['Signature label'] ?></th>
+					<th><?php echo $lang['Signature'] ?></th>
 					<td><input type="text" class="form-control" name="form[signature]" maxlength="512" tabindex="13" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['Admin note label'] ?></th>
+					<th><?php echo $lang['Admin note'] ?></th>
 					<td><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="14" /></td>
-					<th><?php echo $lang['User group label'] ?></th>
+					<th><?php echo $lang['User group'] ?></th>
 					<td>
 						<select class="form-control" name="user_group" tabindex="23">
 							<option value="-1" selected="selected"><?php echo $lang['All groups'] ?></option>

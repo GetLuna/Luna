@@ -31,7 +31,7 @@ require FORUM_ROOT.'header.php';
         <p><a name="bbcode"></a><?php echo $lang['BBCode info'] ?></p>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#text" data-toggle="tab"><?php echo $lang['Text style'] ?></a></li>
-			<li><a href="#links" data-toggle="tab"><?php echo $lang['Links, images and video'] ?></a></li>
+			<li><a href="#links" data-toggle="tab"><?php echo $lang['Multimedia'] ?></a></li>
 			<li><a href="#quotes" data-toggle="tab"><?php echo $lang['Quotes'] ?></a></li>
 			<li><a href="#code" data-toggle="tab"><?php echo $lang['Code'] ?></a></li>
 			<li><a href="#lists" data-toggle="tab"><?php echo $lang['Lists'] ?></a></li>

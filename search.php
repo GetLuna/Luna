@@ -916,7 +916,7 @@ else
                                     </td>
                                     <td>
                                         <select class="form-control" name="show_as">
-                                            <option value="topics"><?php echo $lang['Show as topics'] ?></option>
+                                            <option value="topics"><?php echo $lang['Topics'] ?></option>
                                             <option value="posts"><?php echo $lang['Show as posts'] ?></option>
                                         </select>
                                     </td>

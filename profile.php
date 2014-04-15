@@ -673,7 +673,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="delete_posts" value="1" checked="checked" />
-                        <?php echo $lang['Delete posts'] ?>
+                        <?php echo $lang['Delete all posts'] ?>
                     </label>
                 </div>
 			</div>
@@ -1015,6 +1015,8 @@ if (!$section || $section == 'view')
 	$user_activity[] = '<b>'.$lang['Registered table'].':</b> '.format_time($user['registered'], true);
 
 	$user_personality[] = '<b>'.$lang['Registered'].':</b> '.format_time($user['registered'], true);
+	
+	$user_personality[] = '<b>'.$lang['Last visit info'].':</b> '.format_time($user['last_visit'], true);
 
 	if ($user['realname'] != '')
 		$user_personality[] = '<b>'.$lang['Realname'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
@@ -1319,7 +1321,7 @@ else if ($section == 'settings')
 	if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
 		message($lang['Bad request'], false, '403 Forbidden');
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section settings']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
@@ -1330,7 +1332,7 @@ else if ($section == 'settings')
 ?>
 </div>
 <div class="col-sm-9 col-profile">
-<h2 class="profile-h2"><?php echo $lang['Section settings'] ?></h2>
+<h2 class="profile-h2"><?php echo $lang['Settings'] ?></h2>
 <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -1557,7 +1559,7 @@ if (count($languages) > 1)
 <?php endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Topics per page'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Topics'] ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
 					</div>

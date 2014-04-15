@@ -212,14 +212,14 @@ generate_admin_menu('global');
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Time format label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Time format'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
                         <span class="help-block"><?php printf($lang['Time format help'], gmdate($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Date format label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Date format'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
                         <span class="help-block"><?php printf($lang['Date format help'], gmdate($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
