@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 655 - 46.3% completed
+// Line 723 - 51.8% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -652,8 +652,6 @@ $lang = array(
 'Closed'		=>	'Closed',
 'Empty forum'	=>	'Forum is empty.',
 
-// Checked until this line
-
 // Language for Backstage
 // Language for backstage.php
 'Update settings head'		=>	'Update settings',
@@ -676,7 +674,6 @@ $lang = array(
 'Username advanced help'	=>	'The username to ban. The next page will let you enter a custom IP and email. If you want to ban a specific IP/IP-range or email, leave it blank.',
 
 'Ban search head'			=>	'Ban search',
-'Ban search subhead'		=>	'Enter search criteria',
 'Ban search info'			=>	'Search for bans in the database. You can enter one or more terms to search for. Wildcards in the form of asterisks (*) are accepted. To show all bans leave all fields empty.',
 'Date help'					=>	'(yyyy-mm-dd)',
 'Expire after label'		=>	'Expire after',
@@ -709,21 +706,21 @@ $lang = array(
 'Results actions head'		=>	'Actions',
 'No match'					=>	'No match',
 
-// Language for categories.php
-'Must enter name message'		=>	'You must enter a name for the category',
-'Delete category head'			=>	'Delete category (together with all forums and posts it contains)',
+// Language for board.php
+'Must enter name message'		=>	'You must enter a name',
 'Confirm delete cat head'		=>	'Confirm delete category',
 'Confirm delete cat info'		=>	'Are you sure that you want to delete the category <strong>%s</strong>?',
 'Delete category warn'			=>	'Deleting a category will delete all forums and posts (if any) in this category!',
 'Must enter integer message'	=>	'Position must be a positive integer value.',
 'Add categories head'			=>	'Add categories',
-'Add new submit'				=>	'Add new',
 'Add category help'				=>	'The name of the new category you want to add.',
 'Delete categories head'		=>	'Delete categories',
 'Delete category help'			=>	'Select the category you want to delete.',
 'Edit categories head'			=>	'Edit categories',
 'Category position label'		=>	'Position',
 'Category name label'			=>	'Name',
+
+// Checked until this line
 
 // Language fox censoring.php
 'Must enter word message'	=>	'You must enter a word to censor.',
@@ -776,7 +773,6 @@ $lang = array(
 // Language for display.php, options.php, email.php and features.php
 'Bad HTTP Referer message'			=>	'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.',
 'Must enter title message'			=>	'You must enter a board title.',
-'Invalid e-mail message'			=>	'The admin email address you entered is invalid.',
 'Invalid webmaster e-mail message'	=>	'The webmaster email address you entered is invalid.',
 'SMTP passwords did not match'		=>	'You need to enter the SMTP password twice exactly the same to change it.',
 'Enter announcement here'			=>	'Enter your announcement here.',
@@ -872,7 +868,6 @@ $lang = array(
 'First run help message'			=>	'The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.',
 
 // Language for forums.php
-'Must enter name message'	=>	'You must enter a forum name.',
 'Must be integer message'	=>	'Position must be a positive integer value.',
 'New forum'					=>	'New forum',
 
@@ -1300,14 +1295,8 @@ $lang = array(
 'Delete users'				=>	'Delete users',
 'Confirm delete info'		=>	'Please confirm that you want to delete these users.',
 'Ban users'					=>	'Ban users',
-'Message expiry subhead'	=>	'Ban message and expiry',
-'Ban message help'			=>	'A message that will be displayed to the banned users when they visit the board.',
-'Expire date label'			=>	'Expire date',
-'Expire date help'			=>	'The date when these bans should be automatically removed (format: yyyy-mm-dd). Leave blank to remove manually.',
 'Ban IP label'				=>	'Ban IP addresses',
 'Ban IP help'				=>	'Also ban the IP addresses of the banned users to make registering a new account more difficult for them.',
-'Invalid date message'		=>	'You entered an invalid expire date.',
-'Invalid date reasons'		=>	'The format should be YYYY-MM-DD and the date must be at least one day in the future.',
 
 'User search subhead'		=>	'Enter search criteria',
 'E-mail address label'		=>	'Email address',
@@ -1316,31 +1305,23 @@ $lang = array(
 'Posts more than label'		=>	'Number of posts greater than',
 'Posts less than label'		=>	'Number of posts less than',
 'Last post after label'		=>	'Last post is after',
-'Date help'					=>	'(yyyy-mm-dd hh:mm:ss)',
 'Last post before label'	=>	'Last post is before',
 'Last visit after label'	=>	'Last visit is after',
 'Last visit before label'	=>	'Last visit is before',
 'Registered after label'	=>	'Registered after',
 'Registered before label'	=>	'Registered before',
-'Order by label'			=>	'Order by',
-'Order by e-mail'			=>	'Email',
 'Order by posts'			=>	'Number of posts',
 'Order by last visit'		=>	'Last visit',
 'Order by registered'		=>	'Registered',
 'All groups'				=>	'All groups',
 'Unverified users'			=>	'Unverified users',
-'Submit search'				=>	'Submit search',
 'IP search head'			=>	'IP search',
 'IP address label'			=>	'IP address',
 'IP address help'			=>	'The IP address to search for in the post database.',
 'Find IP address'			=>	'Find IP address',
 
-'Results head'				=>	'Search Results',
-'Results e-mail head'		=>	'Email',
 'Results title head'		=>	'Title/Status',
 'Results posts head'		=>	'Posts',
-'Results actions head'		=>	'Actions',
-'Results IP address head'	=>	'IP address',
 'Results last used head'	=>	'Last used',
 'Results times found head'	=>	'Times found',
 'Results action head'		=>	'Action',
@@ -1353,7 +1334,6 @@ $lang = array(
 'Bad IP message'			=>	'The supplied IP address is not correctly formatted.',
 'Results view IP link'		=>	'IP stats',
 'Results no IP found'		=>	'The supplied IP address could not be found in the database.',
-'No match'					=>	'No match',
 
 // Create new user
 'Add user head'				=>	'Add user',
