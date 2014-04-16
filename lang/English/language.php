@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 941 - 68.9% completed
+// Line 1099 - 81.0% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -938,8 +938,6 @@ $lang = array(
 'Report flood help'				=>	'Number of seconds that users in this group have to wait between reports. Set to 0 to disable.',
 'Moderator info'				=>	'Please note that in order for a user in this group to have moderator abilities, he/she must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.',
 
-// Checked until this line
-
 // Language used in index.php and update.php for Backstage
 'ModernBB intro'					=>	'Welcome to ModernBB',
 'Backup head'						=>	'Back-up',
@@ -958,11 +956,9 @@ $lang = array(
 'users'								=>	'users',
 
 'Not available'						=>	'Not available',
-'Forum admin head'					=>	'Forum administration',
 'NA'								=>	'N/A',
 'About head'						=>	'About ModernBB',
 'ModernBB version label'			=>	'ModernBB version',
-'Check for upgrade'					=>	'Check for upgrade',
 'ModernBB version data'				=>	'ModernBB version ',
 'Server statistics label'			=>	'Server statistics',
 'View server statistics'			=>	'View server statistics',
@@ -983,13 +979,10 @@ $lang = array(
 'Reset'								=>	'Reset',
 
 // Reports
-'Reported by'						=>	'By',
 'Date and time'						=>	'Date and time',
 'No new reports'					=>	'There are no new reports.',
-'NA'								=>	'N/A',
 
 // Language for maintenance.php
-'Maintenance head'				=>	'Forum maintenance',
 'Rebuild index subhead'			=>	'Rebuild search index',
 'Rebuild index info'			=>	'If you\'ve added, edited or removed posts manually in the database or if you\'re having problems searching, you should rebuild the search index. For best performance, you should put the forum in %s during rebuilding. <strong>Rebuilding the search index can take a long time and will increase server load during the rebuild process!</strong>',
 'Posts per cycle label'			=>	'Posts per cycle',
@@ -1048,8 +1041,6 @@ $lang = array(
 'Base URL label'					=>	'ModernBB Address (URL)',
 'Base URL problem'					=>  'Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter.',
 'Timezone label'					=>	'Default time zone',
-'Timezone help'						=>	'Choose a city in the same timezone as you. Users can change this setting in their profile.',
-'DST label'							=>	'Adjust for DST',
 'DST help'							=>	'Check if daylight savings is in effect (advances times by 1 hour).',
 'Language help'						=>	'The default language for guests and users who haven\'t changed from the default. Update this when removing a language pack.',
 
@@ -1104,6 +1095,8 @@ $lang = array(
 'Visit timeout help'				=>	'Number of seconds a user must be idle before his/hers last visit data is updated.',
 'Online timeout label'				=>	'Online timeout',
 'Online timeout help'				=>	'Number of seconds a user must be idle before being removed from the online users list.',
+
+// Checked until this line
 
 // Feeds section
 'Feed subhead'						=>	'Syndication',
@@ -1213,12 +1206,9 @@ $lang = array(
 'Deleted'					=>	'Deleted',
 'Post ID'					=>	'Post #%s',
 'Reported by'				=>	'Reported by',
-'Date and time'				=>	'Date and time',
 'Actions'					=>	'Actions',
 'Zap'						=>	'Mark as read',
-'No new reports'			=>	'There are no new reports.',
 'Last 10 head'				=>	'10 last read reports',
-'NA'						=>	'N/A',
 'Readed by'					=>	'Marked as read by',
 'No zapped reports'			=>	'There are no read reports.',
 
