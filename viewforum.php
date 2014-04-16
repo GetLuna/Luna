@@ -245,8 +245,7 @@ else
 
 ?>
 </div>
-
-<div class="row">
+<div class="row row-nav">
 	<div class="col-sm-6">
 		<div class="btn-group btn-breadcrumb">
 			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>

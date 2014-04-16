@@ -169,7 +169,7 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
-<div class="row">
+<div class="row row-nav">
 	<div class="col-sm-6">
 		<div class="btn-group btn-breadcrumb">
 			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
@@ -384,7 +384,7 @@ while ($cur_post = $db->fetch_assoc($result))
 }
 ?>
 </div>
-<div class="row">
+<div class="row row-nav">
 	<div class="col-sm-6">
 		<div class="btn-group btn-breadcrumb">
 			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
