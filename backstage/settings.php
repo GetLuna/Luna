@@ -355,7 +355,7 @@ generate_admin_menu('global');
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="form[report_method]" value="1"<?php if ($luna_config['o_report_method'] == '1') echo ' checked="checked"' ?> />
-                            <?php echo $lang['By e-mail'] ?>
+                            <?php echo $lang['Email'] ?>
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') echo ' checked="checked"' ?> />

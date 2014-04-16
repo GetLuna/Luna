@@ -218,7 +218,7 @@ if ($action == 'prune')
 <h2><?php echo $lang['Maintenance'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Prune head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Prune'] ?></h3>
     </div>
 	<div class="panel-body">
         <form method="post" action="maintenance.php">

@@ -66,7 +66,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('permissions');
 
 ?>
-<h2><?php echo $lang['Permissions head'] ?></h2>
+<h2><?php echo $lang['Permissions'] ?></h2>
 <form class="form-horizontal" method="post" action="permissions.php">
     <div class="panel panel-default">
         <div class="panel-heading">

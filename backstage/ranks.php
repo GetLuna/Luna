@@ -104,7 +104,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('ranks');
 
 ?>
-<h2><?php echo $lang['Ranks head'] ?></h2>
+<h2><?php echo $lang['Ranks'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Add rank subhead'] ?></h3>

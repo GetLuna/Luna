@@ -2,8 +2,6 @@
 
 $lang = array(
 
-// Line 1234 - 91.7% completed
-
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
 'lang_identifier'					=>	'en',
@@ -38,7 +36,6 @@ $lang = array(
 'Today'								=>	'Today',
 'Yesterday'							=>	'Yesterday',
 'Info'								=>	'Info', // A common table header
-'Go back'							=>	'Go back',
 'Maintenance'						=>	'Maintenance',
 'Invalid email'						=>	'The email address you entered is invalid.',
 'Required'							=>	'(Required)',
@@ -643,7 +640,7 @@ $lang = array(
 'User search info'	=>	'Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.',
 'User group'		=>	'User group',
 'No of posts'		=>	'Number of posts',
-'All users'			=>	'All groups',
+'All users'			=>	'All users',
 
 // Language for viewforum.php
 'Views'			=>	'Views',
@@ -680,11 +677,9 @@ $lang = array(
 'Expire before label'		=>	'Expire before',
 'Order by label'			=>	'Order by',
 'Order by ip'				=>	'IP',
-'Order by e-mail'			=>	'Email',
 'Order by expire'			=>	'Expire date',
 'Submit search'				=>	'Submit search',
 
-'E-mail label'				=>	'Email',
 'E-mail help'				=>	'The email or email domain you wish to ban (e.g. someone@somewhere.com or somewhere.com). See "Allow banned email addresses" in Permissions for more info.',
 'IP label'					=>	'IP address/IP-ranges',
 'IP help'					=>	'The IP address or IP-ranges you wish to ban (e.g. 150.11.110.1 or 150.11.110). Separate addresses with spaces. If an IP is entered already it is the last known IP of this user in the database.',
@@ -699,7 +694,6 @@ $lang = array(
 'Expire date help'			=>	'The date when this ban should be automatically removed (format: yyyy-mm-dd). Leave blank to remove manually.',
 
 'Results head'				=>	'Search Results',
-'Results e-mail head'		=>	'Email',
 'Results IP address head'	=>	'IP/IP-ranges',
 'Results expire head'		=>	'Expires',
 'Results banned by head'	=>	'Banned by',
@@ -721,14 +715,12 @@ $lang = array(
 
 // Language fox censoring.php
 'Must enter word message'	=>	'You must enter a word to censor.',
-'Censoring head'			=>	'Censoring',
 'Add word subhead'			=>	'Add word',
 'Add word info'				=>	'Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted (i.e. *some* would match somewhere and lonesome). Censor words also affect usernames. New users will not be able to register with usernames containing any censored words. The search is case insensitive.',
 'Censoring enabled'			=>	'<strong>Censoring is enabled in %s.</strong>',
 'Censoring disabled'		=>	'<strong>Censoring is disabled in %s.</strong>',
 'Censored word label'		=>	'Censored word',
 'Replacement label'			=>	'Replacement word(s)',
-'Action label'				=>	'Action',
 'Edit remove words'			=>	'Edit or remove words',
 'No words in list'			=>	'No censor words in list.',
 
@@ -907,7 +899,6 @@ $lang = array(
 'Rename users help'				=>	'If moderator privileges are enabled, allow users in this group to rename users.',
 'Change passwords label'		=>	'Change passwords',
 'Change passwords help'			=>	'If moderator privileges are enabled, allow users in this group to change user passwords.',
-'Ban users label'				=>	'Ban users',
 'Ban users help'				=>	'If moderator privileges are enabled, allow users in this group to ban users.',
 'Read board label'				=>	'Read board',
 'Read board help'				=>	'Allow users in this group to view the board. This setting applies to every aspect of the board and can therefore not be overridden by forum specific settings. If this is set to "No", users in this group will only be able to login/logout and register.',
@@ -1000,7 +991,6 @@ $lang = array(
 'Posts must be integer message'	=>	'Posts per cycle must be a positive integer value.',
 'Days must be integer message'	=>	'Days to prune must be a positive integer value.',
 'No old topics message'			=>	'There are no topics that are %s days old. Please decrease the value of "Days old" and try again.',
-'Prune head'					=>	'Prune',
 'Prune subhead'					=>	'Prune old posts',
 'Days old label'				=>	'Days old',
 'Days old help'					=>	'The number of days "old" a topic must be to be pruned. E.g. if you were to enter 30, every topic that didn\'t contain a post dated less than 30 days old would be deleted.',
@@ -1110,7 +1100,6 @@ $lang = array(
 // Reports section
 'Reporting method label'			=>	'Reporting method',
 'Internal'							=>	'Internal',
-'By e-mail'							=>	'Email',
 'Both'								=>	'Both',
 'Reporting method help'				=>	'Select the method for handling topic/post reports. You can choose whether topic/post reports should be handled by the internal report system, emailed to the addresses on the mailing list or both.',
 'Mailing list label'				=>	'Mailing list',
@@ -1159,7 +1148,6 @@ $lang = array(
 
 // Language for permissions.php
 'All caps'					=>	'All caps',
-'Permissions head'			=>	'Permissions',
 'Posting subhead'			=>	'Posting',
 'BBCode help'				=>	'Allow BBCode in posts (recommended).',
 'Image tag help'			=>	'Allow the BBCode [img][/img] tag in posts.',
@@ -1179,7 +1167,6 @@ $lang = array(
 // Language for ranks.php
 'Must be integer message'	=>	'Minimum posts must be a positive integer value.',
 'Dupe min posts message'	=>	'There is already a rank with a minimun posts value of %s.',
-'Ranks head'				=>	'Ranks',
 'Add rank subhead'			=>	'Add rank',
 'Add rank info'				=>	'Enter a rank and the minimum number of posts a user must have made to attain the rank. Different ranks cannot have the same value for minimum posts. If a title is set for a user, the title will be displayed instead of any rank.',
 'Ranks enabled'				=>	'<strong>User ranks is enabled in %s.</strong>',
@@ -1231,8 +1218,6 @@ $lang = array(
 'Invalid date time message'	=>	'You entered an invalid date/time.',
 'Not verified'				=>	'Not verified',
 
-// Checked until this line
-
 // Actions: mass delete/ban etc.
 'No users selected'			=>	'No users selected.',
 'No move admins message'	=>	'For security reasons, you are not allowed to move multiple administrators to another group. If you want to move these administrators, you can do so on their respective user profiles.',
@@ -1248,7 +1233,6 @@ $lang = array(
 'Ban IP label'				=>	'Ban IP addresses',
 'Ban IP help'				=>	'Also ban the IP addresses of the banned users to make registering a new account more difficult for them.',
 
-'User search subhead'		=>	'Enter search criteria',
 'E-mail address label'		=>	'Email address',
 'Real name label'			=>	'Real name',
 'Signature'					=>	'Signature',
@@ -1274,11 +1258,8 @@ $lang = array(
 'Results posts head'		=>	'Posts',
 'Results last used head'	=>	'Last used',
 'Results times found head'	=>	'Times found',
-'Results action head'		=>	'Action',
 'Results find more link'	=>	'Find more users for this ip',
 'Results no posts found'	=>	'There are currently no posts by that user in the forum.',
-'Select all'				=>	'Select all',
-'Unselect all'				=>	'Unselect all',
 'Ban'						=>	'Ban',
 'Change group'				=>	'Change group',
 'Bad IP message'			=>	'The supplied IP address is not correctly formatted.',
