@@ -268,7 +268,7 @@ if (isset($_GET['show_users']))
 				<th><?php echo $lang['Results title head'] ?></th>
 				<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
 				<th><?php echo $lang['Admin note'] ?></th>
-				<th><?php echo $lang['Results actions head'] ?></th>
+				<th><?php echo $lang['Actions'] ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -927,7 +927,7 @@ else if (isset($_GET['find_user']))
 					<th><?php echo $lang['Results title head'] ?></th>
 					<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
 					<th><?php echo $lang['Admin note'] ?></th>
-					<th><?php echo $lang['Results actions head'] ?></th>
+					<th><?php echo $lang['Actions'] ?></th>
 		<?php if ($can_action): ?>					<th><?php echo $lang['Select'] ?></th>
 		<?php endif; ?>
 				</tr>

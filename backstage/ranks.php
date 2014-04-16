@@ -119,7 +119,7 @@ require FORUM_ROOT.'backstage/header.php';
 					<tr>
 						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
 						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Actions'] ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -151,7 +151,7 @@ if ($db->num_rows($result))
 					<tr>
 						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
 						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Actions'] ?></th>
 					</tr>
 				</thead>
 				<tbody>

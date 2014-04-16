@@ -401,7 +401,7 @@ else if (isset($_GET['find_ban']))
 				<th class="tc4" scope="col"><?php echo $lang['Results expire head'] ?></th>
 				<th class="tc5" scope="col"><?php echo $lang['Message'] ?></th>
 				<th class="tc6" scope="col"><?php echo $lang['Results banned by head'] ?></th>
-				<th class="tcr" scope="col"><?php echo $lang['Results actions head'] ?></th>
+				<th class="tcr" scope="col"><?php echo $lang['Actions'] ?></th>
 			</tr>
 		</thead>
 		<tbody>

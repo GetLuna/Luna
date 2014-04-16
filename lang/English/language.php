@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 1099 - 81.0% completed
+// Line 1234 - 91.7% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -703,7 +703,6 @@ $lang = array(
 'Results IP address head'	=>	'IP/IP-ranges',
 'Results expire head'		=>	'Expires',
 'Results banned by head'	=>	'Banned by',
-'Results actions head'		=>	'Actions',
 'No match'					=>	'No match',
 
 // Language for board.php
@@ -1096,8 +1095,6 @@ $lang = array(
 'Online timeout label'				=>	'Online timeout',
 'Online timeout help'				=>	'Number of seconds a user must be idle before being removed from the online users list.',
 
-// Checked until this line
-
 // Feeds section
 'Feed subhead'						=>	'Syndication',
 'Default feed label'				=>	'Default feed type',
@@ -1111,7 +1108,6 @@ $lang = array(
 'Minutes'							=>	'%d minutes',
 
 // Reports section
-'Reports subhead'					=>	'Reports',
 'Reporting method label'			=>	'Reporting method',
 'Internal'							=>	'Internal',
 'By e-mail'							=>	'Email',
@@ -1134,7 +1130,6 @@ $lang = array(
 'Max size help'						=>	'The maximum allowed size of avatars in bytes.',
 
 // Registration Section
-'Registration subhead'				=>	'Registration settings',
 'Allow new label'					=>	'Allow new registrations',
 'Allow new help'					=>	'Controls whether this board accepts new registrations.',
 'Verify label'						=>	'Verify registrations',
@@ -1155,15 +1150,11 @@ $lang = array(
 
 // Announcement Section
 'Announcement subhead'				=>	'Announcements',
-'Display announcement label'		=>	'Display announcement',
 'Display announcement help'			=>	'Enable this to display the below message in the board.',
-'Announcement message label'		=>	'Announcement message',
 'Announcement message help'			=>	'This text will not be parsed like regular posts and thus may contain HTML.',
 
 // Maintenance Section
-'Maintenance mode label'			=>	'Maintenance mode',
 'Maintenance mode help'				=>	'When enabled, the board will only be available to administrators. This should be used if the board needs to be taken down temporarily for maintenance. <strong>Do not log out when the board is in maintenance mode. You will not be able to login again.</strong>',
-'Maintenance message label'			=>	'Maintenance message',
 'Maintenance message help'			=>	'The message that will be displayed to users when the board is in maintenance mode. If left blank, a default message will be used. You can use HTML here.',
 
 // Language for permissions.php
@@ -1176,14 +1167,12 @@ $lang = array(
 'All caps subject help'		=>	'Allow a subject to contain only capital letters.',
 'Require e-mail help'		=>	'Require guests to supply an email address when posting.',
 'Signatures subhead'		=>	'Signatures',
-'BBCode sigs help'			=>	'Allow BBCodes in user signatures.',
 'Image tag sigs help'		=>	'Allow the BBCode [img][/img] tag in user signatures (not recommended).',
 'All caps sigs help'		=>	'Allow a signature to contain only capital letters.',
 'Max sig length label'		=>	'Maximum signature length',
 'Max sig length help'		=>	'The maximum number of characters a user signature may contain.',
 'Max sig lines label'		=>	'Maximum signature lines',
 'Max sig lines help'		=>	'The maximum number of lines a user signature may contain.',
-'Registration subhead'		=>	'Registration',
 'Banned e-mail help'		=>	'Allow users to register with or change to a banned email address/domain. If allowed, an alert email will be sent to the mailing list.',
 'Duplicate e-mail help'		=>	'Controls whether users should be allowed to register with an email address that another user already has. If allowed, an alert email will be sent to the mailing list if a duplicate is detected.',
 
@@ -1197,7 +1186,6 @@ $lang = array(
 'Ranks disabled'			=>	'<strong>User ranks is disabled in %s.</strong>',
 'Rank title label'			=>	'Rank title',
 'Minimum posts label'		=>	'Minimum posts',
-'Actions label'				=>	'Actions',
 'Edit remove subhead'		=>	'Edit/remove ranks',
 'No ranks in list'			=>	'No ranks in list',
 
@@ -1242,6 +1230,8 @@ $lang = array(
 'Non numeric message'		=>	'You entered a non-numeric value into a numeric only column.',
 'Invalid date time message'	=>	'You entered an invalid date/time.',
 'Not verified'				=>	'Not verified',
+
+// Checked until this line
 
 // Actions: mass delete/ban etc.
 'No users selected'			=>	'No users selected.',
@@ -1346,7 +1336,6 @@ $lang = array(
 'Save changes'			=>	'Save changes',
 'here'					=>	'here',
 'Action'				=>	'Action',
-'None'					=>	'None',
 'Maintenance mode'		=>	'maintenance mode', // Used for link text in more than one file
 
 // Admin loader
