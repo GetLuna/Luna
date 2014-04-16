@@ -183,7 +183,7 @@ if (isset($_GET['ip_stats']))
 				<th><?php echo $lang['Results IP address head'] ?></th>
 				<th><?php echo $lang['Results last used head'] ?></th>
 				<th><?php echo $lang['Results times found head'] ?></th>
-				<th><?php echo $lang['Results action head'] ?></th>
+				<th><?php echo $lang['Action'] ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -264,11 +264,11 @@ if (isset($_GET['show_users']))
 		<thead>
 			<tr>
 				<th><?php echo $lang['Username'] ?></th>
-				<th><?php echo $lang['Results e-mail head'] ?></th>
+				<th><?php echo $lang['Email'] ?></th>
 				<th><?php echo $lang['Results title head'] ?></th>
 				<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
 				<th><?php echo $lang['Admin note'] ?></th>
-				<th><?php echo $lang['Results actions head'] ?></th>
+				<th><?php echo $lang['Actions'] ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -923,11 +923,11 @@ else if (isset($_GET['find_user']))
 			<thead>
 				<tr>
 					<th><?php echo $lang['Username'] ?></th>
-					<th><?php echo $lang['Results e-mail head'] ?></th>
+					<th><?php echo $lang['Email'] ?></th>
 					<th><?php echo $lang['Results title head'] ?></th>
 					<th class="text-center"><?php echo $lang['Results posts head'] ?></th>
 					<th><?php echo $lang['Admin note'] ?></th>
-					<th><?php echo $lang['Results actions head'] ?></th>
+					<th><?php echo $lang['Actions'] ?></th>
 		<?php if ($can_action): ?>					<th><?php echo $lang['Select'] ?></th>
 		<?php endif; ?>
 				</tr>
@@ -1098,7 +1098,7 @@ else
 					<td colspan="3">
 						<select class="form-control" name="order_by" tabindex="21">
 							<option value="username" selected="selected"><?php echo $lang['Username'] ?></option>
-							<option value="email"><?php echo $lang['Order by e-mail'] ?></option>
+							<option value="email"><?php echo $lang['Email'] ?></option>
 							<option value="num_posts"><?php echo $lang['Order by posts'] ?></option>
 							<option value="last_post"><?php echo $lang['Last post'] ?></option>
 							<option value="last_visit"><?php echo $lang['Order by last visit'] ?></option>

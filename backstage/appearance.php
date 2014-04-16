@@ -242,7 +242,7 @@ generate_admin_menu('display');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Topics posts head'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Topics and posts'] ?></label>
                     <div class="col-sm-10">
                         <div class="checkbox">
                             <label>

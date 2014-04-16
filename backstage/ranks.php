@@ -104,7 +104,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('ranks');
 
 ?>
-<h2><?php echo $lang['Ranks head'] ?></h2>
+<h2><?php echo $lang['Ranks'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Add rank subhead'] ?></h3>
@@ -119,7 +119,7 @@ require FORUM_ROOT.'backstage/header.php';
 					<tr>
 						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
 						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Actions'] ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -151,7 +151,7 @@ if ($db->num_rows($result))
 					<tr>
 						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
 						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Actions label'] ?></th>
+						<th class="col-lg-4"><?php echo $lang['Actions'] ?></th>
 					</tr>
 				</thead>
 				<tbody>

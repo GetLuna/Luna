@@ -128,7 +128,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['E-mail label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) echo $ban_email; ?>" tabindex="3" />
 						<span class="help-block"><?php echo $lang['E-mail help'] ?></span>
@@ -396,12 +396,12 @@ else if (isset($_GET['find_ban']))
 		<thead>
 			<tr>
 				<th class="tcl" scope="col"><?php echo $lang['Username'] ?></th>
-				<th class="tc2" scope="col"><?php echo $lang['Results e-mail head'] ?></th>
+				<th class="tc2" scope="col"><?php echo $lang['Email'] ?></th>
 				<th class="tc3" scope="col"><?php echo $lang['Results IP address head'] ?></th>
 				<th class="tc4" scope="col"><?php echo $lang['Results expire head'] ?></th>
 				<th class="tc5" scope="col"><?php echo $lang['Message'] ?></th>
 				<th class="tc6" scope="col"><?php echo $lang['Results banned by head'] ?></th>
-				<th class="tcr" scope="col"><?php echo $lang['Results actions head'] ?></th>
+				<th class="tcr" scope="col"><?php echo $lang['Actions'] ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -490,7 +490,7 @@ require FORUM_ROOT.'backstage/header.php';
 					<td><input type="text" class="form-control" name="form[ip]" maxlength="255" tabindex="5" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['E-mail label'] ?></th>
+					<th><?php echo $lang['Email'] ?></th>
 					<td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="6" /></td>
 					<th><?php echo $lang['Message'] ?></th>
 					<td><input type="text" class="form-control" name="form[message]" maxlength="255" tabindex="7" /></td>
@@ -507,7 +507,7 @@ require FORUM_ROOT.'backstage/header.php';
 						<select class="form-control" name="order_by" tabindex="10">
 							<option value="username" selected="selected"><?php echo $lang['Username'] ?></option>
 							<option value="ip"><?php echo $lang['Order by ip'] ?></option>
-							<option value="email"><?php echo $lang['Order by e-mail'] ?></option>
+							<option value="email"><?php echo $lang['Email'] ?></option>
 							<option value="expire"><?php echo $lang['Order by expire'] ?></option>
 						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="11">
 							<option value="ASC" selected="selected"><?php echo $lang['Ascending'] ?></option>

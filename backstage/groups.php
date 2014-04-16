@@ -129,7 +129,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Ban users label'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Ban users'] ?></label>
                     <div class="col-sm-10">
                     	<div class="checkbox">
                             <label>
@@ -484,7 +484,7 @@ else if (isset($_GET['del_group']))
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Delete group head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Delete group'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php?del_group=<?php echo $group_id ?>">

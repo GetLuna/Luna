@@ -92,7 +92,7 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('censoring');
 
 ?>
-<h2><?php echo $lang['Censoring head'] ?></h2>
+<h2><?php echo $lang['Censoring'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Add word subhead'] ?></h3>
@@ -107,7 +107,7 @@ require FORUM_ROOT.'backstage/header.php';
 					<tr>
 						<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
 						<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
-						<th class="col-xs-4"><?php echo $lang['Action label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Action'] ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -139,7 +139,7 @@ if ($db->num_rows($result))
 					<tr>
 						<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
 						<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
-						<th class="col-xs-4"><?php echo $lang['Action label'] ?></th>
+						<th class="col-xs-4"><?php echo $lang['Action'] ?></th>
 					</tr>
 				</thead>
 				<tbody>
