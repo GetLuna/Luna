@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 828 - 59.8% completed
+// Line 941 - 68.9% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -799,7 +799,6 @@ $lang = array(
 'Menu show search'					=>	'Show the search menu item.',
 'Menu show rules'					=>	'Show the rules menu item.',
 'User profile head'					=>	'User profile',
-'Topics posts head'					=>	'Topics and posts',
 'Title settings head'				=>	'Title settings',
 'Title in menu'						=>	'Show board title in menu.',
 'Title in header'					=>	'Show board title in header.',
@@ -825,8 +824,6 @@ $lang = array(
 'SMTP password help'				=>	'Password for SMTP server. Only enter a password if it is required by the SMTP server (most servers <strong>do not</strong> require authentication). Please enter your password twice to confirm.',
 'SMTP SSL help'						=>	'Encrypts the connection to the SMTP server using SSL. Should only be used if your SMTP server requires it and your version of PHP supports SSL.',
 
-// Checked until this line
-
 // Language for features.php
 'Features head'						=>	'Features settings',
 'General'							=>	'General',
@@ -835,19 +832,12 @@ $lang = array(
 'Others'							=>	'Search all forums',
 'Advanced'							=>	'Advanced',
 'Quick post help'					=>	'When enabled, ModernBB will add a quick post form at the bottom of topics, so users can post directly from the topic view.',
-'Users online label'				=>	'Users online',
 'Users online help'					=>	'Display info on the index page about guests and registered users currently browsing the board.',
-'Censor words label'				=>	'Censor words',
 'Censor words help'					=>	'Enable this to censor words in the board. See %s for more info.',
-'Signatures label'					=>	'Signatures',
 'Signatures help'					=>	'Allow users to attach a signature to their posts.',
-'User ranks label'					=>	'User ranks',
 'User ranks help'					=>	'Enable this to use user ranks. See %s for more info.',
-'Topic views label'					=>	'Topic views',
 'Topic views help'					=>	'Keep track of the number of views a topic has. Disable if you are experiencing high server load in a busy forum.',
-'GZip label'						=>	'GZip output',
 'GZip help'							=>	'If enabled, ModernBB will gzip the output sent to browsers. This will reduce bandwidth usage, but use a little more CPU. This feature requires that PHP is configured with zlib (--with-zlib). Note: If you already have one of the Apache modules mod_gzip or mod_deflate set up to compress PHP scripts, you should disable this feature.',
-'Search all label'					=>	'Search all forums',
 'Search all help'					=>	'When disabled, searches will only be allowed in one forum at a time. Disable if server load is high due to excessive searching.',
 
 'First run'							=>	'First run',
@@ -858,14 +848,13 @@ $lang = array(
 'First run help message'			=>	'The introduction to the forum displayed in the middle of the first run panel. No BBCode or HTML allowed.',
 
 // Language for forums.php
-'Must be integer message'	=>	'Position must be a positive integer value.',
-'New forum'					=>	'New forum',
+'Post must be integer message'	=>	'Position must be a positive integer value.',
+'New forum'						=>	'New forum',
 
 // Entry page
 'Add forum'					=>	'Add forum',
 'Add forum help'			=>	'Select the category to which you wish to add a forum and give it a name.',
 'No categories exist'		=>	'No categories exist, you\'ll have to create new categories before you can add a new forum.',
-'Edit forums head'			=>	'Edit forums',
 'Update positions'			=>	'Update positions',
 'Confirm delete head'		=>	'Confirm delete forum',
 'Confirm delete forum info'	=>	'Are you sure that you want to delete the forum <strong>%s</strong>?',
@@ -893,22 +882,17 @@ $lang = array(
 'Cannot remove default message'	=>	'The default group cannot be removed. In order to delete this group, you must first setup a different group as the default.',
 
 'Add group subhead'				=>	'Add new group',
-'New group label'				=>	'Base new group on',
 'Create new group'				=>	'Select a user group from which the new group will inherit its permission settings. The next page will let you fine-tune its settings.',
 'Default group subhead'			=>	'Set default group',
 'Default group help'			=>	'This is the default user group, e.g. the group users are placed in when they register. For security reasons, users can\'t be placed in either the moderator or administrator user groups by default.',
 'Existing groups head'			=>	'Existing groups',
-'Edit groups subhead'			=>	'Edit/delete groups',
 'Edit groups info'				=>	'The pre-defined groups Guests, Administrators, Moderators and Members cannot be removed. However, they can be edited. Please note that in some groups, some options are unavailable (e.g. the <em>edit posts</em> permission for guests). Administrators always have full permissions.',
 'Group delete head'				=>	'Group delete',
-'Confirm delete subhead'		=>	'Confirm delete group',
 'Confirm delete info'			=>	'Are you sure that you want to delete the group <strong>%s</strong>?',
 'Confirm delete warn'			=>	'<b>Warning:</b> After you deleted a group you cannot restore it.',
-'Delete group head'				=>	'Delete group',
-'Move users subhead'			=>	'Move users currently in group',
+'Delete group'					=>	'Delete group',
 'Move users info'				=>	'The group <strong>%s</strong> currently has <strong>%s</strong> members. Please select a group to which these members will be assigned upon deletion.',
 'Move users label'				=>	'Move users to',
-'Delete group'					=>	'Delete group',
 
 'Group settings head'			=>	'Group settings',
 'Group settings subhead'		=>	'Setup group options and permissions',
@@ -930,9 +914,7 @@ $lang = array(
 'Read board help'				=>	'Allow users in this group to view the board. This setting applies to every aspect of the board and can therefore not be overridden by forum specific settings. If this is set to "No", users in this group will only be able to login/logout and register.',
 'View user info label'			=>	'View user information',
 'View user info help'			=>	'Allow users to view the user list and user profiles.',
-'Post replies label'			=>	'Post replies',
 'Post replies help'				=>	'Allow users in this group to post replies in topics.',
-'Post topics label'				=>	'Post topics',
 'Post topics help'				=>	'Allow users in this group to post new topics.',
 'Edit posts label'				=>	'Edit posts',
 'Edit posts help'				=>	'Allow users in this group to edit their own posts.',
@@ -955,6 +937,8 @@ $lang = array(
 'Report flood label'			=>	'Report flood interval',
 'Report flood help'				=>	'Number of seconds that users in this group have to wait between reports. Set to 0 to disable.',
 'Moderator info'				=>	'Please note that in order for a user in this group to have moderator abilities, he/she must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.',
+
+// Checked until this line
 
 // Language used in index.php and update.php for Backstage
 'ModernBB intro'					=>	'Welcome to ModernBB',
@@ -1276,12 +1260,10 @@ $lang = array(
 'No ban admins message'		=>	'Administrators cannot be banned. In order to ban administrators, you must first move them to a different user group.',
 'No ban mods message'		=>	'Moderators cannot be banned. In order to ban moderators, you must first move them to a different user group.',
 'Move users'				=>	'Change user group',
-'Move users subhead'		=>	'Select new user group',
 'New group label'			=>	'New group',
 'New group help'			=>	'Select the group to which the selected users will be moved. For security reasons, it is not possible to move multiple users to the administrator group.',
 'Invalid group message'		=>	'Invalid group ID.',
 'Delete users'				=>	'Delete users',
-'Confirm delete info'		=>	'Please confirm that you want to delete these users.',
 'Ban users'					=>	'Ban users',
 'Ban IP label'				=>	'Ban IP addresses',
 'Ban IP help'				=>	'Also ban the IP addresses of the banned users to make registering a new account more difficult for them.',

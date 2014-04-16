@@ -484,7 +484,7 @@ else if (isset($_GET['del_group']))
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Delete group head'] ?></h3>
+        <h3 class="panel-title"><?php echo $lang['Delete group'] ?></h3>
     </div>
     <div class="panel-body">
         <form id="groups" method="post" action="groups.php?del_group=<?php echo $group_id ?>">
