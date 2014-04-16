@@ -225,7 +225,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 				$moderators[] = luna_htmlspecialchars($mod_username);
 		}
 
-		$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">(<em>'.$lang['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
+		$moderators = "\t\t\t\t\t\t\t\t".'<p class="modlist">'.$lang['Moderated by'].' '.implode(', ', $moderators).'</p>'."\n";
 	}
 	
 	if (forum_number_format($num_topics) == '1') {
