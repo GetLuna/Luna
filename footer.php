@@ -35,10 +35,10 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 	else if ($footer_style == 'viewtopic')
 	{
 		echo "\t\t\t\t".'<div class="btn-toolbar"><div class="btn-group"><a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;p='.$p.'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> '.$lang['Moderate topic'].'</a></div>';
-		
+
 		if($num_pages > 1)
 			echo '<div class="btn-group"><a href="moderate.php?fid='.$forum_id.'&amp;tid='.$id.'&amp;action=all" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-list"></span> '.$lang['All'].'</a></div>'."\n";
-		
+
 		echo "\t\t\t\t".'<div class="btn-group"><a href="moderate.php?fid='.$forum_id.'&amp;move_topics='.$id.'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span> '.$lang['Move topic'].'</a>'."\n";
 
 		if ($cur_topic['closed'] == '1')
@@ -58,27 +58,21 @@ if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'v
 // If no footer style has been specified, we use the default (only copyright/debug info)
 $footer_style = isset($footer_style) ? $footer_style : NULL;
 
-if ($footer_style == 'index')
-{
-	if ($luna_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<span class="rss"><a href="extern.php?action=feed&amp;type=rss">'.$lang['RSS active topics feed'].'</a></span>'."\n";
-	else if ($luna_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<span class="atom"><a href="extern.php?action=feed&amp;type=atom">'.$lang['Atom active topics feed'].'</a></span>'."\n";
+// Generate the feed links
+if ($footer_style == 'index') {
+    $feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS active topics feed'] : $lang['Atom active topics feed'];
+    $feed_id = '';
+} elseif ($footer_style == 'viewforum') {
+    $feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS forum feed'] : $lang['Atom forum feed'];
+    $feed_id = '&fid='.$forum_id;
+} elseif ($footer_style == 'viewtopic') {
+    $feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS topic feed'] : $lang['Atom topic feed'];
+    $feed_id = '&tid='.$id;
 }
-else if ($footer_style == 'viewforum')
-{
-	if ($luna_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<span class="rss"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=rss">'.$lang['RSS forum feed'].'</a></span>'."\n";
-	else if ($luna_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<span class="atom"><a href="extern.php?action=feed&amp;fid='.$forum_id.'&amp;type=atom">'.$lang['Atom forum feed'].'</a></span>'."\n";
-}
-else if ($footer_style == 'viewtopic')
-{
-	if ($luna_config['o_feed_type'] == '1')
-		echo "\t\t\t\t".'<span class="rss"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss">'.$lang['RSS topic feed'].'</a></span>'."\n";
-	else if ($luna_config['o_feed_type'] == '2')
-		echo "\t\t\t\t".'<span class="atom"><a href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom">'.$lang['Atom topic feed'].'</a></span>'."\n";
-}
+
+$feed_type = ($luna_config['o_feed_type'] == '1') ? 'rss' : 'atom';
+
+echo '<span class="'.$feed_type.'"><a href="extern.php?action=feed&type='.$feed_type.$feed_id'">'.$feed_lang.'</a></span>'."\n";
 
 
 if (!defined('FORUM_FORM'))
