@@ -2,7 +2,7 @@
 
 $lang = array(
 
-// Line 723 - 51.8% completed
+// Line 828 - 59.8% completed
 
 // Text orientation and encoding
 'lang_direction'					=>	'ltr', // ltr (Left-To-Right) or rtl (Right-To-Left)
@@ -720,8 +720,6 @@ $lang = array(
 'Category position label'		=>	'Position',
 'Category name label'			=>	'Name',
 
-// Checked until this line
-
 // Language fox censoring.php
 'Must enter word message'	=>	'You must enter a word to censor.',
 'Censoring head'			=>	'Censoring',
@@ -736,7 +734,6 @@ $lang = array(
 'No words in list'			=>	'No censor words in list.',
 
 // Language fox database.php
-'Backup and restore'	=>	'Backup and restore',
 'Backup options'		=>	'Backup options',
 'Backup type'			=>	'Backup type',
 'Full'					=>	'Full',
@@ -750,19 +747,11 @@ $lang = array(
 
 'Restore complete'		=>	'Restore complete',
 'Restore options'		=>	'Restore options',
-'Restore from file'		=>	'Restore from file',
 'Start restore'			=>	'Start restore',
 
 'Restore info 1'		=>	'This will perform a full restore of all ModernBB tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.',
 
 'Warning'				=>	'Warning: critical features',
-'Warning info'			=>	'This page contains features that are highly critical. It\'s recommended to use them only if you know what you\'re doing.',
-
-'Run SQL query'			=>	'Run SQL query',
-'Run query'				=>	'Run query',
-'SQL Query'				=>	'SQL Query',
-
-'Run info 1'			=>	'This allows you to run basically any command you want on the database (useful for fixing things you messed up), use #__ for your database prefix (e.g. "SELECT * FROM #__online") also use a ; at the end of each query when running multiple queries, linebreaks are irrelevant. Only use this if you know what you are doing, messing with it could trash your database!',
 
 'Additional functions'	=>	'Additional functions',
 'Repair all tables'		=>	'Repair all tables',
@@ -770,17 +759,16 @@ $lang = array(
 
 'Additional info 1'		=>	'Additional features to help run a database, optimise and repair both do what they say.',
 
-// Language for display.php, options.php, email.php and features.php
+// Language for appearance.php, settings.php, email.php and features.php
 'Bad HTTP Referer message'			=>	'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.',
-'Must enter title message'			=>	'You must enter a board title.',
-'Invalid webmaster e-mail message'	=>	'The webmaster email address you entered is invalid.',
+'Must enter title message'			=>	'You must enter a title.',
 'SMTP passwords did not match'		=>	'You need to enter the SMTP password twice exactly the same to change it.',
 'Enter announcement here'			=>	'Enter your announcement here.',
 'Enter rules here'					=>	'Enter your rules here.',
 'Default maintenance message'		=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 'Timeout error message'				=>	'The value of "Timeout online" must be smaller than the value of "Timeout visit".',
 
-// Language for display.php
+// Language for appearance.php
 'General appearance'				=>	'Global appearance',
 'Header appearance'					=>	'Header appearance',
 'Footer appearance'					=>	'Footer appearance',
@@ -794,7 +782,7 @@ $lang = array(
 'Clickable links help'				=>	'Convert URLs automatically to clickable hyperlinks.',
 'Topic review label'				=>	'Topic review',
 'Topic review help'					=>	'Maximum number of posts to display when posting. Set to 0 to disable.',
--'Topics per page help'				=>	'The default number of topics to display per page in a forum. Users can personalize this setting.',
+'Topics per page help'				=>	'The default number of topics to display per page in a forum. Users can personalize this setting.',
 'Posts per page label'				=>	'Posts per page',
 'Posts per page help'				=>	'The default number of posts to display per page in a topic. Users can personalize this setting.',
 'Indent label'						=>	'Indent size',
@@ -836,6 +824,8 @@ $lang = array(
 'SMTP change password help'			=>	'Check this if you want to change or delete the currently stored password.',
 'SMTP password help'				=>	'Password for SMTP server. Only enter a password if it is required by the SMTP server (most servers <strong>do not</strong> require authentication). Please enter your password twice to confirm.',
 'SMTP SSL help'						=>	'Encrypts the connection to the SMTP server using SSL. Should only be used if your SMTP server requires it and your version of PHP supports SSL.',
+
+// Checked until this line
 
 // Language for features.php
 'Features head'						=>	'Features settings',
@@ -899,7 +889,6 @@ $lang = array(
 'Revert to default'			=>	'Revert to default',
 
 // Language used in groups.php
-'Must enter title message'		=>	'You must enter a group title.',
 'Title already exists message'	=>	'There is already a group with the title <strong>%s</strong>.',
 'Cannot remove default message'	=>	'The default group cannot be removed. In order to delete this group, you must first setup a different group as the default.',
 
@@ -1066,7 +1055,7 @@ $lang = array(
 'Delete only unverified'	=>	'Delete only unverified',
 'User status info'			=>	'Decides if (un)verified users should be deleted.',
 
-// Language for options.php
+// Language for settings.php
 'Options head'						=>	'Global settings',
 
 // Essentials section
@@ -1224,7 +1213,6 @@ $lang = array(
 // Language for ranks.php
 'Must be integer message'	=>	'Minimum posts must be a positive integer value.',
 'Dupe min posts message'	=>	'There is already a rank with a minimun posts value of %s.',
-'Must enter title message'	=>	'You must enter a rank title.',
 'Ranks head'				=>	'Ranks',
 'Add rank subhead'			=>	'Add rank',
 'Add rank info'				=>	'Enter a rank and the minimum number of posts a user must have made to attain the rank. Different ranks cannot have the same value for minimum posts. If a title is set for a user, the title will be displayed instead of any rank.',
