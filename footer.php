@@ -28,30 +28,28 @@ ob_start();
 		<div class="modcontrols">
 		<?php if ($footer_style == 'viewforum') { ?>
 
-			<a href="moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span><?php echo $lang['Moderate forum'] ?></a>
+			<a href="moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang['Moderate forum'] ?></a>
 
 		<?php } elseif ($footer_style == 'viewtopic') { ?>
 
-			<div class="btn-toolbar"><div class="btn-group"><a href="moderate.php?fid=<?php echo $forum_id ?>&tid=<?php echo $id ?>&p=<?php echo $p ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span><?php echo $lang['Moderate topic'] ?></a></div>';
+			<div class="btn-toolbar"><div class="btn-group"><a href="moderate.php?fid=<?php echo $forum_id ?>&tid=<?php echo $id ?>&p=<?php echo $p ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang['Moderate topic'] ?></a></div>
 
 			<?php if($num_pages > 1) { ?>
-				<div class="btn-group"><a href="moderate.php?fid=<?php echo $forum_id ?>&tid=<?php echo $id ?>&action=all" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-list"></span><?php echo $lang['All'] ?></a></div>
+				<div class="btn-group"><a href="moderate.php?fid=<?php echo $forum_id ?>&tid=<?php echo $id ?>&action=all" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-list"></span> <?php echo $lang['All'] ?></a></div>
 			<?php } ?>
 
-				<div class="btn-group"><a href="moderate.php?fid=<?php echo $forum_id ?>&move_topics=<?php echo $id ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span><?php echo $lang['Move topic'] ?></a>;
-
-				<?php // Topic opening / closing ?>
+				<div class="btn-group"><a href="moderate.php?fid=<?php echo $forum_id ?>&move_topics=<?php echo $id ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span> <?php echo $lang['Move topic'] ?></a>
+                
 				<?php if ($cur_topic['closed'] == '1') { ?>
-					<a href="moderate.php?fid=<?php echo $forum_id ?>&open=<?php echo $id ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span><?php echo $lang['Open topic'] ?></a>
+					<a href="moderate.php?fid=<?php echo $forum_id ?>&open=<?php echo $id ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span> <?php echo $lang['Open topic'] ?></a>
 				<?php } else { ?>
-					<a href="moderate.php?fid=<?php echo $forum_id ?>&close=<?php echo $id ?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span><?php $lang['Close topic'] ?></a>
+					<a href="moderate.php?fid=<?php echo $forum_id ?>&close=<?php echo $id ?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> <?php echo $lang['Close topic'] ?></a>
 				<?php } ?>
-
-				<?php // Topic stick / unstick ?>
+                
 				<?php if ($cur_topic['sticky'] == '1') { ?>
-						<a href="moderate.php?fid=<?php echo $forum_id ?>&unstick=<?php echo $id ?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-pushpin"></span><?php echo $lang['Unstick topic'] ?></a></div></div>
+						<a href="moderate.php?fid=<?php echo $forum_id ?>&unstick=<?php echo $id ?>" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-pushpin"></span> <?php echo $lang['Unstick topic'] ?></a></div></div>
 				<?php } else { ?>
-						<a href="moderate.php?fid=<?php echo $forum_id ?>&stick=<?php echo $id ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pushpin"></span><?php $lang['Stick topic'] ?></a></div></div>
+						<a href="moderate.php?fid=<?php echo $forum_id ?>&stick=<?php echo $id ?>" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pushpin"></span> <?php echo $lang['Stick topic'] ?></a></div></div>
 				<?php } ?>
 
 		<?php } ?>
