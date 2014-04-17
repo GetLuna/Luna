@@ -1003,6 +1003,7 @@ if (!$section || $section == 'view')
 
 	$user_username = luna_htmlspecialchars($user['username']);
 	$user_usertitle = get_title($user);
+	$avatar_field = generate_avatar_markup($id);
 
 	$user_title_field = get_title($user);
 	$user_personality[] = '<b>'.$lang['Title'].':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
@@ -1099,11 +1100,9 @@ require FORUM_ROOT.'header.php';
 <div class="col-sm-9 col-profile">
 	<div class="profile-card">
 		<div class="profile-card-head">
-			<?php if ($user_avatar): ?>
 			<div class="user-avatar thumbnail">
-				<?php echo $user_avatar; ?>
+				<?php echo $avatar_field; ?>
 			</div>
-			<?php endif; ?>
 			<h2><?php echo $user_username; ?></h2>
 			<h3><?php echo $user_usertitle; ?></h3>
 		</div>
