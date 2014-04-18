@@ -160,7 +160,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
                             <td><span class="label label-warning">star</span></td>
                             <td>You're following this topic, they will show up in you're subscibtion list.</td>
                         </tr>
-                        <?php if (!$pun_user['is_guest'] && $pun_config['o_show_dot'] == '1') { ?>
+                        <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
                         <tr>
                             <td><span class="label label-primary">posted</span></td>
                             <td>Topics labeled with this label contain a comment of you.</td>
