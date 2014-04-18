@@ -570,12 +570,21 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Labels */
+.label-primary {
+	background: #e8e8e8;
+	color: #8e8e8e;
+}
+
 .label-success {
 	background: #95c636;
 }
 
 .label-info {
 	background: #2ac6e2;
+}
+
+.label-warning {
+	background: #ffae00;
 }
 
 .label-danger {

@@ -1596,6 +1596,7 @@ else
 		'o_users_online'			=> 1,
 		'o_censoring'				=> 0,
 		'o_ranks'					=> 1,
+		'o_has_posted'				=> 1,
 		'o_topic_views'				=> 1,
 		'o_gzip'					=> 0,
 		'o_additional_navlinks'		=> '',

@@ -156,16 +156,16 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
                             <td><span class="label label-info">moved</span></td>
                             <td>This topic is moved to another forum. Admins and moderators can choose to show this notification, or simply not show it at all. The original forum where this topic was located in, won't show any topic stats anymore.</td>
                         </tr>
-                        <!--
                         <tr>
-                            <td><span class="label label-warning">stared</span></td>
+                            <td><span class="label label-warning">star</span></td>
                             <td>You're following this topic, they will show up in you're subscibtion list.</td>
                         </tr>
+                        <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
                         <tr>
                             <td><span class="label label-primary">posted</span></td>
                             <td>Topics labeled with this label contain a comment of you.</td>
                         </tr>
-                        -->
+                        <?php } ?>
                     </tbody>
                 </table>
                 <h3>I can't see the WYSIWYG editor!</h3>
