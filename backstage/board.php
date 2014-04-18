@@ -32,8 +32,9 @@ if (isset($_POST['add_forum']))
 		message($lang['Bad request'], false, '404 Not Found');
 
 	$db->query('INSERT INTO '.$db->prefix.'forums (forum_name, cat_id) VALUES(\''.$db->escape($forum_name).'\', '.$add_to_cat.')') or error('Unable to create forum', __FILE__, __LINE__, $db->error());
+	$new_fid = $db->insert_id();
 
-	redirect('backstage/board.php');
+	redirect('backstage/board.php?edit_forum='.$new_fid);
 }
 
 // Delete a forum
