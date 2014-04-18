@@ -235,9 +235,6 @@ switch ($stage)
 		// Since 2.0-beta.1: Add the marked column to the posts table
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
-		// Since 2.0-rc.1: Drop the parent_forum_id column from the forums table
-		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drop parent_forum_id field', __FILE__, __LINE__, $db->error());
-
 		// Since 2.0-beta.2: Insert new config option o_antispam_api
 		if (!array_key_exists('o_antispam_api', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_antispam_api\', NULL)') or error('Unable to insert config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
@@ -245,6 +242,9 @@ switch ($stage)
 		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
 		if (array_key_exists('o_quickjump', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-rc.1: Drop the parent_forum_id column from the forums table
+		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drop parent_forum_id field', __FILE__, __LINE__, $db->error());
 			
 		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
 		if (array_key_exists('o_show_dot', $luna_config))
@@ -354,27 +354,31 @@ switch ($stage)
 		if (!array_key_exists('o_show_rules', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_rules\', \'1\')') or error('Unable to insert config value \'o_show_rules\'', __FILE__, __LINE__, $db->error());
 
-		// Since 3.2-beta: Add the first_run column to the users table
+		// Since 3.2-alpha: Add the first_run column to the users table
 		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
 		
-		// Since 3.2-beta: Insert new config option o_show_first_run
+		// Since 3.2-alpha: Insert new config option o_show_first_run
 		if (!array_key_exists('o_show_first_run', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_first_run\', \'1\')') or error('Unable to insert config value \'o_show_first_run\'', __FILE__, __LINE__, $db->error());
 		
-		// Since 3.2-beta: Insert new config option o_first_run_guests
+		// Since 3.2-alpha: Insert new config option o_first_run_guests
 		if (!array_key_exists('o_show_first_run', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_guests\', \'1\')') or error('Unable to insert config value \'o_first_run_guests\'', __FILE__, __LINE__, $db->error());
 		
-		// Since 3.2-beta: Insert new config option o_first_run_message
+		// Since 3.2-alpha: Insert new config option o_first_run_message
 		if (!array_key_exists('o_first_run_message', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_message\', \'\')') or error('Unable to insert config value \'o_first_run_message\'', __FILE__, __LINE__, $db->error());
 			
-		// Since 3.2-beta: Remove obsolete o_redirect_delay permission from config table
+		// Since 3.2-alpha: Remove obsolete o_redirect_delay permission from config table
 		if (array_key_exists('o_redirect_delay', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_redirect_delay\'') or error('Unable to remove config value \'o_redirect_delay\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.2-beta: Add o_has_posted
+		if (!array_key_exists('o_has_posted', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_has_posted\', \'1\')') or error('Unable to insert config value \'o_has_posted\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
-		if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mardiadb')
+		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
 		break;

@@ -645,6 +645,8 @@ $lang = array(
 // Language for viewforum.php
 'Views'			=>	'Views',
 'Moved'			=>	'Moved',
+'Posted'		=>	'Posted',
+'Star'			=>	'Star',
 'Sticky'		=>	'Sticky',
 'Closed'		=>	'Closed',
 'Empty forum'	=>	'Forum is empty.',
@@ -828,6 +830,7 @@ $lang = array(
 'Signatures help'					=>	'Allow users to attach a signature to their posts.',
 'User ranks help'					=>	'Enable this to use user ranks. See %s for more info.',
 'Topic views help'					=>	'Keep track of the number of views a topic has. Disable if you are experiencing high server load in a busy forum.',
+'Has posted help'					=>	'Show a label in front of the topics where users have posted. Disable if you are experiencing high server load in a busy forum.',
 'GZip help'							=>	'If enabled, ModernBB will gzip the output sent to browsers. This will reduce bandwidth usage, but use a little more CPU. This feature requires that PHP is configured with zlib (--with-zlib). Note: If you already have one of the Apache modules mod_gzip or mod_deflate set up to compress PHP scripts, you should disable this feature.',
 'Search all help'					=>	'When disabled, searches will only be allowed in one forum at a time. Disable if server load is high due to excessive searching.',
 

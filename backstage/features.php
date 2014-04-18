@@ -32,6 +32,7 @@ if (isset($_POST['form_sent']))
 		'signatures'			=> isset($_POST['form']['signatures']) ? '1' : '0',
 		'ranks'					=> isset($_POST['form']['ranks']) ? '1' : '0',
 		'topic_views'			=> isset($_POST['form']['topic_views']) ? '1' : '0',
+		'has_posted'			=> isset($_POST['form']['has_posted']) ? '1' : '0',
 		'show_first_run'		=> isset($_POST['form']['show_first_run']) ? '1' : '0',
 		'first_run_guests'		=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
 		'first_run_message'		=> luna_trim($_POST['form']['first_run_message']),
@@ -98,7 +99,13 @@ generate_admin_menu('features');
                             	<input type="checkbox" name="form[topic_views]" value="1" <?php if ($luna_config['o_topic_views'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Topic views help'] ?>
                             </label>
-                        </div>                     
+                        </div>  
+                        <div class="checkbox">
+                            <label>
+                            	<input type="checkbox" name="form[has_posted]" value="1" <?php if ($luna_config['o_has_posted'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Has posted help'] ?>
+                            </label>
+                        </div>                    
                     </div>
                 </div>
                 <div class="form-group">

@@ -17,7 +17,7 @@ class Version
 
 	// Internal revision number of services
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = 60;
+	const FORUM_DB_VERSION = 61;
 	
 	// The parser version number, every change to the parser requires this number to go one up
 	const FORUM_PARSER_VERSION = 7;

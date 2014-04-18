@@ -134,7 +134,16 @@ if ($db->num_rows($result))
 		$topic_ids[] = $cur_topic_id;
 
 	// Fetch list of topics to display on this page
-	$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
+	if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0')
+	{
+		// When not showing a posted label
+		$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
+	}
+	else
+	{
+		// When showing a posted label
+		$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $topic_ids).') GROUP BY t.id ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
+	}
 
 	$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 
@@ -158,6 +167,15 @@ if ($db->num_rows($result))
 		{
 			$item_status .= ' isticky';
 			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
+		}
+
+		if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1')
+		{
+			if ($cur_topic['has_posted'] == $luna_user['id'])
+			{
+				$status_text[] = '<span class="label label-primary">'.$lang['Posted'].'</span>';
+				$item_status .= ' iposted';
+			}
 		}
 
 		if ($cur_topic['moved_to'] != 0)
