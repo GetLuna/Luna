@@ -34,30 +34,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	if (!empty($cur_user['password']))
 	{
 		$form_password_hash = luna_hash($form_password); // Will result in a SHA-1 hash
-
-		// If there is a salt in the database we have upgraded from 1.3-legacy though haven't yet logged in
-		if (!empty($cur_user['salt']))
-		{
-			if (sha1($cur_user['salt'].sha1($form_password)) == $cur_user['password']) // 1.3 used sha1(salt.sha1(pass))
-			{
-				$authorized = true;
-
-				$db->query('UPDATE '.$db->prefix.'users SET password=\''.$form_password_hash.'\', salt=NULL WHERE id='.$cur_user['id']) or error('Unable to update user password', __FILE__, __LINE__, $db->error());
-			}
-		}
-		// If the length isn't 40 then the password isn't using sha1, so it must be md5 from 1.2
-		else if (strlen($cur_user['password']) != 40)
-		{
-			if (md5($form_password) == $cur_user['password'])
-			{
-				$authorized = true;
-
-				$db->query('UPDATE '.$db->prefix.'users SET password=\''.$form_password_hash.'\' WHERE id='.$cur_user['id']) or error('Unable to update user password', __FILE__, __LINE__, $db->error());
-			}
-		}
-		// Otherwise we should have a normal sha1 password
-		else
-			$authorized = ($cur_user['password'] == $form_password_hash);
+		$authorized = ($cur_user['password'] == $form_password_hash);
 	}
 
 	if (!$authorized)
