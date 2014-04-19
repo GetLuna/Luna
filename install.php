@@ -141,7 +141,7 @@ if (!isset($_POST['form_sent']))
 	$title = $lang['My ModernBB Forum'];
 	$description = $lang['Description'];
 	$default_lang = $install_lang;
-	$default_style = 'Randomness';
+	$default_style = 'Random';
 }
 else
 {
@@ -1713,7 +1713,7 @@ else
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $lang['ModernBB Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="style/Randomness.css" />
+        <link rel="stylesheet" type="text/css" href="style/Random.css" />
     </head>
     <body>
         <div class="container">

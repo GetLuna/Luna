@@ -389,7 +389,6 @@ if (isset($_GET['tid']))
 	}
 
 ?>
-<span class="pull-right btn-group"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></span>
 
 <div class="row row-nav-fix">
 	<div class="col-sm-6">
@@ -403,6 +402,7 @@ if (isset($_GET['tid']))
 	<div class="col-sm-6">
 		<ul class="pagination">
 			<?php echo $paging_links ?>
+        	<div class="btn-group"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></div>
 		</ul>
 	</div>
 </div>
@@ -988,7 +988,6 @@ else
 ?>
 </div>
 
-<span class="pull-right"><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /> <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></span>
 
 <div class="row row-nav-fix">
 	<div class="col-sm-6">
@@ -1001,6 +1000,7 @@ else
 	<div class="col-sm-6">
 		<ul class="pagination">
 			<?php echo $paging_links ?>
+            <div class="btn-toolbar"><div class="btn-group"><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /></div><div class="btn-group"><input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></div></div>
 		</ul>
 	</div>
 </div>
