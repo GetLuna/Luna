@@ -504,7 +504,7 @@ $lang = array(
 'Old pass'						=>	'Old password',
 'New pass'						=>	'New password',
 'Confirm new pass'				=>	'Confirm new password',
-'Pass info'						=>	'Passwords must be at least 6 characters long. Passwords are case sensitive.',
+'Pass info'						=>	'Passwords must be at least 6 characters long and are case sensitive',
 
 // Email stuff
 'Email key bad'					=>	'The specified email activation key was incorrect or has expired. Please re-request change of email address. If that fails, contact the forum administrator at',
@@ -645,6 +645,12 @@ $lang = array(
 'Quick search show_user_topics'		=>	'Topics by %s',
 'Quick search show_user_posts'		=>	'Posts by %s',
 'Quick search show_subscriptions'	=>	'Subscribed by %s',
+'By keywords show as topics'		=>	'Topics with posts containing \'%s\'',
+'By keywords show as posts'			=>	'Posts containing \'%s\'',
+'By user show as topics'			=>	'Topics with posts by %s',
+'By user show as posts'				=>	'Posts by %s',
+'By both show as topics'			=>	'Topics with posts containing \'%s\', by %s',
+'By both show as posts'				=>	'Posts containing \'%s\', by %s',
 'No terms'							=>	'You have to enter at least one keyword and/or an author to search for.',
 'No hits'							=>	'Your search returned no hits.',
 'No user posts'						=>	'There are no posts by this user in this forum.',

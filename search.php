@@ -649,9 +649,9 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
         <tr>
             <td colspan="2" class="postfooter" style="padding-bottom: 0;">
 				<div class="btn-group btn-breadcrumb">
-					<?php if ($cur_search['pid'] != $cur_search['first_post_id']) echo $lang['Re'].' ' ?><?php echo $forum ?>
+					<?php echo $forum ?>
 					<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo luna_htmlspecialchars($cur_search['subject']) ?></a>
-					<a class="btn btn-primary" href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php echo format_time($cur_search['pposted']) ?></a>
+					<a class="btn btn-primary" href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php if ($cur_search['pid'] != $cur_search['first_post_id']) echo $lang['Re'].' ' ?><?php echo format_time($cur_search['pposted']) ?></a>
 				</div>
                 <p class="pull-right">
 					<a class="btn btn-small btn-primary" href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo $lang['Go to topic'] ?></a>
