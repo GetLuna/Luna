@@ -226,7 +226,7 @@ if ($db->num_rows($result))
 			$replies_label = $lang['replies'];
 		}
 		
-		if (forum_number_format($num_topics) == '1') {
+		if (forum_number_format($cur_topic['num_views']) == '1') {
 			$views_label = $lang['view'];
 		} else {
 			$views_label = $lang['views'];
