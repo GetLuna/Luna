@@ -373,7 +373,7 @@ while ($cur_post = $db->fetch_assoc($result))
 				</div>
 				<div class="panel-body">
 					<?php echo $cur_post['message']."\n" ?>
-					<hr />
+					<?php if (($signature != '') || (!$luna_user['is_guest'])) echo '<hr />'; ?>
 					<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature">'.$signature.'</div>'."\n"; ?>
 					<?php if (!$luna_user['is_guest']) { ?><div class="pull-right post-actions btn-group"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></div><?php } ?>
 				</div>

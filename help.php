@@ -123,99 +123,99 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">General use</h3>
+        <h3 class="panel-title"><?php echo $lang['General use'] ?></h3>
     </div>
     <div class="panel-body">
-        <p>Allow us to explain some of the basics on how to work with this forum software.</p>
+        <p><?php echo $lang['General use info'] ?></p>
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#forums" data-toggle="tab">Forums and topics</a></li>
-			<li><a href="#profile" data-toggle="tab">Profile</a></li>
-			<li><a href="#search" data-toggle="tab">Search</a></li>
+			<li class="active"><a href="#forums" data-toggle="tab"><?php echo $lang['Forums and topics'] ?></a></li>
+			<li><a href="#profile" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
+			<li><a href="#search" data-toggle="tab"><?php echo $lang['Search'] ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div class="tab-pane active" id="forums">
-                <h3>What do those labels in front of topic titles mean?</h3>
-                <p>You'll see that some of the topics are labeled, different labels have different meanings.</p>
+                <h3><?php echo $lang['Labels question'] ?></h3>
+                <p><?php echo $lang['Labels info'] ?></p>
 				<table class="table">
                 	<thead>
                         <tr>
-                            <th>Label</th>
-                            <th>Explenation</th>
+                            <th><?php echo $lang['Label'] ?></th>
+                            <th><?php echo $lang['Explenation'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="label label-success">sticky</span></td>
-                            <td>Sticky topics are important, you are probably suposed to read those topics. It's worth it to take a look here.</td>
+                            <td><span class="label label-success"><?php echo $lang['Sticky'] ?></span></td>
+                            <td><?php echo $lang['Sticky explenation'] ?></td>
                         </tr>
                         <tr>
-                            <td><span class="label label-danger">closed</span></td>
-                            <td>When a topic is closed, you can't add a new comment to it, except if you have a permission that overwrites this. The topic is still available to read, through.</td>
+                            <td><span class="label label-danger"><?php echo $lang['Closed'] ?></span></td>
+                            <td><?php echo $lang['Closed explenation'] ?></td>
                         </tr>
                         <tr>
-                            <td><span class="label label-info">moved</span></td>
-                            <td>This topic is moved to another forum. Admins and moderators can choose to show this notification, or simply not show it at all. The original forum where this topic was located in, won't show any topic stats anymore.</td>
+                            <td><span class="label label-info"><?php echo $lang['Moved'] ?></span></td>
+                            <td><?php echo $lang['Moved explenation'] ?></td>
                         </tr>
-                        <tr>
-                            <td><span class="label label-warning">star</span></td>
-                            <td>You're following this topic, they will show up in you're subscibtion list.</td>
-                        </tr>
+                        <!-- <tr>
+                            <td><span class="label label-warning"><?php echo $lang['Star'] ?></span></td>
+                            <td><?php echo $lang['Star explenation'] ?></td>
+                        </tr> -->
                         <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
                         <tr>
-                            <td><span class="label label-primary">posted</span></td>
-                            <td>Topics labeled with this label contain a comment of you.</td>
+                            <td><span class="label label-primary"><?php echo $lang['Posted'] ?></span></td>
+                            <td><?php echo $lang['Posted explenation'] ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>
                 </table>
-                <h3>I can't see the WYSIWYG editor!</h3>
-                <p>You probably did not enable JavaScript in your browser, you can find this under settings in your browser. It could be that you are using an unsupported browser that doesn't hancle the editor properly, too.</p>
-                <h3>Smilies, signatures, avatars and images are not visible?</h3>
-                <p>You can change the behavior of the topic view in your profiles settings. Here you can enable smilies, signatures, avatars and images in posts. Through by default, those settings are enabled. Your forums admin might have disabled those features. You can see if images and smilies are disabled below the editor. If the labels have a red background, those features aren't available for you.</p>
-                <h3>Why can't I see any topics or forums?</h3>
-                <p>You might not have the correct permissions to do so, ask the forums administrator for more help.</p>
+                <h3><?php echo $lang['WYSIWYG question'] ?></h3>
+                <p><?php echo $lang['WYSIWYG answer'] ?></p>
+                <h3><?php echo $lang['Content question'] ?></h3>
+                <p><?php echo $lang['Content answer'] ?></p>
+                <h3><?php echo $lang['Topics question'] ?></h3>
+                <p><?php echo $lang['Topics answer'] ?></p>
             </div>
 			<div class="tab-pane" id="profile">
-                <h3>Why can't I see any profiles?</h3>
-                <p>You might not have the correct permissions to do so, ask the forums administrator for more help.</p>
-                <h3>My profile doesn't contain as much as others?</h3>
-                <p>You're profile will only display fields that are enabled and filled in on your profiles personality page. You might want to take a look over there and check if you missed some fields.</p>
+                <h3><?php echo $lang['Profile question'] ?></h3>
+                <p><?php echo $lang['Profile answer'] ?></p>
+                <h3><?php echo $lang['Information question'] ?></h3>
+                <p><?php echo $lang['Information answer'] ?></p>
             </div>
 			<div class="tab-pane" id="search">
-                <h3>Are there more options to search?</h3>
-                <p>When you go to the search page, you'll find yourself on a page with 1 searchbox. Below that search box, there is a link to Advanced search, here you can find more search options! Note that this feature isn't available on small devices or is disabled on all devices by the forums admin.</p>
-                <h3>I can't search in more then 1 forum at once?</h3>
-                <p>You might not have the correct permissions to do so, ask the forums administrator for more help.</p>
+                <h3><?php echo $lang['Advanced search question'] ?></h3>
+                <p><?php echo $lang['Advanced search answer'] ?></p>
+                <h3><?php echo $lang['More search question'] ?></h3>
+                <p><?php echo $lang['More search answer'] ?></p>
             </div>
 		</div>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Moderating</h3>
+        <h3 class="panel-title"><?php echo $lang['Moderating'] ?></h3>
     </div>
     <div class="panel-body">
-        <p>Admins and moderators like help too, sometimes. So, allow us to explain those basics here.</p>
+        <p><?php echo $lang['Moderating info'] ?></p>
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#forums" data-toggle="tab">Forums</a></li>
-			<li><a href="#topics" data-toggle="tab">Topics</a></li>
-			<li><a href="#users" data-toggle="tab">Users</a></li>
+			<li class="active"><a href="#forums" data-toggle="tab"><?php echo $lang['Forums'] ?></a></li>
+			<li><a href="#topics" data-toggle="tab"><?php echo $lang['Topics'] ?></a></li>
+			<li><a href="#users" data-toggle="tab"><?php echo $lang['Users'] ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div class="tab-pane active" id="forums">
-                <h3>How do I moderate a forum?</h3>
-                <p>The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once.</p>
+                <h3><?php echo $lang['Moderate forum question'] ?></h3>
+                <p><?php echo $lang['Moderate forum answer'] ?></p>
             </div>
 			<div class="tab-pane" id="topics">
-                <h3>How do I moderate a topic?</h3>
-                <p>The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once.</p>
-                <p>Next to the "Moderate topic" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it.</p>
+                <h3><?php echo $lang['Moderate topic question'] ?></h3>
+                <p><?php echo $lang['Moderate topic answer 1'] ?></p>
+                <p><?php echo $lang['Moderate topic answer 2'] ?></p>
             </div>
 			<div class="tab-pane" id="users">
-                <h3>How do I moderate an user?</h3>
-                <p>Moderator options are available in the users profile. You can find the moderation options under "Administration" in the users profile menu. Those features aren't available for all moderators.</p>
-                <p>The Administration page allow you to check if the user has any admin note, and if required, you can change that note. You can also change the post count of this user. At this page, the user can also be given moderator permissions on a per-forum base, through the user must have a moderator account to be able to actualy use those permissions.</p>
-                <p>Finaly, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better of with the advanced user management features in the Backstage.</p>
+                <h3><?php echo $lang['Moderate user question'] ?></h3>
+                <p><?php echo $lang['Moderate user answer 1'] ?></p>
+                <p><?php echo $lang['Moderate user answer 2'] ?></p>
+                <p><?php echo $lang['Moderate user answer 3'] ?></p>
             </div>
 		</div>
     </div>

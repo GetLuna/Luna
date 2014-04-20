@@ -60,10 +60,10 @@ h1, h2, h3, h4, h5, h6 {
 	.col-profile .profile-card {
 		margin-top: 60px !important;
 	}
-	
-	.row-nav .btn-breadcrumb, .row-nav .pagination {
-		margin-bottom: 10px;
-	}
+}
+
+.row-nav .btn-breadcrumb, .row-nav .pagination {
+	margin-bottom: 10px;
 }
 
 .col-profile {
