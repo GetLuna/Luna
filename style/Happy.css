@@ -44,6 +44,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 100;
 }
 
+.panel-body h1 {
+	margin-top: 0;
+}
+
 .text-center {
 	margin-bottom: 0;
 }
