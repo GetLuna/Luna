@@ -210,7 +210,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang[Delete topics'] ?></label>
+                    <label class="col-sm-2 control-label"><?php echo $lang['Delete topics'] ?></label>
                     <div class="col-sm-10">
                     	<div class="checkbox">
                             <label>
