@@ -153,6 +153,15 @@ $lang = array(
 'New reports'						=>	'There are new reports',
 'Maintenance mode enabled'			=>	'Maintenance mode is enabled!',
 
+// Units for file sizes
+'Size unit B'						=>	'%s B',
+'Size unit KiB'						=>	'%s KiB',
+'Size unit MiB'						=>	'%s MiB',
+'Size unit GiB'						=>	'%s GiB',
+'Size unit TiB'						=>	'%s TiB',
+'Size unit PiB'						=>	'%s PiB',
+'Size unit EiB'						=>	'%s EiB',
+
 // Language for installation
 'Choose install language'		=>	'Choose the install script language',
 'Choose install language info'	=>	'The language used for this install script. The default language used for the board itself can be set below.',
@@ -316,8 +325,8 @@ $lang = array(
 'General use'					=>	'General use',
 'General use info'				=>	'Allow us to explain some of the basics on how to work with this forum software.',
 'Forums and topics'				=>	'Forums and topics',
-'Label question'				=>	'What do those labels in front of topic titles mean?',
-'Labels answer'					=>	'You\'ll see that some of the topics are labeled, different labels have different meanings.',
+'Labels question'				=>	'What do those labels in front of topic titles mean?',
+'Labels info'					=>	'You\'ll see that some of the topics are labeled, different labels have different meanings.',
 'Label'							=>	'Label',
 'Explenation'					=>	'Explenation',
 'Sticky explenation'			=>	'Sticky topics are important, you are probably suposed to read those topics. It\'s worth it to take a look here.',
