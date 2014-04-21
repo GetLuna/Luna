@@ -83,7 +83,7 @@ if (($luna_user['first_run'] == 0 && $luna_config['o_show_first_run'] == 1 && !$
 <div class="first-run panel panel-default">
 	<div class="row first-run-content">
 		<div class="col-md-4 col-sm-6 first-run-profile">
-			<h3 class="first-run-title"><?php echo sprintf($lang['Hi there'], $luna_user['username']) ?></h3>
+			<h3 class="first-run-title"><?php echo sprintf($lang['Hi there'], luna_htmlspecialchars($luna_user['username'])) ?></h3>
 			<span class="first-run-avatar thumbnail">
 				<?php echo $user_avatar ?>
 			</span>
