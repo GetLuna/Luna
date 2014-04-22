@@ -119,47 +119,7 @@ if ($action == 'change_pass')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-?>
-<h2 class="profile-h2"><?php echo $lang['Change pass'] ?></h2>
-<form class="form-horizontal" id="change_pass" method="post" action="profile.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-	<div class="panel panel-default">
-    	<div class="panel-heading">
-        	<h3 class="panel-title"><?php echo $lang['Change pass'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <input type="hidden" name="form_sent" value="1" />
-            <fieldset>
-				<?php if (!$luna_user['is_admmod']): ?>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label"><?php echo $lang['Old pass'] ?></label>
-                        <div class="col-sm-9">
-                            <input class="form-control" type="password" name="req_old_password" />
-                        </div>
-                    </div>
-				<?php endif; ?>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['New pass'] ?></label>
-                    <div class="col-sm-9">
-                        <input class="form-control" type="password" name="req_new_password1" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Confirm new pass'] ?></label>
-                    <div class="col-sm-9">
-                        <input class="form-control" type="password" name="req_new_password2" />
-                    </div>
-                </div>
-                <p class="help-block"><?php echo $lang['Pass info'] ?></p>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-            <input type="submit" class="btn btn-primary" name="update" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </div>
-    </div>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/profile-change_pass.tpl.php';
 }
 
 
@@ -295,21 +255,7 @@ else if ($action == 'change_email')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-?>
-<h2 class="profile-h2"><?php echo $lang['Change email'] ?></h2>
-<form id="change_email" method="post" action="profile.php?action=change_email&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-    <fieldset>
-        <h3><?php echo $lang['Email legend'] ?></h3>
-        <input type="hidden" name="form_sent" value="1" />
-        <label><strong><?php echo $lang['New email'] ?></strong><br /><input type="text" class="form-control" name="req_new_email" maxlength="80" /></label>
-        <label><strong><?php echo $lang['Password'] ?></strong><br /><input type="password" name="req_password" /></label>
-        <p><?php echo $lang['Email instructions'] ?></p>
-    </fieldset>
-    <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/profile-change_email.tpl.php';
 }
 
 
@@ -417,26 +363,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Upload avatar'] ?></h3>
-    </div>
-    <div class="panel-body">
-        <form id="upload_avatar" method="post" enctype="multipart/form-data" action="profile.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-            <fieldset>
-                <input type="hidden" name="form_sent" value="1" />
-                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $luna_config['o_avatars_size'] ?>" />
-                <label><strong><?php echo $lang['File'] ?></strong><br /><input name="req_file" type="file" /></label>
-                <span class="help-block"><?php echo $lang['Avatar desc'].' '.$luna_config['o_avatars_width'].' x '.$luna_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($luna_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($luna_config['o_avatars_size']).').' ?></span>
-            </fieldset>
-            <input type="submit" class="btn btn-primary" name="upload" value="<?php echo $lang['Upload'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </form>
-    </div>
-</div>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/profile-upload_avatar.tpl.php';
 }
 
 
@@ -446,7 +373,7 @@ else if ($action == 'delete_avatar')
 		message($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('profile.php');
-		
+
 	delete_avatar($id);
 
 	redirect('profile.php?section=personality&amp;id='.$id);
@@ -461,9 +388,9 @@ else if (isset($_POST['update_group_membership']))
 	confirm_referrer('profile.php');
 
 	$new_group_id = intval($_POST['group_id']);
-	
-	$result = $db->query('SELECT group_id FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user group', __FILE__, __LINE__, $db->error());  
-	$old_group_id = $db->result($result);  
+
+	$result = $db->query('SELECT group_id FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user group', __FILE__, __LINE__, $db->error());
+	$old_group_id = $db->result($result);
 
 	$db->query('UPDATE '.$db->prefix.'users SET group_id='.$new_group_id.' WHERE id='.$id) or error('Unable to change user group', __FILE__, __LINE__, $db->error());
 
@@ -472,8 +399,8 @@ else if (isset($_POST['update_group_membership']))
 		require FORUM_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
-	
-	if ($old_group_id == FORUM_ADMIN || $new_group_id == FORUM_ADMIN)  
+
+	if ($old_group_id == FORUM_ADMIN || $new_group_id == FORUM_ADMIN)
 		generate_admins_cache();
 
 	$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$new_group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
@@ -649,10 +576,10 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 			require FORUM_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
-		
-		if ($group_id == FORUM_ADMIN)  
+
+		if ($group_id == FORUM_ADMIN)
 			generate_admins_cache();
-		
+
 		redirect('index.php');
 	}
 
@@ -660,32 +587,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-?>
-<h2 class="profile-h2"><?php echo $lang['Confirm delete user'] ?></h2>
-<form id="confirm_del_user" method="post" action="profile.php?id=<?php echo $id ?>">
-    <fieldset>
-        <div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.luna_htmlspecialchars($username).'</strong>' ?></h3>
-            </div>
-            <div class="panel-body">
-				<?php echo $lang['Delete warning'] ?>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="delete_posts" value="1" checked="checked" />
-                        <?php echo $lang['Delete all posts'] ?>
-                    </label>
-                </div>
-			</div>
-            <div class="panel-footer">
-				<input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-    		</div>
-        </div>
-    </fieldset>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/profile-delete_user.tpl.php';
 }
 
 
@@ -708,7 +610,7 @@ else if (isset($_POST['form_sent']))
 
 	// Make sure they got here from the site
 	confirm_referrer('profile.php');
-		
+
 	$username_updated = false;
 
 	// Validate input depending on section
@@ -831,7 +733,7 @@ else if (isset($_POST['form_sent']))
 						message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
 				}
 			}
-				
+
 			break;
 		}
 
@@ -997,7 +899,7 @@ if ($user['signature'] != '')
 
 // View or edit?
 if (!$section || $section == 'view')
-{	
+{
 
 	$user_personality = array();
 
@@ -1016,7 +918,7 @@ if (!$section || $section == 'view')
 	$user_activity[] = '<b>'.$lang['Registered table'].':</b> '.format_time($user['registered'], true);
 
 	$user_personality[] = '<b>'.$lang['Registered'].':</b> '.format_time($user['registered'], true);
-	
+
 	$user_personality[] = '<b>'.$lang['Last visit info'].':</b> '.format_time($user['last_visit'], true);
 
 	if ($user['realname'] != '')
@@ -1040,7 +942,7 @@ if (!$section || $section == 'view')
 		if (!empty($quick_searches))
 			$posts_field .= implode('', $quick_searches);
 	}
-	
+
 	if ($posts_field != '')
 		$user_personality[] = '<br /><div class="btn-group">'.$posts_field.'</div>';
 
@@ -1083,70 +985,16 @@ if (!$section || $section == 'view')
 
 	$user_activity = array();
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
-define('FORUM_ACTIVE_PAGE', 'profile');
-require FORUM_ROOT.'header.php';
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
+	define('FORUM_ACTIVE_PAGE', 'profile');
+	require FORUM_ROOT.'header.php';
 
-?>
-
-<div class="col-sm-3 profile-nav">
-<?php
-	generate_profile_menu('view');
-	
-	echo $email_field;
-	echo $user_website;
-?>
-</div>
-<div class="col-sm-9 col-profile">
-	<div class="profile-card">
-		<div class="profile-card-head">
-			<div class="user-avatar thumbnail">
-				<?php echo $avatar_field; ?>
-			</div>
-			<h2><?php echo $user_username; ?></h2>
-			<h3><?php echo $user_usertitle; ?></h3>
-		</div>
-		<div class="profile-card-body">
-			<?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
-		</div>
-	</div>
-<?php if (!empty($user_messaging)): ?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Contact']; ?></h3>
-		</div>
-		<div class="panel-body">
-			<p><?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_messaging)."\n" ?></p>
-		</div>
-	</div>
-<?php
-	endif;
-
-	if ($luna_config['o_signatures'] == '1')
-	{
-		if (isset($parsed_signature))
-		{
-?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Signature']; ?></h3>
-		</div>
-		<div class="panel-body">
-			<p><?php echo $user_signature ?></p>
-		</div>
-	</div>
-<?php
-		}
-	}
-?>
-</div>
-
-<?php
+	require FORUM_ROOT.'views/profile-view.tpl.php';
 
 }
 else if ($section == 'personality')
 {
-	
+
 	if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
 		message($lang['Bad request'], false, '403 Forbidden');
 
@@ -1168,10 +1016,10 @@ else if ($section == 'personality')
 		else
 			$email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
 	}
-	
+
 	if ($luna_user['g_set_title'] == '1')
 		$title_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Title'].'<span class="help-block">'.$lang['Leave blank'].'</span></label><div class="col-sm-9"><input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" /></div></div>'."\n";
-		
+
 	if ($luna_config['o_avatars'] == '0' && $luna_config['o_signatures'] == '0')
 		message($lang['Bad request'], false, '404 Not Found');
 
@@ -1187,132 +1035,12 @@ else if ($section == 'personality')
 		$signature_preview = '<p>'.$lang['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
 	else
 		$signature_preview = '<p>'.$lang['No sig'].'</p>'."\n";
-		
+
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-?>
-<div class="col-sm-3 profile-nav">
-<?php
-	generate_profile_menu('personality');
-?>
-</div>
-<div class="col-sm-9 col-profile">
-<h2 class="profile-h2"><?php echo $lang['Section personality'] ?></h2>
-<form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Personal details legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<input type="hidden" name="form_sent" value="1" />
-				<?php echo $username_field ?>
-				<?php if ($luna_user['id'] == $id || $luna_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')): ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Password'] ?></label>
-					<div class="col-sm-9">
-						<a class="btn btn-primary" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a>
-					</div>
-				</div>
-				<?php endif; ?>
-				<?php echo $email_field ?>
-				<hr />
-				<input type="hidden" name="form_sent" value="1" />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Realname'] ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[realname]" value="<?php echo luna_htmlspecialchars($user['realname']) ?>" maxlength="40" />
-					</div>
-				</div>
-				<?php if (isset($title_field)): ?>
-					<?php echo $title_field ?>
-				<?php endif; ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Location'] ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Website'] ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" />
-					</div>
-				</div>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Jabber'] ?></label>
-					<div class="col-sm-9">
-						<input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo luna_htmlspecialchars($user['jabber']) ?>" maxlength="75" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['ICQ'] ?></label>
-					<div class="col-sm-9">
-						<input id="icq" type="text" class="form-control" name="form[icq]" value="<?php echo $user['icq'] ?>" maxlength="12" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['MSN'] ?></label>
-					<div class="col-sm-9">
-						<input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['AOL IM'] ?></label>
-					<div class="col-sm-9">
-						<input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo luna_htmlspecialchars($user['aim']) ?>" maxlength="30" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Yahoo'] ?></label>
-					<div class="col-sm-9">
-						<input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo luna_htmlspecialchars($user['yahoo']) ?>" maxlength="30" />
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-<?php if ($luna_config['o_avatars'] == '1'): ?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Avatar legend'] ?></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset id="profileavatar">
-<?php if ($user_avatar): ?>
-				<div class="useravatar"><?php echo $user_avatar ?></div>
-<?php endif; ?>
-				<p><?php echo $lang['Avatar info'] ?></p>
-				<p><?php echo $avatar_field ?></p>
-			</fieldset>
-		</div>
-	</div>
-<?php endif; if ($luna_config['o_signatures'] == '1'): ?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Signature legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<p><?php echo $lang['Signature info'] ?></p>
-				<label><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></label>
-				<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
-				<ul class="bblinks">
-					<li><a class="label <?php echo ($luna_config['p_sig_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-					<li><a class="label <?php echo ($luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-					<li><a class="label <?php echo ($luna_config['o_smilies_sig'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
-				</ul>
-				<?php echo $signature_preview ?>
-			</fieldset>
-		</div>
-	</div>
-<?php endif; ?>
-</form>
-<?php
+	require FORUM_ROOT.'views/profile-personality.tpl.php';
 
 }
 else if ($section == 'settings')
@@ -1324,301 +1052,7 @@ else if ($section == 'settings')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-?>
-<div class="col-sm-3 profile-nav">
-<?php
-	generate_profile_menu('settings');
-?>
-</div>
-<div class="col-sm-9 col-profile">
-<h2 class="profile-h2"><?php echo $lang['Settings'] ?></h2>
-<form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Settings legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<input type="hidden" name="form_sent" value="1" />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Time zone'] ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="form[timezone]">
-							<option value="-12"<?php if ($user['timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang['UTC-12:00'] ?></option>
-							<option value="-11"<?php if ($user['timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang['UTC-11:00'] ?></option>
-							<option value="-10"<?php if ($user['timezone'] == -10) echo ' selected="selected"' ?>><?php echo $lang['UTC-10:00'] ?></option>
-							<option value="-9.5"<?php if ($user['timezone'] == -9.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-09:30'] ?></option>
-							<option value="-9"<?php if ($user['timezone'] == -9) echo ' selected="selected"' ?>><?php echo $lang['UTC-09:00'] ?></option>
-							<option value="-8.5"<?php if ($user['timezone'] == -8.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-08:30'] ?></option>
-							<option value="-8"<?php if ($user['timezone'] == -8) echo ' selected="selected"' ?>><?php echo $lang['UTC-08:00'] ?></option>
-							<option value="-7"<?php if ($user['timezone'] == -7) echo ' selected="selected"' ?>><?php echo $lang['UTC-07:00'] ?></option>
-							<option value="-6"<?php if ($user['timezone'] == -6) echo ' selected="selected"' ?>><?php echo $lang['UTC-06:00'] ?></option>
-							<option value="-5"<?php if ($user['timezone'] == -5) echo ' selected="selected"' ?>><?php echo $lang['UTC-05:00'] ?></option>
-							<option value="-4"<?php if ($user['timezone'] == -4) echo ' selected="selected"' ?>><?php echo $lang['UTC-04:00'] ?></option>
-							<option value="-3.5"<?php if ($user['timezone'] == -3.5) echo ' selected="selected"' ?>><?php echo $lang['UTC-03:30'] ?></option>
-							<option value="-3"<?php if ($user['timezone'] == -3) echo ' selected="selected"' ?>><?php echo $lang['UTC-03:00'] ?></option>
-							<option value="-2"<?php if ($user['timezone'] == -2) echo ' selected="selected"' ?>><?php echo $lang['UTC-02:00'] ?></option>
-							<option value="-1"<?php if ($user['timezone'] == -1) echo ' selected="selected"' ?>><?php echo $lang['UTC-01:00'] ?></option>
-							<option value="0"<?php if ($user['timezone'] == 0) echo ' selected="selected"' ?>><?php echo $lang['UTC'] ?></option>
-							<option value="1"<?php if ($user['timezone'] == 1) echo ' selected="selected"' ?>><?php echo $lang['UTC+01:00'] ?></option>
-							<option value="2"<?php if ($user['timezone'] == 2) echo ' selected="selected"' ?>><?php echo $lang['UTC+02:00'] ?></option>
-							<option value="3"<?php if ($user['timezone'] == 3) echo ' selected="selected"' ?>><?php echo $lang['UTC+03:00'] ?></option>
-							<option value="3.5"<?php if ($user['timezone'] == 3.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+03:30'] ?></option>
-							<option value="4"<?php if ($user['timezone'] == 4) echo ' selected="selected"' ?>><?php echo $lang['UTC+04:00'] ?></option>
-							<option value="4.5"<?php if ($user['timezone'] == 4.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+04:30'] ?></option>
-							<option value="5"<?php if ($user['timezone'] == 5) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:00'] ?></option>
-							<option value="5.5"<?php if ($user['timezone'] == 5.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:30'] ?></option>
-							<option value="5.75"<?php if ($user['timezone'] == 5.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+05:45'] ?></option>
-							<option value="6"<?php if ($user['timezone'] == 6) echo ' selected="selected"' ?>><?php echo $lang['UTC+06:00'] ?></option>
-							<option value="6.5"<?php if ($user['timezone'] == 6.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+06:30'] ?></option>
-							<option value="7"<?php if ($user['timezone'] == 7) echo ' selected="selected"' ?>><?php echo $lang['UTC+07:00'] ?></option>
-							<option value="8"<?php if ($user['timezone'] == 8) echo ' selected="selected"' ?>><?php echo $lang['UTC+08:00'] ?></option>
-							<option value="8.75"<?php if ($user['timezone'] == 8.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+08:45'] ?></option>
-							<option value="9"<?php if ($user['timezone'] == 9) echo ' selected="selected"' ?>><?php echo $lang['UTC+09:00'] ?></option>
-							<option value="9.5"<?php if ($user['timezone'] == 9.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+09:30'] ?></option>
-							<option value="10"<?php if ($user['timezone'] == 10) echo ' selected="selected"' ?>><?php echo $lang['UTC+10:00'] ?></option>
-							<option value="10.5"<?php if ($user['timezone'] == 10.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+10:30'] ?></option>
-							<option value="11"<?php if ($user['timezone'] == 11) echo ' selected="selected"' ?>><?php echo $lang['UTC+11:00'] ?></option>
-							<option value="11.5"<?php if ($user['timezone'] == 11.5) echo ' selected="selected"' ?>><?php echo $lang['UTC+11:30'] ?></option>
-							<option value="12"<?php if ($user['timezone'] == 12) echo ' selected="selected"' ?>><?php echo $lang['UTC+12:00'] ?></option>
-							<option value="12.75"<?php if ($user['timezone'] == 12.75) echo ' selected="selected"' ?>><?php echo $lang['UTC+12:45'] ?></option>
-							<option value="13"<?php if ($user['timezone'] == 13) echo ' selected="selected"' ?>><?php echo $lang['UTC+13:00'] ?></option>
-							<option value="14"<?php if ($user['timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang['UTC+14:00'] ?></option>
-						</select>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[dst]" value="1"<?php if ($user['dst'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['DST'] ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Time format'] ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="form[time_format]">
-<?php
-					foreach (array_unique($forum_time_formats) as $key => $time_format)
-					{
-						echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
-						if ($user['time_format'] == $key)
-							echo ' selected="selected"';
-						echo '>'. format_time(time(), false, null, $time_format, true, true);
-						if ($key == 0)
-							echo ' ('.$lang['Default'].')';
-						echo "</option>\n";
-					}
-?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Date format'] ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="form[date_format]">
-<?php
-					foreach (array_unique($forum_date_formats) as $key => $date_format)
-					{
-						echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
-						if ($user['date_format'] == $key)
-							echo ' selected="selected"';
-						echo '>'. format_time(time(), true, $date_format, null, false, true);
-						if ($key == 0)
-							echo ' ('.$lang['Default'].')';
-						echo "</option>\n";
-					}
-?>
-						</select>
-					</div>
-				</div>
-<?php
-$languages = forum_list_langs();
-
-// Only display the language selection box if there's more than one language available
-if (count($languages) > 1)
-	{
-?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Language'] ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="form[language]">
-<?php
-		foreach ($languages as $temp)
-		{
-			if ($user['language'] == $temp)
-				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
-			else
-				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
-		}
-?>
-						</select>
-					</div>
-				</div>
-<?php
-	}
-	$styles = forum_list_styles();
-
-	// Only display the style selection box if there's more than one style available
-	if (count($styles) == 1)
-		echo "\t\t\t".'<div><input type="hidden" name="form[style]" value="'.$styles[0].'" /></div>'."\n";
-	else if (count($styles) > 1)
-	{
-?>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Style'] ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="form[style]">
-<?php
-		foreach ($styles as $temp)
-		{
-			if ($user['style'] == $temp)
-				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
-			else
-				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-		}
-?>
-						</select>
-					</div>
-				</div>
-<?php
-	}
-	if ($luna_user['is_admmod']) {
-		$backstage_styles = backstage_list_styles();
-
-		// Only display the style selection box if there's more than one style available
-		if (count($backstage_styles) == 1)
-			echo "\t\t\t".'<div><input type="hidden" name="form[backstage_style]" value="'.$backstage_styles[0].'" /></div>'."\n";
-		else if (count($backstage_styles) > 1)
-		{
-?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Backstage style'] ?></label>
-					<div class="col-sm-9">
-						<select class="form-control" name="form[backstage_style]">
-<?php
-			foreach ($backstage_styles as $temp)
-			{
-				if ($user['backstage_style'] == $temp)
-					echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
-				else
-					echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-			}
-?>
-						</select>
-					</div>
-				</div>
-<?php
-		}
-	}
-	if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1')): ?>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Post display'] ?></label>
-					<div class="col-sm-9">
-<?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1'): ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Show smilies'] ?>
-							</label>
-						</div>
-<?php endif; if ($luna_config['o_signatures'] == '1'): ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Show sigs'] ?>
-
-							</label>
-						</div>
-<?php endif; if ($luna_config['o_avatars'] == '1'): ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Show avatars'] ?>
-							</label>
-						</div>
-<?php endif; if ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1'): ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Show images'] ?>
-							</label>
-						</div>
-<?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Show images sigs'] ?>
-							</label>
-						</div>
-<?php endif; ?>
-					</div>
-				</div>
-<?php endif; ?>
-				<hr />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Topics'] ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Posts per page'] ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" maxlength="3" />
-					</div>
-				</div>
-				<hr  />
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Email setting info'] ?></label>
-					<div class="col-sm-9">
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked="checked"' ?> />
-								<?php echo $lang['Email setting 1'] ?>
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[email_setting]" value="1"<?php if ($user['email_setting'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Email setting 2'] ?>
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked="checked"' ?> />
-								<?php echo $lang['Email setting 3'] ?>
-							</label>
-						</div>
-					</div>
-				</div>
-<?php if ($luna_config['o_forum_subscriptions'] == '1' || $luna_config['o_topic_subscriptions'] == '1'): ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Subscriptions head'] ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Notify full'] ?>
-							</label>
-						</div>
-<?php if ($luna_config['o_topic_subscriptions'] == '1'): ?>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Auto notify full'] ?>
-							</label>
-						</div>
-<?php endif; ?>
-					</div>
-				</div>
-<?php endif; ?>
-			</fieldset>
-		</div>
-	</div>
-</form>
-<?php
+	require FORUM_ROOT.'views/profile-settings.tpl.php';
 
 }
 else if ($section == 'admin')
@@ -1630,160 +1064,8 @@ else if ($section == 'admin')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-?>
-<div class="col-sm-3 profile-nav">
-<?php
-	generate_profile_menu('admin');
-?>
-</div>
-<div class="col-sm-9 col-profile">
-<h2 class="profile-h2"><?php echo $lang['Section admin'] ?></h2>
-<form id="profile7" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>">
-<?php
-
-	if ($luna_user['g_moderator'] == '1')
-	{
-
-?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Delete ban legend'] ?></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="form_sent" value="1" />
-			<fieldset>
-				<p><input class="btn btn-primary" type="submit" name="ban" value="<?php echo $lang['Ban user'] ?>" /></p>
-			</fieldset>
-		</div>
-	</div>
-<?php
-
-	}
-	else
-	{
-		if ($luna_user['id'] != $id)
-		{
-
-?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Group membership legend'] ?></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<select id="group_id" class="form-control" name="group_id">
-<?php
-
-			$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
-
-			while ($cur_group = $db->fetch_assoc($result))
-			{
-				if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
-					echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-				else
-					echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-			}
-
-?>
-				</select>
-				<input type="submit" class="btn btn-primary" name="update_group_membership" value="<?php echo $lang['Save'] ?>" />
-			</fieldset>
-		</div>
-	</div>
-<?php
-
-		}
-
-?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Delete ban legend'] ?></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<input type="submit" class="btn btn-danger" name="delete_user" value="<?php echo $lang['Delete user'] ?>" /> <input type="submit" class="btn btn-danger" name="ban" value="<?php echo $lang['Ban user'] ?>" />
-			</fieldset>
-		</div>
-	</div>
-<?php
-
-		if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN)
-		{
-
-?>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Set mods legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="update_forums" value="<?php echo $lang['Update forums'] ?>" /></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<p><?php echo $lang['Moderator in info'] ?></p>
-<?php
-
-			$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.moderators FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id WHERE f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
-
-			$cur_category = 0;
-			while ($cur_forum = $db->fetch_assoc($result))
-			{
-				if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-				{
-					if ($cur_category)
-						echo "\n\t\t\t\t\t\t\t\t".'</div>';
-
-					if ($cur_category != 0)
-						echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
-
-					echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'<div>';
-					$cur_category = $cur_forum['cid'];
-				}
-
-				$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
-
-				echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked="checked"' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
-			}
-
-?>
-			</fieldset>
-		</div>
-	</div>
-<?php
-
-		}
-	}
-
-	if ($luna_user['g_id'] == FORUM_ADMIN)
-		$posts_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Posts table'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="num_posts" value="'.$user['num_posts'].'" maxlength="8" /></div></div>';
-	else
-		$posts_field = '';
-	
-
-?>
-</form>
-<form id="profile1" class="form-horizontal" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['User tools'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="form_sent" value="1" />
-			<fieldset>
-				<?php echo $posts_field ?>
-				<?php if ($luna_user['is_admmod']): ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Admin note'] ?></label>
-					<div class="col-sm-9">
-						<input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
-					</div>
-				</div>
-				<?php endif; ?>
-			</fieldset>
-		</div>
-	</div>
-</form>
-<?php
+	require FORUM_ROOT.'views/profile-admin.tpl.php';
 
 }
 else
 	message($lang['Bad request'], false, '404 Not Found');
-
-require FORUM_ROOT.'footer.php';

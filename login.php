@@ -130,7 +130,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 				{
 					if ($cur_hit['last_email_sent'] != '' && (time() - $cur_hit['last_email_sent']) < 3600 && (time() - $cur_hit['last_email_sent']) >= 0)
 					message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
-					
+
 					// Generate a new password and a new password activation code
 					$new_password = random_pass(8);
 					$new_password_key = random_pass(8);
@@ -148,52 +148,19 @@ else if ($action == 'forget' || $action == 'forget_2')
 				message($lang['Forget mail'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 			}
 			else
+			{
 				$errors[] = $lang['No email match'].' '.htmlspecialchars($email).'.';
 			}
 		}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Request pass']);
-	$required_fields = array('req_email' => $lang['Email']);
-	$focus_element = array('request_pass', 'req_email');
-	define ('FORUM_ACTIVE_PAGE', 'login');
-	require FORUM_ROOT.'header.php';
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Request pass']);
+		$required_fields = array('req_email' => $lang['Email']);
+		$focus_element = array('request_pass', 'req_email');
+		define ('FORUM_ACTIVE_PAGE', 'login');
+		require FORUM_ROOT.'header.php';
 
-// If there are errors, we display them
-if (!empty($errors))
-{
-
-?>
-<div id="posterror">
-	<h2><?php echo $lang['New password errors'] ?></h2>
-	<div class="error-info">
-		<p><?php echo $lang['New passworderrors info'] ?></p>
-		<ul class="error-list">
-<?php
-
-	foreach ($errors as $cur_error)
-		echo "\t\t\t\t".'<li><strong>'.$cur_error.'</strong></li>'."\n";
-?>
-		</ul>
-	</div>
-</div>
-
-<?php
-
-}
-?>
-<form class="form" id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">
-    <h1 class="form-heading"><?php echo $lang['Request pass'] ?></h1>
-    <fieldset>
-        <input type="hidden" name="form_sent" value="1" />
-        <label class="required"><input class="form-control" type="text" name="req_email" placeholder="<?php echo $lang['Email'] ?>" /></label>
-        <div class="pull-right" style="margin-top: 60px;">
-            <?php if (empty($errors)): ?><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a><?php endif; ?><input class="btn btn-primary" type="submit" name="request_pass" value="<?php echo $lang['Submit'] ?>" />
-        </div>
-    </fieldset>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+		require FORUM_ROOT.'views/login-forget.tpl.php';
+	}
 }
 
 
@@ -230,7 +197,7 @@ if (!empty($_SERVER['HTTP_REFERER']))
 
 if (!isset($redirect_url))
 	$redirect_url = 'index.php';
-else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))  
+else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
     $redirect_url .= '#p'.$matches[1];
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Login']);
@@ -239,29 +206,4 @@ $focus_element = array('login', 'req_username');
 define('FORUM_ACTIVE_PAGE', 'login');
 require FORUM_ROOT.'header.php';
 
-?>
-<form class="form" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
-    <fieldset>
-        <h1 class="form-heading"><?php echo $lang['Login'] ?></h1>
-        <input type="hidden" name="form_sent" value="1" />
-        <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
-        <div>
-            <input class="form-control top-form" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
-            <input class="form-control bottom-form" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" /> 
-        </div>
-        <div class="form-content">
-            <p class="actions"><?php if ($luna_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Register'] ?></a> &middot; <?php }; ?><a href="login.php?action=forget" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a></p>
-            <div class="control-group">
-                <div class="controls remember">
-                    <label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
-                </div>
-            </div>
-            <div class="control-group pull-right">
-                <input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
-            </div>
-        </div>
-    </fieldset>
-</form>
-<?php
-
-require FORUM_ROOT.'footer.php';
+require FORUM_ROOT.'views/login-form.tpl.php';

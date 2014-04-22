@@ -87,7 +87,7 @@ $cur_topic = $db->fetch_assoc($result);
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_topic['moderators'] != '') ? unserialize($cur_topic['moderators']) : array();
 $is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
-if ($is_admmod)  
+if ($is_admmod)
 $admin_ids = get_admin_ids();
 
 // Can we or can we not post replies?
@@ -167,26 +167,7 @@ define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-?>
-<h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
-<div class="row row-nav">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-			<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<?php echo $post_link ?>
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
-<div class="postview">
-<?php
-
+require FORUM_ROOT.'views/viewtopic-header.tpl.php';
 
 require FORUM_ROOT.'include/parser.php';
 
@@ -265,14 +246,14 @@ while ($cur_post = $db->fetch_assoc($result))
 
 				$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.luna_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a>';
 			}
-			
+
 
 			if ($luna_user['is_admmod'])
 			{
 				$user_actions[] = '<a class="btn btn-primary btn-xs" href="moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a>';
 			}
 		}
-			
+
 
 		if ($luna_user['is_admmod'])
 		{
@@ -326,11 +307,11 @@ while ($cur_post = $db->fetch_assoc($result))
 		} else {
 			$post_actions[] = '<a class="btn btn-danger btn-actions btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		}
-		if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))  
-		{  
-			$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';  
-			$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';  
-		}  
+		if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids))
+		{
+			$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
+			$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
+		}
 		$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 	}
 
@@ -348,57 +329,11 @@ while ($cur_post = $db->fetch_assoc($result))
 			$signature_cache[$cur_post['poster_id']] = $signature;
 		}
 	}
-	
-?>
-	<div id="p<?php echo $cur_post['id'] ?>" class="row topic <?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' onlypost'; ?><?php if ($cur_post['marked'] == true) echo ' marked'; ?>">
-		<div class="col-md-3">
-			<div class="profile-card">
-				<div class="profile-card-head">
-					<div class="user-avatar thumbnail <?php if (!$user_avatar) echo 'noavatar'?> <?php echo $is_online; ?>">
-						<?php if ($user_avatar != '') echo "\t\t\t\t\t\t".$user_avatar."\n"; ?>
-					</div>
-					<h2 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $username ?></h2>
-					<h3 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $user_title ?></h3>
-				</div>
-				<div class="profile-card-body hidden-sm hidden-xs">
-					<?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-9">
-			<div class="panel panel-default panel-topic">
-				<div class="panel-heading">
-					<div class="comment-arrow hidden-sm hidden-xs"></div>
-					<h3 class="panel-title"><span class="postnr">#<?php echo ($start_from + $post_count) ?><span class="pull-right"><a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h3>
-				</div>
-				<div class="panel-body">
-					<?php echo $cur_post['message']."\n" ?>
-					<?php if (($signature != '') || (!$luna_user['is_guest'])) echo '<hr />'; ?>
-					<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature">'.$signature.'</div>'."\n"; ?>
-					<?php if (!$luna_user['is_guest']) { ?><div class="pull-right post-actions btn-group"><?php if (count($post_actions)) echo "\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t\n\t\t\t\t\n" ?></div><?php } ?>
-				</div>
-			</div>
-		</div>
-	</div>
-<?php
+
+	require FORUM_ROOT.'views/viewtopic-posts.tpl.php';
 }
 ?>
-</div>
-<div class="row row-nav">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-			<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<?php echo $post_link ?>
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
+
 
 <?php
 
@@ -406,47 +341,9 @@ while ($cur_post = $db->fetch_assoc($result))
 if ($quickpost)
 {
 
-$cur_index = 1;
+	$cur_index = 1;
 
-?>
-<form id="quickpostform" method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Quick post'] ?></h3>
-        </div>
-        <fieldset class="quickpostfield">
-            <input type="hidden" name="form_sent" value="1" />
-<?php if ($luna_config['o_topic_subscriptions'] == '1' && ($luna_user['auto_notify'] == '1' || $cur_topic['is_subscribed'])): ?>						<input type="hidden" name="subscribe" value="1" />
-<?php endif; ?>
-<?php
-
-if ($luna_user['is_guest'])
-{
-	$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong>' : $lang['Email'];
-	$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
-
-?>
-            <label class="conl required hidden"><?php echo $lang['Guest name'] ?></label><input type="text" placeholder="<?php echo $lang['Guest name'] ?>" class="form-control" name="req_username" value="<?php if (isset($_POST['req_username'])) echo luna_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
-            <label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input type="text" placeholder="<?php echo $lang['Email'] ?>" class="form-control" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo luna_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
-<?php
-
-	echo "\t\t\t\t\t\t".'<label class="required hidden"><strong>'.$lang['Message'].' <span>'.$lang['Required'].'</span></strong></label>';
-}
-
-?>
-            <textarea placeholder="Start typing..." class="form-control tinymce" name="req_message" rows="7" tabindex="<?php echo $cur_index++ ?>"></textarea>
-        </fieldset>
-        <div class="panel-footer">
-            <div class="btn-group"><input class="btn btn-primary" onclick="tinyMCE.triggerSave(false);" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input class="btn btn-default" onclick="tinyMCE.triggerSave(false);" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div>
-			<ul class="bblinks">
-				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a></li>
-				<li><a class="label <?php echo ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a></li>
-				<li><a class="label <?php echo ($luna_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>" href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a></li>
-			</ul>
-        </div>
-    </div>
-</form>
-<?php
+	require FORUM_ROOT.'views/viewtopic-form_quickpost.tpl.php';
 
 }
 
@@ -456,4 +353,5 @@ if ($luna_config['o_topic_views'] == '1')
 
 $forum_id = $cur_topic['forum_id'];
 $footer_style = 'viewtopic';
+
 require FORUM_ROOT.'footer.php';

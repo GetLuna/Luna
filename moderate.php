@@ -32,7 +32,7 @@ if (isset($_GET['get_host']))
 
 		$ip = $db->result($result);
 	}
-	
+
 	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
 }
 
@@ -53,7 +53,7 @@ if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] == '0' || !a
 // Get topic/forum tracking data
 if (!$luna_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
-	
+
 // All other topic moderation features require a topic ID in GET
 if (isset($_GET['tid']))
 {
@@ -114,27 +114,8 @@ if (isset($_GET['tid']))
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
-?>
-<h2><?php echo $lang['Moderate'] ?></h2>
-<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Delete posts'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-                <p><?php echo $lang['Delete posts comply'] ?></p>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-            <input class="btn btn-primary" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </div>
-    </div>
-</form>
-<?php
+		require FORUM_ROOT.'views/moderate-delete_posts.tpl.php';
 
-		require FORUM_ROOT.'footer.php';
 	}
 	else if (isset($_POST['split_posts']) || isset($_POST['split_posts_comply']))
 	{
@@ -211,58 +192,7 @@ if (isset($_GET['tid']))
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
-?>
-<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
-<h2><?php echo $lang['Moderate'] ?></h2>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Split posts'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <input type="hidden" class="form-control" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Move to'] ?></label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="move_to_forum">
-<?php
-
-	$cur_category = 0;
-	while ($cur_forum = $db->fetch_assoc($result))
-	{
-		if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-		{
-			if ($cur_category)
-				echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-
-			echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
-			$cur_category = $cur_forum['cid'];
-		}
-
-		echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected="selected"' : '').'>'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
-	}
-
-?>
-							</optgroup>
-						</select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['New subject'] ?></label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="new_subject" maxlength="70" />
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-			<input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </div>
-    </div>
-</form>
-<?php
-
-		require FORUM_ROOT.'footer.php';
+		require FORUM_ROOT.'views/moderate-split_posts.tpl.php';
 	}
 
 
@@ -292,124 +222,7 @@ if (isset($_GET['tid']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-?>
-
-<div class="row row-nav-fix">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-			<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
-
-<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
-<?php
-
-	require FORUM_ROOT.'include/parser.php';
-
-	$post_count = 0; // Keep track of post numbers
-
-	// Retrieve a list of post IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
-
-	$post_ids = array();
-	for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
-		$post_ids[] = $cur_post_id;
-
-	// Retrieve the posts (and their respective poster)
-	$result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-
-	while ($cur_post = $db->fetch_assoc($result))
-	{
-		$post_count++;
-
-		// If the poster is a registered user
-		if ($cur_post['poster_id'] > 1)
-		{
-			if ($luna_user['g_view_users'] == '1')
-				$poster = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
-			else
-				$poster = luna_htmlspecialchars($cur_post['poster']);
-
-			// get_title() requires that an element 'username' be present in the array
-			$cur_post['username'] = $cur_post['poster'];
-			$user_title = get_title($cur_post);
-
-			if ($luna_config['o_censoring'] == '1')
-				$user_title = censor_words($user_title);
-		}
-		// If the poster is a guest (or a user that has been deleted)
-		else
-		{
-			$poster = luna_htmlspecialchars($cur_post['poster']);
-			$user_title = $lang['Guest'];
-		}
-
-		// Format the online indicator, those are ment as CSS classes
-		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
-
-		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
-		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
-
-?>
-<div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
-	<table class="table postview">
-        <tr>
-            <td class="col-lg-2 user-data">
-                <dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $poster ?></strong></dd><?php echo $user_title ?>
-            </td>
-            <td class="col-lg-10 post-content">
-                <span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
-                <div class="postmsg">
-                    <?php echo $cur_post['message']."\n" ?>
-                    <?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
-                </div>
-            </td>
-        </tr>
-        <?php if (!$luna_user['is_guest']) { ?>
-        <tr>
-            <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-                <?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<div class="checkbox pull-right" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label></div>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
-            </td>
-        </tr>
-        <?php } ?>
-	</table>
-</div>
-
-<?php
-
-	}
-
-?>
-
-<div class="row row-nav-fix">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-			<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-        	<div class="btn-group"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></div>
-		</ul>
-	</div>
-</div>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/moderate-topic.tpl.php';
 }
 
 
@@ -492,59 +305,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-?>
-<h2><?php echo $lang['Moderate'] ?></h2>
-<form class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo ($action == 'single') ? $lang['Move topic'] : $lang['Move topics'] ?></h3>
-        </div>
-        <div class="panel-body">
-			<input type="hidden" name="topics" value="<?php echo $topics ?>" />
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Move to'] ?></label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="move_to_forum">
-<?php
-
-	$cur_category = 0;
-	while ($cur_forum = $db->fetch_assoc($result))
-	{
-		if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-		{
-			if ($cur_category)
-				echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-
-			echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
-			$cur_category = $cur_forum['cid'];
-		}
-
-		if ($cur_forum['fid'] != $fid)
-			echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
-	}
-
-?>
-                            </optgroup>
-                        </select>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Leave redirect'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-            <input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </div>
-    </div>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/moderate-move_topics.tpl.php';
 }
 
 // Merge two or more topics
@@ -622,32 +383,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-?>
-<h2><?php echo $lang['Moderate'] ?></h2>
-<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Merge topics'] ?></h3>
-        </div>
-        <div class="panel-body">
-			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
-            <fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="with_redirect" value="1" />
-                        <?php echo $lang['Leave redirect'] ?>
-                    </label>
-                </div>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-			<input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php echo $lang['Merge'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </div>
-    </div>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/moderate-merge_topics.tpl.php';
 }
 
 // Delete one or more topics
@@ -671,14 +407,14 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 		if ($db->num_rows($result) != substr_count($topics, ',') + 1)
 			message($lang['Bad request'], false, '404 Not Found');
-			
-		// Verify that the posts are not by admins  
-		if ($luna_user['g_id'] != FORUM_ADMIN)  
-		{  
+
+		// Verify that the posts are not by admins
+		if ($luna_user['g_id'] != FORUM_ADMIN)
+		{
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result))  
-				message($lang['No permission'], false, '403 Forbidden'); 
-		}  
+			if ($db->num_rows($result))
+				message($lang['No permission'], false, '403 Forbidden');
+		}
 
 
 		// Delete the topics and any redirect topics
@@ -711,27 +447,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-?>
-<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-    <h2><?php echo $lang['Moderate'] ?></h2>
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Delete topics'] ?></h3>
-        </div>
-        <div class="panel-body">
-			<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
-            <fieldset>
-                <p><?php echo $lang['Delete topics comply'] ?></p>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-			<input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
-        </div>
-    </div>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'views/moderate-delete_topics.tpl.php';
 }
 
 
@@ -843,168 +559,4 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_h
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-?>
-<div class="row row-nav-fix">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
-
-<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
-    
-<div class="forum-box">
-    <div class="row forum-header">
-        <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
-        <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
-        <?php if ($luna_config['o_topic_views'] == '1'): ?>
-            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Views'] ?></p></div>
-        <?php endif; ?>
-        <div class="col-xs-3 hidden-xs"><?php echo $lang['Last post'] ?></div>
-		<div class="col-xs-1"><p class="text-center"><?php echo $lang['Select'] ?></p></div>
-    </div>
-<?php
-
-
-// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$fid.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
-
-// If there are topics in this forum
-if ($db->num_rows($result))
-{
-	$topic_ids = array();
-	for ($i = 0;$cur_topic_id = $db->result($result, $i);$i++)
-		$topic_ids[] = $cur_topic_id;
-
-	// Select topics
-	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
-
-	$button_status = '';
-	$topic_count = 0;
-	while ($cur_topic = $db->fetch_assoc($result))
-	{
-
-		++$topic_count;
-		$status_text = array();
-		$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
-		$icon_type = 'icon';
-
-		if (is_null($cur_topic['moved_to']))
-		{
-			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
-			$ghost_topic = false;
-		}
-		else
-		{
-			$last_post = '- - -';
-			$ghost_topic = true;
-		}
-
-		if ($luna_config['o_censoring'] == '1')
-			$cur_topic['subject'] = censor_words($cur_topic['subject']);
-
-		if ($cur_topic['sticky'] == '1')
-		{
-			$item_status .= ' isticky';
-			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
-		}
-
-		if ($cur_topic['moved_to'] != 0)
-		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-			$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
-			$item_status .= ' imoved';
-		}
-		else if ($cur_topic['closed'] == '0')
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-		else
-		{
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
-			$item_status .= ' iclosed';
-		}
-
-		if (!$ghost_topic && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$fid]) || $tracked_topics['forums'][$fid] < $cur_topic['last_post']))
-		{
-			$item_status .= ' inew';
-			$icon_type = 'icon icon-new';
-			$subject = '<strong>'.$subject.'</strong>';
-			$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
-		}
-		else
-			$subject_new_posts = null;
-
-		// Insert the status text before the subject
-		$subject = implode(' ', $status_text).' '.$subject;
-
-		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
-
-		if ($num_pages_topic > 1)
-			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
-		else
-			$subject_multipage = null;
-
-		// Should we show the "New posts" and/or the multipage links?
-		if (!empty($subject_new_posts) || !empty($subject_multipage))
-		{
-			$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
-			$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
-		}
-
-?>
-    <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-xs-6">
-            <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
-            <div class="tclcon">
-                <div>
-                    <?php echo $subject."\n" ?>
-                </div>
-            </div>
-        </div>
-					<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></p></div>
-<?php if ($luna_config['o_topic_views'] == '1'): ?>					<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></p></div>
-<?php endif; ?>					<div class="col-xs-3 hidden-xs"><?php echo $last_post ?></div>
-					<div class="col-xs-1"><p class="text-center"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></p></div>
-    </div>
-<?php
-
-	}
-}
-else
-{
-	$colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
-	$button_status = ' disabled="disabled"';
-	echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.$lang['Empty forum'].'</td></tr>'."\n";
-}
-
-?>
-</div>
-
-
-<div class="row row-nav-fix">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-			<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-            <div class="btn-toolbar"><div class="btn-group"><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /></div><div class="btn-group"><input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></div></div>
-		</ul>
-	</div>
-</div>
-</form>
-<?php
-
-require FORUM_ROOT.'footer.php';
+require FORUM_ROOT.'views/moderate-form.tpl.php';
