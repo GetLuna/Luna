@@ -327,7 +327,7 @@ if ($luna_config['o_users_online'] == '1')
 		<div class="row">
     <?php
 	if ($num_users > 0)
-		echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].': </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
+		echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].' </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
 }
 
 ?>
