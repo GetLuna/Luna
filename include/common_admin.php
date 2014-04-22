@@ -29,7 +29,7 @@ function generate_admin_menu($page = '')
 	$is_admin = $luna_user['g_id'] == FORUM_ADMIN ? true : false;
 
 ?>
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top navbar-default">
     <div class="nav-inner">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
