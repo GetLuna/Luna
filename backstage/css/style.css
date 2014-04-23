@@ -1,3 +1,42 @@
+/* General fixes */
 body {
 	margin-top: 40px;
+}
+
+/* Navar */
+.navbar {
+	background: #14a3ff;
+	border: none;	
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-brand {
+	background: none;
+	font-size: 20px;
+	text-transform: lowercase;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+	color: #fff;
+	background: #14a3ff;
+}
+
+.navbar-default .navbar-collapse {
+	border: none;
+	box-shadow: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: rgba(255,255,255,0.50);
+}
+
+.navbar-default .navbar-toggle {
+	border: none;
+}
+
+.navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	background-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #14a3ff;
 }
