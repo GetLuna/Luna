@@ -55,6 +55,32 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #14a3ff;
 }
 
+/* Panels */
+.panel-default .panel-heading {
+	color: #fff;
+	background: #14a3ff;
+}
+
+.panel-heading {
+	height: 38px;
+}
+
+.panel-heading, .panel {
+	border: none;
+}
+
+.panel-body, .panel-footer, .panel .table {
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	border-top: none;
+}
+
+.panel > :last-child {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
 /* Buttons */
 .panel-title .btn {
 	margin-top: -10px;
