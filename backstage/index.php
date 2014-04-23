@@ -132,7 +132,7 @@ else
 
 ?>
                         <tr>
-                            <td colspan="4"><p><?php echo $lang['No new reports'] ?></p></td>
+                            <td colspan="4"><?php echo $lang['No new reports'] ?></td>
                         </tr>
 <?php
 
@@ -171,17 +171,15 @@ else
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang['Statistics head'] ?></h3>
             </div>
-            <div class="panel-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo $lang['posts'] ?></h4></td>
-                            <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo $lang['topics'] ?></h4></td>
-                            <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo $lang['users'] ?></h4></td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo $lang['posts'] ?></h4></td>
+                        <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo $lang['topics'] ?></h4></td>
+                        <td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo $lang['users'] ?></h4></td>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
