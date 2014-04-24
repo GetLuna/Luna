@@ -191,12 +191,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Alerts */
-.alert {
-	text-shadow: none;
-	box-shadow: none;
-	border-bottom-width: 5px;
-}
-
 .alert-success {
 	background: #e5ffb8;
 	border-color: #76b900;
