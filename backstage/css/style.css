@@ -1,3 +1,11 @@
+/*
+ * Copyright ModernBB Group
+ * Bootstrap Template: 384
+ * Version:            4.0
+ * Based on:           Trent v1.1 (http://studio384.be/trent.php)
+ * Since:              3.3
+ */
+
 /* General fixes */
 body {
 	margin-top: 40px;
@@ -180,4 +188,51 @@ h1, h2, h3, h4, h5, h6 {
 
 .label-info {
 	background-color: #14a3ff;
+}
+
+/* Alerts */
+.alert {
+	text-shadow: none;
+	box-shadow: none;
+	border-bottom-width: 5px;
+}
+
+.alert-success {
+	background: #e5ffb8;
+	border-color: #76b900;
+	color: #659e00;
+}
+
+.alert-success .alert-link {
+	color: #4a7400;
+}
+
+.alert-info {
+	background: #daf0ff;
+	border-color: #14a3ff;
+	color: #0085da;
+}
+
+.alert-info .alert-link {
+	color: #006fb7;
+}
+
+.alert-warning {
+	background: #fff6d9;
+	border-color: #ffc000;
+	color: #dba500;
+}
+
+.alert-warning .alert-link {
+	color: #c79600;
+}
+
+.alert-danger {
+	background: #ffe3d5;
+	border-color: #ff5400;
+	color: #d34600;
+}
+
+.alert-danger .alert-link {
+	color: #a93800;
 }
