@@ -70,7 +70,7 @@ require FORUM_ROOT.'backstage/header.php';
 <form class="form-horizontal" method="post" action="permissions.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Posting subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Posting subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
@@ -125,7 +125,7 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Signatures subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Signatures subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -171,7 +171,7 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Registration'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Registration'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>

@@ -74,7 +74,7 @@ generate_admin_menu('features');
     <h2><?php echo $lang['Features head'] ?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['General'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['General'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
@@ -147,7 +147,7 @@ generate_admin_menu('features');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['First run'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['First run'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
@@ -181,7 +181,7 @@ generate_admin_menu('features');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Advanced'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Advanced'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />

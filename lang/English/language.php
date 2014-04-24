@@ -1373,7 +1373,6 @@ $lang = array(
 'Remove'				=>	'Remove',
 'Yes'					=>	'Yes',
 'No'					=>	'No',
-'Save changes'			=>	'Save changes',
 'here'					=>	'here',
 'Action'				=>	'Action',
 'Maintenance mode'		=>	'maintenance mode', // Used for link text in more than one file

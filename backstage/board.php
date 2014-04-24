@@ -211,7 +211,7 @@ else if (isset($_GET['edit_forum']))
 <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
@@ -267,7 +267,7 @@ else if (isset($_GET['edit_forum']))
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Group permissions subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Group permissions subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
         </div>
 		<fieldset>
 			<div class="panel-body">
