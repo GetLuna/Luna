@@ -145,3 +145,39 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #008be4;
 	border-color: #007dce;
 }
+
+/* Pills */
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+	background-color: #0072dc;
+}
+
+/* Label */
+.label {
+    letter-spacing: 0.6px;
+    padding: .4em .6em .3em;
+}
+
+.label-default {
+	background-color: #ddd;
+	color: #6e6e6e;
+}
+
+.label-primary {
+	background-color: #0072dc;
+}
+
+.label-success {
+	background-color: #76b900;
+}
+
+.label-warning {
+	background-color: #ffc000;
+}
+
+.label-danger {
+	background-color: #ff5400;
+}
+
+.label-info {
+	background-color: #14a3ff;
+}
