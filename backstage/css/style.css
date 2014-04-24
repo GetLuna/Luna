@@ -5,8 +5,12 @@ body {
 
 /* Text */
 h1, h2, h3, h4, h5, h6, .btn, .navbar {
-	font-family: "Segoe UI Light", "Segoe UI";
-	font-weight: 100 !important;
+	font-family: "Segoe UI Semilight", "Segoe UI";
+	font-weight: 300;
+}
+
+.navbar {
+	letter-spacing: .5px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -90,4 +94,14 @@ h1, h2, h3, h4, h5, h6 {
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 	border: none;
+}
+
+.btn-primary {
+	background-color: #0072dc;
+	border-color: #005aad;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #005aad;
+	border-color: #004688;
 }
