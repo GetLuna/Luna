@@ -230,3 +230,29 @@ h1, h2, h3, h4, h5, h6 {
 .alert-danger .alert-link {
 	color: #a93800;
 }
+
+/* Progress bar */
+.progress {
+	box-shadow: none;
+}
+
+.progress-bar {
+	background-color: #0072dc;
+	box-shadow: none;
+}
+
+.progress-bar-success {
+	background-color: #76b900;
+}
+
+.progress-bar-warning {
+	background-color: #ffc000;
+}
+
+.progress-bar-danger {
+	background-color: #ff5400;
+}
+
+.progress-bar-info {
+	background-color: #14a3ff;
+}
