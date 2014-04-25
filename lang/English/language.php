@@ -818,11 +818,10 @@ $lang = array(
 'Timeout error message'				=>	'The value of "Timeout online" must be smaller than the value of "Timeout visit".',
 
 // Language for appearance.php
-'General appearance'				=>	'Global appearance',
 'Header appearance'					=>	'Header appearance',
 'Footer appearance'					=>	'Footer appearance',
 'Display head'						=>	'Display settings',
-'Default style help'				=>	'The default style for guests and users who haven\'t changed from the default in their profile.',
+'Default style help'				=>	'The default style will be used by new users and guests. Users can change the style they use, so changing the default style here won\'t change the design for already existing users. You can also force a style, this will reset the style setting for every user except the guest user (who will use the style that is set as default).',
 'Version number help'				=>	'Show ModernBB version number in footer.',
 'Info in posts help'				=>	'Show information about the poster under the username in topic view. The information affected is location, post count and the contact links.',
 'Post count help'					=>	'Show the number of posts a user has made in topic view, profile and user list.',
