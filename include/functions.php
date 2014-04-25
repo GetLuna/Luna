@@ -74,7 +74,7 @@ function check_cookie(&$luna_user)
 			$luna_user['language'] = $luna_config['o_default_lang'];
 
 		// Set a default style if the user selected style no longer exists
-		if (!file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'.css'))
+		if (!file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/style.css'))
 			$luna_user['style'] = $luna_config['o_default_style'];
 
 		if (!$luna_user['disp_topics'])
@@ -1367,7 +1367,7 @@ function maintenance_message()
 
 ?>
 <title><?php echo generate_page_title($page_title) ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $luna_user['style'].'.css' ?>" />
+<link rel="stylesheet" type="text/css" href="style/<?php echo $luna_user['style'].'/style.css' ?>" />
 <?php
 
 	$tpl_temp = trim(ob_get_contents());
