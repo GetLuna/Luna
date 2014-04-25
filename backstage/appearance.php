@@ -102,36 +102,6 @@ generate_admin_menu('display');
     <input type="hidden" name="form_sent" value="1" />
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['General appearance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Default style'] ?></label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="form[default_style]">
-<?php
-
-		$styles = forum_list_styles();
-
-		foreach ($styles as $temp)
-		{
-			if ($luna_config['o_default_style'] == $temp)
-				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
-			else
-				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-		}
-
-?>
-                        </select>
-						<span class="help-block"><?php echo $lang['Default style help'] ?></span>
-                    </div>
-                </div>
-            </fieldset>
-		</div>
-	</div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Header appearance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
