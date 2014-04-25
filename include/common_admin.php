@@ -72,10 +72,12 @@ function generate_admin_menu($page = '')
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="settings.php"><?php echo $lang['Global'] ?></a></li>
-                        <li><a href="appearance.php"><?php echo $lang['Appearance'] ?></a></li>
                         <li><a href="features.php"><?php echo $lang['Features'] ?></a></li>
                         <li><a href="registration.php"><?php echo $lang['Registration'] ?></a></li>
                         <li><a href="email.php"><?php echo $lang['Email'] ?></a></li>
+                        <li class="divider"></li>
+                        <li><a href="appearance.php"><?php echo $lang['Appearance'] ?></a></li>
+                        <li><a href="style.php"><?php echo $lang['Style'] ?></a></li>
                         <li class="divider"></li>
                         <li><a href="maintenance.php"><?php echo $lang['Maintenance'] ?></a></li>
                         <li><a href="database.php"><?php echo $lang['Database'] ?></a></li>
