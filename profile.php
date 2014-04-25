@@ -1483,7 +1483,7 @@ if (count($languages) > 1)
 				</div>
 <?php
 	}
-	if ($luna_user['is_admmod']) {
+	/* if ($luna_user['is_admmod']) {
 		$backstage_styles = backstage_list_styles();
 
 		// Only display the style selection box if there's more than one style available
@@ -1510,7 +1510,7 @@ if (count($languages) > 1)
 				</div>
 <?php
 		}
-	}
+	} */
 	if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1')): ?>
 				<hr />
 				<div class="form-group">

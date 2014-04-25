@@ -1656,8 +1656,8 @@ function forum_list_styles()
 		if ($entry{0} == '.')
 			continue;
 
-		if (substr($entry, -4) == '.css')
-			$styles[] = substr($entry, 0, -4);
+		if (is_dir(FORUM_ROOT.'style/'.$entry) && file_exists(FORUM_ROOT.'style/'.$entry.'/style.css'))
+			$styles[] = $entry;
 	}
 	$d->close();
 
