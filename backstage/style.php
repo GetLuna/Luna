@@ -52,14 +52,14 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('style');
 
 ?>
-<h2>Style</h2>
+<h2><?php echo $lang['Style'] ?></h2>
 <form class="form-horizontal" method="post" action="permissions.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Default style<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Default style'] ?></h3>
         </div>
         <div class="panel-body">
-			<p>The default style will be used by new users and guests. Users can change the style they use, so changing the default style here won't change the design for already existing users. You can also force a style, this will reset the style setting for every user except the guest user (who will use the style that is set as default).</p>
+			<p><?php echo $lang['Default style help'] ?></p>
             <fieldset>
 				<div class="row">
 <?php
@@ -69,7 +69,7 @@ require FORUM_ROOT.'backstage/header.php';
 		{
 ?>
 					<?php include FORUM_ROOT.'/style/'.$temp.'/information.php'; $style_info = new SimpleXMLElement($xmlstr); ?> 
-					<div class="col-sm-4 style-entry">
+					<div class="col-xs-12 col-sm-6 col-md-4 style-entry">
 						<div class="modal fade" id="<?php echo $temp ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $temp ?>" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
