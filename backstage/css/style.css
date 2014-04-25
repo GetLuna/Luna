@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6, .btn, .navbar {
 	letter-spacing: .5px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: "Segoe UI Light", "Segoe UI Semilight", "Segoe UI";
 	color: #14a3ff;
 }
@@ -153,6 +153,44 @@ h1, h2, h3, h4, h5, h6 {
 .btn-info:hover, .btn-info:focus, .btn-info:active, .active.btn-info, .open .btn-info.dropdown-toggle {
 	background-color: #008be4;
 	border-color: #007dce;
+}
+
+/* Styles page */
+@media all and (min-width:1200px) {
+	.modal-lg {
+		width: 1200px;
+	}
+}
+
+.style-entry {
+	margin-bottom: -15px;
+}
+
+.thumbnail {
+	margin-bottom: 0;
+}
+
+.panel-style .thumbnail {
+	border: none;
+	padding: 0;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.panel-style .thumbnail img {
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.panel-style .panel-footer {
+	border: none;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.panel-style {
+	border: 1px #c4c4c4 solid;
+	border-radius: 8px;
 }
 
 /* Pills */
