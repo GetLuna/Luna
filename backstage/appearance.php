@@ -63,10 +63,6 @@ if (isset($_POST['form_sent']))
 	else if ($form['disp_posts_default'] > 75)
 		$form['disp_posts_default'] = 75;
 
-	$styles = forum_list_styles();
-	if (!in_array($form['default_style'], $styles))
-		message($lang['Bad request']);
-
 	foreach ($form as $key => $input)
 	{
 		// Only update values that have changed
@@ -91,7 +87,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/appearance.php');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Appearance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('display');
