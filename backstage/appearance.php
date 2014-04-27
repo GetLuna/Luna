@@ -103,15 +103,15 @@ generate_admin_menu('display');
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Menu items head'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Menu items head'] ?></label>
+                    <div class="col-sm-9">
                         <textarea class="form-control" name="form[additional_navlinks]" rows="3"><?php echo luna_htmlspecialchars($luna_config['o_additional_navlinks']) ?></textarea>
 						<span class="help-block"><?php echo $lang['Menu items help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Default menu'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Default menu'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
 								<input type="checkbox" name="form[show_index]" value="1" <?php if ($luna_config['o_show_index'] == '1') echo ' checked="checked"' ?> />
@@ -139,8 +139,8 @@ generate_admin_menu('display');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Title settings head'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Title settings head'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
 								<input type="checkbox" name="form[header_title]" value="1" <?php if ($luna_config['o_header_title'] == '1') echo ' checked="checked"' ?> />
@@ -156,8 +156,8 @@ generate_admin_menu('display');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Description settings head'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Description settings head'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
 								<input type="checkbox" name="form[header_desc]" value="1" <?php if ($luna_config['o_header_desc'] == '1') echo ' checked="checked"' ?> />
@@ -191,8 +191,8 @@ generate_admin_menu('display');
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['User profile head'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['User profile head'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
 								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />
@@ -208,8 +208,8 @@ generate_admin_menu('display');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Topics and posts'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Topics and posts'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[smilies]" value="1" <?php if ($luna_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
@@ -231,8 +231,8 @@ generate_admin_menu('display');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Index panels head'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Index panels head'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[show_index_stats]" value="1" <?php if ($luna_config['o_show_index_stats'] == '1') echo ' checked="checked"' ?> />
@@ -243,36 +243,36 @@ generate_admin_menu('display');
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Topic review label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Topic review label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $luna_config['o_topic_review'] ?>" />
                         <span class="help-block"><?php echo $lang['Topic review help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Topics'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Topics'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $luna_config['o_disp_topics_default'] ?>" />
                         <span class="help-block"><?php echo $lang['Topics per page help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Posts per page label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Posts per page label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $luna_config['o_disp_posts_default'] ?>" />
                         <span class="help-block"><?php echo $lang['Posts per page help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Indent label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Indent label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
                         <span class="help-block"><?php echo $lang['Indent help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Quote depth label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Quote depth label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
                         <span class="help-block"><?php echo $lang['Quote depth help'] ?></span>
                     </div>

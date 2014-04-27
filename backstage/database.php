@@ -671,8 +671,8 @@ require FORUM_ROOT.'backstage/header.php';
             <fieldset>
                 <p><?php echo $lang['Backup info 1'] ?></p>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Backup type'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Backup type'] ?></label>
+                    <div class="col-sm-9">
 						<label class="radio-inline">
                             <input type="radio" name="backup_type" value="full" checked="checked" />
                             <?php echo $lang['Full'] ?>
@@ -689,8 +689,8 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Gzip compression'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Gzip compression'] ?></label>
+                    <div class="col-sm-9">
 						<label class="radio-inline">
                             <input type="radio" name="gzipcompress" value="1" />
                             <?php echo $lang['Yes'] ?>

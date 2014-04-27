@@ -114,22 +114,22 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
     <?php if ($mode == 'edit'): ?>				<input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" />
     <?php endif; ?>				<fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Username'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="ban_user" maxlength="25" value="<?php if (isset($ban_user)) echo luna_htmlspecialchars($ban_user); ?>" tabindex="1" />
 						<span class="help-block"><?php echo $lang['Username help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['IP label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['IP label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="ban_ip" maxlength="255" value="<?php if (isset($ban_ip)) echo luna_htmlspecialchars($ban_ip); ?>" tabindex="2" />
 						<span class="help-block"><?php echo $lang['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang['IP help link'], '<a href="users.php?ip_stats='.$user_id.'">'.$lang['here'].'</a>') ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) echo $ban_email; ?>" tabindex="3" />
 						<span class="help-block"><?php echo $lang['E-mail help'] ?></span>
                     </div>
@@ -145,15 +145,15 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Ban message label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Ban message label'] ?></label>
+                    <div class="col-sm-9">
                             <input type="text" class="form-control" name="ban_message" maxlength="255" value="<?php if (isset($ban_message)) echo luna_htmlspecialchars($ban_message); ?>" tabindex="4" />
 						<span class="help-block"><?php echo $lang['Ban message help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Expire date label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Expire date label'] ?></label>
+                    <div class="col-sm-9">
                             <input type="text" class="form-control" name="ban_expire" maxlength="10" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
 						<span class="help-block"><?php echo $lang['Expire date help'] ?></span>
                     </div>

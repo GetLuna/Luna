@@ -76,8 +76,8 @@ require FORUM_ROOT.'backstage/header.php';
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['BBCode'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['BBCode'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[message_bbcode]" value="1" <?php if ($luna_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> />
@@ -93,8 +93,8 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['All caps'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['All caps'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> />
@@ -110,8 +110,8 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Guests'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Guests'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> />
@@ -130,8 +130,8 @@ require FORUM_ROOT.'backstage/header.php';
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['BBCode'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['BBCode'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($luna_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />
@@ -153,15 +153,15 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Max sig length label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig length label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['p_sig_length'] ?>" />
                         <span class="help-block"><?php echo $lang['Max sig length help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Max sig lines label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig lines label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['p_sig_lines'] ?>" />
                         <span class="help-block"><?php echo $lang['Max sig lines help'] ?></span>
                     </div>

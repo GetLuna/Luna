@@ -70,14 +70,14 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
         <?php endif; ?>					<fieldset>
                 <p><?php echo $lang['Group settings info'] ?></p>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Group title label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Group title label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="req_title" maxlength="50" value="<?php if ($mode == 'edit') echo luna_htmlspecialchars($group['g_title']); ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['User title label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['User title label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo luna_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
                         <span class="help-block"><?php echo $lang['User title help'] ?></span>
                     </div>
@@ -85,8 +85,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <hr />
     <?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"> <?php echo $lang['Mod privileges label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"> <?php echo $lang['Mod privileges label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked="checked"' ?> tabindex="5" />
@@ -96,8 +96,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Edit profile label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Edit profile label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked="checked"' ?> tabindex="7" />
@@ -107,8 +107,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Rename users label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Rename users label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked="checked"' ?> tabindex="9" />
@@ -118,8 +118,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Change passwords label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Change passwords label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked="checked"' ?> tabindex="11" />
@@ -129,8 +129,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Ban users'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Ban users'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked="checked"' ?> tabindex="13" />
@@ -142,8 +142,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <hr />
     <?php endif; endif; ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Read board label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Read board label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked="checked"' ?> tabindex="15" />
@@ -153,8 +153,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['View user info label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['View user info label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked="checked"' ?> tabindex="17" />
@@ -164,8 +164,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Post replies label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Post replies label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked="checked"' ?> tabindex="19" />
@@ -175,8 +175,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Post topics label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Post topics label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked="checked"' ?> tabindex="21" />
@@ -188,8 +188,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <hr />
     <?php if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Edit posts label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Edit posts label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked="checked"' ?> tabindex="23" />
@@ -199,8 +199,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Delete posts'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Delete posts'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked="checked"' ?> tabindex="25" />
@@ -210,8 +210,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Delete topics'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Delete topics'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked="checked"' ?> tabindex="27" />
@@ -224,8 +224,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
     <?php endif;
     if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Set own title label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Set own title label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked="checked"' ?> tabindex="31" />
@@ -237,8 +237,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <hr />
     <?php endif; ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['User search label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['User search label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked="checked"' ?> tabindex="33" />
@@ -248,8 +248,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['User list search label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['User list search label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked="checked"' ?> tabindex="35" />
@@ -261,8 +261,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <hr />
     <?php if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Send e-mails label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Send e-mails label'] ?></label>
+                    <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
                                 <input type="checkbox" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked="checked"' ?> tabindex="37" />
@@ -274,30 +274,30 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
                 <hr />
     <?php endif; ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Post flood label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Post flood label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="post_flood" maxlength="4" value="<?php echo $group['g_post_flood'] ?>" tabindex="35" />
                         <span class="help-block"><?php echo $lang['Post flood help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Search flood label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Search flood label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="search_flood" maxlength="4" value="<?php echo $group['g_search_flood'] ?>" tabindex="36" />
                         <span class="help-block"><?php echo $lang['Search flood help'] ?></span>
                     </div>
                 </div>
     <?php if ($group['g_id'] != FORUM_GUEST): ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['E-mail flood label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['E-mail flood label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="email_flood" maxlength="4" value="<?php echo $group['g_email_flood'] ?>" tabindex="37" />
                         <span class="help-block"><?php echo $lang['E-mail flood help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Report flood label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Report flood label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="report_flood" maxlength="4" value="<?php echo $group['g_report_flood'] ?>" tabindex="38" />
                         <span class="help-block"><?php echo $lang['Report flood help'] ?></span>
                     </div>

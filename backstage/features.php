@@ -80,8 +80,8 @@ generate_admin_menu('features');
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Topics and posts'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Topics and posts'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[quickpost]" value="1" <?php if ($luna_config['o_quickpost'] == '1') echo ' checked="checked"' ?> />
@@ -109,8 +109,8 @@ generate_admin_menu('features');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['User features'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['User features'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[users_online]" value="1" <?php if ($luna_config['o_users_online'] == '1') echo ' checked="checked"' ?> />
@@ -132,8 +132,8 @@ generate_admin_menu('features');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Others'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Others'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />
@@ -153,8 +153,8 @@ generate_admin_menu('features');
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['General settings'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['General settings'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[show_first_run]" value="1" <?php if ($luna_config['o_show_first_run'] == '1') echo ' checked="checked"' ?> />
@@ -170,8 +170,8 @@ generate_admin_menu('features');
 					</div>
 				</div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Welcome text'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Welcome text'] ?></label>
+                    <div class="col-sm-9">
 						<input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
 						<span class="help-block"><?php echo $lang['First run help message'] ?></span>           
                     </div>

@@ -216,20 +216,20 @@ else if (isset($_GET['edit_forum']))
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Forum name label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Forum name label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Forum description label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Forum description label'] ?></label>
+                    <div class="col-sm-9">
                         <textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Category label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Category label'] ?></label>
+                    <div class="col-sm-9">
 						<select class="form-control" name="cat_id" tabindex="3">
 <?php
 
@@ -245,8 +245,8 @@ else if (isset($_GET['edit_forum']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Sort by label'] ?></label>
-					<div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Sort by label'] ?></label>
+					<div class="col-sm-9">
                         <select class="form-control" name="sort_by" tabindex="4">
                             <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected="selected"' ?>><?php echo $lang['Last post'] ?></option>
                             <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected="selected"' ?>><?php echo $lang['Topic start'] ?></option>
@@ -256,8 +256,8 @@ else if (isset($_GET['edit_forum']))
                 </div>
 				<?php if (($cur_forum['num_topics']) == '0'): ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Redirect label'] ?></label>
-					<div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Redirect label'] ?></label>
+					<div class="col-sm-9">
                         <?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" maxlength="100" value="'.luna_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?>
                     </div>
                 </div>
