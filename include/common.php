@@ -58,7 +58,7 @@ if (!defined('FORUM'))
 $luna_start = get_microtime();
 
 // Make sure PHP reports all errors except E_NOTICE. ModernBB supports E_ALL, but a lot of scripts it may interact with, do not
-error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_NOTICE);
 
 // Force POSIX locale (to prevent functions such as strtolower() from messing up UTF-8 strings)
 setlocale(LC_CTYPE, 'C');
