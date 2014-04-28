@@ -653,6 +653,10 @@ $lang = array(
 
 // Results
 'Search results'					=>	'Search results',
+'Quick search show_new'				=>	'New',
+'Quick search show_recent'			=>	'Active',
+'Quick search show_unanswered'		=>	'Unanswered',
+'Quick search show_replies'			=>	'Posted',
 'Quick search show_user_topics'		=>	'Topics by %s',
 'Quick search show_user_posts'		=>	'Posts by %s',
 'Quick search show_subscriptions'	=>	'Subscribed by %s',

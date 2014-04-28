@@ -684,14 +684,14 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 	{
 		if ($link == '' || $link == $url)
 		{
-			$url = luna_htmlspecialchars_decode($url);
+			$url = pun_htmlspecialchars_decode($url);
 			$link = utf8_strlen($url) > 55 ? utf8_substr($url, 0 , 39).' … '.utf8_substr($url, -10) : $url;
-			$link = luna_htmlspecialchars($link);
+			$link = pun_htmlspecialchars($link);
 		}
 		else
 			$link = stripslashes($link);
 
-		return '<a href="'.$full_url.'" target="_blank" rel="nofollow">'.$link.'</a>';
+		return '<a href="'.$full_url.'" rel="nofollow">'.$link.'</a>';
 	}
 }
 

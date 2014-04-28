@@ -91,7 +91,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/appearance.php');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Appearance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('display');

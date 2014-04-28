@@ -23,7 +23,6 @@ body, html {
 }
 
 footer {
-	padding-top: 10px;
 	padding-bottom: 15px;
 }
 
@@ -72,6 +71,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .col-profile {
 	padding-right: 0;
+}
+
+@media screen and (max-width: 991px) {
+	#userlist .col-sm-12 {
+		margin-bottom: 10px;
+	}
 }
 
 /* Navbar profile pane */
