@@ -224,7 +224,7 @@ else if (isset($_GET['edit_forum']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Forum description label'] ?></label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
+                        <textarea class="form-control tinytinymce" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -499,10 +499,7 @@ require FORUM_ROOT.'backstage/header.php';
 								</span>
 							</div>
 						</div>
-						<span class="help-block"><?php echo $lang['Add forum help'] ?></span>
-            <?php }
-	if (!$db->num_rows($result) > 0) {
-		echo $lang['No categories exist'];
+<?php
 	}
 ?>
 					</fieldset>
@@ -524,7 +521,6 @@ require FORUM_ROOT.'backstage/header.php';
 								<input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add'] ?>" tabindex="2" />
 							</span>
 						</div>
-						<span class="help-block"><?php echo $lang['Add category help'] ?></span>
 					</fieldset>
 				</form>
 			</div>
@@ -550,7 +546,6 @@ require FORUM_ROOT.'backstage/header.php';
 								<input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang['Delete'] ?>" tabindex="4" />
 							</span>
 						</div>
-						<span class="help-block"><?php echo $lang['Delete category help'] ?></span>
 					</fieldset>
 				</form>
 			</div>

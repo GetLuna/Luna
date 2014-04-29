@@ -685,7 +685,6 @@ require FORUM_ROOT.'backstage/header.php';
                             <input type="radio" name="backup_type" value="data" />
                             <?php echo $lang['Data only'] ?>
                         </label>
-						<span class="help-block"><?php echo $lang['Backup info 2'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">

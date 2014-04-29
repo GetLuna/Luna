@@ -11,6 +11,10 @@ body {
 	margin-top: 40px;
 }
 
+td, th {
+    vertical-align: middle !important;
+}
+
 /* Text */
 h1, h2, h3, h4, h5, h6, .btn, .navbar {
 	font-family: "Segoe UI Semilight", "Segoe UI";
@@ -24,6 +28,12 @@ h1, h2, h3, h4, h5, h6, .btn, .navbar {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: "Segoe UI Light", "Segoe UI Semilight", "Segoe UI";
 	color: #14a3ff;
+}
+
+label .help-block {
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-size: 85%;
 }
 
 /* Navbar */

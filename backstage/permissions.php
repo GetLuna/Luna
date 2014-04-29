@@ -153,17 +153,15 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig length label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig length label'] ?><span class="help-block"><?php echo $lang['Max sig length help'] ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['p_sig_length'] ?>" />
-                        <span class="help-block"><?php echo $lang['Max sig length help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig lines label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig lines label'] ?><span class="help-block"><?php echo $lang['Max sig lines help'] ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['p_sig_lines'] ?>" />
-                        <span class="help-block"><?php echo $lang['Max sig lines help'] ?></span>
                     </div>
                 </div>
             </fieldset>
@@ -175,19 +173,24 @@ require FORUM_ROOT.'backstage/header.php';
         </div>
         <div class="panel-body">
             <fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />
-                        <?php echo $lang['Banned e-mail help'] ?>
-                    </label>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Registration'] ?></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Banned e-mail help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Duplicate e-mail help'] ?>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />
-                        <?php echo $lang['Duplicate e-mail help'] ?>
-                    </label>
-                </div>
-            </fieldset>
+			</fieldset>
         </div>
     </div>
 </form>

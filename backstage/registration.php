@@ -131,10 +131,9 @@ generate_admin_menu('global');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Rules label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Rules label'] ?><span class="help-block"><?php echo $lang['Rules help'] ?></span></label>
                     <div class="col-sm-9">
                         <textarea class="form-control tinymce" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
-						<span class="help-block"><?php echo $lang['Rules help'] ?></span>
                     </div>
                 </div>
                 <hr />
@@ -164,10 +163,9 @@ generate_admin_menu('global');
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Antispam API label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Antispam API label'] ?><span class="help-block"><?php printf($lang['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[antispam_api]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_antispam_api']) ?>" />
-                        <span class="help-block"><?php printf($lang['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                     </div>
                 </div>
             </fieldset>

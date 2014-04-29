@@ -87,16 +87,14 @@ generate_admin_menu('email');
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Admin e-mail label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Admin e-mail label'] ?><span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo $luna_config['o_admin_email'] ?>" />
-                        <span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Webmaster e-mail label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Webmaster e-mail label'] ?><span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span></label>
 						<div class="col-sm-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo $luna_config['o_webmaster_email'] ?>" />
-						<span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span>
                     </div>
                 </div>
             </fieldset>
@@ -137,21 +135,19 @@ generate_admin_menu('email');
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP address label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP address label'] ?><span class="help-block"><?php echo $lang['SMTP address help'] ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[smtp_host]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
-                        <span class="help-block"><?php echo $lang['SMTP address help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP username label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP username label'] ?><span class="help-block"><?php echo $lang['SMTP username help'] ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[smtp_user]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
-                        <span class="help-block"><?php echo $lang['SMTP username help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP password label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP password label'] ?><span class="help-block"><?php echo $lang['SMTP password help'] ?></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
@@ -160,9 +156,14 @@ generate_admin_menu('email');
                             </label>
                         </div>
 <?php $smtp_pass = !empty($luna_config['o_smtp_pass']) ? random_key(luna_strlen($luna_config['o_smtp_pass']), true) : ''; ?>
-						<input class="form-control" type="password" name="form[smtp_pass1]" maxlength="50" value="<?php echo $smtp_pass ?>" />
-						<input class="form-control" type="password" name="form[smtp_pass2]" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                        <span class="help-block"><?php echo $lang['SMTP password help'] ?></span>
+						<div class="row">
+                        	<div class="col-sm-6">
+								<input class="form-control" type="password" name="form[smtp_pass1]" maxlength="50" value="<?php echo $smtp_pass ?>" />
+                            </div>
+                        	<div class="col-sm-6">
+								<input class="form-control" type="password" name="form[smtp_pass2]" maxlength="50" value="<?php echo $smtp_pass ?>" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">

@@ -170,10 +170,9 @@ generate_admin_menu('features');
 					</div>
 				</div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Welcome text'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Welcome text'] ?><span class="help-block"><?php echo $lang['First run help message'] ?></span>  </label>
                     <div class="col-sm-9">
 						<input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
-						<span class="help-block"><?php echo $lang['First run help message'] ?></span>           
                     </div>
                 </div>
             </fieldset>
@@ -186,11 +185,16 @@ generate_admin_menu('features');
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[gzip]" value="1" <?php if ($luna_config['o_gzip'] == '1') echo ' checked="checked"' ?> />
-						<?php echo $lang['GZip help'] ?>
-                    </label>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Advanced'] ?></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[gzip]" value="1" <?php if ($luna_config['o_gzip'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['GZip help'] ?>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </fieldset>
         </div>
