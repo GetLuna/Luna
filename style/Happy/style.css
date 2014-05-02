@@ -42,14 +42,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modlist {
-	color: #888;	
+	color: #888;
 }
 
 @media screen and (max-width: 767px) {
 	.col-profile {
 		padding-left: 0;
 	}
-	
+
 	.col-profile .profile-card {
 		margin-top: 60px !important;
 	}
@@ -111,15 +111,15 @@ h1, h2, h3, h4, h5, h6 {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #header .dropdown-menu > li > a {
 		color: #fff;
 	}
-	
+
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
 		background: #e36b00;
 	}
-	
+
 	.dropdown-menu .divider {
 		background-color: #0068b0;
 	}
-	
+
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
 		border: none;
 		box-shadow: none;
@@ -203,11 +203,11 @@ h1, h2, h3, h4, h5, h6 {
 		border-bottom-left-radius: 0;
 		border-top-right-radius: 3px;
 	}
-	
+
 	.first-run-title {
 		padding-top: 15px;
 	}
-	
+
 	.first-run-list {
 		margin-left: 0;
 		margin-right: 0;
@@ -301,7 +301,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media(min-width:767px) {
 	ul.nav li.dropdown:hover > ul.dropdown-menu{
-		display: block;		
+		display: block;
 	}
 }
 
@@ -484,7 +484,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	font-size: 20px;
 }
 
-.quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder { 
+.quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder {
 	font-size: 20px;
 }
 
@@ -757,7 +757,7 @@ textarea {
 
 /* Userlist */
 .usersearch {
-	margin: 0 auto 10px auto;	
+	margin: 0 auto 10px auto;
 }
 
 .user-row .user-avatar {
@@ -811,12 +811,8 @@ textarea {
 	margin-top: 15px;
 }
 
-.pagination-user-top {
-	margin-bottom: 10px;
-}
-
-.pagination-user-bottom {
-	margin-top: 10px;
+.pagination-user {
+	margin: 10px auto;
 }
 
 /* Topicview */
@@ -991,7 +987,7 @@ textarea {
 		background: #f07910;
 		background: linear-gradient(to right, #f07910, #f0a910);
 	}
-	
+
 	.topic .panel-heading  {
 		border-radius: 0;
 	}

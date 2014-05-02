@@ -101,27 +101,7 @@ define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-?>
-<h2><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
-<div class="row row-nav">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<?php echo $post_link ?>
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
-<div class="forum-box">
-    <div class="row forum-header">
-        <div class="col-xs-12"><?php echo $lang['Topic'] ?></div>
-    </div>
-<?php
+require FORUM_ROOT.'views/viewforum-header.tpl.php';
 
 // Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 $result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
@@ -148,8 +128,8 @@ if ($db->num_rows($result))
 	$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 
 	$topic_count = 0;
-	while ($cur_topic = $db->fetch_assoc($result))
-	{
+	while ($cur_topic = $db->fetch_assoc($result)) {
+
 		++$topic_count;
 		$status_text = array();
 		$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
@@ -219,67 +199,30 @@ if ($db->num_rows($result))
 			$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
 			$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
 		}
-	
+
 		if (forum_number_format($cur_topic['num_replies']) == '1') {
 			$replies_label = $lang['reply'];
 		} else {
 			$replies_label = $lang['replies'];
 		}
-		
+
 		if (forum_number_format($cur_topic['num_views']) == '1') {
 			$views_label = $lang['view'];
 		} else {
 			$views_label = $lang['views'];
 		}
 
-?>
-    <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-sm-6 col-xs-6">
-            <div class="<?php echo $icon_type ?>"><?php echo forum_number_format($topic_count + $start_from) ?></div>
-            <div class="tclcon">
-                <div>
-                    <?php echo $subject."\n" ?>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2 hidden-xs"><?php if (is_null($cur_topic['moved_to'])) { ?><b><?php echo forum_number_format($cur_topic['num_replies']) ?></b> <?php echo $replies_label ?><br /><b><?php echo forum_number_format($cur_topic['num_views']) ?></b> <?php echo $views_label ?><?php } ?></div>
-        <div class="col-sm-4 col-xs-6"><?php echo $last_post ?></div>
-    </div>
-<?php
+		require FORUM_ROOT.'views/viewforum-topics_list.tpl.php';
 
 	}
-}
-else
-{
-?>
-    <div class="row topic-row">
-        <div class="col-xs-12">
-            <strong><?php echo $lang['Empty forum'] ?></strong>
-        </div>
-    </div>
-<?php
+
+} else {
+
+	require FORUM_ROOT.'views/viewforum-topics_list_empty.tpl.php';
 
 }
-
-?>
-</div>
-<div class="row row-nav">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<?php echo $post_link ?>
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
-
-<?php
 
 $forum_id = $id;
 $footer_style = 'viewforum';
-require FORUM_ROOT.'footer.php';
+
+require FORUM_ROOT.'views/viewforum-footer.tpl.php';

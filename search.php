@@ -549,41 +549,13 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		define('FORUM_ACTIVE_PAGE', 'search');
 		require FORUM_ROOT.'header.php';
 
-?>
-<div class="row row-nav-fix">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="search.php"><?php echo $crumbs_text['show_as'] ?></a>
-			<?php echo $crumbs_text['search_type'] ?>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
+		require FORUM_ROOT.'views/search-breadcrumbs.tpl.php';
 
-<?php
-
-		if ($show_as == 'topics')
-		{
+		if ($show_as == 'topics') {
 			$topic_count = 0;
 
-?>
-    <div class="forum-box">
-        <div class="row forum-header">
-			<div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
-            <div class="col-xs-2 hidden-xs"><?php echo $lang['Forum'] ?></div>
-			<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
-			<div class="col-xs-3 col-search"><?php echo $lang['Last post'] ?></div>
-        </div>
-<?php
-
-		}
-		else if ($show_as == 'posts')
-		{
+			require FORUM_ROOT.'views/search-topics_header.tpl.php';
+		} else if ($show_as == 'posts') {
 			require FORUM_ROOT.'include/parser.php';
 
 			$post_count = 0;
@@ -602,153 +574,18 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 			if ($show_as == 'posts')
 			{
-				++$post_count;
-				$icon_type = 'icon';
-
-				if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_search['tid']]) || $tracked_topics['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_topics['forums'][$cur_search['forum_id']]) || $tracked_topics['forums'][$cur_search['forum_id']] < $cur_search['last_post']))
-				{
-					$item_status = 'inew';
-					$icon_type = 'icon icon-new';
-					$icon_text = $lang['New icon'];
-				}
-				else
-				{
-					$item_status = '';
-					$icon_text = '<!-- -->';
-				}
-
-				if ($luna_config['o_censoring'] == '1')
-					$cur_search['message'] = censor_words($cur_search['message']);
-
-				$message = parse_message($cur_search['message'], $cur_search['hide_smilies']);
-				$pposter = luna_htmlspecialchars($cur_search['pposter']);
-
-				if ($cur_search['poster_id'] > 1)
-				{
-					if ($luna_user['g_view_users'] == '1')
-						$pposter = '<strong><a href="profile.php?id='.$cur_search['poster_id'].'">'.$pposter.'</a></strong>';
-					else
-						$pposter = '<strong>'.$pposter.'</strong>';
-				}
-
-
-?>
-<div class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_search['pid'] == $cur_search['first_post_id']) echo ' firstpost' ?><?php if ($post_count == 1) echo ' blockpost1' ?><?php if ($item_status != '') echo ' '.$item_status ?>">
-    <table class="table">
-        <tr>
-            <td class="col-lg-2 user-data">
-                <?php echo $pposter ?><br />
-				<?php if ($cur_search['pid'] == $cur_search['first_post_id']) : ?>                    
-                    <?php echo $lang['Replies'].' '.forum_number_format($cur_search['num_replies']) ?>
-                <?php endif; ?>
-            </td>
-            <td class="col-lg-10">
-				<?php echo $message."\n" ?>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="postfooter" style="padding-bottom: 0;">
-				<div class="btn-group btn-breadcrumb">
-					<?php echo $forum ?>
-					<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo luna_htmlspecialchars($cur_search['subject']) ?></a>
-					<a class="btn btn-primary" href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php if ($cur_search['pid'] != $cur_search['first_post_id']) echo $lang['Re'].' ' ?><?php echo format_time($cur_search['pposted']) ?></a>
-				</div>
-                <p class="pull-right">
-					<a class="btn btn-small btn-primary" href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo $lang['Go to topic'] ?></a>
-					<a class="btn btn-small btn-primary" href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php echo $lang['Go to post'] ?></a>
-                </p>
-            </td>
-        </tr>
-	</table>
-</div>
-<?php
-
+				require FORUM_ROOT.'views/search-show_as_posts.tpl.php';
 			}
 			else
 			{
-				++$topic_count;
-				$status_text = array();
-				$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
-				$icon_type = 'icon';
-
-				$subject = '<a href="viewtopic.php?id='.$cur_search['tid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['poster']).'</span>';
-
-				if ($cur_search['sticky'] == '1')
-				{
-					$item_status .= ' isticky';
-					$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
-				}
-
-				if ($cur_search['closed'] != '0')
-				{
-					$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
-					$item_status .= ' iclosed';
-				}
-
-				if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_search['tid']]) || $tracked_topics['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_topics['forums'][$cur_search['forum_id']]) || $tracked_topics['forums'][$cur_search['forum_id']] < $cur_search['last_post']))
-				{
-					$item_status .= ' inew';
-					$icon_type = 'icon icon-new';
-					$subject = '<strong>'.$subject.'</strong>';
-					$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
-				}
-				else
-					$subject_new_posts = null;
-
-				// Insert the status text before the subject
-				$subject = implode(' ', $status_text).' '.$subject;
-
-				$num_pages_topic = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_posts']);
-
-				if ($num_pages_topic > 1)
-					$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).'</span>';
-				else
-					$subject_multipage = null;
-
-				// Should we show the "New posts" and/or the multipage links?
-				if (!empty($subject_new_posts) || !empty($subject_multipage))
-				{
-					$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
-					$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
-				}
-
-?>
-        <div class="row topic-row <?php echo $item_status ?>">
-            <div class="col-xs-6">
-                <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
-                <div class="tclcon">
-					<?php echo $subject."\n" ?>
-                </div>
-            </div>
-            <div class="col-xs-2 hidden-xs"><?php echo $forum ?></div>
-            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo forum_number_format($cur_search['num_replies']) ?></p></div>
-            <div class="col-xs-3 col-search"><?php echo '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['last_poster']) ?></span></div>
-        </div>
-<?php
-
+				require FORUM_ROOT.'views/search-show_as_topics.tpl.php';
 			}
 		}
 
 		if ($show_as == 'topics')
 			echo "\t\t\t".'</div>'."\n\n";
 
-?>
-
-<div class="row row-nav-fix">
-	<div class="col-sm-6">
-		<div class="btn-group btn-breadcrumb">
-			<a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
-			<a class="btn btn-primary" href="search.php"><?php echo $crumbs_text['show_as'] ?></a>
-			<?php echo $crumbs_text['search_type'] ?>
-		</div>
-	</div>
-	<div class="col-sm-6">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
-	</div>
-</div>
-<?php
+		require FORUM_ROOT.'views/search-breadcrumbs.tpl.php';
 
 		require FORUM_ROOT.'footer.php';
 	}
@@ -757,183 +594,18 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 }
 
 
-	if (!$section || $section == 'simple')
-	{
-
+if (!$section || $section == 'simple') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
 	$focus_element = array('search', 'keywords');
 	define('FORUM_ACTIVE_PAGE', 'search');
 	require FORUM_ROOT.'header.php';
 
-?>
-<form id="search" method="get" action="search.php?section=simple">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Search criteria legend'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <input type="hidden" name="action" value="search" />
-            	<div class="input-group"><input class="form-control" type="text" name="keywords" maxlength="100" /><span class="input-group-btn"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" /></span></div>
-                <a class="hidden-xs" href="search.php?section=advanced"><?php echo $lang['Advanced search'] ?></a>
-            </fieldset>
-        </div>
-    </div>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
-
-	} else {
-	
+	require FORUM_ROOT.'views/search-form_advanced.tpl.php';
+} else {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
 	$focus_element = array('search', 'keywords');
 	define('FORUM_ACTIVE_PAGE', 'search');
 	require FORUM_ROOT.'header.php';
 
-?>
-<form id="search" method="get" action="search.php?section=advanced">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Search criteria legend'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <input type="hidden"  name="action" value="search" />
-            	<table>
-                	<thead>
-                    	<tr>
-                        	<th><?php echo $lang['Keyword search'] ?></th>
-                            <th><?php echo $lang['Author search'] ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    	<tr>
-                        	<td><input class="form-control" type="text" name="keywords" maxlength="100" /></td>
-                        	<td><input class="form-control" id="author" type="text" name="author" maxlength="25" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p class="help-block"><?php echo $lang['Search info'] ?></p>
-            </fieldset>
-            <fieldset>
-            	<div class="row">
-<?php
-
-$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.redirect_url FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.redirect_url IS NULL ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
-
-// We either show a list of forums of which multiple can be selected
-if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod'])
-{
-	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.$lang['Forum'].'</b>'."\n";
-	echo "\t\t\t\t\t\t".'<br />'."\n";
-	echo "\t\t\t\t\t\t".'<div>'."\n";
-
-	$cur_category = 0;
-	while ($cur_forum = $db->fetch_assoc($result))
-	{
-		if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-		{
-			if ($cur_category)
-			{
-				echo "\t\t\t\t\t\t\t\t".'</div>'."\n"; 
-				echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
-			}
-			echo "\t\t\t\t\t\t\t".'<fieldset><h3 class="forum-list"><span>'.luna_htmlspecialchars($cur_forum['cat_name']).'</span></h3>'."\n";
-			echo "\t\t\t\t\t\t\t\t".'<div class="rbox">'; 
-			$cur_category = $cur_forum['cid'];
-		}
-		echo "\t\t\t\t\t\t\t\t".'<input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
- 	}
-	
-	if ($cur_category)
-	{
-		echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
-		echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
-	}
-	
-	echo "\t\t\t\t\t\t".'</div>'."\n";
-	echo "\t\t\t\t\t\t".'</div></div>'."\n";
+	require FORUM_ROOT.'views/search-form_advanced.tpl.php';
 }
-// ... or a simple select list for one forum only
-else
-{
-	echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.$lang['Forum']."\n";
-	echo "\t\t\t\t\t\t".'<br />'."\n";
-	echo "\t\t\t\t\t\t".'<select id="forum" name="forum">'."\n";
-
-	$cur_category = 0;
-	while ($cur_forum = $db->fetch_assoc($result))
-	{
-		if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-		{
-			if ($cur_category)
-				echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-
-			echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
-			$cur_category = $cur_forum['cid'];
-		}
-
-		echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.($cur_forum['parent_forum_id'] == 0 ? '' : '&nbsp;&nbsp;&nbsp;').luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
-	}
-
-	echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
-	echo "\t\t\t\t\t\t".'</select>'."\n";
-	echo "\t\t\t\t\t\t".'<br /></label></div>'."\n";
-}
-
-?>
-                    <div class="col-xs-8">
-                        <label class="conl"><?php echo $lang['Search in']."\n" ?></label>
-                        <select class="form-control" id="search_in" name="search_in">
-                            <option value="0"><?php echo $lang['Message and subject'] ?></option>
-                            <option value="1"><?php echo $lang['Message only'] ?></option>
-                            <option value="-1"><?php echo $lang['Topic only'] ?></option>
-                        </select>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th><?php echo $lang['Sort by'] ?></th>
-                                    <th><?php echo $lang['Sort order'] ?></th>
-                                    <th><?php echo $lang['Show as'] ?></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <select class="form-control" name="sort_by">
-                                            <option value="0"><?php echo $lang['Sort by post time'] ?></option>
-                                            <option value="1"><?php echo $lang['Sort by author'] ?></option>
-                                            <option value="2"><?php echo $lang['Subject'] ?></option>
-                                            <option value="3"><?php echo $lang['Forum'] ?></option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" name="sort_dir">
-                                            <option value="DESC"><?php echo $lang['Descending'] ?></option>
-                                            <option value="ASC"><?php echo $lang['Ascending'] ?></option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control" name="show_as">
-                                            <option value="topics"><?php echo $lang['Topics'] ?></option>
-                                            <option value="posts"><?php echo $lang['Show as posts'] ?></option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="help-block"><?php echo $lang['Search results info'] ?></p>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-            <input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" />
-        </div>
-    </div>
-</form>
-<?php
-
-	require FORUM_ROOT.'footer.php';
-	}
