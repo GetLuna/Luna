@@ -105,15 +105,17 @@ require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <h2><?php echo $lang['Ranks'] ?></h2>
+<?php if ($luna_config['o_ranks'] == 0) { ?>
+<div class="alert alert-danger">
+	<?php echo sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>') ?>
+</div>
+<?php } ?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Add rank subhead'] ?></h3>
     </div>
 	<form id="ranks" method="post" action="ranks.php">
 		<fieldset>
-			<div class="panel-body">
-                <p><?php echo $lang['Add rank info'].' '.($luna_config['o_ranks'] == '1' ? sprintf($lang['Ranks enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
-			</div>
 			<table class="table">
 				<thead>
 					<tr>

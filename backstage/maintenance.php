@@ -351,19 +351,23 @@ require FORUM_ROOT.'backstage/header.php';
 <form class="form-horizontal" method="post" action="maintenance.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" id="maintenance"><?php echo $lang['Maintenance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title" id="maintenance"><?php echo $lang['Maintenance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[maintenance]" value="1" <?php if ($luna_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />
-                        <?php echo $lang['Maintenance mode help'] ?>
-                    </label>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Maintenance'] ?><span class="help-block"><?php echo $lang['Maintenance message help'] ?></span></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[maintenance]" value="1" <?php if ($luna_config['o_maintenance'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Maintenance mode help'] ?>
+                            </label>
+                        </div>
+                        <textarea class="form-control tinytinymce" name="form[maintenance_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
+                    </div>
                 </div>
-                <textarea class="form-control" name="form[maintenance_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
-                <span class="help-block"><?php echo $lang['Maintenance message help'] ?></span>
             </fieldset>
         </div>
     </div>
@@ -378,22 +382,20 @@ require FORUM_ROOT.'backstage/header.php';
             <fieldset>
                 <p><?php printf($lang['Rebuild index info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Posts per cycle label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Posts per cycle label'] ?><span class="help-block"><?php echo $lang['Posts per cycle help'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
-						<span class="help-block"><?php echo $lang['Posts per cycle help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Starting post label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Starting post label'] ?><span class="help-block"><?php echo $lang['Starting post help'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
-						<span class="help-block"><?php echo $lang['Starting post help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Empty index label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Empty index label'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked="checked" />
@@ -417,15 +419,14 @@ require FORUM_ROOT.'backstage/header.php';
             <fieldset>
                 <p><?php printf($lang['Prune info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Days old label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Days old label'] ?><span class="help-block"><?php echo $lang['Days old help'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
-						<span class="help-block"><?php echo $lang['Days old help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Prune sticky label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Prune sticky label'] ?></label>
+                    <div class="col-sm-9">
                         <label class="radio-inline">
                             <input type="radio" name="prune_sticky" value="1" tabindex="6" checked="checked" />
                             <?php echo $lang['Yes'] ?>
@@ -434,12 +435,11 @@ require FORUM_ROOT.'backstage/header.php';
                             <input type="radio" name="prune_sticky" value="0" />
                             <?php echo $lang['No'] ?>
                         </label>
-						<span class="help-block"><?php echo $lang['Prune sticky help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Prune from label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Prune from label'] ?><span class="help-block"><?php echo $lang['Prune from help'] ?></span></label>
+                    <div class="col-sm-9">
                         <select class="form-control" name="prune_from" tabindex="7">
                             <option value="all"><?php echo $lang['All forums'] ?></option>
 <?php
@@ -464,7 +464,6 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
                             </optgroup>
                         </select>
-                        <span class="help-block"><?php echo $lang['Prune from help'] ?></span>
                     </div>
                 </div>
             </fieldset>
@@ -478,10 +477,10 @@ require FORUM_ROOT.'backstage/header.php';
         </div>
         <div class="panel-body">
             <fieldset>
-                <p><?php printf($lang['Prune users info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+                <p><?php printf($lang['Prune info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Prune by'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Prune by'] ?><span class="help-block"><?php echo $lang['Prune by info'] ?></span></label>
+                    <div class="col-sm-9">
 						<label class="radio-inline">
                         	<input type="radio" name="prune_by" value="1" checked="checked" />
                             <?php echo $lang['Registed date'] ?>
@@ -490,26 +489,23 @@ require FORUM_ROOT.'backstage/header.php';
                         	<input type="radio" name="prune_by" value="0" />
 							<?php echo $lang['Last login'] ?>
                         </label>
-						<span class="help-block"><?php echo $lang['Prune by info'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Minimum days'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Minimum days'] ?><span class="help-block"><?php echo $lang['Minimum days info'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="days" value="28" tabindex="1" />
-						<span class="help-block"><?php echo $lang['Minimum days info'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Maximum posts'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Maximum posts'] ?><span class="help-block"><?php echo $lang['Maximum posts info'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="posts" value="1"  tabindex="1" />
-						<span class="help-block"><?php echo $lang['Maximum posts info'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Delete admins'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Delete admins'] ?></label>
+                    <div class="col-sm-9">
 						<label class="radio-inline">
                         	<input type="radio" name="admods_delete" value="1" />
                             <?php echo $lang['Yes'] ?>
@@ -517,12 +513,11 @@ require FORUM_ROOT.'backstage/header.php';
                             <label class="radio-inline"><input type="radio" name="admods_delete" value="0" checked="checked" />
                             <?php echo $lang['No'] ?>
                         </label>
-						<span class="help-block"><?php echo $lang['Delete admins info'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['User status'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['User status'] ?></label>
+                    <div class="col-sm-9">
 						<label class="radio-inline">
                             <input type="radio" name="verified" value="1" />
                             <?php echo $lang['Delete any'] ?>
@@ -535,7 +530,6 @@ require FORUM_ROOT.'backstage/header.php';
                             <input type="radio" name="verified" value="2" />
                             <?php echo $lang['Delete only unverified'] ?>
                         </label>
-						<span class="help-block"><?php echo $lang['User status info'] ?></span>
                     </div>
                 </div>
             </fieldset>

@@ -43,7 +43,6 @@ if (!defined('FORUM'))
         </div>
     </div>
 </form>
-
 <?php
 
     require FORUM_ROOT.'footer.php';

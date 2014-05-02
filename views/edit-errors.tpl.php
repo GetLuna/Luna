@@ -12,12 +12,11 @@ if (!defined('FORUM'))
     </div>
     <div class="panel-body">
         <p>
-        <?php
+<?php
 
-            foreach ($errors as $cur_error)
-                echo "\t\t\t\t".$cur_error."\n";
-
-        ?>
+    foreach ($errors as $cur_error)
+        echo "\t\t\t\t".$cur_error."\n";
+?>
         </p>
     </div>
 </div>

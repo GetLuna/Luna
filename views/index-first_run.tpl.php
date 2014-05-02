@@ -40,7 +40,6 @@ if (!defined('FORUM'))
                 <fieldset>
                     <h3><?php echo $lang['Login'] ?></h3>
                     <input type="hidden" name="form_sent" value="1" />
-                    <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
                     <div class="first-run-login">
                         <input class="form-control top-form" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
                         <input class="form-control bottom-form" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" />

@@ -4,6 +4,7 @@
 if (!defined('FORUM'))
     exit;
 
+    require_once FORUM_ROOT.'include/parser.php';
 ?>
 
 <div class="panel panel-default">

@@ -70,14 +70,14 @@ require FORUM_ROOT.'backstage/header.php';
 <form class="form-horizontal" method="post" action="permissions.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Posting subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Posting subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['BBCode'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['BBCode'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[message_bbcode]" value="1" <?php if ($luna_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> />
@@ -93,8 +93,8 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['All caps'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['All caps'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> />
@@ -110,8 +110,8 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Guests'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Guests'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> />
@@ -125,13 +125,13 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Signatures subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Signatures subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['BBCode'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['BBCode'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($luna_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />
@@ -153,17 +153,15 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Max sig length label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig length label'] ?><span class="help-block"><?php echo $lang['Max sig length help'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['p_sig_length'] ?>" />
-                        <span class="help-block"><?php echo $lang['Max sig length help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Max sig lines label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max sig lines label'] ?><span class="help-block"><?php echo $lang['Max sig lines help'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['p_sig_lines'] ?>" />
-                        <span class="help-block"><?php echo $lang['Max sig lines help'] ?></span>
                     </div>
                 </div>
             </fieldset>
@@ -171,23 +169,28 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Registration'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Registration'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />
-                        <?php echo $lang['Banned e-mail help'] ?>
-                    </label>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Registration'] ?></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Banned e-mail help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Duplicate e-mail help'] ?>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />
-                        <?php echo $lang['Duplicate e-mail help'] ?>
-                    </label>
-                </div>
-            </fieldset>
+			</fieldset>
         </div>
     </div>
 </form>

@@ -151,33 +151,32 @@ generate_admin_menu('global');
 <form class="form-horizontal" method="post" action="settings.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Essentials subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Essentials subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Board title'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Board title'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[board_title]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Board description'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Board description'] ?><span class="help-block"><?php echo $lang['Board desc help'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
-                        <span class="help-block"><?php echo $lang['Board desc help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Base URL label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Base URL label'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Default language'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Default language'] ?><span class="help-block"><?php echo $lang['Language help'] ?></span></label>
+                    <div class="col-sm-9">
                         <select class="form-control" name="form[default_lang]">
 <?php
 
@@ -193,7 +192,6 @@ generate_admin_menu('global');
 
 ?>
                         </select>
-                        <span class="help-block"><?php echo $lang['Language help'] ?></span>
                     </div>
                 </div>
             </fieldset>
@@ -207,27 +205,25 @@ generate_admin_menu('global');
 ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Timeouts subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Timeouts subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Time format'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Time format'] ?><span class="help-block"><?php printf($lang['Time format help'], gmdate($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
-                        <span class="help-block"><?php printf($lang['Time format help'], gmdate($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Date format'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Date format'] ?><span class="help-block"><?php printf($lang['Date format help'], gmdate($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[date_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_date_format']) ?>" />
-                        <span class="help-block"><?php printf($lang['Date format help'], gmdate($luna_config['o_date_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Timezone label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Timezone label'] ?></label>
+                    <div class="col-sm-9">
                         <select class="form-control" name="form[default_timezone]">
                             <option value="-12"<?php if ($luna_config['o_default_timezone'] == -12) echo ' selected="selected"' ?>><?php echo $lang['UTC-12:00'] ?></option>
                             <option value="-11"<?php if ($luna_config['o_default_timezone'] == -11) echo ' selected="selected"' ?>><?php echo $lang['UTC-11:00'] ?></option>
@@ -280,17 +276,22 @@ generate_admin_menu('global');
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Visit timeout label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
-                        <span class="help-block"><?php echo $lang['Visit timeout help'] ?></span>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Visit timeout label'] ?><span class="help-block"><?php echo $lang['Visit timeout help'] ?></span></label>
+                    <div class="col-sm-9">
+						<div class="input-group">
+                            <input type="text" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
+                            <span class="input-group-addon"><?php echo $lang['seconds'] ?></span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Online timeout label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
-                        <span class="help-block"><?php echo $lang['Online timeout help'] ?></span>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Online timeout label'] ?><span class="help-block"><?php echo $lang['Online timeout help'] ?></span>
+</label>
+                    <div class="col-sm-9">
+						<div class="input-group">
+                            <input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
+							<span class="input-group-addon"><?php echo $lang['seconds'] ?></span>
+                        </div>
                     </div>
                 </div>
             </fieldset>
@@ -298,13 +299,13 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Feed subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Feed subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Default feed label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Default feed label'] ?><span class="help-block"><?php echo $lang['Default feed help'] ?></span></label>
+                    <div class="col-sm-9">
                         <label class="radio-inline">
                             <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') echo ' checked="checked"' ?>>
                             <?php echo $lang['None'] ?>
@@ -317,12 +318,11 @@ generate_admin_menu('global');
                             <input type="radio" name="form[feed_type]" value="2"<?php if ($luna_config['o_feed_type'] == '2') echo ' checked="checked"' ?>>
                             <?php echo $lang['Atom'] ?>
                         </label>
-                        <span class="help-block"><?php echo $lang['Default feed help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Feed TTL label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Feed TTL label'] ?><span class="help-block"><?php echo $lang['Feed TTL help'] ?></span></label>
+                    <div class="col-sm-9">
                         <select class="form-control" name="form[feed_ttl]">
                             <option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') echo ' selected="selected"'; ?>><?php echo $lang['No cache'] ?></option>
 <?php
@@ -334,7 +334,6 @@ generate_admin_menu('global');
 
 ?>
                         </select>
-                        <span class="help-block"><?php echo $lang['Feed TTL help'] ?></span>
                     </div>
                 </div>
             </fieldset>
@@ -342,13 +341,13 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Reports'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Reports'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Reporting method label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Reporting method label'] ?><span class="help-block"><?php echo $lang['Reporting method help'] ?></span></label>
+                    <div class="col-sm-9">
                         <label class="radio-inline">
                             <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') echo ' checked="checked"' ?> />
                             <?php echo $lang['Internal'] ?>
@@ -361,14 +360,12 @@ generate_admin_menu('global');
                             <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') echo ' checked="checked"' ?> />
                             <?php echo $lang['Both'] ?>
                         </label>
-                        <span class="help-block"><?php echo $lang['Reporting method help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Mailing list label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Mailing list label'] ?><span class="help-block"><?php echo $lang['Mailing list help'] ?></span></label>
+                    <div class="col-sm-9">
                         <textarea class="form-control" name="form[mailing_list]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
-                        <span class="help-block"><?php echo $lang['Mailing list help'] ?></span>
                     </div>
                 </div>
             </fieldset>
@@ -376,13 +373,13 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Avatars subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Avatars subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Use avatars label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Use avatars label'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[avatars]" value="1" <?php if ($luna_config['o_avatars'] == '1') echo ' checked="checked"' ?> />
@@ -392,31 +389,36 @@ generate_admin_menu('global');
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Upload directory label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Upload directory label'] ?><span class="help-block"><?php echo $lang['Upload directory help'] ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[avatars_dir]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_avatars_dir']) ?>" />
-                        <span class="help-block"><?php echo $lang['Upload directory help'] ?></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Max width label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
-                        <span class="help-block"><?php echo $lang['Max width help'] ?></span>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max width label'] ?></label>
+                    <div class="col-sm-9">
+                    	<div class="input-group">
+							<input type="text" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
+							<span class="input-group-addon"><?php echo $lang['pixels'] ?></span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Max height label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
-                        <span class="help-block"><?php echo $lang['Max height help'] ?></span>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max height label'] ?></label>
+                    <div class="col-sm-9">
+                    	<div class="input-group">
+							<input type="text" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
+							<span class="input-group-addon"><?php echo $lang['pixels'] ?></span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Max size label'] ?></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
-                        <span class="help-block"><?php echo $lang['Max size help'] ?></span>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Max size label'] ?></label>
+                    <div class="col-sm-9">
+                    	<div class="input-group">
+							<input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
+							<span class="input-group-addon"><?php echo $lang['pixels'] ?></span>
+                        </div>
                     </div>
                 </div>
             </fieldset>
@@ -424,18 +426,22 @@ generate_admin_menu('global');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Announcement subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Announcement subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') echo ' checked="checked"' ?> />
-                        <?php echo $lang['Display announcement help'] ?>
-                    </label>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Announcement subhead'] ?></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Display announcement help'] ?>
+                            </label>
+                        </div>
+                        <textarea class="form-control tinytinymce" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
+                    </div>
                 </div>
-                <textarea class="form-control" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
-                <span class="help-block"><?php echo $lang['Announcement message help'] ?></span>
             </fieldset>
         </div>
     </div>

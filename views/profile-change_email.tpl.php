@@ -17,7 +17,6 @@ if (!defined('FORUM'))
     </fieldset>
     <p><input type="submit" class="btn btn-primary" name="new_email" value="<?php echo $lang['Submit'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 </form>
-
 <?php
 
     require FORUM_ROOT.'footer.php';

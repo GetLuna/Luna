@@ -28,7 +28,6 @@ if (!defined('FORUM'))
         </div>
     </fieldset>
 </form>
-
 <?php
 
     require FORUM_ROOT.'footer.php';

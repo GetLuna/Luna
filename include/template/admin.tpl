@@ -18,8 +18,23 @@
             </div>
 		</div>
         <!-- Javascript start -->
+        <script src="../include/tinymce/tinymce.min.js"></script>
         <script type="text/javascript">
-        $(document).ready(function() {
+		tinymce.init({
+			plugins: [
+				["autolink link image lists code media paste hr table textcolor"]
+			],
+			selector: 'textarea.tinymce',
+			skins: 'lightgrey',
+			toolbar:[
+				"newdocument | cut copy paste removeformat | undo redo | formatselect | fontselect | fontsizeselect | forecolor | styleselect",
+				"bold italic underline strikethrough | outdent indent alignleft alignright aligncenter alignjustify | table | subscript superscript | bullist numlist | hr link image blockquote | code"
+			],
+			menubar: false,
+			relative_urls: false,
+			convert_urls: false,
+		});
+        $(document).ready(function(){
             $("#user").focus();
         });
         </script>

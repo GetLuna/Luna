@@ -80,14 +80,14 @@ generate_admin_menu('global');
 <form class="form-horizontal" method="post" action="registration.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Registration'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save changes'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Registration'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
             <input type="hidden" name="form_sent" value="1" />
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Allow new label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Allow new label'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />
@@ -97,8 +97,8 @@ generate_admin_menu('global');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Verify label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Verify label'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />
@@ -108,8 +108,8 @@ generate_admin_menu('global');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Report new label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Report new label'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') echo ' checked="checked"' ?> />
@@ -120,8 +120,8 @@ generate_admin_menu('global');
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Use rules label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Use rules label'] ?></label>
+                    <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') echo ' checked="checked"' ?> />
@@ -131,16 +131,15 @@ generate_admin_menu('global');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Rules label'] ?></label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
-						<span class="help-block"><?php echo $lang['Rules help'] ?></span>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Rules label'] ?><span class="help-block"><?php echo $lang['Rules help'] ?></span></label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control tinymce" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
                     </div>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['E-mail default label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['E-mail default label'] ?></label>
+                    <div class="col-sm-9">
                         <span class="help-block"><?php echo $lang['E-mail default help'] ?></span>
                         <div class="radio">
                             <label>
@@ -164,10 +163,9 @@ generate_admin_menu('global');
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Antispam API label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Antispam API label'] ?><span class="help-block"><?php printf($lang['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[antispam_api]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_antispam_api']) ?>" />
-                        <span class="help-block"><?php printf($lang['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span>
                     </div>
                 </div>
             </fieldset>

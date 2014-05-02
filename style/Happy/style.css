@@ -1,14 +1,4 @@
-/****************************
- * Name:		Awesome
- * Version:		2.5.0
- * Date:		20 April 2014
- * Designer:	ModernBB Developers
- * Discription: A nice green default theme that uses ModernBB optimal.
- * ModernBB:	3.2
- * Bootstrap:	3.1.1
- ****************************/
- 
- /* General fixes */
+/* General fixes */
 body, html {
 	background-color: #f2f2f2;
 	font-family: "Segoe UI", Arial;
@@ -23,7 +13,6 @@ body, html {
 }
 
 footer {
-	padding-top: 10px;
 	padding-bottom: 15px;
 }
 
@@ -53,14 +42,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modlist {
-	color: #888;	
+	color: #888;
 }
 
 @media screen and (max-width: 767px) {
 	.col-profile {
 		padding-left: 0;
 	}
-	
+
 	.col-profile .profile-card {
 		margin-top: 60px !important;
 	}
@@ -72,6 +61,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .col-profile {
 	padding-right: 0;
+}
+
+@media screen and (max-width: 991px) {
+	#userlist .col-sm-12 {
+		margin-bottom: 10px;
+	}
 }
 
 /* Navbar profile pane */
@@ -98,8 +93,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #679e0d;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #f07910;
+	background: linear-gradient(to right, #f07910, #f0a910);
 	color: #fff;
 }
 
@@ -116,15 +111,15 @@ h1, h2, h3, h4, h5, h6 {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #header .dropdown-menu > li > a {
 		color: #fff;
 	}
-	
+
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #92c820;
+		background: #e36b00;
 	}
-	
+
 	.dropdown-menu .divider {
-		background-color: #4c7c00;
+		background-color: #0068b0;
 	}
-	
+
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
 		border: none;
 		box-shadow: none;
@@ -137,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (min-width: 768px) {
 	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #447000;
+		background: #c64600;
 	}
 }
 
@@ -158,7 +153,6 @@ h1, h2, h3, h4, h5, h6 {
 /* First run */
 .first-run-content {
 	padding-left: 15px;
-	height: 100%;
 }
 
 .first-run-content h3 {
@@ -168,7 +162,6 @@ h1, h2, h3, h4, h5, h6 {
 .first-run-profile {
 	background-image: url(../img/core/firstrun.png);
 	background-size: cover;
-	height: 100%;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	padding-bottom: 16px;
@@ -192,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 15px;
 }
 
-.first-run-login{
+.first-run-login {
 	margin-right: 15px;
 }
 
@@ -210,11 +203,11 @@ h1, h2, h3, h4, h5, h6 {
 		border-bottom-left-radius: 0;
 		border-top-right-radius: 3px;
 	}
-	
+
 	.first-run-title {
 		padding-top: 15px;
 	}
-	
+
 	.first-run-list {
 		margin-left: 0;
 		margin-right: 0;
@@ -246,11 +239,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #brdwelcome .conl {
-  float: left;
+	float: left;
 }
 
 #brdwelcome .conr {
-  float: right;
+	float: right;
 }
 
 #brdwelcome li span {
@@ -286,18 +279,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #92c820;
-	background: linear-gradient(#88bf1c, #69a00e);
+	background: #f07910;
+	background: linear-gradient(#f0a910, #f07910);
 	color: #fff;
-}
-
-.col-md-10 .panel {
-	margin-right: -14px;
 }
 
 .panel-body {
 	border: 1px solid #ddd;
 	border-top: none;
+}
+
+.col-md-10 .panel {
+	margin-right: -14px;
 }
 
 /* Navbar */
@@ -308,22 +301,22 @@ h1, h2, h3, h4, h5, h6 {
 
 @media(min-width:767px) {
 	ul.nav li.dropdown:hover > ul.dropdown-menu{
-		display: block;    
+		display: block;
 	}
 }
 
 .navbar {
 	border: none;
-	background: #538700;
+	background: #e36b00;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #4c7c00;
+	background-color: #e35000;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #4c7c00;
-    color: #fff;
+	background-color: #e35000;
+	color: #fff;
 }
 
 .navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret, .navbar-default .navbar-nav > .dropdown > a .caret {
@@ -333,6 +326,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-right > .dropdown, :last-child.navbar-right.navbar-nav {
 	margin-right: 0;
+}
+
+@media (min-width: 768px) {
+	.navbar-toggle {
+		display: none;
+	}
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -349,7 +348,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #538700;
+	background-color: #0073c4;
 }
 
 /* Pagination */
@@ -364,8 +363,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #6b9b12;
-	background-color: #6b9b12;
+	border: 1px solid #f07910;
+	background-color: #f07910;
 }
 
 /* Profile */
@@ -375,8 +374,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #6b9b12;
-	border-color: #6b9b12;
+	background-color: #f07910;
+	border-color: #f07910;
 }
 
 .profile-h2 {
@@ -419,6 +418,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #aaa;
 }
 
+.btn-actions {
+	padding-top: 0;
+	padding-bottom: 0;
+	font-size: 80%;
+}
+
 .post-div {
 	margin-top: 2px;
 	margin-bottom: 5px;
@@ -447,10 +452,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .marked .panel-body hr {
-    border-top: 1px solid #ffc8b3;
+		border-top: 1px solid #ffc8b3;
 }
 
-/* Quick post */
+/* Quick post and post */
 .quickpostfield textarea, .quickpostfield textarea:focus {
 	border: none;
 	box-shadow: none;
@@ -468,6 +473,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border-bottom: #eee solid 1px;
 	box-shadow: none;
 	font-size: 20px;
+	line-height: 0.8;
 }
 
 .quickpostfield textarea::-webkit-input-placeholder, .postfield textarea::-webkit-input-placeholder {
@@ -478,7 +484,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	font-size: 20px;
 }
 
-.quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder { 
+.quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder {
 	font-size: 20px;
 }
 
@@ -489,14 +495,14 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #92c820;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #f07910;
+	background: linear-gradient(to right, #f07910, #f0a910);
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #92c820;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #f07910;
+	background: linear-gradient(to right, #f07910, #f0a910);
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -543,23 +549,23 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 /* Buttons */
 .btn-primary.active, .btn-warning.active, .btn-danger.active, .btn-success.active, .btn-info.active, .btn-inverse.active {
-	color: rgba(255,255,255,0.75);
+	color: #ffffff;
 }
 
 .btn-primary {
 	color: #fff;
-	background: #699934;
-	border-color: #4f7327;
+	background-color: #f0a910;
+	border-color: #d69200;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background: #88c149;
-	border-color: #4f7327;
+	background-color: #d78900;
+	border-color: #cd6a00;
 	color: #fff;
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #408140 9;
+	background-color: #d78900 9;
 }
 
 .btn-post {
@@ -613,8 +619,8 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border-left: #f79f13 5px solid;
 }
 
-.alert-info {
-	border-left: #93c920 5px solid;
+.alert-info, #redirect {
+	border-left: #2ca0e9 5px solid;
 }
 
 .alert-danger {
@@ -623,7 +629,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .alert-success {
-	border-left: #523f6d 5px solid;
+	border-left: #41d300 5px solid;
 	color: #4e9e00;
 }
 
@@ -653,7 +659,7 @@ label .help-block {
 }
 
 textarea {
-    resize: vertical;
+		resize: vertical;
 }
 
 .multiselect {
@@ -721,15 +727,15 @@ textarea {
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
-	border-left: 10px solid #699934;
+	border-left: 10px solid #f0a910;
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):before, .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
-	border-left: 10px solid #4f7327;
+	border-left: 10px solid #d69200;
 }
 
 .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
-	border-left: 10px solid #88c149;
+	border-left: 10px solid #d78900;
 }
 
 /* Status Indicators */
@@ -746,16 +752,12 @@ textarea {
 }
 
 .inew .icon {
-	border-color: #81c400;
-}
-
-#redirect {
-	border-left: #7fcc00 5px solid !important;
+	border-color: #2ca0e9;
 }
 
 /* Userlist */
 .usersearch {
-	margin: 0 auto 10px auto;	
+	margin: 0 auto 10px auto;
 }
 
 .user-row .user-avatar {
@@ -809,22 +811,18 @@ textarea {
 	margin-top: 15px;
 }
 
-.pagination-user-top {
-	margin-bottom: 10px;
-}
-
-.pagination-user-bottom {
-	margin-top: 10px;
+.pagination-user {
+	margin: 10px auto;
 }
 
 /* Topicview */
 .topic h1 a:hover, .topic h2 a:hover, .topic h3 a:hover, .topic h4 a:hover, .topic h5 a:hover, .topic h6 a:hover, .topic h1 a:active, .topic h2 a:active, .topic h3 a:active, .topic h4 a:active, .topic h5 a:active, .topic h6 a:active, .topic h1 a:focus, .topic h2 a:focus, .topic h3 a:focus, .topic h4 a:focus, .topic h5 a:focus, .topic h6 a:focus {
-    text-decoration: none;
-    color: #ddd;
+	text-decoration: none;
+	color: #ddd;
 }
 
 .topic h2 a, .topic h3, .topic h3 a {
-    color: #fff;
+	color: #fff;
 }
 
 .topic .panel, .topic .profile-card {
@@ -832,7 +830,7 @@ textarea {
 }
 
 .panel-topic {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .topic .profile-card {
@@ -892,6 +890,7 @@ textarea {
 	margin-top: 9px;
 	margin-bottom: 1px;
 }
+
 .profile, .topic {
 	margin-left: -15px;
 	margin-right: -15px;
@@ -903,7 +902,7 @@ textarea {
 }
 
 .profile-card-head {
-	background-color: #679e0d;
+	background-color: #f07910;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -952,31 +951,31 @@ textarea {
 }
 
 .comment-arrow {
-    position: absolute;
-    display: block;
-    width: 0px;
-    height: 0px;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 11px;
-    left: 4px;
-    margin-top: -2px;
-    border-left-width: 0px;
-    border-right-color: #679e0d;;
+	position: absolute;
+	display: block;
+	width: 0px;
+	height: 0px;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 11px;
+	left: 4px;
+	margin-top: -2px;
+	border-left-width: 0px;
+	border-right-color: #f07910;;
 }
 
 .topic .panel-heading {
-	background: #679e0d;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #f07910;
+	background: linear-gradient(to right, #f07910, #f0a910);
 }
 
 .post-actions {
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 .topic .thumbnail {
-    padding: 0;
-    border: 1px solid #fff;
+	padding: 0;
+	border: 1px solid #fff;
 }
 
 @media(max-width:991px) {
@@ -985,10 +984,10 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #679e0d;
-		background: linear-gradient(to right, #679e0d, #a4da28);
+		background: #f07910;
+		background: linear-gradient(to right, #f07910, #f0a910);
 	}
-	
+
 	.topic .panel-heading  {
 		border-radius: 0;
 	}
@@ -1019,15 +1018,15 @@ textarea {
 
 /* Links */
 a {
-	color: #60920e;
+	color: #f07910;
 }
 
 a:hover, a:active {
-	color: #523f6d;
+	color: #f0a910;
 }
 
 a.list-group-item:hover, a.list-group-item:active {
-	color: #555555;
+	color: #f07910;
 }
 
 /* BBCode */
@@ -1052,11 +1051,11 @@ q {
 }
 
 q:before {
-  content: "\201C";
+	content: "\201C";
 }
 
 q:after {
-  content: "\201D";
+	content: "\201D";
 }
 
 /* Update and login form */
@@ -1084,8 +1083,8 @@ q:after {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #92c820;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;

@@ -170,8 +170,14 @@ pip-log.txt
 
 
 #############
-## Configuration file and cache
+## ModernBB files
 #############
 
 cache/
 config.php
+style/Luna/
+style/Vanellope/
+style/Pinkie/
+img/avatars/2.png
+core/
+include/nt/

@@ -443,8 +443,8 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
             <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['New group label'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['New group label'] ?></label>
+                    <div class="col-sm-9">
 						<div class="input-group">
 							<select class="form-control" name="new_group" tabindex="1">
 	<?php foreach ($all_groups as $gid => $group) : ?>											<option value="<?php echo $gid ?>"><?php echo luna_htmlspecialchars($group) ?></option>
@@ -720,22 +720,22 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Ban message label'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Ban message label'] ?></label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" name="ban_message" maxlength="255" tabindex="1" />
 						<span class="help-block"><?php echo $lang['Ban message help'] ?></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Expire date label'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Expire date label'] ?></label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" name="ban_expire" maxlength="10" tabindex="2" />
 						<span class="help-block"><?php echo $lang['Expire date help'] ?></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"><?php echo $lang['Ban IP label'] ?></label>
-					<div class="col-sm-10">
+					<label class="col-sm-3 control-label"><?php echo $lang['Ban IP label'] ?></label>
+					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />
 							<?php echo $lang['Yes'] ?>
@@ -1139,20 +1139,20 @@ else
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Username'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Username'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="username" tabindex="3" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Email'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?></label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" name="email" tabindex="3" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?></label>
+                    <div class="col-sm-9">
                         <input type="password" class="form-control" name="password" tabindex="3" />
                         <div class="checkbox">
                             <label>

@@ -5,6 +5,9 @@ if (!defined('FORUM'))
     exit;
 
 ?>
+
+<?php require FORUM_ROOT.'views/userlist-breadcrumbs.tpl.php'; ?>
+
 <div class="col-xs-12">
     <div class="row forum-header">
         <div class="col-sm-8 col-xs-9"><?php echo $lang['Username'] ?></div>
@@ -17,8 +20,8 @@ if (!defined('FORUM'))
 // Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 $result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.FORUM_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_by.' '.$sort_dir.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
 
-if ($db->num_rows($result)) {
-
+if ($db->num_rows($result))
+{
     $user_ids = array();
     for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)
         $user_ids[] = $cur_user_id;
@@ -31,8 +34,7 @@ if ($db->num_rows($result)) {
         $user_title_field = get_title($user_data);
         $user_avatar = generate_avatar_markup($user_data['id']);
 
-    ?>
-
+?>
         <div class="row user-row">
             <div class="col-sm-8 col-xs-9">
                 <span class="user-avatar thumbnail">
@@ -43,34 +45,19 @@ if ($db->num_rows($result)) {
             <div class="col-sm-1 collum-count align-center hidden-xs"><p class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></p></div>
             <div class="col-sm-3 col-xs-3 collum-count"><?php echo format_time($user_data['registered'], true) ?></div>
         </div>
-
 <?php
 
     }
-} else {
-
-?>
-
-            <tr>
-                <td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">
-                    <?php echo $lang['No hits'] ?>
-                </td>
-            </tr>
-
-<?php
 }
-?>
+else
+    echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang['No hits'].'</td></tr>'."\n";
 
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        <ul class="pagination pagination-user-bottom">
-            <?php echo $paging_links ?>
-        </ul>
+?>
     </div>
 </div>
 
 <?php
+
+    require FORUM_ROOT.'views/userlist-breadcrumbs.tpl.php';
 
     require FORUM_ROOT.'footer.php';

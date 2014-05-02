@@ -332,10 +332,8 @@ while ($cur_post = $db->fetch_assoc($result))
 
 	require FORUM_ROOT.'views/viewtopic-posts.tpl.php';
 }
-?>
 
-
-<?php
+require FORUM_ROOT.'views/viewtopic-breadcrumbs.tpl.php';
 
 // Display quick post if enabled
 if ($quickpost)
@@ -344,7 +342,6 @@ if ($quickpost)
 	$cur_index = 1;
 
 	require FORUM_ROOT.'views/viewtopic-form_quickpost.tpl.php';
-
 }
 
 // Increment "num_views" for topic

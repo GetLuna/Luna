@@ -32,10 +32,14 @@
         <script type="text/javascript">
 		tinymce.init({
 			plugins: [
-				["bbcode autolink link image lists wordcount code fullscreen media"]
+				["bbcode autolink link image lists code media paste"]
 			],
 			selector: 'textarea.tinymce',
 			skins: 'lightgrey',
+			toolbar: "undo redo | styleselect | bold italic underline strikethrough | alignleft alignright aligncenter alignjustify | subscript superscript | bullist numlist | link image | code",
+			menubar: false,
+			relative_urls: false,
+			convert_urls: false,
 		});
         $(document).ready(function(){
             $("#user").focus();

@@ -22,7 +22,6 @@ if (!defined('FORUM'))
         </form>
     </div>
 </div>
-
 <?php
 
     require FORUM_ROOT.'footer.php';

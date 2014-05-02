@@ -4,16 +4,14 @@
 if (!defined('FORUM'))
     exit;
 
-$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
-list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->fetch_row($result));
-
 if ($luna_user['g_view_users'] == '1')
     $stats['newest_user'] = '<a href="profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>';
 else
     $stats['newest_user'] = luna_htmlspecialchars($stats['last_user']['username']);
 
-?>
 
+if ($luna_config['o_show_index_stats'] == 1) {
+?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Board stats'] ?></h3>
@@ -53,10 +51,15 @@ if ($luna_config['o_users_online'] == '1')
         <div class="row">
     <?php
     if ($num_users > 0)
-        echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].': </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
+        echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].' </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
 }
 
 ?>
         </div>
     </div>
 </div>
+<?php
+}
+
+$footer_style = 'index';
+require FORUM_ROOT.'footer.php';

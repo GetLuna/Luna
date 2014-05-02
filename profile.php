@@ -900,148 +900,19 @@ if ($user['signature'] != '')
 // View or edit?
 if (!$section || $section == 'view')
 {
-
-	$user_personality = array();
-
-	$user_username = luna_htmlspecialchars($user['username']);
-	$user_usertitle = get_title($user);
-	$avatar_field = generate_avatar_markup($id);
-
-	$user_title_field = get_title($user);
-	$user_personality[] = '<b>'.$lang['Title'].':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
-
-	$user_personality[] = '<b>'.$lang['Posts table'].':</b> '.$posts_field = forum_number_format($user['num_posts']);
-
-	if ($user['num_posts'] > 0)
-		$user_personality[] = '<b>'.$lang['Last post'].':</b> '.$last_post;
-
-	$user_activity[] = '<b>'.$lang['Registered table'].':</b> '.format_time($user['registered'], true);
-
-	$user_personality[] = '<b>'.$lang['Registered'].':</b> '.format_time($user['registered'], true);
-
-	$user_personality[] = '<b>'.$lang['Last visit info'].':</b> '.format_time($user['last_visit'], true);
-
-	if ($user['realname'] != '')
-		$user_personality[] = '<b>'.$lang['Realname'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
-
-	if ($user['location'] != '')
-		$user_personality[] = '<b>'.$lang['Location'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']);
-
-	$posts_field = '';
-	if ($luna_user['g_search'] == '1')
-	{
-		$quick_searches = array();
-		if ($user['num_posts'] > 0)
-		{
-			$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
-			$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
-		}
-		if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
-			$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
-
-		if (!empty($quick_searches))
-			$posts_field .= implode('', $quick_searches);
-	}
-
-	if ($posts_field != '')
-		$user_personality[] = '<br /><div class="btn-group">'.$posts_field.'</div>';
-
-	if ($user['url'] != '') {
-		$user_website = '<a class="btn btn-default btn-block" href="'.luna_htmlspecialchars($user['url']).'" rel="nofollow"><span class="glyphicon glyphicon-globe"></span> '.$lang['Website'].'</a>';
-	} else {
-		$user_website = '';
-	}
-
-	if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-		$email_field = '<a class="btn btn-default btn-block" href="mailto:'.luna_htmlspecialchars($user['email']).'"><span class="glyphicon glyphicon-send"></span> '.luna_htmlspecialchars($user['email']).'</a>';
-	else if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-		$email_field = '<a class="btn btn-default btn-block" href="misc.php?email='.$id.'"><span class="glyphicon glyphicon-send"></span> '.$lang['Send email'].'</a>';
-	else
-		$email_field = '';
-	if ($email_field != '')
-	{
-		$email_field;
-	}
-
-	$user_messaging = array();
-
-	if ($user['jabber'] != '')
-		$user_messaging[] = '<b>'.$lang['Jabber'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']);
-
-	if ($user['icq'] != '')
-		$user_messaging[] = '<b>'.$lang['ICQ'].':</b> '. $user['icq'];
-
-	if ($user['msn'] != '')
-		$user_messaging[] = '<b>'.$lang['MSN'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
-
-	if ($user['aim'] != '')
-		$user_messaging[] = '<b>'.$lang['AOL IM'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']);
-
-	if ($user['yahoo'] != '')
-		$user_messaging[] = '<b>'.$lang['Yahoo'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']);
-
-	if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
-		$user_signature = $parsed_signature;
-
-	$user_activity = array();
-
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 	require FORUM_ROOT.'views/profile-view.tpl.php';
-
 }
 else if ($section == 'personality')
 {
-
-	if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
-		message($lang['Bad request'], false, '403 Forbidden');
-
-	if ($luna_user['is_admmod'])
-	{
-		if ($luna_user['g_id'] == FORUM_ADMIN || $luna_user['g_mod_rename_users'] == '1')
-			$username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user['username']).'" maxlength="25" /></div></div>'."\n";
-		else
-			$username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9">'.luna_htmlspecialchars($user['username']).'</div></div>'."\n";
-
-		$email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><div class="input-group"><input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" /><span class="input-group-btn"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></div></div></div>'."\n";
-	}
-	else
-	{
-		$username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
-
-		if ($luna_config['o_regs_verify'] == '1')
-			$email_field = '<p>'.sprintf($lang['Email info'], luna_htmlspecialchars($user['email']).' &middot; <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
-		else
-			$email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
-	}
-
-	if ($luna_user['g_set_title'] == '1')
-		$title_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Title'].'<span class="help-block">'.$lang['Leave blank'].'</span></label><div class="col-sm-9"><input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" /></div></div>'."\n";
-
-	if ($luna_config['o_avatars'] == '0' && $luna_config['o_signatures'] == '0')
-		message($lang['Bad request'], false, '404 Not Found');
-
-	$avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
-
-	$user_avatar = generate_avatar_markup($id);
-	if ($user_avatar)
-		$avatar_field .= ' <a class="btn btn-primary" href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
-	else
-		$avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
-
-	if ($user['signature'] != '')
-		$signature_preview = '<p>'.$lang['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
-	else
-		$signature_preview = '<p>'.$lang['No sig'].'</p>'."\n";
-
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 	require FORUM_ROOT.'views/profile-personality.tpl.php';
-
 }
 else if ($section == 'settings')
 {
@@ -1053,7 +924,6 @@ else if ($section == 'settings')
 	require FORUM_ROOT.'header.php';
 
 	require FORUM_ROOT.'views/profile-settings.tpl.php';
-
 }
 else if ($section == 'admin')
 {
@@ -1065,7 +935,10 @@ else if ($section == 'admin')
 	require FORUM_ROOT.'header.php';
 
 	require FORUM_ROOT.'views/profile-admin.tpl.php';
-
 }
 else
+{
 	message($lang['Bad request'], false, '404 Not Found');
+}
+
+require FORUM_ROOT.'footer.php';

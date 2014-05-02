@@ -1,14 +1,4 @@
-/****************************
- * Name:		Radical
- * Version:		2.5.0
- * Date:		20 April 2014
- * Designer:	ModernBB Developers
- * Discription: A nice red default theme that uses ModernBB optimal.
- * ModernBB:	3.2
- * Bootstrap:	3.1.1
- ****************************/
- 
- /* General fixes */
+/* General fixes */
 body, html {
 	background-color: #f2f2f2;
 	font-family: "Segoe UI", Arial;
@@ -23,7 +13,6 @@ body, html {
 }
 
 footer {
-	padding-top: 10px;
 	padding-bottom: 15px;
 }
 
@@ -53,14 +42,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modlist {
-	color: #888;	
+	color: #888;
 }
 
 @media screen and (max-width: 767px) {
 	.col-profile {
 		padding-left: 0;
 	}
-	
+
 	.col-profile .profile-card {
 		margin-top: 60px !important;
 	}
@@ -72,6 +61,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .col-profile {
 	padding-right: 0;
+}
+
+@media screen and (max-width: 991px) {
+	#userlist .col-sm-12 {
+		margin-bottom: 10px;
+	}
 }
 
 /* Navbar profile pane */
@@ -98,8 +93,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #679e0d;
+	background: linear-gradient(to right, #679e0d, #a4da28);
 	color: #fff;
 }
 
@@ -116,15 +111,15 @@ h1, h2, h3, h4, h5, h6 {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #header .dropdown-menu > li > a {
 		color: #fff;
 	}
-	
+
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #f96a00;
+		background: #92c820;
 	}
-	
+
 	.dropdown-menu .divider {
-		background-color: #b62b00;
+		background-color: #4c7c00;
 	}
-	
+
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
 		border: none;
 		box-shadow: none;
@@ -134,9 +129,10 @@ h1, h2, h3, h4, h5, h6 {
 .announcement a {
 	text-decoration: underline;
 }
+
 @media screen and (min-width: 768px) {
 	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #901b00;
+		background: #447000;
 	}
 }
 
@@ -157,6 +153,7 @@ h1, h2, h3, h4, h5, h6 {
 /* First run */
 .first-run-content {
 	padding-left: 15px;
+	height: 100%;
 }
 
 .first-run-content h3 {
@@ -166,6 +163,7 @@ h1, h2, h3, h4, h5, h6 {
 .first-run-profile {
 	background-image: url(../img/core/firstrun.png);
 	background-size: cover;
+	height: 100%;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	padding-bottom: 16px;
@@ -189,6 +187,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 15px;
 }
 
+.first-run-login{
+	margin-right: 15px;
+}
+
 .first-run .active {
 	text-align: center;
 }
@@ -203,11 +205,11 @@ h1, h2, h3, h4, h5, h6 {
 		border-bottom-left-radius: 0;
 		border-top-right-radius: 3px;
 	}
-	
+
 	.first-run-title {
 		padding-top: 15px;
 	}
-	
+
 	.first-run-list {
 		margin-left: 0;
 		margin-right: 0;
@@ -279,8 +281,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #f96a00;
-	background: linear-gradient(#fd7700, #fd4d00);
+	background: #92c820;
+	background: linear-gradient(#88bf1c, #69a00e);
 	color: #fff;
 }
 
@@ -301,21 +303,21 @@ h1, h2, h3, h4, h5, h6 {
 
 @media(min-width:767px) {
 	ul.nav li.dropdown:hover > ul.dropdown-menu{
-		display: block;    
+		display: block;
 	}
 }
 
 .navbar {
 	border: none;
-	background: #d33200;
+	background: #538700;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #b62b00;
+	background-color: #4c7c00;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #b62b00;
+    background-color: #4c7c00;
     color: #fff;
 }
 
@@ -342,7 +344,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #d33200;
+	background-color: #538700;
 }
 
 /* Pagination */
@@ -357,8 +359,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #f42e00;
-	background-color: #f42e00;
+	border: 1px solid #6b9b12;
+	background-color: #6b9b12;
 }
 
 /* Profile */
@@ -368,8 +370,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #f42e00;
-	border-color: #f42e00;
+	background-color: #6b9b12;
+	border-color: #6b9b12;
 }
 
 .profile-h2 {
@@ -461,7 +463,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border-bottom: #eee solid 1px;
 	box-shadow: none;
 	font-size: 20px;
-	line-height: 0.8;
 }
 
 .quickpostfield textarea::-webkit-input-placeholder, .postfield textarea::-webkit-input-placeholder {
@@ -472,7 +473,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	font-size: 20px;
 }
 
-.quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder { 
+.quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder {
 	font-size: 20px;
 }
 
@@ -483,14 +484,14 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #92c820;
+	background: linear-gradient(to right, #679e0d, #a4da28);
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #92c820;
+	background: linear-gradient(to right, #679e0d, #a4da28);
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -542,18 +543,18 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #f04400;
-	border: 1px solid #f06000;
+	background: #699934;
+	border-color: #4f7327;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #f07700;
-	border: 1px solid #f0af00;
+	background: #88c149;
+	border-color: #4f7327;
 	color: #fff;
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #bd1600 9;
+	background-color: #408140 9;
 }
 
 .btn-post {
@@ -608,17 +609,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .alert-info {
+	border-left: #93c920 5px solid;
+}
+
+.alert-danger {
 	border-left: #ff5a00 5px solid;
 	color: #d33200;
 }
 
-.alert-danger {
-	border-left: #3e3e3e 5px solid;
-	color: #3e3e3e;
-}
-
 .alert-success {
-	border-left: #41d300 5px solid;
+	border-left: #523f6d 5px solid;
 	color: #4e9e00;
 }
 
@@ -716,15 +716,15 @@ textarea {
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
-	border-left: 10px solid #f04400;
+	border-left: 10px solid #699934;
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):before, .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
-	border-left: 10px solid #e03a00;
+	border-left: 10px solid #4f7327;
 }
 
 .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
-	border-left: 10px solid #f07700;
+	border-left: 10px solid #88c149;
 }
 
 /* Status Indicators */
@@ -741,16 +741,16 @@ textarea {
 }
 
 .inew .icon {
-	border-color: #f05316;
+	border-color: #81c400;
 }
 
 #redirect {
-	border-left: #f15500 5px solid;
+	border-left: #7fcc00 5px solid !important;
 }
 
 /* Userlist */
 .usersearch {
-	margin: 0 auto 10px auto;	
+	margin: 0 auto 10px auto;
 }
 
 .user-row .user-avatar {
@@ -804,12 +804,8 @@ textarea {
 	margin-top: 15px;
 }
 
-.pagination-user-top {
-	margin-bottom: 10px;
-}
-
-.pagination-user-bottom {
-	margin-top: 10px;
+.pagination-user {
+	margin: 10px auto;
 }
 
 /* Topicview */
@@ -898,7 +894,7 @@ textarea {
 }
 
 .profile-card-head {
-	background-color: #ea3700;
+	background-color: #679e0d;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -957,12 +953,12 @@ textarea {
     left: 4px;
     margin-top: -2px;
     border-left-width: 0px;
-    border-right-color: #ea3700;;
+    border-right-color: #679e0d;;
 }
 
 .topic .panel-heading {
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #679e0d;
+	background: linear-gradient(to right, #679e0d, #a4da28);
 }
 
 .post-actions {
@@ -980,10 +976,10 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #ea3700;
-		background: linear-gradient(to right, #ea3700, #fd8300);
+		background: #679e0d;
+		background: linear-gradient(to right, #679e0d, #a4da28);
 	}
-	
+
 	.topic .panel-heading  {
 		border-radius: 0;
 	}
@@ -1014,11 +1010,11 @@ textarea {
 
 /* Links */
 a {
-	color: #f15500;
+	color: #60920e;
 }
 
 a:hover, a:active {
-	color: #f11700;
+	color: #523f6d;
 }
 
 a.list-group-item:hover, a.list-group-item:active {
@@ -1079,8 +1075,8 @@ q:after {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #92c820;
+	background: linear-gradient(to right, #679e0d, #a4da28);
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;
