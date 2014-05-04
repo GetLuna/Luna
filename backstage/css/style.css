@@ -232,8 +232,9 @@ label .help-block {
 }
 
 .panel-style {
-	border: 1px #c4c4c4 solid;
+	border: 1px #dfdfdf solid;
 	border-radius: 8px;
+	margin-top: 20px;
 }
 
 /* Pills */
