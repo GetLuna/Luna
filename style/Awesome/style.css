@@ -161,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .first-run-profile {
-	background-image: url(../img/core/firstrun.png);
+	background-image: url(../../img/core/firstrun.png);
 	background-size: cover;
 	height: 100%;
 	border-bottom-left-radius: 3px;
@@ -181,6 +181,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .first-run-avatar img {
 	border-radius: 3px;
+	box-shadow: 0px 0px 13px #808080;
 }
 
 .first-run-list {
