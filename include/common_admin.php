@@ -41,7 +41,7 @@ function generate_admin_menu($page = '')
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-            	<li><a href="../"><span class="glyphicon glyphicon-chevron-left"></span><span class="visible-xs"> <?php echo $lang['Forums'] ?></span></a></li>
+            	<li class="hidden-xs"><a href="../"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
                 <li class="<?php if ($page == 'index' || $page == 'update' || $page == 'stats') echo 'active'; ?>"><a href="index.php"><span class="glyphicon glyphicon-dashboard"></span> <?php echo $lang['Backstage'] ?></a></li>
                 <li class="dropdown <?php if ($page == 'censoring' || $page == 'reports' || $page == 'board') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
