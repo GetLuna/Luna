@@ -35,11 +35,17 @@ if ($action == 'update_check')
 }
 elseif ($action == 'soft_reset')
 {
+	if ($luna_user['g_id'] != FORUM_ADMIN)
+		message($lang['No permission'], false, '403 Forbidden');
+
 	unlink(FORUM_ROOT.'config.php');
 	header("Location: ../install.php?action=softreset");
 }
 elseif ($action == 'hard_reset')
 {
+	if ($luna_user['g_id'] != FORUM_ADMIN)
+		message($lang['No permission'], false, '403 Forbidden');
+
 	$db->drop_table('bans') or error('Unable to drop bans table', __FILE__, __LINE__, $db->error());
 	$db->drop_table('categories') or error('Unable to drop categories table', __FILE__, __LINE__, $db->error());
 	$db->drop_table('censoring') or error('Unable to drop censoring table', __FILE__, __LINE__, $db->error());
@@ -125,6 +131,9 @@ require FORUM_ROOT.'backstage/header.php';
     	<p>ModernBB 3 is developed by the ModernBB Group. Copyright 2013-2014. Released under the MIT license. We would like to thank you for using ModernBB.</p>
     </div>
 </div>
+<?php
+if ($luna_user['g_id'] == FORUM_ADMIN) {
+?>
 <div class="panel panel-default">
 	<div class="panel-heading">
     	<h3 class="panel-title"><?php echo $lang['Reset head'] ?></h3>
@@ -139,5 +148,7 @@ require FORUM_ROOT.'backstage/header.php';
     </div>
 </div>
 <?php
+
+}
 
 require FORUM_ROOT.'backstage/footer.php';
