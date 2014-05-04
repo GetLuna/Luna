@@ -190,6 +190,9 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
 		</div>
     </div>
 </div>
+<?php
+if ($luna_user['is_admmod']) {
+?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Moderating'] ?></h3>
@@ -221,5 +224,6 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
     </div>
 </div>
 <?php
+}
 
 require FORUM_ROOT.'footer.php';
