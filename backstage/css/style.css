@@ -78,6 +78,16 @@ label .help-block {
 	background-color: #14a3ff;
 }
 
+.nav-inner {
+	padding-left: 0;
+}
+
+@media all and (max-width:767px) {
+	.nav-inner .visible-xs {
+		display: inline !important;
+	}
+}
+
 /* Panels */
 .panel-default .panel-heading {
 	color: #fff;
