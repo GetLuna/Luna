@@ -67,7 +67,7 @@ function generate_admin_menu($page = '')
                         <li><a href="bans.php"><?php echo $lang['Bans'] ?></a></li><?php }; ?>
                     </ul>
                 </li>
-                <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'registration' || $page == 'email' || $page == 'backstage' || $page == 'database' || $page == 'maintenance') echo 'active'; ?>">
+                <?php if ($is_admin) { ?><li class="dropdown <?php if ($page == 'global' || $page == 'display' || $page == 'features' || $page == 'registration' || $page == 'email' || $page == 'style' || $page == 'backstage' || $page == 'database' || $page == 'maintenance') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-cog"></span> <?php echo $lang['Settings'] ?> <b class="caret"></b>
                     </a>
