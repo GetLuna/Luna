@@ -30,6 +30,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	color: #14a3ff;
 }
 
+@media all and (max-width:767px) {
+	h2 {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
+
 label .help-block {
     font-weight: 400;
     letter-spacing: 0.5px;
@@ -78,8 +85,10 @@ label .help-block {
 	background-color: #14a3ff;
 }
 
-.nav-inner {
-	padding-left: 0;
+@media all and (min-width:768px) {
+	.nav-inner {
+		padding-left: 0;
+	}
 }
 
 @media all and (max-width:767px) {
@@ -112,6 +121,20 @@ label .help-block {
 .panel > :last-child {
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
+}
+
+@media all and (max-width:767px) {
+	.panel {
+		margin-bottom: 0;
+	}
+	
+	.panel-heading, .panel > :last-child, .panel > :last-child.table, .panel > :last-child.table-responsive > :last-child.table, .panel-title .btn {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		border: none;
+	}
 }
 
 /* Buttons */
