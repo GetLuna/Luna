@@ -26,7 +26,7 @@ if (!defined('FORUM'))
             <div class="panel panel-default panel-topic">
                 <div class="panel-heading">
                     <div class="comment-arrow hidden-sm hidden-xs"></div>
-                    <h3 class="panel-title"><span class="postnr">#<?php echo ($start_from + $post_count) ?><span class="pull-right"><a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h3>
+                    <h3 class="panel-title"><span class="postnr">#<?php echo ($start_from + $post_count) ?><span class="pull-right"><a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></span></h3>
                 </div>
                 <div class="panel-body">
                     <?php echo $cur_post['message']."\n" ?>
