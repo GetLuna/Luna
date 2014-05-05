@@ -26,18 +26,19 @@ if (isset($_POST['form_sent']))
 	confirm_referrer('backstage/features.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
-		'quickpost'				=> isset($_POST['form']['quickpost']) ? '1' : '0',
-		'users_online'			=> isset($_POST['form']['users_online']) ? '1' : '0',
-		'censoring'				=> isset($_POST['form']['censoring']) ? '1' : '0',
-		'signatures'			=> isset($_POST['form']['signatures']) ? '1' : '0',
-		'ranks'					=> isset($_POST['form']['ranks']) ? '1' : '0',
-		'topic_views'			=> isset($_POST['form']['topic_views']) ? '1' : '0',
-		'has_posted'			=> isset($_POST['form']['has_posted']) ? '1' : '0',
-		'show_first_run'		=> isset($_POST['form']['show_first_run']) ? '1' : '0',
-		'first_run_guests'		=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
-		'first_run_message'		=> luna_trim($_POST['form']['first_run_message']),
-		'gzip'					=> isset($_POST['form']['gzip']) ? '1' : '0',
-		'search_all_forums'		=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
+		'quickpost'					=> isset($_POST['form']['quickpost']) ? '1' : '0',
+		'users_online'				=> isset($_POST['form']['users_online']) ? '1' : '0',
+		'censoring'					=> isset($_POST['form']['censoring']) ? '1' : '0',
+		'signatures'				=> isset($_POST['form']['signatures']) ? '1' : '0',
+		'ranks'						=> isset($_POST['form']['ranks']) ? '1' : '0',
+		'topic_views'				=> isset($_POST['form']['topic_views']) ? '1' : '0',
+		'has_posted'				=> isset($_POST['form']['has_posted']) ? '1' : '0',
+		'show_first_run'			=> isset($_POST['form']['show_first_run']) ? '1' : '0',
+		'first_run_guests'			=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
+		'first_run_message'			=> luna_trim($_POST['form']['first_run_message']),
+		'gzip'						=> isset($_POST['form']['gzip']) ? '1' : '0',
+		'search_all_forums'			=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
+		'enable_advanced_search'	=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
 	);
 
 	foreach ($form as $key => $input)
@@ -132,14 +133,20 @@ generate_admin_menu('features');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Others'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Search'] ?></label>
                     <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                            	<input type="checkbox" name="form[enable_advanced_search]" value="1" <?php if ($luna_config['o_enable_advanced_search'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Enable advanced search'] ?>
+                            </label>
+                        </div>
                         <div class="checkbox">
                             <label>
                             	<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Search all help'] ?>
                             </label>
-                        </div>                  
+                        </div>
                     </div>
                 </div>
             </fieldset>

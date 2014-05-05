@@ -878,7 +878,7 @@ $lang = array(
 'General'							=>	'General',
 'Topics and posts'					=>	'Topics and posts',
 'User features'						=>	'User features',
-'Others'							=>	'Search all forums',
+'Search'							=>	'Search',
 'Advanced'							=>	'Advanced',
 'Quick post help'					=>	'Show a quick post form so users can post a reaction from the topic view.  ',
 'Users online help'					=>	'Display info on the index page about users currently browsing the board.',
@@ -888,6 +888,7 @@ $lang = array(
 'Topic views help'					=>	'Show the number of views for each topic.',
 'Has posted help'					=>	'Show a label in front of the topics where users have posted.',
 'GZip help'							=>	'Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature.',
+'Enable advanced search'			=>	'Allow users to use the advanced search options.',
 'Search all help'					=>	'Allow search only in 1 forum at a time.',
 
 'First run'							=>	'First run',
