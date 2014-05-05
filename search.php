@@ -602,10 +602,14 @@ if (!$section || $section == 'simple') {
 
 	require FORUM_ROOT.'views/search-form.tpl.php';
 } else {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
-	$focus_element = array('search', 'keywords');
-	define('FORUM_ACTIVE_PAGE', 'search');
-	require FORUM_ROOT.'header.php';
-
-	require FORUM_ROOT.'views/search-form_advanced.tpl.php';
+	if ($luna_config['o_enable_advanced_search'] == 0) {
+		message($lang['No permission'], false, '403 Forbidden');
+	} else {
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
+		$focus_element = array('search', 'keywords');
+		define('FORUM_ACTIVE_PAGE', 'search');
+		require FORUM_ROOT.'header.php';
+	
+		require FORUM_ROOT.'views/search-form_advanced.tpl.php';
+	}
 }
