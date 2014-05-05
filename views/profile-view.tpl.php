@@ -78,7 +78,7 @@ if (!defined('FORUM'))
         $user_messaging[] = '<b>'.$lang['MSN'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
 
     if ($user['aim'] != '')
-        $user_messaging[] = '<b>'.$lang['AOL IM'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']);
+        $user_messaging[] = '<b>'.$lang['AOL'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']);
 
     if ($user['yahoo'] != '')
         $user_messaging[] = '<b>'.$lang['Yahoo'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']);

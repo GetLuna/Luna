@@ -116,7 +116,7 @@ if (!defined('FORUM'))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['AOL IM'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['AOL'] ?></label>
                     <div class="col-sm-9">
                         <input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo luna_htmlspecialchars($user['aim']) ?>" maxlength="30" />
                     </div>
