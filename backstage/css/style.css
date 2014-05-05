@@ -73,16 +73,22 @@ label .help-block {
 	box-shadow: none;
 }
 
-.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-	color: #fff;
+@media all and (max-width:767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+		color: #fff;
+	}
+	
+	.dropdown-menu .divider {
+		background-color: rgba(255,255,255,0.20);
+	}
+	
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: rgba(255,255,255,0.50);
+	}
 }
 
-.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+.navbar-default .navbar-nav > li > a {
 	color: rgba(255,255,255,0.50);
-}
-
-.dropdown-menu .divider {
-	background-color: rgba(255,255,255,0.20);
 }
 
 .navbar-default .navbar-toggle {
