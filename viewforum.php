@@ -93,7 +93,7 @@ if (!$luna_user['is_guest'])
 			$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.'">'.$lang['Subscribe'].'</a>';
 	}
 
-	$forum_actions[] = '<a href="misc.php?action=markforumread&amp;fid='.$id.'">'.$lang['Mark forum read'].'</a>';
+	$forum_actions[] = '<a href="misc.php?action=markforumread&amp;fid='.$id.'">'.$lang['Mark as read'].'</a>';
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));

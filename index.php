@@ -57,7 +57,7 @@ $forum_actions = array();
 
 // Display a "mark all as read" link
 if (!$luna_user['is_guest'])
-	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark all as read'].'</a>';
+	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
 
 
 // Someone clicked "Do not show again"
