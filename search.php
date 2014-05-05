@@ -600,7 +600,7 @@ if (!$section || $section == 'simple') {
 	define('FORUM_ACTIVE_PAGE', 'search');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/search-form_advanced.tpl.php';
+	require FORUM_ROOT.'views/search-form.tpl.php';
 } else {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
 	$focus_element = array('search', 'keywords');
