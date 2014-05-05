@@ -376,6 +376,10 @@ switch ($stage)
 		// Since 3.2-beta: Add o_has_posted
 		if (!array_key_exists('o_has_posted', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_has_posted\', \'1\')') or error('Unable to insert config value \'o_has_posted\'', __FILE__, __LINE__, $db->error());
+		
+		// Since 3.3-alpha: Add o_enable_advanced_search
+		if (!array_key_exists('o_enable_advanced_search', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_enable_advanced_search\', \'1\')') or error('Unable to insert config value \'o_enable_advanced_search\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
