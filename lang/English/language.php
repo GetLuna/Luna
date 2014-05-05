@@ -1342,9 +1342,6 @@ $lang = array(
 'Backstage settings'	=>	'Backstage settings',
 'Extensions'			=>	'Extensions',
 
-// User menu
-'Documentation'			=>	'Documentation',
-
 // Others
 'Prune'					=>	'Prune',
 'Server statistics'		=>  'Server statistics',
