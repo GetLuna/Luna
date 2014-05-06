@@ -61,7 +61,7 @@ $lang = array(
 'Smilies'							=>	'Smilies',
 'and'								=>	'and',
 'Image link'						=>	'image', // This is displayed (i.e. <image>) instead of images when "Show images" is disabled in the profile
-'wrote'								=>	'wrote:', // For [quote]'s
+'wrote'								=>	'wrote', // For [quote]'s
 'Mailer'							=>	'%s Mailer', // As in "MyForums Mailer" in the signature of outgoing emails
 'Spacer'							=>	'…', // Ellipsis for paginate
 
