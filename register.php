@@ -32,7 +32,7 @@ else if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_PO
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require FORUM_ROOT.'header.php';
 
-    require FORUM_ROOT.'views/register-rules.tpl.php';
+    require get_view_path('register-rules.tpl.php');
 }
 
 // Start with a clean slate
@@ -245,4 +245,4 @@ $page_head = array('<style type="text/css">#register label.usernamefield { displ
 define('FORUM_ACTIVE_PAGE', 'register');
 require FORUM_ROOT.'header.php';
 
-require FORUM_ROOT.'views/register-form.tpl.php';
+require get_view_path('register-form.tpl.php');

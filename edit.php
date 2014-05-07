@@ -138,8 +138,6 @@ if (isset($_POST['form_sent']))
 	}
 }
 
-
-
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Edit post']);
 $required_fields = array('req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 $focus_element = array('edit', 'req_message');
@@ -148,16 +146,16 @@ require FORUM_ROOT.'header.php';
 
 $cur_index = 1;
 
-require FORUM_ROOT.'views/edit-breadcrumbs.tpl.php';
+require get_view_path('edit-breadcrumbs.tpl.php');
 
 // If there are errors, we display them
 if (!empty($errors))
 {
-    require FORUM_ROOT.'views/edit-errors.tpl.php';
+    require get_view_path('edit-errors.tpl.php');
 }
 else if (isset($_POST['preview']))
 {
-    require FORUM_ROOT.'views/edit-preview.tpl.php';
+    require get_view_path('views/edit-preview.tpl.php');
 }
 
-require FORUM_ROOT.'views/edit-form.tpl.php';
+require get_view_path('edit-form.tpl.php');

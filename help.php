@@ -62,7 +62,7 @@ require FORUM_ROOT.'header.php';
                 <p><code>[email]myname@example.com[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com">myname@example.com</a></p>
                 <p><code>[email=myname@example.com]<?php echo $lang['My email address'] ?>[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com"><?php echo $lang['My email address'] ?></a></p>
                 <p><a name="img"></a><?php echo $lang['Images info'] ?></p>
-                <p><code>[img=<?php echo $lang['ModernBB bbcode test'] ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php echo $lang['produces'] ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php echo $lang['ModernBB bbcode test'] ?>" /></p><br />
+                <p><code>[img=<?php echo $lang['ModernBB bbcode test'] ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/style/Core/img/test.png[/img]</code> <?php echo $lang['produces'] ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/style/Core/img/test.png" alt="<?php echo $lang['ModernBB bbcode test'] ?>" /></p><br />
                 <p><a name="img"></a><?php echo $lang['Video info'] ?></p>
                 <p><code>[video=(x,y)][url]<?php echo $lang['Video link'] ?>[/url][/video]</code>
             </div>
@@ -112,7 +112,7 @@ foreach ($smilies as $smiley_text => $smiley_img)
 	$smiley_groups[$smiley_img][] = $smiley_text;
 
 foreach ($smiley_groups as $smiley_img => $smiley_texts)
-	echo "\t\t".'<p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <img src="'.luna_htmlspecialchars(get_base_url(true)).'/img/smilies/'.$smiley_img.'" width="15" height="15" alt="'.$smiley_texts[0].'" /></p>'."\n";
+	echo "\t\t".'<p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <img src="'.luna_htmlspecialchars(get_base_url(true)).'/style/Core/img/smilies/'.$smiley_img.'" width="15" height="15" alt="'.$smiley_texts[0].'" /></p>'."\n";
 
 ?>
             </div>

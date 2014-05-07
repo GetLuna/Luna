@@ -169,7 +169,7 @@ define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-require FORUM_ROOT.'views/viewtopic-header.tpl.php';
+require get_view_path('viewtopic-header.tpl.php');
 
 require FORUM_ROOT.'include/parser.php';
 
@@ -332,10 +332,10 @@ while ($cur_post = $db->fetch_assoc($result))
 		}
 	}
 
-	require FORUM_ROOT.'views/viewtopic-posts.tpl.php';
+	require get_view_path('viewtopic-posts.tpl.php');
 }
 
-require FORUM_ROOT.'views/viewtopic-breadcrumbs.tpl.php';
+require get_view_path('viewtopic-breadcrumbs.tpl.php');
 
 // Display quick post if enabled
 if ($quickpost)
@@ -343,7 +343,7 @@ if ($quickpost)
 
 	$cur_index = 1;
 
-	require FORUM_ROOT.'views/viewtopic-form_quickpost.tpl.php';
+	require get_view_path('viewtopic-form_quickpost.tpl.php');
 }
 
 // Increment "num_views" for topic

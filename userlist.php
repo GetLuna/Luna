@@ -55,6 +55,6 @@ define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'userlist');
 require FORUM_ROOT.'header.php';
 
-require FORUM_ROOT.'views/userlist-form.tpl.php';
+require get_view_path('userlist-form.tpl.php');
 
-require FORUM_ROOT.'views/userlist-users.tpl.php';
+require get_view_path('userlist-users.tpl.php');
