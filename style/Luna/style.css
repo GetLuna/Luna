@@ -93,8 +93,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #1b3376;
+	background: linear-gradient(to right, #1b3376, #374fdd);
 	color: #fff;
 }
 
@@ -113,11 +113,11 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #47a9f5;
+		background: #0b2672;
 	}
 
 	.dropdown-menu .divider {
-		background-color: #0068b0;
+		background-color: #001a62;
 	}
 
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (min-width: 768px) {
 	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #005d9e;
+		background: #001a62;
 	}
 }
 
@@ -280,8 +280,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #20a3f6;
-	background-image: linear-gradient(#20a3f6, #0b8ada);
+	background: #374fdd;
+	background-image: linear-gradient(#374fdd, #2e46a6);
 	color: #fff;
 }
 
@@ -308,15 +308,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar {
 	border: none;
-	background: #0073c4;
+	background: #172f73;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #0068b0;
+	background-color: #0b2672;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	background-color: #0068b0;
+	background-color: #0b2672;
 	color: #fff;
 }
 
@@ -349,7 +349,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #0073c4;
+	background-color: #172f73;
 }
 
 /* Pagination */
@@ -364,8 +364,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #1d8ae0;
-	background-color: #1d8ae0;
+	border: 1px solid #2840a7;
+	background-color: #2840a7;
 }
 
 /* Profile */
@@ -375,8 +375,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #0891dc;
-	border-color: #0891dc;
+	background-color: #2840a7;
+	border-color: #2840a7;
 }
 
 .profile-h2 {
@@ -496,14 +496,14 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #1b3376;
+	background: linear-gradient(to right, #1b3376, #374fdd);
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #1b3376;
+	background: linear-gradient(to right, #1b3376, #374fdd);
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -902,7 +902,7 @@ textarea {
 }
 
 .profile-card-head {
-	background-color: #057ed4;
+	background-color: #1b3376;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -961,12 +961,12 @@ textarea {
 	left: 4px;
 	margin-top: -2px;
 	border-left-width: 0px;
-	border-right-color: #057ed4;;
+	border-right-color: #1b3376;;
 }
 
 .topic .panel-heading {
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #1b3376;
+	background: linear-gradient(to right, #1b3376, #374fdd);
 }
 
 .post-actions {
@@ -984,8 +984,8 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #057ed4;
-		background: linear-gradient(to right, #057ed4, #10c1f0);
+		background: #1b3376;
+		background: linear-gradient(to right, #1b3376, #374fdd);
 	}
 
 	.topic .panel-heading  {
@@ -1018,15 +1018,15 @@ textarea {
 
 /* Links */
 a {
-	color: #428bca;
+	color: #2f47c0;
 }
 
 a:hover, a:active {
-	color: #2a6496;
+	color: #2840a5;
 }
 
 a.list-group-item:hover, a.list-group-item:active {
-	color: #555555;
+	color: #1b3377;
 }
 
 /* BBCode */
@@ -1083,8 +1083,8 @@ q:after {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #1b3376;
+	background: linear-gradient(to right, #1b3376, #374fdd);
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;
