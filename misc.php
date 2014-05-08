@@ -25,7 +25,7 @@ if ($action == 'rules')
 	define('FORUM_ACTIVE_PAGE', 'rules');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/misc-rules.tpl.php';
+	get_view_path('misc-rules.tpl.php');
 }
 
 
@@ -159,7 +159,7 @@ else if (isset($_GET['email']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/misc-email.tpl.php';
+	require get_view_path('misc-email.tpl.php');
 }
 
 
@@ -254,7 +254,7 @@ else if (isset($_GET['report']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/misc-report.tpl.php';
+	require get_view_path('misc-report.tpl.php');
 }
 
 

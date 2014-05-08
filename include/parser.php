@@ -786,7 +786,7 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[right\](.*?)\[/right\]%ms';
 	$pattern[] = '%\[center\](.*?)\[/center\]%ms';
 	$pattern[] = '%\[justify\](.*?)\[/justify\]%ms';
-	
+
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
 	$pattern[] = '%\[video=([0-9]+),([0-9]+)\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
@@ -818,9 +818,9 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '</p><p style="text-align: right">$1</p><p>';
 	$replace[] = '</p><p style="text-align: center">$1</p><p>';
 	$replace[] = '</p><p style="text-align: justify">$1</p><p>';
-	
+
 	// DailyMotion videos
-	$replace[] = '<iframe width="480" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';  
+	$replace[] = '<iframe width="480" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';
 	$replace[] = '<iframe width="$1" height="$2" src="http://www.dailymotion.com/embed/video/$5"></iframe>';
 	// Youtube Videos
 	$replace[] = '<iframe width="480" height="360" src="http://www.youtube.com/embed/$4"></iframe>';
@@ -891,7 +891,7 @@ function do_smilies($text)
 	foreach ($smilies as $smiley_text => $smiley_img)
 	{
 		if (strpos($text, $smiley_text) !== false)
-			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
+			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/style/Core/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
 	}
 
 	return substr($text, 1, -1);

@@ -10,4 +10,4 @@ if (!defined('FORUM'))
 
 <?php
 
-    require FORUM_ROOT.'views/viewtopic-breadcrumbs.tpl.php';
+    require get_view_path('viewtopic-breadcrumbs.tpl.php');

@@ -76,4 +76,4 @@ require FORUM_ROOT.'header.php';
 require FORUM_ROOT.'include/parser.php';
 $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
-require FORUM_ROOT.'views/delete.tpl.php';
+require get_view_path('delete.tpl.php');

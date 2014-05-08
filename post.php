@@ -530,26 +530,26 @@ else
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-require FORUM_ROOT.'views/post-breadcrumb.tpl.php';
+require get_view_path('post-breadcrumb.tpl.php');
 
 // If there are errors, we display them
 if (!empty($errors))
 {
-	require FORUM_ROOT.'views/post-error.tpl.php';
+	require get_view_path('post-error.tpl.php');
 }
 else if (isset($_POST['preview']))
 {
-	require FORUM_ROOT.'views/post-preview.tpl.php';
+	require get_view_path('post-preview.tpl.php');
 }
 
-require FORUM_ROOT.'views/post-form.tpl.php';
+require get_view_path('post-form.tpl.php');
 
 // Check to see if the topic review is to be displayed
 if ($tid && $luna_config['o_topic_review'] != '0')
 {
 	$result = $db->query('SELECT poster, message, hide_smilies, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT '.$luna_config['o_topic_review']) or error('Unable to fetch topic review', __FILE__, __LINE__, $db->error());
 
-	require FORUM_ROOT.'views/post-topic_review.tpl.php';
+	require get_view_path('post-topic_review.tpl.php');
 
 }
 

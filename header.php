@@ -23,15 +23,15 @@ header('Content-type: text/html; charset=utf-8');
 // Load the template
 $tpl_file = 'main.tpl';
 
-if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file))
+if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file))
 {
-	$tpl_file = FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file;
+	$tpl_file = FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file;
 	$tpl_inc_dir = FORUM_ROOT.'style/'.$luna_user['style'].'/';
 }
 else
 {
-	$tpl_file = FORUM_ROOT.'include/template/'.$tpl_file;
-	$tpl_inc_dir = FORUM_ROOT.'include/user/';
+	$tpl_file = FORUM_ROOT.'style/Core/templates/'.$tpl_file;
+	$tpl_inc_dir = FORUM_ROOT.'style/User/';
 }
 
 $tpl_main = file_get_contents($tpl_file);
@@ -43,18 +43,18 @@ foreach ($luna_includes as $cur_include)
 {
 	ob_start();
 	$file_info = pathinfo($cur_include[1]);
-	
-    if (!in_array($file_info['extension'], array('php', 'php4', 'php5', 'inc', 'html', 'txt'))) // Allow some extensions  
-       error(sprintf($lang['Pun include extension'], htmlspecialchars($cur_include[0]), basename($tpl_file), htmlspecialchars($file_info['extension'])));  
-         
-    if (strpos($file_info['dirname'], '..') !== false) // Don't allow directory traversal  
-       error(sprintf($lang['Pun include directory'], htmlspecialchars($cur_include[0]), basename($tpl_file))); 
+
+    if (!in_array($file_info['extension'], array('php', 'php4', 'php5', 'inc', 'html', 'txt'))) // Allow some extensions
+       error(sprintf($lang['Pun include extension'], htmlspecialchars($cur_include[0]), basename($tpl_file), htmlspecialchars($file_info['extension'])));
+
+    if (strpos($file_info['dirname'], '..') !== false) // Don't allow directory traversal
+       error(sprintf($lang['Pun include directory'], htmlspecialchars($cur_include[0]), basename($tpl_file)));
 
 	// Allow for overriding user includes, too.
-	if (file_exists($tpl_inc_dir.$cur_include[1]))  
-		require $tpl_inc_dir.$cur_include[1];  
-	else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1]))  
-		require FORUM_ROOT.'include/user/'.$cur_include[1];  
+	if (file_exists($tpl_inc_dir.$cur_include[1]))
+		require $tpl_inc_dir.$cur_include[1];
+	else if (file_exists(FORUM_ROOT.'include/user/'.$cur_include[1]))
+		require FORUM_ROOT.'include/user/'.$cur_include[1];
 	else
 		error(sprintf($lang['Pun include error'], luna_htmlspecialchars($cur_include[0]), basename($tpl_file)));
 
@@ -295,7 +295,7 @@ if (!$luna_user['is_guest'])
 	{
 		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</span></li>';
 	}
-	
+
 	if (!empty($topic_actions))
 	{
 		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $topic_actions).'</span></li>';

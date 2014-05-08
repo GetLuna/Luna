@@ -101,7 +101,7 @@ define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-require FORUM_ROOT.'views/viewforum-header.tpl.php';
+require get_view_path('viewforum-header.tpl.php');
 
 // Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 $result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
@@ -212,17 +212,17 @@ if ($db->num_rows($result))
 			$views_label = $lang['views'];
 		}
 
-		require FORUM_ROOT.'views/viewforum-topics_list.tpl.php';
+		require get_view_path('viewforum-topics_list.tpl.php');
 
 	}
 
 } else {
 
-	require FORUM_ROOT.'views/viewforum-topics_list_empty.tpl.php';
+	require get_view_path('viewforum-topics_list_empty.tpl.php');
 
 }
 
 $forum_id = $id;
 $footer_style = 'viewforum';
 
-require FORUM_ROOT.'views/viewforum-footer.tpl.php';
+require get_view_path('viewforum-footer.tpl.php');

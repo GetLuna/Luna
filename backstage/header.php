@@ -21,7 +21,7 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 header('Content-type: text/html; charset=utf-8');
 
 // Load the template
-$tpl_main = file_get_contents('../include/template/admin.tpl');
+$tpl_main = file_get_contents('../style/Core/templates/admin.tpl');
 
 // START SUBST - <luna_language>
 $tpl_main = str_replace('<luna_language>', $lang['lang_identifier'], $tpl_main);
