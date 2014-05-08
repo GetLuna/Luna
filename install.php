@@ -208,8 +208,8 @@ if (!forum_is_writable(FORUM_CACHE_DIR))
 	$alerts[] = sprintf($lang['Alert cache'], FORUM_CACHE_DIR);
 
 // Check if default avatar directory is writable
-if (!forum_is_writable(FORUM_ROOT.'style/Core/img/avatars/'))
-	$alerts[] = sprintf($lang['Alert avatar'], FORUM_ROOT.'style/Core/img/avatars/');
+if (!forum_is_writable(FORUM_ROOT.'img/avatars/'))
+	$alerts[] = sprintf($lang['Alert avatar'], FORUM_ROOT.'img/avatars/');
 
 if (!isset($_POST['form_sent']) || !empty($alerts))
 {
@@ -1612,7 +1612,7 @@ else
 		'o_default_email_setting'	=> 1,
 		'o_mailing_list'			=> $email,
 		'o_avatars'					=> $avatars,
-		'o_avatars_dir'				=> 'style/Core/img/avatars',
+		'o_avatars_dir'				=> 'img/avatars',
 		'o_avatars_width'			=> 100,
 		'o_avatars_height'			=> 100,
 		'o_avatars_size'			=> 20480,
