@@ -20,7 +20,7 @@ class Version
 	const FORUM_DB_VERSION = 62;
 	
 	// The parser version number, every change to the parser requires this number to go one up
-	const FORUM_PARSER_VERSION = 7;
+	const FORUM_PARSER_VERSION = 8;
 	
 	// The search index version number, every change to the search index requires this number to go one up
 	const FORUM_SI_VERSION = 2;

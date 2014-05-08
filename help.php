@@ -70,7 +70,7 @@ require FORUM_ROOT.'header.php';
                 <p><?php echo $lang['Quotes info'] ?></p>
                 <p><code>[quote=James]<?php echo $lang['Quote text'] ?>[/quote]</code></p>
                 <p><?php echo $lang['produces quote box'] ?></p>
-				<blockquote><footer>James <?php echo $lang['wrote'] ?></cite></footer><p><?php echo $lang['Quote text'] ?></p></blockquote>
+				<blockquote><footer><cite>James <?php echo $lang['wrote'] ?></cite></footer><p><?php echo $lang['Quote text'] ?></p></blockquote>
                 <p><?php echo $lang['Quotes info 2'] ?></p>
                 <p><code>[q]<?php echo $lang['Inline quote'] ?>[/q]</code> <?php echo $lang['produces'] ?> <q><?php echo $lang['Inline quote'] ?></q></p>
             </div>
