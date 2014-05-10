@@ -100,7 +100,7 @@ else if (isset($_GET['email']))
 			message(sprintf($lang['Email flood'], $luna_user['g_email_flood'], $luna_user['g_email_flood'] - (time() - $luna_user['last_email_sent'])));
 
 		// Load the "form email" template
-		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/form_email.tpl'));
+		$mail_tpl = trim($lang['form_email.tpl']);
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");
@@ -213,7 +213,7 @@ else if (isset($_GET['report']))
 			if ($luna_config['o_mailing_list'] != '')
 			{
 				// Load the "new report" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_report.tpl'));
+				$mail_tpl = trim($lang['new_report.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");

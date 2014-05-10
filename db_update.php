@@ -473,12 +473,7 @@ switch ($stage)
 					}
 
 					// Email the user alerting them of the change
-					if (file_exists(FORUM_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'))
-						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_user['language'].'/mail_templates/rename.tpl'));
-					else if (file_exists(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/mail_templates/rename.tpl'))
-						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/mail_templates/rename.tpl'));
-					else
-						$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/English/mail_templates/rename.tpl'));
+					$mail_tpl = $lang['rename.tpl']);
 
 					// The first row contains the subject
 					$first_crlf = strpos($mail_tpl, "\n");

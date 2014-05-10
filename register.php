@@ -154,7 +154,7 @@ if (isset($_POST['form_sent']))
 			if ($banned_email)
 			{
 				// Load the "banned email register" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/banned_email_register.tpl'));
+				$mail_tpl = trim($lang['banned_email_register.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -174,7 +174,7 @@ if (isset($_POST['form_sent']))
 			if (!empty($dupe_list))
 			{
 				// Load the "dupe email register" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/dupe_email_register.tpl'));
+				$mail_tpl = trim($lang['dupe_email_register.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -193,7 +193,7 @@ if (isset($_POST['form_sent']))
 			if ($luna_config['o_regs_report'] == '1')
 			{
 				// Load the "new user" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_user.tpl'));
+				$mail_tpl = trim($lang['new_user.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -213,7 +213,7 @@ if (isset($_POST['form_sent']))
 		if ($luna_config['o_regs_verify'] == '1')
 		{
 			// Load the "welcome" template
-			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/welcome.tpl'));
+			$mail_tpl = trim($lang['welcome.tpl']);
 
 			// The first row contains the subject
 			$first_crlf = strpos($mail_tpl, "\n");
