@@ -2126,8 +2126,7 @@ function dump()
 }
 
 //
-// Get the view file from user selected style
-// otherwise use style/Core/templates
+// Get the template that is required
 //
 function get_template_path($tpl_file)
 {
@@ -2144,8 +2143,7 @@ function get_template_path($tpl_file)
 }
 
 //
-// Get the view file from user selected style
-// otherwise use style/Core/templates
+// Get the view that is required
 //
 function get_view_path($tpl_file)
 {
@@ -2159,4 +2157,31 @@ function get_view_path($tpl_file)
 	{
 		return FORUM_ROOT.'style/Core/templates/views/'.$tpl_file;
 	}
+}
+
+//
+// Delete all content in a folder
+//
+function delete_all($path)
+{
+    $dir = dir($path);
+
+    while ($file = $dir->read())
+    {
+        if ($file == '.' || $file == '..') continue;
+
+        $file = $path.'/'.$file;
+
+		if ($file != $path.'/.htaccess') { // Never remove a .htaccess
+			if (is_dir($file))
+			{
+				delete_all($file);
+				rmdir($file);
+			}
+			else
+			{
+				unlink($file);
+			}
+		}
+    }
 }

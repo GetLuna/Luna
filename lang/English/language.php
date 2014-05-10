@@ -1419,6 +1419,9 @@ $lang = array(
 
 'Maintenance mode help'				=>	'Enable to activate maintenance mode, the board will only be available for admins. Do not log out when this feature is active!',
 'Maintenance message help'			=>	'The message to tell users about the maintenance',
+'Cache'								=>	'Cache',
+'Cache info'						=>	'Remove all cache files so the database has to return up-to-date values',
+'Clear cache'						=>	'Clear cache',
 
 //
 // Language for permissions.php
