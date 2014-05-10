@@ -221,13 +221,11 @@ if (isset($_POST['form_sent']))
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']]))
 						{
-							if (file_exists(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply.tpl'))
-							{
 								// Load the "new reply" template
-								$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply.tpl'));
+								$mail_tpl = trim($lang['new_reply.tpl']);
 
 								// Load the "new reply full" template (with post included)
-								$mail_tpl_full = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_reply_full.tpl'));
+								$mail_tpl_full = trim($lang['new_reply_full.tpl']);
 
 								// The first row contains the subject (it also starts with "Subject:")
 								$first_crlf = strpos($mail_tpl, "\n");
@@ -259,7 +257,6 @@ if (isset($_POST['form_sent']))
 								$notification_emails[$cur_subscriber['language']][3] = $mail_message_full;
 
 								$mail_subject = $mail_message = $mail_subject_full = $mail_message_full = null;
-							}
 						}
 
 						// We have to double check here because the templates could be missing
@@ -329,13 +326,11 @@ if (isset($_POST['form_sent']))
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']]))
 						{
-							if (file_exists(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic.tpl'))
-							{
 								// Load the "new topic" template
-								$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic.tpl'));
+								$mail_tpl = trim($lang['new_topic.tpl']);
 
 								// Load the "new topic full" template (with post included)
-								$mail_tpl_full = trim(file_get_contents(FORUM_ROOT.'lang/'.$cur_subscriber['language'].'/mail_templates/new_topic_full.tpl'));
+								$mail_tpl_full = trim($lang['new_topic_full.tpl']);
 
 								// The first row contains the subject (it also starts with "Subject:")
 								$first_crlf = strpos($mail_tpl, "\n");
@@ -369,7 +364,6 @@ if (isset($_POST['form_sent']))
 								$notification_emails[$cur_subscriber['language']][3] = $mail_message_full;
 
 								$mail_subject = $mail_message = $mail_subject_full = $mail_message_full = null;
-							}
 						}
 
 						// We have to double check here because the templates could be missing
@@ -391,7 +385,7 @@ if (isset($_POST['form_sent']))
 		if ($luna_user['is_guest'] && $banned_email && $luna_config['o_mailing_list'] != '')
 		{
 			// Load the "banned email post" template
-			$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/banned_email_post.tpl'));
+			$mail_tpl = trim($lang['banned_email_post.tpl']);
 
 			// The first row contains the subject
 			$first_crlf = strpos($mail_tpl, "\n");

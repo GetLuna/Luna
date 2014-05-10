@@ -182,7 +182,7 @@ else if ($action == 'change_email')
 			else if ($luna_config['o_mailing_list'] != '')
 			{
 				// Load the "banned email change" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/banned_email_change.tpl'));
+				$mail_tpl = trim($lang['banned_email_change.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -210,7 +210,7 @@ else if ($action == 'change_email')
 					$dupe_list[] = $cur_dupe['username'];
 
 				// Load the "dupe email change" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/dupe_email_change.tpl'));
+				$mail_tpl = trim($lang['dupe_email_change.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -232,7 +232,7 @@ else if ($action == 'change_email')
 		$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($new_email).'\', activate_key=\''.$new_email_key.'\' WHERE id='.$id) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 		// Load the "activate email" template
-		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/activate_email.tpl'));
+		$mail_tpl = trim($lang['activate_email.tpl']);
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");

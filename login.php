@@ -114,7 +114,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 			if ($db->num_rows($result))
 			{
 				// Load the "activate password" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/activate_password.tpl'));
+				$mail_tpl = trim($lang['activate_password.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
