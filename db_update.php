@@ -473,7 +473,7 @@ switch ($stage)
 					}
 
 					// Email the user alerting them of the change
-					$mail_tpl = $lang['rename.tpl']);
+					$mail_tpl = $lang['rename.tpl'];
 
 					// The first row contains the subject
 					$first_crlf = strpos($mail_tpl, "\n");
