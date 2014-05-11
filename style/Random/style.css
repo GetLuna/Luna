@@ -280,9 +280,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #20a3f6;
-	background-image: linear-gradient(#20a3f6, #0b8ada);
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
 	color: #fff;
+	height: 37px;
 }
 
 .panel-body {

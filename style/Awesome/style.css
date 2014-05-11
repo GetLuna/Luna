@@ -282,18 +282,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #92c820;
-	background: linear-gradient(#88bf1c, #69a00e);
+	background: #679e0d;
+	background: linear-gradient(to right, #679e0d, #a4da28);
 	color: #fff;
-}
-
-.col-md-10 .panel {
-	margin-right: -14px;
+	height: 37px;
 }
 
 .panel-body {
 	border: 1px solid #ddd;
 	border-top: none;
+}
+
+.col-md-10 .panel {
+	margin-right: -14px;
 }
 
 /* Navbar */
