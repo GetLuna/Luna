@@ -128,7 +128,7 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
     </div>
     <div class="panel-footer">
-    	<p>ModernBB 3 is developed by the ModernBB Group. Copyright 2013-2014. Released under the MIT license. We would like to thank you for using ModernBB.</p>
+    	<p>ModernBB 3 is developed by the ModernBB Group. Copyright 2013-2014. Released under the GPLv3 license. We would like to thank you for using ModernBB.</p>
     </div>
 </div>
 <?php

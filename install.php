@@ -12,8 +12,8 @@ define('FORUM_SEARCH_MAX_WORD', 20);
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 
-// Send the Content-type header in case the web server is setup to send something else  
-header('Content-type: text/html; charset=utf-8');  
+// Send the Content-type header in case the web server is setup to send something else
+header('Content-type: text/html; charset=utf-8');
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';

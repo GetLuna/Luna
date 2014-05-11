@@ -114,7 +114,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 			if ($db->num_rows($result))
 			{
 				// Load the "activate password" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/activate_password.tpl'));
+				$mail_tpl = trim($lang['activate_password.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -159,7 +159,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 		define ('FORUM_ACTIVE_PAGE', 'login');
 		require FORUM_ROOT.'header.php';
 
-		require FORUM_ROOT.'views/login-forget.tpl.php';
+		require get_view_path('login-forget.tpl.php');
 	}
 }
 
@@ -206,4 +206,4 @@ $focus_element = array('login', 'req_username');
 define('FORUM_ACTIVE_PAGE', 'login');
 require FORUM_ROOT.'header.php';
 
-require FORUM_ROOT.'views/login-form.tpl.php';
+require get_view_path('login-form.tpl.php');

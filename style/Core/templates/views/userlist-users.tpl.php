@@ -6,7 +6,7 @@ if (!defined('FORUM'))
 
 ?>
 
-<?php require FORUM_ROOT.'views/userlist-breadcrumbs.tpl.php'; ?>
+<?php require get_view_path('userlist-breadcrumbs.tpl.php'); ?>
 
 <div class="col-xs-12">
     <div class="row forum-header">
@@ -58,6 +58,6 @@ else
 
 <?php
 
-    require FORUM_ROOT.'views/userlist-breadcrumbs.tpl.php';
+    require get_view_path('userlist-breadcrumbs.tpl.php');
 
     require FORUM_ROOT.'footer.php';

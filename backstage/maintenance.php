@@ -25,6 +25,15 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
+if ($action == 'clear_cache')
+{
+	if ($luna_user['g_id'] != FORUM_ADMIN)
+		message($lang['No permission'], false, '403 Forbidden');
+
+	delete_all(FORUM_ROOT.'cache');
+	header("Location: maitenance.php?action=cache_cleared");
+}
+
 if ($action == 'rebuild')
 {
 	$per_page = isset($_GET['i_per_page']) ? intval($_GET['i_per_page']) : 0;
@@ -372,6 +381,19 @@ require FORUM_ROOT.'backstage/header.php';
         </div>
     </div>
 </form>
+<div class="panel panel-default form-horizontal">
+    <div class="panel-heading">
+        <h3 class="panel-title" id="cache"><?php echo $lang['Cache'] ?></h3>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><?php echo $lang['Cache'] ?><span class="help-block"><?php echo $lang['Cache info'] ?></span></label>
+            <div class="col-sm-9">
+                <a href="maintenance.php?action=clear_cache" class="btn btn-danger"><?php echo $lang['Clear cache'] ?></a>
+            </div>
+        </div>
+    </div>
+</div>
 <form class="form-horizontal" method="get" action="maintenance.php">
     <div class="panel panel-default">
         <div class="panel-heading">

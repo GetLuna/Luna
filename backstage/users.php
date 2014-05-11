@@ -117,7 +117,7 @@ if (isset($_POST['add_user']))
 	if ($_POST['random_pass'] == '1')
 	{
 		// Load the "welcome" template
-		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/welcome.tpl'));
+		$mail_tpl = trim($lang['welcome.tpl']);
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");

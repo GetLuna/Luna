@@ -114,7 +114,7 @@ if (isset($_GET['tid']))
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
-		require FORUM_ROOT.'views/moderate-delete_posts.tpl.php';
+		require get_view_path('moderate-delete_posts.tpl.php');
 
 	}
 	else if (isset($_POST['split_posts']) || isset($_POST['split_posts_comply']))
@@ -192,7 +192,7 @@ if (isset($_GET['tid']))
 		define('FORUM_ACTIVE_PAGE', 'index');
 		require FORUM_ROOT.'header.php';
 
-		require FORUM_ROOT.'views/moderate-split_posts.tpl.php';
+		require get_view_path('moderate-split_posts.tpl.php');
 	}
 
 
@@ -222,7 +222,7 @@ if (isset($_GET['tid']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/moderate-topic.tpl.php';
+	require get_view_path('moderate-topic.tpl.php');
 }
 
 
@@ -305,7 +305,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/moderate-move_topics.tpl.php';
+	require get_view_path('moderate-move_topics.tpl.php');
 }
 
 // Merge two or more topics
@@ -383,7 +383,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/moderate-merge_topics.tpl.php';
+	require get_view_path('moderate-merge_topics.tpl.php');
 }
 
 // Delete one or more topics
@@ -447,7 +447,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/moderate-delete_topics.tpl.php';
+	require get_view_path('moderate-delete_topics.tpl.php');
 }
 
 
@@ -559,4 +559,4 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_h
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-require FORUM_ROOT.'views/moderate-form.tpl.php';
+require get_view_path('moderate-form.tpl.php');

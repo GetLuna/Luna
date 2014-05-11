@@ -119,7 +119,7 @@ if ($action == 'change_pass')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-change_pass.tpl.php';
+	require get_view_path('profile-change_pass.tpl.php');
 }
 
 
@@ -182,7 +182,7 @@ else if ($action == 'change_email')
 			else if ($luna_config['o_mailing_list'] != '')
 			{
 				// Load the "banned email change" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/banned_email_change.tpl'));
+				$mail_tpl = trim($lang['banned_email_change.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -210,7 +210,7 @@ else if ($action == 'change_email')
 					$dupe_list[] = $cur_dupe['username'];
 
 				// Load the "dupe email change" template
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/dupe_email_change.tpl'));
+				$mail_tpl = trim($lang['dupe_email_change.tpl']);
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -232,7 +232,7 @@ else if ($action == 'change_email')
 		$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($new_email).'\', activate_key=\''.$new_email_key.'\' WHERE id='.$id) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 		// Load the "activate email" template
-		$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/activate_email.tpl'));
+		$mail_tpl = trim($lang['activate_email.tpl']);
 
 		// The first row contains the subject
 		$first_crlf = strpos($mail_tpl, "\n");
@@ -255,7 +255,7 @@ else if ($action == 'change_email')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-change_email.tpl.php';
+	require get_view_path('profile-change_email.tpl.php');
 }
 
 
@@ -363,7 +363,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-upload_avatar.tpl.php';
+	require get_view_path('profile-upload_avatar.tpl.php');
 }
 
 
@@ -587,7 +587,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-delete_user.tpl.php';
+	require get_view_path('profile-delete_user.tpl.php');
 }
 
 
@@ -904,7 +904,7 @@ if (!$section || $section == 'view')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-view.tpl.php';
+	require get_view_path('profile-view.tpl.php');
 }
 else if ($section == 'personality')
 {
@@ -912,7 +912,7 @@ else if ($section == 'personality')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-personality.tpl.php';
+	require get_view_path('profile-personality.tpl.php');
 }
 else if ($section == 'settings')
 {
@@ -923,7 +923,7 @@ else if ($section == 'settings')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-settings.tpl.php';
+	require get_view_path('profile-settings.tpl.php');
 }
 else if ($section == 'admin')
 {
@@ -934,7 +934,7 @@ else if ($section == 'admin')
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/profile-admin.tpl.php';
+	require get_view_path('profile-admin.tpl.php');
 }
 else
 {

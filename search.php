@@ -549,12 +549,12 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		define('FORUM_ACTIVE_PAGE', 'search');
 		require FORUM_ROOT.'header.php';
 
-		require FORUM_ROOT.'views/search-breadcrumbs.tpl.php';
+		require get_view_path('search-breadcrumbs.tpl.php');
 
 		if ($show_as == 'topics') {
 			$topic_count = 0;
 
-			require FORUM_ROOT.'views/search-topics_header.tpl.php';
+			require get_view_path('search-topics_header.tpl.php');
 		} else if ($show_as == 'posts') {
 			require FORUM_ROOT.'include/parser.php';
 
@@ -574,18 +574,18 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 			if ($show_as == 'posts')
 			{
-				require FORUM_ROOT.'views/search-show_as_posts.tpl.php';
+				require get_view_path('search-show_as_posts.tpl.php');
 			}
 			else
 			{
-				require FORUM_ROOT.'views/search-show_as_topics.tpl.php';
+				require get_view_path('search-show_as_topics.tpl.php');
 			}
 		}
 
 		if ($show_as == 'topics')
 			echo "\t\t\t".'</div>'."\n\n";
 
-		require FORUM_ROOT.'views/search-breadcrumbs.tpl.php';
+		require get_view_path('search-breadcrumbs.tpl.php');
 
 		require FORUM_ROOT.'footer.php';
 	}
@@ -600,7 +600,7 @@ if (!$section || $section == 'simple') {
 	define('FORUM_ACTIVE_PAGE', 'search');
 	require FORUM_ROOT.'header.php';
 
-	require FORUM_ROOT.'views/search-form.tpl.php';
+	require get_view_path('search-form.tpl.php');
 } else {
 	if ($luna_config['o_enable_advanced_search'] == 0) {
 		message($lang['No permission'], false, '403 Forbidden');
@@ -609,7 +609,7 @@ if (!$section || $section == 'simple') {
 		$focus_element = array('search', 'keywords');
 		define('FORUM_ACTIVE_PAGE', 'search');
 		require FORUM_ROOT.'header.php';
-	
-		require FORUM_ROOT.'views/search-form_advanced.tpl.php';
+
+		require get_view_path('search-form_advanced.tpl.php');
 	}
 }

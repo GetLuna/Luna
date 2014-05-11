@@ -1322,8 +1322,8 @@ function maintenance_message()
 	}
 	else
 	{
-		$tpl_file = FORUM_ROOT.'include/template/maintenance.tpl';
-		$tpl_inc_dir = FORUM_ROOT.'include/user/';
+		$tpl_file = FORUM_ROOT.'style/Core/template/maintenance.tpl';
+		$tpl_inc_dir = FORUM_ROOT.'style/User/';
 	}
 
 	$tpl_maint = file_get_contents($tpl_file);
@@ -2123,4 +2123,65 @@ function dump()
 
 	echo '</pre>';
 	exit;
+}
+
+//
+// Get the template that is required
+//
+function get_template_path($tpl_file)
+{
+	global $luna_user;
+
+	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file))
+	{
+		return FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file;
+	}
+	else
+	{
+		return FORUM_ROOT.'style/Core/templates/'.$tpl_file;
+	}
+}
+
+//
+// Get the view that is required
+//
+function get_view_path($tpl_file)
+{
+	global $luna_user;
+
+	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/templates/views/'.$tpl_file))
+	{
+		return FORUM_ROOT.'style/'.$luna_user['style'].'/templates/views/'.$tpl_file;
+	}
+	else
+	{
+		return FORUM_ROOT.'style/Core/templates/views/'.$tpl_file;
+	}
+}
+
+//
+// Delete all content in a folder
+//
+function delete_all($path)
+{
+    $dir = dir($path);
+
+    while ($file = $dir->read())
+    {
+        if ($file == '.' || $file == '..') continue;
+
+        $file = $path.'/'.$file;
+
+		if ($file != $path.'/.htaccess') { // Never remove a .htaccess
+			if (is_dir($file))
+			{
+				delete_all($file);
+				rmdir($file);
+			}
+			else
+			{
+				unlink($file);
+			}
+		}
+    }
 }

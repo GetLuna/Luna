@@ -160,9 +160,17 @@ else
         </div>
     </div>
     <div class="col-sm-6">
+        <div class="btn-group">
+            <input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> />
+            <input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> />
+            <input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> />
+        </div>
+        <div class="btn-group">
+            <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> />
+            <input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> />
+        </div>
         <ul class="pagination">
             <?php echo $paging_links ?>
-            <div class="btn-toolbar"><div class="btn-group"><input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> /></div><div class="btn-group"><input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> /></div></div>
         </ul>
     </div>
 </div>
