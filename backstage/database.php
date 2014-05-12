@@ -37,7 +37,7 @@ function gzip_PrintFourChars($Val)
 }
 
 
-//db functions (not in punbb dblayer)
+// db functions (not in ModernBB dblayer)
 function field_name($offset, $query_id = 0)
 {
 	global $db_type;
@@ -190,6 +190,7 @@ function get_table_def_mysql($table, $crlf)
 // This function is for getting the data from a mysql table.
 //
 
+
 function get_table_content_mysql($table, $handler)
 {
 	global $db;
@@ -265,8 +266,8 @@ function output_table_content($content)
 {
 	global $tempfile;
 
-	//fwrite($tempfile, $content . "\n");
-	//$backup_sql .= $content . "\n";
+	// fwrite($tempfile, $content . "\n");
+	// $backup_sql .= $content . "\n";
 	echo $content ."\n";
 	return;
 }
@@ -388,7 +389,7 @@ function split_sql_file($sql, $delimiter)
 // Begin program proper
 //
 
-//Check this is a mysql punbb setup
+// Check this is a mysql ModernBB setup
 switch($db_type)
 {
 	case 'mysql':
@@ -399,9 +400,9 @@ switch($db_type)
 		generate_admin_menu('database');
 		message('Sorry your database type is not supported');
 }
-//Start actual db stuff
+// Start actual db stuff
 if (isset($_POST['backupstart'])) {
-	//output sql dump
+	// Output sql dump
 	$tables = array('bans', 'categories', 'censoring', 'config', 'forum_perms', 'forums', 'forum_subscriptions', 'groups', 'online', 'posts', 'ranks', 'reports', 'search_cache', 'search_matches', 'search_words', 'subscriptions', 'topics', 'topic_subscriptions', 'users'
 	);
 	$backup_type = (isset($_POST['backup_type'])) ? $_POST['backup_type'] : ( (isset($HTTP_GET_VARS['backup_type'])) ? $HTTP_GET_VARS['backup_type'] : "" );
@@ -437,7 +438,7 @@ if (isset($_POST['backupstart'])) {
 	// Build the sql script file
 	//
 	echo "#\n";
-	echo "# Punbb Backup Script\n";
+	echo "# ModernBB Backup Script\n";
 	echo "# Dump of tables for $db_name\n";
 	echo "#\n# DATE : " .  gmdate("d-m-Y H:i:s", time()) . " GMT\n";
 	echo "#\n";
@@ -584,7 +585,7 @@ elseif ( isset($_POST['restore_start']) ) {
 }
 elseif (isset($_POST['repairall']))
 {
-	//repair all tables
+	// repair all tables
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql))
