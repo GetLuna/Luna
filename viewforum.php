@@ -153,7 +153,7 @@ if ($db->num_rows($result))
 		{
 			if ($cur_topic['has_posted'] == $luna_user['id'])
 			{
-				$status_text[] = '<span class="label label-primary">'.$lang['Posted'].'</span>';
+				$status_text[] = '<span class="glyphicon glyphicon-asterisk"></span>';
 				$item_status .= ' iposted';
 			}
 		}

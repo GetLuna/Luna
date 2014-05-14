@@ -848,7 +848,6 @@ $lang = array(
 
 'Views'			=>	'Views',
 'Moved'			=>	'Moved',
-'Posted'		=>	'Posted',
 'Star'			=>	'Star',
 'Sticky'		=>	'Sticky',
 'Closed'		=>	'Closed',
