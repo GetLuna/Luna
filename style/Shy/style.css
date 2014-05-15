@@ -93,8 +93,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #01b477;
+	background: linear-gradient(to right, #01b477, #2bf0b1);
 	color: #fff;
 }
 
@@ -117,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	.dropdown-menu .divider {
-		background-color: #0068b0;
+		background-color: #009764;
 	}
 
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (min-width: 768px) {
 	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #005d9e;
+		background: #008558;
 	}
 }
 
@@ -280,8 +280,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #01b477;
+	background: linear-gradient(to right, #01b477, #2bf0b1);
 	color: #fff;
 	height: 37px;
 }
@@ -309,15 +309,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar {
 	border: none;
-	background: #0073c4;
+	background: #00a46c;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #0068b0;
+	background-color: #009764;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	background-color: #0068b0;
+	background-color: #009764;
 	color: #fff;
 }
 
@@ -350,7 +350,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #0073c4;
+	background-color: #00a46c;
 }
 
 /* Pagination */
@@ -365,8 +365,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #1d8ae0;
-	background-color: #1d8ae0;
+	border: 1px solid #13ce90;
+	background-color: #13ce90;
 }
 
 /* Profile */
@@ -376,8 +376,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #0891dc;
-	border-color: #0891dc;
+	background-color: #13ce90;
+	border-color: #13ce90;
 }
 
 .profile-h2 {
@@ -497,14 +497,14 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #01b477;
+	background: linear-gradient(to right, #01b477, #2bf0b1);
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #01b477;
+	background: linear-gradient(to right, #01b477, #2bf0b1);
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -556,17 +556,18 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #1764df;
-	border-color: #2f76e7 #2f76e7 #1553b5;
+	background-color: #01b477;
+	border-color: #009e68;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #0049be;
+	background-color: #009e68;
+	border-color: #008558;
 	color: #fff;
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #175dcc 9;
+	background-color: #008558 9;
 }
 
 .btn-post {
@@ -733,15 +734,15 @@ textarea {
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
-	border-left: 10px solid #1764df;
+	border-left: 10px solid #01b477;
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):before, .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
-	border-left: 10px solid #114ba7;
+	border-left: 10px solid #008558;
 }
 
 .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
-	border-left: 10px solid #0049be;
+	border-left: 10px solid #009e68;
 }
 
 /* Status Indicators */
@@ -908,7 +909,7 @@ textarea {
 }
 
 .profile-card-head {
-	background-color: #057ed4;
+	background-color: #01b477;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -967,12 +968,12 @@ textarea {
 	left: 4px;
 	margin-top: -2px;
 	border-left-width: 0px;
-	border-right-color: #057ed4;;
+	border-right-color: #01b477;;
 }
 
 .topic .panel-heading {
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #01b477;
+	background: linear-gradient(to right, #01b477, #2bf0b1);
 }
 
 .post-actions {
@@ -990,8 +991,8 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #057ed4;
-		background: linear-gradient(to right, #057ed4, #10c1f0);
+		background: #01b477;
+		background: linear-gradient(to right, #01b477, #2bf0b1);
 	}
 
 	.topic .panel-heading  {
@@ -1024,11 +1025,11 @@ textarea {
 
 /* Links */
 a {
-	color: #428bca;
+	color: #008558;
 }
 
 a:hover, a:active {
-	color: #2a6496;
+	color: #007950;
 }
 
 a.list-group-item:hover, a.list-group-item:active {
@@ -1089,8 +1090,8 @@ q:after {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #01b477;
+	background: linear-gradient(to right, #01b477, #2bf0b1);
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;
