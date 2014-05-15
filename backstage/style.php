@@ -90,7 +90,7 @@ require FORUM_ROOT.'backstage/header.php';
 										</div>
 									</div>
 									<div class="modal-footer">
-										<span class="pull-left">Released on <?php echo $style_info->date; ?></span><span class="pull-right">Designed for Vanellope v<?php echo $style_info->minversion; ?> to v<?php echo $style_info->maxversion; ?></span>
+										<span class="pull-left">Released on <?php echo $style_info->date; ?></span><span class="pull-right">Designed for ModernBB v<?php echo $style_info->minversion; ?> to v<?php echo $style_info->maxversion; ?></span>
 									</div>
 								</div>
 							</div>
