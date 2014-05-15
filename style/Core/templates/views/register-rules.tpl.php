@@ -20,3 +20,7 @@ if (!defined('FORUM'))
     </div>
     <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang['Agree'] ?>" /> <input type="submit" class="btn btn-default" name="cancel" value="<?php echo $lang['Cancel'] ?>" /></div>
 </form>
+
+<?php
+
+    require FORUM_ROOT.'footer.php';
