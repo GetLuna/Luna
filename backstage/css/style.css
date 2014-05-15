@@ -163,6 +163,10 @@ label .help-block {
 	}
 }
 
+.panel .table {
+	margin-bottom: -1px;
+}
+
 /* Buttons */
 .panel-title .btn {
 	margin-top: -10px;
