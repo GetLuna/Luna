@@ -556,17 +556,18 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #1764df;
-	border-color: #2f76e7 #2f76e7 #1553b5;
+	background: #1b3376;
+	border-color: #0c2365;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #0049be;
+	background: #0c2365;
+	border-color: #00144d;
 	color: #fff;
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #175dcc 9;
+	background-color: #00144d 9;
 }
 
 .btn-post {
@@ -733,15 +734,15 @@ textarea {
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
-	border-left: 10px solid #1764df;
+	border-left: 10px solid #1b3376;
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):before, .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
-	border-left: 10px solid #114ba7;
+	border-left: 10px solid #00144d;
 }
 
 .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
-	border-left: 10px solid #0049be;
+	border-left: 10px solid #0c2365;
 }
 
 /* Status Indicators */
