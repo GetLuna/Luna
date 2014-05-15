@@ -350,7 +350,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #0073c4;
+	background-color: #c64dd5;
 }
 
 /* Pagination */
@@ -909,7 +909,7 @@ textarea {
 }
 
 .profile-card-head {
-	background-color: #057ed4;
+	background-color: #e477f1;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -968,7 +968,7 @@ textarea {
 	left: 4px;
 	margin-top: -2px;
 	border-left-width: 0px;
-	border-right-color: #057ed4;;
+	border-right-color: #e477f1;;
 }
 
 .topic .panel-heading {
@@ -991,8 +991,8 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #057ed4;
-		background: linear-gradient(to right, #057ed4, #10c1f0);
+		background: #e477f1;
+		background: linear-gradient(to right, #e477f1, #fbb4ff);
 	}
 
 	.topic .panel-heading  {
