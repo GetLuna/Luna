@@ -37,7 +37,7 @@ function gzip_PrintFourChars($Val)
 }
 
 
-//db functions (not in punbb dblayer)
+// db functions (not in ModernBB dblayer)
 function field_name($offset, $query_id = 0)
 {
 	global $db_type;
@@ -79,7 +79,7 @@ function num_fields($query_id = 0)
 }
 
 //
-// This function returns the "CREATE TABLE" syntax for mysql dbms...
+// This function returns the "CREATE TABLE" syntax for mysql dbms
 //
 function get_table_def_mysql($table, $crlf)
 {
@@ -93,7 +93,7 @@ function get_table_def_mysql($table, $crlf)
 	$schema_create .= "CREATE TABLE $table($crlf";
 
 	//
-	// Ok lets grab the fields...
+	// Ok lets grab the fields
 	//
 	$result = $db->query($field_query);
 	if(!$result)
@@ -127,10 +127,10 @@ function get_table_def_mysql($table, $crlf)
 	//
 	// Drop the last ',$crlf' off ;)
 	//
-	$schema_create = ereg_replace(',' . $crlf . '$', "", $schema_create);
+	$schema_create = preg_replace(',' . $crlf . '$', "", $schema_create);
 
 	//
-	// Get any Indexed fields from the database...
+	// Get any Indexed fields from the database
 	//
 	$result = $db->query($key_query);
 	if(!$result)
@@ -189,6 +189,7 @@ function get_table_def_mysql($table, $crlf)
 //
 // This function is for getting the data from a mysql table.
 //
+
 
 function get_table_content_mysql($table, $handler)
 {
@@ -265,8 +266,8 @@ function output_table_content($content)
 {
 	global $tempfile;
 
-	//fwrite($tempfile, $content . "\n");
-	//$backup_sql .= $content . "\n";
+	// fwrite($tempfile, $content . "\n");
+	// $backup_sql .= $content . "\n";
 	echo $content ."\n";
 	return;
 }
@@ -388,7 +389,7 @@ function split_sql_file($sql, $delimiter)
 // Begin program proper
 //
 
-//Check this is a mysql punbb setup
+// Check this is a mysql ModernBB setup
 switch($db_type)
 {
 	case 'mysql':
@@ -399,9 +400,9 @@ switch($db_type)
 		generate_admin_menu('database');
 		message('Sorry your database type is not supported');
 }
-//Start actual db stuff
+// Start actual db stuff
 if (isset($_POST['backupstart'])) {
-	//output sql dump
+	// Output sql dump
 	$tables = array('bans', 'categories', 'censoring', 'config', 'forum_perms', 'forums', 'forum_subscriptions', 'groups', 'online', 'posts', 'ranks', 'reports', 'search_cache', 'search_matches', 'search_words', 'subscriptions', 'topics', 'topic_subscriptions', 'users'
 	);
 	$backup_type = (isset($_POST['backup_type'])) ? $_POST['backup_type'] : ( (isset($HTTP_GET_VARS['backup_type'])) ? $HTTP_GET_VARS['backup_type'] : "" );
@@ -434,10 +435,10 @@ if (isset($_POST['backupstart'])) {
 		header("Content-disposition: attachment; filename=modernbb_backup." . gmdate("Y-m-d") . ".sql");
 	}
 	//
-	// Build the sql script file...
+	// Build the sql script file
 	//
 	echo "#\n";
-	echo "# Punbb Backup Script\n";
+	echo "# ModernBB Backup Script\n";
 	echo "# Dump of tables for $db_name\n";
 	echo "#\n# DATE : " .  gmdate("d-m-Y H:i:s", time()) . " GMT\n";
 	echo "#\n";
@@ -469,8 +470,8 @@ exit;
 elseif ( isset($_POST['restore_start']) ) {
 	// Restore SQL Dump
 	//
-	// Handle the file upload ....
-	// If no file was uploaded report an error...
+	// Handle the file upload
+	// If no file was uploaded report an error
 	//
 	$backup_file_name = (!empty($HTTP_POST_FILES['backup_file']['name'])) ? $HTTP_POST_FILES['backup_file']['name'] : "";
 	$backup_file_tmpname = ($HTTP_POST_FILES['backup_file']['tmp_name'] != "none") ? $HTTP_POST_FILES['backup_file']['tmp_name'] : "";
@@ -523,7 +524,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	}
 	if($sql_query != "")
 	{
-		// Strip out sql comments...
+		// Strip out sql comments
 		$sql_query = remove_remarks($sql_query);
 		$pieces = split_sql_file($sql_query, ";");
 		if(defined('FORUM_DEBUG'))
@@ -584,12 +585,12 @@ elseif ( isset($_POST['restore_start']) ) {
 }
 elseif (isset($_POST['repairall']))
 {
-	//repair all tables
+	// repair all tables
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql))
 	{
-		// This makes no sense, the board would be dead... :P
+		// This makes no sense, the board would be dead :P
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Tables error, repair failed');
@@ -624,7 +625,7 @@ elseif (isset($_POST['optimizeall']))
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql))
 	{
-		// This makes no sense, the board would be dead... :P
+		// This makes no sense, the board would be dead :P
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
 		message('Tables error, optimise failed');
@@ -662,12 +663,12 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 ?>
 <h2><?php echo $lang['Database'] ?></h2>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></span></h3>
-	</div>
-	<div class="panel-body">
-        <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+<form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></span></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <p><?php echo $lang['Backup info 1'] ?></p>
                 <div class="form-group">
@@ -701,22 +702,22 @@ require FORUM_ROOT.'backstage/header.php';
                     </div>
                 </div>
             </fieldset>
-        </form>
+        </div>
     </div>
-</div>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" /></span></h3>
-	</div>
-	<div class="panel-body">
-        <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+</form>
+<form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" /></span></h3>
+        </div>
+        <div class="panel-body">
             <fieldset>
                 <p><?php echo $lang['Restore info 1'] ?></p>
                 <input type="file" name="backup_file" />
             </fieldset>
-        </form>
+		</div>
     </div>
-</div>
+</form>
 <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
     <div class="panel panel-default">
         <div class="panel-heading">

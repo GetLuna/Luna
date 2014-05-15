@@ -27,7 +27,7 @@ ob_start();
         <span class="pull-right"><?php echo $lang['Version'].'&nbsp;'.$luna_config['o_cur_version'] ?></span>
     </p>
     <script src="../include/bootstrap/jquery.js"></script>
-    <script src="../include/bootstrap/bootstrap.js"></script>
+    <script src="../include/bootstrap/js/bootstrap.min.js"></script>
 </footer>
 <?php
 

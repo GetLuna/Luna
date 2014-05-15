@@ -556,17 +556,17 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #1764df;
-	border-color: #2f76e7 #2f76e7 #1553b5;
+	background-color: #057ed4;
+	border-color: #0071c1;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #0049be;
+	background-color: #0071c1;
 	color: #fff;
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #175dcc 9;
+	background-color: #0062a8 9;
 }
 
 .btn-post {
@@ -605,6 +605,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .label-danger {
 	background: #ea4322;
+}
+
+.glyphicon-asterisk {
+	color: #c9c9c9;
+	font-size: 80%;
 }
 
 /* Alerts */
@@ -728,15 +733,15 @@ textarea {
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):after {
-	border-left: 10px solid #1764df;
+	border-left: 10px solid #057ed4;
 }
 
 .btn-breadcrumb .btn.btn-primary:not(:last-child):before, .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
-	border-left: 10px solid #114ba7;
+	border-left: 10px solid #0062a8;
 }
 
 .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
-	border-left: 10px solid #0049be;
+	border-left: 10px solid #0071c1;
 }
 
 /* Status Indicators */

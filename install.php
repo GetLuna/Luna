@@ -247,7 +247,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $lang['ModernBB Installation'] ?></title>
-        <link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="include/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/color/ModernBB.css" />
         <script type="text/javascript">
@@ -1713,7 +1713,7 @@ else
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $lang['ModernBB Installation'] ?></title>
-        <link rel="stylesheet" type="text/css" href="include/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="include/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="style/Random.css" />
     </head>
     <body>

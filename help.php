@@ -160,7 +160,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
                         </tr> -->
                         <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
                         <tr>
-                            <td><span class="label label-primary"><?php echo $lang['Posted'] ?></span></td>
+                            <td><span class="glyphicon glyphicon-asterisk"></span></td>
                             <td><?php echo $lang['Posted explenation'] ?></td>
                         </tr>
                         <?php } ?>
