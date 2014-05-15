@@ -55,11 +55,20 @@ if (!empty($errors))
                 </div>
 <?php endif; ?>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email help info'] ?></span><?php endif; ?></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
-                        <?php if ($luna_config['o_regs_verify'] == '1'): ?><input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" /><?php endif; ?>
-                        <?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email help info'] ?></span><?php endif; ?>
+                        <?php if ($luna_config['o_regs_verify'] == '1'): ?>
+                        <div class="row">
+                            <div class="col-sm-6">
+						<?php endif; ?>
+                                <input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
+                        <?php if ($luna_config['o_regs_verify'] == '1'): ?>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
+                            </div>
+                        </div>
+						<?php endif; ?>
                     </div>
                 </div>
 <?php

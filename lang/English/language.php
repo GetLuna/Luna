@@ -751,7 +751,7 @@ $lang = array(
 //
 
 'Username legend'			=>	'Enter a username between 2 and 25 characters long',
-'Email help info'			=>	'You must enter a valid email address as your randomly generated password will be sent to that address.',
+'Email help info'			=>	'Your password will be send to this adres, make sure it\'s valid',
 'If human'					=>	'If you are human please leave this field blank!',
 'Spam catch'				=>	'Unfortunately it looks like your request is spam. If you feel this is a mistake, please direct any inquiries to the forum administrator at',
 
