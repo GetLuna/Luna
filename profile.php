@@ -1132,7 +1132,7 @@ require FORUM_ROOT.'header.php';
 			<h3 class="panel-title"><?php echo $lang['Signature']; ?></h3>
 		</div>
 		<div class="panel-body">
-			<p><?php echo $user_signature ?></p>
+			<?php echo $user_signature ?>
 		</div>
 	</div>
 <?php
