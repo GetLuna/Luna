@@ -1169,35 +1169,3 @@ q:after {
 		border: none;
 	}
 }
-
-@media screen and (max-width: 767px) {
-	.container, .row-nav .col-sm-6 {
-		padding: 0;
-	}
-
-	.category-header, .forum-header, .panel-heading, .profile-card-head, :first-child.list-group-item, :last-child.list-group-item, .btn-block, .panel-title .btn {
-		border-radius: 0;
-	}
-	
-	.category-box, .postview {
-		margin-bottom: 0;
-	}
-	
-	.forum-row, .topic-row {
-		border-left: none;
-		border-right: none;
-	}
-	
-	footer, #brddesc, #brdwelcome, h2, .row-nav {
-		margin-left: 15px;
-		margin-right: 15px;
-	}
-	
-	.topic .profile-card {
-		margin-top: 0;
-	}
-	
-	.panel-body {
-		border: none;
-	}
-}
