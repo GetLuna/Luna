@@ -25,7 +25,7 @@ if ($action == 'rules')
 	define('FORUM_ACTIVE_PAGE', 'rules');
 	require FORUM_ROOT.'header.php';
 
-	get_view_path('misc-rules.tpl.php');
+	require get_view_path('misc-rules.tpl.php');
 }
 
 
