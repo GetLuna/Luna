@@ -149,15 +149,6 @@ if ($db->num_rows($result))
 			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 		}
 
-		if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1')
-		{
-			if ($cur_topic['has_posted'] == $luna_user['id'])
-			{
-				$status_text[] = '<span class="glyphicon glyphicon-asterisk"></span>';
-				$item_status .= ' iposted';
-			}
-		}
-
 		if ($cur_topic['moved_to'] != 0)
 		{
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
@@ -171,6 +162,15 @@ if ($db->num_rows($result))
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 			$item_status .= ' iclosed';
+		}
+
+		if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1')
+		{
+			if ($cur_topic['has_posted'] == $luna_user['id'])
+			{
+				$status_text[] = '<span class="glyphicon glyphicon-asterisk"></span>';
+				$item_status .= ' iposted';
+			}
 		}
 
 		if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to']))
