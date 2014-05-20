@@ -858,6 +858,10 @@ textarea {
 	border-top-left-radius: 3px;
 }
 
+.topic .profile-card-quickpost .user-avatar {
+	border-bottom-left-radius: 3px;
+}
+
 .topic .profile-card-head .user-avatar img {
 	height: 48px;
 	width: 100%;
@@ -909,10 +913,16 @@ textarea {
 }
 
 .profile-card-head {
+	height: 59px;
 	background-color: #e477f1;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
+}
+
+.profile-card-quickpost {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .profile-card-head .thumbnail {

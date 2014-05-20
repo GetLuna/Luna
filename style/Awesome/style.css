@@ -907,6 +907,11 @@ textarea {
 	border-top-right-radius: 3px;
 }
 
+.profile-card-quickpost {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
 .profile-card-head .thumbnail {
 	max-width: 100px;
 	margin-top: -50px;

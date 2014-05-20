@@ -490,6 +490,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	font-size: 20px;
 }
 
+#quickpostform > .panel {
+	margin-top: 10px;
+}
+
+@media screen and (max-width: 991px) {
+	#quickpostform > .panel-heading {
+		border-radius: 0;
+	}
+}
+
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;
@@ -857,6 +867,14 @@ textarea {
 	border-top-left-radius: 3px;
 }
 
+.topic .profile-card-quickpost .user-avatar {
+	border-bottom-left-radius: 3px;
+}
+
+.topic .profile-card-quickpost .user-avatar {
+	border-bottom-left-radius: 3px;
+}
+
 .topic .profile-card-head .user-avatar img {
 	height: 48px;
 	width: 100%;
@@ -908,10 +926,16 @@ textarea {
 }
 
 .profile-card-head {
+	height: 59px;
 	background-color: #057ed4;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
+}
+
+.profile-card-quickpost {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .profile-card-head .thumbnail {
