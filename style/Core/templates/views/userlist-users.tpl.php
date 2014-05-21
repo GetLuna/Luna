@@ -8,7 +8,7 @@ if (!defined('FORUM'))
 
 <?php require get_view_path('userlist-breadcrumbs.tpl.php'); ?>
 
-<div class="col-xs-12">
+<div class="row">
     <div class="row forum-header">
         <div class="col-sm-8 col-xs-9"><?php echo $lang['Username'] ?></div>
         <div class="col-sm-1 align-center hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
