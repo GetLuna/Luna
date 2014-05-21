@@ -574,10 +574,10 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 ?>
     <div class="forum-box">
         <div class="row forum-header">
-			<div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
-            <div class="col-xs-2 hidden-xs"><?php echo $lang['Forum'] ?></div>
-			<div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
-			<div class="col-xs-3 col-search"><?php echo $lang['Last post'] ?></div>
+			<div class="col-md-6 col-sm-6 col-xs-7"><?php echo $lang['Topic'] ?></div>
+            <div class="col-md-2 hidden-sm hidden-xs"><?php echo $lang['Forum'] ?></div>
+			<div class="col-md-1 col-sm-2 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
+			<div class="col-md-3 col-sm-4 col-xs-5"><?php echo $lang['Last post'] ?></div>
         </div>
 <?php
 
@@ -714,15 +714,15 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 ?>
         <div class="row topic-row <?php echo $item_status ?>">
-            <div class="col-xs-6">
+            <div class="col-md-6 col-sm-6 col-xs-7">
                 <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
                 <div class="tclcon">
 					<?php echo $subject."\n" ?>
                 </div>
             </div>
-            <div class="col-xs-2 hidden-xs"><?php echo $forum ?></div>
-            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo forum_number_format($cur_search['num_replies']) ?></p></div>
-            <div class="col-xs-3 col-search"><?php echo '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['last_poster']) ?></span></div>
+            <div class="col-md-2 hidden-sm hidden-xs"><?php echo $forum ?></div>
+            <div class="col-md-1 col-sm-2 hidden-xs"><p class="text-center"><?php echo forum_number_format($cur_search['num_replies']) ?></p></div>
+            <div class="col-md-3 col-sm-4 col-xs-5"><?php echo '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['last_poster']) ?></span></div>
         </div>
 <?php
 
