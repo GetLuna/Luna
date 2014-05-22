@@ -63,8 +63,10 @@ require FORUM_ROOT.'header.php';
                 <p><code>[email=myname@example.com]<?php echo $lang['My email address'] ?>[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com"><?php echo $lang['My email address'] ?></a></p>
                 <p><a name="img"></a><?php echo $lang['Images info'] ?></p>
                 <p><code>[img=<?php echo $lang['ModernBB bbcode test'] ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php echo $lang['produces'] ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php echo $lang['ModernBB bbcode test'] ?>" /></p><br />
+				<!--
                 <p><a name="img"></a><?php echo $lang['Video info'] ?></p>
                 <p><code>[video=(x,y)][url]<?php echo $lang['Video link'] ?>[/url][/video]</code>
+				-->
             </div>
 			<div class="tab-pane" id="quotes">
                 <p><?php echo $lang['Quotes info'] ?></p>
