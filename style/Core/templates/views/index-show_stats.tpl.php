@@ -26,32 +26,32 @@ if ($luna_config['o_show_index_stats'] == 1) {
 
 if ($luna_config['o_users_online'] == '1')
 {
-    // Fetch users online info and generate strings for output
-    $num_guests = 0;
-    $users = array();
-    $result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 
-    while ($luna_user_online = $db->fetch_assoc($result))
-    {
-        if ($luna_user_online['user_id'] > 1)
-        {
-            if ($luna_user['g_view_users'] == '1')
-                $users[] = "\n\t\t\t\t".'<a href="profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>';
-            else
-                $users[] = "\n\t\t\t\t".luna_htmlspecialchars($luna_user_online['ident']);
-        }
-        else
-            ++$num_guests;
-    }
+    $num_users_online = num_users_online();
 
-    $num_users = count($users);
-    echo "\t\t\t\t".'<div class="col-md-2 col-sm-4 col-xs-6"><span>'.sprintf($lang['Users online'], '<strong>'.forum_number_format($num_users).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-md-2 col-sm-4 col-xs-6"><span>'.sprintf($lang['Guests online'], '<strong>'.forum_number_format($num_guests).'</strong>').'</span></div>'."\n\t\t\t\n";
+    echo "\t\t\t\t".'<div class="col-md-2 col-sm-4 col-xs-6"><span>'.sprintf($lang['Users online'], '<strong>'.forum_number_format( $num_users_online ).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-md-2 col-sm-4 col-xs-6"><span>'.sprintf($lang['Guests online'], '<strong>'.forum_number_format( num_guests_online() ).'</strong>').'</span></div>'."\n\t\t\t\n";
     ?>
         </div>
         <div class="row">
     <?php
-    if ($num_users > 0)
-        echo "\t\t\t\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].' </strong>'."\t\t\t\t".implode(', ', $users)."\n\t\t\t\n".'</span>';
+
+    // Fetch users online info and generate strings for output
+    $result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
+
+    echo "\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].' </strong>';
+
+    $ctr = 1;
+    while ( $luna_user_online = $db->fetch_assoc( $result ) )
+    {
+        if ( $luna_user['g_view_users'] == '1' )
+            echo "\n\t\t\t\t".'<a href="profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>';
+        else
+            echo "\n\t\t\t\t".luna_htmlspecialchars($luna_user_online['ident']);
+
+        if ( $ctr < $num_users_online ) echo ', '; $ctr++; // Just for this pesky comma, counter is needed. TODO: convert this to a for loop, save 1 line.
+    }
+
+    echo "\n\t\t\t\t".'</span>';
 }
 
 ?>
