@@ -381,7 +381,7 @@ switch ($stage)
 		if (!array_key_exists('o_enable_advanced_search', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_enable_advanced_search\', \'1\')') or error('Unable to insert config value \'o_enable_advanced_search\'', __FILE__, __LINE__, $db->error());
 
-		// Since 3.3-alpha: Add last_poster_id field for each forums (oldhobbyist)
+		// Since 3.3-beta: Add last_poster_id field for each forums
 		$db->add_field('forums', 'last_poster_id', 'INT(10)', true, NULL, 'last_poster') or error('Unable to add forums.last_poster_id column', __FILE__, __LINE__, $db->error());
 
 		$result_forums = $db->query('SELECT id, last_poster FROM '.$db->prefix.'forums') or error('Unable to fetch forums list', __FILE__, __LINE__, $db->error());
@@ -398,7 +398,7 @@ switch ($stage)
 			}
 		}
 
-		// Since 3.3-alpha: Add last_poster_id field for each topics (oldhobbyist)
+		// Since 3.3-beta: Add last_poster_id field for each topics
 		$db->add_field('topics', 'last_poster_id', 'INT(10)', true, NULL, 'last_poster') or error('Unable to add topics.last_poster_id column', __FILE__, __LINE__, $db->error());
 
 		$result_topics = $db->query('SELECT id, last_poster FROM '.$db->prefix.'topics') or error('Unable to fetch topics list', __FILE__, __LINE__, $db->error());
