@@ -177,7 +177,7 @@ if (isset($_GET['ip_stats']))
 			<?php echo $paging_links ?>
 		</ul>
 	</div>
-	<table class="table">
+	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th><?php echo $lang['Results IP address head'] ?></th>
@@ -260,7 +260,7 @@ if (isset($_GET['show_users']))
 			<?php echo $paging_links ?>
 		</ul>
 	</div>
-	<table class="table">
+	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th><?php echo $lang['Username'] ?></th>
@@ -919,7 +919,7 @@ else if (isset($_GET['find_user']))
 				</span>
 			<?php endif; ?>
 		</div>
-		<table class="table">
+		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th><?php echo $lang['Username'] ?></th>

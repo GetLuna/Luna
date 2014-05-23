@@ -148,7 +148,7 @@ if ($db->num_rows($result))
 {
 
 ?>
-			<table class="table">
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>

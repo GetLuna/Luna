@@ -134,7 +134,7 @@ if ($db->num_rows($result))
 {
 
 ?>
-			<table class="table">
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
