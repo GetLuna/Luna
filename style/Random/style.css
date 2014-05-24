@@ -273,7 +273,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Panels */
 .panel {
-	border: none;
 	margin-bottom: 10px;
 	margin-top: 15px;
 }
@@ -286,7 +285,11 @@ h1, h2, h3, h4, h5, h6 {
 	height: 37px;
 }
 
-.panel-body {
+.panel-border {
+	border: none;
+}
+
+.panel-border .panel-body, .panel-border .postfield, .panel-border .panel-footer, .panel-border .quickpostfield {
 	border: 1px solid #ddd;
 	border-top: none;
 }

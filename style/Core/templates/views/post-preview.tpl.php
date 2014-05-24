@@ -22,7 +22,7 @@ if (!defined('FORUM'))
             </div>
         </div>
         <div class="col-md-9">
-			<div class="panel panel-default">
+			<div class="panel panel-default panel-border">
 				<div class="panel-heading">
 					<div class="comment-arrow hidden-sm hidden-xs"></div>
 					<h3 class="panel-title"><?php echo $lang['Post preview'] ?></h3>

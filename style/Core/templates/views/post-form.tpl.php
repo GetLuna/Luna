@@ -9,7 +9,7 @@ $cur_index = 1;
 ?>
 
 <?php echo $form."\n" ?>
-    <div class="panel panel-default">
+    <div class="panel panel-border panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $action ?></h3>
         </div>
