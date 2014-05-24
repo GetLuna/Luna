@@ -22,10 +22,7 @@ ob_start();
 
 ?>
 <footer class="col-lg-12">
-	<p>
-		<?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a>') ?>
-        <span class="pull-right"><?php echo $lang['Version'].'&nbsp;'.$luna_config['o_cur_version'] ?></span>
-    </p>
+	<p class="pull-right"><?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a> '.$luna_config['o_cur_version']) ?></p>
     <script src="../include/bootstrap/jquery.js"></script>
     <script src="../include/bootstrap/js/bootstrap.min.js"></script>
 </footer>
