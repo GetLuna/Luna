@@ -103,25 +103,25 @@ require FORUM_ROOT.'backstage/header.php';
         <p><?php echo sprintf($lang['Available'], $latest_version) ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/cnt/get.php?id=1.zip" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
-            <a href="http://modernbb.be/releases/modernbb<?php echo $latest_version ?>.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+            <a href="http://modernbb.be/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
         </div>
         <a href="http://modernbb.be/downloads/<?php echo Version::FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], Version::FORUM_VERSION) ?></a>
 <?php } elseif (version_compare(Version::FORUM_VERSION, $latest_version, 'eq')) { ?>
 		<h3><?php echo $lang['Latest version'] ?></h3>
         <p><?php echo $lang['ModernBB intro'].' '.Version::FORUM_VERSION ?></p>
         <div class="btn-group">
-            <a href="http://modernbb.be/releases/modernbb<?php echo Version::FORUM_VERSION ?>.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+            <a href="http://modernbb.be/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
         </div>
 <?php } else { ?>
         <h3><?php echo $lang['Development version'] ?></h3>
         <p><?php echo sprintf($lang['Development'], Version::FORUM_VERSION, $latest_version) ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/cnt/get.php?id=1" class="btn btn-primary"><?php echo sprintf($lang['Download'], $latest_version) ?></a>
-            <a href="http://modernbb.be/releases/modernbb<?php echo $latest_version ?>.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+            <a href="http://modernbb.be/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
         </div>
         <div class="btn-group">
             <a href="http://modernbb.be/downloads/<?php echo Version::FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], Version::FORUM_VERSION) ?></a>
-            <a href="http://modernbb.be/releases/modernbb<?php echo Version::FORUM_VERSION ?>.php" class="btn btn-default"><?php echo $lang['Changelog'] ?></a>
+            <a href="http://modernbb.be/changelog.php" class="btn btn-default"><?php echo $lang['Changelog'] ?></a>
         </div>
 <?php
 	}
