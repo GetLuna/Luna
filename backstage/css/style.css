@@ -167,6 +167,60 @@ label .help-block {
 	margin-bottom: -1px;
 }
 
+.panel-head {
+	box-shadow: none;
+}
+
+.panel-primary {
+	border-color: #ed6bcd;
+}
+
+.panel-primary > .panel-heading {
+	background-color: #fe99e5;
+	border-color: #ed6bcd;
+	color: #fff;
+}
+
+.panel-success {
+	border-color: #5ea707;
+}
+
+.panel-success > .panel-heading {
+	background-color: #78bb28;
+	border-color: #5ea707;
+	color: #fff;
+}
+
+.panel-info {
+	border-color: #0065ac;
+}
+
+.panel-info > .panel-heading {
+	background-color: #007ed6;
+	border-color: #0065ac;
+	color: #fff;
+}
+
+.panel-warning {
+	border-color: #f1a400;
+}
+
+.panel-warning > .panel-heading {
+	background-color: #ffc600;
+	border-color: #f1a400;
+	color: #fff;
+}
+
+.panel-danger {
+	border-color: #d23100;
+}
+
+.panel-danger > .panel-heading {
+	background-color: #f65625;
+	border-color: #d23100;
+	color: #fff;
+}
+
 /* Buttons */
 .panel-title .btn {
 	margin-top: -10px;
