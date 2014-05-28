@@ -164,34 +164,48 @@ if (count($languages) > 1)
                 </div>
 <?php
     }
-    /* if ($luna_user['is_admmod']) {
-        $backstage_styles = backstage_list_styles();
-
-        // Only display the style selection box if there's more than one style available
-        if (count($backstage_styles) == 1)
-            echo "\t\t\t".'<div><input type="hidden" name="form[backstage_style]" value="'.$backstage_styles[0].'" /></div>'."\n";
-        else if (count($backstage_styles) > 1)
-        {
+    if ($luna_user['is_admmod'])
+	{
 ?>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Backstage style'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Backstage color'] ?></label>
                     <div class="col-sm-9">
-                        <select class="form-control" name="form[backstage_style]">
-<?php
-            foreach ($backstage_styles as $temp)
-            {
-                if ($user['backstage_style'] == $temp)
-                    echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
-                else
-                    echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-            }
-?>
-                        </select>
+						<div class="col-sm-3">
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[backstage_color]" value="#14a3ff" <?php if ($user['backstage_color'] == '#14a3ff') echo ' checked="checked"' ?>>
+									<div class="bsmbbblue"></div>
+								</label>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[backstage_color]" value="#82ba00" <?php if ($user['backstage_color'] == '#82ba00') echo ' checked="checked"' ?>>
+									<div class="bsgreen"></div>
+								</label>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[backstage_color]" value="#ffcc32" <?php if ($user['backstage_color'] == '#ffcc32') echo ' checked="checked"' ?>>
+									<div class="bsyellow"></div>
+								</label>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[backstage_color]" value="#d24726" <?php if ($user['backstage_color'] == '#d24726') echo ' checked="checked"' ?>>
+									<div class="bsred"></div>
+								</label>
+							</div>
+						</div>
                     </div>
                 </div>
 <?php
-        }
-    } */
+    }
     if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1')): ?>
                 <hr />
                 <div class="form-group">

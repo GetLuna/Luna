@@ -1668,30 +1668,6 @@ function forum_list_styles()
 
 
 //
-// Fetch a list of available Backstage styles
-//
-function backstage_list_styles()
-{
-	$backstage_styles = array();
-
-	$d = dir(FORUM_ROOT.'backstage/css/color');
-	while (($entry = $d->read()) !== false)
-	{
-		if ($entry{0} == '.')
-			continue;
-
-		if (substr($entry, -4) == '.css')
-			$backstage_styles[] = substr($entry, 0, -4);
-	}
-	$d->close();
-
-	natcasesort($backstage_styles);
-
-	return $backstage_styles;
-}
-
-
-//
 // Fetch a list of available language packs
 //
 function forum_list_langs()

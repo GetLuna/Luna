@@ -752,6 +752,7 @@ else if (isset($_POST['form_sent']))
 				'show_avatars'		=> isset($_POST['form']['show_avatars']) ? '1' : '0',
 				'show_sig'			=> isset($_POST['form']['show_sig']) ? '1' : '0',
 				'email_setting'		=> intval($_POST['form']['email_setting']),
+				'backstage_color'	=> luna_trim($_POST['form']['backstage_color']),
 				'notify_with_post'	=> isset($_POST['form']['notify_with_post']) ? '1' : '0',
 				'auto_notify'		=> isset($_POST['form']['auto_notify']) ? '1' : '0',
 			);
@@ -789,15 +790,6 @@ else if (isset($_POST['form_sent']))
 				$styles = forum_list_styles();
 				$form['style'] = luna_trim($_POST['form']['style']);
 				if (!in_array($form['style'], $styles))
-					message($lang['Bad request'], false, '404 Not Found');
-			}
-
-			// Make sure we got a valid Backstage style string
-			if (isset($_POST['form']['backstage_style']))
-			{
-				$backstage_styles = backstage_list_styles();
-				$form['backstage_style'] = luna_trim($_POST['form']['backstage_style']);
-				if (!in_array($form['backstage_style'], $backstage_styles))
 					message($lang['Bad request'], false, '404 Not Found');
 			}
 
@@ -882,7 +874,7 @@ else if (isset($_POST['form_sent']))
 }
 
 
-$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.backstage_style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.backstage_color, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message($lang['Bad request'], false, '404 Not Found');
 

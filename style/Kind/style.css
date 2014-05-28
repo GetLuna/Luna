@@ -1167,3 +1167,24 @@ q:after {
 		border: none;
 	}
 }
+
+/* Backstage color select */
+.bsmbbblue {
+	background-color: #14a3ff;
+	padding: 10px;
+}
+
+.bsred {
+	background-color: #d24726;
+	padding: 10px;
+}
+
+.bsgreen {
+	background-color: #82ba00;
+	padding: 10px;
+}
+
+.bsyellow {
+	background-color: #ffcc32;
+	padding: 10px;
+}

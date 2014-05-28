@@ -313,7 +313,7 @@ switch ($stage)
 		$db->add_field('users', 'backstage_style', 'VARCHAR(25)', false, 'ModernBB') or error('Unable to add backstage_style field', __FILE__, __LINE__, $db->error());
 
 		// Since 3.0-alpha.2: Add the last_topic column to the forums table
-		$db->add_field('forums', 'last_topic', 'VARCHAR(255)', true, null, 'last_poster') or error('Unable to add last_topic field', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'last_topic', 'VARCHAR(255)', true, null, 'last_poster');
 
 		// Since 3.0-alpha.2: Update last_topic for each forum
 		$result = $db->query('SELECT id, last_post_id FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
@@ -330,7 +330,7 @@ switch ($stage)
 			}
 		}
 
-		// Since 3.0-alpha.2: Insert new config option o_header_desc
+		// Since 3.00-alpha.2: Insert new config option o_header_desc
 		if (!array_key_exists('o_header_desc', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_desc\', \'1\')') or error('Unable to insert config value \'o_header_desc\'', __FILE__, __LINE__, $db->error());
 
@@ -385,12 +385,12 @@ switch ($stage)
 		$db->add_field('forums', 'last_poster_id', 'INT(10)', true, NULL, 'last_poster') or error('Unable to add forums.last_poster_id column', __FILE__, __LINE__, $db->error());
 
 		$result_forums = $db->query('SELECT id, last_poster FROM '.$db->prefix.'forums') or error('Unable to fetch forums list', __FILE__, __LINE__, $db->error());
-		while ($cur_forum = $db->fetch_assoc($result_forums))
+		while ( $cur_forum = $db->fetch_assoc( $result_forums ) )
 		{
-			if (!is_null($cur_forum['last_poster']))
+			if ( ! is_null($cur_forum['last_poster']) )
 			{
-				$result_poster_id = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username="'.$db->escape($cur_forum['last_poster']).'"') or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
-				if ($db->num_rows($result_poster_id))
+				$result_poster_id = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username="'.$db->escape( $cur_forum['last_poster'] ).'"') or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
+				if ( $db->num_rows( $result_poster_id ) )
 				{
 					$poster_id = $db->result($result_poster_id);
 					$db->query('UPDATE '.$db->prefix.'forums SET last_poster_id='.$db->escape($poster_id).' WHERE id='.$cur_forum['id']) or error('Unable to update last topic', __FILE__, __LINE__, $db->error());
@@ -402,18 +402,24 @@ switch ($stage)
 		$db->add_field('topics', 'last_poster_id', 'INT(10)', true, NULL, 'last_poster') or error('Unable to add topics.last_poster_id column', __FILE__, __LINE__, $db->error());
 
 		$result_topics = $db->query('SELECT id, last_poster FROM '.$db->prefix.'topics') or error('Unable to fetch topics list', __FILE__, __LINE__, $db->error());
-		while ($cur_topic = $db->fetch_assoc($result_topics))
+		while ( $cur_topic = $db->fetch_assoc( $result_topics ) )
 		{
-			if (!is_null($cur_topic['last_poster']))
+			if ( ! is_null($cur_topic['last_poster']) )
 			{
-				$result_poster_id = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username="'.$db->escape($cur_topic['last_poster']).'"') or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
-				if ($db->num_rows($result_poster_id))
+				$result_poster_id = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username="'.$db->escape( $cur_topic['last_poster'] ).'"') or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
+				if ( $db->num_rows( $result_poster_id ) )
 				{
 					$poster_id = $db->result($result_poster_id);
 					$db->query('UPDATE '.$db->prefix.'topics SET last_poster_id='.$db->escape($poster_id).' WHERE id='.$cur_topic['id']) or error('Unable to update last topic', __FILE__, __LINE__, $db->error());
 				}
 			}
 		}
+
+		// Since 3.3-beta: Add the backstage_color column to the users table
+		$db->add_field('users', 'backstage_color', 'VARCHAR(25)', false, '#14a3ff') or error('Unable to add backstage_color field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.3-beta: Drop the backstage_style column from the forums table
+		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
