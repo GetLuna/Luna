@@ -27,7 +27,6 @@ h1, h2, h3, h4, h5, h6, .btn, .navbar {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: "Segoe UI Light", "Segoe UI Semilight", "Segoe UI";
-	color: #14a3ff;
 }
 
 h3 {
@@ -57,7 +56,6 @@ label .help-block {
 
 /* Navbar */
 .navbar {
-	background: #14a3ff;
 	border: none;	
 }
 
@@ -73,7 +71,6 @@ label .help-block {
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
 	color: #fff;
-	background: #14a3ff;
 }
 
 .navbar-default .navbar-collapse {
@@ -107,10 +104,6 @@ label .help-block {
 	background-color: #fff;
 }
 
-.navbar-default .navbar-toggle .icon-bar {
-	background-color: #14a3ff;
-}
-
 @media all and (min-width:768px) {
 	.nav-inner {
 		padding-left: 0;
@@ -126,7 +119,6 @@ label .help-block {
 /* Panels */
 .panel-default .panel-heading {
 	color: #fff;
-	background: #14a3ff;
 }
 
 .panel-heading {

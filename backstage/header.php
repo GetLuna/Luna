@@ -45,10 +45,9 @@ if (!defined('FORUM_ALLOW_INDEX'))
 
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
-
-
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <?php
+require FORUM_ROOT.'backstage/css/accent.php';
 
 if (isset($required_fields))
 {
