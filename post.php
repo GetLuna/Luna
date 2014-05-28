@@ -87,6 +87,7 @@ if (isset($_POST['form_sent']))
 	{
 		$username = $luna_user['username'];
 		$email = $luna_user['email'];
+		$id = $luna_user['id'];
 	}
 	// Otherwise it should be in $_POST
 	else
@@ -189,7 +190,7 @@ if (isset($_POST['form_sent']))
 			}
 
 			// Update topic
-			$db->query('UPDATE '.$db->prefix.'topics SET num_replies=num_replies+1, last_post='.$now.', last_post_id='.$new_pid.', last_poster=\''.$db->escape($username).'\' WHERE id='.$tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'topics SET num_replies=num_replies+1, last_post='.$now.', last_post_id='.$new_pid.', last_poster=\''.$db->escape($username).'\', last_poster_id='.$db->escape($id).' WHERE id='.$tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message);
 
@@ -277,7 +278,7 @@ if (isset($_POST['form_sent']))
 		else if ($fid)
 		{
 			// Create the topic
-			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, last_post, last_poster, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, last_post, last_poster, last_poster_id, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', last_poster_id='.$db->escape($id).', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest'])
