@@ -553,7 +553,6 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 		if ($show_as == 'topics') {
 			$topic_count = 0;
-
 			require get_view_path('search-topics_header.tpl.php');
 		} else if ($show_as == 'posts') {
 			require FORUM_ROOT.'include/parser.php';
