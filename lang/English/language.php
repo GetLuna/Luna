@@ -335,10 +335,6 @@ $lang = array(
 'Inserted text'			=>	'Inserted text',
 'Sub text'				=>	'Subscript text',
 'Sup text'				=>	'Superscript text',
-'Left text'				=>	'Left text',
-'Center text'			=>	'Center text',
-'Right text'			=>	'Right text',
-'Justify text'			=>	'Justify text',
 
 'Multimedia'			=>  'Multimedia',
 'Links info'			=>	'You can create links to other documents or to email addresses using the following tags:',

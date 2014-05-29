@@ -167,7 +167,7 @@ function strip_empty_bbcode($text)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|h1|h2|h3|h4|h5|h6|color|quote|c|img|url|email|list|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|h1|h2|h3|h4|h5|h6|color|quote|c|img|url|email|list|q|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -211,7 +211,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
+	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'q', 'sup', 'sub', 'video');
 	// List of tags that we need to check are open (You could not put b, i, u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -223,7 +223,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Tags not allowed
 	$tags_forbidden = array();
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-	$tags_block = array('quote', 'code', 'list', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', '*', 'left', 'right', 'center', 'justify');
+	$tags_block = array('quote', 'code', 'list', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', '*');
 	// Inline tags, we do not allow new lines in these
 	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'q', 'sup', 'sub', 'video');
 	// Tags we trim interior space
@@ -782,10 +782,6 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[q\](.*?)\[/q\]%ms';
 	$pattern[] = '%\[sup\](.*?)\[/sup\]%ms';
 	$pattern[] = '%\[sub\](.*?)\[/sub\]%ms';
-	$pattern[] = '%\[left\](.*?)\[/left\]%ms';
-	$pattern[] = '%\[right\](.*?)\[/right\]%ms';
-	$pattern[] = '%\[center\](.*?)\[/center\]%ms';
-	$pattern[] = '%\[justify\](.*?)\[/justify\]%ms';
 
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
@@ -814,10 +810,6 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<q>$1</q>';
 	$replace[] = '<sup>$1</sup>';
 	$replace[] = '<sub>$1</sub>';
-	$replace[] = '</p><p style="text-align: left">$1</p><p>';
-	$replace[] = '</p><p style="text-align: right">$1</p><p>';
-	$replace[] = '</p><p style="text-align: center">$1</p><p>';
-	$replace[] = '</p><p style="text-align: justify">$1</p><p>';
 
 	// DailyMotion videos
 	$replace[] = '<iframe width="480" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';
