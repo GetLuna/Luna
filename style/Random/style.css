@@ -835,12 +835,12 @@ textarea {
 }
 
 /* Topicview */
-.profile-card h1 a:hover, .profile-card h2 a:hover, .profile-card h3 a:hover, .profile-card h4 a:hover, .profile-card h5 a:hover, .profile-card h6 a:hover, .profile-card h1 a:active, .profile-card h2 a:active, .profile-card h3 a:active, .profile-card h4 a:active, .profile-card h5 a:active, .profile-card h6 a:active, .profile-card h1 a:focus, .profile-card h2 a:focus, .profile-card h3 a:focus, .profile-card h4 a:focus, .profile-card h5 a:focus, .profile-card h6 a:focus {
+.profile-card h1 a:hover, .profile-card h2 a:hover, .profile-card h3 a:hover, .topic .panel-heading h3 a:hover, .profile-card h4 a:hover, .profile-card h5 a:hover, .profile-card h6 a:hover, .profile-card h1 a:active, .profile-card h2 a:active, .profile-card h3 a:active, .profile-card h4 a:active, .profile-card h5 a:active, .profile-card h6 a:active, .profile-card h1 a:focus, .profile-card h2 a:focus, .profile-card h3 a:focus, .profile-card h4 a:focus, .profile-card h5 a:focus, .profile-card h6 a:focus {
 	text-decoration: none;
 	color: #ddd;
 }
 
-.profile-card h2 a, .profile-card h3, .profile-card h3 a {
+.profile-card h2 a, .profile-card h3, .profile-card h3 a, .topic .panel-heading h3 a {
 	color: #fff;
 }
 
