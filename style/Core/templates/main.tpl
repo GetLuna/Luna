@@ -36,7 +36,7 @@
 			],
 			selector: 'textarea.tinymce',
 			skins: 'lightgrey',
-			toolbar: "undo redo | styleselect | bold italic underline strikethrough | subscript superscript | bullist numlist | link image | code",
+			toolbar: "undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | subscript superscript | bullist numlist | link image | code",
 			menubar: false,
 			relative_urls: false,
 			convert_urls: false,

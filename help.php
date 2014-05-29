@@ -50,6 +50,10 @@ require FORUM_ROOT.'header.php';
                 <p><code>[sub]<?php echo $lang['Sub text'] ?>[/sub]</code> <?php echo $lang['produces'] ?> <sub><?php echo $lang['Sub text'] ?></sub></p>
                 <p><code>[sup]<?php echo $lang['Sup text'] ?>[/sup]</code> <?php echo $lang['produces'] ?> <sup><?php echo $lang['Sup text'] ?></sup></p>
                 <p><code>[h]<?php echo $lang['Heading text'] ?>[/h]</code> <?php echo $lang['produces'] ?></p> <h4><?php echo $lang['Heading text'] ?></h4>
+                <p><code>[left]<?php echo $lang['Left text'] ?>[/left]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: left"><?php echo $lang['Left text'] ?></p>
+                <p><code>[center]<?php echo $lang['Center text'] ?>[/center]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: center"><?php echo $lang['Center text'] ?></p>
+                <p><code>[right]<?php echo $lang['Right text'] ?>[/right]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: right"><?php echo $lang['Right text'] ?></p>
+                <p><code>[justify]<?php echo $lang['Justify text'] ?>[/justify]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: justify"><?php echo $lang['Justify text'] ?></p>
             </div>
 			<div class="tab-pane" id="links">
                 <p><?php echo $lang['Links info'] ?></p>
