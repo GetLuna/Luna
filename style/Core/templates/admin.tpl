@@ -28,7 +28,7 @@
 			skins: 'lightgrey',
 			toolbar:[
 				"newdocument | cut copy paste removeformat | undo redo | formatselect | fontselect | fontsizeselect | forecolor | styleselect",
-				"bold italic underline strikethrough | outdent indent alignleft alignright aligncenter alignjustify | table | subscript superscript | bullist numlist | hr link image blockquote | code"
+				"bold italic underline strikethrough | outdent indent alignleft aligncenter alignright alignjustify | table | subscript superscript | bullist numlist | hr link image blockquote | code"
 			],
 			menubar: false,
 			relative_urls: false,
