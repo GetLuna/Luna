@@ -763,6 +763,10 @@ textarea {
 	margin: 0 auto 10px auto;
 }
 
+.userlist {
+	padding: 0 15px;
+}
+
 .user-row .user-avatar {
 	max-width: 50px;
 	margin-top: 0;

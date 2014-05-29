@@ -4,17 +4,16 @@
 if (!defined('FORUM'))
     exit;
 
+require get_view_path('userlist-breadcrumbs.tpl.php');
+
 ?>
 
-<?php require get_view_path('userlist-breadcrumbs.tpl.php'); ?>
-
-<div class="row">
-    <div class="row forum-header">
-        <div class="col-sm-8 col-xs-9"><?php echo $lang['Username'] ?></div>
-        <div class="col-sm-1 align-center hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
-        <div class="col-sm-3 col-xs-3"><?php echo $lang['Registered table'] ?></div>
-    </div>
-    <div class="userlist">
+<div class="userlist">
+	<div class="row forum-header">
+		<div class="col-sm-8 col-xs-9"><?php echo $lang['Username'] ?></div>
+		<div class="col-sm-1 align-center hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
+		<div class="col-sm-3 col-xs-3"><?php echo $lang['Registered table'] ?></div>
+	</div>
 <?php
 
 // Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
@@ -35,16 +34,16 @@ if ($db->num_rows($result))
         $user_avatar = generate_avatar_markup($user_data['id']);
 
 ?>
-        <div class="row user-row">
-            <div class="col-sm-8 col-xs-9">
-                <span class="user-avatar thumbnail">
-                    <?php echo $user_avatar; ?>
-                </span>
-                <span class="userlist-name"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?> <small><?php echo $user_title_field ?></small></span>
-            </div>
-            <div class="col-sm-1 collum-count align-center hidden-xs"><p class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></p></div>
-            <div class="col-sm-3 col-xs-3 collum-count"><?php echo format_time($user_data['registered'], true) ?></div>
-        </div>
+	<div class="row user-row">
+		<div class="col-sm-8 col-xs-9">
+			<span class="user-avatar thumbnail">
+				<?php echo $user_avatar; ?>
+			</span>
+			<span class="userlist-name"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?> <small><?php echo $user_title_field ?></small></span>
+		</div>
+		<div class="col-sm-1 collum-count align-center hidden-xs"><p class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></p></div>
+		<div class="col-sm-3 col-xs-3 collum-count"><?php echo format_time($user_data['registered'], true) ?></div>
+	</div>
 <?php
 
     }
@@ -53,7 +52,6 @@ else
     echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang['No hits'].'</td></tr>'."\n";
 
 ?>
-    </div>
 </div>
 
 <?php
