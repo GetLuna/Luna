@@ -44,6 +44,10 @@ h3 {
 	}
 }
 
+.alert h4 {
+	margin-bottom: 0;
+}
+
 .panel-footer p {
 	margin: 0;
 }
@@ -352,7 +356,8 @@ label .help-block {
 /* Alerts */
 .alert-success {
 	background: #e5ffb8;
-	border-color: #76b900;
+	border: none;
+	border-left: #76b900 5px solid;
 	color: #659e00;
 }
 
@@ -362,7 +367,8 @@ label .help-block {
 
 .alert-info {
 	background: #daf0ff;
-	border-color: #14a3ff;
+	border: none;
+	border-left: #14a3ff 5px solid;
 	color: #0085da;
 }
 
@@ -372,7 +378,8 @@ label .help-block {
 
 .alert-warning {
 	background: #fff6d9;
-	border-color: #ffc000;
+	border: none;
+	border-left: #ffc000 5px solid;
 	color: #dba500;
 }
 
@@ -382,7 +389,8 @@ label .help-block {
 
 .alert-danger {
 	background: #ffe3d5;
-	border-color: #ff5400;
+	border: none;
+	border-left: #ff5400 5px solid;
 	color: #d34600;
 }
 
