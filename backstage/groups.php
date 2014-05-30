@@ -55,7 +55,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('groups');
-
 ?>
 <h2><?php echo $lang['Group settings head'] ?></h2>
 <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
@@ -326,32 +325,37 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 else if (isset($_POST['add_edit_group']))
 {
 	confirm_referrer('backstage/groups.php');
-	
-	// Is this the admin group? (special rules apply)
-	$is_admin_group = (isset($_POST['group_id']) && $_POST['group_id'] == FORUM_ADMIN) ? true : false;
 
 	$title = luna_trim($_POST['req_title']);
 	$user_title = luna_trim($_POST['user_title']);
-	$moderator = isset($_POST['moderator']) && $_POST['moderator'] == '1' ? '1' : '0';
-	$mod_edit_users = $moderator == '1' && isset($_POST['mod_edit_users']) && $_POST['mod_edit_users'] == '1' ? '1' : '0';
-	$mod_rename_users = $moderator == '1' && isset($_POST['mod_rename_users']) && $_POST['mod_rename_users'] == '1' ? '1' : '0';
-	$mod_change_passwords = $moderator == '1' && isset($_POST['mod_change_passwords']) && $_POST['mod_change_passwords'] == '1' ? '1' : '0';
-	$mod_ban_users = $moderator == '1' && isset($_POST['mod_ban_users']) && $_POST['mod_ban_users'] == '1' ? '1' : '0';
-	$read_board = isset($_POST['read_board']) && $_POST['read_board'] == '1' ? '1' : '0';
-	$view_users = (isset($_POST['view_users']) && $_POST['view_users'] == '1') || $is_admin_group ? '1' : '0';
-	$post_replies = isset($_POST['post_replies']) && $_POST['post_replies'] == '1' ? '1' : '0';
-	$post_topics = isset($_POST['post_topics']) && $_POST['post_topics'] == '1' ? '1' : '0';
-	$edit_posts = isset($_POST['edit_posts']) ? intval($_POST['edit_posts']) : ($is_admin_group) ? '1' : '0';
-	$delete_posts = isset($_POST['delete_posts']) ? intval($_POST['delete_posts']) : ($is_admin_group) ? '1' : '0';
-	$delete_topics = isset($_POST['delete_topics']) ? intval($_POST['delete_topics']) : ($is_admin_group) ? '1' : '0';
-	$set_title = isset($_POST['set_title']) ? intval($_POST['set_title']) : ($is_admin_group) ? '1' : '0';
-	$search = isset($_POST['search']) && $_POST['search'] == '1' ? '1' : '0';
-	$search_users = isset($_POST['search_users']) && $_POST['search_users'] == '1' ? '1' : '0';
-	$send_email = (isset($_POST['send_email']) && $_POST['send_email'] == '1') || $is_admin_group ? '1' : '0';
-	$post_flood = (isset($_POST['post_flood']) && $_POST['post_flood'] >= 0) ? intval($_POST['post_flood']) : '0';
-	$search_flood = (isset($_POST['search_flood']) && $_POST['search_flood'] >= 0) ? intval($_POST['search_flood']) : '0';
-	$email_flood = (isset($_POST['email_flood']) && $_POST['email_flood'] >= 0) ? intval($_POST['email_flood']) : '0';
-	$report_flood = (isset($_POST['report_flood']) && $_POST['report_flood'] >= 0) ? intval($_POST['report_flood']) : '0';
+
+	if ($_POST['group_id'] != FORUM_ADMIN) {
+		$moderator = isset($_POST['moderator']) ? '1' : '0';
+		$mod_edit_users = $moderator == '1' && isset($_POST['mod_edit_users']) ? '1' : '0';
+		$mod_rename_users = $moderator == '1' && isset($_POST['mod_rename_users']) ? '1' : '0';
+		$mod_change_passwords = $moderator == '1' && isset($_POST['mod_change_passwords']) ? '1' : '0';
+		$mod_ban_users = $moderator == '1' && isset($_POST['mod_ban_users']) ? '1' : '0';
+		$read_board = isset($_POST['read_board']) ? '1' : '0';
+		$view_users = isset($_POST['view_users']) ? '1' : '0';
+		$post_replies = isset($_POST['post_replies']) ? '1' : '0';
+		$post_topics = isset($_POST['post_topics']) ? '1' : '0';
+		$edit_posts = isset($_POST['edit_posts']) ? '1' : '0';
+		$delete_posts = isset($_POST['delete_posts']) ? '1' : '0';
+		$delete_topics = isset($_POST['delete_topics']) ? '1' : '0';
+		$set_title = isset($_POST['set_title']) ? '1' : '0';
+		$search = isset($_POST['search']) ? '1' : '0';
+		$search_users = isset($_POST['search_users']) ? intval($_POST['search_users']) : '1';
+		$send_email = isset($_POST['send_email']) ? '1' : '0';
+		$post_flood = (isset($_POST['post_flood']) && $_POST['post_flood'] >= 0) ? intval($_POST['post_flood']) : '0';
+		$search_flood = (isset($_POST['search_flood']) && $_POST['search_flood'] >= 0) ? intval($_POST['search_flood']) : '0';
+		$email_flood = (isset($_POST['email_flood']) && $_POST['email_flood'] >= 0) ? intval($_POST['email_flood']) : '0';
+		$report_flood = (isset($_POST['report_flood']) && $_POST['report_flood'] >= 0) ? intval($_POST['report_flood']) : '0';
+	}
+	else
+	{
+		$moderator = $mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_topics = $set_title = $search = $search_users = $send_email = '1';
+		$post_flood = $search_flood = $email_flood = $report_flood = '0';
+	}
 
 	if ($title == '')
 		message_backstage($lang['Must enter title message']);
