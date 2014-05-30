@@ -136,7 +136,7 @@ if ($db->num_rows($result))
 		$icon_type = 'icon';
 
 		if (is_null($cur_topic['moved_to']))
-			if ( $luna_user['g_view_users'] == '1' )
+			if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
 				$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
         	else
 				$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
