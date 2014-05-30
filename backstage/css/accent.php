@@ -7,7 +7,10 @@
  * License under GPLv3
  */
 
-	$accent = $luna_user['backstage_color'];
+	if (!isset($luna_user))
+		$accent = '#14a3ff';
+	else
+		$accent = $luna_user['backstage_color'];
 
 ?>
 <style>
