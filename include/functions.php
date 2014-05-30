@@ -2076,17 +2076,18 @@ function display_saved_queries()
 	$saved_queries = $db->get_saved_queries();
 
 ?>
-
-<div id="debug">
-	<h2><?php echo $lang['Debug table'] ?>></h2>
-	<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th class="tcl" scope="col"><?php echo $lang['Query times'] ?></th>
-			<th class="tcr" scope="col"><?php echo $lang['Query'] ?></th>
-		</tr>
-	</thead>
-	<tbody>
+<div class="debug panel panel-warning">
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang['Debug table'] ?></h3>
+	</div>
+	<table class="table table-bordered table-striped table-hover">
+		<thead>
+			<tr>
+				<th class="col-xs-1"><?php echo $lang['Query times'] ?></th>
+				<th class="col-xs-11"><?php echo $lang['Query'] ?></th>
+			</tr>
+		</thead>
+		<tbody>
 <?php
 
 	$query_time_total = 0.0;
@@ -2095,19 +2096,19 @@ function display_saved_queries()
 		$query_time_total += $cur_query[1];
 
 ?>
-		<tr>
-			<td class="tcl"><?php echo ($cur_query[1] != 0) ? $cur_query[1] : '&#160;' ?></td>
-			<td class="tcr"><?php echo luna_htmlspecialchars($cur_query[0]) ?></td>
-		</tr>
+			<tr>
+				<td><?php echo ($cur_query[1] != 0) ? $cur_query[1] : '&#160;' ?></td>
+				<td><?php echo luna_htmlspecialchars($cur_query[0]) ?></td>
+			</tr>
 <?php
 
 	}
 
 ?>
-		<tr>
-			<td class="tcl" colspan="2"><?php printf($lang['Total query time'], $query_time_total.' s') ?></td>
-		</tr>
-	</tbody>
+			<tr>
+				<td colspan="2"><?php printf($lang['Total query time'], $query_time_total.' s') ?></td>
+			</tr>
+		</tbody>
 	</table>
 </div>
 <?php
