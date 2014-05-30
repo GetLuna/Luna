@@ -1006,7 +1006,7 @@ function simple_paginate($num_pages, $cur_page, $link)
 
 
 //
-// Display a message
+// Display a message in the frontend
 //
 function message($message, $no_back_link = false, $http_status = null)
 {
@@ -1034,14 +1034,47 @@ function message($message, $no_back_link = false, $http_status = null)
 	<?php endif; ?>
 </div>
 <?php
-	if( FORUM_ACTIVE_PAGE === 'admin' )
-	{
-		require FORUM_ROOT .'backstage/footer.php';
+	require FORUM_ROOT.'footer.php';
+}
+
+
+//
+// Display a message in the Backstage
+//
+function message_backstage($message, $no_back_link = false, $http_status = null)
+{
+	global $db, $lang, $luna_config, $luna_start, $luna_user;
+
+	// Did we receive a custom header?
+	if(!is_null($http_status)) {
+		header('HTTP/1.1 ' . $http_status);
 	}
-	else
+
+	if (!defined('FORUM_HEADER'))
 	{
-		require FORUM_ROOT.'footer.php';
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Info']);
+		define('FORUM_ACTIVE_PAGE', 'admin');
+		require FORUM_ROOT.'backstage/header.php';
+		generate_admin_menu('');
 	}
+
+?>
+<h2><?php echo $lang['Info'] ?></h2>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><?php echo $lang['Info'] ?></h3>
+	</div>
+	<div class="panel-body">
+		<p><?php echo $message ?></p>
+	</div>
+	<div class="panel-footer">
+		<?php if (!$no_back_link): ?>
+			<a href="javascript: history.go(-1)" href="btn btn-link"><?php echo $lang['Go back'] ?></a>
+		<?php endif; ?>
+	</div>
+</div>
+<?php
+	require FORUM_ROOT .'backstage/footer.php';
 }
 
 
