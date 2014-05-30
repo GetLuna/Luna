@@ -776,6 +776,11 @@ else
 				'datatype'		=> 'VARCHAR(200)',
 				'allow_null'	=> true
 			),
+			'last_poster_id'=> array(
+				'datatype'		=> 'INT(10)',
+				'allow_null'	=> true,
+				'default'		=> NULL,
+			),
 			'sort_by'		=> array(
 				'datatype'		=> 'TINYINT(1)',
 				'allow_null'	=> false,
@@ -1293,6 +1298,11 @@ else
 				'allow_null'	=> false,
 				'default'		=> '0'
 			),
+			'last_poster_id'=> array(
+				'datatype'		=> 'INT(10)',
+				'allow_null'	=> true,
+				'default'		=> NULL,
+			),
 			'closed'		=> array(
 				'datatype'		=> 'TINYINT(1)',
 				'allow_null'	=> false,
@@ -1318,6 +1328,7 @@ else
 			'forum_id_idx'		=> array('forum_id'),
 			'moved_to_idx'		=> array('moved_to'),
 			'last_post_idx'		=> array('last_post'),
+			'last_poster_id'	=> array('last_poster'),
 			'first_post_id_idx'	=> array('first_post_id')
 		)
 	);
