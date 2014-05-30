@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Add a "default" forum
 if (isset($_POST['add_forum']))
@@ -29,7 +29,7 @@ if (isset($_POST['add_forum']))
 	$forum_name = luna_trim($_POST['new_forum']); 
 	$add_to_cat = intval($_POST['add_to_cat']);
 	if ($add_to_cat < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	$db->query('INSERT INTO '.$db->prefix.'forums (forum_name, cat_id) VALUES(\''.$db->escape($forum_name).'\', '.$add_to_cat.')') or error('Unable to create forum', __FILE__, __LINE__, $db->error());
 	$new_fid = $db->insert_id();
@@ -44,7 +44,7 @@ else if (isset($_GET['del_forum']))
 	
 	$forum_id = intval($_GET['del_forum']);
 	if ($forum_id < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	if (isset($_POST['del_forum_comply'])) // Delete a forum with all posts
 	{
@@ -72,7 +72,7 @@ else if (isset($_GET['del_forum']))
 		// Delete any subscriptions for this forum
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
-		redirect('backstage/board.php');
+		redirect('backstage/board.php?saved=true');
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -116,19 +116,19 @@ else if (isset($_POST['update_positions']))
 	{
 		$disp_position = trim($disp_position);
 		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position))
-			message($lang['Post must be integer message']);
+			message_backstage($lang['Post must be integer message']);
 
 		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 	}
 
-	redirect('backstage/board.php');
+	redirect('backstage/board.php?saved=true');
 }
 
 else if (isset($_GET['edit_forum']))
 {
 	$forum_id = intval($_GET['edit_forum']);
 	if ($forum_id < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	// Update group permissions for $forum_id
 	if (isset($_POST['save']))
@@ -143,10 +143,10 @@ else if (isset($_GET['edit_forum']))
 		$redirect_url = isset($_POST['redirect_url']) ? luna_trim($_POST['redirect_url']) : null;
 
 		if ($forum_name == '')
-			message($lang['Must enter name message']);
+			message_backstage($lang['Must enter name message']);
 
 		if ($cat_id < 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 		$redirect_url = ($redirect_url != '') ? '\''.$db->escape($redirect_url).'\'' : 'NULL';
@@ -180,7 +180,7 @@ else if (isset($_GET['edit_forum']))
 			}
 		}
 
-		redirect('backstage/board.php');
+		redirect('backstage/board.php?saved=true');
 	}
 	else if (isset($_POST['revert_perms']))
 	{
@@ -195,7 +195,7 @@ else if (isset($_GET['edit_forum']))
 	$result = $db->query('SELECT id, forum_name, forum_desc, redirect_url, num_topics, sort_by, cat_id FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result))
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	$cur_forum = $db->fetch_assoc($result);
 	
@@ -338,11 +338,11 @@ if (isset($_POST['add_cat']))
 	
 	$new_cat_name = luna_trim($_POST['new_cat_name']);
 	if ($new_cat_name == '')
-		message($lang['Must enter name message']);
+		message_backstage($lang['Must enter name message']);
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
-	redirect('backstage/board.php');
+	redirect('backstage/board.php?saved=true');
 }
 
 // Delete a category
@@ -352,7 +352,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 	
 	$cat_to_delete = intval($_POST['cat_to_delete']);
 	if ($cat_to_delete < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	if (isset($_POST['del_cat_comply'])) // Delete a category with all forums and posts
 	{
@@ -391,7 +391,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 			require FORUM_ROOT.'include/cache.php';
 
-		redirect('backstage/board.php');
+		redirect('backstage/board.php?saved=true');
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -440,7 +440,7 @@ if (isset($_POST['update'])) // Change position and name of the categories
 	
 	$categories = $_POST['cat'];
 	if (empty($categories))
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	foreach ($categories as $cat_id => $cur_cat)
 	{
@@ -448,18 +448,16 @@ if (isset($_POST['update'])) // Change position and name of the categories
 		$cur_cat['order'] = luna_trim($cur_cat['order']);
 
 		if ($cur_cat['name'] == '')
-			message($lang['Must enter name message']);
+			message_backstage($lang['Must enter name message']);
 
 		if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order']))
-			message($lang['Must enter integer message']);
+			message_backstage($lang['Must enter integer message']);
 
 		$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
 	}
 
-	redirect('backstage/board.php');
+	redirect('backstage/board.php?saved=true');
 }
-
-
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Board']);
 define('FORUM_ACTIVE_PAGE', 'admin');
@@ -468,6 +466,10 @@ require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <h2><?php echo $lang['Board structure'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <div class="row">
 	<div class="<?php if (($num_cats) > '0') { ?>col-md-5<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
 		<div class="panel panel-default">

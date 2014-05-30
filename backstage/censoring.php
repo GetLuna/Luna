@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Add a censor word
 if (isset($_POST['add_word']))
@@ -30,7 +30,7 @@ if (isset($_POST['add_word']))
 	$replace_with = luna_trim($_POST['new_replace_with']);
 
 	if ($search_for == '')
-		message($lang['Must enter word message']);
+		message_backstage($lang['Must enter word message']);
 
 	$db->query('INSERT INTO '.$db->prefix.'censoring (search_for, replace_with) VALUES (\''.$db->escape($search_for).'\', \''.$db->escape($replace_with).'\')') or error('Unable to add censor word', __FILE__, __LINE__, $db->error());
 
@@ -54,7 +54,7 @@ else if (isset($_POST['update']))
 	$replace_with = luna_trim($_POST['replace_with'][$id]);
 
 	if ($search_for == '')
-		message($lang['Must enter word message']);
+		message_backstage($lang['Must enter word message']);
 
 	$db->query('UPDATE '.$db->prefix.'censoring SET search_for=\''.$db->escape($search_for).'\', replace_with=\''.$db->escape($replace_with).'\' WHERE id='.$id) or error('Unable to update censor word', __FILE__, __LINE__, $db->error());
 

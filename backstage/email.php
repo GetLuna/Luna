@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
 {
@@ -44,7 +44,7 @@ if (isset($_POST['form_sent']))
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
 		else
-			message($lang['SMTP passwords did not match']);
+			message_backstage($lang['SMTP passwords did not match']);
 	}
 
 	foreach ($form as $key => $input)
@@ -68,7 +68,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/email.php');
+	redirect('backstage/email.php?saved=true');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
@@ -78,6 +78,10 @@ generate_admin_menu('email');
 
 ?>
 <h2><?php echo $lang['Email'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <form class="form-horizontal" method="post" action="email.php">
     <div class="panel panel-default">
         <div class="panel-heading">

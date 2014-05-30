@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 //
 // Increase maximum execution time, but don't complain about it if it isn't allowed.
@@ -100,7 +100,7 @@ function get_table_def_mysql($table, $crlf)
 	{
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Failed to get field list');
+		message_backstage('Failed to get field list');
 	}
 
 	while ($row = $db->fetch_assoc($result))
@@ -137,7 +137,7 @@ function get_table_def_mysql($table, $crlf)
 	{
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Failed to get Indexed Fields');
+		message_backstage('Failed to get Indexed Fields');
 	}
 
 	while($row = $db->fetch_assoc($result))
@@ -200,7 +200,7 @@ function get_table_content_mysql($table, $handler)
 	{
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Failed to get table content');
+		message_backstage('Failed to get table content');
 	}
 
 	// Loop through the resulting rows and build the sql statement.
@@ -398,7 +398,7 @@ switch($db_type)
 	default:
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Sorry your database type is not supported');
+		message_backstage('Sorry your database type is not supported');
 }
 // Start actual db stuff
 if (isset($_POST['backupstart'])) {
@@ -480,7 +480,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	{
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('No file was uploaed or the upload failed, the database was not restored');
+		message_backstage('No file was uploaed or the upload failed, the database was not restored');
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) )
 	{
@@ -508,7 +508,7 @@ elseif ( isset($_POST['restore_start']) ) {
 			{
 				require FORUM_ROOT.'backstage/header.php';
 				generate_admin_menu('database');
-				message('Sorry the database could not be restored');
+				message_backstage('Sorry the database could not be restored');
 			}
 		}
 		else
@@ -520,7 +520,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	{
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Error the file name or file format caused an error, the database was not restored');
+		message_backstage('Error the file name or file format caused an error, the database was not restored');
 	}
 	if($sql_query != "")
 	{
@@ -553,7 +553,7 @@ elseif ( isset($_POST['restore_start']) ) {
 				{
 					require FORUM_ROOT.'backstage/header.php';
 					generate_admin_menu('database');
-					message('Error imported backup file, the database probably has not been restored');
+					message_backstage('Error imported backup file, the database probably has not been restored');
 				}
 			}
 		}
@@ -580,7 +580,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	{
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Restore Complete');
+		message_backstage('Restore Complete');
 	}
 }
 elseif (isset($_POST['repairall']))
@@ -593,7 +593,7 @@ elseif (isset($_POST['repairall']))
 		// This makes no sense, the board would be dead :P
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Tables error, repair failed');
+		message_backstage('Tables error, repair failed');
 	}
 	$tables = array();
 	$counter = 0;
@@ -612,12 +612,12 @@ elseif (isset($_POST['repairall']))
 		{
 			require FORUM_ROOT.'backstage/header.php';
 			generate_admin_menu('database');
-			message('SQL error, repair failed');
+			message_backstage('SQL error, repair failed');
 		}
 	}
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
-	message('All tables repaired');
+	message_backstage('All tables repaired');
 }
 elseif (isset($_POST['optimizeall']))
 {
@@ -628,7 +628,7 @@ elseif (isset($_POST['optimizeall']))
 		// This makes no sense, the board would be dead :P
 		require FORUM_ROOT.'backstage/header.php';
 		generate_admin_menu('database');
-		message('Tables error, optimise failed');
+		message_backstage('Tables error, optimise failed');
 	}
 	$tables = array();
 	$counter = 0;
@@ -647,12 +647,12 @@ elseif (isset($_POST['optimizeall']))
 		{
 			require FORUM_ROOT.'backstage/header.php';
 			generate_admin_menu('database');
-			message('SQL error, optimise failed');
+			message_backstage('SQL error, optimise failed');
 		}
 	}
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
-	message('All tables optimised');
+	message_backstage('All tables optimised');
 }
 else {
 	

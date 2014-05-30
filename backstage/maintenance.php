@@ -21,14 +21,14 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'clear_cache')
 {
 	if ($luna_user['g_id'] != FORUM_ADMIN)
-		message($lang['No permission'], false, '403 Forbidden');
+		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	delete_all(FORUM_ROOT.'cache');
 	header("Location: maitenance.php?action=cache_cleared");
@@ -43,7 +43,7 @@ if ($action == 'rebuild')
 	if ($per_page < 1)
 	{
 		generate_admin_menu('maintenance');
-		message($lang['Posts must be integer message']);
+		message_backstage($lang['Posts must be integer message']);
 	}
 
 	@set_time_limit(0);
@@ -185,7 +185,7 @@ if ($action == 'prune')
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
 	{
 		generate_admin_menu('maintenance');
-		message($lang['Days must be integer message']);
+		message_backstage($lang['Days must be integer message']);
 	}
 
 	$prune_date = time() - ($prune_days * 86400);
@@ -214,7 +214,7 @@ if ($action == 'prune')
 	if (!$num_topics)
 	{
 		generate_admin_menu('maintenance');
-		message(sprintf($lang['No old topics message'], $prune_days));
+		message_backstage(sprintf($lang['No old topics message'], $prune_days));
 	}
 
 
@@ -262,7 +262,7 @@ if (isset($_POST['userprune']))
 	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
 	{
 		generate_admin_menu('maintenance');
-		message('You need to set all settings!');
+		message_backstage('You need to set all settings!');
 	}
 
 	if ($_POST['admods_delete']) {
@@ -299,7 +299,7 @@ if (isset($_POST['userprune']))
 
 	$users_pruned = count($user_ids);
 	generate_admin_menu('maintenance');
-	message('Pruning complete. Users pruned '.$users_pruned.'.');
+	message_backstage('Pruning complete. Users pruned '.$users_pruned.'.');
 }
 
 
@@ -347,7 +347,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/maintenance.php');
+	redirect('backstage/maintenance.php?saved=true');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
@@ -357,6 +357,10 @@ require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <h2><?php echo $lang['Maintenance'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <form class="form-horizontal" method="post" action="maintenance.php">
     <div class="panel panel-default">
         <div class="panel-heading">

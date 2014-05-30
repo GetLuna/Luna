@@ -32,7 +32,7 @@ if (isset($_GET['default_style'])) {
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/style.php?settings_saved=true');
+	redirect('backstage/style.php?saved=true');
 }
 
 if (isset($_GET['force_default'])) {
@@ -44,7 +44,7 @@ if (isset($_GET['force_default'])) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Style']);
 define('FORUM_ACTIVE_PAGE', 'admin');
@@ -53,6 +53,10 @@ require FORUM_ROOT.'backstage/header.php';
 
 ?>
 <h2><?php echo $lang['Style'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <form class="form-horizontal" method="post" action="permissions.php">
     <div class="panel panel-default">
         <div class="panel-heading">

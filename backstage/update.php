@@ -36,7 +36,7 @@ if ($action == 'update_check')
 elseif ($action == 'soft_reset')
 {
 	if ($luna_user['g_id'] != FORUM_ADMIN)
-		message($lang['No permission'], false, '403 Forbidden');
+		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	unlink(FORUM_ROOT.'config.php');
 	header("Location: ../install.php?action=softreset");
@@ -44,7 +44,7 @@ elseif ($action == 'soft_reset')
 elseif ($action == 'hard_reset')
 {
 	if ($luna_user['g_id'] != FORUM_ADMIN)
-		message($lang['No permission'], false, '403 Forbidden');
+		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	$db->drop_table('bans') or error('Unable to drop bans table', __FILE__, __LINE__, $db->error());
 	$db->drop_table('categories') or error('Unable to drop categories table', __FILE__, __LINE__, $db->error());

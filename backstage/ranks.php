@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Add a rank
 if (isset($_POST['add_rank']))
@@ -28,15 +28,15 @@ if (isset($_POST['add_rank']))
 	$min_posts = luna_trim($_POST['new_min_posts']);
 
 	if ($rank == '')
-		message($lang['Must enter title message']);
+		message_backstage($lang['Must enter title message']);
 
 	if ($min_posts == '' || preg_match('%[^0-9]%', $min_posts))
-		message($lang['Must be integer message']);
+		message_backstage($lang['Must be integer message']);
 
 	// Make sure there isn't already a rank with the same min_posts value
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE min_posts='.$min_posts) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
-		message(sprintf($lang['Dupe min posts message'], $min_posts));
+		message_backstage(sprintf($lang['Dupe min posts message'], $min_posts));
 
 	$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($rank).'\', '.$min_posts.')') or error('Unable to add rank', __FILE__, __LINE__, $db->error());
 
@@ -59,15 +59,15 @@ else if (isset($_POST['update']))
 	$min_posts = luna_trim($_POST['min_posts'][$id]);
 
 	if ($rank == '')
-		message($lang['Must enter title message']);
+		message_backstage($lang['Must enter title message']);
 
 	if ($min_posts == '' || preg_match('%[^0-9]%', $min_posts))
-		message($lang['Must be integer message']);
+		message_backstage($lang['Must be integer message']);
 
 	// Make sure there isn't already a rank with the same min_posts value
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.$id.' AND min_posts='.$min_posts) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
-		message(sprintf($lang['Dupe min posts message'], $min_posts));
+		message_backstage(sprintf($lang['Dupe min posts message'], $min_posts));
 
 	$db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($rank).'\', min_posts='.$min_posts.' WHERE id='.$id) or error('Unable to update rank', __FILE__, __LINE__, $db->error());
 

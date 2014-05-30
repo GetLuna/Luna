@@ -42,26 +42,26 @@ if (isset($_POST['add_user']))
 
 	// Validate username and passwords
 	if (strlen($username) < 2)
-		message($lang['Username too short']);
+		message_backstage($lang['Username too short']);
 	else if (luna_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
-	    message($lang['Bad request'], false, '404 Not Found');
+	    message_backstage($lang['Bad request'], false, '404 Not Found');
 	else if (strlen($password) < 6)
-		message($lang['Pass too short']);
+		message_backstage($lang['Pass too short']);
 	else if (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang['Guest']))
-		message($lang['Username guest']);
+		message_backstage($lang['Username guest']);
 	else if (preg_match('/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/', $username))
-		message($lang['Username IP']);
+		message_backstage($lang['Username IP']);
 	else if ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
-		message($lang['Username reserved chars']);
+		message_backstage($lang['Username reserved chars']);
 	else if (preg_match('#\[b\]|\[/b\]|\[u\]|\[/u\]|\[i\]|\[/i\]|\[color|\[/color\]|\[quote\]|\[quote=|\[/quote\]|\[code\]|\[/code\]|\[img\]|\[/img\]|\[url|\[/url\]|\[email|\[/email\]#i', $username))
-		message($lang['Username BBCode']);
+		message_backstage($lang['Username BBCode']);
 
 	// Check username for any censored words
 	if ($luna_config['o_censoring'] == '1')
 	{
 		// If the censored username differs from the username
 		if (censor_words($username) != $username)
-			message($lang['Username censor']);
+			message_backstage($lang['Username censor']);
 	}
 
 	// Check that the username (or a too similar username) is not already registered
@@ -70,14 +70,14 @@ if (isset($_POST['add_user']))
 	if ($db->num_rows($result))
 	{
 		$busy = $db->result($result);
-		message($lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2']);
+		message_backstage($lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2']);
 	}
 
 	// Validate e-mail
 	require FORUM_ROOT.'include/email.php';
 
 	if (!is_valid_email($email1))
-		message($lang['Invalid e-mail']);
+		message_backstage($lang['Invalid e-mail']);
 
 	// Check if someone else already has registered with that e-mail address
 	$dupe_list = array();
@@ -138,7 +138,7 @@ if (isset($_POST['add_user']))
 
 	generate_users_info_cache();
 
-	message('User Created');
+	message_backstage('User Created');
 }
 
 // Show IP statistics for a certain user ID
@@ -146,7 +146,7 @@ if (isset($_GET['ip_stats']))
 {
 	$ip_stats = intval($_GET['ip_stats']);
 	if ($ip_stats < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	// Fetch ip count
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -229,7 +229,7 @@ if (isset($_GET['show_users']))
 	$ip = luna_trim($_GET['show_users']);
 
 	if (!@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $ip) && !@preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $ip))
-		message($lang['Bad IP message']);
+		message_backstage($lang['Bad IP message']);
 
 	// Fetch user count
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -349,7 +349,7 @@ if (isset($_GET['show_users']))
 else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
-		message($lang['No permission'], false, '403 Forbidden');
+		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
 
@@ -365,12 +365,12 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 		$user_ids = array();
 
 	if (empty($user_ids))
-		message($lang['No users selected']);
+		message_backstage($lang['No users selected']);
 
 	// Are we trying to batch move any admins?
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
-		message($lang['No move admins message']);
+		message_backstage($lang['No move admins message']);
 
 	// Fetch all user groups
 	$all_groups = array();
@@ -380,7 +380,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 
 	if (isset($_POST['move_users_comply']))
 	{
-		$new_group = isset($_POST['new_group']) && isset($all_groups[$_POST['new_group']]) ? $_POST['new_group'] : message($lang['Invalid group message']);
+		$new_group = isset($_POST['new_group']) && isset($all_groups[$_POST['new_group']]) ? $_POST['new_group'] : message_backstage($lang['Invalid group message']);
 
 		// Is the new group a moderator group?
 		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$new_group) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -469,7 +469,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
-		message($lang['No permission'], false, '403 Forbidden');
+		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
 
@@ -485,12 +485,12 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 		$user_ids = array();
 
 	if (empty($user_ids))
-		message($lang['No users selected']);
+		message_backstage($lang['No users selected']);
 
 	// Are we trying to delete any admins?
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
-		message($lang['No delete admins message']);
+		message_backstage($lang['No delete admins message']);
 
 	if (isset($_POST['delete_users_comply']))
 	{
@@ -575,7 +575,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 		generate_users_info_cache();
 
-		redirect('backstage/users.php');
+		redirect('backstage/users.php?deleted=true');
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Delete users']);
@@ -618,7 +618,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
-		message($lang['No permission'], false, '403 Forbidden');
+		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
 
@@ -634,17 +634,17 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 		$user_ids = array();
 
 	if (empty($user_ids))
-		message($lang['No users selected']);
+		message_backstage($lang['No users selected']);
 
 	// Are we trying to ban any admins?
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
-		message($lang['No ban admins message']);
+		message_backstage($lang['No ban admins message']);
 
 	// Also, we cannot ban moderators
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id WHERE g.g_moderator=1 AND u.id IN ('.implode(',', $user_ids).')') or error('Unable to fetch moderator group info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
-		message($lang['No ban mods message']);
+		message_backstage($lang['No ban mods message']);
 
 	if (isset($_POST['ban_users_comply']))
 	{
@@ -657,13 +657,13 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 			$ban_expire = strtotime($ban_expire.' GMT');
 
 			if ($ban_expire == -1 || !$ban_expire)
-				message($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
+				message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
 
 			$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 			$ban_expire -= $diff;
 
 			if ($ban_expire <= time())
-				message($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
+				message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
 		}
 		else
 			$ban_expire = 'NULL';
@@ -782,7 +782,7 @@ else if (isset($_GET['find_user']))
 	$query_str[] = 'user_group='.$user_group;
 
 	if (preg_match('%[^0-9]%', $posts_greater.$posts_less))
-		message($lang['Non numeric message']);
+		message_backstage($lang['Non numeric message']);
 
 	// Try to convert date/time to timestamps
 	if ($last_post_after != '')
@@ -791,7 +791,7 @@ else if (isset($_GET['find_user']))
 
 		$last_post_after = strtotime($last_post_after);
 		if ($last_post_after === false || $last_post_after == -1)
-			message($lang['Invalid date time message']);
+			message_backstage($lang['Invalid date time message']);
 
 		$conditions[] = 'u.last_post>'.$last_post_after;
 	}
@@ -801,7 +801,7 @@ else if (isset($_GET['find_user']))
 
 		$last_post_before = strtotime($last_post_before);
 		if ($last_post_before === false || $last_post_before == -1)
-			message($lang['Invalid date time message']);
+			message_backstage($lang['Invalid date time message']);
 
 		$conditions[] = 'u.last_post<'.$last_post_before;
 	}
@@ -811,7 +811,7 @@ else if (isset($_GET['find_user']))
 
 		$last_visit_after = strtotime($last_visit_after);
 		if ($last_visit_after === false || $last_visit_after == -1)
-			message($lang['Invalid date time message']);
+			message_backstage($lang['Invalid date time message']);
 
 		$conditions[] = 'u.last_visit>'.$last_visit_after;
 	}
@@ -821,7 +821,7 @@ else if (isset($_GET['find_user']))
 
 		$last_visit_before = strtotime($last_visit_before);
 		if ($last_visit_before === false || $last_visit_before == -1)
-			message($lang['Invalid date time message']);
+			message_backstage($lang['Invalid date time message']);
 
 		$conditions[] = 'u.last_visit<'.$last_visit_before;
 	}
@@ -831,7 +831,7 @@ else if (isset($_GET['find_user']))
 
 		$registered_after = strtotime($registered_after);
 		if ($registered_after === false || $registered_after == -1)
-			message($lang['Invalid date time message']);
+			message_backstage($lang['Invalid date time message']);
 
 		$conditions[] = 'u.registered>'.$registered_after;
 	}
@@ -841,7 +841,7 @@ else if (isset($_GET['find_user']))
 
 		$registered_before = strtotime($registered_before);
 		if ($registered_before === false || $registered_before == -1)
-			message($lang['Invalid date time message']);
+			message_backstage($lang['Invalid date time message']);
 
 		$conditions[] = 'u.registered<'.$registered_before;
 	}
@@ -1003,8 +1003,14 @@ else
 	generate_admin_menu('users');
 
 ?>
+<h2><?php echo $lang['Users'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
+if (isset($_GET['deleted']))
+	echo '<div class="alert alert-danger"><h4>'.$lang['User deleted'].'</h4></div>';
+?>
 <form id="find_user" method="get" action="users.php">
-    <h2><?php echo $lang['Users'] ?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['User search'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang['Submit search'] ?>" tabindex="1" /></span></h3>

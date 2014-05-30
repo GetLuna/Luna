@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
 {
@@ -62,7 +62,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/features.php');
+	redirect('backstage/features.php?saved=true');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
@@ -71,8 +71,12 @@ require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('features');
 
 ?>
+<h2><?php echo $lang['Features head'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <form class="form-horizontal" method="post" action="features.php">
-    <h2><?php echo $lang['Features head'] ?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['General'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>

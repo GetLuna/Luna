@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
 {
@@ -44,7 +44,7 @@ if (isset($_POST['form_sent']))
 	}
 
 	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	foreach ($form as $key => $input)
 	{
@@ -67,7 +67,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/registration.php');
+	redirect('backstage/registration.php?saved=true');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Registration']);
@@ -77,6 +77,10 @@ generate_admin_menu('global');
 
 ?>
 <h2><?php echo $lang['Registration'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <form class="form-horizontal" method="post" action="registration.php">
     <div class="panel panel-default">
         <div class="panel-heading">

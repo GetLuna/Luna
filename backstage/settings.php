@@ -19,7 +19,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent']))
 {
@@ -50,7 +50,7 @@ if (isset($_POST['form_sent']))
 	);
 
 	if ($form['board_title'] == '')
-		message($lang['Must enter title message']);
+		message_backstage($lang['Must enter title message']);
 
 	// Make sure base_url doesn't end with a slash
 	if (substr($form['base_url'], -1) == '/')
@@ -60,14 +60,14 @@ if (isset($_POST['form_sent']))
 	if (preg_match('/[^\x00-\x7F]/', $form['base_url']))  
 	{  
 		if (!function_exists('idn_to_ascii'))  
-			message($lang['Base URL problem']);  
+			message_backstage($lang['Base URL problem']);  
 		else  
 			$form['base_url'] = idn_to_ascii($form['base_url']);  
 	}
 
 	$languages = forum_list_langs();
 	if (!in_array($form['default_lang'], $languages))
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	if ($form['time_format'] == '')
 		$form['time_format'] = 'H:i:s';
@@ -94,7 +94,7 @@ if (isset($_POST['form_sent']))
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
 		else
-			message($lang['SMTP passwords did not match']);
+			message_backstage($lang['SMTP passwords did not match']);
 	}
 
 	if ($form['announcement_message'] != '')
@@ -106,16 +106,16 @@ if (isset($_POST['form_sent']))
 	}
 
 	if ($form['feed_type'] < 0 || $form['feed_type'] > 2)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	if ($form['feed_ttl'] < 0)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	if ($form['report_method'] < 0 || $form['report_method'] > 2)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	if ($form['timeout_online'] >= $form['timeout_visit'])
-		message($lang['Timeout error message']);
+		message_backstage($lang['Timeout error message']);
 
 	foreach ($form as $key => $input)
 	{
@@ -138,7 +138,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/settings.php');
+	redirect('backstage/settings.php?saved=true');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
@@ -148,6 +148,10 @@ generate_admin_menu('global');
 
 ?>
 <h2><?php echo $lang['Options head'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <form class="form-horizontal" method="post" action="settings.php">
     <div class="panel panel-default">
         <div class="panel-heading">

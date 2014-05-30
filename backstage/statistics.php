@@ -26,7 +26,7 @@ if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN)
 {
 	// Is phpinfo() a disabled function?
 	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
-		message($lang['PHPinfo disabled message']);
+		message_backstage($lang['PHPinfo disabled message']);
 
 	phpinfo();
 	exit;

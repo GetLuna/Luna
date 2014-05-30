@@ -47,7 +47,7 @@ if (isset($_POST['form_sent']))
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/backstage.php');
+	redirect('backstage/backstage.php?saved=true');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Backstage settings']);
@@ -57,6 +57,10 @@ generate_admin_menu('backstage');
 
 ?>
 <h2><?php echo $lang['Backstage settings'] ?></h2>
+<?php
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+?>
 <form method="post" action="backstage.php">
     <input type="hidden" name="form_sent" value="1" />
     <div class="panel panel-default">
