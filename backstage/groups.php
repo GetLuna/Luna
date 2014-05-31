@@ -48,7 +48,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 		$mode = 'edit';
 	}
 
-
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 	$required_fields = array('req_title' => $lang['Group title label']);
 	$focus_element = array('groups2', 'req_title');
