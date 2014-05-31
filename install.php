@@ -303,8 +303,8 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
                     <div class="panel-body">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Install language'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Install language'] ?><span class="help-block"><?php echo $lang['Choose install language info'] ?></span></label>
+                                <div class="col-sm-9">
                                     <select class="form-control" name="install_lang">
 <?php
 
@@ -318,7 +318,6 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 
 ?>
                                     </select>
-                                    <span class="help-block"><?php echo $lang['Choose install language info'] ?></span>
                                 </div>
                             </div>
                         </fieldset>
@@ -354,8 +353,8 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                     <div class="panel-body">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Database type'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Database type'] ?><span class="help-block"><?php echo $lang['Info 1'] ?></span></label>
+                                <div class="col-sm-9">
                                     <select class="form-control" name="req_db_type">
 <?php
 
@@ -369,42 +368,36 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 ?>
                                     </select>
-                                    <span class="help-block"><?php echo $lang['Info 1'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Database server hostname'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Database server hostname'] ?><span class="help-block"><?php echo $lang['Info 2'] ?></span></label>
+                                <div class="col-sm-9">
                                     <input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
-                                    <span class="help-block"><?php echo $lang['Info 2'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Database name'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Database name'] ?><span class="help-block"><?php echo $lang['Info 3'] ?></span></label>
+                                <div class="col-sm-9">
                                     <input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo luna_htmlspecialchars($db_name) ?>" />
-                                    <span class="help-block"><?php echo $lang['Info 3'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Database username'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Database username'] ?><span class="help-block"><?php echo $lang['Info 4'] ?></span></label>
+                                <div class="col-sm-9">
                                     <input type="text" class="form-control" name="db_username" value="<?php echo luna_htmlspecialchars($db_username) ?>" />
-                                    <span class="help-block"><?php echo $lang['Info 4'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Database password'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Database password'] ?></label>
+                                <div class="col-sm-9">
                                     <input type="password" class="form-control" name="db_password" />
-                                    <span class="help-block"><?php echo $lang['Info 4'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Table prefix'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Table prefix'] ?><span class="help-block"><?php echo $lang['Info 5'] ?></span></label>
+                                <div class="col-sm-9">
                                     <input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix) ?>" maxlength="30" />
-                                    <span class="help-block"><?php echo $lang['Info 5'] ?></span>
                                 </div>
                             </div>
                         </fieldset>
@@ -417,21 +410,27 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                     <div class="panel-body">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Administrator username'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Administrator username'] ?><span class="help-block"><?php echo $lang['Info 6'] ?></span></label>
+                                <div class="col-sm-9">
                                     <input type="text" class="form-control" name="req_username" value="<?php echo luna_htmlspecialchars($username) ?>" maxlength="25" />
-                                    <span class="help-block"><?php echo $lang['Info 6'] ?></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Password'] ?></label>
-                                <div class="col-sm-10">
-                                    <input id="req_password1" type="password" class="form-control" name="req_password1" /> <input type="password" class="form-control" name="req_password2" />
+                                <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Info 7'] ?></span></label>
+                                <div class="col-sm-9">
+									<div class="row">
+										<div class="col-sm-6">
+											<input id="req_password1" type="password" class="form-control" name="req_password1" />
+										</div>
+										<div class="col-sm-6">
+											<input type="password" class="form-control" name="req_password2" />
+										</div>
+									</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Administrator email'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Administrator email'] ?></label>
+                                <div class="col-sm-9">
                                     <input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo luna_htmlspecialchars($email) ?>" maxlength="80" />
                                 </div>
                             </div>
@@ -445,27 +444,26 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                     <div class="panel-body">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Board title'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Board title'] ?></label>
+                                <div class="col-sm-9">
                                     <input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo luna_htmlspecialchars($title) ?>" maxlength="255" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Board description'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Board description'] ?></label>
+                                <div class="col-sm-9">
                                     <input id="desc" type="text" class="form-control" name="desc" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Base URL label'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Base URL label'] ?><span class="help-block"><?php echo $lang['Base URL'] ?><span></label>
+                                <div class="col-sm-9">
                                     <input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
-                                    <span class="help-block"><?php echo $lang['Base URL'] ?><span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Default language'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Default language'] ?></label>
+                                <div class="col-sm-9">
                                     <select id="req_default_lang" class="form-control" name="req_default_lang">
 <?php
 
@@ -483,8 +481,8 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><?php echo $lang['Default style'] ?></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label"><?php echo $lang['Default style'] ?></label>
+                                <div class="col-sm-9">
                                     <select id="req_default_style" class="form-control" name="req_default_style">
 <?php
 
@@ -499,7 +497,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 ?>
                                     </select>
-                                    <span class="help-block"><?php echo $lang['Info 7'] ?><span>
                                 </div>
                             </div>
                         </fieldset>
