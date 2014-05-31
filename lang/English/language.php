@@ -878,8 +878,8 @@ $lang = array(
 'Invalid date reasons'		=>	'The format should be YYYY-MM-DD and the date must be at least one day in the future.',
 
 'New ban head'				=>	'Add ban',
-'Username help'				=>	'The username to ban (case-insensitive).',
-'Username advanced help'	=>	'The username to ban. The next page will let you enter a custom IP and email. If you want to ban a specific IP/IP-range or email, leave it blank.',
+'Username help'				=>	'The username to ban',
+'Username advanced help'	=>	'The username you want to ban. If you want to ban a specific IP/IP-range or email, leave it blank.',
 
 'Ban search head'			=>	'Ban search',
 'Ban search info'			=>	'Search for bans in the database. You can enter one or more terms to search for. Wildcards in the form of asterisks (*) are accepted. To show all bans leave all fields empty.',
@@ -891,18 +891,17 @@ $lang = array(
 'Order by expire'			=>	'Expire date',
 'Submit search'				=>	'Submit search',
 
-'E-mail help'				=>	'The email or email domain you wish to ban (e.g. someone@somewhere.com or somewhere.com). See "Allow banned email addresses" in Permissions for more info.',
+'E-mail help'				=>	'The email or email domain you wish to ban',
 'IP label'					=>	'IP address/IP-ranges',
-'IP help'					=>	'The IP address or IP-ranges you wish to ban (e.g. 150.11.110.1 or 150.11.110). Separate addresses with spaces. If an IP is entered already it is the last known IP of this user in the database.',
+'IP help'					=>	'The IP you wish to ban, separate addresses with spaces',
 'IP help link'				=>	'Click %s to see IP statistics for this user.',
 'Ban advanced head'			=>	'Advanced ban settings',
 'Ban advanced subhead'		=>	'Supplement ban with IP and email',
 'Ban message label'			=>	'Ban message',
-'Ban message help'			=>	'A message that will be displayed to the banned user when he/she visits the board.',
+'Ban message help'			=>	'A message for banned users',
 'Message expiry subhead'	=>	'Ban message and expiry',
-'Ban IP range info'			=>	'You should be very careful when banning an IP-range because of the possibility of multiple users matching the same partial IP.',
 'Expire date label'			=>	'Expire date',
-'Expire date help'			=>	'The date when this ban should be automatically removed (format: yyyy-mm-dd). Leave blank to remove manually.',
+'Expire date help'			=>	'When does the ban expire, blank for manually',
 
 'Results head'				=>	'Search Results',
 'Results IP address head'	=>	'IP/IP-ranges',
