@@ -25,15 +25,6 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
-if ($action == 'clear_cache')
-{
-	if ($luna_user['g_id'] != FORUM_ADMIN)
-		message_backstage($lang['No permission'], false, '403 Forbidden');
-
-	delete_all(FORUM_ROOT.'cache');
-	header("Location: maitenance.php?action=cache_cleared");
-}
-
 if ($action == 'rebuild')
 {
 	$per_page = isset($_GET['i_per_page']) ? intval($_GET['i_per_page']) : 0;
@@ -340,6 +331,17 @@ if (isset($_POST['form_sent']))
 		}
 	}
 
+	if ($action == 'clear_cache')
+	{
+		confirm_referrer('backstage/maintenance.php');
+	
+		if ($luna_user['g_id'] != FORUM_ADMIN)
+			message_backstage($lang['No permission'], false, '403 Forbidden');
+	
+		delete_all(FORUM_ROOT.'cache');
+		redirect('backstage/maitenance.php?cache_cleared=true');
+	}
+
 	// Regenerate the config cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
@@ -359,7 +361,9 @@ require FORUM_ROOT.'backstage/header.php';
 <h2><?php echo $lang['Maintenance'] ?></h2>
 <?php
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
+if (isset($_GET['cache_cleared']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Cache cleared'].'</h4></div>';
 ?>
 <form class="form-horizontal" method="post" action="maintenance.php">
     <div class="panel panel-default">
@@ -393,7 +397,7 @@ if (isset($_GET['saved']))
         <div class="form-group">
             <label class="col-sm-3 control-label"><?php echo $lang['Cache'] ?><span class="help-block"><?php echo $lang['Cache info'] ?></span></label>
             <div class="col-sm-9">
-                <a href="maintenance.php?action=clear_cache" class="btn btn-danger"><?php echo $lang['Clear cache'] ?></a>
+                <a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><?php echo $lang['Clear cache'] ?></a>
             </div>
         </div>
     </div>
