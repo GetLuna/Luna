@@ -6,7 +6,7 @@ $xmlstr = <<<XML
 <!--
 
 /**
- * Copyright (C) 2014 ModernBB Group
+ * Copyright (C) 2014 Studio 384
  * Licensed under GPLv3
  */
 -->
@@ -15,8 +15,8 @@ $xmlstr = <<<XML
 	<id>kind</id>
 	<name>Kind</name>
 	<developer>Studio 384</developer>
-	<date>15 May 2014</date>
-	<version>3.0-beta</version>
+	<date>2 June 2014</date>
+	<version>3.0.0</version>
 	<description>As fancy as can be, Awesome is a style designed to be great and simple. Make it look yellow, my friend!</description>
 	<minversion>3.3</minversion>
 	<maxversion>3.3</maxversion>
