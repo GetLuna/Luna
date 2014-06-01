@@ -244,7 +244,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		'h4'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
 		'h5'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
 		'h6'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'video'	=> array()
+		'video'	=> array('url')
 	);
 	// Tags we can automatically fix bad nesting
 	$tags_fix = array('quote', 'b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'color', 'url', 'email', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
