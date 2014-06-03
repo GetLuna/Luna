@@ -434,6 +434,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	generate_admin_menu('users');
 
 ?>
+<h2><?php echo $lang['Move users'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Move users'] ?></h3>
@@ -443,7 +444,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
             <input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['New group label'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['New group label'] ?><span class="help-block"><?php echo $lang['New group help'] ?></span></label>
                     <div class="col-sm-9">
 						<div class="input-group">
 							<select class="form-control" name="new_group" tabindex="1">
@@ -452,7 +453,6 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 							</select>
 							<span class="input-group-btn"><input class="btn btn-primary" type="submit" name="move_users_comply" value="<?php echo $lang['Save'] ?>" tabindex="2" /></span>
 						</div>
-                        <span class="help-block"><?php echo $lang['New group help'] ?></span>
                     </div>
                 </div>
             </fieldset>
