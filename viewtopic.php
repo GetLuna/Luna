@@ -340,6 +340,15 @@ require get_view_path('viewtopic-breadcrumbs.tpl.php');
 // Display quick post if enabled
 if ($quickpost)
 {
+	$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
+
+	if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0')
+	{
+		if (isset($user_avatar_cache[$luna_user['id']]))
+			$user_avatar = $user_avatar_cache[$luna_user['id']];
+		else
+			$user_avatar = $user_avatar_cache[$luna_user['id']] = generate_avatar_markup($luna_user['id']);
+	}
 
 	$cur_index = 1;
 
