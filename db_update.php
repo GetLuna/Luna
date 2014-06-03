@@ -201,7 +201,7 @@ if (empty($stage))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style/<?php echo $default_style ?>.css" />
+        <link href="style/<?php echo $default_style ?>/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
         <form class="form" id="install" method="post" action="db_update.php">
@@ -763,7 +763,7 @@ foreach ($errors[$id] as $cur_error)
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link href="include/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link href="style/<?php echo $default_style ?>.css" type="text/css" rel="stylesheet">
+        <link href="style/<?php echo $default_style ?>/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
         <div class="form">

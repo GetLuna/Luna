@@ -138,30 +138,30 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
                 	<thead>
                         <tr>
                             <th><?php echo $lang['Label'] ?></th>
-                            <th><?php echo $lang['Explenation'] ?></th>
+                            <th><?php echo $lang['Explanation'] ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><span class="label label-success"><?php echo $lang['Sticky'] ?></span></td>
-                            <td><?php echo $lang['Sticky explenation'] ?></td>
+                            <td><?php echo $lang['Sticky explanation'] ?></td>
                         </tr>
                         <tr>
                             <td><span class="label label-danger"><?php echo $lang['Closed'] ?></span></td>
-                            <td><?php echo $lang['Closed explenation'] ?></td>
+                            <td><?php echo $lang['Closed explanation'] ?></td>
                         </tr>
                         <tr>
                             <td><span class="label label-info"><?php echo $lang['Moved'] ?></span></td>
-                            <td><?php echo $lang['Moved explenation'] ?></td>
+                            <td><?php echo $lang['Moved explanation'] ?></td>
                         </tr>
                         <!-- <tr>
                             <td><span class="label label-warning"><?php echo $lang['Star'] ?></span></td>
-                            <td><?php echo $lang['Star explenation'] ?></td>
+                            <td><?php echo $lang['Star explanation'] ?></td>
                         </tr> -->
                         <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
                         <tr>
                             <td><span class="glyphicon glyphicon-asterisk"></span></td>
-                            <td><?php echo $lang['Posted explenation'] ?></td>
+                            <td><?php echo $lang['Posted explanation'] ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>
