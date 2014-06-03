@@ -14,8 +14,8 @@ if (!defined('FORUM'))
 					<div class="user-avatar thumbnail <?php if (!$user_avatar) echo 'noavatar'?> <?php echo $is_online; ?>">
 						<?php if ($user_avatar != '') echo "\t\t\t\t\t\t".$user_avatar."\n"; ?>
 					</div>
-					<h2 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $username ?></h2>
-					<h3 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $user_title ?></h3>
+					<h2 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $luna_user['username'] ?></h2>
+					<h3 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo get_title($luna_user) ?></h3>
 				</div>
 			</div>
 		</div>
