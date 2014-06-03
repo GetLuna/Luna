@@ -1355,7 +1355,7 @@ function maintenance_message()
 	}
 	else
 	{
-		$tpl_file = FORUM_ROOT.'style/Core/template/maintenance.tpl';
+		$tpl_file = FORUM_ROOT.'style/Core/templates/maintenance.tpl';
 		$tpl_inc_dir = FORUM_ROOT.'style/User/';
 	}
 
