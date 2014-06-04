@@ -888,10 +888,6 @@ textarea {
 	padding-bottom: 7px;
 }
 
-.topic .profile-card-head h2.noavatar, .topic .profile-card-head h3.noavatar {
-	padding-left: 12px;
-}
-
 .topic hr {
 	margin-top: 9px;
 	margin-bottom: 1px;
@@ -940,10 +936,6 @@ textarea {
 	margin-top: 0;
 	font-size: 100%;
 	margin-bottom: 0;
-}
-
-.profile-card-head h2.noavatar, .profile-card-head h3.noavatar {
-	padding-left: 10px;
 }
 
 .profile-card-body {
