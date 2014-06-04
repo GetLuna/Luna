@@ -288,7 +288,7 @@ if (isset($_POST['form_sent']))
 				$user_id_poster = '1';
 
 			// Create the topic
-			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, last_post, last_poster, last_poster_id, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', last_poster_id=\''.$user_id_poster.'\', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, last_post, last_poster, last_poster_id, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
 			if (!$luna_user['is_guest'])

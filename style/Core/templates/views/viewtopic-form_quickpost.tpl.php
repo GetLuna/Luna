@@ -11,11 +11,11 @@ if (!defined('FORUM'))
 		<div class="col-md-3">
 			<div class="profile-card">
 				<div class="profile-card-head profile-card-quickpost">
-					<div class="user-avatar thumbnail <?php if (!$user_avatar) echo 'noavatar'?> <?php echo $is_online; ?>">
-						<?php if ($user_avatar != '') echo "\t\t\t\t\t\t".$user_avatar."\n"; ?>
+					<div class="user-avatar thumbnail <?php echo $is_online; ?>">
+						<?php echo $user_avatar ?>
 					</div>
-					<h2 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $luna_user['username'] ?></h2>
-					<h3 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo get_title($luna_user) ?></h3>
+					<h2><?php echo $username ?></h2>
+					<h3><?php echo $user_title ?></h3>
 				</div>
 			</div>
 		</div>
