@@ -79,7 +79,7 @@ if (isset($_GET['saved']))
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title">Style description</h4>
+										<h4 class="modal-title"><?php printf($lang['About style'], $style_info->name) ?></h4>
 									</div>
 									<div class="modal-body">
 										<div class="row">
@@ -87,14 +87,14 @@ if (isset($_GET['saved']))
 												<div class="thumbnail"><img src="../style/<?php echo $temp ?>/screenshot.png" /></div>
 											</div>
 											<div class="col-sm-4">
-												<h2><?php echo $style_info->name; ?> <small>version <?php echo $style_info->version; ?></small></h2>
-												<h4>By <?php echo $style_info->developer; ?></h4>
+												<h2><?php echo $style_info->name; ?> <small><?php printf($lang['version'], $style_info->version) ?></small></h2>
+												<h4><?php echo $style_info->developer; ?></h4>
 												<p><?php echo $style_info->description; ?></p>
 											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
-										<span class="pull-left">Released on <?php echo $style_info->date; ?></span><span class="pull-right">Designed for ModernBB v<?php echo $style_info->minversion; ?> to v<?php echo $style_info->maxversion; ?></span>
+										<span class="pull-left"><?php printf($lang['Released on'], $style_info->date) ?></span><span class="pull-right"><?php printf($lang['Designed for'], $style_info->minversion, $style_info->maxversion) ?></span>
 									</div>
 								</div>
 							</div>
@@ -105,10 +105,10 @@ if (isset($_GET['saved']))
 								<span class="h2"><?php echo $style_info->name; ?></span>
 								<div class="btn-group pull-right">
 									<?php
-									if ($luna_config['o_default_style'] == $style_info->name)
-										echo '<a class="btn btn-primary disabled">Default</a>';
-									else
-										echo '<a class="btn btn-primary" href="style.php?default_style='.$style_info->name.'">Set as default</a>';
+										if ($luna_config['o_default_style'] == $style_info->name)
+											echo '<a class="btn btn-primary disabled">'.$lang['Default'].'</a>';
+										else
+											echo '<a class="btn btn-primary" href="style.php?default_style='.$style_info->name.'">'.$lang['Set as default'].'</a>';
 									?>
 									<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 										<span class="caret"></span>
@@ -116,8 +116,8 @@ if (isset($_GET['saved']))
 									</a>
 									<ul class="dropdown-menu" role="menu">
 										<?php
-										echo '<li><a data-toggle="modal" href="#" data-target="#'.$temp.'">About '.$style_info->name.'</a></li>';
-										echo '<li><a href="style.php?force_default='.$style_info->name.'">Force style</a></li>';
+											echo '<li><a data-toggle="modal" href="#" data-target="#'.$temp.'">'.$lang['About'].'</a></li>';
+											echo '<li><a href="style.php?force_default='.$style_info->name.'">'.$lang['Force style'].'</a></li>';
 										?>
 									</ul>
 								</div>
