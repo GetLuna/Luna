@@ -213,14 +213,6 @@ while ($cur_post = $db->fetch_assoc($result))
 		// Format the online indicator, those are ment as CSS classes
 		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
 
-		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0')
-		{
-			if (isset($user_avatar_cache[$cur_post['poster_id']]))
-				$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
-			else
-				$user_avatar = $user_avatar_cache[$cur_post['poster_id']] = generate_avatar_markup($cur_post['poster_id']);
-		}
-
 		// We only show location, register date, post count and the contact links if "Show user info" is enabled
 		if ($luna_config['o_show_user_info'] == '1')
 		{
@@ -274,6 +266,15 @@ while ($cur_post = $db->fetch_assoc($result))
 
 		if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 			$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_post['poster_email']).'">'.$lang['Email'].'</a></span>';
+	}
+
+	// Get us the avatar
+	if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0')
+	{
+		if (isset($user_avatar_cache[$cur_post['poster_id']]))
+			$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
+		else
+			$user_avatar = generate_avatar_markup($cur_post['poster_id']);
 	}
 
 	// Generation post action array (quote, edit, delete etc.)
@@ -340,15 +341,6 @@ require get_view_path('viewtopic-breadcrumbs.tpl.php');
 // Display quick post if enabled
 if ($quickpost)
 {
-	$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
-
-	if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0')
-	{
-		if (isset($user_avatar_cache[$luna_user['id']]))
-			$user_avatar = $user_avatar_cache[$luna_user['id']];
-		else
-			$user_avatar = $user_avatar_cache[$luna_user['id']] = generate_avatar_markup($luna_user['id']);
-	}
 
 	$cur_index = 1;
 

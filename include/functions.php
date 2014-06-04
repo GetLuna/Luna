@@ -576,7 +576,7 @@ function generate_avatar_markup($user_id)
 		}
 		else
 		{
-			$avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true)).'/'.$luna_config['o_avatars_dir'].'/placeholder.png" alt="placeholder avatar" />';
+			$avatar_markup = '<img src="'.luna_htmlspecialchars(get_base_url(true)).'/'.$luna_config['o_avatars_dir'].'/placeholder.png" alt="" />';
 		}
 	}
 

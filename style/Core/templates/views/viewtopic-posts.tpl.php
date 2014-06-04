@@ -11,11 +11,11 @@ if (!defined('FORUM'))
         <div class="col-md-3">
             <div class="profile-card">
                 <div class="profile-card-head">
-                    <div class="user-avatar thumbnail <?php if (!$user_avatar) echo 'noavatar'?> <?php echo $is_online; ?>">
-                        <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".$user_avatar."\n"; ?>
+                    <div class="user-avatar thumbnail <?php echo $is_online; ?>">
+                        <?php echo $user_avatar ?>
                     </div>
-                    <h2 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $username ?></h2>
-                    <h3 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $user_title ?></h3>
+                    <h2><?php echo $username ?></h2>
+                    <h3><?php echo $user_title ?></h3>
                 </div>
                 <div class="profile-card-body hidden-sm hidden-xs">
                     <?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
