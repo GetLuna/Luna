@@ -92,6 +92,16 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 <?php } ?>
 
 </footer>
+<div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
+	<div class="container">
+		<p class="navbar-text">Cookies on the [Name Of Forum]: We use cookies to give you the best experience on this forum.</p>
+		<form class="navbar-form navbar-right" role="search">
+			<div class="form-group">
+				<div class="btn-group"><a class="btn btn-default" href="#">Learn More</a><a class="btn btn-default" href="#">Don't show again</a></div>
+			</div>
+		</form>
+	</div>
+</div>
 <?php
 
 // Display debug info (if enabled/defined)
