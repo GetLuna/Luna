@@ -25,8 +25,10 @@
             <div id="brdmain">
                 <luna_main>
             </div>
-            <luna_footer>
         </div>
+		<div id="footer">
+            <luna_footer>
+		</div>
         <!-- Javascript start -->
         <script src="include/tinymce/tinymce.min.js"></script>
         <script type="text/javascript">
