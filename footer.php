@@ -86,9 +86,11 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 ?>
 
 <?php if (!defined('FORUM_FORM')) { ?>
+<div class="container">
 	<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($luna_config['o_show_version'] == '1') ? ' '.$luna_config['o_cur_version'] : '')) ?></span>
     <script src="include/bootstrap/jquery.js"></script>
     <script src="include/bootstrap/js/bootstrap.min.js"></script>
+</div>
 <?php } ?>
 
 </footer>
@@ -102,6 +104,11 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 		</form>
 	</div>
 </div>
+<style>
+body {
+	margin-bottom: 40px;
+}
+</style>
 <?php
 
 // Display debug info (if enabled/defined)
