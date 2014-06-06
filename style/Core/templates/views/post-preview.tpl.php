@@ -14,10 +14,11 @@ if (!defined('FORUM'))
         <div class="col-md-3">
             <div class="profile-card">
                 <div class="profile-card-head profile-card-quickpost">
-                    <div class="user-avatar thumbnail <?php if (!$user_avatar) echo 'noavatar'?>">
-                        <?php if ($user_avatar != '') echo "\t\t\t\t\t\t".$user_avatar."\n"; ?>
-                    </div>
-                    <h2 <?php if (!$user_avatar) echo 'class="noavatar"'; ?>><?php echo $username ?></h2>
+					<div class="user-avatar thumbnail is-online">
+						<?php echo generate_avatar_markup($luna_user['id']) ?>
+					</div>
+					<h2><?php echo $luna_user['username'] ?></h2>
+					<h3><?php echo get_title($luna_user) ?></h3>
                 </div>
             </div>
         </div>
