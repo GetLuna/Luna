@@ -1184,3 +1184,8 @@ q:after {
 	background-color: #ffcc32;
 	padding: 10px;
 }
+
+/* Cookie bar */
+.cookie-bar {
+	background: #393939;
+}
