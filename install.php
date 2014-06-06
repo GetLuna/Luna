@@ -1651,6 +1651,7 @@ else
 		'o_feed_ttl'				=> 0,
 		'o_antispam_api'			=> NULL,
 		'o_index_update_check'		=> 1,
+		'o_cookie_bar'				=> 0,
 		'p_message_bbcode'			=> 1,
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,
