@@ -40,6 +40,7 @@ if (isset($_POST['form_sent']))
 		'feed_ttl'				=> intval($_POST['form']['feed_ttl']),
 		'report_method'			=> intval($_POST['form']['report_method']),
 		'mailing_list'			=> luna_trim($_POST['form']['mailing_list']),
+		'cookie_bar'			=> isset($_POST['form']['cookie_bar']) ? '1' : '0',
 		'avatars'				=> isset($_POST['form']['avatars']) ? '1' : '0',
 		'avatars_dir'			=> luna_trim($_POST['form']['avatars_dir']),
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
@@ -371,6 +372,26 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <textarea class="form-control" name="form[mailing_list]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_mailing_list']) ?></textarea>
                     </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Cookie bar<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Cookie bar<span class="help-block"><a href="http://modernbb.be/docs/cookies.php">More information</a></span></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') echo ' checked="checked"' ?> />
+								Show a bar with information about cookies at the bottom of the page.
+							</label>
+						</div>
+					</div>
                 </div>
             </fieldset>
         </div>
