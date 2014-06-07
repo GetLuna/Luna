@@ -155,7 +155,7 @@ if (!empty($errors))
 }
 else if (isset($_POST['preview']))
 {
-    require get_view_path('views/edit-preview.tpl.php');
+    require get_view_path('edit-preview.tpl.php');
 }
 
 require get_view_path('edit-form.tpl.php');
