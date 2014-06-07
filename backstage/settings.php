@@ -378,17 +378,17 @@ if (isset($_GET['saved']))
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Cookie bar<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Cookie bar'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Cookie bar<span class="help-block"><a href="http://modernbb.be/docs/cookies.php">More information</a></span></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Cookie bar'] ?><span class="help-block"><a href="http://modernbb.be/docs/cookies.php"><?php echo $lang['More info'] ?></a></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') echo ' checked="checked"' ?> />
-								Show a bar with information about cookies at the bottom of the page.
+								<?php echo $lang['Cookie set info'] ?>
 							</label>
 						</div>
 					</div>

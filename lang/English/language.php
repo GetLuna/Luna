@@ -1630,6 +1630,12 @@ $lang = array(
 'Action'				=>	'Action',
 'Maintenance mode'		=>	'maintenance mode', // Used for link text in more than one file
 
+// Cookie bar
+'Cookie bar'			=>	'Cookie bar',
+'Cookie info'			=>	'We use cookies to give you the best experience on this board.',
+'More info'				=>	'More info',
+'Cookie set info'		=>	'Show a bar with information about cookies at the bottom of the page.',
+
 //
 // Admin loader
 //

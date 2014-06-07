@@ -93,10 +93,10 @@ if (!defined('FORUM_FORM')) { ?>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 <div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 	<div class="container">
-		<p class="navbar-text">We use cookies to give you the best experience on this board.</p>
+		<p class="navbar-text"><?php echo $lang['Cookie info'] ?></p>
 		<form class="navbar-form navbar-right">
 			<div class="form-group">
-				<div class="btn-toolbar"><a class="btn btn-link" href="http://modernbb.be/docs/cookies.php">Learn More</a><a class="btn btn-default" href="index.php?action=disable_cookiebar">Don't show again</a></div>
+				<div class="btn-toolbar"><a class="btn btn-link" href="http://modernbb.be/docs/cookies.php"><?php echo $lang['More info'] ?></a><a class="btn btn-default" href="index.php?action=disable_cookiebar"><?php echo $lang['Do not show again'] ?></a></div>
 			</div>
 		</form>
 	</div>
