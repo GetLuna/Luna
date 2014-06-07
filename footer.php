@@ -21,8 +21,8 @@ ob_end_clean();
 ob_start();
 
 ?>
-<footer>
-
+<div class="container">
+	<footer>
 <?php if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'viewtopic') && $is_admmod) { ?>
 
 		<div class="modcontrols">
@@ -83,23 +83,20 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>'."\n";
 }
 
-?>
-
-<?php if (!defined('FORUM_FORM')) { ?>
-<div class="container">
-	<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($luna_config['o_show_version'] == '1') ? ' '.$luna_config['o_cur_version'] : '')) ?></span>
-    <script src="include/bootstrap/jquery.js"></script>
-    <script src="include/bootstrap/js/bootstrap.min.js"></script>
-</div>
+if (!defined('FORUM_FORM')) { ?>
+		<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($luna_config['o_show_version'] == '1') ? ' '.$luna_config['o_cur_version'] : '')) ?></span>
+		<script src="include/bootstrap/jquery.js"></script>
+		<script src="include/bootstrap/js/bootstrap.min.js"></script>
 <?php } ?>
-
+	</div>
 </footer>
+<?php if ($luna_config['o_cookie_bar'] == 1) { ?>
 <div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 	<div class="container">
-		<p class="navbar-text">Cookies on the [Name Of Forum]: We use cookies to give you the best experience on this forum.</p>
+		<p class="navbar-text">We use cookies to give you the best experience on this board.</p>
 		<form class="navbar-form navbar-right" role="search">
 			<div class="form-group">
-				<div class="btn-group"><a class="btn btn-default" href="#">Learn More</a><a class="btn btn-default" href="#">Don't show again</a></div>
+				<div class="btn-toolbar"><a class="btn btn-link" href="http://modernbb.be/docs/cookies.php">Learn More</a><a class="btn btn-default" href="#">Don't show again</a></div>
 			</div>
 		</form>
 	</div>
@@ -110,6 +107,7 @@ body {
 }
 </style>
 <?php
+}
 
 // Display debug info (if enabled/defined)
 if (defined('FORUM_DEBUG'))
