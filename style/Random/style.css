@@ -1218,3 +1218,23 @@ q:after {
 .cookie-bar {
 	background: #393939;
 }
+
+.cookie-bar .navbar-form {
+	border-top: none;
+	border-bottom: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+@media screen and (max-width: 767px) {
+	.cookie-bar .navbar-text {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+
+	.cookie-bar .navbar-form {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 0 15px;
+	}
+}
