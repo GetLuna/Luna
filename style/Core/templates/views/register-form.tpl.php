@@ -81,8 +81,8 @@ if (!empty($errors))
 
 ?>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><?php echo $lang['Language'] ?></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Language'] ?></label>
+                    <div class="col-sm-9">
                         <select class="form-control" name="language">
 <?php
 

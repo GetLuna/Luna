@@ -107,7 +107,7 @@ if (isset($_POST['form_sent']))
 	if (isset($_POST['language']))
 	{
 		$language = preg_replace('%[\.\\\/]%', '', $_POST['language']);
-		if (!file_exists(FORUM_ROOT.'lang/'.$language.'/common.php'))
+		if (!file_exists(FORUM_ROOT.'lang/'.$language.'/language.php'))
 			message($lang['Bad request'], false, '404 Not Found');
 	}
 	else
