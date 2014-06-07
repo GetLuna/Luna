@@ -341,7 +341,6 @@ require get_view_path('viewtopic-breadcrumbs.tpl.php');
 // Display quick post if enabled
 if ($quickpost)
 {
-
 	$cur_index = 1;
 
 	require get_view_path('viewtopic-form_quickpost.tpl.php');

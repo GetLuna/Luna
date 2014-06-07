@@ -71,6 +71,14 @@ if ($action == 'do_not_show')
 	redirect('index.php');
 }
 
+// Or want to disable the cookiebar
+if ($action == 'disable_cookiebar')
+{
+	luna_cookiebarcookie();
+
+	redirect('index.php');
+}
+
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
