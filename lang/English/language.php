@@ -338,10 +338,6 @@ $lang = array(
 'Inserted text'			=>	'Inserted text',
 'Sub text'				=>	'Subscript text',
 'Sup text'				=>	'Superscript text',
-'Left text'				=>	'Left text',
-'Center text'			=>	'Center text',
-'Right text'			=>	'Right text',
-'Justify text'			=>	'Justify text',
 
 'Multimedia'			=>  'Multimedia',
 'Links info'			=>	'You can create links to other documents or to email addresses using the following tags:',
@@ -356,7 +352,6 @@ $lang = array(
 'Quotes info 2'			=>	'If you don\'t want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks.',
 'Quote text'			=>	'This is the text I want to quote.',
 'produces quote box'	=>	'produces a quote box like this:',
-'Inline quote'			=>	'Inline quote',
 
 'Code'					=>	'Code',
 'Code info'				=>	'When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.',
@@ -364,13 +359,12 @@ $lang = array(
 'produces code box'		=>	'produces a code box like this:',
 
 'Lists'					=>	'Lists',
-'List info'				=>	'To create a list you can use the list tag. You can create 3 types of lists using the list tag.',
+'List info'				=>	'To create a list you can use the list tag. You can create 2 types of lists using the list tag.',
 'List text 1'			=>	'Example list item 1.',
 'List text 2'			=>	'Example list item 2.',
 'List text 3'			=>	'Example list item 3.',
 'produces list'			=>	'produces a bulleted list.',
 'produces decimal list'	=>	'produces a numbered list.',
-'produces alpha list'	=>	'produces an alphabetically labelled list.',
 
 'Smilies info'			=>	'If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:',
 

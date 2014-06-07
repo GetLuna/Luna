@@ -1037,28 +1037,12 @@ span.bbu {
 	text-decoration: underline;
 }
 
-span.bbs, del {
+span.bbs {
 	text-decoration: line-through;
 }
 
 blockquote p {
 	font-size: 13px;
-}
-
-ol.alpha {
-	list-style: lower-alpha;
-}
-
-q {
-	font-style: italic;
-}
-
-q:before {
-  content: "\201C";
-}
-
-q:after {
-  content: "\201D";
 }
 
 /* Update and login form */

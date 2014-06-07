@@ -15,7 +15,7 @@ if (!defined('FORUM'))
 /* regular expression to match nested BBCode LIST tags
 '%
 \[list                # match opening bracket and tag name of outermost LIST tag
-(?:=([1a*]))?+        # optional attribute capture in group 1
+(?:=([1*]))?+         # optional attribute capture in group 1
 \]                    # closing bracket of outermost opening LIST tag
 (                     # capture contents of LIST tag in group 2
   (?:                 # non capture group for either contents or whole nested LIST
@@ -23,7 +23,7 @@ if (!defined('FORUM'))
 	(?:               # (See "Mastering Regular Expressions" chapter 6 for details)
 	  (?!             # negative lookahead ensures we are NOT on [LIST*] or [/LIST]
 		\[list        # opening LIST tag
-		(?:=[1a*])?+  # with optional attribute
+		(?:=[1*])?+   # with optional attribute
 		\]            # closing bracket of opening LIST tag
 		|             # or...
 		\[/list\]     # a closing LIST tag
@@ -37,7 +37,7 @@ if (!defined('FORUM'))
 )                     # end capturing contents of LIST tag into group 2
 \[/list\]             # match outermost closing LIST tag
 %iex' */
-$re_list = '%\[list(?:=([1a*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1a*])?+\]|\[/list\])\[[^\[]*+)*+|(?R))*)\[/list\]%i';
+$re_list = '%\[list(?:=([1*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1*])?+\]|\[/list\])\[[^\[]*+)*+|(?R))*)\[/list\]%i';
 
 // Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
 $smilies = array(
@@ -167,7 +167,7 @@ function strip_empty_bbcode($text)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|h1|h2|h3|h4|h5|h6|color|quote|c|img|url|email|list|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 	{
 		if ($new_text != $text)
 			$text = $new_text;
@@ -211,7 +211,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
 	// List of all the tags
-	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
+	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video');
 	// List of tags that we need to check are open (You could not put b, i, u in here then illegal nesting like [b][i][/b][/i] would be allowed)
 	$tags_opened = $tags;
 	// and tags we need to check are closed (the same as above, added it just in case)
@@ -223,31 +223,25 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	// Tags not allowed
 	$tags_forbidden = array();
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-	$tags_block = array('quote', 'code', 'list', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', '*', 'left', 'right', 'center', 'justify');
+	$tags_block = array('quote', 'code', 'list', 'h', '*');
 	// Inline tags, we do not allow new lines in these
-	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'q', 'sup', 'sub', 'video');
+	$tags_inline = array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'sup', 'sub', 'video');
 	// Tags we trim interior space
 	$tags_trim = array('img', 'video');
 	// Tags we remove quotes from the argument
 	$tags_quotes = array('url', 'email', 'img', 'video');
 	// Tags we limit bbcode in
 	$tags_limit_bbcode = array(
-		'*' 	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email', 'list', 'img', 'code', 'q', 'sup', 'sub', 'video'),
+		'*' 	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email', 'list', 'img', 'code', 'sup', 'sub', 'video'),
 		'list' 	=> array('*'),
-		'url' 	=> array('img', 'q', 'sup', 'sub'),
-		'email' => array('img', 'q', 'sup', 'sub'),
+		'url' 	=> array('img', 'sup', 'sub'),
+		'email' => array('img', 'sup', 'sub'),
 		'img' 	=> array(),
 		'h'		=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'h1'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'h2'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'h3'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'h4'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'h5'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
-		'h6'	=> array('b', 'i', 'u', 's', 'c', 'ins', 'color', 'url', 'email'),
 		'video'	=> array('url')
 	);
 	// Tags we can automatically fix bad nesting
-	$tags_fix = array('quote', 'b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'color', 'url', 'email', 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
+	$tags_fix = array('quote', 'b', 'i', 'u', 's', 'ins', 'sub', 'sup', 'color', 'url', 'email', 'h');
 
 	$split_text = preg_split('%(\[[\*a-zA-Z0-9-/]*?(?:=.*?)?\])%', $text, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 
@@ -737,10 +731,7 @@ function handle_list_tag($content, $type = '*')
 	if ($type == '*')
 		$content = '<ul>'.$content.'</ul>';
 	else
-		if ($type == 'a')
-			$content = '<ol class="alpha">'.$content.'</ol>';
-		else
-			$content = '<ol class="decimal">'.$content.'</ol>';
+		$content = '<ol class="decimal">'.$content.'</ol>';
 
 	return '</p>'.$content.'<p>';
 }
@@ -773,19 +764,8 @@ function do_bbcode($text, $is_signature = false)
 	$pattern[] = '%\[ins\](.*?)\[/ins\]%ms';
 	$pattern[] = '%\[color=([a-zA-Z]{3,20}|\#[0-9a-fA-F]{6}|\#[0-9a-fA-F]{3})](.*?)\[/color\]%ms';
 	$pattern[] = '%\[h\](.*?)\[/h\]%ms';
-	$pattern[] = '%\[h1\](.*?)\[/h1\]%ms';
-	$pattern[] = '%\[h2\](.*?)\[/h2\]%ms';
-	$pattern[] = '%\[h3\](.*?)\[/h3\]%ms';
-	$pattern[] = '%\[h4\](.*?)\[/h4\]%ms';
-	$pattern[] = '%\[h5\](.*?)\[/h5\]%ms';
-	$pattern[] = '%\[h6\](.*?)\[/h6\]%ms';
-	$pattern[] = '%\[q\](.*?)\[/q\]%ms';
 	$pattern[] = '%\[sup\](.*?)\[/sup\]%ms';
 	$pattern[] = '%\[sub\](.*?)\[/sub\]%ms';
-	$pattern[] = '%\[left\](.*?)\[/left\]%ms';
-	$pattern[] = '%\[right\](.*?)\[/right\]%ms';
-	$pattern[] = '%\[center\](.*?)\[/center\]%ms';
-	$pattern[] = '%\[justify\](.*?)\[/justify\]%ms';
 
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
@@ -804,20 +784,8 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<code>$1</code>';
 	$replace[] = '<ins>$1</ins>';
 	$replace[] = '<span style="color: $1">$2</span>';
-	$replace[] = '</p><h4>$1</h4><p>';
-	$replace[] = '</p><h1>$1</h1><p>';
-	$replace[] = '</p><h2>$1</h2><p>';
-	$replace[] = '</p><h3>$1</h3><p>';
-	$replace[] = '</p><h4>$1</h4><p>';
-	$replace[] = '</p><h5>$1</h5><p>';
-	$replace[] = '</p><h6>$1</h6><p>';
-	$replace[] = '<q>$1</q>';
 	$replace[] = '<sup>$1</sup>';
 	$replace[] = '<sub>$1</sub>';
-	$replace[] = '</p><p style="text-align: left">$1</p><p>';
-	$replace[] = '</p><p style="text-align: right">$1</p><p>';
-	$replace[] = '</p><p style="text-align: center">$1</p><p>';
-	$replace[] = '</p><p style="text-align: justify">$1</p><p>';
 
 	// DailyMotion videos
 	$replace[] = '<iframe width="480" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';

@@ -49,10 +49,6 @@ require FORUM_ROOT.'header.php';
                 <p><code>[sub]<?php echo $lang['Sub text'] ?>[/sub]</code> <?php echo $lang['produces'] ?> <sub><?php echo $lang['Sub text'] ?></sub></p>
                 <p><code>[sup]<?php echo $lang['Sup text'] ?>[/sup]</code> <?php echo $lang['produces'] ?> <sup><?php echo $lang['Sup text'] ?></sup></p>
                 <p><code>[h]<?php echo $lang['Heading text'] ?>[/h]</code> <?php echo $lang['produces'] ?></p> <h4><?php echo $lang['Heading text'] ?></h4>
-                <p><code>[left]<?php echo $lang['Left text'] ?>[/left]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: left"><?php echo $lang['Left text'] ?></p>
-                <p><code>[center]<?php echo $lang['Center text'] ?>[/center]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: center"><?php echo $lang['Center text'] ?></p>
-                <p><code>[right]<?php echo $lang['Right text'] ?>[/right]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: right"><?php echo $lang['Right text'] ?></p>
-                <p><code>[justify]<?php echo $lang['Justify text'] ?>[/justify]</code> <?php echo $lang['produces'] ?></p> <p style="text-align: justify"><?php echo $lang['Justify text'] ?></p>
             </div>
 			<div class="tab-pane" id="links">
                 <p><?php echo $lang['Links info'] ?></p>
@@ -72,7 +68,6 @@ require FORUM_ROOT.'header.php';
                 <p><?php echo $lang['produces quote box'] ?></p>
 				<blockquote><footer><cite>James <?php echo $lang['wrote'] ?></cite></footer><p><?php echo $lang['Quote text'] ?></p></blockquote>
                 <p><?php echo $lang['Quotes info 2'] ?></p>
-                <p><code>[q]<?php echo $lang['Inline quote'] ?>[/q]</code> <?php echo $lang['produces'] ?> <q><?php echo $lang['Inline quote'] ?></q></p>
             </div>
 			<div class="tab-pane" id="code">
                 <p><?php echo $lang['Code info'] ?></p>
@@ -92,11 +87,6 @@ require FORUM_ROOT.'header.php';
                 <br /><span><?php echo $lang['produces decimal list'] ?></span></p>
                 <div class="postmsg">
                     <ol class="decimal"><li><p><?php echo $lang['List text 1'] ?></p></li><li><p><?php echo $lang['List text 2'] ?></p></li><li><p><?php echo $lang['List text 3'] ?></p></li></ol>
-                </div>
-                <p><code>[list=a][*]<?php echo $lang['List text 1'] ?>[/*][*]<?php echo $lang['List text 2'] ?>[/*][*]<?php echo $lang['List text 3'] ?>[/*][/list]</code>
-                <br /><span><?php echo $lang['produces alpha list'] ?></span></p>
-                <div class="postmsg">
-                    <ol class="alpha"><li><p><?php echo $lang['List text 1'] ?></p></li><li><p><?php echo $lang['List text 2'] ?></p></li><li><p><?php echo $lang['List text 3'] ?></p></li></ol>
                 </div>
             </div>
 			<div class="tab-pane" id="smilies">
