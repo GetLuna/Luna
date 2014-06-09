@@ -1442,6 +1442,7 @@ $lang = array(
 'All caps subject help'		=>	'Allow a subject to contain only capital letters.',
 'Require e-mail help'		=>	'Require guests to supply an email address when posting.',
 'Signatures subhead'		=>	'Signatures',
+'BBCode sigs help'			=>	'Allow BBCode in user signatures.',
 'Image tag sigs help'		=>	'Allow the BBCode [img] tag in user signatures (not recommended).',
 'All caps sigs help'		=>	'Allow a signature to contain only capital letters.',
 'Max sig length label'		=>	'Maximum signature length',
