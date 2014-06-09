@@ -43,7 +43,9 @@
 		});
         $(document).ready(function(){
             $("#user").focus();
-        });
+            var hash = location.hash, hashPieces = hash.split('?'), activeTab = $('[href=' + hashPieces[0] + ']');
+            activeTab && activeTab.tab('show');
+       });
         </script>
         <!-- Javascript end -->
 	</body>
