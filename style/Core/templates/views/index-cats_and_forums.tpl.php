@@ -78,7 +78,7 @@ while ($cur_forum = $db->fetch_assoc($result))
     else
         $last_post = $lang['Never'];
 
-    if ($cur_forum['moderators'] != '')
+    if ($cur_forum['moderators'] != '' && $luna_config['o_moderated_by'] == '1')
     {
         $mods_array = unserialize($cur_forum['moderators']);
         $moderators = array();

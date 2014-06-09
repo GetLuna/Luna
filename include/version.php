@@ -9,10 +9,10 @@
 class Version
 {
 	// See http://modernbb.be/docs/version.php for more info
-	const FORUM_VERSION = '3.3.9.9';
+	const FORUM_VERSION = '3.3.9.10';
 
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = 67;
+	const FORUM_DB_VERSION = 68;
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const FORUM_PARSER_VERSION = 8;

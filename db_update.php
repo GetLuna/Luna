@@ -425,6 +425,10 @@ switch ($stage)
 		if (!array_key_exists('o_cookie_bar', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar\', \'0\')') or error('Unable to insert config value \'o_cookie_bar\'', __FILE__, __LINE__, $db->error());
 
+		// Since 3.4-beta: Insert new config option o_moderated_by
+		if (!array_key_exists('o_moderated_by', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_moderated_by\', \'1\')') or error('Unable to insert config value \'o_moderated_by\'', __FILE__, __LINE__, $db->error());
+
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
