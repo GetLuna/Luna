@@ -168,7 +168,7 @@ if (count($languages) > 1)
 	{
 ?>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Backstage color'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Backstage Accent'] ?></label>
                     <div class="col-sm-9">
 						<div class="col-sm-3">
 							<div class="radio">

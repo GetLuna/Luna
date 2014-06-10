@@ -692,7 +692,7 @@ $lang = array(
 'Show avatars'					=>	'Show user avatars in posts.',
 'Show sigs'						=>	'Show user signatures.',
 'Style'							=>	'Style',
-'Backstage style'				=>	'Backstage style',
+'Backstage Accent'				=>	'Backstage Accent',
 'Admin note'					=>	'Admin note',
 'Post display'					=>	'Post display',
 
