@@ -139,7 +139,7 @@ if (isset($_GET['saved']))
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($luna_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['All caps sigs help'] ?>
+                                <?php echo $lang['BBCode sigs help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
