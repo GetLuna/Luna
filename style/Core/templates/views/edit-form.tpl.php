@@ -21,10 +21,18 @@ if (!defined('FORUM'))
         <div class="panel-footer">
             <div class="btn-group"><input type="submit" onclick="tinyMCE.triggerSave(false);" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" onclick="tinyMCE.triggerSave(false);" class="btn btn-default" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
             <ul class="bblinks">
-                <li><span class="label <?php echo ($luna_config['p_message_bbcode'] == '1') ? "label-success" : "label-danger"; ?>"><?php echo $lang['BBCode'] ?></span></li>
-                <li><span class="label <?php echo ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1') ? "label-success" : "label-danger"; ?>"><?php echo $lang['img tag'] ?></a></li>
-                <li><span class="label <?php echo ($luna_config['o_smilies'] == '1') ? "label-success" : "label-danger"; ?>"><?php echo $lang['Smilies'] ?></span></li>
-            </ul>
+				<li><?php echo ($luna_config['p_message_bbcode'] == '1') 
+					? '<a class="label label-success" href="help.php#bbcode" onclick="window.open(this.href); return false;">'.$lang['BBCode'].'</a>' 
+					: '<span class="label label-danger">'.$lang['BBCode'].'</span>'; ?>
+				</li>
+				<li><?php echo ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1')
+					? '<a class="label label-success" href="help.php#links" onclick="window.open(this.href); return false;">'.$lang['img tag'].'</a>' 
+					: '<span class="label label-danger">'.$lang['img tag'].'</span>'; ?>
+				</li>
+				<li><?php echo ($luna_config['o_smilies'] == '1')
+					? '<a class="label label-success" href="help.php#smilies" onclick="window.open(this.href); return false;">'.$lang['Smilies'].'</a>' 
+					: '<span class="label label-danger">'.$lang['Smilies'].'</span>'; ?>
+				</li>
             </ul>
         </div>
     </div>
