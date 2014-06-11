@@ -8,12 +8,11 @@ CKEDITOR.editorConfig = function( config ) {
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-	// The toolbar groups arrangement, optimized for a single toolbar row.
     config.toolbarGroups = [
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
+        { name: 'basicstyles', groups: [ 'basicstyles' ] },
+        { name: 'paragraph',   groups: [ 'list' ] },
         { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-        { name: 'links' },
+        { name: 'links'},
         { name: 'insert' },
         { name: 'forms' },
         { name: 'tools' },
@@ -23,9 +22,12 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'colors' },
         { name: 'about' }
     ];
-
+    
+    // Remove buttons
+	config.removeButtons = 'Anchor';
+    
 	// Dialog windows are also simplified.
-	config.extraPlugins = 'link:advanced';
+	config.extraPlugins = 'link';
 	config.extraPlugins = 'bbcode';
 	config.extraPlugins = 'sourcearea';
 	config.extraPlugins = 'sourcedialog';
@@ -33,4 +35,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'youtube';
 	config.extraPlugins = 'link';
     config.extraPlugins = 'divarea';
+    
+    // Other tweaks
+    config.toolbarCanCollapse = true;
 };
