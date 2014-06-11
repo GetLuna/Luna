@@ -246,15 +246,14 @@ a.cke_button_disabled:active
 	cursor: default;
 	text-align: center;
 
-	border: 1px solid #a6a6a6;
-	border-bottom-color: #979797;
+	border: 1px solid #ddd;
 
-	background: #e4e4e4;
+	background: #fff;
 }
 
 .cke_toolbox_collapser:hover
 {
-	background: #ccc;
+	background: #ddd;
 }
 
 .cke_toolbox_collapser.cke_toolbox_collapser_min
