@@ -4,7 +4,7 @@
  * Copyright (C) 2013-2014 ModernBB Group
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
- * License under GPLv3
+ * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
 define('FORUM_ROOT', dirname(__FILE__).'/');

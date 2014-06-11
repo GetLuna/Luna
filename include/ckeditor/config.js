@@ -9,21 +9,20 @@ CKEDITOR.editorConfig = function( config ) {
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// The toolbar groups arrangement, optimized for a single toolbar row.
-config.toolbarGroups = [
-    { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-    { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
-    { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-    { name: 'links' },
-    { name: 'insert' },
-    { name: 'forms' },
-    { name: 'tools' },
-    { name: 'document',    groups: [ 'mode', 'document', 'doctools' ] },
-    { name: 'others' },
-    { name: 'styles' },
-    { name: 'colors' },
-    { name: 'about' }
-];
+    config.toolbarGroups = [
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
+        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+        { name: 'links' },
+        { name: 'insert' },
+        { name: 'forms' },
+        { name: 'tools' },
+        { name: 'document',    groups: [ 'mode', 'document', 'doctools' ] },
+        { name: 'others' },
+        { name: 'styles' },
+        { name: 'colors' },
+        { name: 'about' }
+    ];
 
 	// Dialog windows are also simplified.
 	config.extraPlugins = 'link:advanced';

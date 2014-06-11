@@ -3,7 +3,7 @@
 /**
  * Copyright (C) 2014 ModernBB
  * Based on work by PunBB (2002-2009), FluxBB (2009-2012)
- * Licensed under GPLv3
+ * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
 class Version
