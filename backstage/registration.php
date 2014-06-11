@@ -137,7 +137,7 @@ if (isset($_GET['saved']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Rules label'] ?><span class="help-block"><?php echo $lang['Rules help'] ?></span></label>
                     <div class="col-sm-9">
-                        <textarea class="form-control tinymce" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
+                        <textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
                     </div>
                 </div>
                 <hr />

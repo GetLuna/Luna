@@ -32,8 +32,6 @@
 		</div>
         <!-- Javascript start -->
         <script type="text/javascript">
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
             CKEDITOR.replace('req_message');
         </script>
         <!-- Javascript end -->

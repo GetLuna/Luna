@@ -382,7 +382,7 @@ if (isset($_GET['cache_cleared']))
                                 <?php echo $lang['Maintenance mode help'] ?>
                             </label>
                         </div>
-                        <textarea class="form-control tinytinymce" name="form[maintenance_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
+                        <textarea class="form-control" name="form[maintenance_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
                     </div>
                 </div>
             </fieldset>
