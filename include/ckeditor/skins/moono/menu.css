@@ -3,48 +3,6 @@ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-/*
-menu.css (part of editor.css)
-===============================
-
-This file styles menus used in the editor UI. These menus are the list of
-options available inside some "floating panels", like menu buttons of the
-toolbar or the context menu.
-
-Note that the menu itself doesn't include the floating element that holds it.
-That element is styles in the panel.css file.
-
-The following is a visual representation of the main elements of a menu:
-
-+-- .cke_menu -----------------+
-| +-- .cke_menuitem  --------+ |
-| | +-- .cke_menubutton ---+ | |
-| | |                      | | |
-| | +----------------------+ | |
-| +--------------------------+ |
-| +-- .cke_menuseparator ----+ |
-| ...                          |
-+------------------------------+
-
-This is the .cke_menubutton structure:
-(Note that the menu button icon shares with toolbar button the common class .cke_button_icon to achieve the same outlook.)
-
-+-- .cke_menubutton -------------------------------------------------------------------------+
-| +-- .cke_menubutton_inner ---------------------------------------------------------------+ |
-| | +-- .cke_menubutton_icon ---+ +-- .cke_menubutton_label --+ +-- .cke_cke_menuarrow --+ | |
-| | | +-- .cke_button_icon ---+ | |                           | |                        | | |
-| | | |                       | | |                           | |                        | | |
-| | | +-----------------------+ | |                           | |                        | | |
-| | +---------------------------+ +---------------------------+ +------------------------+ | |
-| +----------------------------------------------------------------------------------------+ |
-+--------------------------------------------------------------------------------------------+
-
-Special outer level classes used in this file:
-
-	.cke_hc: Available when the editor is rendered on "High Contrast".
-	.cke_rtl: Available when the editor UI is on RTL.
-*/
-
 /* .cke_menuitem is the element that holds the entire structure of each of the
    menu items. */
 

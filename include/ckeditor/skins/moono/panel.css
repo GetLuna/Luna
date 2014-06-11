@@ -3,43 +3,6 @@ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-/*
-panel.css (part of editor.css)
-================================
-
-Panels are floating elements that can hold different types of contents.
-The following are common uses of it:
-
-	- The element that toolbar combos display when opening them.
-	- The context menu.
-	- The list of items displayed by "menu buttons" (e.g. scayt).
-	- The panel shown when opening "panel buttons" (e.g. color buttons).
-
-Panel contents are wrapped into an iframe, so it is possible to have additional
-CSS loaded inside them (e.g. to have more accurate preview on the styles combo).
-
-The following is a visual representation of the outer elements of a panel:
-
-+-- .cke_panel(*) ---------------------+
-| +-- IFRAME.cke_panel_frame --------+ |
-| | +-- HTML.cke_panel_container --+ | |
-| | | +-- .cke_panel_block ------+ | | |
-| | | |                          | | | |
-| | | |     (contents here)      | | | |
-| | | |                          | | | |
-| | | +--------------------------+ | | |
-| | +------------------------------+ | |
-| +----------------------------------+ |
-+--------------------------------------+
-
-(*) All kinds of panel share the above structure. Menu panels adds the
-    .cke_menu_panel class to the outer element, while toolbar combos add the
-	.cke_combopanel class.
-
-This file also defines styles for panel lists (used by combos). For menu-like
-panel contents and color panels check menu.css and colorpanel.css.
-*/
-
 /* The box that holds an IFRAME. It's inserted into a host document and positioned
    absolutely by the application. It floats above the host document/editor. */
 .cke_panel
@@ -86,34 +49,6 @@ panel contents and color panels check menu.css and colorpanel.css.
 	overflow-y: auto;
 	overflow-x: hidden;
 }
-
-/*
-Here we start the definition of panel lists (e.g. combo panels). The following
-is its visual representation:
-
-+-- .cke_panel_block -----------------+
-| +-- .cke_panel_grouptitle --------+ |
-| |                                 | |
-| +---------------------------------+ |
-| +-- .cke_panel_list --------------+ |
-| | +-- .cke_panel_listItem ------+ | |
-| | | +-- a --------------------+ | | |
-| | | | +-- span -------------+ | | | |
-| | | | |                     | | | | |
-| | | | +---------------------+ | | | |
-| | | +-------------------------+ | | |
-| | +-----------------------------+ | |
-| | +-- .cke_panel_listItem ------+ | |
-| | | +-- a --------------------+ | | |
-| | | | +-- span -------------+ | | | |
-| | | | |                     | | | | |
-| | | | +---------------------+ | | | |
-| | | +-------------------------+ | | |
-| | +-----------------------------+ | |
-| | ...                             | |
-| +---------------------------------+ |
-+-------------------------------------+
-*/
 
 
 /* The list of panel items. */

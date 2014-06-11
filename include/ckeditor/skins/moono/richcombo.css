@@ -3,27 +3,6 @@ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-/*
-richcombo.css (part of editor.css)
-=================================
-
-This file holds the style set of the "Rich Combo" widget which is commonly used
-in the toolbar. It doesn't, however, styles the panel that is displayed when
-clicking on the combo, which is instead styled by panel.css.
-
-The visual representation of a rich combo widget looks as follows:
-
-+-- .cke_combo----------------------------------------------------------------------+
-| +-- .cke_combo_label --+ +-- .cke_combo_button ---------------------------------+ |
-| |                      | | +-- .cke_combo_text --+ +-- .cke_combo_open -------+ | |
-| |                      | | |                     | | +-- .cke_combo_arrow --+ | | |
-| |                      | | |                     | | |                      | | | |
-| |                      | | |                     | | +----------------------+ | | |
-| |                      | | +---------------------+ +--------------------------+ | |
-| +----------------------+ +------------------------------------------------------+ |
-+-----------------------------------------------------------------------------------+
-*/
-
 /* The box that hold the entire combo widget */
 .cke_combo
 {

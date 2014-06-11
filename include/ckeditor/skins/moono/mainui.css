@@ -3,48 +3,6 @@ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-/*
-mainui.css (part of editor.css)
-=================================
-
-This file styles the basic structure of the CKEditor user interface - the box
-that holds everything.
-
-CKEditor offers two main editing modes. The main UI blocks that compose these
-modes are:
-
-	For "Theme UI" mode, the one most generally used:
-
-	+-- .cke_chrome ----------------------+
-	|+-- .cke_inner ---------------------+|
-	|| +-- .cke_top -------------------+ ||
-	|| |                               | ||
-	|| +-------------------------------+ ||
-	|| +-- .cke_contents --------------+ ||
-	|| |                               | ||
-	|| +-------------------------------+ ||
-	|| +-- .cke_bottom ----------------+ ||
-	|| |                               | ||
-	|| +-------------------------------+ ||
-	|+-----------------------------------+|
-	+-------------------------------------+
-
-	For "Inline Editing" mode:
-
-	+-- .cke_chrome .cke_float------------+
-	|+-- .cke_inner ---------------------+|
-	|| +-- .cke_top -------------------+ ||
-	|| |                               | ||
-	|| +-------------------------------+ ||
-	|+-----------------------------------+|
-	+-------------------------------------+
-
-Special outer level classes used in this file:
-
-	.cke_hc: Available when the editor is rendered on "High Contrast".
-
-*/
-
 /* The outer boundary of the interface. */
 .cke_chrome
 {
@@ -95,13 +53,13 @@ Special outer level classes used in this file:
 .cke_top
 {
 	/*border: 1px solid #b2b2b2;*/
-	border-bottom: 1px solid #b6b6b6;
-	padding: 6px 8px 2px;
+	border-bottom: 1px solid #ddd;
+	padding: 4px 6px 0;
 
 	/* Allow breaking toolbars when in a narrow editor. (#9947) */
 	white-space: normal;
 
-	background: #cfd1cf;
+	background: #fff;
 }
 
 .cke_float .cke_top

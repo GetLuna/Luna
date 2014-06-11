@@ -3,42 +3,6 @@ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-/*
-dialog.css
-============
-
-This file styles dialogs and all widgets available inside of it (tabs, buttons,
-fields, etc.).
-
-Dialogs are a complex system because they're very flexible. The CKEditor API
-makes it easy to create and customize dialogs by code, by making use of several
-different widgets inside its contents.
-
-All dialogs share a main dialog strucuture, which can be visually represented
-as follows:
-
-+-- .cke_dialog -------------------------------------------------+
-| +-- .cke_dialog_body ----------------------------------------+ |
-| | +-- .cke_dialog_title --+ +-- .cke_dialog_close_button --+ | |
-| | |                       | |                              | | |
-| | +-----------------------+ +------------------------------+ | |
-| | +-- .cke_dialog_tabs ------------------------------------+ | |
-| | |                                                        | | |
-| | +--------------------------------------------------------+ | |
-| | +-- .cke_dialog_contents --------------------------------+ | |
-| | | +-- .cke_dialog_contents_body -----------------------+ | | |
-| | | |                                                    | | | |
-| | | +----------------------------------------------------+ | | |
-| | | +-- .cke_dialog_footer ------------------------------+ | | |
-| | | |                                                    | | | |
-| | | +----------------------------------------------------+ | | |
-| | +--------------------------------------------------------+ | |
-| +------------------------------------------------------------+ |
-+----------------------------------------------------------------+
-
-Comments in this file will give more details about each of the above blocks.
-*/
-
 /* The outer container of the dialog. */
 .cke_dialog
 {
@@ -54,14 +18,6 @@ Comments in this file will give more details about each of the above blocks.
 	background: #eaeaea;
 	border: 1px solid #b2b2b2;
 	border-bottom-color: #999;
-
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-
-	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
-	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
-	box-shadow: 0 0 3px rgba(0, 0, 0, .15);
 }
 
 /* Due to our reset we have to recover the styles of some elements. */
@@ -84,22 +40,7 @@ Comments in this file will give more details about each of the above blocks.
 	border-bottom: 1px solid #999;
 	padding: 6px 10px;
 
-	-moz-border-radius: 2px 2px 0 0;
-	-webkit-border-radius: 2px 2px 0 0;
-	border-radius: 2px 2px 0 0;
-
-	-moz-box-shadow: 0 1px 0 #fff inset;
-	-webkit-box-shadow: 0 1px 0 #fff inset;
-	box-shadow: 0 1px 0 #fff inset;
-
 	background: #cfd1cf;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#cfd1cf));
-	background-image: -moz-linear-gradient(top, #f5f5f5, #cfd1cf);
-	background-image: -webkit-linear-gradient(top, #f5f5f5, #cfd1cf);
-	background-image: -o-linear-gradient(top, #f5f5f5, #cfd1cf);
-	background-image: -ms-linear-gradient(top, #f5f5f5, #cfd1cf);
-	background-image: linear-gradient(top, #f5f5f5, #cfd1cf);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#f5f5f5', endColorstr='#cfd1cf');
 }
 
 /* The outer part of the dialog contants, which contains the contents body
@@ -111,10 +52,6 @@ Comments in this file will give more details about each of the above blocks.
 	padding: 15px 10px 5px 10px;
 	margin-top: 30px;
 	border-top: 1px solid #bfbfbf;
-
-	-moz-border-radius: 0 0 3px 3px;
-	-webkit-border-radius: 0 0 3px 3px;
-	border-radius: 0 0 3px 3px;
 }
 
 /* The contents body part, which will hold all elements available in the dialog. */
@@ -135,22 +72,7 @@ Comments in this file will give more details about each of the above blocks.
 	border: none;
 	outline: 1px solid #bfbfbf;
 
-	-moz-box-shadow: 0 1px 0 #fff inset;
-	-webkit-box-shadow: 0 1px 0 #fff inset;
-	box-shadow: 0 1px 0 #fff inset;
-
-	-moz-border-radius: 0 0 2px 2px;
-	-webkit-border-radius: 0 0 2px 2px;
-	border-radius: 0 0 2px 2px;
-
 	background: #cfd1cf;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#cfd1cf));
-	background-image: -moz-linear-gradient(top, #ebebeb, #cfd1cf);
-	background-image: -webkit-linear-gradient(top, #ebebeb, #cfd1cf);
-	background-image: -o-linear-gradient(top, #ebebeb, #cfd1cf);
-	background-image: -ms-linear-gradient(top, #ebebeb, #cfd1cf);
-	background-image: linear-gradient(top, #ebebeb, #cfd1cf);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#ebebeb', endColorstr='#cfd1cf');
 }
 
 .cke_rtl .cke_dialog_footer
@@ -178,27 +100,6 @@ Comments in this file will give more details about each of the above blocks.
 {
 	margin-right: 5px;
 }
-
-/*
-Dialog tabs
--------------
-
-Tabs are presented on some of the dialogs to make it possible to have its
-contents split on different groups, visible one after the other.
-
-The main element that holds the tabs can be made hidden, in case of no tabs
-available.
-
-The following is the visual representation of the tabs block:
-
-+-- .cke_dialog_tabs ------------------------------------+
-|  +-- .cke_dialog_tab --+ +-- .cke_dialog_tab --+ ...   |
-|  |                     | |                     |       |
-|  +---------------------+ +---------------------+       |
-+--------------------------------------------------------+
-
-The .cke_dialog_tab_selected class is appended to the active tab.
-*/
 
 /* The main tabs container. */
 .cke_dialog_tabs
@@ -230,18 +131,7 @@ a.cke_dialog_tab
 	color: #595959;
 	border: 1px solid #bfbfbf;
 
-	-moz-border-radius: 3px 3px 0 0;
-	-webkit-border-radius: 3px 3px 0 0;
-	border-radius: 3px 3px 0 0;
-
 	background: #d4d4d4;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ededed));
-	background-image: -moz-linear-gradient(top, #fafafa, #ededed);
-	background-image: -webkit-linear-gradient(top, #fafafa, #ededed);
-	background-image: -o-linear-gradient(top, #fafafa, #ededed);
-	background-image: -ms-linear-gradient(top, #fafafa, #ededed);
-	background-image: linear-gradient(top, #fafafa, #ededed);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#fafafa', endColorstr='#ededed');
 }
 
 .cke_rtl a.cke_dialog_tab
@@ -254,13 +144,6 @@ a.cke_dialog_tab
 a.cke_dialog_tab:hover
 {
 	background: #ebebeb;
-	background: -moz-linear-gradient(top, #ebebeb 0%, #dfdfdf 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebebeb), color-stop(100%,#dfdfdf));
-	background: -webkit-linear-gradient(top, #ebebeb 0%,#dfdfdf 100%);
-	background: -o-linear-gradient(top, #ebebeb 0%,#dfdfdf 100%);
-	background: -ms-linear-gradient(top, #ebebeb 0%,#dfdfdf 100%);
-	background: linear-gradient(to bottom, #ebebeb 0%,#dfdfdf 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebebeb', endColorstr='#dfdfdf',GradientType=0 );
 }
 
 a.cke_dialog_tab_selected
@@ -276,13 +159,6 @@ a.cke_dialog_tab_selected
 a.cke_dialog_tab_selected:hover
 {
 	background: #ededed;
-	background: -moz-linear-gradient(top, #ededed 0%, #ffffff 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#ffffff));
-	background: -webkit-linear-gradient(top, #ededed 0%,#ffffff 100%);
-	background: -o-linear-gradient(top, #ededed 0%,#ffffff 100%);
-	background: -ms-linear-gradient(top, #ededed 0%,#ffffff 100%);
-	background: linear-gradient(to bottom, #ededed 0%,#ffffff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ffffff',GradientType=0 );
 }
 
 .cke_hc a.cke_dialog_tab:hover,
@@ -362,19 +238,6 @@ a.cke_dialog_tab_disabled
 	top: 4px;
 }
 
-/*
-Dialog UI Elements
---------------------
-
-The remaining styles define the UI elements that can be used inside dialog
-contents.
-
-Most of the UI elements on dialogs contain a textual label. All of them share
-the same labelling structure, having the label text inside an element with
-.cke_dialog_ui_labeled_label and the element specific part inside the
-.cke_dialog_ui_labeled_content class.
-*/
-
 /* If an element is supposed to be disabled, the .cke_disabled class is
    appended to it. */
 div.cke_disabled .cke_dialog_ui_labeled_content div *
@@ -382,24 +245,6 @@ div.cke_disabled .cke_dialog_ui_labeled_content div *
 	background-color: #ddd;
 	cursor: default;
 }
-
-/*
-Horizontal-Box and Vertical-Box
----------------------------------
-
-There are basic layou element used by the editor to properly align elements in
-the dialog. They're basically tables that have each cell filled by UI elements.
-
-The following is the visual representation of a H-Box:
-
-+-- .cke_dialog_ui_hbox --------------------------------------------------------------------------------+
-|  +-- .cke_dialog_ui_hbox_first --+ +-- .cke_dialog_ui_hbox_child --+ +-- .cke_dialog_ui_hbox_last --+ |
-|  +                               + +                               + +                              + |
-|  +-------------------------------+ +-------------------------------+ +------------------------------+ |
-+-------------------------------------------------------------------------------------------------------+
-
-It is possible to have nested V/H-Boxes.
-*/
 
 .cke_dialog_ui_vbox table,
 .cke_dialog_ui_hbox table
@@ -459,46 +304,6 @@ It is possible to have nested V/H-Boxes.
 	border: 1px solid;
 }
 
-/*
-Text Input
-------------
-
-The basic text field to input text.
-
-+-- .cke_dialog_ui_text --------------------------+
-|  +-- .cke_dialog_ui_labeled_label ------------+ |
-|  |                                            | |
-|  +--------------------------------------------+ |
-|  +-- .cke_dialog_ui_labeled_content ----------+ |
-|  | +-- div.cke_dialog_ui_input_text --------+ | |
-|  | | +-- input.cke_dialog_ui_input_text --+ | | |
-|  | | |                                    | | | |
-|  | | +------------------------------------+ | | |
-|  | +----------------------------------------+ | |
-|  +--------------------------------------------+ |
-+-------------------------------------------------+
-*/
-
-/*
-Textarea
-----------
-
-The textarea field to input larger text.
-
-+-- .cke_dialog_ui_textarea --------------------------+
-|  +-- .cke_dialog_ui_labeled_label ----------------+ |
-|  |                                                | |
-|  +------------------------------------------------+ |
-|  +-- .cke_dialog_ui_labeled_content --------------+ |
-|  | +-- div.cke_dialog_ui_input_textarea --------+ | |
-|  | | +-- input.cke_dialog_ui_input_textarea --+ | | |
-|  | | |                                        | | | |
-|  | | +----------------------------------------+ | | |
-|  | +--------------------------------------------+ | |
-|  +------------------------------------------------+ |
-+-----------------------------------------------------+
-*/
-
 textarea.cke_dialog_ui_input_textarea
 {
 	overflow: auto;
@@ -520,14 +325,6 @@ textarea.cke_dialog_ui_input_textarea
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
-	box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
 }
 
 input.cke_dialog_ui_input_text:hover,
@@ -548,19 +345,6 @@ select.cke_dialog_ui_input_select:focus
 	border-top-color: #1392e9;
 }
 
-/*
-Button
---------
-
-The buttons used in the dialog footer or inside the contents.
-
-+-- a.cke_dialog_ui_button -----------+
-|  +-- span.cke_dialog_ui_button --+  |
-|  |                               |  |
-|  +-------------------------------+  |
-+-------------------------------------+
-*/
-
 /* The outer part of the button. */
 a.cke_dialog_ui_button
 {
@@ -579,22 +363,7 @@ a.cke_dialog_ui_button
 	border: 1px solid #b6b6b6;
 	border-bottom-color: #999;
 
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-
-	-moz-box-shadow: 0 1px 0 rgba(255,255,255,.5), 0 0 2px rgba(255,255,255,.15) inset, 0 1px 0 rgba(255,255,255,.15) inset;
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.5), 0 0 2px rgba(255,255,255,.15) inset, 0 1px 0 rgba(255,255,255,.15) inset;
-	box-shadow: 0 1px 0 rgba(255,255,255,.5), 0 0 2px rgba(255,255,255,.15) inset, 0 1px 0 rgba(255,255,255,.15) inset;
-
 	background: #e4e4e4;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e4e4e4));
-	background-image: -moz-linear-gradient(top, #ffffff, #e4e4e4);
-	background-image: -webkit-linear-gradient(top, #ffffff, #e4e4e4);
-	background-image: -o-linear-gradient(top, #ffffff, #e4e4e4);
-	background-image: -ms-linear-gradient(top, #ffffff, #e4e4e4);
-	background-image: linear-gradient(top, #ffffff, #e4e4e4);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#ffffff', endColorstr='#e4e4e4');
 
 }
 
@@ -608,13 +377,6 @@ a.cke_dialog_ui_button:hover
 	border-color: #9e9e9e;
 
 	background: #ccc;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#ccc));
-	background-image: -moz-linear-gradient(top, #f2f2f2, #ccc);
-	background-image: -webkit-linear-gradient(top, #f2f2f2, #ccc);
-	background-image: -o-linear-gradient(top, #f2f2f2, #ccc);
-	background-image: -ms-linear-gradient(top, #f2f2f2, #ccc);
-	background-image: linear-gradient(top, #f2f2f2, #ccc);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#f2f2f2', endColorstr='#cccccc');
 }
 
 /* 	:focus/:active styles for dialog buttons: regular and footer. */
@@ -623,9 +385,6 @@ a.cke_dialog_ui_button:active
 {
 	border-color: #969696;
 	outline: none;
-	-moz-box-shadow: 0 0 6px rgba(0,0,0,.4) inset;
-	-webkit-box-shadow: 0 0 6px rgba(0,0,0,.4) inset;
-	box-shadow: 0 0 6px rgba(0,0,0,.4) inset;
 }
 
 .cke_hc a.cke_dialog_ui_button:hover,
@@ -669,12 +428,6 @@ a.cke_dialog_ui_button_ok
 	border-color: #62a60a #62a60a #4d9200;
 
 	background: #69b10b;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#9ad717), to(#69b10b));
-	background-image: -webkit-linear-gradient(top, #9ad717, #69b10b);
-	background-image: -o-linear-gradient(top, #9ad717, #69b10b);
-	background-image: linear-gradient(to bottom, #9ad717, #69b10b);
-	background-image: -moz-linear-gradient(top, #9ad717, #69b10b);
-	filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#9ad717', endColorstr='#69b10b');
 }
 
 a.cke_dialog_ui_button_ok:hover
@@ -682,12 +435,6 @@ a.cke_dialog_ui_button_ok:hover
 	border-color: #5b9909 #5b9909 #478500;
 
 	background: #88be14;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#88be14), color-stop(100%,#5d9c0a));
-	background: -webkit-linear-gradient(top, #88be14 0%,#5d9c0a 100%);
-	background: -o-linear-gradient(top, #88be14 0%,#5d9c0a 100%);
-	background: linear-gradient(to bottom, #88be14 0%,#5d9c0a 100%);
-	background: -moz-linear-gradient(top, #88be14 0%, #5d9c0a 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#88be14', endColorstr='#5d9c0a',GradientType=0 );
 }
 
 /* Default text shadow used for inner parts of all dialog buttons (both in dialog tabs and dialog footer). */
@@ -762,14 +509,6 @@ select.cke_dialog_ui_input_select
 	padding: 2px 6px;
 
 	outline: none;
-
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
-	box-shadow: 0 1px 2px rgba(0,0,0,.15) inset;
 }
 
 .cke_dialog_ui_input_file
@@ -939,10 +678,6 @@ tendency that these will be moved to the plugins code in the future.
 	height: 130px;
 	background-color: white;
 	border: 1px solid #aeb3b9;
-
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
 }
 
 .cke_dialog .cke_hand

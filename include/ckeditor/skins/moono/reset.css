@@ -3,32 +3,12 @@ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-/*
-reset.css (part of editor.css)
-================================
-
-This file holds the "reset" requirements of CKEditor, as well as define the
-default interface styles.
-
-CKEditor includes two main "reset" class names in the DOM structure created for
-editors:
-
-	* .cke_reset: Intended to reset a specific element, but not its children.
-	  Because of this, only styles that will not be inherited can be defined.
-
-	* .cke_reset_all: Intended to reset not only the element holding it, but
-	   also its child elements.
-
-To understand why "reset" is needed, check the CKEditor Skin SDK:
-http://docs.cksource.com/CKEditor_4.x/Skin_SDK/Reset
-*/
-
 /* Reset for single elements, not their children. */
 .cke_reset
 {
 	/* Do not include inheritable rules here. */
 	margin: 0;
-	padding: 0;
+	padding: 10px 0;
 	border: 0;
 	background: transparent;
 	text-decoration: none;

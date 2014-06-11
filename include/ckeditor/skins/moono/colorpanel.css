@@ -3,50 +3,6 @@ Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 
-/*
-colorpanel.css (part of editor.css)
-=====================================
-
-The color panel is related to the contents part of the panels that are
-displayed when clicking the color buttons of the toolbar. See panels.css for
-styles related to the outer part of panels.
-
-The following is the visual representation of the color panel contents:
-
-+-- .cke_panel_block.cke_colorblock --+
-| +-- a.cke_colorauto --------------+ |
-| |                                 | |
-| |         AUTOMATIC COLOR         | |
-| |                                 | |
-| +---------------------------------+ |
-| +-- table ------------------------+ |
-| |                                 | |
-| |          COLOR PALETTE          | |
-| |                                 | |
-| |---------------------------------| |
-| |          "More Colors"          | |
-| +---------------------------------+ |
-+-------------------------------------+
-
-The AUTOMATIC COLOR section is an <a> containing a table with two cells with
-the following contents:
-
-+-- TD -----------------+ +-- TD -----------------+
-| +-- .cke_colorbox --+ | |                       |
-| |                   | | |      "Automatic"      |
-| +-------------------+ | |                       |
-+-----------------------+ +-----------------------+
-
-The COLOR PALETTE section instead is a table with a variable number of cells
-(by default 8). Each cell represents a color box, with the following structure:
-
-+-- A.cke_colorbox ---------+
-| +-- SPAN.cke_colorbox --+ |
-| |                       | |
-| +-----------------------+ |
-+---------------------------+
-*/
-
 /* The container of the color palette. */
 .cke_colorblock
 {
