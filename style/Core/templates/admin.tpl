@@ -19,7 +19,9 @@
 		</div>
         <!-- Javascript start -->
         <script type="text/javascript">
-            CKEDITOR.replace('req_message');
+            CKEDITOR.replace( 'req_message', {
+                customConfig: '../include/ckeditor/config_backstage.js'
+            });
         </script>
         <!-- Javascript end -->
 	</body>
