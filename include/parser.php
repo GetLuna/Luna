@@ -784,6 +784,7 @@ function do_bbcode($text, $is_signature = false)
 	$replace[] = '<code>$1</code>';
 	$replace[] = '<ins>$1</ins>';
 	$replace[] = '<span style="color: $1">$2</span>';
+	$replace[] = '<h3>$1</h3>';
 	$replace[] = '<sup>$1</sup>';
 	$replace[] = '<sub>$1</sub>';
 

@@ -9,13 +9,13 @@
 class Version
 {
 	// See http://modernbb.be/docs/version.php for more info
-	const FORUM_VERSION = '3.4-alpha.2244';
+	const FORUM_VERSION = '3.4-alpha.2245';
 
 	// The database version number, every change in the database requires this number to go one up
 	const FORUM_DB_VERSION = 68;
 
 	// The parser version number, every change to the parser requires this number to go one up
-	const FORUM_PARSER_VERSION = 8;
+	const FORUM_PARSER_VERSION = 9;
 
 	// The search index version number, every change to the search index requires this number to go one up
 	const FORUM_SI_VERSION = 2;
