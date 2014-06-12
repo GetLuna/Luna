@@ -116,12 +116,12 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
     <div class="panel-body">
         <p><?php echo $lang['General use info'] ?></p>
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#forums" data-toggle="tab"><?php echo $lang['Forums and topics'] ?></a></li>
+			<li class="active"><a href="#forum" data-toggle="tab"><?php echo $lang['Forums and topics'] ?></a></li>
 			<li><a href="#profile" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
 			<li><a href="#search" data-toggle="tab"><?php echo $lang['Search'] ?></a></li>
 		</ul>
 		<div class="tab-content">
-		  <div class="tab-pane active" id="forums">
+		  <div class="tab-pane active" id="forum">
                 <h3><?php echo $lang['Labels question'] ?></h3>
                 <p><?php echo $lang['Labels info'] ?></p>
 				<table class="table">
@@ -193,7 +193,7 @@ if ($luna_user['is_admmod']) {
 			<li><a href="#users" data-toggle="tab"><?php echo $lang['Users'] ?></a></li>
 		</ul>
 		<div class="tab-content">
-		  <div class="tab-pane active" id="forums">
+            <div class="tab-pane active" id="forums">
                 <h3><?php echo $lang['Moderate forum question'] ?></h3>
                 <p><?php echo $lang['Moderate forum answer'] ?></p>
             </div>
