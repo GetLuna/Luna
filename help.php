@@ -60,7 +60,7 @@ require FORUM_ROOT.'header.php';
                 <p><code>[img=<?php echo $lang['ModernBB bbcode test'] ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php echo $lang['produces'] ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php echo $lang['ModernBB bbcode test'] ?>" /></p>
 				<br />
                 <p><?php echo $lang['Video info'] ?></p>
-                <p><code>[video=(x,y)][url]<?php echo $lang['Video link'] ?>[/url][/video]</code>
+                <p><code>[video][url]<?php echo $lang['Video link'] ?>[/url][/video]</code>
             </div>
 			<div class="tab-pane" id="quotes">
                 <p><?php echo $lang['Quotes info'] ?></p>

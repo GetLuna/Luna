@@ -769,13 +769,10 @@ function do_bbcode($text, $is_signature = false)
 
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
-	$pattern[] = '%\[video=([0-9]+),([0-9]+)\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
 	// Youtube Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/(youtu\.be/|watch\?v=)([^\[<]*?)(\[/url\])?\[/video\]%ms';
-	$pattern[] = '%\[video=([0-9]+),([0-9]+)\](\[url\])?([^\[<]*?)/(youtu\.be/|watch\?v=)([^\[<]*?)(\[/url\])?\[/video\]%ms';
 	// Vimeo videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/(vimeo\.com/)([^\[<]*?)(\[/url\])?\[/video\]%ms';
-	$pattern[] = '%\[video=([0-9]+),([0-9]+)\](\[url\])?([^\[<]*?)/(vimeo\.com/)([^\[<]*?)(\[/url\])?\[/video\]%ms';
 
 	$replace[] = '<strong>$1</strong>';
 	$replace[] = '<em>$1</em>';
@@ -790,13 +787,10 @@ function do_bbcode($text, $is_signature = false)
 
 	// DailyMotion videos
 	$replace[] = '<iframe width="640" frameborder="0" height="360" src="http://www.dailymotion.com/embed/video/$3"></iframe>';
-	$replace[] = '<iframe width="$1" frameborder="0" height="$2" src="http://www.dailymotion.com/embed/video/$5"></iframe>';
 	// Youtube Videos
 	$replace[] = '<iframe width="640" frameborder="0" height="360" src="http://www.youtube.com/embed/$4"></iframe>';
-	$replace[] = '<iframe width="$1" frameborder="0" height="$2" src="http://www.youtube.com/embed/$6"></iframe>';
 	// Vimeo Videos
 	$replace[] = '<iframe width="640" frameborder="0" height="360" src="http://player.vimeo.com/video/$4"></iframe>';
-	$replace[] = '<iframe width="$1" frameborder="0" height="$2" src="http://player.vimeo.com/video/$6"></iframe>';
 
 	if (($is_signature && $luna_config['p_sig_img_tag'] == '1') || (!$is_signature && $luna_config['p_message_img_tag'] == '1'))
 	{
