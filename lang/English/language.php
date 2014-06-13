@@ -1007,7 +1007,7 @@ $lang = array(
 'Quote depth label'					=>	'Maximum [quote] depth',
 'Quote depth help'					=>	'Maximum [quote] can be used in [quote]',
 'Menu items head'					=>	'Additional menu items',
-'Menu items help'					=>	'By entering HTML hyperlinks into this text box, any number of items can be added to the navigation menu at the top of all pages. The format for adding new links is <code>X = &lt;a href="URL"&gt;LINK&lt;/a&gt;</code> where X is the position at which the link should be inserted. Separate entries with a line break.',
+'Menu items help'					=>	'This feature allows you to add more menu items to the navigation bar on every page. The format for adding new links is <code>X = &lt;a href="URL"&gt;LINK&lt;/a&gt;</code> where X is the position at which the link should be inserted. Separate entries with a line break.',
 'Default menu'						=>	'Default menu items',
 'Menu show index'					=>	'Show the index menu item.',
 'Menu show user list'				=>	'Show the user list menu item.',
