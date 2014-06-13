@@ -30,9 +30,6 @@ if (isset($_POST['form_sent']))
 		'show_version'			=> isset($_POST['form']['show_version']) ? '1' : '0',
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
-		'smilies'				=> isset($_POST['form']['smilies']) ? '1' : '0',
-		'smilies_sig'			=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
-		'make_links'			=> isset($_POST['form']['make_links']) ? '1' : '0',
 		'show_index'			=> isset($_POST['form']['show_index']) ? '1' : '0',
 		'show_userlist'			=> isset($_POST['form']['show_userlist']) ? '1' : '0',
 		'show_search'			=> isset($_POST['form']['show_search']) ? '1' : '0',
@@ -44,8 +41,6 @@ if (isset($_POST['form_sent']))
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
-		'indent_num_spaces'		=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
-		'quote_depth'			=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
 		'additional_navlinks'	=> luna_trim($_POST['form']['additional_navlinks']),
 	);
 
@@ -216,29 +211,6 @@ if (isset($_GET['saved']))
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Topics and posts'] ?></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[smilies]" value="1" <?php if ($luna_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Smilies help'] ?>
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Smilies sigs help'] ?>
-                            </label>
-                        </div>   
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[make_links]" value="1" <?php if ($luna_config['o_make_links'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Clickable links help'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Index panels head'] ?></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
@@ -266,18 +238,6 @@ if (isset($_GET['saved']))
                     <label class="col-sm-3 control-label"><?php echo $lang['Posts per page label'] ?><span class="help-block"><?php echo $lang['Posts per page help'] ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $luna_config['o_disp_posts_default'] ?>" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Indent label'] ?><span class="help-block"><?php echo $lang['Indent help'] ?></span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Quote depth label'] ?><span class="help-block"><?php echo $lang['Quote depth help'] ?></span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
                     </div>
                 </div>
             </fieldset>

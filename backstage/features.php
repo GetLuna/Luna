@@ -26,19 +26,24 @@ if (isset($_POST['form_sent']))
 	confirm_referrer('backstage/features.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
-		'quickpost'					=> isset($_POST['form']['quickpost']) ? '1' : '0',
-		'users_online'				=> isset($_POST['form']['users_online']) ? '1' : '0',
-		'censoring'					=> isset($_POST['form']['censoring']) ? '1' : '0',
-		'signatures'				=> isset($_POST['form']['signatures']) ? '1' : '0',
-		'ranks'						=> isset($_POST['form']['ranks']) ? '1' : '0',
-		'topic_views'				=> isset($_POST['form']['topic_views']) ? '1' : '0',
-		'has_posted'				=> isset($_POST['form']['has_posted']) ? '1' : '0',
-		'show_first_run'			=> isset($_POST['form']['show_first_run']) ? '1' : '0',
-		'first_run_guests'			=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
-		'first_run_message'			=> luna_trim($_POST['form']['first_run_message']),
-		'gzip'						=> isset($_POST['form']['gzip']) ? '1' : '0',
-		'search_all_forums'			=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
-		'enable_advanced_search'	=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
+		'quickpost'                   => isset($_POST['form']['quickpost']) ? '1' : '0',
+		'users_online'                => isset($_POST['form']['users_online']) ? '1' : '0',
+		'censoring'                   => isset($_POST['form']['censoring']) ? '1' : '0',
+		'signatures'                  => isset($_POST['form']['signatures']) ? '1' : '0',
+		'ranks'                       => isset($_POST['form']['ranks']) ? '1' : '0',
+		'topic_views'                 => isset($_POST['form']['topic_views']) ? '1' : '0',
+		'has_posted'                  => isset($_POST['form']['has_posted']) ? '1' : '0',
+		'show_first_run'              => isset($_POST['form']['show_first_run']) ? '1' : '0',
+		'first_run_guests'            => isset($_POST['form']['first_run_guests']) ? '1' : '0',
+		'first_run_message'           => luna_trim($_POST['form']['first_run_message']),
+		'smilies'                     => isset($_POST['form']['smilies']) ? '1' : '0',
+		'smilies_sig'                 => isset($_POST['form']['smilies_sig']) ? '1' : '0',
+		'make_links'			      => isset($_POST['form']['make_links']) ? '1' : '0',
+		'indent_num_spaces'		      => (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
+		'quote_depth'			      => (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
+		'gzip'						  => isset($_POST['form']['gzip']) ? '1' : '0',
+		'search_all_forums'			  => isset($_POST['form']['search_all_forums']) ? '1' : '0',
+		'enable_advanced_search'	  => isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
 	);
 
 	foreach ($form as $key => $input)
@@ -65,7 +70,7 @@ if (isset($_POST['form_sent']))
 	redirect('backstage/features.php?saved=true');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Features']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('features');
@@ -184,6 +189,51 @@ if (isset($_GET['saved']))
                     <label class="col-sm-3 control-label"><?php echo $lang['Welcome text'] ?><span class="help-block"><?php echo $lang['First run help message'] ?></span>  </label>
                     <div class="col-sm-9">
 						<input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['BBCode'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Topics and posts'] ?></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[smilies]" value="1" <?php if ($luna_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Smilies help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Smilies sigs help'] ?>
+                            </label>
+                        </div>   
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[make_links]" value="1" <?php if ($luna_config['o_make_links'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Clickable links help'] ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Indent label'] ?><span class="help-block"><?php echo $lang['Indent help'] ?></span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Quote depth label'] ?><span class="help-block"><?php echo $lang['Quote depth help'] ?></span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
                     </div>
                 </div>
             </fieldset>
