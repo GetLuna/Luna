@@ -6,6 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="../include/bootstrap/css/bootstrap.min.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../include/ckeditor/ckeditor.js"></script>
 		<luna_head>
 	</head>
 	<body>
@@ -19,10 +20,10 @@
 		</div>
         <!-- Javascript start -->
         <script type="text/javascript">
-            CKEDITOR.replace( 'req_message', {
-                customConfig: '../include/ckeditor/config_backstage.js'
+            CKEDITOR.replace('form[rules_message]', {
+                customConfig: '../../include/ckeditor/config_backstage.js'
             });
         </script>
         <!-- Javascript end -->
-	</body>
+    </body>
 </html>
