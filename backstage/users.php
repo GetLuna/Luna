@@ -138,7 +138,7 @@ if (isset($_POST['add_user']))
 
 	generate_users_info_cache();
 
-	message_backstage('User Created');
+	message('User created');
 }
 
 // Show IP statistics for a certain user ID
