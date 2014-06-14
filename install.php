@@ -1479,7 +1479,7 @@ else
 			'backstage_color'	=> array(
 				'datatype'		=> 'VARCHAR(25)',
 				'allow_null'	=> false,
-				'default'		=> '\'ModernBB\''
+				'default'		=> '\'#14a3ff\''
 			),
 			'num_posts'			=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
