@@ -32,7 +32,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'sourcedialog';
 	config.extraPlugins = 'codesnippet';
 	config.extraPlugins = 'youtube';
-	config.extraPlugins = 'link';
     config.extraPlugins = 'divarea';
     
     // Other tweaks
