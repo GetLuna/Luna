@@ -432,6 +432,9 @@ switch ($stage)
 		// Since 3.4-beta: Make password field VARCHAR(256)
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 
+		// Since 3.4-beta: Add the salt column to the users table
+		$db->add_field('users', 'salt', 'VARCHAR(10)', false, random_key(10)) or error('Unable to add salt field', __FILE__, __LINE__, $db->error());
+
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());

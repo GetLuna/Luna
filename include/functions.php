@@ -1226,7 +1226,7 @@ function luna_hash($str)
 //
 function luna_sha2($str)
 {
-	return hash("sha512", $str);
+    return hash("sha512", $cur_user['salt'] . hash("sha512", $password));
 }
 
 

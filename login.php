@@ -33,6 +33,9 @@ if (isset($_POST['form_sent']) && $action == 'in')
 
 	if (!empty($cur_user['password']))
 	{
+        if (empty($cur_user['salt']))
+            $db->query('UPDATE '.$db->prefix.'users SET salt=\''.random_key(10).'\' WHERE id='.$cur_user['id']) or error('Unable to add salt', __FILE__, __LINE__, $db->error());
+            
 		$form_password_hash = luna_sha2($form_password); // Will result in a SHA-512 hash
 
 		// If the length isn't 128 then the password isn't using SHA-512, so it must be SHA-1 from 1.4 up to 3.3

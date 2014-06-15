@@ -1353,6 +1353,11 @@ else
 				'allow_null'	=> false,
 				'default'		=> '\'\''
 			),
+			'salt'			=> array(
+				'datatype'		=> 'VARCHAR(10)',
+				'allow_null'	=> false,
+				'default'		=> random_key(10)
+			),
 			'email'				=> array(
 				'datatype'		=> 'VARCHAR(80)',
 				'allow_null'	=> false,
