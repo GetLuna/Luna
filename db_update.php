@@ -433,7 +433,7 @@ switch ($stage)
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 
 		// Since 3.4-beta: Add the salt column to the users table
-		$db->add_field('users', 'salt', 'VARCHAR(10)', false, random_key(10)) or error('Unable to add salt field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'salt', 'VARCHAR(10)', false) or error('Unable to add salt field', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
