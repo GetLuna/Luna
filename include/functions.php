@@ -1213,11 +1213,20 @@ function random_pass($len)
 
 
 //
-// Compute a hash of $str
+// Compute a hash of $str with SHA1
 //
 function luna_hash($str)
 {
 	return sha1($str);
+}
+
+
+//
+// Compute a hash of $str with SHA512
+//
+function luna_sha2($str)
+{
+	return hash("sha512", $str);
 }
 
 
