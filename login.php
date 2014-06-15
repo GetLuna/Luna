@@ -33,8 +33,24 @@ if (isset($_POST['form_sent']) && $action == 'in')
 
 	if (!empty($cur_user['password']))
 	{
-		$form_password_hash = luna_hash($form_password); // Will result in a SHA-1 hash
-		$authorized = ($cur_user['password'] == $form_password_hash);
+		$form_password_hash = luna_sha2($form_password); // Will result in a SHA-512 hash
+
+		// If the length isn't 128 then the password isn't using SHA-512, so it must be SHA-1 from 1.4 up to 3.3
+		if (strlen($cur_user['password']) != 128)
+		{
+            $form_password_hash_1 = luna_hash($form_password);
+
+			if ($form_password_hash_1 == $cur_user['password'])
+			{
+				$authorized = true;
+
+                // Update the password to SHA-512
+				$db->query('UPDATE '.$db->prefix.'users SET password=\''.$form_password_hash.'\' WHERE id='.$cur_user['id']) or error('Unable to update user password', __FILE__, __LINE__, $db->error());
+			}
+		}
+		// Otherwise we should have a normal sha1 password
+		else
+			$authorized = ($cur_user['password'] == $form_password_hash);
 	}
 
 	if (!$authorized)
