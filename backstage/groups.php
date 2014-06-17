@@ -342,7 +342,7 @@ else if (isset($_POST['add_edit_group']))
 		$delete_topics = isset($_POST['delete_topics']) ? '1' : '0';
 		$set_title = isset($_POST['set_title']) ? '1' : '0';
 		$search = isset($_POST['search']) ? '1' : '0';
-		$search_users = isset($_POST['search_users']) ? intval($_POST['search_users']) : '1';
+		$search_users = isset($_POST['search_users']) ? '1' : '0';
 		$send_email = isset($_POST['send_email']) ? '1' : '0';
 		$post_flood = (isset($_POST['post_flood']) && $_POST['post_flood'] >= 0) ? intval($_POST['post_flood']) : '0';
 		$search_flood = (isset($_POST['search_flood']) && $_POST['search_flood'] >= 0) ? intval($_POST['search_flood']) : '0';
