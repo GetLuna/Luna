@@ -12,7 +12,6 @@ define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/common_admin.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
@@ -98,7 +97,8 @@ if (isset($_POST['add_user']))
 	$now = time();
 
 	$intial_group_id = ($_POST['random_pass'] == '0') ? $luna_config['o_default_user_group'] : FORUM_UNVERIFIED;
-	$password_hash = luna_hash($password);
+	$salt = random_key(10, true, false);
+	$password_hash = luna_sha2($password, $salt);
 
 	// Add the user
 	$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$email1.'\', '.$email_setting.', '.$timezone.' , \''.$language.'\', \''.$luna_config['o_default_style'].'\', '.$now.', \''.get_remote_address().'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());

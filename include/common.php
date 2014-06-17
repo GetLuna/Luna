@@ -157,6 +157,8 @@ check_cookie($luna_user);
 // Attempt to load the language file
 if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php'))
 	include FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
+elseif (file_exists(FORUM_ROOT.'lang/English/language.php'))
+	include FORUM_ROOT.'lang/English/language.php';
 else
 	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
 

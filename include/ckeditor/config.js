@@ -28,12 +28,10 @@ CKEDITOR.editorConfig = function( config ) {
     
 	// Dialog windows are also simplified.
 	config.extraPlugins = 'link';
-	config.extraPlugins = 'bbcode';
 	config.extraPlugins = 'sourcearea';
 	config.extraPlugins = 'sourcedialog';
 	config.extraPlugins = 'codesnippet';
 	config.extraPlugins = 'youtube';
-	config.extraPlugins = 'link';
     config.extraPlugins = 'divarea';
     
     // Other tweaks

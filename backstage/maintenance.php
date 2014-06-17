@@ -14,7 +14,6 @@ define('FORUM_DISABLE_BUFFERING', 1);
 
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/common_admin.php';
 
 if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");

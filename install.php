@@ -155,6 +155,7 @@ else
 	$email = strtolower(luna_trim($_POST['req_email']));
 	$password1 = luna_trim($_POST['req_password1']);
 	$password2 = luna_trim($_POST['req_password2']);
+	$salt = random_key(10, true, false);
 	$title = luna_trim($_POST['req_title']);
 	$description = luna_trim($_POST['desc']);
 	$base_url = luna_trim($_POST['req_base_url']);
@@ -1349,9 +1350,14 @@ else
 				'default'		=> '\'\''
 			),
 			'password'			=> array(
-				'datatype'		=> 'VARCHAR(40)',
+				'datatype'		=> 'VARCHAR(256)',
 				'allow_null'	=> false,
 				'default'		=> '\'\''
+			),
+			'salt'			=> array(
+				'datatype'		=> 'VARCHAR(10)',
+				'allow_null'	=> false,
+				'default'		=> NULL,
 			),
 			'email'				=> array(
 				'datatype'		=> 'VARCHAR(80)',
@@ -1565,7 +1571,7 @@ else
 	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\')')
 		or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, backstage_color, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', \'#14a3ff\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, backstage_color, num_posts, last_post, registered, registration_ip, last_visit, salt) VALUES(1, \''.$db->escape($username).'\', \''.luna_sha2($password1, $salt).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', \'#14a3ff\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', \''.$salt.'\')')
 		or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Enable/disable avatars depending on file_uploads setting in PHP configuration
@@ -1735,13 +1741,6 @@ else
 				</div>
                 <div class="panel-body">
 					<p><?php echo $lang['ModernBB has been installed'] ?></p>
-                </div>
-            </div>
-            <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Final instructions'] ?></h3>
-				</div>
-                <div class="panel-body">
 <?php
 
 if (!$written)
