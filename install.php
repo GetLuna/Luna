@@ -1741,13 +1741,6 @@ else
 				</div>
                 <div class="panel-body">
 					<p><?php echo $lang['ModernBB has been installed'] ?></p>
-                </div>
-            </div>
-            <div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Final instructions'] ?></h3>
-				</div>
-                <div class="panel-body">
 <?php
 
 if (!$written)
