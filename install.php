@@ -1357,7 +1357,7 @@ else
 			'salt'			=> array(
 				'datatype'		=> 'VARCHAR(10)',
 				'allow_null'	=> false,
-				'default'		=> random_key(10)
+				'default'		=> random_key(10, true, false)
 			),
 			'email'				=> array(
 				'datatype'		=> 'VARCHAR(80)',
