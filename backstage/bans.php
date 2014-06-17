@@ -12,7 +12,6 @@ define('FORUM_ADMIN_CONSOLE', 1);
 
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/common_admin.php';
 
 if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0')) {
     header("Location: ../login.php");
