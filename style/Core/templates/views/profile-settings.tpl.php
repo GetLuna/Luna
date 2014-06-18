@@ -249,7 +249,7 @@ if (count($languages) > 1)
 <?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['Show images sigs'] ?>
                             </label>
                         </div>
