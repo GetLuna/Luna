@@ -1,0 +1,153 @@
+/*
+Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+
+/* The box that holds an IFRAME. It's inserted into a host document and positioned
+   absolutely by the application. It floats above the host document/editor. */
+.cke_panel
+{
+	/* Restore the loading hide */
+	visibility: visible;
+    width: 120px;
+   	height: 100px;
+   	overflow: hidden;
+
+	background-color: #fff;
+    border: 1px solid #b6b6b6;
+    border-bottom-color: #999;
+}
+
+/* This class represents panels which are used as context menus. */
+.cke_menu_panel
+{
+	padding: 0;
+	margin: 0;
+}
+
+/* This class represents panels which are used by rich combos. */
+.cke_combopanel
+{
+    width: 150px;
+    height: 170px;
+}
+
+/* The IFRAME the panel is wrapped into. */
+.cke_panel_frame
+{
+	width: 100%;
+	height: 100%;
+	font-size: 12px;
+
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+/* The HTML document which is a direct descendant of the IFRAME */
+.cke_panel_container
+{
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+
+/* The list of panel items. */
+.cke_panel_list
+{
+	list-style-type: none;
+	margin: 3px;
+	padding: 0;
+	white-space: nowrap;
+}
+
+/* The item of .cke_panel_list */
+.cke_panel_listItem
+{
+	margin: 0;
+    padding-bottom: 1px;
+}
+
+/* The child of .cke_panel_listItem. These elements contain spans which are
+   to display a real name of the property which is visible for an end-user. */
+.cke_panel_listItem a
+{
+	padding: 3px 4px;
+	display: block;
+	border: 1px solid #fff;
+	color: inherit !important;
+	text-decoration: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* IE6 */
+* html .cke_panel_listItem a
+{
+	width : 100%;
+
+	/* IE is not able to inherit the color, so we must force it to black */
+	color: #000;
+}
+
+/* IE7 */
+*:first-child+html .cke_panel_listItem a
+{
+	/* IE is not able to inherit the color, so we must force it to black */
+	color: #000;
+}
+
+.cke_panel_listItem.cke_selected a
+{
+	border: 1px solid #dedede;
+	background-color: #f2f2f2;
+}
+
+.cke_panel_listItem a:hover,
+.cke_panel_listItem a:focus,
+.cke_panel_listItem a:active
+{
+	border-color: #dedede;
+	background-color: #f2f2f2;
+}
+
+.cke_hc .cke_panel_listItem a
+{
+	border-style: none;
+}
+
+.cke_hc .cke_panel_listItem a:hover,
+.cke_hc .cke_panel_listItem a:focus,
+.cke_hc .cke_panel_listItem a:active
+{
+	border: 2px solid;
+	padding: 1px 2px;
+}
+
+/* The title of the entire panel which is visible on top of the list. */
+.cke_panel_grouptitle
+{
+	font-size: 11px;
+	font-weight: bold;
+	white-space: nowrap;
+	margin: 0;
+	padding: 4px 6px;
+
+    color: #474747;
+    text-shadow: 0 1px 0 rgba(255,255,255,.75);
+    border-bottom: 1px solid #b6b6b6;
+}
+
+/* The following styles set defaults of the elements used by the Paragraph
+   Format panel. */
+.cke_panel_listItem p,
+.cke_panel_listItem h1,
+.cke_panel_listItem h2,
+.cke_panel_listItem h3,
+.cke_panel_listItem h4,
+.cke_panel_listItem h5,
+.cke_panel_listItem h6,
+.cke_panel_listItem pre
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
