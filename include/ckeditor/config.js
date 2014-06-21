@@ -8,32 +8,27 @@ CKEDITOR.editorConfig = function( config ) {
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
-    config.toolbarGroups = [
-        { name: 'basicstyles', groups: [ 'basicstyles' ] },
-        { name: 'paragraph',   groups: [ 'list' ] },
-        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-        { name: 'links'},
-        { name: 'insert' },
-        { name: 'forms' },
-        { name: 'tools' },
-        { name: 'document',    groups: [ 'mode', 'document', 'doctools' ] },
-        { name: 'others' },
-        { name: 'styles' },
-        { name: 'colors' },
-        { name: 'about' }
-    ];
-    
-    // Remove buttons
-	config.removeButtons = 'Anchor';
-    
+	// The toolbar groups arrangement, optimized for a single toolbar row.
+	config.toolbarGroups = [
+		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+		{ name: 'forms' },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'links' },
+		{ name: 'insert' },
+		{ name: 'styles' },
+		{ name: 'colors' },
+		{ name: 'tools' },
+		{ name: 'others' },
+		{ name: 'about' }
+	];
+
+	// The default plugins included in the basic setup define some buttons that
+	// are not needed in a basic editor. They are removed here.
+	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
+
 	// Dialog windows are also simplified.
-	config.extraPlugins = 'link';
-	config.extraPlugins = 'sourcearea';
-	config.extraPlugins = 'sourcedialog';
-	config.extraPlugins = 'codesnippet';
-	config.extraPlugins = 'youtube';
-    config.extraPlugins = 'divarea';
-    
-    // Other tweaks
-    config.toolbarCanCollapse = true;
+	config.removeDialogTabs = 'link:advanced';
 };
