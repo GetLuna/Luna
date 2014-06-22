@@ -46,6 +46,34 @@ if ($luna_user['is_guest'])
 }
 
 ?>
+                        <div class="btn-toolbar textarea-toolbar">
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[b][/b]');"><span class="fa fa-bold fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[u][/u]');"><span class="fa fa-underline fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[i][/i]');"><span class="fa fa-italic fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[s][/s]');"><span class="fa fa-strikethrough fa-fw"></span></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[h][/h]');"><span class="fa fa-header fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sub][/sub]');"><span class="fa fa-subscript fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sup][/sup]');"><span class="fa fa-superscript fa-fw"></span></a>
+                            </div>
+                            <div class="btn-group hidden-xs">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[quote][/quote]');"><span class="fa fa-quote-left fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[code][/code]');"><span class="fa fa-code fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[c][/c]');"><span class="fa fa-file-code-o fa-fw"></span></a>
+                            </div>
+                            <div class="btn-group hidden-xs">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[url][/url]');"><span class="fa fa-link fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[img][/img]');"><span class="fa fa-image fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[video][/video]');"><span class="fa fa-play-circle fa-fw"></span></a>
+                            </div>
+                            <div class="btn-group hidden-xs">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list][/list]');"><span class="fa fa-list-ol fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list=a][/list]');"><span class="fa fa-list-ul fa-fw"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[*][/*]');"><span class="fa fa-asterisk fa-fw"></span></a>
+                            </div>
+                        </div>
 						<textarea placeholder="Start typing..." class="form-control" name="req_message" rows="7" tabindex="<?php echo $cur_index++ ?>"></textarea>
 					</fieldset>
 					<div class="panel-footer">
@@ -70,3 +98,22 @@ if ($luna_user['is_guest'])
 		</div>
 	</div>
 </div>
+<script>
+function inyectarTexto(elemento,valor) {
+     var elemento_dom=document.getElementsByName(elemento)[0];
+     if(document.selection) {
+         elemento_dom.focus();
+         sel=document.selection.createRange();
+         sel.text=valor;
+         return;
+     } if(elemento_dom.selectionStart||elemento_dom.selectionStart=="0") {
+         var t_start=elemento_dom.selectionStart;
+         var t_end=elemento_dom.selectionEnd;
+         var val_start=elemento_dom.value.substring(0,t_start);
+         var val_end=elemento_dom.value.substring(t_end,elemento_dom.value.length);
+         elemento_dom.value=val_start+valor+val_end;
+     } else {
+         elemento_dom.value+=valor;
+     }
+}
+</script>
