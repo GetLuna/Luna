@@ -29,29 +29,29 @@ if (!defined('FORUM'))
 					<fieldset class="quickpostfield">
                         <div class="btn-toolbar textarea-toolbar">
                             <div class="btn-group">
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[b][/b]');">Bold</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[u][/u]');">Underline</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[i][/i]');">Italic</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[s][/s]');">Strikethrough</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[b][/b]');"><span class="fa fa-bold"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[u][/u]');"><span class="fa fa-underline"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[i][/i]');"><span class="fa fa-italic"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[s][/s]');"><span class="fa fa-strikethrough"></span></a>
                             </div>
                             <div class="btn-group">
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[h][/h]');">Heading</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sub][/sub]');">Subscript</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sup][/sup]');">Superscript</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[h][/h]');"><span class="fa fa-header"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sub][/sub]');"><span class="fa fa-subscript"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sup][/sup]');"><span class="fa fa-superscript"></span></a>
                             </div>
                             <div class="btn-group">
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[quote][/quote]');">Quote</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[code][/code]');">Code</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[c][/c]');">Inline code</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[quote][/quote]');"><span class="fa fa-quote-left"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[code][/code]');"><span class="fa fa-code"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[c][/c]');"><span class="fa fa-file-code-o"></span></a>
                             </div>
                             <div class="btn-group">
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[url][/url]');">Link</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[img][/img]');">Image</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[video][/video]');">Video</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[url][/url]');"><span class="fa fa-link"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[img][/img]');"><span class="fa fa-image"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[video][/video]');"><span class="fa fa-play-circle"></span></a>
                             </div>
                             <div class="btn-group">
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list][/list]');">List dot</a>
-                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list=a][/list]');">List num</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list][/list]');"><span class="fa fa-list-ol"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list=a][/list]');"><span class="fa fa-list-ul"></span></a>
                             </div>
                         </div>
 						<input type="hidden" name="form_sent" value="1" />
