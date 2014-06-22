@@ -1001,6 +1001,7 @@ $lang = array(
 'Posts per page help'				=>	'Default amount of posts per page',
 'Indent label'						=>	'Indent size',
 'Index panels head'					=>	'Index settings',
+'Moderated by help'                 =>  'Show the "Moderated by" list when moderators are set on a per-forum base.',
 'Index statistics help'				=>	'Show the statistics panel on the index.',
 'Indent help'						=>	'Amount of spaces that represent a tab',
 'Quote depth label'					=>	'Maximum [quote] depth',
