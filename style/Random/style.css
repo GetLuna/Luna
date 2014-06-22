@@ -503,6 +503,17 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	}
 }
 
+.textarea-toolbar {
+    background: #eee;
+    margin: 0;
+    padding: 6px 2px;
+    border-bottom: #ddd 1px solid;
+}
+
+.fa-fw {
+	width: 1.1em !important;
+}
+
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;

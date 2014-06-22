@@ -476,6 +476,27 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	font-size: 20px;
 }
 
+#quickpostform > .panel {
+	margin-top: 10px;
+}
+
+@media screen and (max-width: 991px) {
+	#quickpostform > .panel-heading {
+		border-radius: 0;
+	}
+}
+
+.textarea-toolbar {
+    background: #eee;
+    margin: 0;
+    padding: 6px 2px;
+    border-bottom: #ddd 1px solid;
+}
+
+.fa-fw {
+	width: 1.1em !important;
+}
+
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;
