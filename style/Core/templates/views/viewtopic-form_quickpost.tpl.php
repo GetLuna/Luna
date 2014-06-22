@@ -27,6 +27,33 @@ if (!defined('FORUM'))
 						<h3 class="panel-title"><?php echo $lang['Quick post'] ?></h3>
 					</div>
 					<fieldset class="quickpostfield">
+                        <div class="btn-toolbar textarea-toolbar">
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[b][/b]');">Bold</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[u][/u]');">Underline</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[i][/i]');">Italic</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[s][/s]');">Strikethrough</a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[h][/h]');">Heading</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sub][/sub]');">Subscript</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sup][/sup]');">Superscript</a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[quote][/quote]');">Quote</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[code][/code]');">Code</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[c][/c]');">Inline code</a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[url][/url]');">Link</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[img][/img]');">Image</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[video][/video]');">Video</a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list][/list]');">List dot</a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list=a][/list]');">List num</a>
+                            </div>
+                        </div>
 						<input type="hidden" name="form_sent" value="1" />
 <?php if ($luna_config['o_topic_subscriptions'] == '1' && ($luna_user['auto_notify'] == '1' || $cur_topic['is_subscribed'])): ?>                        <input type="hidden" name="subscribe" value="1" />
 <?php endif; ?>
@@ -70,3 +97,22 @@ if ($luna_user['is_guest'])
 		</div>
 	</div>
 </div>
+<script>
+function inyectarTexto(elemento,valor) {
+     var elemento_dom=document.getElementsByName(elemento)[0];
+     if(document.selection) {
+         elemento_dom.focus();
+         sel=document.selection.createRange();
+         sel.text=valor;
+         return;
+     } if(elemento_dom.selectionStart||elemento_dom.selectionStart=="0") {
+         var t_start=elemento_dom.selectionStart;
+         var t_end=elemento_dom.selectionEnd;
+         var val_start=elemento_dom.value.substring(0,t_start);
+         var val_end=elemento_dom.value.substring(t_end,elemento_dom.value.length);
+         elemento_dom.value=val_start+valor+val_end;
+     } else {
+         elemento_dom.value+=valor;
+     }
+}
+</script>
