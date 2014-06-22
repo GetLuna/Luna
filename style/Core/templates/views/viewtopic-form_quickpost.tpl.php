@@ -39,17 +39,17 @@ if (!defined('FORUM'))
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sub][/sub]');"><span class="fa fa-subscript"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sup][/sup]');"><span class="fa fa-superscript"></span></a>
                             </div>
-                            <div class="btn-group">
+                            <div class="btn-group hidden-xs">
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[quote][/quote]');"><span class="fa fa-quote-left"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[code][/code]');"><span class="fa fa-code"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[c][/c]');"><span class="fa fa-file-code-o"></span></a>
                             </div>
-                            <div class="btn-group">
+                            <div class="btn-group hidden-xs">
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[url][/url]');"><span class="fa fa-link"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[img][/img]');"><span class="fa fa-image"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[video][/video]');"><span class="fa fa-play-circle"></span></a>
                             </div>
-                            <div class="btn-group">
+                            <div class="btn-group hidden-xs">
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list][/list]');"><span class="fa fa-list-ol"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list=a][/list]');"><span class="fa fa-list-ul"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[*][/*]');"><span class="fa fa-asterisk"></span></a>
