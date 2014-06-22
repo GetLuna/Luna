@@ -52,6 +52,7 @@ if (!defined('FORUM'))
                             <div class="btn-group">
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list][/list]');"><span class="fa fa-list-ol"></span></a>
                                 <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list=a][/list]');"><span class="fa fa-list-ul"></span></a>
+                                <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[*][/*]');"><span class="fa fa-asterisk"></span></a>
                             </div>
                         </div>
 						<input type="hidden" name="form_sent" value="1" />
