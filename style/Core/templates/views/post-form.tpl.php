@@ -32,10 +32,38 @@ if ($luna_user['is_guest'])
 if ($fid): ?>
             <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
 <?php endif; ?>
+            <div class="btn-toolbar textarea-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[b][/b]');"><span class="fa fa-bold"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[u][/u]');"><span class="fa fa-underline"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[i][/i]');"><span class="fa fa-italic"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[s][/s]');"><span class="fa fa-strikethrough"></span></a>
+                </div>
+                <div class="btn-group">
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[h][/h]');"><span class="fa fa-header"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sub][/sub]');"><span class="fa fa-subscript"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[sup][/sup]');"><span class="fa fa-superscript"></span></a>
+                </div>
+                <div class="btn-group hidden-xs">
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[quote][/quote]');"><span class="fa fa-quote-left"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[code][/code]');"><span class="fa fa-code"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[c][/c]');"><span class="fa fa-file-code-o"></span></a>
+                </div>
+                <div class="btn-group hidden-xs">
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[url][/url]');"><span class="fa fa-link"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[img][/img]');"><span class="fa fa-image"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[video][/video]');"><span class="fa fa-play-circle"></span></a>
+                </div>
+                <div class="btn-group hidden-xs">
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list][/list]');"><span class="fa fa-list-ol"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[list=a][/list]');"><span class="fa fa-list-ul"></span></a>
+                    <a class="btn btn-default" href="javascript:void(0);" onclick="inyectarTexto('req_message','[*][/*]');"><span class="fa fa-asterisk"></span></a>
+                </div>
+            </div>
             <textarea class="form-control"  placeholder="Start typing..." name="req_message" rows="20" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
         </fieldset>
         <div class="panel-footer">
-            <div class="btn-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
+            <div class="btn-toolbar"><div class="btn-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
             <ul class="bblinks">
 				<li><?php echo ($luna_config['p_message_bbcode'] == '1') 
 					? '<a class="label label-success" href="help.php#bbcode" onclick="window.open(this.href); return false;">'.$lang['BBCode'].'</a>' 
@@ -98,6 +126,25 @@ if (!empty($checkboxes))
         </div>
     </div>
 </form>
+<script>
+function inyectarTexto(elemento,valor) {
+     var elemento_dom=document.getElementsByName(elemento)[0];
+     if(document.selection) {
+         elemento_dom.focus();
+         sel=document.selection.createRange();
+         sel.text=valor;
+         return;
+     } if(elemento_dom.selectionStart||elemento_dom.selectionStart=="0") {
+         var t_start=elemento_dom.selectionStart;
+         var t_end=elemento_dom.selectionEnd;
+         var val_start=elemento_dom.value.substring(0,t_start);
+         var val_end=elemento_dom.value.substring(t_end,elemento_dom.value.length);
+         elemento_dom.value=val_start+valor+val_end;
+     } else {
+         elemento_dom.value+=valor;
+     }
+}
+</script>
 <?php
 
 }
