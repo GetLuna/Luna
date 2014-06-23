@@ -421,19 +421,27 @@ switch ($stage)
 		// Since 3.3-beta: Drop the backstage_style column from the forums table
 		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4-beta: Insert new config option o_cookie_bar
+		// Since 3.4-rc: Insert new config option o_cookie_bar
 		if (!array_key_exists('o_cookie_bar', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar\', \'0\')') or error('Unable to insert config value \'o_cookie_bar\'', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4-beta: Insert new config option o_moderated_by
+		// Since 3.4-rc: Insert new config option o_moderated_by
 		if (!array_key_exists('o_moderated_by', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_moderated_by\', \'1\')') or error('Unable to insert config value \'o_moderated_by\'', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4-beta: Make password field VARCHAR(256)
+		// Since 3.4-rc: Make password field VARCHAR(256)
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4-beta: Add the salt column to the users table
+		// Since 3.4-rc: Add the salt column to the users table
 		$db->add_field('users', 'salt', 'VARCHAR(10)', false) or error('Unable to add salt field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4-rc: Insert new config option video_width
+		if (!array_key_exists('o_video_width', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'video_width\', \'640\')') or error('Unable to insert config value \'o_video_width\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4-rc: Insert new config option video_height
+		if (!array_key_exists('o_video_height', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'video_height\', \'360\')') or error('Unable to insert config value \'o_video_height\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
