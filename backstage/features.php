@@ -40,6 +40,8 @@ if (isset($_POST['form_sent']))
 		'make_links'			      => isset($_POST['form']['make_links']) ? '1' : '0',
 		'indent_num_spaces'		      => (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'			      => (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
+		'video_width'		          => (intval($_POST['form']['video_width']) >= 0) ? intval($_POST['form']['video_width']) : 0,
+		'video_height'			      => (intval($_POST['form']['video_height']) > 0) ? intval($_POST['form']['video_height']) : 1,
 		'gzip'						  => isset($_POST['form']['gzip']) ? '1' : '0',
 		'search_all_forums'			  => isset($_POST['form']['search_all_forums']) ? '1' : '0',
 		'enable_advanced_search'	  => isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
@@ -233,6 +235,19 @@ if (isset($_GET['saved']))
                     <label class="col-sm-3 control-label"><?php echo $lang['Quote depth label'] ?><span class="help-block"><?php echo $lang['Quote depth help'] ?></span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Video height'] ?><span class="help-block"><?php echo $lang['Video height help'] ?></span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[video_width]" maxlength="4" value="<?php echo $luna_config['o_video_width'] ?>" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Video width'] ?><span class="help-block"><?php echo $lang['Video width help'] ?></span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[video_height]" maxlength="4" value="<?php echo $luna_config['o_video_height'] ?>" />
                     </div>
                 </div>
             </fieldset>

@@ -36,6 +36,7 @@ if (isset($_POST['form_sent']))
 		'header_title'			=> isset($_POST['form']['header_title']) ? '1' : '0',
 		'header_desc'			=> isset($_POST['form']['header_desc']) ? '1' : '0',
 		'menu_title'			=> isset($_POST['form']['menu_title']) ? '1' : '0',
+		'moderated_by'		    => isset($_POST['form']['moderated_by']) ? '1' : '0',
 		'show_index_stats'		=> isset($_POST['form']['show_index_stats']) ? '1' : '0',
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
@@ -214,10 +215,16 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
+                                <input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Moderated by help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
                                 <input type="checkbox" name="form[show_index_stats]" value="1" <?php if ($luna_config['o_show_index_stats'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Index statistics help'] ?>
                             </label>
-                        </div>           
+                        </div>
                     </div>
                 </div>
                 <hr />

@@ -1645,6 +1645,8 @@ else
 		'o_smtp_ssl'				=> 0,
 		'o_regs_allow'				=> 1,
 		'o_regs_verify'				=> 0,
+		'o_video_width'			    => 640,
+		'o_video_height'			=> 360,
 		'o_enable_advanced_search'	=> 1,
 		'o_announcement'			=> 0,
 		'o_announcement_message'	=> $lang['Announcement'],
