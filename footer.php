@@ -54,7 +54,6 @@ ob_start();
 
 		<?php } ?>
 
-		</div>
 <?php } ?>
 
 <?php
@@ -85,11 +84,11 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 
 if (!defined('FORUM_FORM')) { ?>
 		<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], '<a href="http://modernbb.be/">ModernBB</a>'.(($luna_config['o_show_version'] == '1') ? ' '.$luna_config['o_cur_version'] : '')) ?></span>
-		<script src="include/bootstrap/jquery.js"></script>
-		<script src="include/bootstrap/js/bootstrap.min.js"></script>
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <?php } ?>
-	</div>
-</footer>
+    </footer>
+</div>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 <div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 	<div class="container">
