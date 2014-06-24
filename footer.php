@@ -54,7 +54,6 @@ ob_start();
 
 		<?php } ?>
 
-		</div>
 <?php } ?>
 
 <?php
@@ -88,8 +87,8 @@ if (!defined('FORUM_FORM')) { ?>
 		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <?php } ?>
-	</div>
-</footer>
+    </footer>
+</div>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 <div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 	<div class="container">
