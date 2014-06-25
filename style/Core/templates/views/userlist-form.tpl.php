@@ -36,25 +36,26 @@ while ($cur_group = $db->fetch_assoc($result))
 }
 
 ?>
-                    </select>
-                </div>
-                <div class="col-md-2 col-sm-3">
-                    <select class="form-control" name="sort_by">
-                        <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang['Username'] ?></option>
-                        <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Registered table'] ?></option>
-                        <?php if ($show_post_count): ?>
-                            <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang['No of posts'] ?></option>
-                        <?php endif; ?>
-                    </select>
-                </div>
-                <div class="col-md-2 col-sm-3">
-                    <select class="form-control" name="sort_dir">
-                        <option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang['Ascending'] ?></option>
-                        <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang['Descending'] ?></option>
-                    </select>
-                </div>
-                <div class="col-md-1 col-sm-1">
-                    <input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Submit'] ?>" accesskey="s" />
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-sm-3">
+                        <select class="form-control" name="sort_by">
+                            <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang['Username'] ?></option>
+                            <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Registered table'] ?></option>
+                            <?php if ($show_post_count): ?>
+                                <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang['No of posts'] ?></option>
+                            <?php endif; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-sm-3">
+                        <select class="form-control" name="sort_dir">
+                            <option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang['Ascending'] ?></option>
+                            <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang['Descending'] ?></option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                        <input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Submit'] ?>" accesskey="s" />
+                    </div>
                 </div>
             </fieldset>
         </form>
