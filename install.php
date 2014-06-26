@@ -248,7 +248,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $lang['ModernBB Installation'] ?></title>
-        <link rel="stylesheet" type="text/css" href="include/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <?php require FORUM_ROOT.'backstage/css/accent.php'; ?>
         <script type="text/javascript">
@@ -1731,7 +1731,7 @@ else
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $lang['ModernBB Installation'] ?></title>
-        <link rel="stylesheet" type="text/css" href="include/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <?php require FORUM_ROOT.'backstage/css/accent.php'; ?>
     </head>
