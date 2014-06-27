@@ -32,6 +32,8 @@ $lang = array(
 'Pun include error'					=>  'Unable to process user include %s from template %s. There is no such file in neither the template directory nor in the user include directory',  
 'Settings saved'					=>  'Your settings have been saved.',
 'User deleted'						=>  'The user has been deleted.',
+'User failed'                       =>  'Failed to create user, no password was given.',
+'User created'                      =>  'User created',
 'Cache cleared'						=>  'The cache files have been removed.',
 
 //
