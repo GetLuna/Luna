@@ -433,7 +433,7 @@ switch ($stage)
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 
 		// Since 3.4-rc: Add the salt column to the users table
-		$db->add_field('users', 'salt', 'VARCHAR(10)', false) or error('Unable to add salt field', __FILE__, __LINE__, $db->error());
+		// $db->add_field('users', 'salt', 'VARCHAR(10)', false) or error('Unable to add salt field', __FILE__, __LINE__, $db->error());
 
 		// Since 3.4-rc: Insert new config option video_width
 		if (!array_key_exists('o_video_width', $luna_config))

@@ -33,27 +33,8 @@ if (isset($_POST['form_sent']) && $action == 'in')
 
 	if (!empty($cur_user['password']))
 	{
-        if (empty($cur_user['salt']))
-            $db->query('UPDATE '.$db->prefix.'users SET salt=\''.random_key(10, true, false).'\' WHERE id='.$cur_user['id']) or error('Unable to add salt', __FILE__, __LINE__, $db->error());
-            
-		$form_password_hash = luna_sha2($form_password, $cur_user['salt']); // Will result in a SHA-512 hash
-
-		// If the length isn't 128 then the password isn't using SHA-512, so it must be SHA-1 from 1.4 up to 3.3
-		if (strlen($cur_user['password']) != 128)
-		{
-            $form_password_hash_1 = luna_hash($form_password);
-
-			if ($form_password_hash_1 == $cur_user['password'])
-			{
-				$authorized = true;
-
-                // Update the password to SHA-512
-				$db->query('UPDATE '.$db->prefix.'users SET password=\''.$form_password_hash.'\' WHERE id='.$cur_user['id']) or error('Unable to update user password', __FILE__, __LINE__, $db->error());
-			}
-		}
-		// Otherwise we should have a normal sha1 password
-		else
-			$authorized = ($cur_user['password'] == $form_password_hash);
+        $form_password_hash = luna_hash($form_password); // Will result in a SHA-1 hash
+        $authorized = ($cur_user['password'] == $form_password_hash);
 	}
 
 	if (!$authorized)
@@ -152,7 +133,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 					$new_password = random_pass(8);
 					$new_password_key = random_pass(8);
 
-					$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.luna_sha2($new_password, $cur_hit['salt']).'\', activate_key=\''.$new_password_key.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id']) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
+					$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.luna_hash($new_password).'\', activate_key=\''.$new_password_key.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id']) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
 
 					// Do the user specific replacements to the template
 					$cur_mail_message = str_replace('<username>', $cur_hit['username'], $mail_message);

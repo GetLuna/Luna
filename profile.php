@@ -49,7 +49,7 @@ if ($action == 'change_pass')
 			message($lang['Pass key bad'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
 		else
 		{
-			$db->query('UPDATE '.$db->prefix.'users SET password=\''.$cur_user['activate_string'].'\', activate_string=NULL, activate_key=NULL'.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'users SET password=\''.luna_sha2($cur_user['activate_string'], $cur_user['salt']).'\', activate_string=NULL, activate_key=NULL'.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
 
 			message($lang['Pass updated'], true);
 		}
@@ -94,7 +94,7 @@ if ($action == 'change_pass')
 
 		if (!empty($cur_user['password']))
 		{
-			$old_password_hash = luna_sha2($old_password, $luna_user['salt']);
+			$old_password_hash = luna_hash($old_password);
 
 			if ($cur_user['password'] == $old_password_hash || $luna_user['is_admmod'])
 				$authorized = true;
@@ -103,7 +103,7 @@ if ($action == 'change_pass')
 		if (!$authorized)
 			message($lang['Wrong pass']);
 
-		$new_password_hash = luna_sha2($new_password1, $luna_user['salt']);
+		$new_password_hash = luna_hash($new_password1);
 
 		$db->query('UPDATE '.$db->prefix.'users SET password=\''.$new_password_hash.'\''.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
 
@@ -161,7 +161,7 @@ else if ($action == 'change_email')
 	}
 	else if (isset($_POST['form_sent']))
 	{
-		if (luna_sha2($_POST['req_password'], $luna_user['salt']) !== $luna_user['password'])
+		if (luna_hash($_POST['req_password']) !== $luna_user['password'])
 			message($lang['Wrong pass']);
 
 		// Make sure they got here from the site

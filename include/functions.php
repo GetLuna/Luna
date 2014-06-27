@@ -164,7 +164,7 @@ function authenticate_user($user, $password, $password_is_hash = false)
 
 	if (!isset($luna_user['id']) ||
 		($password_is_hash && $password != $luna_user['password']) ||
-		(!$password_is_hash && luna_sha2($password, $luna_user['salt']) != $luna_user['password']))
+		(!$password_is_hash && luna_hash($password) != $luna_user['password']))
 		set_default_user();
 	else
 		$luna_user['is_guest'] = false;
