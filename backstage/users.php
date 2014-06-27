@@ -31,8 +31,10 @@ if (isset($_POST['add_user']))
 
 	if (isset($_POST['random_pass']) == '1')
 		$password = random_pass(8);
-	else
+	elseif (!empty(trim($_POST['password'])))
 		$password = trim($_POST['password']);
+    else
+		redirect('backstage/users.php?user_failed=true');
 
 	$errors = array();
 
@@ -136,8 +138,8 @@ if (isset($_POST['add_user']))
 		require FORUM_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
-
-	message('User created');
+    
+	redirect('backstage/users.php?user_created=true');
 }
 
 // Show IP statistics for a certain user ID
@@ -1008,6 +1010,10 @@ if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
 if (isset($_GET['deleted']))
 	echo '<div class="alert alert-danger"><h4>'.$lang['User deleted'].'</h4></div>';
+if (isset($_GET['user_created']))
+	echo '<div class="alert alert-success"><h4>'.$lang['User created'].'</h4></div>';
+if (isset($_GET['user_failed']))
+	echo '<div class="alert alert-danger"><h4>'.$lang['User failed'].'</h4></div>';
 ?>
 <form id="find_user" method="get" action="users.php">
     <div class="panel panel-default">
@@ -1146,13 +1152,13 @@ if (isset($_GET['deleted']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Username'] ?></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="username" tabindex="3" />
+                        <input type="text" class="form-control" name="username" tabindex="3" required="required" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="email" tabindex="3" />
+                        <input type="text" class="form-control" name="email" tabindex="3" required="required" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -1161,7 +1167,7 @@ if (isset($_GET['deleted']))
                         <input type="password" class="form-control" name="password" tabindex="3" />
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="random_pass" value="1" />
+                                <input type="checkbox" name="random_pass" value="1" checked="checked" />
                                 <?php echo $lang['Random password info'] ?>
                             </label>
                         </div>
