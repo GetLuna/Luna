@@ -54,7 +54,7 @@ while ($cur_group = $db->fetch_assoc($result))
                         </select>
                     </div>
                     <div class="col-md-1 col-sm-1">
-                        <input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Submit'] ?>" accesskey="s" />
+                        <input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" />
                     </div>
                 </div>
             </fieldset>
