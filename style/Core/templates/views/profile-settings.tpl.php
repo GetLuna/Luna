@@ -5,7 +5,7 @@ if (!defined('FORUM'))
     exit;
 
 ?>
-
+<link rel="stylesheet" type="text/css" href="include/css/accent.css">
 <div class="col-sm-3 profile-nav">
 <?php
     generate_profile_menu('settings');
