@@ -98,33 +98,27 @@ if (!defined('FORUM'))
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Jabber'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Microsoft'] ?></label>
                     <div class="col-sm-9">
-                        <input id="jabber" type="text" class="form-control" name="form[jabber]" value="<?php echo luna_htmlspecialchars($user['jabber']) ?>" maxlength="75" />
+                        <input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['ICQ'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Facebook'] ?></label>
                     <div class="col-sm-9">
-                        <input id="icq" type="text" class="form-control" name="form[icq]" value="<?php echo $user['icq'] ?>" maxlength="12" />
+                        <input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['MSN'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Twitter'] ?></label>
                     <div class="col-sm-9">
-                        <input id="msn" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" />
+                        <input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['AOL'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Google+'] ?></label>
                     <div class="col-sm-9">
-                        <input id="aim" type="text" class="form-control" name="form[aim]" value="<?php echo luna_htmlspecialchars($user['aim']) ?>" maxlength="30" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Yahoo'] ?></label>
-                    <div class="col-sm-9">
-                        <input id="yahoo" type="text" class="form-control" name="form[yahoo]" value="<?php echo luna_htmlspecialchars($user['yahoo']) ?>" maxlength="30" />
+                        <input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" />
                     </div>
                 </div>
             </fieldset>
