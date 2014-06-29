@@ -1677,9 +1677,6 @@ else
 	}
 
 	// Insert some other default data
-	$subject = $lang['Test post'];
-	$message = $lang['Message'];
-
 	$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
 		or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
