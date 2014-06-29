@@ -1211,54 +1211,6 @@ blockquote p {
     border: 3px solid #bbb;
 }
 
-.bspink, .btn .bspink {
-    background-color :#dc4fad !important;
-}
-
-.bscrimson, .btn .bscrimson {
-    background-color :#ac193d !important;
-}
-
-.bsorange, .btn .bsorange {
-    background-color :#d24726 !important;
-}
-
-.bsamber, .btn .bsamber {
-    background-color :#ff8f32 !important;
-}
-
-.bslime, .btn .bslime {
-    background-color :#82ba00 !important;
-}
-
-.bsgreen, .btn .bsgreen {
-    background-color :#008a17 !important;
-}
-
-.bsteal, .btn .bsteal {
-    background-color :#03b3b2 !important;
-}
-
-.bsdarkteal, .btn .bsdarkteal {
-	background-color: #008299 !important;
-}
-
-.bsmbbblue, .btn .bsmbbblue {
-	background-color: #14a3ff !important;
-}
-
-.bsblue, .btn .bsblue {
-	background-color: #0072c6 !important;
-}
-
-.bsindigo, .btn .bsindigo {
-	background-color: #4617b4 !important;
-}
-
-.bsviolet, .btn .bsviolet {
-	background-color: #8c0095 !important;
-}
-
 /* Cookie bar */
 .cookie-bar {
 	background: #393939;

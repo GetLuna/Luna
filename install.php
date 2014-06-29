@@ -1677,9 +1677,6 @@ else
 	}
 
 	// Insert some other default data
-	$subject = $lang['Test post'];
-	$message = $lang['Message'];
-
 	$db->query('INSERT INTO '.$db_prefix.'categories (cat_name, disp_position) VALUES(\''.$db->escape($lang_install['General']).'\', 1)')
 		or error('Unable to insert into table '.$db_prefix.'categories. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
