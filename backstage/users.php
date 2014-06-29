@@ -850,7 +850,7 @@ else if (isset($_GET['find_user']))
 	$like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
 	foreach ($form as $key => $input)
 	{
-		if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'url', 'jabber', 'icq', 'msn', 'aim', 'yahoo', 'location', 'signature', 'admin_note')))
+		if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'url', 'facebook', 'msn', 'twitter', 'google', 'location', 'signature', 'admin_note')))
 		{
 			$conditions[] = 'u.'.$db->escape($key).' '.$like_command.' \''.$db->escape(str_replace('*', '%', $input)).'\'';
 			$query_str[] = 'form%5B'.$key.'%5D='.urlencode($input);
@@ -1040,30 +1040,24 @@ if (isset($_GET['user_failed']))
 				<tr>
 					<th><?php echo $lang['Website'] ?></th>
 					<td><input type="text" class="form-control" name="form[url]" maxlength="100" tabindex="6" /></td>
-					<th><?php echo $lang['Jabber'] ?></th>
-					<td><input type="text" class="form-control" name="form[jabber]" maxlength="75" tabindex="7" /></td>
+					<th><?php echo $lang['Facebook'] ?></th>
+					<td><input type="text" class="form-control" name="form[facebook]" maxlength="50" tabindex="7" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['ICQ'] ?></th>
-					<td><input type="text" class="form-control" name="form[icq]" maxlength="12" tabindex="8" /></td>
-					<th><?php echo $lang['MSN'] ?></th>
-					<td><input type="text" class="form-control" name="form[msn]" maxlength="50" tabindex="9" /></td>
+					<th><?php echo $lang['Microsoft'] ?></th>
+					<td><input type="text" class="form-control" name="form[msn]" maxlength="50" tabindex="8" /></td>
+					<th><?php echo $lang['Twitter'] ?></th>
+					<td><input type="text" class="form-control" name="form[twitter]" maxlength="50" tabindex="9" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['AOL'] ?></th>
-					<td><input type="text" class="form-control" name="form[aim]" maxlength="20" tabindex="10" /></td>
-					<th><?php echo $lang['Yahoo'] ?></th>
-					<td><input type="text" class="form-control" name="form[yahoo]" maxlength="20" tabindex="11" /></td>
-				</tr>
-				<tr>
+					<th><?php echo $lang['Google+'] ?></th>
+					<td><input type="text" class="form-control" name="form[google]" maxlength="50" tabindex="10" /></td>
 					<th><?php echo $lang['Location'] ?></th>
-					<td><input type="text" class="form-control" name="form[location]" maxlength="30" tabindex="12" /></td>
-					<th><?php echo $lang['Signature'] ?></th>
-					<td><input type="text" class="form-control" name="form[signature]" maxlength="512" tabindex="13" /></td>
+					<td><input type="text" class="form-control" name="form[location]" maxlength="30" tabindex="11" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['Admin note'] ?></th>
-					<td><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="14" /></td>
+					<th><?php echo $lang['Signature'] ?></th>
+					<td><input type="text" class="form-control" name="form[signature]" maxlength="512" tabindex="12" /></td>
 					<th><?php echo $lang['User group'] ?></th>
 					<td>
 						<select class="form-control" name="user_group" tabindex="23">
@@ -1081,14 +1075,18 @@ if (isset($_GET['user_failed']))
 					</td>
 				</tr>
 				<tr>
+					<th><?php echo $lang['Admin note'] ?></th>
+					<td colspan="3"><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="13" /></td>
+				</tr>
+				<tr>
 					<th><?php echo $lang['Posts less than label'] ?></th>
-					<td><input type="text" class="form-control" name="posts_less" maxlength="8" tabindex="16" /></td>
+					<td><input type="text" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
 					<th><?php echo $lang['Posts more than label'] ?></th>
 					<td><input type="text" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Last post before label'] ?></th>
-					<td><input type="text" class="form-control" name="last_post_before" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
+					<td><input type="text" class="form-control" name="last_post_before" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="16" /></td>
 					<th><?php echo $lang['Last post after label'] ?></th>
 					<td><input type="text" class="form-control" name="last_post_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
@@ -1096,25 +1094,25 @@ if (isset($_GET['user_failed']))
 					<th><?php echo $lang['Last visit before label'] ?></th>
 					<td><input type="text" class="form-control" name="last_visit_before" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="18" /></td>
 					<th><?php echo $lang['Last visit after label'] ?></th>
-					<td><input type="text" class="form-control" name="last_visit_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="17" /></td>
+					<td><input type="text" class="form-control" name="last_visit_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="19" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Registered before label'] ?></th>
 					<td><input type="text" class="form-control" name="registered_before" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="20" /></td>
 					<th><?php echo $lang['Registered after label'] ?></th>
-					<td><input type="text" class="form-control" name="registered_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="19" /></td>
+					<td><input type="text" class="form-control" name="registered_after" placeholder="<?php echo $lang['Date help'] ?>" maxlength="19" tabindex="21" /></td>
 				</tr>
 				<tr>
 					<th><?php echo $lang['Order by label'] ?></th>
 					<td colspan="3">
-						<select class="form-control" name="order_by" tabindex="21">
+						<select class="form-control" name="order_by" tabindex="22">
 							<option value="username" selected="selected"><?php echo $lang['Username'] ?></option>
 							<option value="email"><?php echo $lang['Email'] ?></option>
 							<option value="num_posts"><?php echo $lang['Order by posts'] ?></option>
 							<option value="last_post"><?php echo $lang['Last post'] ?></option>
 							<option value="last_visit"><?php echo $lang['Order by last visit'] ?></option>
 							<option value="registered"><?php echo $lang['Order by registered'] ?></option>
-						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="22">
+						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">
 							<option value="ASC" selected="selected"><?php echo $lang['Ascending'] ?></option>
 							<option value="DESC"><?php echo $lang['Descending'] ?></option>
 						</select>

@@ -68,20 +68,17 @@ if (!defined('FORUM'))
 
     $user_messaging = array();
 
-    if ($user['jabber'] != '')
-        $user_messaging[] = '<b>'.$lang['Jabber'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['jabber']) : $user['jabber']);
-
-    if ($user['icq'] != '')
-        $user_messaging[] = '<b>'.$lang['ICQ'].':</b> '. $user['icq'];
+    if ($user['facebook'] != '')
+        $user_messaging[] = '<b>'.$lang['Facebook'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']);
 
     if ($user['msn'] != '')
-        $user_messaging[] = '<b>'.$lang['MSN'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
+        $user_messaging[] = '<b>'.$lang['Microsoft'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
 
-    if ($user['aim'] != '')
-        $user_messaging[] = '<b>'.$lang['AOL'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['aim']) : $user['aim']);
+    if ($user['twitter'] != '')
+        $user_messaging[] = '<b>'.$lang['Twitter'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']);
 
-    if ($user['yahoo'] != '')
-        $user_messaging[] = '<b>'.$lang['Yahoo'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['yahoo']) : $user['yahoo']);
+    if ($user['google'] != '')
+        $user_messaging[] = '<b>'.$lang['Google+'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']);
 
     if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
         $user_signature = $parsed_signature;

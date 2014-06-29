@@ -1375,24 +1375,20 @@ else
 				'datatype'		=> 'VARCHAR(100)',
 				'allow_null'	=> true
 			),
-			'jabber'			=> array(
-				'datatype'		=> 'VARCHAR(80)',
-				'allow_null'	=> true
-			),
-			'icq'				=> array(
-				'datatype'		=> 'VARCHAR(12)',
+			'facebook'			=> array(
+				'datatype'		=> 'VARCHAR(50)',
 				'allow_null'	=> true
 			),
 			'msn'				=> array(
 				'datatype'		=> 'VARCHAR(80)',
 				'allow_null'	=> true
 			),
-			'aim'				=> array(
-				'datatype'		=> 'VARCHAR(30)',
+			'twitter'			=> array(
+				'datatype'		=> 'VARCHAR(50)',
 				'allow_null'	=> true
 			),
-			'yahoo'				=> array(
-				'datatype'		=> 'VARCHAR(30)',
+			'google'			=> array(
+				'datatype'		=> 'VARCHAR(50)',
 				'allow_null'	=> true
 			),
 			'location'			=> array(

@@ -638,11 +638,10 @@ else if (isset($_POST['form_sent']))
 				'realname'		=> luna_trim($_POST['form']['realname']),
 				'url'			=> luna_trim($_POST['form']['url']),
 				'location'		=> luna_trim($_POST['form']['location']),
-				'jabber'		=> luna_trim($_POST['form']['jabber']),
-				'icq'			=> luna_trim($_POST['form']['icq']),
+				'facebook'		=> luna_trim($_POST['form']['facebook']),
 				'msn'			=> luna_trim($_POST['form']['msn']),
-				'aim'			=> luna_trim($_POST['form']['aim']),
-				'yahoo'			=> luna_trim($_POST['form']['yahoo']),
+				'twitter'		=> luna_trim($_POST['form']['twitter']),
+				'google'		=> luna_trim($_POST['form']['google']),
 			);
 
 			if ($luna_user['is_admmod'])
@@ -874,7 +873,7 @@ else if (isset($_POST['form_sent']))
 }
 
 
-$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.jabber, u.icq, u.msn, u.aim, u.yahoo, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.backstage_color, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.backstage_color, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message($lang['Bad request'], false, '404 Not Found');
 
