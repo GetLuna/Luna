@@ -31,7 +31,7 @@ if (isset($_POST['add_user']))
 
 	if (isset($_POST['random_pass']) == '1')
 		$password = random_pass(8);
-	elseif (!empty(trim($_POST['password'])))
+	else if (!empty(trim($_POST['password'])))
 		$password = trim($_POST['password']);
     else
 		redirect('backstage/users.php?user_failed=true');
