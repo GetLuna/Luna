@@ -330,7 +330,7 @@ switch ($stage)
 			}
 		}
 
-		// Since 3.00-alpha.2: Insert new config option o_header_desc
+		// Since 3.0-alpha.2: Insert new config option o_header_desc
 		if (!array_key_exists('o_header_desc', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_desc\', \'1\')') or error('Unable to insert config value \'o_header_desc\'', __FILE__, __LINE__, $db->error());
 
@@ -432,9 +432,6 @@ switch ($stage)
 		// Since 3.4-rc: Make password field VARCHAR(256)
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4-rc: Add the salt column to the users table
-		// $db->add_field('users', 'salt', 'VARCHAR(10)', false) or error('Unable to add salt field', __FILE__, __LINE__, $db->error());
-
 		// Since 3.4-rc: Insert new config option video_width
 		if (!array_key_exists('o_video_width', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_video_width\', \'640\')') or error('Unable to insert config value \'o_video_width\'', __FILE__, __LINE__, $db->error());
@@ -442,6 +439,27 @@ switch ($stage)
 		// Since 3.4-rc: Insert new config option video_height
 		if (!array_key_exists('o_video_height', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_video_height\', \'360\')') or error('Unable to insert config value \'o_video_height\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4.1: Drop the jabber column from the forums table
+		$db->drop_field('users', 'jabber') or error('Unable to drop jabber field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4.1: Drop the icq column from the forums table
+		$db->drop_field('users', 'icq') or error('Unable to drop icq field from user table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4.1: Drop the yahoo column from the forums table
+		$db->drop_field('users', 'yahoo') or error('Unable to drop yahoo field from user table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4.1: Drop the aim column from the forums table
+		$db->drop_field('users', 'aim') or error('Unable to drop aim field from user table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4.1:: Add the facebook column to the users table
+		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4.1:: Add the twitter column to the users table
+		$db->add_field('users', 'twitter', 'VARCHAR(30)', true, null) or error('Unable to add twitter field to user table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4.1:: Add the google column to the users table
+		$db->add_field('users', 'google', 'VARCHAR(30)', true, null) or error('Unable to add google field to user table', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
