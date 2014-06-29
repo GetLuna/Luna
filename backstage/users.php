@@ -1132,7 +1132,7 @@ if (isset($_GET['user_failed']))
                 <div class="input-group">
 					<input type="text" class="form-control" name="show_users" maxlength="15" tabindex="24" />
 					<span class="input-group-btn">
-						<input class="btn btn-primary" type="submit" value="<?php echo $lang['Find IP address'] ?>" tabindex="26" />
+						<input class="btn btn-primary" type="submit" value="<?php echo $lang['Find IP address'] ?>" tabindex="25" />
 					</span>
 				</div>
                 <span class="help-block"><?php echo $lang['IP address help'] ?></span>
@@ -1143,29 +1143,29 @@ if (isset($_GET['user_failed']))
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Add user head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_user" value="<?php echo $lang['Submit'] ?>" tabindex="4" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Add user head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_user" value="<?php echo $lang['Submit'] ?>" tabindex="30" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Username'] ?></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="username" tabindex="3" required="required" />
+                        <input type="text" class="form-control" name="username" tabindex="26" required="required" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="email" tabindex="3" required="required" />
+                        <input type="text" class="form-control" name="email" tabindex="27" required="required" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?></label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" name="password" tabindex="3" />
+                        <input type="password" class="form-control" name="password" tabindex="28" />
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="random_pass" value="1" checked="checked" />
+                                <input type="checkbox" name="random_pass" value="1" checked="checked" tabindex="29" />
                                 <?php echo $lang['Random password info'] ?>
                             </label>
                         </div>
