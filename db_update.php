@@ -452,13 +452,13 @@ switch ($stage)
 		// Since 3.4.1: Drop the aim column from the forums table
 		$db->drop_field('users', 'aim') or error('Unable to drop aim field from user table', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4.1:: Add the facebook column to the users table
+		// Since 3.4.1: Add the facebook column to the users table
 		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4.1:: Add the twitter column to the users table
+		// Since 3.4.1: Add the twitter column to the users table
 		$db->add_field('users', 'twitter', 'VARCHAR(30)', true, null) or error('Unable to add twitter field to user table', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4.1:: Add the google column to the users table
+		// Since 3.4.1: Add the google column to the users table
 		$db->add_field('users', 'google', 'VARCHAR(30)', true, null) or error('Unable to add google field to user table', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
