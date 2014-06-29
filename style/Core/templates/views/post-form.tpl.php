@@ -59,7 +59,7 @@ if ($fid): ?>
                     <a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('*');"><span class="fa fa-asterisk fa-fw"></span></a>
                 </div>
             </div>
-            <textarea class="form-control"  placeholder="Start typing..." name="req_message" id="post_field" rows="20" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
+            <textarea class="form-control"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="20" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
         </fieldset>
         <div class="panel-footer">
             <div class="btn-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div><div class="btn-group"><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>

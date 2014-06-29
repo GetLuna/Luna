@@ -67,6 +67,7 @@ $lang = array(
 'Moderated by'						=>	'Moderated by',
 'Registered table'					=>	'Registered',
 'Subject'							=>	'Subject',
+'Start typing'                      =>  'Start typing...',
 'Message'							=>	'Message',
 'Topic'								=>	'Topic',
 'Forum'								=>	'Forum',
