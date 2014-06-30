@@ -28,13 +28,15 @@ if (isset($_POST['add_user']))
 	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
+        
+    $trimpassword = trim($_POST['password']);
 
-	if (isset($_POST['random_pass']) == '1')
-		$password = random_pass(8);
-	elseif (!empty(trim($_POST['password'])))
-		$password = trim($_POST['password']);
+    if (isset($_POST['random_pass']) == '1')
+        $password = random_pass(8);
+    elseif (!empty($trimpassword))
+        $password = trim($_POST['password']);
     else
-		redirect('backstage/users.php?user_failed=true');
+        redirect('backstage/users.php?user_failed=true');
 
 	$errors = array();
 
