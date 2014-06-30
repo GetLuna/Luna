@@ -7,7 +7,7 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-	if (!isset($luna_user))
+	if (!isset($luna_user['backstage_color']))
 		$accent = '#14a3ff';
 	else
 		$accent = $luna_user['backstage_color'];

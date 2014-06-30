@@ -174,20 +174,32 @@ if (count($languages) > 1)
                             <label class="btn btn-primary backstage-accent bspink<?php if ($user['backstage_color'] == '#dc4fad') echo ' active' ?>">
                                 <input type="radio" name="form[backstage_color]" id="pink" value="#dc4fad"<?php if ($user['backstage_color'] == '#dc4fad') echo ' checked' ?>>
                             </label>
+                            <label class="btn btn-primary backstage-accent bsmagenta<?php if ($user['backstage_color'] == '#d80073') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="magenta" value="#d80073"<?php if ($user['backstage_color'] == '#d80073') echo ' checked' ?>>
+                            </label>
                             <label class="btn btn-primary backstage-accent bscrimson<?php if ($user['backstage_color'] == '#ac193d') echo ' active' ?>">
                                 <input type="radio" name="form[backstage_color]" id="crimson" value="#ac193d"<?php if ($user['backstage_color'] == '#ac193d') echo ' checked' ?>>
                             </label>
-                            <label class="btn btn-primary backstage-accent bsorange<?php if ($user['backstage_color'] == '#d24726') echo ' active' ?>">
-                                <input type="radio" name="form[backstage_color]" id="orange" value="#d24726"<?php if ($user['backstage_color'] == '#d24726') echo ' checked' ?>>
+                            <label class="btn btn-primary backstage-accent bsred<?php if ($user['backstage_color'] == '#e51400') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="red" value="#e51400"<?php if ($user['backstage_color'] == '#e51400') echo ' checked' ?>>
                             </label>
-                            <label class="btn btn-primary backstage-accent bsamber<?php if ($user['backstage_color'] == '#ff8f32') echo ' active' ?>">
-                                <input type="radio" name="form[backstage_color]" id="blue" value="#ff8f32"<?php if ($user['backstage_color'] == '#ff8f32') echo ' checked' ?>>
+                            <label class="btn btn-primary backstage-accent bsorange<?php if ($user['backstage_color'] == '#fa6800') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="orange" value="#fa6800"<?php if ($user['backstage_color'] == '#fa6800') echo ' checked' ?>>
                             </label>
-                            <label class="btn btn-primary backstage-accent bslime<?php if ($user['backstage_color'] == '#82ba00') echo ' active' ?>">
-                                <input type="radio" name="form[backstage_color]" id="lime" value="#82ba00"<?php if ($user['backstage_color'] == '#82ba00') echo ' checked' ?>>
+                            <label class="btn btn-primary backstage-accent bsamber<?php if ($user['backstage_color'] == '#f0a30a') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="amber" value="#f0a30a"<?php if ($user['backstage_color'] == '#f0a30a') echo ' checked' ?>>
                             </label>
-                            <label class="btn btn-primary backstage-accent bsgreen<?php if ($user['backstage_color'] == '#008a17') echo ' active' ?>">
-                                <input type="radio" name="form[backstage_color]" id="green" value="#008a17"<?php if ($user['backstage_color'] == '#008a17') echo ' checked' ?>>
+                            <label class="btn btn-primary backstage-accent bsyellow<?php if ($user['backstage_color'] == '#e3c800') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="yellow" value="#e3c800"<?php if ($user['backstage_color'] == '#e3c800') echo ' checked' ?>>
+                            </label>
+                            <label class="btn btn-primary backstage-accent bslime<?php if ($user['backstage_color'] == '#98ca00') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="lime" value="#98ca00"<?php if ($user['backstage_color'] == '#98ca00') echo ' checked' ?>>
+                            </label>
+                            <label class="btn btn-primary backstage-accent bsgreen<?php if ($user['backstage_color'] == '#60a917') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="green" value="#60a917"<?php if ($user['backstage_color'] == '#60a917') echo ' checked' ?>>
+                            </label>
+                            <label class="btn btn-primary backstage-accent bsdarkgreen<?php if ($user['backstage_color'] == '#008a17') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="darkgreen" value="#008a17"<?php if ($user['backstage_color'] == '#008a17') echo ' checked' ?>>
                             </label>
                             <label class="btn btn-primary backstage-accent bsteal<?php if ($user['backstage_color'] == '#03b3b2') echo ' active' ?>">
                                 <input type="radio" name="form[backstage_color]" id="teal" value="#03b3b2"<?php if ($user['backstage_color'] == '#03b3b2') echo ' checked' ?>>
@@ -195,17 +207,29 @@ if (count($languages) > 1)
                             <label class="btn btn-primary backstage-accent bsdarkteal<?php if ($user['backstage_color'] == '#008299') echo ' active' ?>">
                                 <input type="radio" name="form[backstage_color]" id="darkteal" value="#008299"<?php if ($user['backstage_color'] == '#008299') echo ' checked' ?>>
                             </label>
+                            <label class="btn btn-primary backstage-accent bsbabyblue<?php if ($user['backstage_color'] == '#5db2ff') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="babyblue" value="#5db2ff"<?php if ($user['backstage_color'] == '#5db2ff') echo ' checked' ?>>
+                            </label>
                             <label class="btn btn-primary backstage-accent bsmbbblue<?php if ($user['backstage_color'] == '#14a3ff') echo ' active' ?>">
                                 <input type="radio" name="form[backstage_color]" id="mbbblue" value="#14a3ff"<?php if ($user['backstage_color'] == '#14a3ff') echo ' checked' ?>>
                             </label>
                             <label class="btn btn-primary backstage-accent bsblue<?php if ($user['backstage_color'] == '#0072c6') echo ' active' ?>">
                                 <input type="radio" name="form[backstage_color]" id="blue" value="#0072c6"<?php if ($user['backstage_color'] == '#0072c6') echo ' checked' ?>>
                             </label>
+                            <label class="btn btn-primary backstage-accent bsdarkblue<?php if ($user['backstage_color'] == '#004b8b') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="darkblue" value="#004b8b"<?php if ($user['backstage_color'] == '#004b8b') echo ' checked' ?>>
+                            </label>
                             <label class="btn btn-primary backstage-accent bsindigo<?php if ($user['backstage_color'] == '#4617b4') echo ' active' ?>">
                                 <input type="radio" name="form[backstage_color]" id="indigo" value="#4617b4"<?php if ($user['backstage_color'] == '#4617b4') echo ' checked' ?>>
                             </label>
                             <label class="btn btn-primary backstage-accent bsviolet<?php if ($user['backstage_color'] == '#8c0095') echo ' active' ?>">
-                                <input type="radio" name="form[backstage_color]" id="bsviolet" value="#8c0095"<?php if ($user['backstage_color'] == '#8c0095') echo ' checked' ?>>
+                                <input type="radio" name="form[backstage_color]" id="violet" value="#8c0095"<?php if ($user['backstage_color'] == '#8c0095') echo ' checked' ?>>
+                            </label>
+                            <label class="btn btn-primary backstage-accent bsgrey<?php if ($user['backstage_color'] == '#777') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="grey" value="#777"<?php if ($user['backstage_color'] == '#777') echo ' checked' ?>>
+                            </label>
+                            <label class="btn btn-primary backstage-accent bsblack<?php if ($user['backstage_color'] == '#111') echo ' active' ?>">
+                                <input type="radio" name="form[backstage_color]" id="black" value="#111"<?php if ($user['backstage_color'] == '#111') echo ' checked' ?>>
                             </label>
                         </div>
                     </div>

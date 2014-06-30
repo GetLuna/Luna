@@ -65,8 +65,8 @@ while ($cur_forum = $db->fetch_assoc($result))
     // If there is a last_post/last_poster
     if ($cur_forum['last_post'] != '')
     {
-        if (luna_strlen($cur_forum['last_topic']) > 30)
-            $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 30).'...';
+        if (luna_strlen($cur_forum['last_topic']) > 43)
+            $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 40).'...';
 
 			if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
                 $last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['last_poster']).'</a></span>';
