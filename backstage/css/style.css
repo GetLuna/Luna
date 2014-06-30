@@ -60,21 +60,27 @@ label .help-block {
 
 /* Navbar */
 .navbar {
-	border: none;	
+	background: #fff;
+	border: none;
+	border-bottom: 5px solid #14a3ff;
 }
 
-.navbar .glyphicon {
-	font-size: 16px;
-}
-
-.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-brand {
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > li > a:hover,  .navbar-default .navbar-nav > li > a:focus  {
 	background: none;
-	font-size: 20px;
-	text-transform: lowercase;
+    color: #14a3ff;
+    font-size: 14px;
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-	color: #fff;
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background: #fff;
+}
+
+.navbar-default .navbar-brand {
+    font-size: 20px;
+}
+
+.navbar-default .navbar-brand {
+	color: #bbb;
 }
 
 .navbar-default .navbar-collapse {
@@ -82,29 +88,15 @@ label .help-block {
 	box-shadow: none;
 }
 
-@media all and (max-width:767px) {
-	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-		color: #fff;
-	}
-	
-	.dropdown-menu .divider {
-		background-color: rgba(255,255,255,0.20);
-	}
-	
-	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
-		color: rgba(255,255,255,0.50);
-	}
-}
-
 .navbar-default .navbar-nav > li > a {
-	color: rgba(255,255,255,0.50);
+	color: #aaa;
 }
 
 .navbar-default .navbar-toggle {
 	border: none;
 }
 
-.navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+.navbar-default .navbar-toggle .icon-bar {
 	background-color: #fff;
 }
 
