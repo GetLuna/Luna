@@ -1,33 +1,53 @@
 .bspink {
-    background-color :#dc4fad !important;
+    background-color: #dc4fad !important;
+}
+
+.bsmagenta {
+    background-color: #d80073 !important;
 }
 
 .bscrimson {
-    background-color :#ac193d !important;
+    background-color: #ac193d !important;
+}
+
+.bsred {
+    background-color: #e51400 !important;
 }
 
 .bsorange {
-    background-color :#d24726 !important;
+    background-color: #fa6800 !important;
 }
 
 .bsamber {
-    background-color :#ff8f32 !important;
+    background-color: #f0a30a !important;
+}
+
+.bsyellow {
+    background-color: #e3c800 !important;
 }
 
 .bslime {
-    background-color :#82ba00 !important;
+    background-color: #98ca00 !important;
 }
 
 .bsgreen {
-    background-color :#008a17 !important;
+    background-color: #60a917 !important;
+}
+
+.bsdarkgreen {
+    background-color: #008a17 !important;
 }
 
 .bsteal {
-    background-color :#03b3b2 !important;
+    background-color: #03b3b2 !important;
 }
 
 .bsdarkteal {
 	background-color: #008299 !important;
+}
+
+.bsbabyblue {
+    background-color: #5db2ff !important;
 }
 
 .bsmbbblue {
@@ -38,10 +58,22 @@
 	background-color: #0072c6 !important;
 }
 
+.bsdarkblue {
+    background-color: #004b8b !important;
+}
+
 .bsindigo {
 	background-color: #4617b4 !important;
 }
 
 .bsviolet {
 	background-color: #8c0095 !important;
+}
+
+.bsgrey {
+	background-color: #777 !important;
+}
+
+.bsblack {
+	background-color: #111 !important;
 }
