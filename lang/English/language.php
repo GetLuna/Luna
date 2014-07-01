@@ -597,8 +597,7 @@ $lang = array(
 // Miscellaneous
 //
 
-'Personal details legend'		=>	'Modify your personal and contact details',
-'Settings legend'				=>	'Enter your settings',
+'Personal details legend'		=>	'Contact details',
 'User tools'					=>	'User tools',
 'Unknown'          				=>  'Unknown',
 
@@ -674,10 +673,8 @@ $lang = array(
 'Google+'						=>	'Google+',
 'Avatar'						=>	'Avatar',
 'Sig max size'					=>	'Max length: %s characters / Max lines: %s',
-'Avatar legend'					=>	'Set your avatar display options',
 'Avatar info'					=>	'An avatar is a small image that will be displayed with all your posts. You can upload an avatar by clicking the link below.',
 'Change avatar'					=>	'Change avatar',
-'Signature legend'				=>	'Compose your signature',
 'Signature info'				=>	'A signature is a small piece of text that is attached to your posts. In it, you can enter just about anything you like.',
 'Sig preview'					=>	'Current signature preview:',
 'No sig'						=>	'No signature currently stored in profile.',
