@@ -484,7 +484,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	font-size: 20px;
 }
 
-.quickpostfield textarea::-webkit-input-placeholder, .postfield textarea::-webkit-input-placeholder, .quickpostfield textarea::-moz-placeholder, .postfield textarea::-moz-placeholder, .quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder {
+.quickpostfield textarea::-webkit-input-placeholder, .postfield textarea::-webkit-input-placeholder, .quickpostfield textarea::-moz-placeholder, .postfield textarea::-moz-placeholder {
+	font-size: 20px;
+}
+
+.quickpostfield textarea:-ms-input-placeholder, .postfield textarea:-ms-input-placeholder {
 	font-size: 20px;
 }
 
