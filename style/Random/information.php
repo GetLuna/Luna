@@ -22,4 +22,4 @@ $xmlstr = <<<XML
 	<maxversion>3.4.1</maxversion>
 </style>
 XML;
-?> 
+?>
