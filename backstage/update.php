@@ -22,14 +22,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 if ($action == 'update_check')
 {
 	// Regenerate the update cache		
-	if (!defined('FORUM_UPDATE_LOADED'))
-	{
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
-	
-		generate_update_cache();
-		require FORUM_CACHE_DIR.'cache_update.php';
-	}
+	generate_update_cache();
 	header("Location: update.php");
 }
 elseif ($action == 'soft_reset')
@@ -120,7 +113,6 @@ require FORUM_ROOT.'backstage/header.php';
         </div>
         <div class="btn-group">
             <a href="http://modernbb.be/downloads/<?php echo Version::FORUM_VERSION ?>.zip" class="btn btn-default"><?php echo sprintf($lang['Download'], Version::FORUM_VERSION) ?></a>
-            <a href="http://modernbb.be/changelog.php" class="btn btn-default"><?php echo $lang['Changelog'] ?></a>
         </div>
 <?php
 	}
