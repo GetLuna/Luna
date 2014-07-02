@@ -22,7 +22,7 @@ if (!defined('FORUM'))
 		<div class="col-md-9">
 			<form id="quickpostform" method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 				<div class="panel panel-default panel-border">
-					<div class="panel-heading">
+					<div class="panel-heading panel-quickpost-heading">
 						<div class="comment-arrow hidden-sm hidden-xs"></div>
 						<h3 class="panel-title"><?php echo $lang['Quick post'] ?></h3>
 					</div>

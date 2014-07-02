@@ -127,7 +127,7 @@ if (!defined('FORUM'))
 <?php if ($luna_config['o_avatars'] == '1'): ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Avatar legend'] ?></h3>
+            <h3 class="panel-title"><?php echo $lang['Avatar'] ?></h3>
         </div>
         <div class="panel-body">
             <fieldset id="profileavatar">
@@ -142,7 +142,7 @@ if (!defined('FORUM'))
 <?php endif; if ($luna_config['o_signatures'] == '1'): ?>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Signature legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Signature'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
