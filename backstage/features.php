@@ -26,6 +26,7 @@ if (isset($_POST['form_sent']))
 	
 	$form = array(
 		'quickpost'                   => isset($_POST['form']['quickpost']) ? '1' : '0',
+		'post_responsive'             => isset($_POST['form']['post_responsive']) ? '1' : '0',
 		'users_online'                => isset($_POST['form']['users_online']) ? '1' : '0',
 		'censoring'                   => isset($_POST['form']['censoring']) ? '1' : '0',
 		'signatures'                  => isset($_POST['form']['signatures']) ? '1' : '0',
@@ -77,7 +78,7 @@ require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('features');
 
 ?>
-<h2><?php echo $lang['Features head'] ?></h2>
+<h2><?php echo $lang['Features'] ?></h2>
 <?php
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
@@ -97,6 +98,12 @@ if (isset($_GET['saved']))
                             <label>
                             	<input type="checkbox" name="form[quickpost]" value="1" <?php if ($luna_config['o_quickpost'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Quick post help'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                            	<input type="checkbox" name="form[post_responsive]" value="1" <?php if ($luna_config['o_post_responsive'] == '1') echo ' checked="checked"' ?> />
+								<?php echo $lang['Responsive post help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
