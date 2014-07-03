@@ -50,9 +50,11 @@ function field_name($offset, $query_id = 0)
 		switch($db_type)
 		{
 			case 'mysql':
+            case 'mysql_innodb':
 				$result = @mysql_field_name($query_id, $offset);
 			break;
 			case 'mysqli':
+            case 'mysqli_innodb':
 				$finfo = @mysqli_fetch_field_direct($query_id, $offset);
 				$result = $finfo->name;
 		}
@@ -70,9 +72,11 @@ function num_fields($query_id = 0)
 		switch($db_type)
 		{
 			case 'mysql':
+            case 'mysql_innodb':
 				return ($query_id) ? @mysql_num_fields($query_id) : false;
 			break;
 			case 'mysqli':
+            case 'mysqli_innodb':
 				return ($query_id) ? @mysqli_num_fields($query_id) : false;
 		}
 }
@@ -392,7 +396,9 @@ function split_sql_file($sql, $delimiter)
 switch($db_type)
 {
 	case 'mysql':
+    case 'mysql_innodb':
 	case 'mysqli':
+    case 'mysqli_innodb':
 		break;
 	default:
 		require FORUM_ROOT.'backstage/header.php';
