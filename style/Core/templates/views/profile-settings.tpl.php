@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 <form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Settings'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Submit'] ?>" /></span></h3>
+            <h3 class="panel-title"><?php echo $lang['Settings'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <fieldset>
