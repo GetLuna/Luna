@@ -35,7 +35,8 @@ if (!defined('FORUM'))
     $avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
 
     $user_avatar = generate_avatar_markup($id);
-    if ($user_avatar)
+    $avatar_set = check_avatar($id);
+    if ($user_avatar && $avatar_set)
         $avatar_field .= ' <a class="btn btn-primary" href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
     else
         $avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
