@@ -1656,6 +1656,7 @@ else
 		'o_index_update_check'		=> 1,
 		'o_cookie_bar'				=> 0,
         'o_moderated_by'            => 1,
+        'o_post_responsive'         => 0,
 		'p_message_bbcode'			=> 1,
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,

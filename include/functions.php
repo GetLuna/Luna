@@ -752,6 +752,35 @@ function generate_avatar_markup($user_id)
 
 
 //
+// Outputs info if avatar is available
+//
+function check_avatar($user_id)
+{
+	global $luna_config;
+
+	$filetypes = array('jpg', 'gif', 'png');
+	$avatar_set = '';
+
+	foreach ($filetypes as $cur_type)
+	{
+		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
+
+		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path))
+		{
+			$avatar_set = true;
+			break;
+		}
+		else
+		{
+			$avatar_set = false;
+		}
+	}
+
+	return $avatar_set;
+}
+
+
+//
 // Generate browser's title
 //
 function generate_page_title($page_title, $p = null)
