@@ -753,12 +753,14 @@ textarea {
 }
 
 /* Userlist */
-.usersearch {
-	margin: 0 auto 10px auto;
-}
-
 .search-bar {
     margin-bottom: 10px;
+}
+
+@media(max-width:991px) {
+	.search-bar, #userlist .col-sm-12 {
+		margin-bottom: 0;
+	}
 }
 
 .userlist {

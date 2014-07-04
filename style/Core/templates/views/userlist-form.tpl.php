@@ -20,7 +20,7 @@ if (!defined('FORUM'))
                         <div class="input-group"><input class="form-control" type="text" name="username" value="<?php echo luna_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" maxlength="25" /><span class="input-group-btn"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" /></span></div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row hidden-sm hidden-xs">
                     <div class="col-md-4">
                         <select class="form-control" name="show_group">
                             <option value="-1"<?php if ($show_group == -1) echo ' selected="selected"' ?>><?php echo $lang['All users'] ?></option>
