@@ -1,4 +1,4 @@
-ModernBB 3.4 "Neon"
+ModernBB 3.5 "Kate"
 ===================
 
 ## About
@@ -6,7 +6,7 @@ ModernBB is an open source forum application released under the GPLv3 license. I
 
 ## Requirements
  - A webserver
- - PHP 5.1 or later
+ - PHP 5.2 or later
  - A database, MySQL 5.0 or later or SQLite 2
 
 ## Recommendations
