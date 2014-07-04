@@ -7,7 +7,10 @@ ModernBB is an open source forum application released under the GPLv3 license. I
 ## Requirements
  - A webserver
  - PHP 5.2 or later
- - A database, MySQL 5.0 or later or SQLite 2
+ - A database
+  - MySQL 5.0 or later 
+  - SQLite 2
+  - PostgreSQL 8.4
 
 ## Recommendations
  - Make use of a PHP accelerator such as APC or XCache
@@ -16,5 +19,5 @@ ModernBB is an open source forum application released under the GPLv3 license. I
 ## Links
  - Homepage: http://modernbb.be
  - Forums: http://modernbb.be/forum
- - Documentation: http://modernbb.be/docs/
+ - Documentation: http://modernbb.be/docs
  - Development: http://github.com/modernbb/modernbb/
