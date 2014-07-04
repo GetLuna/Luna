@@ -94,7 +94,7 @@ $admin_ids = get_admin_ids();
 
 // Can we or can we not post replies?
 if ($luna_config['o_post_responsive'] == 0)
-    $responsive_post = ' hidden-sm';
+    $responsive_post = ' hidden-sm hidden-xs';
 else
     $responsive_post = '';
 

@@ -493,7 +493,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
     
     .profile-card-quickpost {
         margin-bottom: -10px;
-        border-radius: 3px 3px 0 0 !important;
+        border-radius: 0 !important;
+    }
+	
+	.user-avatar {
+        border-radius: 0 !important;
     }
 }
 
@@ -717,6 +721,13 @@ textarea {
 .row-nav-fix {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 991px) {
+    .next-hidden-sm {
+        border-bottom-right-radius: 4px !important;
+        border-top-right-radius: 4px !important;
+    }
 }
 
 @media screen and (max-width: 767px) {

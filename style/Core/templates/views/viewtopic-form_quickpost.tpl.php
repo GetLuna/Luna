@@ -76,7 +76,7 @@ if ($luna_user['is_guest'])
 						<textarea placeholder="<?php echo $lang['Start typing'] ?>" class="form-control" name="req_message" id="post_field" rows="7" tabindex="<?php echo $cur_index++ ?>"></textarea>
 					</fieldset>
 					<div class="panel-footer">
-						<div class="btn-group"><input class="btn btn-primary<?php if ($luna_config['o_post_responsive'] == 0) echo ' hidden-sm'; ?>" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div>
+						<div class="btn-group"><input class="btn btn-primary next-hidden-sm" type="submit" name="submit" tabindex="<?php echo $cur_index++ ?>" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input class="btn btn-default<?php if ($luna_config['o_post_responsive'] == 0) echo ' hidden-sm hidden-xs'; ?>" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div>
 						<ul class="bblinks">
 							<li><?php echo ($luna_config['p_message_bbcode'] == '1') 
 								? '<a class="label label-success" href="help.php#bbcode" onclick="window.open(this.href); return false;">'.$lang['BBCode'].'</a>' 
