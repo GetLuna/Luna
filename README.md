@@ -16,5 +16,5 @@ ModernBB is an open source forum application released under the GPLv3 license. I
 ## Links
  - Homepage: http://modernbb.be
  - Forums: http://modernbb.be/forum
- - Documentation: http://modernbb.be/docs/odd
+ - Documentation: http://modernbb.be/docs/
  - Development: http://github.com/modernbb/modernbb/
