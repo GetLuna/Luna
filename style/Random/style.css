@@ -759,6 +759,10 @@ textarea {
 	margin: 0 auto 10px auto;
 }
 
+.search-bar {
+    margin-bottom: 10px;
+}
+
 .userlist {
 	padding: 0 15px;
 }
