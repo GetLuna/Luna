@@ -1,5 +1,5 @@
 .bspink {
-    background-color: #dc4fad !important;
+    background-color: #e861aa !important;
 }
 
 .bsmagenta {
@@ -22,8 +22,12 @@
     background-color: #f0a30a !important;
 }
 
-.bsyellow {
+.bsshadeyellow {
     background-color: #e3c800 !important;
+}
+
+.bsyellow {
+    background-color: #ffe200 !important;
 }
 
 .bslime {
@@ -38,12 +42,12 @@
     background-color: #008a17 !important;
 }
 
-.bsteal {
-    background-color: #03b3b2 !important;
-}
-
 .bsdarkteal {
 	background-color: #008299 !important;
+}
+
+.bsteal {
+    background-color: #03b3b2 !important;
 }
 
 .bsbabyblue {
@@ -70,8 +74,20 @@
 	background-color: #8c0095 !important;
 }
 
+.bslightviolet {
+	background-color: #c960d0 !important;
+}
+
+.bslightgrey {
+	background-color: #aaa !important;
+}
+
 .bsgrey {
 	background-color: #777 !important;
+}
+
+.bsdarkgrey {
+	background-color: #444 !important;
 }
 
 .bsblack {
