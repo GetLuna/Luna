@@ -7,6 +7,7 @@ if (!defined('FORUM'))
 ?>
 
 <h2><?php echo $lang['User list'] ?></h2>
+<?php if ($luna_user['g_search_users'] == '1'): ?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['User list'] ?></h3>
@@ -14,13 +15,13 @@ if (!defined('FORUM'))
     <div class="panel-body">
         <form id="userlist" class="usersearch" method="get" action="userlist.php">
             <fieldset>
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <?php if ($luna_user['g_search_users'] == '1'): ?>
-                            <input class="form-control" type="text" name="username" value="<?php echo luna_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" maxlength="25" />
-                        <?php endif; ?>
+                <div class="row search-bar">
+                    <div class="col-sm-12">
+                        <div class="input-group"><input class="form-control" type="text" name="username" value="<?php echo luna_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Username'] ?>" maxlength="25" /><span class="input-group-btn"><input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" /></span></div>
                     </div>
-                    <div class="col-md-2 col-sm-4">
+                </div>
+                <div class="row hidden-sm hidden-xs">
+                    <div class="col-md-4">
                         <select class="form-control" name="show_group">
                             <option value="-1"<?php if ($show_group == -1) echo ' selected="selected"' ?>><?php echo $lang['All users'] ?></option>
 <?php
@@ -38,7 +39,7 @@ while ($cur_group = $db->fetch_assoc($result))
 ?>
                         </select>
                     </div>
-                    <div class="col-md-2 col-sm-3">
+                    <div class="col-md-4">
                         <select class="form-control" name="sort_by">
                             <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang['Username'] ?></option>
                             <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Registered table'] ?></option>
@@ -47,17 +48,15 @@ while ($cur_group = $db->fetch_assoc($result))
                             <?php endif; ?>
                         </select>
                     </div>
-                    <div class="col-md-2 col-sm-3">
+                    <div class="col-md-4">
                         <select class="form-control" name="sort_dir">
                             <option value="ASC"<?php if ($sort_dir == 'ASC') echo ' selected="selected"' ?>><?php echo $lang['Ascending'] ?></option>
                             <option value="DESC"<?php if ($sort_dir == 'DESC') echo ' selected="selected"' ?>><?php echo $lang['Descending'] ?></option>
                         </select>
-                    </div>
-                    <div class="col-md-1 col-sm-1">
-                        <input class="btn btn-primary" type="submit" name="search" value="<?php echo $lang['Search'] ?>" accesskey="s" />
                     </div>
                 </div>
             </fieldset>
         </form>
     </div>
 </div>
+<?php endif; ?>

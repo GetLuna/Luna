@@ -792,7 +792,7 @@ function generate_page_title($page_title, $p = null)
 
 	$page_title = array_reverse($page_title);
 
-	if (!is_null($p))
+	if ($p > 1)
 		$page_title[0] .= ' ('.sprintf($lang['Page'], forum_number_format($p)).')';
 
 	$crumbs = implode($lang['Title separator'], $page_title);
@@ -1103,7 +1103,7 @@ function paginate($num_pages, $cur_page, $link)
 	}
 
 	if ($num_pages <= 1)
-		$pages = array('<li class="disabled"><span>&laquo;</span></li><li class="active"><span>1 <span class="sr-only">(current)</span></span></li><li class="disabled"><span>&raquo;</span></li>');
+		$pages = array('');
 	else
 	{
 		// Add a previous page link

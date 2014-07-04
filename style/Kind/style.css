@@ -494,7 +494,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
     
     .profile-card-quickpost {
         margin-bottom: -10px;
-        border-radius: 3px 3px 0 0 !important;
+        border-radius: 0 !important;
+    }
+	
+	.user-avatar {
+        border-radius: 0 !important;
     }
 }
 
@@ -720,6 +724,13 @@ textarea {
 	margin-bottom: 10px;
 }
 
+@media screen and (max-width: 991px) {
+    .next-hidden-sm {
+        border-bottom-right-radius: 4px !important;
+        border-top-right-radius: 4px !important;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .next-hidden-xs {
         border-bottom-right-radius: 4px !important;
@@ -745,8 +756,14 @@ textarea {
 }
 
 /* Userlist */
-.usersearch {
-	margin: 0 auto 10px auto;
+.search-bar {
+    margin-bottom: 10px;
+}
+
+@media(max-width:991px) {
+	.search-bar, #userlist .col-sm-12 {
+		margin-bottom: 0;
+	}
 }
 
 .userlist {
