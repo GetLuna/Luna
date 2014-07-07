@@ -1161,6 +1161,10 @@ blockquote p {
 		margin-right: 15px;
 	}
 	
+	.postview > :last-child, .modcontrols .btn-toolbar .btn-group > :first-child {
+		margin-bottom: 10px;
+	}
+	
 	.profile-card-head h2 {
 		margin-left: 0;
 	}
