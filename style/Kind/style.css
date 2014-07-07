@@ -1158,6 +1158,10 @@ blockquote p {
 		margin-right: 15px;
 	}
 	
+	.profile-card-head h2 {
+		margin-left: 0;
+	}
+	
 	.topic .profile-card {
 		margin-top: 0;
 	}
