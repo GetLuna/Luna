@@ -21,6 +21,9 @@ define('PER_PAGE', 300);
 // Don't set to UTF-8 until after we've found out what the default character set is
 define('FORUM_NO_SET_NAMES', 1);
 
+// Send the Content-type header in case the web server is setup to send something else
+header('Content-type: text/html; charset=utf-8');
+
 // Make sure we are running at least Version::MIN_PHP_VERSION
 if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '<'))
 	exit('You are running PHP version '.PHP_VERSION.'. ModernBB '.Version::FORUM_VERSION.' requires at least PHP '.Version::MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
