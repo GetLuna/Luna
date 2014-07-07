@@ -934,7 +934,7 @@ textarea {
 	border-radius: 0;
 }
 
-.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+.thumbnail > .user-avatar {
 	width: 100%;
 	height: 100%;
 }
