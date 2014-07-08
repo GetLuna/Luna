@@ -789,6 +789,7 @@ textarea {
 	height: 50px;
 	min-height: 50px;
 	min-width: 50px;
+	vertical-align: middle;
 }
 
 .userlist-name {
@@ -940,10 +941,18 @@ textarea {
 
 .profile-card-head .thumbnail {
 	max-width: 100px;
+	max-height: 100px;
+	width: 100px;
+	height: 100px;
 	margin-top: -50px;
 	margin-left: 9px;
 	position: absolute;
 	border-radius: 0;
+}
+
+.thumbnail > .user-avatar {
+	width: 100%;
+	height: 100%;
 }
 
 .profile-card-head h2 {
@@ -1163,6 +1172,14 @@ blockquote p {
 	footer, #brddesc, #brdwelcome, h2, .row-nav {
 		margin-left: 15px;
 		margin-right: 15px;
+	}
+	
+	.postview > :last-child, .modcontrols .btn-toolbar .btn-group > :first-child {
+		margin-bottom: 10px;
+	}
+	
+	.profile-card-head h2 {
+		margin-left: 0;
 	}
 	
 	.topic .profile-card {
