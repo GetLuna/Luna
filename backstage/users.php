@@ -31,9 +31,9 @@ if (isset($_POST['add_user']))
         
     $trimpassword = trim($_POST['password']);
 
-    if (isset($_POST['random_pass']) == '1')
+    if (isset($_POST['random_pass']))
         $password = random_pass(8);
-    elseif (!empty($trimpassword))
+    else if (!empty($trimpassword))
         $password = trim($_POST['password']);
     else
         redirect('backstage/users.php?user_failed=true');
@@ -47,8 +47,6 @@ if (isset($_POST['add_user']))
 	if (strlen($username) < 2)
 		message_backstage($lang['Username too short']);
 	else if (luna_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
-	    message_backstage($lang['Bad request'], false, '404 Not Found');
-	else if (strlen($password) < 6)
 		message_backstage($lang['Pass too short']);
 	else if (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang['Guest']))
 		message_backstage($lang['Username guest']);
@@ -59,14 +57,6 @@ if (isset($_POST['add_user']))
 	else if (preg_match('#\[b\]|\[/b\]|\[u\]|\[/u\]|\[i\]|\[/i\]|\[color|\[/color\]|\[quote\]|\[quote=|\[/quote\]|\[code\]|\[/code\]|\[img\]|\[/img\]|\[url|\[/url\]|\[email|\[/email\]#i', $username))
 		message_backstage($lang['Username BBCode']);
 
-	// Check username for any censored words
-	if ($luna_config['o_censoring'] == '1')
-	{
-		// If the censored username differs from the username
-		if (censor_words($username) != $username)
-			message_backstage($lang['Username censor']);
-	}
-
 	// Check that the username (or a too similar username) is not already registered
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE username=\''.$db->escape($username).'\' OR username=\''.$db->escape(preg_replace('/[^\w]/', '', $username)).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 
@@ -76,24 +66,8 @@ if (isset($_POST['add_user']))
 		message_backstage($lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2']);
 	}
 
-	// Validate e-mail
-	require FORUM_ROOT.'include/email.php';
-
-	if (!is_valid_email($email1))
-		message_backstage($lang['Invalid e-mail']);
-
-	// Check if someone else already has registered with that e-mail address
-	$dupe_list = array();
-
-	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE email=\''.$email1.'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result))
-	{
-		while ($cur_dupe = $db->fetch_assoc($result))
-			$dupe_list[] = $cur_dupe['username'];
-	}
-
 	$timezone = '0';
-	$language = isset($_POST['language']) ? $_POST['language'] : $luna_config['o_default_lang'];
+	$language = $luna_config['o_default_lang'];
 
 	$email_setting = intval(1);
 
@@ -107,18 +81,12 @@ if (isset($_POST['add_user']))
 	$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, email_setting, timezone, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$email1.'\', '.$email_setting.', '.$timezone.' , \''.$language.'\', \''.$luna_config['o_default_style'].'\', '.$now.', \''.get_remote_address().'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 	$new_uid = $db->insert_id();
 
-	// Should we alert people on the admin mailing list that a new user has registered?
-	if ($luna_config['o_regs_report'] == '1')
-	{
-		$mail_subject = 'Alert - New registration';
-		$mail_message = 'User \''.$username.'\' registered in the forums at '.$luna_config['o_base_url']."\n\n".'User profile: '.$luna_config['o_base_url'].'/profile.php?id='.$new_uid."\n\n".'-- '."\n".'Forum Mailer'."\n".'(Do not reply to this message)';
-
-		luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
-	}
-
-	// Must the user verify the registration or do we log him/her in right now?
+	// Must the user verify the registration?
 	if ($_POST['random_pass'] == '1')
 	{
+        // Validate e-mail
+        require FORUM_ROOT.'include/email.php';
+
 		// Load the "welcome" template
 		$mail_tpl = trim($lang['welcome.tpl']);
 
