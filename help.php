@@ -156,8 +156,6 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
                         <?php } ?>
                     </tbody>
                 </table>
-                <h3><?php echo $lang['WYSIWYG question'] ?></h3>
-                <p><?php echo $lang['WYSIWYG answer'] ?></p>
                 <h3><?php echo $lang['Content question'] ?></h3>
                 <p><?php echo $lang['Content answer'] ?></p>
                 <h3><?php echo $lang['Topics question'] ?></h3>
