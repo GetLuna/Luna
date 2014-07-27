@@ -17,8 +17,10 @@ if (!defined('FORUM'))
                 <div class="usercontent"><?php echo $luna_config['o_rules_message'] ?></div>
             </fieldset>
         </div>
+        <div class="panel-footer">
+        	<div class="btn-group"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang['Agree'] ?>" /> <input type="submit" class="btn btn-default" name="cancel" value="<?php echo $lang['Cancel'] ?>" /></div>
+        </div>
     </div>
-    <div class="alert alert-info"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang['Agree'] ?>" /> <input type="submit" class="btn btn-default" name="cancel" value="<?php echo $lang['Cancel'] ?>" /></div>
 </form>
 
 <?php
