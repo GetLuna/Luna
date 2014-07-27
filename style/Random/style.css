@@ -1091,12 +1091,10 @@ blockquote p {
 }
 
 .form input[type="text"], .form input[type="password"] {
-	font-size: 16px;
-	height: auto;
+	font-size: 14px;
 	margin-bottom: -1px;
 	padding: 7px 9px;
 	width: 100%;
-	box-shadow: none;
 }
 
 .form-heading {
@@ -1128,7 +1126,7 @@ blockquote p {
 	padding: 20px;
 }
 
-.form .btn {
+.form .btn-login {
 	margin-top: -65px;
 	margin-right: 5px;
 }
@@ -1219,7 +1217,6 @@ blockquote p {
 .cookie-bar .navbar-form {
 	border-top: none;
 	border-bottom: none;
-	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
