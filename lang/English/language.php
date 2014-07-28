@@ -1426,7 +1426,7 @@ $lang = array(
 // Announcement Section
 //
 
-'Announcement subhead'				=>	'Announcements',
+'Announcements'						=>	'Announcements',
 'Display announcement help'			=>	'Enable this to display the below message in the board.',
 
 //
