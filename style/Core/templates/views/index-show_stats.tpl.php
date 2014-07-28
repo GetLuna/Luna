@@ -32,14 +32,13 @@ if ($luna_config['o_users_online'] == '1')
     echo "\t\t\t\t".'<div class="col-md-2 col-sm-4 col-xs-6"><span>'.sprintf($lang['Users online'], '<strong>'.forum_number_format( $num_users_online ).'</strong>').'</span></div>'."\n\t\t\t\t".'<div class="col-md-2 col-sm-4 col-xs-6"><span>'.sprintf($lang['Guests online'], '<strong>'.forum_number_format( num_guests_online() ).'</strong>').'</span></div>'."\n\t\t\t\n";
     ?>
         </div>
-        <div class="row">
     <?php
 
     // Fetch users online info and generate strings for output
     $result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 
     if ($db->num_rows($result) > 0) {
-        echo "\n\t\t\t\t".'<span class="users-online"><strong>'.$lang['Online'].' </strong>';
+        echo "\n\t\t\t\t".'<div class="row"><span class="users-online"><strong>'.$lang['Online'].' </strong>';
 
         $ctr = 1;
         while ($luna_user_online = $db->fetch_assoc($result))
@@ -51,13 +50,13 @@ if ($luna_config['o_users_online'] == '1')
 
             if ($ctr < $num_users_online) echo ', '; $ctr++;
         }
+    
+		echo "\n\t\t\t\t".'</span></div>';
     }
 
-    echo "\n\t\t\t\t".'</span>';
 }
 
 ?>
-        </div>
     </div>
 </div>
 <?php

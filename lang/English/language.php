@@ -367,6 +367,20 @@ $lang = array(
 'produces list'			=>	'produces a bulleted list.',
 'produces decimal list'	=>	'produces a numbered list.',
 
+'Bold'					=>	'Bold',
+'Underline'				=>	'Underline',
+'Italic'				=>	'Italic',
+'Strike'				=>	'Strike',
+'URL'					=>	'URL',
+'List'					=>	'List',
+'List item'				=>	'List item',
+'Heading'				=>	'Heading',
+'Inline code'			=>	'Inline code',
+'Superscript'			=>	'Superscript',
+'Subscript'				=>	'Subscript',
+'Video'					=>	'Video',
+'Image'					=>	'Image',
+
 'Smilies info'			=>	'If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:',
 
 'General use'					=>	'General use',
