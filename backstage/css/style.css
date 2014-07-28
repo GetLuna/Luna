@@ -114,12 +114,6 @@ label .help-block {
 	}
 }
 
-@media all and (max-width:767px) {
-	.nav-inner .visible-xs {
-		display: inline !important;
-	}
-}
-
 /* Panels */
 .panel-default .panel-heading {
 	color: #fff;
