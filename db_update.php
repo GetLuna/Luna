@@ -478,7 +478,7 @@ if (empty($stage))
 <body>
 
 <div id="punmaint" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
+<div class="top-box"></div>
 <div class="punwrap">
 
 <div id="brdmain">
@@ -493,7 +493,7 @@ if (empty($stage))
 </div>
 
 </div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
+<div class="end-box"></div>
 </div>
 
 </body>
@@ -1643,7 +1643,7 @@ switch ($stage)
 <body>
 
 <div id="pundb_update" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
+<div class="top-box"></div>
 <div class="punwrap">
 
 <div class="blockform">
@@ -1692,7 +1692,7 @@ foreach ($errors[$id] as $cur_error)
 </div>
 
 </div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
+<div class="end-box"></div>
 </div>
 
 </body>
@@ -1880,7 +1880,7 @@ foreach ($errors[$id] as $cur_error)
 <body>
 
 <div id="pundb_update" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
+<div class="top-box"></div>
 <div class="punwrap">
 
 <div class="blockform">
@@ -1897,7 +1897,7 @@ foreach ($errors[$id] as $cur_error)
 </div>
 
 </div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
+<div class="end-box"></div>
 </div>
 
 </body>

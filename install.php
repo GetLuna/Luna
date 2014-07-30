@@ -291,7 +291,7 @@ function process_form(the_form)
 <body onload="document.getElementById('install').req_db_type.focus();document.getElementById('install').start.disabled=false;" onunload="">
 
 <div id="puninstall" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
+<div class="top-box"></div>
 <div class="punwrap">
 
 <div id="brdheader" class="block">
@@ -493,7 +493,7 @@ foreach ($alerts as $cur_alert)
 </div>
 
 </div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
+<div class="end-box"></div>
 </div>
 
 </body>
@@ -1694,7 +1694,7 @@ else
 <body>
 
 <div id="puninstall" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
+<div class="top-box"></div>
 <div class="punwrap">
 
 <div id="brdheader" class="block">
@@ -1771,7 +1771,7 @@ else
 </div>
 
 </div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
+<div class="end-box"></div>
 </div>
 
 </body>
