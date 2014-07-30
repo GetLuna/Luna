@@ -3,11 +3,6 @@
 // Language definitions used in admin_forums.php
 $lang_admin_forums = array(
 
-'Forum added redirect'		=>	'Forum added. Redirecting …',
-'Forum deleted redirect'	=>	'Forum deleted. Redirecting …',
-'Forums updated redirect'	=>	'Forums updated. Redirecting …',
-'Forum updated redirect'	=>	'Forum updated. Redirecting …',
-'Perms reverted redirect'	=>	'Permissions reverted to defaults. Redirecting …',
 'Must enter name message'	=>	'You must enter a forum name.',
 'Must be integer message'	=>	'Position must be a positive integer value.',
 'New forum'					=>	'New forum',

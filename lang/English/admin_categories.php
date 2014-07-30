@@ -4,14 +4,11 @@
 $lang_admin_categories = array(
 
 'Must enter name message'		=>	'You must enter a name for the category',
-'Category added redirect'		=>	'Category added. Redirecting …',
-'Category deleted redirect'		=>	'Category deleted. Redirecting …',
 'Delete category head'			=>	'Delete category (together with all forums and posts it contains)',
 'Confirm delete subhead'		=>	'Confirm delete category',
 'Confirm delete info'			=>	'Are you sure that you want to delete the category <strong>%s</strong>?',
 'Delete category warn'			=>	'<strong>WARNING!</strong> Deleting a category will delete all forums and posts (if any) in this category!',
 'Must enter integer message'	=>	'Position must be a positive integer value.',
-'Categories updated redirect'	=>	'Categories updated. Redirecting …',
 'Add categories head'			=>	'Add categories',
 'Add categories subhead'		=>	'Add categories',
 'Add category label'			=>	'Add a new category',

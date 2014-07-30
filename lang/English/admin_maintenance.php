@@ -22,7 +22,6 @@ $lang_admin_maintenance = array(
 'Posts must be integer message'	=>	'Posts per cycle must be a positive integer value.',
 'Days must be integer message'	=>	'Days to prune must be a positive integer value.',
 'No old topics message'			=>	'There are no topics that are %s days old. Please decrease the value of "Days old" and try again.',
-'Posts pruned redirect'			=>	'Posts pruned. Redirecting …',
 'Prune head'					=>	'Prune',
 'Prune subhead'					=>	'Prune old posts',
 'Days old label'				=>	'Days old',

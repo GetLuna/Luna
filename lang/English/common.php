@@ -36,7 +36,6 @@ $lang_common = array(
 'Info'								=>	'Info', // A common table header
 'Go back'							=>	'Go back',
 'Maintenance'						=>	'Maintenance',
-'Redirecting'						=>	'Redirecting',
 'Click redirect'					=>	'Click here if you do not want to wait any longer (or if your browser does not automatically forward you)',
 'on'								=>	'on', // As in "BBCode is on"
 'off'								=>	'off',

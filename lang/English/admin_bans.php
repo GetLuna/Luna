@@ -13,9 +13,6 @@ $lang_admin_bans = array(
 'Invalid e-mail message'	=>	'The email address (e.g. user@domain.com) or partial email address domain (e.g. domain.com) you entered is invalid.',
 'Invalid date message'		=>	'You entered an invalid expire date.',
 'Invalid date reasons'		=>	'The format should be YYYY-MM-DD and the date must be at least one day in the future.',
-'Ban added redirect'		=>	'Ban added. Redirecting …' ,
-'Ban edited redirect'		=>	'Ban edited. Redirecting …',
-'Ban removed redirect'		=>	'Ban removed. Redirecting …',
 
 'New ban head'				=>	'New ban',
 'Add ban subhead'			=>	'Add ban',

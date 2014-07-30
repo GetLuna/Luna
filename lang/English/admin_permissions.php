@@ -3,7 +3,6 @@
 // Language definitions used in admin_permissions.php
 $lang_admin_permissions = array(
 
-'Perms updated redirect'	=>	'Permissions updated. Redirecting …',
 'Permissions head'			=>	'Permissions',
 'Posting subhead'			=>	'Posting',
 'BBCode label'				=>	'BBCode',
