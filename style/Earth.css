@@ -164,6 +164,9 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 ----------------------------------------------------------------*/
 
 .pun {
+	max-width: 1170px;
+	width: 95%;
+	margin: 0 auto;
 	padding: 30px 40px;
 }
 
@@ -177,6 +180,7 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 
 .pun .punwrap {
 	border: 1px solid;
+	border-radius: 3px;
 	padding: 18px;
 }
 
