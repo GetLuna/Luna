@@ -32,12 +32,6 @@ if (isset($_POST['add_forum']))
 
 	$db->query('INSERT INTO '.$db->prefix.'forums (forum_name, cat_id) VALUES(\''.$db->escape($lang_admin_forums['New forum']).'\', '.$add_to_cat.')') or error('Unable to create forum', __FILE__, __LINE__, $db->error());
 
-	// Regenerate the quick jump cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
-
-	generate_quickjump_cache();
-
 	redirect('admin_forums.php');
 }
 
@@ -75,12 +69,6 @@ else if (isset($_GET['del_forum']))
 
 		// Delete any subscriptions for this forum
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
-
-		// Regenerate the quick jump cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
-
-		generate_quickjump_cache();
 
 		redirect('admin_forums.php');
 	}
@@ -134,12 +122,6 @@ else if (isset($_POST['update_positions']))
 
 		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 	}
-
-	// Regenerate the quick jump cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require PUN_ROOT.'include/cache.php';
-
-	generate_quickjump_cache();
 
 	redirect('admin_forums.php');
 }
@@ -200,12 +182,6 @@ else if (isset($_GET['edit_forum']))
 			}
 		}
 
-		// Regenerate the quick jump cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
-
-		generate_quickjump_cache();
-
 		redirect('admin_forums.php');
 	}
 	else if (isset($_POST['revert_perms']))
@@ -213,12 +189,6 @@ else if (isset($_GET['edit_forum']))
 		confirm_referrer('admin_forums.php');
 
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
-
-		// Regenerate the quick jump cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require PUN_ROOT.'include/cache.php';
-
-		generate_quickjump_cache();
 
 		redirect('admin_forums.php?edit_forum='.$forum_id);
 	}

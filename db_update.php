@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '1.6.5');
 
-define('UPDATE_TO_DB_REVISION', 21);
+define('UPDATE_TO_DB_REVISION', 22);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 2);
 
@@ -516,21 +516,20 @@ if (empty($stage))
 <body onLoad="document.getElementById('install').req_db_pass.focus();document.getElementById('install').start.disabled=false;">
 
 <div id="pundb_update" class="pun">
-<div class="top-box"><div><!-- Top Corners --></div></div>
+<div class="top-box"></div>
 <div class="punwrap">
 
 <div id="brdheader" class="block">
 	<div class="box">
 		<div id="brdtitle" class="inbox">
 			<h1><span><?php echo $lang_update['Update'] ?></span></h1>
-			<div id="brddesc"><p><?php echo $lang_update['Update message'] ?></p><p><strong><?php echo $lang_update['Note']; ?></strong> <?php echo $lang_update['Members message']; ?></p></div>
+			<div id="brddesc"><p><?php echo $lang_update['Update message'] ?></p></div>
 		</div>
 	</div>
 </div>
 
 <div id="brdmain">
 <div class="blockform">
-	<h2><span><?php echo $lang_update['Update'] ?></span></h2>
 	<div class="box">
 		<form id="install" method="post" action="db_update.php">
 			<input type="hidden" name="stage" value="start" />
@@ -541,7 +540,6 @@ if (empty($stage))
 						<p><?php echo $lang_update['Database password info'] ?></p>
 						<p><strong><?php echo $lang_update['Note']; ?></strong> <?php echo $lang_update['Database password note'] ?></p>
 						<label class="required"><strong><?php echo $lang_update['Database password'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br /><input type="password" id="req_db_pass" name="req_db_pass" /><br /></label>
-						<p><?php echo $lang_update['Maintenance message info'] ?></p>
 						<div class="txtarea">
 							<label class="required"><strong><?php echo $lang_update['Maintenance message'] ?> <span><?php echo $lang_update['Required'] ?></span></strong><br />
 							<textarea name="req_maintenance_message" rows="4" cols="65"><?php echo pun_htmlspecialchars($pun_config['o_maintenance_message']) ?></textarea><br /></label>
@@ -549,10 +547,6 @@ if (empty($stage))
 					</div>
 				</fieldset>
 			</div>
-			<div class="inform">
-				<div class="forminfo">
-					<p><?php echo $lang_update['Intro 1'] ?></p>
-					<p><?php echo $lang_update['Intro 2'] ?></p>
 <?php
 
 	if (strpos($cur_version, '1.2') === 0)
@@ -561,14 +555,16 @@ if (empty($stage))
 		{
 
 ?>
+			<div class="inform">
+				<div class="forminfo">
 					<p><?php echo $lang_update['No charset conversion'] ?></p>
+				</div>
+			</div>
 <?php
 
 		}
 
 ?>
-				</div>
-			</div>
 			<div class="inform">
 				<div class="forminfo">
 					<p><?php echo $lang_update['Enable conversion'] ?></p>
@@ -601,7 +597,7 @@ if (empty($stage))
 </div>
 
 </div>
-<div class="end-box"><div><!-- Bottom Corners --></div></div>
+<div class="end-box"></div>
 </div>
 
 </body>
@@ -1033,6 +1029,10 @@ switch ($stage)
 		// Drop redirect setting
 		if (array_key_exists('o_redirect_delay', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name=\'o_redirect_delay\'') or error('Unable to remove config value \'o_redirect_delay\'', __FILE__, __LINE__, $db->error());
+		
+		// Drop quick jump setting
+		if (array_key_exists('o_quickjump', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name=\'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
 
 		// If the search_cache table has been dropped by the fulltext search extension, recreate it
 		if (!$db->table_exists('search_cache'))

@@ -55,7 +55,6 @@ if (isset($_POST['form_sent']))
 		'ranks'					=> $_POST['form']['ranks'] != '1' ? '0' : '1',
 		'show_dot'				=> $_POST['form']['show_dot'] != '1' ? '0' : '1',
 		'topic_views'			=> $_POST['form']['topic_views'] != '1' ? '0' : '1',
-		'quickjump'				=> $_POST['form']['quickjump'] != '1' ? '0' : '1',
 		'gzip'					=> $_POST['form']['gzip'] != '1' ? '0' : '1',
 		'search_all_forums'		=> $_POST['form']['search_all_forums'] != '1' ? '0' : '1',
 		'additional_navlinks'	=> pun_trim($_POST['form']['additional_navlinks']),
@@ -556,14 +555,6 @@ generate_admin_menu('options');
 										<label class="conl"><input type="radio" name="form[topic_views]" value="1"<?php if ($pun_config['o_topic_views'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
 										<label class="conl"><input type="radio" name="form[topic_views]" value="0"<?php if ($pun_config['o_topic_views'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
 										<span class="clearb"><?php echo $lang_admin_options['Topic views help'] ?></span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_options['Quick jump label'] ?></th>
-									<td>
-										<label class="conl"><input type="radio" name="form[quickjump]" value="1"<?php if ($pun_config['o_quickjump'] == '1') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['Yes'] ?></strong></label>
-										<label class="conl"><input type="radio" name="form[quickjump]" value="0"<?php if ($pun_config['o_quickjump'] == '0') echo ' checked="checked"' ?> />&#160;<strong><?php echo $lang_admin_common['No'] ?></strong></label>
-										<span class="clearb"><?php echo $lang_admin_options['Quick jump help'] ?></span>
 									</td>
 								</tr>
 								<tr>
