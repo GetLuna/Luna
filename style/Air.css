@@ -181,32 +181,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 	padding: 18px;
 }
 
-.pun .top-box {
-	height: 18px;
-	margin-bottom: -18px;
-	position: relative;
-	background: url(Air/img/main_top.png) top left no-repeat;
-}
-
-.pun .top-box div {
-	height: 18px;
-	margin-left: 50%;
-	background: url(Air/img/main_top.png) top right no-repeat;
-}
-
-.pun .end-box {
-	margin-top: -17px;
-	height: 18px;
-	position: relative;
-	background: url(Air/img/main_end.png) bottom left no-repeat;
-}
-
-.pun .end-box div {
-	height: 18px;
-	margin-left: 50%;
-	background: url(Air/img/main_end.png) bottom right no-repeat;
-}
-
 #punredirect h2, #punmaint h2 {
 	border-bottom-style: dotted;
 	border-bottom-width: 1px;
