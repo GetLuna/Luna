@@ -136,7 +136,7 @@ require PUN_ROOT.'lang/'.$default_lang.'/update.php';
 // Check current version
 $cur_version = $pun_config['o_cur_version'];
 
-if (version_compare($cur_version, '1.2', '<'))
+if (version_compare($cur_version, '1.4', '<'))
 	error(sprintf($lang_update['Version mismatch error'], $db_name));
 
 // Do some DB type specific checks
@@ -173,7 +173,7 @@ $default_style = $pun_config['o_default_style'];
 if (!file_exists(PUN_ROOT.'style/'.$default_style.'.css'))
 	$default_style = 'Air';
 
-// Start a session, used to queue up errors if duplicate users occur when converting from FluxBB v1.2.
+// Start a session, used to queue up errors if duplicate users occur
 session_start();
 
 //
@@ -549,7 +549,7 @@ if (empty($stage))
 			</div>
 <?php
 
-	if (strpos($cur_version, '1.2') === 0)
+	if (strpos($cur_version, '1.4') === 0)
 	{
 		if (!function_exists('iconv') && !function_exists('mb_convert_encoding'))
 		{
@@ -744,10 +744,6 @@ switch ($stage)
 		if (!array_key_exists('o_default_email_setting', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_default_email_setting\', \'1\')') or error('Unable to insert config value \'o_default_email_setting\'', __FILE__, __LINE__, $db->error());
 
-		// Make sure we have o_additional_navlinks (was added in 1.2.1)
-		if (!array_key_exists('o_additional_navlinks', $pun_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_additional_navlinks\', \'\')') or error('Unable to insert config value \'o_additional_navlinks\'', __FILE__, __LINE__, $db->error());
-
 		// Insert new config option o_topic_views
 		if (!array_key_exists('o_topic_views', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_topic_views\', \'1\')') or error('Unable to insert config value \'o_topic_views\'', __FILE__, __LINE__, $db->error());
@@ -794,7 +790,7 @@ switch ($stage)
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_base_url\', \''.$db->escape($base_url).'\')') or error('Unable to insert config value \'o_base_url\'', __FILE__, __LINE__, $db->error());
 		}
 
-		if (strpos($cur_version, '1.2') === 0)
+		if (strpos($cur_version, '1.4') === 0)
 		{
 			// Groups are almost the same as 1.2:
 			// unverified:	32000 -> 0
@@ -1018,13 +1014,6 @@ switch ($stage)
 
 		// Change the search_data column to mediumtext
 		$db->alter_field('search_cache', 'search_data', 'MEDIUMTEXT', true) or error('Unable to alter search_data field', __FILE__, __LINE__, $db->error());
-
-		// In case we had the fulltext search extension installed (1.3-legacy), remove it
-		$db->drop_index('topics', 'subject_idx') or error('Unable to drop subject_idx index', __FILE__, __LINE__, $db->error());
-		$db->drop_index('posts', 'message_idx') or error('Unable to drop message_idx index', __FILE__, __LINE__, $db->error());
-		// In case we had the fulltext search mod installed (1.2), remove it
-		$db->drop_index('topics', 'subject_fulltext_search') or error('Unable to drop subject_fulltext_search index', __FILE__, __LINE__, $db->error());
-		$db->drop_index('posts', 'message_fulltext_search') or error('Unable to drop message_fulltext_search index', __FILE__, __LINE__, $db->error());
 		
 		// Drop redirect setting
 		if (array_key_exists('o_redirect_delay', $luna_config))
@@ -1169,7 +1158,7 @@ switch ($stage)
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
 
 		// Should we do charset conversion or not?
-		if (strpos($cur_version, '1.2') === 0 && isset($_POST['convert_charset']))
+		if (strpos($cur_version, '1.4') === 0 && isset($_POST['convert_charset']))
 			$query_str = '?stage=conv_bans&req_old_charset='.$old_charset;
 
 		break;
