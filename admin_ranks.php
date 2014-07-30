@@ -48,7 +48,7 @@ if (isset($_POST['add_rank']))
 
 	generate_ranks_cache();
 
-	redirect('admin_ranks.php', $lang_admin_ranks['Rank added redirect']);
+	redirect('admin_ranks.php');
 }
 
 
@@ -81,7 +81,7 @@ else if (isset($_POST['update']))
 
 	generate_ranks_cache();
 
-	redirect('admin_ranks.php', $lang_admin_ranks['Rank updated redirect']);
+	redirect('admin_ranks.php');
 }
 
 
@@ -100,7 +100,7 @@ else if (isset($_POST['remove']))
 
 	generate_ranks_cache();
 
-	redirect('admin_ranks.php', $lang_admin_ranks['Rank removed redirect']);
+	redirect('admin_ranks.php');
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Ranks']);

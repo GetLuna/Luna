@@ -137,7 +137,7 @@ if (isset($_POST['form_sent']))
 		// Update the post
 		$db->query('UPDATE '.$db->prefix.'posts SET message=\''.$db->escape($message).'\', hide_smilies='.$hide_smilies.$edited_sql.' WHERE id='.$id) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
-		redirect('viewtopic.php?pid='.$id.'#p'.$id, $lang_post['Edit redirect']);
+		redirect('viewtopic.php?pid='.$id.'#p'.$id);
 	}
 }
 

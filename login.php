@@ -85,7 +85,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(pun_htmlspecialchars($_POST['redirect_url']), $lang_login['Login redirect']);
+	redirect(pun_htmlspecialchars($_POST['redirect_url']));
 }
 
 
@@ -106,9 +106,8 @@ else if ($action == 'out')
 
 	pun_setcookie(1, pun_hash(uniqid(rand(), true)), time() + 31536000);
 
-	redirect('index.php', $lang_login['Logout redirect']);
+	redirect('index.php');
 }
-
 
 else if ($action == 'forget' || $action == 'forget_2')
 {

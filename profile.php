@@ -117,7 +117,7 @@ if ($action == 'change_pass')
 		if ($pun_user['id'] == $id)
 			pun_setcookie($pun_user['id'], $new_password_hash, time() + $pun_config['o_timeout_visit']);
 
-		redirect('profile.php?section=essentials&amp;id='.$id, $lang_profile['Pass updated redirect']);
+		redirect('profile.php?section=essentials&amp;id='.$id);
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Change pass']);
@@ -408,7 +408,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 		else
 			message($lang_profile['Unknown failure']);
 
-		redirect('profile.php?section=personality&amp;id='.$id, $lang_profile['Avatar upload redirect']);
+		redirect('profile.php?section=personality&amp;id='.$id);
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Upload avatar']);
@@ -452,7 +452,7 @@ else if ($action == 'delete_avatar')
 
 	delete_avatar($id);
 
-	redirect('profile.php?section=personality&amp;id='.$id, $lang_profile['Avatar deleted redirect']);
+	redirect('profile.php?section=personality&amp;id='.$id);
 }
 
 
@@ -502,7 +502,7 @@ else if (isset($_POST['update_group_membership']))
 		}
 	}
 
-	redirect('profile.php?section=admin&amp;id='.$id, $lang_profile['Group membership redirect']);
+	redirect('profile.php?section=admin&amp;id='.$id);
 }
 
 
@@ -543,7 +543,7 @@ else if (isset($_POST['update_forums']))
 		}
 	}
 
-	redirect('profile.php?section=admin&amp;id='.$id, $lang_profile['Update forums redirect']);
+	redirect('profile.php?section=admin&amp;id='.$id);
 }
 
 
@@ -561,10 +561,10 @@ else if (isset($_POST['ban']))
 	if ($db->num_rows($result))
 	{
 		$ban_id = $db->result($result);
-		redirect('admin_bans.php?edit_ban='.$ban_id.'&amp;exists', $lang_profile['Ban redirect']);
+		redirect('admin_bans.php?edit_ban='.$ban_id.'&amp;exists');
 	}
 	else
-		redirect('admin_bans.php?add_ban='.$id, $lang_profile['Ban redirect']);
+		redirect('admin_bans.php?add_ban='.$id);
 }
 
 
@@ -656,7 +656,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 		if ($group_id == PUN_ADMIN)  
 		generate_admins_cache();
 		
-		redirect('index.php', $lang_profile['User delete redirect']);
+		redirect('index.php');
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_common['Profile'], $lang_profile['Confirm delete user']);
@@ -991,7 +991,7 @@ else if (isset($_POST['form_sent']))
 			generate_bans_cache();
 	}
 
-	redirect('profile.php?section='.$section.'&amp;id='.$id, $lang_profile['Profile redirect']);
+	redirect('profile.php?section='.$section.'&amp;id='.$id);
 }
 
 

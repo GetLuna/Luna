@@ -297,9 +297,9 @@ else if (isset($_POST['add_edit_ban']))
 	generate_bans_cache();
 
 	if ($_POST['mode'] == 'edit')
-		redirect('admin_bans.php', $lang_admin_bans['Ban edited redirect']);
+		redirect('admin_bans.php');
 	else
-		redirect('admin_bans.php', $lang_admin_bans['Ban added redirect']);
+		redirect('admin_bans.php');
 }
 
 // Remove a ban
@@ -319,7 +319,7 @@ else if (isset($_GET['del_ban']))
 
 	generate_bans_cache();
 
-	redirect('admin_bans.php', $lang_admin_bans['Ban removed redirect']);
+	redirect('admin_bans.php');
 }
 
 // Find bans

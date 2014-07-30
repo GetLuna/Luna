@@ -334,9 +334,9 @@ else if (isset($_POST['add_edit_group']))
 	generate_quickjump_cache($group_id);
 
 	if ($_POST['mode'] == 'edit')
-		redirect('admin_groups.php', $lang_admin_groups['Group edited redirect']);
+		redirect('admin_groups.php');
 	else
-		redirect('admin_groups.php', $lang_admin_groups['Group added redirect']);
+		redirect('admin_groups.php');
 }
 
 
@@ -364,7 +364,7 @@ else if (isset($_POST['set_default_group']))
 
 	generate_config_cache();
 
-	redirect('admin_groups.php', $lang_admin_groups['Default group redirect']);
+	redirect('admin_groups.php');
 }
 
 
@@ -399,7 +399,7 @@ else if (isset($_GET['del_group']))
 			$db->query('DELETE FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to delete group', __FILE__, __LINE__, $db->error());
 			$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$group_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
-			redirect('admin_groups.php', $lang_admin_groups['Group removed redirect']);
+			redirect('admin_groups.php');
 		}
 		else
 		{

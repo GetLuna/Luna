@@ -170,7 +170,7 @@ if ($action == 'prune')
 			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
-		redirect('admin_maintenance.php', $lang_admin_maintenance['Posts pruned redirect']);
+		redirect('admin_maintenance.php');
 	}
 
 	$prune_days = pun_trim($_POST['req_prune_days']);

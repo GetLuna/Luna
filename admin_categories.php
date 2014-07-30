@@ -32,7 +32,7 @@ if (isset($_POST['add_cat']))
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
-	redirect('admin_categories.php', $lang_admin_categories['Category added redirect']);
+	redirect('admin_categories.php');
 }
 
 // Delete a category
@@ -83,7 +83,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_categories.php', $lang_admin_categories['Category deleted redirect']);
+		redirect('admin_categories.php');
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -151,7 +151,7 @@ else if (isset($_POST['update'])) // Change position and name of the categories
 
 	generate_quickjump_cache();
 
-	redirect('admin_categories.php', $lang_admin_categories['Categories updated redirect']);
+	redirect('admin_categories.php');
 }
 
 // Generate an array with all categories

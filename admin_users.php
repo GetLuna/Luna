@@ -341,7 +341,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 		// Change user group
 		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$new_group.' WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to change user group', __FILE__, __LINE__, $db->error());
 
-		redirect('admin_users.php', $lang_admin_users['Users move redirect']);
+		redirect('admin_users.php');
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Move users']);
@@ -497,7 +497,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 		generate_users_info_cache();
 
-		redirect('admin_users.php', $lang_admin_users['Users delete redirect']);
+		redirect('admin_users.php');
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Users'], $lang_admin_users['Delete users']);
@@ -622,7 +622,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 
 		generate_bans_cache();
 
-		redirect('admin_users.php', $lang_admin_users['Users banned redirect']);
+		redirect('admin_users.php');
 	}
 
 	$page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Bans']);

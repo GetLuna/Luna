@@ -40,7 +40,7 @@ if (isset($_POST['add_word']))
 
 	generate_censoring_cache();
 
-	redirect('admin_censoring.php', $lang_admin_censoring['Word added redirect']);
+	redirect('admin_censoring.php');
 }
 
 // Update a censor word
@@ -64,7 +64,7 @@ else if (isset($_POST['update']))
 
 	generate_censoring_cache();
 
-	redirect('admin_censoring.php', $lang_admin_censoring['Word updated redirect']);
+	redirect('admin_censoring.php');
 }
 
 // Remove a censor word
@@ -82,7 +82,7 @@ else if (isset($_POST['remove']))
 
 	generate_censoring_cache();
 
-	redirect('admin_censoring.php',  $lang_admin_censoring['Word removed redirect']);
+	redirect('admin_censoring.php');
 }
 
 $page_title = array(pun_htmlspecialchars($pun_config['o_board_title']), $lang_admin_common['Admin'], $lang_admin_common['Censoring']);

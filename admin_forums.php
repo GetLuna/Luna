@@ -38,7 +38,7 @@ if (isset($_POST['add_forum']))
 
 	generate_quickjump_cache();
 
-	redirect('admin_forums.php', $lang_admin_forums['Forum added redirect']);
+	redirect('admin_forums.php');
 }
 
 // Delete a forum
@@ -82,7 +82,7 @@ else if (isset($_GET['del_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_forums.php', $lang_admin_forums['Forum deleted redirect']);
+		redirect('admin_forums.php');
 	}
 	else // If the user hasn't confirmed the delete
 	{
@@ -141,7 +141,7 @@ else if (isset($_POST['update_positions']))
 
 	generate_quickjump_cache();
 
-	redirect('admin_forums.php', $lang_admin_forums['Forums updated redirect']);
+	redirect('admin_forums.php');
 }
 
 else if (isset($_GET['edit_forum']))
@@ -206,7 +206,7 @@ else if (isset($_GET['edit_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_forums.php', $lang_admin_forums['Forum updated redirect']);
+		redirect('admin_forums.php');
 	}
 	else if (isset($_POST['revert_perms']))
 	{
@@ -220,7 +220,7 @@ else if (isset($_GET['edit_forum']))
 
 		generate_quickjump_cache();
 
-		redirect('admin_forums.php?edit_forum='.$forum_id, $lang_admin_forums['Perms reverted redirect']);
+		redirect('admin_forums.php?edit_forum='.$forum_id);
 	}
 
 	// Fetch forum info
