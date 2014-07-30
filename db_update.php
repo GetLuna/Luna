@@ -695,7 +695,6 @@ switch ($stage)
 		// Make the message field MEDIUMTEXT to allow proper conversion of 65535 character posts to UTF-8
 		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
-
 		// Add search index revision number
 		if (!array_key_exists('o_searchindex_revision', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_searchindex_revision\', \'0\')') or error('Unable to insert config value \'o_searchindex_revision\'', __FILE__, __LINE__, $db->error());
@@ -707,6 +706,41 @@ switch ($stage)
 		// Insert new config option o_quote_depth
 		if (!array_key_exists('o_quote_depth', $pun_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_quote_depth\', \'3\')') or error('Unable to insert config value \'o_quote_depth\'', __FILE__, __LINE__, $db->error());
+		
+		// Add o_ranks if updating from FluxBB 1.5
+		if (!array_key_exists('o_ranks', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
+		
+		// Recreate ranks table when removed in FluxBB 1.5
+		if (!$db->table_exists('ranks'))
+		{
+			$schema = array(
+				'FIELDS'		=> array(
+					'id'			=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'rank'			=> array(
+						'datatype'		=> 'VARCHAR(50)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'min_posts'		=> array(
+						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('id')
+			);
+			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
+
+			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
+				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+			
+			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
+				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+		}
 
 		// Insert new config option o_feed_type
 		if (!array_key_exists('o_feed_type', $pun_config))
