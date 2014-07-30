@@ -37,7 +37,6 @@ if (isset($_POST['form_sent']))
 		'date_format'			=> pun_trim($_POST['form']['date_format']),
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
 		'timeout_online'		=> (intval($_POST['form']['timeout_online']) > 0) ? intval($_POST['form']['timeout_online']) : 1,
-		'redirect_delay'		=> (intval($_POST['form']['redirect_delay']) >= 0) ? intval($_POST['form']['redirect_delay']) : 0,
 		'show_version'			=> $_POST['form']['show_version'] != '1' ? '0' : '1',
 		'show_user_info'		=> $_POST['form']['show_user_info'] != '1' ? '0' : '1',
 		'show_post_count'		=> $_POST['form']['show_post_count'] != '1' ? '0' : '1',
@@ -401,13 +400,6 @@ generate_admin_menu('options');
 									<td>
 										<input type="text" name="form[timeout_online]" size="5" maxlength="5" value="<?php echo $pun_config['o_timeout_online'] ?>" />
 										<span><?php echo $lang_admin_options['Online timeout help'] ?></span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><?php echo $lang_admin_options['Redirect time label'] ?></th>
-									<td>
-										<input type="text" name="form[redirect_delay]" size="3" maxlength="3" value="<?php echo $pun_config['o_redirect_delay'] ?>" />
-										<span><?php echo $lang_admin_options['Redirect time help'] ?></span>
 									</td>
 								</tr>
 							</table>

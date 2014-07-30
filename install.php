@@ -10,7 +10,7 @@
 // The ModernBB version this script installs
 define('FORUM_VERSION', '1.6.5');
 
-define('FORUM_DB_REVISION', 20);
+define('FORUM_DB_REVISION', 21);
 define('FORUM_SI_REVISION', 2);
 define('FORUM_PARSER_REVISION', 2);
 
@@ -1553,7 +1553,6 @@ else
 		'o_date_format'				=> 'Y-m-d',
 		'o_timeout_visit'			=> 1800,
 		'o_timeout_online'			=> 300,
-		'o_redirect_delay'			=> 1,
 		'o_show_version'			=> 1,
 		'o_show_user_info'			=> 1,
 		'o_show_post_count'			=> 1,

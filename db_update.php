@@ -10,7 +10,7 @@
 // The ModernBB version this script updates to
 define('UPDATE_TO', '1.6.5');
 
-define('UPDATE_TO_DB_REVISION', 20);
+define('UPDATE_TO_DB_REVISION', 21);
 define('UPDATE_TO_SI_REVISION', 2);
 define('UPDATE_TO_PARSER_REVISION', 2);
 
@@ -1029,6 +1029,10 @@ switch ($stage)
 		// In case we had the fulltext search mod installed (1.2), remove it
 		$db->drop_index('topics', 'subject_fulltext_search') or error('Unable to drop subject_fulltext_search index', __FILE__, __LINE__, $db->error());
 		$db->drop_index('posts', 'message_fulltext_search') or error('Unable to drop message_fulltext_search index', __FILE__, __LINE__, $db->error());
+		
+		// Drop redirect setting
+		if (array_key_exists('o_redirect_delay', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name=\'o_redirect_delay\'') or error('Unable to remove config value \'o_redirect_delay\'', __FILE__, __LINE__, $db->error());
 
 		// If the search_cache table has been dropped by the fulltext search extension, recreate it
 		if (!$db->table_exists('search_cache'))
