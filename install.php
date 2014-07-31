@@ -1684,10 +1684,6 @@ else
 	$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
 		or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	// Index the test post so searching for it works
-	require FORUM_ROOT.'include/search_idx.php';
-	update_search_index('post', 1, $message, $subject);
-
 	$db->end_transaction();
 
 
