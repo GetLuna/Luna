@@ -1419,8 +1419,6 @@ $lang = array(
 'Display e-mail label'				=>	'Display email address to other users.',
 'Hide allow form label'				=>	'Hide email address but allow form e-mail.',
 'Hide both label'					=>	'Hide email address and disallow form email.',
-'Antispam API label'				=>	'Antispam API',
-'Antispam API help'					=>	'You can request an API key at %s to protect your forum against spam',
 
 //
 // Announcement Section

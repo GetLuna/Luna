@@ -29,7 +29,6 @@ if (isset($_POST['form_sent']))
 		'regs_verify'			=> isset($_POST['form']['regs_verify']) ? '1' : '0',
 		'regs_report'			=> isset($_POST['form']['regs_report']) ? '1' : '0',
 		'rules'					=> isset($_POST['form']['rules']) ? '1' : '0',
-		'antispam_api'			=> luna_trim($_POST['form']['antispam_api']),
 		'rules_message'			=> luna_trim($_POST['form']['rules_message']),
 		'default_email_setting'	=> intval($_POST['form']['default_email_setting']),
 	);
@@ -162,13 +161,6 @@ if (isset($_GET['saved']))
                                 <?php echo $lang['Hide both label'] ?>
                             </label>
                         </div>
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Antispam API label'] ?><span class="help-block"><?php printf($lang['Antispam API help'], '<a href="http://stopforumspam.com/keys">StopForumSpam.com</a>') ?></span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[antispam_api]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_antispam_api']) ?>" />
                     </div>
                 </div>
             </fieldset>

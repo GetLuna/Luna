@@ -104,7 +104,7 @@ else
 
 ?>
 					<tr>
-						<td colspan="4"><?php echo $lang['No new reports'] ?></td>
+						<td colspan="4"><p><?php echo $lang['No new reports'] ?></p></td>
 					</tr>
 <?php
 
