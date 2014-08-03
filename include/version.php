@@ -9,7 +9,11 @@
 class Version
 {
 	// See http://modernbb.be/docs/version.php for more info
+<<<<<<< HEAD
 	const FORUM_VERSION = '3.5-dev.2457';
+=======
+	const FORUM_VERSION = '3.5-dev.2452';
+>>>>>>> origin/version3.5
 
 	// The database version number, every change in the database requires this number to go one up
 	const FORUM_DB_VERSION = 76;
