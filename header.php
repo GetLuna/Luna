@@ -218,42 +218,11 @@ if ($luna_user['is_guest'])
 } else {
 	$usermenu[] = '<li class="dropdown">';
 	$usermenu[] = '<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' '.(luna_htmlspecialchars($luna_user['username'])).' <b class="caret"></b></a>';
-	// Responsive menu
 	$usermenu[] = '<ul class="dropdown-menu">';
 	$usermenu[] = '<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>';
 	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';
 	$usermenu[] = '<li class="divider"></li>';
 	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
-	$usermenu[] = '</ul>';
-	// Default
-	$usermenu[] = '<ul class="dropdown-menu hidden-xs">';
-	$usermenu[]= '
-                                                <div class="navbar-content hidden-xs">
-                                                    <div class="row">
-                                                        <div class="col-xs-5">
-                                                            '.$user_avatar.'
-                                                        </div>
-                                                        <div class="col-xs-7">
-                                                            <span class="userpane-name">'.(luna_htmlspecialchars($luna_user['username'])).'</span>
-                                                            <p class="text-muted small">'.(luna_htmlspecialchars($luna_user['email'])).'</p>
-                                                            <div class="divider">
-                                                            </div>
-															<a class="btn btn-primary" href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="navbar-footer">
-                                                    <div class="navbar-footer-content">
-                                                        <div class="row">
-                                                            <div class="col-xs-6">
-																<a href="help.php" class="btn btn-primary">Help</a>
-                                                            </div>
-                                                            <div class="col-xs-6">
-																<a class="btn btn-default pull-right" href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>';
 	$usermenu[] = '</ul>';
 	$usermenu[] = '</li>';
 }

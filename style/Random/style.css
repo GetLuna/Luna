@@ -69,28 +69,6 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-/* Navbar profile pane */
-.dropdown-menu {
-	padding: 0;
-}
-
-.navbar-content {
-	width: 320px;
-	padding: 15px;
-}
-
-.navbar-footer {
-	background-color: #DDD;
-}
-
-.navbar-footer-content {
-	padding: 15px 15px 15px 15px;
-}
-
-#header a.btn-default:hover, #header a.btn-default, .userpane-name {
-	color: #000 !important;
-}
-
 /* Header */
 #header {
 	background: #057ed4;
@@ -105,6 +83,10 @@ h1, h2, h3, h4, h5, h6 {
 #header a:hover {
 	color: #fff;
 	text-decoration: none;
+}
+
+#header .dropdown-menu a, #header .dropdown-menu a:hover {
+	color: #000;
 }
 
 @media screen and (max-width: 767px) {
