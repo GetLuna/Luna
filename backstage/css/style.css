@@ -1,12 +1,16 @@
 /*
  * Copyright Studio 384
  * Bootstrap Template: Aurore
- * Version:            5.0
+ * Version:            5.1
  * Based on:           Trent v1.1 (http://studio384.be/trent.php)
  * Since:              3.3
  */
 
 /* General fixes */
+* {
+	border-radius: 0 !important;
+}
+
 body {
 	margin-top: 40px;
 }
@@ -299,7 +303,6 @@ label .help-block {
 
 .panel-style {
 	border: 1px #dfdfdf solid;
-	border-radius: 8px;
 	margin-top: 20px;
 }
 

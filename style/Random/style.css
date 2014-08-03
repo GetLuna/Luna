@@ -765,6 +765,28 @@ textarea {
 	border-color: #2ca0e9;
 }
 
+/* Search */
+.result-card {
+	background: #fff;
+	padding: 10px;
+	margin-top: 10px;
+	border-radius: 3px;
+	border: #ddd solid 1px;
+}
+
+.result-card h3, .result-card p {
+	margin: 0;
+}
+
+.result-card .help-block {
+	margin-top: 0;
+	opacity: .5;
+}
+
+.result-card:not(last-child) {
+	margin-bottom: 10px;
+}
+
 /* Userlist */
 .search-bar {
     margin-bottom: 10px;
