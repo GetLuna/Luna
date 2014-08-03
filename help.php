@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the help template
-define('FORUM_HELP', 1);
-
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
