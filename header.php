@@ -286,7 +286,6 @@ if (!$luna_user['is_guest'])
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
 	{
-		$page_topicsearches[] = '<a href="search.php?action=show_replies" title="'.$lang['Show posted topics'].'">'.$lang['Posted topics'].'</a>';
 		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new posts'].'">'.$lang['New posts header'].'</a>';
 	}
 }
