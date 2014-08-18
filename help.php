@@ -206,6 +206,13 @@ if ($luna_user['is_admmod']) {
 		</div>
     </div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#user").focus();
+		var hash = location.hash, hashPieces = hash.split('?'), activeTab = $('[href=' + hashPieces[0] + ']');
+		activeTab && activeTab.tab('show');
+	});
+</script>
 <?php
 }
 
