@@ -90,7 +90,13 @@ if (!defined('FORUM_ALLOW_INDEX'))
 
 ?>
 <title><?php echo generate_page_title($page_title, $p) ?></title>
-<link rel="stylesheet" type="text/css" href="style/<?php echo $luna_user['style'] ?>/style.css" />
+<?php
+if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/style.css'))
+	$style = $luna_user['style'];
+else
+	$style = $luna_config['o_default_style'];
+?>
+<link rel="stylesheet" type="text/css" href="style/<?php echo $style ?>/style.css" />
 <?php
 
 if (isset($required_fields))
