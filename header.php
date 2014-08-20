@@ -21,8 +21,11 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 header('Content-type: text/html; charset=utf-8');
 
 // Load the template
-$tpl_file = 'main.tpl';
-
+if (!defined('FORUM_FORM'))
+	$tpl_file = 'main.tpl';
+else
+	$tpl_file = 'form.tpl';
+	
 if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file))
 {
 	$tpl_file = FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file;
