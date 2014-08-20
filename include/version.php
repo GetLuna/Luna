@@ -9,7 +9,7 @@
 class Version
 {
 	// See http://modernbb.be/docs/version.php for more info
-	const FORUM_VERSION = '3.5-dev.2466';
+	const FORUM_VERSION = '3.5-dev.2478';
 
 	// The database version number, every change in the database requires this number to go one up
 	const FORUM_DB_VERSION = 76;
@@ -25,5 +25,8 @@ class Version
 
 	// The minimal required MySQL version to install ModernBB
 	const MIN_MYSQL_VERSION = '5.0.0';
+
+	// The minimal required PostgreSQL version to install ModernBB
+	const MIN_PGSQL_VERSION = '8.0.0';
 }
 ?>

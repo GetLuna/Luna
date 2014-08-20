@@ -234,6 +234,8 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 	}
 	if (function_exists('sqlite_open'))
 		$db_extensions[] = array('sqlite', 'SQLite');
+	if (function_exists('pg_connect'))
+		$db_extensions[] = array('pgsql', 'PostgreSQL');
 
 	if (empty($db_extensions))
 		error($lang['No DB extensions']);
@@ -533,6 +535,10 @@ else
 			require FORUM_ROOT.'include/dblayer/mysqli_innodb.php';
 			break;
 
+		case 'pgsql':
+			require PUN_ROOT.'include/dblayer/pgsql.php';
+			break;
+
 		case 'sqlite':
 			require FORUM_ROOT.'include/dblayer/sqlite.php';
 			break;
@@ -558,6 +564,12 @@ else
 			$mysql_info = $db->get_version();
 			if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
 				error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
+			break;
+
+		case 'pgsql':
+			$pgsql_info = $db->get_version();
+			if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
+				error(sprintf($lang_install['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
 			break;
 
 		case 'sqlite':

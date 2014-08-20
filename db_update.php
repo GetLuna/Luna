@@ -143,6 +143,13 @@ switch ($db_type)
 
 		$mysql = true;
 		break;
+
+	case 'pgsql':
+		$pgsql_info = $db->get_version();
+		if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
+			error(sprintf($lang_update['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+
+		break;
 }
 
 // Check the database, search index and parser revision and the current version
@@ -715,6 +722,10 @@ foreach ($errors[$id] as $cur_error)
 				case 'mysql_innodb':
 				case 'mysqli_innodb':
 					$db->query('ALTER TABLE '.$db->prefix.'search_words auto_increment=1') or error('Unable to update table auto_increment', __FILE__, __LINE__, $db->error());
+					break;
+
+				case 'pgsql';
+					$db->query('SELECT setval(\''.$db->prefix.'search_words_id_seq\', 1, false)') or error('Unable to update sequence', __FILE__, __LINE__, $db->error());
 					break;
 			}
 		}

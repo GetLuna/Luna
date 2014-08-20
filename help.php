@@ -214,6 +214,7 @@ if ($luna_user['is_admmod']) {
 	});
 </script>
 <?php
+
 }
 
 require FORUM_ROOT.'footer.php';

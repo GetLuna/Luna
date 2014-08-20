@@ -31,6 +31,10 @@ switch ($db_type)
 		require_once FORUM_ROOT.'include/dblayer/mysqli_innodb.php';
 		break;
 
+	case 'pgsql':
+		require_once FORUM_ROOT.'include/dblayer/pgsql.php';
+		break;
+
 	case 'sqlite':
 		require_once FORUM_ROOT.'include/dblayer/sqlite.php';
 		break;
