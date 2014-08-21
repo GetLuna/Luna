@@ -156,8 +156,9 @@ switch ($db_type)
 if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::FORUM_DB_VERSION &&
 		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION &&
 		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION &&
-		version_compare($luna_config['o_cur_version'], Version::FORUM_VERSION, '>='))
+		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '>=')) {
 	error($lang['No update error']);
+}
 
 $default_style = $luna_config['o_default_style'];
 if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
@@ -456,6 +457,10 @@ switch ($stage)
 		// Since 3.5-beta: Remove obsolete o_antispam_api permission from config table
 		if (array_key_exists('o_antispam_api', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_antispam_api\'') or error('Unable to remove config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.5-beta: Add o_core_version
+		if (!array_key_exists('o_core_version', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_core_version\', \''.Version::FORUM_CORE_VERSION.'\')') or error('Unable to insert config value \'o_core_version\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
@@ -762,8 +767,9 @@ foreach ($errors[$id] as $cur_error)
 
 	// Show results page
 	case 'finish':
-		// We update the version number
+		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
 
 		// And the database revision number
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_DB_VERSION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());

@@ -1587,6 +1587,7 @@ else
 	// Insert config data
 	$luna_config = array(
 		'o_cur_version'				=> Version::FORUM_VERSION,
+		'o_core_version'			=> Version::FORUM_CORE_VERSION,
 		'o_database_revision'		=> Version::FORUM_DB_VERSION,
 		'o_searchindex_revision'	=> Version::FORUM_SI_VERSION,
 		'o_parser_revision'			=> Version::FORUM_PARSER_VERSION,
