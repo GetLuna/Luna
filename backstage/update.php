@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
@@ -47,7 +47,7 @@ require FORUM_ROOT.'backstage/header.php';
 	?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-    	<h3 class="panel-title"><?php echo $lang['ModernBB updates'] ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><?php echo $lang['Check for updates'] ?></a></span></h3>
+    	<h3 class="panel-title"><?php echo $lang['Luna updates'] ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><?php echo $lang['Check for updates'] ?></a></span></h3>
     </div>
     <div class="panel-body">
 <?php
@@ -62,7 +62,7 @@ require FORUM_ROOT.'backstage/header.php';
         </div>
 <?php } elseif (version_compare(Version::FORUM_VERSION, $latest_version, 'eq')) { ?>
 		<h3><?php echo $lang['Latest version'] ?></h3>
-        <p><?php echo $lang['ModernBB intro'].' '.Version::FORUM_VERSION ?></p>
+        <p><?php echo $lang['Luna intro'].' '.Version::FORUM_VERSION ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
         </div>
@@ -71,7 +71,7 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
     </div>
     <div class="panel-footer">
-    	<p>Luna is developed by the <a href="http://modernbb.be/">Luna Group</a>, part of the <a href="http://studio384.be/">384 Group</a>. Copyright 2013-2014. Released under the GPLv3 license.</p>
+    	<p>Luna is developed by the <a href="http://modernbb.be/">Luna</a>, part of the <a href="http://studio384.be/">384 Group</a>. Copyright 2013-2014. Released under the GPLv3 license.</p>
     </div>
 </div>
 <?php

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
@@ -13,7 +13,7 @@ if (!defined('FORUM'))
 
 ?>
                     <footer class="col-lg-12">
-                        <p class="pull-right"><?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a> '.$luna_config['o_cur_version']) ?></p>
+                        <p class="pull-right"><?php printf($lang['Thanks'], '<a href="http://modernbb.be/">Luna</a> '.$luna_config['o_cur_version']) ?></p>
                         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
                         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
                     </footer>

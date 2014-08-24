@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
@@ -149,12 +149,12 @@ else
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="col-lg-6"><?php echo $lang['ModernBB version label'] ?></th>
+                        <th class="col-lg-6"><?php echo $lang['Luna version label'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?php printf($lang['ModernBB version data'].$luna_config['o_cur_version']) ?></td>
+                        <td><?php printf($lang['Luna version data'].$luna_config['o_cur_version']) ?></td>
                     </tr>
                 </tbody>
             </table>

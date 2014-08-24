@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
@@ -36,7 +36,7 @@ function gzip_PrintFourChars($Val)
 }
 
 
-// db functions (not in ModernBB dblayer)
+// db functions (not in Luna dblayer)
 function field_name($offset, $query_id = 0)
 {
 	global $db_type;
@@ -102,7 +102,7 @@ function get_table_def_mysql($table, $crlf)
 	if(!$result)
 	{
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Failed to get field list');
 	}
 
@@ -139,7 +139,7 @@ function get_table_def_mysql($table, $crlf)
 	if(!$result)
 	{
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Failed to get Indexed Fields');
 	}
 
@@ -202,7 +202,7 @@ function get_table_content_mysql($table, $handler)
 	if (!($result = $db->query("SELECT * FROM $table")))
 	{
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Failed to get table content');
 	}
 
@@ -392,7 +392,7 @@ function split_sql_file($sql, $delimiter)
 // Begin program proper
 //
 
-// Check this is a mysql ModernBB setup
+// Check this is a mysql Luna setup
 switch($db_type)
 {
 	case 'mysql':
@@ -402,7 +402,7 @@ switch($db_type)
 		break;
 	default:
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Sorry your database type is not supported');
 }
 // Start actual db stuff
@@ -443,7 +443,7 @@ if (isset($_POST['backupstart'])) {
 	// Build the sql script file
 	//
 	echo "#\n";
-	echo "# ModernBB Backup Script\n";
+	echo "# Luna Backup Script\n";
 	echo "# Dump of tables for $db_name\n";
 	echo "#\n# DATE : " .  gmdate("d-m-Y H:i:s", time()) . " GMT\n";
 	echo "#\n";
@@ -484,7 +484,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	if($backup_file_tmpname == "" || $backup_file_name == "")
 	{
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('No file was uploaed or the upload failed, the database was not restored');
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) )
@@ -512,7 +512,7 @@ elseif ( isset($_POST['restore_start']) ) {
 			else
 			{
 				require FORUM_ROOT.'backstage/header.php';
-				generate_admin_menu('database');
+				generate_admin_menu('database', 'database');
 				message_backstage('Sorry the database could not be restored');
 			}
 		}
@@ -524,7 +524,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	else
 	{
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Error the file name or file format caused an error, the database was not restored');
 	}
 	if($sql_query != "")
@@ -535,7 +535,7 @@ elseif ( isset($_POST['restore_start']) ) {
 		if(defined('FORUM_DEBUG'))
 		{
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 ?>
 	<div>
 		<h2>Debug info</h2>
@@ -557,7 +557,7 @@ elseif ( isset($_POST['restore_start']) ) {
 				if(!$result)
 				{
 					require FORUM_ROOT.'backstage/header.php';
-					generate_admin_menu('database');
+					generate_admin_menu('database', 'database');
 					message_backstage('Error imported backup file, the database probably has not been restored');
 				}
 			}
@@ -584,7 +584,7 @@ elseif ( isset($_POST['restore_start']) ) {
 	else
 	{
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Restore Complete');
 	}
 }
@@ -597,7 +597,7 @@ elseif (isset($_POST['repairall']))
 	{
 		// This makes no sense, the board would be dead :P
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Tables error, repair failed');
 	}
 	$tables = array();
@@ -616,12 +616,12 @@ elseif (isset($_POST['repairall']))
 		if (!$result = $db->query($sql))
 		{
 			require FORUM_ROOT.'backstage/header.php';
-			generate_admin_menu('database');
+			generate_admin_menu('database', 'database');
 			message_backstage('SQL error, repair failed');
 		}
 	}
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('database');
+	generate_admin_menu('database', 'database');
 	message_backstage('All tables repaired');
 }
 elseif (isset($_POST['optimizeall']))
@@ -632,7 +632,7 @@ elseif (isset($_POST['optimizeall']))
 	{
 		// This makes no sense, the board would be dead :P
 		require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('database');
+		generate_admin_menu('database', 'database');
 		message_backstage('Tables error, optimise failed');
 	}
 	$tables = array();
@@ -651,12 +651,12 @@ elseif (isset($_POST['optimizeall']))
 		if (!$result = $db->query($sql))
 		{
 			require FORUM_ROOT.'backstage/header.php';
-			generate_admin_menu('database');
+			generate_admin_menu('database', 'database');
 			message_backstage('SQL error, optimise failed');
 		}
 	}
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('database');
+	generate_admin_menu('database', 'database');
 	message_backstage('All tables optimised');
 }
 else {
@@ -665,7 +665,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Database']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('database');
+	generate_admin_menu('database', 'database');
 ?>
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
     <div class="panel panel-default">

@@ -249,6 +249,11 @@ h3.panel-title {
 	color: #fff;
 }
 
+/* Forms */
+.form-control, .input-group-addon {
+	border-radius: 2px;
+}
+
 /* Buttons */
 .panel-title .btn {
 	margin-top: -8px;

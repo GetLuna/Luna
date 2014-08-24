@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
 if (!defined('FORUM_ROOT'))
-	exit('The constant FORUM_ROOT must be defined and point to a valid ModernBB installation root directory.');
+	exit('The constant FORUM_ROOT must be defined and point to a valid Luna installation root directory.');
 
 // Load the version class
 require FORUM_ROOT.'include/version.php';
@@ -31,7 +31,7 @@ if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
 if (file_exists(FORUM_ROOT.'config.php'))
 	require FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN in PunBB/FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
+// This fixes incorrect defined PUN in PunBB/FluxBB 1.2, 1.4 and 1.5 and Luna 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 
@@ -57,7 +57,7 @@ if (!defined('FORUM'))
 // Record the start time (will be used to calculate the generation time for the page)
 $luna_start = get_microtime();
 
-// Make sure PHP reports all errors except E_NOTICE. ModernBB supports E_ALL, but a lot of scripts it may interact with, do not
+// Make sure PHP reports all errors except E_NOTICE. Luna supports E_ALL, but a lot of scripts it may interact with, do not
 error_reporting(E_ALL ^ E_NOTICE);
 
 // Force POSIX locale (to prevent functions such as strtolower() from messing up UTF-8 strings)

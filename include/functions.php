@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * License: http://opensource.org/licenses/MIT MIT
@@ -388,7 +388,7 @@ function forum_hmac($data, $key, $raw_output = false)
 
 
 //
-// Set a cookie, ModernBB style!
+// Set a cookie, Luna style!
 // Wrapper for forum_setcookie
 //
 function luna_setcookie($user_id, $password_hash, $expire)
@@ -400,7 +400,7 @@ function luna_setcookie($user_id, $password_hash, $expire)
 
 
 //
-// Set a cookie, ModernBB style!
+// Set a cookie, Luna style!
 // Wrapper for forum_setcookie
 //
 function luna_cookiebarcookie()
@@ -413,7 +413,7 @@ function luna_cookiebarcookie()
 
 
 //
-// Set a cookie, ModernBB style!
+// Set a cookie, Luna style!
 //
 function forum_setcookie($name, $value, $expire)
 {
@@ -1567,7 +1567,7 @@ function error($message, $file = null, $line = null, $db_error = false)
 	if (empty($luna_config))
 	{
 		$luna_config = array(
-			'o_board_title'	=> 'ModernBB',
+			'o_board_title'	=> 'Luna',
 			'o_gzip'		=> '0'
 		);
 	}
@@ -1619,7 +1619,7 @@ function error($message, $file = null, $line = null, $db_error = false)
 
 	if (defined('FORUM_DEBUG') && !is_null($file) && !is_null($line))
 	{
-		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>ModernBB reported</strong>: '.$message."\n";
+		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>Luna reported</strong>: '.$message."\n";
 
 		if ($db_error)
 		{

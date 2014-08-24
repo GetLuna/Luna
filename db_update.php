@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
@@ -26,13 +26,13 @@ header('Content-type: text/html; charset=utf-8');
 
 // Make sure we are running at least Version::MIN_PHP_VERSION
 if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '<'))
-	exit('You are running PHP version '.PHP_VERSION.'. ModernBB '.Version::FORUM_VERSION.' requires at least PHP '.Version::MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
+	exit('You are running PHP version '.PHP_VERSION.'. Luna '.Version::FORUM_VERSION.' requires at least PHP '.Version::MIN_PHP_VERSION.' to run properly. You must upgrade your PHP installation before you can continue.');
 
 // Attempt to load the configuration file config.php
 if (file_exists(FORUM_ROOT.'config.php'))
 	include FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN, from FluxBB 1.5 and ModernBB 1.6
+// This fixes incorrect defined PUN, from FluxBB 1.5 and Luna 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 
@@ -208,7 +208,7 @@ if (empty($stage))
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>ModernBB &middot; <?php echo $lang['Update'] ?></title>
+		<title>Luna &middot; <?php echo $lang['Update'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
@@ -216,7 +216,7 @@ if (empty($stage))
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
         <form class="form" id="install" method="post" action="db_update.php">
-            <h1 class="form-heading"><?php echo $lang['Update ModernBB'] ?></h1>
+            <h1 class="form-heading"><?php echo $lang['Update Luna'] ?></h1>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
 				<input class="btn btn-default btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
@@ -471,7 +471,7 @@ switch ($stage)
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title><?php echo $lang['Update ModernBB'] ?></title>
+		<title><?php echo $lang['Update Luna'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
@@ -479,7 +479,7 @@ switch ($stage)
 	</head>
 	<body>
         <div class="form">
-            <h1 class="form-heading"><?php echo $lang['Update ModernBB'] ?></h1>
+            <h1 class="form-heading"><?php echo $lang['Update Luna'] ?></h1>
             <p class="form-text"><?php printf($lang['Successfully updated'], sprintf('<a href="index.php">%s</a>', $lang['go to index'])) ?></p>
 		</div>
 	</body>

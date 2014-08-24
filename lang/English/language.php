@@ -24,7 +24,7 @@ $lang = array(
 
 'Bad request'						=>	'Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.',
 'No view'							=>	'You do not have permission to view this page.',
-'Bad referrer'						=>	'Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that \'Base URL\' is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the ModernBB documentation.',
+'Bad referrer'						=>	'Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that \'Base URL\' is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.',
 'No permission'						=>	'You do not have permission to access this page.',
 'No cookie'							=>	'You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website.',
 'Pun include extension'				=>  'Unable to process user include %s from template %s. "%s" files are not allowed',  
@@ -213,9 +213,9 @@ $lang = array(
 'Choose install language info'	=>	'The language used for this install script. The default language used for the board itself can be set below.',
 'Install language'				=>	'Install language',
 'Change language'				=>	'Change language',
-'Already installed'				=>	'It seems like ModernBB is already installed. You should go <a href="index.php">here</a> instead.',
-'You are running error'			=>	'You are running %1$s version %2$s. ModernBB %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.',
-'My ModernBB Forum'				=>	'My ModernBB Forum',
+'Already installed'				=>	'It seems like Luna is already installed. You should go <a href="index.php">here</a> instead.',
+'You are running error'			=>	'You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.',
+'My Luna Forum'				=>	'My Luna Forum',
 'Description'					=>	'You can do anything',
 'Username 1'					=>	'Usernames must be at least 2 characters long.',
 'Username 2'					=>	'Usernames must not be more than 25 characters long.',
@@ -229,7 +229,7 @@ $lang = array(
 'No board title'				=>	'You must enter a board title.',
 'Error default language'		=>	'The default language chosen doesn\'t seem to exist.',
 'Error default style'			=>	'The default style chosen doesn\'t seem to exist.',
-'No DB extensions'				=>	'PHP needs to have support for either MySQL or SQLite to run ModernBB to be installed. Non is available, through.',
+'No DB extensions'				=>	'PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, through.',
 'Administrator username'		=>	'Username',
 'Administrator password 1'		=>	'Administrator password 1',
 'Administrator password 2'		=>	'Administrator password 2',
@@ -237,8 +237,8 @@ $lang = array(
 'Board title'					=>	'Board title',
 'Base URL'						=>	'No trailing slash',
 'Required field'				=>	'is a required field in this form.',
-'ModernBB Installation'			=>	'ModernBB Installation',
-'Install'						=>	'Install ModernBB %s',
+'Luna Installation'			=>	'Luna Installation',
+'Install'						=>	'Install Luna %s',
 'Errors'						=>	'The following errors need to be corrected:',
 'Database setup'				=>	'Database setup',
 'Select database'				=>	'Select your database type',
@@ -252,7 +252,7 @@ $lang = array(
 'Database username'				=>	'Username',
 'Info 4'						=>	'Your database username',
 'Database password'				=>	'Password',
-'Info 5'						=>	'Set for more ModernBB installation in this database',
+'Info 5'						=>	'Set for more Luna installation in this database',
 'Table prefix'					=>	'Table prefix',
 'Administration setup'			=>	'Administration setup',
 'Info 6'						=>	'2 to 25 characters long',
@@ -267,7 +267,7 @@ $lang = array(
 'DB type not valid'				=>	'\'%s\' is not a valid database type',
 'Table prefix error'			=>	'The table prefix \'%s\' contains illegal characters or is too long. The prefix may contain the letters a to z, any numbers and the underscore character. They must however not start with a number. The maximum length is 40 characters. Please choose a different prefix',
 'Prefix reserved'				=>	'The table prefix \'sqlite_\' is reserved for use by the SQLite engine. Please choose a different prefix',
-'Existing table error'			=>	'A table called \'%susers\' is already present in the database \'%s\'. This could mean that ModernBB is already installed or that another piece of software is installed and is occupying one or more of the table names ModernBB requires. If you want to install multiple copies of ModernBB in the same database, you must choose a different table prefix',
+'Existing table error'			=>	'A table called \'%susers\' is already present in the database \'%s\'. This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix',
 'InnoDB off'					=>	'InnoDB does not seem to be enabled. Please choose a database layer that does not have InnoDB support, or enable InnoDB on your MySQL server',
 'Administrators'				=>	'Administrators',
 'Moderators'					=>	'Moderators',
@@ -275,23 +275,23 @@ $lang = array(
 'Members'						=>	'Members',
 'New member'					=>	'New member',
 'Maintenance message'			=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
-'Alert cache'					=>	'<strong>The cache directory is currently not writable!</strong> In order for ModernBB to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.',
+'Alert cache'					=>	'<strong>The cache directory is currently not writable!</strong> In order for Luna to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.',
 'Alert avatar'					=>	'<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.',
 'Alert upload'					=>	'<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features.',
-'ModernBB has been installed'	=>	'ModernBB has been installed. To finalize the installation please follow the instructions below.',
-'Info 8'						=>	'To finalize the installation, you need to click on the button below to download a file called config.php. You then need to upload this file to the root directory of your ModernBB installation.',
-'Info 9'						=>	'Once you have uploaded config.php, ModernBB will be fully installed! At that point, you may <a href="index.php">go to the forum index</a>.',
+'Luna has been installed'	=>	'Luna has been installed. To finalize the installation please follow the instructions below.',
+'Info 8'						=>	'To finalize the installation, you need to click on the button below to download a file called config.php. You then need to upload this file to the root directory of your Luna installation.',
+'Info 9'						=>	'Once you have uploaded config.php, Luna will be fully installed! At that point, you may <a href="index.php">go to the forum index</a>.',
 'Download config.php file'		=>	'Download config.php file',
-'ModernBB fully installed'		=>	'ModernBB has been fully installed! You may now <a href="index.php">go to the forum index</a>.',
+'Luna fully installed'		=>	'Luna has been fully installed! You may now <a href="index.php">go to the forum index</a>.',
 
 //
 // Language for updating
 //
 
-'Update ModernBB'				=>	'Update ModernBB',
+'Update Luna'				=>	'Update Luna',
 'Down'							=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 
-'Version mismatch error'		=>	'Version mismatch. The database \'%s\' doesn\'t seem to be running a ModernBB database schema supported by this update script.',
+'Version mismatch error'		=>	'Version mismatch. The database \'%s\' doesn\'t seem to be running a Luna database schema supported by this update script.',
 'No update error'				=>	'Your forum is already as up-to-date as this script can make it',
 
 'Start update'					=>	'Start update',
@@ -344,8 +344,8 @@ $lang = array(
 'Links info'			=>	'You can create links to other documents or to email addresses using the following tags:',
 'My email address'		=>	'My email address',
 'Images info'			=>	'If you want to display an image you can use the img tag. The text appearing after the "=" sign in the opening tag is used for the alt attribute and should be included whenever possible.',
-'ModernBB bbcode test'  =>  'ModernBB BBCode Test',
-'Video info'			=>  'ModernBB supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos.',
+'Luna bbcode test'  =>  'Luna BBCode Test',
+'Video info'			=>  'Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos.',
 'Video link'			=>  'Put the link to the video here', 
 
 'Quotes'				=>	'Quotes',
@@ -859,13 +859,6 @@ $lang = array(
 
 //
 // Language for Backstage
-// Language for backstage.php
-//
-
-'Update settings head'		=>	'Update settings',
-'Index update check'		=>	'Check for updates every time the Backstage index is visited, if disabled, you won\'t see update notifications.',
-
-//
 // Language for bans.php
 //
 
@@ -959,7 +952,7 @@ $lang = array(
 'Restore options'		=>	'Restore options',
 'Start restore'			=>	'Start restore',
 
-'Restore info 1'		=>	'This will perform a full restore of all ModernBB tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.',
+'Restore info 1'		=>	'This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.',
 
 'Warning'				=>	'Warning: critical features',
 
@@ -993,11 +986,11 @@ $lang = array(
 'About style'						=>	'About %s',
 'version'							=>	'version %s',
 'Released on'						=>	'Released on %s',
-'Designed for'						=>	'Designed for ModernBB %s to %s',
+'Designed for'						=>	'Designed for Luna %s to %s',
 'Force style'						=>	'Force style',
 'Set as default'					=>	'Set as default',
 'About'								=>	'About',
-'Version number help'				=>	'Show ModernBB version number in footer.',
+'Version number help'				=>	'Show Luna version number in footer.',
 'Info in posts help'				=>	'Show information about the poster under the username in topic view.',
 'Post count help'					=>	'Show the number of posts a user has made in topic view, profile and user list.',
 'Smilies help'						=>	'Convert smilies to small graphic icons in forum posts.',
@@ -1190,7 +1183,7 @@ $lang = array(
 // Language used in index.php and update.php for Backstage
 //
 
-'ModernBB intro'					=>	'Welcome to ModernBB',
+'Luna intro'					=>	'Welcome to Luna',
 'Backup head'						=>	'Back-up',
 'Backup info'						=>	'Create new database backup.',
 'Backup button'						=>	'Create new backup',
@@ -1208,26 +1201,18 @@ $lang = array(
 
 'Not available'						=>	'Not available',
 'NA'								=>	'N/A',
-'About head'						=>	'About ModernBB',
-'ModernBB version label'			=>	'ModernBB version',
-'ModernBB version data'				=>	'ModernBB version ',
+'About head'						=>	'About Luna',
+'Luna version label'			=>	'Luna version',
+'Luna version data'				=>	'Luna version ',
 'Server statistics label'			=>	'Server statistics',
 'View server statistics'			=>	'View server statistics',
 
-'ModernBB software updates'			=>	'ModernBB software updates',
-'ModernBB updates'					=>	'ModernBB updates',
+'Luna software updates'			=>	'Luna software updates',
+'Luna updates'					=>	'Luna updates',
 'Check for updates'					=>	'Check for updates',
 'New version'						=>	'It\'s time to update, a new version is available',
-'Latest version'					=>	'Thanks for using the latest version of ModernBB',
+'Latest version'					=>	'Thanks for using the latest version of Luna',
 'Development version'				=>	'You\'re using a development release',
-
-'Reset head'						=>	'ModernBB reset features',
-'Soft reset'						=>	'Soft reset',
-'Soft reset help'					=>	'The button below will remove the config.php file, this will cause the install to start so you can install ModernBB again. This will not drop the current database. This might be effective if your config.php file is corrupt. This can\'t be undone. Be sure you made a back-up before doing this.',
-'Hard reset'						=>	'Hard reset',
-'Reset config'						=>	'Reset config.php',
-'Hard reset help'					=>	'The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. This can\'t be undone. Be sure you made a back-up before doing this.',
-'Reset'								=>	'Reset',
 
 //
 // Reports
@@ -1394,7 +1379,7 @@ $lang = array(
 'Use avatars label'					=>	'Use avatars',
 'Use avatars help'					=>	'Enable so users can upload avatars.',
 'Upload directory label'			=>	'Upload directory',
-'Upload directory help'				=>	'Where avatars will be stored relative to ModernBBs root, write permission required',
+'Upload directory help'				=>	'Where avatars will be stored relative to Lunas root, write permission required',
 'Max width label'					=>	'Max width',
 'Max height label'					=>	'Max height',
 'Max size label'					=>	'Max size',
@@ -1603,7 +1588,6 @@ $lang = array(
 'Registration'			=>	'Registration',
 'Email'					=>	'Email',
 'Database'				=>	'Database management',
-'Backstage settings'	=>	'Backstage settings',
 'Extensions'			=>	'Extensions',
 
 //
@@ -1617,7 +1601,7 @@ $lang = array(
 // Update service
 //
 
-'Available'				=>	'An update, ModernBB v%s, is available',
+'Available'				=>	'An update, Luna v%s, is available',
 'Development'			=>	'You are running version %s, the latest stable release is version %s.',
 'Download'				=>	'Download v%s',
 'Changelog'				=>	'Changelog',

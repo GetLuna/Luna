@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB
+ * Copyright (C) 2013-2014 Luna
  * License: http://opensource.org/licenses/MIT MIT
  */
 
@@ -10,9 +10,7 @@
 //
 function generate_admin_menu($section ='', $page = '')
 {
-	global $luna_config, $luna_user, $lang;
-
-	$is_admin = $luna_user['g_id'] == FORUM_ADMIN ? true : false;
+	global $luna_user, $lang;
 
 ?>
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
@@ -61,8 +59,6 @@ function generate_admin_menu($section ='', $page = '')
                         echo 'System info';
                     if($page == 'update')
                         echo 'Luna software update';
-                    if($page == 'about')
-                        echo 'About Luna '.$luna_config['o_forum_version'].' Preview';
 
                     if($page == 'board')
                         echo 'Board structure';
@@ -96,6 +92,9 @@ function generate_admin_menu($section ='', $page = '')
                         echo 'Theme';
                     if($page == 'maintenance')
                         echo 'Maintenance';
+
+                    if($page == 'database')
+                        echo 'Database management';
                 ?>
             </h2>
             <?php if ($section == 'backstage') { ?>
@@ -103,7 +102,6 @@ function generate_admin_menu($section ='', $page = '')
                 <li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php">Backstage</a></li>
                 <li<?php if($page == 'stats') echo ' class="active"' ?>><a href="statistics.php">System info</a></li>
                 <li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php">Update</a></li>
-                <li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php">About</a></li>
             </ul>
             <?php } if ($section == 'content') { ?>
             <ul class="nav nav-tabs" role="tablist">

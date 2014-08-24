@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
@@ -268,8 +268,8 @@ if (isset($_GET['saved']))
                             <option value="14"<?php if ($luna_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang['UTC+14:00'] ?></option>
                         </select>
                         <div class="checkbox">
-                            <label>
                                 <input type="checkbox" name="form[default_dst]" value="1" <?php if ($luna_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />
+                            <label>
                                 <?php echo $lang['DST help'] ?>
                             </label>
                         </div>

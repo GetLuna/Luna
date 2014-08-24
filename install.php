@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2013-2014 ModernBB Group
+ * Copyright (C) 2013-2014 Luna
  * Based on code by FluxBB copyright (C) 2008-2012 FluxBB
  * Based on code by Rickard Andersson copyright (C) 2002-2008 PunBB
  * Licensed under GPLv3 (http://modernbb.be/license.php)
@@ -72,10 +72,10 @@ require FORUM_ROOT.'lang/'.$install_lang.'/language.php';
 
 if (file_exists(FORUM_ROOT.'config.php'))
 {
-	// Check to see whether ModernBB is already installed
+	// Check to see whether Luna is already installed
 	include FORUM_ROOT.'config.php';
 
-	// This fixes incorrect defined PUN, FluxBB 1.4 and 1.5 and ModernBB 1.6
+	// This fixes incorrect defined PUN, FluxBB 1.4 and 1.5 and Luna 1.6
 	if (defined('PUN'))
 		define('FORUM', PUN);
 
@@ -138,7 +138,7 @@ if (!isset($_POST['form_sent']))
 
 	$db_type = $db_name = $db_username = $db_prefix = $username = $email = '';
 	$db_host = 'localhost';
-	$title = $lang['My ModernBB Forum'];
+	$title = $lang['My Luna Forum'];
 	$description = $lang['Description'];
 	$default_lang = $install_lang;
 	$default_style = 'Random';
@@ -248,7 +248,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang['ModernBB Installation'] ?></title>
+        <title><?php echo $lang['Luna Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <?php require FORUM_ROOT.'backstage/css/accent.php'; ?>
@@ -576,7 +576,7 @@ else
 	}
 
 
-	// Make sure ModernBB isn't already installed
+	// Make sure Luna isn't already installed
 	$result = $db->query('SELECT 1 FROM '.$db_prefix.'users WHERE id=1');
 	if ($db->num_rows($result))
 		error(sprintf($lang['Existing table error'], $db_prefix, $db_name));
@@ -1733,7 +1733,7 @@ else
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang['ModernBB Installation'] ?></title>
+        <title><?php echo $lang['Luna Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <?php require FORUM_ROOT.'backstage/css/accent.php'; ?>
@@ -1742,10 +1742,10 @@ else
         <div class="container">
             <div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['ModernBB Installation'] ?></h3>
+					<h3 class="panel-title"><?php echo $lang['Luna Installation'] ?></h3>
 				</div>
                 <div class="panel-body">
-					<p><?php echo $lang['ModernBB has been installed'] ?></p>
+					<p><?php echo $lang['Luna has been installed'] ?></p>
 <?php
 
 if (!$written)
@@ -1785,7 +1785,7 @@ else
 {
 
 ?>
-					<p><?php echo $lang['ModernBB fully installed'] ?></p>
+					<p><?php echo $lang['Luna fully installed'] ?></p>
 <?php
 
 }
