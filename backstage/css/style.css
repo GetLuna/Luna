@@ -1,9 +1,10 @@
 /*
  * Copyright Studio 384
- * Bootstrap Template: Aurore
- * Version:            5.1
- * Based on:           Trent v1.1 (http://studio384.be/trent.php)
- * Since:              3.3
+ * Bootstrap Template: Trent
+ * Version:            0.1
+ * Based on:           Trent v1.2 (http://studio384.be/trent.php)
+ * Since:              0.1
+ * Bootstrap:          3.2.0
  */
 
 /* General fixes */
@@ -62,52 +63,65 @@ label .help-block {
     font-size: 85%;
 }
 
-/* Navbar */
-.navbar {
-	background: #fff;
-	border: none;
-	border-bottom: 5px solid #14a3ff;
+/* Navbars */
+.navbar-default {
+	background: #0d4382;
+	background: linear-gradient(to right, #0d4382 0%, #3588e9 100%);
+	border-bottom-color: rgba(255,255,255,.2);
 }
 
-.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > li > a:hover,  .navbar-default .navbar-nav > li > a:focus  {
-	background: none;
-    color: #14a3ff;
-    font-size: 14px;
-}
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background: #fff;
-}
-
-.navbar-default .navbar-brand {
-    font-size: 20px;
-}
-
-.navbar-default .navbar-brand {
-	color: #bbb;
-}
-
-.navbar-default .navbar-collapse {
-	border: none;
-	box-shadow: none;
-}
-
-.navbar-default .navbar-nav > li > a {
-	color: #aaa;
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a {
+	color: #fff;
 }
 
 .navbar-default .navbar-toggle {
-	border: none;
+	border-color: #fff;
 }
 
-.navbar-default .navbar-toggle .icon-bar {
+.navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
 	background-color: #fff;
 }
 
-@media all and (min-width:768px) {
-	.nav-inner {
-		padding-left: 0;
-	}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #0073c4;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: transparent;
+}
+
+/* Heading - jumbotron and navtabs */
+.jumboheader {
+	color: #fff;
+	background: #0d4382;
+	background: linear-gradient(to right, #0d4382 0%, #3588e9 100%);
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.jumboheader h2 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-family: "Segoe UI Light";
+}
+
+.nav-tabs > li > a {
+	color: #fff;
+}
+
+.nav-tabs {
+	border: none;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	border-color: #fff;
+}
+
+.nav-tabs > li > a:hover, .nav > li > a:hover, .nav > li > a:focus {
+	border-color: rgba(255,255,255,.2);
+	background-color: rgba(255,255,255,.2);
 }
 
 /* Panels */
