@@ -293,9 +293,6 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
     <body onload="document.getElementById('install').start.disabled=false;" onunload="">
     	<div class="container">
             <h1><?php echo sprintf($lang['Install'], Version::FORUM_VERSION) ?></h1>
-            <?php if ($action == 'softreset') { ?>
-            <div class="alert alert-success"><h4>The config.php file has been deleted.</h4></div>
-			<?php } ?>
             <?php if (count($languages) > 1): ?>
             <form  class="form-horizontal" id="install" method="post" action="install.php">
                 <div class="panel panel-default">

@@ -25,42 +25,6 @@ if ($action == 'update_check')
 	generate_update_cache();
 	header("Location: update.php");
 }
-elseif ($action == 'soft_reset')
-{
-	if ($luna_user['g_id'] != FORUM_ADMIN)
-		message_backstage($lang['No permission'], false, '403 Forbidden');
-
-	unlink(FORUM_ROOT.'config.php');
-	header("Location: ../install.php?action=softreset");
-}
-elseif ($action == 'hard_reset')
-{
-	if ($luna_user['g_id'] != FORUM_ADMIN)
-		message_backstage($lang['No permission'], false, '403 Forbidden');
-
-	$db->drop_table('bans') or error('Unable to drop bans table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('categories') or error('Unable to drop categories table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('censoring') or error('Unable to drop censoring table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('config') or error('Unable to drop config table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('forums') or error('Unable to drop forums table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('forum_perms') or error('Unable to drop forum_perms table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('groups') or error('Unable to drop groups table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('online') or error('Unable to drop online table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('posts') or error('Unable to drop posts table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('posts') or error('Unable to drop posts table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('ranks') or error('Unable to drop ranks table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('reports') or error('Unable to drop reports table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('search_cache') or error('Unable to drop search_cache table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('search_matches') or error('Unable to drop search_matches table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('search_words') or error('Unable to drop search_words table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('topic_subscriptions') or error('Unable to drop topic_subscriptions table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('forum_subscriptions') or error('Unable to drop forum_subscriptions table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('topics') or error('Unable to drop topics table', __FILE__, __LINE__, $db->error());
-	$db->drop_table('users') or error('Unable to drop users table', __FILE__, __LINE__, $db->error());
-	
-	unlink(FORUM_ROOT.'config.php');
-	header("Location: ../install.php?action=hardreset");
-}
 
 if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
 	include FORUM_CACHE_DIR.'cache_update.php';
@@ -118,27 +82,9 @@ require FORUM_ROOT.'backstage/header.php';
 ?>
     </div>
     <div class="panel-footer">
-    	<p>ModernBB 3 is developed by the ModernBB Group. Copyright 2013-2014. Released under the GPLv3 license. We would like to thank you for using ModernBB.</p>
+    	<p>Luna is developed by the <a href="http://modernbb.be/">Luna Group</a>, part of the <a href="http://studio384.be/">384 Group</a>. Copyright 2013-2014. Released under the GPLv3 license.</p>
     </div>
 </div>
 <?php
-if ($luna_user['g_id'] == FORUM_ADMIN) {
-?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-    	<h3 class="panel-title"><?php echo $lang['Reset head'] ?></h3>
-    </div>
-    <div class="panel-body">
-    	<h3><?php echo $lang['Soft reset'] ?></h3>
-        <p><?php echo $lang['Soft reset help'] ?></p>
-        <a href="update.php?action=soft_reset" class="btn btn-danger"><?php echo $lang['Reset config'] ?></a>
-    	<h3><br /><?php echo $lang['Hard reset'] ?></h3>
-        <p><?php echo $lang['Hard reset help'] ?></p>
-        <a href="update.php?action=hard_reset" class="btn btn-danger"><?php echo $lang['Reset'] ?></a>
-    </div>
-</div>
-<?php
-
-}
 
 require FORUM_ROOT.'backstage/footer.php';
