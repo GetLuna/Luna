@@ -667,7 +667,6 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('database');
 ?>
-<h2><?php echo $lang['Database'] ?></h2>
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
     <div class="panel panel-default">
         <div class="panel-heading">

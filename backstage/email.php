@@ -75,9 +75,6 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 generate_admin_menu('settings', 'email');
 
-?>
-<h2><?php echo $lang['Email'] ?></h2>
-<?php
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>

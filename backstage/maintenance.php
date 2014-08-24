@@ -214,7 +214,6 @@ if ($action == 'prune')
 	generate_admin_menu('settings', 'maintenance');
 
 ?>
-<h2><?php echo $lang['Maintenance'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Prune'] ?></h3>
@@ -356,9 +355,6 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('settings', 'maintenance');
 
-?>
-<h2><?php echo $lang['Maintenance'] ?></h2>
-<?php
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
 if (isset($_GET['cache_cleared']))

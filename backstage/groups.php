@@ -54,7 +54,6 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users', 'groups');
 ?>
-<h2><?php echo $lang['Group settings head'] ?></h2>
 <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -459,7 +458,6 @@ else if (isset($_GET['del_group']))
 	generate_admin_menu('users', 'groups');
 
 ?>
-<h2><?php echo $lang['Group delete head'] ?></h2>
 <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
     <div class="panel panel-danger">
         <div class="panel-heading">
@@ -533,7 +531,6 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users', 'groups');
 
 ?>
-<h2><?php echo $lang['Groups'] ?></h2>
 <div class="row">
     <div class="col-sm-6">
         <div class="panel panel-default">

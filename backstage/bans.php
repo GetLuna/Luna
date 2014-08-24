@@ -102,7 +102,6 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	generate_admin_menu('users', 'bans');
 
 ?>
-<h2><?php echo $lang['Ban advanced head'] ?></h2>
 <form class="form-horizontal" id="bans2" method="post" action="bans.php">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -375,7 +374,6 @@ else if (isset($_GET['find_ban']))
 	generate_admin_menu('users', 'bans');
 
 ?>
-<h2><?php echo $lang['Bans'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
@@ -447,7 +445,6 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users', 'bans');
 
 ?>
-<h2><?php echo $lang['Bans'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['New ban head'] ?></h3>

@@ -91,7 +91,6 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('content', 'censoring');
 
 ?>
-<h2><?php echo $lang['Censoring'] ?></h2>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Add word subhead'] ?></h3>

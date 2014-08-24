@@ -102,9 +102,8 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('users', 'ranks');
 
+if ($luna_config['o_ranks'] == 0) {
 ?>
-<h2><?php echo $lang['Ranks'] ?></h2>
-<?php if ($luna_config['o_ranks'] == 0) { ?>
 <div class="alert alert-danger">
 	<?php echo sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>') ?>
 </div>

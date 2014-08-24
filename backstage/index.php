@@ -61,8 +61,6 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('backstage', 'index');
 ?>
-
-<h2><?php echo $lang['Backstage'] ?><span class="pull-right"><a href="update.php" class="btn btn-default btn-update"><?php echo $lang['Updates'] ?></a></span></h2>
 <div class="row">
 <?php
 //Update checking

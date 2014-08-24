@@ -84,7 +84,6 @@ else if (isset($_GET['del_forum']))
 	generate_admin_menu('content', 'board');
 
 ?>
-<h2><?php echo $lang['Confirm delete head'] ?></h2>
 <form method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
 	<fieldset>
     	<div class="panel panel-danger">
@@ -206,7 +205,6 @@ else if (isset($_GET['edit_forum']))
 	generate_admin_menu('content', 'board');
 
 ?>
-<h2><?php echo $lang['Forum settings'] ?></h2>
 <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -403,7 +401,6 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 	generate_admin_menu('content', 'board');
 
 ?>
-<h2><?php echo $lang['Confirm delete cat head'] ?></h2>
 <form method="post" action="board.php">
     <input type="hidden" name="cat_to_delete" value="<?php echo $cat_to_delete ?>" />
     <fieldset>
@@ -463,9 +460,6 @@ define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('content', 'board');
 
-?>
-<h2><?php echo $lang['Board structure'] ?></h2>
-<?php
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>

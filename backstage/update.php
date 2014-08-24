@@ -81,7 +81,6 @@ require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('backstage', 'update');
 	
 	?>
-<h2><?php echo $lang['ModernBB software updates'] ?></h2>
 <div class="panel panel-default">
 	<div class="panel-heading">
     	<h3 class="panel-title"><?php echo $lang['ModernBB updates'] ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><?php echo $lang['Check for updates'] ?></a></span></h3>
