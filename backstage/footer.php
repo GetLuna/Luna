@@ -11,21 +11,12 @@
 if (!defined('FORUM'))
 	exit;
 
-$tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<luna_main>', $tpl_temp, $tpl_main);
-ob_end_clean();
-// END SUBST - <luna_main>
-
-
-// START SUBST - <luna_footer>
-ob_start();
-
 ?>
-<footer class="col-lg-12">
-	<p class="pull-right"><?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a> '.$luna_config['o_cur_version']) ?></p>
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</footer>
+                <footer class="col-lg-12">
+                    <p class="pull-right"><?php printf($lang['Thanks'], '<a href="http://modernbb.be/">ModernBB</a> '.$luna_config['o_cur_version']) ?></p>
+                    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+                    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+                </footer>
 <?php
 
 // Display debug info (if enabled/defined)
@@ -52,18 +43,12 @@ if (defined('FORUM_DEBUG'))
 // End the transaction
 $db->end_transaction();
 
-// Display executed queries (if enabled)
-if (defined('FORUM_SHOW_QUERIES'))
-	display_saved_queries();
-
-$tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<luna_footer>', $tpl_temp, $tpl_main);
-ob_end_clean();
-// END SUBST - <luna_footer>
-
+?>
+            </div>
+		</div>
+    </body>
+</html>
+<?php
 
 // Close the db connection (and free up any result data)
 $db->close();
-
-// Spit out the page
-exit($tpl_main);

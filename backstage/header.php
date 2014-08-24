@@ -11,41 +11,24 @@
 if (!defined('FORUM'))
 	exit;
 
-// Send no-cache headers
-header('Expires: Thu, 21 Jul 1977 07:30:00 GMT'); // When yours truly first set eyes on this world! :)
-header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-header('Cache-Control: post-check=0, pre-check=0', false);
-header('Pragma: no-cache'); // For HTTP/1.0 compatibility
-
-// Send the Content-type header in case the web server is setup to send something else
-header('Content-type: text/html; charset=utf-8');
-
-// Load the template
-$tpl_main = file_get_contents('../style/Core/templates/admin.tpl');
-
-// START SUBST - <luna_language>
-$tpl_main = str_replace('<luna_language>', $lang['lang_identifier'], $tpl_main);
-// END SUBST - <luna_language>
-
-
-// START SUBST - <luna_content_direction>
-$tpl_main = str_replace('<luna_content_direction>', $lang['lang_direction'], $tpl_main);
-// END SUBST - <luna_content_direction>
-
-
-// START SUBST - <luna_head>
-ob_start();
-
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 
-// Is this a page that we want search index spiders to index?
-if (!defined('FORUM_ALLOW_INDEX'))
-	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
-
 ?>
-<title><?php echo generate_page_title($page_title, $p) ?></title>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="ROBOTS" content="NOINDEX, FOLLOW" />
+        <title>Backstage</title>
+	</head>
+	<body>
+    	<div class="container">
 <?php
 require FORUM_ROOT.'backstage/css/accent.php';
 
@@ -92,27 +75,5 @@ function process_form(the_form)
 
 if (isset($page_head))
 	echo implode("\n", $page_head)."\n";
-
-$tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<luna_head>', $tpl_temp, $tpl_main);
-ob_end_clean();
-// END SUBST - <luna_head>
-
-
-// START SUBST - <body>
-if (isset($focus_element))
-{
-	$tpl_main = str_replace('<body onload="', '<body onload="document.getElementById(\''.$focus_element[0].'\').elements[\''.$focus_element[1].'\'].focus();', $tpl_main);
-	$tpl_main = str_replace('<body>', '<body onload="document.getElementById(\''.$focus_element[0].'\').elements[\''.$focus_element[1].'\'].focus()">', $tpl_main);
-}
-// END SUBST - <body>
-
-
-// START SUBST - <luna_page>
-$tpl_main = str_replace('<luna_page>', htmlspecialchars(basename($_SERVER['PHP_SELF'], '.php')), $tpl_main);
-// END SUBST - <luna_page>
-
-// START SUBST - <luna_main>
-ob_start();
 
 define('FORUM_HEADER', 1);
