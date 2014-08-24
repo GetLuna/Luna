@@ -233,8 +233,6 @@ function generate_admin_menu($page = '')
                         <li class="divider"></li>
                         <li><a href="maintenance.php"><?php echo $lang['Maintenance'] ?></a></li>
                         <li><a href="database.php"><?php echo $lang['Database'] ?></a></li>
-                        <li class="divider"></li>
-                        <li><a href="backstage.php"><?php echo $lang['Backstage settings'] ?></a></li>
                     </ul>
                 </li><?php }; ?>
 <?php

@@ -1665,7 +1665,6 @@ else
 		'o_default_dst'				=> 0,
 		'o_feed_type'				=> 2,
 		'o_feed_ttl'				=> 0,
-		'o_index_update_check'		=> 1,
 		'o_cookie_bar'				=> 0,
         'o_moderated_by'            => 1,
         'o_post_responsive'         => 0,
