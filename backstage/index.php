@@ -60,9 +60,7 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang[
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
 	generate_admin_menu('backstage', 'index');
-?>
-<div class="row">
-<?php
+
 //Update checking
 	if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) { ?>
 <div class="alert alert-info">
@@ -70,8 +68,9 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <?php
     }
-if ($luna_user['g_id'] == FORUM_ADMIN) {
 ?>
+<div class="row">
+<?php if ($luna_user['g_id'] == FORUM_ADMIN) { ?>
     <div class="col-lg-3">
         <div class="panel panel-default">
             <div class="panel-heading">

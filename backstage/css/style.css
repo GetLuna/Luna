@@ -391,8 +391,8 @@ h3.panel-title {
 /* Alerts */
 .alert-success {
 	background: #e5ffb8;
-	border: none;
-	border-left: #76b900 5px solid;
+	border-color: #d1fd88;
+    box-shadow: 1px 1px 5px 1px rgba(209, 253, 136, .5);
 	color: #659e00;
 }
 
@@ -402,8 +402,8 @@ h3.panel-title {
 
 .alert-info {
 	background: #daf0ff;
-	border: none;
-	border-left: #14a3ff 5px solid;
+	border-color: #c1e8ff;
+    box-shadow: 1px 1px 5px 1px rgba(193, 232, 255, .5);
 	color: #0085da;
 }
 
@@ -413,9 +413,9 @@ h3.panel-title {
 
 .alert-warning {
 	background: #fff6d9;
-	border: none;
-	border-left: #ffc000 5px solid;
-	color: #dba500;
+	border-color: #f8e8ae;
+    box-shadow: 1px 1px 5px 1px rgba(248, 232, 174, .5);
+	color: #e2ab00;
 }
 
 .alert-warning .alert-link {
@@ -424,8 +424,8 @@ h3.panel-title {
 
 .alert-danger {
 	background: #ffe3d5;
-	border: none;
-	border-left: #ff5400 5px solid;
+	border-color: #fdc4ab;
+    box-shadow: 1px 1px 5px 1px rgba(255, 183, 151, .5);
 	color: #d34600;
 }
 
