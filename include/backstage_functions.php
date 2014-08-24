@@ -24,11 +24,10 @@ function generate_admin_menu($section ='', $page = '')
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand visible-xs-inline" href="../index.php">Luna</a>
+            <a class="navbar-brand" href="../index.php"><span class="fa fa-arrow-left hidden-xs"></span><span class="visible-xs-inline">Luna</span></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-            	<li class="hidden-xs"><a href="../"><span class="fa fa-arrow-left"></span></a></li>
                 <li class="<?php if ($section == 'backstage') echo 'active'; ?>"><a href="index.php"><span class="fa fa-dashboard"></span> <?php echo $lang['Backstage'] ?></a></li>
                 <li class="<?php if ($section == 'content') echo 'active'; ?>"><a href="board.php"><span class="fa fa-file"></span> <?php echo $lang['Content'] ?></a></li>
                 <li class="<?php if ($section == 'users') echo 'active'; ?>"><a href="users.php"><span class="fa fa-users"></span> <?php echo $lang['Users'] ?></a></li>

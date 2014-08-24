@@ -8,10 +8,6 @@
  */
 
 /* General fixes */
-* {
-	border-radius: 0 !important;
-}
-
 body {
 	margin-top: 40px;
 }
