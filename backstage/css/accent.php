@@ -14,8 +14,7 @@
 
 ?>
 <style>
-
-.panel-default .panel-heading, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	background: <?php echo $accent ?>;
 }
 </style>

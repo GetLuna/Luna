@@ -9,7 +9,8 @@
 
 /* General fixes */
 body {
-	margin-top: 40px;
+	margin-top: 50px;
+    font-family: "Segoe UI";
 }
 
 td, th {
@@ -140,6 +141,11 @@ label .help-block {
 	border-top: none;
 }
 
+.panel-default .panel-heading {
+	background: #0d4382;
+	background: linear-gradient(to right, #0d4382 0%, #3588e9 100%);
+}
+
 .panel > :last-child {
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
@@ -229,13 +235,13 @@ label .help-block {
 }
 
 .btn-primary {
-	background-color: #0072dc;
-	border-color: #005aad;
+	background-color: #0d4382;
+	border-color: #063874;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
-	background-color: #005aad;
-	border-color: #004688;
+	background-color: #063874;
+	border-color: #002b60;
 }
 
 .btn-success {

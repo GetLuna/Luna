@@ -83,7 +83,7 @@ function generate_admin_menu($section ='', $page = '')
                         echo 'Bans';
 
                     if($page == 'settings')
-                        echo 'Global settings';
+                        echo 'Settings';
                     if($page == 'features')
                         echo 'Features';
                     if($page == 'registration')
