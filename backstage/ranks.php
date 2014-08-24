@@ -100,7 +100,7 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang[
 $focus_element = array('ranks', 'new_rank');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('ranks');
+	generate_admin_menu('users', 'ranks');
 
 ?>
 <h2><?php echo $lang['Ranks'] ?></h2>

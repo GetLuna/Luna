@@ -52,7 +52,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	$focus_element = array('groups2', 'req_title');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('groups');
+	generate_admin_menu('users', 'groups');
 ?>
 <h2><?php echo $lang['Group settings head'] ?></h2>
 <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
@@ -456,7 +456,7 @@ else if (isset($_GET['del_group']))
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 			define('FORUM_ACTIVE_PAGE', 'admin');
 			require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('groups');
+	generate_admin_menu('users', 'groups');
 
 ?>
 <h2><?php echo $lang['Group delete head'] ?></h2>
@@ -530,7 +530,7 @@ else if (isset($_GET['del_group']))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('groups');
+	generate_admin_menu('users', 'groups');
 
 ?>
 <h2><?php echo $lang['Groups'] ?></h2>

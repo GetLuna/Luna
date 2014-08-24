@@ -75,7 +75,7 @@ if (isset($_POST['form_sent']))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Features']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-generate_admin_menu('features');
+generate_admin_menu('settings', 'features');
 
 ?>
 <h2><?php echo $lang['Features'] ?></h2>

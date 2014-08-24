@@ -78,7 +78,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Update']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('update');
+	generate_admin_menu('backstage', 'update');
 	
 	?>
 <h2><?php echo $lang['ModernBB software updates'] ?></h2>

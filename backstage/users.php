@@ -23,7 +23,7 @@ if (isset($_POST['add_user']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
@@ -135,7 +135,7 @@ if (isset($_GET['ip_stats']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 ?>
 <h2><?php echo $lang['Users'] ?></h2>
@@ -218,7 +218,7 @@ if (isset($_GET['show_users']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 ?>
 <h2><?php echo $lang['Users'] ?></h2>
@@ -402,7 +402,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Move users']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 ?>
 <h2><?php echo $lang['Move users'] ?></h2>
@@ -552,7 +552,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Delete users']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 ?>
 <h2><?php echo $lang['Users'] ?></h2>
@@ -678,7 +678,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	$focus_element = array('bans2', 'ban_message');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 ?>
 <h2><?php echo $lang['Users'] ?></h2>
@@ -863,7 +863,7 @@ else if (isset($_GET['find_user']))
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 ?>
 <h2><?php echo $lang['Users'] ?></h2>
@@ -971,7 +971,7 @@ else
 	$focus_element = array('find_user', 'form[username]');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users');
+	generate_admin_menu('users', 'users');
 
 ?>
 <h2><?php echo $lang['Users'] ?></h2>

@@ -32,7 +32,7 @@ if ($action == 'rebuild')
 	// Check per page is > 0
 	if ($per_page < 1)
 	{
-		generate_admin_menu('maintenance');
+		generate_admin_menu('settings', 'maintenance');
 		message_backstage($lang['Posts must be integer message']);
 	}
 
@@ -174,7 +174,7 @@ if ($action == 'prune')
 	$prune_days = luna_trim($_POST['req_prune_days']);
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
 	{
-		generate_admin_menu('maintenance');
+		generate_admin_menu('settings', 'maintenance');
 		message_backstage($lang['Days must be integer message']);
 	}
 
@@ -203,7 +203,7 @@ if ($action == 'prune')
 
 	if (!$num_topics)
 	{
-		generate_admin_menu('maintenance');
+		generate_admin_menu('settings', 'maintenance');
 		message_backstage(sprintf($lang['No old topics message'], $prune_days));
 	}
 
@@ -211,7 +211,7 @@ if ($action == 'prune')
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Prune']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('maintenance');
+	generate_admin_menu('settings', 'maintenance');
 
 ?>
 <h2><?php echo $lang['Maintenance'] ?></h2>
@@ -251,7 +251,7 @@ if (isset($_POST['userprune']))
 	// Make sure something something was entered
 	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
 	{
-		generate_admin_menu('maintenance');
+		generate_admin_menu('settings', 'maintenance');
 		message_backstage('You need to set all settings!');
 	}
 
@@ -288,7 +288,7 @@ if (isset($_POST['userprune']))
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
-	generate_admin_menu('maintenance');
+	generate_admin_menu('settings', 'maintenance');
 	message_backstage('Pruning complete. Users pruned '.$users_pruned.'.');
 }
 
@@ -354,7 +354,7 @@ if (isset($_POST['form_sent']))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('maintenance');
+	generate_admin_menu('settings', 'maintenance');
 
 ?>
 <h2><?php echo $lang['Maintenance'] ?></h2>

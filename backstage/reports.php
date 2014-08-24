@@ -50,7 +50,7 @@ if (isset($_POST['zap_id']))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Reports']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('reports');
+	generate_admin_menu('content', 'reports');
 
 ?>
 <h2><?php echo $lang['Reports'] ?></h2>

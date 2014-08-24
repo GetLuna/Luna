@@ -48,7 +48,7 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Style']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('style');
+	generate_admin_menu('settings', 'theme');
 
 ?>
 <h2><?php echo $lang['Style'] ?></h2>

@@ -88,7 +88,7 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang[
 $focus_element = array('censoring', 'new_search_for');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('censoring');
+	generate_admin_menu('content', 'censoring');
 
 ?>
 <h2><?php echo $lang['Censoring'] ?></h2>

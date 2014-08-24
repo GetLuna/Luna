@@ -99,7 +99,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	$focus_element = array('bans2', 'ban_user');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('bans');
+	generate_admin_menu('users', 'bans');
 
 ?>
 <h2><?php echo $lang['Ban advanced head'] ?></h2>
@@ -372,7 +372,7 @@ else if (isset($_GET['find_ban']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('bans');
+	generate_admin_menu('users', 'bans');
 
 ?>
 <h2><?php echo $lang['Bans'] ?></h2>
@@ -444,7 +444,7 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang[
 $focus_element = array('bans', 'new_ban_user');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('bans');
+	generate_admin_menu('users', 'bans');
 
 ?>
 <h2><?php echo $lang['Bans'] ?></h2>

@@ -62,7 +62,7 @@ if (isset($_POST['form_sent']))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Permissions']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('permissions');
+	generate_admin_menu('users', 'permissions');
 
 ?>
 <h2><?php echo $lang['Permissions'] ?></h2>
