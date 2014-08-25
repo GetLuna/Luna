@@ -11,14 +11,6 @@
 if (!defined('FORUM'))
 	exit;
 
-?>
-                    <footer class="col-lg-12">
-                        <p class="pull-right"><?php printf($lang['Thanks'], '<a href="http://modernbb.be/">Luna</a> '.$luna_config['o_cur_version']) ?></p>
-                        <script src="../include/js/jquery.js"></script>
-                        <script src="../include/js/trent.js"></script>
-                    </footer>
-<?php
-
 // Display debug info (if enabled/defined)
 if (defined('FORUM_DEBUG'))
 {
@@ -46,6 +38,8 @@ $db->end_transaction();
 ?>
             </div>
 		</div>
+		<script src="../include/js/jquery.js"></script>
+		<script src="../include/js/trent.js"></script>
     </body>
 </html>
 <?php
