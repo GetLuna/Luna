@@ -123,12 +123,6 @@ if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/language.php'))
 
 require FORUM_ROOT.'lang/'.$default_lang.'/language.php';
 
-// Check current version
-$cur_version = $luna_config['o_cur_version'];
-
-if (version_compare($cur_version, '1.5', '<'))
-	error(sprintf($lang['Version mismatch error'], $db_name));
-
 // Do some DB type specific checks
 $mysql = false;
 switch ($db_type)
