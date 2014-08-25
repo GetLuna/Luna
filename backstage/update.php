@@ -55,7 +55,7 @@ require FORUM_ROOT.'backstage/header.php';
 	if (version_compare(Version::FORUM_VERSION, $latest_version, 'lt')) {
 ?>
 		<h3><?php echo $lang['New version'] ?></h3>
-        <p><?php echo sprintf($lang['Available'], $latest_version) ?></p>
+        <p><?php echo sprintf($lang['Available'], $latest_version, $lang['update now']) ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/cnt/get.php?id=1.zip" class="btn btn-primary">Update now</a>
             <a href="http://modernbb.be/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
