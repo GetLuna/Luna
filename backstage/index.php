@@ -72,9 +72,9 @@ require FORUM_ROOT.'backstage/header.php';
 					<table class="table">
 						<thead>
 							<tr>
-								<th><?php echo $lang['Reported by'] ?></th>
-								<th><?php echo $lang['Date and time'] ?></th>
-								<th><?php echo $lang['Message'] ?></th>
+								<th class="col-lg-3"><?php echo $lang['Reported by'] ?></th>
+								<th class="col-lg-3"><?php echo $lang['Date and time'] ?></th>
+								<th class="col-lg-6"><?php echo $lang['Message'] ?></th>
 							</tr>
 						</thead>
 						<tbody>
