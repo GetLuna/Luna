@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 <div class="row row-nav">
     <div class="col-sm-6">
         <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
             <a class="btn btn-primary next-hidden-xs" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
             <a class="btn btn-primary hidden-xs" href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
         </div>

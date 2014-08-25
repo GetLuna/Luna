@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 <div class="row row-nav-fix">
     <div class="col-sm-6">
         <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
             <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
             <a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
             <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
@@ -105,7 +105,7 @@ if (!defined('FORUM'))
 <div class="row row-nav-fix">
     <div class="col-sm-6">
         <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
             <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
             <a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
             <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>

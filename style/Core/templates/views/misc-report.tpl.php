@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 
 <div class="btn-group btn-breadcrumb">
-    <a class="btn btn-primary" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+    <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
     <a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_post['fid'] ?>"><?php echo luna_htmlspecialchars($cur_post['forum_name']) ?></a>
     <a class="btn btn-primary" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_post['subject']) ?></a>
     <a class="btn btn-primary" href="#"><?php echo $lang['Report post'] ?></a>

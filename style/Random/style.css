@@ -633,7 +633,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	background: #ea4322;
 }
 
-.glyphicon-asterisk {
+.fa-asterisk {
 	color: #c9c9c9;
 	font-size: 80%;
 }
