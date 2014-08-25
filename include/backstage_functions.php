@@ -34,7 +34,7 @@ function generate_admin_menu($section ='', $page = '')
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown usermenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php print(luna_htmlspecialchars($luna_user['username'])) ?> <b class="caret"></b>
+                        <?php print(luna_htmlspecialchars($luna_user['username'])) ?> <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><?php echo '<a href="../profile.php?id='.$luna_user['id'].'">' ?><?php echo $lang['Profile'] ?></a></li>
