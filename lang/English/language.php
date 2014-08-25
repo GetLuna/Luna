@@ -1601,7 +1601,8 @@ $lang = array(
 // Update service
 //
 
-'Available'				=>	'An update, Luna v%s, is available',
+'Available'				=>	'Luna v%s is available, %s!',
+'update now'			=>	'update now',
 'Development'			=>	'You are running version %s, the latest stable release is version %s.',
 'Download'				=>	'Download v%s',
 'Changelog'				=>	'Changelog',
