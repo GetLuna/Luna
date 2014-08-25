@@ -141,6 +141,10 @@ label .help-block {
     border-top-right-radius: 2px;
 }
 
+.panel, .alert {
+	margin-top: 11px;
+}
+
 h3.panel-title {
     font-size: 130%;
     margin-top: -2px;
@@ -388,6 +392,10 @@ h3.panel-title {
 }
 
 /* Alerts */
+.alert {
+	border-radius: 2px;
+}
+
 .alert-success {
 	background: #e5ffb8;
 	border-color: #d1fd88;
