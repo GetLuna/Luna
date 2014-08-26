@@ -329,7 +329,7 @@ else if (isset($_GET['edit_forum']))
 }
 
 // Add a new category
-if (isset($_POST['add_cat']))
+else if (isset($_POST['add_cat']))
 {
 	confirm_referrer('backstage/board.php');
 	
@@ -423,45 +423,47 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 	}
 }
 
-// Generate an array with all categories
-$result = $db->query('SELECT id, cat_name, disp_position FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
-$num_cats = $db->num_rows($result);
+else {
 
-for ($i = 0; $i < $num_cats; ++$i)
-	$cat_list[] = $db->fetch_assoc($result);
-
-if (isset($_POST['update'])) // Change position and name of the categories
-{
-	confirm_referrer('backstage/board.php');
+	// Generate an array with all categories
+	$result = $db->query('SELECT id, cat_name, disp_position FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
+	$num_cats = $db->num_rows($result);
 	
-	$categories = $_POST['cat'];
-	if (empty($categories))
-		message_backstage($lang['Bad request'], false, '404 Not Found');
-
-	foreach ($categories as $cat_id => $cur_cat)
+	for ($i = 0; $i < $num_cats; ++$i)
+		$cat_list[] = $db->fetch_assoc($result);
+	
+	if (isset($_POST['update'])) // Change position and name of the categories
 	{
-		$cur_cat['name'] = luna_trim($cur_cat['name']);
-		$cur_cat['order'] = luna_trim($cur_cat['order']);
-
-		if ($cur_cat['name'] == '')
-			message_backstage($lang['Must enter name message']);
-
-		if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order']))
-			message_backstage($lang['Must enter integer message']);
-
-		$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
+		confirm_referrer('backstage/board.php');
+		
+		$categories = $_POST['cat'];
+		if (empty($categories))
+			message_backstage($lang['Bad request'], false, '404 Not Found');
+	
+		foreach ($categories as $cat_id => $cur_cat)
+		{
+			$cur_cat['name'] = luna_trim($cur_cat['name']);
+			$cur_cat['order'] = luna_trim($cur_cat['order']);
+	
+			if ($cur_cat['name'] == '')
+				message_backstage($lang['Must enter name message']);
+	
+			if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order']))
+				message_backstage($lang['Must enter integer message']);
+	
+			$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
+		}
+	
+		redirect('backstage/board.php?saved=true');
 	}
-
-	redirect('backstage/board.php?saved=true');
-}
-
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Board']);
-define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('content', 'board');
-
-if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+	
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Board']);
+	define('FORUM_ACTIVE_PAGE', 'admin');
+	require FORUM_ROOT.'backstage/header.php';
+		generate_admin_menu('content', 'board');
+	
+	if (isset($_GET['saved']))
+		echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>
 <div class="row">
 	<div class="<?php if (($num_cats) > '0') { ?>col-md-5<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
@@ -642,7 +644,7 @@ foreach ($cat_list as $cur_cat)
 	</div>
 </form>
 <?php endif; 
-
+	}
 }
 
 require FORUM_ROOT.'backstage/footer.php';
