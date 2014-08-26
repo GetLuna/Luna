@@ -645,6 +645,6 @@ foreach ($cat_list as $cur_cat)
 </form>
 <?php endif; 
 	}
-}
 
 require FORUM_ROOT.'backstage/footer.php';
+}
