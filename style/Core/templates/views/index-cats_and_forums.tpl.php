@@ -44,20 +44,9 @@ while ($cur_forum = $db->fetch_assoc($result))
         $icon_type = 'icon icon-new';
     }
 
-    // Is this a redirect forum?
-    if ($cur_forum['redirect_url'] != '')
-    {
-        $forum_field = '<span class="redirtext">'.$lang['Link to'].'</span> <a href="'.luna_htmlspecialchars($cur_forum['redirect_url']).'" title="'.$lang['Link to'].' '.luna_htmlspecialchars($cur_forum['redirect_url']).'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>';
-        $num_topics = $num_posts = '-';
-        $item_status .= ' iredirect';
-        $icon_type = 'icon';
-    }
-    else
-    {
-        $forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
-        $num_topics = $cur_forum['num_topics'];
-        $num_posts = $cur_forum['num_posts'];
-    }
+	$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+	$num_topics = $cur_forum['num_topics'];
+	$num_posts = $cur_forum['num_posts'];
 
     if ($cur_forum['forum_desc'] != '')
         $forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc hidden-xs">'.$cur_forum['forum_desc'].'</div>';
@@ -73,8 +62,6 @@ while ($cur_forum = $db->fetch_assoc($result))
             else
                 $last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['last_poster']).'</span>';
     }
-    else if ($cur_forum['redirect_url'] != '')
-        $last_post = '- - -';
     else
         $last_post = $lang['Never'];
 

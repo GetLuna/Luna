@@ -138,7 +138,6 @@ else if (isset($_GET['edit_forum']))
 		$forum_desc = luna_linebreaks(luna_trim($_POST['forum_desc']));
 		$cat_id = intval($_POST['cat_id']);
 		$sort_by = intval($_POST['sort_by']);
-		$redirect_url = isset($_POST['redirect_url']) ? luna_trim($_POST['redirect_url']) : null;
 
 		if ($forum_name == '')
 			message_backstage($lang['Must enter name message']);
@@ -147,9 +146,8 @@ else if (isset($_GET['edit_forum']))
 			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
-		$redirect_url = ($redirect_url != '') ? '\''.$db->escape($redirect_url).'\'' : 'NULL';
 
-		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', redirect_url='.$redirect_url.', sort_by='.$sort_by.', cat_id='.$cat_id.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', sort_by='.$sort_by.', cat_id='.$cat_id.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old']))
@@ -190,7 +188,7 @@ else if (isset($_GET['edit_forum']))
 	}
 
 	// Fetch forum info
-	$result = $db->query('SELECT id, forum_name, forum_desc, redirect_url, num_topics, sort_by, cat_id FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, forum_name, forum_desc, num_topics, sort_by, cat_id FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result))
 		message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -251,14 +249,6 @@ else if (isset($_GET['edit_forum']))
                         </select>
                     </div>
                 </div>
-				<?php if (($cur_forum['num_topics']) == '0'): ?>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Redirect label'] ?></label>
-					<div class="col-sm-9">
-                        <?php echo ($cur_forum['num_topics']) ? $lang['Redirect help'] : '<input type="text" class="form-control"name="redirect_url" maxlength="100" value="'.luna_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?>
-                    </div>
-                </div>
-				<?php endif; ?>
             </fieldset>
         </div>
     </div>
@@ -303,13 +293,13 @@ else if (isset($_GET['edit_forum']))
 							<input type="hidden" name="read_forum_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($read_forum) ? '1' : '0'; ?>" />
 							<input type="checkbox" name="read_forum_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($read_forum) ? ' checked="checked"' : ''; ?><?php echo ($cur_perm['g_read_board'] == '0') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
 						</td>
-						<td<?php if (!$post_replies_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
+						<td<?php if (!$post_replies_def) echo ' class="danger"'; ?>>
 							<input type="hidden" name="post_replies_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_replies) ? '1' : '0'; ?>" />
-							<input type="checkbox" name="post_replies_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_replies) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+							<input type="checkbox" name="post_replies_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_replies) ? ' checked="checked"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
 						</td>
-						<td<?php if (!$post_topics_def && $cur_forum['redirect_url'] == '') echo ' class="danger"'; ?>>
+						<td<?php if (!$post_topics_def) echo ' class="danger"'; ?>>
 							<input type="hidden" name="post_topics_old[<?php echo $cur_perm['g_id'] ?>]" value="<?php echo ($post_topics) ? '1' : '0'; ?>" />
-							<input type="checkbox" name="post_topics_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_topics) ? ' checked="checked"' : ''; ?><?php echo ($cur_forum['redirect_url'] != '') ? ' disabled="disabled"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
+							<input type="checkbox" name="post_topics_new[<?php echo $cur_perm['g_id'] ?>]" value="1"<?php echo ($post_topics) ? ' checked="checked"' : ''; ?> tabindex="<?php echo $cur_index++ ?>" />
 						</td>
 					</tr>
 <?php
