@@ -32,8 +32,6 @@ $p = isset($p) ? $p : null;
 <?php
 include FORUM_ROOT.'include/backstage_functions.php';
 
-require FORUM_ROOT.'backstage/css/accent.php';
-
 if (isset($required_fields))
 {
 	// Output JavaScript to validate form (make sure required fields are filled out)

@@ -391,6 +391,11 @@ h3.panel-title {
 	background-color: #14a3ff;
 }
 
+/* Pagination */
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	background: #14a3ff;
+}
+
 /* Alerts */
 .alert {
 	border-radius: 2px;

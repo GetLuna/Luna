@@ -296,6 +296,9 @@ switch ($stage)
 		// Since 0.1-alpha.1: Drop the redirect_url column to the forums table
 		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
 
+		// Since 0.1-alpha.1: Drop the backstage_color column to the forums table
+		$db->drop_field($db->prefix.'users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

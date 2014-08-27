@@ -251,7 +251,6 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
         <title><?php echo $lang['Luna Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
-        <?php require FORUM_ROOT.'backstage/css/accent.php'; ?>
         <script type="text/javascript">
         /* <![CDATA[ */
         function process_form(the_form)
@@ -750,10 +749,6 @@ else
 			),
 			'forum_desc'	=> array(
 				'datatype'		=> 'TEXT',
-				'allow_null'	=> true
-			),
-			'redirect_url'	=> array(
-				'datatype'		=> 'VARCHAR(100)',
 				'allow_null'	=> true
 			),
 			'moderators'	=> array(
@@ -1486,11 +1481,6 @@ else
 				'allow_null'	=> false,
 				'default'		=> '\''.$db->escape($default_style).'\''
 			),
-			'backstage_color'	=> array(
-				'datatype'		=> 'VARCHAR(25)',
-				'allow_null'	=> false,
-				'default'		=> '\'#14a3ff\''
-			),
 			'num_posts'			=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
 				'allow_null'	=> false,
@@ -1575,7 +1565,7 @@ else
 	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\')')
 		or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, backstage_color, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', \'#14a3ff\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
+	$db->query('INSERT INTO '.$db_prefix.'users (group_id, username, password, email, language, style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password1).'\', \''.$email.'\', \''.$db->escape($default_lang).'\', \''.$db->escape($default_style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
 		or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Enable/disable avatars depending on file_uploads setting in PHP configuration
@@ -1736,7 +1726,6 @@ else
         <title><?php echo $lang['Luna Installation'] ?></title>
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
-        <?php require FORUM_ROOT.'backstage/css/accent.php'; ?>
     </head>
     <body>
         <div class="container">
