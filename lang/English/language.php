@@ -845,6 +845,9 @@ $lang = array(
 'User group'		=>	'User group',
 'No of posts'		=>	'Number of posts',
 'All users'			=>	'All users',
+'Sort no of posts'	=>	'Sort by number of posts',
+'Sort username'		=>	'Sort by username',
+'Sort registered'	=>	'Sort by registration date',
 
 //
 // Language for viewforum.php
