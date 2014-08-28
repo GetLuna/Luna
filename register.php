@@ -113,9 +113,6 @@ if (isset($_POST['form_sent']))
 	else
 		$language = $luna_config['o_default_lang'];
 
-  	// Include the antispam library
-  	require FORUM_ROOT.'include/nospam.php';
-
 	$req_username = empty($username) ? luna_trim($_POST['req_username']) : $username;
 	if (!empty($_POST['req_username']) || stopforumspam_check(get_remote_address(), $email1, $req_username))
   	{
