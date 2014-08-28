@@ -20,9 +20,17 @@ else if ($luna_user['g_view_users'] == '0')
 $show_post_count = ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod']) ? true : false;
 
 $username = isset($_GET['username']) && $luna_user['g_search_users'] == '1' ? luna_trim($_GET['username']) : '';
-$show_group = isset($_GET['show_group']) ? intval($_GET['show_group']) : -1;
-$sort_by = isset($_GET['sort_by']) && (in_array($_GET['sort_by'], array('username', 'registered')) || ($_GET['sort_by'] == 'num_posts' && $show_post_count)) ? $_GET['sort_by'] : 'username';
-$sort_dir = isset($_GET['sort_dir']) && $_GET['sort_dir'] == 'DESC' ? 'DESC' : 'ASC';
+if (isset($_GET['sort'])) {
+	if ($_GET['sort'] == 'username') {
+		$sort_query = 'username ASC';
+	} else if ($_GET['sort'] == 'registered') {
+		$sort_query = 'registered ASC';
+	} else {
+		$sort_query = 'num_posts DESC';
+	}
+} else {
+	$sort_query = 'username ASC';
+}
 
 // Create any SQL for the WHERE clause
 $where_sql = array();
