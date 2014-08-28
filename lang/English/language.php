@@ -296,8 +296,6 @@ $lang = array(
 
 'Start update'					=>	'Start update',
 'Correct errors'				=>	'The following errors need to be corrected:',
-'Successfully updated'			=>	'Your forum database was successfully updated. You may now %s.',
-'go to index'					=>	'go to the forum index',
 
 'Preparsing item'				=>	'Preparsing %1$s %2$s …',
 'Rebuilding index item'			=>	'Rebuilding index for %1$s %2$s',
