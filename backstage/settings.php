@@ -268,8 +268,8 @@ if (isset($_GET['saved']))
                             <option value="14"<?php if ($luna_config['o_default_timezone'] == 14) echo ' selected="selected"' ?>><?php echo $lang['UTC+14:00'] ?></option>
                         </select>
                         <div class="checkbox">
-                                <input type="checkbox" name="form[default_dst]" value="1" <?php if ($luna_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />
                             <label>
+                                <input type="checkbox" name="form[default_dst]" value="1" <?php if ($luna_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['DST help'] ?>
                             </label>
                         </div>
