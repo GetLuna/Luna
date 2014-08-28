@@ -4,9 +4,15 @@
 if (!defined('FORUM'))
     exit;
 
-require get_view_path('userlist-breadcrumbs.tpl.php');
-
 ?>
+
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="pagination pagination-user">
+            <?php echo $paging_links ?>
+        </ul>
+    </div>
+</div>
 
 <div class="userlist">
 	<div class="row forum-header">
@@ -17,7 +23,7 @@ require get_view_path('userlist-breadcrumbs.tpl.php');
 <?php
 
 // Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.FORUM_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_by.' '.$sort_dir.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.FORUM_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_query.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
 
 if ($db->num_rows($result))
 {
@@ -26,7 +32,7 @@ if ($db->num_rows($result))
         $user_ids[] = $cur_user_id;
 
     // Grab the users
-    $result = $db->query('SELECT u.id, u.username, u.title, u.num_posts, u.registered, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id IN('.implode(',', $user_ids).') ORDER BY '.$sort_by.' '.$sort_dir.', u.id ASC') or error('Unable to fetch user list', __FILE__, __LINE__, $db->error());
+    $result = $db->query('SELECT u.id, u.username, u.title, u.num_posts, u.registered, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id IN('.implode(',', $user_ids).') ORDER BY '.$sort_query.', u.id ASC') or error('Unable to fetch user list', __FILE__, __LINE__, $db->error());
 
     while ($user_data = $db->fetch_assoc($result))
     {
@@ -49,13 +55,18 @@ if ($db->num_rows($result))
     }
 }
 else
-    echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang['No hits'].'</td></tr>'."\n";
+    echo "\t\t\t".'<p>'.$lang['No hits'].'</p>'."\n";
 
 ?>
 </div>
 
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="pagination pagination-user">
+            <?php echo $paging_links ?>
+        </ul>
+    </div>
+</div>
 <?php
-
-    require get_view_path('userlist-breadcrumbs.tpl.php');
 
     require FORUM_ROOT.'footer.php';
