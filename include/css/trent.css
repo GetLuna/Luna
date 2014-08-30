@@ -1,10 +1,10 @@
 /*!
- * Bootstrap v3.2.0 (http://getbootstrap.com)
+ * TrentUI Framework v1.0-dev
+ * Copyright 2014 384 Group
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+@import url('font-awesome.min.css');
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -5469,4 +5469,3 @@ button.close {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */
