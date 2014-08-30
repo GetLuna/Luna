@@ -141,7 +141,7 @@ if (!isset($_POST['form_sent']))
 	$title = $lang['My Luna Forum'];
 	$description = $lang['Description'];
 	$default_lang = $install_lang;
-	$default_style = 'Random';
+	$default_style = 'Sunrise';
 }
 else
 {
