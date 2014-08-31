@@ -53,7 +53,7 @@ function generate_admin_menu($section ='', $page = '')
             <h2>
                 <?php
                     if($page == 'index')
-                        echo 'Backstage';
+                        echo 'Backstage <span class="pull-right" style="font-size: 70%;">Core '.Version::FORUM_CORE_VERSION.'</span>';
                     if($page == 'stats')
                         echo 'System info';
                     if($page == 'update')
