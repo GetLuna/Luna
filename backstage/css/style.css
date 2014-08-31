@@ -335,24 +335,29 @@ h3.panel-title {
 .panel-style .thumbnail {
 	border: none;
 	padding: 0;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
 }
 
 .panel-style .thumbnail img {
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
 }
 
 .panel-style .panel-footer {
 	border: none;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
 }
 
 .panel-style {
 	border: 1px #dfdfdf solid;
 	margin-top: 20px;
+}
+
+.panel-current .thumbnail {
+	border: none;
+	padding: 0;
 }
 
 /* Pills */

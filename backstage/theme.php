@@ -53,13 +53,51 @@ require FORUM_ROOT.'backstage/header.php';
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>
+<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-default panel-current">
+			<div class="panel-heading">
+				<h3 class="panel-title">Current theme</h3>
+			</div>
+<?php
+
+$current_theme = $luna_config['o_default_style'];
+include FORUM_ROOT.'/style/'.$current_theme.'/information.php';
+$style_info = new SimpleXMLElement($xmlstr);
+
+?>
+			<div class="thumbnail"><a data-toggle="modal" href="#" data-target="#<?php echo $current_theme ?>"><img src="../style/<?php echo $current_theme ?>/logo.png" /></a></div>
+			<div class="panel-footer">
+				<span class="h2"><?php echo $style_info->name; ?></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Theme settings for <?php echo $luna_config['o_default_style'] ?> <?php echo $style_info->version; ?></h3>
+			</div>
+			<div class="panel-body">
+<?php
+
+if (file_exists(FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php')) {
+	include FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php';
+} else {
+	echo 'This theme has no settings available...';
+}
+
+?>
+			</div>
+		</div>
+	</div>
+</div>
 <form class="form-horizontal" method="post" action="permissions.php">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Default style'] ?></h3>
         </div>
         <div class="panel-body">
-			<p><?php echo $lang['Default style help'] ?></p>
+			<p>Here are all themes we could find in the <code>/styles/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.</p>
             <fieldset>
 				<div class="row">
 <?php
@@ -113,7 +151,6 @@ if (isset($_GET['saved']))
 									<ul class="dropdown-menu" role="menu">
 										<?php
 											echo '<li><a data-toggle="modal" href="#" data-target="#'.$temp.'">'.$lang['About'].'</a></li>';
-											echo '<li><a href="style.php?force_default='.$style_info->name.'">'.$lang['Force style'].'</a></li>';
 										?>
 									</ul>
 								</div>
