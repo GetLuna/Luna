@@ -8,7 +8,7 @@
 //
 // Display the admin navigation menu
 //
-function generate_admin_menu($section ='', $page = '')
+function load_admin_nav($section ='', $page = '')
 {
 	global $luna_user, $lang;
 
@@ -87,6 +87,8 @@ function generate_admin_menu($section ='', $page = '')
                         echo 'Email';
                     if($page == 'appearance')
                         echo 'Appearance';
+                    if($page == 'menu')
+                        echo 'Menu';
                     if($page == 'theme')
                         echo 'Theme';
                     if($page == 'maintenance')
@@ -125,6 +127,7 @@ function generate_admin_menu($section ='', $page = '')
                 <li<?php if($page == 'registration') echo ' class="active"' ?>><a href="registration.php">Registration</a></li>
                 <li<?php if($page == 'email') echo ' class="active"' ?>><a href="email.php">Email</a></li>
                 <li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php">Appearance</a></li>
+                <li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php">Menu</a></li>
                 <li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php">Theme</a></li>
                 <li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php">Maintenance</a></li>
             </ul>
