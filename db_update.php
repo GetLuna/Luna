@@ -249,11 +249,31 @@ switch ($stage)
 		if (array_key_exists('o_index_update_check', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_index_update_check\'') or error('Unable to remove config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.1-alpha.1: Drop the redirect_url column to the forums table
+		// Since 0.1.: Drop the redirect_url column to the forums table
 		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
 
 		// Since 0.1-alpha.1: Drop the backstage_color column to the forums table
 		$db->drop_field($db->prefix.'users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.2975: Remove obsolete o_header_title permission from config table
+		if (array_key_exists('o_header_title', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_header_title\'') or error('Unable to remove config value \'o_header_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.2975: Remove obsolete o_header_desc permission from config table
+		if (array_key_exists('o_header_desc', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_header_desc\'') or error('Unable to remove config value \'o_header_desc\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.2975: Remove obsolete o_menu_title permission from config table
+		if (array_key_exists('o_menu_title', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_menu_title\'') or error('Unable to remove config value \'o_menu_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.2975: Remove obsolete o_show_version permission from config table
+		if (array_key_exists('o_show_version', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_version\'') or error('Unable to remove config value \'o_show_version\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.2975: Remove obsolete o_show_index_stats permission from config table
+		if (array_key_exists('o_show_index_stats', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_index_stats\'') or error('Unable to remove config value \'o_show_index_stats\'', __FILE__, __LINE__, $db->error());
 
 		break;
 

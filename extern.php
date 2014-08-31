@@ -127,11 +127,7 @@ function output_rss($feed)
 	echo "\t\t".'<link>'.luna_htmlspecialchars($feed['link']).'</link>'."\n";
 	echo "\t\t".'<description><![CDATA['.escape_cdata($feed['description']).']]></description>'."\n";
 	echo "\t\t".'<lastBuildDate>'.gmdate('r', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</lastBuildDate>'."\n";
-
-	if ($luna_config['o_show_version'] == '1')
-		echo "\t\t".'<generator>Luna '.$luna_config['o_cur_version'].'</generator>'."\n";
-	else
-		echo "\t\t".'<generator>Luna</generator>'."\n";
+	echo "\t\t".'<generator>Luna '.$luna_config['o_cur_version'].'</generator>'."\n";
 
 	foreach ($feed['items'] as $item)
 	{
@@ -171,11 +167,7 @@ function output_atom($feed)
 	echo "\t".'<link rel="self" href="'.luna_htmlspecialchars(get_current_url()).'"/>'."\n";
 	echo "\t".'<link href="'.luna_htmlspecialchars($feed['link']).'"/>'."\n";
 	echo "\t".'<updated>'.gmdate('Y-m-d\TH:i:s\Z', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</updated>'."\n";
-
-	if ($luna_config['o_show_version'] == '1')
-		echo "\t".'<generator version="'.$luna_config['o_cur_version'].'">Luna</generator>'."\n";
-	else
-		echo "\t".'<generator>Luna</generator>'."\n";
+	echo "\t".'<generator version="'.$luna_config['o_cur_version'].'">Luna</generator>'."\n";
 
 	echo "\t".'<id>'.luna_htmlspecialchars($feed['link']).'</id>'."\n";
 

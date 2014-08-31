@@ -165,24 +165,12 @@ $tpl_main = str_replace('<luna_page>', htmlspecialchars(basename($_SERVER['PHP_S
 
 
 // START SUBST - <luna_title>
-if (($luna_config['o_header_title'] == 1) && ($luna_config['o_menu_title'] == 1)) {
-	$tpl_main = str_replace('<luna_title>', '<h1 class="hidden-xs"><a href="index.php">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a></h1>', $tpl_main);
-} elseif (($luna_config['o_header_title'] == 1) && ($luna_config['o_menu_title'] == 0)) {
-	$tpl_main = str_replace('<luna_title>', '<h1><a href="index.php">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a></h1>', $tpl_main);
-} else {
-	$tpl_main = str_replace('<luna_title>', '', $tpl_main);
-}
-
+$tpl_main = str_replace('<luna_title>', '<h1 class="hidden-xs"><a href="index.php">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a></h1>', $tpl_main);
 // END SUBST - <luna_title>
 
 
 // START SUBST - <luna_desc>
-if ($luna_config['o_header_desc'] == 1) {
-	$tpl_main = str_replace('<luna_desc>', '<div id="brddesc"><p>'.$luna_config['o_board_desc'].'</p></div>', $tpl_main);
-} else {
-	$tpl_main = str_replace('<luna_desc>', '', $tpl_main);
-}
-
+$tpl_main = str_replace('<luna_desc>', '<div id="brddesc"><p>'.$luna_config['o_board_desc'].'</p></div>', $tpl_main);
 // END SUBST - <luna_desc>
 
 
@@ -236,11 +224,7 @@ if ($luna_user['is_guest'])
 	$usermenu[] = '</li>';
 }
 
-if ($luna_config['o_menu_title'] == 1) {
-	$menu_title = '<a href="index.php" class="navbar-brand">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a>';
-} else {
-	$menu_title = '';
-}
+$menu_title = '<a href="index.php" class="navbar-brand">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a>';
 
 $tpl_temp = '<div class="navbar navbar-default navbar-static-top">
 	<div class="nav-inner">

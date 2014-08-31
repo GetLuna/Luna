@@ -8,9 +8,6 @@ if ($luna_user['g_view_users'] == '1')
     $stats['newest_user'] = '<a href="profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>';
 else
     $stats['newest_user'] = luna_htmlspecialchars($stats['last_user']['username']);
-
-
-if ($luna_config['o_show_index_stats'] == 1) {
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -60,7 +57,6 @@ if ($luna_config['o_users_online'] == '1')
     </div>
 </div>
 <?php
-}
 
 $footer_style = 'index';
 require FORUM_ROOT.'footer.php';

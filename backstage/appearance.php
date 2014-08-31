@@ -26,18 +26,13 @@ if (isset($_POST['form_sent']))
 	
 	$form = array(
 		'default_style'			=> luna_trim($_POST['form']['default_style']),
-		'show_version'			=> isset($_POST['form']['show_version']) ? '1' : '0',
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
 		'show_index'			=> isset($_POST['form']['show_index']) ? '1' : '0',
 		'show_userlist'			=> isset($_POST['form']['show_userlist']) ? '1' : '0',
 		'show_search'			=> isset($_POST['form']['show_search']) ? '1' : '0',
 		'show_rules'			=> isset($_POST['form']['show_rules']) ? '1' : '0',
-		'header_title'			=> isset($_POST['form']['header_title']) ? '1' : '0',
-		'header_desc'			=> isset($_POST['form']['header_desc']) ? '1' : '0',
-		'menu_title'			=> isset($_POST['form']['menu_title']) ? '1' : '0',
 		'moderated_by'		    => isset($_POST['form']['moderated_by']) ? '1' : '0',
-		'show_index_stats'		=> isset($_POST['form']['show_index_stats']) ? '1' : '0',
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
@@ -133,54 +128,6 @@ if (isset($_GET['saved']))
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Title settings head'] ?></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-								<input type="checkbox" name="form[header_title]" value="1" <?php if ($luna_config['o_header_title'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Title in header'] ?>
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-								<input type="checkbox" name="form[menu_title]" value="1" <?php if ($luna_config['o_menu_title'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Title in menu'] ?>
-                            </label>
-                        </div>                        
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Description settings head'] ?></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-								<input type="checkbox" name="form[header_desc]" value="1" <?php if ($luna_config['o_header_desc'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Description in header'] ?>
-                            </label>
-                        </div>                       
-                    </div>
-                </div>
-            </fieldset>
-		</div>
-	</div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Footer appearance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Footer'] ?></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[show_version]" value="1" <?php if ($luna_config['o_show_version'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['Version number help'] ?>
-                            </label>
-                        </div>
-                    </div>
-               	</div>
             </fieldset>
 		</div>
 	</div>
@@ -214,12 +161,6 @@ if (isset($_GET['saved']))
                             <label>
                                 <input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Moderated by help'] ?>
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[show_index_stats]" value="1" <?php if ($luna_config['o_show_index_stats'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Index statistics help'] ?>
                             </label>
                         </div>
                     </div>
