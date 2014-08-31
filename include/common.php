@@ -128,10 +128,7 @@ if (!isset($luna_config['o_database_revision']) || $luna_config['o_database_revi
 	!isset($luna_config['o_parser_revision']) || $luna_config['o_parser_revision'] < Version::FORUM_PARSER_VERSION ||
 	!array_key_exists('o_core_version', $luna_config) || version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '<'))
 {
-	if (FORUM_ADMIN_CONSOLE == 1)
-		header('Location: '.FORUM_ROOT.'db_update.php');
-	else
-		header('Location: db_update.php');
+	header('Location: '.FORUM_ROOT.'db_update.php');
 
 	exit;
 }

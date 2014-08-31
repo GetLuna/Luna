@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -22,8 +19,8 @@ if (isset($_POST['add_user']))
 {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
@@ -134,8 +131,8 @@ if (isset($_GET['ip_stats']))
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 ?>
 <div class="panel panel-default">
@@ -190,7 +187,7 @@ if (isset($_GET['ip_stats']))
 </div>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
@@ -216,8 +213,8 @@ if (isset($_GET['show_users']))
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 ?>
 <div class="panel panel-default">
@@ -310,7 +307,7 @@ if (isset($_GET['show_users']))
 	</div>
 </div>
 <?php
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
@@ -399,8 +396,8 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Move users']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 ?>
 <div class="panel panel-default">
@@ -429,7 +426,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 </div>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
@@ -548,8 +545,8 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Delete users']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 ?>
 <form name="confirm_del_users" method="post" action="users.php">
@@ -577,7 +574,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 </form>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
@@ -673,8 +670,8 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
 	$focus_element = array('bans2', 'ban_message');
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 ?>
 <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
@@ -719,7 +716,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 </form>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
@@ -857,8 +854,8 @@ else if (isset($_GET['find_user']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 ?>
 <div class="panel panel-default">
@@ -955,7 +952,7 @@ else if (isset($_GET['find_user']))
 </div>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
@@ -964,8 +961,8 @@ else
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users']);
 	$focus_element = array('find_user', 'form[username]');
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'users');
+	require 'header.php';
+	load_admin_nav('users', 'users');
 
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
@@ -1138,5 +1135,5 @@ if (isset($_GET['user_failed']))
 </form>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }

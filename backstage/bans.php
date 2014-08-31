@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -98,8 +95,8 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
 	$focus_element = array('bans2', 'ban_user');
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'bans');
+	require 'header.php';
+	load_admin_nav('users', 'bans');
 
 ?>
 <form class="form-horizontal" id="bans2" method="post" action="bans.php">
@@ -159,7 +156,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 </form>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 // Add/edit a ban (stage 2)
@@ -370,8 +367,8 @@ else if (isset($_GET['find_ban']))
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'bans');
+	require 'header.php';
+	load_admin_nav('users', 'bans');
 
 ?>
 <div class="panel panel-default">
@@ -435,14 +432,14 @@ else if (isset($_GET['find_ban']))
 </div>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
 $focus_element = array('bans', 'new_ban_user');
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'bans');
+require 'header.php';
+	load_admin_nav('users', 'bans');
 
 ?>
 <div class="panel panel-default">
@@ -511,4 +508,4 @@ require FORUM_ROOT.'backstage/header.php';
 </form>
 <?php
 
-require FORUM_ROOT.'backstage/footer.php';
+require 'footer.php';

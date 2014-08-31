@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -99,8 +96,8 @@ else if (isset($_POST['remove']))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Ranks']);
 $focus_element = array('ranks', 'new_rank');
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'ranks');
+require 'header.php';
+	load_admin_nav('users', 'ranks');
 
 if ($luna_config['o_ranks'] == 0) {
 ?>
@@ -175,4 +172,4 @@ else
 </div>
 <?php
 
-require FORUM_ROOT.'backstage/footer.php';
+require 'footer.php';

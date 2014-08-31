@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -49,8 +46,8 @@ if (isset($_POST['zap_id']))
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Reports']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('content', 'reports');
+require 'header.php';
+	load_admin_nav('content', 'reports');
 
 ?>
 <div class="panel panel-default">
@@ -62,10 +59,10 @@ require FORUM_ROOT.'backstage/header.php';
 			<table class="table">
 				<thead>
 					<tr>
-						<th><?php echo $lang['Reported by'] ?></th>
-						<th><?php echo $lang['Date and time'] ?></th>
-						<th><?php echo $lang['Message'] ?></th>
-						<th><?php echo $lang['Actions'] ?></th>
+						<th class="col-xs-2"><?php echo $lang['Reported by'] ?></th>
+						<th class="col-xs-2"><?php echo $lang['Date and time'] ?></th>
+						<th class="col-xs-6"><?php echo $lang['Message'] ?></th>
+						<th class="col-xs-2"><?php echo $lang['Actions'] ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -86,13 +83,13 @@ if ($db->num_rows($result))
 
 ?>
 					<tr>
-						<td class="col-xs-2"><?php printf($reporter) ?></td>
-						<td class="col-xs-2"><?php printf(format_time($cur_report['created'])) ?></td>
-						<td class="col-xs-6">
+						<td><?php printf($reporter) ?></td>
+						<td><?php printf(format_time($cur_report['created'])) ?></td>
+						<td>
 							<div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
 							<?php echo $post ?>
 						</td>
-						<td class="col-xs-2"><input class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]" value="<?php echo $lang['Zap'] ?>" /></td>
+						<td><input class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]" value="<?php echo $lang['Zap'] ?>" /></td>
 					</tr>
 <?php
 
@@ -103,7 +100,7 @@ else
 
 ?>
 					<tr>
-						<td colspan="4"><p><?php echo $lang['No new reports'] ?></p></td>
+						<td colspan="4"><?php echo $lang['No new reports'] ?></td>
 					</tr>
 <?php
 
@@ -174,4 +171,4 @@ else
 	</table>
 </div>
 <?php
-require FORUM_ROOT.'backstage/footer.php';
+require 'footer.php';

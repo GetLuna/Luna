@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -51,8 +48,8 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 	$required_fields = array('req_title' => $lang['Group title label']);
 	$focus_element = array('groups2', 'req_title');
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'groups');
+	require 'header.php';
+	load_admin_nav('users', 'groups');
 ?>
 <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
     <div class="panel panel-default">
@@ -314,7 +311,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 </form>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
@@ -454,8 +451,8 @@ else if (isset($_GET['del_group']))
 
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 			define('FORUM_ACTIVE_PAGE', 'admin');
-			require FORUM_ROOT.'backstage/header.php';
-                generate_admin_menu('users', 'groups');
+			require 'header.php';
+                load_admin_nav('users', 'groups');
 
 ?>
 <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
@@ -475,7 +472,7 @@ else if (isset($_GET['del_group']))
 </form>
 <?php
 
-			require FORUM_ROOT.'backstage/footer.php';
+			require 'footer.php';
 		}
 	}
 
@@ -483,7 +480,7 @@ else if (isset($_GET['del_group']))
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
+	require 'header.php';
 
 ?>
 <div class="panel panel-default">
@@ -521,14 +518,14 @@ else if (isset($_GET['del_group']))
 </div>
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('users', 'groups');
+require 'header.php';
+	load_admin_nav('users', 'groups');
 
 ?>
 <div class="row">
@@ -626,4 +623,4 @@ while ($cur_group = $db->fetch_assoc($result))
 </div>
 <?php
 
-require FORUM_ROOT.'backstage/footer.php';
+require 'footer.php';

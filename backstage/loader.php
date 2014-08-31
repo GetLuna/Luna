@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -37,7 +34,7 @@ if (!isset($_SERVER['REQUEST_URI']))
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], str_replace('_', ' ', substr($plugin, strpos($plugin, '_') + 1, -4)));
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
+require 'header.php';
 
 // Attempt to load the plugin. We don't use @ here to suppress error messages,
 // because if we did and a parse error occurred in the plugin, we would only
@@ -51,4 +48,4 @@ if (!defined('FORUM_PLUGIN_LOADED'))
 </div>
 <?php
 
-require FORUM_ROOT.'backstage/footer.php';
+require 'footer.php';

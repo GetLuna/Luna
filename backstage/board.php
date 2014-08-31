@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -80,8 +77,8 @@ else if (isset($_GET['del_forum']))
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Forums']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
-		require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('content', 'board');
+		require 'header.php';
+	load_admin_nav('content', 'board');
 
 ?>
 <form method="post" action="board.php?del_forum=<?php echo $forum_id ?>">
@@ -101,7 +98,7 @@ else if (isset($_GET['del_forum']))
 </form>
 <?php
 
-		require FORUM_ROOT.'backstage/footer.php';
+		require 'footer.php';
 	}
 }
 
@@ -199,8 +196,8 @@ else if (isset($_GET['edit_forum']))
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Forums']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('content', 'board');
+	require 'header.php';
+	load_admin_nav('content', 'board');
 
 ?>
 <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
@@ -315,7 +312,7 @@ else if (isset($_GET['edit_forum']))
 
 <?php
 
-	require FORUM_ROOT.'backstage/footer.php';
+	require 'footer.php';
 }
 
 // Add a new category
@@ -387,8 +384,8 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Categories']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
-		require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('content', 'board');
+		require 'header.php';
+	load_admin_nav('content', 'board');
 
 ?>
 <form method="post" action="board.php">
@@ -409,7 +406,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 </form>
 <?php
 
-		require FORUM_ROOT.'backstage/footer.php';
+		require 'footer.php';
 	}
 }
 
@@ -449,8 +446,8 @@ else {
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Board']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-		generate_admin_menu('content', 'board');
+	require 'header.php';
+		load_admin_nav('content', 'board');
 	
 	if (isset($_GET['saved']))
 		echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
@@ -636,5 +633,5 @@ foreach ($cat_list as $cur_cat)
 <?php endif; 
 	}
 
-require FORUM_ROOT.'backstage/footer.php';
+require 'footer.php';
 }

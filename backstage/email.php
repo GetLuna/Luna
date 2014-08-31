@@ -7,9 +7,6 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
-define('FORUM_ADMIN_CONSOLE', 1);
-
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
@@ -72,8 +69,8 @@ if (isset($_POST['form_sent']))
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
-require FORUM_ROOT.'backstage/header.php';
-generate_admin_menu('settings', 'email');
+require 'header.php';
+load_admin_nav('settings', 'email');
 
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
@@ -179,4 +176,4 @@ if (isset($_GET['saved']))
 </form>
 <?php
 
-require FORUM_ROOT.'backstage/footer.php';
+require 'footer.php';
