@@ -25,10 +25,6 @@ if (isset($_POST['form_sent']))
 		'default_style'			=> luna_trim($_POST['form']['default_style']),
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
-		'show_index'			=> isset($_POST['form']['show_index']) ? '1' : '0',
-		'show_userlist'			=> isset($_POST['form']['show_userlist']) ? '1' : '0',
-		'show_search'			=> isset($_POST['form']['show_search']) ? '1' : '0',
-		'show_rules'			=> isset($_POST['form']['show_rules']) ? '1' : '0',
 		'moderated_by'		    => isset($_POST['form']['moderated_by']) ? '1' : '0',
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
@@ -94,35 +90,6 @@ if (isset($_GET['saved']))
                     <label class="col-sm-3 control-label"><?php echo $lang['Menu items head'] ?><span class="help-block"><?php echo $lang['Menu items help'] ?></span></label>
                     <div class="col-sm-9">
                         <textarea class="form-control" name="form[additional_navlinks]" rows="8"><?php echo luna_htmlspecialchars($luna_config['o_additional_navlinks']) ?></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Default menu'] ?></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-								<input type="checkbox" name="form[show_index]" value="1" <?php if ($luna_config['o_show_index'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Menu show index'] ?>
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-								<input type="checkbox" name="form[show_userlist]" value="1" <?php if ($luna_config['o_show_userlist'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Menu show user list'] ?>
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-								<input type="checkbox" name="form[show_search]" value="1" <?php if ($luna_config['o_show_search'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Menu show search'] ?>
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-								<input type="checkbox" name="form[show_rules]" value="1" <?php if ($luna_config['o_show_rules'] == '1') echo ' checked="checked"' ?> />
-								<?php echo $lang['Menu show rules'] ?>
-                            </label>
-                        </div>
                     </div>
                 </div>
             </fieldset>

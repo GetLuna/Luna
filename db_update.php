@@ -328,6 +328,22 @@ switch ($stage)
 				or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
 
+		// Since 0.0.40.2985: Remove obsolete o_show_index permission from config table
+		if (array_key_exists('o_show_index', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_index\'') or error('Unable to remove config value \'o_show_index\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.40.2985: Remove obsolete o_show_userlist permission from config table
+		if (array_key_exists('o_show_userlist', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_userlist\'') or error('Unable to remove config value \'o_show_userlist\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.40.2985: Remove obsolete o_show_search permission from config table
+		if (array_key_exists('o_show_index', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_search\'') or error('Unable to remove config value \'o_show_search\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.40.2985: Remove obsolete o_show_rules permission from config table
+		if (array_key_exists('o_show_index', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_rules\'') or error('Unable to remove config value \'o_show_rules\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

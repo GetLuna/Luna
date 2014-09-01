@@ -178,16 +178,15 @@ $tpl_main = str_replace('<luna_desc>', '<div id="brddesc"><p>'.$luna_config['o_b
 $links = array();
 
 // Index should always be displayed
-if ($luna_config['o_show_index'] == '1')
-	$links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang['Index'].'</a></li>';
+$links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang['Index'].'</a></li>';
 
-if ($luna_user['g_read_board'] == '1' && $luna_user['g_view_users'] == '1' && $luna_config['o_show_userlist'] == '1')
+if ($luna_user['g_read_board'] == '1' && $luna_user['g_view_users'] == '1')
 	$links[] = '<li id="navuserlist"'.((FORUM_ACTIVE_PAGE == 'userlist') ? ' class="active"' : '').'><a href="userlist.php">'.$lang['User list'].'</a></li>';
 
-if ($luna_config['o_rules'] == '1' && (!$luna_user['is_guest'] || $luna_user['g_read_board'] == '1' || $luna_config['o_regs_allow'] == '1') && $luna_config['o_show_rules'] == '1')
+if ($luna_config['o_rules'] == '1' && (!$luna_user['is_guest'] || $luna_user['g_read_board'] == '1' || $luna_config['o_regs_allow'] == '1'))
 	$links[] = '<li id="navrules"'.((FORUM_ACTIVE_PAGE == 'rules') ? ' class="active"' : '').'><a href="misc.php?action=rules">'.$lang['Rules'].'</a></li>';
 
-if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1' && $luna_config['o_show_search'] == '1')
+if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
 	$links[] = '<li id="navsearch"'.((FORUM_ACTIVE_PAGE == 'search') ? ' class="active"' : '').'><a href="search.php">'.$lang['Search'].'</a></li>';
 
 if ($luna_user['is_admmod'])
