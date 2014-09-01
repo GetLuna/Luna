@@ -299,6 +299,11 @@ switch ($stage)
 						'allow_null'	=> false,
 						'default'		=> '0'
 					),
+					'disp'			=> array(
+						'datatype'		=> 'INT(10)',
+						'allow_null'	=> false,
+						'default'		=> '1'
+					),
 					'sys_entry'		=> array(
 						'datatype'		=> 'INT(10)',
 						'allow_null'	=> true,
@@ -310,16 +315,16 @@ switch ($stage)
 		
 			$db->create_table('menu', $schema) or error('Unable to create menu table', __FILE__, __LINE__, $db->error());
 
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, sys_entry) VALUES(0, \''.$luna_config['o_base_url'].'/index.php\', \'Index\', 1, 1)')
+			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(0, \''.$luna_config['o_base_url'].'/index.php\', \'Index\', 1, \'1\', 1)')
 				or error('Unable to add Index menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-				
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, sys_entry) VALUES(1, \''.$luna_config['o_base_url'].'/userlist.php\', \'Users\', 2, 1)')
+
+			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(1, \''.$luna_config['o_base_url'].'/userlist.php\', \'Users\', 2, \'1\', 1)')
 				or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-				
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, sys_entry) VALUES(2, \''.$luna_config['o_base_url'].'/search.php\', \'Search\', 3, 1)')
+
+			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(2, \''.$luna_config['o_base_url'].'/search.php\', \'Search\', 3, \'1\', 1)')
 				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-				
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, sys_entry) VALUES(3, \''.$luna_config['o_base_url'].'/backstage/index.php\', \'Backstage\', 4, 1)')
+
+			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(3, \''.$luna_config['o_base_url'].'/backstage/index.php\', \'Backstage\', 4, \'1\', 1)')
 				or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
 
