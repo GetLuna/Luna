@@ -21,16 +21,16 @@ load_admin_nav('settings', 'menu');
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Menu</h3>
+				<h3 class="panel-title">Menu<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
 			</div>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>Name</th>
 						<th>URL</th>
-						<th>Position</th>
-						<th>Show</th>
-						<th>Delete</th>
+						<th class="col-xs-1">Position</th>
+						<th class="col-xs-1">Show</th>
+						<th class="col-xs-1">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,11 +39,26 @@ if ($db->num_rows($result) > 0) {
 	while ($cur_item = $db->fetch_assoc($result)) {
 ?>
 					<tr>
-						<td><?php echo $cur_item['name'] ?></td>
-						<td><?php echo $cur_item['url'] ?></td>
-						<td><?php echo $cur_item['disp_position'] ?></td>
-						<td><?php echo $cur_item['disp'] ?></td>
-						<td><?php echo $cur_item['sys_entry'] ?></td>
+						<td>
+							<input type="text" class="form-control" value="<?php echo $cur_item['name'] ?>" />
+						</td>
+						<td>
+							<input type="text" class="form-control" value="<?php echo $cur_item['url'] ?>" <?php if ($cur_item['sys_entry'] == 1) echo ' disabled="disabled"' ?> />
+						</td>
+						<td>
+							<input type="text" class="form-control" value="<?php echo $cur_item['disp_position'] ?>" />
+						</td>
+						<td>
+							<input type="checkbox" value="1" <?php if ($cur_item['disp'] == 1) echo ' checked="checked"' ?> />
+						</td>
+						<td>
+<?php
+if ($cur_item['sys_entry'] == 0)
+	echo '<button class="btn btn-danger">Delete</button>';
+else
+	echo '<button class="btn btn-danger" disabled="disabled">Delete</button>';
+?>
+						</td>
 					</tr>
 <?php
 	}

@@ -1,6 +1,5 @@
 /*!
- * TrentUI Framework v1.0-dev
- * Copyright 2014 384 Group
+ * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
