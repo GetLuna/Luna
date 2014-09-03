@@ -162,7 +162,7 @@ if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) {
 						<h3 class="panel-title">Admin notes<span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['Save'] ?></a></span></h3>
 					</div>
 					<div class="panel-body">
-						Add some notes...
+						<?php echo $luna_config['o_admin_note'] ?>
 					</div>
 				 </div>
 			</div>

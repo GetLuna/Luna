@@ -344,6 +344,10 @@ switch ($stage)
 		if (array_key_exists('o_show_index', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_rules\'') or error('Unable to remove config value \'o_show_rules\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.40.2989: Add o_admin_note
+		if (!array_key_exists('o_admin_note', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_note\', "Add some notes...")') or error('Unable to insert config value \'o_admin_note\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
