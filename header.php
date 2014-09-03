@@ -177,20 +177,15 @@ $tpl_main = str_replace('<luna_desc>', '<div id="brddesc"><p>'.$luna_config['o_b
 // START SUBST - <luna_navlinks>
 $links = array();
 
-// Index should always be displayed
-$links[] = '<li id="navindex"'.((FORUM_ACTIVE_PAGE == 'index') ? ' class="active"' : '').'><a href="index.php">'.$lang['Index'].'</a></li>';
+$result = $db->query('SELECT id, url, name, disp_position, disp FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
-if ($luna_user['g_read_board'] == '1' && $luna_user['g_view_users'] == '1')
-	$links[] = '<li id="navuserlist"'.((FORUM_ACTIVE_PAGE == 'userlist') ? ' class="active"' : '').'><a href="userlist.php">'.$lang['User list'].'</a></li>';
-
-if ($luna_config['o_rules'] == '1' && (!$luna_user['is_guest'] || $luna_user['g_read_board'] == '1' || $luna_config['o_regs_allow'] == '1'))
-	$links[] = '<li id="navrules"'.((FORUM_ACTIVE_PAGE == 'rules') ? ' class="active"' : '').'><a href="misc.php?action=rules">'.$lang['Rules'].'</a></li>';
-
-if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
-	$links[] = '<li id="navsearch"'.((FORUM_ACTIVE_PAGE == 'search') ? ' class="active"' : '').'><a href="search.php">'.$lang['Search'].'</a></li>';
-
-if ($luna_user['is_admmod'])
-	$links[] = '<li id="navadmin"'.((FORUM_ACTIVE_PAGE == 'admin') ? ' class="active"' : '').'><a href="backstage/index.php">'.$lang['Backstage'].'</a></li>';
+if ($db->num_rows($result) > 0) {
+	while ($cur_item = $db->fetch_assoc($result)) {
+		if ($cur_item['disp'] == '1') {
+			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
+		}
+	}
+}
 
 // Are there any additional navlinks we should insert into the array before imploding it?
 if ($luna_user['g_read_board'] == '1' && $luna_config['o_additional_navlinks'] != '')
