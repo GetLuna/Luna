@@ -14,6 +14,38 @@ if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
+if (isset($_POST['form_sent']))
+{
+	confirm_referrer('backstage/index.php', $lang['Bad HTTP Referer message']);
+	
+	$form = array(
+		'admin_note'			=> luna_trim($_POST['form']['admin_note'])
+	);
+
+	foreach ($form as $key => $input)
+	{
+		// Only update values that have changed
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
+		{
+			if ($input != '' || is_int($input))
+				$value = '\''.$db->escape($input).'\'';
+			else
+				$value = 'NULL';
+
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
+		}
+	}
+
+	// Regenerate the config cache
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_config_cache();
+	clear_feed_cache();
+
+	redirect('backstage/index.php?saved=true');
+}
+
 // Collect some statistics from the database
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 	include FORUM_CACHE_DIR.'cache_users_info.php';
@@ -57,6 +89,9 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang[
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'index');
+
+if (isset($_GET['saved']))
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>
 <div class="row">
 	<div class="col-sm-8">
@@ -157,14 +192,17 @@ if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) {
 ?>
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Admin notes<span class="pull-right"><a class="btn btn-primary" href="reports.php"><?php echo $lang['Save'] ?></a></span></h3>
+				<form class="form-horizontal" method="post" action="index.php">
+					<input type="hidden" name="form_sent" value="1" />
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Admin notes<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
+						</div>
+						<div class="panel-body">
+							<textarea class="form-control" name="form[admin_note]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_admin_note']) ?></textarea>
+						</div>
 					</div>
-					<div class="panel-body">
-						<?php echo $luna_config['o_admin_note'] ?>
-					</div>
-				 </div>
+				</form>
 			</div>
 		</div>
 	</div>
