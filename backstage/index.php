@@ -199,7 +199,7 @@ if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) {
 							<h3 class="panel-title">Admin notes<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
 						</div>
 						<div class="panel-body">
-							<textarea class="form-control" name="form[admin_note]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_admin_note']) ?></textarea>
+							<textarea class="form-control" name="form[admin_note]" placeholder="Add a note..." accesskey="n" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_admin_note']) ?></textarea>
 						</div>
 					</div>
 				</form>
