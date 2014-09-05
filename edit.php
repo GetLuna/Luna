@@ -141,7 +141,7 @@ if (isset($_POST['form_sent']))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Edit post']);
 $required_fields = array('req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 $focus_element = array('edit', 'req_message');
-define('FORUM_ACTIVE_PAGE', 'index');
+define('FORUM_ACTIVE_PAGE', 'edit');
 require FORUM_ROOT.'header.php';
 
 $cur_index = 1;
@@ -158,4 +158,6 @@ else if (isset($_POST['preview']))
     require get_view_path('edit-preview.tpl.php');
 }
 
-require get_view_path('edit-form.tpl.php');
+require get_view_path('commentfield.php');
+
+require FORUM_ROOT.'footer.php';
