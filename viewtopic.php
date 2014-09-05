@@ -348,7 +348,7 @@ if ($quickpost)
 {
 	$cur_index = 1;
 
-	require get_view_path('viewtopic-form_quickpost.tpl.php');
+	require get_view_path('commentfield.php');
 }
 
 // Increment "num_views" for topic
