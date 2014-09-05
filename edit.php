@@ -146,7 +146,7 @@ require FORUM_ROOT.'header.php';
 
 $cur_index = 1;
 
-require get_view_path('edit-breadcrumbs.tpl.php');
+require get_view_path('navigation.php');
 
 // If there are errors, we display them
 if (!empty($errors))
