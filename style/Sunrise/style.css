@@ -284,7 +284,7 @@ h1, h2, h3, h4, h5, h6 {
 	border: none;
 }
 
-.panel-border .panel-body, .panel-border .postfield, .panel-border .panel-footer, .panel-border .quickpostfield {
+.panel-border .panel-body, .panel-border .postfield, .panel-border .panel-footer, .panel-border .commentfield {
 	border: 1px solid #ddd;
 	border-top: none;
 }
@@ -456,19 +456,13 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Quick post and post */
-.quickpostfield textarea, .quickpostfield textarea:focus {
+.commentfield textarea, .commentfield textarea:focus {
 	border: none;
 	box-shadow: none;
-	height: 140px;
+	height: 170px;
 }
 
-.postfield textarea, .postfield textarea:focus {
-	border: none;
-	box-shadow: none;
-	height: 400px;
-}
-
-.quickpostfield input[type="text"], .postfield input[type="text"] {
+.commentfield input[type="text"], .postfield input[type="text"] {
 	border: none;
 	border-bottom: #eee solid 1px;
 	box-shadow: none;
@@ -476,15 +470,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	line-height: 0.8;
 }
 
-.quickpostfield textarea::-webkit-input-placeholder, .postfield textarea::-webkit-input-placeholder, .quickpostfield textarea::-moz-placeholder, .postfield textarea::-moz-placeholder, .quickpostfield textarea::-ms-input-placeholder, .postfield textarea::-ms-input-placeholder {
+.commentfield textarea::-webkit-input-placeholder, .commentfield textarea::-moz-placeholder, .commentfield textarea::-ms-input-placeholder {
 	font-size: 20px;
 }
 
 @media screen and (max-width: 991px) {
-    #quickpostform > .panel > .panel-heading {
-        display: none;
-    }
-    
     .profile-card-quickpost {
         margin-bottom: -10px;
         border-radius: 0 !important;
@@ -495,21 +485,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
     }
 }
 
-#quickpostform > .panel {
+#commentform > .panel {
 	margin-top: 10px;
-}
-
-@media screen and (max-width: 991px) {
-	#quickpostform > .panel-heading {
-		border-radius: 0;
-	}
 }
 
 .textarea-toolbar {
     background: #eee;
     margin: 0;
-    padding: 6px 2px;
+    padding: 6px 7px 6px 2px;
     border-bottom: #ddd 1px solid;
+	border-radius: 4px 4px 0 0;
 }
 
 .fa-fw {
