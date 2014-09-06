@@ -174,8 +174,6 @@ define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-require get_view_path('viewtopic-header.tpl.php');
-
 require FORUM_ROOT.'include/parser.php';
 
 $post_count = 0; // Keep track of post numbers
@@ -338,10 +336,8 @@ while ($cur_post = $db->fetch_assoc($result))
 		}
 	}
 
-	require get_view_path('viewtopic-posts.tpl.php');
+	require load_page('thread.php');
 }
-
-require get_view_path('viewtopic-breadcrumbs.tpl.php');
 
 // Display quick post if enabled
 if ($quickpost)

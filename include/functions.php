@@ -2262,6 +2262,23 @@ function get_view_path($tpl_file)
 }
 
 //
+// Get the view that is required
+//
+function load_page($tpl_file)
+{
+	global $luna_user;
+
+	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file))
+	{
+		return FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file;
+	}
+	else
+	{
+		return FORUM_ROOT.'style/Core/templates/views/'.$tpl_file;
+	}
+}
+
+//
 // Delete all content in a folder
 //
 function delete_all($path)

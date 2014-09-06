@@ -6,18 +6,12 @@ if (!defined('FORUM'))
 
 ?>
 
-<div class="row row-nav">
-    <div class="col-sm-6">
-        <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
-            <a class="btn btn-primary next-hidden-xs" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-            <a class="btn btn-primary hidden-xs" href="viewtopic.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <?php echo $post_link ?>
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
-    </div>
+<div class="row-nav">
+	<div class="btn-group btn-breadcrumb">
+		<a class="btn btn-primary next-hidden-xs" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+	</div>
+	<?php echo $post_link ?>
+	<ul class="pagination pull-right">
+		<?php echo $paging_links ?>
+	</ul>
 </div>
