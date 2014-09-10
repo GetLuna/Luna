@@ -1135,13 +1135,10 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 		header('HTTP/1.1 ' . $http_status);
 	}
 
-	if (!defined('FORUM_HEADER'))
-	{
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Info']);
-		define('FORUM_ACTIVE_PAGE', 'admin');
-		require 'header.php';
-		load_admin_nav('');
-	}
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Info']);
+	define('FORUM_ACTIVE_PAGE', 'admin');
+	require FORUM_ROOT.'backstage/header.php';
+	generate_admin_menu('');
 
 ?>
 <h2><?php echo $lang['Info'] ?></h2>
