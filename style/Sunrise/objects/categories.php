@@ -18,7 +18,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
         $forum_count = 0;
 
 ?>
-<div class="row"><div class="col-xs-12"><h3><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h3></div></div>
+<div class="row"><div class="col-xs-12"><h3 class="category-title"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h3></div></div>
 <div class="row">
 <?php
 
@@ -75,7 +75,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 			<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?><?php echo $forum_desc ?></h3>
 		</div>
 		<div class="panel-body">
-			<?php echo $last_post."\n".$moderators ?>
+			<?php echo $last_post ?>
 		</div>
 		<div class="panel-footer">
 			<b><?php echo forum_number_format($num_topics) ?></b> <?php echo $topics_label ?> and <b><?php echo forum_number_format($num_posts) ?></b> <?php echo $posts_label ?>

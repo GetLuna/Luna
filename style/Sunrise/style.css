@@ -153,6 +153,10 @@ h1, h2, h3, h4, h5, h6 {
 	display: block;
 }
 
+.category-title {
+	margin: 0;
+}
+
 /* First run */
 .first-run-content {
 	padding-left: 15px;
