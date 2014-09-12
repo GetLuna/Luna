@@ -28,6 +28,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
     ++$forum_count;
     $item_status = ($forum_count % 2 == 0) ? 'roweven' : 'rowodd';
     $forum_field_new = '';
+	$forum_desc = '';
     $icon_type = 'icon';
 
     // Are there new posts since our last visit?
@@ -42,7 +43,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 	$num_posts = $cur_forum['num_posts'];
 
     if ($cur_forum['forum_desc'] != '')
-        $forum_desc = "\n\t\t\t\t\t\t\t\t".'<div class="hidden-xs">'.$cur_forum['forum_desc'].'<hr /></div>';
+        $forum_desc = '<div class="desc">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
 
     // If there is a last_post/last_poster
     if ($cur_forum['last_post'] != '')
@@ -71,10 +72,9 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h3>
+			<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?><?php echo $forum_desc ?></h3>
 		</div>
 		<div class="panel-body">
-			<?php echo $forum_desc ?>
 			<?php echo $last_post."\n".$moderators ?>
 		</div>
 		<div class="panel-footer">
