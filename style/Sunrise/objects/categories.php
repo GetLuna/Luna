@@ -45,7 +45,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 	$num_posts = $cur_forum['num_posts'];
 
     if ($cur_forum['forum_desc'] != '')
-        $forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc hidden-xs">'.$cur_forum['forum_desc'].'</div><hr />';
+        $forum_desc = "\n\t\t\t\t\t\t\t\t".'<div class="hidden-xs">'.$cur_forum['forum_desc'].'<hr /></div>';
 
     // If there is a last_post/last_poster
     if ($cur_forum['last_post'] != '')
@@ -97,7 +97,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 			<h3 class="panel-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h3>
 		</div>
 		<div class="panel-body">
-			<?php echo $cur_forum['forum_desc'] ?>
+			<?php echo $forum_desc ?>
 			<?php echo $last_post."\n".$moderators ?>
 		</div>
 		<div class="panel-footer">
