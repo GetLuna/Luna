@@ -14,7 +14,7 @@ while ($cur_forum = $db->fetch_assoc($result))
     if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
     {
         if ($cur_category != 0)
-            echo "\t\t".'</div>'."\n".'</div>'."\n\n";
+            echo "\t\t".'</div>'."\n\n\n";
 
         ++$cat_count;
         $forum_count = 0;
@@ -45,7 +45,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 	$num_posts = $cur_forum['num_posts'];
 
     if ($cur_forum['forum_desc'] != '')
-        $forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc hidden-xs">'.$cur_forum['forum_desc'].'</div>';
+        $forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc hidden-xs">'.$cur_forum['forum_desc'].'</div><hr />';
 
     // If there is a last_post/last_poster
     if ($cur_forum['last_post'] != '')
@@ -98,7 +98,6 @@ while ($cur_forum = $db->fetch_assoc($result))
 		</div>
 		<div class="panel-body">
 			<?php echo $cur_forum['forum_desc'] ?>
-			<hr />
 			<?php echo $last_post."\n".$moderators ?>
 		</div>
 		<div class="panel-footer">
