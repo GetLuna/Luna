@@ -6,8 +6,7 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-class Version
-{
+class Version {
 	// See http://modernbb.be/docs/version.php for more info
 	const FORUM_VERSION = '0.0-dev';
 
