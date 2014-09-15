@@ -101,6 +101,41 @@ require 'header.php';
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
+        <h3 class="panel-title">Luna version information</h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-3"></th>
+                <th class="col-md-3">Version</th>
+                <th class="col-md-3"></th>
+                <th class="col-md-3">Version</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Software version</td>
+                <td><?php echo $luna_config['o_cur_version']; ?></td>
+                <td>TrentUI Framework version</td>
+                <td>1.0-dev</td>
+            </tr>
+            <tr>
+                <td>Core version</td>
+                <td><?php echo $luna_config['o_core_version']; ?></td>
+                <td>Font Awesome version</td>
+                <td>4.2.0</td>
+            </tr>
+            <tr>
+                <td>Database version</td>
+                <td><?php echo $luna_config['o_database_revision']; ?></td>
+                <td>jQuery version</td>
+                <td>2.1.1</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Server statistics head'] ?></h3>
     </div>
     <table class="table">

@@ -103,7 +103,7 @@ function load_admin_nav($section ='', $page = '')
             <?php if ($section == 'backstage') { ?>
             <ul class="nav nav-tabs" role="tablist">
                 <li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php">Backstage</a></li>
-                <li<?php if($page == 'stats') echo ' class="active"' ?>><a href="statistics.php">System info</a></li>
+                <li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php">System info</a></li>
                 <li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php">Update</a></li>
             </ul>
             <?php } if ($section == 'content') { ?>
