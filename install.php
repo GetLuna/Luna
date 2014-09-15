@@ -1703,7 +1703,6 @@ else
 		'p_message_all_caps'		=> 1,
 		'p_subject_all_caps'		=> 1,
 		'p_sig_all_caps'			=> 1,
-		'p_sig_bbcode'				=> 1,
 		'p_sig_img_tag'				=> 0,
 		'p_sig_length'				=> 400,
 		'p_sig_lines'				=> 4,

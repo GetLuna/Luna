@@ -948,7 +948,7 @@ function parse_signature($text)
 	// Convert applicable characters to HTML entities
 	$text = luna_htmlspecialchars($text);
 
-	if ($luna_config['p_sig_bbcode'] == '1' && strpos($text, '[') !== false && strpos($text, ']') !== false)
+	if (strpos($text, '[') !== false && strpos($text, ']') !== false)
 		$text = do_bbcode($text, true);
 
 	if ($luna_config['o_smilies_sig'] == '1' && $luna_user['show_smilies'] == '1')

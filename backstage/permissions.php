@@ -26,7 +26,6 @@ if (isset($_POST['form_sent']))
 		'message_all_caps'		=> isset($_POST['form']['message_all_caps']) ? '1' : '0',
 		'subject_all_caps'		=> isset($_POST['form']['subject_all_caps']) ? '1' : '0',
 		'force_guest_email'		=> isset($_POST['form']['force_guest_email']) ? '1' : '0',
-		'sig_bbcode'			=> isset($_POST['form']['sig_bbcode']) ? '1' : '0',
 		'sig_img_tag'			=> isset($_POST['form']['sig_img_tag']) ? '1' : '0',
 		'sig_all_caps'			=> isset($_POST['form']['sig_all_caps']) ? '1' : '0',
 		'allow_banned_email'	=> isset($_POST['form']['allow_banned_email']) ? '1' : '0',
@@ -122,12 +121,6 @@ if (isset($_GET['saved']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['BBCode'] ?></label>
                     <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[sig_bbcode]" value="1" <?php if ($luna_config['p_sig_bbcode'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['BBCode sigs help'] ?>
-                            </label>
-                        </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> />

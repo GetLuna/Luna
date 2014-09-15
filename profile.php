@@ -720,17 +720,13 @@ else if (isset($_POST['form_sent']))
 					$form['signature'] = utf8_ucwords(utf8_strtolower($form['signature']));
 
 				// Validate BBCode syntax
-				if ($luna_config['p_sig_bbcode'] == '1')
-				{
-					require FORUM_ROOT.'include/parser.php';
+				require FORUM_ROOT.'include/parser.php';
 
-					$errors = array();
+				$errors = array();
+				$form['signature'] = preparse_bbcode($form['signature'], $errors, true);
 
-					$form['signature'] = preparse_bbcode($form['signature'], $errors, true);
-
-					if(count($errors) > 0)
-						message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
-				}
+				if(count($errors) > 0)
+					message('<ul><li>'.implode('</li><li>', $errors).'</li></ul>');
 			}
 
 			break;
