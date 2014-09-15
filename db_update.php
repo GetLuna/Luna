@@ -206,11 +206,12 @@ if (empty($stage))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
 		<link href="include/css/trent.css" type="text/css" rel="stylesheet">
-        <link href="style/<?php echo $default_style ?>/style.css" type="text/css" rel="stylesheet">
+        <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
         <form class="form" id="install" method="post" action="db_update.php">
-            <h1 class="form-heading"><?php echo $lang['Update Luna'] ?></h1>
+            <h1 class="form-heading">Luna</h1>
+			<p class="alert alert-danger">This is a preview version! Do not install this upon a working ModernBB installation if you're using it in a productive environment!</p>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
 				<input class="btn btn-default btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />

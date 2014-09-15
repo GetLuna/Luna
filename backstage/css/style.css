@@ -475,3 +475,53 @@ h3.panel-title {
 .progress-bar-info {
 	background-color: #14a3ff;
 }
+
+
+
+/* Update and login form */
+.form {
+	max-width: 330px;
+	margin: 60px auto 20px;
+	border-radius: 3px;
+	background-color: #fff;
+}
+
+.form > .alert-danger {
+	box-shadow: none;
+	margin: -1px 0 0 0;
+	border-radius: 0;
+}
+
+.form-first-run {
+	max-width: 100%;
+	margin: 0;
+}
+
+.form input[type="text"], .form input[type="password"] {
+	font-size: 14px;
+	margin-bottom: -1px;
+	padding: 7px 9px;
+	width: 100%;
+}
+
+.form-heading {
+	margin-bottom: 0px;
+	font-weight: 100;
+	background: #3588e9;
+	background: linear-gradient(to right, #0d4382 0%, #3588e9 100%);
+	color: #fff;
+	padding: 20px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+.form-content {
+	padding: 15px 18px 10px 20px;
+}
+
+.form .btn-update {
+	margin-top: 0 !important;
+	border-top: none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
