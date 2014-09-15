@@ -22,7 +22,6 @@ if (isset($_POST['form_sent']))
 	confirm_referrer('backstage/permissions.php');
 	
 	$form = array(
-		'message_bbcode'		=> isset($_POST['form']['message_bbcode']) ? '1' : '0',
 		'message_img_tag'		=> isset($_POST['form']['message_img_tag']) ? '1' : '0',
 		'message_all_caps'		=> isset($_POST['form']['message_all_caps']) ? '1' : '0',
 		'subject_all_caps'		=> isset($_POST['form']['subject_all_caps']) ? '1' : '0',
@@ -75,12 +74,6 @@ if (isset($_GET['saved']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['BBCode'] ?></label>
                     <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="form[message_bbcode]" value="1" <?php if ($luna_config['p_message_bbcode'] == '1') echo ' checked="checked"' ?> />
-                                <?php echo $lang['BBCode help'] ?>
-                            </label>
-                        </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> />

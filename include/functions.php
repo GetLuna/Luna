@@ -1137,8 +1137,8 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Info']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
-	require FORUM_ROOT.'backstage/header.php';
-	generate_admin_menu('');
+	require 'header.php';
+	load_admin_nav('');
 
 ?>
 <h2><?php echo $lang['Info'] ?></h2>

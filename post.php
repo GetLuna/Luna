@@ -123,11 +123,8 @@ if (isset($_POST['form_sent']))
 		$errors[] = $lang['All caps message'];
 
 	// Validate BBCode syntax
-	if ($luna_config['p_message_bbcode'] == '1')
-	{
-		require FORUM_ROOT.'include/parser.php';
-		$message = preparse_bbcode($message, $errors);
-	}
+	require FORUM_ROOT.'include/parser.php';
+	$message = preparse_bbcode($message, $errors);
 
 	if (empty($errors))
 	{
@@ -478,32 +475,27 @@ if ($tid)
 
 		$q_message = luna_htmlspecialchars($q_message);
 
-		if ($luna_config['p_message_bbcode'] == '1')
+		// If username contains a square bracket, we add "" or '' around it (so we know when it starts and ends)
+		if (strpos($q_poster, '[') !== false || strpos($q_poster, ']') !== false)
 		{
-			// If username contains a square bracket, we add "" or '' around it (so we know when it starts and ends)
-			if (strpos($q_poster, '[') !== false || strpos($q_poster, ']') !== false)
-			{
-				if (strpos($q_poster, '\'') !== false)
-					$q_poster = '"'.$q_poster.'"';
-				else
-					$q_poster = '\''.$q_poster.'\'';
-			}
+			if (strpos($q_poster, '\'') !== false)
+				$q_poster = '"'.$q_poster.'"';
 			else
-			{
-				// Get the characters at the start and end of $q_poster
-				$ends = substr($q_poster, 0, 1).substr($q_poster, -1, 1);
-
-				// Deal with quoting "Username" or 'Username' (becomes '"Username"' or "'Username'")
-				if ($ends == '\'\'')
-					$q_poster = '"'.$q_poster.'"';
-				else if ($ends == '""')
-					$q_poster = '\''.$q_poster.'\'';
-			}
-
-			$quote = '[quote='.$q_poster.']'.$q_message.'[/quote]'."\n";
+				$q_poster = '\''.$q_poster.'\'';
 		}
 		else
-			$quote = '> '.$q_poster.' '.$lang['wrote']."\n\n".'> '.$q_message."\n";
+		{
+			// Get the characters at the start and end of $q_poster
+			$ends = substr($q_poster, 0, 1).substr($q_poster, -1, 1);
+
+			// Deal with quoting "Username" or 'Username' (becomes '"Username"' or "'Username'")
+			if ($ends == '\'\'')
+				$q_poster = '"'.$q_poster.'"';
+			else if ($ends == '""')
+				$q_poster = '\''.$q_poster.'\'';
+		}
+
+		$quote = '[quote='.$q_poster.']'.$q_message.'[/quote]'."\n";
 	}
 }
 // If a forum ID was specified in the url (new topic)

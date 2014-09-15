@@ -1699,7 +1699,6 @@ else
         'o_moderated_by'            => 1,
         'o_post_responsive'         => 0,
 		'o_admin_notes'				=> "Add some notes...",
-		'p_message_bbcode'			=> 1,
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,
 		'p_subject_all_caps'		=> 1,
