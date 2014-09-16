@@ -10,6 +10,21 @@ require '../include/common.php';
 
 if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
+
+if ($luna_user['g_id'] != FORUM_ADMIN)
+	message_backstage($lang['No permission'], false, '403 Forbidden');
+
+// Add a new item
+if (isset($_POST['add_item'])) {
+	confirm_referrer('backstage/menu.php');
+	
+	$item_name = luna_trim($_POST['name']); 
+	$item_url = luna_trim($_POST['url']); 
+
+	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$item_url.'\', \''.$item_name.'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
+
+	redirect('backstage/menu.php');
+}
 	
 $result = $db->query('SELECT id, url, name, disp_position, disp, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
@@ -18,7 +33,32 @@ load_admin_nav('settings', 'menu');
 
 ?>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-4 col-md-3">
+		<form method="post" action="menu.php?action=add_item">
+			<fieldset>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">New menu item<span class="pull-right"><input class="btn btn-primary" type="submit" name="add_item" value="<?php echo $lang['Add'] ?>" /></span></h3>
+					</div>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>
+									<input type="text" class="form-control" name="name" placeholder="Name" value="" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="text" class="form-control" name="url" placeholder="URL" value="" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			<fieldset>
+		</form>
+	</div>
+	<div class="col-sm-8 col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Menu<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
