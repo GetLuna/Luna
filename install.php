@@ -934,9 +934,8 @@ else
 	$schema = array(
 		'FIELDS'		=> array(
 			'id'			=> array(
-				'datatype'		=> 'INT(10) UNSIGNED',
-				'allow_null'	=> false,
-				'default'		=> '0'
+				'datatype'		=> 'SERIAL',
+				'allow_null'	=> false
 			),
 			'url'			=> array(
 				'datatype'		=> 'VARCHAR(200)',
@@ -1608,16 +1607,16 @@ else
 		or error('Unable to add administrator user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Add default menu items
-	$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, show, sys_entry) VALUES(0, \''.$luna_config['o_base_url'].'/index.php\', \'Index\', 1, 1, 1)')
+	$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/index.php\', \'Index\', 1, \'1\', 1)')
 		or error('Unable to add Index menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
-	$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, show, sys_entry) VALUES(1, \''.$luna_config['o_base_url'].'/userlist.php\', \'Users\', 2, 1, 1)')
+
+	$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/userlist.php\', \'Users\', 2, \'1\', 1)')
 		or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
-	$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, show, sys_entry) VALUES(2, \''.$luna_config['o_base_url'].'/search.php\', \'Search\', 3, 1, 1)')
+
+	$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/search.php\', \'Search\', 3, \'1\', 1)')
 		or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
-	$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, show, sys_entry) VALUES(3, \''.$luna_config['o_base_url'].'/backstage/index.php\', \'Backstage\', 4, 1, 1)')
+
+	$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/backstage/index.php\', \'Backstage\', 4, \'1\', 1)')
 		or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	// Enable/disable avatars depending on file_uploads setting in PHP configuration
@@ -1699,12 +1698,10 @@ else
         'o_moderated_by'            => 1,
         'o_post_responsive'         => 0,
 		'o_admin_notes'				=> "Add some notes...",
-		'p_message_bbcode'			=> 1,
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,
 		'p_subject_all_caps'		=> 1,
 		'p_sig_all_caps'			=> 1,
-		'p_sig_bbcode'				=> 1,
 		'p_sig_img_tag'				=> 0,
 		'p_sig_length'				=> 400,
 		'p_sig_lines'				=> 4,

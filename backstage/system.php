@@ -10,16 +10,14 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 
 // Show phpinfo() output
-if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN)
-{
+if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN) {
 	// Is phpinfo() a disabled function?
 	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
 		message_backstage($lang['PHPinfo disabled message']);
@@ -30,25 +28,21 @@ if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN)
 
 
 // Get the server load averages (if possible)
-if (@file_exists('/proc/loadavg') && is_readable('/proc/loadavg'))
-{
+if (@file_exists('/proc/loadavg') && is_readable('/proc/loadavg')) {
 	// We use @ just in case
 	$fh = @fopen('/proc/loadavg', 'r');
 	$load_averages = @fread($fh, 64);
 	@fclose($fh);
 
-	if (($fh = @fopen('/proc/loadavg', 'r')))
-	{
+	if (($fh = @fopen('/proc/loadavg', 'r'))) 	{
 		$load_averages = fread($fh, 64);
 		fclose($fh);
-	}
-	else
+	} else
 		$load_averages = '';
 
 	$load_averages = @explode(' ', $load_averages);
 	$server_load = isset($load_averages[2]) ? $load_averages[0].' '.$load_averages[1].' '.$load_averages[2] : $lang['Not available'];
-}
-else if (!in_array(PHP_OS, array('WINNT', 'WIN32')) && preg_match('%averages?: ([0-9\.]+),?\s+([0-9\.]+),?\s+([0-9\.]+)%i', @exec('uptime'), $load_averages))
+} else if (!in_array(PHP_OS, array('WINNT', 'WIN32')) && preg_match('%averages?: ([0-9\.]+),?\s+([0-9\.]+),?\s+([0-9\.]+)%i', @exec('uptime'), $load_averages))
 	$server_load = $load_averages[1].' '.$load_averages[2].' '.$load_averages[3];
 else
 	$server_load = $lang['Not available'];
@@ -60,14 +54,12 @@ $num_online = $db->result($result);
 
 
 // Collect some additional info about MySQL
-if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
-{
+if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb') {
 	// Calculate total db size/row count
 	$result = $db->query('SHOW TABLE STATUS LIKE \''.$db->prefix.'%\'') or error('Unable to fetch table status', __FILE__, __LINE__, $db->error());
 
 	$total_records = $total_size = 0;
-	while ($status = $db->fetch_assoc($result))
-	{
+	while ($status = $db->fetch_assoc($result)) {
 		$total_records += $status['Rows'];
 		$total_size += $status['Data_length'] + $status['Index_length'];
 	}
@@ -96,9 +88,44 @@ else
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Server statistics']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
-	load_admin_nav('backstage', 'stats');
+load_admin_nav('backstage', 'stats');
 
 ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Luna version information</h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-3"></th>
+                <th class="col-md-3">Version</th>
+                <th class="col-md-3"></th>
+                <th class="col-md-3">Version</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Software version</td>
+                <td><?php echo $luna_config['o_cur_version']; ?></td>
+                <td>TrentUI Framework version</td>
+                <td>1.0-dev</td>
+            </tr>
+            <tr>
+                <td>Core version</td>
+                <td><?php echo $luna_config['o_core_version']; ?></td>
+                <td>Font Awesome version</td>
+                <td>4.2.0</td>
+            </tr>
+            <tr>
+                <td>Database version</td>
+                <td><?php echo $luna_config['o_database_revision']; ?></td>
+                <td>jQuery version</td>
+                <td>2.1.1</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['Server statistics head'] ?></h3>

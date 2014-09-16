@@ -142,8 +142,7 @@ if (count($languages) > 1)
     // Only display the style selection box if there's more than one style available
     if (count($styles) == 1)
         echo "\t\t\t".'<div><input type="hidden" name="form[style]" value="'.$styles[0].'" /></div>'."\n";
-    else if (count($styles) > 1)
-    {
+    else if (count($styles) > 1) {
 ?>
                 <hr />
                 <div class="form-group">
@@ -164,7 +163,7 @@ if (count($languages) > 1)
                 </div>
 <?php
     }
-    if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1')): ?>
+    if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
                 <hr />
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Post display'] ?></label>
@@ -191,14 +190,14 @@ if (count($languages) > 1)
                                 <?php echo $lang['Show avatars'] ?>
                             </label>
                         </div>
-<?php endif; if ($luna_config['p_message_bbcode'] == '1' && $luna_config['p_message_img_tag'] == '1'): ?>
+<?php endif; if ($luna_config['p_message_img_tag'] == '1'): ?>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked="checked"' ?> />
                                 <?php echo $lang['Show images'] ?>
                             </label>
                         </div>
-<?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
+<?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> />

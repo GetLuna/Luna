@@ -206,11 +206,12 @@ if (empty($stage))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
 		<link href="include/css/trent.css" type="text/css" rel="stylesheet">
-        <link href="style/<?php echo $default_style ?>/style.css" type="text/css" rel="stylesheet">
+        <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
         <form class="form" id="install" method="post" action="db_update.php">
-            <h1 class="form-heading"><?php echo $lang['Update Luna'] ?></h1>
+            <h1 class="form-heading">Luna</h1>
+			<p class="alert alert-danger">This is a preview version! Do not install this upon a working ModernBB installation if you're using it in a productive environment!</p>
             <fieldset>
                 <input type="hidden" name="stage" value="start" />
 				<input class="btn btn-default btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
@@ -280,9 +281,8 @@ switch ($stage)
 			$schema = array(
 				'FIELDS'		=> array(
 					'id'			=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
 					),
 					'url'			=> array(
 						'datatype'		=> 'VARCHAR(200)',
@@ -315,16 +315,16 @@ switch ($stage)
 		
 			$db->create_table('menu', $schema) or error('Unable to create menu table', __FILE__, __LINE__, $db->error());
 
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(0, \''.$luna_config['o_base_url'].'/index.php\', \'Index\', 1, \'1\', 1)')
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/index.php\', \'Index\', 1, \'1\', 1)')
 				or error('Unable to add Index menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(1, \''.$luna_config['o_base_url'].'/userlist.php\', \'Users\', 2, \'1\', 1)')
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/userlist.php\', \'Users\', 2, \'1\', 1)')
 				or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(2, \''.$luna_config['o_base_url'].'/search.php\', \'Search\', 3, \'1\', 1)')
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/search.php\', \'Search\', 3, \'1\', 1)')
 				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-			$db->query('INSERT INTO '.$db_prefix.'menu (id, url, name, disp_position, disp, sys_entry) VALUES(3, \''.$luna_config['o_base_url'].'/backstage/index.php\', \'Backstage\', 4, \'1\', 1)')
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$luna_config['o_base_url'].'/backstage/index.php\', \'Backstage\', 4, \'1\', 1)')
 				or error('Unable to add Users menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
 
@@ -347,6 +347,10 @@ switch ($stage)
 		// Since 0.0.40.2989: Add o_admin_note
 		if (!array_key_exists('o_admin_note', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_note\', "Add some notes...")') or error('Unable to insert config value \'o_admin_note\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.40.2985: Remove obsolete p_message_bbcode permission from config table
+		if (array_key_exists('p_message_bbcode', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'p_message_bbcode\'') or error('Unable to remove config value \'p_message_bbcode\'', __FILE__, __LINE__, $db->error());
 
 		break;
 
