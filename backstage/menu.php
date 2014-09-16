@@ -24,6 +24,16 @@ if (isset($_POST['add_item'])) {
 	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$item_url.'\', \''.$item_name.'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
 	redirect('backstage/menu.php');
+} else if (isset($_GET['del_item'])) {
+	confirm_referrer('backstage/menu.php');
+	
+	$item_id = intval($_GET['del_item']);
+	if ($item_id < 4)
+		message_backstage($lang['Bad request'], false, '404 Not Found');
+
+	$db->query('DELETE FROM '.$db->prefix.'menu WHERE id='.$item_id) or error('Unable to delete menu item', __FILE__, __LINE__, $db->error());
+
+	redirect('backstage/menu.php');
 }
 	
 $result = $db->query('SELECT id, url, name, disp_position, disp, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
@@ -94,9 +104,9 @@ if ($db->num_rows($result) > 0) {
 						<td>
 <?php
 if ($cur_item['sys_entry'] == 0)
-	echo '<button class="btn btn-danger">Delete</button>';
+	echo '<a href="menu.php?del_item='.$cur_item['id'].'" class="btn btn-danger">Delete</a>';
 else
-	echo '<button class="btn btn-danger" disabled="disabled">Delete</button>';
+	echo '<a class="btn btn-danger" disabled="disabled">Delete</a>';
 ?>
 						</td>
 					</tr>
