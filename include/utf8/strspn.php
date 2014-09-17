@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: strspn.php,v 1.1 2006/02/25 13:50:17 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * UTF-8 aware alternative to strspn
 * Find length of initial segment matching mask
 * Note: requires utf8_strlen and utf8_substr (if start, length are used)

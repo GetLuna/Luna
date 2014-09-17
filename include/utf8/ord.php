@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: ord.php,v 1.4 2006/09/11 15:22:54 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * UTF-8 aware alternative to ord
 * Returns the unicode ordinal for a character
 * @param string UTF-8 encoded character

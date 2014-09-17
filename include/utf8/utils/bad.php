@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * @version $Id: bad.php,v 1.2 2006/02/26 13:20:44 harryf Exp $
 * Tools for locating / replacing bad bytes in UTF-8 strings
 * The Original Code is Mozilla Communicator client code.
@@ -18,7 +18,7 @@
 * @see utf8_is_valid
 */
 
-/**
+/*
 * Locates the first bad byte in a UTF-8 string returning it's
 * byte index in the string
 * PCRE Pattern to locate bad bytes in a UTF-8 string
@@ -57,7 +57,7 @@ function utf8_bad_find($str) {
 	return false;
 }
 
-/**
+/*
 * Locates all bad bytes in a UTF-8 string and returns a list of their
 * byte index in the string
 * PCRE Pattern to locate bad bytes in a UTF-8 string
@@ -99,7 +99,7 @@ function utf8_bad_findall($str) {
 	return false;
 }
 
-/**
+/*
 * Strips out any bad bytes from a UTF-8 string and returns the rest
 * PCRE Pattern to locate bad bytes in a UTF-8 string
 * Comes from W3 FAQ: Multilingual Forms
@@ -114,7 +114,7 @@ function utf8_bad_strip($original) {
 	return utf8_bad_replace($original, '');
 }
 
-/**
+/*
 * Replace bad bytes with an alternative character - ASCII character
 * recommended is replacement char
 * PCRE Pattern to locate bad bytes in a UTF-8 string
@@ -176,7 +176,7 @@ function utf8_bad_replace($original, $replace = '?') {
 	return $result;
 }
 
-/**
+/*
 * Return code from utf8_bad_identify() when a five octet sequence is detected.
 * Note: 5 octets sequences are valid UTF-8 but are not supported by Unicode so
 * do not represent a useful character
@@ -186,7 +186,7 @@ function utf8_bad_replace($original, $replace = '?') {
 */
 define('UTF8_BAD_5OCTET', 1);
 
-/**
+/*
 * Return code from utf8_bad_identify() when a six octet sequence is detected.
 * Note: 6 octets sequences are valid UTF-8 but are not supported by Unicode so
 * do not represent a useful character
@@ -196,7 +196,7 @@ define('UTF8_BAD_5OCTET', 1);
 */
 define('UTF8_BAD_6OCTET', 2);
 
-/**
+/*
 * Return code from utf8_bad_identify().
 * Invalid octet for use as start of multi-byte UTF-8 sequence
 * @see utf8_bad_identify
@@ -205,7 +205,7 @@ define('UTF8_BAD_6OCTET', 2);
 */
 define('UTF8_BAD_SEQID', 3);
 
-/**
+/*
 * Return code from utf8_bad_identify().
 * From Unicode 3.1, non-shortest form is illegal
 * @see utf8_bad_identify
@@ -214,7 +214,7 @@ define('UTF8_BAD_SEQID', 3);
 */
 define('UTF8_BAD_NONSHORT', 4);
 
-/**
+/*
 * Return code from utf8_bad_identify().
 * From Unicode 3.2, surrogate characters are illegal
 * @see utf8_bad_identify
@@ -223,7 +223,7 @@ define('UTF8_BAD_NONSHORT', 4);
 */
 define('UTF8_BAD_SURROGATE', 5);
 
-/**
+/*
 * Return code from utf8_bad_identify().
 * Codepoints outside the Unicode range are illegal
 * @see utf8_bad_identify
@@ -232,7 +232,7 @@ define('UTF8_BAD_SURROGATE', 5);
 */
 define('UTF8_BAD_UNIOUTRANGE', 6);
 
-/**
+/*
 * Return code from utf8_bad_identify().
 * Incomplete multi-octet sequence
 * Note: this is kind of a "catch-all"
@@ -242,7 +242,7 @@ define('UTF8_BAD_UNIOUTRANGE', 6);
 */
 define('UTF8_BAD_SEQINCOMPLETE', 7);
 
-/**
+/*
 * Reports on the type of bad byte found in a UTF-8 string. Returns a
 * status code on the first bad byte found
 * @author <hsivonen@iki.fi>
@@ -312,7 +312,7 @@ function utf8_bad_identify($str, &$i) {
 				$tmp = ($tmp & 0x0000003F) << $shift;
 				$mUcs4 |= $tmp;
 
-				/**
+				/*
 				* End of the multi-octet sequence. mUcs4 now contains the final
 				* Unicode codepoint to be output
 				*/
@@ -353,7 +353,7 @@ function utf8_bad_identify($str, &$i) {
 	return false;
 }
 
-/**
+/*
 * Takes a return code from utf8_bad_identify() are returns a message
 * (in English) explaining what the problem is.
 * @param int return code from utf8_bad_identify

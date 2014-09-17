@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: str_split.php,v 1.1 2006/02/25 13:50:17 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * UTF-8 aware alternative to str_split
 * Convert a string to an array
 * Note: requires utf8_strlen to be loaded

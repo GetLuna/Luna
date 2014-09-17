@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * @version $Id: validation.php,v 1.2 2006/02/26 13:20:44 harryf Exp $
 * Tools for validing a UTF-8 string is well formed.
 * The Original Code is Mozilla Communicator client code.
@@ -17,7 +17,7 @@
 * @subpackage validation
 */
 
-/**
+/*
 * Tests a string as to whether it's valid UTF-8 and supported by the
 * Unicode standard
 * Note: this function has been modified to simple return true or false
@@ -94,7 +94,7 @@ function utf8_is_valid($str) {
 				$tmp = ($tmp & 0x0000003F) << $shift;
 				$mUcs4 |= $tmp;
 
-				/**
+				/*
 				* End of the multi-octet sequence. mUcs4 now contains the final
 				* Unicode codepoint to be output
 				*/
@@ -118,7 +118,7 @@ function utf8_is_valid($str) {
 					$mBytes = 1;
 				}
 			} else {
-				/**
+				/*
 				*((0xC0 & (*in) != 0x80) && (mState != 0))
 				* Incomplete multi-octet sequence.
 				*/
@@ -131,7 +131,7 @@ function utf8_is_valid($str) {
 	return true;
 }
 
-/**
+/*
 * Tests whether a string complies as UTF-8. This will be much
 * faster than utf8_is_valid, but will pass five and six octet
 * UTF-8 sequences, which are not supported by Unicode and

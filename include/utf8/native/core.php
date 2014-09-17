@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * @version $Id: core.php,v 1.9 2007/08/12 01:11:33 harryf Exp $
 * @package utf8
 * @subpackage strings
@@ -10,7 +10,7 @@
 if (!defined('UTF8_CORE'))
 	define('UTF8_CORE', true);
 
-/**
+/*
 * Unicode aware replacement for strlen(). Returns the number
 * of characters in the string (not the number of bytes), replacing
 * multibyte characters with a single byte equivalent
@@ -31,7 +31,7 @@ function utf8_strlen($str) {
 	return strlen(utf8_decode($str));
 }
 
-/**
+/*
 * UTF-8 aware alternative to strpos
 * Find position of first occurrence of a string
 * Note: This will get alot slower if offset is used
@@ -69,7 +69,7 @@ function utf8_strpos($str, $needle, $offset = false) {
 	}
 }
 
-/**
+/*
 * UTF-8 aware alternative to strrpos
 * Find position of last occurrence of a char in a string
 * Note: This will get alot slower if offset is used
@@ -112,7 +112,7 @@ function utf8_strrpos($str, $needle, $offset = false) {
 	}
 }
 
-/**
+/*
 * UTF-8 aware alternative to substr
 * Return part of a string given character offset (and optionally length)
 *
@@ -229,7 +229,7 @@ function utf8_substr($str, $offset, $length = false) {
 	return $match[1];
 }
 
-/**
+/*
 * UTF-8 aware alternative to strtolower
 * Make a string lowercase
 * Note: The concept of a characters "case" only exists is some alphabets
@@ -312,7 +312,7 @@ function utf8_strtolower($string) {
 	return utf8_from_unicode($uni);
 }
 
-/**
+/*
 * UTF-8 aware alternative to strtoupper
 * Make a string uppercase
 * Note: The concept of a characters "case" only exists is some alphabets

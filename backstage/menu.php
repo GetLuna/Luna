@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) 2013-2014 Luna
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */

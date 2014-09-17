@@ -5,7 +5,7 @@ $xmlstr = <<<XML
 
 <!--
 
-/**
+/*
  * Copyright (C) 2014 Studio 384
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */

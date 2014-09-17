@@ -1,13 +1,13 @@
 <?php
 
-/**
+/*
 * Tools to help with ASCII in UTF-8
 * @version $Id: ascii.php,v 1.5 2006/10/16 20:38:12 harryf Exp $
 * @package utf8
 * @subpackage ascii
 */
 
-/**
+/*
 * Tests whether a string contains only 7bit ASCII bytes.
 * You might use this to conditionally check whether a string
 * needs handling as UTF-8 or not, potentially offering performance
@@ -33,7 +33,7 @@ function utf8_is_ascii($str) {
 	return (preg_match('/(?:[^\x00-\x7F])/', $str) !== 1);
 }
 
-/**
+/*
 * Tests whether a string contains only 7bit ASCII bytes with device
 * control codes omitted. The device control codes can be found on the
 * second table here: http://www.w3schools.com/tags/ref_ascii.asp
@@ -52,7 +52,7 @@ function utf8_is_ascii_ctrl($str) {
 	return false;
 }
 
-/**
+/*
 * Strip out all non-7bit ASCII bytes
 * If you need to transmit a string to system which you know can only
 * support 7bit ASCII, you could use this function.
@@ -78,7 +78,7 @@ function utf8_strip_non_ascii($str) {
 	return $result;
 }
 
-/**
+/*
 * Strip out device control codes in the ASCII range
 * which are not permitted in XML. Note that this leaves
 * multi-byte characters untouched - it only removes device
@@ -103,7 +103,7 @@ function utf8_strip_ascii_ctrl($str) {
 	return $result;
 }
 
-/**
+/*
 * Strip out all non 7bit ASCII bytes and ASCII device control codes.
 * For a list of ASCII device control codes see the 2nd table here:
 * http://www.w3schools.com/tags/ref_ascii.asp
@@ -129,7 +129,7 @@ function utf8_strip_non_ascii_ctrl($str) {
 	return $result;
 }
 
-/**
+/*
 * Replace accented UTF-8 characters by unaccented ASCII-7 "equivalents".
 * The purpose of this function is to replace characters commonly found in Latin
 * alphabets with something more or less equivalent from the ASCII range. This can

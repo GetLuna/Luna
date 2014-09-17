@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * @version $Id: unicode.php,v 1.2 2006/02/26 13:20:44 harryf Exp $
 * Tools for conversion between UTF-8 and unicode
 * The Original Code is Mozilla Communicator client code.
@@ -17,7 +17,7 @@
 * @subpackage unicode
 */
 
-/**
+/*
 * Takes an UTF-8 string and returns an array of ints representing the
 * Unicode characters. Astral planes are supported ie. the ints in the
 * output can be > 0xFFFF. Occurrances of the BOM are ignored. Surrogates
@@ -103,7 +103,7 @@ function utf8_to_unicode($str) {
 				$tmp = ($tmp & 0x0000003F) << $shift;
 				$mUcs4 |= $tmp;
 
-				/**
+				/*
 				* End of the multi-octet sequence. mUcs4 now contains the final
 				* Unicode codepoint to be output
 				*/
@@ -144,7 +144,7 @@ function utf8_to_unicode($str) {
 	return $out;
 }
 
-/**
+/*
 * Takes an array of ints representing the Unicode characters and returns
 * a UTF-8 string. Astral planes are supported ie. the ints in the
 * input can be > 0xFFFF. Occurrances of the BOM are ignored. Surrogates

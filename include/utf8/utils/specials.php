@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * Utilities for processing "special" characters in UTF-8. "Special" largely means anything which would
 * be regarded as a non-word character, like ASCII control characters and punctuation. This has a "Roman"
 * bias - it would be unaware of modern Chinese "punctuation" characters for example.
@@ -11,7 +11,7 @@
 * @see utf8_is_valid
 */
 
-/**
+/*
 * Used internally. Builds a PCRE pattern from the $UTF8_SPECIAL_CHARS
 * array defined in this file
 * The $UTF8_SPECIAL_CHARS should contain all special characters (non-letter/non-digit)
@@ -90,7 +90,7 @@ function utf8_specials_pattern() {
 	return $pattern;
 }
 
-/**
+/*
 * Checks a string for whether it contains only word characters. This
 * is logically equivalent to the \w PCRE meta character. Note that
 * this is not a 100% guarantee that the string only contains alpha /
@@ -106,7 +106,7 @@ function utf8_is_word_chars($str) {
 	return !(bool) preg_match(utf8_specials_pattern(), $str);
 }
 
-/**
+/*
 * Removes special characters (nonalphanumeric) from a UTF-8 string
 *
 * This can be useful as a helper for sanitizing a string for use as

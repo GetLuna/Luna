@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: str_ireplace.php,v 1.2 2007/08/12 01:20:46 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * UTF-8 aware alternative to str_ireplace
 * Case-insensitive version of str_replace
 * Note: requires utf8_strtolower

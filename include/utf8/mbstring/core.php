@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * @version $Id: core.php,v 1.5 2006/02/28 22:12:25 harryf Exp $
 * @package utf8
 * @subpackage strings
@@ -10,7 +10,7 @@
 if (!defined('UTF8_CORE'))
 	define('UTF8_CORE', true);
 
-/**
+/*
 * Wrapper round mb_strlen
 * Assumes you have mb_internal_encoding to UTF-8 already
 * Note: this function does not count bad bytes in the string - these
@@ -24,7 +24,7 @@ function utf8_strlen($str) {
 	return mb_strlen($str);
 }
 
-/**
+/*
 * Assumes mbstring internal encoding is set to UTF-8
 * Wrapper around mb_strpos
 * Find position of first occurrence of a string
@@ -45,7 +45,7 @@ function utf8_strpos($str, $search, $offset = false) {
 		return mb_strpos($str, $search, $offset);
 }
 
-/**
+/*
 * Assumes mbstring internal encoding is set to UTF-8
 * Wrapper around mb_strrpos
 * Find position of last occurrence of a char in a string
@@ -81,7 +81,7 @@ function utf8_strrpos($str, $search, $offset = false) {
 	}
 }
 
-/**
+/*
 * Assumes mbstring internal encoding is set to UTF-8
 * Wrapper around mb_substr
 * Return part of a string given character offset (and optionally length)
@@ -99,7 +99,7 @@ function utf8_substr($str, $offset, $length = false) {
 		return mb_substr($str, $offset, $length);
 }
 
-/**
+/*
 * Assumes mbstring internal encoding is set to UTF-8
 * Wrapper around mb_strtolower
 * Make a string lowercase
@@ -116,7 +116,7 @@ function utf8_strtolower($str) {
 	return mb_strtolower($str);
 }
 
-/**
+/*
 * Assumes mbstring internal encoding is set to UTF-8
 * Wrapper around mb_strtoupper
 * Make a string uppercase

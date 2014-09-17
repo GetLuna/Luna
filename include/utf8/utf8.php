@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * This is the dynamic loader for the library. It checks whether you have
 * the mbstring extension available and includes relevant files
 * on that basis, falling back to the native (as in written in PHP) version
@@ -42,7 +42,7 @@ else if (!defined('UTF8_USE_NATIVE'))
 require UTF8.'/utils/bad.php';
 
 if (defined('UTF8_USE_MBSTRING')) {
-	/**
+	/*
 	* If string overloading is active, it will break many of the
 	* native implementations. mbstring.func_overload must be set
 	* to 0, 1 or 4 in php.ini (string overloading disabled).

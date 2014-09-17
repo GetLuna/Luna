@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: stristr.php,v 1.1 2006/02/25 13:50:17 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * UTF-8 aware alternative to stristr
 * Find first occurrence of a string using case insensitive comparison
 * Note: requires utf8_strtolower

@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: strrev.php,v 1.1 2006/02/25 13:50:17 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * UTF-8 aware alternative to strrev
 * Reverse a string
 * @param string UTF-8 encoded

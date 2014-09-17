@@ -1,13 +1,13 @@
 <?php
 
-/**
+/*
 * Locate a byte index given a UTF-8 character index
 * @version $Id: position.php,v 1.1 2006/10/01 00:01:31 harryf Exp $
 * @package utf8
 * @subpackage position
 */
 
-/**
+/*
 * Given a string and a character index in the string, in
 * terms of the UTF-8 character position, returns the byte
 * index of that character. Can be useful when you want to
@@ -99,7 +99,7 @@ function utf8_byte_position() {
 	return $result;
 }
 
-/**
+/*
 * Given a string and any byte index, returns the byte index
 * of the start of the current UTF-8 character, relative to supplied
 * position. If the current character begins at the same place as the
@@ -130,7 +130,7 @@ function utf8_locate_current_chr( &$str, $idx ) {
 	return $idx;
 }
 
-/**
+/*
 * Given a string and any byte index, returns the byte index
 * of the start of the next UTF-8 character, relative to supplied
 * position. If the next character begins at the same place as the

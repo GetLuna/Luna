@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: str_pad.php,v 1.1 2006/09/03 09:25:13 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * Replacement for str_pad. $padStr may contain multi-byte characters.
 *
 * @author Oliver Saunders <oliver (a) osinternetservices.com>

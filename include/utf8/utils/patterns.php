@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
 * PCRE Regular expressions for UTF-8. Note this file is not actually used by
 * the rest of the library but these regular expressions can be useful to have
 * available.
@@ -10,7 +10,7 @@
 * @subpackage patterns
 */
 
-/**
+/*
 * PCRE Pattern to check a UTF-8 string is valid
 * Comes from W3 FAQ: Multilingual Forms
 * Note: modified to include full ASCII range including control chars
@@ -29,7 +29,7 @@ $UTF8_VALID = '^('.
 	'|\xF4[\x80-\x8F][\x80-\xBF]{2}'.       # Plane 16
 	')*$';
 
-/**
+/*
 * PCRE Pattern to match single UTF-8 characters
 * Comes from W3 FAQ: Multilingual Forms
 * Note: modified to include full ASCII range including control chars
@@ -47,7 +47,7 @@ $UTF8_MATCH =
 	'|([\xF1-\xF3][\x80-\xBF]{3})'.           # Planes 4-15
 	'|(\xF4[\x80-\x8F][\x80-\xBF]{2})';       # Plane 16
 
-/**
+/*
 * PCRE Pattern to locate bad bytes in a UTF-8 string
 * Comes from W3 FAQ: Multilingual Forms
 * Note: modified to include full ASCII range including control chars

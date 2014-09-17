@@ -1,12 +1,12 @@
 <?php
 
-/**
+/*
 * @version $Id: substr_replace.php,v 1.1 2006/02/25 13:50:17 harryf Exp $
 * @package utf8
 * @subpackage strings
 */
 
-/**
+/*
 * UTF-8 aware substr_replace.
 * Note: requires utf8_substr to be loaded
 * @see http://www.php.net/substr_replace
