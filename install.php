@@ -44,10 +44,8 @@ if (get_magic_quotes_runtime())
 	set_magic_quotes_runtime(0);
 
 // Strip slashes from GET/POST/COOKIE (if magic_quotes_gpc is enabled)
-if (get_magic_quotes_gpc())
-{
-	function stripslashes_array($array)
-	{
+if (get_magic_quotes_gpc()) {
+	function stripslashes_array($array) {
 		return is_array($array) ? array_map('stripslashes_array', $array) : stripslashes($array);
 	}
 
@@ -70,8 +68,7 @@ if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/language.php'))
 
 require FORUM_ROOT.'lang/'.$install_lang.'/language.php';
 
-if (file_exists(FORUM_ROOT.'config.php'))
-{
+if (file_exists(FORUM_ROOT.'config.php')) {
 	// Check to see whether Luna is already installed
 	include FORUM_ROOT.'config.php';
 
@@ -99,16 +96,14 @@ if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version:
 //
 // Generate output to be used for config.php
 //
-function generate_config_file()
-{
+function generate_config_file() {
 	global $db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $cookie_name, $cookie_seed;
 
 	return '<?php'."\n\n".'$db_type = \''.$db_type."';\n".'$db_host = \''.$db_host."';\n".'$db_name = \''.addslashes($db_name)."';\n".'$db_username = \''.addslashes($db_username)."';\n".'$db_password = \''.addslashes($db_password)."';\n".'$db_prefix = \''.addslashes($db_prefix)."';\n".'$p_connect = false;'."\n\n".'$cookie_name = '."'".$cookie_name."';\n".'$cookie_domain = '."'';\n".'$cookie_path = '."'/';\n".'$cookie_secure = 0;'."\n".'$cookie_seed = \''.random_key(16, false, true)."';\n\ndefine('FORUM', 1);\n";
 }
 
 
-if (isset($_POST['generate_config']))
-{
+if (isset($_POST['generate_config'])) {
 	header('Content-Type: text/x-delimtext; name="config.php"');
 	header('Content-disposition: attachment; filename=config.php');
 
@@ -126,8 +121,7 @@ if (isset($_POST['generate_config']))
 }
 
 
-if (!isset($_POST['form_sent']))
-{
+if (!isset($_POST['form_sent'])) {
 	// Make an educated guess regarding base_url
 	$base_url  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';	// protocol
 	$base_url .= preg_replace('%:(80|443)$%', '', $_SERVER['HTTP_HOST']);							// host[:port]
@@ -142,9 +136,7 @@ if (!isset($_POST['form_sent']))
 	$description = $lang['Description'];
 	$default_lang = $install_lang;
 	$default_style = 'Sunrise';
-}
-else
-{
+} else {
 	$db_type = $_POST['req_db_type'];
 	$db_host = luna_trim($_POST['req_db_host']);
 	$db_name = luna_trim($_POST['req_db_name']);
@@ -211,20 +203,17 @@ if (!forum_is_writable(FORUM_CACHE_DIR))
 if (!forum_is_writable(FORUM_ROOT.'img/avatars/'))
 	$alerts[] = sprintf($lang['Alert avatar'], FORUM_ROOT.'img/avatars/');
 
-if (!isset($_POST['form_sent']) || !empty($alerts))
-{
+if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	// Determine available database extensions
 	$dual_mysql = false;
 	$db_extensions = array();
 	$mysql_innodb = false;
-	if (function_exists('mysqli_connect'))
-	{
+	if (function_exists('mysqli_connect')) {
 		$db_extensions[] = array('mysqli', 'MySQL Improved');
 		$db_extensions[] = array('mysqli_innodb', 'MySQL Improved (InnoDB)');
 		$mysql_innodb = true;
 	}
-	if (function_exists('mysql_connect'))
-	{
+	if (function_exists('mysql_connect')) {
 		$db_extensions[] = array('mysql', 'MySQL Standard');
 		$db_extensions[] = array('mysql_innodb', 'MySQL Standard (InnoDB)');
 		$mysql_innodb = true;
@@ -253,8 +242,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
         <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
         <script type="text/javascript">
         /* <![CDATA[ */
-        function process_form(the_form)
-        {
+        function process_form(the_form) {
             var required_fields = {
                 "req_db_type": "<?php echo $lang['Database type'] ?>",
                 "req_db_host": "<?php echo $lang['Database server hostname'] ?>",
@@ -266,13 +254,10 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
                 "req_title": "<?php echo $lang['Board title'] ?>",
                 "req_base_url": "<?php echo $lang['Base URL'] ?>",
             };
-            if (document.all || document.getElementById)
-            {
-                for (var i = 0; i < the_form.length; ++i)
-                {
+            if (document.all || document.getElementById) {
+                for (var i = 0; i < the_form.length; ++i) {
                     var elem = the_form.elements[i];
-                    if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type)))
-                    {
+                    if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type))) {
                         alert('"' + required_fields[elem.name] + '" <?php echo $lang['Required field'] ?>');
                         elem.focus();
                         return false;
@@ -306,8 +291,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts))
                                     <select class="form-control" name="install_lang">
 <?php
 
-		foreach ($languages as $temp)
-		{
+		foreach ($languages as $temp) {
 			if ($temp == $install_lang)
 				echo "\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
 			else
@@ -356,8 +340,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
                                     <select class="form-control" name="req_db_type">
 <?php
 
-	foreach ($db_extensions as $temp)
-	{
+	foreach ($db_extensions as $temp) {
 		if ($temp[0] == $db_type)
 			echo "\t\t\t\t\t\t\t".'<option value="'.$temp[0].'" selected="selected">'.$temp[1].'</option>'."\n";
 		else
@@ -466,8 +449,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 <?php
 
 		$languages = forum_list_langs();
-		foreach ($languages as $temp)
-		{
+		foreach ($languages as $temp) {
 			if ($temp == $default_lang)
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
 			else
@@ -485,8 +467,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 <?php
 
 		$styles = forum_list_styles();
-		foreach ($styles as $temp)
-		{
+		foreach ($styles as $temp) {
 			if ($temp == $default_style)
 				echo "\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
 			else
@@ -509,12 +490,9 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 </html>
 <?php
 
-}
-else
-{
+} else {
 	// Load the appropriate DB layer class
-	switch ($db_type)
-	{
+	switch ($db_type) {
 		case 'mysql':
 			require FORUM_ROOT.'include/dblayer/mysql.php';
 			break;
@@ -551,8 +529,7 @@ else
 		error(sprintf($lang['Table prefix error'], $db->prefix));
 
 	// Do some DB type specific checks
-	switch ($db_type)
-	{
+	switch ($db_type) {
 		case 'mysql':
 		case 'mysqli':
 		case 'mysql_innodb':
@@ -581,8 +558,7 @@ else
 		error(sprintf($lang['Existing table error'], $db_prefix, $db_name));
 
 	// Check if InnoDB is available
-	if ($db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
-	{
+	if ($db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb') {
 		$result = $db->query('SHOW VARIABLES LIKE \'have_innodb\'');
 		list (, $result) = $db->fetch_row($result);
 		if ((strtoupper($result) != 'YES'))
@@ -1010,8 +986,7 @@ else
 		)
 	);
 
-	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb')
-	{
+	if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' || $db_type == 'mysqli_innodb') {
 		$schema['UNIQUE KEYS']['user_id_ident_idx'] = array('user_id', 'ident(25)');
 		$schema['INDEXES']['ident_idx'] = array('ident(25)');
 	}
@@ -1240,8 +1215,7 @@ else
 		)
 	);
 
-	if ($db_type == 'sqlite')
-	{
+	if ($db_type == 'sqlite') {
 		$schema['PRIMARY KEY'] = array('id');
 		$schema['UNIQUE KEYS'] = array('word_idx'	=> array('word'));
 	}
@@ -1710,8 +1684,7 @@ else
 		'p_force_guest_email'		=> 1
 	);
 
-	foreach ($luna_config as $conf_name => $conf_value)
-	{
+	foreach ($luna_config as $conf_name => $conf_value) {
 		$db->query('INSERT INTO '.$db_prefix.'config (conf_name, conf_value) VALUES(\''.$conf_name.'\', '.(is_null($conf_value) ? 'NULL' : '\''.$db->escape($conf_value).'\'').')')
 			or error('Unable to insert into table '.$db_prefix.'config. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	}
@@ -1746,11 +1719,9 @@ else
 
 	// Attempt to write config.php and serve it up for download if writing fails
 	$written = false;
-	if (forum_is_writable(FORUM_ROOT))
-	{
+	if (forum_is_writable(FORUM_ROOT)) {
 		$fh = @fopen(FORUM_ROOT.'config.php', 'wb');
-		if ($fh)
-		{
+		if ($fh) {
 			fwrite($fh, $config);
 			fclose($fh);
 
@@ -1778,8 +1749,7 @@ else
 					<p><?php echo $lang['Luna has been installed'] ?></p>
 <?php
 
-if (!$written)
-{
+if (!$written) {
 
 ?>
                     <form  class="form-horizontal" method="post" action="install.php">
@@ -1810,9 +1780,7 @@ foreach ($alerts as $cur_alert)
 
 <?php
 
-}
-else
-{
+} else {
 
 ?>
 					<p><?php echo $lang['Luna fully installed'] ?></p>

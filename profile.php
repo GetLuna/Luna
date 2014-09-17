@@ -21,21 +21,17 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 2)
 	message($lang['Bad request'], false, '404 Not Found');
 
-if ($action != 'change_pass' || !isset($_GET['key']))
-{
+if ($action != 'change_pass' || !isset($_GET['key'])) {
 	if ($luna_user['g_read_board'] == '0')
 		message($lang['No view'], false, '403 Forbidden');
 	else if ($luna_user['g_view_users'] == '0' && ($luna_user['is_guest'] || $luna_user['id'] != $id))
 		message($lang['No permission'], false, '403 Forbidden');
 }
 
-if ($action == 'change_pass')
-{
-	if (isset($_GET['key']))
-	{
+if ($action == 'change_pass') {
+	if (isset($_GET['key'])) {
 		// If the user is already logged in we shouldn't be here :)
-		if (!$luna_user['is_guest'])
-		{
+		if (!$luna_user['is_guest']) {
 			header('Location: index.php');
 			exit;
 		}
@@ -47,8 +43,7 @@ if ($action == 'change_pass')
 
 		if ($key == '' || $key != $cur_user['activate_key'])
 			message($lang['Pass key bad'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
-		else
-		{
+		else {
 			$db->query('UPDATE '.$db->prefix.'users SET password=\''.$cur_user['activate_string'].'\', activate_string=NULL, activate_key=NULL'.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
 
 			message($lang['Pass updated'], true);
@@ -56,12 +51,10 @@ if ($action == 'change_pass')
 	}
 
 	// Make sure we are allowed to change this user's password
-	if ($luna_user['id'] != $id)
-	{
+	if ($luna_user['id'] != $id) {
 		if (!$luna_user['is_admmod']) // A regular user trying to change another user's password?
 			message($lang['No permission'], false, '403 Forbidden');
-		else if ($luna_user['g_moderator'] == '1') // A moderator trying to change a user's password?
-		{
+		else if ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's password?
 			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
 				message($lang['Bad request'], false, '404 Not Found');
@@ -73,8 +66,7 @@ if ($action == 'change_pass')
 		}
 	}
 
-	if (isset($_POST['form_sent']))
-	{
+	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
 		confirm_referrer('profile.php');
 
@@ -92,8 +84,7 @@ if ($action == 'change_pass')
 
 		$authorized = false;
 
-		if (!empty($cur_user['password']))
-		{
+		if (!empty($cur_user['password'])) {
 			$old_password_hash = luna_hash($old_password);
 
 			if ($cur_user['password'] == $old_password_hash || $luna_user['is_admmod'])
@@ -120,18 +111,12 @@ if ($action == 'change_pass')
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-change_pass.tpl.php');
-}
-
-
-else if ($action == 'change_email')
-{
+} else if ($action == 'change_email') {
 	// Make sure we are allowed to change this user's email
-	if ($luna_user['id'] != $id)
-	{
+	if ($luna_user['id'] != $id) {
 		if (!$luna_user['is_admmod']) // A regular user trying to change another user's email?
 			message($lang['No permission'], false, '403 Forbidden');
-		else if ($luna_user['g_moderator'] == '1') // A moderator trying to change a user's email?
-		{
+		else if ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's email?
 			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
 				message($lang['Bad request'], false, '404 Not Found');
@@ -143,8 +128,7 @@ else if ($action == 'change_email')
 		}
 	}
 
-	if (isset($_GET['key']))
-	{
+	if (isset($_GET['key'])) {
 		$key = $_GET['key'];
 
 		$result = $db->query('SELECT activate_string, activate_key FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch activation data', __FILE__, __LINE__, $db->error());
@@ -152,15 +136,12 @@ else if ($action == 'change_email')
 
 		if ($key == '' || $key != $new_email_key)
 			message($lang['Email key bad'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
-		else
-		{
+		else {
 			$db->query('UPDATE '.$db->prefix.'users SET email=activate_string, activate_string=NULL, activate_key=NULL WHERE id='.$id) or error('Unable to update email address', __FILE__, __LINE__, $db->error());
 
 			message($lang['Email updated'], true);
 		}
-	}
-	else if (isset($_POST['form_sent']))
-	{
+	} else if (isset($_POST['form_sent'])) {
 		if (luna_hash($_POST['req_password']) !== $luna_user['password'])
 			message($lang['Wrong pass']);
 
@@ -175,12 +156,10 @@ else if ($action == 'change_email')
 			message($lang['Invalid email']);
 
 		// Check if it's a banned email address
-		if (is_banned_email($new_email))
-		{
+		if (is_banned_email($new_email)) {
 			if ($luna_config['p_allow_banned_email'] == '0')
 				message($lang['Banned email']);
-			else if ($luna_config['o_mailing_list'] != '')
-			{
+			else if ($luna_config['o_mailing_list'] != '') {
 				// Load the "banned email change" template
 				$mail_tpl = trim($lang['banned_email_change.tpl']);
 
@@ -200,12 +179,10 @@ else if ($action == 'change_email')
 
 		// Check if someone else already has registered with that email address
 		$result = $db->query('SELECT id, username FROM '.$db->prefix.'users WHERE email=\''.$db->escape($new_email).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-		if ($db->num_rows($result))
-		{
+		if ($db->num_rows($result)) {
 			if ($luna_config['p_allow_dupe_email'] == '0')
 				message($lang['Dupe email']);
-			else if ($luna_config['o_mailing_list'] != '')
-			{
+			else if ($luna_config['o_mailing_list'] != '') {
 				while ($cur_dupe = $db->fetch_assoc($result))
 					$dupe_list[] = $cur_dupe['username'];
 
@@ -256,19 +233,14 @@ else if ($action == 'change_email')
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-change_email.tpl.php');
-}
-
-
-else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
-{
+} else if ($action == 'upload_avatar' || $action == 'upload_avatar2') {
 	if ($luna_config['o_avatars'] == '0')
 		message($lang['Avatars disabled']);
 
 	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
-	if (isset($_POST['form_sent']))
-	{
+	if (isset($_POST['form_sent'])) {
 		if (!isset($_FILES['req_file']))
 			message($lang['No file']);
 
@@ -278,10 +250,8 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 		$uploaded_file = $_FILES['req_file'];
 
 		// Make sure the upload went smooth
-		if (isset($uploaded_file['error']))
-		{
-			switch ($uploaded_file['error'])
-			{
+		if (isset($uploaded_file['error'])) {
+			switch ($uploaded_file['error']) {
 				case 1: // UPLOAD_ERR_INI_SIZE
 				case 2: // UPLOAD_ERR_FORM_SIZE
 					message($lang['Too large ini']);
@@ -307,8 +277,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 			}
 		}
 
-		if (is_uploaded_file($uploaded_file['tmp_name']))
-		{
+		if (is_uploaded_file($uploaded_file['tmp_name'])) {
 			// Preliminary file check, adequate in most cases
 			$allowed_types = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
 			if (!in_array($uploaded_file['type'], $allowed_types))
@@ -331,16 +300,14 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 				$extension = '.jpg';
 			else if ($type == IMAGETYPE_PNG)
 				$extension = '.png';
-			else
-			{
+			else {
 				// Invalid type
 				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
 				message($lang['Bad type']);
 			}
 
 			// Now check the width/height
-			if (empty($width) || empty($height) || $width > $luna_config['o_avatars_width'] || $height > $luna_config['o_avatars_height'])
-			{
+			if (empty($width) || empty($height) || $width > $luna_config['o_avatars_width'] || $height > $luna_config['o_avatars_height']) {
 				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
 				message($lang['Too wide or high'].' '.$luna_config['o_avatars_width'].'x'.$luna_config['o_avatars_height'].' '.$lang['pixels'].'.');
 			}
@@ -350,8 +317,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 			delete_avatar($id);
 			@rename(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension);
 			@chmod(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension, 0644);
-		}
-		else
+		} else
 			message($lang['Unknown failure']);
 
 		redirect('profile.php?section=personality&amp;id='.$id);
@@ -364,11 +330,7 @@ else if ($action == 'upload_avatar' || $action == 'upload_avatar2')
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-upload_avatar.tpl.php');
-}
-
-
-else if ($action == 'delete_avatar')
-{
+} else if ($action == 'delete_avatar') {
 	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -377,11 +339,7 @@ else if ($action == 'delete_avatar')
 	delete_avatar($id);
 
 	redirect('profile.php?section=personality&amp;id='.$id);
-}
-
-
-else if (isset($_POST['update_group_membership']))
-{
+} else if (isset($_POST['update_group_membership'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -407,16 +365,13 @@ else if (isset($_POST['update_group_membership']))
 	$new_group_mod = $db->result($result);
 
 	// If the user was a moderator or an administrator, we remove him/her from the moderator list in all forums as well
-	if ($new_group_id != FORUM_ADMIN && $new_group_mod != '1')
-	{
+	if ($new_group_id != FORUM_ADMIN && $new_group_mod != '1') {
 		$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
-		while ($cur_forum = $db->fetch_assoc($result))
-		{
+		while ($cur_forum = $db->fetch_assoc($result)) {
 			$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
-			if (in_array($id, $cur_moderators))
-			{
+			if (in_array($id, $cur_moderators)) {
 				$username = array_search($id, $cur_moderators);
 				unset($cur_moderators[$username]);
 				$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
@@ -427,11 +382,7 @@ else if (isset($_POST['update_group_membership']))
 	}
 
 	redirect('profile.php?section=admin&amp;id='.$id);
-}
-
-
-else if (isset($_POST['update_forums']))
-{
+} else if (isset($_POST['update_forums'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -446,20 +397,17 @@ else if (isset($_POST['update_forums']))
 	// Loop through all forums
 	$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
-	while ($cur_forum = $db->fetch_assoc($result))
-	{
+	while ($cur_forum = $db->fetch_assoc($result)) {
 		$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 		// If the user should have moderator access (and he/she doesn't already have it)
-		if (in_array($cur_forum['id'], $moderator_in) && !in_array($id, $cur_moderators))
-		{
+		if (in_array($cur_forum['id'], $moderator_in) && !in_array($id, $cur_moderators)) {
 			$cur_moderators[$username] = $id;
 			uksort($cur_moderators, 'utf8_strcasecmp');
 
 			$db->query('UPDATE '.$db->prefix.'forums SET moderators=\''.$db->escape(serialize($cur_moderators)).'\' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		}
 		// If the user shouldn't have moderator access (and he/she already has it)
-		else if (!in_array($cur_forum['id'], $moderator_in) && in_array($id, $cur_moderators))
-		{
+		else if (!in_array($cur_forum['id'], $moderator_in) && in_array($id, $cur_moderators)) {
 			unset($cur_moderators[$username]);
 			$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
 
@@ -468,11 +416,7 @@ else if (isset($_POST['update_forums']))
 	}
 
 	redirect('profile.php?section=admin&amp;id='.$id);
-}
-
-
-else if (isset($_POST['ban']))
-{
+} else if (isset($_POST['ban'])) {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -484,18 +428,12 @@ else if (isset($_POST['ban']))
 
 	// Check whether user is already banned
 	$result = $db->query('SELECT id FROM '.$db->prefix.'bans WHERE username = \''.$db->escape($username).'\' ORDER BY expire IS NULL DESC, expire DESC LIMIT 1') or error('Unable to fetch ban ID', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result))
-	{
+	if ($db->num_rows($result)) {
 		$ban_id = $db->result($result);
 		redirect('backstage/bans.php?edit_ban='.$ban_id.'&amp;exists');
-	}
-	else
+	} else
 		redirect('backstage/bans.php?add_ban='.$id);
-}
-
-
-else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
-{
+} else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -506,22 +444,18 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	if ($group_id == FORUM_ADMIN)
 		message($lang['No delete admin message']);
 
-	if (isset($_POST['delete_user_comply']))
-	{
+	if (isset($_POST['delete_user_comply'])) {
 		// If the user is a moderator or an administrator, we remove him/her from the moderator list in all forums as well
 		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 		$group_mod = $db->result($result);
 
-		if ($group_id == FORUM_ADMIN || $group_mod == '1')
-		{
+		if ($group_id == FORUM_ADMIN || $group_mod == '1') {
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
-			while ($cur_forum = $db->fetch_assoc($result))
-			{
+			while ($cur_forum = $db->fetch_assoc($result)) {
 				$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
-				if (in_array($id, $cur_moderators))
-				{
+				if (in_array($id, $cur_moderators)) {
 					unset($cur_moderators[$username]);
 					$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
 
@@ -538,17 +472,14 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id='.$id) or error('Unable to remove user from online list', __FILE__, __LINE__, $db->error());
 
 		// Should we delete all posts made by this user?
-		if (isset($_POST['delete_posts']))
-		{
+		if (isset($_POST['delete_posts'])) {
 			require FORUM_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all posts made by this user
 			$result = $db->query('SELECT p.id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id='.$id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result))
-			{
-				while ($cur_post = $db->fetch_assoc($result))
-				{
+			if ($db->num_rows($result)) {
+				while ($cur_post = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "topic post" or not
 					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['topic_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
@@ -560,8 +491,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 					update_forum($cur_post['forum_id']);
 				}
 			}
-		}
-		else
+		} else
 			// Set all his/her posts to guest
 			$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id='.$id) or error('Unable to update posts', __FILE__, __LINE__, $db->error());
 
@@ -588,11 +518,7 @@ else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply']))
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-delete_user.tpl.php');
-}
-
-
-else if (isset($_POST['form_sent']))
-{
+} else if (isset($_POST['form_sent'])) {
 	// Fetch the user group of the user we are editing
 	$result = $db->query('SELECT u.username, u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
@@ -614,14 +540,11 @@ else if (isset($_POST['form_sent']))
 	$username_updated = false;
 
 	// Validate input depending on section
-	switch ($section)
-	{
-		case 'admin':
-		{
+	switch ($section) {
+		case 'admin': {
 			$form = array();
 
-			if ($luna_user['is_admmod'])
-			{
+			if ($luna_user['is_admmod']) {
 				$form['admin_note'] = luna_trim($_POST['admin_note']);
 
 				// We only allow administrators to update the post count
@@ -632,8 +555,7 @@ else if (isset($_POST['form_sent']))
 			break;
 		}
 
-		case 'personality':
-		{
+		case 'personality': {
 			$form = array(
 				'realname'		=> luna_trim($_POST['form']['realname']),
 				'url'			=> luna_trim($_POST['form']['url']),
@@ -644,15 +566,12 @@ else if (isset($_POST['form_sent']))
 				'google'		=> luna_trim($_POST['form']['google']),
 			);
 
-			if ($luna_user['is_admmod'])
-			{
+			if ($luna_user['is_admmod']) {
 				// Are we allowed to change usernames?
-				if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1'))
-				{
+				if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_rename_users'] == '1')) {
 					$form['username'] = luna_trim($_POST['req_username']);
 
-					if ($form['username'] != $old_username)
-					{
+					if ($form['username'] != $old_username) {
 						// Check username
 						$errors = array();
 						check_username($form['username'], $id);
@@ -664,8 +583,7 @@ else if (isset($_POST['form_sent']))
 				}
 			}
 
-			if ($luna_config['o_regs_verify'] == '0' || $luna_user['is_admmod'])
-			{
+			if ($luna_config['o_regs_verify'] == '0' || $luna_user['is_admmod']) {
 				require FORUM_ROOT.'include/email.php';
 
 				// Validate the email address
@@ -675,8 +593,7 @@ else if (isset($_POST['form_sent']))
 			}
 
 			// Add http:// if the URL doesn't contain it already (while allowing https://, too)
-			if ($form['url'] != '')
-			{
+			if ($form['url'] != '') {
 				$url = url_valid($form['url']);
 
 				if ($url === false)
@@ -687,12 +604,10 @@ else if (isset($_POST['form_sent']))
 
 			if ($luna_user['g_id'] == FORUM_ADMIN)
 				$form['title'] = luna_trim($_POST['title']);
-			else if ($luna_user['g_set_title'] == '1')
-			{
+			else if ($luna_user['g_set_title'] == '1') {
 				$form['title'] = luna_trim($_POST['title']);
 
-				if ($form['title'] != '')
-				{
+				if ($form['title'] != '') {
 					// A list of words that the title may not contain
 					// If the language is English, there will be some duplicates, but it's not the end of the world
 					$forbidden = array('member', 'moderator', 'administrator', 'banned', 'guest', utf8_strtolower($lang['Member']), utf8_strtolower($lang['Moderator']), utf8_strtolower($lang['Administrator']), utf8_strtolower($lang['Banned']), utf8_strtolower($lang['Guest']));
@@ -707,8 +622,7 @@ else if (isset($_POST['form_sent']))
 				message($lang['Bad ICQ']);
 
 			// Clean up signature from POST
-			if ($luna_config['o_signatures'] == '1')
-			{
+			if ($luna_config['o_signatures'] == '1') {
 				$form['signature'] = luna_linebreaks(luna_trim($_POST['signature']));
 
 				// Validate signature
@@ -732,8 +646,7 @@ else if (isset($_POST['form_sent']))
 			break;
 		}
 
-		case 'settings':
-		{
+		case 'settings': {
 			$form = array(
 				'timezone'			=> floatval($_POST['form']['timezone']),
 				'dst'				=> isset($_POST['form']['dst']) ? '1' : '0',
@@ -751,8 +664,7 @@ else if (isset($_POST['form_sent']))
 				'auto_notify'		=> isset($_POST['form']['auto_notify']) ? '1' : '0',
 			);
 
-			if ($form['disp_topics'] != '')
-			{
+			if ($form['disp_topics'] != '') {
 				$form['disp_topics'] = intval($form['disp_topics']);
 				if ($form['disp_topics'] < 3)
 					$form['disp_topics'] = 3;
@@ -760,8 +672,7 @@ else if (isset($_POST['form_sent']))
 					$form['disp_topics'] = 75;
 			}
 
-			if ($form['disp_posts'] != '')
-			{
+			if ($form['disp_posts'] != '') {
 				$form['disp_posts'] = intval($form['disp_posts']);
 				if ($form['disp_posts'] < 3)
 					$form['disp_posts'] = 3;
@@ -770,8 +681,7 @@ else if (isset($_POST['form_sent']))
 			}
 
 			// Make sure we got a valid language string
-			if (isset($_POST['form']['language']))
-			{
+			if (isset($_POST['form']['language'])) {
 				$languages = forum_list_langs();
 				$form['language'] = luna_trim($_POST['form']['language']);
 				if (!in_array($form['language'], $languages))
@@ -779,8 +689,7 @@ else if (isset($_POST['form_sent']))
 			}
 
 			// Make sure we got a valid style string
-			if (isset($_POST['form']['style']))
-			{
+			if (isset($_POST['form']['style'])) {
 				$styles = forum_list_styles();
 				$form['style'] = luna_trim($_POST['form']['style']);
 				if (!in_array($form['style'], $styles))
@@ -800,8 +709,7 @@ else if (isset($_POST['form_sent']))
 
 	// Single quotes around non-empty values and NULL for empty values
 	$temp = array();
-	foreach ($form as $key => $input)
-	{
+	foreach ($form as $key => $input) {
 		$value = ($input !== '') ? '\''.$db->escape($input).'\'' : 'NULL';
 
 		$temp[] = $key.'='.$value;
@@ -814,8 +722,7 @@ else if (isset($_POST['form_sent']))
 	$db->query('UPDATE '.$db->prefix.'users SET '.implode(',', $temp).' WHERE id='.$id) or error('Unable to update profile', __FILE__, __LINE__, $db->error());
 
 	// If we changed the username we have to update some stuff
-	if ($username_updated)
-	{
+	if ($username_updated) {
 		$db->query('UPDATE '.$db->prefix.'bans SET username=\''.$db->escape($form['username']).'\' WHERE username=\''.$db->escape($old_username).'\'') or error('Unable to update bans', __FILE__, __LINE__, $db->error());
 		// If any bans were updated, we will need to know because the cache will need to be regenerated.
 		if ($db->affected_rows() > 0)
@@ -834,16 +741,13 @@ else if (isset($_POST['form_sent']))
 		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
 		$group_mod = $db->result($result);
 
-		if ($group_id == FORUM_ADMIN || $group_mod == '1')
-		{
+		if ($group_id == FORUM_ADMIN || $group_mod == '1') {
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 
-			while ($cur_forum = $db->fetch_assoc($result))
-			{
+			while ($cur_forum = $db->fetch_assoc($result)) {
 				$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
-				if (in_array($id, $cur_moderators))
-				{
+				if (in_array($id, $cur_moderators)) {
 					unset($cur_moderators[$old_username]);
 					$cur_moderators[$form['username']] = $id;
 					uksort($cur_moderators, 'utf8_strcasecmp');
@@ -876,32 +780,26 @@ $user = $db->fetch_assoc($result);
 
 $last_post = format_time($user['last_post']);
 
-if ($user['signature'] != '')
-{
+if ($user['signature'] != '') {
 	require FORUM_ROOT.'include/parser.php';
 	$parsed_signature = parse_signature($user['signature']);
 }
 
 
 // View or edit?
-if (!$section || $section == 'view')
-{
+if (!$section || $section == 'view') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-view.tpl.php');
-}
-else if ($section == 'personality')
-{
+} else if ($section == 'personality') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-personality.tpl.php');
-}
-else if ($section == 'settings')
-{
+} else if ($section == 'settings') {
 	if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
 		message($lang['Bad request'], false, '403 Forbidden');
 
@@ -910,9 +808,7 @@ else if ($section == 'settings')
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-settings.tpl.php');
-}
-else if ($section == 'admin')
-{
+} else if ($section == 'admin') {
 	if (!$luna_user['is_admmod'] || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['Bad request'], false, '403 Forbidden');
 
@@ -921,9 +817,7 @@ else if ($section == 'admin')
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('profile-admin.tpl.php');
-}
-else
-{
+} else {
 	message($lang['Bad request'], false, '404 Not Found');
 }
 

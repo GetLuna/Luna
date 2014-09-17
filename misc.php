@@ -16,8 +16,7 @@ require FORUM_ROOT.'include/common.php';
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 
-if ($action == 'rules')
-{
+if ($action == 'rules') {
 	if ($luna_config['o_rules'] == '0' || ($luna_user['is_guest'] && $luna_user['g_read_board'] == '0' && $luna_config['o_regs_allow'] == '0'))
 		message($lang['Bad request'], false, '404 Not Found');
 
@@ -26,11 +25,7 @@ if ($action == 'rules')
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('misc-rules.tpl.php');
-}
-
-
-else if ($action == 'markread')
-{
+} else if ($action == 'markread') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -44,8 +39,7 @@ else if ($action == 'markread')
 
 
 // Mark the topics/posts in a forum as read?
-else if ($action == 'markforumread')
-{
+else if ($action == 'markforumread') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -58,11 +52,7 @@ else if ($action == 'markforumread')
 	set_tracked_topics($tracked_topics);
 
 	redirect('viewforum.php?id='.$fid);
-}
-
-
-else if (isset($_GET['email']))
-{
+} else if (isset($_GET['email'])) {
 	if ($luna_user['is_guest'] || $luna_user['g_send_email'] == '0')
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -80,8 +70,7 @@ else if (isset($_GET['email']))
 		message($lang['Form email disabled']);
 
 
-	if (isset($_POST['form_sent']))
-	{
+	if (isset($_POST['form_sent'])) {
 		confirm_referrer('misc.php');
 
 		// Clean up message and subject from POST
@@ -124,8 +113,7 @@ else if (isset($_GET['email']))
 
 
 	// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to the user's profile after the email is sent)
-	if (!empty($_SERVER['HTTP_REFERER']))
-	{
+	if (!empty($_SERVER['HTTP_REFERER'])) {
 		$referrer = parse_url($_SERVER['HTTP_REFERER']);
 		// Remove www subdomain if it exists
 		if (strpos($referrer['host'], 'www.') === 0)
@@ -160,11 +148,7 @@ else if (isset($_GET['email']))
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('misc-email.tpl.php');
-}
-
-
-else if (isset($_GET['report']))
-{
+} else if (isset($_GET['report'])) {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -172,8 +156,7 @@ else if (isset($_GET['report']))
 	if ($post_id < 1)
 		message($lang['Bad request'], false, '404 Not Found');
 
-	if (isset($_POST['form_sent']))
-	{
+	if (isset($_POST['form_sent'])) {
 		confirm_referrer('misc.php');
 
 		// Clean up reason from POST
@@ -207,11 +190,9 @@ else if (isset($_GET['report']))
 			$db->query('UPDATE '.$db->prefix.'posts SET marked = 1 WHERE id='.$post_id) or error('Unable to create report', __FILE__, __LINE__, $db->error());
 
 		// Should we email the report?
-		if ($luna_config['o_report_method'] == '1' || $luna_config['o_report_method'] == '2')
-		{
+		if ($luna_config['o_report_method'] == '1' || $luna_config['o_report_method'] == '2') {
 			// We send it to the complete mailing-list in one swoop
-			if ($luna_config['o_mailing_list'] != '')
-			{
+			if ($luna_config['o_mailing_list'] != '') {
 				// Load the "new report" template
 				$mail_tpl = trim($lang['new_report.tpl']);
 
@@ -255,11 +236,7 @@ else if (isset($_GET['report']))
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('misc-report.tpl.php');
-}
-
-
-else if ($action == 'subscribe')
-{
+} else if ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -268,8 +245,7 @@ else if ($action == 'subscribe')
 	if ($topic_id < 1 && $forum_id < 1)
 		message($lang['Bad request'], false, '404 Not Found');
 
-	if ($topic_id)
-	{
+	if ($topic_id) {
 		if ($luna_config['o_topic_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
@@ -287,8 +263,7 @@ else if ($action == 'subscribe')
 		redirect('viewtopic.php?id='.$topic_id);
 	}
 
-	if ($forum_id)
-	{
+	if ($forum_id) {
 		if ($luna_config['o_forum_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
@@ -305,11 +280,7 @@ else if ($action == 'subscribe')
 
 		redirect('viewforum.php?id='.$forum_id);
 	}
-}
-
-
-else if ($action == 'unsubscribe')
-{
+} else if ($action == 'unsubscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -318,8 +289,7 @@ else if ($action == 'unsubscribe')
 	if ($topic_id < 1 && $forum_id < 1)
 		message($lang['Bad request'], false, '404 Not Found');
 
-	if ($topic_id)
-	{
+	if ($topic_id) {
 		if ($luna_config['o_topic_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
@@ -332,8 +302,7 @@ else if ($action == 'unsubscribe')
 		redirect('viewtopic.php?id='.$topic_id);
 	}
 
-	if ($forum_id)
-	{
+	if ($forum_id) {
 		if ($luna_config['o_forum_subscriptions'] != '1')
 			message($lang['No permission'], false, '403 Forbidden');
 
@@ -345,8 +314,5 @@ else if ($action == 'unsubscribe')
 
 		redirect('viewforum.php?id='.$forum_id);
 	}
-}
-
-
-else
+} else
 	message($lang['Bad request'], false, '404 Not Found');

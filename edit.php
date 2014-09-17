@@ -32,8 +32,7 @@ $is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] ==
 
 $can_edit_subject = $id == $cur_post['first_post_id'];
 
-if ($luna_config['o_censoring'] == '1')
-{
+if ($luna_config['o_censoring'] == '1') {
 	$cur_post['subject'] = censor_words($cur_post['subject']);
 	$cur_post['message'] = censor_words($cur_post['message']);
 }
@@ -52,14 +51,12 @@ if ($is_admmod && $luna_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poste
 $errors = array();
 
 
-if (isset($_POST['form_sent']))
-{
+if (isset($_POST['form_sent'])) {
 	// Make sure they got here from the site
 	confirm_referrer('edit.php');
 
 	// If it's a topic it must contain a subject
-	if ($can_edit_subject)
-	{
+	if ($can_edit_subject) {
 		$subject = luna_trim($_POST['req_subject']);
 
 		if ($luna_config['o_censoring'] == '1')
@@ -85,18 +82,15 @@ if (isset($_POST['form_sent']))
 		$errors[] = $lang['All caps message'];
 
 	// Validate BBCode syntax
-	if ($luna_config['p_message_bbcode'] == '1')
-	{
+	if ($luna_config['p_message_bbcode'] == '1') {
 		require FORUM_ROOT.'include/parser.php';
 		$message = preparse_bbcode($message, $errors);
 	}
 
-	if (empty($errors))
-	{
+	if (empty($errors)) {
 		if ($message == '')
 			$errors[] = $lang['No message'];
-		else if ($luna_config['o_censoring'] == '1')
-		{
+		else if ($luna_config['o_censoring'] == '1') {
 			// Censor message to see if that causes problems
 			$censored_message = luna_trim(censor_words($message));
 
@@ -114,21 +108,18 @@ if (isset($_POST['form_sent']))
 	$message = strip_bad_multibyte_chars($message);
 
 	// Did everything go according to plan?
-	if (empty($errors) && !isset($_POST['preview']))
-	{
+	if (empty($errors) && !isset($_POST['preview'])) {
 		$edited_sql = (!isset($_POST['silent']) || !$is_admmod) ? ', edited='.time().', edited_by=\''.$db->escape($luna_user['username']).'\'' : '';
 
 		require FORUM_ROOT.'include/search_idx.php';
 
-		if ($can_edit_subject)
-		{
+		if ($can_edit_subject) {
 			// Update the topic and any redirect topics
 			$db->query('UPDATE '.$db->prefix.'topics SET subject=\''.$db->escape($subject).'\', sticky='.$stick_topic.' WHERE id='.$cur_post['tid'].' OR moved_to='.$cur_post['tid']) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 			// We changed the subject, so we need to take that into account when we update the search words
 			update_search_index('edit', $id, $message, $subject);
-		}
-		else
+		} else
 			update_search_index('edit', $id, $message);
 
 		// Update the post
@@ -149,12 +140,9 @@ $cur_index = 1;
 require get_view_path('navigation.php');
 
 // If there are errors, we display them
-if (!empty($errors))
-{
+if (!empty($errors)) {
     require get_view_path('edit-errors.tpl.php');
-}
-else if (isset($_POST['preview']))
-{
+} else if (isset($_POST['preview'])) {
     require get_view_path('edit-preview.tpl.php');
 }
 

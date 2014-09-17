@@ -12,16 +12,14 @@ require FORUM_ROOT.'include/common.php';
 
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins
-if (isset($_GET['get_host']))
-{
+if (isset($_GET['get_host'])) {
 	if (!$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
 	// Is get_host an IP address or a post ID?
 	if (@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $_GET['get_host']) || @preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $_GET['get_host']))
 		$ip = $_GET['get_host'];
-	else
-	{
+	else {
 		$get_host = intval($_GET['get_host']);
 		if ($get_host < 1)
 			message($lang['Bad request'], false, '404 Not Found');
@@ -55,8 +53,7 @@ if (!$luna_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
 
 // All other topic moderation features require a topic ID in GET
-if (isset($_GET['tid']))
-{
+if (isset($_GET['tid'])) {
 	$tid = intval($_GET['tid']);
 	if ($tid < 1)
 		message($lang['Bad request'], false, '404 Not Found');
@@ -69,14 +66,12 @@ if (isset($_GET['tid']))
 	$cur_topic = $db->fetch_assoc($result);
 
 	// Delete one or more posts
-	if (isset($_POST['delete_posts']) || isset($_POST['delete_posts_comply']))
-	{
+	if (isset($_POST['delete_posts']) || isset($_POST['delete_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
 			message($lang['No posts selected']);
 
-		if (isset($_POST['delete_posts_comply']))
-		{
+		if (isset($_POST['delete_posts_comply'])) {
 			confirm_referrer('moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
@@ -116,15 +111,12 @@ if (isset($_GET['tid']))
 
 		require get_view_path('moderate-delete_posts.tpl.php');
 
-	}
-	else if (isset($_POST['split_posts']) || isset($_POST['split_posts_comply']))
-	{
+	} else if (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
 			message($lang['No posts selected']);
 
-		if (isset($_POST['split_posts_comply']))
-		{
+		if (isset($_POST['split_posts_comply'])) {
 			confirm_referrer('moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
@@ -227,10 +219,8 @@ if (isset($_GET['tid']))
 
 
 // Move one or more topics
-if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
-{
-	if (isset($_POST['move_topics_to']))
-	{
+if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
+	if (isset($_POST['move_topics_to'])) {
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
@@ -259,10 +249,8 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 		$db->query('UPDATE '.$db->prefix.'topics SET forum_id='.$move_to_forum.' WHERE id IN('.implode(',',$topics).')') or error('Unable to move topics', __FILE__, __LINE__, $db->error());
 
 		// Should we create redirect topics?
-		if (isset($_POST['with_redirect']))
-		{
-			foreach ($topics as $cur_topic)
-			{
+		if (isset($_POST['with_redirect'])) {
+			foreach ($topics as $cur_topic) {
 				// Fetch info for the redirect topic
 				$result = $db->query('SELECT poster, subject, posted, last_post FROM '.$db->prefix.'topics WHERE id='.$cur_topic) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 				$moved_to = $db->fetch_assoc($result);
@@ -279,17 +267,14 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 		redirect('viewforum.php?id='.$move_to_forum);
 	}
 
-	if (isset($_POST['move_topics']))
-	{
+	if (isset($_POST['move_topics'])) {
 		$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 		if (empty($topics))
 			message($lang['No topics selected']);
 
 		$topics = implode(',', array_map('intval', array_keys($topics)));
 		$action = 'multi';
-	}
-	else
-	{
+	} else {
 		$topics = intval($_GET['move_topics']);
 		if ($topics < 1)
 			message($lang['Bad request'], false, '404 Not Found');
@@ -309,10 +294,8 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to']))
 }
 
 // Merge two or more topics
-else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
-{
-	if (isset($_POST['merge_topics_comply']))
-	{
+else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
+	if (isset($_POST['merge_topics_comply'])) {
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
@@ -387,14 +370,12 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply']))
 }
 
 // Delete one or more topics
-else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
-{
+else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (empty($topics))
 		message($lang['No topics selected']);
 
-	if (isset($_POST['delete_topics_comply']))
-	{
+	if (isset($_POST['delete_topics_comply'])) {
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $topics))
@@ -409,8 +390,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 			message($lang['Bad request'], false, '404 Not Found');
 
 		// Verify that the posts are not by admins
-		if ($luna_user['g_id'] != FORUM_ADMIN)
-		{
+		if ($luna_user['g_id'] != FORUM_ADMIN) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
 				message($lang['No permission'], false, '403 Forbidden');
@@ -452,13 +432,11 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 
 // Open or close one or more topics
-else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
-{
+else if (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 	$action = (isset($_REQUEST['open'])) ? 0 : 1;
 
 	// There could be an array of topic IDs in $_POST
-	if (isset($_POST['open']) || isset($_POST['close']))
-	{
+	if (isset($_POST['open']) || isset($_POST['close'])) {
 		confirm_referrer('moderate.php');
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
@@ -471,8 +449,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 		redirect('moderate.php?fid='.$fid);
 	}
 	// Or just one in $_GET
-	else
-	{
+	else {
 		confirm_referrer('viewtopic.php');
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
@@ -488,8 +465,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close']))
 
 
 // Stick a topic
-else if (isset($_GET['stick']))
-{
+else if (isset($_GET['stick'])) {
 	confirm_referrer('viewtopic.php');
 
 	$stick = intval($_GET['stick']);
@@ -503,8 +479,7 @@ else if (isset($_GET['stick']))
 
 
 // Unstick a topic
-else if (isset($_GET['unstick']))
-{
+else if (isset($_GET['unstick'])) {
 	confirm_referrer('viewtopic.php');
 
 	$unstick = intval($_GET['unstick']);
@@ -526,8 +501,7 @@ if (!$db->num_rows($result))
 
 $cur_forum = $db->fetch_assoc($result);
 
-switch ($cur_forum['sort_by'])
-{
+switch ($cur_forum['sort_by']) {
 	case 0:
 		$sort_by = 'last_post DESC';
 		break;

@@ -108,16 +108,14 @@ body { margin-bottom: 40px; }
 }
 
 // Display debug info (if enabled/defined)
-if (defined('FORUM_DEBUG'))
-{
+if (defined('FORUM_DEBUG')) {
 	echo '<p id="debug">[ ';
 
 	// Calculate script generation time
 	$time_diff = sprintf('%.3f', get_microtime() - $luna_start);
 	echo sprintf($lang['Querytime'], $time_diff, $db->get_num_queries());
 
-	if (function_exists('memory_get_usage'))
-	{
+	if (function_exists('memory_get_usage')) {
 		echo ' - '.sprintf($lang['Memory usage'], file_size(memory_get_usage()));
 
 		if (function_exists('memory_get_peak_usage'))

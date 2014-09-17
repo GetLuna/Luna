@@ -37,8 +37,7 @@ if (defined('PUN'))
 	define('FORUM', PUN);
 
 // If FORUM isn't defined, config.php is missing or corrupt
-if (!defined('FORUM'))
-{
+if (!defined('FORUM')) {
 	header('Location: install.php');
 	exit;
 }
@@ -70,10 +69,8 @@ if (get_magic_quotes_runtime())
 	set_magic_quotes_runtime(0);
 
 // Strip slashes from GET/POST/COOKIE (if magic_quotes_gpc is enabled)
-if (get_magic_quotes_gpc())
-{
-	function stripslashes_array($array)
-	{
+if (get_magic_quotes_gpc()) {
+	function stripslashes_array($array) {
 		return is_array($array) ? array_map('stripslashes_array', $array) : stripslashes($array);
 	}
 
@@ -125,8 +122,7 @@ require FORUM_ROOT.'lang/'.$default_lang.'/language.php';
 
 // Do some DB type specific checks
 $mysql = false;
-switch ($db_type)
-{
+switch ($db_type) {
 	case 'mysql':
 	case 'mysqli':
 	case 'mysql_innodb':
@@ -167,10 +163,8 @@ $start_at = isset($_REQUEST['start_at']) ? intval($_REQUEST['start_at']) : 0;
 $query_str = '';
 
 // Show form
-if (empty($stage))
-{
-	if (file_exists(FORUM_CACHE_DIR.'db_update.lock'))
-	{
+if (empty($stage)) {
+	if (file_exists(FORUM_CACHE_DIR.'db_update.lock')) {
 		// Deal with newlines, tabs and multiple spaces
 		$pattern = array("\t", '  ', '  ');
 		$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
@@ -193,9 +187,7 @@ if (empty($stage))
 </html>
 <?php
 
-	}
-	else
-	{
+	} else {
 
 ?>
 <!DOCTYPE html>
@@ -228,8 +220,7 @@ if (empty($stage))
 
 }
 
-switch ($stage)
-{
+switch ($stage) {
 	// Start by updating the database structure
 	case 'start':
 		$query_str = '?stage=preparse_posts';
@@ -369,8 +360,7 @@ switch ($stage)
 
 		$temp = array();
 		$end_at = 0;
-		while ($cur_item = $db->fetch_assoc($result))
-		{
+		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf($lang['Preparsing item'], $lang['post'], $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'posts SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
@@ -378,8 +368,7 @@ switch ($stage)
 		}
 
 		// Check if there is more work to do
-		if ($end_at > 0)
-		{
+		if ($end_at > 0) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) > 0)
@@ -404,8 +393,7 @@ switch ($stage)
 
 		$temp = array();
 		$end_at = 0;
-		while ($cur_item = $db->fetch_assoc($result))
-		{
+		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf($lang['Preparsing item'], $lang['signature'], $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'users SET signature = \''.$db->escape(preparse_bbcode($cur_item['signature'], $temp, true)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
@@ -413,8 +401,7 @@ switch ($stage)
 		}
 
 		// Check if there is more work to do
-		if ($end_at > 0)
-		{
+		if ($end_at > 0) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result) > 0)
 				$query_str = '?stage=preparse_sigs&start_at='.$end_at;
@@ -431,16 +418,14 @@ switch ($stage)
 		if (isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION)
 			break;
 
-		if ($start_at == 0)
-		{
+		if ($start_at == 0) {
 			// Truncate the tables just in-case we didn't already (if we are coming directly here without converting the tables)
 			$db->truncate_table('search_cache') or error('Unable to empty search cache table', __FILE__, __LINE__, $db->error());
 			$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
 			$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
 
 			// Reset the sequence for the search words (not needed for SQLite)
-			switch ($db_type)
-			{
+			switch ($db_type) {
 				case 'mysql':
 				case 'mysqli':
 				case 'mysql_innodb':
@@ -460,8 +445,7 @@ switch ($stage)
 		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 		$end_at = 0;
-		while ($cur_item = $db->fetch_assoc($result))
-		{
+		while ($cur_item = $db->fetch_assoc($result)) {
 			echo sprintf($lang['Rebuilding index item'], $lang['post'], $cur_item['id']).'<br />'."\n";
 
 			if ($cur_item['id'] == $cur_item['first_post_id'])
@@ -473,8 +457,7 @@ switch ($stage)
 		}
 
 		// Check if there is more work to do
-		if ($end_at > 0)
-		{
+		if ($end_at > 0) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) > 0)

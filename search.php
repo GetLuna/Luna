@@ -23,8 +23,7 @@ else if ($luna_user['g_search'] == '0')
 require FORUM_ROOT.'include/search_idx.php';
 
 // Figure out what to do :-)
-if (isset($_GET['action']) || isset($_GET['search_id']))
-{
+if (isset($_GET['action']) || isset($_GET['search_id'])) {
 	$action = (isset($_GET['action'])) ? $_GET['action'] : null;
 	$forums = isset($_GET['forums']) ? (is_array($_GET['forums']) ? $_GET['forums'] : array_filter(explode(',', $_GET['forums']))) : (isset($_GET['forum']) ? array($_GET['forum']) : array());
 	$sort_dir = (isset($_GET['sort_dir']) && $_GET['sort_dir'] == 'DESC') ? 'DESC' : 'ASC';
@@ -38,15 +37,13 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		$action = 'show_recent';
 
 	// If a search_id was supplied
-	if (isset($_GET['search_id']))
-	{
+	if (isset($_GET['search_id'])) {
 		$search_id = intval($_GET['search_id']);
 		if ($search_id < 1)
 			message($lang['Bad request'], false, '404 Not Found');
 	}
 	// If it's a regular search (keywords and/or author)
-	else if ($action == 'search')
-	{
+	else if ($action == 'search') {
 		$keywords = (isset($_GET['keywords'])) ? utf8_strtolower(luna_trim($_GET['keywords'])) : null;
 		$author = (isset($_GET['author'])) ? utf8_strtolower(luna_trim($_GET['author'])) : null;
 
@@ -67,8 +64,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		$search_in = (!isset($_GET['search_in']) || $_GET['search_in'] == '0') ? 0 : (($_GET['search_in'] == '1') ? 1 : -1);
 	}
 	// If it's a user search (by ID)
-	else if ($action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions')
-	{
+	else if ($action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions') {
 		$user_id = (isset($_GET['user_id'])) ? intval($_GET['user_id']) : $luna_user['id'];
 		if ($user_id < 2)
 			message($lang['Bad request'], false, '404 Not Found');
@@ -76,21 +72,18 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		// Subscribed topics can only be viewed by admins, moderators and the users themselves
 		if ($action == 'show_subscriptions' && !$luna_user['is_admmod'] && $user_id != $luna_user['id'])
 			message($lang['No permission'], false, '403 Forbidden');
-	}
-	else if ($action == 'show_recent')
+	} else if ($action == 'show_recent')
 		$interval = isset($_GET['value']) ? intval($_GET['value']) : 86400;
 	else if ($action != 'show_new' && $action != 'show_unanswered')
 		message($lang['Bad request'], false, '404 Not Found');
 
 
 	// If a valid search_id was supplied we attempt to fetch the search results from the db
-	if (isset($search_id))
-	{
+	if (isset($search_id)) {
 		$ident = ($luna_user['is_guest']) ? get_remote_address() : $luna_user['username'];
 
 		$result = $db->query('SELECT search_data FROM '.$db->prefix.'search_cache WHERE id='.$search_id.' AND ident=\''.$db->escape($ident).'\'') or error('Unable to fetch search results', __FILE__, __LINE__, $db->error());
-		if ($row = $db->fetch_assoc($result))
-		{
+		if ($row = $db->fetch_assoc($result)) {
 			$temp = unserialize($row['search_data']);
 
 			$search_ids = unserialize($temp['search_ids']);
@@ -101,19 +94,15 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			$search_type = $temp['search_type'];
 
 			unset($temp);
-		}
-		else
+		} else
 			message($lang['No hits']);
-	}
-	else
-	{
+	} else {
 		$keyword_results = $author_results = array();
 
 		// Search a specific forum?
 		$forum_sql = (!empty($forums) || (empty($forums) && $luna_config['o_search_all_forums'] == '0' && !$luna_user['is_admmod'])) ? ' AND t.forum_id IN ('.implode(',', $forums).')' : '';
 
-		if (!empty($author) || !empty($keywords))
-		{
+		if (!empty($author) || !empty($keywords)) {
 			// Flood protection
 			if ($luna_user['last_search'] && (time() - $luna_user['last_search']) < $luna_user['g_search_flood'] && (time() - $luna_user['last_search']) >= 0)
 				message(sprintf($lang['Search flood'], $luna_user['g_search_flood'], $luna_user['g_search_flood'] - (time() - $luna_user['last_search'])));
@@ -123,8 +112,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			else
 				$db->query('UPDATE '.$db->prefix.'online SET last_search='.time().' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-			switch ($sort_by)
-			{
+			switch ($sort_by) {
 				case 1:
 					$sort_by_sql = ($show_as == 'topics') ? 't.poster' : 'p.poster';
 					$sort_type = SORT_STRING;
@@ -152,8 +140,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			}
 
 			// If it's a search for keywords
-			if ($keywords)
-			{
+			if ($keywords) {
 				// split the keywords into words
 				$keywords_array = split_words($keywords, false);
 
@@ -167,56 +154,42 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				$match_type = 'and';
 
 				$sort_data = array();
-				foreach ($keywords_array as $cur_word)
-				{
-					switch ($cur_word)
-					{
+				foreach ($keywords_array as $cur_word) {
+					switch ($cur_word) {
 						case 'and':
 						case 'or':
 						case 'not':
 							$match_type = $cur_word;
 							break;
 
-						default:
-						{
-							if (is_cjk($cur_word))
-							{
+						default: {
+							if (is_cjk($cur_word)) {
 								$where_cond = str_replace('*', '%', $cur_word);
 								$where_cond = ($search_in ? (($search_in > 0) ? 'p.message LIKE \'%'.$db->escape($where_cond).'%\'' : 't.subject LIKE \'%'.$db->escape($where_cond).'%\'') : 'p.message LIKE \'%'.$db->escape($where_cond).'%\' OR t.subject LIKE \'%'.$db->escape($where_cond).'%\'');
 
 								$result = $db->query('SELECT p.id AS post_id, p.topic_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE ('.$where_cond.') AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for posts', __FILE__, __LINE__, $db->error());
-							}
-							else
+							} else
 								$result = $db->query('SELECT m.post_id, p.topic_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'search_words AS w INNER JOIN '.$db->prefix.'search_matches AS m ON m.word_id = w.id INNER JOIN '.$db->prefix.'posts AS p ON p.id=m.post_id INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE w.word LIKE \''.$db->escape(str_replace('*', '%', $cur_word)).'\''.$search_in_cond.' AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for posts', __FILE__, __LINE__, $db->error());
 
 							$row = array();
-							while ($temp = $db->fetch_assoc($result))
-							{
+							while ($temp = $db->fetch_assoc($result)) {
 								$row[$temp['post_id']] = $temp['topic_id'];
 
-								if (!$word_count)
-								{
+								if (!$word_count) {
 									$keyword_results[$temp['post_id']] = $temp['topic_id'];
 									$sort_data[$temp['post_id']] = $temp['sort_by'];
-								}
-								else if ($match_type == 'or')
-								{
+								} else if ($match_type == 'or') {
 									$keyword_results[$temp['post_id']] = $temp['topic_id'];
 									$sort_data[$temp['post_id']] = $temp['sort_by'];
-								}
-								else if ($match_type == 'not')
-								{
+								} else if ($match_type == 'not') {
 									unset($keyword_results[$temp['post_id']]);
 									unset($sort_data[$temp['post_id']]);
 								}
 							}
 
-							if ($match_type == 'and' && $word_count)
-							{
-								foreach ($keyword_results as $post_id => $topic_id)
-								{
-									if (!isset($row[$post_id]))
-									{
+							if ($match_type == 'and' && $word_count) {
+								foreach ($keyword_results as $post_id => $topic_id) {
+									if (!isset($row[$post_id])) {
 										unset($keyword_results[$post_id]);
 										unset($sort_data[$post_id]);
 									}
@@ -247,10 +220,8 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			}
 
 			// If it's a search for author name (and that author name isn't Guest)
-			if ($author && $author != 'guest' && $author != utf8_strtolower($lang['Guest']))
-			{
-				switch ($db_type)
-				{
+			if ($author && $author != 'guest' && $author != utf8_strtolower($lang['Guest'])) {
+				switch ($db_type) {
 					case 'pgsql':
 						$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username ILIKE \''.$db->escape($author).'\'') or error('Unable to fetch users', __FILE__, __LINE__, $db->error());
 						break;
@@ -260,8 +231,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 						break;
 				}
 
-				if ($db->num_rows($result))
-				{
+				if ($db->num_rows($result)) {
 					$user_ids = array();
 					while ($row = $db->fetch_row($result))
 						$user_ids[] = $row[0];
@@ -275,18 +245,13 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			}
 
 			// If we searched for both keywords and author name we want the intersection between the results
-			if ($author && $keywords)
-			{
+			if ($author && $keywords) {
 				$search_ids = array_intersect_assoc($keyword_results, $author_results);
 				$search_type = array('both', array($keywords, luna_trim($_GET['author'])), implode(',', $forums), $search_in);
-			}
-			else if ($keywords)
-			{
+			} else if ($keywords) {
 				$search_ids = $keyword_results;
 				$search_type = array('keywords', $keywords, implode(',', $forums), $search_in);
-			}
-			else
-			{
+			} else {
 				$search_ids = $author_results;
 				$search_type = array('author', luna_trim($_GET['author']), implode(',', $forums), $search_in);
 			}
@@ -303,9 +268,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			$num_hits = count($search_ids);
 			if (!$num_hits)
 				message($lang['No hits']);
-		}
-		else if ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered')
-		{
+		} else if ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered') {
 			$search_type = array('action', $action);
 			$show_as = 'topics';
 			// We want to sort things after last post
@@ -313,8 +276,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 			$sort_dir = 'DESC';
 
 			// If it's a search for new posts since last visit
-			if ($action == 'show_new')
-			{
+			if ($action == 'show_new') {
 				if ($luna_user['is_guest'])
 					message($lang['No permission'], false, '403 Forbidden');
 
@@ -325,8 +287,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 					message($lang['No new posts']);
 			}
 			// If it's a search for recent posts (in a certain time interval)
-			else if ($action == 'show_recent')
-			{
+			else if ($action == 'show_recent') {
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.(time() - $interval).' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
@@ -334,8 +295,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 					message($lang['No recent posts']);
 			}
 			// If it's a search for posts by a specific user ID
-			else if ($action == 'show_user_posts')
-			{
+			else if ($action == 'show_user_posts') {
 				$show_as = 'posts';
 
 				$result = $db->query('SELECT p.id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON p.topic_id=t.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY p.posted DESC') or error('Unable to fetch user posts', __FILE__, __LINE__, $db->error());
@@ -348,8 +308,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				$search_type[2] = $user_id;
 			}
 			// If it's a search for topics by a specific user ID
-			else if ($action == 'show_user_topics')
-			{
+			else if ($action == 'show_user_topics') {
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'posts AS p ON t.first_post_id=p.id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.poster_id='.$user_id.' ORDER BY t.last_post DESC') or error('Unable to fetch user topics', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
@@ -360,8 +319,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				$search_type[2] = $user_id;
 			}
 			// If it's a search for subscribed topics
-			else if ($action == 'show_subscriptions')
-			{
+			else if ($action == 'show_subscriptions') {
 				if ($luna_user['is_guest'])
 					message($lang['Bad request'], false, '404 Not Found');
 
@@ -375,8 +333,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				$search_type[2] = $user_id;
 			}
 			// If it's a search for unanswered posts
-			else
-			{
+			else {
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.num_replies=0 AND t.moved_to IS NULL ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
@@ -389,8 +346,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 				$search_ids[] = $row[0];
 
 			$db->free_result($result);
-		}
-		else
+		} else
 			message($lang['Bad request'], false, '404 Not Found');
 
 
@@ -398,8 +354,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		$old_searches = array();
 		$result = $db->query('SELECT ident FROM '.$db->prefix.'online') or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 
-		if ($db->num_rows($result))
-		{
+		if ($db->num_rows($result)) {
 			while ($row = $db->fetch_row($result))
 				$old_searches[] = '\''.$db->escape($row[0]).'\'';
 
@@ -421,8 +376,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 
 		$db->query('INSERT INTO '.$db->prefix.'search_cache (id, ident, search_data) VALUES('.$search_id.', \''.$db->escape($ident).'\', \''.$db->escape($temp).'\')') or error('Unable to insert search results', __FILE__, __LINE__, $db->error());
 
-		if ($search_type[0] != 'action')
-		{
+		if ($search_type[0] != 'action') {
 			$db->end_transaction();
 			$db->close();
 
@@ -439,10 +393,8 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
 
 	// Fetch results to display
-	if (!empty($search_ids))
-	{
-		switch ($sort_by)
-		{
+	if (!empty($search_ids)) {
+		switch ($sort_by) {
 			case 1:
 				$sort_by_sql = ($show_as == 'topics') ? 't.poster' : 'p.poster';
 				break;
@@ -486,14 +438,12 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		$crumbs_text = array();
 		$crumbs_text['show_as'] = $lang['Search'];
 
-		if ($search_type[0] == 'action')
-		{
+		if ($search_type[0] == 'action') {
 			if ($search_type[1] == 'show_user_topics')
 				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$search_type[2].'">'.sprintf($lang['Quick search show_user_topics'], luna_htmlspecialchars($search_set[0]['poster'])).'</a>';
 			else if ($search_type[1] == 'show_user_posts')
 				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$search_type[2].'">'.sprintf($lang['Quick search show_user_posts'], luna_htmlspecialchars($search_set[0]['pposter'])).'</a>';
-			else if ($search_type[1] == 'show_subscriptions')
-			{
+			else if ($search_type[1] == 'show_subscriptions') {
 				// Fetch username of subscriber
 				$subscriber_id = $search_type[2];
 				$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$subscriber_id) or error('Unable to fetch username of subscriber', __FILE__, __LINE__, $db->error());
@@ -504,26 +454,18 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 					message($lang['Bad request'], false, '404 Not Found');
 
 				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$subscriber_id.'">'.sprintf($lang['Quick search show_subscriptions'], luna_htmlspecialchars($subscriber_name)).'</a>';
-			}
-			else
+			} else
 				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action='.$search_type[1].'">'.$lang['Quick search '.$search_type[1]].'</a>';
-		}
-		else
-		{
+		} else {
 			$keywords = $author = '';
 
-			if ($search_type[0] == 'both')
-			{
+			if ($search_type[0] == 'both') {
 				list ($keywords, $author) = $search_type[1];
 				$crumbs_text['search_type'] = sprintf($lang['By both show as '.$show_as], luna_htmlspecialchars($keywords), luna_htmlspecialchars($author));
-			}
-			else if ($search_type[0] == 'keywords')
-			{
+			} else if ($search_type[0] == 'keywords') {
 				$keywords = $search_type[1];
 				$crumbs_text['search_type'] = sprintf($lang['By keywords show as '.$show_as], luna_htmlspecialchars($keywords));
-			}
-			else if ($search_type[0] == 'author')
-			{
+			} else if ($search_type[0] == 'author') {
 				$author = $search_type[1];
 				$crumbs_text['search_type'] = sprintf($lang['By user show as '.$show_as], luna_htmlspecialchars($author));
 			}
@@ -550,19 +492,15 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		if (!$luna_user['is_guest'])
 			$tracked_topics = get_tracked_topics();
 
-		foreach ($search_set as $cur_search)
-		{
+		foreach ($search_set as $cur_search) {
 			$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
 
 			if ($luna_config['o_censoring'] == '1')
 				$cur_search['subject'] = censor_words($cur_search['subject']);
 
-			if ($show_as == 'posts')
-			{
+			if ($show_as == 'posts') {
 				require get_view_path('search-show_as_posts.tpl.php');
-			}
-			else
-			{
+			} else {
 				require get_view_path('search-show_as_topics.tpl.php');
 			}
 		}
@@ -573,8 +511,7 @@ if (isset($_GET['action']) || isset($_GET['search_id']))
 		require get_view_path('search-breadcrumbs.tpl.php');
 
 		require FORUM_ROOT.'footer.php';
-	}
-	else
+	} else
 		message($lang['No hits']);
 }
 

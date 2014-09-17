@@ -34,8 +34,7 @@ $cur_forum = $db->fetch_assoc($result);
 $mods_array = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 $is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
-switch ($cur_forum['sort_by'])
-{
+switch ($cur_forum['sort_by']) {
 	case 0:
 		$sort_by = 'last_post DESC';
 		break;
@@ -76,10 +75,8 @@ else if ($luna_config['o_feed_type'] == '2')
 
 $forum_actions = array();
 
-if (!$luna_user['is_guest'])
-{
-	if ($luna_config['o_forum_subscriptions'] == '1')
-	{
+if (!$luna_user['is_guest']) {
+	if ($luna_config['o_forum_subscriptions'] == '1') {
 		if ($cur_forum['is_subscribed'])
 			$forum_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.$lang['Unsubscribe'].'</a>';
 		else
@@ -100,20 +97,16 @@ require get_view_path('viewforum-header.tpl.php');
 $result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 
 // If there are topics in this forum
-if ($db->num_rows($result))
-{
+if ($db->num_rows($result)) {
 	$topic_ids = array();
 	for ($i = 0; $cur_topic_id = $db->result($result, $i); $i++)
 		$topic_ids[] = $cur_topic_id;
 
 	// Fetch list of topics to display on this page
-	if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0')
-	{
+	if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
 		// When not showing a posted label
 		$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
-	}
-	else
-	{
+	} else {
 		// When showing a posted label
 		$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
 	}
@@ -139,44 +132,36 @@ if ($db->num_rows($result))
 		if ($luna_config['o_censoring'] == '1')
 			$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
-		if ($cur_topic['sticky'] == '1')
-		{
+		if ($cur_topic['sticky'] == '1') {
 			$item_status .= ' isticky';
 			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 		}
 
-		if ($cur_topic['moved_to'] != 0)
-		{
+		if ($cur_topic['moved_to'] != 0) {
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 			$item_status .= ' imoved';
-		}
-		else if ($cur_topic['closed'] == '0')
+		} else if ($cur_topic['closed'] == '0')
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-		else
-		{
+		else {
 			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 			$item_status .= ' iclosed';
 		}
 
-		if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1')
-		{
-			if ($cur_topic['has_posted'] == $luna_user['id'])
-			{
+		if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') {
+			if ($cur_topic['has_posted'] == $luna_user['id']) {
 				$status_text[] = '<span class="fa fa-asterisk"></span>';
 				$item_status .= ' iposted';
 			}
 		}
 
-		if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to']))
-		{
+		if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
 			$subject = '<strong>'.$subject.'</strong>';
 			$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
-		}
-		else
+		} else
 			$subject_new_posts = null;
 
 		// Insert the status text before the subject
@@ -190,8 +175,7 @@ if ($db->num_rows($result))
 			$subject_multipage = null;
 
 		// Should we show the "New posts" and/or the multipage links?
-		if (!empty($subject_new_posts) || !empty($subject_multipage))
-		{
+		if (!empty($subject_new_posts) || !empty($subject_multipage)) {
 			$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
 			$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
 		}

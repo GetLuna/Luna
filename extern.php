@@ -69,8 +69,7 @@ if (!defined('FORUM_EXTERN_MAX_SUBJECT_LENGTH'))
 if ($luna_user['is_guest'] && isset($_SERVER['PHP_AUTH_USER']))
 	authenticate_user($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
 
-if ($luna_user['g_read_board'] == '0')
-{
+if ($luna_user['g_read_board'] == '0') {
 	http_authenticate_user();
 	exit($lang['No view']);
 }
@@ -78,8 +77,7 @@ if ($luna_user['g_read_board'] == '0')
 $action = isset($_GET['action']) ? strtolower($_GET['action']) : 'feed';
 
 // Handle a couple old formats, from FluxBB 1.2
-switch ($action)
-{
+switch ($action) {
 	case 'active':
 		$action = 'feed';
 		$_GET['order'] = 'last_post';
@@ -94,8 +92,7 @@ switch ($action)
 //
 // Sends the proper headers for Basic HTTP Authentication
 //
-function http_authenticate_user()
-{
+function http_authenticate_user() {
 	global $luna_config, $luna_user;
 
 	if (!$luna_user['is_guest'])
@@ -109,8 +106,7 @@ function http_authenticate_user()
 //
 // Output $feed as RSS 2.0
 //
-function output_rss($feed)
-{
+function output_rss($feed) {
 	global $lang, $luna_config;
 
 	// Send XML/no cache headers
@@ -129,8 +125,7 @@ function output_rss($feed)
 	echo "\t\t".'<lastBuildDate>'.gmdate('r', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</lastBuildDate>'."\n";
 	echo "\t\t".'<generator>Luna '.$luna_config['o_cur_version'].'</generator>'."\n";
 
-	foreach ($feed['items'] as $item)
-	{
+	foreach ($feed['items'] as $item) {
 		echo "\t\t".'<item>'."\n";
 		echo "\t\t\t".'<title><![CDATA['.escape_cdata($item['title']).']]></title>'."\n";
 		echo "\t\t\t".'<link>'.luna_htmlspecialchars($item['link']).'</link>'."\n";
@@ -150,8 +145,7 @@ function output_rss($feed)
 //
 // Output $feed as Atom 1.0
 //
-function output_atom($feed)
-{
+function output_atom($feed) {
 	global $lang, $luna_config;
 
 	// Send XML/no cache headers
@@ -173,8 +167,7 @@ function output_atom($feed)
 
 	$content_tag = ($feed['type'] == 'posts') ? 'content' : 'summary';
 
-	foreach ($feed['items'] as $item)
-	{
+	foreach ($feed['items'] as $item) {
 		echo "\t".'<entry>'."\n";
 		echo "\t\t".'<title type="html"><![CDATA['.escape_cdata($item['title']).']]></title>'."\n";
 		echo "\t\t".'<link rel="alternate" href="'.luna_htmlspecialchars($item['link']).'"/>'."\n";
@@ -202,8 +195,7 @@ function output_atom($feed)
 //
 // Output $feed as XML
 //
-function output_xml($feed)
-{
+function output_xml($feed) {
 	global $lang, $luna_config;
 
 	// Send XML/no cache headers
@@ -218,8 +210,7 @@ function output_xml($feed)
 
 	$forum_tag = ($feed['type'] == 'posts') ? 'post' : 'topic';
 
-	foreach ($feed['items'] as $item)
-	{
+	foreach ($feed['items'] as $item) {
 		echo "\t".'<'.$forum_tag.' id="'.$item['id'].'">'."\n";
 
 		echo "\t\t".'<title><![CDATA['.escape_cdata($item['title']).']]></title>'."\n";
@@ -247,8 +238,7 @@ function output_xml($feed)
 //
 // Output $feed as HTML (using <li> tags)
 //
-function output_html($feed)
-{
+function output_html($feed) {
 
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
@@ -256,8 +246,7 @@ function output_html($feed)
 	header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	header('Pragma: public');
 
-	foreach ($feed['items'] as $item)
-	{
+	foreach ($feed['items'] as $item) {
 		if (utf8_strlen($item['title']) > FORUM_EXTERN_MAX_SUBJECT_LENGTH)
 			$subject_truncated = luna_htmlspecialchars(luna_trim(utf8_substr($item['title'], 0, (FORUM_EXTERN_MAX_SUBJECT_LENGTH - 5)))).' …';
 		else
@@ -268,8 +257,7 @@ function output_html($feed)
 }
 
 // Show recent discussions
-if ($action == 'feed')
-{
+if ($action == 'feed') {
 	require FORUM_ROOT.'include/parser.php';
 
 	// Determine what type of feed to output
@@ -282,14 +270,12 @@ if ($action == 'feed')
 		$show = 15;
 
 	// Was a topic ID supplied?
-	if (isset($_GET['tid']))
-	{
+	if (isset($_GET['tid'])) {
 		$tid = intval($_GET['tid']);
 
 		// Fetch topic subject
 		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
-		if (!$db->num_rows($result))
-		{
+		if (!$db->num_rows($result)) {
 			http_authenticate_user();
 			exit($lang['Bad request']);
 		}
@@ -310,8 +296,7 @@ if ($action == 'feed')
 
 		// Fetch $show posts
 		$result = $db->query('SELECT p.id, p.poster, p.message, p.hide_smilies, p.posted, p.poster_id, u.email_setting, u.email, p.poster_email FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id WHERE p.topic_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-		while ($cur_post = $db->fetch_assoc($result))
-		{
+		while ($cur_post = $db->fetch_assoc($result)) {
 			$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
 			$item = array(
@@ -325,14 +310,12 @@ if ($action == 'feed')
 				'pubdate'		=>	$cur_post['posted']
 			);
 
-			if ($cur_post['poster_id'] > 1)
-			{
+			if ($cur_post['poster_id'] > 1) {
 				if ($cur_post['email_setting'] == '0' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_post['email'];
 
 				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_post['poster_id'];
-			}
-			else if ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
+			} else if ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
 				$item['author']['email'] = $cur_post['poster_email'];
 
 			$feed['items'][] = $item;
@@ -340,24 +323,20 @@ if ($action == 'feed')
 
 		$output_func = 'output_'.$type;
 		$output_func($feed);
-	}
-	else
-	{
+	} else {
 		$order_posted = isset($_GET['order']) && strtolower($_GET['order']) == 'posted';
 		$forum_name = '';
 		$forum_sql = '';
 
 		// Were any forum IDs supplied?
-		if (isset($_GET['fid']) && is_scalar($_GET['fid']) && $_GET['fid'] != '')
-		{
+		if (isset($_GET['fid']) && is_scalar($_GET['fid']) && $_GET['fid'] != '') {
 			$fids = explode(',', luna_trim($_GET['fid']));
 			$fids = array_map('intval', $fids);
 
 			if (!empty($fids))
 				$forum_sql .= ' AND t.forum_id IN('.implode(',', $fids).')';
 
-			if (count($fids) == 1)
-			{
+			if (count($fids) == 1) {
 				// Fetch forum name
 				$result = $db->query('SELECT f.forum_name FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fids[0]) or error('Unable to fetch forum name', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
@@ -366,8 +345,7 @@ if ($action == 'feed')
 		}
 
 		// Any forum IDs to exclude?
-		if (isset($_GET['nfid']) && is_scalar($_GET['nfid']) && $_GET['nfid'] != '')
-		{
+		if (isset($_GET['nfid']) && is_scalar($_GET['nfid']) && $_GET['nfid'] != '') {
 			$nfids = explode(',', luna_trim($_GET['nfid']));
 			$nfids = array_map('intval', $nfids);
 
@@ -384,8 +362,7 @@ if ($action == 'feed')
 			include FORUM_CACHE_DIR.'cache_'.$cache_id.'.php';
 
 		$now = time();
-		if (!isset($feed) || $cache_expire < $now)
-		{
+		if (!isset($feed) || $cache_expire < $now) {
 			// Setup the feed
 			$feed = array(
 				'title' 		=>	$luna_config['o_board_title'].$forum_name,
@@ -397,8 +374,7 @@ if ($action == 'feed')
 
 			// Fetch $show topics
 			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
-			while ($cur_topic = $db->fetch_assoc($result))
-			{
+			while ($cur_topic = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
@@ -415,22 +391,19 @@ if ($action == 'feed')
 					'pubdate'		=>	$order_posted ? $cur_topic['posted'] : $cur_topic['last_post']
 				);
 
-				if ($cur_topic['poster_id'] > 1)
-				{
+				if ($cur_topic['poster_id'] > 1) {
 					if ($cur_topic['email_setting'] == '0' && !$luna_user['is_guest'])
 						$item['author']['email'] = $cur_topic['email'];
 
 					$item['author']['uri'] = '/profile.php?id='.$cur_topic['poster_id'];
-				}
-				else if ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
+				} else if ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_topic['poster_email'];
 
 				$feed['items'][] = $item;
 			}
 
 			// Output feed as PHP code
-			if (isset($cache_id))
-			{
+			if (isset($cache_id)) {
 				if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 					require FORUM_ROOT.'include/cache.php';
 
@@ -446,8 +419,7 @@ if ($action == 'feed')
 		// Prepend the current base URL onto some links. Done after caching to handle http/https correctly
 		$feed['link'] = get_base_url(true).$feed['link'];
 
-		foreach ($feed['items'] as $key => $item)
-		{
+		foreach ($feed['items'] as $key => $item) {
 			$feed['items'][$key]['link'] = get_base_url(true).$item['link'];
 
 			if (isset($item['author']['uri']))
@@ -462,22 +434,18 @@ if ($action == 'feed')
 }
 
 // Show users online
-else if ($action == 'online' || $action == 'online_full')
-{
+else if ($action == 'online' || $action == 'online_full') {
 	// Fetch users online info and generate strings for output
 	$num_guests = $num_users = 0;
 	$users = array();
 
 	$result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 
-	while ($luna_user_online = $db->fetch_assoc($result))
-	{
-		if ($luna_user_online['user_id'] > 1)
-		{
+	while ($luna_user_online = $db->fetch_assoc($result)) {
+		if ($luna_user_online['user_id'] > 1) {
 			$users[] = ($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>' : luna_htmlspecialchars($luna_user_online['ident']);
 			++$num_users;
-		}
-		else
+		} else
 			++$num_guests;
 	}
 
@@ -498,14 +466,12 @@ else if ($action == 'online' || $action == 'online_full')
 }
 
 // Show board statistics
-else if ($action == 'stats')
-{
+else if ($action == 'stats') {
 	// Collect some statistics from the database
 	if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 		include FORUM_CACHE_DIR.'cache_users_info.php';
 
-	if (!defined('FORUM_USERS_INFO_LOADED'))
-	{
+	if (!defined('FORUM_USERS_INFO_LOADED')) {
 		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 			require FORUM_ROOT.'include/cache.php';
 

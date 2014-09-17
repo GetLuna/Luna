@@ -11,26 +11,22 @@ $icon_type = 'icon';
 
 $subject = '<a href="viewtopic.php?id='.$cur_search['tid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['poster']).'</span>';
 
-if ($cur_search['sticky'] == '1')
-{
+if ($cur_search['sticky'] == '1') {
     $item_status .= ' isticky';
     $status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 }
 
-if ($cur_search['closed'] != '0')
-{
+if ($cur_search['closed'] != '0') {
     $status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
     $item_status .= ' iclosed';
 }
 
-if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_search['tid']]) || $tracked_topics['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_topics['forums'][$cur_search['forum_id']]) || $tracked_topics['forums'][$cur_search['forum_id']] < $cur_search['last_post']))
-{
+if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_search['tid']]) || $tracked_topics['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_topics['forums'][$cur_search['forum_id']]) || $tracked_topics['forums'][$cur_search['forum_id']] < $cur_search['last_post'])) {
     $item_status .= ' inew';
     $icon_type = 'icon icon-new';
     $subject = '<strong>'.$subject.'</strong>';
     $subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
-}
-else
+} else
     $subject_new_posts = null;
 
 // Insert the status text before the subject
@@ -44,8 +40,7 @@ else
     $subject_multipage = null;
 
 // Should we show the "New posts" and/or the multipage links?
-if (!empty($subject_new_posts) || !empty($subject_multipage))
-{
+if (!empty($subject_new_posts) || !empty($subject_multipage)) {
     $subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
     $subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
 }

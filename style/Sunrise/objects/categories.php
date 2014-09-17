@@ -46,8 +46,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
         $forum_desc = '<div class="desc">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
 
     // If there is a last_post/last_poster
-    if ($cur_forum['last_post'] != '')
-    {
+    if ($cur_forum['last_post'] != '') {
         if (luna_strlen($cur_forum['last_topic']) > 43)
             $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 40).'...';
 

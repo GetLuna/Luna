@@ -32,8 +32,7 @@ if (!defined('FORUM'))
 <?php endif; ?>
 <?php
 
-if ($luna_user['is_guest'])
-{
+if ($luna_user['is_guest']) {
     $email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong>' : $lang['Email'];
     $email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 

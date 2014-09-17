@@ -7,14 +7,11 @@ if (!defined('FORUM'))
                 ++$post_count;
                 $icon_type = 'icon';
 
-                if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_search['tid']]) || $tracked_topics['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_topics['forums'][$cur_search['forum_id']]) || $tracked_topics['forums'][$cur_search['forum_id']] < $cur_search['last_post']))
-                {
+                if (!$luna_user['is_guest'] && $cur_search['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_search['tid']]) || $tracked_topics['topics'][$cur_search['tid']] < $cur_search['last_post']) && (!isset($tracked_topics['forums'][$cur_search['forum_id']]) || $tracked_topics['forums'][$cur_search['forum_id']] < $cur_search['last_post'])) {
                     $item_status = 'inew';
                     $icon_type = 'icon icon-new';
                     $icon_text = $lang['New icon'];
-                }
-                else
-                {
+                } else {
                     $item_status = '';
                     $icon_text = '<!-- -->';
                 }
@@ -25,8 +22,7 @@ if (!defined('FORUM'))
                 $message = parse_message($cur_search['message'], $cur_search['hide_smilies']);
                 $pposter = luna_htmlspecialchars($cur_search['pposter']);
 
-                if ($cur_search['poster_id'] > 1)
-                {
+                if ($cur_search['poster_id'] > 1) {
                     if ($luna_user['g_view_users'] == '1')
                         $pposter = '<strong><a href="profile.php?id='.$cur_search['poster_id'].'">'.$pposter.'</a></strong>';
                     else

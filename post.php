@@ -51,8 +51,7 @@ $errors = array();
 
 
 // Did someone just hit "Submit" or "Preview"?
-if (isset($_POST['form_sent']))
-{
+if (isset($_POST['form_sent'])) {
 	// Flood protection
 	if (!isset($_POST['preview']) && $luna_user['last_post'] != '' && (time() - $luna_user['last_post']) < $luna_user['g_post_flood'])
 		$errors[] = sprintf($lang['Flood start'], $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
@@ -61,8 +60,7 @@ if (isset($_POST['form_sent']))
 	confirm_referrer(array('post.php', 'viewtopic.php'));
 
 	// If it's a new topic
-	if ($fid)
-	{
+	if ($fid) {
 		$subject = luna_trim($_POST['req_subject']);
 
 		if ($luna_config['o_censoring'] == '1')
@@ -79,15 +77,13 @@ if (isset($_POST['form_sent']))
 	}
 
 	// If the user is logged in we get the username and email from $luna_user
-	if (!$luna_user['is_guest'])
-	{
+	if (!$luna_user['is_guest']) {
 		$username = $luna_user['username'];
 		$email = $luna_user['email'];
 		$id = $luna_user['id'];
 	}
 	// Otherwise it should be in $_POST
-	else
-	{
+	else {
 		$username = luna_trim($_POST['req_username']);
 		$email = strtolower(luna_trim(($luna_config['p_force_guest_email'] == '1') ? $_POST['req_email'] : $_POST['email']));
 		$banned_email = false;
@@ -95,16 +91,14 @@ if (isset($_POST['form_sent']))
 		// It's a guest, so we have to validate the username
 		check_username($username);
 
-		if ($luna_config['p_force_guest_email'] == '1' || $email != '')
-		{
+		if ($luna_config['p_force_guest_email'] == '1' || $email != '') {
 			require FORUM_ROOT.'include/email.php';
 			if (!is_valid_email($email))
 				$errors[] = $lang['Invalid email'];
 
 			// Check if it's a banned email address
 			// we should only check guests because members' addresses are already verified
-			if ($luna_user['is_guest'] && is_banned_email($email))
-			{
+			if ($luna_user['is_guest'] && is_banned_email($email)) {
 				if ($luna_config['p_allow_banned_email'] == '0')
 					$errors[] = $lang['Banned email'];
 
@@ -126,12 +120,10 @@ if (isset($_POST['form_sent']))
 	require FORUM_ROOT.'include/parser.php';
 	$message = preparse_bbcode($message, $errors);
 
-	if (empty($errors))
-	{
+	if (empty($errors)) {
 		if ($message == '')
 			$errors[] = $lang['No message'];
-		else if ($luna_config['o_censoring'] == '1')
-		{
+		else if ($luna_config['o_censoring'] == '1') {
 			// Censor message to see if that causes problems
 			$censored_message = luna_trim(censor_words($message));
 
@@ -150,15 +142,12 @@ if (isset($_POST['form_sent']))
 	$now = time();
 
 	// Did everything go according to plan?
-	if (empty($errors) && !isset($_POST['preview']))
-	{
+	if (empty($errors) && !isset($_POST['preview'])) {
 		require FORUM_ROOT.'include/search_idx.php';
 
 		// If it's a reply
-		if ($tid)
-		{
-			if (!$luna_user['is_guest'])
-			{
+		if ($tid) {
+			if (!$luna_user['is_guest']) {
 				$new_tid = $tid;
 
 				// Insert the new post
@@ -166,16 +155,13 @@ if (isset($_POST['form_sent']))
 				$new_pid = $db->insert_id();
 
 				// To subscribe or not to subscribe, that ...
-				if ($luna_config['o_topic_subscriptions'] == '1')
-				{
+				if ($luna_config['o_topic_subscriptions'] == '1') {
 					if ($subscribe && !$is_subscribed)
 						$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 					else if (!$subscribe && $is_subscribed)
 						$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$tid) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 				}
-			}
-			else
-			{
+			} else {
 				// It's a guest. Insert the new post
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
@@ -195,16 +181,14 @@ if (isset($_POST['form_sent']))
 			update_forum($cur_posting['id']);
 
 			// Should we send out notifications?
-			if ($luna_config['o_topic_subscriptions'] == '1')
-			{
+			if ($luna_config['o_topic_subscriptions'] == '1') {
 				// Get the post time for the previous post in this topic
 				$result = $db->query('SELECT posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 				$previous_post_time = $db->result($result);
 
 				// Get any subscribed users that should be notified (banned users are excluded)
 				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
-				if ($db->num_rows($result))
-				{
+				if ($db->num_rows($result)) {
 					require_once FORUM_ROOT.'include/email.php';
 
 					$notification_emails = array();
@@ -215,11 +199,9 @@ if (isset($_POST['form_sent']))
 						$cleaned_message = bbcode2email($message, -1);
 
 					// Loop through subscribed users and send emails
-					while ($cur_subscriber = $db->fetch_assoc($result))
-					{
+					while ($cur_subscriber = $db->fetch_assoc($result)) {
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
-						if (!isset($notification_emails[$cur_subscriber['language']]))
-						{
+						if (!isset($notification_emails[$cur_subscriber['language']])) {
 								// Load the "new reply" template
 								$mail_tpl = trim($lang['new_reply.tpl']);
 
@@ -259,8 +241,7 @@ if (isset($_POST['form_sent']))
 						}
 
 						// We have to double check here because the templates could be missing
-						if (isset($notification_emails[$cur_subscriber['language']]))
-						{
+						if (isset($notification_emails[$cur_subscriber['language']])) {
 							if ($cur_subscriber['notify_with_post'] == '0')
 								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
 							else
@@ -273,8 +254,7 @@ if (isset($_POST['form_sent']))
 			}
 		}
 		// If it's a new topic
-		else if ($fid)
-		{
+		else if ($fid) {
 			if (!$luna_user['is_guest'])
 				$user_id_poster = $db->escape($id);
 			else
@@ -284,17 +264,14 @@ if (isset($_POST['form_sent']))
 			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, last_post, last_poster, last_poster_id, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
-			if (!$luna_user['is_guest'])
-			{
+			if (!$luna_user['is_guest']) {
 				// To subscribe or not to subscribe, that ...
 				if ($luna_config['o_topic_subscriptions'] == '1' && $subscribe)
 					$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
 				// Create the post ("topic post")
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
-			}
-			else
-			{
+			} else {
 				// Create the post ("topic post")
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
@@ -309,12 +286,10 @@ if (isset($_POST['form_sent']))
 			update_forum($fid);
 
 			// Should we send out notifications?
-			if ($luna_config['o_forum_subscriptions'] == '1')
-			{
+			if ($luna_config['o_forum_subscriptions'] == '1') {
 				// Get any subscribed users that should be notified (banned users are excluded)
 				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['id'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
-				if ($db->num_rows($result))
-				{
+				if ($db->num_rows($result)) {
 					require_once FORUM_ROOT.'include/email.php';
 
 					$notification_emails = array();
@@ -325,11 +300,9 @@ if (isset($_POST['form_sent']))
 						$cleaned_message = bbcode2email($message, -1);
 
 					// Loop through subscribed users and send emails
-					while ($cur_subscriber = $db->fetch_assoc($result))
-					{
+					while ($cur_subscriber = $db->fetch_assoc($result)) {
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
-						if (!isset($notification_emails[$cur_subscriber['language']]))
-						{
+						if (!isset($notification_emails[$cur_subscriber['language']])) {
 								// Load the "new topic" template
 								$mail_tpl = trim($lang['new_topic.tpl']);
 
@@ -371,8 +344,7 @@ if (isset($_POST['form_sent']))
 						}
 
 						// We have to double check here because the templates could be missing
-						if (isset($notification_emails[$cur_subscriber['language']]))
-						{
+						if (isset($notification_emails[$cur_subscriber['language']])) {
 							if ($cur_subscriber['notify_with_post'] == '0')
 								luna_mail($cur_subscriber['email'], $notification_emails[$cur_subscriber['language']][0], $notification_emails[$cur_subscriber['language']][1]);
 							else
@@ -386,8 +358,7 @@ if (isset($_POST['form_sent']))
 		}
 
 		// If we previously found out that the email was banned
-		if ($luna_user['is_guest'] && $banned_email && $luna_config['o_mailing_list'] != '')
-		{
+		if ($luna_user['is_guest'] && $banned_email && $luna_config['o_mailing_list'] != '') {
 			// Load the "banned email post" template
 			$mail_tpl = trim($lang['banned_email_post.tpl']);
 
@@ -405,16 +376,13 @@ if (isset($_POST['form_sent']))
 		}
 
 		// If the posting user is logged in, increment his/her post count
-		if (!$luna_user['is_guest'])
-		{
+		if (!$luna_user['is_guest']) {
 			$db->query('UPDATE '.$db->prefix.'users SET num_posts=num_posts+1, last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 			$tracked_topics = get_tracked_topics();
 			$tracked_topics['topics'][$new_tid] = time();
 			set_tracked_topics($tracked_topics);
-		}
-		else
-		{
+		} else {
 			$db->query('UPDATE '.$db->prefix.'online SET last_post='.$now.' WHERE ident=\''.$db->escape(get_remote_address()).'\'' ) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 		}
 
@@ -424,14 +392,12 @@ if (isset($_POST['form_sent']))
 
 
 // If a topic ID was specified in the url (it's a reply)
-if ($tid)
-{
+if ($tid) {
 	$action = $lang['Post a reply'];
 	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
 
 	// If a quote ID was specified in the url
-	if (isset($_GET['qid']))
-	{
+	if (isset($_GET['qid'])) {
 		$qid = intval($_GET['qid']);
 		if ($qid < 1)
 			message($lang['Bad request'], false, '404 Not Found');
@@ -443,8 +409,7 @@ if ($tid)
 		list($q_poster, $q_message) = $db->fetch_row($result);
 
 		// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
-		if (strpos($q_message, '[code]') !== false && strpos($q_message, '[/code]') !== false)
-		{
+		if (strpos($q_message, '[code]') !== false && strpos($q_message, '[/code]') !== false) {
 			list($inside, $outside) = split_text($q_message, '[code]', '[/code]');
 
 			$q_message = implode("\1", $outside);
@@ -454,14 +419,12 @@ if ($tid)
 		$q_message = preg_replace('%\[img(?:=(?:[^\[]*?))?\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%U', '\1\3', $q_message);
 
 		// If we split up the message before we have to concatenate it together again (code tags)
-		if (isset($inside))
-		{
+		if (isset($inside)) {
 			$outside = explode("\1", $q_message);
 			$q_message = '';
 
 			$num_tokens = count($outside);
-			for ($i = 0; $i < $num_tokens; ++$i)
-			{
+			for ($i = 0; $i < $num_tokens; ++$i) {
 				$q_message .= $outside[$i];
 				if (isset($inside[$i]))
 					$q_message .= '[code]'.$inside[$i].'[/code]';
@@ -476,15 +439,12 @@ if ($tid)
 		$q_message = luna_htmlspecialchars($q_message);
 
 		// If username contains a square bracket, we add "" or '' around it (so we know when it starts and ends)
-		if (strpos($q_poster, '[') !== false || strpos($q_poster, ']') !== false)
-		{
+		if (strpos($q_poster, '[') !== false || strpos($q_poster, ']') !== false) {
 			if (strpos($q_poster, '\'') !== false)
 				$q_poster = '"'.$q_poster.'"';
 			else
 				$q_poster = '\''.$q_poster.'\'';
-		}
-		else
-		{
+		} else {
 			// Get the characters at the start and end of $q_poster
 			$ends = substr($q_poster, 0, 1).substr($q_poster, -1, 1);
 
@@ -499,12 +459,10 @@ if ($tid)
 	}
 }
 // If a forum ID was specified in the url (new topic)
-else if ($fid)
-{
+else if ($fid) {
 	$action = $lang['Post new topic'];
 	$form = '<form id="post" method="post" action="post.php?action=post&amp;fid='.$fid.'" onsubmit="return process_form(this)">';
-}
-else
+} else
 	message($lang['Bad request'], false, '404 Not Found');
 
 
@@ -514,8 +472,7 @@ $focus_element = array('post');
 
 if (!$luna_user['is_guest'])
 	$focus_element[] = ($fid) ? 'req_subject' : 'req_message';
-else
-{
+else {
 	$required_fields['req_username'] = $lang['Guest name'];
 	$focus_element[] = 'req_username';
 }
@@ -526,20 +483,16 @@ require FORUM_ROOT.'header.php';
 require get_view_path('post-breadcrumb.tpl.php');
 
 // If there are errors, we display them
-if (!empty($errors))
-{
+if (!empty($errors)) {
 	require get_view_path('post-error.tpl.php');
-}
-else if (isset($_POST['preview']))
-{
+} else if (isset($_POST['preview'])) {
 	require get_view_path('post-preview.tpl.php');
 }
 
 require get_view_path('post-form.tpl.php');
 
 // Check to see if the topic review is to be displayed
-if ($tid && $luna_config['o_topic_review'] != '0')
-{
+if ($tid && $luna_config['o_topic_review'] != '0') {
 	$result = $db->query('SELECT poster, message, hide_smilies, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT '.$luna_config['o_topic_review']) or error('Unable to fetch topic review', __FILE__, __LINE__, $db->error());
 
 	require get_view_path('post-topic_review.tpl.php');

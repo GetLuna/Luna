@@ -18,8 +18,7 @@ require FORUM_ROOT.'include/common.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
-if (isset($_POST['form_sent']) && $action == 'in')
-{
+if (isset($_POST['form_sent']) && $action == 'in') {
 	$form_username = luna_trim($_POST['req_username']);
 	$form_password = luna_trim($_POST['req_password']);
 	$save_pass = isset($_POST['save_pass']);
@@ -31,8 +30,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 
 	$authorized = false;
 
-	if (!empty($cur_user['password']))
-	{
+	if (!empty($cur_user['password'])) {
         $form_password_hash = luna_hash($form_password); // Will result in a SHA-1 hash
         $authorized = ($cur_user['password'] == $form_password_hash);
 	}
@@ -41,8 +39,7 @@ if (isset($_POST['form_sent']) && $action == 'in')
 		message($lang['Wrong user/pass'].' <a href="login.php?action=forget">'.$lang['Forgotten pass'].'</a>');
 
 	// Update the status if this is the first time the user logged in
-	if ($cur_user['group_id'] == FORUM_UNVERIFIED)
-	{
+	if ($cur_user['group_id'] == FORUM_UNVERIFIED) {
 		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$luna_config['o_default_user_group'].' WHERE id='.$cur_user['id']) or error('Unable to update user status', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the users info cache
@@ -62,12 +59,8 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	set_tracked_topics(null);
 
 	redirect(luna_htmlspecialchars($_POST['redirect_url']));
-}
-
-else if ($action == 'out')
-{
-	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address())))
-	{
+} else if ($action == 'out') {
+	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address()))) {
 		header('Location: index.php');
 		exit;
 	}
@@ -82,18 +75,13 @@ else if ($action == 'out')
 	luna_setcookie(1, luna_hash(uniqid(rand(), true)), time() + 31536000);
 
 	redirect('index.php');
-}
-
-else if ($action == 'forget' || $action == 'forget_2')
-{
-	if (!$luna_user['is_guest'])
-	{
+} else if ($action == 'forget' || $action == 'forget_2') {
+	if (!$luna_user['is_guest']) {
 		header('Location: index.php');
 		exit;
 	}
 
-	if (isset($_POST['form_sent']))
-	{
+	if (isset($_POST['form_sent'])) {
 		// Start with a clean slate
 		$errors = array();
 
@@ -105,12 +93,10 @@ else if ($action == 'forget' || $action == 'forget_2')
 			$errors[] = $lang['Invalid email'];
 
 		// Did everything go according to plan?
-		if (empty($errors))
-		{
+		if (empty($errors)) {
 			$result = $db->query('SELECT id, username, last_email_sent FROM '.$db->prefix.'users WHERE email=\''.$db->escape($email).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 
-			if ($db->num_rows($result))
-			{
+			if ($db->num_rows($result)) {
 				// Load the "activate password" template
 				$mail_tpl = trim($lang['activate_password.tpl']);
 
@@ -124,8 +110,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				// Loop through users we found
-				while ($cur_hit = $db->fetch_assoc($result))
-				{
+				while ($cur_hit = $db->fetch_assoc($result)) {
 					if ($cur_hit['last_email_sent'] != '' && (time() - $cur_hit['last_email_sent']) < 3600 && (time() - $cur_hit['last_email_sent']) >= 0)
 					message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
 
@@ -144,9 +129,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 				}
 
 				message($lang['Forget mail'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
-			}
-			else
-			{
+			} else {
 				$errors[] = $lang['No email match'].' '.htmlspecialchars($email).'.';
 			}
 		}
@@ -159,18 +142,14 @@ else if ($action == 'forget' || $action == 'forget_2')
 	require FORUM_ROOT.'header.php';
 
 	require get_view_path('login-forget.tpl.php');
-}
-
-else
-{
+} else {
 	if (!$luna_user['is_guest']) {
 		header('Location: index.php');
 		exit;
 	}
 	
 	// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to index.php after login)
-	if (!empty($_SERVER['HTTP_REFERER']))
-	{
+	if (!empty($_SERVER['HTTP_REFERER'])) {
 		$referrer = parse_url($_SERVER['HTTP_REFERER']);
 		// Remove www subdomain if it exists
 		if (strpos($referrer['host'], 'www.') === 0)
