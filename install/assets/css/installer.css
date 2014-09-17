@@ -1,0 +1,51 @@
+/*
+ * @package Luna
+ * @subpackage Installer
+ * @version 0.0.8
+ * This CSS file is responsible for the slim design of the installer.
+ */
+
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-family: "Segoe UI";
+}
+
+h3 {
+	font-family: "Segoe UI Light";
+	color: #0d4382 !important;
+}
+
+.alert h3 {
+	margin-top: 0;
+	color: #b94a48 !important;
+}
+
+@media (min-width: 768px) {
+	.container {
+		max-width: 730px;
+	}
+}
+
+
+/*Form Wizard*/
+.wizard {margin-bottom: 20px;}
+.wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+.wizard > .wizard-step {padding: 0; position: relative;}
+.wizard > .wizard-step + .wizard-step {}
+.wizard > .wizard-step .wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+.wizard > .wizard-step .wizard-info {color: #999; font-size: 14px;}
+.wizard > .wizard-step > .wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #6688b0; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
+.wizard > .wizard-step > .wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #0d4382; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+.wizard > .wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+.wizard > .wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #6688b0;}
+.wizard > .wizard-step.complete > .progress > .progress-bar {width:100%;}
+.wizard > .wizard-step.active > .progress > .progress-bar {width:50%;}
+.wizard > .wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.wizard > .wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.wizard > .wizard-step.disabled > .wizard-dot {background-color: #f5f5f5;}
+.wizard > .wizard-step > .wizard-dot {margin-top: -36px;}
+.wizard > .wizard-step.disabled > .wizard-dot:after {opacity: 0;}
+.wizard > .wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.wizard > .wizard-step:last-child  > .progress {width: 50%;}
+.wizard > .wizard-step.disabled a.wizard-dot{ pointer-events: none; }
