@@ -116,9 +116,20 @@ if (!defined('FORUM_CONFIG_LOADED')) {
 	require FORUM_CACHE_DIR.'cache_config.php';
 }
 
+// Let's guess a base_url
+if (!isset($base_url)) {
+	$base_url_take = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://').preg_replace('/:80$/', '', $_SERVER['HTTP_HOST']).str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+	if (substr($base_url_take, -1) == '/')
+		$base_url_take = substr($base_url_take, 0, -1);
+	if (substr($base_url_take, -10) == '/backstage')
+		$base_url_take = substr($base_url_take, 0, -10);
+
+	$base_url = $base_url_take;
+}
+
 // Verify that we are running the proper database schema revision
 if (!array_key_exists('o_core_version', $luna_config) || version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '<')) {
-	header('Location: '.FORUM_ROOT.'db_update.php');
+	header('Location: '.$base_url.'/db_update.php');
 
 	exit;
 }
