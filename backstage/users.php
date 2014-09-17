@@ -15,8 +15,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 // Create new user
-if (isset($_POST['add_user']))
-{
+if (isset($_POST['add_user'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -57,8 +56,7 @@ if (isset($_POST['add_user']))
 	// Check that the username (or a too similar username) is not already registered
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE username=\''.$db->escape($username).'\' OR username=\''.$db->escape(preg_replace('/[^\w]/', '', $username)).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 
-	if ($db->num_rows($result))
-	{
+	if ($db->num_rows($result)) {
 		$busy = $db->result($result);
 		message_backstage($lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2']);
 	}
@@ -79,8 +77,7 @@ if (isset($_POST['add_user']))
 	$new_uid = $db->insert_id();
 
 	// Must the user verify the registration?
-	if ($_POST['random_pass'] == '1')
-	{
+	if ($_POST['random_pass'] == '1') {
         // Validate e-mail
         require FORUM_ROOT.'include/email.php';
 
@@ -110,8 +107,7 @@ if (isset($_POST['add_user']))
 }
 
 // Show IP statistics for a certain user ID
-if (isset($_GET['ip_stats']))
-{
+if (isset($_GET['ip_stats'])) {
 	$ip_stats = intval($_GET['ip_stats']);
 	if ($ip_stats < 1)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -157,10 +153,8 @@ if (isset($_GET['ip_stats']))
 <?php
 
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used, COUNT(id) AS used_times FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip ORDER BY last_used DESC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result))
-	{
-		while ($cur_ip = $db->fetch_assoc($result))
-		{
+	if ($db->num_rows($result)) {
+		while ($cur_ip = $db->fetch_assoc($result)) {
 
 ?>
 			<tr>
@@ -172,8 +166,7 @@ if (isset($_GET['ip_stats']))
 <?php
 
 		}
-	}
-	else
+	} else
 		echo "\t\t\t\t".'<tr><td colspan="4">'.$lang['Results no posts found'].'</td></tr>'."\n";
 
 ?>
@@ -191,8 +184,7 @@ if (isset($_GET['ip_stats']))
 }
 
 
-if (isset($_GET['show_users']))
-{
+if (isset($_GET['show_users'])) {
 	$ip = luna_trim($_GET['show_users']);
 
 	if (!@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $ip) && !@preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $ip))
@@ -243,11 +235,9 @@ if (isset($_GET['show_users']))
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\' ORDER BY poster ASC LIMIT '.$start_from.', 50') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_posts = $db->num_rows($result);
 
-	if ($num_posts)
-	{
+	if ($num_posts) {
 		$posters = $poster_ids = array();
-		while ($cur_poster = $db->fetch_assoc($result))
-		{
+		while ($cur_poster = $db->fetch_assoc($result)) {
 			$posters[] = $cur_poster;
 			$poster_ids[] = $cur_poster['poster_id'];
 		}
@@ -258,10 +248,8 @@ if (isset($_GET['show_users']))
 			$user_data[$cur_user['id']] = $cur_user;
 
 		// Loop through users and print out some info
-		foreach ($posters as $cur_poster)
-		{
-			if (isset($user_data[$cur_poster['poster_id']]))
-			{
+		foreach ($posters as $cur_poster) {
+			if (isset($user_data[$cur_poster['poster_id']])) {
 				$user_title = get_title($user_data[$cur_poster['poster_id']]);
 
 			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results view IP link'].'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Posts table'].'</a>';
@@ -276,9 +264,7 @@ if (isset($_GET['show_users']))
 			</tr>
 <?php
 
-			}
-			else
-			{
+			} else {
 
 ?>
 			<tr>
@@ -293,8 +279,7 @@ if (isset($_GET['show_users']))
 
 			}
 		}
-	}
-	else
+	} else
 		echo "\t\t\t\t".'<tr><td colspan="6">'.$lang['Results no IP found'].'</td></tr>'."\n";
 
 ?>
@@ -312,22 +297,19 @@ if (isset($_GET['show_users']))
 
 
 // Move multiple users to other user groups
-else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
-{
+else if (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
 
-	if (isset($_POST['users']))
-	{
+	if (isset($_POST['users'])) {
 		$user_ids = is_array($_POST['users']) ? array_keys($_POST['users']) : explode(',', $_POST['users']);
 		$user_ids = array_map('intval', $user_ids);
 
 		// Delete invalid IDs
 		$user_ids = array_diff($user_ids, array(0, 1));
-	}
-	else
+	} else
 		$user_ids = array();
 
 	if (empty($user_ids))
@@ -344,8 +326,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 	while ($row = $db->fetch_row($result))
 		$all_groups[$row[0]] = $row[1];
 
-	if (isset($_POST['move_users_comply']))
-	{
+	if (isset($_POST['move_users_comply'])) {
 		$new_group = isset($_POST['new_group']) && isset($all_groups[$_POST['new_group']]) ? $_POST['new_group'] : message_backstage($lang['Invalid group message']);
 
 		// Is the new group a moderator group?
@@ -355,8 +336,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 		// Fetch user groups
 		$user_groups = array();
 		$result = $db->query('SELECT id, group_id FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to fetch user groups', __FILE__, __LINE__, $db->error());
-		while ($cur_user = $db->fetch_assoc($result))
-		{
+		while ($cur_user = $db->fetch_assoc($result)) {
 			if (!isset($user_groups[$cur_user['group_id']]))
 				$user_groups[$cur_user['group_id']] = array();
 
@@ -366,18 +346,15 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 		// Are any users moderators?
 		$group_ids = array_keys($user_groups);
 		$result = $db->query('SELECT g_id, g_moderator FROM '.$db->prefix.'groups WHERE g_id IN ('.implode(',', $group_ids).')') or error('Unable to fetch group moderators', __FILE__, __LINE__, $db->error());
-		while ($cur_group = $db->fetch_assoc($result))
-		{
+		while ($cur_group = $db->fetch_assoc($result)) {
 			if ($cur_group['g_moderator'] == '0')
 				unset($user_groups[$cur_group['g_id']]);
 		}
 
-		if (!empty($user_groups) && $new_group != FORUM_ADMIN && $new_group_mod != '1')
-		{
+		if (!empty($user_groups) && $new_group != FORUM_ADMIN && $new_group_mod != '1') {
 			// Fetch forum list and clean up their moderator list
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
-			while ($cur_forum = $db->fetch_assoc($result))
-			{
+			while ($cur_forum = $db->fetch_assoc($result)) {
 				$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
 				foreach ($user_groups as $group_users)
@@ -431,22 +408,19 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply']))
 
 
 // Delete multiple users
-else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
-{
+else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
 
-	if (isset($_POST['users']))
-	{
+	if (isset($_POST['users'])) {
 		$user_ids = is_array($_POST['users']) ? array_keys($_POST['users']) : explode(',', $_POST['users']);
 		$user_ids = array_map('intval', $user_ids);
 
 		// Delete invalid IDs
 		$user_ids = array_diff($user_ids, array(0, 1));
-	}
-	else
+	} else
 		$user_ids = array();
 
 	if (empty($user_ids))
@@ -457,13 +431,11 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 	if ($db->result($result) > 0)
 		message_backstage($lang['No delete admins message']);
 
-	if (isset($_POST['delete_users_comply']))
-	{
+	if (isset($_POST['delete_users_comply'])) {
 		// Fetch user groups
 		$user_groups = array();
 		$result = $db->query('SELECT id, group_id FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to fetch user groups', __FILE__, __LINE__, $db->error());
-		while ($cur_user = $db->fetch_assoc($result))
-		{
+		while ($cur_user = $db->fetch_assoc($result)) {
 			if (!isset($user_groups[$cur_user['group_id']]))
 				$user_groups[$cur_user['group_id']] = array();
 
@@ -473,16 +445,14 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 		// Are any users moderators?
 		$group_ids = array_keys($user_groups);
 		$result = $db->query('SELECT g_id, g_moderator FROM '.$db->prefix.'groups WHERE g_id IN ('.implode(',', $group_ids).')') or error('Unable to fetch group moderators', __FILE__, __LINE__, $db->error());
-		while ($cur_group = $db->fetch_assoc($result))
-		{
+		while ($cur_group = $db->fetch_assoc($result)) {
 			if ($cur_group['g_moderator'] == '0')
 				unset($user_groups[$cur_group['g_id']]);
 		}
 
 		// Fetch forum list and clean up their moderator list
 		$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
-		while ($cur_forum = $db->fetch_assoc($result))
-		{
+		while ($cur_forum = $db->fetch_assoc($result)) {
 			$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
 			foreach ($user_groups as $group_users)
@@ -500,17 +470,14 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to remove users from online list', __FILE__, __LINE__, $db->error());
 
 		// Should we delete all posts made by these users?
-		if (isset($_POST['delete_posts']))
-		{
+		if (isset($_POST['delete_posts'])) {
 			require FORUM_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all posts made by this user
 			$result = $db->query('SELECT p.id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result))
-			{
-				while ($cur_post = $db->fetch_assoc($result))
-				{
+			if ($db->num_rows($result)) {
+				while ($cur_post = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "topic post" or not
 					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['topic_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
@@ -522,8 +489,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 					update_forum($cur_post['forum_id']);
 				}
 			}
-		}
-		else
+		} else
 			// Set all their posts to guest
 			$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to update posts', __FILE__, __LINE__, $db->error());
 
@@ -579,22 +545,19 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply']))
 
 
 // Ban multiple users
-else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
-{
+else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
 
-	if (isset($_POST['users']))
-	{
+	if (isset($_POST['users'])) {
 		$user_ids = is_array($_POST['users']) ? array_keys($_POST['users']) : explode(',', $_POST['users']);
 		$user_ids = array_map('intval', $user_ids);
 
 		// Delete invalid IDs
 		$user_ids = array_diff($user_ids, array(0, 1));
-	}
-	else
+	} else
 		$user_ids = array();
 
 	if (empty($user_ids))
@@ -610,14 +573,12 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 	if ($db->result($result) > 0)
 		message_backstage($lang['No ban mods message']);
 
-	if (isset($_POST['ban_users_comply']))
-	{
+	if (isset($_POST['ban_users_comply'])) {
 		$ban_message = luna_trim($_POST['ban_message']);
 		$ban_expire = luna_trim($_POST['ban_expire']);
 		$ban_the_ip = isset($_POST['ban_the_ip']) ? intval($_POST['ban_the_ip']) : 0;
 
-		if ($ban_expire != '' && $ban_expire != 'Never')
-		{
+		if ($ban_expire != '' && $ban_expire != 'Never') {
 			$ban_expire = strtotime($ban_expire.' GMT');
 
 			if ($ban_expire == -1 || !$ban_expire)
@@ -628,8 +589,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 
 			if ($ban_expire <= time())
 				message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
-		}
-		else
+		} else
 			$ban_expire = 'NULL';
 
 		$ban_message = ($ban_message != '') ? '\''.$db->escape($ban_message).'\'' : 'NULL';
@@ -641,16 +601,14 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 			$user_info[$cur_user['id']] = array('username' => $cur_user['username'], 'email' => $cur_user['email'], 'ip' => $cur_user['registration_ip']);
 
 		// Overwrite the registration IP with one from the last post (if it exists)
-		if ($ban_the_ip != 0)
-		{
+		if ($ban_the_ip != 0) {
 			$result = $db->query('SELECT p.poster_id, p.poster_ip FROM '.$db->prefix.'posts AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'posts WHERE poster_id IN ('.implode(',', $user_ids).') GROUP BY poster_id) AS i ON p.id=i.id') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			while ($cur_address = $db->fetch_assoc($result))
 				$user_info[$cur_address['poster_id']]['ip'] = $cur_address['poster_ip'];
 		}
 
 		// And insert the bans!
-		foreach ($user_ids as $user_id)
-		{
+		foreach ($user_ids as $user_id) {
 			$ban_username = '\''.$db->escape($user_info[$user_id]['username']).'\'';
 			$ban_email = '\''.$db->escape($user_info[$user_id]['email']).'\'';
 			$ban_ip = ($ban_the_ip != 0) ? '\''.$db->escape($user_info[$user_id]['ip']).'\'' : 'NULL';
@@ -717,11 +675,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply']))
 <?php
 
 	require 'footer.php';
-}
-
-
-else if (isset($_GET['find_user']))
-{
+} else if (isset($_GET['find_user'])) {
 	$form = isset($_GET['form']) ? $_GET['form'] : array();
 
 	// trim() all elements in $form
@@ -748,8 +702,7 @@ else if (isset($_GET['find_user']))
 		message_backstage($lang['Non numeric message']);
 
 	// Try to convert date/time to timestamps
-	if ($last_post_after != '')
-	{
+	if ($last_post_after != '') {
 		$query_str[] = 'last_post_after='.$last_post_after;
 
 		$last_post_after = strtotime($last_post_after);
@@ -758,8 +711,7 @@ else if (isset($_GET['find_user']))
 
 		$conditions[] = 'u.last_post>'.$last_post_after;
 	}
-	if ($last_post_before != '')
-	{
+	if ($last_post_before != '') {
 		$query_str[] = 'last_post_before='.$last_post_before;
 
 		$last_post_before = strtotime($last_post_before);
@@ -768,8 +720,7 @@ else if (isset($_GET['find_user']))
 
 		$conditions[] = 'u.last_post<'.$last_post_before;
 	}
-	if ($last_visit_after != '')
-	{
+	if ($last_visit_after != '') {
 		$query_str[] = 'last_visit_after='.$last_visit_after;
 
 		$last_visit_after = strtotime($last_visit_after);
@@ -778,8 +729,7 @@ else if (isset($_GET['find_user']))
 
 		$conditions[] = 'u.last_visit>'.$last_visit_after;
 	}
-	if ($last_visit_before != '')
-	{
+	if ($last_visit_before != '') {
 		$query_str[] = 'last_visit_before='.$last_visit_before;
 
 		$last_visit_before = strtotime($last_visit_before);
@@ -788,8 +738,7 @@ else if (isset($_GET['find_user']))
 
 		$conditions[] = 'u.last_visit<'.$last_visit_before;
 	}
-	if ($registered_after != '')
-	{
+	if ($registered_after != '') {
 		$query_str[] = 'registered_after='.$registered_after;
 
 		$registered_after = strtotime($registered_after);
@@ -798,8 +747,7 @@ else if (isset($_GET['find_user']))
 
 		$conditions[] = 'u.registered>'.$registered_after;
 	}
-	if ($registered_before != '')
-	{
+	if ($registered_before != '') {
 		$query_str[] = 'registered_before='.$registered_before;
 
 		$registered_before = strtotime($registered_before);
@@ -810,22 +758,18 @@ else if (isset($_GET['find_user']))
 	}
 
 	$like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
-	foreach ($form as $key => $input)
-	{
-		if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'url', 'facebook', 'msn', 'twitter', 'google', 'location', 'signature', 'admin_note')))
-		{
+	foreach ($form as $key => $input) {
+		if ($input != '' && in_array($key, array('username', 'email', 'title', 'realname', 'url', 'facebook', 'msn', 'twitter', 'google', 'location', 'signature', 'admin_note'))) {
 			$conditions[] = 'u.'.$db->escape($key).' '.$like_command.' \''.$db->escape(str_replace('*', '%', $input)).'\'';
 			$query_str[] = 'form%5B'.$key.'%5D='.urlencode($input);
 		}
 	}
 
-	if ($posts_greater != '')
-	{
+	if ($posts_greater != '') {
 		$query_str[] = 'posts_greater='.$posts_greater;
 		$conditions[] = 'u.num_posts>'.$posts_greater;
 	}
-	if ($posts_less != '')
-	{
+	if ($posts_less != '') {
 		$query_str[] = 'posts_less='.$posts_less;
 		$conditions[] = 'u.num_posts<'.$posts_less;
 	}
@@ -898,10 +842,8 @@ else if (isset($_GET['find_user']))
 <?php
 
 	$result = $db->query('SELECT u.id, u.username, u.email, u.title, u.num_posts, u.admin_note, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id>1'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result))
-	{
-		while ($user_data = $db->fetch_assoc($result))
-		{
+	if ($db->num_rows($result)) {
+		while ($user_data = $db->fetch_assoc($result)) {
 			$user_title = get_title($user_data);
 
 			// This script is a special case in that we want to display "Not verified" for non-verified users
@@ -923,8 +865,7 @@ else if (isset($_GET['find_user']))
 <?php
 
 		}
-	}
-	else
+	} else
 		echo "\t\t\t\t".'<tr><td colspan="6">'.$lang['No match'].'</td></tr>'."\n";
 
 ?>
@@ -953,11 +894,7 @@ else if (isset($_GET['find_user']))
 <?php
 
 	require 'footer.php';
-}
-
-
-else
-{
+} else {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users']);
 	$focus_element = array('find_user', 'form[username]');
 	define('FORUM_ACTIVE_PAGE', 'admin');

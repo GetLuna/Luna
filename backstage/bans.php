@@ -15,13 +15,10 @@ if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $l
 }
 
 // Add/edit a ban (stage 1)
-if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
-{
-	if (isset($_GET['add_ban']) || isset($_POST['add_ban']))
-	{
+if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
+	if (isset($_GET['add_ban']) || isset($_POST['add_ban'])) {
 		// If the ID of the user to ban was provided through GET (a link from ../profile.php)
-		if (isset($_GET['add_ban']))
-		{
+		if (isset($_GET['add_ban'])) {
 			$user_id = intval($_GET['add_ban']);
 			if ($user_id < 2)
 				message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -31,13 +28,10 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 				list($group_id, $ban_user, $ban_email) = $db->fetch_row($result);
 			else
 				message_backstage($lang['No user ID message']);
-		}
-		else // Otherwise the username is in POST
-		{
+		} else { // Otherwise the username is in POST
 			$ban_user = luna_trim($_POST['new_ban_user']);
 
-			if ($ban_user != '')
-			{
+			if ($ban_user != '') {
 				$result = $db->query('SELECT id, group_id, username, email FROM '.$db->prefix.'users WHERE username=\''.$db->escape($ban_user).'\' AND id>1') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
 					list($user_id, $group_id, $ban_user, $ban_email) = $db->fetch_row($result);
@@ -47,8 +41,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 		}
 
 		// Make sure we're not banning an admin or moderator
-		if (isset($group_id))
-		{
+		if (isset($group_id)) {
 			if ($group_id == FORUM_ADMIN)
 				message_backstage(sprintf($lang['User is admin message'], luna_htmlspecialchars($ban_user)));
 
@@ -60,22 +53,18 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 		}
 
 		// If we have a $user_id, we can try to find the last known IP of that user
-		if (isset($user_id))
-		{
+		if (isset($user_id)) {
 			$result = $db->query('SELECT poster_ip FROM '.$db->prefix.'posts WHERE poster_id='.$user_id.' ORDER BY posted DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$ban_ip = ($db->num_rows($result)) ? $db->result($result) : '';
 
-			if ($ban_ip == '')
-			{
+			if ($ban_ip == '') {
 				$result = $db->query('SELECT registration_ip FROM '.$db->prefix.'users WHERE id='.$user_id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 				$ban_ip = ($db->num_rows($result)) ? $db->result($result) : '';
 			}
 		}
 
 		$mode = 'add';
-	}
-	else // We are editing a ban
-	{
+	} else { // We are editing a ban
 		$ban_id = intval($_GET['edit_ban']);
 		if ($ban_id < 1)
 			message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -160,8 +149,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
 }
 
 // Add/edit a ban (stage 2)
-else if (isset($_POST['add_edit_ban']))
-{
+else if (isset($_POST['add_edit_ban'])) {
 	confirm_referrer('backstage/bans.php');
 	
 	$ban_user = luna_trim($_POST['ban_user']);
@@ -176,11 +164,9 @@ else if (isset($_POST['add_edit_ban']))
 		message_backstage($lang['Cannot ban guest message']);
 
 	// Make sure we're not banning an admin or moderator
-	if (!empty($ban_user))
-	{
+	if (!empty($ban_user)) {
 		$result = $db->query('SELECT group_id FROM '.$db->prefix.'users WHERE username=\''.$db->escape($ban_user).'\' AND id>1') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-		if ($db->num_rows($result))
-		{
+		if ($db->num_rows($result)) {
 			$group_id = $db->result($result);
 
 			if ($group_id == FORUM_ADMIN)
@@ -195,20 +181,16 @@ else if (isset($_POST['add_edit_ban']))
 	}
 
 	// Validate IP/IP range (it's overkill, I know)
-	if ($ban_ip != '')
-	{
+	if ($ban_ip != '') {
 		$ban_ip = preg_replace('%\s{2,}%S', ' ', $ban_ip);
 		$addresses = explode(' ', $ban_ip);
 		$addresses = array_map('luna_trim', $addresses);
 
-		for ($i = 0; $i < count($addresses); ++$i)
-		{
-			if (strpos($addresses[$i], ':') !== false)
-			{
+		for ($i = 0; $i < count($addresses); ++$i) {
+			if (strpos($addresses[$i], ':') !== false) {
 				$octets = explode(':', $addresses[$i]);
 
-				for ($c = 0; $c < count($octets); ++$c)
-				{
+				for ($c = 0; $c < count($octets); ++$c) {
 					$octets[$c] = ltrim($octets[$c], "0");
 
 					if ($c > 7 || (!empty($octets[$c]) && !ctype_xdigit($octets[$c])) || intval($octets[$c], 16) > 65535)
@@ -217,13 +199,10 @@ else if (isset($_POST['add_edit_ban']))
 
 				$cur_address = implode(':', $octets);
 				$addresses[$i] = $cur_address;
-			}
-			else
-			{
+			} else {
 				$octets = explode('.', $addresses[$i]);
 
-				for ($c = 0; $c < count($octets); ++$c)
-				{
+				for ($c = 0; $c < count($octets); ++$c) {
 					$octets[$c] = (strlen($octets[$c]) > 1) ? ltrim($octets[$c], "0") : $octets[$c];
 
 					if ($c > 3 || preg_match('%[^0-9]%', $octets[$c]) || intval($octets[$c]) > 255)
@@ -239,14 +218,12 @@ else if (isset($_POST['add_edit_ban']))
 	}
 
 	require FORUM_ROOT.'include/email.php';
-	if ($ban_email != '' && !is_valid_email($ban_email))
-	{
+	if ($ban_email != '' && !is_valid_email($ban_email)) {
 		if (!preg_match('%^[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$%', $ban_email))
 			message_backstage($lang['Invalid e-mail message']);
 	}
 
-	if ($ban_expire != '' && $ban_expire != 'Never')
-	{
+	if ($ban_expire != '' && $ban_expire != 'Never') {
 		$ban_expire = strtotime($ban_expire.' GMT');
 
 		if ($ban_expire == -1 || !$ban_expire)
@@ -257,8 +234,7 @@ else if (isset($_POST['add_edit_ban']))
 
 		if ($ban_expire <= time())
 			message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
-	}
-	else
+	} else
 		$ban_expire = 'NULL';
 
 	$ban_user = ($ban_user != '') ? '\''.$db->escape($ban_user).'\'' : 'NULL';
@@ -284,8 +260,7 @@ else if (isset($_POST['add_edit_ban']))
 }
 
 // Remove a ban
-else if (isset($_GET['del_ban']))
-{
+else if (isset($_GET['del_ban'])) {
 	confirm_referrer('backstage/bans.php');
 	
 	$ban_id = intval($_GET['del_ban']);
@@ -304,8 +279,7 @@ else if (isset($_GET['del_ban']))
 }
 
 // Find bans
-else if (isset($_GET['find_ban']))
-{
+else if (isset($_GET['find_ban'])) {
 	$form = isset($_GET['form']) ? $_GET['form'] : array();
 
 	// trim() all elements in $form
@@ -321,8 +295,7 @@ else if (isset($_GET['find_ban']))
 	$query_str[] = 'direction='.$direction;
 
 	// Try to convert date/time to timestamps
-	if ($expire_after != '')
-	{
+	if ($expire_after != '') {
 		$query_str[] = 'expire_after='.$expire_after;
 
 		$expire_after = strtotime($expire_after);
@@ -331,8 +304,7 @@ else if (isset($_GET['find_ban']))
 
 		$conditions[] = 'b.expire>'.$expire_after;
 	}
-	if ($expire_before != '')
-	{
+	if ($expire_before != '') {
 		$query_str[] = 'expire_before='.$expire_before;
 
 		$expire_before = strtotime($expire_before);
@@ -343,10 +315,8 @@ else if (isset($_GET['find_ban']))
 	}
 
 	$like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
-	foreach ($form as $key => $input)
-	{
-		if ($input != '' && in_array($key, array('username', 'ip', 'email', 'message')))
-		{
+	foreach ($form as $key => $input) {
+		if ($input != '' && in_array($key, array('username', 'ip', 'email', 'message'))) {
 			$conditions[] = 'b.'.$db->escape($key).' '.$like_command.' \''.$db->escape(str_replace('*', '%', $input)).'\'';
 			$query_str[] = 'form%5B'.$key.'%5D='.urlencode($input);
 		}
@@ -396,10 +366,8 @@ else if (isset($_GET['find_ban']))
     <?php
 
 	$result = $db->query('SELECT b.id, b.username, b.ip, b.email, b.message, b.expire, b.ban_creator, u.username AS ban_creator_username FROM '.$db->prefix.'bans AS b LEFT JOIN '.$db->prefix.'users AS u ON b.ban_creator=u.id WHERE b.id>0'.(!empty($conditions) ? ' AND '.implode(' AND ', $conditions) : '').' ORDER BY '.$db->escape($order_by).' '.$db->escape($direction).' LIMIT '.$start_from.', 50') or error('Unable to fetch ban list', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result))
-	{
-		while ($ban_data = $db->fetch_assoc($result))
-		{
+	if ($db->num_rows($result)) {
+		while ($ban_data = $db->fetch_assoc($result)) {
 
 			$actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a></div>';
 			$expire = format_time($ban_data['expire'], true);
@@ -417,8 +385,7 @@ else if (isset($_GET['find_ban']))
 <?php
 
 		}
-	}
-	else
+	} else
 		echo "\t\t\t\t".'<tr><td class="tcl" colspan="7">'.$lang['No match'].'</td></tr>'."\n";
 
 ?>

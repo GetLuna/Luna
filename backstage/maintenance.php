@@ -21,14 +21,12 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
-if ($action == 'rebuild')
-{
+if ($action == 'rebuild') {
 	$per_page = isset($_GET['i_per_page']) ? intval($_GET['i_per_page']) : 0;
 	$start_at = isset($_GET['i_start_at']) ? intval($_GET['i_start_at']) : 0;
 
 	// Check per page is > 0
-	if ($per_page < 1)
-	{
+	if ($per_page < 1) {
 		load_admin_nav('settings', 'maintenance');
 		message_backstage($lang['Posts must be integer message']);
 	}
@@ -36,16 +34,14 @@ if ($action == 'rebuild')
 	@set_time_limit(0);
 
 	// If this is the first cycle of posts we empty the search index before we proceed
-	if (isset($_GET['i_empty_index']))
-	{
+	if (isset($_GET['i_empty_index'])) {
 		confirm_referrer('backstage/maintenance.php');
 	
 		$db->truncate_table('search_matches') or error('Unable to empty search index match table', __FILE__, __LINE__, $db->error());
 		$db->truncate_table('search_words') or error('Unable to empty search index words table', __FILE__, __LINE__, $db->error());
 
 		// Reset the sequence for the search words (not needed for SQLite)
-		switch ($db_type)
-		{
+		switch ($db_type) {
 			case 'mysql':
 			case 'mysqli':
 			case 'mysql_innodb':
@@ -92,8 +88,7 @@ if ($action == 'rebuild')
 	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 	$end_at = 0;
-	while ($cur_item = $db->fetch_assoc($result))
-	{
+	while ($cur_item = $db->fetch_assoc($result)) {
 		echo '<p><span>'.sprintf($lang['Processing post'], $cur_item['id']).'</span></p>'."\n";
 
 		if ($cur_item['id'] == $cur_item['first_post_id'])
@@ -105,8 +100,7 @@ if ($action == 'rebuild')
 	}
 
 	// Check if there is more work to do
-	if ($end_at > 0)
-	{
+	if ($end_at > 0) {
 		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE id > '.$end_at.' ORDER BY id ASC LIMIT 1') or error('Unable to fetch next ID', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) > 0)
@@ -119,13 +113,11 @@ if ($action == 'rebuild')
 	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf($lang['Javascript redirect failed'], '<a href="maintenance.php'.$query_str.'">'.$lang['Click here'].'</a>').'</p>');
 }
 
-if ($action == 'prune')
-{
+if ($action == 'prune') {
 	$prune_from = luna_trim($_POST['prune_from']);
 	$prune_sticky = intval($_POST['prune_sticky']);
 
-	if (isset($_POST['prune_comply']))
-	{
+	if (isset($_POST['prune_comply'])) {
 		confirm_referrer('backstage/maintenance.php');
 		
 		$prune_days = intval($_POST['prune_days']);
@@ -133,21 +125,17 @@ if ($action == 'prune')
 
 		@set_time_limit(0);
 
-		if ($prune_from == 'all')
-		{
+		if ($prune_from == 'all') {
 			$result = $db->query('SELECT id FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 			$num_forums = $db->num_rows($result);
 
-			for ($i = 0; $i < $num_forums; ++$i)
-			{
+			for ($i = 0; $i < $num_forums; ++$i) {
 				$fid = $db->result($result, $i);
 
 				prune($fid, $prune_sticky, $prune_date);
 				update_forum($fid);
 			}
-		}
-		else
-		{
+		} else {
 			$prune_from = intval($prune_from);
 			prune($prune_from, $prune_sticky, $prune_date);
 			update_forum($prune_from);
@@ -157,8 +145,7 @@ if ($action == 'prune')
 		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
-		if ($num_orphans)
-		{
+		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
@@ -169,8 +156,7 @@ if ($action == 'prune')
 	}
 
 	$prune_days = luna_trim($_POST['req_prune_days']);
-	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
-	{
+	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days)) {
 		load_admin_nav('settings', 'maintenance');
 		message_backstage($lang['Days must be integer message']);
 	}
@@ -183,23 +169,20 @@ if ($action == 'prune')
 	if ($prune_sticky == '0')
 		$sql .= ' AND sticky=0';
 
-	if ($prune_from != 'all')
-	{
+	if ($prune_from != 'all') {
 		$prune_from = intval($prune_from);
 		$sql .= ' AND forum_id='.$prune_from;
 
 		// Fetch the forum name (just for cosmetic reasons)
 		$result = $db->query('SELECT forum_name FROM '.$db->prefix.'forums WHERE id='.$prune_from) or error('Unable to fetch forum name', __FILE__, __LINE__, $db->error());
 		$forum = '"'.luna_htmlspecialchars($db->result($result)).'"';
-	}
-	else
+	} else
 		$forum = $lang['All forums'];
 
 	$result = $db->query($sql) or error('Unable to fetch topic prune count', __FILE__, __LINE__, $db->error());
 	$num_topics = $db->result($result);
 
-	if (!$num_topics)
-	{
+	if (!$num_topics) {
 		load_admin_nav('settings', 'maintenance');
 		message_backstage(sprintf($lang['No old topics message'], $prune_days));
 	}
@@ -242,19 +225,16 @@ if ($action == 'prune')
 if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 	require FORUM_ROOT.'include/cache.php';
 
-if (isset($_POST['userprune']))
-{
+if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
-	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
-	{
+	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '') {
 		load_admin_nav('settings', 'maintenance');
 		message_backstage('You need to set all settings!');
 	}
 
 	if ($_POST['admods_delete']) {
 		$admod_delete = 'group_id > 0';
-	}
-	else {
+	} else {
 		$admod_delete = 'group_id > 3';
 	}
 
@@ -274,8 +254,7 @@ if (isset($_POST['userprune']))
 	while ($id = $db->result($result))
 		$user_ids[] = $id;
 	
-	if (!empty($user_ids))
-	{
+	if (!empty($user_ids)) {
 		$db->query('DELETE FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).')') or error('Unable to delete users', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id IN ('.implode(',', $user_ids).')') or error('Unable to mark posts as guest posts', __FILE__, __LINE__, $db->error());
 	}
@@ -295,8 +274,7 @@ if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
 
-if (isset($_POST['form_sent']))
-{
+if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/maintenance.php');
 
 	$form = array(
@@ -306,17 +284,14 @@ if (isset($_POST['form_sent']))
 
 	if ($form['maintenance_message'] != '')
 		$form['maintenance_message'] = luna_linebreaks($form['maintenance_message']);
-	else
-	{
+	else {
 		$form['maintenance_message'] = $lang['Default maintenance message'];
 		$form['maintenance'] = '0';
 	}
 
-	foreach ($form as $key => $input)
-	{
+	foreach ($form as $key => $input) {
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
-		{
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
 			else
@@ -326,8 +301,7 @@ if (isset($_POST['form_sent']))
 		}
 	}
 
-	if ($action == 'clear_cache')
-	{
+	if ($action == 'clear_cache') {
 		confirm_referrer('backstage/maintenance.php');
 	
 		if ($luna_user['g_id'] != FORUM_ADMIN)
@@ -469,10 +443,8 @@ if (isset($_GET['cache_cleared']))
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 	$cur_category = 0;
-	while ($forum = $db->fetch_assoc($result))
-	{
-		if ($forum['cid'] != $cur_category) // Are we still in the same category?
-		{
+	while ($forum = $db->fetch_assoc($result)) {
+		if ($forum['cid'] != $cur_category) { // Are we still in the same category?
 			if ($cur_category)
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'</optgroup>'."\n";
 

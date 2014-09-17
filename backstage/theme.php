@@ -100,8 +100,7 @@ if (file_exists(FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php')) {
 <?php
 		$styles = forum_list_styles();
 
-		foreach ($styles as $temp)
-		{
+		foreach ($styles as $temp) {
 ?>
 					<?php include FORUM_ROOT.'/style/'.$temp.'/information.php'; $style_info = new SimpleXMLElement($xmlstr); ?> 
 					<div class="col-xs-12 col-sm-6 col-md-4 style-entry">

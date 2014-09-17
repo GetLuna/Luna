@@ -17,8 +17,7 @@ if (!$luna_user['is_admmod']) {
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
-if (isset($_POST['form_sent']))
-{
+if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/features.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
@@ -45,11 +44,9 @@ if (isset($_POST['form_sent']))
 		'enable_advanced_search'	  => isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
 	);
 
-	foreach ($form as $key => $input)
-	{
+	foreach ($form as $key => $input) {
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
-		{
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
 			else

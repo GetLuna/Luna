@@ -17,8 +17,7 @@ if (!$luna_user['is_admmod']) {
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
-if (isset($_POST['form_sent']))
-{
+if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/permissions.php');
 	
 	$form = array(
@@ -34,8 +33,7 @@ if (isset($_POST['form_sent']))
 		'sig_lines'				=> luna_trim($_POST['form']['sig_lines']),
 	);
 
-	foreach ($form as $key => $input)
-	{
+	foreach ($form as $key => $input) {
 		// Make sure the input is never a negative value
 		if($input < 0)
 			$input = 0;

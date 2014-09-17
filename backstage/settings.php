@@ -17,8 +17,7 @@ if (!$luna_user['is_admmod']) {
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
-if (isset($_POST['form_sent']))
-{
+if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/settings.php', $lang['Bad HTTP Referer message']);
 
 	$form = array(
@@ -54,8 +53,7 @@ if (isset($_POST['form_sent']))
 		$form['base_url'] = substr($form['base_url'], 0, -1);
 		
 	// Convert IDN to Punycode if needed  
-	if (preg_match('/[^\x00-\x7F]/', $form['base_url']))  
-	{  
+	if (preg_match('/[^\x00-\x7F]/', $form['base_url']))   {  
 		if (!function_exists('idn_to_ascii'))  
 			message_backstage($lang['Base URL problem']);  
 		else  
@@ -83,8 +81,7 @@ if (isset($_POST['form_sent']))
 		$form['avatars_dir'] = substr($form['avatars_dir'], 0, -1);
 
 	// Change or enter a SMTP password
-	if (isset($_POST['form']['smtp_change_pass']))
-	{
+	if (isset($_POST['form']['smtp_change_pass'])) {
 		$smtp_pass1 = isset($_POST['form']['smtp_pass1']) ? luna_trim($_POST['form']['smtp_pass1']) : '';
 		$smtp_pass2 = isset($_POST['form']['smtp_pass2']) ? luna_trim($_POST['form']['smtp_pass2']) : '';
 
@@ -96,8 +93,7 @@ if (isset($_POST['form_sent']))
 
 	if ($form['announcement_message'] != '')
 		$form['announcement_message'] = luna_linebreaks($form['announcement_message']);
-	else
-	{
+	else {
 		$form['announcement_message'] = $lang['Enter announcement here'];
 		$form['announcement'] = '0';
 	}
@@ -114,11 +110,9 @@ if (isset($_POST['form_sent']))
 	if ($form['timeout_online'] >= $form['timeout_visit'])
 		message_backstage($lang['Timeout error message']);
 
-	foreach ($form as $key => $input)
-	{
+	foreach ($form as $key => $input) {
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
-		{
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
 			else
@@ -180,8 +174,7 @@ if (isset($_GET['saved']))
 
 		$languages = forum_list_langs();
 
-		foreach ($languages as $temp)
-		{
+		foreach ($languages as $temp) {
 			if ($luna_config['o_default_lang'] == $temp)
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
 			else

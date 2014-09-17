@@ -18,8 +18,7 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Add a "default" forum
-if (isset($_POST['add_forum']))
-{
+if (isset($_POST['add_forum'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$forum_name = luna_trim($_POST['new_forum']); 
@@ -34,16 +33,14 @@ if (isset($_POST['add_forum']))
 }
 
 // Delete a forum
-else if (isset($_GET['del_forum']))
-{
+else if (isset($_GET['del_forum'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$forum_id = intval($_GET['del_forum']);
 	if ($forum_id < 1)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
 
-	if (isset($_POST['del_forum_comply'])) // Delete a forum with all posts
-	{
+	if (isset($_POST['del_forum_comply'])) { // Delete a forum with all posts
 		@set_time_limit(0);
 
 		// Prune all posts and topics
@@ -53,8 +50,7 @@ else if (isset($_GET['del_forum']))
 		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
-		if ($num_orphans)
-		{
+		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
@@ -69,9 +65,7 @@ else if (isset($_GET['del_forum']))
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
 		redirect('backstage/board.php?saved=true');
-	}
-	else // If the user hasn't confirmed the delete
-	{
+	} else { // If the user hasn't confirmed the delete
 		$result = $db->query('SELECT forum_name FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 		$forum_name = luna_htmlspecialchars($db->result($result));
 
@@ -103,12 +97,10 @@ else if (isset($_GET['del_forum']))
 }
 
 // Update forum positions
-else if (isset($_POST['update_positions']))
-{
+else if (isset($_POST['update_positions'])) {
 	confirm_referrer('backstage/board.php');
 	
-	foreach ($_POST['position'] as $forum_id => $disp_position)
-	{
+	foreach ($_POST['position'] as $forum_id => $disp_position) {
 		$disp_position = trim($disp_position);
 		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position))
 			message_backstage($lang['Post must be integer message']);
@@ -117,17 +109,13 @@ else if (isset($_POST['update_positions']))
 	}
 
 	redirect('backstage/board.php?saved=true');
-}
-
-else if (isset($_GET['edit_forum']))
-{
+} else if (isset($_GET['edit_forum'])) {
 	$forum_id = intval($_GET['edit_forum']);
 	if ($forum_id < 1)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	// Update group permissions for $forum_id
-	if (isset($_POST['save']))
-	{
+	if (isset($_POST['save'])) {
 		confirm_referrer('backstage/board.php');
 	
 		// Start with the forum details
@@ -147,23 +135,19 @@ else if (isset($_GET['edit_forum']))
 		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', sort_by='.$sort_by.', cat_id='.$cat_id.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		
 		// Now let's deal with the permissions
-		if (isset($_POST['read_forum_old']))
-		{
+		if (isset($_POST['read_forum_old'])) {
 			$result = $db->query('SELECT g_id, g_read_board, g_post_replies, g_post_topics FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN) or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
-			while ($cur_group = $db->fetch_assoc($result))
-			{
+			while ($cur_group = $db->fetch_assoc($result)) {
 				$read_forum_new = ($cur_group['g_read_board'] == '1') ? isset($_POST['read_forum_new'][$cur_group['g_id']]) ? '1' : '0' : intval($_POST['read_forum_old'][$cur_group['g_id']]);
 				$post_replies_new = isset($_POST['post_replies_new'][$cur_group['g_id']]) ? '1' : '0';
 				$post_topics_new = isset($_POST['post_topics_new'][$cur_group['g_id']]) ? '1' : '0';
 
 				// Check if the new settings differ from the old
-				if ($read_forum_new != $_POST['read_forum_old'][$cur_group['g_id']] || $post_replies_new != $_POST['post_replies_old'][$cur_group['g_id']] || $post_topics_new != $_POST['post_topics_old'][$cur_group['g_id']])
-				{
+				if ($read_forum_new != $_POST['read_forum_old'][$cur_group['g_id']] || $post_replies_new != $_POST['post_replies_old'][$cur_group['g_id']] || $post_topics_new != $_POST['post_topics_old'][$cur_group['g_id']]) {
 					// If the new settings are identical to the default settings for this group, delete its row in forum_perms
 					if ($read_forum_new == '1' && $post_replies_new == $cur_group['g_post_replies'] && $post_topics_new == $cur_group['g_post_topics'])
 						$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$cur_group['g_id'].' AND forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
-					else
-					{
+					else {
 						// Run an UPDATE and see if it affected a row, if not, INSERT
 						$db->query('UPDATE '.$db->prefix.'forum_perms SET read_forum='.$read_forum_new.', post_replies='.$post_replies_new.', post_topics='.$post_topics_new.' WHERE group_id='.$cur_group['g_id'].' AND forum_id='.$forum_id) or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
 						if (!$db->affected_rows())
@@ -174,9 +158,7 @@ else if (isset($_GET['edit_forum']))
 		}
 
 		redirect('backstage/board.php?saved=true');
-	}
-	else if (isset($_POST['revert_perms']))
-	{
+	} else if (isset($_POST['revert_perms'])) {
 		confirm_referrer('backstage/board.php');
 	
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
@@ -226,8 +208,7 @@ else if (isset($_GET['edit_forum']))
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
-	while ($cur_cat = $db->fetch_assoc($result))
-	{
+	while ($cur_cat = $db->fetch_assoc($result)) {
 		$selected = ($cur_cat['id'] == $cur_forum['cat_id']) ? ' selected="selected"' : '';
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 	}
@@ -272,8 +253,7 @@ else if (isset($_GET['edit_forum']))
 
 	$result = $db->query('SELECT g.g_id, g.g_title, g.g_read_board, g.g_post_replies, g.g_post_topics, fp.read_forum, fp.post_replies, fp.post_topics FROM '.$db->prefix.'groups AS g LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (g.g_id=fp.group_id AND fp.forum_id='.$forum_id.') WHERE g.g_id!='.FORUM_ADMIN.' ORDER BY g.g_id') or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
 
-	while ($cur_perm = $db->fetch_assoc($result))
-	{
+	while ($cur_perm = $db->fetch_assoc($result)) {
 		$read_forum = ($cur_perm['read_forum'] != '0') ? true : false;
 		$post_replies = (($cur_perm['g_post_replies'] == '0' && $cur_perm['post_replies'] == '1') || ($cur_perm['g_post_replies'] == '1' && $cur_perm['post_replies'] != '0')) ? true : false;
 		$post_topics = (($cur_perm['g_post_topics'] == '0' && $cur_perm['post_topics'] == '1') || ($cur_perm['g_post_topics'] == '1' && $cur_perm['post_topics'] != '0')) ? true : false;
@@ -316,8 +296,7 @@ else if (isset($_GET['edit_forum']))
 }
 
 // Add a new category
-else if (isset($_POST['add_cat']))
-{
+else if (isset($_POST['add_cat'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$new_cat_name = luna_trim($_POST['new_cat_name']);
@@ -330,23 +309,20 @@ else if (isset($_POST['add_cat']))
 }
 
 // Delete a category
-else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
-{
+else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$cat_to_delete = intval($_POST['cat_to_delete']);
 	if ($cat_to_delete < 1)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
 
-	if (isset($_POST['del_cat_comply'])) // Delete a category with all forums and posts
-	{
+	if (isset($_POST['del_cat_comply'])) { // Delete a category with all forums and posts
 		@set_time_limit(0);
 
 		$result = $db->query('SELECT id FROM '.$db->prefix.'forums WHERE cat_id='.$cat_to_delete) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 		$num_forums = $db->num_rows($result);
 
-		for ($i = 0; $i < $num_forums; ++$i)
-		{
+		for ($i = 0; $i < $num_forums; ++$i) {
 			$cur_forum = $db->result($result, $i);
 
 			// Prune all posts and topics
@@ -360,8 +336,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
-		if ($num_orphans)
-		{
+		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
@@ -376,9 +351,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 			require FORUM_ROOT.'include/cache.php';
 
 		redirect('backstage/board.php?saved=true');
-	}
-	else // If the user hasn't confirmed the delete
-	{
+	} else { // If the user hasn't confirmed the delete
 		$result = $db->query('SELECT cat_name FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to fetch category info', __FILE__, __LINE__, $db->error());
 		$cat_name = $db->result($result);
 
@@ -408,9 +381,7 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply']))
 
 		require 'footer.php';
 	}
-}
-
-else {
+} else {
 
 	// Generate an array with all categories
 	$result = $db->query('SELECT id, cat_name, disp_position FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
@@ -419,16 +390,14 @@ else {
 	for ($i = 0; $i < $num_cats; ++$i)
 		$cat_list[] = $db->fetch_assoc($result);
 	
-	if (isset($_POST['update'])) // Change position and name of the categories
-	{
+	if (isset($_POST['update'])) { // Change position and name of the categories
 		confirm_referrer('backstage/board.php');
 		
 		$categories = $_POST['cat'];
 		if (empty($categories))
 			message_backstage($lang['Bad request'], false, '404 Not Found');
 	
-		foreach ($categories as $cat_id => $cur_cat)
-		{
+		foreach ($categories as $cat_id => $cur_cat) {
 			$cur_cat['name'] = luna_trim($cur_cat['name']);
 			$cur_cat['order'] = luna_trim($cur_cat['order']);
 	
@@ -464,13 +433,11 @@ else {
 <?php
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result) > 0)
-	{ ?>
+	if ($db->num_rows($result) > 0) { ?>
 						<div class="col-xs-5">
 							<select class="form-control" name="add_to_cat" tabindex="1">
     <?php
-		while ($cur_cat = $db->fetch_assoc($result))
-			{ ?>
+		while ($cur_cat = $db->fetch_assoc($result)) { ?>
                 <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 			} ?>
 							</select>
@@ -544,8 +511,7 @@ $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name,
 
 $cur_index = 4;
 
-if ($db->num_rows($result) > 0)
-{
+if ($db->num_rows($result) > 0) {
 
 ?>
 <form id="edforum" method="post" action="board.php?action=edit">
@@ -559,10 +525,8 @@ if ($db->num_rows($result) > 0)
 $cur_index = 4;
 
 $cur_category = 0;
-while ($cur_forum = $db->fetch_assoc($result))
-{
-	if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-	{
+while ($cur_forum = $db->fetch_assoc($result)) {
+	if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
 		if ($cur_category != 0)
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
@@ -612,8 +576,7 @@ while ($cur_forum = $db->fetch_assoc($result))
 				<tbody>
 <?php
 
-foreach ($cat_list as $cur_cat)
-{
+foreach ($cat_list as $cur_cat) {
 
 ?>
 					<tr>

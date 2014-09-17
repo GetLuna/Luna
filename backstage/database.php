@@ -22,10 +22,8 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 //
 @set_time_limit(0);
 
-function gzip_PrintFourChars($Val)
-{
-	for ($i = 0; $i < 4; $i ++)
-	{
+function gzip_PrintFourChars($Val) {
+	for ($i = 0; $i < 4; $i ++) {
 		$return = chr($Val % 256);
 		$Val = floor($Val / 256);
 	}
@@ -34,18 +32,14 @@ function gzip_PrintFourChars($Val)
 
 
 // db functions (not in Luna dblayer)
-function field_name($offset, $query_id = 0)
-{
+function field_name($offset, $query_id = 0) {
 	global $db_type;
 
-	if(!$query_id)
-	{
+	if(!$query_id) {
 		$query_id = $this->query_result;
 	}
-	if($query_id)
-	{
-		switch($db_type)
-		{
+	if($query_id) {
+		switch($db_type) {
 			case 'mysql':
             case 'mysql_innodb':
 				$result = @mysql_field_name($query_id, $offset);
@@ -56,18 +50,15 @@ function field_name($offset, $query_id = 0)
 				$result = $finfo->name;
 		}
 		return $result;
-	}
-	else
+	} else
 		return false;
 }
 
-function num_fields($query_id = 0)
-{
+function num_fields($query_id = 0) {
 	global $db_type;
 	if (!$query_id)
 		$query_id = $this->query_result;
-		switch($db_type)
-		{
+		switch($db_type) {
 			case 'mysql':
             case 'mysql_innodb':
 				return ($query_id) ? @mysql_num_fields($query_id) : false;
@@ -81,8 +72,7 @@ function num_fields($query_id = 0)
 //
 // This function returns the "CREATE TABLE" syntax for mysql dbms
 //
-function get_table_def_mysql($table, $crlf)
-{
+function get_table_def_mysql($table, $crlf) {
 	global $drop, $db;
 
 	$schema_create = "";
@@ -96,29 +86,24 @@ function get_table_def_mysql($table, $crlf)
 	// Ok lets grab the fields
 	//
 	$result = $db->query($field_query);
-	if(!$result)
-	{
+	if(!$result) {
 		require 'header.php';
 		load_admin_nav('database', 'database');
 		message_backstage('Failed to get field list');
 	}
 
-	while ($row = $db->fetch_assoc($result))
-	{
+	while ($row = $db->fetch_assoc($result)) {
 		$schema_create .= '	' . $row['Field'] . ' ' . $row['Type'];
 
-		if(!empty($row['Default']))
-		{
+		if(!empty($row['Default'])) {
 			$schema_create .= ' DEFAULT \'' . $row['Default'] . '\'';
 		}
 
-		if($row['Null'] != "YES")
-		{
+		if($row['Null'] != "YES") {
 			$schema_create .= ' NOT NULL';
 		}
 
-		if($row['Extra'] != "")
-		{
+		if($row['Extra'] != "") {
 			$schema_create .= ' ' . $row['Extra'];
 		}
 
@@ -133,19 +118,16 @@ function get_table_def_mysql($table, $crlf)
 	// Get any Indexed fields from the database
 	//
 	$result = $db->query($key_query);
-	if(!$result)
-	{
+	if(!$result) {
 		require 'header.php';
 		load_admin_nav('database', 'database');
 		message_backstage('Failed to get Indexed Fields');
 	}
 
-	while($row = $db->fetch_assoc($result))
-	{
+	while($row = $db->fetch_assoc($result)) {
 		$kname = $row['Key_name'];
 
-		if(($kname != 'PRIMARY') && ($row['Non_unique'] == 0))
-		{
+		if(($kname != 'PRIMARY') && ($row['Non_unique'] == 0)) {
 			$kname = "UNIQUE|$kname";
 		}
 		if (!isset($index[$kname]))
@@ -154,32 +136,23 @@ function get_table_def_mysql($table, $crlf)
 		$index[$kname][] = $row['Column_name'];
 	}
 
-	while(list($x, $columns) = @each($index))
-	{
+	while(list($x, $columns) = @each($index)) {
 		$schema_create .= ", $crlf";
 
-		if($x == 'PRIMARY')
-		{
+		if($x == 'PRIMARY') {
 			$schema_create .= '	PRIMARY KEY (' . implode($columns, ', ') . ')';
-		}
-		elseif (substr($x,0,6) == 'UNIQUE')
-		{
+		} elseif (substr($x,0,6) == 'UNIQUE') {
 			$schema_create .= '	UNIQUE ' . substr($x,7) . ' (' . implode($columns, ', ') . ')';
-		}
-		else
-		{
+		} else {
 			$schema_create .= "	KEY $x (" . implode($columns, ', ') . ')';
 		}
 	}
 
 	$schema_create .= "$crlf);";
 
-	if(get_magic_quotes_runtime())
-	{
+	if(get_magic_quotes_runtime()) {
 		return(stripslashes($schema_create));
-	}
-	else
-	{
+	} else {
 		return($schema_create);
 	}
 
@@ -191,47 +164,40 @@ function get_table_def_mysql($table, $crlf)
 //
 
 
-function get_table_content_mysql($table, $handler)
-{
+function get_table_content_mysql($table, $handler) {
 	global $db;
 
 	// Grab the data from the table.
-	if (!($result = $db->query("SELECT * FROM $table")))
-	{
+	if (!($result = $db->query("SELECT * FROM $table"))) {
 		require 'header.php';
 		load_admin_nav('database', 'database');
 		message_backstage('Failed to get table content');
 	}
 
 	// Loop through the resulting rows and build the sql statement.
-	if ($row = $db->fetch_assoc($result))
-	{
+	if ($row = $db->fetch_assoc($result)) {
 		$handler("\n#\n# Table Data for $table\n#\n");
 		$field_names = array();
 
 		// Grab the list of field names.
 		$num_fields = num_fields($result);
 		$table_list = '(';
-		for ($j = 0; $j < $num_fields; $j++)
-		{
+		for ($j = 0; $j < $num_fields; $j++) {
 			$field_names[$j] = field_name($j, $result);
 			$table_list .= (($j > 0) ? ', ' : '') . $field_names[$j];
 
 		}
 		$table_list .= ')';
 
-		do
-		{
+		do {
 			// Start building the SQL statement.
 			$schema_insert = "INSERT INTO $table $table_list VALUES(";
 
 			// Loop through the rows and fill in data for each column
-			for ($j = 0; $j < $num_fields; $j++)
-			{
+			for ($j = 0; $j < $num_fields; $j++) {
 				$schema_insert .= ($j > 0) ? ', ' : '';
 
-				if(!isset($row[$field_names[$j]]))
-				{
+				if(!isset($row[$field_names[$j]])) {
 					//
 					// If there is no data for the column set it to null.
 					// There was a problem here with an extra space causing the
@@ -239,13 +205,9 @@ function get_table_content_mysql($table, $handler)
 					// any table.  Should be fixed now :) JLH
 					//
 					$schema_insert .= 'NULL';
-				}
-				elseif ($row[$field_names[$j]] != '')
-				{
+				} elseif ($row[$field_names[$j]] != '') {
 					$schema_insert .= '\'' . addslashes($row[$field_names[$j]]) . '\'';
-				}
-				else
-				{
+				} else {
 					$schema_insert .= '\'\'';
 				}
 			}
@@ -262,8 +224,7 @@ function get_table_content_mysql($table, $handler)
 	return(true);
 }
 
-function output_table_content($content)
-{
+function output_table_content($content) {
 	global $tempfile;
 
 	// fwrite($tempfile, $content . "\n");
@@ -272,8 +233,7 @@ function output_table_content($content)
 	return;
 }
 
-function remove_remarks($sql)
-{
+function remove_remarks($sql) {
 	$lines = explode("\n", $sql);
 
 	// try to keep mem. use down
@@ -282,12 +242,9 @@ function remove_remarks($sql)
 	$linecount = count($lines);
 	$output = "";
 
-	for ($i = 0; $i < $linecount; $i++)
-	{
-		if ((($i != ($linecount - 1)) || (strlen($lines[$i]) > 0)) and $lines[$i])
-		{
-			if ($lines[$i][0] != "#")
-			{
+	for ($i = 0; $i < $linecount; $i++) {
+		if ((($i != ($linecount - 1)) || (strlen($lines[$i]) > 0)) and $lines[$i]) {
+			if ($lines[$i][0] != "#") {
 				$output .= $lines[$i] . "\n";
 				// Trading a bit of speed for lower mem. use here.
 				$lines[$i] = "";
@@ -297,8 +254,7 @@ function remove_remarks($sql)
 	return $output;
 }
 
-function split_sql_file($sql, $delimiter)
-{
+function split_sql_file($sql, $delimiter) {
 	// Split up our string into "possible" SQL statements.
 	$tokens = explode($delimiter, $sql);
 
@@ -311,11 +267,9 @@ function split_sql_file($sql, $delimiter)
 
 	// this is faster than calling count($oktens) every time thru the loop.
 	$token_count = count($tokens);
-	for ($i = 0; $i < $token_count; $i++)
-	{
+	for ($i = 0; $i < $token_count; $i++) {
 		// Don't wanna add an empty string as the last thing in the array.
-		if (($i != ($token_count - 1)) || (strlen($tokens[$i] > 0)))
-		{
+		if (($i != ($token_count - 1)) || (strlen($tokens[$i] > 0))) {
 			// This is the total number of single quotes in the token.
 			$total_quotes = preg_match_all("/'/", $tokens[$i], $matches);
 			// Counts single quotes that are preceded by an odd number of backslashes,
@@ -325,15 +279,12 @@ function split_sql_file($sql, $delimiter)
 			$unescaped_quotes = $total_quotes - $escaped_quotes;
 
 			// If the number of unescaped quotes is even, then the delimiter did NOT occur inside a string literal.
-			if (($unescaped_quotes % 2) == 0)
-			{
+			if (($unescaped_quotes % 2) == 0) {
 				// It's a complete sql statement.
 				$output[] = $tokens[$i];
 				// save memory.
 				$tokens[$i] = "";
-			}
-			else
-			{
+			} else {
 				// incomplete sql statement. keep adding tokens until we have a complete one.
 				// $temp will hold what we have so far.
 				$temp = $tokens[$i] . $delimiter;
@@ -343,8 +294,7 @@ function split_sql_file($sql, $delimiter)
 				// Do we have a complete statement yet?
 				$complete_stmt = false;
 
-				for ($j = $i + 1; (!$complete_stmt && ($j < $token_count)); $j++)
-				{
+				for ($j = $i + 1; (!$complete_stmt && ($j < $token_count)); $j++) {
 					// This is the total number of single quotes in the token.
 					$total_quotes = preg_match_all("/'/", $tokens[$j], $matches);
 					// Counts single quotes that are preceded by an odd number of backslashes,
@@ -353,8 +303,7 @@ function split_sql_file($sql, $delimiter)
 
 					$unescaped_quotes = $total_quotes - $escaped_quotes;
 
-					if (($unescaped_quotes % 2) == 1)
-					{
+					if (($unescaped_quotes % 2) == 1) {
 						// odd number of unescaped quotes. In combination with the previous incomplete
 						// statement(s), we now have a complete statement. (2 odds always make an even)
 						$output[] = $temp . $tokens[$j];
@@ -367,9 +316,7 @@ function split_sql_file($sql, $delimiter)
 						$complete_stmt = true;
 						// make sure the outer loop continues at the right point.
 						$i = $j;
-					}
-					else
-					{
+					} else {
 						// even number of unescaped quotes. We still don't have a complete statement.
 						// (1 odd and 1 even always make an odd)
 						$temp .= $tokens[$j] . $delimiter;
@@ -390,8 +337,7 @@ function split_sql_file($sql, $delimiter)
 //
 
 // Check this is a mysql Luna setup
-switch($db_type)
-{
+switch($db_type) {
 	case 'mysql':
     case 'mysql_innodb':
 	case 'mysqli':
@@ -413,26 +359,20 @@ if (isset($_POST['backupstart'])) {
 
 	header("Pragma: no-cache");
 	$do_gzip_compress = FALSE;
-	if( $gzipcompress )
-	{
+	if( $gzipcompress ) {
 		$phpver = phpversion();
-		if($phpver >= "4.0")
-		{
-			if(extension_loaded("zlib"))
-			{
+		if($phpver >= "4.0") {
+			if(extension_loaded("zlib")) {
 				$do_gzip_compress = TRUE;
 			}
 		}
 	}
-	if($do_gzip_compress)
-	{
+	if($do_gzip_compress) {
 		@ob_start();
 		@ob_implicit_flush(0);
 		header("Content-Type: application/x-gzip; name=\"modernbb_backup." . gmdate("Y-m-d") . ".sql.gz\"");
 		header("Content-disposition: attachment; filename=modernbb_backup." . gmdate("Y-m-d") . ".sql.gz");
-	}
-	else
-	{
+	} else {
 		header("Content-Type: text/x-delimtext; name=\"modernbb_backup." . gmdate("Y-m-d") . ".sql\"");
 		header("Content-disposition: attachment; filename=modernbb_backup." . gmdate("Y-m-d") . ".sql");
 	}
@@ -444,23 +384,19 @@ if (isset($_POST['backupstart'])) {
 	echo "# Dump of tables for $db_name\n";
 	echo "#\n# DATE : " .  gmdate("d-m-Y H:i:s", time()) . " GMT\n";
 	echo "#\n";
-	for($i = 0; $i < count($tables); $i++)
-	{
+	for($i = 0; $i < count($tables); $i++) {
 		$table_name = $tables[$i];
 		$table_def_function = "get_table_def_mysql";
 		$table_content_function = "get_table_content_mysql";
-		if($backup_type != 'data')
-		{
+		if($backup_type != 'data') {
 			echo "\n#\n# TABLE: " . $db->prefix . $table_name . "\n#\n\n";
 			echo $table_def_function($db->prefix . $table_name, "\n") . "\n";
 		}
-		if($backup_type != 'structure')
-		{
+		if($backup_type != 'structure') {
 			$table_content_function($db->prefix . $table_name, "output_table_content");
 		}
 	}
-	if($do_gzip_compress)
-	{
+	if($do_gzip_compress) {
 		$Size = ob_get_length();
 		$Crc = crc32(ob_get_contents());
 		$contents = gzcompress(ob_get_contents());
@@ -468,8 +404,7 @@ if (isset($_POST['backupstart'])) {
 		echo "\x1f\x8b\x08\x00\x00\x00\x00\x00".substr($contents, 0, strlen($contents) - 4).gzip_PrintFourChars($Crc).gzip_PrintFourChars($Size);
 	}
 exit;
-}
-elseif ( isset($_POST['restore_start']) ) {
+} elseif ( isset($_POST['restore_start']) ) {
 	// Restore SQL Dump
 	//
 	// Handle the file upload
@@ -478,59 +413,44 @@ elseif ( isset($_POST['restore_start']) ) {
 	$backup_file_name = (!empty($HTTP_POST_FILES['backup_file']['name'])) ? $HTTP_POST_FILES['backup_file']['name'] : "";
 	$backup_file_tmpname = ($HTTP_POST_FILES['backup_file']['tmp_name'] != "none") ? $HTTP_POST_FILES['backup_file']['tmp_name'] : "";
 	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
-	if($backup_file_tmpname == "" || $backup_file_name == "")
-	{
+	if($backup_file_tmpname == "" || $backup_file_name == "") {
 		require 'header.php';
 		load_admin_nav('database', 'database');
 		message_backstage('No file was uploaed or the upload failed, the database was not restored');
 	}
-	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) )
-	{
-		if( preg_match("/\.gz$/is",$backup_file_name) )
-		{
+	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) ) {
+		if( preg_match("/\.gz$/is",$backup_file_name) ) {
 			$do_gzip_compress = FALSE;
 			$phpver = phpversion();
-			if($phpver >= "4.0")
-			{
-				if(extension_loaded("zlib"))
-				{
+			if($phpver >= "4.0") {
+				if(extension_loaded("zlib")) {
 					$do_gzip_compress = TRUE;
 				}
 			}
-			if($do_gzip_compress)
-			{
+			if($do_gzip_compress) {
 				$gz_ptr = gzopen($backup_file_tmpname, 'rb');
 				$sql_query = "";
-				while( !gzeof($gz_ptr) )
-				{
+				while( !gzeof($gz_ptr) ) {
 					$sql_query .= gzgets($gz_ptr, 100000);
 				}
-			}
-			else
-			{
+			} else {
 				require 'header.php';
 				load_admin_nav('database', 'database');
 				message_backstage('Sorry the database could not be restored');
 			}
-		}
-		else
-		{
+		} else {
 			$sql_query = fread(fopen($backup_file_tmpname, 'r'), filesize($backup_file_tmpname));
 		}
-	}
-	else
-	{
+	} else {
 		require 'header.php';
 		load_admin_nav('database', 'database');
 		message_backstage('Error the file name or file format caused an error, the database was not restored');
 	}
-	if($sql_query != "")
-	{
+	if($sql_query != "") {
 		// Strip out sql comments
 		$sql_query = remove_remarks($sql_query);
 		$pieces = split_sql_file($sql_query, ";");
-		if(defined('FORUM_DEBUG'))
-		{
+		if(defined('FORUM_DEBUG')) {
 		require 'header.php';
 		load_admin_nav('database', 'database');
 ?>
@@ -540,35 +460,29 @@ elseif ( isset($_POST['restore_start']) ) {
 <?php
 		}
 		$sql_count = count($pieces);
-		for($i = 0; $i < $sql_count; $i++)
-		{
+		for($i = 0; $i < $sql_count; $i++) {
 			$sql = trim($pieces[$i]);
-			if(!empty($sql))
-			{
-				if(defined('FORUM_DEBUG'))
-				{
+			if(!empty($sql)) {
+				if(defined('FORUM_DEBUG')) {
 					echo "Executing: $sql\n<br>";
 					flush();
 				}
 				$result = $db->query($sql);
-				if(!$result)
-				{
+				if(!$result) {
 					require 'header.php';
 					load_admin_nav('database', 'database');
 					message_backstage('Error imported backup file, the database probably has not been restored');
 				}
 			}
 		}
-		if(defined('FORUM_DEBUG'))
-		{
+		if(defined('FORUM_DEBUG')) {
 ?>
 		</p>
 	</div>
 <?php
 		}
 	}
-	if(defined('FORUM_DEBUG'))
-	{
+	if(defined('FORUM_DEBUG')) {
 ?>
 	<div>
 	<h2><?php echo $lang['Restore complete'] ?></h2>
@@ -577,21 +491,16 @@ elseif ( isset($_POST['restore_start']) ) {
 		</p>
 	</div>
 <?php
-	}
-	else
-	{
+	} else {
 		require 'header.php';
 		load_admin_nav('database', 'database');
 		message_backstage('Restore Complete');
 	}
-}
-elseif (isset($_POST['repairall']))
-{
+} elseif (isset($_POST['repairall'])) {
 	// repair all tables
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
-	if (!$result = $db->query($sql))
-	{
+	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
 		require 'header.php';
 		load_admin_nav('database', 'database');
@@ -599,19 +508,16 @@ elseif (isset($_POST['repairall']))
 	}
 	$tables = array();
 	$counter = 0;
-	while ($row = $db->fetch_assoc($result))
-	{
+	while ($row = $db->fetch_assoc($result)) {
 		$counter++;
 		$tables[$counter] = $row['Name'];
 	}
 	$tablecount = $counter;
 
 	// Repair All
-	for ($i = 1; $i <= $tablecount; $i++)
-	{
+	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'REPAIR TABLE ' . $tables[$i];
-		if (!$result = $db->query($sql))
-		{
+		if (!$result = $db->query($sql)) {
 			require 'header.php';
 			load_admin_nav('database', 'database');
 			message_backstage('SQL error, repair failed');
@@ -620,13 +526,10 @@ elseif (isset($_POST['repairall']))
 	require 'header.php';
 	load_admin_nav('database', 'database');
 	message_backstage('All tables repaired');
-}
-elseif (isset($_POST['optimizeall']))
-{
+} elseif (isset($_POST['optimizeall'])) {
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
-	if (!$result = $db->query($sql))
-	{
+	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
 		require 'header.php';
 		load_admin_nav('database', 'database');
@@ -634,19 +537,16 @@ elseif (isset($_POST['optimizeall']))
 	}
 	$tables = array();
 	$counter = 0;
-	while ($row = $db->fetch_assoc($result))
-	{
+	while ($row = $db->fetch_assoc($result)) {
 		$counter++;
 		$tables[$counter] = $row['Name'];
 	}
 	$tablecount = $counter;
 
 	// Optimize All
-	for ($i = 1; $i <= $tablecount; $i++)
-	{
+	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
-		if (!$result = $db->query($sql))
-		{
+		if (!$result = $db->query($sql)) {
 			require 'header.php';
 			load_admin_nav('database', 'database');
 			message_backstage('SQL error, optimise failed');
@@ -655,8 +555,7 @@ elseif (isset($_POST['optimizeall']))
 	require 'header.php';
 	load_admin_nav('database', 'database');
 	message_backstage('All tables optimised');
-}
-else {
+} else {
 	
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Database']);

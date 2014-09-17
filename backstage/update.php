@@ -16,8 +16,7 @@ if (!$luna_user['is_admmod']) {
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
-if ($action == 'update_check')
-{
+if ($action == 'update_check') {
 	// Regenerate the update cache		
 	generate_update_cache();
 	header("Location: update.php");
@@ -26,8 +25,7 @@ if ($action == 'update_check')
 if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
 	include FORUM_CACHE_DIR.'cache_update.php';
 	
-if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24))))
-{
+if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
 

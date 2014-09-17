@@ -18,19 +18,15 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Add/edit a group (stage 1)
-if (isset($_POST['add_group']) || isset($_GET['edit_group']))
-{
-	if (isset($_POST['add_group']))
-	{
+if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
+	if (isset($_POST['add_group'])) {
 		$base_group = intval($_POST['base_group']);
 
 		$result = $db->query('SELECT * FROM '.$db->prefix.'groups WHERE g_id='.$base_group) or error('Unable to fetch user group info', __FILE__, __LINE__, $db->error());
 		$group = $db->fetch_assoc($result);
 
 		$mode = 'add';
-	}
-	else // We are editing a group
-	{
+	} else { // We are editing a group
 		$group_id = intval($_GET['edit_group']);
 		if ($group_id < 1)
 			message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -316,8 +312,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group']))
 
 
 // Add/edit a group (stage 2)
-else if (isset($_POST['add_edit_group']))
-{
+else if (isset($_POST['add_edit_group'])) {
 	confirm_referrer('backstage/groups.php');
 
 	$title = luna_trim($_POST['req_title']);
@@ -344,9 +339,7 @@ else if (isset($_POST['add_edit_group']))
 		$search_flood = (isset($_POST['search_flood']) && $_POST['search_flood'] >= 0) ? intval($_POST['search_flood']) : '0';
 		$email_flood = (isset($_POST['email_flood']) && $_POST['email_flood'] >= 0) ? intval($_POST['email_flood']) : '0';
 		$report_flood = (isset($_POST['report_flood']) && $_POST['report_flood'] >= 0) ? intval($_POST['report_flood']) : '0';
-	}
-	else
-	{
+	} else {
 		$moderator = $mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_topics = $set_title = $search = $search_users = $send_email = '1';
 		$post_flood = $search_flood = $email_flood = $report_flood = '0';
 	}
@@ -356,8 +349,7 @@ else if (isset($_POST['add_edit_group']))
 
 	$user_title = ($user_title != '') ? '\''.$db->escape($user_title).'\'' : 'NULL';
 
-	if ($_POST['mode'] == 'add')
-	{
+	if ($_POST['mode'] == 'add') {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\'') or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			message_backstage(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
@@ -369,9 +361,7 @@ else if (isset($_POST['add_edit_group']))
 		$result = $db->query('SELECT forum_id, read_forum, post_replies, post_topics FROM '.$db->prefix.'forum_perms WHERE group_id='.intval($_POST['base_group'])) or error('Unable to fetch group forum permission list', __FILE__, __LINE__, $db->error());
 		while ($cur_forum_perm = $db->fetch_assoc($result))
 			$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, post_replies, post_topics) VALUES('.$new_group_id.', '.$cur_forum_perm['forum_id'].', '.$cur_forum_perm['read_forum'].', '.$cur_forum_perm['post_replies'].', '.$cur_forum_perm['post_topics'].')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
-	}
-	else
-	{
+	} else {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\' AND g_id!='.intval($_POST['group_id'])) or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			message_backstage(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
@@ -384,8 +374,7 @@ else if (isset($_POST['add_edit_group']))
 
 
 // Set default group
-else if (isset($_POST['set_default_group']))
-{
+else if (isset($_POST['set_default_group'])) {
 	confirm_referrer('backstage/groups.php');
 	
 	$group_id = intval($_POST['default_group']);
@@ -412,8 +401,7 @@ else if (isset($_POST['set_default_group']))
 
 
 // Remove a group
-else if (isset($_GET['del_group']))
-{
+else if (isset($_GET['del_group'])) {
 	confirm_referrer('backstage/groups.php');
 	
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
@@ -428,12 +416,9 @@ else if (isset($_GET['del_group']))
 	$result = $db->query('SELECT g.g_title, COUNT(u.id) FROM '.$db->prefix.'groups AS g INNER JOIN '.$db->prefix.'users AS u ON g.g_id=u.group_id WHERE g.g_id='.$group_id.' GROUP BY g.g_id, g_title') or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 
 	// If the group doesn't have any members or if we've already selected a group to move the members to
-	if (!$db->num_rows($result) || isset($_POST['del_group']))
-	{
-		if (isset($_POST['del_group_comply']) || isset($_POST['del_group']))
-		{
-			if (isset($_POST['del_group']))
-			{
+	if (!$db->num_rows($result) || isset($_POST['del_group'])) {
+		if (isset($_POST['del_group_comply']) || isset($_POST['del_group'])) {
+			if (isset($_POST['del_group'])) {
 				$move_to_group = intval($_POST['move_to_group']);
 				$db->query('UPDATE '.$db->prefix.'users SET group_id='.$move_to_group.' WHERE group_id='.$group_id) or error('Unable to move users into group', __FILE__, __LINE__, $db->error());
 			}
@@ -443,9 +428,7 @@ else if (isset($_GET['del_group']))
 			$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE group_id='.$group_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
 
 			redirect('backstage/groups.php');
-		}
-		else
-		{
+		} else {
 			$result = $db->query('SELECT g_title FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group title', __FILE__, __LINE__, $db->error());
 			$group_title = $db->result($result);
 
@@ -497,8 +480,7 @@ else if (isset($_GET['del_group']))
 
 	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
-	while ($cur_group = $db->fetch_assoc($result))
-	{
+	while ($cur_group = $db->fetch_assoc($result)) {
 		if ($cur_group['g_id'] == FORUM_MEMBER) // Pre-select the pre-defined Members group
 			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 		else
@@ -543,8 +525,7 @@ require 'header.php';
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
-while ($cur_group = $db->fetch_assoc($result))
-{
+while ($cur_group = $db->fetch_assoc($result)) {
 if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
 echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 else
@@ -577,8 +558,7 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htm
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.FORUM_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
-while ($cur_group = $db->fetch_assoc($result))
-{
+while ($cur_group = $db->fetch_assoc($result)) {
 if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
 echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 else

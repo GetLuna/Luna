@@ -18,8 +18,7 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Add a censor word
-if (isset($_POST['add_word']))
-{
+if (isset($_POST['add_word'])) {
 	confirm_referrer('backstage/censoring.php');
 	
 	$search_for = luna_trim($_POST['new_search_for']);
@@ -40,8 +39,7 @@ if (isset($_POST['add_word']))
 }
 
 // Update a censor word
-else if (isset($_POST['update']))
-{
+else if (isset($_POST['update'])) {
 	confirm_referrer('backstage/censoring.php');
 	
 	$id = intval(key($_POST['update']));
@@ -64,8 +62,7 @@ else if (isset($_POST['update']))
 }
 
 // Remove a censor word
-else if (isset($_POST['remove']))
-{
+else if (isset($_POST['remove'])) {
 	confirm_referrer('backstage/censoring.php');
 	
 	$id = intval(key($_POST['remove']));
@@ -125,8 +122,7 @@ require 'header.php';
 <?php
 
 $result = $db->query('SELECT id, search_for, replace_with FROM '.$db->prefix.'censoring ORDER BY id') or error('Unable to fetch censor word list', __FILE__, __LINE__, $db->error());
-if ($db->num_rows($result))
-{
+if ($db->num_rows($result)) {
 
 ?>
 			<table class="table table-striped table-hover">
@@ -148,8 +144,7 @@ echo "\t\t\t\t\t\t\t\t".'<tr><td><div class="btn-group"><input type="text" class
 			</table>
 <?php
 
-}
-else
+} else
 echo "\t\t\t\t\t\t\t".'<div class="panel-body"><p>'.$lang['No words in list'].'</p></div>'."\n";
 
 ?>

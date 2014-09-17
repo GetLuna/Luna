@@ -18,8 +18,7 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Add a rank
-if (isset($_POST['add_rank']))
-{
+if (isset($_POST['add_rank'])) {
 	$rank = luna_trim($_POST['new_rank']);
 	$min_posts = luna_trim($_POST['new_min_posts']);
 
@@ -47,8 +46,7 @@ if (isset($_POST['add_rank']))
 
 
 // Update a rank
-else if (isset($_POST['update']))
-{
+else if (isset($_POST['update'])) {
 	$id = intval(key($_POST['update']));
 
 	$rank = luna_trim($_POST['rank'][$id]);
@@ -78,8 +76,7 @@ else if (isset($_POST['update']))
 
 
 // Remove a rank
-else if (isset($_POST['remove']))
-{
+else if (isset($_POST['remove'])) {
 	$id = intval(key($_POST['remove']));
 
 	$db->query('DELETE FROM '.$db->prefix.'ranks WHERE id='.$id) or error('Unable to delete rank', __FILE__, __LINE__, $db->error());
@@ -139,8 +136,7 @@ if ($luna_config['o_ranks'] == 0) {
 <?php
 
 $result = $db->query('SELECT id, rank, min_posts FROM '.$db->prefix.'ranks ORDER BY min_posts') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
-if ($db->num_rows($result))
-{
+if ($db->num_rows($result)) {
 
 ?>
 			<table class="table table-striped table-hover">
@@ -162,8 +158,7 @@ if ($db->num_rows($result))
 			</table>
 <?php
 
-}
-else
+} else
 	echo "\t\t\t\t\t\t\t".'<div class="panel-body"><p>'.$lang['No ranks in list'].'</p></div>'."\n";
 
 ?>

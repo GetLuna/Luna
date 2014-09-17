@@ -14,19 +14,16 @@ if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if (isset($_POST['form_sent']))
-{
+if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/index.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
 		'admin_note'			=> luna_trim($_POST['form']['admin_note'])
 	);
 
-	foreach ($form as $key => $input)
-	{
+	foreach ($form as $key => $input) {
 		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input)
-		{
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
 			if ($input != '' || is_int($input))
 				$value = '\''.$db->escape($input).'\'';
 			else
@@ -50,8 +47,7 @@ if (isset($_POST['form_sent']))
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 	include FORUM_CACHE_DIR.'cache_users_info.php';
 
-if (!defined('FORUM_USERS_INFO_LOADED'))
-{
+if (!defined('FORUM_USERS_INFO_LOADED')) {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
 
@@ -62,8 +58,7 @@ if (!defined('FORUM_USERS_INFO_LOADED'))
 if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
 	include FORUM_CACHE_DIR.'cache_update.php';
 
-if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24))))
-{
+if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
 
@@ -114,10 +109,8 @@ if (isset($_GET['saved']))
 
 $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.created, r.message, p.id AS pid, t.subject, f.forum_name, u.username AS reporter FROM '.$db->prefix.'reports AS r LEFT JOIN '.$db->prefix.'posts AS p ON r.post_id=p.id LEFT JOIN '.$db->prefix.'topics AS t ON r.topic_id=t.id LEFT JOIN '.$db->prefix.'forums AS f ON r.forum_id=f.id LEFT JOIN '.$db->prefix.'users AS u ON r.reported_by=u.id WHERE r.zapped IS NULL ORDER BY created DESC') or error('Unable to fetch report list', __FILE__, __LINE__, $db->error());
 
-if ($db->num_rows($result))
-{
-	while ($cur_report = $db->fetch_assoc($result))
-	{
+if ($db->num_rows($result)) {
+	while ($cur_report = $db->fetch_assoc($result)) {
 		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
 		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
 		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : '<span>»&#160;'.$lang['Deleted'].'</span>';
@@ -134,9 +127,7 @@ if ($db->num_rows($result))
 <?php
 
 	}
-}
-else
-{
+} else {
 
 ?>
 								<tr>
