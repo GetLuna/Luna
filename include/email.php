@@ -20,8 +20,7 @@ require FORUM_ROOT.'include/utf8/utils/ascii.php';
 //
 // Validate an email address
 //
-function is_valid_email($email)
-{
+function is_valid_email($email) {
 	if (strlen($email) > 80)
 		return false;
 
@@ -32,12 +31,10 @@ function is_valid_email($email)
 //
 // Check if $email is banned
 //
-function is_banned_email($email)
-{
+function is_banned_email($email) {
 	global $luna_bans;
 
-	foreach ($luna_bans as $cur_ban)
-	{
+	foreach ($luna_bans as $cur_ban) {
 		if ($cur_ban['email'] != '' &&
 			($email == $cur_ban['email'] ||
 			(strpos($cur_ban['email'], '@') === false && stristr($email, '@'.$cur_ban['email']))))
@@ -51,8 +48,7 @@ function is_banned_email($email)
 //
 // Only encode with base64, if there is at least one unicode character in the string
 //
-function encode_mail_text($str)
-{
+function encode_mail_text($str) {
 	if (utf8_is_ascii($str))
 		return $str;
 
@@ -63,8 +59,7 @@ function encode_mail_text($str)
 //
 // Make a post email safe
 //
-function bbcode2email($text, $wrap_length = 72)
-{
+function bbcode2email($text, $wrap_length = 72) {
 	static $base_url;
 
 	if (!isset($base_url))
@@ -105,11 +100,9 @@ function bbcode2email($text, $wrap_length = 72)
 
 	$url_index = 1;
 	$url_stack = array();
-	while (preg_match($match_quote_regex, $text, $matches))
-	{
+	while (preg_match($match_quote_regex, $text, $matches)) {
 		// Quotes
-		if ($matches[1] == 'quote')
-		{
+		if ($matches[1] == 'quote') {
 			// Put '>' or '> ' at the start of a line
 			$replacement = preg_replace(
 				array('%^(?=\>)%m', '%^(?!\>)%m'),
@@ -118,27 +111,22 @@ function bbcode2email($text, $wrap_length = 72)
 		}
 
 		// List items
-		elseif ($matches[1] == '*')
-		{
+		elseif ($matches[1] == '*') {
 			$replacement = ' * '.$matches[3];
 		}
 
 		// URLs and emails
-		elseif (in_array($matches[1], array('url', 'email')))
-		{
-			if (!empty($matches[2]))
-			{
+		elseif (in_array($matches[1], array('url', 'email'))) {
+			if (!empty($matches[2])) {
 				$replacement = '['.$matches[3].']['.$url_index.']';
 				$url_stack[$url_index] = $matches[2];
 				$url_index++;
-			}
-			else
+			} else
 				$replacement = '['.$matches[3].']';
 		}
 
 		// Images
-		elseif ($matches[1] == 'img')
-		{
+		elseif ($matches[1] == 'img') {
 			if (!empty($matches[2]))
 				$replacement = '['.$matches[2].']['.$url_index.']';
 			else
@@ -149,35 +137,29 @@ function bbcode2email($text, $wrap_length = 72)
 		}
 
 		// Topic, post, forum and user URLs
-		elseif (in_array($matches[1], array('topic', 'post', 'forum', 'user')))
-		{
+		elseif (in_array($matches[1], array('topic', 'post', 'forum', 'user'))) {
 			$url = isset($shortcut_urls[$matches[1]]) ? $base_url.$shortcut_urls[$matches[1]] : '';
 
-			if (!empty($matches[2]))
-			{
+			if (!empty($matches[2])) {
 				$replacement = '['.$matches[3].']['.$url_index.']';
 				$url_stack[$url_index] = str_replace('$1', $matches[2], $url);
 				$url_index++;
-			}
-			else
+			} else
 				$replacement = '['.str_replace('$1', $matches[3], $url).']';
 		}
 
 		// Update the main text if there is a replacement
-		if (!is_null($replacement))
-		{
+		if (!is_null($replacement)) {
 			$text = str_replace($matches[0], $replacement, $text);
 			$replacement = null;
 		}
 	}
 
 	// Put code blocks and text together
-	if (isset($code))
-	{
+	if (isset($code)) {
 		$parts = explode("\1", $text);
 		$text = '';
-		foreach ($parts as $i => $part)
-		{
+		foreach ($parts as $i => $part) {
 			$text .= $part;
 			if (isset($code[$i]))
 				$text .= trim($code[$i], "\n\r");
@@ -185,28 +167,24 @@ function bbcode2email($text, $wrap_length = 72)
 	}
 
 	// Put URLs at the bottom
-	if ($url_stack)
-	{
+	if ($url_stack) {
 		$text .= "\n\n";
 		foreach ($url_stack as $i => $url)
 			$text .= "\n".' ['.$i.']: '.$url;
 	}
 
 	// Wrap lines if $wrap_length is higher than -1
-	if ($wrap_length > -1)
-	{
+	if ($wrap_length > -1) {
 		// Split all lines and wrap them individually
 		$parts = explode("\n", $text);
-		foreach ($parts as $k => $part)
-		{
+		foreach ($parts as $k => $part) {
 			preg_match('%^(>+ )?(.*)%', $part, $matches);
 			$parts[$k] = wordwrap($matches[1].$matches[2], $wrap_length -
 				strlen($matches[1]), "\n".$matches[1]);
 		}
 
 		return implode("\n", $parts);
-	}
-	else
+	} else
 		return $text;
 }
 
@@ -214,8 +192,7 @@ function bbcode2email($text, $wrap_length = 72)
 //
 // Wrapper for PHP's mail()
 //
-function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '')
-{
+function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '') {
 	global $luna_config, $lang;
 
 	// Default sender/return address
@@ -237,8 +214,7 @@ function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name
 	$headers = 'From: '.$from.FORUM_EOL.'Date: '.gmdate('r').FORUM_EOL.'MIME-Version: 1.0'.FORUM_EOL.'Content-transfer-encoding: 8bit'.FORUM_EOL.'Content-type: text/plain; charset=utf-8'.FORUM_EOL.'X-Mailer: Luna Mailer';
 
 	// If we specified a reply-to email, we deal with it here
-	if (!empty($reply_to_email))
-	{
+	if (!empty($reply_to_email)) {
 		$reply_to = '"'.encode_mail_text($reply_to_name).'" <'.$reply_to_email.'>';
 
 		$headers .= FORUM_EOL.'Reply-To: '.$reply_to;
@@ -247,15 +223,12 @@ function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name
 	// Make sure all linebreaks are LF in message (and strip out any NULL bytes)
 	$message = str_replace("\0", '', luna_linebreaks($message));
 
-	if ($luna_config['o_smtp_host'] != '')
-	{
+	if ($luna_config['o_smtp_host'] != '') {
 		// Headers should be \r\n
 		// Message should be ??
 		$message = str_replace("\n", "\r\n", $message);
 		smtp_mail($to, $subject, $message, $headers);
-	}
-	else
-	{
+	} else {
 		// Headers should be \r\n
 		// Message should be \n
 		mail($to, $subject, $message, $headers);
@@ -267,11 +240,9 @@ function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name
 // This function was originally a part of the phpBB Group forum software phpBB2 (http://www.phpbb.com)
 // They deserve all the credit for writing it. I made small modifications for it to suit PunBB and its coding standards
 //
-function server_parse($socket, $expected_response)
-{
+function server_parse($socket, $expected_response) {
 	$server_response = '';
-	while (substr($server_response, 3, 1) != ' ')
-	{
+	while (substr($server_response, 3, 1) != ' ') {
 		if (!($server_response = fgets($socket, 256)))
 			error('Couldn\'t get mail server response codes. Please contact the forum administrator.', __FILE__, __LINE__);
 	}
@@ -285,8 +256,7 @@ function server_parse($socket, $expected_response)
 // This function was originally a part of the phpBB Group forum software phpBB2 (http://www.phpbb.com)
 // They deserve all the credit for writing it. I made small modifications for it to suit PunBB and its coding standards.
 //
-function smtp_mail($to, $subject, $message, $headers = '')
-{
+function smtp_mail($to, $subject, $message, $headers = '') {
 	global $luna_config;
 	static $local_host;
 
@@ -299,8 +269,7 @@ function smtp_mail($to, $subject, $message, $headers = '')
 	// Are we using port 25 or a custom port?
 	if (strpos($luna_config['o_smtp_host'], ':') !== false)
 		list($smtp_host, $smtp_port) = explode(':', $luna_config['o_smtp_host']);
-	else
-	{
+	else {
 		$smtp_host = $luna_config['o_smtp_host'];
 		$smtp_port = 25;
 	}
@@ -313,22 +282,19 @@ function smtp_mail($to, $subject, $message, $headers = '')
 
 	server_parse($socket, '220');
 
-	if (!isset($local_host))
-	{
+	if (!isset($local_host)) {
 		// Here we try to determine the *real* hostname (reverse DNS entry preferably)
 		$local_host = php_uname('n');
 
 		// Able to resolve name to IP
-		if (($local_addr = @gethostbyname($local_host)) !== $local_host)
-		{
+		if (($local_addr = @gethostbyname($local_host)) !== $local_host) {
 			// Able to resolve IP back to name
 			if (($local_name = @gethostbyaddr($local_addr)) !== $local_addr)
 				$local_host = $local_name;
 		}
 	}
 
-	if ($luna_config['o_smtp_user'] != '' && $luna_config['o_smtp_pass'] != '')
-	{
+	if ($luna_config['o_smtp_user'] != '' && $luna_config['o_smtp_pass'] != '') {
 		fwrite($socket, 'EHLO '.$local_host."\r\n");
 		server_parse($socket, '250');
 
@@ -340,9 +306,7 @@ function smtp_mail($to, $subject, $message, $headers = '')
 
 		fwrite($socket, base64_encode($luna_config['o_smtp_pass'])."\r\n");
 		server_parse($socket, '235');
-	}
-	else
-	{
+	} else {
 		fwrite($socket, 'HELO '.$local_host."\r\n");
 		server_parse($socket, '250');
 	}
@@ -350,8 +314,7 @@ function smtp_mail($to, $subject, $message, $headers = '')
 	fwrite($socket, 'MAIL FROM: <'.$luna_config['o_webmaster_email'].'>'."\r\n");
 	server_parse($socket, '250');
 
-	foreach ($recipients as $email)
-	{
+	foreach ($recipients as $email) {
 		fwrite($socket, 'RCPT TO: <'.$email.'>'."\r\n");
 		server_parse($socket, '250');
 	}

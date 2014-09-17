@@ -14,8 +14,7 @@ if (!defined('FORUM_ROOT'))
 require FORUM_ROOT.'include/version.php';
 
 // Block prefetch requests
-if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch')
-{
+if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch') {
 	header('HTTP/1.1 403 Prefetching Forbidden');
 
 	// Send no-cache headers
@@ -48,8 +47,7 @@ forum_remove_bad_characters();
 forum_unregister_globals();
 
 // If FORUM isn't defined, config.php is missing or corrupt
-if (!defined('FORUM'))
-{
+if (!defined('FORUM')) {
 	header('Location: install.php');
 	exit;
 }
@@ -68,10 +66,8 @@ if (get_magic_quotes_runtime())
 	set_magic_quotes_runtime(0);
 
 // Strip slashes from GET/POST/COOKIE/REQUEST/FILES (if magic_quotes_gpc is enabled)
-if (!defined('FORUM_DISABLE_STRIPSLASHES') && get_magic_quotes_gpc())
-{
-	function stripslashes_array($array)
-	{
+if (!defined('FORUM_DISABLE_STRIPSLASHES') && get_magic_quotes_gpc()) {
+	function stripslashes_array($array) {
 		return is_array($array) ? array_map('stripslashes_array', $array) : stripslashes($array);
 	}
 
@@ -79,8 +75,7 @@ if (!defined('FORUM_DISABLE_STRIPSLASHES') && get_magic_quotes_gpc())
 	$_POST = stripslashes_array($_POST);
 	$_COOKIE = stripslashes_array($_COOKIE);
 	$_REQUEST = stripslashes_array($_REQUEST);
-	if (is_array($_FILES))
-	{
+	if (is_array($_FILES)) {
 		// Don't strip valid slashes from tmp_name path on Windows
 		foreach ($_FILES AS $key => $value)
 			$_FILES[$key]['tmp_name'] = str_replace('\\', '\\\\', $value['tmp_name']);
@@ -113,8 +108,7 @@ $db->start_transaction();
 if (file_exists(FORUM_CACHE_DIR.'cache_config.php'))
 	include FORUM_CACHE_DIR.'cache_config.php';
 
-if (!defined('FORUM_CONFIG_LOADED'))
-{
+if (!defined('FORUM_CONFIG_LOADED')) {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
 
@@ -126,16 +120,14 @@ if (!defined('FORUM_CONFIG_LOADED'))
 if (!isset($luna_config['o_database_revision']) || $luna_config['o_database_revision'] < Version::FORUM_DB_VERSION ||
 	!isset($luna_config['o_searchindex_revision']) || $luna_config['o_searchindex_revision'] < Version::FORUM_SI_VERSION ||
 	!isset($luna_config['o_parser_revision']) || $luna_config['o_parser_revision'] < Version::FORUM_PARSER_VERSION ||
-	!array_key_exists('o_core_version', $luna_config) || version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '<'))
-{
+	!array_key_exists('o_core_version', $luna_config) || version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '<')) {
 	header('Location: '.FORUM_ROOT.'db_update.php');
 
 	exit;
 }
 
 // Enable output buffering
-if (!defined('FORUM_DISABLE_BUFFERING'))
-{
+if (!defined('FORUM_DISABLE_BUFFERING')) {
 	// Should we use gzip output compression?
 	if ($luna_config['o_gzip'] && extension_loaded('zlib'))
 		ob_start('ob_gzhandler');
@@ -167,8 +159,7 @@ if ($luna_config['o_maintenance'] && $luna_user['g_id'] > FORUM_ADMIN && !define
 if (file_exists(FORUM_CACHE_DIR.'cache_bans.php'))
 	include FORUM_CACHE_DIR.'cache_bans.php';
 
-if (!defined('FORUM_BANS_LOADED'))
-{
+if (!defined('FORUM_BANS_LOADED')) {
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 		require FORUM_ROOT.'include/cache.php';
 

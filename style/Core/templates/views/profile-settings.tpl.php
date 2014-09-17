@@ -79,8 +79,7 @@ if (!defined('FORUM'))
                     <div class="col-sm-9">
                         <select class="form-control" name="form[time_format]">
 <?php
-                    foreach (array_unique($forum_time_formats) as $key => $time_format)
-                    {
+                    foreach (array_unique($forum_time_formats) as $key => $time_format) {
                         echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
                         if ($user['time_format'] == $key)
                             echo ' selected="selected"';
@@ -98,8 +97,7 @@ if (!defined('FORUM'))
                     <div class="col-sm-9">
                         <select class="form-control" name="form[date_format]">
 <?php
-                    foreach (array_unique($forum_date_formats) as $key => $date_format)
-                    {
+                    foreach (array_unique($forum_date_formats) as $key => $date_format) {
                         echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
                         if ($user['date_format'] == $key)
                             echo ' selected="selected"';
@@ -116,16 +114,14 @@ if (!defined('FORUM'))
 $languages = forum_list_langs();
 
 // Only display the language selection box if there's more than one language available
-if (count($languages) > 1)
-    {
+if (count($languages) > 1) {
 ?>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Language'] ?></label>
                     <div class="col-sm-9">
                         <select class="form-control" name="form[language]">
 <?php
-        foreach ($languages as $temp)
-        {
+        foreach ($languages as $temp) {
             if ($user['language'] == $temp)
                 echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
             else
@@ -150,8 +146,7 @@ if (count($languages) > 1)
                     <div class="col-sm-9">
                         <select class="form-control" name="form[style]">
 <?php
-        foreach ($styles as $temp)
-        {
+        foreach ($styles as $temp) {
             if ($user['style'] == $temp)
                 echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
             else

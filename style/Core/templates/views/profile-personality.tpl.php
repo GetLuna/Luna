@@ -7,17 +7,14 @@ if (!defined('FORUM'))
     if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
         message($lang['Bad request'], false, '403 Forbidden');
 
-    if ($luna_user['is_admmod'])
-    {
+    if ($luna_user['is_admmod']) {
         if ($luna_user['g_id'] == FORUM_ADMIN || $luna_user['g_mod_rename_users'] == '1')
             $username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_username" value="'.luna_htmlspecialchars($user['username']).'" maxlength="25" /></div></div>'."\n";
         else
             $username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9">'.luna_htmlspecialchars($user['username']).'</div></div>'."\n";
 
         $email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><div class="input-group"><input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" /><span class="input-group-btn"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span></div></div></div>'."\n";
-    }
-    else
-    {
+    } else {
         $username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
 
         if ($luna_config['o_regs_verify'] == '1')

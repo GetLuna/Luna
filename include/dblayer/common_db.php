@@ -13,8 +13,7 @@ if (!defined('FORUM'))
 
 
 // Load the appropriate DB layer class
-switch ($db_type)
-{
+switch ($db_type) {
 	case 'mysql':
 		require_once FORUM_ROOT.'include/dblayer/mysql.php';
 		break;

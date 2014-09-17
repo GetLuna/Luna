@@ -39,13 +39,11 @@ if (!defined('FORUM'))
     // Retrieve the posts (and their respective poster)
     $result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
-    while ($cur_post = $db->fetch_assoc($result))
-    {
+    while ($cur_post = $db->fetch_assoc($result)) {
         $post_count++;
 
         // If the poster is a registered user
-        if ($cur_post['poster_id'] > 1)
-        {
+        if ($cur_post['poster_id'] > 1) {
             if ($luna_user['g_view_users'] == '1')
                 $poster = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
             else
@@ -59,8 +57,7 @@ if (!defined('FORUM'))
                 $user_title = censor_words($user_title);
         }
         // If the poster is a guest (or a user that has been deleted)
-        else
-        {
+        else {
             $poster = luna_htmlspecialchars($cur_post['poster']);
             $user_title = $lang['Guest'];
         }

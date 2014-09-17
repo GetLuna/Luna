@@ -28,8 +28,7 @@
 * @subpackage ascii
 * @see utf8_is_ascii_ctrl
 */
-function utf8_is_ascii($str)
-{
+function utf8_is_ascii($str) {
 	// Search for any bytes which are outside the ASCII range...
 	return (preg_match('/(?:[^\x00-\x7F])/', $str) !== 1);
 }
@@ -45,8 +44,7 @@ function utf8_is_ascii($str)
 * @subpackage ascii
 * @see utf8_is_ascii
 */
-function utf8_is_ascii_ctrl($str)
-{
+function utf8_is_ascii_ctrl($str) {
 	// Search for any bytes which are outside the ASCII range, or are device control codes
 	if (strlen($str) > 0)
 		return (preg_match('/[^\x09\x0A\x0D\x20-\x7E]/', $str) !== 1);
@@ -64,12 +62,10 @@ function utf8_is_ascii_ctrl($str)
 * @subpackage ascii
 * @see utf8_strip_non_ascii_ctrl
 */
-function utf8_strip_non_ascii($str)
-{
+function utf8_strip_non_ascii($str) {
 	ob_start();
 
-	while (preg_match('/^([\x00-\x7F]+)|([^\x00-\x7F]+)/S', $str, $matches))
-	{
+	while (preg_match('/^([\x00-\x7F]+)|([^\x00-\x7F]+)/S', $str, $matches)) {
 		if (!isset($matches[2]))
 			echo $matches[0];
 
@@ -91,12 +87,10 @@ function utf8_strip_non_ascii($str)
 * @param string
 * @return string control codes removed
 */
-function utf8_strip_ascii_ctrl($str)
-{
+function utf8_strip_ascii_ctrl($str) {
 	ob_start();
 
-	while (preg_match('/^([^\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+)|([\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+)/S', $str, $matches))
-	{
+	while (preg_match('/^([^\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+)|([\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+)/S', $str, $matches)) {
 		if (!isset($matches[2]))
 			echo $matches[0];
 
@@ -119,12 +113,10 @@ function utf8_strip_ascii_ctrl($str)
 * @package utf8
 * @subpackage ascii
 */
-function utf8_strip_non_ascii_ctrl($str)
-{
+function utf8_strip_non_ascii_ctrl($str) {
 	ob_start();
 
-	while (preg_match( '/^([\x09\x0A\x0D\x20-\x7E]+)|([^\x09\x0A\x0D\x20-\x7E]+)/S', $str, $matches))
-	{
+	while (preg_match( '/^([\x09\x0A\x0D\x20-\x7E]+)|([^\x09\x0A\x0D\x20-\x7E]+)/S', $str, $matches)) {
 		if (!isset($matches[2]))
 			echo $matches[0];
 
@@ -159,16 +151,13 @@ function utf8_strip_non_ascii_ctrl($str)
 * @package utf8
 * @subpackage ascii
 */
-function utf8_accents_to_ascii($str, $case=0)
-{
+function utf8_accents_to_ascii($str, $case=0) {
 	static $UTF8_LOWER_ACCENTS = null;
 	static $UTF8_UPPER_ACCENTS = null;
 
-	if($case <= 0)
-	{
+	if($case <= 0) {
 
-		if (is_null($UTF8_LOWER_ACCENTS))
-		{
+		if (is_null($UTF8_LOWER_ACCENTS)) {
 			$UTF8_LOWER_ACCENTS = array(
 				'à' => 'a', 'ô' => 'o', 'ď' => 'd', 'ḟ' => 'f', 'ë' => 'e', 'š' => 's', 'ơ' => 'o',
 				'ß' => 'ss', 'ă' => 'a', 'ř' => 'r', 'ț' => 't', 'ň' => 'n', 'ā' => 'a', 'ķ' => 'k',
@@ -191,10 +180,8 @@ function utf8_accents_to_ascii($str, $case=0)
 		$str = str_replace(array_keys($UTF8_LOWER_ACCENTS), array_values($UTF8_LOWER_ACCENTS), $str);
 	}
 
-	if($case >= 0)
-	{
-		if (is_null($UTF8_UPPER_ACCENTS))
-		{
+	if($case >= 0) {
+		if (is_null($UTF8_UPPER_ACCENTS)) {
 			$UTF8_UPPER_ACCENTS = array(
 				'À' => 'A', 'Ô' => 'O', 'Ď' => 'D', 'Ḟ' => 'F', 'Ë' => 'E', 'Š' => 'S', 'Ơ' => 'O',
 				'Ă' => 'A', 'Ř' => 'R', 'Ț' => 'T', 'Ň' => 'N', 'Ā' => 'A', 'Ķ' => 'K',

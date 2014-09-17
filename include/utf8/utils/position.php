@@ -27,8 +27,7 @@
 * @package utf8
 * @subpackage position
 */
-function utf8_byte_position()
-{
+function utf8_byte_position() {
 	$args = func_get_args();
 	$str =& array_shift($args);
 
@@ -43,23 +42,19 @@ function utf8_byte_position()
 	// Deal with arguments from lowest to highest
 	sort($args);
 
-	foreach ($args as $offset)
-	{
+	foreach ($args as $offset) {
 		// Sanity checks FIXME
 
 		// 0 is an easy check
-		if ($offset == 0)
-		{
+		if ($offset == 0) {
 			$result[] = 0; continue;
 		}
 
 		// Ensure no endless looping
 		$safety_valve = 50;
 
-		do
-		{
-			if (($c - $prev[1]) == 0)
-			{
+		do {
+			if (($c - $prev[1]) == 0) {
 				// Hack: gone past end of string
 				$error = 0;
 				$i = strlen($str);
@@ -80,16 +75,12 @@ function utf8_byte_position()
 		}
 		while (($error > 7) && --$safety_valve); // From 7 it is faster to iterate over the string
 
-		if ($error && $error <= 7)
-		{
-			if ($c < $offset)
-			{
+		if ($error && $error <= 7) {
+			if ($c < $offset) {
 				// Move up
 				while ($error--)
 					$i = utf8_locate_next_chr($str, ++$i);
-			}
-			else
-			{
+			} else {
 				// Move down
 				while ($error--)
 					$i = utf8_locate_current_chr($str, --$i);
@@ -122,8 +113,7 @@ function utf8_byte_position()
 * @package utf8
 * @subpackage position
 */
-function utf8_locate_current_chr( &$str, $idx )
-{
+function utf8_locate_current_chr( &$str, $idx ) {
 	if ($idx <= 0)
 		return 0;
 
@@ -152,8 +142,7 @@ function utf8_locate_current_chr( &$str, $idx )
 * @package utf8
 * @subpackage position
 */
-function utf8_locate_next_chr(&$str, $idx)
-{
+function utf8_locate_next_chr(&$str, $idx) {
 	if ($idx <= 0)
 		return 0;
 

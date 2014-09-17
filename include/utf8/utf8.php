@@ -41,8 +41,7 @@ else if (!defined('UTF8_USE_NATIVE'))
 // characters. Mbstring doesn't do this while the Native implementation does.
 require UTF8.'/utils/bad.php';
 
-if (defined('UTF8_USE_MBSTRING'))
-{
+if (defined('UTF8_USE_MBSTRING')) {
 	/**
 	* If string overloading is active, it will break many of the
 	* native implementations. mbstring.func_overload must be set
@@ -58,11 +57,8 @@ if (defined('UTF8_USE_MBSTRING'))
 
 	if (!defined('UTF8_CORE'))
 		require UTF8.'/mbstring/core.php';
-}
-elseif (defined('UTF8_USE_NATIVE'))
-{
-	if (!defined('UTF8_CORE'))
-	{
+} elseif (defined('UTF8_USE_NATIVE')) {
+	if (!defined('UTF8_CORE')) {
 		require UTF8.'/utils/unicode.php';
 		require UTF8.'/native/core.php';
 	}

@@ -22,10 +22,8 @@ if (!defined('FORUM'))
 <?php
 
     $cur_category = 0;
-    while ($cur_forum = $db->fetch_assoc($result))
-    {
-        if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-        {
+    while ($cur_forum = $db->fetch_assoc($result)) {
+        if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
             if ($cur_category)
                 echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
 

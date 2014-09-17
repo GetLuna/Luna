@@ -5,8 +5,7 @@ if (!defined('FORUM'))
     exit;
 
 // If there are errors, we display them
-if (!empty($errors))
-{
+if (!empty($errors)) {
 
 ?>
 
@@ -76,8 +75,7 @@ if (!empty($errors))
         $languages = forum_list_langs();
 
         // Only display the language selection box if there's more than one language available
-        if (count($languages) > 1)
-        {
+        if (count($languages) > 1) {
 
 ?>
                 <div class="form-group">
@@ -86,8 +84,7 @@ if (!empty($errors))
                         <select class="form-control" name="language">
 <?php
 
-            foreach ($languages as $temp)
-            {
+            foreach ($languages as $temp) {
                 if ($luna_config['o_default_lang'] == $temp)
                     echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
                 else

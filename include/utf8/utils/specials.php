@@ -27,12 +27,10 @@
 * @see utf8_is_word_chars
 * @see utf8_strip_specials
 */
-function utf8_specials_pattern()
-{
+function utf8_specials_pattern() {
 	static $pattern = null;
 
-	if (!$pattern)
-	{
+	if (!$pattern) {
 		$UTF8_SPECIAL_CHARS = array(
 			0x001a, 0x001b, 0x001c, 0x001d, 0x001e, 0x001f, 0x0020, 0x0021, 0x0022, 0x0023,
 			0x0024, 0x0025, 0x0026, 0x0027, 0x0028, 0x0029, 0x002a, 0x002b, 0x002c,
@@ -104,8 +102,7 @@ function utf8_specials_pattern()
 * @return boolean TRUE if the string only contains word characters
 * @see utf8_specials_pattern
 */
-function utf8_is_word_chars($str)
-{
+function utf8_is_word_chars($str) {
 	return !(bool) preg_match(utf8_specials_pattern(), $str);
 }
 
@@ -125,7 +122,6 @@ function utf8_is_word_chars($str)
 * @return string with common non-alphanumeric characters removed
 * @see utf8_specials_pattern
 */
-function utf8_strip_specials($string, $repl='')
-{
+function utf8_strip_specials($string, $repl='') {
 	return preg_replace(utf8_specials_pattern(), $repl, $string);
 }

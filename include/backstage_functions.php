@@ -8,8 +8,7 @@
 //
 // Display the admin navigation menu
 //
-function load_admin_nav($section ='', $page = '')
-{
+function load_admin_nav($section ='', $page = '') {
 	global $luna_user, $lang;
 
 ?>

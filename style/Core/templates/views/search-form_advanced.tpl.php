@@ -37,19 +37,15 @@ if (!defined('FORUM'))
 $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 // We either show a list of forums of which multiple can be selected
-if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod'])
-{
+if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod']) {
     echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.$lang['Forum'].'</b>'."\n";
     echo "\t\t\t\t\t\t".'<br />'."\n";
     echo "\t\t\t\t\t\t".'<div>'."\n";
 
     $cur_category = 0;
-    while ($cur_forum = $db->fetch_assoc($result))
-    {
-        if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-        {
-            if ($cur_category)
-            {
+    while ($cur_forum = $db->fetch_assoc($result)) {
+        if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
+            if ($cur_category) {
                 echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
                 echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
             }
@@ -60,8 +56,7 @@ if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod'])
         echo "\t\t\t\t\t\t\t\t".'<input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
     }
 
-    if ($cur_category)
-    {
+    if ($cur_category) {
         echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
         echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
     }
@@ -70,17 +65,14 @@ if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod'])
     echo "\t\t\t\t\t\t".'</div></div>'."\n";
 }
 // ... or a simple select list for one forum only
-else
-{
+else {
     echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.$lang['Forum']."\n";
     echo "\t\t\t\t\t\t".'<br />'."\n";
     echo "\t\t\t\t\t\t".'<select id="forum" name="forum">'."\n";
 
     $cur_category = 0;
-    while ($cur_forum = $db->fetch_assoc($result))
-    {
-        if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-        {
+    while ($cur_forum = $db->fetch_assoc($result)) {
+        if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
             if ($cur_category)
                 echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
 

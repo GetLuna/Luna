@@ -17,8 +17,7 @@
 * @package utf8
 * @subpackage strings
 */
-function utf8_strcspn($str, $mask, $start=null, $length=null)
-{
+function utf8_strcspn($str, $mask, $start=null, $length=null) {
 	if (empty($mask) || strlen($mask) == 0)
 		return null;
 

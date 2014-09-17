@@ -13,8 +13,7 @@
 * @see utf8_strlen
 * @see utf8_substr
 */
-function utf8_substr_replace($str, $repl, $start , $length=null)
-{
+function utf8_substr_replace($str, $repl, $start , $length=null) {
 	preg_match_all('/./us', $str, $ar);
 	preg_match_all('/./us', $repl, $rar);
 

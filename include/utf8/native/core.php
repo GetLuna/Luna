@@ -27,8 +27,7 @@ if (!defined('UTF8_CORE'))
 * @package utf8
 * @subpackage strings
 */
-function utf8_strlen($str)
-{
+function utf8_strlen($str) {
 	return strlen(utf8_decode($str));
 }
 
@@ -47,21 +46,16 @@ function utf8_strlen($str)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strpos($str, $needle, $offset = false)
-{
-	if ($offset === false)
-	{
+function utf8_strpos($str, $needle, $offset = false) {
+	if ($offset === false) {
 		$ar = explode($needle, $str, 2);
 
 		if (count($ar) > 1)
 			return utf8_strlen($ar[0]);
 
 		return false;
-	}
-	else
-	{
-		if (!is_int($offset))
-		{
+	} else {
+		if (!is_int($offset)) {
 			trigger_error('utf8_strpos: Offset must be an integer', E_USER_ERROR);
 			return false;
 		}
@@ -90,14 +84,11 @@ function utf8_strpos($str, $needle, $offset = false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strrpos($str, $needle, $offset = false)
-{
-	if ($offset === false)
-	{
+function utf8_strrpos($str, $needle, $offset = false) {
+	if ($offset === false) {
 		$ar = explode($needle, $str);
 
-		if (count($ar) > 1)
-		{
+		if (count($ar) > 1) {
 			// Pop off the end of the string where the last match was made
 			array_pop($ar);
 			$str = join($needle, $ar);
@@ -106,11 +97,8 @@ function utf8_strrpos($str, $needle, $offset = false)
 		}
 
 		return false;
-	}
-	else
-	{
-		if (!is_int($offset))
-		{
+	} else {
+		if (!is_int($offset)) {
 			trigger_error('utf8_strrpos expects parameter 3 to be long', E_USER_WARNING);
 			return false;
 		}
@@ -153,8 +141,7 @@ function utf8_strrpos($str, $needle, $offset = false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_substr($str, $offset, $length = false)
-{
+function utf8_substr($str, $offset, $length = false) {
 	// Generates E_NOTICE for PHP4 objects, but not PHP5 objects
 	$str = (string) $str;
 	$offset = (int) $offset;
@@ -170,8 +157,7 @@ function utf8_substr($str, $offset, $length = false)
 
 	// Normalise negative offsets (we could use a tail
 	// anchored pattern, but they are horribly slow!)
-	if ($offset < 0)
-	{
+	if ($offset < 0) {
 		// See notes
 		$strlen = utf8_strlen($str);
 		$offset = $strlen + $offset;
@@ -185,8 +171,7 @@ function utf8_substr($str, $offset, $length = false)
 
 	// Establish a pattern for offset, a
 	// non-captured group equal in length to offset
-	if ($offset > 0)
-	{
+	if ($offset > 0) {
 		$Ox = (int) ($offset / 65535);
 		$Oy = $offset % 65535;
 
@@ -194,19 +179,15 @@ function utf8_substr($str, $offset, $length = false)
 			$Op = '(?:.{65535}){'.$Ox.'}';
 
 		$Op = '^(?:'.$Op.'.{'.$Oy.'})';
-	}
-	else
+	} else
 		$Op = '^';
 
 
 	// Establish a pattern for length
-	if (!$length)
-	{
+	if (!$length) {
 		// The rest of the string
 		$Lp = '(.*)$';
-	}
-	else
-	{
+	} else {
 		// See notes
 		if (!isset($strlen))
 			$strlen = strlen(utf8_decode($str));
@@ -215,8 +196,7 @@ function utf8_substr($str, $offset, $length = false)
 		if ($offset > $strlen)
 			return '';
 
-		if ($length > 0)
-		{
+		if ($length > 0) {
 			// Reduce any length that would go passed the end of the string
 			$length = min($strlen-$offset, $length);
 
@@ -226,9 +206,7 @@ function utf8_substr($str, $offset, $length = false)
 			// Negative length requires a captured group of length characters
 			if ($Lx) $Lp = '(?:.{65535}){'.$Lx.'}';
 			$Lp = '('.$Lp.'.{'.$Ly.'})';
-		}
-		else if ($length < 0)
-		{
+		} else if ($length < 0) {
 
 			if ($length < ($offset - $strlen))
 				return '';
@@ -270,12 +248,10 @@ function utf8_substr($str, $offset, $length = false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strtolower($string)
-{
+function utf8_strtolower($string) {
 	static $UTF8_UPPER_TO_LOWER = false;
 
-	if (!$UTF8_UPPER_TO_LOWER)
-	{
+	if (!$UTF8_UPPER_TO_LOWER) {
 		$UTF8_UPPER_TO_LOWER = array(
 			0x0041=>0x0061, 0x03A6=>0x03C6, 0x0162=>0x0163, 0x00C5=>0x00E5, 0x0042=>0x0062,
 			0x0139=>0x013A, 0x00C1=>0x00E1, 0x0141=>0x0142, 0x038E=>0x03CD, 0x0100=>0x0101,
@@ -355,12 +331,10 @@ function utf8_strtolower($string)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strtoupper($string)
-{
+function utf8_strtoupper($string) {
 	static $UTF8_LOWER_TO_UPPER = false;
 
-	if (!$UTF8_LOWER_TO_UPPER)
-	{
+	if (!$UTF8_LOWER_TO_UPPER) {
 		$UTF8_LOWER_TO_UPPER = array(
 			0x0061=>0x0041, 0x03C6=>0x03A6, 0x0163=>0x0162, 0x00E5=>0x00C5, 0x0062=>0x0042,
 			0x013A=>0x0139, 0x00E1=>0x00C1, 0x0142=>0x0141, 0x03CD=>0x038E, 0x0101=>0x0100,

@@ -16,8 +16,7 @@ if (!defined('FORUM'))
 <form id="profile7" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>">
 <?php
 
-    if ($luna_user['g_moderator'] == '1')
-    {
+    if ($luna_user['g_moderator'] == '1') {
 
 ?>
     <div class="panel panel-default">
@@ -33,11 +32,8 @@ if (!defined('FORUM'))
     </div>
 <?php
 
-    }
-    else
-    {
-        if ($luna_user['id'] != $id)
-        {
+    } else {
+        if ($luna_user['id'] != $id) {
 
 ?>
     <div class="panel panel-default">
@@ -51,8 +47,7 @@ if (!defined('FORUM'))
 
             $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
-            while ($cur_group = $db->fetch_assoc($result))
-            {
+            while ($cur_group = $db->fetch_assoc($result)) {
                 if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
                     echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
                 else
@@ -82,8 +77,7 @@ if (!defined('FORUM'))
     </div>
 <?php
 
-        if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN)
-        {
+        if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) {
 
 ?>
     <div class="panel panel-default">
@@ -98,10 +92,8 @@ if (!defined('FORUM'))
             $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.moderators FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
             $cur_category = 0;
-            while ($cur_forum = $db->fetch_assoc($result))
-            {
-                if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-                {
+            while ($cur_forum = $db->fetch_assoc($result)) {
+                if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
                     if ($cur_category)
                         echo "\n\t\t\t\t\t\t\t\t".'</div>';
 

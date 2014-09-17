@@ -16,8 +16,7 @@
 * @package utf8
 * @subpackage strings
 */
-function utf8_ucwords($str)
-{
+function utf8_ucwords($str) {
 	// Note: [\x0c\x09\x0b\x0a\x0d\x20] matches;
 	// Form feeds, horizontal tabs, vertical tabs, linefeeds and carriage returns
 	// This corresponds to the definition of a "word" defined at http://www.php.net/ucwords
@@ -36,8 +35,7 @@ function utf8_ucwords($str)
 * @package utf8
 * @subpackage strings
 */
-function utf8_ucwords_callback($matches)
-{
+function utf8_ucwords_callback($matches) {
 	$leadingws = $matches[2];
 	$ucfirst = utf8_strtoupper($matches[3]);
 	$ucword = utf8_substr_replace(ltrim($matches[0]), $ucfirst, 0, 1);

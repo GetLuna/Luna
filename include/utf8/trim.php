@@ -18,8 +18,7 @@
 * @package utf8
 * @subpackage strings
 */
-function utf8_ltrim( $str, $charlist=false)
-{
+function utf8_ltrim( $str, $charlist=false) {
 	if($charlist === false)
 		return ltrim($str);
 
@@ -41,8 +40,7 @@ function utf8_ltrim( $str, $charlist=false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_rtrim($str, $charlist=false)
-{
+function utf8_rtrim($str, $charlist=false) {
 	if($charlist === false)
 		return rtrim($str);
 
@@ -65,8 +63,7 @@ function utf8_rtrim($str, $charlist=false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_trim( $str, $charlist=false)
-{
+function utf8_trim( $str, $charlist=false) {
 	if($charlist === false)
 		return trim($str);
 

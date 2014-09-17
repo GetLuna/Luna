@@ -17,8 +17,7 @@ $cur_index = 1;
             <input type="hidden" name="form_sent" value="1" />
 <?php
 
-if ($luna_user['is_guest'])
-{
+if ($luna_user['is_guest']) {
     $email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].'</strong>' : $lang['Email'];
     $email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
@@ -85,13 +84,11 @@ $checkboxes = array();
 if ($fid && $is_admmod)
     $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /> '.$lang['Stick topic'].'</label></div>';
 
-if (!$luna_user['is_guest'])
-{
+if (!$luna_user['is_guest']) {
     if ($luna_config['o_smilies'] == '1')
         $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
 
-    if ($luna_config['o_topic_subscriptions'] == '1')
-    {
+    if ($luna_config['o_topic_subscriptions'] == '1') {
         $subscr_checked = false;
 
         // If it's a preview
@@ -106,12 +103,10 @@ if (!$luna_user['is_guest'])
 
         $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang['Stay subscribed'] : $lang['Subscribe topic']).'</label></div>';
     }
-}
-else if ($luna_config['o_smilies'] == '1')
+} else if ($luna_config['o_smilies'] == '1')
     $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
 
-if (!empty($checkboxes))
-{
+if (!empty($checkboxes)) {
 
 ?>
     <div class="panel panel-default">

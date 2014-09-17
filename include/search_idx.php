@@ -46,8 +46,7 @@ define('FORUM_CJK_HANGUL_REGEX', '['.
 // "Cleans up" a text string and returns an array of unique words
 // This function depends on the current locale setting
 //
-function split_words($text, $idx)
-{
+function split_words($text, $idx) {
 	// Remove BBCode
 	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|topic|post|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
 
@@ -64,8 +63,7 @@ function split_words($text, $idx)
 	$words = array_unique(explode(' ', $text));
 
 	// Remove any words that should not be indexed
-	foreach ($words as $key => $value)
-	{
+	foreach ($words as $key => $value) {
 		// If the word shouldn't be indexed, remove it
 		if (!validate_search_word($value, $idx))
 			unset($words[$key]);
@@ -78,21 +76,18 @@ function split_words($text, $idx)
 //
 // Checks if a word is a valid searchable word
 //
-function validate_search_word($word, $idx)
-{
+function validate_search_word($word, $idx) {
 	static $stopwords;
 
 	// If the word is a keyword we don't want to index it, but we do want to be allowed to search it
 	if (is_keyword($word))
 		return !$idx;
 
-	if (!isset($stopwords))
-	{
+	if (!isset($stopwords)) {
 		if (file_exists(FORUM_CACHE_DIR.'cache_stopwords.php'))
 			include FORUM_CACHE_DIR.'cache_stopwords.php';
 
-		if (!defined('FORUM_STOPWORDS_LOADED'))
-		{
+		if (!defined('FORUM_STOPWORDS_LOADED')) {
 			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 				require FORUM_ROOT.'include/cache.php';
 
@@ -121,8 +116,7 @@ function validate_search_word($word, $idx)
 //
 // Check a given word is a search keyword.
 //
-function is_keyword($word)
-{
+function is_keyword($word) {
 	return $word == 'and' || $word == 'or' || $word == 'not';
 }
 
@@ -130,8 +124,7 @@ function is_keyword($word)
 //
 // Check if a given word is CJK or Hangul.
 //
-function is_cjk($word)
-{
+function is_cjk($word) {
 	return preg_match('%^'.FORUM_CJK_HANGUL_REGEX.'+$%u', $word) ? true : false;
 }
 
@@ -139,12 +132,10 @@ function is_cjk($word)
 //
 // Strip [img] [url] and [email] out of the message so we don't index their contents
 //
-function strip_bbcode($text)
-{
+function strip_bbcode($text) {
 	static $patterns;
 
-	if (!isset($patterns))
-	{
+	if (!isset($patterns)) {
 		$patterns = array(
 			'%\[img=([^\]]*+)\]([^[]*+)\[/img\]%'									=>	'$2 $1',	// Keep the url and description
 			'%\[(url|email)=([^\]]*+)\]([^[]*+(?:(?!\[/\1\])\[[^[]*+)*)\[/\1\]%'	=>	'$2 $3',	// Keep the url and text
@@ -160,8 +151,7 @@ function strip_bbcode($text)
 //
 // Updates the search index with the contents of $post_id (and $subject)
 //
-function update_search_index($mode, $post_id, $message, $subject = null)
-{
+function update_search_index($mode, $post_id, $message, $subject = null) {
 	global $db_type, $db;
 
 	$message = utf8_strtolower($message);
@@ -174,16 +164,14 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 	$words_message = split_words($message, true);
 	$words_subject = ($subject) ? split_words($subject, true) : array();
 
-	if ($mode == 'edit')
-	{
+	if ($mode == 'edit') {
 		$result = $db->query('SELECT w.id, w.word, m.subject_match FROM '.$db->prefix.'search_words AS w INNER JOIN '.$db->prefix.'search_matches AS m ON w.id=m.word_id WHERE m.post_id='.$post_id, true) or error('Unable to fetch search index words', __FILE__, __LINE__, $db->error());
 
 		// Declare here to stop array_keys() and array_diff() from complaining if not set
 		$cur_words['post'] = array();
 		$cur_words['subject'] = array();
 
-		while ($row = $db->fetch_row($result))
-		{
+		while ($row = $db->fetch_row($result)) {
 			$match_in = ($row[2]) ? 'subject' : 'post';
 			$cur_words[$match_in][$row[1]] = $row[0];
 		}
@@ -194,9 +182,7 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 		$words['add']['subject'] = array_diff($words_subject, array_keys($cur_words['subject']));
 		$words['del']['post'] = array_diff(array_keys($cur_words['post']), $words_message);
 		$words['del']['subject'] = array_diff(array_keys($cur_words['subject']), $words_subject);
-	}
-	else
-	{
+	} else {
 		$words['add']['post'] = $words_message;
 		$words['add']['subject'] = $words_subject;
 		$words['del']['post'] = array();
@@ -209,8 +195,7 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 	// Get unique words from the above arrays
 	$unique_words = array_unique(array_merge($words['add']['post'], $words['add']['subject']));
 
-	if (!empty($unique_words))
-	{
+	if (!empty($unique_words)) {
 		$result = $db->query('SELECT id, word FROM '.$db->prefix.'search_words WHERE word IN(\''.implode('\',\'', array_map(array($db, 'escape'), $unique_words)).'\')', true) or error('Unable to fetch search index words', __FILE__, __LINE__, $db->error());
 
 		$word_ids = array();
@@ -222,10 +207,8 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 		$new_words = array_diff($unique_words, array_keys($word_ids));
 		unset($unique_words);
 
-		if (!empty($new_words))
-		{
-			switch ($db_type)
-			{
+		if (!empty($new_words)) {
+			switch ($db_type) {
 				case 'mysql':
 				case 'mysqli':
 				case 'mysql_innodb':
@@ -244,12 +227,10 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 	}
 
 	// Delete matches (only if editing a post)
-	foreach ($words['del'] as $match_in => $wordlist)
-	{
+	foreach ($words['del'] as $match_in => $wordlist) {
 		$subject_match = ($match_in == 'subject') ? 1 : 0;
 
-		if (!empty($wordlist))
-		{
+		if (!empty($wordlist)) {
 			$sql = '';
 			foreach ($wordlist as $word)
 				$sql .= (($sql != '') ? ',' : '').$cur_words[$match_in][$word];
@@ -259,8 +240,7 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 	}
 
 	// Add new matches
-	foreach ($words['add'] as $match_in => $wordlist)
-	{
+	foreach ($words['add'] as $match_in => $wordlist) {
 		$subject_match = ($match_in == 'subject') ? 1 : 0;
 
 		if (!empty($wordlist))
@@ -274,29 +254,24 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 //
 // Strip search index of indexed words in $post_ids
 //
-function strip_search_index($post_ids)
-{
+function strip_search_index($post_ids) {
 	global $db_type, $db;
 
-	switch ($db_type)
-	{
+	switch ($db_type) {
 		case 'mysql':
 		case 'mysqli':
 		case 'mysql_innodb':
-		case 'mysqli_innodb':
-		{
+		case 'mysqli_innodb': {
 			$result = $db->query('SELECT word_id FROM '.$db->prefix.'search_matches WHERE post_id IN('.$post_ids.') GROUP BY word_id') or error('Unable to fetch search index word match', __FILE__, __LINE__, $db->error());
 
-			if ($db->num_rows($result))
-			{
+			if ($db->num_rows($result)) {
 				$word_ids = '';
 				while ($row = $db->fetch_row($result))
 					$word_ids .= ($word_ids != '') ? ','.$row[0] : $row[0];
 
 				$result = $db->query('SELECT word_id FROM '.$db->prefix.'search_matches WHERE word_id IN('.$word_ids.') GROUP BY word_id HAVING COUNT(word_id)=1') or error('Unable to fetch search index word match', __FILE__, __LINE__, $db->error());
 
-				if ($db->num_rows($result))
-				{
+				if ($db->num_rows($result)) {
 					$word_ids = '';
 					while ($row = $db->fetch_row($result))
 						$word_ids .= ($word_ids != '') ? ','.$row[0] : $row[0];

@@ -12,8 +12,7 @@ if (!function_exists('mysql_connect'))
 	exit('This PHP environment doesn\'t have MySQL support built in. MySQL support is required if you want to use a MySQL database to run this forum. Consult the PHP documentation for further assistance.');
 
 
-class DBLayer
-{
+class DBLayer {
 	var $prefix;
 	var $link_id;
 	var $query_result;
@@ -29,8 +28,7 @@ class DBLayer
 	);
 
 
-	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect)
-	{
+	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {
 		$this->prefix = $db_prefix;
 
 		if ($p_connect)
@@ -38,12 +36,10 @@ class DBLayer
 		else
 			$this->link_id = @mysql_connect($db_host, $db_username, $db_password);
 
-		if ($this->link_id)
-		{
+		if ($this->link_id) {
 			if (!@mysql_select_db($db_name, $this->link_id))
 				error('Unable to select database. MySQL reported: '.mysql_error(), __FILE__, __LINE__);
-		}
-		else
+		} else
 			error('Unable to connect to MySQL server. MySQL reported: '.mysql_error(), __FILE__, __LINE__);
 
 		// Setup the client-server character set (UTF-8)
@@ -54,20 +50,17 @@ class DBLayer
 	}
 
 
-	function start_transaction()
-	{
+	function start_transaction() {
 		return;
 	}
 
 
-	function end_transaction()
-	{
+	function end_transaction() {
 		return;
 	}
 
 
-	function query($sql, $unbuffered = false)
-	{
+	function query($sql, $unbuffered = false) {
 		if (defined('FORUM_SHOW_QUERIES'))
 			$q_start = get_microtime();
 
@@ -76,17 +69,14 @@ class DBLayer
 		else
 			$this->query_result = @mysql_query($sql, $this->link_id);
 
-		if ($this->query_result)
-		{
+		if ($this->query_result) {
 			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, sprintf('%.5f', get_microtime() - $q_start));
 
 			++$this->num_queries;
 
 			return $this->query_result;
-		}
-		else
-		{
+		} else {
 			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, 0);
 
@@ -98,62 +88,52 @@ class DBLayer
 	}
 
 
-	function result($query_id = 0, $row = 0, $col = 0)
-	{
+	function result($query_id = 0, $row = 0, $col = 0) {
 		return ($query_id) ? @mysql_result($query_id, $row, $col) : false;
 	}
 
 
-	function fetch_assoc($query_id = 0)
-	{
+	function fetch_assoc($query_id = 0) {
 		return ($query_id) ? @mysql_fetch_assoc($query_id) : false;
 	}
 
 
-	function fetch_row($query_id = 0)
-	{
+	function fetch_row($query_id = 0) {
 		return ($query_id) ? @mysql_fetch_row($query_id) : false;
 	}
 
 
-	function num_rows($query_id = 0)
-	{
+	function num_rows($query_id = 0) {
 		return ($query_id) ? @mysql_num_rows($query_id) : false;
 	}
 
 
-	function affected_rows()
-	{
+	function affected_rows() {
 		return ($this->link_id) ? @mysql_affected_rows($this->link_id) : false;
 	}
 
 
-	function insert_id()
-	{
+	function insert_id() {
 		return ($this->link_id) ? @mysql_insert_id($this->link_id) : false;
 	}
 
 
-	function get_num_queries()
-	{
+	function get_num_queries() {
 		return $this->num_queries;
 	}
 
 
-	function get_saved_queries()
-	{
+	function get_saved_queries() {
 		return $this->saved_queries;
 	}
 
 
-	function free_result($query_id = false)
-	{
+	function free_result($query_id = false) {
 		return ($query_id) ? @mysql_free_result($query_id) : false;
 	}
 
 
-	function escape($str)
-	{
+	function escape($str) {
 		if (is_array($str))
 			return '';
 		else if (function_exists('mysql_real_escape_string'))
@@ -163,8 +143,7 @@ class DBLayer
 	}
 
 
-	function error()
-	{
+	function error() {
 		$result['error_sql'] = @current(@end($this->saved_queries));
 		$result['error_no'] = $this->error_no;
 		$result['error_msg'] = $this->error_msg;
@@ -173,34 +152,28 @@ class DBLayer
 	}
 
 
-	function close()
-	{
-		if ($this->link_id)
-		{
+	function close() {
+		if ($this->link_id) {
 			if ($this->query_result)
 				@mysql_free_result($this->query_result);
 
 			return @mysql_close($this->link_id);
-		}
-		else
+		} else
 			return false;
 	}
 
-	function get_names()
-	{
+	function get_names() {
 		$result = $this->query('SHOW VARIABLES LIKE \'character_set_connection\'');
 		return $this->result($result, 0, 1);
 	}
 
 
-	function set_names($names)
-	{
+	function set_names($names) {
 		return $this->query('SET NAMES \''.$this->escape($names).'\'');
 	}
 
 
-	function get_version()
-	{
+	function get_version() {
 		$result = $this->query('SELECT VERSION()');
 
 		return array(
@@ -210,29 +183,24 @@ class DBLayer
 	}
 
 
-	function table_exists($table_name, $no_prefix = false)
-	{
+	function table_exists($table_name, $no_prefix = false) {
 		$result = $this->query('SHOW TABLES LIKE \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\'');
 		return $this->num_rows($result) > 0;
 	}
 
 
-	function field_exists($table_name, $field_name, $no_prefix = false)
-	{
+	function field_exists($table_name, $field_name, $no_prefix = false) {
 		$result = $this->query('SHOW COLUMNS FROM '.($no_prefix ? '' : $this->prefix).$table_name.' LIKE \''.$this->escape($field_name).'\'');
 		return $this->num_rows($result) > 0;
 	}
 
 
-	function index_exists($table_name, $index_name, $no_prefix = false)
-	{
+	function index_exists($table_name, $index_name, $no_prefix = false) {
 		$exists = false;
 
 		$result = $this->query('SHOW INDEX FROM '.($no_prefix ? '' : $this->prefix).$table_name);
-		while ($cur_index = $this->fetch_assoc($result))
-		{
-			if (strtolower($cur_index['Key_name']) == strtolower(($no_prefix ? '' : $this->prefix).$table_name.'_'.$index_name))
-			{
+		while ($cur_index = $this->fetch_assoc($result)) {
+			if (strtolower($cur_index['Key_name']) == strtolower(($no_prefix ? '' : $this->prefix).$table_name.'_'.$index_name)) {
 				$exists = true;
 				break;
 			}
@@ -242,16 +210,14 @@ class DBLayer
 	}
 
 
-	function create_table($table_name, $schema, $no_prefix = false)
-	{
+	function create_table($table_name, $schema, $no_prefix = false) {
 		if ($this->table_exists($table_name, $no_prefix))
 			return true;
 
 		$query = 'CREATE TABLE '.($no_prefix ? '' : $this->prefix).$table_name." (\n";
 
 		// Go through every schema element and add it to the query
-		foreach ($schema['FIELDS'] as $field_name => $field_data)
-		{
+		foreach ($schema['FIELDS'] as $field_name => $field_data) {
 			$field_data['datatype'] = preg_replace(array_keys($this->datatype_transformations), array_values($this->datatype_transformations), $field_data['datatype']);
 
 			$query .= $field_name.' '.$field_data['datatype'];
@@ -273,15 +239,13 @@ class DBLayer
 			$query .= 'PRIMARY KEY ('.implode(',', $schema['PRIMARY KEY']).'),'."\n";
 
 		// Add unique keys
-		if (isset($schema['UNIQUE KEYS']))
-		{
+		if (isset($schema['UNIQUE KEYS'])) {
 			foreach ($schema['UNIQUE KEYS'] as $key_name => $key_fields)
 				$query .= 'UNIQUE KEY '.($no_prefix ? '' : $this->prefix).$table_name.'_'.$key_name.'('.implode(',', $key_fields).'),'."\n";
 		}
 
 		// Add indexes
-		if (isset($schema['INDEXES']))
-		{
+		if (isset($schema['INDEXES'])) {
 			foreach ($schema['INDEXES'] as $index_name => $index_fields)
 				$query .= 'KEY '.($no_prefix ? '' : $this->prefix).$table_name.'_'.$index_name.'('.implode(',', $index_fields).'),'."\n";
 		}
@@ -293,8 +257,7 @@ class DBLayer
 	}
 
 
-	function drop_table($table_name, $no_prefix = false)
-	{
+	function drop_table($table_name, $no_prefix = false) {
 		if (!$this->table_exists($table_name, $no_prefix))
 			return true;
 
@@ -302,8 +265,7 @@ class DBLayer
 	}
 
 
-	function rename_table($old_table, $new_table, $no_prefix = false)
-	{
+	function rename_table($old_table, $new_table, $no_prefix = false) {
 		// If the new table exists and the old one doesn't, then we're happy
 		if ($this->table_exists($new_table, $no_prefix) && !$this->table_exists($old_table, $no_prefix))
 			return true;
@@ -312,8 +274,7 @@ class DBLayer
 	}
 
 
-	function add_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = null, $no_prefix = false)
-	{
+	function add_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = null, $no_prefix = false) {
 		if ($this->field_exists($table_name, $field_name, $no_prefix))
 			return true;
 
@@ -326,8 +287,7 @@ class DBLayer
 	}
 
 
-	function alter_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = null, $no_prefix = false)
-	{
+	function alter_field($table_name, $field_name, $field_type, $allow_null, $default_value = null, $after_field = null, $no_prefix = false) {
 		if (!$this->field_exists($table_name, $field_name, $no_prefix))
 			return true;
 
@@ -340,8 +300,7 @@ class DBLayer
 	}
 
 
-	function drop_field($table_name, $field_name, $no_prefix = false)
-	{
+	function drop_field($table_name, $field_name, $no_prefix = false) {
 		if (!$this->field_exists($table_name, $field_name, $no_prefix))
 			return true;
 
@@ -349,8 +308,7 @@ class DBLayer
 	}
 
 
-	function add_index($table_name, $index_name, $index_fields, $unique = false, $no_prefix = false)
-	{
+	function add_index($table_name, $index_name, $index_fields, $unique = false, $no_prefix = false) {
 		if ($this->index_exists($table_name, $index_name, $no_prefix))
 			return true;
 
@@ -358,16 +316,14 @@ class DBLayer
 	}
 
 
-	function drop_index($table_name, $index_name, $no_prefix = false)
-	{
+	function drop_index($table_name, $index_name, $no_prefix = false) {
 		if (!$this->index_exists($table_name, $index_name, $no_prefix))
 			return true;
 
 		return $this->query('ALTER TABLE '.($no_prefix ? '' : $this->prefix).$table_name.' DROP INDEX '.($no_prefix ? '' : $this->prefix).$table_name.'_'.$index_name) ? true : false;
 	}
 
-	function truncate_table($table_name, $no_prefix = false)
-	{
+	function truncate_table($table_name, $no_prefix = false) {
 		return $this->query('TRUNCATE TABLE '.($no_prefix ? '' : $this->prefix).$table_name) ? true : false;
 	}
 }

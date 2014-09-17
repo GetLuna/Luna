@@ -21,8 +21,7 @@ else
             <div class="col-md-2 col-sm-4 col-xs-6"><span><?php printf($lang['Newest user'], $stats['newest_user']) ?></span></div>
 <?php
 
-if ($luna_config['o_users_online'] == '1')
-{
+if ($luna_config['o_users_online'] == '1') {
 
     $num_users_online = num_users_online();
 
@@ -38,8 +37,7 @@ if ($luna_config['o_users_online'] == '1')
         echo "\n\t\t\t\t".'<div class="row"><span class="users-online"><strong>'.$lang['Online'].' </strong>';
 
         $ctr = 1;
-        while ($luna_user_online = $db->fetch_assoc($result))
-        {
+        while ($luna_user_online = $db->fetch_assoc($result)) {
             if ($luna_user['g_view_users'] == '1')
                 echo "\n\t\t\t\t".'<a href="profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>';
             else

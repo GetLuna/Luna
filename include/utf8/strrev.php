@@ -15,8 +15,7 @@
 * @package utf8
 * @subpackage strings
 */
-function utf8_strrev($str)
-{
+function utf8_strrev($str) {
 	preg_match_all('/./us', $str, $ar);
 	return implode(array_reverse($ar[0]));
 }

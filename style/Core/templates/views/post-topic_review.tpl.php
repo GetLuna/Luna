@@ -17,8 +17,7 @@ if (!defined('FORUM'))
     // Set background switching on
     $post_count = 0;
 
-    while ($cur_post = $db->fetch_assoc($result))
-    {
+    while ($cur_post = $db->fetch_assoc($result)) {
         $post_count++;
 
         $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);

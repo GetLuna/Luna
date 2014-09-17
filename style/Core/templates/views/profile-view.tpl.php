@@ -31,11 +31,9 @@ if (!defined('FORUM'))
         $user_personality[] = '<b>'.$lang['Location'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']);
 
     $posts_field = '';
-    if ($luna_user['g_search'] == '1')
-    {
+    if ($luna_user['g_search'] == '1') {
         $quick_searches = array();
-        if ($user['num_posts'] > 0)
-        {
+        if ($user['num_posts'] > 0) {
             $quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
             $quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
         }
@@ -61,8 +59,7 @@ if (!defined('FORUM'))
         $email_field = '<a class="btn btn-default btn-block" href="misc.php?email='.$id.'"><span class="fa fa-send-o"></span> '.$lang['Send email'].'</a>';
     else
         $email_field = '';
-    if ($email_field != '')
-    {
+    if ($email_field != '') {
         $email_field;
     }
 
@@ -120,10 +117,8 @@ if (!defined('FORUM'))
 <?php
     endif;
 
-    if ($luna_config['o_signatures'] == '1')
-    {
-        if (isset($parsed_signature))
-        {
+    if ($luna_config['o_signatures'] == '1') {
+        if (isset($parsed_signature)) {
 ?>
     <div class="panel panel-default">
         <div class="panel-heading">

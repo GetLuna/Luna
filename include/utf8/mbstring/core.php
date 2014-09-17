@@ -20,8 +20,7 @@ if (!defined('UTF8_CORE'))
 * @package utf8
 * @subpackage strings
 */
-function utf8_strlen($str)
-{
+function utf8_strlen($str) {
 	return mb_strlen($str);
 }
 
@@ -36,8 +35,7 @@ function utf8_strlen($str)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strpos($str, $search, $offset = false)
-{
+function utf8_strpos($str, $search, $offset = false) {
 	// Strip unvalid characters
 	$str = utf8_bad_strip($str);
 
@@ -58,23 +56,18 @@ function utf8_strpos($str, $search, $offset = false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strrpos($str, $search, $offset = false)
-{
+function utf8_strrpos($str, $search, $offset = false) {
 	// Strip unvalid characters
 	$str = utf8_bad_strip($str);
 
-	if (!$offset)
-	{
+	if (!$offset) {
 		// Emulate behaviour of strrpos rather than raising warning
 		if (empty($str))
 			return false;
 
 		return mb_strrpos($str, $search);
-	}
-	else
-	{
-		if (!is_int($offset))
-		{
+	} else {
+		if (!is_int($offset)) {
 			trigger_error('utf8_strrpos expects parameter 3 to be long', E_USER_WARNING);
 			return false;
 		}
@@ -99,8 +92,7 @@ function utf8_strrpos($str, $search, $offset = false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_substr($str, $offset, $length = false)
-{
+function utf8_substr($str, $offset, $length = false) {
 	if ($length === false)
 		return mb_substr($str, $offset);
 	else
@@ -120,8 +112,7 @@ function utf8_substr($str, $offset, $length = false)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strtolower($str)
-{
+function utf8_strtolower($str) {
 	return mb_strtolower($str);
 }
 
@@ -138,7 +129,6 @@ function utf8_strtolower($str)
 * @package utf8
 * @subpackage strings
 */
-function utf8_strtoupper($str)
-{
+function utf8_strtoupper($str) {
 	return mb_strtoupper($str);
 }

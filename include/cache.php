@@ -14,8 +14,7 @@ if (!defined('FORUM'))
 //
 // Generate the config cache PHP script
 //
-function generate_config_cache()
-{
+function generate_config_cache() {
 	global $db;
 
 	// Get the forum config from the DB
@@ -33,8 +32,7 @@ function generate_config_cache()
 //
 // Generate the update cache
 //
-function generate_update_cache()
-{
+function generate_update_cache() {
 	// Get the version number from GitHub
 	$output = trim(@file_get_contents('https://localhost/luna/version.txt'));
 
@@ -47,8 +45,7 @@ function generate_update_cache()
 //
 // Generate the bans cache PHP script
 //
-function generate_bans_cache()
-{
+function generate_bans_cache() {
 	global $db;
 
 	// Get the ban list from the DB
@@ -67,8 +64,7 @@ function generate_bans_cache()
 //
 // Generate the ranks cache PHP script
 //
-function generate_ranks_cache()
-{
+function generate_ranks_cache() {
 	global $db;
 
 	// Get the rank list from the DB
@@ -87,16 +83,14 @@ function generate_ranks_cache()
 //
 // Generate the censoring cache PHP script
 //
-function generate_censoring_cache()
-{
+function generate_censoring_cache() {
 	global $db;
 
 	$result = $db->query('SELECT search_for, replace_with FROM '.$db->prefix.'censoring') or error('Unable to fetch censoring list', __FILE__, __LINE__, $db->error());
 	$num_words = $db->num_rows($result);
 
 	$search_for = $replace_with = array();
-	for ($i = 0; $i < $num_words; $i++)
-	{
+	for ($i = 0; $i < $num_words; $i++) {
 		list($search_for[$i], $replace_with[$i]) = $db->fetch_row($result);
 		$search_for[$i] = '%(?<=[^\p{L}\p{N}])('.str_replace('\*', '[\p{L}\p{N}]*?', preg_quote($search_for[$i], '%')).')(?=[^\p{L}\p{N}])%iu';
 	}
@@ -110,13 +104,11 @@ function generate_censoring_cache()
 //
 // Generate the stopwords cache PHP script
 //
-function generate_stopwords_cache()
-{
+function generate_stopwords_cache() {
 	$stopwords = array();
 
 	$d = dir(FORUM_ROOT.'lang');
-	while (($entry = $d->read()) !== false)
-	{
+	while (($entry = $d->read()) !== false) {
 		if ($entry{0} == '.')
 			continue;
 
@@ -138,8 +130,7 @@ function generate_stopwords_cache()
 //
 // Load some information about the latest registered users
 //
-function generate_users_info_cache()
-{
+function generate_users_info_cache() {
 	global $db;
 
 	$stats = array();
@@ -159,8 +150,7 @@ function generate_users_info_cache()
 //
 // Generate the admins cache PHP script
 //
-function generate_admins_cache()
-{
+function generate_admins_cache() {
 	global $db;
 
 	// Get admins from the DB
@@ -179,8 +169,7 @@ function generate_admins_cache()
 //
 // Safely write out a cache file.
 //
-function fluxbb_write_cache_file($file, $content)
-{
+function fluxbb_write_cache_file($file, $content) {
 	$fh = @fopen(FORUM_CACHE_DIR.$file, 'wb');
 	if (!$fh)
 		error('Unable to write cache file '.luna_htmlspecialchars($file).' to cache directory. Please make sure PHP has write access to the directory \''.luna_htmlspecialchars(FORUM_CACHE_DIR).'\'', __FILE__, __LINE__);
@@ -201,11 +190,9 @@ function fluxbb_write_cache_file($file, $content)
 //
 // Delete all feed caches
 //
-function clear_feed_cache()
-{
+function clear_feed_cache() {
 	$d = dir(FORUM_CACHE_DIR);
-	while (($entry = $d->read()) !== false)
-	{
+	while (($entry = $d->read()) !== false) {
 		if (substr($entry, 0, 10) == 'cache_feed' && substr($entry, -4) == '.php')
 			@unlink(FORUM_CACHE_DIR.$entry);
 	}

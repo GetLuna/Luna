@@ -69,28 +69,22 @@ $smilies = array(
 //
 // Make sure all BBCodes are lower case and do a little cleanup
 //
-function preparse_bbcode($text, &$errors, $is_signature = false)
-{
+function preparse_bbcode($text, &$errors, $is_signature = false) {
 	global $luna_config, $lang, $re_list;
 
 	// Remove empty tags
-	while (($new_text = strip_empty_bbcode($text)) !== false)
-	{
-		if ($new_text != $text)
-		{
+	while (($new_text = strip_empty_bbcode($text)) !== false) {
+		if ($new_text != $text) {
 			$text = $new_text;
-			if ($new_text == '')
-			{
+			if ($new_text == '') {
 				$errors[] = $lang['Empty after strip'];
 				return '';
 			}
-		}
-		else
+		} else
 			break;
 	}
 
-	if ($is_signature)
-	{
+	if ($is_signature) {
 		global $lang;
 
 		if (preg_match('%\[/?(?:quote|code|list|h)\b[^\]]*\]%i', $text))
@@ -121,14 +115,12 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 		$text = $temp_text;
 
 	// If we split up the message before we have to concatenate it together again (code tags)
-	if (isset($inside))
-	{
+	if (isset($inside)) {
 		$outside = explode("\1", $text);
 		$text = '';
 
 		$num_tokens = count($outside);
-		for ($i = 0; $i < $num_tokens; ++$i)
-		{
+		for ($i = 0; $i < $num_tokens; ++$i) {
 			$text .= $outside[$i];
 			if (isset($inside[$i]))
 				$text .= '[code]'.$inside[$i].'[/code]';
@@ -138,18 +130,14 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 	}
 
 	// Remove empty tags
-	while (($new_text = strip_empty_bbcode($text)) !== false)
-	{
-		if ($new_text != $text)
-		{
+	while (($new_text = strip_empty_bbcode($text)) !== false) {
+		if ($new_text != $text) {
 			$text = $new_text;
-			if ($new_text == '')
-			{
+			if ($new_text == '') {
 				$errors[] = $lang['Empty after strip'];
 				break;
 			}
-		}
-		else
+		} else
 			break;
 	}
 
@@ -160,15 +148,13 @@ function preparse_bbcode($text, &$errors, $is_signature = false)
 //
 // Strip empty bbcode tags from some text
 //
-function strip_empty_bbcode($text)
-{
+function strip_empty_bbcode($text) {
 	// If the message contains a code tag we have to split it up (empty tags within [code][/code] are fine)
 	if (strpos($text, '[code]') !== false && strpos($text, '[/code]') !== false)
 		list($inside, $text) = extract_blocks($text, '[code]', '[/code]');
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
-	{
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
 		if ($new_text != $text)
 			$text = $new_text;
 		else
@@ -176,12 +162,10 @@ function strip_empty_bbcode($text)
 	}
 
 	// If we split up the message before we have to concatenate it together again (code tags)
-	if (isset($inside))
-	{
+	if (isset($inside)) {
 		$parts = explode("\1", $text);
 		$text = '';
-		foreach ($parts as $i => $part)
-		{
+		foreach ($parts as $i => $part) {
 			$text .= $part;
 			if (isset($inside[$i]))
 				$text .= '[code]'.$inside[$i].'[/code]';
@@ -189,8 +173,7 @@ function strip_empty_bbcode($text)
 	}
 
 	// Remove empty code tags
-	while (!is_null($new_text = preg_replace('%\[(code)\]\s*\[/\1\]%', '', $text)))
-	{
+	while (!is_null($new_text = preg_replace('%\[(code)\]\s*\[/\1\]%', '', $text))) {
 		if ($new_text != $text)
 			$text = $new_text;
 		else
@@ -204,8 +187,7 @@ function strip_empty_bbcode($text)
 //
 // Check the structure of bbcode tags and fix simple mistakes where possible
 //
-function preparse_tags($text, &$errors, $is_signature = false)
-{
+function preparse_tags($text, &$errors, $is_signature = false) {
 	global $lang, $luna_config;
 
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
@@ -255,14 +237,12 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	$limit_bbcode = $tags;
 	$count_ignored = array();
 
-	foreach ($split_text as $current)
-	{
+	foreach ($split_text as $current) {
 		if ($current == '')
 			continue;
 
 		// Are we dealing with a tag?
-		if (substr($current, 0, 1) != '[' || substr($current, -1, 1) != ']')
-		{
+		if (substr($current, 0, 1) != '[' || substr($current, -1, 1) != ']') {
 			// It's not a bbcode tag so we put it on the end and continue
 			// If we are nested too deeply don't add to the end
 			if ($current_nest)
@@ -270,8 +250,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 
 			$current = str_replace("\r\n", "\n", $current);
 			$current = str_replace("\r", "\n", $current);
-			if (in_array($open_tags[$opened_tag], $tags_inline) && strpos($current, "\n") !== false)
-			{
+			if (in_array($open_tags[$opened_tag], $tags_inline) && strpos($current, "\n") !== false) {
 				// Deal with new lines
 				$split_current = preg_split('%(\n\n+)%', $current, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 				$current = '';
@@ -279,24 +258,19 @@ function preparse_tags($text, &$errors, $is_signature = false)
 				if (!luna_trim($split_current[0], "\n")) // The first part is a linebreak so we need to handle any open tags first
 					array_unshift($split_current, '');
 
-				for ($i = 1; $i < count($split_current); $i += 2)
-				{
+				for ($i = 1; $i < count($split_current); $i += 2) {
 					$temp_opened = array();
 					$temp_opened_arg = array();
 					$temp = $split_current[$i - 1];
-					while (!empty($open_tags))
-					{
+					while (!empty($open_tags)) {
 						$temp_tag = array_pop($open_tags);
 						$temp_arg = array_pop($open_args);
 
-						if (in_array($temp_tag , $tags_inline))
-						{
+						if (in_array($temp_tag , $tags_inline)) {
 							array_push($temp_opened, $temp_tag);
 							array_push($temp_opened_arg, $temp_arg);
 							$temp .= '[/'.$temp_tag.']';
-						}
-						else
-						{
+						} else {
 							array_push($open_tags, $temp_tag);
 							array_push($open_args, $temp_arg);
 							break;
@@ -304,8 +278,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 					}
 					$current .= $temp.$split_current[$i];
 					$temp = '';
-					while (!empty($temp_opened))
-					{
+					while (!empty($temp_opened)) {
 						$temp_tag = array_pop($temp_opened);
 						$temp_arg = array_pop($temp_opened_arg);
 						if (empty($temp_arg))
@@ -332,24 +305,18 @@ function preparse_tags($text, &$errors, $is_signature = false)
 
 		// Get the name of the tag
 		$current_arg = '';
-		if (strpos($current, '/') === 1)
-		{
+		if (strpos($current, '/') === 1) {
 			$current_tag = substr($current, 2, -1);
-		}
-		else if (strpos($current, '=') === false)
-		{
+		} else if (strpos($current, '=') === false) {
 			$current_tag = substr($current, 1, -1);
-		}
-		else
-		{
+		} else {
 			$current_tag = substr($current, 1, strpos($current, '=')-1);
 			$current_arg = substr($current, strpos($current, '=')+1, -1);
 		}
 		$current_tag = strtolower($current_tag);
 
 		// Is the tag defined?
-		if (!in_array($current_tag, $tags))
-		{
+		if (!in_array($current_tag, $tags)) {
 			// It's not a bbcode tag so we put it on the end and continue
 			if (!$current_nest)
 				$new_text .= $current;
@@ -360,25 +327,21 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		// We definitely have a bbcode tag
 
 		// Make the tag string lower case
-		if ($equalpos = strpos($current,'='))
-		{
+		if ($equalpos = strpos($current,'=')) {
 			// We have an argument for the tag which we don't want to make lowercase
-			if (strlen(substr($current, $equalpos)) == 2)
-			{
+			if (strlen(substr($current, $equalpos)) == 2) {
 				// Empty tag argument
 				$errors[] = sprintf($lang['BBCode error empty attribute'], $current_tag);
 				return false;
 			}
 			$current = strtolower(substr($current, 0, $equalpos)).substr($current, $equalpos);
-		}
-		else
+		} else
 			$current = strtolower($current);
 
 		// This is if we are currently in a tag which escapes other bbcode such as code
 		// We keep a count of ignored bbcodes (code tags) so we can nest them, but
 		// only balanced sets of tags can be nested
-		if ($current_ignore)
-		{
+		if ($current_ignore) {
 			// Increase the current ignored tags counter
 			if ('['.$current_ignore.']' == $current)
 				$count_ignored[$current_tag]++;
@@ -387,8 +350,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 			if ('[/'.$current_ignore.']' == $current)
 				$count_ignored[$current_tag]--;
 
-			if ('[/'.$current_ignore.']' == $current && $count_ignored[$current_tag] == 0)
-			{
+			if ('[/'.$current_ignore.']' == $current && $count_ignored[$current_tag] == 0) {
 				// We've finished the ignored section
 				$current = '[/'.$current_tag.']';
 				$current_ignore = '';
@@ -400,8 +362,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 			continue;
 		}
 
-		if ($current_nest)
-		{
+		if ($current_nest) {
 			// We are currently too deeply nested so lets see if we are closing the tag or not
 			if ($current_tag != $current_nest)
 				continue;
@@ -418,32 +379,24 @@ function preparse_tags($text, &$errors, $is_signature = false)
 		}
 
 		// Check the current tag is allowed here
-		if (!in_array($current_tag, $limit_bbcode) && $current_tag != $open_tags[$opened_tag])
-		{
+		if (!in_array($current_tag, $limit_bbcode) && $current_tag != $open_tags[$opened_tag]) {
 			$errors[] = sprintf($lang['BBCode error invalid nesting'], $current_tag, $open_tags[$opened_tag]);
 			return false;
 		}
 
-		if (substr($current, 1, 1) == '/')
-		{
+		if (substr($current, 1, 1) == '/') {
 			// This is if we are closing a tag
-			if ($opened_tag == 0 || !in_array($current_tag, $open_tags))
-			{
+			if ($opened_tag == 0 || !in_array($current_tag, $open_tags)) {
 				// We tried to close a tag which is not open
-				if (in_array($current_tag, $tags_opened))
-				{
+				if (in_array($current_tag, $tags_opened)) {
 					$errors[] = sprintf($lang['BBCode error no opening tag'], $current_tag);
 					return false;
 				}
-			}
-			else
-			{
+			} else {
 				// Check nesting
-				while (true)
-				{
+				while (true) {
 					// Nesting is ok
-					if ($open_tags[$opened_tag] == $current_tag)
-					{
+					if ($open_tags[$opened_tag] == $current_tag) {
 						array_pop($open_tags);
 						array_pop($open_args);
 						$opened_tag--;
@@ -451,20 +404,16 @@ function preparse_tags($text, &$errors, $is_signature = false)
 					}
 
 					// Nesting isn't ok, try to fix it
-					if (in_array($open_tags[$opened_tag], $tags_closed) && in_array($current_tag, $tags_closed))
-					{
-						if (in_array($current_tag, $open_tags))
-						{
+					if (in_array($open_tags[$opened_tag], $tags_closed) && in_array($current_tag, $tags_closed)) {
+						if (in_array($current_tag, $open_tags)) {
 							$temp_opened = array();
 							$temp_opened_arg = array();
 							$temp = '';
-							while (!empty($open_tags))
-							{
+							while (!empty($open_tags)) {
 								$temp_tag = array_pop($open_tags);
 								$temp_arg = array_pop($open_args);
 
-								if (!in_array($temp_tag, $tags_fix))
-								{
+								if (!in_array($temp_tag, $tags_fix)) {
 									// We couldn't fix nesting
 									$errors[] = sprintf($lang['BBCode error no closing tag'], array_pop($temp_opened));
 									return false;
@@ -482,8 +431,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 							array_pop($temp_opened);
 							array_pop($temp_opened_arg);
 
-							while (!empty($temp_opened))
-							{
+							while (!empty($temp_opened)) {
 								$temp_tag = array_pop($temp_opened);
 								$temp_arg = array_pop($temp_opened_arg);
 								if (empty($temp_arg))
@@ -496,18 +444,14 @@ function preparse_tags($text, &$errors, $is_signature = false)
 							$current .= $temp;
 							$opened_tag--;
 							break;
-						}
-						else
-						{
+						} else {
 							// We couldn't fix nesting
 							$errors[] = sprintf($lang['BBCode error no opening tag'], $current_tag);
 							return false;
 						}
-					}
-					else if (in_array($open_tags[$opened_tag], $tags_closed))
+					} else if (in_array($open_tags[$opened_tag], $tags_closed))
 						break;
-					else
-					{
+					else {
 						array_pop($open_tags);
 						array_pop($open_args);
 						$opened_tag--;
@@ -515,8 +459,7 @@ function preparse_tags($text, &$errors, $is_signature = false)
 				}
 			}
 
-			if (in_array($current_tag, array_keys($tags_nested)))
-			{
+			if (in_array($current_tag, array_keys($tags_nested))) {
 				if (isset($current_depth[$current_tag]))
 					$current_depth[$current_tag]--;
 			}
@@ -529,24 +472,20 @@ function preparse_tags($text, &$errors, $is_signature = false)
 			$new_text .= $current;
 
 			continue;
-		}
-		else
-		{
+		} else {
 			// We are opening a tag
 			if (in_array($current_tag, array_keys($tags_limit_bbcode)))
 				$limit_bbcode = $tags_limit_bbcode[$current_tag];
 			else
 				$limit_bbcode = $tags;
 
-			if (in_array($current_tag, $tags_block) && !in_array($open_tags[$opened_tag], $tags_block) && $opened_tag != 0)
-			{
+			if (in_array($current_tag, $tags_block) && !in_array($open_tags[$opened_tag], $tags_block) && $opened_tag != 0) {
 				// We tried to open a block tag within a non-block tag
 				$errors[] = sprintf($lang['BBCode error invalid nesting'], $current_tag, $open_tags[$opened_tag]);
 				return false;
 			}
 
-			if (in_array($current_tag, $tags_ignore))
-			{
+			if (in_array($current_tag, $tags_ignore)) {
 				// It's an ignore tag so we don't need to worry about what's inside it
 				$current_ignore = $current_tag;
 				$count_ignored[$current_tag] = 1;
@@ -555,14 +494,11 @@ function preparse_tags($text, &$errors, $is_signature = false)
 			}
 
 			// Deal with nested tags
-			if (in_array($current_tag, $open_tags) && !in_array($current_tag, array_keys($tags_nested)))
-			{
+			if (in_array($current_tag, $open_tags) && !in_array($current_tag, array_keys($tags_nested))) {
 				// We nested a tag we shouldn't
 				$errors[] = sprintf($lang['BBCode error invalid self-nesting'], $current_tag);
 				return false;
-			}
-			else if (in_array($current_tag, array_keys($tags_nested)))
-			{
+			} else if (in_array($current_tag, array_keys($tags_nested))) {
 				// We are allowed to nest this tag
 
 				if (isset($current_depth[$current_tag]))
@@ -571,16 +507,14 @@ function preparse_tags($text, &$errors, $is_signature = false)
 					$current_depth[$current_tag] = 1;
 
 				// See if we are nested too deep
-				if ($current_depth[$current_tag] > $tags_nested[$current_tag])
-				{
+				if ($current_depth[$current_tag] > $tags_nested[$current_tag]) {
 					$current_nest = $current_tag;
 					continue;
 				}
 			}
 
 			// Remove quotes from arguments for certain tags
-			if (strpos($current, '=') !== false && in_array($current_tag, $tags_quotes))
-			{
+			if (strpos($current, '=') !== false && in_array($current_tag, $tags_quotes)) {
 				$current = preg_replace('%\['.$current_tag.'=("|\'|)(.*?)\\1\]\s*%i', '['.$current_tag.'=$2]', $current);
 			}
 
@@ -596,18 +530,15 @@ function preparse_tags($text, &$errors, $is_signature = false)
 	}
 
 	// Check we closed all the tags we needed to
-	foreach ($tags_closed as $check)
-	{
-		if (in_array($check, $open_tags))
-		{
+	foreach ($tags_closed as $check) {
+		if (in_array($check, $open_tags)) {
 			// We left an important tag open
 			$errors[] = sprintf($lang['BBCode error no closing tag'], $check);
 			return false;
 		}
 	}
 
-	if ($current_ignore)
-	{
+	if ($current_ignore) {
 		// We left an ignore tag open
 		$errors[] = sprintf($lang['BBCode error no closing tag'], $current_ignore);
 		return false;
@@ -620,23 +551,20 @@ function preparse_tags($text, &$errors, $is_signature = false)
 //
 // Preparse the contents of [list] bbcode
 //
-function preparse_list_tag($content, $type = '*')
-{
+function preparse_list_tag($content, $type = '*') {
 	global $lang, $re_list;
 
 	if (strlen($type) != 1)
 		$type = '*';
 
-	if (strpos($content,'[list') !== false)
-	{
+	if (strpos($content,'[list') !== false) {
 		$content = preg_replace_callback($re_list, create_function('$matches', 'return preparse_list_tag($matches[2], $matches[1]);'), $content);
 	}
 
 	$items = explode('[*]', str_replace('\"', '"', $content));
 
 	$content = '';
-	foreach ($items as $item)
-	{
+	foreach ($items as $item) {
 		if (luna_trim($item) != '')
 			$content .= '[*'."\0".']'.str_replace('[/*]', '', luna_trim($item)).'[/*'."\0".']'."\n";
 	}
@@ -648,8 +576,7 @@ function preparse_list_tag($content, $type = '*')
 //
 // Truncate URL if longer than 55 characters (add http:// or ftp:// if missing)
 //
-function handle_url_tag($url, $link = '', $bbcode = false)
-{
+function handle_url_tag($url, $link = '', $bbcode = false) {
 	$url = luna_trim($url);
 
 	// Deal with [url][img]http://example.com/test.png[/img][/url]
@@ -667,22 +594,17 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 		$full_url = 'http://'.$full_url;
 
 	// Ok, not very pretty :-)
-	if ($bbcode)
-	{
+	if ($bbcode) {
 		if ($full_url == $link)
 			return '[url]'.$link.'[/url]';
 		else
 			return '[url='.$full_url.']'.$link.'[/url]';
-	}
-	else
-	{
-		if ($link == '' || $link == $url)
-		{
+	} else {
+		if ($link == '' || $link == $url) {
 			$url = luna_htmlspecialchars_decode($url);
 			$link = utf8_strlen($url) > 55 ? utf8_substr($url, 0 , 39).' … '.utf8_substr($url, -10) : $url;
 			$link = luna_htmlspecialchars($link);
-		}
-		else
+		} else
 			$link = stripslashes($link);
 
 		return '<a href="'.$full_url.'" target="_blank" rel="nofollow">'.$link.'</a>';
@@ -693,8 +615,7 @@ function handle_url_tag($url, $link = '', $bbcode = false)
 //
 // Turns an URL from the [img] tag into an <img> tag or a <a href...> tag
 //
-function handle_img_tag($url, $is_signature = false, $alt = null)
-{
+function handle_img_tag($url, $is_signature = false, $alt = null) {
 	global $lang, $luna_user;
 
 	if (is_null($alt))
@@ -714,15 +635,13 @@ function handle_img_tag($url, $is_signature = false, $alt = null)
 //
 // Parse the contents of [list] bbcode
 //
-function handle_list_tag($content, $type = '*')
-{
+function handle_list_tag($content, $type = '*') {
 	global $re_list;
 
 	if (strlen($type) != 1)
 		$type = '*';
 
-	if (strpos($content,'[list') !== false)
-	{
+	if (strpos($content,'[list') !== false) {
 		$content = preg_replace_callback($re_list, create_function('$matches', 'return handle_list_tag($matches[2], $matches[1]);'), $content);
 	}
 
@@ -740,18 +659,15 @@ function handle_list_tag($content, $type = '*')
 //
 // Convert BBCodes to their HTML equivalent
 //
-function do_bbcode($text, $is_signature = false)
-{
+function do_bbcode($text, $is_signature = false) {
 	global $lang, $luna_user, $luna_config, $re_list;
 
-	if (strpos($text, '[quote') !== false)
-	{
+	if (strpos($text, '[quote') !== false) {
 		$text = preg_replace('%\[quote\]\s*%', '</p><blockquote><p>', $text);
 		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)(.*?)\\1\]%s', create_function('$matches', 'global $lang; return "<blockquote><footer><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".$lang[\'wrote\']."</cite></footer><p>";'), $text);
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></blockquote><p>', $text);
 	}
-	if (!$is_signature)
-	{
+	if (!$is_signature) {
 		$pattern_callback[] = $re_list;
 		$replace_callback[] = 'handle_list_tag($matches[2], $matches[1])';
 	}
@@ -792,17 +708,13 @@ function do_bbcode($text, $is_signature = false)
 	// Vimeo Videos
 	$replace[] = '<iframe width="'.$luna_config['o_video_width'].'" frameborder="0" height="'.$luna_config['o_video_height'].'" src="http://player.vimeo.com/video/$4"></iframe>';
 
-	if (($is_signature && $luna_config['p_sig_img_tag'] == '1') || (!$is_signature && $luna_config['p_message_img_tag'] == '1'))
-	{
+	if (($is_signature && $luna_config['p_sig_img_tag'] == '1') || (!$is_signature && $luna_config['p_message_img_tag'] == '1')) {
 		$pattern_callback[] = '%\[img\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
 		$pattern_callback[] = '%\[img=([^\[]*?)\]((ht|f)tps?://)([^\s<"]*?)\[/img\]%';
-		if ($is_signature)
-		{
+		if ($is_signature) {
 			$replace_callback[] = 'handle_img_tag($matches[1].$matches[3], true)';
 			$replace_callback[] = 'handle_img_tag($matches[2].$matches[4], true, $matches[1])';
-		}
-		else
-		{
+		} else {
 			$replace_callback[] = 'handle_img_tag($matches[1].$matches[3], false)';
 			$replace_callback[] = 'handle_img_tag($matches[2].$matches[4], false, $matches[1])';
 		}
@@ -821,8 +733,7 @@ function do_bbcode($text, $is_signature = false)
 	// This thing takes a while! :)
 	$text = preg_replace($pattern, $replace, $text);
 	$count = count($pattern_callback);
-	for($i = 0 ; $i < $count ; $i++)
-	{
+	for($i = 0 ; $i < $count ; $i++) {
 		$text = preg_replace_callback($pattern_callback[$i], create_function('$matches', 'return '.$replace_callback[$i].';'), $text);
 	}
 	return $text;
@@ -832,8 +743,7 @@ function do_bbcode($text, $is_signature = false)
 //
 // Make hyperlinks clickable
 //
-function do_clickable($text)
-{
+function do_clickable($text) {
 	$text = ' '.$text;
 	$text = ucp_preg_replace_callback('%(?<=[\s\]\)])(<)?(\[)?(\()?([\'"]?)(https?|ftp|news){1}://([\p{L}\p{N}\-]+\.([\p{L}\p{N}\-]+\.)*[\p{L}\p{N}]+(:[0-9]+)?(/(?:[^\s\[]*[^\s.,?!\[;:-])?)?)\4(?(3)(\)))(?(2)(\]))(?(1)(>))(?![^\s]*\[/(?:url|img)\])%ui', 'stripslashes($matches[1].$matches[2].$matches[3].$matches[4]).handle_url_tag($matches[5]."://".$matches[6], $matches[5]."://".$matches[6], true).stripslashes($matches[4].$matches[10].$matches[11].$matches[12])', $text);
 	$text = ucp_preg_replace_callback('%(?<=[\s\]\)])(<)?(\[)?(\()?([\'"]?)(www|ftp)\.(([\p{L}\p{N}\-]+\.)+[\p{L}\p{N}]+(:[0-9]+)?(/(?:[^\s\[]*[^\s.,?!\[;:-])?)?)\4(?(3)(\)))(?(2)(\]))(?(1)(>))(?![^\s]*\[/(?:url|img)\])%ui','stripslashes($matches[1].$matches[2].$matches[3].$matches[4]).handle_url_tag($matches[5].".".$matches[6], $matches[5].".".$matches[6], true).stripslashes($matches[4].$matches[10].$matches[11].$matches[12])', $text);
@@ -845,14 +755,12 @@ function do_clickable($text)
 //
 // Convert a series of smilies to images
 //
-function do_smilies($text)
-{
+function do_smilies($text) {
 	global $smilies;
 
 	$text = ' '.$text.' ';
 
-	foreach ($smilies as $smiley_text => $smiley_img)
-	{
+	foreach ($smilies as $smiley_text => $smiley_img) {
 		if (strpos($text, $smiley_text) !== false)
 			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/style/Core/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
 	}
@@ -864,8 +772,7 @@ function do_smilies($text)
 //
 // Parse message text
 //
-function parse_message($text, $hide_smilies)
-{
+function parse_message($text, $hide_smilies) {
 	global $luna_config, $lang, $luna_user;
 
 	if ($luna_config['o_censoring'] == '1')
@@ -890,15 +797,12 @@ function parse_message($text, $hide_smilies)
 	$text = str_replace($pattern, $replace, $text);
 
 	// If we split up the message before we have to concatenate it together again (code tags)
-	if (isset($inside))
-	{
+	if (isset($inside)) {
 		$parts = explode("\1", $text);
 		$text = '';
-		foreach ($parts as $i => $part)
-		{
+		foreach ($parts as $i => $part) {
 			$text .= $part;
-			if (isset($inside[$i]))
-			{
+			if (isset($inside[$i])) {
 				$num_lines = (substr_count($inside[$i], "\n"));
 				$text .= '</p><div class="codebox"><pre'.(($num_lines > 28) ? ' class="vscroll"' : '').'><code>'.luna_trim($inside[$i], "\n\r").'</code></pre></div><p>';
 			}
@@ -912,8 +816,7 @@ function parse_message($text, $hide_smilies)
 //
 // Clean up paragraphs and line breaks
 //
-function clean_paragraphs($text)
-{
+function clean_paragraphs($text) {
 	// Add paragraph tag around post, but make sure there are no empty paragraphs
 
 	$text = '<p>'.$text.'</p>';
@@ -938,8 +841,7 @@ function clean_paragraphs($text)
 //
 // Parse signature text
 //
-function parse_signature($text)
-{
+function parse_signature($text) {
 	global $luna_config, $lang, $luna_user;
 
 	if ($luna_config['o_censoring'] == '1')

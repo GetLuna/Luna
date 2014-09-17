@@ -18,8 +18,7 @@
 * @package utf8
 * @subpackage strings
 */
-function utf8_stristr($str, $search)
-{
+function utf8_stristr($str, $search) {
 	if (strlen($search) == 0)
 		return $str;
 

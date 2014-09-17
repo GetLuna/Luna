@@ -35,8 +35,7 @@
  * $len bytes of entropy under any PHP installation or operating system.
  * The execution time should be at most 10-20 ms in any system.
  */
-function secure_random_bytes($len = 10)
-{  
+function secure_random_bytes($len = 10) {  
  
    /*
     * Our primary choice for a cryptographic strong randomness function is
@@ -45,8 +44,7 @@ function secure_random_bytes($len = 10)
    $SSLstr = '4'; // http://xkcd.com/221/
    if (function_exists('openssl_random_pseudo_bytes') && 
        (version_compare(PHP_VERSION, '5.3.4') >= 0 || 
-	substr(PHP_OS, 0, 3) !== 'WIN'))
-   {
+	substr(PHP_OS, 0, 3) !== 'WIN')) {
       $SSLstr = openssl_random_pseudo_bytes($len, $strong);
       if ($strong)
          return $SSLstr;
@@ -61,8 +59,7 @@ function secure_random_bytes($len = 10)
     */
    if (function_exists('mcrypt_create_iv') && 
       (version_compare(PHP_VERSION, '5.3.0') >= 0 || 
-       substr(PHP_OS, 0, 3) !== 'WIN')) 
-   {
+       substr(PHP_OS, 0, 3) !== 'WIN'))  {
       $str = mcrypt_create_iv($len, MCRYPT_DEV_URANDOM);
       if ($str !== false)
          return $str;	
@@ -86,8 +83,7 @@ function secure_random_bytes($len = 10)
    if ($handle && function_exists('stream_set_read_buffer'))
       @stream_set_read_buffer($handle, 0);
 
-   do
-   {
+   do {
       $bytes = ($total > $hash_len)? $hash_len : $total;
       $total -= $bytes;
 
@@ -95,19 +91,14 @@ function secure_random_bytes($len = 10)
       $entropy = rand() . uniqid(mt_rand(), true) . $SSLstr;
       $entropy .= implode('', @fstat(@fopen( __FILE__, 'r')));
       $entropy .= memory_get_usage();
-      if ($handle) 
-      {
+      if ($handle)  {
          $entropy .= @fread($handle, $bytes);
-      }
-      else
-      {	           	
+      } else {	           	
          // Measure the time that the operations will take on average
-         for ($i = 0; $i < 3; $i ++) 
-         {
+         for ($i = 0; $i < 3; $i ++)  {
             $c1 = get_microtime();
             $var = sha1(mt_rand());
-            for ($j = 0; $j < 50; $j++)
-            {
+            for ($j = 0; $j < 50; $j++) {
                $var = sha1($var);
             }
             $c2 = get_microtime();
@@ -121,12 +112,10 @@ function secure_random_bytes($len = 10)
          // Take the additional measurements. On average we can expect
          // at least $bits_per_round bits of entropy from each measurement.
          $iter = $bytes*(int)(ceil(8 / $bits_per_round));
-         for ($i = 0; $i < $iter; $i ++)
-         {
+         for ($i = 0; $i < $iter; $i ++) {
             $c1 = time();
             $var = sha1(mt_rand());
-            for ($j = 0; $j < $rounds; $j++)
-            {
+            for ($j = 0; $j < $rounds; $j++) {
                $var = sha1($var);
             }
             $c2 = get_microtime();

@@ -17,10 +17,8 @@
 * @package utf8
 * @subpackage strings
 */
-function utf8_ucfirst($str)
-{
-	switch (utf8_strlen($str))
-	{
+function utf8_ucfirst($str) {
+	switch (utf8_strlen($str)) {
 		case 0:
 			return '';
 			break;

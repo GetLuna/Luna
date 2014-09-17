@@ -7,12 +7,10 @@ if (!defined('FORUM'))
 $cur_category = 0;
 $cat_count = 0;
 $forum_count = 0;
-while ($cur_forum = $db->fetch_assoc($result))
-{
+while ($cur_forum = $db->fetch_assoc($result)) {
     $moderators = '';
 
-    if ($cur_forum['cid'] != $cur_category) // A new category since last iteration?
-    {
+    if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
         if ($cur_category != 0)
             echo "\t\t".'</div>'."\n".'</div>'."\n\n";
 
@@ -37,8 +35,7 @@ while ($cur_forum = $db->fetch_assoc($result))
     $icon_type = 'icon';
 
     // Are there new posts since our last visit?
-    if (isset($new_topics[$cur_forum['fid']]))
-    {
+    if (isset($new_topics[$cur_forum['fid']])) {
         $item_status .= ' inew';
         $forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
         $icon_type = 'icon icon-new';
@@ -52,8 +49,7 @@ while ($cur_forum = $db->fetch_assoc($result))
         $forum_field .= "\n\t\t\t\t\t\t\t\t".'<div class="forumdesc hidden-xs">'.$cur_forum['forum_desc'].'</div>';
 
     // If there is a last_post/last_poster
-    if ($cur_forum['last_post'] != '')
-    {
+    if ($cur_forum['last_post'] != '') {
         if (luna_strlen($cur_forum['last_topic']) > 43)
             $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 40).'...';
 
@@ -61,17 +57,14 @@ while ($cur_forum = $db->fetch_assoc($result))
                 $last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['last_poster']).'</a></span>';
             else
                 $last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['last_poster']).'</span>';
-    }
-    else
+    } else
         $last_post = $lang['Never'];
 
-    if ($cur_forum['moderators'] != '' && $luna_config['o_moderated_by'] == '1')
-    {
+    if ($cur_forum['moderators'] != '' && $luna_config['o_moderated_by'] == '1') {
         $mods_array = unserialize($cur_forum['moderators']);
         $moderators = array();
 
-        foreach ($mods_array as $mod_username => $mod_id)
-        {
+        foreach ($mods_array as $mod_username => $mod_id) {
             if ($luna_user['g_view_users'] == '1')
                 $moderators[] = '<a href="profile.php?id='.$mod_id.'">'.luna_htmlspecialchars($mod_username).'</a>';
             else
