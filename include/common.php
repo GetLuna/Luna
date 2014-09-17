@@ -117,10 +117,7 @@ if (!defined('FORUM_CONFIG_LOADED')) {
 }
 
 // Verify that we are running the proper database schema revision
-if (!isset($luna_config['o_database_revision']) || $luna_config['o_database_revision'] < Version::FORUM_DB_VERSION ||
-	!isset($luna_config['o_searchindex_revision']) || $luna_config['o_searchindex_revision'] < Version::FORUM_SI_VERSION ||
-	!isset($luna_config['o_parser_revision']) || $luna_config['o_parser_revision'] < Version::FORUM_PARSER_VERSION ||
-	!array_key_exists('o_core_version', $luna_config) || version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '<')) {
+if (!array_key_exists('o_core_version', $luna_config) || version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '<')) {
 	header('Location: '.FORUM_ROOT.'db_update.php');
 
 	exit;
