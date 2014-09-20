@@ -15,17 +15,7 @@ require FORUM_ROOT.'include/common.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
-
-if ($action == 'rules') {
-	if ($luna_config['o_rules'] == '0' || ($luna_user['is_guest'] && $luna_user['g_read_board'] == '0' && $luna_config['o_regs_allow'] == '0'))
-		message($lang['Bad request'], false, '404 Not Found');
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Forum rules']);
-	define('FORUM_ACTIVE_PAGE', 'rules');
-	require FORUM_ROOT.'header.php';
-
-	require get_view_path('misc-rules.tpl.php');
-} else if ($action == 'markread') {
+if ($action == 'markread') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 

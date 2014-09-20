@@ -19,6 +19,16 @@ require FORUM_ROOT.'header.php';
 
 ?>
 <h2><?php echo $lang['Help'] ?></h2>
+<?php if ($luna_config['o_rules'] == '1') { ?>
+<div class="panel panel-default">
+    <div id="rules-block" class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang['Forum rules'] ?></h3>
+    </div>
+    <div class="panel-body">
+        <?php echo $luna_config['o_rules_message'] ?>
+    </div>
+</div>
+<?php } ?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo $lang['BBCode'] ?></h3>
