@@ -106,7 +106,7 @@ while ($cur_post = $db->fetch_assoc($result)) {
 	if (!$is_admmod) {
 		if (!$luna_user['is_guest']) {
 			if ($cur_post['marked'] == false) {
-				$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			} else {
 				$post_actions[] = '<a class="btn btn-danger btn-actions btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			}
@@ -115,25 +115,25 @@ while ($cur_post = $db->fetch_assoc($result)) {
 		if ($cur_topic['closed'] == '0') {
 			if ($cur_post['poster_id'] == $luna_user['id']) {
 				if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == '1'))
-					$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
+					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
 				if ($luna_user['g_edit_posts'] == '1')
-					$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
+					$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 			}
 
 			if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 		}
 	} else {
 		if ($cur_post['marked'] == false) {
-			$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+			$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		} else {
-			$post_actions[] = '<a class="btn btn-danger btn-actions btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+			$post_actions[] = '<a class="reported" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 		}
 		if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
-			$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
-			$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
+			$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
+			$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 		}
-		$post_actions[] = '<a class="btn btn-default btn-actions btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+		$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 	}
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
