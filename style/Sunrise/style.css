@@ -147,7 +147,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .category-title {
-	margin: 0;
+	margin-top: 0;
+}
+
+.list-group {
+	margin-bottom: 7px;
+}
+
+a.list-group-item h4 {
+	margin-top: 0;
+	margin-bottom: 3px;
 }
 
 /* First run */
