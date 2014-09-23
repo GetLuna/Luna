@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Header */
 #header {
 	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: linear-gradient(to right, #057ed4, #0e4d96);
 	color: #fff;
 }
 
@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #47a9f5;
+		background: #053874;
 	}
 
 	.dropdown-menu .divider {
@@ -110,12 +110,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .announcement a {
 	text-decoration: underline;
-}
-
-@media screen and (min-width: 768px) {
-	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #005d9e;
-	}
 }
 
 .avatar-item .avatar {
@@ -154,9 +148,25 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 7px;
 }
 
-a.list-group-item h4 {
+.list-group-item-cat {
+	padding: 0;
+}
+
+a.list-group-item-cat h4 {
 	margin-top: 0;
 	margin-bottom: 3px;
+	padding: 10px 15px;
+}
+
+a.list-group-item-cat .forum-description {
+	display: block;
+	padding: 10px 0 10px 15px;
+	border-top: #ccc;
+	background-color: #eee;
+}
+
+a.list-group-item-cat .forum-description:hover {
+	background-color: #e6e6e6;
 }
 
 /* First run */
@@ -169,8 +179,7 @@ a.list-group-item h4 {
 }
 
 .first-run-profile {
-	background-image: url(../../img/core/firstrun.png);
-	background-size: cover;
+	background: #0d4382;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	padding-bottom: 16px;
@@ -287,7 +296,7 @@ a.list-group-item h4 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #0a7bee;
+	background: #0d4382;
 	color: #fff;
 }
 
@@ -318,11 +327,11 @@ a.list-group-item h4 {
 
 .navbar {
 	border: none;
-	background: #0073c4;
+	background: #0d4382;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #0068b0;
+	background-color: #053874;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
@@ -359,7 +368,7 @@ a.list-group-item h4 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #0073c4;
+	background-color: #0d4382;
 }
 
 /* Pagination */
@@ -385,8 +394,8 @@ a.list-group-item h4 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #0891dc;
-	border-color: #0891dc;
+	background-color: #0d4382;
+	border-color: #0d4382;
 }
 
 .profile-h2 {
