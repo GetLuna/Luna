@@ -11,21 +11,10 @@
 	<body>
         <div id="header">
             <luna_navlinks>
-            <div class="container">
-                <div class="box">
-                    <div id="brdtitle">
-                        <luna_title>
-                        <luna_desc>
-                    </div>
-                    <luna_status>
-                </div>
-                <luna_announcement>
-            </div>
+            <luna_announcement>
         </div>
         <div class="container">
-            <div id="brdmain">
-                <luna_main>
-            </div>
+			<luna_main>
         </div>
 		<div id="footer">
             <luna_footer>

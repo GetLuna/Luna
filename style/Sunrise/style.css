@@ -1,15 +1,11 @@
 /* General fixes */
 body, html {
-	background-color: #f2f2f2;
+	background-color: #fff;
 	font-family: "Segoe UI", Arial;
 }
 
 .forum-list {
 	margin: 3px 0 5px 0;
-}
-
-#brdmain {
-	margin-top: 10px;
 }
 
 footer {
@@ -70,12 +66,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Header */
-#header {
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #0e4d96);
-	color: #fff;
-}
-
 #header a {
 	color: #fff;
 }
@@ -127,10 +117,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Index */
-.tclcon {
-	margin-left: 25px;
-}
-
 .table {
 	margin-bottom: 0;
 }
@@ -170,6 +156,10 @@ a.list-group-item-cat .forum-description:hover {
 }
 
 /* First run */
+.first-run {
+	background: #efefef;
+}
+
 .first-run-content {
 	padding-left: 15px;
 }

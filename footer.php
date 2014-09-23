@@ -20,6 +20,11 @@ ob_end_clean();
 // START SUBST - <luna_footer>
 ob_start();
 
+// Display a "mark all as read" link
+$markread = '';
+if (!$luna_user['is_guest'])
+	$markread = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
+
 ?>
 <div class="container">
 	<footer>
@@ -83,6 +88,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 }
 
 if (!defined('FORUM_FORM')) { ?>
+		<?php echo $markread ?>
 		<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://modernbb.be/">Luna</a> '.$luna_config['o_cur_version']) ?></span>
 		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

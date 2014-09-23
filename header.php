@@ -153,16 +153,6 @@ $tpl_main = str_replace('<luna_page>', htmlspecialchars(basename($_SERVER['PHP_S
 // END SUBST - <luna_page>
 
 
-// START SUBST - <luna_title>
-$tpl_main = str_replace('<luna_title>', '<h1 class="hidden-xs"><a href="index.php">'.luna_htmlspecialchars($luna_config['o_board_title']).'</a></h1>', $tpl_main);
-// END SUBST - <luna_title>
-
-
-// START SUBST - <luna_desc>
-$tpl_main = str_replace('<luna_desc>', '<div id="brddesc"><p>'.$luna_config['o_board_desc'].'</p></div>', $tpl_main);
-// END SUBST - <luna_desc>
-
-
 // START SUBST - <luna_navlinks>
 $links = array();
 
@@ -226,66 +216,6 @@ $tpl_temp = '<div class="navbar navbar-default navbar-static-top">
 </div>';
 $tpl_main = str_replace('<luna_navlinks>', $tpl_temp, $tpl_main);
 // END SUBST - <luna_navlinks>
-
-
-// START SUBST - <luna_status>
-$page_statusinfo = $page_topicsearches = array();
-
-if (!$luna_user['is_guest']) {
-	if (!empty($forum_actions)) {
-		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</span></li>';
-	}
-
-	if (!empty($topic_actions)) {
-		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $topic_actions).'</span></li>';
-	}
-
-	if ($luna_user['is_admmod']) {
-		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2') {
-			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
-
-			if ($db->result($result_header))
-				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.$lang['New reports'].'</a></strong></span></li>';
-		}
-
-		if ($luna_config['o_maintenance'] == '1')
-			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/settings.php#maintenance">'.$lang['Maintenance mode enabled'].'</a></strong></span></li>';
-	}
-
-	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new posts'].'">'.$lang['New posts header'].'</a>';
-	}
-}
-
-// Quick searches
-if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">'.$lang['Active topics'].'</a>';
-	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">'.$lang['Unanswered topics'].'</a>';
-}
-
-
-// Generate all that jazz
-$tpl_temp = '<div id="brdwelcome">';
-
-// The status information
-if (is_array($page_statusinfo)) {
-	$tpl_temp .= "\n\t\t\t".'<ul class="conl">';
-	$tpl_temp .= "\n\t\t\t\t".implode("\n\t\t\t\t", $page_statusinfo);
-	$tpl_temp .= "\n\t\t\t".'</ul>';
-} else
-	$tpl_temp .= "\n\t\t\t".$page_statusinfo;
-
-// Generate quicklinks
-if (!empty($page_topicsearches)) {
-	$tpl_temp .= "\n\t\t\t".'<ul class="conr">';
-	$tpl_temp .= "\n\t\t\t\t".'<li><span>'.implode(' &middot; ', $page_topicsearches).'</span></li>';
-	$tpl_temp .= "\n\t\t\t".'</ul>';
-}
-
-$tpl_temp .= "\n\t\t\t".'<div class="clearer"></div>'."\n\t\t".'</div>';
-
-$tpl_main = str_replace('<luna_status>', $tpl_temp, $tpl_main);
-// END SUBST - <luna_status>
 
 
 // START SUBST - <luna_announcement>
