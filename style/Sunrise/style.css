@@ -161,7 +161,7 @@ a.list-group-item-cat h4 {
 a.list-group-item-cat .forum-description {
 	display: block;
 	padding: 10px 0 10px 15px;
-	border-top: #ccc;
+	border-top: #ddd 1px solid;
 	background-color: #eee;
 }
 
