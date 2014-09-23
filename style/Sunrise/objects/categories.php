@@ -43,7 +43,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 	$num_posts = $cur_forum['num_posts'];
 
     if ($cur_forum['forum_desc'] != '')
-        $forum_desc = luna_htmlspecialchars($cur_forum['forum_desc']);
+        $forum_desc = '<span class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</span>';
 
     // If there is a last_post/last_poster
     if ($cur_forum['last_post'] != '') {
@@ -70,7 +70,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 ?>
 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 	<div class="list-group">
-		<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="list-group-item">
+		<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="list-group-item list-group-item-cat">
 			<h4><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h4>
 			<?php echo $forum_desc ?>
 		</a>
