@@ -184,7 +184,7 @@ if ($luna_user['is_guest']) {
 	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang['Login'].'</a></li>';
 } else {
 	$usermenu[] = '<li class="dropdown">';
-	$usermenu[] = '<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' '.(luna_htmlspecialchars($luna_user['username'])).' <b class="caret"></b></a>';
+	$usermenu[] = '<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>';
 	$usermenu[] = '<ul class="dropdown-menu">';
 	$usermenu[] = '<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>';
 	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';

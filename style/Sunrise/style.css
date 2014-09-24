@@ -79,12 +79,25 @@ h1, h2, h3, h4, h5, h6 {
 	color: #000;
 }
 
+.dropdown-menu {
+	padding: 0;
+	border-radius: 0;
+}
+
+.dropdown-menu .divider {
+	margin: 0;
+}
+
+.dropdown-menu > li > a {
+	padding: 9px 20px;
+}
+
 @media screen and (max-width: 767px) {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #header .dropdown-menu > li > a {
 		color: #fff;
 	}
 
-	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
+	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
 		background: #053874;
 	}
 
@@ -105,10 +118,11 @@ h1, h2, h3, h4, h5, h6 {
 .avatar-item .avatar {
 	padding: 0;
 	border: 0;
-	border-radius: 0;
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
+	margin: 5px 0;
+	border-radius: 999px;
+	width: 50px;
+	height: 50px;
+	margin-right: 5px;
 }
 
 .avatar-item {
@@ -309,24 +323,14 @@ a.list-group-item-cat .forum-description:hover {
 	margin: 0 auto;
 }
 
-@media(min-width:767px) {
-	ul.nav li.dropdown:hover > ul.dropdown-menu{
-		display: block;
-	}
-}
-
 .navbar {
 	border: none;
 	background: #0d4382;
+	margin-bottom: 0;
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
 	background-color: #053874;
-}
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	background-color: #0068b0;
-	color: #fff;
 }
 
 .navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret, .navbar-default .navbar-nav > .dropdown > a .caret {
@@ -338,19 +342,31 @@ a.list-group-item-cat .forum-description:hover {
 	margin-right: 0;
 }
 
-@media (min-width: 768px) {
-	.navbar-toggle {
-		display: none;
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	border: none;
+}
+
+@media all and (min-width:768px) {
+	.navbar-nav > li > a {
+		padding-top: 25px;
+		padding-bottom: 25px;
 	}
 }
 
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-	border: none;
+.navbar-brand {
+	height: 70px;
+	padding: 25px 15px;
+}
+
+#header a:hover {
+    color: #fff;
+    text-decoration: none;
 }
 
 /* Toggle */
 .navbar-default .navbar-toggle {
 	border-color: #fff;
+	margin: 18px 15px 18px 0;
 }
 
 .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
