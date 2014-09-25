@@ -1631,7 +1631,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		'o_has_posted'				=> 1,
 		'o_topic_views'				=> 1,
 		'o_gzip'					=> 0,
-		'o_additional_navlinks'		=> '',
 		'o_report_method'			=> 0,
 		'o_regs_report'				=> 0,
 		'o_default_email_setting'	=> 1,

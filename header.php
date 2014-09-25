@@ -166,16 +166,6 @@ if ($db->num_rows($result) > 0) {
 	}
 }
 
-// Are there any additional navlinks we should insert into the array before imploding it?
-if ($luna_user['g_read_board'] == '1' && $luna_config['o_additional_navlinks'] != '') {
-	if (preg_match_all('%([0-9]+)\s*=\s*(.*?)\n%s', $luna_config['o_additional_navlinks']."\n", $extra_links)) {
-		// Insert any additional links into the $links array (at the correct index)
-		$num_links = count($extra_links[1]);
-		for ($i = 0; $i < $num_links; ++$i)
-			array_splice($links, $extra_links[1][$i], 0, array('<li id="navextra'.($i + 1).'">'.$extra_links[2][$i].'</li>'));
-	}
-}
-
 // Generate avatar
 $user_avatar = generate_avatar_markup($luna_user['id']);
 // The user menu

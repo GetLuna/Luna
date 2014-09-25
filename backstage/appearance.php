@@ -28,11 +28,7 @@ if (isset($_POST['form_sent'])) {
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
-		'additional_navlinks'	=> luna_trim($_POST['form']['additional_navlinks']),
 	);
-
-	if ($form['additional_navlinks'] != '')
-		$form['additional_navlinks'] = luna_trim(luna_linebreaks($form['additional_navlinks']));
 
 	// Make sure the number of displayed topics and posts is between 3 and 75
 	if ($form['disp_topics_default'] < 3)
@@ -77,21 +73,6 @@ if (isset($_GET['saved']))
 ?>
 <form class="form-horizontal" method="post" action="appearance.php">
     <input type="hidden" name="form_sent" value="1" />
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Header appearance'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Menu items head'] ?><span class="help-block"><?php echo $lang['Menu items help'] ?></span></label>
-                    <div class="col-sm-9">
-                        <textarea class="form-control" name="form[additional_navlinks]" rows="8"><?php echo luna_htmlspecialchars($luna_config['o_additional_navlinks']) ?></textarea>
-                    </div>
-                </div>
-            </fieldset>
-		</div>
-	</div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Display head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>

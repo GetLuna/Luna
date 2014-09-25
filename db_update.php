@@ -332,7 +332,7 @@ switch ($stage) {
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_search\'') or error('Unable to remove config value \'o_show_search\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.0.40.2985: Remove obsolete o_show_rules permission from config table
-		if (array_key_exists('o_show_index', $luna_config))
+		if (array_key_exists('o_show_rules', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_rules\'') or error('Unable to remove config value \'o_show_rules\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.0.40.2989: Add o_admin_note
@@ -342,6 +342,10 @@ switch ($stage) {
 		// Since 0.0.40.2985: Remove obsolete p_message_bbcode permission from config table
 		if (array_key_exists('p_message_bbcode', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'p_message_bbcode\'') or error('Unable to remove config value \'p_message_bbcode\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.40.3048: Remove obsolete o_additional_navlinks permission from config table
+		if (array_key_exists('o_additional_navlinks', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_additional_navlinks\'') or error('Unable to remove config value \'o_additional_navlinks\'', __FILE__, __LINE__, $db->error());
 
 		break;
 
