@@ -177,6 +177,7 @@ if ($luna_user['is_guest']) {
 	$usermenu[] = '<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>';
 	$usermenu[] = '<ul class="dropdown-menu">';
 	$usermenu[] = '<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>';
+	$usermenu[] = '<li><a href="me.php?id='.$luna_user['id'].'">Me</a></li>';
 	$usermenu[] = '<li><a href="help.php">'.$lang['Help'].'</a></li>';
 	$usermenu[] = '<li class="divider"></li>';
 	$usermenu[] = '<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>';
