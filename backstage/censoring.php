@@ -131,11 +131,11 @@ require 'header.php';
 $result = $db->query('SELECT id, search_for, replace_with FROM '.$db->prefix.'censoring ORDER BY id') or error('Unable to fetch censor word list', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
 
-while ($cur_word = $db->fetch_assoc($result))
-echo "\t\t\t\t\t\t\t\t".'<tr><td><div class="btn-group"><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['search_for']).'" maxlength="60" /></div></td><td><div class="btn-group"><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['replace_with']).'" maxlength="60" /></div></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
+	while ($cur_word = $db->fetch_assoc($result))
+		echo "\t\t\t\t\t\t\t\t".'<tr><td><div class="btn-group"><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['search_for']).'" maxlength="60" /></div></td><td><div class="btn-group"><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['replace_with']).'" maxlength="60" /></div></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
 
 } else
-echo "\t\t\t\t\t\t\t".'<tr><td colspan="3">'.$lang['No words in list'].'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t".'<tr><td colspan="3">'.$lang['No words in list'].'</td></tr>'."\n";
 
 ?>
 						</tbody>
