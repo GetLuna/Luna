@@ -511,7 +511,7 @@ require 'header.php';
 
 ?>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang['Add group subhead'] ?></h3>
@@ -543,8 +543,6 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htm
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $lang['Default group subhead'] ?></h3>
@@ -577,17 +575,14 @@ echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htm
             </div>
         </div>
     </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Existing groups head'] ?></h3>
-    </div>
-    <div class="panel-body">
-		<p><?php echo $lang['Edit groups info'] ?></p>
-	</div>
-	<table class="table">
-    	<thead></thead>
-		<tbody>
+    <div class="col-sm-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $lang['Existing groups head'] ?></h3>
+			</div>
+			<table class="table">
+				<thead></thead>
+				<tbody>
 <?php
 
 $cur_index = 5;
@@ -595,11 +590,13 @@ $cur_index = 5;
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><td class="col-lg-2"><div class="btn-group"><a class="btn btn-primary" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit'].'</a>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Delete'].'</a>' : '').'</div></td><td class="col-lg-10">'.luna_htmlspecialchars($cur_group['g_title']).'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t\t".'<tr><td><a class="btn btn-primary" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit'].'</a></td><td class="col-lg-10">'.luna_htmlspecialchars($cur_group['g_title']).'</td><td>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Delete'].'</a>' : '').'</td></tr>'."\n";
 
 ?>
-		</tbody>
-	</table>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 <?php
 
