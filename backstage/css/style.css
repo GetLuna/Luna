@@ -247,6 +247,10 @@ h3.panel-title {
 	color: #fff;
 }
 
+.panel-body .form-group, .panel-body p:last-child {
+	margin-bottom: 0;
+}
+
 /* Forms */
 .form-control, .input-group-addon {
 	border-radius: 2px;
