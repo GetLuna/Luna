@@ -102,68 +102,68 @@ if ($luna_config['o_ranks'] == 0) {
 	<?php echo sprintf($lang['Ranks disabled'], '<a href="features.php">'.$lang['Features'].'</a>') ?>
 </div>
 <?php } ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Add rank subhead'] ?></h3>
-    </div>
+<div class="row">
 	<form id="ranks" method="post" action="ranks.php">
-		<fieldset>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Actions'] ?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><input type="text" class="form-control" name="new_rank" maxlength="50" tabindex="1" /></td>
-						<td><input type="text" class="form-control" name="new_min_posts" maxlength="7" tabindex="2" /></td>
-						<td><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
+		<div class="col-sm-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Add rank subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_rank" value="<?php echo $lang['Add'] ?>" tabindex="3" /></span></h3>
+				</div>
+				<fieldset>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td><input type="text" class="form-control" name="new_rank" placeholder="<?php echo $lang['Rank title label'] ?>" maxlength="50" tabindex="1" /></td>
+							</tr>
+							<tr>
+								<td><input type="text" class="form-control" name="new_min_posts" placeholder="<?php echo $lang['Minimum posts label'] ?>" maxlength="7" tabindex="2" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+		</div>
 	</form>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Edit remove subhead'] ?></h3>
-    </div>
-	<form id="ranks" method="post" action="ranks.php">
-		<fieldset>
+	<div class="col-sm-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Manage ranks</h3>
+			</div>
+			<form id="ranks" method="post" action="ranks.php">
+				<fieldset>
 <?php
 
 $result = $db->query('SELECT id, rank, min_posts FROM '.$db->prefix.'ranks ORDER BY min_posts') or error('Unable to fetch rank list', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
 
 ?>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th class="col-lg-4"><?php echo $lang['Rank title label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Minimum posts label'] ?></th>
-						<th class="col-lg-4"><?php echo $lang['Actions'] ?></th>
-					</tr>
-				</thead>
-				<tbody>
+					<table class="table">
+						<thead>
+							<tr>
+								<th><?php echo $lang['Rank title label'] ?></th>
+								<th class="col-lg-2"><?php echo $lang['Minimum posts label'] ?></th>
+								<th><?php echo $lang['Actions'] ?></th>
+							</tr>
+						</thead>
+						<tbody>
 <?php
 
 	while ($cur_rank = $db->fetch_assoc($result))
 		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="rank['.$cur_rank['id'].']" value="'.luna_htmlspecialchars($cur_rank['rank']).'" maxlength="50" /></td><td><input type="text" class="form-control" name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" maxlength="7" /></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
 
 ?>
-				</tbody>
-			</table>
+						</tbody>
+					</table>
 <?php
 
 } else
 	echo "\t\t\t\t\t\t\t".'<div class="panel-body"><p>'.$lang['No ranks in list'].'</p></div>'."\n";
 
 ?>
-		</fieldset>
-	</form>
+				</fieldset>
+			</form>
+		</div>
+	</div>
 </div>
 <?php
 
