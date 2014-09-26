@@ -1123,10 +1123,10 @@ $lang = array(
 'Cannot remove default message'	=>	'The default group cannot be removed. In order to delete this group, you must first setup a different group as the default.',
 
 'Add group subhead'				=>	'Add new group',
-'Create new group'				=>	'Select a user group from which the new group will inherit its permission settings.',
+'Create new group'				=>	'Select a group the new group will be based on.',
 'Default group subhead'			=>	'Set default group',
-'Default group help'			=>	'This is the default user group, e.g. the group users are placed in when they register. Not all groups are available here.',
-'Existing groups head'			=>	'Existing groups',
+'Default group help'			=>	'The default group in which new users will be placed.',
+'Existing groups head'			=>	'Manage groups',
 'Edit groups info'				=>	'The pre-defined groups can\'t be removed. However, they can be edited. Please note that in some groups, some options are unavailable. Administrators always have full permissions.',
 'Group delete head'				=>	'Group delete',
 'Confirm delete info'			=>	'Are you sure that you want to delete the group <strong>%s</strong>?',
