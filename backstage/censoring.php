@@ -85,71 +85,65 @@ require 'header.php';
 	load_admin_nav('content', 'censoring');
 
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Add word subhead'] ?></h3>
+<div class="row">
+	<div class="col-sm-4">
+		<form id="censoring" method="post" action="censoring.php">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Add word subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang['Add'] ?>" tabindex="3" /></span></h3>
+				</div>
+					<fieldset>
+					<div class="panel-body">
+						<p><?php echo $lang['Add word info'] ?></p>
+					</div>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td><input type="text" class="form-control" placeholder="<?php echo $lang['Censored word label'] ?>" name="new_search_for" maxlength="60" tabindex="1" /></td>
+							</tr>
+							<tr>
+								<td><input type="text" class="form-control" placeholder="<?php echo $lang['Replacement label'] ?>" name="new_replace_with" maxlength="60" tabindex="2" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+		</form>
 	</div>
-	<form id="censoring" method="post" action="censoring.php">
-		<fieldset>
-		<div class="panel-body">
-			<p><?php echo $lang['Add word info'].' '.($luna_config['o_censoring'] == '1' ? sprintf($lang['Censoring enabled'], '<a href="features.php">'.$lang['Features'].'</a>') : sprintf($lang['Censoring disabled'], '<a href="features.php">'.$lang['Features'].'</a>')) ?></p>
-		</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
-						<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
-						<th class="col-xs-4"><?php echo $lang['Action'] ?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><input type="text" class="form-control" name="new_search_for" maxlength="60" tabindex="1" /></td>
-						<td><input type="text" class="form-control" name="new_replace_with" maxlength="60" tabindex="2" /></td>
-						<td><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang['Add'] ?>" tabindex="3" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
-	</form>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Edit remove words'] ?></h3>
-    </div>
-	<form id="censoring" method="post" action="censoring.php">
-		<fieldset>
+	<div class="col-sm-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $lang['Edit remove words'] ?></h3>
+			</div>
+			<form id="censoring" method="post" action="censoring.php">
+				<fieldset>
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
+								<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
+								<th class="col-xs-4"><?php echo $lang['Action'] ?></th>
+							</tr>
+						</thead>
+						<tbody>
 <?php
 
 $result = $db->query('SELECT id, search_for, replace_with FROM '.$db->prefix.'censoring ORDER BY id') or error('Unable to fetch censor word list', __FILE__, __LINE__, $db->error());
 if ($db->num_rows($result)) {
 
-?>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
-						<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
-						<th class="col-xs-4"><?php echo $lang['Action'] ?></th>
-					</tr>
-				</thead>
-				<tbody>
-<?php
-
 while ($cur_word = $db->fetch_assoc($result))
 echo "\t\t\t\t\t\t\t\t".'<tr><td><div class="btn-group"><input type="text" class="form-control" name="search_for['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['search_for']).'" maxlength="60" /></div></td><td><div class="btn-group"><input type="text" class="form-control" name="replace_with['.$cur_word['id'].']" value="'.luna_htmlspecialchars($cur_word['replace_with']).'" maxlength="60" /></div></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_word['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_word['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
 
-?>
-				</tbody>
-			</table>
-<?php
-
 } else
-echo "\t\t\t\t\t\t\t".'<div class="panel-body"><p>'.$lang['No words in list'].'</p></div>'."\n";
+echo "\t\t\t\t\t\t\t".'<tr><td colspan="3">'.$lang['No words in list'].'</td></tr>'."\n";
 
 ?>
-            </fieldset>
-        </form>
+						</tbody>
+					</table>
+				</fieldset>
+			</form>
+		</div>
+	</div>
 </div>
 <?php
 
