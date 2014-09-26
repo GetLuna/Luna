@@ -190,7 +190,7 @@ h3.panel-title {
 }
 
 .panel .table {
-	margin-bottom: -1px;
+	margin-bottom: 0;
 }
 
 .panel-head {
