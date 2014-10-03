@@ -12,7 +12,7 @@ require_once('../include/version.php');
 	<body>
 		<div class="container">
 			<div class="header">
-				<h3 class="text-muted">Installing Luna <?php echo Version::LUNA_VERSION ?></h3>
+				<h3 class="text-muted">Installing Luna <?php echo Version::FORUM_VERSION ?></h3>
 			</div>
             <hr />
 			<div class="row">
