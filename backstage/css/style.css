@@ -247,7 +247,7 @@ h3.panel-title {
 	color: #fff;
 }
 
-.panel-body .form-group, .panel-body p:last-child {
+.panel-body .form-group:last-child, .panel-body p:last-child {
 	margin-bottom: 0;
 }
 
