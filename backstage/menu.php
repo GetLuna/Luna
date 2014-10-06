@@ -21,7 +21,7 @@ if (isset($_POST['add_item'])) {
 	$item_name = luna_trim($_POST['name']); 
 	$item_url = luna_trim($_POST['url']); 
 
-	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, disp, sys_entry) VALUES(\''.$item_url.'\', \''.$item_name.'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$item_url.'\', \''.$item_name.'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
 	redirect('backstage/menu.php');
 } else if (isset($_GET['del_item'])) {
@@ -37,7 +37,7 @@ if (isset($_POST['add_item'])) {
 }
 
 // Generate an array with all menu items
-$result = $db->query('SELECT id, url, name, disp_position, disp, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id, url, name, disp_position, visible, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items list', __FILE__, __LINE__, $db->error());
 $num_items = $db->num_rows($result);
 
 for ($i = 0; $i < $num_items; ++$i)
@@ -64,13 +64,13 @@ if (isset($_POST['update'])) {
 		if ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order']))
 			message_backstage($lang['Must enter integer message']);
 
-		$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$cur_item['name'].'\', disp_position='.$cur_item['order'].', disp=\''.$cur_item['disp'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$cur_item['name'].'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/menu.php');
 }
 	
-$result = $db->query('SELECT id, url, name, disp_position, disp, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT id, url, name, disp_position, visible, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 require 'header.php';
 load_admin_nav('settings', 'menu');
@@ -134,7 +134,7 @@ if ($db->num_rows($result) > 0) {
 								<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][order]" value="<?php echo $cur_item['disp_position'] ?>" />
 							</td>
 							<td>
-								<input type="checkbox" value="1" name="item[<?php echo $cur_item['id'] ?>][disp]" <?php if ($cur_item['disp'] == 1) echo ' checked="checked"' ?> />
+								<input type="checkbox" value="1" name="item[<?php echo $cur_item['id'] ?>][visible]" <?php if ($cur_item['visible'] == 1) echo ' checked="checked"' ?> />
 							</td>
 							<td>
 <?php
