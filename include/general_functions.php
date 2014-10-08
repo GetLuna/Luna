@@ -56,7 +56,7 @@ function draw_editor($height) {
 		$pin_button = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success"><input type="checkbox" name="stick_topic" value="1" '.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /><span class="fa fa-thumb-tack"></span></label></div>';
 
 ?>
-<div class="panel panel-border panel-default">
+<div class="panel panel-default panel-editor">
 	<fieldset class="postfield">
 		<input type="hidden" name="form_sent" value="1" />
 		<div class="btn-toolbar textarea-toolbar">
@@ -87,11 +87,11 @@ function draw_editor($height) {
 				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('*');" title="<?php echo $lang['List item']; ?>"><span class="fa fa-asterisk fa-fw"></span></a>
 			</div>
 			<div class="btn-group pull-right">
-				<button class="btn btn-primary" type="submit" name="submit" accesskey="s"><span class="fa fa-plus"></span><span class="hidden-xs"> <?php echo $lang['Submit'] ?></span></button>
 				<button class="btn btn-default<?php if ($luna_config['o_post_responsive'] == 0) echo ' hidden-sm hidden-xs'; ?>" type="submit" name="preview" accesskey="p"><span class="fa fa-eye"></span><span class="hidden-xs"> <?php echo $lang['Preview'] ?></span></button>
+				<button class="btn btn-primary" type="submit" name="submit" accesskey="s"><span class="fa fa-plus"></span><span class="hidden-xs hidden-sm"> <?php echo $lang['Submit'] ?></span></button>
 			</div>
 		</div>
-		<textarea class="form-control"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
+		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
 	</fieldset>
 </div>
 <script>

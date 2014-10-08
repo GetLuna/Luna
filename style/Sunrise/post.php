@@ -27,6 +27,6 @@ if ($luna_user['is_guest']) {
 }
 
 if ($fid): ?>
-            <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
+            <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="info-textfield form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
 <?php endif; ?>
 <?php draw_editor('20'); ?>

@@ -240,46 +240,51 @@ a.list-group-item-cat .forum-description:hover {
 	}
 }
 
-/* Welcome box and header */
-#brddesc {
-	border-bottom-style: dotted;
-	border-bottom-width: 1px;
-	margin-top: -10px;
+/* Editor */
+.panel-editor {
+	border-radius: 0;
 }
 
-#brddesc p {
+input[type="text"].info-textfield, input[type="text"].info-textfield:focus {
+	border: none;
+	box-shadow: none;
+}
+
+.info-textfield:-ms-input-placeholder.form-control, .info-textfield.form-control {
+	font-size: 20px;
+}
+
+textarea.textarea, textarea.textarea:focus {
+	border: none;
+	box-shadow: none;
+}
+
+.textarea-toolbar {
+    margin: 0;
+    border-bottom: #ddd 1px solid;
+}
+
+.textarea-toolbar .btn-group {
 	padding: 0;
+	margin: 0;
+	border-right: #ccc 1px solid;
 }
 
-#brdwelcome {
-	padding: 10px 0 0;
+.textarea-toolbar .btn-group:last-child {
+	border-right: none;
 }
 
-#brdwelcome .conl, #brdwelcome .conr, #brdwelcome p, #brdwelcome li {
-	display: inline;
-	padding: 0;
+.textarea-toolbar .btn {
+	border: none;
+	border-radius: 0;
+	padding: 12px 18px;
 }
 
-#brdwelcome .conl {
-	float: left;
+
+.fa-fw {
+	width: 1.1em !important;
 }
 
-#brdwelcome .conr {
-	float: right;
-}
-
-#brdwelcome li span {
-	padding-left: 18px;
-	margin-right: 3px;
-	display: inline-block;
-	line-height: normal;
-	white-space: nowrap;
-}
-
-#brdwelcome .conl li:first-child span {
-	padding-left: 0;
-	background: none;
-}
 
 /* Links (subscribe, new post, etc.) */
 .subscribelink {
@@ -522,18 +527,6 @@ input[type="text"].power-control {
 
 #commentform > .panel {
 	margin-top: 10px;
-}
-
-.textarea-toolbar {
-    background: #eee;
-    margin: 0;
-    padding: 6px 7px 6px 2px;
-    border-bottom: #ddd 1px solid;
-	border-radius: 4px 4px 0 0;
-}
-
-.fa-fw {
-	width: 1.1em !important;
 }
 
 /* Table */
