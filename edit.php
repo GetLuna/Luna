@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 
 if ($luna_user['g_read_board'] == '0')
@@ -137,15 +138,6 @@ require FORUM_ROOT.'header.php';
 
 $cur_index = 1;
 
-require get_view_path('navigation.php');
-
-// If there are errors, we display them
-if (!empty($errors)) {
-    require get_view_path('edit-errors.tpl.php');
-} else if (isset($_POST['preview'])) {
-    require get_view_path('edit-preview.tpl.php');
-}
-
-require get_view_path('commentfield.php');
+require load_page('edit.php');
 
 require FORUM_ROOT.'footer.php';

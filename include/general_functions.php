@@ -50,17 +50,35 @@ function draw_preview_panel($message) {
 
 // Show the preview panel
 function draw_editor($height) {
-	global $lang, $orig_message, $quote, $fid, $is_admmod;
+	global $lang, $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message;
+	
+	$pin_btn = $silence_btn = '';
 
-	if ($fid && $is_admmod)
-		$pin_button = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success"><input type="checkbox" name="stick_topic" value="1" '.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /><span class="fa fa-thumb-tack"></span></label></div>';
+	if (isset($_POST['stick_topic']) || $cur_post['sticky'] == '1') {
+		$pin_status = ' checked="checked"';
+		$pin_active = ' active';
+	}
+
+	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
+		$pin_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1"'.$pin_status.' /><span class="fa fa-thumb-tack"></span></label></div>';
+
+	if (FORUM_ACTIVE_PAGE == 'edit') {
+		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
+			$silence_status = ' checked="checked"';
+			$silence_active = ' active';
+		}
+	
+		if ($is_admmod)
+			$silence_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1"'.$silence_status.' /><span class="fa fa-microphone-slash"></span></label></div>';
+	}
 
 ?>
 <div class="panel panel-default panel-editor">
 	<fieldset class="postfield">
 		<input type="hidden" name="form_sent" value="1" />
 		<div class="btn-toolbar textarea-toolbar">
-			<?php echo $pin_button ?>
+			<?php echo $pin_btn ?>
+			<?php echo $silence_btn ?>
 			<div class="btn-group">
 				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('b');" title="<?php echo $lang['Bold']; ?>"><span class="fa fa-bold fa-fw"></span></a>
 				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('u');" title="<?php echo $lang['Underline']; ?>"><span class="fa fa-underline fa-fw"></span></a>
@@ -91,7 +109,14 @@ function draw_editor($height) {
 				<button class="btn btn-primary" type="submit" name="submit" accesskey="s"><span class="fa fa-plus"></span><span class="hidden-xs hidden-sm"> <?php echo $lang['Submit'] ?></span></button>
 			</div>
 		</div>
-		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
+		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>">
+<?php
+			if (FORUM_ACTIVE_PAGE == 'post')
+				isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
+			else if (FORUM_ACTIVE_PAGE == 'edit')
+				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
+?>
+		</textarea>
 	</fieldset>
 </div>
 <script>
