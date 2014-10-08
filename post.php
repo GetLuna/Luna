@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 
 if ($luna_user['g_read_board'] == '0')
@@ -480,23 +481,6 @@ else {
 define('FORUM_ACTIVE_PAGE', 'index');
 require FORUM_ROOT.'header.php';
 
-require get_view_path('post-breadcrumb.tpl.php');
-
-// If there are errors, we display them
-if (!empty($errors)) {
-	require get_view_path('post-error.tpl.php');
-} else if (isset($_POST['preview'])) {
-	require get_view_path('post-preview.tpl.php');
-}
-
-require get_view_path('post-form.tpl.php');
-
-// Check to see if the topic review is to be displayed
-if ($tid && $luna_config['o_topic_review'] != '0') {
-	$result = $db->query('SELECT poster, message, hide_smilies, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT '.$luna_config['o_topic_review']) or error('Unable to fetch topic review', __FILE__, __LINE__, $db->error());
-
-	require get_view_path('post-topic_review.tpl.php');
-
-}
+require load_page('post.php');
 
 require FORUM_ROOT.'footer.php';
