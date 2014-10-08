@@ -172,6 +172,9 @@ a.list-group-item-cat .forum-description:hover {
 /* First run */
 .first-run {
 	background: #efefef;
+	margin-top: 0 !important;
+	border: none;
+	border-radius: 0 0 3px 3px;
 }
 
 .first-run-content {
@@ -185,7 +188,6 @@ a.list-group-item-cat .forum-description:hover {
 .first-run-profile {
 	background: #0d4382;
 	border-bottom-left-radius: 3px;
-	border-top-left-radius: 3px;
 	padding-bottom: 16px;
 }
 
