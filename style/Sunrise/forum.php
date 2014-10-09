@@ -7,19 +7,16 @@ if (!defined('FORUM'))
 ?>
 
 <h2><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
-<div class="row row-nav">
-    <div class="col-sm-6">
-        <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
-            <a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <?php echo $post_link ?>
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
-    </div>
+<div class="btn-toolbar">
+	<div class="btn-group btn-breadcrumb">
+		<a class="btn btn-primary" href="index.php"><span class="fa fa-chevron-left"></span> Index</a>
+	</div>
+	<div class="pull-right">
+		<?php echo $post_link ?>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
 <div class="forum-box">
     <div class="row forum-header">
@@ -27,17 +24,14 @@ if (!defined('FORUM'))
     </div>
 	<?php draw_topics_list(); ?>
 </div>
-<div class="row row-nav">
-    <div class="col-sm-6">
-        <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
-            <a class="btn btn-primary" href="viewforum.php?id=<?php echo $id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <?php echo $post_link ?>
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
-    </div>
+<div class="btn-toolbar">
+	<div class="btn-group btn-breadcrumb">
+		<a class="btn btn-primary" href="index.php"><span class="fa fa-chevron-left"></span> Index</a>
+	</div>
+	<div class="pull-right">
+		<?php echo $post_link ?>
+		<ul class="pagination">
+			<?php echo $paging_links ?>
+		</ul>
+	</div>
 </div>
