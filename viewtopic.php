@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
@@ -174,13 +175,6 @@ if (empty($post_ids))
 	error('The post table and topic table seem to be out of sync!', __FILE__, __LINE__);
 
 require load_page('thread.php');
-
-// Display quick post if enabled
-if ($quickpost) {
-	$cur_index = 1;
-
-	require get_view_path('commentfield.php');
-}
 
 // Increment "num_views" for topic
 if ($luna_config['o_topic_views'] == '1')
