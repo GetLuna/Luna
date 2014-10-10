@@ -351,8 +351,8 @@ else if (isset($_POST['add_edit_group']))
 	}
 	else
 	{
-		$moderator = $mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_topics = $set_title = $search = $search_users = $send_email = '1';
-		$post_flood = $search_flood = $email_flood = $report_flood = '0';
+		$mod_edit_users = $mod_rename_users = $mod_change_passwords = $mod_ban_users = $read_board = $view_users = $post_replies = $post_topics = $edit_posts = $delete_posts = $delete_topics = $set_title = $search = $search_users = $send_email = '1';
+		$moderator = $post_flood = $search_flood = $email_flood = $report_flood = '0';
 	}
 
 	if ($title == '')
