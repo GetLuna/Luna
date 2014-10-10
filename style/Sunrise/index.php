@@ -74,6 +74,6 @@ if (!defined('FORUM'))
 			<div class="col-md-2 col-sm-4 col-xs-6"><span><?php users_online() ?></span></div>
 			<div class="col-md-2 col-sm-4 col-xs-6"><span><?php guests_online() ?></span></div>
         </div>
-		<div class="row"><div class="col-xs-12"><?php online_list() ?></div></div>
+		<div class="row"><span class="users-online"><?php online_list() ?></span></div>
     </div>
 </div>

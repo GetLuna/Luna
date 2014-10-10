@@ -71,7 +71,7 @@ function online_list() {
 		$result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 	
 		if ($db->num_rows($result) > 0) {
-			echo "\n\t\t\t\t".'<div class="row"><span class="users-online"><strong>'.$lang['Online'].' </strong>';
+			echo '<strong>'.$lang['Online'].' </strong>';
 	
 			$ctr = 1;
 			while ($luna_user_online = $db->fetch_assoc($result)) {
@@ -82,9 +82,6 @@ function online_list() {
 	
 				if ($ctr < $num_users_online) echo ', '; $ctr++;
 			}
-		
-			echo "\n\t\t\t\t".'</span></div>';
 		}
-	
 	}
 }
