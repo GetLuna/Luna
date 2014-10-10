@@ -60,3 +60,20 @@ if (!defined('FORUM'))
         <?php } ?>
     </div>
 </div>
+<?php draw_category_list() ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $lang['Board stats'] ?></h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php total_users() ?></span></div>
+            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php total_topics() ?></span></div>
+            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php total_posts() ?></span></div>
+            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php newest_user() ?></span></div>
+			<div class="col-md-2 col-sm-4 col-xs-6"><span><?php users_online() ?></span></div>
+			<div class="col-md-2 col-sm-4 col-xs-6"><span><?php guests_online() ?></span></div>
+        </div>
+		<div class="row"><div class="col-xs-12"><?php online_list() ?></div></div>
+    </div>
+</div>

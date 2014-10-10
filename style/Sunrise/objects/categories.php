@@ -84,4 +84,4 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 if ($cur_category > 0)
     echo "\t\t\t".'</div>'."\n\n";
 else
-    echo '<div id="idx0"><p>'.$lang['Empty board'].'</p></div>';
+    echo '<div><p>'.$lang['Empty board'].'</p></div>';
