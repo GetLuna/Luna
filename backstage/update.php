@@ -53,13 +53,13 @@ require 'header.php';
         <p><?php echo sprintf($lang['Available'], $latest_version, $lang['update now']) ?></p>
         <div class="btn-group">
             <a href="http://modernbb.be/cnt/get.php?id=1.zip" class="btn btn-primary">Update now</a>
-            <a href="http://modernbb.be/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+            <a href="http://modernbb.be/releases/luna1.0.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
         </div>
 <?php } elseif (version_compare(Version::FORUM_VERSION, $latest_version, 'eq')) { ?>
 		<h3><?php echo $lang['Latest version'] ?></h3>
         <p><?php echo $lang['Luna intro'].' '.Version::FORUM_VERSION ?></p>
         <div class="btn-group">
-            <a href="http://modernbb.be/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+            <a href="http://modernbb.be/releases/luna1.0.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
         </div>
 <?php
 	}
