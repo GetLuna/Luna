@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 if ($luna_user['g_read_board'] == '0')
     message($lang['No view'], false, '403 Forbidden');
@@ -76,4 +77,6 @@ require FORUM_ROOT.'header.php';
 require FORUM_ROOT.'include/parser.php';
 $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 
-require get_view_path('delete.tpl.php');
+require load_page('delete.php');
+
+require FORUM_ROOT.'footer.php';

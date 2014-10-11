@@ -329,7 +329,6 @@ else
 
 }
 
-
 function draw_user_list() {
 	global $db, $lang, $where_sql, $sort_query, $start_from;
 	
@@ -353,4 +352,21 @@ function draw_user_list() {
 		}
 	} else
 		echo '<p>'.$lang['No hits'].'</p>';
+}
+
+function draw_delete_form($id) {
+	global $is_topic_post, $lang;
+
+?>
+        <form method="post" action="delete.php?id=<?php echo $id ?>">
+            <p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '<strong>'.$lang['Warning'].'</strong>' ?><br /><?php echo $lang['Delete info'] ?></p>
+            <input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" />
+        </form>
+<?php
+}
+
+function draw_delete_title() {
+	global $is_topic_post, $lang, $cur_post;
+
+	printf($is_topic_post ? $lang['Topic by'] : $lang['Reply by'], '<strong>'.luna_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted']));
 }
