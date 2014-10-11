@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 
 if ($luna_user['g_read_board'] == '0')
@@ -64,3 +65,5 @@ define('FORUM_ACTIVE_PAGE', 'userlist');
 require FORUM_ROOT.'header.php';
 
 require load_page('users.php');
+
+require FORUM_ROOT.'footer.php';
