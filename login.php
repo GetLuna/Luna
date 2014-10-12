@@ -176,13 +176,4 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 		$redirect_url = 'index.php';
 	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];
-	
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Login']);
-	$required_fields = array('req_username' => $lang['Username'], 'req_password' => $lang['Password']);
-	$focus_element = array('login', 'req_username');
-	define('FORUM_ACTIVE_PAGE', 'login');
-	require FORUM_ROOT.'header.php';
-	
-	require get_view_path('login-form.tpl.php');
-	
 }

@@ -171,7 +171,7 @@ $user_avatar = generate_avatar_markup($luna_user['id']);
 // The user menu
 if ($luna_user['is_guest']) {
 	$usermenu[] = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>';
-	$usermenu[] = '<li id="navlogin"'.((FORUM_ACTIVE_PAGE == 'login') ? ' class="active"' : '').'><a href="login.php">'.$lang['Login'].'</a></li>';
+	$usermenu[] = '<li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
 } else {
 	$usermenu[] = '<li class="dropdown">';
 	$usermenu[] = '<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>';
@@ -206,6 +206,8 @@ $tpl_temp = '<div class="navbar navbar-default navbar-static-top">
 	</div>
 </div>';
 $tpl_main = str_replace('<luna_navlinks>', $tpl_temp, $tpl_main);
+
+require load_page('login.php');
 // END SUBST - <luna_navlinks>
 
 
