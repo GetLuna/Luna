@@ -1065,8 +1065,12 @@ span.bbs {
 	text-decoration: line-through;
 }
 
-blockquote p {
-	font-size: 13px;
+blockquote {
+	font-size: 14px;
+}
+
+blockquote footer {
+	font-size: 16px;
 }
 
 /* Update and login form */
