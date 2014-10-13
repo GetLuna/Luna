@@ -9,8 +9,8 @@ if (!empty($errors)) {
 ?>
 
 <div id="posterror">
-    <h2><?php echo $lang['New password errors'] ?></h2>
-    <div class="error-info">
+    <h3 class="form-heading form-errors"><?php echo $lang['New password errors'] ?></h3>
+    <div class="error-info form-content">
         <p><?php echo $lang['New passworderrors info'] ?></p>
         <ul class="error-list">
 <?php

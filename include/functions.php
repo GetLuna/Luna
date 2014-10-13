@@ -1006,12 +1006,14 @@ function message($message, $no_back_link = false, $http_status = null) {
 
 ?>
 
-<div>
-	<h2><?php echo $lang['Info'] ?></h2>
+<div id="posterrorall">
+	<h3 class="form-heading form-errors"><?php echo $lang['Info'] ?></h3>
+    <div class="form-content">
 	<p><?php echo $message ?></p>
 	<?php if (!$no_back_link): ?>
 		<p><a href="javascript: history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 	<?php endif; ?>
+    </div>
 </div>
 <?php
 	require FORUM_ROOT.'footer.php';
@@ -2110,7 +2112,7 @@ function delete_all($path) {
 function num_users_online() {
 	global $db;
 
-    $result_num_users = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1', true) or error('Unable to fetch online users list', __FILE__, __LINE__, $db->error());
+    $result_num_users = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1', false) or error('Unable to fetch online users list', __FILE__, __LINE__, $db->error());
 
     return $db->num_rows($result_num_users);
 }
