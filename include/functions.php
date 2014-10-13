@@ -253,7 +253,7 @@ function generate_admin_menu($page = '')
                     <ul class="dropdown-menu">
 <?php
 		foreach ($plugins as $plugin_name => $plugin)
-			echo "\t\t\t\t\t".'<li class="'.(($page == $plugin_name) ? 'active' : '').'"><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
+			echo "\t\t\t\t\t".'<li><a href="loader.php?plugin='.$plugin_name.'">'.str_replace('_', ' ', $plugin).'</a></li>'."\n";
 ?>
                     </ul>
                 </li>
