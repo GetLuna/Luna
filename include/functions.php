@@ -2405,7 +2405,7 @@ function num_users_online()
 {
 	global $db;
 
-    $result_num_users = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1', true) or error('Unable to fetch online users list', __FILE__, __LINE__, $db->error());
+    $result_num_users = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1', false) or error('Unable to fetch online users list', __FILE__, __LINE__, $db->error());
 
     return $db->num_rows($result_num_users);
 }
