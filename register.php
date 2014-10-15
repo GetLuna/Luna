@@ -94,14 +94,6 @@ if (isset($_POST['form_sent'])) {
 			$dupe_list[] = $cur_dupe['username'];
 	}
 
-	// Make sure we got a valid language string
-	if (isset($_POST['language'])) {
-		$language = preg_replace('%[\.\\\/]%', '', $_POST['language']);
-		if (!file_exists(FORUM_ROOT.'lang/'.$language.'/language.php'))
-			message($lang['Bad request'], false, '404 Not Found');
-	} else
-		$language = $luna_config['o_default_lang'];
-
 	$req_username = empty($username) ? luna_trim($_POST['req_username']) : $username;
 	if (!empty($_POST['req_username'])) {
   		// Since we found a spammer, lets report the bastard!
@@ -117,7 +109,7 @@ if (isset($_POST['form_sent'])) {
 		$password_hash = luna_hash($password1);
 
 		// Add the user
-		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$db->escape($language).'\', \''.$luna_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, registered, registration_ip, last_visit) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$luna_config['o_default_lang'].'\', \''.$luna_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 		$new_uid = $db->insert_id();
 
 		if ($luna_config['o_regs_verify'] == '0') {
