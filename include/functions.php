@@ -1023,14 +1023,12 @@ function message($message, $no_back_link = false, $http_status = null) {
 
 ?>
 
-<div id="posterrorall">
-	<h3 class="form-heading form-errors"><?php echo $lang['Info'] ?></h3>
-    <div class="form-content">
+<div class="container">
+	<h2 style="margin-top: 60px;">We've got us a situation here</h2>
 	<p><?php echo $message ?></p>
 	<?php if (!$no_back_link): ?>
 		<p><a href="javascript: history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 	<?php endif; ?>
-    </div>
 </div>
 <?php
 	require FORUM_ROOT.'footer.php';

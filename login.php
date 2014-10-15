@@ -130,18 +130,11 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 
 				message($lang['Forget mail'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 			} else {
-				$errors[] = $lang['No email match'].' '.htmlspecialchars($email).'.';
+				message($lang['No email match'].' '.htmlspecialchars($email).'.');
 			}
 		}
 
 	}
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Request pass']);
-	$required_fields = array('req_email' => $lang['Email']);
-	$focus_element = array('request_pass', 'req_email');
-	define ('FORUM_ACTIVE_PAGE', 'login');
-	require FORUM_ROOT.'header.php';
-
-	require get_view_path('login-forget.tpl.php');
 } else {
 	if (!$luna_user['is_guest']) {
 		header('Location: index.php');
