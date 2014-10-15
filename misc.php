@@ -12,6 +12,7 @@ if (isset($_GET['action']))
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -137,7 +138,9 @@ else if ($action == 'markforumread') {
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require get_view_path('misc-email.tpl.php');
+	require load_page('mail.php');
+
+	require FORUM_ROOT.'footer.php';
 } else if (isset($_GET['report'])) {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
@@ -225,7 +228,9 @@ else if ($action == 'markforumread') {
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require FORUM_ROOT.'header.php';
 
-	require get_view_path('misc-report.tpl.php');
+	require load_page('report.php');
+
+    require FORUM_ROOT.'footer.php';
 } else if ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');

@@ -450,3 +450,44 @@ function draw_rules_form() {
 </form>
 <?php
 }
+
+function draw_mail_form($recipient_id) {
+	global $lang, $recipient_id;
+?>
+
+<form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+	<input class="info-textfield form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
+	<div class="panel panel-default panel-editor">
+		<fieldset class="postfield">
+			<input type="hidden" name="form_sent" value="1" />
+            <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
+            <textarea name="req_message" class="form-control textarea" rows="10" tabindex="2"></textarea>
+        </fieldset>
+        <div class="panel-footer">
+            <div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="Send" tabindex="3" accesskey="s" /></div>
+        </div>
+	</div>
+</form>
+<?php
+}
+
+function draw_report_form($post_id) {
+	global $lang, $post_id;
+?>
+
+<form id="report" method="post" action="misc.php?report=<?php echo $post_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Tell us why you are reporting this</h3>
+		</div>
+        <fieldset>
+            <input type="hidden" name="form_sent" value="1" />
+            <textarea class="form-control textarea" name="req_reason" rows="5"></textarea>
+        </fieldset>
+        <div class="panel-footer">
+            <input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" />
+        </div>
+	</div>
+</form>
+<?php
+}
