@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 
 <h2 class="profile-h2"><?php echo $lang['Change pass'] ?></h2>
-<form class="form-horizontal" id="change_pass" method="post" action="profile.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+<form class="form-horizontal" id="change_pass" method="post" action="me.php?action=change_pass&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Change pass'] ?></h3>

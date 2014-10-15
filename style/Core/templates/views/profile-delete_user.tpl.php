@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 
 <h2 class="profile-h2"><?php echo $lang['Confirm delete user'] ?></h2>
-<form id="confirm_del_user" method="post" action="profile.php?id=<?php echo $id ?>">
+<form id="confirm_del_user" method="post" action="me.php?id=<?php echo $id ?>">
     <fieldset>
         <div class="panel panel-danger">
             <div class="panel-heading">

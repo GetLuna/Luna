@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 
 <h2 class="profile-h2"><?php echo $lang['Change email'] ?></h2>
-<form id="change_email" method="post" action="profile.php?action=change_email&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+<form id="change_email" method="post" action="me.php?action=change_email&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
     <fieldset>
         <h3><?php echo $lang['Email legend'] ?></h3>
         <input type="hidden" name="form_sent" value="1" />

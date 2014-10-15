@@ -18,7 +18,7 @@ if (!defined('FORUM'))
         $username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
 
         if ($luna_config['o_regs_verify'] == '1')
-            $email_field = '<p>'.sprintf($lang['Email info'], luna_htmlspecialchars($user['email']).' &middot; <a href="profile.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
+            $email_field = '<p>'.sprintf($lang['Email info'], luna_htmlspecialchars($user['email']).' &middot; <a href="me.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
         else
             $email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
     }
@@ -29,14 +29,14 @@ if (!defined('FORUM'))
     if ($luna_config['o_avatars'] == '0' && $luna_config['o_signatures'] == '0')
         message($lang['Bad request'], false, '404 Not Found');
 
-    $avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
+    $avatar_field = '<a class="btn btn-primary" href="me.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
 
     $user_avatar = generate_avatar_markup($id);
     $avatar_set = check_avatar($id);
     if ($user_avatar && $avatar_set)
-        $avatar_field .= ' <a class="btn btn-primary" href="profile.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
+        $avatar_field .= ' <a class="btn btn-primary" href="me.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
     else
-        $avatar_field = '<a class="btn btn-primary" href="profile.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
+        $avatar_field = '<a class="btn btn-primary" href="me.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
 
     if ($user['signature'] != '')
         $signature_preview = '<p>'.$lang['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
@@ -47,12 +47,12 @@ if (!defined('FORUM'))
 
 <div class="col-sm-3 profile-nav">
 <?php
-    generate_profile_menu('personality');
+    generate_me_menu('personality');
 ?>
 </div>
 <div class="col-sm-9 col-profile">
 <h2 class="profile-h2"><?php echo $lang['Section personality'] ?></h2>
-<form id="profile2" class="form-horizontal" method="post" action="profile.php?section=personality&amp;id=<?php echo $id ?>">
+<form id="profile2" class="form-horizontal" method="post" action="me.php?section=personality&amp;id=<?php echo $id ?>">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Personal details legend'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>
@@ -65,7 +65,7 @@ if (!defined('FORUM'))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?></label>
                     <div class="col-sm-9">
-                        <a class="btn btn-primary" href="profile.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a>
+                        <a class="btn btn-primary" href="me.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a>
                     </div>
                 </div>
                 <?php endif; ?>

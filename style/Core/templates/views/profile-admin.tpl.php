@@ -13,7 +13,7 @@ if (!defined('FORUM'))
 </div>
 <div class="col-sm-9 col-profile">
 <h2 class="profile-h2"><?php echo $lang['Section admin'] ?></h2>
-<form id="profile7" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>">
+<form id="profile7" method="post" action="me.php?section=admin&amp;id=<?php echo $id ?>">
 <?php
 
     if ($luna_user['g_moderator'] == '1') {
@@ -126,7 +126,7 @@ if (!defined('FORUM'))
 
 ?>
 </form>
-<form id="profile1" class="form-horizontal" method="post" action="profile.php?section=admin&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+<form id="profile1" class="form-horizontal" method="post" action="me.php?section=admin&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['User tools'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>

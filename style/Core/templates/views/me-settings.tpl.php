@@ -8,12 +8,12 @@ if (!defined('FORUM'))
 <link rel="stylesheet" type="text/css" href="include/css/accent.css">
 <div class="col-sm-3 profile-nav">
 <?php
-    generate_profile_menu('settings');
+    generate_me_menu('settings');
 ?>
 </div>
 <div class="col-sm-9 col-profile">
 <h2 class="profile-h2"><?php echo $lang['Settings'] ?></h2>
-<form id="profile3" class="form-horizontal" method="post" action="profile.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+<form id="profile3" class="form-horizontal" method="post" action="me.php?section=settings&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"><?php echo $lang['Settings'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>

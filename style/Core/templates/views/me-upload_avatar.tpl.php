@@ -11,7 +11,7 @@ if (!defined('FORUM'))
         <h3 class="panel-title"><?php echo $lang['Upload avatar'] ?></h3>
     </div>
     <div class="panel-body">
-        <form id="upload_avatar" method="post" enctype="multipart/form-data" action="profile.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+        <form id="upload_avatar" method="post" enctype="multipart/form-data" action="me.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
             <fieldset>
                 <input type="hidden" name="form_sent" value="1" />
                 <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $luna_config['o_avatars_size'] ?>" />
