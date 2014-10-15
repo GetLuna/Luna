@@ -686,7 +686,7 @@ function do_bbcode($text, $is_signature = false) {
 	// DailyMotion Videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/video/([^_\[<]*?)(_([^\[<]*?))?(\[/url\])?\[/video\]%ms';
 	// Youtube Videos
-	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/(youtu\.be/|watch\?v=)([^\[<]*?)(\[/url\])?\[/video\]%ms';
+	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/(youtu\.be/|watch\?v=)([^\[<]*?)(&.+)?(\[/url\])?\[/video\]%ms';
 	// Vimeo videos
 	$pattern[] = '%\[video\](\[url\])?([^\[<]*?)/(vimeo\.com/)([^\[<]*?)(\[/url\])?\[/video\]%ms';
 

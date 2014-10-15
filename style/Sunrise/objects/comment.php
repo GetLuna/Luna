@@ -22,6 +22,7 @@
                 </div>
                 <div class="panel-body">
                     <?php echo $cur_post['message']."\n" ?>
+					<?php if ($cur_post['edited'] != '') echo '<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'; ?>
                     <?php if (($signature != '') || (!$luna_user['is_guest'])) echo '<hr />'; ?>
                     <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature">'.$signature.'</div>'."\n"; ?>
                     <?php if (!$luna_user['is_guest']) { ?><div class="pull-right post-actions btn-group"><?php if (count($post_actions)) echo implode(" &middot; ", $post_actions) ?></div><?php } ?>
