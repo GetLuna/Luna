@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 // If we are logged in, we shouldn't be here
 if (!$luna_user['is_guest']) {
@@ -19,18 +20,14 @@ if (!$luna_user['is_guest']) {
 if ($luna_config['o_regs_allow'] == '0')
 	message($lang['No new regs']);
 
-
-// User pressed the cancel button
-if (isset($_GET['cancel']))
-	redirect('index.php');
-
-
 else if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register'], $lang['Forum rules']);
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require FORUM_ROOT.'header.php';
 
-    require get_view_path('register-rules.tpl.php');
+    require load_page('rules.php');
+
+    require FORUM_ROOT.'footer.php';
 }
 
 // Start with a clean slate
@@ -206,12 +203,12 @@ if (isset($_POST['form_sent'])) {
 	}
 }
 
-
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register']);
 $required_fields = array('req_user' => $lang['Username'], 'req_password1' => $lang['Password'], 'req_password2' => $lang['Confirm password'], 'req_email1' => $lang['Email'], 'req_email2' => $lang['Email'].' 2');
 $focus_element = array('register', 'req_user');
-$page_head = array('<style type="text/css">#register label.usernamefield { display: none }</style>');
 define('FORUM_ACTIVE_PAGE', 'register');
 require FORUM_ROOT.'header.php';
 
-require get_view_path('register-form.tpl.php');
+require load_page('register.php');
+
+require FORUM_ROOT.'footer.php';

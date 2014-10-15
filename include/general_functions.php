@@ -370,3 +370,83 @@ function draw_delete_title() {
 
 	printf($is_topic_post ? $lang['Topic by'] : $lang['Reply by'], '<strong>'.luna_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted']));
 }
+
+function draw_registration_form() {
+	global $lang, $luna_config;
+?>
+
+<form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Register legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="register" value="<?php echo $lang['Register'] ?>" /></span></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <input type="hidden" name="form_sent" value="1" />
+                <label class="required hidden"><?php echo $lang['If human'] ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Username'] ?><span class="help-block"><?php echo $lang['Username legend'] ?></span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
+                    </div>
+                </div>
+<?php if ($luna_config['o_regs_verify'] == '0'): ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Pass info'] ?></span></label>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo luna_htmlspecialchars($_POST['req_password1']); ?>" />
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo luna_htmlspecialchars($_POST['req_password2']); ?>" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<?php endif; ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email help info'] ?></span><?php endif; ?></label>
+                    <div class="col-sm-9">
+                        <?php if ($luna_config['o_regs_verify'] == '1'): ?>
+                        <div class="row">
+                            <div class="col-sm-6">
+						<?php endif; ?>
+                                <input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
+                        <?php if ($luna_config['o_regs_verify'] == '1'): ?>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
+                            </div>
+                        </div>
+						<?php endif; ?>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>
+<?php
+}
+
+function draw_rules_form() {
+	global $lang, $luna_config;
+?>
+
+<form method="get" action="register.php">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $lang['Rules legend'] ?></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <div class="usercontent"><?php echo $luna_config['o_rules_message'] ?></div>
+            </fieldset>
+        </div>
+        <div class="panel-footer">
+        	<div class="btn-group"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang['Agree'] ?>" /></div>
+        </div>
+    </div>
+</form>
+<?php
+}
