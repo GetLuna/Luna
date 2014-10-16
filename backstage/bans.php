@@ -127,7 +127,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?><span class="help-block"><?php echo $lang['E-mail help'] ?></span></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) echo $ban_email; ?>" tabindex="3" />
+                        <input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) echo luna_htmlspecialchars($ban_email); ?>" tabindex="3" />
                     </div>
                 </div>
             </fieldset>
@@ -412,7 +412,7 @@ else if (isset($_GET['find_ban']))
 ?>
 			<tr>
 				<td class="tcl"><?php echo ($ban_data['username'] != '') ? luna_htmlspecialchars($ban_data['username']) : '&#160;' ?></td>
-				<td class="tc2"><?php echo ($ban_data['email'] != '') ? $ban_data['email'] : '&#160;' ?></td>
+				<td class="tc2"><?php echo ($ban_data['email'] != '') ? luna_htmlspecialchars($ban_data['email']) : '&#160;' ?></td>
 				<td class="tc3"><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
 				<td class="tc4"><?php echo $expire ?></td>
 				<td class="tc5"><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>

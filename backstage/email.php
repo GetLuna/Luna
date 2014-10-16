@@ -92,12 +92,12 @@ if (isset($_GET['saved']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Admin e-mail label'] ?><span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo $luna_config['o_admin_email'] ?>" />
+                        <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_admin_email']) ?>" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Webmaster e-mail label'] ?><span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span></label>
-						<div class="col-sm-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo $luna_config['o_webmaster_email'] ?>" />
+						<div class="col-sm-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_webmaster_email']) ?>" />
                     </div>
                 </div>
             </fieldset>
