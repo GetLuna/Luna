@@ -135,11 +135,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0;
 }
 
-.users-online {
-	margin-left: 15px;
-	margin-right: 15px;
-}
-
 .category-title {
 	margin-top: 0;
 }
@@ -167,6 +162,19 @@ a.list-group-item-cat .forum-description {
 
 a.list-group-item-cat .forum-description:hover {
 	background-color: #e6e6e6;
+}
+
+.statistic-item {
+	font-size: 17px;
+	color: #0068b0;
+	text-align: center;
+}
+
+.statistic-grey {
+	font-size: 17px;
+	color: #bbb;
+	text-align: center;
+	text-transform: lowercase;
 }
 
 /* First run */

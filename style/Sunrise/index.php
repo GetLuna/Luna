@@ -62,18 +62,17 @@ if (!defined('FORUM'))
 </div>
 <?php draw_category_list() ?>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Board stats'] ?></h3>
-    </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php total_users() ?></span></div>
-            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php total_topics() ?></span></div>
-            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php total_posts() ?></span></div>
-            <div class="col-md-2 col-sm-4 col-xs-6"><span><?php newest_user() ?></span></div>
-			<div class="col-md-2 col-sm-4 col-xs-6"><span><?php users_online() ?></span></div>
-			<div class="col-md-2 col-sm-4 col-xs-6"><span><?php guests_online() ?></span></div>
+            <div class="col-md-2 col-sm-4 col-xs-6"><div class="statistic-item"><?php total_users() ?></div><div class="statistic-grey"><?php echo $lang['No of users'] ?></div></div>
+            <div class="col-md-2 col-sm-4 col-xs-6"><div class="statistic-item"><?php total_topics() ?></div><div class="statistic-grey"><?php echo $lang['No of topics'] ?></div></div>
+            <div class="col-md-2 col-sm-4 col-xs-6"><div class="statistic-item"><?php total_posts() ?></div><div class="statistic-grey"><?php echo $lang['No of post'] ?></div></div>
+            <div class="col-md-2 col-sm-4 col-xs-6"><div class="statistic-item"><?php newest_user() ?></div><div class="statistic-grey"><?php echo $lang['Newest user'] ?></div></div>
+			<div class="col-md-2 col-sm-4 col-xs-6"><div class="statistic-item"><?php users_online() ?></div><div class="statistic-grey"><?php echo $lang['Users online'] ?></div></div>
+			<div class="col-md-2 col-sm-4 col-xs-6"><div class="statistic-item"><?php guests_online() ?></div><div class="statistic-grey"><?php echo $lang['Guests online'] ?></div></div>
         </div>
-		<div class="row"><span class="users-online"><?php online_list() ?></span></div>
+	</div>
+	<div class="panel-footer">
+		<span class="users-online"><?php online_list() ?></span>
     </div>
 </div>

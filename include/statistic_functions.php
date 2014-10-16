@@ -24,19 +24,19 @@ list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->f
 function total_users() {
 	global $lang, $stats;
 
-	printf($lang['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>');
+	printf(forum_number_format($stats['total_users']));
 }
 
 function total_topics() {
 	global $lang, $stats;
 
-	printf($lang['No of topics'], '<strong>'.forum_number_format($stats['total_topics']).'</strong>');
+	printf(forum_number_format($stats['total_topics']));
 }
 
 function total_posts() {
 	global $lang, $stats;
 
-	printf($lang['No of post'], '<strong>'.forum_number_format($stats['total_posts']).'</strong>');
+	printf(forum_number_format($stats['total_posts']));
 }
 
 function newest_user() {
@@ -47,19 +47,19 @@ function newest_user() {
 	else
 		$stats['newest_user'] = luna_htmlspecialchars($stats['last_user']['username']);
 
-	printf($lang['Newest user'], $stats['newest_user']);
+	printf($stats['newest_user']);
 }
 
 function users_online() {
 	global $lang;
 
-	printf($lang['Users online'], '<strong>'.forum_number_format(num_users_online()).'</strong>');
+	printf(forum_number_format(num_users_online()));
 }
 
 function guests_online() {
 	global $lang;
 
-	printf($lang['Guests online'], '<strong>'.forum_number_format(num_guests_online()).'</strong>');
+	printf(forum_number_format(num_guests_online()));
 }
 
 function online_list() {
@@ -71,7 +71,7 @@ function online_list() {
 		$result = $db->query('SELECT user_id, ident FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1 ORDER BY ident', true) or error('Unable to fetch online list', __FILE__, __LINE__, $db->error());
 	
 		if ($db->num_rows($result) > 0) {
-			echo '<strong>'.$lang['Online'].' </strong>';
+			echo $lang['Online'];
 	
 			$ctr = 1;
 			while ($luna_user_online = $db->fetch_assoc($result)) {
