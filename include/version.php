@@ -8,10 +8,10 @@
 
 class Version {
 	// See http://modernbb.be/docs/version.php for more info
-	const FORUM_VERSION = '0.0';
+	const FORUM_VERSION = '0.0.0';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '0.0.3105';
+	const FORUM_CORE_VERSION = '0.0.3112';
 
 	// The database version number, every change in the database requires this number to go one up
 	const FORUM_DB_VERSION = 84.20;

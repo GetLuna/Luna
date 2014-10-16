@@ -591,7 +591,7 @@ function generate_avatar_markup($user_id) {
 			$avatar_markup = '<img class="avatar" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		} else {
-			$avatar_markup = '<img class="avatar" src="'.luna_htmlspecialchars(get_base_url(true)).'/'.$luna_config['o_avatars_dir'].'/placeholder.png" alt="" />';
+			$avatar_markup = '<img class="avatar" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
 		}
 	}
 
@@ -1895,9 +1895,9 @@ function url_valid($url) {
 			  [0-9A-Za-z]		   # Part last char is alphanum (no dash).
 			  \.				   # Each part followed by literal dot.
 			)*					   # One or more parts before top level domain.
-			(?:					   # Top level domains  
-			  [A-Za-z]{2,63}|	   # Country codes are exactly two alpha chars.  
-			  xn--[0-9A-Za-z]{4,59}) # Internationalized Domain Name (IDN)  
+			(?:					   # Top level domains
+			  [A-Za-z]{2,63}|	   # Country codes are exactly two alpha chars.
+			  xn--[0-9A-Za-z]{4,59}) # Internationalized Domain Name (IDN)
 			$					   # Anchor to end of string.
 			/ix', $m['host'])) return FALSE;
 	}

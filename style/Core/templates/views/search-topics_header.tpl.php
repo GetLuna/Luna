@@ -8,8 +8,8 @@ if (!defined('FORUM'))
 
     <div class="forum-box">
         <div class="row forum-header">
-            <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
-            <div class="col-xs-2 hidden-xs"><?php echo $lang['Forum'] ?></div>
-            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
-            <div class="col-xs-3 col-search"><?php echo $lang['Last post'] ?></div>
+			<div class="col-md-6 col-sm-6 col-xs-7"><?php echo $lang['Topic'] ?></div>
+            <div class="col-md-2 hidden-sm hidden-xs"><?php echo $lang['Forum'] ?></div>
+			<div class="col-md-1 col-sm-2 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
+			<div class="col-md-3 col-sm-4 col-xs-5"><?php echo $lang['Last post'] ?></div>
         </div>
