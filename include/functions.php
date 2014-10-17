@@ -2140,3 +2140,31 @@ function num_guests_online() {
 
     return $db->num_rows($result_num_guests);
 }
+
+// Get forum_id by post_id
+function get_forum_id($post_id)
+{
+	global $db;
+
+    $result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'posts as p INNER JOIN '.$db->prefix.'topics as t ON p.topic_id = t.id WHERE p.id='.intval($post_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
+
+    $row = $db->fetch_row($result_fid);
+
+    if($row)
+        return $row[0];
+    else
+        return false;
+}
+
+// Update forum's last_topic
+function set_forum_topic($fid, $fmessage)
+{
+	global $db;
+
+    $result = $db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.luna_htmlspecialchars($fmessage).'\' WHERE id='.intval($fid), true) or error('Unable to set forum last topic', __FILE__, __LINE__, $db->error());
+
+    if($db->affected_rows($result))
+        return true;
+    else
+        return false;
+}
