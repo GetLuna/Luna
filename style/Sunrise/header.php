@@ -2,22 +2,6 @@
 
 require ('header.php');
 
-if ($luna_user['is_guest']) {
-	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
-				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
-} else {
-	$usermenu = '<li class="dropdown">
-					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>
-					<ul class="dropdown-menu">
-						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
-						<li><a href="me.php?id='.$luna_user['id'].'">Me</a></li>
-						<li><a href="help.php">'.$lang['Help'].'</a></li>
-						<li class="divider"></li>
-						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>
-					</ul>
-				   </li>';
-}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +22,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
         <div id="header">
 			<div class="navbar navbar-default navbar-static-top">
 				<div class="nav-inner">
-					<?php echo $menu_title ?>
+					<a class="navbar-brand" href="index.php"><?php echo $menu_title ?></a>
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="icon-bar"></span>

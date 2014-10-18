@@ -20,12 +20,11 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 // Send the Content-type header in case the web server is setup to send something else
 header('Content-type: text/html; charset=utf-8');
 
-
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 
 if (isset($required_fields)) {
-	// Output JavaScript to validate form (make sure required fields are filled out)
+// Output JavaScript to validate form (make sure required fields are filled out)
 
 ?>
 <script type="text/javascript">
@@ -59,25 +58,30 @@ function process_form(the_form) {
 
 }
 
-if (isset($page_head))
-	echo implode("\n", $page_head)."\n";
-// END SUBST - <luna_head>
-
-
-if (!defined ('FORUM_FORM')) {
-
-// START SUBST - <luna_navlinks>
+// Navbar data
 $links = array();
-
+$menu_title = $luna_config['o_board_title'];
 $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
-if ($db->num_rows($result) > 0) {
-	while ($cur_item = $db->fetch_assoc($result)) {
-		if ($cur_item['visible'] == '1') {
+if ($luna_user['is_guest'])
+	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
+				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
+else
+	$usermenu = '<li class="dropdown">
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
+						<li><a href="me.php?id='.$luna_user['id'].'">Me</a></li>
+						<li><a href="help.php">'.$lang['Help'].'</a></li>
+						<li class="divider"></li>
+						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>
+					</ul>
+				   </li>';
+
+if ($db->num_rows($result) > 0)
+	while ($cur_item = $db->fetch_assoc($result))
+		if ($cur_item['visible'] == '1')
 			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
-		}
-	}
-}
 
 // Generate avatar
 $user_avatar = generate_avatar_markup($luna_user['id']);
@@ -85,11 +89,9 @@ $user_avatar = generate_avatar_markup($luna_user['id']);
 require load_page('login.php');
 
 // Announcement
-if ($luna_config['o_announcement'] == '1') {
+if ($luna_config['o_announcement'] == '1')
 	$announcement = '<div class="alert alert-info announcement"><div>'.$luna_config['o_announcement_message'].'</div></div>';
-} else
+else
 	$announcement = '';
-}
-
 
 define('FORUM_HEADER', 1);
