@@ -347,6 +347,9 @@ switch ($stage) {
 		if (array_key_exists('o_additional_navlinks', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_additional_navlinks\'') or error('Unable to remove config value \'o_additional_navlinks\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.3122: Add the color column to the forums table
+		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '#0d4382');
+
 		break;
 
 	// Preparse posts
