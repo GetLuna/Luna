@@ -7,7 +7,7 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
+// Tell header.php to use the form template
 define('FORUM_FORM', 1);
 
 if (isset($_GET['action']))
@@ -61,8 +61,12 @@ if (isset($_POST['form_sent']) && $action == 'in')
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(luna_htmlspecialchars($_POST['redirect_url']));
+	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after login)
+	$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
+
+	redirect(luna_htmlspecialchars($redirect_url));
 }
+
 
 else if ($action == 'out')
 {
@@ -83,6 +87,7 @@ else if ($action == 'out')
 
 	redirect('index.php');
 }
+
 
 else if ($action == 'forget' || $action == 'forget_2')
 {
@@ -127,7 +132,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 				while ($cur_hit = $db->fetch_assoc($result))
 				{
 					if ($cur_hit['last_email_sent'] != '' && (time() - $cur_hit['last_email_sent']) < 3600 && (time() - $cur_hit['last_email_sent']) >= 0)
-					message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
+						message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
 
 					// Generate a new password and a new password activation code
 					$new_password = random_pass(8);
@@ -146,12 +151,10 @@ else if ($action == 'forget' || $action == 'forget_2')
 				message($lang['Forget mail'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 			}
 			else
-			{
 				$errors[] = $lang['No email match'].' '.htmlspecialchars($email).'.';
 			}
 		}
 
-	}
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Request pass']);
 	$required_fields = array('req_email' => $lang['Email']);
 	$focus_element = array('request_pass', 'req_email');
@@ -161,49 +164,26 @@ else if ($action == 'forget' || $action == 'forget_2')
 	require get_view_path('login-forget.tpl.php');
 }
 
-else
+
+if (!$luna_user['is_guest'])
 {
-	if (!$luna_user['is_guest']) {
-		header('Location: index.php');
-		exit;
-	}
-	
-	// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to index.php after login)
-	if (!empty($_SERVER['HTTP_REFERER']))
-	{
-		$referrer = parse_url($_SERVER['HTTP_REFERER']);
-		// Remove www subdomain if it exists
-		if (strpos($referrer['host'], 'www.') === 0)
-			$referrer['host'] = substr($referrer['host'], 4);
-	
-		// Make sure the path component exists
-		if (!isset($referrer['path']))
-			$referrer['path'] = '';
-	
-		$valid = parse_url(get_base_url());
-		// Remove www subdomain if it exists
-		if (strpos($valid['host'], 'www.') === 0)
-			$valid['host'] = substr($valid['host'], 4);
-	
-		// Make sure the path component exists
-		if (!isset($valid['path']))
-			$valid['path'] = '';
-	
-		if ($referrer['host'] == $valid['host'] && preg_match('%^'.preg_quote($valid['path'], '%').'/(.*?)\.php%i', $referrer['path']))
-			$redirect_url = $_SERVER['HTTP_REFERER'];
-	}
-	
-	if (!isset($redirect_url))
-		$redirect_url = 'index.php';
-	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
-		$redirect_url .= '#p'.$matches[1];
-	
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Login']);
-	$required_fields = array('req_username' => $lang['Username'], 'req_password' => $lang['Password']);
-	$focus_element = array('login', 'req_username');
-	define('FORUM_ACTIVE_PAGE', 'login');
-	require FORUM_ROOT.'header.php';
-	
-	require get_view_path('login-form.tpl.php');
-	
+	header('Location: index.php');
+	exit;
 }
+
+// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to index.php after login)
+if (!empty($_SERVER['HTTP_REFERER']))
+	$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
+
+if (!isset($redirect_url))
+	$redirect_url = 'index.php';
+else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
+	$redirect_url .= '#p'.$matches[1];
+
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Login']);
+$required_fields = array('req_username' => $lang['Username'], 'req_password' => $lang['Password']);
+$focus_element = array('login', 'req_username');
+define('FORUM_ACTIVE_PAGE', 'login');
+require FORUM_ROOT.'header.php';
+
+require get_view_path('login-form.tpl.php');
