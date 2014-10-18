@@ -7,7 +7,7 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
-// Tell header.php to use the admin template
+// Tell header.php to use the form template
 define('FORUM_FORM', 1);
 
 if (isset($_GET['action']))
@@ -58,9 +58,17 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect(luna_htmlspecialchars($_POST['redirect_url']));
-} else if ($action == 'out') {
-	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address()))) {
+	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after login)
+	$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
+
+	redirect(luna_htmlspecialchars($redirect_url));
+}
+
+
+else if ($action == 'out')
+{
+	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address())))
+	{
 		header('Location: index.php');
 		exit;
 	}
@@ -75,8 +83,13 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	luna_setcookie(1, luna_hash(uniqid(rand(), true)), time() + 31536000);
 
 	redirect('index.php');
-} else if ($action == 'forget' || $action == 'forget_2') {
-	if (!$luna_user['is_guest']) {
+}
+
+
+else if ($action == 'forget' || $action == 'forget_2')
+{
+	if (!$luna_user['is_guest'])
+	{
 		header('Location: index.php');
 		exit;
 	}
@@ -112,7 +125,7 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 				// Loop through users we found
 				while ($cur_hit = $db->fetch_assoc($result)) {
 					if ($cur_hit['last_email_sent'] != '' && (time() - $cur_hit['last_email_sent']) < 3600 && (time() - $cur_hit['last_email_sent']) >= 0)
-					message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
+						message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
 
 					// Generate a new password and a new password activation code
 					$new_password = random_pass(8);
@@ -129,44 +142,18 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 				}
 
 				message($lang['Forget mail'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
-			} else {
-				message($lang['No email match'].' '.htmlspecialchars($email).'.');
 			}
+			else
+				message($lang['No email match'].' '.htmlspecialchars($email).'.');
 		}
+	}
+}
 
-	}
-} else {
-	if (!$luna_user['is_guest']) {
-		header('Location: index.php');
-		exit;
-	}
-	
 	// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to index.php after login)
-	if (!empty($_SERVER['HTTP_REFERER'])) {
-		$referrer = parse_url($_SERVER['HTTP_REFERER']);
-		// Remove www subdomain if it exists
-		if (strpos($referrer['host'], 'www.') === 0)
-			$referrer['host'] = substr($referrer['host'], 4);
-	
-		// Make sure the path component exists
-		if (!isset($referrer['path']))
-			$referrer['path'] = '';
-	
-		$valid = parse_url(get_base_url());
-		// Remove www subdomain if it exists
-		if (strpos($valid['host'], 'www.') === 0)
-			$valid['host'] = substr($valid['host'], 4);
-	
-		// Make sure the path component exists
-		if (!isset($valid['path']))
-			$valid['path'] = '';
-	
-		if ($referrer['host'] == $valid['host'] && preg_match('%^'.preg_quote($valid['path'], '%').'/(.*?)\.php%i', $referrer['path']))
-			$redirect_url = $_SERVER['HTTP_REFERER'];
-	}
-	
+	if (!empty($_SERVER['HTTP_REFERER']))
+		$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
+
 	if (!isset($redirect_url))
 		$redirect_url = 'index.php';
 	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];
-}

@@ -2119,6 +2119,38 @@ function delete_all($path) {
     }
 }
 
+
+//
+// Validate the given redirect URL, use the fallback otherwise
+//
+function validate_redirect($redirect_url, $fallback_url)
+{
+	$referrer = parse_url(strtolower($redirect_url));
+	
+	// Remove www subdomain if it exists
+	if (strpos($referrer['host'], 'www.') === 0)
+		$referrer['host'] = substr($referrer['host'], 4);
+
+	// Make sure the path component exists
+	if (!isset($referrer['path']))
+		$referrer['path'] = '';
+
+	$valid = parse_url(strtolower(get_base_url()));
+
+	// Remove www subdomain if it exists
+	if (strpos($valid['host'], 'www.') === 0)
+		$valid['host'] = substr($valid['host'], 4);
+
+	// Make sure the path component exists
+	if (!isset($valid['path']))
+		$valid['path'] = '';
+
+	if ($referrer['host'] == $valid['host'] && preg_match('%^'.preg_quote($valid['path'], '%').'/(.*?)\.php%i', $referrer['path']))
+		return $redirect_url;
+	else
+		return $fallback_url;
+}
+
 //
 // Fetch online users
 //
@@ -2161,7 +2193,7 @@ function set_forum_topic($fid, $fmessage)
 {
 	global $db;
 
-    $result = $db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.luna_htmlspecialchars($fmessage).'\' WHERE id='.intval($fid), true) or error('Unable to set forum last topic', __FILE__, __LINE__, $db->error());
+    $result = $db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.$db->escape($fmessage).'\' WHERE id='.intval($fid), true) or error('Unable to set forum last topic', __FILE__, __LINE__, $db->error());
 
     if($db->affected_rows($result))
         return true;

@@ -28,7 +28,6 @@ if ($action == 'markread') {
 	redirect('index.php');
 }
 
-
 // Mark the topics/posts in a forum as read?
 else if ($action == 'markforumread') {
 	if ($luna_user['is_guest'])
@@ -99,33 +98,16 @@ else if ($action == 'markforumread') {
 
 		$db->query('UPDATE '.$db->prefix.'users SET last_email_sent='.time().' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
-		redirect(luna_htmlspecialchars($_POST['redirect_url']));
+		// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after login)
+		$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
+
+		redirect(luna_htmlspecialchars($redirect_url));
 	}
 
 
 	// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to the user's profile after the email is sent)
-	if (!empty($_SERVER['HTTP_REFERER'])) {
-		$referrer = parse_url($_SERVER['HTTP_REFERER']);
-		// Remove www subdomain if it exists
-		if (strpos($referrer['host'], 'www.') === 0)
-			$referrer['host'] = substr($referrer['host'], 4);
-
-		// Make sure the path component exists
-		if (!isset($referrer['path']))
-			$referrer['path'] = '';
-
-		$valid = parse_url(get_base_url());
-		// Remove www subdomain if it exists
-		if (strpos($valid['host'], 'www.') === 0)
-			$valid['host'] = substr($valid['host'], 4);
-
-		// Make sure the path component exists
-		if (!isset($valid['path']))
-			$valid['path'] = '';
-
-		if ($referrer['host'] == $valid['host'] && preg_match('%^'.preg_quote($valid['path'], '%').'/(.*?)\.php%i', $referrer['path']))
-			$redirect_url = $_SERVER['HTTP_REFERER'];
-	}
+	if (!empty($_SERVER['HTTP_REFERER']))
+		$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
 
 	if (!isset($redirect_url))
 		$redirect_url = 'profile.php?id='.$recipient_id;
@@ -150,6 +132,7 @@ else if ($action == 'markforumread') {
 		message($lang['Bad request'], false, '404 Not Found');
 
 	if (isset($_POST['form_sent'])) {
+		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
 		// Clean up reason from POST
