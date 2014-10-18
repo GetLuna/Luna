@@ -271,6 +271,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
     $forum_field_new = '';
 	$forum_desc = '';
     $icon_type = 'icon';
+	$last_post = '';
 
     // Are there new posts since our last visit?
     if (isset($new_topics[$cur_forum['fid']])) {
@@ -280,23 +281,9 @@ while ($cur_forum = $db->fetch_assoc($result)) {
     }
 
 	$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
-	$num_topics = $cur_forum['num_topics'];
-	$num_posts = $cur_forum['num_posts'];
 
     if ($cur_forum['forum_desc'] != '')
         $forum_desc = '<span class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</span>';
-
-    // If there is a last_post/last_poster
-    if ($cur_forum['last_post'] != '') {
-        if (luna_strlen($cur_forum['last_topic']) > 43)
-            $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 40).'...';
-
-			if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
-                $last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['last_poster']).'</a></span>';
-            else
-                $last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['last_poster']).'</span>';
-    } else
-        $last_post = $lang['Never'];
 
     if (forum_number_format($num_topics) == '1')
         $topics_label = $lang['topic'];
@@ -308,16 +295,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
     else
         $posts_label = $lang['posts'];
 
-?>
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-	<div class="list-group">
-		<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="list-group-item list-group-item-cat">
-			<h4><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h4>
-			<?php echo $forum_desc ?>
-		</a>
-	</div>
-</div>
-<?php
+	require get_view_path('forum.php'); 
 
 }
 

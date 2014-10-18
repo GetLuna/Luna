@@ -147,10 +147,15 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0;
 }
 
+.list-group-forum .list-group-item:not(:first-child) {
+	border-top-color: #ccc !important;
+}
+
 a.list-group-item-cat h4 {
 	margin-top: 0;
 	margin-bottom: 3px;
 	padding: 10px 15px;
+	color: #fff;
 }
 
 a.list-group-item-cat .forum-description {
