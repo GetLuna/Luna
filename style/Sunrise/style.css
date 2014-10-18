@@ -160,8 +160,13 @@ a.list-group-item-cat .forum-description {
 	background-color: #eee;
 }
 
-a.list-group-item-cat .forum-description:hover {
+a.list-group-item-cat:hover .forum-description {
 	background-color: #e6e6e6;
+}
+
+.forum-newestitem  .help-block {
+	margin: 0;
+	font-size: 12px;
 }
 
 .statistic-item {
