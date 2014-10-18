@@ -19,4 +19,4 @@ if (!defined('FORUM'))
 </form>
 <?php
 
-    require FORUM_ROOT.'footer.php';
+    require load_page('footer.php');

@@ -158,7 +158,7 @@ if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') {
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
-require FORUM_ROOT.'header.php';
+require load_page('header.php');
 
 require FORUM_ROOT.'include/parser.php';
 
@@ -183,4 +183,4 @@ if ($luna_config['o_topic_views'] == '1')
 $forum_id = $cur_topic['forum_id'];
 $footer_style = 'viewtopic';
 
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');

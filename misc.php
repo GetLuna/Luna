@@ -118,11 +118,11 @@ else if ($action == 'markforumread') {
 	$required_fields = array('req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 	$focus_element = array('email', 'req_subject');
 	define('FORUM_ACTIVE_PAGE', 'index');
-	require FORUM_ROOT.'header.php';
+	require load_page('header.php');
 
 	require load_page('mail.php');
 
-	require FORUM_ROOT.'footer.php';
+	require load_page('footer.php');
 } else if (isset($_GET['report'])) {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
@@ -209,11 +209,11 @@ else if ($action == 'markforumread') {
 	$required_fields = array('req_reason' => $lang['Reason']);
 	$focus_element = array('report', 'req_reason');
 	define('FORUM_ACTIVE_PAGE', 'index');
-	require FORUM_ROOT.'header.php';
+	require load_page('header.php');
 
 	require load_page('report.php');
 
-    require FORUM_ROOT.'footer.php';
+    require load_page('footer.php');
 } else if ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');

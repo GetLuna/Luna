@@ -15,7 +15,7 @@ if ($luna_user['g_read_board'] == '0')
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Help']);
 define('FORUM_ACTIVE_PAGE', 'help');
-require FORUM_ROOT.'header.php';
+require load_page('header.php');
 
 ?>
 <h2><?php echo $lang['Help'] ?></h2>
@@ -227,4 +227,4 @@ if ($luna_user['is_admmod']) {
 
 }
 
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');

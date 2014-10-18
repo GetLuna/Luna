@@ -93,7 +93,7 @@ $footer_style = 'viewforum';
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
-require FORUM_ROOT.'header.php';
+require load_page('header.php');
 
 require load_page('forum.php');
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');

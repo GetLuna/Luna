@@ -479,8 +479,8 @@ else {
 }
 
 define('FORUM_ACTIVE_PAGE', 'index');
-require FORUM_ROOT.'header.php';
+require load_page('header.php');
 
 require load_page('post.php');
 
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');

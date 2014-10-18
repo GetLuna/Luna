@@ -1018,7 +1018,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 	if (!defined('FORUM_HEADER')) {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Info']);
 		define('FORUM_ACTIVE_PAGE', 'index');
-		require FORUM_ROOT.'header.php';
+		require load_page('header.php');
 	}
 
 ?>
@@ -1031,7 +1031,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 	<?php endif; ?>
 </div>
 <?php
-	require FORUM_ROOT.'footer.php';
+	require load_page('footer.php');
 }
 
 

@@ -141,10 +141,10 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang[
 $required_fields = array('req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 $focus_element = array('edit', 'req_message');
 define('FORUM_ACTIVE_PAGE', 'edit');
-require FORUM_ROOT.'header.php';
+require load_page('header.php');
 
 $cur_index = 1;
 
 require load_page('edit.php');
 
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');

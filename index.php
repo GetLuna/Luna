@@ -76,7 +76,7 @@ if ($action == 'disable_cookiebar') {
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'index');
-require FORUM_ROOT.'header.php';
+require load_page('header.php');
 $footer_style = 'index';
 
 // Print the categories and forums
@@ -84,4 +84,4 @@ $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name,
 
 require load_page('index.php');
 
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');

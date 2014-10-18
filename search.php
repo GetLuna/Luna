@@ -475,7 +475,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search results']);
 		define('FORUM_ACTIVE_PAGE', 'search');
-		require FORUM_ROOT.'header.php';
+		require load_page('header.php');
 
 		require get_view_path('search-breadcrumbs.tpl.php');
 
@@ -510,7 +510,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 		require get_view_path('search-breadcrumbs.tpl.php');
 
-		require FORUM_ROOT.'footer.php';
+		require load_page('footer.php');
 	} else
 		message($lang['No hits']);
 }
@@ -520,7 +520,7 @@ if (!$section || $section == 'simple') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
 	$focus_element = array('search', 'keywords');
 	define('FORUM_ACTIVE_PAGE', 'search');
-	require FORUM_ROOT.'header.php';
+	require load_page('header.php');
 
 	require get_view_path('search-form.tpl.php');
 } else {
@@ -530,7 +530,7 @@ if (!$section || $section == 'simple') {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
 		$focus_element = array('search', 'keywords');
 		define('FORUM_ACTIVE_PAGE', 'search');
-		require FORUM_ROOT.'header.php';
+		require load_page('header.php');
 
 		require get_view_path('search-form_advanced.tpl.php');
 	}

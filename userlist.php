@@ -62,8 +62,8 @@ $paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($use
 
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'userlist');
-require FORUM_ROOT.'header.php';
+require load_page('header.php');
 
 require load_page('users.php');
 
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');

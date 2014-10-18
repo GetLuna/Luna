@@ -197,7 +197,7 @@ if (isset($_POST['update_group_membership'])) {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Confirm delete user']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
-	require FORUM_ROOT.'header.php';
+	require load_page('header.php');
 
 	require get_view_path('profile-delete_user.tpl.php');
 }
@@ -219,7 +219,7 @@ if ($user['signature'] != '') {
 if (!$section || $section == 'view') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
-	require FORUM_ROOT.'header.php';
+	require load_page('header.php');
 
 	require get_view_path('profile-view.tpl.php');
 } else if ($section == 'admin') {
@@ -228,11 +228,11 @@ if (!$section || $section == 'view') {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
 	define('FORUM_ACTIVE_PAGE', 'profile');
-	require FORUM_ROOT.'header.php';
+	require load_page('header.php');
 
 	require get_view_path('profile-admin.tpl.php');
 } else {
 	message($lang['Bad request'], false, '404 Not Found');
 }
 
-require FORUM_ROOT.'footer.php';
+require load_page('footer.php');
