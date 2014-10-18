@@ -2442,7 +2442,7 @@ function set_forum_topic($fid, $fmessage)
 {
 	global $db;
 
-    $result = $db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.luna_htmlspecialchars($fmessage).'\' WHERE id='.intval($fid), true) or error('Unable to set forum last topic', __FILE__, __LINE__, $db->error());
+    $result = $db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.$db->escape($fmessage).'\' WHERE id='.intval($fid), true) or error('Unable to set forum last topic', __FILE__, __LINE__, $db->error());
 
     if($db->affected_rows($result))
         return true;
