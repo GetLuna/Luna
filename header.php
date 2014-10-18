@@ -58,6 +58,9 @@ function process_form(the_form) {
 
 }
 
+// Generate avatar
+$user_avatar = generate_avatar_markup($luna_user['id']);
+
 // Navbar data
 $links = array();
 $menu_title = $luna_config['o_board_title'];
@@ -82,9 +85,6 @@ if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
 		if ($cur_item['visible'] == '1')
 			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
-
-// Generate avatar
-$user_avatar = generate_avatar_markup($luna_user['id']);
 
 require load_page('login.php');
 
