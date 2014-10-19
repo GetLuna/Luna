@@ -48,7 +48,7 @@ function draw_preview_panel($message) {
 	}
 }
 
-// Show the preview panel
+// Show the editor panel
 function draw_editor($height) {
 	global $lang, $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message;
 	
@@ -111,7 +111,7 @@ function draw_editor($height) {
 		</div>
 		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>"><?php
 			if (FORUM_ACTIVE_PAGE == 'post')
-				isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
+				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			else if (FORUM_ACTIVE_PAGE == 'edit')
 				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
 ?></textarea>
