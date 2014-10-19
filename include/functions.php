@@ -2087,14 +2087,10 @@ function get_view_path($tpl_file) {
 //
 // Get the view that is required
 //
-function load_page($tpl_file) {
+function load_page($page) {
 	global $luna_user;
 
-	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file)) {
-		return FORUM_ROOT.'style/'.$luna_user['style'].'/'.$tpl_file;
-	} else {
-		return FORUM_ROOT.'style/Core/templates/views/'.$tpl_file;
-	}
+	return FORUM_ROOT.'style/'.$luna_user['style'].'/'.$page;
 }
 
 //
