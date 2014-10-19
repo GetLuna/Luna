@@ -781,7 +781,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 			'color'			=> array(
 				'datatype'		=> 'VARCHAR(25)',
 				'allow_null'	=> false,
-				'default'		=> '#0d4382'
+				'default'		=> '\'#0d4382\''
 			)
 		),
 		'PRIMARY KEY'	=> array('id')
