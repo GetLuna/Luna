@@ -1078,6 +1078,21 @@ textarea {
 	width: 0;
 }
 
+.jumbotron {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.jumbotron h2 {
+	color: #fff;
+	display: inline-block;
+}
+
+.jumbotron .control-bar {
+	margin-top: 5px;
+	margin-bottom: -5px;
+}
+
 /* Debug */
 #debug {
 	border-style: dotted none none none;
