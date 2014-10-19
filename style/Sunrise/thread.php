@@ -152,11 +152,8 @@ while ($cur_post = $db->fetch_assoc($result)) {
 	require get_view_path('comment.php'); 
 }
 ?>
-<form id="quickpostform" method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-<fieldset class="quickpostfield">
-<input type="hidden" name="form_sent" value="1" />
+<form method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 <?php draw_editor('10'); ?>
-</fieldset>
 </form>
 
 <div class="row-nav">
