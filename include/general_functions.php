@@ -109,14 +109,12 @@ function draw_editor($height) {
 				<button class="btn btn-primary" type="submit" name="submit" accesskey="s"><span class="fa fa-plus"></span><span class="hidden-xs hidden-sm"> <?php echo $lang['Submit'] ?></span></button>
 			</div>
 		</div>
-		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>">
-<?php
+		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>"><?php
 			if (FORUM_ACTIVE_PAGE == 'post')
 				isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			else if (FORUM_ACTIVE_PAGE == 'edit')
 				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
-?>
-		</textarea>
+?></textarea>
 	</fieldset>
 </div>
 <script>
