@@ -117,7 +117,7 @@ else if ($action == 'markforumread') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Send email to'].' '.luna_htmlspecialchars($recipient));
 	$required_fields = array('req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
 	$focus_element = array('email', 'req_subject');
-	define('FORUM_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'misc');
 	require load_page('header.php');
 
 	require load_page('mail.php');
@@ -208,7 +208,7 @@ else if ($action == 'markforumread') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Report post']);
 	$required_fields = array('req_reason' => $lang['Reason']);
 	$focus_element = array('report', 'req_reason');
-	define('FORUM_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'misc');
 	require load_page('header.php');
 
 	require load_page('report.php');

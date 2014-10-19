@@ -71,11 +71,12 @@ if (isset($_POST['delete'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Delete post']);
-define ('FORUM_ACTIVE_PAGE', 'index');
-require load_page('header.php');
+define ('FORUM_ACTIVE_PAGE', 'delete');
 
 require FORUM_ROOT.'include/parser.php';
 $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
+
+require load_page('header.php');
 
 require load_page('delete.php');
 

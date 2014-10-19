@@ -110,7 +110,7 @@ if ($action == 'change_pass') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change pass']);
 	$required_fields = array('req_old_password' => $lang['Old pass'], 'req_new_password1' => $lang['New pass'], 'req_new_password2' => $lang['Confirm new pass']);
 	$focus_element = array('change_pass', ((!$luna_user['is_admmod']) ? 'req_old_password' : 'req_new_password1'));
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('me-change_pass.tpl.php');
@@ -232,7 +232,7 @@ if ($action == 'change_pass') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change email']);
 	$required_fields = array('req_new_email' => $lang['New email'], 'req_password' => $lang['Password']);
 	$focus_element = array('change_email', 'req_new_email');
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('me-change_email.tpl.php');
@@ -329,7 +329,7 @@ if ($action == 'change_pass') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Upload avatar']);
 	$required_fields = array('req_file' => $lang['File']);
 	$focus_element = array('upload_avatar', 'req_file');
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('me-upload_avatar.tpl.php');
@@ -613,13 +613,13 @@ if ($user['signature'] != '') {
 // View or edit?
 if (!$section || $section == 'view') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('me-view.tpl.php');
 } else if ($section == 'personality') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('profile-personality.tpl.php');
@@ -628,7 +628,7 @@ if (!$section || $section == 'view') {
 		message($lang['Bad request'], false, '403 Forbidden');
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('me-settings.tpl.php');
@@ -637,7 +637,7 @@ if (!$section || $section == 'view') {
 		message($lang['Bad request'], false, '403 Forbidden');
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
-	define('FORUM_ACTIVE_PAGE', 'profile');
+	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
 
 	require get_view_path('me-admin.tpl.php');

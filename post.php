@@ -50,7 +50,6 @@ if ((($tid && (($cur_posting['post_replies'] == '' && $luna_user['g_post_replies
 // Start with a clean slate
 $errors = array();
 
-
 // Did someone just hit "Submit" or "Preview"?
 if (isset($_POST['form_sent'])) {
 	// Flood protection
@@ -478,7 +477,7 @@ else {
 	$focus_element[] = 'req_username';
 }
 
-define('FORUM_ACTIVE_PAGE', 'index');
+define('FORUM_ACTIVE_PAGE', 'post');
 require load_page('header.php');
 
 require load_page('post.php');

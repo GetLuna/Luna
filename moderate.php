@@ -106,7 +106,7 @@ if (isset($_GET['tid'])) {
 		}
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
-		define('FORUM_ACTIVE_PAGE', 'index');
+		define('FORUM_ACTIVE_PAGE', 'moderate');
 		require load_page('header.php');
 
 		require get_view_path('moderate-delete_posts.tpl.php');
@@ -181,7 +181,7 @@ if (isset($_GET['tid'])) {
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
 		$focus_element = array('subject','new_subject');
-		define('FORUM_ACTIVE_PAGE', 'index');
+		define('FORUM_ACTIVE_PAGE', 'moderate');
 		require load_page('header.php');
 
 		require get_view_path('moderate-split_posts.tpl.php');
@@ -211,7 +211,7 @@ if (isset($_GET['tid'])) {
 
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
-	define('FORUM_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'moderate');
 	require load_page('header.php');
 
 	require get_view_path('moderate-topic.tpl.php');
@@ -287,7 +287,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		message($lang['Nowhere to move']);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
-	define('FORUM_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'moderate');
 	require load_page('header.php');
 
 	require get_view_path('moderate-move_topics.tpl.php');
@@ -363,7 +363,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) 
 		message($lang['Not enough topics selected']);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
-	define('FORUM_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'moderate');
 	require load_page('header.php');
 
 	require get_view_path('moderate-merge_topics.tpl.php');
@@ -424,7 +424,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
-	define('FORUM_ACTIVE_PAGE', 'index');
+	define('FORUM_ACTIVE_PAGE', 'moderate');
 	require load_page('header.php');
 
 	require get_view_path('moderate-delete_topics.tpl.php');
@@ -526,7 +526,7 @@ $start_from = $luna_user['disp_topics'] * ($p - 1);
 $paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
-define('FORUM_ACTIVE_PAGE', 'index');
+define('FORUM_ACTIVE_PAGE', 'moderate');
 require load_page('header.php');
 
 require get_view_path('moderate-form.tpl.php');
