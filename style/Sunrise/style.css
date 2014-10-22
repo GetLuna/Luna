@@ -24,6 +24,11 @@ h2 {
 	margin-top: 0;
 }
 
+.nothing {
+	margin-top: 0;
+	margin-bottom: 30px;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Segoe UI Light", "Segoe UI", Arial;
 	font-weight: 100;
@@ -582,12 +587,6 @@ input[type="text"].power-control {
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
-}
-
-.category-box, .forum-box {
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-bottom: 10px;
 }
 
 .forum-row, .topic-row {
