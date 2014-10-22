@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: transparent;
 }
 
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
 	background-color: #444;
 }
 
@@ -1127,7 +1127,7 @@ a:hover, a:active {
 }
 
 a.list-group-item:hover, a.list-group-item:active {
-	color: #555555;
+	color: #555;
 }
 
 /* BBCode */
