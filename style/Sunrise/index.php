@@ -32,7 +32,7 @@ if (!defined('FORUM'))
             </div>
         </div>
         <?php } else { ?>
-        <div class="col-md-4 hidden-sm">
+        <div class="col-md-4 col-sm-6">
             <h3 class="first-run-forumtitle"><?php echo sprintf($lang['Welcome to'], $luna_config['o_board_title']) ?></h3>
             <div class="list-group first-run-list">
                 <a href="#" data-toggle="modal" data-target="#login" class="list-group-item"><?php echo $lang['Login'] ?></a>
