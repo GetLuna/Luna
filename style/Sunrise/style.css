@@ -212,6 +212,59 @@ a.list-group-item-cat:hover .forum-description {
 	text-transform: lowercase;
 }
 
+/* Modal forms */
+#login .modal-xs {
+	max-width: 300px;
+}
+
+#newpass .modal-xs {
+	max-width: 500px;
+}
+
+.modal-form .modal-content {
+	border: none;
+	background: none;
+}
+
+.modal-form * {
+	border-radius: 0;
+}
+
+.modal-form form {
+	margin-bottom: 0;
+}
+
+.modal-form .modal-header, .modal-form .modal-footer {
+	color: #fff;
+	background: #555;
+}
+
+.modal-form .modal-title {
+	font-size: 30px;
+}
+
+.modal-form .modal-footer a {
+	color: #fff;
+}
+
+.modal-form .modal-footer a:hover {
+	color: #ccc;
+	text-decoration: none;
+}
+
+.modal-form .modal-body {
+	background: #e8e8e8;
+}
+
+#login .form-control {
+	margin-bottom: 10px;
+}
+
+.modal-form .form-control {
+	border: none;
+	box-shadow: none;
+}
+
 /* First run */
 .first-run {
 	background: #efefef;

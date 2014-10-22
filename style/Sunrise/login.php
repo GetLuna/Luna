@@ -1,4 +1,4 @@
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade modal-form" id="login" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -17,8 +17,7 @@
 							</div>
 						</div>
 						<input class="btn btn-primary btn-block" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
-						<hr />
-						<a class="btn btn-primary btn-block" href="register.php">Register</a>
+						<a class="btn btn-default btn-block" href="register.php">Register</a>
 					</fieldset>
 				</form>
 			</div>
@@ -28,7 +27,7 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="newpass" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade modal-form" id="newpass" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
 			<div class="modal-header">
