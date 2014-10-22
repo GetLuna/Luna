@@ -17,6 +17,7 @@ if (!$luna_user['is_guest'])
 	$markread = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
 
 ?>
+</div>
 <div class="container">
 	<footer>
 <?php if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'viewtopic') && $is_admmod) { ?>
