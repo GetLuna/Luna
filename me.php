@@ -615,8 +615,7 @@ if (!$section || $section == 'view') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
-
-	require get_view_path('me-view.tpl.php');
+	require load_page('activity.php');
 } else if ($section == 'personality') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
 	define('FORUM_ACTIVE_PAGE', 'me');
