@@ -96,6 +96,19 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0;
 }
 
+.navbar-inverse {
+    background-color: #555;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+	background-color: #444;
+}
+
 .navbar-right > .dropdown, :last-child.navbar-right.navbar-nav {
 	margin-right: 0;
 }

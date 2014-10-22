@@ -20,7 +20,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 	</head>
 	<body>
         <div id="header">
-			<div class="navbar navbar-default navbar-static-top">
+			<div class="navbar navbar-inverse navbar-static-top">
 				<div class="nav-inner">
 					<a class="navbar-brand" href="index.php"><?php echo $menu_title ?></a>
 					<div class="navbar-header">
