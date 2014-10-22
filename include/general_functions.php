@@ -236,6 +236,8 @@ function draw_topics_list() {
 	
 		}
 	
+	} else {
+		echo '<h3 class="nothing">There are no thread in this forum, be the first one!</h3>';
 	}
 	
 }
