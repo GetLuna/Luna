@@ -11,15 +11,6 @@
 if (!defined('FORUM'))
 	exit;
 
-$tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<luna_main>', $tpl_temp, $tpl_main);
-ob_end_clean();
-// END SUBST - <luna_main>
-
-
-// START SUBST - <luna_footer>
-ob_start();
-
 // Display a "mark all as read" link
 $markread = '';
 if (!$luna_user['is_guest'])
@@ -139,14 +130,5 @@ $db->end_transaction();
 if (defined('FORUM_SHOW_QUERIES'))
 	display_saved_queries();
 
-$tpl_temp = trim(ob_get_contents());
-$tpl_main = str_replace('<luna_footer>', $tpl_temp, $tpl_main);
-ob_end_clean();
-// END SUBST - <luna_footer>
-
-
 // Close the db connection (and free up any result data)
 $db->close();
-
-// Spit out the page
-exit($tpl_main);
