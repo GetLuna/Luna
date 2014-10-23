@@ -84,15 +84,7 @@ if (!defined('FORUM'))
 
 ?>
 
-<div class="col-sm-3 profile-nav">
-<?php
-    generate_profile_menu('view');
-
-    echo $email_field;
-    echo $user_website;
-?>
-</div>
-<div class="col-sm-9 col-profile">
+<div class="col-sm-12">
     <div class="profile-card">
         <div class="profile-card-head">
             <div class="user-avatar thumbnail">
