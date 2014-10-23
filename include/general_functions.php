@@ -323,7 +323,7 @@ function draw_user_list() {
 	
 		while ($user_data = $db->fetch_assoc($result)) {
 			$user_title_field = get_title($user_data);
-			$user_avatar = generate_avatar_markup($user_data['id']);
+			$user_avatar = draw_user_avatar($user_data['id'], 'media-object');
 	
 	require get_view_path('user.php');
 	
