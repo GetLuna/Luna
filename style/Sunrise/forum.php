@@ -10,7 +10,7 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 </div>
 <div class="jumbotron"<?php echo $jumbo_style ?>>
 	<div class="container">
-		<h2><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right control-bar"><?php echo $post_link ?><ul class="pagination"><?php echo $paging_links ?></ul></span>
+		<h2><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right"><?php echo $post_link ?><ul class="pagination"><?php echo $paging_links ?></ul></span>
 	</div>
 </div>
 <div class="container">

@@ -813,6 +813,23 @@ textarea {
 	margin-bottom: 10px;
 }
 
+#search * {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+#search .panel-body {
+	background-color: #ddd;
+}
+
+#search .panel-body * {
+	border: none;
+}
+
+#search .btn {
+	padding: 7px 12px 6px;
+}
+
 /* Userlist */
 .userlist {
 	padding: 15px;
@@ -1041,24 +1058,36 @@ textarea {
 	margin-bottom: 0;
 }
 
+.jumbotron * {
+	border-radius: 0;
+	box-shadow: none;
+}
+
 .jumbotron h2 {
 	color: #fff;
 	display: inline-block;
 }
 
-.jumbotron .control-bar {
+.jumbotron .btn {
+	border: none;
+}
+
+.jumbotron .btn .fa {
+	margin: 4px 0;
+}
+
+.jumbotron .btn {
 	margin-top: 5px;
 	margin-bottom: -5px;
+}
+
+.jumbotron .input-group-btn .btn {
+	margin: 0;
 }
 
 .jumbotron form {
 	margin-bottom: 0;
 	margin-top: 4px;
-}
-
-.jumbotron form * {
-	border-radius: 0;
-	box-shadow: none;
 }
 
 .jumbotron form .form-control {
