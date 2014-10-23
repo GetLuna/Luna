@@ -64,12 +64,6 @@ h1, h2, h3, h4, h5, h6 {
 	padding-right: 0;
 }
 
-@media screen and (max-width: 991px) {
-	#userlist .col-sm-12 {
-		margin-bottom: 10px;
-	}
-}
-
 /* Header */
 .dropdown-menu {
 	padding: 0;
@@ -385,6 +379,10 @@ textarea.textarea, textarea.textarea:focus {
 
 .fa-fw {
 	width: 1.1em !important;
+}
+
+.fa {
+	margin: 3px 0;
 }
 
 /* Links (subscribe, new post, etc.) */
@@ -816,74 +814,17 @@ textarea {
 }
 
 /* Userlist */
-.search-bar {
-    margin-bottom: 10px;
-}
-
-@media(max-width:991px) {
-	.search-bar, #userlist .col-sm-12 {
-		margin-bottom: 0;
-	}
-}
-
 .userlist {
-	padding: 0 15px;
+	padding: 15px;
 }
 
-.user-row .user-avatar {
-	max-width: 50px;
-	margin-top: 0;
-	margin-left: -6px;
-	position: absolute;
-	border-radius: 0;
-	height: 50px;
-	min-height: 50px;
-	min-width: 50px;
-	vertical-align: middle;
+.user-entry {
+	background-color: #eee;
+	padding: 10px;
 }
 
-.userlist-name {
-	margin-left: 60px;
-	font-size: 24px;
-	line-height: 2;
-	font-family: "Segoe UI Light", "Segoe UI", "Segoe WP";
-}
-
-.userlist-name small {
-	font-size: 16px;
-	color: #999;
-}
-
-.user-row .thumbnail {
-	padding: 2px;
-}
-
-.user-row {
-	color: #232323;
-	background-color: #fff;
-	padding: 8px 0;
-	border-bottom: 1px #eee solid;
-	border-left: 1px #ddd solid;
-	border-right: 1px #ddd solid;
-}
-
-.user-row:last-child {
-	color: #232323;
-	background-color: #fff;
-	padding: 8px 0;
-	border-bottom: 1px #ddd solid;
-}
-
-.user-row .collum-count {
-	padding-top: 15px;
-}
-
-.row-space-top {
-	margin-top: 15px;
-}
-
-.pagination-user {
-	margin: 10px auto;
+.user-entry h2 {
+	margin-top: 20px;
 }
 
 /* Topicview */
@@ -1093,9 +1034,11 @@ textarea {
 	width: 0;
 }
 
+/* Titles */
 .jumbotron {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	margin-bottom: 0;
 }
 
 .jumbotron h2 {
@@ -1106,6 +1049,24 @@ textarea {
 .jumbotron .control-bar {
 	margin-top: 5px;
 	margin-bottom: -5px;
+}
+
+.jumbotron form {
+	margin-bottom: 0;
+	margin-top: 4px;
+}
+
+.jumbotron form * {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.jumbotron form .form-control {
+	border: none;
+}
+
+.jumbotron form .form-control:focus {
+	box-shadow: none;
 }
 
 /* Debug */
