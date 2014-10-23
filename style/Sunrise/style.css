@@ -1057,8 +1057,7 @@ textarea {
 
 /* Titles */
 .jumbotron {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px 15px;
 	margin-bottom: 0;
 }
 
@@ -1070,6 +1069,7 @@ textarea {
 .jumbotron h2 {
 	color: #fff;
 	display: inline-block;
+	margin-left: 0;
 }
 
 .jumbotron .btn {
