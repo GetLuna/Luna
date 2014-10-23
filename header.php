@@ -93,5 +93,3 @@ if ($luna_config['o_announcement'] == '1')
 	$announcement = '<div class="alert alert-info announcement"><div>'.$luna_config['o_announcement_message'].'</div></div>';
 else
 	$announcement = '';
-
-define('FORUM_HEADER', 1);

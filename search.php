@@ -515,23 +515,24 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		message($lang['No hits']);
 }
 
-
-if (!$section || $section == 'simple') {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
-	$focus_element = array('search', 'keywords');
-	define('FORUM_ACTIVE_PAGE', 'search');
-	require load_page('header.php');
-
-	require get_view_path('search-form.tpl.php');
-} else {
-	if ($luna_config['o_enable_advanced_search'] == 0) {
-		message($lang['No permission'], false, '403 Forbidden');
-	} else {
+if (!$search_id) {
+	if (!$section || $section == 'simple') {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
 		$focus_element = array('search', 'keywords');
 		define('FORUM_ACTIVE_PAGE', 'search');
 		require load_page('header.php');
-
-		require get_view_path('search-form_advanced.tpl.php');
+	
+		require get_view_path('search-form.tpl.php');
+	} else {
+		if ($luna_config['o_enable_advanced_search'] == 0) {
+			message($lang['No permission'], false, '403 Forbidden');
+		} else {
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
+			$focus_element = array('search', 'keywords');
+			define('FORUM_ACTIVE_PAGE', 'search');
+			require load_page('header.php');
+	
+			require get_view_path('search-form_advanced.tpl.php');
+		}
 	}
 }
