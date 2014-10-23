@@ -14,4 +14,6 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 	</div>
 </div>
 <div class="container">
-	<?php draw_topics_list(); ?>
+    <div class="topic-entry-list">
+        <?php draw_topics_list(); ?>
+	</div>

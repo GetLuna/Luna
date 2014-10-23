@@ -1016,7 +1016,7 @@ textarea {
 }
 
 .posted-item {
-	border-left: 5px solid #ddd;
+	border-right: 10px solid #ddd;
 }
 
 /* Titles */
@@ -1054,6 +1054,19 @@ textarea {
 }
 
 .jumbotron form .form-control {
+	border: none;
+}
+
+.jumbotron .pagination {
+	margin-top: 5px;
+}
+
+.jumbotron .pagination > li > a, .jumbotron .pagination > li > span {
+	border: none;
+	border-left: 1px solid #ddd;
+}
+
+.jumbotron .pagination > .active > a, .jumbotron .pagination > .active > span, .jumbotron .pagination > .active > a:hover, .jumbotron .pagination > .active > span:hover, .jumbotron .pagination > .active > a:focus, .jumbotron .pagination > .active > span:focus {
 	border: none;
 }
 
