@@ -173,31 +173,34 @@ function draw_topics_list() {
 				$cur_topic['subject'] = censor_words($cur_topic['subject']);
 	
 			if ($cur_topic['sticky'] == '1') {
-				$item_status .= ' isticky';
+				$item_status .= ' sticky-item';
 				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 			}
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+				$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
-				$item_status .= ' imoved';
-			} else if ($cur_topic['closed'] == '0')
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-			else {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <br /><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+				$item_status .= ' moved-item';
+			} else if ($cur_topic['closed'] == '0') {
+				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			} else {
+				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
-				$item_status .= ' iclosed';
+				$item_status .= ' closed-item';
 			}
 	
 			if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') {
 				if ($cur_topic['has_posted'] == $luna_user['id']) {
 					$status_text[] = '<span class="fa fa-asterisk"></span>';
-					$item_status .= ' iposted';
+					$item_status .= ' posted-item';
 				}
 			}
 	
 			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
-				$item_status .= ' inew';
+				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
 				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
@@ -275,7 +278,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
     // Are there new posts since our last visit?
     if (isset($new_topics[$cur_forum['fid']])) {
-        $item_status .= ' inew';
+        $item_status .= ' new-item';
         $forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
         $icon_type = 'icon icon-new';
     }
