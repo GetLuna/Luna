@@ -830,6 +830,10 @@ textarea {
 	padding: 7px 12px 6px;
 }
 
+#search .form-inline .form-control {
+	margin-bottom: 5px;
+}
+
 /* Userlist */
 .userlist {
 	padding: 15px;
