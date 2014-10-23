@@ -1,4 +1,9 @@
 /* General fixes */
+* {
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
 body, html {
 	background-color: #fff;
 	font-family: "Segoe UI", Arial;
@@ -67,7 +72,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Header */
 .dropdown-menu {
 	padding: 0;
-	border-radius: 0;
 }
 
 .dropdown-menu .divider {
@@ -136,7 +140,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0;
 	border: 0;
 	margin: 5px 0;
-	border-radius: 999px;
+	border-radius: 999px !important;
 	width: 50px;
 	height: 50px;
 	margin-right: 5px;
@@ -225,10 +229,6 @@ a.list-group-item-cat:hover .forum-description {
 	background: none;
 }
 
-.modal-form * {
-	border-radius: 0;
-}
-
 .modal-form form {
 	margin-bottom: 0;
 }
@@ -261,7 +261,6 @@ a.list-group-item-cat:hover .forum-description {
 
 .modal-form .form-control {
 	border: none;
-	box-shadow: none;
 }
 
 /* First run */
@@ -269,7 +268,6 @@ a.list-group-item-cat:hover .forum-description {
 	background: #efefef;
 	margin-top: 0 !important;
 	border: none;
-	border-radius: 0 0 3px 3px;
 }
 
 .first-run-content {
@@ -294,10 +292,6 @@ a.list-group-item-cat:hover .forum-description {
 .first-run-avatar {
 	background: none;
 	border: none;
-}
-
-.first-run-avatar img {
-	border-radius: 3px;
 }
 
 .first-run-list {
@@ -338,13 +332,8 @@ a.list-group-item-cat:hover .forum-description {
 }
 
 /* Editor */
-.panel-editor {
-	border-radius: 0;
-}
-
 input[type="text"].info-textfield, input[type="text"].info-textfield:focus {
 	border: none;
-	box-shadow: none;
 }
 
 .info-textfield:-ms-input-placeholder.form-control, .info-textfield.form-control {
@@ -353,7 +342,6 @@ input[type="text"].info-textfield, input[type="text"].info-textfield:focus {
 
 textarea.textarea, textarea.textarea:focus {
 	border: none;
-	box-shadow: none;
 }
 
 .textarea-toolbar {
@@ -373,7 +361,6 @@ textarea.textarea, textarea.textarea:focus {
 
 .textarea-toolbar .btn {
 	border: none;
-	border-radius: 0;
 	padding: 12px 18px;
 }
 
@@ -528,7 +515,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 /* Quick post and post */
 .commentfield textarea, .commentfield textarea:focus {
 	border: none;
-	box-shadow: none;
 	height: 170px;
 }
 
@@ -539,7 +525,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 .commentfield input[type="text"], .postfield input[type="text"] {
 	border: none;
 	border-bottom: #eee solid 1px;
-	box-shadow: none;
 	font-size: 20px;
 	line-height: 0.8;
 }
@@ -547,7 +532,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 input[type="text"].power-control {
 	border: none;
     background-color: transparent;
-	box-shadow: none;
 	font-size: 20px;
 	line-height: 0.8;
     margin-top: 10px;
@@ -556,11 +540,6 @@ input[type="text"].power-control {
 @media screen and (max-width: 991px) {
     .profile-card-quickpost {
         margin-bottom: -10px;
-        border-radius: 0 !important;
-    }
-	
-	.user-avatar {
-        border-radius: 0 !important;
     }
 }
 
@@ -686,7 +665,6 @@ input[type="text"].power-control {
 /* Alerts */
 .alert {
 	border: none;
-	border-radius: 0;
 	margin-bottom: 10px;
 	background-color: #ffffff;
 	border-left: #555 5px solid;
@@ -796,7 +774,6 @@ textarea {
 	background: #fff;
 	padding: 10px;
 	margin-top: 10px;
-	border-radius: 3px;
 	border: #ddd solid 1px;
 }
 
@@ -811,11 +788,6 @@ textarea {
 
 .result-card:not(last-child) {
 	margin-bottom: 10px;
-}
-
-#search * {
-	border-radius: 0;
-	box-shadow: none;
 }
 
 #search .panel-body {
@@ -880,7 +852,6 @@ textarea {
 	margin-top: 4px;
 	margin-left: 4px;
 	position: absolute;
-	border-radius: 0;
 	border-top-left-radius: 3px;
 }
 
@@ -959,7 +930,6 @@ textarea {
 	margin-top: -50px;
 	margin-left: 9px;
 	position: absolute;
-	border-radius: 0;
 }
 
 .thumbnail > .user-avatar {
@@ -1034,10 +1004,6 @@ textarea {
 		background: #057ed4;
 		background: linear-gradient(to right, #057ed4, #10c1f0);
 	}
-
-	.topic .panel-heading  {
-		border-radius: 0;
-	}
 }
 
 .onlypost > .col-md-3 > .profile-card, .onlypost > .col-md-9 > .panel {
@@ -1059,11 +1025,6 @@ textarea {
 .jumbotron {
 	padding: 10px 15px;
 	margin-bottom: 0;
-}
-
-.jumbotron * {
-	border-radius: 0;
-	box-shadow: none;
 }
 
 .jumbotron h2 {
@@ -1096,10 +1057,6 @@ textarea {
 
 .jumbotron form .form-control {
 	border: none;
-}
-
-.jumbotron form .form-control:focus {
-	box-shadow: none;
 }
 
 /* Debug */
@@ -1144,7 +1101,6 @@ blockquote footer {
 .form {
 	max-width: 330px;
 	margin: 60px auto 20px;
-	border-radius: 3px;
 	background-color: #fff;
 }
 
@@ -1219,10 +1175,6 @@ blockquote footer {
 	.container, .row-nav .col-sm-6 {
 		padding: 0;
 	}
-
-	.category-header, .forum-header, .panel-heading, .profile-card-head, :first-child.list-group-item, :last-child.list-group-item, .btn-block, .panel-title .btn {
-		border-radius: 0;
-	}
 	
 	.category-box, .postview {
 		margin-bottom: 0;
@@ -1262,12 +1214,7 @@ blockquote footer {
     margin-right: 1px;
 }
 
-.accent-group .btn-group > :first-child:not(.dropdown-toggle):not(:last-child).btn, .accent-group .btn-group > :last-child:not(:first-child).btn, .btn-group > :not(:first-child).dropdown-toggle {
-    border-radius: 0;
-}
-
 .accent-group .btn {
-    box-shadow: none;
     border: 3px solid #fff;
 }
 
@@ -1283,7 +1230,6 @@ blockquote footer {
 .cookie-bar .navbar-form {
 	border-top: none;
 	border-bottom: none;
-	box-shadow: none;
 }
 
 @media screen and (max-width: 767px) {
