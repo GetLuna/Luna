@@ -13,7 +13,7 @@ if (!defined('FORUM'))
         <div class="pull-right">
             <span class="pull-right">
                 <form class="form-inline" id="userlist" method="get" action="userlist.php">
-                    <select class="form-control" name="sort">
+                    <select class="form-control hidden-xs" name="sort">
                         <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang['Sort username'] ?></option>
                         <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Sort registered'] ?></option>
                         <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang['Sort no of posts'] ?></option>

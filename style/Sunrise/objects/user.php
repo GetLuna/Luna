@@ -1,4 +1,4 @@
-<div class="col-lg-4 user-entry">
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 user-entry">
     <div class="media">
         <a class="pull-left" href="#">
             <?php echo $user_avatar; ?>
