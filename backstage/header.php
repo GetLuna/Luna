@@ -67,6 +67,4 @@ function process_form(the_form) {
 }
 
 if (isset($page_head))
-	echo implode("\n", $page_head)."\n";
-
-define('FORUM_HEADER', 1);
+	echo implode("\n", $page_head);
