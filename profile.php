@@ -211,28 +211,93 @@ $user = $db->fetch_assoc($result);
 
 $last_post = format_time($user['last_post']);
 
+$user_personality = array();
+
+$user_username = luna_htmlspecialchars($user['username']);
+$user_usertitle = get_title($user);
+$avatar_field = generate_avatar_markup($id);
+
+$user_title_field = get_title($user);
+$user_personality[] = '<b>'.$lang['Title'].':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
+
+$user_personality[] = '<b>'.$lang['Posts table'].':</b> '.$posts_field = forum_number_format($user['num_posts']);
+
+if ($user['num_posts'] > 0)
+	$user_personality[] = '<b>'.$lang['Last post'].':</b> '.$last_post;
+
+$user_activity[] = '<b>'.$lang['Registered table'].':</b> '.format_time($user['registered'], true);
+
+$user_personality[] = '<b>'.$lang['Registered'].':</b> '.format_time($user['registered'], true);
+
+$user_personality[] = '<b>'.$lang['Last visit info'].':</b> '.format_time($user['last_visit'], true);
+
+if ($user['realname'] != '')
+	$user_personality[] = '<b>'.$lang['Realname'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['realname']) : $user['realname']);
+
+if ($user['location'] != '')
+	$user_personality[] = '<b>'.$lang['Location'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['location']) : $user['location']);
+
+$posts_field = '';
+if ($luna_user['g_search'] == '1') {
+	$quick_searches = array();
+	if ($user['num_posts'] > 0) {
+		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.$lang['Show topics'].'</a>';
+		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.$lang['Show posts'].'</a>';
+	}
+	if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
+		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.$lang['Show subscriptions'].'</a>';
+
+	if (!empty($quick_searches))
+		$posts_field .= implode('', $quick_searches);
+}
+
+if ($posts_field != '')
+	$user_personality[] = '<br /><div class="btn-group">'.$posts_field.'</div>';
+
+if ($user['url'] != '') {
+	$user_website = '<a class="btn btn-default btn-block" href="'.luna_htmlspecialchars($user['url']).'" rel="nofollow"><span class="fa fa-globe"></span> '.$lang['Website'].'</a>';
+} else {
+	$user_website = '';
+}
+
+if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+	$email_field = '<a class="btn btn-default btn-block" href="mailto:'.luna_htmlspecialchars($user['email']).'"><span class="fa fa-send-o"></span> '.luna_htmlspecialchars($user['email']).'</a>';
+else if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+	$email_field = '<a class="btn btn-default btn-block" href="misc.php?email='.$id.'"><span class="fa fa-send-o"></span> '.$lang['Send email'].'</a>';
+else
+	$email_field = '';
+if ($email_field != '') {
+	$email_field;
+}
+
+$user_messaging = array();
+
+if ($user['facebook'] != '')
+	$user_messaging[] = '<b>'.$lang['Facebook'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']);
+
+if ($user['msn'] != '')
+	$user_messaging[] = '<b>'.$lang['Microsoft'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
+
+if ($user['twitter'] != '')
+	$user_messaging[] = '<b>'.$lang['Twitter'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']);
+
+if ($user['google'] != '')
+	$user_messaging[] = '<b>'.$lang['Google+'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']);
+
+if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
+	$user_signature = $parsed_signature;
+
+$user_activity = array();
+
 if ($user['signature'] != '') {
 	require FORUM_ROOT.'include/parser.php';
 	$parsed_signature = parse_signature($user['signature']);
 }
 
-if (!$section || $section == 'view') {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
-	define('FORUM_ACTIVE_PAGE', 'profile');
-	require load_page('header.php');
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
+define('FORUM_ACTIVE_PAGE', 'profile');
+require load_page('header.php');
 
-	require get_view_path('profile-view.tpl.php');
-} else if ($section == 'admin') {
-	if (!$luna_user['is_admmod'] || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '0'))
-		message($lang['Bad request'], false, '403 Forbidden');
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
-	define('FORUM_ACTIVE_PAGE', 'profile');
-	require load_page('header.php');
-
-	require get_view_path('profile-admin.tpl.php');
-} else {
-	message($lang['Bad request'], false, '404 Not Found');
-}
+require load_page('profile.php');
 
 require load_page('footer.php');
