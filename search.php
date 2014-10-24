@@ -12,6 +12,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 $section = isset($_GET['section']) ? $_GET['section'] : null;
 
@@ -475,9 +476,6 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search results']);
 		define('FORUM_ACTIVE_PAGE', 'search');
-		require load_page('header.php');
-
-		require get_view_path('search-breadcrumbs.tpl.php');
 
 		if ($show_as == 'topics') {
 			$topic_count = 0;
@@ -491,21 +489,8 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		if (!$luna_user['is_guest'])
 			$tracked_topics = get_tracked_topics();
 
-		foreach ($search_set as $cur_search) {
-			$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
-
-			if ($luna_config['o_censoring'] == '1')
-				$cur_search['subject'] = censor_words($cur_search['subject']);
-
-			if ($show_as == 'posts') {
-				require get_view_path('search-show_as_posts.tpl.php');
-			} else {
-				require get_view_path('search-show_as_topics.tpl.php');
-			}
-		}
-
-		require get_view_path('search-breadcrumbs.tpl.php');
-
+		require load_page('header.php');
+		require load_page('search-results.php');
 		require load_page('footer.php');
 	} else
 		message($lang['No hits']);
