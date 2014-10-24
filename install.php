@@ -1551,6 +1551,11 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				'allow_null'	=> false,
 				'default'		=> '0'
 			),
+			'color'			=> array(
+				'datatype'		=> 'VARCHAR(25)',
+				'allow_null'	=> false,
+				'default'		=> '\'#0d4382\''
+			)
 		),
 		'PRIMARY KEY'	=> array('id'),
 		'UNIQUE KEYS'	=> array(

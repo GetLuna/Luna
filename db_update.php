@@ -350,6 +350,9 @@ switch ($stage) {
 		// Since 0.0.3122: Add the color column to the forums table
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '#0d4382');
 
+		// Since 0.0.3177: Add the color column to the profile table
+		$db->add_field('users', 'color', 'VARCHAR(25)', false, '#0d4382');
+
 		break;
 
 	// Preparse posts
