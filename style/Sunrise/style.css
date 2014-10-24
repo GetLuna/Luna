@@ -1070,6 +1070,28 @@ textarea {
 	border: none;
 }
 
+.profile-jumbotron  {
+	height: 200px;
+}
+
+.profile-jumbotron .media {
+	display: inline-block;
+	margin-top: 76px;
+}
+
+.profile-jumbotron .media .media-heading {
+	margin-top: 56px;
+}
+
+.profile-jumbotron .media h2 {
+	font-size: 45px !important;
+	margin-bottom: 0;
+}
+
+.profile-jumbotron .media h2 small {
+	color: rgba(255,255,255,.6);
+}
+
 /* Debug */
 #debug {
 	border-style: dotted none none none;

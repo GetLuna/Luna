@@ -4,18 +4,32 @@
 if (!defined('FORUM'))
     exit;
 
+$jumbo_style = 'style="background:#c393d9;"'; // Hard coded color for now
+
+// $jumbo_style = 'style="background:'.$user['color'].';"';
+
 ?>
 
-<div class="col-sm-12">
-    <div class="profile-card">
-        <div class="profile-card-head">
-            <div class="user-avatar thumbnail">
+</div>
+<div class="jumbotron profile-jumbotron"<?php echo $jumbo_style ?>>
+	<div class="container">
+        <div class="media">
+            <a class="pull-left" href="#">
                 <?php echo $avatar_field; ?>
+            </a>
+            <div class="media-body">
+                <h2 class="media-heading"><?php echo $user_username; ?> <small><?php echo $user_usertitle; ?></small></h2>
             </div>
-            <h2><?php echo $user_username; ?></h2>
-            <h3><?php echo $user_usertitle; ?></h3>
         </div>
-        <div class="profile-card-body">
+		<span class="pull-right"><a href="me.php?id=<?php echo $luna_user['id'] ?>" class="btn btn-default"><span class="fa fa-cogs"></span></a></span>
+	</div>
+</div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">About user</h3>
+        </div>
+        <div class="panel-body">
             <?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
         </div>
     </div>
@@ -46,4 +60,3 @@ if (!defined('FORUM'))
         }
     }
 ?>
-</div>
