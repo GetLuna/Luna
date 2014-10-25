@@ -511,7 +511,22 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border-top: 1px solid #ffc8b3;
 }
 
-/* Quick post and post */
+/* Threads */
+.comment .avatar {
+	max-height: 45px;
+	width: auto;
+}
+
+.comment h2 {
+	margin-top: -6px;
+	margin-bottom: 0;
+}
+
+.comment hr {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
 .commentfield textarea, .commentfield textarea:focus {
 	border: none;
 	height: 170px;
