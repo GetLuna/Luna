@@ -15,11 +15,13 @@ require FORUM_ROOT.'include/general_functions.php';
 if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
-
+$post_level = '';
 $tid = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
 $fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
 if ($tid < 1 && $fid < 1 || $tid > 0 && $fid > 0)
 	message($lang['Bad request'], false, '404 Not Found');
+$post_level = intval($_GET['level']);
+$parent_id = intval($_GET['parent_id']);
 
 // Fetch some info about the topic and/or the forum
 if ($tid)
@@ -151,7 +153,7 @@ if (isset($_POST['form_sent'])) {
 				$new_tid = $tid;
 
 				// Insert the new post
-				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id, level, parent_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.', '.$post_level.', '.$parent_id.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 
 				// To subscribe or not to subscribe, that ...
@@ -164,7 +166,7 @@ if (isset($_POST['form_sent'])) {
 			} else {
 				// It's a guest. Insert the new post
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
-				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
+				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id, level, parent_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.', '.$post_level.', '.$parent_id.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 			}
 
@@ -394,7 +396,7 @@ if (isset($_POST['form_sent'])) {
 // If a topic ID was specified in the url (it's a reply)
 if ($tid) {
 	$action = $lang['Post a reply'];
-	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
+	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'&amp;parent_id='.$parent_id.'&amp;level='.$post_level.'" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
 
 	// If a quote ID was specified in the url
 	if (isset($_GET['qid'])) {

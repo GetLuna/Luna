@@ -527,6 +527,13 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-bottom: 5px;
 }
 
+.level2 { margin-left: 30px; }
+.level3 { margin-left: 60px; }
+.level4 { margin-left: 90px; }
+.level5 { margin-left: 120px; }
+.level6 { margin-left: 150px; }
+.level7 { margin-left: 180px; }
+
 .commentfield textarea, .commentfield textarea:focus {
 	border: none;
 	height: 170px;
