@@ -353,6 +353,12 @@ switch ($stage) {
 		// Since 0.0.3177: Add the color column to the users table
 		$db->add_field('users', 'color', 'VARCHAR(25)', false, '#0d4382');
 
+		// Since 0.0.3184: Add the level column to the posts table
+		$db->add_field('posts', 'level', 'INT(10)', false, '1');
+
+		// Since 0.0.3184: Add the parent_id column to the posts table
+		$db->add_field('posts', 'parent_id', 'INT(10) UNSIGNED', true);
+
 		break;
 
 	// Preparse posts
