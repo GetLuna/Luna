@@ -1057,15 +1057,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				'datatype'		=> 'TINYINT(1)',
 				'allow_null'	=> false,
 				'default'		=> '0'
-			),
-			'level'			=> array(
-				'datatype'		=> 'INT(10)',
-				'allow_null'	=> false,
-				'default'		=> '1'
-			),
-			'parent_id'		=> array(
-				'datatype'		=> 'INT(10) UNSIGNED',
-				'allow_null'	=> true
 			)
 		),
 		'PRIMARY KEY'	=> array('id'),

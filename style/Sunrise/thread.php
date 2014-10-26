@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 <?php 
 
 // Retrieve the posts (and their respective poster/online status)
-$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.parent_id, p.level, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 while ($cur_post = $db->fetch_assoc($result)) {
 	$post_count++;
 	$user_avatar = '';
@@ -101,8 +101,6 @@ while ($cur_post = $db->fetch_assoc($result)) {
 		else
 			$user_avatar = generate_avatar_markup($cur_post['poster_id']);
 	}
-	
-	$post_level = $cur_post['level'] + 1;
 
 	// Generation post action array (quote, edit, delete etc.)
 	if (!$is_admmod) {
@@ -123,10 +121,7 @@ while ($cur_post = $db->fetch_assoc($result)) {
 			}
 
 			if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'&amp;parent_id='.$cur_post['parent_id'].'&amp;level='.$post_level.'">'.$lang['Quote'].'</a>';
-
-			if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
-				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;parent_id='.$cur_post['id'].'&amp;level='.$post_level.'">Comment</a>';
+				$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 		}
 	} else {
 		if ($cur_post['marked'] == false) {
@@ -138,8 +133,7 @@ while ($cur_post = $db->fetch_assoc($result)) {
 			$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
 			$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 		}
-		$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'&amp;comment=1&amp;parent_id='.$cur_post['parent_id'].'&amp;level='.$post_level.'">'.$lang['Quote'].'</a>';
-		$post_actions[] = '<a href="post.php?tid='.$id.'&amp;comment=1&amp;parent_id='.$cur_post['id'].'&amp;level='.$post_level.'">Comment</a>';
+		$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 	}
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
