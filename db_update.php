@@ -353,6 +353,10 @@ switch ($stage) {
 		// Since 0.0.3177: Add the color column to the users table
 		$db->add_field('users', 'color', 'VARCHAR(25)', false, '#0d4382');
 
+		// Since 0.0.3190: Add o_notifications/experimental feature
+		if (!array_key_exists('o_notifications', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_notifications\', \'0\')') or error('Unable to insert config value \'o_notifications\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
