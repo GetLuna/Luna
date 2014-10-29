@@ -14,7 +14,7 @@ if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if (file_exists('z.txt'))
+if (file_exists('../z.txt'))
 	$zset = '1';
 
 if (($luna_user['g_id'] != FORUM_ADMIN) || (!isset($zset)))
