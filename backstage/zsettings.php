@@ -21,8 +21,20 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/zsettings.php', $lang['Bad HTTP Referer message']);
 
 	$form = array(
-		'notifications'			=> luna_trim($_POST['form']['notifications'])
+		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0'
 	);
+
+	foreach ($form as $key => $input) {
+		// Only update values that have changed
+		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
+			if ($input != '' || is_int($input))
+				$value = '\''.$db->escape($input).'\'';
+			else
+				$value = 'NULL';
+
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
+		}
+	}
 
 	// Regenerate the config cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
