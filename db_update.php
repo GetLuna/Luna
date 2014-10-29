@@ -357,6 +357,10 @@ switch ($stage) {
 		if (!array_key_exists('o_notifications', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_notifications\', \'0\')') or error('Unable to insert config value \'o_notifications\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.3190: Add o_forum_new_style/experimental feature
+		if (!array_key_exists('o_forum_new_style', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_new_style\', \'0\')') or error('Unable to insert config value \'o_forum_new_style\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

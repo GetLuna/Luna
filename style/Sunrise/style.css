@@ -201,6 +201,33 @@ a.list-group-item-cat:hover .forum-description {
 	font-size: 12px;
 }
 
+.btn-forum-entry {
+	width: 100%;
+}
+
+.btn-forum-entry .btn {
+	height: 63px;
+	text-align: left;
+}
+
+.btn-forum-title {
+	color: #fff;
+	margin-bottom: 7px;
+	width: 100%;
+}
+
+.btn-forum-title h3 {
+	margin: 0;
+}
+
+.btn-last-post {
+	width: 35%;
+}
+
+.btn-forum-stats {
+	width: 15%;
+}
+
 .statistic-item {
 	font-size: 17px;
 	color: #0068b0;
@@ -265,7 +292,6 @@ a.list-group-item-cat:hover .forum-description {
 /* Sidebar */
 .first-run {
 	background: #efefef;
-	margin-top: 0 !important;
 	border: none;
 }
 
