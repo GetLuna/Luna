@@ -328,7 +328,7 @@ function draw_user_list() {
 			$user_title_field = get_title($user_data);
 			$user_avatar = draw_user_avatar($user_data['id'], 'media-object');
 	
-	require get_view_path('user.php');
+			require get_view_path('user.php');
 	
 		}
 	} else

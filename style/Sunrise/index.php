@@ -14,12 +14,16 @@ if (!defined('FORUM'))
             <div class="row first-run-content">
                 <div class="col-xs-12 first-run-profile">
                     <div class="media">
-                        <a class="pull-left" href="#">
+                        <a class="pull-left" href="profile.php?id=<?php echo $luna_user['id'] ?>">
                             <?php echo $user_avatar; ?>
                         </a>
                         <div class="media-body">
                             <h2 class="first-run-title"><small>Welcome back,</small><br /><?php echo luna_htmlspecialchars($luna_user['username']) ?></h2>
-                            <span class="btn-group btn-group-sidebar pull-right"><a href="me.php?id=<?php echo $luna_user['id'] ?>" class="btn btn-default"><i class="fa fa-cogs"></i></a><a href="login.php" class="btn btn-default"><i class="fa fa-sign-out"></i></a></span>
+                            <span class="btn-group btn-group-sidebar pull-right">
+								<a href="me.php?id=<?php echo $luna_user['id'] ?>" class="btn btn-default"><i class="fa fa-cogs"></i></a>
+								<a href="help.php" class="btn btn-default"><i class="fa fa-info-circle"></i></a>
+								<a href="login.php" class="btn btn-default"><i class="fa fa-sign-out"></i></a>
+                            </span>
                         </div>
                     </div>
                 </div>
