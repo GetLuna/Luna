@@ -51,7 +51,7 @@ if (!defined('FORUM'))
                 </div>
                 <?php } ?>
             </div>
-			<?php if ($luna_config['o_notifications'] == 1) { ?>
+			<?php if (($luna_config['o_notifications'] == 1) && $zset) { ?>
             <div class="panel panel-default">
             	<div class="panel-heading">
                 	<h3 class="panel-title">Notifications</h3>
