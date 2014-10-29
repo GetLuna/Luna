@@ -246,7 +246,7 @@ function draw_topics_list() {
 }
 
 function draw_category_list() {
-	global $lang, $result, $db;
+	global $lang, $result, $db, $luna_config;
 
 $cur_category = 0;
 $cat_count = 0;
@@ -263,7 +263,6 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 ?>
 <div class="row"><div class="col-xs-12"><h3 class="category-title"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h3></div></div>
-<div class="row">
 <?php
 
         $cur_category = $cur_forum['cid'];
@@ -304,7 +303,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 // Did we output any categories and forums?
 if ($cur_category > 0)
-    echo "\t\t\t".'</div>'."\n\n";
+    echo "";
 else
     echo '<div><p>'.$lang['Empty board'].'</p></div>';
 

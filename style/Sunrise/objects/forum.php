@@ -1,5 +1,5 @@
 <?php
-		
+if ($luna_config['o_forum_new_style'] == '0') {
 	$forum_style = 'style="background-color:'.$cur_forum['color'].';border-color:'.$cur_forum['color'].';"';
 	$group_style = 'style="border-color:'.$cur_forum['color'].';"';
 
@@ -24,3 +24,26 @@
 		<?php echo $forum_stats ?>
 	</div>
 </div>
+<?php
+} else {
+	$forum_style = 'style="background-color:'.$cur_forum['color'].';border-color:'.$cur_forum['color'].';"';
+	$group_style = 'style="border-color:'.$cur_forum['color'].';"';
+
+    // If there is a last_post/last_poster
+    if ($cur_forum['last_post'] != '') {
+        if (luna_strlen($cur_forum['last_topic']) > 43)
+            $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 40).'...';
+
+			$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'" class="btn btn-default btn-last-post col-md-4 col-sm-4 hidden-xs" '.$group_style.'><span class="forum-newestitem">'.luna_htmlspecialchars($cur_forum['last_topic']).'<span class="help-block">by '.luna_htmlspecialchars($cur_forum['last_poster']).'</span></span></a>';
+    }
+
+	$forum_stats = '<span class="btn btn-default disabled btn-forum-stats col-md-2 hidden-sm hidden-xs" '.$group_style.'><b>'.$cur_forum['num_topics'].'</b> topics<br /><b>'.$cur_forum['num_posts'].'</b> posts</span>';
+
+?>
+<div class="btn-group btn-forum-entry" <?php echo $group_style ?>>
+	<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="btn btn-default btn-forum-title" <?php echo $forum_style ?>>
+		<h3><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h3>
+		<?php echo $forum_desc ?>
+	</a>
+</div>
+<?php } ?>

@@ -24,7 +24,8 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/zsettings.php', $lang['Bad HTTP Referer message']);
 
 	$form = array(
-		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0'
+		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0',
+		'forum_new_style'		=> isset($_POST['form']['forum_new_style']) ? '1' : '0'
 	);
 
 	foreach ($form as $key => $input) {
@@ -72,6 +73,17 @@ if (isset($_GET['saved']))
 							<label>
 								<input type="checkbox" name="form[notifications]" value="1" <?php if ($luna_config['o_notifications'] == '1') echo ' checked="checked"' ?> />
 								zNotificationLabel
+							</label>
+						</div>
+					</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block">zForumNewStyleHelp</span></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[forum_new_style]" value="1" <?php if ($luna_config['o_forum_new_style'] == '1') echo ' checked="checked"' ?> />
+								zForumNewStyleLabel
 							</label>
 						</div>
 					</div>
