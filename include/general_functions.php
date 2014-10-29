@@ -246,7 +246,7 @@ function draw_topics_list() {
 }
 
 function draw_category_list() {
-	global $lang, $result, $db, $luna_config;
+	global $lang, $result, $db, $luna_config, $zset;
 
 $cur_category = 0;
 $cat_count = 0;

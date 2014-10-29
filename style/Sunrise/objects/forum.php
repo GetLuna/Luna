@@ -1,5 +1,5 @@
 <?php
-if ($luna_config['o_forum_new_style'] == '0') {
+if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
 	$forum_style = 'style="background-color:'.$cur_forum['color'].';border-color:'.$cur_forum['color'].';"';
 	$group_style = 'style="border-color:'.$cur_forum['color'].';"';
 

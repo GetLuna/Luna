@@ -86,8 +86,15 @@ require 'header.php';
 	load_admin_nav('backstage', 'index');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
+
+if (file_exists('../z.txt') && ($luna_config['o_notifications'] == '1' || $luna_config['o_forum_new_style'] == '1')) {
 ?>
+<div class="alert alert-danger">
+	<h4>Z-features enabled!</h4>
+	We've found out that some Z-features have been enabled. These features are still in major development, might not work at all and can possibly corrupt your forum. We strongly recommend you to use these features only when necessary. Otherwise, you can disable them in <span class="fa fa-cog"></span> Settings > <span class="fa fa-cogs"></span> zSettings.
+</div>
+<?php } ?>
 <div class="row">
 	<div class="col-sm-8">
 		<div class="row">
