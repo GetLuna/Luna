@@ -14,7 +14,10 @@ if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
-if ($luna_user['g_id'] != FORUM_ADMIN)
+if (file_exists('z.txt'))
+	$zset = '1';
+
+if (($luna_user['g_id'] != FORUM_ADMIN) || (!isset($zset)))
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 if (isset($_POST['form_sent'])) {
