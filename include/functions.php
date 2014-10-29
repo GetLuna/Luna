@@ -598,6 +598,7 @@ function generate_avatar_markup($user_id) {
 	return $avatar_markup;
 }
 
+// New version of the above
 function draw_user_avatar($user_id, $class) {
 	global $luna_config;
 

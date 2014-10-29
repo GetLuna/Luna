@@ -14,7 +14,7 @@
 	$forum_stats = '<span class="list-group-item" '.$group_style.'>'.$cur_forum['num_topics'].' topics and '.$cur_forum['num_posts'].' posts</span>';
 
 ?>
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 	<div class="list-group list-group-forum">
 		<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="list-group-item list-group-item-cat" <?php echo $forum_style ?>>
 			<h4><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h4>
