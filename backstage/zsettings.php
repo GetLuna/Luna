@@ -25,7 +25,8 @@ if (isset($_POST['form_sent'])) {
 
 	$form = array(
 		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0',
-		'forum_new_style'		=> isset($_POST['form']['forum_new_style']) ? '1' : '0'
+		'forum_new_style'		=> isset($_POST['form']['forum_new_style']) ? '1' : '0',
+		'user_menu_sidebar'		=> isset($_POST['form']['user_menu_sidebar']) ? '1' : '0'
 	);
 
 	foreach ($form as $key => $input) {
@@ -67,6 +68,17 @@ if (isset($_GET['saved']))
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block">zForumNewStyleHelp</span></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[forum_new_style]" value="1" <?php if ($luna_config['o_forum_new_style'] == '1') echo ' checked="checked"' ?> />
+								zForumNewStyleLabel
+							</label>
+						</div>
+					</div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-3 control-label">zNotifications<span class="help-block">zNotificationsHelp</span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
@@ -78,12 +90,12 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block">zForumNewStyleHelp</span></label>
+                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block">zUserMenuHelp</span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[forum_new_style]" value="1" <?php if ($luna_config['o_forum_new_style'] == '1') echo ' checked="checked"' ?> />
-								zForumNewStyleLabel
+								<input type="checkbox" name="form[user_menu_sidebar]" value="1" <?php if ($luna_config['o_user_menu_sidebar'] == '1') echo ' checked="checked"' ?> />
+								zUserMenuLabel
 							</label>
 						</div>
 					</div>
