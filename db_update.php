@@ -361,6 +361,10 @@ switch ($stage) {
 		if (!array_key_exists('o_forum_new_style', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_new_style\', \'0\')') or error('Unable to insert config value \'o_forum_new_style\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.3205: Add o_user_menu_sidebar/experimental feature
+		if (!array_key_exists('o_user_menu_sidebar', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_user_menu_sidebar\', \'0\')') or error('Unable to insert config value \'o_user_menu_sidebar\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

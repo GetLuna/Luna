@@ -1683,6 +1683,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		'o_admin_notes'				=> "Add some notes...",
 		'o_notifications'			=> 0, // Experimental
 		'o_forum_new_style'			=> 0, // Experimental
+		'o_user_menu_sidebar'		=> 0, // Experimental
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,
 		'p_subject_all_caps'		=> 1,

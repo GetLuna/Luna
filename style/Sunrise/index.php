@@ -19,11 +19,13 @@ if (!defined('FORUM'))
                         </a>
                         <div class="media-body">
                             <h2 class="first-run-title"><small>Welcome back,</small><br /><?php echo luna_htmlspecialchars($luna_user['username']) ?></h2>
+							<?php if ($zset && $luna_config['o_user_menu_sidebar'] == '1') { ?>
                             <span class="btn-group btn-group-sidebar pull-right">
 								<a href="me.php?id=<?php echo $luna_user['id'] ?>" class="btn btn-default"><i class="fa fa-cogs"></i></a>
 								<a href="help.php" class="btn btn-default"><i class="fa fa-info-circle"></i></a>
 								<a href="login.php" class="btn btn-default"><i class="fa fa-sign-out"></i></a>
                             </span>
+							<?php } ?>
                         </div>
                     </div>
                 </div>
