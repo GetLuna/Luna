@@ -263,6 +263,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 ?>
 <div class="row"><div class="col-xs-12"><h3 class="category-title"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h3></div></div>
+<?php if ($zset) { ?><div class="row"><?php } ?>
 <?php
 
         $cur_category = $cur_forum['cid'];
@@ -302,8 +303,8 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 }
 
 // Did we output any categories and forums?
-if ($cur_category > 0)
-    echo "";
+if ($cur_category > 0 && $zset)
+    echo '</div>';
 else
     echo '<div><p>'.$lang['Empty board'].'</p></div>';
 
