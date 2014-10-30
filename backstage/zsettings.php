@@ -73,7 +73,18 @@ if (isset($_GET['saved']))
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[forum_new_style]" value="1" <?php if ($luna_config['o_forum_new_style'] == '1') echo ' checked="checked"' ?> />
-								zForumNewStyleLabel
+								use the new (experimental) index design
+							</label>
+						</div>
+					</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">zHooks<span class="help-block">zHooksHelp</span></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+							<label>
+								<input disabled type="checkbox" name="form[user_menu_sidebar]" value="1" <?php if ($luna_config['o_hooks'] == '1') echo ' checked="checked"' ?> />
+								enable hooks to be used by plugins
 							</label>
 						</div>
 					</div>
@@ -84,7 +95,7 @@ if (isset($_GET['saved']))
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[notifications]" value="1" <?php if ($luna_config['o_notifications'] == '1') echo ' checked="checked"' ?> />
-								zNotificationLabel
+								enable notifications throug Luna
 							</label>
 						</div>
 					</div>
@@ -95,7 +106,7 @@ if (isset($_GET['saved']))
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[user_menu_sidebar]" value="1" <?php if ($luna_config['o_user_menu_sidebar'] == '1') echo ' checked="checked"' ?> />
-								zUserMenuLabel
+								enable the user menu in the index sidebar to replace the navbar user menu
 							</label>
 						</div>
 					</div>
