@@ -70,7 +70,7 @@ if (isset($_GET['saved']))
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zBackstageDark<span class="help-block">zBackstageDarkHelp</span></label>
+                    <label class="col-sm-3 control-label">zBackstageDark<span class="help-block"><span class="label label-success">low</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -81,7 +81,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block">zForumNewStyleHelp</span></label>
+                    <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block"><span class="label label-warning">normal</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -92,7 +92,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zHooks<span class="help-block">zHooksHelp</span></label>
+                    <label class="col-sm-3 control-label">zHooks<span class="help-block"><span class="label label-default">disabled</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -103,7 +103,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zNotifications<span class="help-block">zNotificationsHelp</span></label>
+                    <label class="col-sm-3 control-label">zNotifications<span class="help-block"><span class="label label-danger">high</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -114,7 +114,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zReadingList<span class="help-block">zReadingListHelp</span></label>
+                    <label class="col-sm-3 control-label">zReadingList<span class="help-block"><span class="label label-danger">high</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -125,11 +125,11 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block">zUserMenuHelp</span></label>
+                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[user_menu_sidebar]" value="1" <?php if ($luna_config['o_user_menu_sidebar'] == '1') echo ' checked="checked"' ?> />
+								<input disabled type="checkbox" name="form[user_menu_sidebar]" value="1" <?php if ($luna_config['o_user_menu_sidebar'] == '1') echo ' checked="checked"' ?> />
 								enable the user menu in the index sidebar to replace the navbar user menu
 							</label>
 						</div>
