@@ -108,8 +108,8 @@ load_admin_nav('backstage', 'stats');
             <tr>
                 <td>Software version</td>
                 <td><?php echo $luna_config['o_cur_version']; ?></td>
-                <td>TrentUI Framework version</td>
-                <td>1.0-dev</td>
+                <td>Bootstrap version</td>
+                <td>3.3.0</td>
             </tr>
             <tr>
                 <td>Core version</td>

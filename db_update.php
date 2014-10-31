@@ -176,7 +176,7 @@ if (empty($stage)) {
 	<head>
 		<meta charset="utf-8">
 		<title><?php echo $lang['Maintenance'] ?></title>
-		<link href="include/css/trent.css" type="text/css" rel="stylesheet">
+		<link href="include/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
@@ -197,7 +197,7 @@ if (empty($stage)) {
 		<title>Luna &middot; <?php echo $lang['Update'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
-		<link href="include/css/trent.css" type="text/css" rel="stylesheet">
+		<link href="include/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
