@@ -21,10 +21,6 @@ footer .pull-right {
 	padding-bottom: 15px;
 }
 
-h1 {
-	margin-top: -15px;
-}
-
 h2 {
 	margin-top: 0;
 }
@@ -38,10 +34,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 100;
 }
 
-.panel-body h1 {
-	margin-top: 0;
-}
-
 .text-center {
 	margin-bottom: 0;
 }
@@ -53,10 +45,6 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width: 767px) {
 	.col-profile {
 		padding-left: 0;
-	}
-
-	.col-profile .profile-card {
-		margin-top: 60px !important;
 	}
 }
 
@@ -581,12 +569,6 @@ input[type="text"].power-control {
     margin-top: 10px;
 }
 
-@media screen and (max-width: 991px) {
-    .profile-card-quickpost {
-        margin-bottom: -10px;
-    }
-}
-
 #commentform > .panel {
 	margin-top: 10px;
 }
@@ -836,180 +818,6 @@ textarea {
 	margin-top: 20px;
 }
 
-/* Topicview */
-.profile-card h1 a:hover, .profile-card h2 a:hover, .profile-card h3 a:hover, .topic .panel-heading h3 a:hover, .profile-card h4 a:hover, .profile-card h5 a:hover, .profile-card h6 a:hover, .profile-card h1 a:active, .profile-card h2 a:active, .profile-card h3 a:active, .profile-card h4 a:active, .profile-card h5 a:active, .profile-card h6 a:active, .profile-card h1 a:focus, .profile-card h2 a:focus, .profile-card h3 a:focus, .profile-card h4 a:focus, .profile-card h5 a:focus, .profile-card h6 a:focus {
-	text-decoration: none;
-	color: #ddd;
-}
-
-.profile-card h2 a, .profile-card h3, .profile-card h3 a, .topic .panel-heading h3 a {
-	color: #fff;
-}
-
-.topic .panel, .topic .profile-card {
-	margin-bottom: 0;
-}
-
-.panel-topic {
-	margin-top: 10px;
-}
-
-.topic .profile-card {
-	margin-top: 10px;
-}
-
-.topic .panel-body {
-	padding: 7px;
-}
-
-.topic .profile-card-head .user-avatar {
-	max-width: 54px;
-	height: 50px;
-	margin-top: 4px;
-	margin-left: 4px;
-	position: absolute;
-}
-
-.topic .profile-card-head .user-avatar img {
-	height: 48px;
-	width: 100%;
-}
-
-.topic .profile-card-head .is-online {
-	border-left: 4px #93dd00 solid;
-}
-
-.topic .profile-card-head .is-offline {
-	border-left: 4px #eee solid;
-}
-
-.profile-card-head h2 {
-	color: #fff;
-}
-
-.profile-card-head h3 {
-	color: #fff;
-}
-
-.topic .profile-card-head h2 {
-	padding-left: 64px;
-	padding-top: 3px;
-}
-
-.topic .profile-card-head h3 {
-	padding-left: 64px;
-	padding-bottom: 7px;
-}
-
-.topic hr {
-	margin-top: 9px;
-	margin-bottom: 1px;
-}
-
-.profile, .topic {
-	margin-left: -15px;
-	margin-right: -15px;
-}
-
-.profile-card {
-	margin-top: 50px;
-	margin-bottom: 10px;
-}
-
-.profile-card-head {
-	height: 59px;
-	background-color: #057ed4;
-	color: #fff;
-}
-
-.profile-card-head .thumbnail {
-	max-width: 100px;
-	max-height: 100px;
-	width: 100px;
-	height: 100px;
-	margin-top: -50px;
-	margin-left: 9px;
-	position: absolute;
-}
-
-.thumbnail > .user-avatar {
-	width: 100%;
-	height: 100%;
-}
-
-.profile-card-head h2 {
-	padding-left: 120px;
-	padding-top: 3px;
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.profile-card-head h3 {
-	padding-left: 120px;
-	padding-bottom: 7px;
-	margin-top: 0;
-	font-size: 100%;
-	margin-bottom: 0;
-}
-
-.profile-card-body {
-	padding: 9px;
-	background-color: #fff;
-	border: #ddd 1px solid;
-	border-top: none;
-}
-
-.profile-card-body p {
-	margin: 0;
-}
-
-.panel-body p {
-	line-height: 1.6;
-}
-
-.comment-arrow {
-	position: absolute;
-	display: block;
-	width: 0px;
-	height: 0px;
-	border-color: transparent;
-	border-style: solid;
-	border-width: 11px;
-	left: 4px;
-	margin-top: -2px;
-	border-left-width: 0px;
-	border-right-color: #057ed4;;
-}
-
-.topic .panel-heading {
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
-}
-
-.post-actions {
-		margin-top: 5px;
-}
-
-.topic .thumbnail {
-		padding: 0;
-		border: 1px solid #fff;
-}
-
-@media(max-width:991px) {
-	.topic .panel {
-		margin-top: 0;
-	}
-
-	.profile-card-head {
-		background: #057ed4;
-		background: linear-gradient(to right, #057ed4, #10c1f0);
-	}
-}
-
-.onlypost > .col-md-3 > .profile-card, .onlypost > .col-md-9 > .panel {
-	margin-top: 0;
-}
-
 /* Forum */
 .topic-entry-list {
 	margin-top: 15px;
@@ -1223,32 +1031,9 @@ blockquote footer {
 		margin-bottom: 10px;
 	}
 	
-	.profile-card-head h2 {
-		margin-left: 0;
-	}
-	
-	.topic .profile-card {
-		margin-top: 0;
-	}
-	
 	.panel-body {
 		border: none;
 	}
-}
-
-/* Backstage Accent select */
-.backstage-accent {
-	padding: 21px;
-    margin-left: 1px;
-    margin-right: 1px;
-}
-
-.accent-group .btn {
-    border: 3px solid #fff;
-}
-
-.accent-group .btn:hover, .accent-group .btn:focus, .accent-group .btn:active, .accent-group .active.btn {
-    border: 3px solid #bbb;
 }
 
 /* Cookie bar */
