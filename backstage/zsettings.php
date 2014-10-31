@@ -61,6 +61,11 @@ load_admin_nav('settings', 'zsettings');
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>
+<div class="alert alert-danger">
+	<h4>zSettings can be activated</h4>
+	<p>This board system has been given permission to enable zSettings. It is strongly recommended to do this only when you know what you're doing and you know what these features enable/disable/change. If you do not, please disable zSettings at once.</p>
+	<p>zSettings have been provided with a risk label. How higher the label, how higher the risk is for corrupting your database. Settings with a "disabled"-label point to settings that can't be changed or settings of which the code isn't available in the core.</p>
+</div>
 <form class="form-horizontal" method="post" action="zsettings.php">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -92,7 +97,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zHooks<span class="help-block"><span class="label label-default">disabled</span></span></label>
+                    <label class="col-sm-3 control-label">zHooks<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-danger">high</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -125,7 +130,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span></span></label>
+                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-danger">high</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
