@@ -410,6 +410,10 @@ switch ($stage) {
 			$db->create_table('reading_list', $schema) or error('Unable to create reading list table', __FILE__, __LINE__, $db->error());
 		}
 
+		// Since 0.0.3226: Add o_reading_list/experimental feature
+		if (!array_key_exists('o_reading_list', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_reading_list\', \'0\')') or error('Unable to insert config value \'o_reading_list\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

@@ -12,6 +12,7 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9 col-profile">
+	<?php if (file_exists('z.txt') && ($luna_config['o_reading_list'] == '1')) { ?>
 	<h1>Reading list</h1>
 	<table class="table">
 		<thead>
@@ -27,5 +28,6 @@ if (!defined('FORUM'))
 			</tr>
 		</tbody>
 	</table>
+	<?php } ?>
 	<h1>Activity feed</h1>
 </div>
