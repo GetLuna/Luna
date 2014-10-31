@@ -311,6 +311,11 @@ a.list-group-item-cat:hover .forum-description {
 	padding: 15px;
 }
 
+.first-run .avatar {
+	height: 75px;
+	width: auto;
+}
+
 .first-run-title {
 	color: #fff;
 }
