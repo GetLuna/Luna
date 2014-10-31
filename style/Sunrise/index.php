@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 	<div class="col-md-9 col-sm-12">
 		<?php draw_category_list() ?>
 	</div>
-    <div class="col-md-3 hidden-xs sidebar">
+    <div class="col-md-3 hidden-xs">
         <div class="sidebar panel panel-default">
             <div class="row sidebar-content">
                 <div class="col-xs-12 sidebar-profile">
