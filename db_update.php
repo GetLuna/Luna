@@ -369,6 +369,11 @@ switch ($stage) {
 		if (!array_key_exists('o_backstage_dark', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_backstage_dark\', \'0\')') or error('Unable to insert config value \'o_backstage_dark\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.3211: Drop the last_poster column to the forums table
+		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.3211: Drop the last_topic column to the forums table
+		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
 		break;
 
 	// Preparse posts

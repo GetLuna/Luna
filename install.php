@@ -749,10 +749,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				'datatype'		=> 'INT(10) UNSIGNED',
 				'allow_null'	=> true
 			),
-			'last_poster'	=> array(
-				'datatype'		=> 'VARCHAR(200)',
-				'allow_null'	=> true
-			),
 			'last_poster_id'=> array(
 				'datatype'		=> 'INT(10)',
 				'allow_null'	=> true,
@@ -770,11 +766,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 			),
 			'cat_id'		=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
-				'allow_null'	=> false,
-				'default'		=> '0'
-			),
-			'last_topic'	=> array(
-				'datatype'		=> 'VARCHAR(255)',
 				'allow_null'	=> false,
 				'default'		=> '0'
 			),
