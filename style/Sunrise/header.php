@@ -21,7 +21,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 	<body>
         <div id="header">
 			<div class="navbar navbar-inverse navbar-static-top">
-				<div class="nav-inner">
+				<div class="container">
 					<a class="navbar-brand" href="index.php"><?php echo $menu_title ?></a>
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,7 +37,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 						</ul>
 					</div>
 				</div>
-				<?php echo $announcement; ?>
 			</div>
         </div>
         <div class="container">
+			<?php echo $announcement; ?>	

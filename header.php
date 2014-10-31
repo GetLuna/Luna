@@ -69,7 +69,7 @@ $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->p
 if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
 				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
-else if (!$zset || $luna_config['o_user_menu_sidebar'] == '0')
+else
 	$usermenu = '<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>
 					<ul class="dropdown-menu">
@@ -80,8 +80,6 @@ else if (!$zset || $luna_config['o_user_menu_sidebar'] == '0')
 						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>
 					</ul>
 				   </li>';
-else
-	$usermenu = '';
 
 if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))

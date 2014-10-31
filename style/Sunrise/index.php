@@ -6,10 +6,10 @@ if (!defined('FORUM'))
 
 ?>
 <div class="row">
-	<div class="col-md-8 col-sm-12">
+	<div class="col-md-9 col-sm-12">
 		<?php draw_category_list() ?>
 	</div>
-    <div class="col-md-4 hidden-xs sidebar">
+    <div class="col-md-3 hidden-xs sidebar">
         <div class="first-run panel panel-default">
             <div class="row first-run-content">
                 <div class="col-xs-12 first-run-profile">
@@ -19,13 +19,6 @@ if (!defined('FORUM'))
                         </a>
                         <div class="media-body">
                             <h2 class="first-run-title"><small>Welcome back,</small><br /><?php echo luna_htmlspecialchars($luna_user['username']) ?></h2>
-							<?php if ($zset && $luna_config['o_user_menu_sidebar'] == '1') { ?>
-                            <span class="btn-group btn-group-sidebar pull-right">
-								<a href="me.php?id=<?php echo $luna_user['id'] ?>" class="btn btn-default"><i class="fa fa-cogs"></i></a>
-								<a href="help.php" class="btn btn-default"><i class="fa fa-info-circle"></i></a>
-								<a href="login.php" class="btn btn-default"><i class="fa fa-sign-out"></i></a>
-                            </span>
-							<?php } ?>
                         </div>
                     </div>
                 </div>
