@@ -130,7 +130,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-danger">high</span></span></label>
+                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-success">low</span</span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
