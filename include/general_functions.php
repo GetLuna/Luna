@@ -286,7 +286,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 	$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 
     if ($cur_forum['forum_desc'] != '')
-        $forum_desc = '<span class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</span>';
+        $forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
 
     if (forum_number_format($num_topics) == '1')
         $topics_label = $lang['topic'];
@@ -305,6 +305,8 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 // Did we output any categories and forums?
 if ($cur_category > 0 && $zset && $luna_config['o_forum_new_style'] == '0')
     echo '</div>';
+else if ($zset && $luna_config['o_forum_new_style'] == '1')
+	echo '';
 else
     echo '<div><p>'.$lang['Empty board'].'</p></div>';
 
