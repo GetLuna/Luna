@@ -1697,7 +1697,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 	$db->query('INSERT INTO '.$db_prefix.'categories (cat_name, disp_position) VALUES(\''.$db->escape($lang['General']).'\', 1)')
 		or error('Unable to insert into table '.$db_prefix.'categories. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db_prefix.'forums (forum_name, forum_desc, num_topics, num_posts, last_post, last_post_id, last_poster, disp_position, cat_id) VALUES(\''.$db->escape($lang['Announcements']).'\', \''.$db->escape($lang['Announcements']).'\', 0, 0, NULL, NULL, NULL, 1, 1)')
+	$db->query('INSERT INTO '.$db_prefix.'forums (forum_name, forum_desc, num_topics, num_posts, last_post, last_post_id, disp_position, cat_id) VALUES(\''.$db->escape($lang['Announcements']).'\', \''.$db->escape($lang['Announcements']).'\', 0, 0, NULL, NULL, 1, 1)')
 		or error('Unable to insert into table '.$db_prefix.'forums. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 	$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
