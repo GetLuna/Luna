@@ -8,7 +8,7 @@ if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
         if (luna_strlen($cur_forum['last_topic']) > 43)
             $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 40).'...';
 
-			$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'" class="list-group-item" '.$group_style.'><span class="forum-newestitem">'.luna_htmlspecialchars($cur_forum['last_topic']).'<span class="help-block">by '.luna_htmlspecialchars($cur_forum['last_poster']).'</span></span></a>';
+			$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'" class="list-group-item" '.$group_style.'><span class="forum-newestitem">'.luna_htmlspecialchars($cur_forum['subject']).'<span class="help-block">by '.luna_htmlspecialchars($cur_forum['username']).'</span></span></a>';
     }
 
 	$forum_stats = '<span class="list-group-item" '.$group_style.'>'.$cur_forum['num_topics'].' topics and '.$cur_forum['num_posts'].' posts</span>';
@@ -34,7 +34,7 @@ if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
         if (luna_strlen($cur_forum['last_topic']) > 43)
             $cur_forum['last_topic'] = utf8_substr($cur_forum['last_topic'], 0, 40).'...';
 
-			$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['last_topic']).'</a><span class="help-block">by '.luna_htmlspecialchars($cur_forum['last_poster']).'</span>';
+			$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><span class="help-block">by '.luna_htmlspecialchars($cur_forum['username']).'</span>';
     } else
 		$last_post = 'No posts yet';
 
