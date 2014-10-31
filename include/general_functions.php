@@ -36,7 +36,7 @@ function draw_preview_panel($message) {
 		$preview_message = parse_message($message, $hide_smilies);
 	
 ?>
-<div class="panel panel-default panel-border">
+<div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php echo $lang['Post preview'] ?></h3>
 	</div>

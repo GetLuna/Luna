@@ -62,8 +62,8 @@ if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod']) {
                 echo "\t\t\t\t\t\t\t\t".'</div>'."\n";
                 echo "\t\t\t\t\t\t\t".'</fieldset>'."\n";
             }
-            echo "\t\t\t\t\t\t\t".'<fieldset><h3 class="forum-list"><span>'.luna_htmlspecialchars($cur_forum['cat_name']).'</span></h3>'."\n";
-            echo "\t\t\t\t\t\t\t\t".'<div class="rbox">';
+            echo "\t\t\t\t\t\t\t".'<fieldset><h3><span>'.luna_htmlspecialchars($cur_forum['cat_name']).'</span></h3>'."\n";
+            echo "\t\t\t\t\t\t\t\t".'<div>';
             $cur_category = $cur_forum['cid'];
         }
         echo "\t\t\t\t\t\t\t\t".'<input type="checkbox" name="forums[]" id="forum-'.$cur_forum['fid'].'" value="'.$cur_forum['fid'].'" /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";

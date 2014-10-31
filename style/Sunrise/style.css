@@ -9,10 +9,6 @@ body, html {
 	font-family: "Segoe UI", Arial;
 }
 
-.forum-list {
-	margin: 3px 0 5px 0;
-}
-
 footer {
 	padding-bottom: 15px;
 }
@@ -38,22 +34,8 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0;
 }
 
-.modlist {
-	color: #888;
-}
-
-@media screen and (max-width: 767px) {
-	.col-profile {
-		padding-left: 0;
-	}
-}
-
-.row-nav .btn-breadcrumb, .row-nav .pagination {
-	margin-bottom: 10px;
-}
-
-.col-profile {
-	padding-right: 0;
+.row-nav {
+	margin-bottom: 5px;
 }
 
 /* Header */
@@ -275,7 +257,7 @@ a.list-group-item-cat:hover .forum-description {
 }
 
 /* Sidebar */
-.first-run {
+.sidebar {
 	background: #efefef;
 	border: none;
 }
@@ -284,66 +266,66 @@ a.list-group-item-cat:hover .forum-description {
 	margin-top: 13px;
 }
 
-.first-run-content {
+.sidebar-content {
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-bottom: 10px;
 }
 
-.first-run-content h2 {
+.sidebar-content h2 {
 	margin: 0;
 }
 
-.first-run-profile {
+.sidebar-profile {
 	background: #0d4382;
 	padding: 15px;
 }
 
-.first-run .avatar {
+.sidebar .avatar {
 	height: 75px;
 	width: auto;
 }
 
-.first-run-title {
+.sidebar-title {
 	color: #fff;
 }
 
-.first-run-title small {
+.sidebar-title small {
 	color: rgba(255,255,255,.7);
 }
 
-.first-run-avatar {
+.sidebar-avatar {
 	background: none;
 	border: none;
 }
 
-.first-run-login {
+.sidebar-login {
 	margin-right: 15px;
 }
 
-.first-run .active {
+.sidebar .active {
 	text-align: center;
 }
 
 @media screen and (max-width: 767px) {
-	.first-run-content {
+	.sidebar-content {
 		padding-right: 15px;
 	}
 
-	.first-run-profile {
+	.sidebar-profile {
 		margin-top: -15px;
 	}
 
-	.first-run-title {
+	.sidebar-title {
 		padding-top: 15px;
 	}
 
-	.first-run-list {
+	.sidebar-list {
 		margin-left: 0;
 		margin-right: 0;
 	}
 
-	.first-run-login {
+	.sidebar-login {
 		margin-right: 0;
 	}
 }
@@ -389,17 +371,6 @@ textarea.textarea, textarea.textarea:focus {
 	margin: 3px 0;
 }
 
-/* Links (subscribe, new post, etc.) */
-.subscribelink {
-	padding-bottom: 10px;
-}
-
-.postlink {
-	float: right;
-	font-weight: bold;
-	text-align: right;
-}
-
 /* Panels */
 .panel {
 	margin-bottom: 10px;
@@ -410,19 +381,6 @@ textarea.textarea, textarea.textarea:focus {
 	border: none;
 	background: #0d4382;
 	color: #fff;
-}
-
-.panel-border {
-	border: none;
-}
-
-.panel-border .panel-body, .panel-border .postfield, .panel-border .panel-footer, .panel-border .commentfield {
-	border: 1px solid #ddd;
-	border-top: none;
-}
-
-.col-md-10 .panel {
-	margin-right: -14px;
 }
 
 /* Pagination */
@@ -490,26 +448,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 .time-nr {
 	font-size: 80%;
 	color: #aaa;
-}
-
-.btn-actions {
-	padding-top: 0;
-	padding-bottom: 0;
-	font-size: 80%;
-}
-
-.post-div {
-	margin-top: 2px;
-	margin-bottom: 5px;
-}
-
-.modlist {
-	font-size: 70%;
-	margin-bottom: 0;
-}
-
-.postview {
-	margin-bottom: 10px;
 }
 
 .postedit {
@@ -588,13 +526,6 @@ input[type="text"].power-control {
 	color: #fff;
 	background: #0d4382;
 	padding: 8px 0;
-}
-
-.forum-row:last-child {
-	color: #232323;
-	background-color: #fff;
-	padding: 8px 0;
-	border-bottom: 1px #ddd solid;
 }
 
 .table > tbody > tr > td {
@@ -709,10 +640,6 @@ input[type="text"].power-control {
 	padding: 5px 8px;
 }
 
-.col-md-10 .alert {
-	margin-right: -14px;
-}
-
 /* Forms */
 fieldset label {
 	display: block;
@@ -727,21 +654,6 @@ label .help-block {
 
 textarea {
 		resize: vertical;
-}
-
-.multiselect {
-	float: left;
-	padding-bottom: 7px;
-}
-
-.checklist {
-	border-width: 1px;
-	border-style: solid;
-	max-height: 9em;
-	width: 20em;
-	overflow: auto;
-	padding: 0.25em 0.5em;
-	margin: 0.25em 16px 0 0.15em;
 }
 
 /* Breadcrumbs and button */
@@ -955,7 +867,7 @@ blockquote footer {
 	background-color: #fff;
 }
 
-.form-first-run {
+.form-sidebar {
 	max-width: 100%;
 	margin: 0;
 }
@@ -980,7 +892,7 @@ blockquote footer {
 	padding: 15px 18px 10px 20px;
 }
 
-.form-first-run .form-content {
+.form-sidebar .form-content {
 	padding: 0;
 	padding-right: 15px;
 }
@@ -1009,25 +921,7 @@ blockquote footer {
 }
 
 @media screen and (max-width: 767px) {
-	.container, .row-nav .col-sm-6 {
-		padding: 0;
-	}
-	
-	.category-box, .postview {
-		margin-bottom: 0;
-	}
-	
-	.forum-row, .topic-row {
-		border-left: none;
-		border-right: none;
-	}
-	
-	footer, #brddesc, #brdwelcome, h2, .row-nav {
-		margin-left: 15px;
-		margin-right: 15px;
-	}
-	
-	.postview > :last-child, .modcontrols .btn-toolbar .btn-group > :first-child {
+	.modcontrols .btn-toolbar .btn-group > :first-child {
 		margin-bottom: 10px;
 	}
 	

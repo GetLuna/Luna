@@ -9,9 +9,7 @@ if (!defined('FORUM'))
 <h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
 
 <div class="row-nav">
-	<div class="btn-breadcrumb">
-		<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-	</div>
+	<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 	<ul class="pagination pull-right">
 		<?php echo $paging_links ?>
 	</ul>
@@ -108,7 +106,7 @@ while ($cur_post = $db->fetch_assoc($result)) {
 			if ($cur_post['marked'] == false) {
 				$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			} else {
-				$post_actions[] = '<a class="btn btn-danger btn-actions btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			}
 		}
 
@@ -157,9 +155,7 @@ while ($cur_post = $db->fetch_assoc($result)) {
 </form>
 
 <div class="row-nav">
-	<div class="btn-breadcrumb">
-		<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-	</div>
+	<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 	<ul class="pagination pull-right">
 		<?php echo $paging_links ?>
 	</ul>
