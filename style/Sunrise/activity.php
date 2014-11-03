@@ -30,4 +30,13 @@ if (!defined('FORUM'))
 	</table>
 	<?php } ?>
 	<h1>Activity feed</h1>
+<?php
+	$result = $db->query('SELECT id, poster, poster_id, message, posted, edited, edited_by, marked FROM '.$db->prefix.'posts WHERE poster_id='.$luna_user['id'].' LIMIT 10') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	while ($cur_post = $db->fetch_assoc($result)) {
+		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
+?>
+		<p><?php echo $cur_post['message']; ?></p>
+<?php
+	}
+?>
 </div>
