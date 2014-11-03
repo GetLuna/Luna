@@ -451,88 +451,82 @@ else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>
 <div class="row">
-	<div class="<?php if (($num_cats) > '0') { ?>col-md-5<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Add forum'] ?></h3>
-			</div>
-			<div class="panel-body">
-				<form method="post" action="board.php?action=add_forum">
-					<fieldset>
+	<div class="col-lg-4">
+		<form method="post" action="board.php?action=add_forum">
 <?php
-
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result) > 0) { ?>
-						<div class="col-xs-5">
-							<select class="form-control" name="add_to_cat" tabindex="1">
-    <?php
-		while ($cur_cat = $db->fetch_assoc($result)) { ?>
-                <?php echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
-			} ?>
-							</select>
-						</div>
-						<div class="col-xs-7">
-							<div class="input-group">
-								<input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="Forum name" required="required" />
-								<span class="input-group-btn">
-									<input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang['Add'] ?>" tabindex="2" />
-								</span>
-							</div>
-						</div>
+	if ($db->num_rows($result) > 0) {
+?>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Add forum'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_forum" value="<?php echo $lang['Add'] ?>" tabindex="2" /></span></h3>
+				</div>
+				<fieldset>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>
+									<select class="form-control" name="add_to_cat" tabindex="1">
+<?php
+		while ($cur_cat = $db->fetch_assoc($result))
+			echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+?>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="Forum name" required="required" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+		</form>
 <?php
 	}
 ?>
-					</fieldset>
-				</form>
+		<form method="post" action="board.php">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Add categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add'] ?>" tabindex="2" /></span></h3>
+				</div>
+				<fieldset>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="Category name" tabindex="1" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
 			</div>
-		</div>
-	</div>
-	<div class="<?php if (($num_cats) > '0') { ?>col-md-4<?php } else { ?>col-md-12<?php }; ?>">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Add categories head'] ?></h3>
-			</div>
-			<div class="panel-body">
-				<form method="post" action="board.php">
-					<fieldset>
-						<div class="input-group">
-							<input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="Category name" tabindex="1" />
-							<span class="input-group-btn">
-								<input class="btn btn-primary" type="submit" name="add_cat" value="<?php echo $lang['Add'] ?>" tabindex="2" />
-							</span>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
+		</form>
 	<?php if ($num_cats): ?>
-	<div class="<?php if (($num_cats) > '0') { ?>col-md-3<?php } else { ?>hidden-xs hidden-sm hidden-md hidden-lg<?php }; ?>">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Delete categories head'] ?></h3>
+		<form method="post" action="board.php">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Delete categories head'] ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang['Delete'] ?>" tabindex="4" /></span></h3>
+				</div>
+				<fieldset>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>
+									<select class="form-control" name="cat_to_delete" tabindex="3">
+<?php
+									foreach ($cat_list as $cur_cat)
+										echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
+?>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
 			</div>
-			<div class="panel-body">
-				<form method="post" action="board.php">
-					<fieldset>
-						<div class="input-group">
-							<select class="form-control" name="cat_to_delete" tabindex="3">
-		<?php
-						foreach ($cat_list as $cur_cat)
-							echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'">'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
-		?>
-							</select>
-							<span class="input-group-btn">
-								<input class="btn btn-danger" type="submit" name="del_cat" value="<?php echo $lang['Delete'] ?>" tabindex="4" />
-							</span>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
+		</form>
 	</div>
 	<?php endif; ?>
-</div>
 <?php
 
 // Display all the categories and forums
@@ -543,12 +537,13 @@ $cur_index = 4;
 if ($db->num_rows($result) > 0) {
 
 ?>
-<form id="edforum" method="post" action="board.php?action=edit">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
-		</div>
-		<fieldset>
+	<div class="col-lg-8">
+		<form id="edforum" method="post" action="board.php?action=edit">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+				</div>
+				<fieldset>
 <?php
 
 $cur_index = 4;
@@ -560,68 +555,70 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-			<table class="table table-forums">
-				<tbody>
-					<tr>
-						<th colspan="3" class="active">
-							<h4><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h4>
-						</th>
-					</tr>
+					<table class="table table-forums">
+						<tbody>
+							<tr>
+								<th colspan="3" class="active">
+									<h4><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h4>
+								</th>
+							</tr>
 <?php
 
 		$cur_category = $cur_forum['cid'];
 	}
 
 ?>
-					<tr>
-						<td class="col-xs-2"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete'] ?></a></div></td>
-						<td class="col-xs-3"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-						<td class="col-xs-7"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
-					</tr>
+							<tr>
+								<td class="col-xs-3"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Delete'] ?></a></div></td>
+								<td class="col-xs-4"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+								<td class="col-xs-5"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+							</tr>
 <?php
 
 }
 
 ?>
-				</tbody>
-			</table>
-		</fieldset>
-	</div>
-</form>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+		</form>
 <?php if ($num_cats): ?>
-<form method="post" action="board.php">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
-		</div>
-		<fieldset>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="col-xs-5"><?php echo $lang['Category name label'] ?></th>
-						<th class="col-xs-7"><?php echo $lang['Category position label'] ?></th>
-					</tr>
-				</thead>
-				<tbody>
+		<form method="post" action="board.php">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
+				</div>
+				<fieldset>
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="col-xs-5"><?php echo $lang['Category name label'] ?></th>
+								<th class="col-xs-7"><?php echo $lang['Category position label'] ?></th>
+							</tr>
+						</thead>
+						<tbody>
 <?php
 
 foreach ($cat_list as $cur_cat) {
 
 ?>
-					<tr>
-						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo luna_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
-						<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
-					</tr>
+							<tr>
+								<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo luna_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
+								<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
+							</tr>
 <?php
 
 }
 
 ?>
-				</tbody>
-			</table>
-		</fieldset>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+		</form>
 	</div>
-</form>
+</div>
 <?php endif; 
 	}
 
