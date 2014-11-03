@@ -593,55 +593,54 @@ if ($action == 'change_pass') {
 	}
 
 	redirect('me.php?section='.$section.'&amp;id='.$id);
-}
-
-
-$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-if (!$db->num_rows($result))
-	message($lang['Bad request'], false, '404 Not Found');
-
-$user = $db->fetch_assoc($result);
-
-$last_post = format_time($user['last_post']);
-
-if ($user['signature'] != '') {
-	require FORUM_ROOT.'include/parser.php';
-	$parsed_signature = parse_signature($user['signature']);
-}
-
-
-// View or edit?
-if (!$section || $section == 'view') {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
-	define('FORUM_ACTIVE_PAGE', 'me');
-	require load_page('header.php');
-	require load_page('activity.php');
-} else if ($section == 'personality') {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
-	define('FORUM_ACTIVE_PAGE', 'me');
-	require load_page('header.php');
-
-	require get_view_path('me-personality.tpl.php');
-} else if ($section == 'settings') {
-	if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
-		message($lang['Bad request'], false, '403 Forbidden');
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
-	define('FORUM_ACTIVE_PAGE', 'me');
-	require load_page('header.php');
-
-	require get_view_path('me-settings.tpl.php');
-} else if ($section == 'admin') {
-	if (!$luna_user['is_admmod'] || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '0'))
-		message($lang['Bad request'], false, '403 Forbidden');
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
-	define('FORUM_ACTIVE_PAGE', 'me');
-	require load_page('header.php');
-
-	require get_view_path('me-admin.tpl.php');
 } else {
-	message($lang['Bad request'], false, '404 Not Found');
-}
 
-require load_page('footer.php');
+	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.color, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	if (!$db->num_rows($result))
+		message($lang['Bad request'], false, '404 Not Found');
+	
+	$user = $db->fetch_assoc($result);
+	
+	$last_post = format_time($user['last_post']);
+	
+	if ($user['signature'] != '') {
+		require FORUM_ROOT.'include/parser.php';
+		$parsed_signature = parse_signature($user['signature']);
+	}
+	
+	// View or edit?
+	if (!$section || $section == 'view') {
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
+		define('FORUM_ACTIVE_PAGE', 'me');
+		require load_page('header.php');
+		require load_page('activity.php');
+	} else if ($section == 'personality') {
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
+		define('FORUM_ACTIVE_PAGE', 'me');
+		require load_page('header.php');
+	
+		require get_view_path('me-personality.tpl.php');
+	} else if ($section == 'settings') {
+		if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
+			message($lang['Bad request'], false, '403 Forbidden');
+	
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
+		define('FORUM_ACTIVE_PAGE', 'me');
+		require load_page('header.php');
+	
+		require get_view_path('me-settings.tpl.php');
+	} else if ($section == 'admin') {
+		if (!$luna_user['is_admmod'] || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '0'))
+			message($lang['Bad request'], false, '403 Forbidden');
+	
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section admin']);
+		define('FORUM_ACTIVE_PAGE', 'me');
+		require load_page('header.php');
+	
+		require get_view_path('me-admin.tpl.php');
+	} else {
+		message($lang['Bad request'], false, '404 Not Found');
+	}
+	
+	require load_page('footer.php');
+}
