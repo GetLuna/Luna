@@ -388,6 +388,7 @@ if ($action == 'change_pass') {
 				'msn'			=> luna_trim($_POST['form']['msn']),
 				'twitter'		=> luna_trim($_POST['form']['twitter']),
 				'google'		=> luna_trim($_POST['form']['google']),
+				'color'			=> luna_trim($_POST['form']['color'])
 			);
 
 			if ($luna_user['is_admmod']) {

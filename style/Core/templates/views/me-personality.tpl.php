@@ -39,9 +39,9 @@ if (!defined('FORUM'))
         $avatar_field = '<a class="btn btn-primary" href="me.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
 
     if ($user['signature'] != '')
-        $signature_preview = '<p>'.$lang['Sig preview'].'</p>'."\n\t\t\t\t\t\t\t".'<div class="postsignature postmsg">'."\n\t\t\t\t\t\t\t\t".'<hr />'."\n\t\t\t\t\t\t\t\t".$parsed_signature."\n\t\t\t\t\t\t\t".'</div>'."\n";
+        $signature_preview = $parsed_signature;
     else
-        $signature_preview = '<p>'.$lang['No sig'].'</p>'."\n";
+        $signature_preview = '<p>'.$lang['No sig'].'</p>';
 
 ?>
 
@@ -122,48 +122,68 @@ if (!defined('FORUM'))
             </fieldset>
         </div>
     </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Profile settings<span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>
+        </div>
+        <div class="panel-body">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Profile color</label>
+				<div class="col-sm-9">
+					<div class="btn-group accent-group" data-toggle="buttons">
+						<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color'] == '#33b5e5') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="blue" value="#33b5e5"<?php if ($luna_user['color'] == '#33b5e5') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-purple<?php if ($luna_user['color'] == '#c58be2') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="purple" value="#c58be2"<?php if ($luna_user['color'] == '#c58be2') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-green<?php if ($luna_user['color'] == '#99cc00') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="green" value="#99cc00"<?php if ($luna_user['color'] == '#99cc00') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-yellow<?php if ($luna_user['color'] == '#ffcd21') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="yellow" value="#ffcd21"<?php if ($luna_user['color'] == '#ffcd21') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-red<?php if ($luna_user['color'] == '#ff4444') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="red" value="#ff4444"<?php if ($luna_user['color'] == '#ff4444') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-luna<?php if ($luna_user['color'] == '#0d4382') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="red" value="#0d4382"<?php if ($luna_user['color'] == '#0d4382') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-grey<?php if ($luna_user['color'] == '#cccccc') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="red" value="#cccccc"<?php if ($luna_user['color'] == '#cccccc') echo ' checked' ?>>
+						</label>
+					</div>
+				</div>
+			</div>
 <?php if ($luna_config['o_avatars'] == '1'): ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Avatar'] ?></h3>
-        </div>
-        <div class="panel-body">
+			<hr />
             <fieldset id="profileavatar">
-<?php if ($user_avatar): ?>
-                <div class="useravatar"><?php echo $user_avatar ?></div>
-<?php endif; ?>
-                <p><?php echo $lang['Avatar info'] ?></p>
-                <p><?php echo $avatar_field ?></p>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
+                    <div class="col-sm-9">
+						<?php if ($user_avatar): ?><div class="useravatar"><?php echo $user_avatar ?></div><?php endif; ?>
+						<?php echo $avatar_field ?>
+                    </div>
+                </div>
             </fieldset>
-        </div>
-    </div>
 <?php endif; if ($luna_config['o_signatures'] == '1'): ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Signature'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
+			<hr />
             <fieldset>
-                <p><?php echo $lang['Signature info'] ?></p>
-                <label><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></label>
-                <textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
-                <ul class="bblinks">
-					<li><?php echo ($luna_config['p_sig_bbcode'] == '1') 
-						? '<a class="label label-success" href="help.php#bbcode" onclick="window.open(this.href); return false;">'.$lang['BBCode'].'</a>' 
-						: '<span class="label label-danger">'.$lang['BBCode'].'</span>'; ?>
-					</li>
-					<li><?php echo ($luna_config['p_sig_bbcode'] == '1' && $luna_config['p_sig_img_tag'] == '1')
-						? '<a class="label label-success" href="help.php#links" onclick="window.open(this.href); return false;">'.$lang['img tag'].'</a>' 
-						: '<span class="label label-danger">'.$lang['img tag'].'</span>'; ?>
-					</li>
-					<li><?php echo ($luna_config['o_smilies_sig'] == '1')
-						? '<a class="label label-success" href="help.php#smilies" onclick="window.open(this.href); return false;">'.$lang['Smilies'].'</a>' 
-						: '<span class="label label-danger">'.$lang['Smilies'].'</span>'; ?>
-					</li>
-                </ul>
-                <?php echo $signature_preview ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Signature<span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
+                    <div class="col-sm-9">
+						<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
+						<span class="help-block"><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Sig preview'] ?></label>
+                    <div class="col-sm-9">
+						<?php echo $signature_preview ?>
+                    </div>
+                </div>
             </fieldset>
+<?php endif; ?>
         </div>
     </div>
-<?php endif; ?>
 </form>
