@@ -4,9 +4,7 @@
 if (!defined('FORUM'))
     exit;
 
-$jumbo_style = 'style="background:#c393d9;"'; // Hard coded color for now
-
-// $jumbo_style = 'style="background:'.$user['color'].';"';
+$jumbo_style = 'style="background:'.$user['color'].';"';
 
 ?>
 
