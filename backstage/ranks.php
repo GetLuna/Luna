@@ -44,36 +44,35 @@ if (isset($_POST['add_rank'])) {
 	redirect('backstage/ranks.php');
 }
 
-
 // Update a rank
 else if (isset($_POST['update'])) {
-	$id = intval(key($_POST['update']));
+	confirm_referrer('backstage/ranks.php');
+	
+	$rank = $_POST['rank'];
+	if (empty($rank))
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
-	$rank = luna_trim($_POST['rank'][$id]);
-	$min_posts = luna_trim($_POST['min_posts'][$id]);
+	foreach ($rank as $item_id => $cur_rank) {
+		$cur_rank['id'] = luna_trim($cur_rank['id']);
+		$cur_rank['rank'] = luna_trim($cur_rank['rank']);
+		$cur_rank['min_posts'] = luna_trim($cur_rank['min_posts']);
 
-	if ($rank == '')
-		message_backstage($lang['Must enter title message']);
+		if ($cur_rank['rank'] == '')
+			message_backstage($lang['Must enter title message']);
 
-	if ($min_posts == '' || preg_match('%[^0-9]%', $min_posts))
-		message_backstage($lang['Must be integer message']);
+		if ($cur_rank['min_posts'] == '' || (!is_int($cur_rank['min_posts'])))
+			message_backstage($lang['Must be integer message']);
+		else {
+			$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.intval($item_id).' AND min_posts='.$cur_rank['min_posts']) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
+			if ($db->num_rows($result) != 0)
+				message_backstage(sprintf($lang['Dupe min posts message'], $ranks['min_posts']));
+		}
 
-	// Make sure there isn't already a rank with the same min_posts value
-	$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.$id.' AND min_posts='.$min_posts) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result))
-		message_backstage(sprintf($lang['Dupe min posts message'], $min_posts));
-
-	$db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($rank).'\', min_posts='.$min_posts.' WHERE id='.$id) or error('Unable to update rank', __FILE__, __LINE__, $db->error());
-
-	// Regenerate the ranks cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
-
-	generate_ranks_cache();
+		$db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($cur_rank['rank']).'\', min_posts=\''.$cur_rank['min_posts'].'\' WHERE id='.intval($item_id)) or message_backstage('Unable to update ranks', __FILE__, __LINE__, $db->error());
+	}
 
 	redirect('backstage/ranks.php');
 }
-
 
 // Remove a rank
 else if (isset($_POST['remove'])) {
@@ -124,12 +123,12 @@ if ($luna_config['o_ranks'] == 0) {
 			</div>
 		</div>
 	</form>
-	<div class="col-sm-8">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Manage ranks</h3>
-			</div>
-			<form id="ranks" method="post" action="ranks.php">
+	<form id="ranks" method="post" action="ranks.php">
+		<div class="col-sm-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Manage ranks<span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>
+				</div>
 				<fieldset>
 <?php
 
@@ -147,23 +146,30 @@ if ($db->num_rows($result)) {
 						</thead>
 						<tbody>
 <?php
-
-	while ($cur_rank = $db->fetch_assoc($result))
-		echo "\t\t\t\t\t\t\t\t".'<tr><td><input type="text" class="form-control" name="rank['.$cur_rank['id'].']" value="'.luna_htmlspecialchars($cur_rank['rank']).'" maxlength="50" /></td><td><input type="text" class="form-control" name="min_posts['.$cur_rank['id'].']" value="'.$cur_rank['min_posts'].'" maxlength="7" /></td><td><div class="btn-group"><input class="btn btn-primary" type="submit" name="update['.$cur_rank['id'].']" value="'.$lang['Update'].'" /><input class="btn btn-danger" type="submit" name="remove['.$cur_rank['id'].']" value="'.$lang['Remove'].'" /></div></td></tr>'."\n";
-
+	while ($cur_rank = $db->fetch_assoc($result)) {
+?>
+							<tr>
+								<td>
+									<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][rank]" value="<?php echo luna_htmlspecialchars($cur_rank['rank']) ?>" maxlength="50" />
+								</td>
+								<td>
+									<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_posts]" value="<?php echo $cur_rank['min_posts'] ?>" maxlength="7" />
+								</td>
+								<td>
+									<a href="menu.php?del_item=<?php echo $cur_rank['id'] ?>" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+<?php
+	}
+} else
+	echo '<tr><td colspan="3">'.$lang['No ranks in list'].'</td></tr>';
 ?>
 						</tbody>
 					</table>
-<?php
-
-} else
-	echo "\t\t\t\t\t\t\t".'<div class="panel-body"><p>'.$lang['No ranks in list'].'</p></div>'."\n";
-
-?>
 				</fieldset>
-			</form>
+			</div>
 		</div>
-	</div>
+	</form>
 </div>
 <?php
 
