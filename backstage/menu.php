@@ -120,7 +120,7 @@ load_admin_nav('settings', 'menu');
 					</thead>
 					<tbody>
 <?php
-if ($db->num_rows($result) > 0) {
+if ($db->num_rows($result)) {
 	while ($cur_item = $db->fetch_assoc($result)) {
 ?>
 						<tr>
