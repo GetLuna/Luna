@@ -43,10 +43,22 @@ if (!defined('FORUM'))
 	while ($cur_post = $db->fetch_assoc($result)) {
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 ?>
-			<p><?php echo $cur_post['message']; ?></p>
+			<div class="row comment">
+				<div class="col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a>
+							<hr />
+							<?php echo $cur_post['message']."\n" ?>
+							<?php if ($cur_post['edited'] != '') echo '<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'; ?>
+						</div>
+					</div>
+				</div>
+			</div>
 <?php
 	}
 ?>
+			<a href="#" class="btn btn-primary btn-lg btn-block">Show everything</a>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="topics">
 			<h2>Recent topics</h2>
