@@ -30,13 +30,36 @@ if (!defined('FORUM'))
 	</table>
 	<?php } ?>
 	<h1>Activity feed</h1>
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active"><a href="#posts" role="tab" data-toggle="tab">Recent posts</a></li>
+		<li role="presentation"><a href="#topics" role="tab" data-toggle="tab">Recent topics</a></li>
+		<li role="presentation"><a href="#subscriptions" role="tab" data-toggle="tab">Subscriptions</a></li>
+	</ul>
+	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="posts">
+			<h2>Recent posts</h2>
 <?php
 	$result = $db->query('SELECT id, poster, poster_id, message, posted, edited, edited_by, marked FROM '.$db->prefix.'posts WHERE poster_id='.$luna_user['id'].' LIMIT 10') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_post = $db->fetch_assoc($result)) {
 		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
 ?>
-		<p><?php echo $cur_post['message']; ?></p>
+			<p><?php echo $cur_post['message']; ?></p>
 <?php
 	}
 ?>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="topics">
+			<h2>Recent topics</h2>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="subscriptions">
+			<h2>Subscriptions</h2>
+		</div>
+	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#user").focus();
+		var hash = location.hash, hashPieces = hash.split('?'), activeTab = $('[href=' + hashPieces[0] + ']');
+		activeTab && activeTab.tab('show');
+	});
+</script>
