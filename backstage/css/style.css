@@ -59,12 +59,29 @@
 }
 
 .zset .form-control {
-	border: none;
-	background-color: #e3e3e3;
+	border-color: #e0e0e0;
+	background-color: #fafafa;
 }
 
 .zset .form-control:focus {
-	
+	border-color: #2fbef1;
+}
+
+.zset [disabled].form-control, .zset [readonly].form-control, .zset fieldset[disabled] .form-control {
+    cursor: not-allowed;
+    background-color: #ddd;
+	border-color: #ffbc89;
+    opacity: 1;
+}
+
+.zset .input-group-addon {
+	border-color: #333;
+	background-color: #555;
+	color: #fff;
+}
+
+.zset .alert {
+	border: none;
 }
 
 /* General fixes */
@@ -518,8 +535,6 @@ h3.panel-title {
 .progress-bar-info {
 	background-color: #14a3ff;
 }
-
-
 
 /* Update and login form */
 .form {
