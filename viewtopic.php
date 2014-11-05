@@ -127,20 +127,6 @@ $paging_links = paginate($num_pages, $p, 'viewtopic.php?id='.$id);
 if ($luna_config['o_censoring'] == '1')
 	$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
-
-$quickpost = false;
-if ($luna_config['o_quickpost'] == '1' &&
-	($cur_topic['post_replies'] == '1' || ($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1')) &&
-	($cur_topic['closed'] == '0' || $is_admmod)) {
-	$required_fields = array('req_message' => $lang['Message']);
-	if ($luna_user['is_guest']) {
-		$required_fields['req_username'] = $lang['Guest name'];
-		if ($luna_config['p_force_guest_email'] == '1')
-			$required_fields['req_email'] = $lang['Email'];
-	}
-	$quickpost = true;
-}
-
 if ($luna_config['o_feed_type'] == '1')
 	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.$lang['RSS topic feed'].'" />');
 else if ($luna_config['o_feed_type'] == '2')
