@@ -1,11 +1,13 @@
 /*
  * Copyright Studio 384
  * Bootstrap Template: Trent
- * Version:            0.1
+ * Version:            0.2
  * Based on:           Trent v1.2 (http://studio384.be/trent.php)
- * Since:              0.1
- * Bootstrap:          3.2.0
+ * Since:              0.0.2900
+ * Bootstrap:          3.3.1-dev
  */
+ 
+@import url('../../include/css/font-awesome.min.css');
  
 /* zSet */
 .zset {
@@ -47,9 +49,22 @@
     background: #1f62b0 !important;
 }
 
+.zset .panel-default {
+	background-color: #fff !important;
+}
+
 .zset .panel-default .panel-heading {
 	border-bottom-color: #1f62b0;
 	color: #1f62b0;
+}
+
+.zset .form-control {
+	border: none;
+	background-color: #e3e3e3;
+}
+
+.zset .form-control:focus {
+	
 }
 
 /* General fixes */
