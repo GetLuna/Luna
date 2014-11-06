@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins
@@ -489,44 +490,45 @@ else if (isset($_GET['unstick'])) {
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
 
 	redirect('viewtopic.php?id='.$unstick);
+} else {
+
+
+	// No specific forum moderation action was specified in the query string, so we'll display the moderator forum
+	
+	// Fetch some info about the forum
+	$result = $db->query('SELECT f.forum_name, f.num_topics, f.sort_by, f.color FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	if (!$db->num_rows($result))
+		message($lang['Bad request'], false, '404 Not Found');
+	
+	$cur_forum = $db->fetch_assoc($result);
+	
+	switch ($cur_forum['sort_by']) {
+		case 0:
+			$sort_by = 'last_post DESC';
+			break;
+		case 1:
+			$sort_by = 'posted DESC';
+			break;
+		case 2:
+			$sort_by = 'subject ASC';
+			break;
+		default:
+			$sort_by = 'last_post DESC';
+			break;
+	}
+	
+	// Determine the topic offset (based on $_GET['p'])
+	$num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);
+	
+	$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
+	$start_from = $luna_user['disp_topics'] * ($p - 1);
+	
+	// Generate paging links
+	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
+	
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
+	define('FORUM_ACTIVE_PAGE', 'moderate');
+	require load_page('header.php');
+	
+	require get_view_path('moderate-form.tpl.php');
 }
-
-
-// No specific forum moderation action was specified in the query string, so we'll display the moderator forum
-
-// Fetch some info about the forum
-$result = $db->query('SELECT f.forum_name, f.num_topics, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
-if (!$db->num_rows($result))
-	message($lang['Bad request'], false, '404 Not Found');
-
-$cur_forum = $db->fetch_assoc($result);
-
-switch ($cur_forum['sort_by']) {
-	case 0:
-		$sort_by = 'last_post DESC';
-		break;
-	case 1:
-		$sort_by = 'posted DESC';
-		break;
-	case 2:
-		$sort_by = 'subject ASC';
-		break;
-	default:
-		$sort_by = 'last_post DESC';
-		break;
-}
-
-// Determine the topic offset (based on $_GET['p'])
-$num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);
-
-$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
-$start_from = $luna_user['disp_topics'] * ($p - 1);
-
-// Generate paging links
-$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
-
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
-define('FORUM_ACTIVE_PAGE', 'moderate');
-require load_page('header.php');
-
-require get_view_path('moderate-form.tpl.php');

@@ -4,35 +4,19 @@
 if (!defined('FORUM'))
     exit;
 
+$jumbo_style = 'style="background:'.$cur_forum['color'].';"';
+
 ?>
-
-<div class="row row-nav-fix">
-    <div class="col-sm-6">
-        <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
-            <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-            <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
-    </div>
 </div>
+<div class="jumbotron<?php echo $item_status ?>"<?php echo $jumbo_style ?>>
+	<div class="container">
+		<h2>Moderating <?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right"><ul class="pagination"><?php echo $paging_links ?></ul></span>
+	</div>
+</div>
+<div class="container">
 
-<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+	<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 
-<div class="forum-box">
-    <div class="row forum-header">
-        <div class="col-xs-6"><?php echo $lang['Topic'] ?></div>
-        <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Replies forum'] ?></p></div>
-        <?php if ($luna_config['o_topic_views'] == '1'): ?>
-            <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo $lang['Views'] ?></p></div>
-        <?php endif; ?>
-        <div class="col-xs-3 hidden-xs"><?php echo $lang['Last post'] ?></div>
-        <div class="col-xs-1"><p class="text-center"><?php echo $lang['Select'] ?></p></div>
-    </div>
 <?php
 
 
@@ -110,20 +94,9 @@ if ($db->num_rows($result)) {
         }
 
 ?>
-    <div class="row topic-row <?php echo $item_status ?>">
-        <div class="col-xs-6">
-            <div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
-            <div class="tclcon">
-                <div>
-                    <?php echo $subject."\n" ?>
-                </div>
-            </div>
-        </div>
-                    <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_replies']) : '-' ?></p></div>
-<?php if ($luna_config['o_topic_views'] == '1'): ?>                 <div class="col-xs-1 hidden-xs"><p class="text-center"><?php echo (!$ghost_topic) ? forum_number_format($cur_topic['num_views']) : '-' ?></p></div>
-<?php endif; ?>                 <div class="col-xs-3 hidden-xs"><?php echo $last_post ?></div>
-                    <div class="col-xs-1"><p class="text-center"><input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /></p></div>
-    </div>
+    <div class="topic-entry-list">
+<?php require get_view_path('topic.php'); ?>
+	</div>
 <?php
 
     }
@@ -133,34 +106,19 @@ if ($db->num_rows($result)) {
     echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.$lang['Empty forum'].'</td></tr>'."\n";
 }
 
-?>
-</div>
-
-
-<div class="row row-nav-fix">
-    <div class="col-sm-6">
-        <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
-            <a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
-            <a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="btn-group">
-            <input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> />
-            <input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> />
-            <input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> />
-        </div>
-        <div class="btn-group">
-            <input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> />
-            <input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> />
-        </div>
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
-    </div>
-</div>
-</form>
+?>	
+		<div class="pull-right">
+			<div class="btn-group">
+				<input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> />
+				<input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> />
+				<input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> />
+			</div>
+			<div class="btn-group">
+				<input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> />
+				<input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> />
+			</div>
+		</div>
+	</form>
 
 <?php
 

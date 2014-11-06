@@ -450,7 +450,7 @@ function draw_topic_list() {
 			}
 		}
 	
-		require get_view_path('comment.php'); 
+		require get_view_path('comment.php');
 	}
 
 }
