@@ -418,6 +418,10 @@ switch ($stage) {
 		if (array_key_exists('o_quickpost', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickpost\'') or error('Unable to remove config value \'o_quickpost\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.3248: Add o_private_message/experimental feature
+		if (!array_key_exists('o_private_message', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_private_message\', \'0\')') or error('Unable to insert config value \'o_private_message\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
