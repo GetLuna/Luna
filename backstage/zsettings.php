@@ -28,7 +28,8 @@ if (isset($_POST['form_sent'])) {
 		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0',
 		'forum_new_style'		=> isset($_POST['form']['forum_new_style']) ? '1' : '0',
 		'user_menu_sidebar'		=> isset($_POST['form']['user_menu_sidebar']) ? '1' : '0',
-		'reading_list'		=> isset($_POST['form']['reading_list']) ? '1' : '0'
+		'reading_list'			=> isset($_POST['form']['reading_list']) ? '1' : '0',
+		'private_message'		=> isset($_POST['form']['private_message']) ? '1' : '0'
 	);
 
 	foreach ($form as $key => $input) {
@@ -75,7 +76,7 @@ if (isset($_GET['saved']))
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zBackstageDark<span class="help-block"><span class="label label-success">low</span></span></label>
+                    <label class="col-sm-3 control-label">zBackstageDark<span class="help-block"><span class="label label-info">low</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -86,7 +87,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block"><span class="label label-warning">normal</span></span></label>
+                    <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block"><span class="label label-warning">high</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -97,7 +98,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zHooks<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-danger">high</span></span></label>
+                    <label class="col-sm-3 control-label">zHooks<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-danger">very high</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -108,7 +109,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zNotifications<span class="help-block"><span class="label label-danger">high</span></span></label>
+                    <label class="col-sm-3 control-label">zNotifications<span class="help-block"><span class="label label-warning">high</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -119,7 +120,18 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zReadingList<span class="help-block"><span class="label label-danger">high</span></span></label>
+                    <label class="col-sm-3 control-label">zPrivateMessaging<span class="help-block"><span class="label label-danger">very high</span></span></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[private_message]" value="1" <?php if ($luna_config['o_private_message'] == '1') echo ' checked="checked"' ?> />
+								enable private messaging system
+							</label>
+						</div>
+					</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">zReadingList<span class="help-block"><span class="label label-success">normal</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
@@ -130,7 +142,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-success">low</span</span></label>
+                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-success">normal</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
