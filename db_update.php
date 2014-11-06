@@ -422,6 +422,166 @@ switch ($stage) {
 		if (!array_key_exists('o_private_message', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_private_message\', \'0\')') or error('Unable to insert config value \'o_private_message\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.3250: Add the messages table
+		if (!$db->table_exists('messages')) {
+			$schema = array(
+				'FIELDS'			=> array(
+					'id'				=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'    => false
+					),
+					'shared_id'		=> array(
+						'datatype'		=> 'INT(10)',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'last_shared_id'	=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'last_post'			=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> true,
+						'default'			=> '0'
+					),
+					'last_post_id'		=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> true,
+						'default'			=> '0'
+					),
+					'last_poster'		=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'owner'				=> array(
+						'datatype'			=> 'INTEGER',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'subject'			=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false
+					),
+					'message'			=> array(
+						'datatype'			=> 'MEDIUMTEXT',
+						'allow_null'		=> false
+					),
+					'hide_smilies'	=> array(
+						'datatype'		=> 'TINYINT(1)',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'show_message'	=> array(
+						'datatype'		=> 'TINYINT(1)',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'sender'	=> array(
+						'datatype'		=> 'VARCHAR(200)',
+						'allow_null'	=> false
+					),
+					'receiver'	=> array(
+						'datatype'		=> 'VARCHAR(200)',
+						'allow_null'	=> true
+					),
+					'sender_id'	=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'receiver_id'	=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> true,
+						'default'			=> '0'
+					),
+					'sender_ip'	=> array(
+						'datatype'			=> 'VARCHAR(39)',
+						'allow_null'		=> true
+					),
+					'posted'	=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+					),
+					'showed'	=> array(
+						'datatype'			=> 'TINYINT(1)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					)
+				),
+				'PRIMARY KEY'		=> array('id'),
+			);
+			
+			$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
+		}
+
+		// Since 0.0.3250: Add the messages table
+		if (!$db->table_exists('contacts')) {
+			$schema = array(
+				'FIELDS'			=> array(
+					'id'				=> array(
+						'datatype'			=> 'SERIAL',
+						'allow_null'    	=> false
+					),
+					'user_id'			=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'contact_id'		=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'contact_name'		=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+					),
+					'allow_msg'			=> array(
+						'datatype'			=> 'TINYINT(1)',
+						'allow_null'		=> false,
+						'default'		=> '1'
+					)
+				),
+				'PRIMARY KEY'		=> array('id'),
+			);
+	
+			$db->create_table('contacts', $schema) or error('Unable to create contacts table', __FILE__, __LINE__, $db->error());
+		}
+
+		// Since 0.0.3250: Add the messages table
+		if (!$db->table_exists('contacts')) {
+			$schema = array(
+				'FIELDS'			=> array(
+					'id'				=> array(
+						'datatype'			=> 'SERIAL',
+						'allow_null'    	=> false
+					),
+					'user_id'			=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'array_id'			=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+					),
+					'name'				=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+					),
+					'receivers'		=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+					),
+				),
+				'PRIMARY KEY'		=> array('id'),
+			);
+			
+			$db->create_table('sending_lists', $schema) or error('Unable to create sending lists table', __FILE__, __LINE__, $db->error());
+		}
+
 		break;
 
 	// Preparse posts
