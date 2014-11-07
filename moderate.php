@@ -283,13 +283,14 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		$action = 'single';
 	}
 
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
+	define('FORUM_ACTIVE_PAGE', 'moderate');
+	require load_page('header.php');
+
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) < 2)
 		message($lang['Nowhere to move']);
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
-	define('FORUM_ACTIVE_PAGE', 'moderate');
-	require load_page('header.php');
 
 	require get_view_path('moderate-move_topics.tpl.php');
 }
