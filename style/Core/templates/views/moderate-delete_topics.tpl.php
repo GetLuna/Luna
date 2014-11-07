@@ -19,7 +19,7 @@ if (!defined('FORUM'))
             </fieldset>
         </div>
         <div class="panel-footer">
-            <input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            <input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" />
         </div>
     </div>
 </form>

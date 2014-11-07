@@ -48,7 +48,7 @@ if (!defined('FORUM'))
             </fieldset>
         </div>
         <div class="panel-footer">
-            <input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+            <input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" />
         </div>
     </div>
 </form>
