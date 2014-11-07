@@ -551,7 +551,7 @@ switch ($stage) {
 		}
 
 		// Since 0.0.3250: Add the messages table
-		if (!$db->table_exists('contacts')) {
+		if (!$db->table_exists('sending_lists')) {
 			$schema = array(
 				'FIELDS'			=> array(
 					'id'				=> array(
