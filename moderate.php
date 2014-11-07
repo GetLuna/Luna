@@ -178,12 +178,12 @@ if (isset($_GET['tid'])) {
 			redirect('viewtopic.php?id='.$new_tid);
 		}
 
-		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
-
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
 		$focus_element = array('subject','new_subject');
 		define('FORUM_ACTIVE_PAGE', 'moderate');
 		require load_page('header.php');
+
+		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 		require get_view_path('moderate-split_posts.tpl.php');
 	}
@@ -334,7 +334,6 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) 
 		while ($row = $db->fetch_row($result))
 			$subscribed_users[] = $row[0];
 
-
 		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE topic_id IN ('.implode(',', $topics).')') or error('Unable to delete subscriptions of merged topics', __FILE__, __LINE__, $db->error());
 
 		foreach ($subscribed_users as $cur_user_id)
@@ -363,12 +362,13 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) 
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (count($topics) < 2)
 		message($lang['Not enough topics selected']);
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
-	define('FORUM_ACTIVE_PAGE', 'moderate');
-	require load_page('header.php');
-
-	require get_view_path('moderate-merge_topics.tpl.php');
+	else {
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Moderate']);
+		define('FORUM_ACTIVE_PAGE', 'moderate');
+		require load_page('header.php');
+	
+		require get_view_path('moderate-merge_topics.tpl.php');
+	}
 }
 
 // Delete one or more topics
@@ -397,7 +397,6 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 			if ($db->num_rows($result))
 				message($lang['No permission'], false, '403 Forbidden');
 		}
-
 
 		// Delete the topics and any redirect topics
 		$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.$topics.') OR moved_to IN('.$topics.')') or error('Unable to delete topic', __FILE__, __LINE__, $db->error());

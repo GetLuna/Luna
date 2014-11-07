@@ -1034,7 +1034,7 @@ function simple_paginate($num_pages, $cur_page, $link) {
 // Display a message in the frontend
 //
 function message($message, $no_back_link = false, $http_status = null) {
-	global $db, $lang, $luna_config, $luna_start, $tpl_main, $luna_user;
+	global $db, $lang, $luna_config, $luna_start, $luna_user;
 
 	// Did we receive a custom header?
 	if(!is_null($http_status)) {
