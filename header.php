@@ -69,8 +69,27 @@ $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->p
 if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
 				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
-else
-	$usermenu = '<li class="dropdown">
+elseif ($zset && $luna_config['o_notifications'] == '1')
+	$usermenu = '
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-circle"></i></a>
+					<ul class="dropdown-menu notification-menu">
+						<li role="presentation" class="dropdown-header">Notifications</li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="fa fa-user text-success"></i> Odd mentioned you in "You can do anything"</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="fa fa-inbox text-warning"></i> New PM from Mellow</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="fa fa-arrow-circle-up text-danger"></i> Luna 0.1.3400 is available</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="fa fa-user text-info"></i> New comment in "Luna Preview 1"</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="fa fa-user text-success"></i> Zoe mentioned you in "Express Yourself"</a></li>
+						<li class="divider"></li>
+						<li><a class="pull-right" href="#">More <i class="fa fa-arrow-right"></i></a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>
 					<ul class="dropdown-menu">
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
@@ -79,7 +98,21 @@ else
 						<li class="divider"></li>
 						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>
 					</ul>
-				   </li>';
+				</li>
+	';
+else
+	$usermenu = '
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>
+					<ul class="dropdown-menu">
+						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
+						<li><a href="me.php?id='.$luna_user['id'].'">Me</a></li>
+						<li><a href="help.php">'.$lang['Help'].'</a></li>
+						<li class="divider"></li>
+						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>
+					</ul>
+				</li>
+	';
 
 if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
