@@ -65,7 +65,7 @@ if (isset($_GET['saved']))
 <div class="alert alert-danger">
 	<h4>zSettings can be activated</h4>
 	<p>This board system has been given permission to enable zSettings. It is strongly recommended to do this only when you know what you're doing and you know what these features enable/disable/change. If you do not, please disable zSettings at once.</p>
-	<p>zSettings have been provided with a risk label. How higher the label, how higher the risk is for corrupting your database. Settings with a "disabled"-label point to settings that can't be changed or settings of which the code isn't available in the core.</p>
+	<p>zSettings have been provided with a risk label. How higher the label, how higher the risk is for corrupting your database, board or how unstable the feature is. Settings with a "disabled"-label point to settings that can't be changed or settings of which the code isn't available in the core.</p>
 </div>
 <form class="form-horizontal" method="post" action="zsettings.php">
     <div class="panel panel-default">
@@ -120,7 +120,7 @@ if (isset($_GET['saved']))
 					</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zPrivateMessaging<span class="help-block"><span class="label label-danger">very high</span></span></label>
+                    <label class="col-sm-3 control-label">zPrivateMessages<span class="help-block"><span class="label label-kaput">heck, we even don't have a color for this</span></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>

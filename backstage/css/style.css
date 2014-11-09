@@ -456,6 +456,10 @@ h3.panel-title {
 	background-color: #14a3ff;
 }
 
+.label-kaput {
+	background-color: #111;
+}
+
 /* Pagination */
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	background: #14a3ff;
