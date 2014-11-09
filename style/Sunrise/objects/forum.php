@@ -35,9 +35,20 @@ if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
         if (luna_strlen($cur_forum['subject']) > 43)
             $cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 42).'…';
 
-			$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><span class="help-block">by '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+			$last_post = '
+				<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'" class="list-group-item">
+					'.luna_htmlspecialchars($cur_forum['subject']).'
+					<span class="pull-right">
+						by '.luna_htmlspecialchars($cur_forum['username']).'
+					</span>
+				</a>
+			';
     } else
-		$last_post = 'No posts yet';
+		$last_post = '
+			<div class="list-group-item no-posts">
+				No posts yet
+			</div>
+		';
 
 	$forum_stats = '<b>'.$cur_forum['num_topics'].'</b> topics<br /><b>'.$cur_forum['num_posts'].'</b> posts';
 
@@ -48,7 +59,9 @@ if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
 		<div class="help-block"><?php echo $forum_desc ?></div>
 	</div>
 	<div class="col-sm-8">
-		<?php echo $last_post ?>
+		<div class="list-group">
+			<?php echo $last_post ?>
+		</div>
 	</div>
 </div>
 <span class="hr-forum-entry">

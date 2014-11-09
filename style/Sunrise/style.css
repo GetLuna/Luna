@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 5px !important;
 }
 
-@media all and (max-width:767px) {
+@media all and (max-width: 767px) {
 	.navbar-brand {
 		height: 50px;
 		padding: 15px 15px;
@@ -201,9 +201,14 @@ a.list-group-item-cat:hover .forum-description {
 	text-align: right;
 }
 
+@media all and (max-width: 767px) {
+	.forum-entry .col-sm-4 {
+		text-align: center;
+	}
+}
 .forum-entry .col-sm-4 h4 {
 	margin-top: 7px;
-	font-size: 21px;
+	font-size: 25px;
 }
 
 .forum-entry .col-sm-4 .help-block {
@@ -211,6 +216,20 @@ a.list-group-item-cat:hover .forum-description {
     letter-spacing: 0.5px;
     font-size: 85%;
 	margin-bottom: 0;
+}
+
+.forum-entry .list-group {
+	margin-bottom: 0;
+}
+
+.forum-entry .list-group-item {
+	margin-top: 1px;
+	padding: 6px 10px;
+}
+
+.forum-entry .no-posts {
+	border-color: #eee;
+	color: #999;
 }
 
 .hr-forum-entry hr {
