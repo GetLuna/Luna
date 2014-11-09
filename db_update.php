@@ -582,6 +582,24 @@ switch ($stage) {
 			$db->create_table('sending_lists', $schema) or error('Unable to create sending lists table', __FILE__, __LINE__, $db->error());
 		}
 
+		// Since 0.0.3263: Add the g_pm column to the groups table
+		$db->add_field('groups', 'g_pm', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_pm" to table "groups"', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.3263: Add the g_pm_limit column to the groups table
+		$db->add_field('groups', 'g_pm_limit', 'INT', false, '20', 'g_pm') or error('Unable to add column "g_pm_limit" to table "groups"', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.3263: Add the use_pm column to the users table
+		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.3263: Add the notify_pm column to the users table
+		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.3263: Add the notify_pm_full column to the users table
+		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+
+		// Since 0.0.3263: Add the num_pms column to the users table
+		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

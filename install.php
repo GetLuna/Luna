@@ -891,6 +891,16 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				'allow_null'	=> false,
 				'default'		=> '60'
 			),
+			'g_pm'						=> array(
+				'datatype'		=> 'TINYINT(1)',
+				'allow_null'	=> false,
+				'default'		=> '1'
+			),
+			'g_pm_limit'				=> array(
+				'datatype'		=> 'INT',
+				'allow_null'	=> false,
+				'default'		=> '20'
+			),
 			'g_report_flood'			=> array(
 				'datatype'		=> 'SMALLINT(6)',
 				'allow_null'	=> false,
@@ -899,9 +909,8 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		),
 		'PRIMARY KEY'	=> array('g_id')
 	);
-
+	
 	$db->create_table('groups', $schema) or error('Unable to create groups table', __FILE__, __LINE__, $db->error());
-
 
 	$schema = array(
 		'FIELDS'		=> array(
@@ -1569,6 +1578,26 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 			'activate_key'		=> array(
 				'datatype'		=> 'VARCHAR(8)',
 				'allow_null'	=> true
+			),
+			'use_pm'		=> array(
+				'datatype'		=> 'TINYINT(1)',
+				'allow_null'	=> false,
+				'default'		=> '1'
+			),
+			'notify_pm'		=> array(
+				'datatype'		=> 'TINYINT(1)',
+				'allow_null'	=> false,
+				'default'		=> '1'
+			),
+			'notify_pm_full'=> array(
+				'datatype'		=> 'TINYINT(1)',
+				'allow_null'	=> false,
+				'default'		=> '0'
+			),
+			'num_pms'	=> array(
+				'datatype'		=> 'INT(10) UNSIGNED',
+				'allow_null'	=> false,
+				'default'		=> '0'
 			),
 			'first_run'		=> array(
 				'datatype'		=> 'TINYINT(1)',
