@@ -206,6 +206,7 @@ a.list-group-item-cat:hover .forum-description {
 		text-align: center;
 	}
 }
+
 .forum-entry .col-sm-4 h4 {
 	margin-top: 7px;
 	font-size: 25px;
@@ -227,9 +228,10 @@ a.list-group-item-cat:hover .forum-description {
 	padding: 6px 10px;
 }
 
-.forum-entry .no-posts {
-	border-color: #eee;
-	color: #999;
+@media all and (max-width: 400px) {
+	.forum-entry .list-group-item .pull-right {
+		display: none;
+	}
 }
 
 .hr-forum-entry hr {

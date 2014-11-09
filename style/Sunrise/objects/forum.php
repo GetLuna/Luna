@@ -32,17 +32,17 @@ if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
 
     // If there is a last_post/last_poster
     if ($cur_forum['last_post'] != '') {
-        if (luna_strlen($cur_forum['subject']) > 43)
-            $cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 42).'…';
+        if (luna_strlen($cur_forum['subject']) > 60)
+            $cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 59).'…';
 
-			$last_post = '
-				<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'" class="list-group-item">
-					'.luna_htmlspecialchars($cur_forum['subject']).'
-					<span class="pull-right">
-						by '.luna_htmlspecialchars($cur_forum['username']).'
-					</span>
-				</a>
-			';
+		$last_post = '
+			<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'" class="list-group-item">
+				'.luna_htmlspecialchars($cur_forum['subject']).'
+				<span class="pull-right">
+					by '.luna_htmlspecialchars($cur_forum['username']).'
+				</span>
+			</a>
+		';
     } else
 		$last_post = '
 			<div class="list-group-item no-posts">
