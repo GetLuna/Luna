@@ -28,6 +28,7 @@ if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
 } else {
 	$forum_style = 'style="background-color:'.$cur_forum['color'].';border-color:'.$cur_forum['color'].';"';
 	$group_style = 'style="border:'.$cur_forum['color'].' 3px solid;"';
+	$forum_background_color = 'style="background-color:'.$cur_forum['color'].';"';
 
     // If there is a last_post/last_poster
     if ($cur_forum['last_post'] != '') {
@@ -41,16 +42,16 @@ if ($luna_config['o_forum_new_style'] == '0' || (!isset($zset))) {
 	$forum_stats = '<b>'.$cur_forum['num_topics'].'</b> topics<br /><b>'.$cur_forum['num_posts'].'</b> posts';
 
 ?>
-<div class="row forum-entry" <?php echo $group_style ?>>
-	<div class="col-md-6 col-sm-6 col-xs-6 forum-subject"<?php echo $forum_style ?>>
-		<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>"><h3><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h3></a>
-		<?php echo $forum_desc ?>
+<div class="row forum-entry">
+	<div class="col-sm-4">
+		<h4><a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="label label-lg label-default" <?php echo $forum_background_color ?>><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a></h4>
+		<div class="help-block"><?php echo $forum_desc ?></div>
 	</div>
-	<div class="col-md-2 hidden-sm hidden-xs forum-stats">
-		<?php echo $forum_stats ?>
-	</div>
-	<div class="col-md-4 col-sm-6 col-xs-6 forum-last">
+	<div class="col-sm-8">
 		<?php echo $last_post ?>
 	</div>
 </div>
+<span class="hr-forum-entry">
+	<hr />
+</span>
 <?php } ?>

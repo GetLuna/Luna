@@ -197,33 +197,25 @@ a.list-group-item-cat:hover .forum-description {
 	padding-right: 15px;
 }
 
-.forum-entry {
-	margin-bottom: 3px;
+.forum-entry .col-sm-4 {
+	text-align: right;
 }
 
-.forum-entry .forum-subject {
-	padding-left: 10px;
-	min-height: 55px;
+.forum-entry .col-sm-4 h4 {
+	margin-top: 7px;
+	font-size: 21px;
 }
 
-.forum-entry h3 {
-	margin-top: 5px;
-	margin-bottom: 3px;
+.forum-entry .col-sm-4 .help-block {
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-size: 85%;
+	margin-bottom: 0;
 }
 
-.forum-entry a h3, .forum-entry a:hover h3, .forum-entry a:active h3 {
-	color: #fff;
-	text-decoration: none;
-}
-
-.forum-entry .forum-description {
-	font-size: 13px;
-	color: #fff;
-	margin-bottom: 5px;
-}
-
-.forum-entry a:hover {
-	text-decoration: none;
+.hr-forum-entry hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .statistic-item {

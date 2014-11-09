@@ -114,7 +114,7 @@ if (isset($_GET['saved']))
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[notifications]" value="1" <?php if ($luna_config['o_notifications'] == '1') echo ' checked="checked"' ?> />
-								enable notifications throug Luna
+								enable notifications through Luna
 							</label>
 						</div>
 					</div>
