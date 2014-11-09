@@ -129,7 +129,7 @@ load_admin_nav('settings', 'private_messages');
 							</label>
 						</div>
                         <input type="text" class="form-control" name="limit[<?php echo $cur_group['g_id'] ?>]" maxlength="5" value="<?php echo $cur_group['g_pm_limit'] ?>" />
-						<p class="help-block">The maximum amount of messages a user in this group can have in his inbox.</p>
+						<p class="help-block">The maximum amount of messages a user in this group can have in his inbox. 0 is no limit.</p>
                     </div>
                 </div>
 <?php
