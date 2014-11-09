@@ -179,31 +179,28 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_pms['Contacts'] ?></strong></li>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="pms_inbox.php">Inbox</a></li>
+			<li><a href="pms_contacts.php">Contacs</a></li>
+			<li><a href="pms_sending_lists.php">Sending lists</a></li>
 		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li class="isactive"><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<div class="btn-compose pull-left">
+				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php"><span class="fa fa-pencil"></span> Compose</a>
 			</div>
-		</div>
+		</ul>
 	</div>
+</nav>
 <script type="text/javascript">
 /* <![CDATA[ */
 function checkAll(checkWhat,command){
@@ -217,42 +214,42 @@ function checkAll(checkWhat,command){
 }
 /* ]]> */
 </script>
-<br />
-<div class="blockform">
-	<div class="box">
-		<form action="" method="post">
-		<div class="inform">
+<form class="form-horizontal" action="pms_sending_lists.php" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Add a list<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></span></h3>
+		</div>
+		<div class="panel-body">
 			<fieldset>
-				<legend><?php echo $lang_pms['Add a list'] ?></legend>
-				<div class="infldset">
-					<label class="conl"><?php echo $lang_pms['List name'] ?><br />
-					<input type="text" name="list_name" size="25" maxlength="255" tabindex="1" /></label><br />
-					<label class="con"><?php echo $lang_pms['List usernames comma'] ?><br />
-					<textarea name="req_username" rows="1" cols="50" tabindex="1"></textarea><br />
-					</label>
+				<input type="hidden" name="form_sent" value="1" />
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang_pms['List name'] ?></label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="list_name" size="25" maxlength="255" tabindex="1" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang_pms['List usernames comma'] ?><span class="help-block">Separate names with commas</span></label>
+					<div class="col-sm-9">
+						<textarea class="form-control" name="req_username" rows="2" cols="50" tabindex="1"></textarea>
+					</div>
 				</div>
 			</fieldset>
 		</div>
-		<p class="buttons"><input type="hidden" name="form_sent" value="1" /><input type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></p>
-		</form>
 	</div>
-</div>
-<br />
-<form method="post" action="">
-<div class="blocktable">
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th><?php echo $lang_pms['List name'] ?></th>
-					<th><?php echo $lang_pms['List usernames'] ?></th>
-					<th><?php echo $lang_pms['Delete'] ?></th>
-					<th><?php echo $lang_pms['Quick message'] ?></th>
-					<th class="tcmod"><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_lists[]','checkAllButon');" /></label></th>
-				</tr>
-			</thead>
-			<tbody>
+</form>
+<form method="post" action="pms_sending_lists.php">
+	<table class="table">
+		<thead>
+			<tr>
+				<th><?php echo $lang_pms['List name'] ?></th>
+				<th><?php echo $lang_pms['List usernames'] ?></th>
+				<th><?php echo $lang_pms['Delete'] ?></th>
+				<th><?php echo $lang_pms['Quick message'] ?></th>
+				<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_lists[]','checkAllButon');" /></label></th>
+			</tr>
+		</thead>
+		<tbody>
 <?php
 // Fetch lists
 $result = $db->query('SELECT * FROM '.$db->prefix.'sending_lists WHERE user_id='.$luna_user['id'].' ORDER BY id DESC') or error('Unable to update the list of the lists', __FILE__, __LINE__, $db->error());
@@ -270,45 +267,31 @@ if ($db->num_rows($result))
 			$usernames = $usernames.'<a href="profile.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($usernames_list[$i]).'</a>';
 		} 
 ?>
-	<tr>
-		<td><?php echo luna_htmlspecialchars($cur_list['name']) ?></td>
-		<td><?php echo $usernames ?></td>
-		<td><a href="pms_sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete list confirm'] ?>')"><?php echo $lang_pms['Delete this list'] ?></a></td>
-		<td><a href="pms_send.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang_pms['Quick message'] ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
-		<td class="tcmod"><input type="checkbox" name="selected_lists[]" value="<?php echo $cur_list['id'] ?>" /></td>
-	</tr>
+			<tr>
+				<td><?php echo luna_htmlspecialchars($cur_list['name']) ?></td>
+				<td><?php echo $usernames ?></td>
+				<td><a href="pms_sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete list confirm'] ?>')"><?php echo $lang_pms['Delete this list'] ?></a></td>
+				<td><a href="pms_send.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang_pms['Quick message'] ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+				<td><input type="checkbox" name="selected_lists[]" value="<?php echo $cur_list['id'] ?>" /></td>
+			</tr>
 <?php
 	}
 }
 else
-	echo "\t".'<tr><td class="puncon1" colspan="5">'.$lang_pms['No sending lists'].'</td></tr>'."\n";
+	echo "\t".'<tr><td colspan="5">'.$lang_pms['No sending lists'].'</td></tr>'."\n";
 ?>
-			</tbody>
-			</table>
+		</tbody>
+	</table>
+	<label>With selection</label>
+	<div class="input-group">
+		<select class="form-control" name="action">
+			<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
+		</select>
+		<div class="input-group-btn">
+			<input class="btn btn-primary" type="submit" value="<?php echo $lang_pms['OK'] ?>" />
 		</div>
 	</div>
-</div>
-
-<div class="linksb">
-	<div class="contacts crumbsplus">
-		<div class="pagepost">
-		<div style="text-align: right;">
-				<p class="conr" style="width:auto">
-				<label style="display:inline">
-				<?php echo $lang_pms['For select'] ?> 
-				<select name="action">
-					<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
-				</select>
-				</label> 
-				<input type="submit" value="<?php echo $lang_pms['OK'] ?>" />
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="clearer"></div>
-</div>
 </form>
-</div>
 
 <?php
 	require load_page('footer.php');

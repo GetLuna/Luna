@@ -211,9 +211,9 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 	$p_subject = luna_trim($_POST['req_subject']);
 	
 	if ($p_subject == '' && $edit == '0')
-		$errors[] = $lang_post['No subject'];
+		$errors[] = $lang['No subject'];
 	elseif (luna_strlen($p_subject) > '70')
-		$errors[] = $lang_post['Too long subject'];
+		$errors[] = $lang['Too long subject'];
 	elseif ($luna_config['p_subject_all_caps'] == '0' && strtoupper($p_subject) == $p_subject && $luna_user['is_admmod'])
 		$p_subject = ucwords(strtolower($p_subject));
 
@@ -222,11 +222,11 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 
 	// Check message
 	if ($p_message == '')
-		$errors[] = $lang_post['No message'];
+		$errors[] = $lang['No message'];
 
 	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 	else if (strlen($p_message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf($lang_post['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
+		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
 	else if ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
 		$p_message = ucwords(strtolower($p_message));
 
@@ -451,76 +451,61 @@ $page_head['script'] = '<script type="text/javascript" src="include/pms.js"></sc
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><?php echo $lang_pms['Send a message'] ?></li>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="pms_inbox.php">Inbox</a></li>
+			<li><a href="pms_contacts.php">Contacs</a></li>
+			<li><a href="pms_sending_lists.php">Sending lists</a></li>
 		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li class="isactive"><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<div class="btn-compose pull-left">
+				<a type="button" class="btn btn-danger navbar-btn disabled" href="pms_send.php"><span class="fa fa-pencil"></span> Composing...</a>
 			</div>
-		</div>
+		</ul>
 	</div>
-<br />
+</nav>
 <?php
 // If there are errors, we display them
-if (!empty($errors))
-{
+if (!empty($errors)) {
 ?>
-<div id="posterror" class="block">
-	<h2><span><?php echo $lang_post['Post errors'] ?></span></h2>
-	<div class="box">
-		<div class="inbox error-info">
-			<p><?php echo $lang_post['Post errors info'] ?></p>
-			<ul class="error-list">
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		<h3 class="panel-title">Post errors</h3>
+	</div>
+	<div class="panel-body">
+		<p><?php echo $lang['Post errors info'] ?></p>
+			<ul>
 <?php
-
 	foreach ($errors as $cur_error)
 		echo "\t\t\t\t".'<li><strong>'.$cur_error.'</strong></li>'."\n";
 ?>
 			</ul>
-		</div>
 	</div>
 </div>
-
 <?php
 
-}
-else if (isset($_POST['preview']))
-{
+} else if (isset($_POST['preview'])) {
 	require_once FORUM_ROOT.'include/parser.php';
 	$preview_message = parse_message($p_message, $hide_smilies);
 
 ?>
-<div class="blockform">
-	<div class="box">
-		<div class="inform">
-		<fieldset>
-			<legend><?php echo $lang_post['Post preview'] ?></legend>
-			<div class="infldset txtarea">
-				<p><?php echo $preview_message."\n" ?></p>	
-			</div>
-		</fieldset>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Post preview</h3>
+	</div>
+	<div class="panel-body">
+		<p><?php echo $preview_message."\n" ?></p>
 	</div>
 </div>
-</div>
-<br />
-
 <?php
 
 }
@@ -528,13 +513,13 @@ else if (isset($_POST['preview']))
 $cur_index = 1;
 
 ?>
-<div class="blockform">
-	<div class="box">
-	<form method="post" id="post" action="pms_send.php" onsubmit="return process_form(this)">
-		<div class="inform">
-		<fieldset>
-			<legend><?php echo $lang['Write message legend'] ?></legend>
-			<div class="infldset txtarea">
+<form class="form-horizontal" method="post" id="post" action="pms_send.php" onsubmit="return process_form(this)">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Write message</h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
 				<input type="hidden" name="form_sent" value="1" />
 				<input type="hidden" name="form_user" value="<?php echo luna_htmlspecialchars($luna_user['username']) ?>" />
 				<?php echo (($r != '0') ? '<input type="hidden" name="reply" value="'.$r.'" />' : '') ?>
@@ -542,78 +527,64 @@ $cur_index = 1;
 				<?php echo (($q != '0') ? '<input type="hidden" name="quote" value="1" />' : '') ?>
 				<?php echo (($tid != '0') ? '<input type="hidden" name="tid" value="'.$tid.'" />' : '') ?>
 				<?php if ($r == '0' && $q == '0' && $edit == '0') : ?>
-				<div id="js_enabled">
-				<?php
-				$result = $db->query('SELECT * FROM '.$db->prefix.'sending_lists WHERE user_id='.$luna_user['id'].' ORDER BY id DESC') or error('Unable to update the list of the contacts', __FILE__, __LINE__, $db->error());
-
-				if ($db->num_rows($result))
-				{
-					echo '<div class="conl"><p id="sending_list" style="display: none;"><label>'.$lang_pms['Sending lists'].'<br />';
-					echo '<select id="sending_list" name="sending_list">';
-						echo '<option value="" selected>'.$lang_pms['Select a list'].'</option>';
-							while ($cur_list = $db->fetch_assoc($result))
-							{
-								$usernames = '';
-								$ids_list = unserialize($cur_list['array_id']);
-								$usernames_list = unserialize($cur_list['receivers']);
-								for($i = 0; $i < count($ids_list); $i++)
-								{
-									if ($i > 0 && $i < count($ids_list))
-											$usernames = $usernames.', ';
-									
-									$usernames = $usernames.luna_htmlspecialchars($usernames_list[$i]);
-								} 
-								echo '<option value="'.$usernames.'">'.luna_htmlspecialchars($cur_list['name']).'</option>';
-							}
-					echo '</select><br />';
-					echo '</label></p></div>';
-				}
-				?>
-				</div>
-				<noscript><p><?php echo $lang_pms['JS required'] ?></p></noscript>
-				<label class="required"><strong><?php echo $lang_pms['Send to'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
-				<input type="text" name="p_username" id="p_username" size="30" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
-				<p><?php echo $lang_pms['Send multiple'].($luna_config['o_pms_max_receiver']-1) ?></p>
-				<div class="clearer"></div>
-				<label class="required"><strong><?php echo $lang['Subject'] ?> <span><?php echo $lang['Required'] ?></span></strong><br />
-				<input class="longinput" type="text" name="req_subject" value="<?php echo ($p_subject != '' ? luna_htmlspecialchars($p_subject) : ''); ?>" size="80" maxlength="255" tabindex="<?php echo $cur_index++ ?>" /><br /></label>
+					<?php
+					$result = $db->query('SELECT * FROM '.$db->prefix.'sending_lists WHERE user_id='.$luna_user['id'].' ORDER BY id DESC') or error('Unable to update the list of the contacts', __FILE__, __LINE__, $db->error());
+	
+					if ($db->num_rows($result)) {
+					?>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php echo $lang_pms['Sending lists'] ?></label>
+						<div class="col-sm-9">
+							<select class="form-control" id="sending_list" name="sending_list">
+								<option value="" selected><?php echo $lang_pms['Select a list'] ?></option>
+								<?php
+								while ($cur_list = $db->fetch_assoc($result)) {
+									$usernames = '';
+									$ids_list = unserialize($cur_list['array_id']);
+									$usernames_list = unserialize($cur_list['receivers']);
+									for($i = 0; $i < count($ids_list); $i++) {
+										if ($i > 0 && $i < count($ids_list))
+												$usernames = $usernames.', ';
+										
+										$usernames = $usernames.luna_htmlspecialchars($usernames_list[$i]);
+									} 
+									echo '<option value="'.$usernames.'">'.luna_htmlspecialchars($cur_list['name']).'</option>';
+								}
+								?>
+							</select>
+						</div>
+						<noscript><p><?php echo $lang_pms['JS required'] ?></p></noscript>	
+					</div>
+					<?php } ?>
 				<?php else : ?>
 				<input type="hidden" name="p_username" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" />
 				<input type="hidden" name="req_subject" value="<?php echo luna_htmlspecialchars($p_subject) ?>" />
-        		<?php endif; ?>
-				<label class="required"><strong><?php echo $lang['Message'] ?> <span><?php echo $lang['Required'] ?></span></strong>
-				<textarea name="req_message" rows="20" cols="95" tabindex="<?php echo $cur_index++ ?>"><?php echo ($p_message != '' ? luna_htmlspecialchars($p_message) : ''); ?></textarea><br /></label>
-						<ul class="bblinks">
-							<li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a> <?php echo ($luna_config['p_message_bbcode'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-							<li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a> <?php echo ($luna_config['p_message_img_tag'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-							<li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a> <?php echo ($luna_config['o_smilies'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-						</ul>
+				<?php endif; ?>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang_pms['Send to'] ?><span class="help-block">Separate names with commas, maximum <?php echo ($luna_config['o_pms_max_receiver']-1) ?> names</span></label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="p_username" id="p_username" size="30" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" tabindex="<?php echo $cur_index++ ?>" />
 					</div>
-				</fieldset>
-<?php
-
-	if ($luna_config['o_smilies'] == '1')
-	{
-?>
-			</div>
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang['Options'] ?></legend>
-					<div class="infldset">
-						<div class="rbox">
-							<?php echo '<label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' />'.$lang_post['Hide smilies'].'<br /></label>' ?>
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Subject'] ?></label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="req_subject" value="<?php echo ($p_subject != '' ? luna_htmlspecialchars($p_subject) : ''); ?>" tabindex="<?php echo $cur_index++ ?>" />
 					</div>
-				</fieldset>
-<?php
-	}
-?>
-			</div>
-			<p class="buttons"><input type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input type="submit" name="preview" value="<?php echo $lang_post['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
-		</form>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Message'] ?></label>
+					<div class="col-sm-9">
+						<textarea class="form-control" name="req_message" rows="10" tabindex="<?php echo $cur_index++ ?>"><?php echo ($p_message != '' ? luna_htmlspecialchars($p_message) : ''); ?></textarea>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="panel-footer">
+			<input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" />
+		</div>
 	</div>
-</div>
-</div>
+</form>
 <?php
 	require load_page('footer.php');
 ?>

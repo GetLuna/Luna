@@ -318,39 +318,31 @@ if (!$db->num_rows($result))
 	
 $reply_link = '<a href="pms_send.php?reply='.$tid.'">'.$lang_pms['Reply'].'</a>';
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-			<li><span>»&#160;</span><a href="#block"><?php echo $lang_pms['View'] ?></a></li>
-			<li><span>»&#160;</span><?php echo $messageh2 ?></li>
-		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li class="isactive"><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="block" id="block">
-		<div class="pagepost">
-			<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_view.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
-			<p class="postlink actions conr"><?php echo $reply_link ?></p>
-		</div>
 
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="pms_inbox.php">Inbox</a></li>
+			<li><a href="pms_contacts.php">Contacs</a></li>
+			<li><a href="pms_sending_lists.php">Sending lists</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<div class="btn-compose pull-left">
+				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php?reply=<?php echo $tid ?>"><span class="fa fa-reply"></span> Reply</a>
+				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php"><span class="fa fa-pencil"></span> Compose</a>
+			</div>
+		</ul>
+	</div>
+</nav>
+<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_view.php?tid='.$tid.'&amp;mid='.$mid)  ?></p>
 <?php
 while ($cur_post = $db->fetch_assoc($result))
 {	
@@ -465,46 +457,32 @@ while ($cur_post = $db->fetch_assoc($result))
 		}
 	}
 ?>
-
-<div id="p<?php echo $cur_post['mid'] ?>" class="blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd'; if ($post_count == 1) echo ' blockpost1'; ?>">
-	<h2><span><span class="conr">#<?php echo ($start_from + $post_count) ?> </span><a href="pms_view.php?tid=<?php echo $tid.'&amp;mid='.$cur_post['mid'].'&amp;pid='.$cur_post['mid'].'#p'.$cur_post['mid'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h2>
-	<div class="box">
-		<div class="inbox">
-			<div class="postbody">
-				<div class="postleft">
-					<dl>
-						<dt><strong><?php echo $username ?></strong></dt>
-						<dd class="usertitle"><strong><?php echo $user_title ?></strong></dd>
-<?php if ($user_avatar != '') echo "\t\t\t\t\t\t".'<dd class="postavatar">'.$user_avatar.'</dd>'."\n"; ?>
-<?php if (count($user_info)) echo "\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $user_info)."\n"; ?>
-<?php if (count($user_contacts)) echo "\t\t\t\t\t\t".'<dd class="usercontacts">'.implode(' ', $user_contacts).'</dd>'."\n"; ?>
-					</dl>
-				</div>
-				<div class="postright">
-					<div class="postmsg">
-						<?php echo $cur_post['message']."\n" ?>
-					</div>
-<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature postmsg"><hr />'.$signature.'</div>'."\n"; ?>
-				</div>
-			</div>
-		</div>
-	<div class="inbox">
-			<div class="postfoot clearb">
-				<div class="postfootleft"><?php if ($cur_post['sender_id'] > '1' || $cur_post['id'] > '1') echo '<p>'.$is_online.'</p>'; ?></div>
-<?php if (count($post_actions)) echo "\t\t\t\t".'<div class="postfootright">'."\n\t\t\t\t\t".'<ul>'."\n\t\t\t\t\t\t".implode("\n\t\t\t\t\t\t", $post_actions)."\n\t\t\t\t\t".'</ul>'."\n\t\t\t\t".'</div>'."\n" ?>
-			</div>
-		</div>
-	</div>
+<div id="p<?php echo $cur_post['id'] ?>" class="row comment <?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' onlypost'; ?><?php if ($cur_post['marked'] == true) echo ' marked'; ?>">
+    <div class="col-xs-12">
+        <div class="panel panel-default level<?php echo $cur_post['level'] ?>">
+            <div class="panel-body">
+                <div class="media">
+                    <a class="pull-left <?php echo $is_online; ?>" href="#">
+                        <?php echo $user_avatar; ?>
+                    </a>
+                    <div class="media-body">
+                        <h2><?php echo $username ?> <small><?php echo $user_title ?></small></h2>
+                        <a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a>
+                    </div>
+                </div>
+                <hr />
+                <?php echo $cur_post['message']."\n" ?>
+                <?php if (($signature != '') || (!$luna_user['is_guest'])) echo '<hr />'; ?>
+                <?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature">'.$signature.'</div>'."\n"; ?>
+                <div class="pull-right post-actions"><?php if (count($post_actions)) echo implode(" &middot; ", $post_actions) ?></div>
+            </div>
+        </div>
+    </div>
 </div>
 <?php	
 }
 ?>
-		<div class="pagepost">
-			<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_view.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
-			<p class="postlink actions conr"><?php echo $reply_link ?></p>
-			<div class="clearer"></div>
-		</div>
-</div>
+<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_view.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
 <?php
 // Display quick post if enabled
 if (!empty($reply_link) && $quickpost)
@@ -539,7 +517,7 @@ if (!empty($reply_link) && $quickpost)
 <?php
 }
 ?>
-	<div class="clearer"></div>
 </div>
 <?php
 require load_page('footer.php');
+?>

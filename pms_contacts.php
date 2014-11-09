@@ -253,31 +253,28 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_pms['Contacts'] ?></strong></li>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="pms_inbox.php">Inbox</a></li>
+			<li><a href="pms_contacts.php">Contacs</a></li>
+			<li><a href="pms_sending_lists.php">Sending lists</a></li>
 		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li class="isactive"><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<div class="btn-compose pull-left">
+				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php"><span class="fa fa-pencil"></span> Compose</a>
 			</div>
-		</div>
+		</ul>
 	</div>
+</nav>
 <script type="text/javascript">
 /* <![CDATA[ */
 function checkAll(checkWhat,command){
@@ -291,41 +288,41 @@ function checkAll(checkWhat,command){
 }
 /* ]]> */
 </script>
-<br />
-<div class="blockform">
-	<div class="box">
-		<form action="pms_contacts.php" method="post">
-		<div class="inform">
+<form class="form-horizontal" action="pms_contacts.php" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Add contact<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></span></h3>
+		</div>
+		<div class="panel-body">
 			<fieldset>
-				<legend><?php echo $lang_pms['Add contact'] ?></legend>
-				<div class="infldset">
-					<label class="conl"><?php echo $lang_pms['Contact name'] ?><br />
-					<input type="text" name="req_username" size="25" maxlength="120" tabindex="1" /><br /><br />
-					<input type="checkbox" name="req_refuse" value="1" tabindex="2" /><?php echo $lang_pms['Refuse user'] ?><br />
-					</label>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang_pms['Contact name'] ?></label>
+					<div class="col-sm-9">
+						<input class="form-control" type="text" name="req_username" size="25" maxlength="120" tabindex="1" />
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="req_refuse" value="1" tabindex="2" />
+								<?php echo $lang_pms['Refuse user'] ?>
+                            </label>
+                        </div>
+					</div>
 				</div>
 			</fieldset>
 		</div>
-		<p class="buttons"><input type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></p>
-		</form>
 	</div>
-</div>
-<br />
+</form>
 <form method="post" action="pms_contacts.php">
-<div class="blocktable">
-	<div class="box">
-		<div class="inbox">
-			<table cellspacing="0">
-			<thead>
-				<tr>
-					<th><?php echo $lang_pms['Contact name'] ?></th>
-					<th><?php echo $lang_pms['Rights contact'] ?></th>
-					<th><?php echo $lang_pms['Delete'] ?></th>
-					<th><?php echo $lang_pms['Quick message'] ?></th>
-					<th class="tcmod"><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_contacts[]','checkAllButon');" /></label></th>
-				</tr>
-			</thead>
-			<tbody>
+	<table class="table">
+		<thead>
+			<tr>
+				<th><?php echo $lang_pms['Contact name'] ?></th>
+				<th><?php echo $lang_pms['Rights contact'] ?></th>
+				<th><?php echo $lang_pms['Delete'] ?></th>
+				<th><?php echo $lang_pms['Quick message'] ?></th>
+				<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_contacts[]','checkAllButon');" /></label></th>
+			</tr>
+		</thead>
+		<tbody>
 <?php
 // Fetch contacts
 $result = $db->query('SELECT * FROM '.$db->prefix.'contacts WHERE user_id='.$luna_user['id'].' ORDER BY allow_msg DESC, contact_name ASC') or error('Unable to update the list of the contacts', __FILE__, __LINE__, $db->error());
@@ -345,53 +342,39 @@ if ($db->num_rows($result))
 			$status_class =  ' class="iclosed"';
 		}
 ?>
-	<tr<?php echo $status_class ?>>
+			<tr<?php echo $status_class ?>>
 	<?php
 		if ($luna_user['g_view_users'] == '1')
 			echo '<td><a href="profile.php?id='.$cur_contact['contact_id'].'">'.luna_htmlspecialchars($cur_contact['contact_name']).'</a></td>';
 		else
 			echo '<td>'.luna_htmlspecialchars($cur_contact['contact_name']).'</td>';
 	?>
-		<td><?php echo $status_text; ?></td>
-		<td><a href="pms_contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang_pms['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete contact confirm'] ?>')"><?php echo $lang_pms['Delete'] ?></a></td>
-		<td><a href="pms_send.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang_pms['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
-		<td class="tcmod"><input type="checkbox" name="selected_contacts[]" value="<?php echo $cur_contact['id']; ?>" /></td>
-	</tr>
+				<td><?php echo $status_text; ?></td>
+				<td><a href="pms_contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang_pms['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete contact confirm'] ?>')"><?php echo $lang_pms['Delete'] ?></a></td>
+				<td><a href="pms_send.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang_pms['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+				<td class="tcmod"><input type="checkbox" name="selected_contacts[]" value="<?php echo $cur_contact['id']; ?>" /></td>
+			</tr>
 <?php
 	}
 }
 else
-	echo "\t".'<tr><td class="puncon1" colspan="5">'.$lang_pms['No contacts'].'</td></tr>'."\n";
+	echo "\t".'<tr><td colspan="5">'.$lang_pms['No contacts'].'</td></tr>'."\n";
 ?>
-			</tbody>
-			</table>
+		</tbody>
+	</table>
+	<label>With selection</label>
+	<div class="input-group">
+		<select class="form-control" name="action">
+			<option value="send"><?php echo $lang_pms['Quick message'] ?></option>
+			<option value="authorize"><?php echo $lang_pms['Authorize'] ?></option>
+			<option value="refuse"><?php echo $lang_pms['Refuse'] ?></option>
+			<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
+		</select>
+		<div class="input-group-btn">
+			<input class="btn btn-primary" type="submit" value="<?php echo $lang_pms['OK'] ?>" />
 		</div>
 	</div>
-</div>
-
-<div class="linksb">
-	<div class="contacts crumbsplus">
-		<div class="pagepost">
-		<div style="text-align: right;">
-				<p class="conr" style="width:auto">
-				<label style="display:inline">
-				<?php echo $lang_pms['For select'] ?> 
-				<select name="action">
-					<option value="send"><?php echo $lang_pms['Quick message'] ?></option>
-					<option value="authorize"><?php echo $lang_pms['Authorize'] ?></option>
-					<option value="refuse"><?php echo $lang_pms['Refuse'] ?></option>
-					<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
-				</select>
-				</label> 
-				<input type="submit" value="<?php echo $lang_pms['OK'] ?>" />
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="clearer"></div>
-</div>
 </form>
-</div>
 
 <?php
 	require load_page('footer.php');

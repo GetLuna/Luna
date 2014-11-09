@@ -111,6 +111,7 @@ if ($action != '')
 		<div class="clearer"></div>
 	</div>
 </div>
+
 <div class="block2col">
 	<div class="blockmenu">
 		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
@@ -165,31 +166,28 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
 ?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_pms['Inbox'] ?></strong></li>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="pms_inbox.php">Inbox</a></li>
+			<li><a href="pms_contacts.php">Contacs</a></li>
+			<li><a href="pms_sending_lists.php">Sending lists</a></li>
 		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li class="isactive"><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<div class="btn-compose pull-left">
+				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php"><span class="fa fa-pencil"></span> Compose</a>
 			</div>
-		</div>
+		</ul>
 	</div>
+</nav>
 <script type="text/javascript">
 /* <![CDATA[ */
 function checkAll(checkWhat,command){
@@ -203,28 +201,21 @@ function checkAll(checkWhat,command){
 }
 /* ]]> */
 </script>
-	<div class="block">
-		<div class="pagepost">
-			<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_inbox.php?') ?></span></p>
-			<p class="postlink"><span><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></span></p>
-		</div>
-	<form method="post" action="pms_inbox.php">
+<p><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_inbox.php?') ?></span></p>
+<form method="post" action="pms_inbox.php">
 	<fieldset>
-	<input type="hidden" name="box" value="0" />
-	<div id="vf" class="blocktable">
-		<div class="box">
-				<div class="inbox">
+		<input type="hidden" name="box" value="0" />
 			<table class="table">
-			<thead>
-				<tr>
-					<th class="tcl"><?php echo $lang_pms['Messages'] ?></th>
-					<th class="tc2"><?php echo $lang_pms['Sender'] ?></th>
-					<th class="tc2"><?php echo $lang_pms['Receiver'] ?></th>
-					<th class="tcr"><?php echo $lang['Last post'] ?></th>
-					<th class="tcmod"><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?> <input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></label></th>
-				</tr>
-			</thead>
-			<tbody>
+				<thead>
+					<tr>
+						<th><?php echo $lang_pms['Messages'] ?></th>
+						<th><?php echo $lang_pms['Sender'] ?></th>
+						<th><?php echo $lang_pms['Receiver'] ?></th>
+						<th><?php echo $lang['Last post'] ?></th>
+						<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?> <input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></label></th>
+					</tr>
+				</thead>
+				<tbody>
 <?php
 // Fetch messages
 $result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_post DESC LIMIT ".$limit) or error("Unable to find the list of the pms.", __FILE__, __LINE__, $db->error()); 
@@ -253,20 +244,20 @@ if ($db->num_rows($result))
 		
 		$last_post = '<a href="pms_view.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
 ?>
-	<tr class="<?php echo $item_status ?>">
-		<td class="tcl">
-				<div class="<?php echo $icon_type ?>"></div>
-				<div class="tclcon"><?php echo $subject ?></div>
-		</td>
-		<td class="tc2">
+					<tr class="<?php echo $item_status ?>">
+						<td>
+								<div class="<?php echo $icon_type ?>"></div>
+								<div><?php echo $subject ?></div>
+						</td>
+						<td>
 		<?php
 		if ($luna_user['g_view_users'] == '1')
 			echo '<a href="profile.php?id='.$cur_mess['sender_id'].'">'.luna_htmlspecialchars($cur_mess['sender']).'</a>';
 		else
 			echo luna_htmlspecialchars($cur_mess['sender']);
 		?>
-		</td>
-		<td class="tc2">
+						</td>
+						<td>
 		<?php
 			if ($luna_user['g_view_users'] == '1')
 			{
@@ -284,40 +275,31 @@ if ($db->num_rows($result))
 			else
 				echo luna_htmlspecialchars($cur_mess['receiver']);
 		?>
-		</td>
-		<td class="tcr"><?php echo $last_post ?></td>
-		<td class="tcmod"><input type="checkbox" name="selected_messages[]" value="<?php echo $cur_mess['shared_id'] ?>" /></td>
-	</tr>
+						</td>
+						<td><?php echo $last_post ?></td>
+						<td><input type="checkbox" name="selected_messages[]" value="<?php echo $cur_mess['shared_id'] ?>" /></td>
+					</tr>
 <?php
 	}
 }
 else
-	echo "\t".'<tr><td class="puncon1" colspan="4">'.$lang_pms['No messages'].'</td></tr>'."\n";
+	echo "\t".'<tr><td colspan="4">'.$lang_pms['No messages'].'</td></tr>'."\n";
 ?>
-			</tbody>
+				</tbody>
 			</table>
+		<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_inbox.php?') ?></p>
+		<label>With selection</label>
+		<div class="input-group">
+			<select class="form-control" name="action">
+				<option value="markread"><?php echo $lang_pms['Mark as read select'] ?></option>
+				<option value="markunread"><?php echo $lang_pms['Mark as unread select'] ?></option>
+				<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
+			</select>
+			<div class="input-group-btn">
+				<input class="btn btn-primary" type="submit" value="<?php echo $lang_pms['OK'] ?>" />
+			</div>
 		</div>
-	</div>
-	</div>
-<div class="pagepost">
-				<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_inbox.php?') ?></span></p>
-				<p class="postlink conr">
-					<label style="display:inline">
-					<?php echo $lang_pms['For select'] ?> 
-					<select name="action">
-						<option value="markread"><?php echo $lang_pms['Mark as read select'] ?></option>
-						<option value="markunread"><?php echo $lang_pms['Mark as unread select'] ?></option>
-						<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
-					</select>
-					<input type="submit" value="<?php echo $lang_pms['OK'] ?>" />
-					</label>
-				</p>
-</div>
-	<div class="clearer"></div>
-</fieldset>
+	</fieldset>
 </form>
-</div>
-</div>
-
 <?php
 require load_page('footer.php');
