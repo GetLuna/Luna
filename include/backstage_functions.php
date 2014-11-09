@@ -9,7 +9,7 @@
 // Display the admin navigation menu
 //
 function load_admin_nav($section, $page) {
-	global $luna_user, $lang;
+	global $luna_user, $lang, $luna_config;
 
 ?>
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
@@ -38,7 +38,7 @@ function load_admin_nav($section, $page) {
 	if (!empty($plugins))
 	{
 ?>
-                <li class="dropdown<?php if ($section == 'extensions') echo 'active'; ?>">
+                <li class="dropdown <?php if ($section == 'extensions') echo 'active'; ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="fa fa-cogs"></span> <?php echo $lang['Extensions'] ?> <span class="fa fa-angle-down">
                     </a>
@@ -113,6 +113,8 @@ function load_admin_nav($section, $page) {
                         echo 'Theme';
                     else if ($page == 'maintenance')
                         echo 'Maintenance';
+                    else if ($page == 'private_messages')
+                        echo 'zPrivateMessages';
                     else if ($page == 'zsettings')
                         echo 'zSettings';
 
@@ -156,6 +158,9 @@ function load_admin_nav($section, $page) {
                 <li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php">Theme</a></li>
                 <li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php">Maintenance</a></li>
 				<?php if (file_exists('../z.txt')) { ?>
+					<?php if ($luna_config['o_private_message'] == '1') { ?>
+					<li<?php if($page == 'private_messages') echo ' class="active"' ?>><a href="private_messages.php">zPrivateMessages</a></li>
+					<?php } ?>
                 <li<?php if($page == 'zsettings') echo ' class="active"' ?>><a href="zsettings.php">zSettings</a></li>
 				<?php } ?>
             </ul>
