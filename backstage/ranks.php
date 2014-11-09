@@ -156,7 +156,7 @@ if ($db->num_rows($result)) {
 									<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_posts]" value="<?php echo $cur_rank['min_posts'] ?>" maxlength="7" />
 								</td>
 								<td>
-									<a href="menu.php?del_item=<?php echo $cur_rank['id'] ?>" class="btn btn-danger">Delete</a>
+									<input class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]" value="<?php echo $lang['Remove'] ?>" />
 								</td>
 							</tr>
 <?php
