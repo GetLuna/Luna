@@ -608,9 +608,9 @@ switch ($stage) {
 		if (!array_key_exists('o_pms_mess_per_page', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_mess_per_page\', \'10\')') or error('Unable to insert config value \'o_pms_mess_per_page\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3265: Add o_pms_mess_per_page/experimental feature
-		if (!array_key_exists('o_pms_mess_per_page', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_mess_per_page\', \'5\')') or error('Unable to insert config value \'o_pms_mess_per_page\'', __FILE__, __LINE__, $db->error());
+		// Since 0.0.3265: Add o_pms_max_receiver/experimental feature
+		if (!array_key_exists('o_pms_max_receiver', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_max_receiver\', \'5\')') or error('Unable to insert config value \'o_pms_max_receiver\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.0.3265: Add o_pms_notification/experimental feature
 		if (!array_key_exists('o_pms_notification', $luna_config))
