@@ -73,50 +73,50 @@ function load_admin_nav($section, $page) {
             <h2>
                 <?php
                     if ($page == 'index')
-                        echo '<i class="fa fa-tachometer"></i> Backstage';
+                        echo '<span class="fa fa-fw fa-tachometer"></span> Backstage';
                     else if ($page == 'stats')
-                        echo '<i class="fa fa-info-circle"></i> System info';
+                        echo '<span class="fa fa-fw fa-info-circle"></span> System info';
                     else if ($page == 'update')
-                        echo '<i class="fa fa-cloud-upload"></i> Luna software update';
+                        echo '<span class="fa fa-fw fa-cloud-upload"></span> Luna software update';
 
                     else if ($page == 'board')
-                        echo '<i class="fa fa-sort-amount-desc"></i> Board structure';
+                        echo '<span class="fa fa-fw fa-sort-amount-desc"></span> Board structure';
                     else if ($page == 'censoring')
-                        echo '<i class="fa fa-eye-slash"></i> Censoring';
+                        echo '<span class="fa fa-fw fa-eye-slash"></span> Censoring';
                     else if ($page == 'reports')
-                        echo '<i class="fa fa-exclamation-triangle"></i> Reports';
+                        echo '<span class="fa fa-fw fa-exclamation-triangle"></span> Reports';
 
                     else if ($page == 'users')
-                        echo '<i class="fa fa-search"></i> User search';
+                        echo '<span class="fa fa-fw fa-search"></span> User search';
                     else if ($page == 'ranks')
-                        echo '<i class="fa fa-chevron-up"></i> Ranks';
+                        echo '<span class="fa fa-fw fa-chevron-up"></span> Ranks';
                     else if ($page == 'groups')
-                        echo '<i class="fa fa-group"></i> Groups';
+                        echo '<span class="fa fa-fw fa-group"></span> Groups';
                     else if ($page == 'permissions')
-                        echo '<i class="fa fa-check-circle"></i> Permissions';
+                        echo '<span class="fa fa-fw fa-check-circle"></span> Permissions';
                     else if ($page == 'bans')
-                        echo '<i class="fa fa-ban"></i> Bans';
+                        echo '<span class="fa fa-fw fa-ban"></span> Bans';
 
                     else if ($page == 'settings')
-                        echo '<i class="fa fa-cogs"></i> Settings';
+                        echo '<span class="fa fa-fw fa-cogs"></span> Settings';
                     else if ($page == 'features')
-                        echo '<i class="fa fa-sliders"></i> Features';
+                        echo '<span class="fa fa-fw fa-sliders"></span> Features';
                     else if ($page == 'registration')
-                        echo '<i class="fa fa-plus-circle"></i> Registration';
+                        echo '<span class="fa fa-fw fa-plus-circle"></span> Registration';
                     else if ($page == 'email')
-                        echo '<i class="fa fa-envelope"></i> Email';
+                        echo '<span class="fa fa-fw fa-envelope"></span> Email';
                     else if ($page == 'appearance')
-                        echo '<i class="fa fa-eye"></i> Appearance';
+                        echo '<span class="fa fa-fw fa-eye"></span> Appearance';
                     else if ($page == 'menu')
-                        echo '<i class="fa fa-bars"></i> Menu';
+                        echo '<span class="fa fa-fw fa-bars"></span> Menu';
                     else if ($page == 'theme')
-                        echo '<i class="fa fa-paint-brush"></i> Theme';
+                        echo '<span class="fa fa-fw fa-paint-brush"></span> Theme';
                     else if ($page == 'maintenance')
-                        echo '<i class="fa fa-coffee"></i> Maintenance';
+                        echo '<span class="fa fa-fw fa-coffee"></span> Maintenance';
                     else if ($page == 'private_messages')
-                        echo '<i class="fa fa-comments"></i> zPrivateMessages';
+                        echo '<span class="fa fa-fw fa-comments"></span> zPrivateMessages';
                     else if ($page == 'zsettings')
-                        echo '<i class="fa fa-cogs"></i> zSettings';
+                        echo '<span class="fa fa-fw fa-cogs"></span> zSettings';
 
                     else if ($page == 'database')
                         echo 'Database management';
@@ -129,39 +129,39 @@ function load_admin_nav($section, $page) {
             </h2>
             <?php if ($section == 'backstage') { ?>
             <ul class="nav nav-tabs" role="tablist">
-                <li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><i class="fa fa-tachometer"></i> Backstage</a></li>
-                <li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><i class="fa fa-info-circle"></i> System info</a></li>
-                <li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><i class="fa fa-cloud-upload"></i> Update</a></li>
+                <li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><span class="fa fa-tachometer"></span> Backstage</a></li>
+                <li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-info-circle"></span> System info</a></li>
+                <li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-cloud-upload"></span> Update</a></li>
             </ul>
             <?php } if ($section == 'content') { ?>
             <ul class="nav nav-tabs" role="tablist">
-                <li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><i class="fa fa-sort-amount-desc"></i> Board structure</a></li>
-                <li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><i class="fa fa-eye-slash"></i> Censoring</a></li>
-                <li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><i class="fa fa-exclamation-triangle"></i> Reports</a></li>
+                <li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-sort-amount-desc"></span> Board structure</a></li>
+                <li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><span class="fa fa-eye-slash"></span> Censoring</a></li>
+                <li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><span class="fa fa-exclamation-triangle"></span> Reports</a></li>
             </ul>
             <?php } if ($section == 'users') { ?>
             <ul class="nav nav-tabs" role="tablist">
-                <li<?php if($page == 'users') echo ' class="active"' ?>><a href="users.php"><i class="fa fa-search"></i> User search</a></li>
-                <li<?php if($page == 'ranks') echo ' class="active"' ?>><a href="ranks.php"><i class="fa fa-chevron-up"></i> Ranks</a></li>
-                <li<?php if($page == 'groups') echo ' class="active"' ?>><a href="groups.php"><i class="fa fa-group"></i> Groups</a></li>
-                <li<?php if($page == 'permissions') echo ' class="active"' ?>><a href="permissions.php"><i class="fa fa-check-circle"></i> Permissions</a></li>
-                <li<?php if($page == 'bans') echo ' class="active"' ?>><a href="bans.php"><i class="fa fa-ban"></i> Bans</a></li>
+                <li<?php if($page == 'users') echo ' class="active"' ?>><a href="users.php"><span class="fa fa-search"></span> User search</a></li>
+                <li<?php if($page == 'ranks') echo ' class="active"' ?>><a href="ranks.php"><span class="fa fa-chevron-up"></span> Ranks</a></li>
+                <li<?php if($page == 'groups') echo ' class="active"' ?>><a href="groups.php"><span class="fa fa-group"></span> Groups</a></li>
+                <li<?php if($page == 'permissions') echo ' class="active"' ?>><a href="permissions.php"><span class="fa fa-check-circle"></span> Permissions</a></li>
+                <li<?php if($page == 'bans') echo ' class="active"' ?>><a href="bans.php"><span class="fa fa-ban"></span> Bans</a></li>
             </ul>
             <?php } if ($section == 'settings') { ?>
             <ul class="nav nav-tabs" role="tablist">
-                <li<?php if($page == 'settings') echo ' class="active"' ?>><a href="settings.php"><i class="fa fa-cogs"></i> Settings</a></li>
-                <li<?php if($page == 'features') echo ' class="active"' ?>><a href="features.php"><i class="fa fa-sliders"></i> Features</a></li>
-                <li<?php if($page == 'registration') echo ' class="active"' ?>><a href="registration.php"><i class="fa fa-plus-circle"></i> Registration</a></li>
-                <li<?php if($page == 'email') echo ' class="active"' ?>><a href="email.php"><i class="fa fa-envelope"></i> Email</a></li>
-                <li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><i class="fa fa-eye"></i> Appearance</a></li>
-                <li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><i class="fa fa-bars"></i> Menu</a></li>
-                <li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php"><i class="fa fa-paint-brush"></i> Theme</a></li>
-                <li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><i class="fa fa-coffee"></i> Maintenance</a></li>
+                <li<?php if($page == 'settings') echo ' class="active"' ?>><a href="settings.php"><span class="fa fa-cogs"></span> Settings</a></li>
+                <li<?php if($page == 'features') echo ' class="active"' ?>><a href="features.php"><span class="fa fa-sliders"></span> Features</a></li>
+                <li<?php if($page == 'registration') echo ' class="active"' ?>><a href="registration.php"><span class="fa fa-plus-circle"></span> Registration</a></li>
+                <li<?php if($page == 'email') echo ' class="active"' ?>><a href="email.php"><span class="fa fa-envelope"></span> Email</a></li>
+                <li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><span class="fa fa-eye"></span> Appearance</a></li>
+                <li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-bars"></span> Menu</a></li>
+                <li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php"><span class="fa fa-paint-brush"></span> Theme</a></li>
+                <li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><span class="fa fa-coffee"></span> Maintenance</a></li>
 				<?php if (file_exists('../z.txt')) { ?>
 					<?php if ($luna_config['o_private_message'] == '1') { ?>
-					<li<?php if($page == 'private_messages') echo ' class="active"' ?>><a href="private_messages.php"><i class="fa fa-comments"></i> zPrivateMessages</a></li>
+					<li<?php if($page == 'private_messages') echo ' class="active"' ?>><a href="private_messages.php"><span class="fa fa-comments"></span> zPrivateMessages</a></li>
 					<?php } ?>
-                <li<?php if($page == 'zsettings') echo ' class="active"' ?>><a href="zsettings.php"><i class="fa fa-cogs"></i> zSettings</a></li>
+                <li<?php if($page == 'zsettings') echo ' class="active"' ?>><a href="zsettings.php"><span class="fa fa-cogs"></span> zSettings</a></li>
 				<?php } ?>
             </ul>
             <?php } ?>
