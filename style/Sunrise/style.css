@@ -83,18 +83,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media screen and (max-width: 767px) {
-	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
 		border: none;
 		box-shadow: none;
 	}
 }
 
-.navbar {
+.navbar-inverse {
 	border: none;
 	margin-bottom: 0;
-}
-
-.navbar-inverse {
     background-color: #555;
 }
 
@@ -111,18 +108,18 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: 0;
 }
 
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
 	border: none;
 }
 
 @media all and (min-width:768px) {
-	.navbar-nav > li > a {
+	.navbar-inverse .navbar-nav > li > a {
 		padding-top: 25px;
 		padding-bottom: 25px;
 	}
 }
 
-.navbar-brand {
+.navbar-inverse .navbar-brand {
 	height: 70px;
 	padding: 25px 15px;
 }
@@ -152,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 		padding: 15px 15px;
 	}
 
-	.navbar-default .navbar-toggle {
+	.navbar-inverse .navbar-toggle {
 		margin: 8px 15px 8px 0;
 	}
 }
