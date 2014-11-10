@@ -6,7 +6,7 @@
  */
 
 // Display the me navigation
-function load_inbox_nav($page = '') {
+function load_inbox_nav($page) {
 	global $lang, $luna_config, $luna_user;
 
 ?>
@@ -22,8 +22,8 @@ function load_inbox_nav($page = '') {
 	</div>
 	<div class="collapse navbar-collapse" id="inbox-nav">
 		<ul class="nav navbar-nav">
-			<li><a href="contacts.php">Contacs</a></li>
-			<li><a href="sending_lists.php">Sending lists</a></li>
+			<li<?php if ($page == 'contacts') { echo ' class="active"'; } ?>><a href="contacts.php">Contacs</a></li>
+			<li<?php if ($page == 'lists') { echo ' class="active"'; } ?>><a href="sending_lists.php">Sending lists</a></li>
 			<li>
 <?php
 	if ($luna_user['g_pm_limit'] != '0') { // && !$luna_user['is_admmod']
