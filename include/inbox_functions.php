@@ -22,9 +22,9 @@ function load_inbox_nav($page = '') {
 	</div>
 	<div class="collapse navbar-collapse" id="inbox-nav">
 		<ul class="nav navbar-nav">
-			<li><a href="pms_inbox.php">Inbox</a></li>
-			<li><a href="pms_contacts.php">Contacs</a></li>
-			<li><a href="pms_sending_lists.php">Sending lists</a></li>
+			<li><a href="inbox.php">Inbox</a></li>
+			<li><a href="contacts.php">Contacs</a></li>
+			<li><a href="sending_lists.php">Sending lists</a></li>
 			<li>
 <?php
 	if ($luna_user['g_pm_limit'] != '0') { // && !$luna_user['is_admmod']
@@ -37,9 +37,9 @@ function load_inbox_nav($page = '') {
 		<ul class="nav navbar-nav navbar-right">
 			<div class="btn-compose pull-left">
 				<?php if ($page == 'view') { ?>
-					<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php?reply=<?php echo $tid ?>"><span class="fa fa-reply"></span> Reply</a>
+					<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-reply"></span> Reply</a>
 				<?php } ?>
-				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php"><span class="fa fa-pencil"></span> Compose</a>
+				<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php"><span class="fa fa-pencil"></span> Compose</a>
 			</div>
 		</ul>
 	</div>

@@ -82,7 +82,7 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 	if ($action == 'delete')
 	{
 		// Make sure they got here from the site
-		confirm_referrer('pms_view.php');
+		confirm_referrer('viewinbox.php');
 		
 		if (isset($_POST['delete_comply']))
 		{
@@ -169,7 +169,7 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 			}
 			
 			// Redirect
-			redirect('pms_inbox.php', $lang_pms['Del redirect']);
+			redirect('inbox.php', $lang_pms['Del redirect']);
 		}
 		else
 		{
@@ -191,8 +191,8 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 	<div class="inbox crumbsplus">
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
+			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
+			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
 			<li><span>»&#160;</span><?php echo $lang_pms['Delete message'] ?></li>
 		</ul>
 		<div class="pagepost"></div>
@@ -205,10 +205,10 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 		<div class="box">
 			<div class="inbox">
 				<ul>
-					<li class="isactive"><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
+					<li class="isactive"><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
+					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
+					<li><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
+					<li><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -216,7 +216,7 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 <br />
 <div class="blockform">
 	<div class="box">
-		<form action="pms_view.php" method="post">
+		<form action="viewinbox.php" method="post">
 					<input type="hidden" name="action" value="delete" />
 					<input type="hidden" name="mid" value="<?php echo $mid ?>" />
 					<input type="hidden" name="tid" value="<?php echo $tid ?>" />
@@ -317,11 +317,11 @@ $result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m
 if (!$db->num_rows($result))
 	message($lang['Bad request']);
 	
-$reply_link = '<a href="pms_send.php?reply='.$tid.'">'.$lang_pms['Reply'].'</a>';
+$reply_link = '<a href="new_inbox.php?reply='.$tid.'">'.$lang_pms['Reply'].'</a>';
 
 load_inbox_nav('view');
 ?>
-<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_view.php?tid='.$tid.'&amp;mid='.$mid)  ?></p>
+<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?></p>
 <?php
 while ($cur_post = $db->fetch_assoc($result))
 {	
@@ -382,7 +382,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_post['use_pm'] == '1')
 			{
 				$pid = isset($cur_post['sender_id']) ? $cur_post['sender_id'] : $cur_post['sender_id'];
-				$user_contacts[] = '<span class="email"><a href="pms_send.php?uid='.$pid.'">'.$lang_pms['PM'].'</a></span>';
+				$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.$lang_pms['PM'].'</a></span>';
 			}
 
 			if ($cur_post['url'] != '')
@@ -416,10 +416,10 @@ while ($cur_post = $db->fetch_assoc($result))
 		// Generation post action array (reply, delete etc.)
 		if ($luna_user['id'] == $cur_post['sender_id'] || $luna_user['is_admmod'])
 		{
-			$post_actions[] = '<li class="postdelete"><span><a href="pms_view.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Delete'].'</a></span></li>';
-			$post_actions[] = '<li class="postedit"><span><a href="pms_send.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Edit'].'</a></span></li>';
+			$post_actions[] = '<li class="postdelete"><span><a href="viewinbox.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Delete'].'</a></span></li>';
+			$post_actions[] = '<li class="postedit"><span><a href="new_inbox.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Edit'].'</a></span></li>';
 		}
-		$post_actions[] = '<li class="postquote"><span><a href="pms_send.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang_topic['Quote'].'</a></span></li>';
+		$post_actions[] = '<li class="postquote"><span><a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang_topic['Quote'].'</a></span></li>';
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 	$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
@@ -461,7 +461,7 @@ while ($cur_post = $db->fetch_assoc($result))
 <?php	
 }
 ?>
-<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_view.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
+<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
 <?php
 // Display quick post if enabled
 if (!empty($reply_link) && $quickpost)
@@ -470,7 +470,7 @@ if (!empty($reply_link) && $quickpost)
 <div id="quickpost" class="blockform">
 	<h2><span><?php echo $lang_topic['Quick post'] ?></span></h2>
 	<div class="box">
-		<form method="post" id="post" action="pms_send.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
+		<form method="post" id="post" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
 			<div class="inform">
 				<fieldset>
 					<legend><?php echo $lang['Write message legend'] ?></legend>

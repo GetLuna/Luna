@@ -33,7 +33,7 @@ $action = ((isset($_POST['action']) && ($_POST['action'] == 'send' || $_POST['ac
 if ($action != '')
 {
 	// Make sure they got here from the site
-	confirm_referrer('pms_contacts.php');
+	confirm_referrer('contacts.php');
 	
 	// send a message
 	if ($action == 'send')
@@ -55,7 +55,7 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 		while ($cur_contact = $db->fetch_assoc($result))
 			$idlist[] = $cur_contact['contact_id'];
 			
-		header('Location: pms_send.php?uid='.implode('-', $idlist));
+		header('Location: new_inbox.php?uid='.implode('-', $idlist));
 	}
 	// authorize multiple contacts
 	elseif ($action == 'authorize')
@@ -69,7 +69,7 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 		
 		$db->query('UPDATE '.$db->prefix.'contacts SET allow_msg=1 WHERE id IN('.$idlist.') AND user_id='.$luna_user['id']) or error('Unable to update the status of the contacts', __FILE__, __LINE__, $db->error());
 		
-		redirect('pms_contacts.php', $lang_pms['Multiples status redirect']);
+		redirect('contacts.php', $lang_pms['Multiples status redirect']);
 	}
 	// refuse multiple contacts
 	elseif ($action == 'refuse')
@@ -83,7 +83,7 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 		
 		$db->query('UPDATE '.$db->prefix.'contacts SET allow_msg=0 WHERE id IN('.$idlist.') AND user_id='.$luna_user['id']) or error('Unable to update the status of the contacts', __FILE__, __LINE__, $db->error());
 		
-		redirect('pms_contacts.php', $lang_pms['Multiples status redirect']);
+		redirect('contacts.php', $lang_pms['Multiples status redirect']);
 	}
 	elseif ($action == 'delete_multiple')
 	{
@@ -126,7 +126,7 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 	<div class="inbox crumbsplus">
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
+			<li><span>»&#160;</span><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
 			<li><span>»&#160;</span><strong><?php echo $lang_pms['Multidelete contacts'] ?></strong></li>
 		</ul>
 		<div class="pagepost"></div>
@@ -139,10 +139,10 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 		<div class="box">
 			<div class="inbox">
 				<ul>
-					<li><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li class="isactive"><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
+					<li><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
+					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
+					<li><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
+					<li class="isactive"><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -150,7 +150,7 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 	<br />
 	<div class="blockform">
 		<div class="box">
-			<form method="post" action="pms_contacts.php">
+			<form method="post" action="contacts.php">
 				<input type="hidden" name="action" value="delete_multiple" />
 				<input type="hidden" name="contacts" value="<?php echo $idlist ?>" />
 				<input type="hidden" name="delete_multiple_comply" value="1" />
@@ -175,12 +175,12 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 if (isset($_POST['add']))
 {
 	// Make sure they got here from the site
-	confirm_referrer('pms_contacts.php');
+	confirm_referrer('contacts.php');
 	
 	if (isset($_POST['req_username']))
 	{
 		$sql_where = 'u.username=\''.$db->escape($_POST['req_username']).'\'';
-		$redirect = 'pms_contacts.php';
+		$redirect = 'contacts.php';
 		$authorized = (isset($_POST['req_refuse']) && intval($_POST['req_refuse']) == 1)  ? 0 : 1;
 	}
 	else
@@ -216,7 +216,7 @@ if (isset($_POST['add']))
 if (isset($_GET['delete']))
 {
 	// Make sure they got here from the site
-	confirm_referrer('pms_contacts.php');
+	confirm_referrer('contacts.php');
 	
 	$id = intval($_GET['delete']);
 	
@@ -227,14 +227,14 @@ if (isset($_GET['delete']))
 
 	$result = $db->query('DELETE FROM '.$db->prefix.'contacts WHERE id= '.$id) or error('Unable to delete the contact', __FILE__, __LINE__, $db->error());
 	
-	redirect('pms_contacts.php',$lang_pms['Deleted contact redirect']);
+	redirect('contacts.php',$lang_pms['Deleted contact redirect']);
 }
 
 // Switch contact status
 if (isset($_GET['switch']))
 {
 	// Make sure they got here from the site
-	confirm_referrer('pms_contacts.php');
+	confirm_referrer('contacts.php');
 	
 	$id = intval($_GET['switch']);
 	
@@ -245,7 +245,7 @@ if (isset($_GET['switch']))
 
 	$result = $db->query('UPDATE '.$db->prefix.'contacts SET allow_msg = 1-allow_msg WHERE id= '.$id) or error('Unable to edit the status of the contact', __FILE__, __LINE__, $db->error());
 	
-	redirect('pms_contacts.php',$lang_pms['Status redirect']);
+	redirect('contacts.php',$lang_pms['Status redirect']);
 }
 
 // Build page
@@ -269,7 +269,7 @@ function checkAll(checkWhat,command){
 }
 /* ]]> */
 </script>
-<form class="form-horizontal" action="pms_contacts.php" method="post">
+<form class="form-horizontal" action="contacts.php" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Add contact<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></span></h3>
@@ -292,7 +292,7 @@ function checkAll(checkWhat,command){
 		</div>
 	</div>
 </form>
-<form method="post" action="pms_contacts.php">
+<form method="post" action="contacts.php">
 	<table class="table">
 		<thead>
 			<tr>
@@ -315,11 +315,11 @@ if ($db->num_rows($result))
 		// authorized or refused
 		if ($cur_contact['allow_msg'])
 		{
-			$status_text = $lang_pms['Authorized messages'].' - <a href="pms_contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang_pms['Refuse from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang_pms['Refuse'].'</a>';
+			$status_text = $lang_pms['Authorized messages'].' - <a href="contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang_pms['Refuse from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang_pms['Refuse'].'</a>';
 			$status_class = '';
 		}
 		else {
-			$status_text = $lang_pms['Refused messages'].' - <a href="pms_contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang_pms['Authorize from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang_pms['Authorize'].'</a>';
+			$status_text = $lang_pms['Refused messages'].' - <a href="contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang_pms['Authorize from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang_pms['Authorize'].'</a>';
 			$status_class =  ' class="iclosed"';
 		}
 ?>
@@ -331,8 +331,8 @@ if ($db->num_rows($result))
 			echo '<td>'.luna_htmlspecialchars($cur_contact['contact_name']).'</td>';
 	?>
 				<td><?php echo $status_text; ?></td>
-				<td><a href="pms_contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang_pms['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete contact confirm'] ?>')"><?php echo $lang_pms['Delete'] ?></a></td>
-				<td><a href="pms_send.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang_pms['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+				<td><a href="contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang_pms['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete contact confirm'] ?>')"><?php echo $lang_pms['Delete'] ?></a></td>
+				<td><a href="new_inbox.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang_pms['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
 				<td class="tcmod"><input type="checkbox" name="selected_contacts[]" value="<?php echo $cur_contact['id']; ?>" /></td>
 			</tr>
 <?php

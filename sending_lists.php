@@ -59,7 +59,7 @@ if ($action != '')
 	<div class="inbox crumbsplus">
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
+			<li><span>»&#160;</span><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
 			<li><span>»&#160;</span><strong><?php echo $lang_pms['Multidelete lists'] ?></strong></li>
 		</ul>
 		<div class="pagepost"></div>
@@ -72,10 +72,10 @@ if ($action != '')
 		<div class="box">
 			<div class="inbox">
 				<ul>
-					<li><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li class="isactive"><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
+					<li><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
+					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
+					<li class="isactive"><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
+					<li><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -108,7 +108,7 @@ if ($action != '')
 if (isset($_POST['form_sent']))
 {
 	// Make sure they got here from the site
-	confirm_referrer('pms_sending_lists.php');
+	confirm_referrer('sending_lists.php');
 	
 	// Build list
 	$list_name = luna_trim($_POST['list_name']);
@@ -171,7 +171,7 @@ if (isset($_GET['delete']))
 
 	$result = $db->query('DELETE FROM '.$db->prefix.'sending_lists WHERE id= '.$id) or error('Unable to delete the list', __FILE__, __LINE__, $db->error());
 	
-	redirect('pms_sending_lists.php', $lang_pms['Deleted list redirect']);
+	redirect('sending_lists.php', $lang_pms['Deleted list redirect']);
 }
 
 // Build page
@@ -195,7 +195,7 @@ function checkAll(checkWhat,command){
 }
 /* ]]> */
 </script>
-<form class="form-horizontal" action="pms_sending_lists.php" method="post">
+<form class="form-horizontal" action="sending_lists.php" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Add a list<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></span></h3>
@@ -219,7 +219,7 @@ function checkAll(checkWhat,command){
 		</div>
 	</div>
 </form>
-<form method="post" action="pms_sending_lists.php">
+<form method="post" action="sending_lists.php">
 	<table class="table">
 		<thead>
 			<tr>
@@ -251,8 +251,8 @@ if ($db->num_rows($result))
 			<tr>
 				<td><?php echo luna_htmlspecialchars($cur_list['name']) ?></td>
 				<td><?php echo $usernames ?></td>
-				<td><a href="pms_sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete list confirm'] ?>')"><?php echo $lang_pms['Delete this list'] ?></a></td>
-				<td><a href="pms_send.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang_pms['Quick message'] ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+				<td><a href="sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete list confirm'] ?>')"><?php echo $lang_pms['Delete this list'] ?></a></td>
+				<td><a href="new_inbox.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang_pms['Quick message'] ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
 				<td><input type="checkbox" name="selected_lists[]" value="<?php echo $cur_list['id'] ?>" /></td>
 			</tr>
 <?php

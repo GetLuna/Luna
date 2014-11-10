@@ -43,7 +43,7 @@ $errors = array();
 if (!empty($r) && !isset($_POST['form_sent'])) // It's a reply
 {
 	// Make sure they got here from the site
-	confirm_referrer(array('pms_send.php', 'pms_view.php'));
+	confirm_referrer(array('new_inbox.php', 'viewinbox.php'));
 	
 	$result = $db->query('SELECT DISTINCT owner, receiver FROM '.$db->prefix.'messages WHERE shared_id='.$r) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 	
@@ -103,7 +103,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) // It's a reply
 if (!empty($edit) && !isset($_POST['form_sent'])) // It's an edit
 {
 	// Make sure they got here from the site
-	confirm_referrer(array('pms_send.php', 'pms_view.php'));
+	confirm_referrer(array('new_inbox.php', 'viewinbox.php'));
 	
 	// Check that $edit looks good
 	if ($edit <= 0)
@@ -126,7 +126,7 @@ if (!empty($edit) && !isset($_POST['form_sent'])) // It's an edit
 if (isset($_POST['form_sent'])) // The post button has been pressed
 {
 	// Make sure they got here from the site
-	confirm_referrer(array('pms_send.php', 'pms_view.php'));
+	confirm_referrer(array('new_inbox.php', 'viewinbox.php'));
 	
 	$hide_smilies = isset($_POST['hide_smilies']) ? '1' : '0';
 	
@@ -306,8 +306,8 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 				// E-mail notification
 				if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id'])
 				{
-					$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/pms_view.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
-					$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/pms_view.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
+					$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
+					$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 					
 					if ($dest['notify_pm_full'] == '1')
 						luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
@@ -343,8 +343,8 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 					// E-mail notification
 					if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id'])
 					{
-						$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/pms_view.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
-						$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/pms_view.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
+						$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
+						$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 						
 						if ($dest['notify_pm_full'] == '1')
 							luna_mail($dest['email'], $mail_subject_full, $mail_message_full);
@@ -390,7 +390,7 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 			// Finally, edit the message - maybe this query is unsafe?
 			$db->query('UPDATE '.$db->prefix.'messages SET message=\''.$db->escape($p_message).'\' WHERE message=\''.$db->escape($message).'\' AND id IN ('.$ids_edit.')') or error('Unable to edit the message', __FILE__, __LINE__, $db->error());
 		}
-			redirect('pms_inbox.php', $lang_pms['Sent redirect']);
+			redirect('inbox.php', $lang_pms['Sent redirect']);
 	}
 }
 else
@@ -494,7 +494,7 @@ if (!empty($errors)) {
 $cur_index = 1;
 
 ?>
-<form class="form-horizontal" method="post" id="post" action="pms_send.php" onsubmit="return process_form(this)">
+<form class="form-horizontal" method="post" id="post" action="new_inbox.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Write message</h3>

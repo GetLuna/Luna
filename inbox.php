@@ -37,7 +37,7 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete_multip
 if ($action != '')
 {	
 	// Make sure they got here from the site
-	confirm_referrer('pms_inbox.php');
+	confirm_referrer('inbox.php');
 	
 	// Mark as read multiple posts
 	if ($action == 'markread')
@@ -50,7 +50,7 @@ if ($action != '')
 		$idlist = implode(',', array_values($idlist));
 		
 		$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
-		redirect('pms_inbox.php', $lang_pms['Read redirect']);
+		redirect('inbox.php', $lang_pms['Read redirect']);
 	}
 	// Mark as unread multiple posts
 	elseif ($action == 'markunread')
@@ -63,7 +63,7 @@ if ($action != '')
 		$idlist = implode(',', array_values($idlist));
 		
 		$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
-		redirect('pms_inbox.php', $lang_pms['Unread redirect']);
+		redirect('inbox.php', $lang_pms['Unread redirect']);
 	}
 	// Delete multiple posts
 	elseif ($action == 'delete_multiple')
@@ -105,7 +105,7 @@ if ($action != '')
 	<div class="inbox crumbsplus">
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="pms_inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
+			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
 			<li><span>»&#160;</span><strong><?php echo $lang_pms['Multidelete'] ?></strong></li>
 		</ul>
 		<div class="pagepost"></div>
@@ -119,10 +119,10 @@ if ($action != '')
 		<div class="box">
 			<div class="inbox">
 				<ul>
-					<li class="isactive"><a href="pms_inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="pms_send.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="pms_sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="pms_contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
+					<li class="isactive"><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
+					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
+					<li><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
+					<li><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -130,7 +130,7 @@ if ($action != '')
 	<br />
 	<div class="blockform">
 		<div class="box">
-			<form method="post" action="pms_inbox.php">
+			<form method="post" action="inbox.php">
 				<input type="hidden" name="action" value="delete_multiple" />
 				<input type="hidden" name="messages" value="<?php echo $idlist ?>" />
 				<input type="hidden" name="delete_multiple_comply" value="1" />
@@ -182,8 +182,8 @@ function checkAll(checkWhat,command){
 }
 /* ]]> */
 </script>
-<p><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_inbox.php?') ?></span></p>
-<form method="post" action="pms_inbox.php">
+<p><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'inbox.php?') ?></span></p>
+<form method="post" action="inbox.php">
 	<fieldset>
 		<input type="hidden" name="box" value="0" />
 			<table class="table">
@@ -211,19 +211,19 @@ if ($db->num_rows($result))
 		{
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
-			$subject = '<a href="pms_view.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
+			$subject = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
 					   '<strong>'.luna_htmlspecialchars($cur_mess['subject']).'</strong>'.
 					   '</a>';
 		}
 		else
 		{
 			$icon_type = 'icon';
-			$subject = '<a href="pms_view.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
+			$subject = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
 					   luna_htmlspecialchars($cur_mess['subject']).
 					   '</a>';
 		}
 		
-		$last_post = '<a href="pms_view.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
+		$last_post = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
 ?>
 					<tr class="<?php echo $item_status ?>">
 						<td>
@@ -268,7 +268,7 @@ else
 ?>
 				</tbody>
 			</table>
-		<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_inbox.php?') ?></p>
+		<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'inbox.php?') ?></p>
 		<label>With selection</label>
 		<div class="input-group">
 			<select class="form-control" name="action">

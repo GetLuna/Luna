@@ -105,7 +105,7 @@ elseif ($zset && $luna_config['o_notifications'] == '1')
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$new_inbox."".$user_avatar.' <span class="fa fa-angle-down"></a>
 					<ul class="dropdown-menu">
-						<li><a href="pms_inbox.php">Inbox</a></li>
+						<li><a href="inbox.php">Inbox</a></li>
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="me.php?id='.$luna_user['id'].'">Me</a></li>
 						<li class="divider"></li>
