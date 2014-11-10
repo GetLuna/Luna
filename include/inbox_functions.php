@@ -18,11 +18,10 @@ function load_inbox_nav($page = '') {
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<div class="navbar-brand">Inbox</div>
+		<a href="inbox.php" class="navbar-brand"><span class="fa fa-paper-plane-o"></span> Inbox</a>
 	</div>
 	<div class="collapse navbar-collapse" id="inbox-nav">
 		<ul class="nav navbar-nav">
-			<li><a href="inbox.php">Inbox</a></li>
 			<li><a href="contacts.php">Contacs</a></li>
 			<li><a href="sending_lists.php">Sending lists</a></li>
 			<li>
