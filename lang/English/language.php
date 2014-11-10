@@ -354,6 +354,7 @@ $lang = array(
 
 'Code'					=>	'Code',
 'Code info'				=>	'When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.',
+'Syntax info'			=>	'You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>.',
 'Code text'				=>	'This is some code.',
 'produces code box'		=>	'produces a code box like this:',
 
