@@ -92,7 +92,7 @@ function draw_editor($height) {
 			</div>
 			<div class="btn-group hidden-xs">
 				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php echo $lang['Quote']; ?>"><span class="fa fa-quote-left fa-fw"></span></a>
-				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('block','code');" title="<?php echo $lang['Code']; ?>"><span class="fa fa-code fa-fw"></span></a>
+				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php echo $lang['Code']; ?>"><span class="fa fa-code fa-fw"></span></a>
 				<a class="btn btn-default" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php echo $lang['Inline code']; ?>"><span class="fa fa-file-code-o fa-fw"></span></a>
 			</div>
 			<div class="btn-group hidden-xs">
@@ -128,8 +128,8 @@ function AddTag(type, tag) {
 	   Field.value = before_txt + '[' + tag + ']' + selected_txt + '[/' + tag + ']' + after_txt;
    else if (type == 'list')
 	   Field.value = before_txt + '[list]' + "\r" + '[*]' + selected_txt + '[/*]' + "\r" + '[/list]' + after_txt;
-   else if (type == 'block')
-	   Field.value = before_txt + '[' + tag + ']' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
+   else if (type == 'code')
+	   Field.value = before_txt + '[' + tag + ']' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
 }
 </script>
 <?php
