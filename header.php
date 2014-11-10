@@ -120,8 +120,10 @@ else
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>
 					<ul class="dropdown-menu">
+						<li><a href="inbox.php">Inbox</a></li>
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="me.php?id='.$luna_user['id'].'">Me</a></li>
+						<li class="divider"></li>
 						<li><a href="help.php">'.$lang['Help'].'</a></li>
 						<li class="divider"></li>
 						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>
