@@ -82,8 +82,9 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 if (!defined('FORUM_FORM')) { ?>
 		<?php echo $markread ?>
 		<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://modernbb.be/">Luna</a> '.$luna_config['o_cur_version']) ?></span>
-		<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="include/js/jquery.js"></script>
+		<script src="include/js/bootstrap.min.js"></script>
+		<script src="include/js/prism.js"></script>
 <?php } ?>
     </footer>
 </div>

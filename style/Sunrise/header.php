@@ -11,6 +11,7 @@ require ('header.php');
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="stylesheet" type="text/css" href="include/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="include/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
 		<link rel="stylesheet" type="text/css" href="style/Sunrise/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
