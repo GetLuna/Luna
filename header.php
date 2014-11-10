@@ -72,7 +72,7 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 	$num_new_pm = $db->result($result_messages);
 	
 	if ($num_new_pm > 0)
-		$new_inbox = '<span class="label label-danger">'.$num_new_pm.'</span>';	
+		$new_inbox = '<span class="label label-danger">'.$num_new_pm.'</span>&nbsp;&nbsp;&nbsp;&nbsp;';	
 	else
 		$new_inbox = '';	
 }
@@ -103,7 +103,7 @@ elseif ($zset && $luna_config['o_notifications'] == '1')
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$new_inbox.'&nbsp;&nbsp;&nbsp;&nbsp;'.$user_avatar.' <span class="fa fa-angle-down"></a>
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$new_inbox."".$user_avatar.' <span class="fa fa-angle-down"></a>
 					<ul class="dropdown-menu">
 						<li><a href="pms_inbox.php">Inbox</a></li>
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>

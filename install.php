@@ -1889,11 +1889,10 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		'o_user_menu_sidebar'		=> 0, // Experimental
 		'o_backstage_dark'			=> 0, // Experimental
 		'o_reading_list'			=> 0, // Experimental
-		'o_private_message'			=> 0, // Experimental
-			'o_pms_enabled'			=> 1, // Experimental
-			'o_pms_mess_per_page'	=> 10, // Experimental
-			'o_pms_max_receiver'	=> 5, // Experimental
-			'o_pms_notification'	=> 1, // Experimental
+		'o_pms_enabled'				=> 1,
+		'o_pms_mess_per_page'		=> 10,
+		'o_pms_max_receiver'		=> 5,
+		'o_pms_notification'		=> 1,
 		'p_message_img_tag'			=> 1,
 		'p_message_all_caps'		=> 1,
 		'p_subject_all_caps'		=> 1,

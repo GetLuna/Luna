@@ -58,48 +58,48 @@ if (isset($_POST['form_sent']))
 	require_once FORUM_ROOT.'include/cache.php';
 	generate_config_cache();
 
-	redirect('private_messages.php');
+	redirect('inbox.php');
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Options']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
-load_admin_nav('settings', 'private_messages');
+load_admin_nav('settings', 'inbox');
 
 ?>
 
-<form class="form-horizontal" method="post" action="private_messages.php">
+<form class="form-horizontal" method="post" action="inbox.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">zPMMainSettings<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
+            <h3 class="panel-title">Inbox settings<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zEnablePMs</label>
+                    <label class="col-sm-3 control-label">Use Inbox</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[pms_enabled]" value="1" <?php if ($luna_config['o_pms_enabled'] == '1') echo ' checked="checked"' ?> />
-								Enable Private Messaging
+								Allow users to use Inbox.
 							</label>
 						</div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zNotificationPMs</label>
+                    <label class="col-sm-3 control-label">Inbox Notifications</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[pms_notification]" value="1" <?php if ($luna_config['o_pms_notification'] == '1') echo ' checked="checked"' ?> />
-								Allow users to be notified through email about new private messages
+								Allow users to be notified through email about new Inbox messages.
 							</label>
 						</div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">zReceivers<span class="help-block">The number of receivers a PMs can have</span></label>
+                    <label class="col-sm-3 control-label">Receivers<span class="help-block">The number of receivers an Inbox message can have</span></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[pms_max_receiver]" maxlength="5" value="<?php echo luna_htmlspecialchars($luna_config['o_pms_max_receiver'] - 1) ?>" />
                     </div>
@@ -109,7 +109,7 @@ load_admin_nav('settings', 'private_messages');
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">zPMPermissions<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
+            <h3 class="panel-title">Inbox permissions<span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" /></span></h3>
         </div>
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
@@ -125,11 +125,11 @@ load_admin_nav('settings', 'private_messages');
                         <div class="checkbox">
 							<label>
 								<input type="checkbox" name="allow[<?php echo $cur_group['g_id'] ?>]" value="1" <?php if ($cur_group['g_pm'] == '1') echo ' checked="checked"' ?> />
-								Allow users to be notified through email about new private messages
+								Allow users to be notified through email about new Inbox messages.
 							</label>
 						</div>
                         <input type="text" class="form-control" name="limit[<?php echo $cur_group['g_id'] ?>]" maxlength="5" value="<?php echo $cur_group['g_pm_limit'] ?>" />
-						<p class="help-block">The maximum amount of messages a user in this group can have in his inbox. 0 is no limit.</p>
+						<p class="help-block">The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.</p>
                     </div>
                 </div>
 <?php

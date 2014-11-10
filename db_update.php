@@ -418,10 +418,6 @@ switch ($stage) {
 		if (array_key_exists('o_quickpost', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickpost\'') or error('Unable to remove config value \'o_quickpost\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3248: Add o_private_message/experimental feature
-		if (!array_key_exists('o_private_message', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_private_message\', \'0\')') or error('Unable to insert config value \'o_private_message\'', __FILE__, __LINE__, $db->error());
-
 		// Since 0.0.3250: Add the messages table
 		if (!$db->table_exists('messages')) {
 			$schema = array(
@@ -600,21 +596,25 @@ switch ($stage) {
 		// Since 0.0.3263: Add the num_pms column to the users table
 		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3265: Add o_pms_enabled/experimental feature
+		// Since 0.0.3265: Add o_pms_enabled feature
 		if (!array_key_exists('o_pms_enabled', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_enabled\', \'1\')') or error('Unable to insert config value \'o_pms_enabled\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3265: Add o_pms_mess_per_page/experimental feature
+		// Since 0.0.3265: Add o_pms_mess_per_page feature
 		if (!array_key_exists('o_pms_mess_per_page', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_mess_per_page\', \'10\')') or error('Unable to insert config value \'o_pms_mess_per_page\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3265: Add o_pms_max_receiver/experimental feature
+		// Since 0.0.3265: Add o_pms_max_receiver feature
 		if (!array_key_exists('o_pms_max_receiver', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_max_receiver\', \'5\')') or error('Unable to insert config value \'o_pms_max_receiver\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3265: Add o_pms_notification/experimental feature
+		// Since 0.0.3265: Add o_pms_notification feature
 		if (!array_key_exists('o_pms_notification', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_notification\', \'1\')') or error('Unable to insert config value \'o_pms_notification\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.3283: Remove obsolete o_private_message permission from config table
+		if (array_key_exists('o_private_message', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_private_message\'') or error('Unable to remove config value \'o_private_message\'', __FILE__, __LINE__, $db->error());
 
 		break;
 

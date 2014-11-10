@@ -28,8 +28,7 @@ if (isset($_POST['form_sent'])) {
 		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0',
 		'forum_new_style'		=> isset($_POST['form']['forum_new_style']) ? '1' : '0',
 		'user_menu_sidebar'		=> isset($_POST['form']['user_menu_sidebar']) ? '1' : '0',
-		'reading_list'			=> isset($_POST['form']['reading_list']) ? '1' : '0',
-		'private_message'		=> isset($_POST['form']['private_message']) ? '1' : '0'
+		'reading_list'			=> isset($_POST['form']['reading_list']) ? '1' : '0'
 	);
 
 	foreach ($form as $key => $input) {
@@ -115,17 +114,6 @@ if (isset($_GET['saved']))
 							<label>
 								<input type="checkbox" name="form[notifications]" value="1" <?php if ($luna_config['o_notifications'] == '1') echo ' checked="checked"' ?> />
 								enable notifications through Luna
-							</label>
-						</div>
-					</div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">zPrivateMessages<span class="help-block"><span class="label label-kaput">heck, we even don't have a color for this</span></span></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[private_message]" value="1" <?php if ($luna_config['o_private_message'] == '1') echo ' checked="checked"' ?> />
-								enable private messaging system
 							</label>
 						</div>
 					</div>
