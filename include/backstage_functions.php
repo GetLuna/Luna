@@ -104,7 +104,7 @@ function load_admin_nav($section, $page) {
                     else if ($page == 'registration')
                         echo '<span class="fa fa-fw fa-plus-circle"></span> Registration';
                     else if ($page == 'inbox')
-                        echo '<span class="fa fa-fw fa-comments"></span> Inbox';
+                        echo '<span class="fa fa-fw fa-paper-plane-o"></span> Inbox';
                     else if ($page == 'email')
                         echo '<span class="fa fa-fw fa-envelope"></span> Email';
                     else if ($page == 'appearance')
@@ -152,7 +152,7 @@ function load_admin_nav($section, $page) {
                 <li<?php if($page == 'settings') echo ' class="active"' ?>><a href="settings.php"><span class="fa fa-cogs"></span> Settings</a></li>
                 <li<?php if($page == 'features') echo ' class="active"' ?>><a href="features.php"><span class="fa fa-sliders"></span> Features</a></li>
                 <li<?php if($page == 'registration') echo ' class="active"' ?>><a href="registration.php"><span class="fa fa-plus-circle"></span> Registration</a></li>
-				<li<?php if($page == 'inbox') echo ' class="active"' ?>><a href="inbox.php"><span class="fa fa-comments"></span> Inbox</a></li>
+				<li<?php if($page == 'inbox') echo ' class="active"' ?>><a href="inbox.php"><span class="fa fa-paper-plane-o"></span> Inbox</a></li>
                 <li<?php if($page == 'email') echo ' class="active"' ?>><a href="email.php"><span class="fa fa-envelope"></span> Email</a></li>
                 <li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><span class="fa fa-eye"></span> Appearance</a></li>
                 <li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-bars"></span> Menu</a></li>
