@@ -64,6 +64,19 @@ $user_avatar = draw_user_avatar($luna_user['id'], '');
 // Navbar data
 $links = array();
 $menu_title = $luna_config['o_board_title'];
+
+$num_new_pm = 0;
+if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1') {
+	// Check for new messages
+	$result_messages = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
+	$num_new_pm = $db->result($result_messages);
+	
+	if ($num_new_pm > 0)
+		$new_inbox = '<span class="label label-danger">'.$num_new_pm.'</span>';	
+	else
+		$new_inbox = '';	
+}
+
 $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 if ($luna_user['is_guest'])
@@ -90,10 +103,12 @@ elseif ($zset && $luna_config['o_notifications'] == '1')
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$user_avatar.' <span class="fa fa-angle-down"></a>
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$new_inbox.'&nbsp;&nbsp;&nbsp;&nbsp;'.$user_avatar.' <span class="fa fa-angle-down"></a>
 					<ul class="dropdown-menu">
+						<li><a href="pms_inbox.php">Inbox</a></li>
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="me.php?id='.$luna_user['id'].'">Me</a></li>
+						<li class="divider"></li>
 						<li><a href="help.php">'.$lang['Help'].'</a></li>
 						<li class="divider"></li>
 						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>

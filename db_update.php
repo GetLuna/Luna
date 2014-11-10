@@ -314,11 +314,8 @@ switch ($stage) {
 		
 			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
 				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-				
-			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'pms_inbox.php\', \'Inbox\', 4, \'1\', 0)')
-				or error('Unable to add PM menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		
-			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'backstage/index.php\', \'Backstage\', 5, \'1\', 1)')
+			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'backstage/index.php\', \'Backstage\', 4, \'1\', 1)')
 				or error('Unable to add Backstage menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
 
