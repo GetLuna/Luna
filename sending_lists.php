@@ -220,17 +220,21 @@ function checkAll(checkWhat,command){
 	</div>
 </form>
 <form method="post" action="sending_lists.php">
-	<table class="table">
-		<thead>
-			<tr>
-				<th><?php echo $lang_pms['List name'] ?></th>
-				<th><?php echo $lang_pms['List usernames'] ?></th>
-				<th><?php echo $lang_pms['Delete'] ?></th>
-				<th><?php echo $lang_pms['Quick message'] ?></th>
-				<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_lists[]','checkAllButon');" /></label></th>
-			</tr>
-		</thead>
-		<tbody>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Inbox lists</h3>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th><?php echo $lang_pms['List name'] ?></th>
+					<th><?php echo $lang_pms['List usernames'] ?></th>
+					<th><?php echo $lang_pms['Delete'] ?></th>
+					<th><?php echo $lang_pms['Quick message'] ?></th>
+					<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_lists[]','checkAllButon');" /></label></th>
+				</tr>
+			</thead>
+			<tbody>
 <?php
 // Fetch lists
 $result = $db->query('SELECT * FROM '.$db->prefix.'sending_lists WHERE user_id='.$luna_user['id'].' ORDER BY id DESC') or error('Unable to update the list of the lists', __FILE__, __LINE__, $db->error());
@@ -248,21 +252,22 @@ if ($db->num_rows($result))
 			$usernames = $usernames.'<a href="profile.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($usernames_list[$i]).'</a>';
 		} 
 ?>
-			<tr>
-				<td><?php echo luna_htmlspecialchars($cur_list['name']) ?></td>
-				<td><?php echo $usernames ?></td>
-				<td><a href="sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete list confirm'] ?>')"><?php echo $lang_pms['Delete this list'] ?></a></td>
-				<td><a href="new_inbox.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang_pms['Quick message'] ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
-				<td><input type="checkbox" name="selected_lists[]" value="<?php echo $cur_list['id'] ?>" /></td>
-			</tr>
+				<tr>
+					<td><?php echo luna_htmlspecialchars($cur_list['name']) ?></td>
+					<td><?php echo $usernames ?></td>
+					<td><a href="sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete list confirm'] ?>')"><?php echo $lang_pms['Delete this list'] ?></a></td>
+					<td><a href="new_inbox.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang_pms['Quick message'] ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+					<td><input type="checkbox" name="selected_lists[]" value="<?php echo $cur_list['id'] ?>" /></td>
+				</tr>
 <?php
 	}
 }
 else
 	echo "\t".'<tr><td colspan="5">'.$lang_pms['No sending lists'].'</td></tr>'."\n";
 ?>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
 	<label>With selection</label>
 	<div class="input-group">
 		<select class="form-control" name="action">

@@ -100,55 +100,26 @@ if ($action != '')
 			
 			if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
 				message($lang['No permission']);
-	?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_pms['Multidelete'] ?></strong></li>
-		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li class="isactive"><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
-			</div>
+
+			load_inbox_nav('inbox');
+?>
+<form method="post" action="inbox.php">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="action" value="delete_multiple" />
+			<input type="hidden" name="messages" value="<?php echo $idlist ?>" />
+			<input type="hidden" name="delete_multiple_comply" value="1" />
+			<p><?php echo $lang_pms['Delete messages comply'] ?></p>
 		</div>
 	</div>
-	<br />
-	<div class="blockform">
-		<div class="box">
-			<form method="post" action="inbox.php">
-				<input type="hidden" name="action" value="delete_multiple" />
-				<input type="hidden" name="messages" value="<?php echo $idlist ?>" />
-				<input type="hidden" name="delete_multiple_comply" value="1" />
-				<div class="inform">
-				<div class="forminfo">
-					<p><?php echo $lang_pms['Delete messages comply'] ?></p>
-				</div>
-			</div>
-			<p class="buttons"><input type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
-</div>
+</form>
 	<?php
-			require load_page('footer.php');
 		}
 	}
-}
+} else {
 
 // Get message count for this box
 $result = $db->query("SELECT COUNT(*) FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."'") or error("Unable to count the messages", __FILE__, __LINE__, $db->error());
@@ -185,7 +156,11 @@ function checkAll(checkWhat,command){
 <p><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'inbox.php?') ?></span></p>
 <form method="post" action="inbox.php">
 	<fieldset>
-		<input type="hidden" name="box" value="0" />
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Inbox messages</h3>
+			</div>
+			<input type="hidden" name="box" value="0" />
 			<table class="table">
 				<thead>
 					<tr>
@@ -227,8 +202,8 @@ if ($db->num_rows($result))
 ?>
 					<tr class="<?php echo $item_status ?>">
 						<td>
-								<div class="<?php echo $icon_type ?>"></div>
-								<div><?php echo $subject ?></div>
+							<div class="<?php echo $icon_type ?>"></div>
+							<div><?php echo $subject ?></div>
 						</td>
 						<td>
 		<?php
@@ -268,6 +243,7 @@ else
 ?>
 				</tbody>
 			</table>
+		</div>
 		<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'inbox.php?') ?></p>
 		<label>With selection</label>
 		<div class="input-group">
@@ -283,4 +259,6 @@ else
 	</fieldset>
 </form>
 <?php
+
+}
 require load_page('footer.php');

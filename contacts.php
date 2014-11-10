@@ -293,17 +293,21 @@ function checkAll(checkWhat,command){
 	</div>
 </form>
 <form method="post" action="contacts.php">
-	<table class="table">
-		<thead>
-			<tr>
-				<th><?php echo $lang_pms['Contact name'] ?></th>
-				<th><?php echo $lang_pms['Rights contact'] ?></th>
-				<th><?php echo $lang_pms['Delete'] ?></th>
-				<th><?php echo $lang_pms['Quick message'] ?></th>
-				<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_contacts[]','checkAllButon');" /></label></th>
-			</tr>
-		</thead>
-		<tbody>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Inbox contacts</h3>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th><?php echo $lang_pms['Contact name'] ?></th>
+					<th><?php echo $lang_pms['Rights contact'] ?></th>
+					<th><?php echo $lang_pms['Delete'] ?></th>
+					<th><?php echo $lang_pms['Quick message'] ?></th>
+					<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_contacts[]','checkAllButon');" /></label></th>
+				</tr>
+			</thead>
+			<tbody>
 <?php
 // Fetch contacts
 $result = $db->query('SELECT * FROM '.$db->prefix.'contacts WHERE user_id='.$luna_user['id'].' ORDER BY allow_msg DESC, contact_name ASC') or error('Unable to update the list of the contacts', __FILE__, __LINE__, $db->error());
@@ -330,19 +334,20 @@ if ($db->num_rows($result))
 		else
 			echo '<td>'.luna_htmlspecialchars($cur_contact['contact_name']).'</td>';
 	?>
-				<td><?php echo $status_text; ?></td>
-				<td><a href="contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang_pms['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete contact confirm'] ?>')"><?php echo $lang_pms['Delete'] ?></a></td>
-				<td><a href="new_inbox.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang_pms['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
-				<td class="tcmod"><input type="checkbox" name="selected_contacts[]" value="<?php echo $cur_contact['id']; ?>" /></td>
-			</tr>
+					<td><?php echo $status_text; ?></td>
+					<td><a href="contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang_pms['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete contact confirm'] ?>')"><?php echo $lang_pms['Delete'] ?></a></td>
+					<td><a href="new_inbox.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang_pms['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+					<td class="tcmod"><input type="checkbox" name="selected_contacts[]" value="<?php echo $cur_contact['id']; ?>" /></td>
+				</tr>
 <?php
 	}
 }
 else
 	echo "\t".'<tr><td colspan="5">'.$lang_pms['No contacts'].'</td></tr>'."\n";
 ?>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
 	<label>With selection</label>
 	<div class="input-group">
 		<select class="form-control" name="action">
