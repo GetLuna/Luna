@@ -9,6 +9,7 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/parser.php';
+require FORUM_ROOT.'include/inbox_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
@@ -317,31 +318,9 @@ if (!$db->num_rows($result))
 	message($lang['Bad request']);
 	
 $reply_link = '<a href="pms_send.php?reply='.$tid.'">'.$lang_pms['Reply'].'</a>';
-?>
 
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-	</div>
-	<div class="collapse navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li><a href="pms_inbox.php">Inbox</a></li>
-			<li><a href="pms_contacts.php">Contacs</a></li>
-			<li><a href="pms_sending_lists.php">Sending lists</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<div class="btn-compose pull-left">
-				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php?reply=<?php echo $tid ?>"><span class="fa fa-reply"></span> Reply</a>
-				<a type="button" class="btn btn-danger navbar-btn" href="pms_send.php"><span class="fa fa-pencil"></span> Compose</a>
-			</div>
-		</ul>
-	</div>
-</nav>
+load_inbox_nav('view');
+?>
 <p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'pms_view.php?tid='.$tid.'&amp;mid='.$mid)  ?></p>
 <?php
 while ($cur_post = $db->fetch_assoc($result))

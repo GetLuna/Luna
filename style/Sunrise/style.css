@@ -440,6 +440,12 @@ textarea.textarea, textarea.textarea:focus {
 	background-color: #1d8ae0;
 }
 
+/* Inbox */
+nav .progress {
+	margin: 15px 10px;
+	background-color: #fff;
+}
+
 /* Profile */
 .profile-nav {
 	padding-left: 0;

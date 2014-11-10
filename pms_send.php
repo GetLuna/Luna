@@ -8,6 +8,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/inbox_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
@@ -450,29 +451,9 @@ $page_head['script'] = '<script type="text/javascript" src="include/pms.js"></sc
 
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
+
+load_inbox_nav('send');
 ?>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-	</div>
-	<div class="collapse navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li><a href="pms_inbox.php">Inbox</a></li>
-			<li><a href="pms_contacts.php">Contacs</a></li>
-			<li><a href="pms_sending_lists.php">Sending lists</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<div class="btn-compose pull-left">
-				<a type="button" class="btn btn-danger navbar-btn disabled" href="pms_send.php"><span class="fa fa-pencil"></span> Composing...</a>
-			</div>
-		</ul>
-	</div>
-</nav>
 <?php
 // If there are errors, we display them
 if (!empty($errors)) {
