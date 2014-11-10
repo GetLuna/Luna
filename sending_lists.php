@@ -54,58 +54,29 @@ if ($action != '')
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Multidelete lists'], $lang_pms['Sending lists']);
 			define('FORUM_ACTIVE_PAGE', 'pm');
 			require load_page('header.php');
-	?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_pms['Multidelete lists'] ?></strong></li>
-		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li class="isactive"><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
-			</div>
+
+			load_inbox_nav('lists');
+?>
+<form method="post" action="sending_lists.php">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="action" value="delete_multiple" />
+			<input type="hidden" name="selected_lists" value="<?php echo $idlist ?>" />
+			<input type="hidden" name="delete_multiple_comply" value="1" />
+			<p><?php echo $lang_pms['Delete lists comply'] ?></p>
 		</div>
 	</div>
-	<br />
-	<div class="blockform">
-		<div class="box">
-			<form method="post" action="">
-				<input type="hidden" name="action" value="delete_multiple" />
-				<input type="hidden" name="selected_lists" value="<?php echo $idlist ?>" />
-				<input type="hidden" name="delete_multiple_comply" value="1" />
-				<div class="inform">
-				<div class="forminfo">
-					<p><?php echo $lang_pms['Delete lists comply'] ?></p>
-				</div>
-			</div>
-			<p class="buttons"><input type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
-</div>
-
+</form>
 	<?php
-			require load_page('footer.php');
 		}
 	}
 }
 
 // Add a list
-if (isset($_POST['form_sent']))
+else if (isset($_POST['form_sent']))
 {
 	// Make sure they got here from the site
 	confirm_referrer('sending_lists.php');
@@ -160,7 +131,7 @@ if (isset($_POST['form_sent']))
 }
 
 // Delete a list
-if (isset($_GET['delete']))
+else if (isset($_GET['delete']))
 {
 	$id = intval($_GET['delete']);
 	
@@ -172,7 +143,7 @@ if (isset($_GET['delete']))
 	$result = $db->query('DELETE FROM '.$db->prefix.'sending_lists WHERE id= '.$id) or error('Unable to delete the list', __FILE__, __LINE__, $db->error());
 	
 	redirect('sending_lists.php', $lang_pms['Deleted list redirect']);
-}
+} else {
 
 // Build page
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Sending lists']);
@@ -280,5 +251,6 @@ else
 </form>
 
 <?php
-	require load_page('footer.php');
-?>
+}
+
+require load_page('footer.php');

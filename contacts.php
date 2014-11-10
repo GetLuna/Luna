@@ -30,8 +30,7 @@ require FORUM_ROOT.'lang/'.$luna_user['language'].'/pms.php';
 $action = ((isset($_POST['action']) && ($_POST['action'] == 'send' || $_POST['action'] == 'authorize' || $_POST['action'] == 'refuse' || $_POST['action'] == 'delete_multiple')) ? $_POST['action'] : '');
 
 
-if ($action != '')
-{
+if ($action != '') {
 	// Make sure they got here from the site
 	confirm_referrer('contacts.php');
 	
@@ -121,58 +120,29 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Multidelete contacts'], $lang_pms['Contacts']);
 			define('FORUM_ACTIVE_PAGE', 'pm');
 			require load_page('header.php');
-	?>
-<div class="linkst">
-	<div class="inbox crumbsplus">
-		<ul class="crumbs">
-			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-			<li><span>»&#160;</span><strong><?php echo $lang_pms['Multidelete contacts'] ?></strong></li>
-		</ul>
-		<div class="pagepost"></div>
-		<div class="clearer"></div>
-	</div>
-</div>
-<div class="block2col">
-	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
-		<div class="box">
-			<div class="inbox">
-				<ul>
-					<li><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li class="isactive"><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
-				</ul>
-			</div>
+
+			load_inbox_nav('contacts');
+?>
+<form method="post" action="inbox.php">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="action" value="delete_multiple" />
+			<input type="hidden" name="contacts" value="<?php echo $idlist ?>" />
+			<input type="hidden" name="delete_multiple_comply" value="1" />
+			<p><?php echo $lang_pms['Delete contacts comply'] ?></p>
 		</div>
 	</div>
-	<br />
-	<div class="blockform">
-		<div class="box">
-			<form method="post" action="contacts.php">
-				<input type="hidden" name="action" value="delete_multiple" />
-				<input type="hidden" name="contacts" value="<?php echo $idlist ?>" />
-				<input type="hidden" name="delete_multiple_comply" value="1" />
-				<div class="inform">
-				<div class="forminfo">
-					<p><?php echo $lang_pms['Delete contacts comply'] ?></p>
-				</div>
-			</div>
-			<p class="buttons"><input type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
-		</form>
-	</div>
-</div>
-</div>
-
-	<?php
-			require load_page('footer.php');
+</form>
+<?php
 		}
 	}
 }
 
 // Add a contact
-if (isset($_POST['add']))
+else if (isset($_POST['add']))
 {
 	// Make sure they got here from the site
 	confirm_referrer('contacts.php');
@@ -213,7 +183,7 @@ if (isset($_POST['add']))
 }
 
 // Delete a contact
-if (isset($_GET['delete']))
+else if (isset($_GET['delete']))
 {
 	// Make sure they got here from the site
 	confirm_referrer('contacts.php');
@@ -231,7 +201,7 @@ if (isset($_GET['delete']))
 }
 
 // Switch contact status
-if (isset($_GET['switch']))
+else if (isset($_GET['switch']))
 {
 	// Make sure they got here from the site
 	confirm_referrer('contacts.php');
@@ -246,8 +216,7 @@ if (isset($_GET['switch']))
 	$result = $db->query('UPDATE '.$db->prefix.'contacts SET allow_msg = 1-allow_msg WHERE id= '.$id) or error('Unable to edit the status of the contact', __FILE__, __LINE__, $db->error());
 	
 	redirect('contacts.php',$lang_pms['Status redirect']);
-}
-
+} else {
 // Build page
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Contacts']);
 
@@ -363,5 +332,6 @@ else
 </form>
 
 <?php
-	require load_page('footer.php');
-?>
+}
+
+require load_page('footer.php');

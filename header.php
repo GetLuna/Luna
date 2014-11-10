@@ -68,8 +68,8 @@ $menu_title = $luna_config['o_board_title'];
 $num_new_pm = 0;
 if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1') {
 	// Check for new messages
-	$result_messages = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
-	$num_new_pm = $db->result($result_messages);
+	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
+	$num_new_pm = $db->result($result);
 	
 	if ($num_new_pm > 0)
 		$new_inbox = '<span class="label label-danger">'.$num_new_pm.'</span>&nbsp;&nbsp;&nbsp;&nbsp;';	
