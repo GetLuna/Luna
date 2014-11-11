@@ -361,10 +361,6 @@ switch ($stage) {
 		if (!array_key_exists('o_forum_new_style', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_new_style\', \'0\')') or error('Unable to insert config value \'o_forum_new_style\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3205: Add o_user_menu_sidebar/experimental feature
-		if (!array_key_exists('o_user_menu_sidebar', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_user_menu_sidebar\', \'0\')') or error('Unable to insert config value \'o_user_menu_sidebar\'', __FILE__, __LINE__, $db->error());
-
 		// Since 0.0.3205: Add o_backstage_dark/experimental feature
 		if (!array_key_exists('o_backstage_dark', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_backstage_dark\', \'0\')') or error('Unable to insert config value \'o_backstage_dark\'', __FILE__, __LINE__, $db->error());
@@ -615,6 +611,10 @@ switch ($stage) {
 		// Since 0.1.3283: Remove obsolete o_private_message permission from config table
 		if (array_key_exists('o_private_message', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_private_message\'') or error('Unable to remove config value \'o_private_message\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.3300: Remove obsolete o_user_menu_sidebar permission from config table
+		if (array_key_exists('o_user_menu_sidebar', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_user_menu_sidebar\'') or error('Unable to remove config value \'o_user_menu_sidebar\'', __FILE__, __LINE__, $db->error());
 
 		break;
 

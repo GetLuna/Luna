@@ -27,7 +27,6 @@ if (isset($_POST['form_sent'])) {
 		'backstage_dark'		=> isset($_POST['form']['backstage_dark']) ? '1' : '0',
 		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0',
 		'forum_new_style'		=> isset($_POST['form']['forum_new_style']) ? '1' : '0',
-		'user_menu_sidebar'		=> isset($_POST['form']['user_menu_sidebar']) ? '1' : '0',
 		'reading_list'			=> isset($_POST['form']['reading_list']) ? '1' : '0'
 	);
 
@@ -101,7 +100,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input disabled type="checkbox" name="form[user_menu_sidebar]" value="1" <?php if ($luna_config['o_hooks'] == '1') echo ' checked="checked"' ?> />
+								<input disabled type="checkbox" name="form[hooks]" value="1" <?php if ($luna_config['o_hooks'] == '1') echo ' checked="checked"' ?> />
 								enable hooks to be used by plugins
 							</label>
 						</div>
@@ -125,17 +124,6 @@ if (isset($_GET['saved']))
 							<label>
 								<input type="checkbox" name="form[reading_list]" value="1" <?php if ($luna_config['o_reading_list'] == '1') echo ' checked="checked"' ?> />
 								enable reading list
-							</label>
-						</div>
-					</div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">zUserMenu<span class="help-block"><span class="label label-default">disabled</span> <span class="label label-success">normal</span></span></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-							<label>
-								<input disabled type="checkbox" name="form[user_menu_sidebar]" value="1" <?php if ($luna_config['o_user_menu_sidebar'] == '1') echo ' checked="checked"' ?> />
-								enable the user menu in the index sidebar to replace the navbar user menu
 							</label>
 						</div>
 					</div>
