@@ -28,7 +28,7 @@ if (isset($_POST['add_item'])) {
 	confirm_referrer('backstage/menu.php');
 	
 	$item_id = intval($_GET['del_item']);
-	if ($item_id < 5)
+	if ($item_id < 4)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	$db->query('DELETE FROM '.$db->prefix.'menu WHERE id='.$item_id) or error('Unable to delete menu item', __FILE__, __LINE__, $db->error());
