@@ -314,9 +314,6 @@ switch ($stage) {
 		
 			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
 				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-		
-			$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'backstage/index.php\', \'Backstage\', 4, \'1\', 1)')
-				or error('Unable to add Backstage menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
 
 		// Since 0.0.40.2985: Remove obsolete o_show_index permission from config table
@@ -615,6 +612,9 @@ switch ($stage) {
 		// Since 0.1.3300: Remove obsolete o_user_menu_sidebar permission from config table
 		if (array_key_exists('o_user_menu_sidebar', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_user_menu_sidebar\'') or error('Unable to remove config value \'o_user_menu_sidebar\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.1.3301: Set sys_entry to 0 for Backstage
+		$db->query('UPDATE '.$db->prefix.'menu SET sys_entry = \'0\' WHERE id = \'4\'') or error('Unable to reset Backstage menu item', __FILE__, __LINE__, $db->error());
 
 		break;
 

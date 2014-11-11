@@ -11,10 +11,10 @@ class Version {
 	const FORUM_VERSION = '0.0.9';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '0.1.3300';
+	const FORUM_CORE_VERSION = '0.1.3301';
 
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = 85.12;
+	const FORUM_DB_VERSION = 85.13;
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const FORUM_PARSER_VERSION = 11;

@@ -1804,9 +1804,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 	$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'search.php\', \'Search\', 3, \'1\', 1)')
 		or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-	$db->query('INSERT INTO '.$db_prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\'backstage/index.php\', \'Backstage\', 4, \'1\', 1)')
-		or error('Unable to add Backstage menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-
 	// Enable/disable avatars depending on file_uploads setting in PHP configuration
 	$avatars = in_array(strtolower(@ini_get('file_uploads')), array('on', 'true', '1')) ? 1 : 0;
 
