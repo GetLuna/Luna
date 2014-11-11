@@ -476,7 +476,7 @@ if (!empty($errors)) {
 
 } else if (isset($_POST['preview'])) {
 	require_once FORUM_ROOT.'include/parser.php';
-	$preview_message = parse_message($p_message, $hide_smilies);
+	$preview_message = parse_message($p_message);
 
 ?>
 <div class="panel panel-default">

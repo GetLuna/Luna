@@ -33,7 +33,7 @@ function draw_preview_panel($message) {
 
 	if (!empty($message)) {
 		require_once FORUM_ROOT.'include/parser.php';
-		$preview_message = parse_message($message, $hide_smilies);
+		$preview_message = parse_message($message);
 	
 ?>
 <div class="panel panel-default">
@@ -436,7 +436,7 @@ function draw_topic_list() {
 		}
 	
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
-		$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
+		$cur_post['message'] = parse_message($cur_post['message']);
 	
 		// Do signature parsing/caching
 		if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0') {

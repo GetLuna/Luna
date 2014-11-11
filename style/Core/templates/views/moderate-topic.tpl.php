@@ -66,7 +66,7 @@ if (!defined('FORUM'))
         $is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
 
         // Perform the main parsing of the message (BBCode, smilies, censor words etc)
-        $cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
+        $cur_post['message'] = parse_message($cur_post['message']);
 
 ?>
 <div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">

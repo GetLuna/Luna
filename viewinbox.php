@@ -185,7 +185,7 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 			if($cur_delete['owner'] != $luna_user['id'] && !$luna_user['is_admmod'])
 				message($lang['No permission']);
 
-			$cur_delete['message'] = parse_message($cur_delete['message'], $cur_delete['hide_smilies']);
+			$cur_delete['message'] = parse_message($cur_delete['message']);
 		?>
 <div class="linkst">
 	<div class="inbox crumbsplus">
@@ -422,7 +422,7 @@ while ($cur_post = $db->fetch_assoc($result))
 		$post_actions[] = '<li class="postquote"><span><a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang_topic['Quote'].'</a></span></li>';
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
-	$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
+	$cur_post['message'] = parse_message($cur_post['message']);
 
 	// Do signature parsing/caching
 	if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0')

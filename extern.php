@@ -297,7 +297,7 @@ if ($action == 'feed') {
 		// Fetch $show posts
 		$result = $db->query('SELECT p.id, p.poster, p.message, p.hide_smilies, p.posted, p.poster_id, u.email_setting, u.email, p.poster_email FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id WHERE p.topic_id='.$tid.' ORDER BY p.posted DESC LIMIT '.$show) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 		while ($cur_post = $db->fetch_assoc($result)) {
-			$cur_post['message'] = parse_message($cur_post['message'], $cur_post['hide_smilies']);
+			$cur_post['message'] = parse_message($cur_post['message']);
 
 			$item = array(
 				'id'			=>	$cur_post['id'],
@@ -378,7 +378,7 @@ if ($action == 'feed') {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
-				$cur_topic['message'] = parse_message($cur_topic['message'], $cur_topic['hide_smilies']);
+				$cur_topic['message'] = parse_message($cur_topic['message']);
 
 				$item = array(
 					'id'			=>	$cur_topic['id'],

@@ -19,7 +19,7 @@ if (!defined('FORUM'))
                 if ($luna_config['o_censoring'] == '1')
                     $cur_search['message'] = censor_words($cur_search['message']);
 
-                $message = parse_message($cur_search['message'], $cur_search['hide_smilies']);
+                $message = parse_message($cur_search['message']);
                 $pposter = luna_htmlspecialchars($cur_search['pposter']);
 
                 if ($cur_search['poster_id'] > 1) {

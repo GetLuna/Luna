@@ -772,7 +772,7 @@ function do_smilies($text) {
 //
 // Parse message text
 //
-function parse_message($text, $hide_smilies) {
+function parse_message($text) {
 	global $luna_config, $lang, $luna_user;
 
 	if ($luna_config['o_censoring'] == '1')
@@ -788,7 +788,7 @@ function parse_message($text, $hide_smilies) {
 	if (strpos($text, '[') !== false && strpos($text, ']') !== false)
 		$text = do_bbcode($text);
 
-	if ($luna_config['o_smilies'] == '1' && $luna_user['show_smilies'] == '1' && $hide_smilies == '0')
+	if ($luna_config['o_smilies'] == '1' && $luna_user['show_smilies'] == '1')
 		$text = do_smilies($text);
 
 	// Deal with newlines, tabs and multiple spaces

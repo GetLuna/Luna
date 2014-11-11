@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/parser.php';
 
 // Load the me functions script
 require FORUM_ROOT.'include/me_functions.php';
