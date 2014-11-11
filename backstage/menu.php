@@ -82,7 +82,7 @@ load_admin_nav('settings', 'menu');
 			<fieldset>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">New menu item<span class="pull-right"><input class="btn btn-primary" type="submit" name="add_item" value="<?php echo $lang['Add'] ?>" /></span></h3>
+						<h3 class="panel-title">New menu item<span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fa fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
 					</div>
 					<table class="table">
 						<tbody>
@@ -106,7 +106,7 @@ load_admin_nav('settings', 'menu');
 		<form method="post" action="menu.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Menu<span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>
+					<h3 class="panel-title">Menu<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 				</div>
 				<table class="table">
 					<thead>
