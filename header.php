@@ -77,13 +77,18 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 		$new_inbox = '';	
 }
 
+if (!$luna_user['is_admmod'])
+	$backstage = '';
+else
+	$backstage = '<li><a href="backstage/"><span class="fa fa-tachometer"></span></a></li>';
+
 $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
 				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
 elseif ($zset && $luna_config['o_notifications'] == '1')
-	$usermenu = '
+	$usermenu = $backstage.'
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-circle"></i></a>
 					<ul class="dropdown-menu notification-menu">
@@ -103,7 +108,7 @@ elseif ($zset && $luna_config['o_notifications'] == '1')
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$new_inbox."".$user_avatar.' <span class="fa fa-angle-down"></a>
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$new_inbox."".$user_avatar.' <span class="fa fa-fw fa-angle-down"></a>
 					<ul class="dropdown-menu">
 						<li><a href="inbox.php">Inbox</a></li>
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
