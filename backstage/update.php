@@ -62,8 +62,10 @@ require 'header.php';
             <a href="http://modernbb.be/releases/luna1.0.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
         </div>
 <?php
-	}
+	} else {
 ?>
+		<h3>You're using a development version of Luna. Be sure to stay up-to-date.</h3>
+<?php } ?>
     </div>
     <div class="panel-footer">
     	<p>Luna is developed by the <a href="http://modernbb.be/luna">Luna Group</a>. Copyright 2013-2014. Released under the GPLv3 license.</p>

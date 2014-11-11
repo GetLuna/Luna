@@ -229,6 +229,219 @@ switch ($stage) {
 		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::FORUM_DB_VERSION)
 			break;
 
+		// Change the default style if the old doesn't exist anymore
+		if ($pun_config['o_default_style'] != $default_style)
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-beta.1: Add the marked column to the posts table
+		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-beta.2: Insert new config option o_antispam_api
+		if (!array_key_exists('o_antispam_api', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_antispam_api\', NULL)') or error('Unable to insert config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
+		if (array_key_exists('o_quickjump', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-rc.1: Drop the parent_forum_id column from the forums table
+		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drop parent_forum_id field', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
+		if (array_key_exists('o_show_dot', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.1-beta: Insert new config option o_menu_title
+		if (!array_key_exists('o_menu_title', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_menu_title\', \'0\')') or error('Unable to insert config value \'o_menu_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.1-beta: Insert new config option o_header_title
+		if (!array_key_exists('o_header_title', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_title\', \'1\')') or error('Unable to insert config value \'o_header_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.1-beta: Insert new config option o_index_update_check
+		if (!array_key_exists('o_index_update_check', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.1-beta: Insert new config option o_index_update_check
+		if (!array_key_exists('o_index_update_check', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_index_update_check\', \'1\')') or error('Unable to insert config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.2.2: Add o_ranks if updating from FluxBB 1.5
+		if (!array_key_exists('o_ranks', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.2.2: Recreate ranks table when removed in FluxBB 1.5
+		if (!$db->table_exists('ranks'))
+		{
+			$schema = array(
+				'FIELDS'		=> array(
+					'id'			=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'rank'			=> array(
+						'datatype'		=> 'VARCHAR(50)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'min_posts'		=> array(
+						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('id')
+			);
+			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
+
+			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
+				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+
+			$db->query('INSERT INTO '.$db_prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
+				or error('Unable to insert into table '.$db_prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
+		}
+
+		// Since 3.0-alpha.1 Remove the toolbar_conf table
+		if ($db->table_exists('toolbar_conf'))
+			$db->drop_table('toolbar_conf') or error('Unable to drop toolbar_conf table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.0-alpha.1 Remove the toolbar_conf table
+		if ($db->table_exists('toolbar_tags'))
+			$db->drop_table('toolbar_tags') or error('Unable to drop toolbar_tags table', __FILE__, __LINE__, $db->error());
+
+		// Since 3.0-alpha.1: Add the backstage_style column to the users table
+		$db->add_field('users', 'backstage_style', 'VARCHAR(25)', false, 'ModernBB') or error('Unable to add backstage_style field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.0-alpha.2: Add the last_topic column to the forums table
+		$db->add_field('forums', 'last_topic', 'VARCHAR(255)', true, null, 'last_poster');
+
+		// Since 3.0-alpha.2: Update last_topic for each forum
+		$result = $db->query('SELECT id, last_post_id FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+		while ($cur_forum = $db->fetch_assoc($result))
+		{
+			if ($cur_forum['last_post_id'] > 0)
+			{
+				$result_subject = $db->query('SELECT t.subject FROM '.$db->prefix.'posts AS p LEFT JOIN '.$db->prefix.'topics AS t ON p.topic_id=t.id WHERE p.id='.$cur_forum['last_post_id']) or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
+				if ($db->num_rows($result_subject))
+				{
+					$subject = $db->result($result_subject);
+					$db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.$db->escape($subject).'\' WHERE id='.$cur_forum['id']) or error('Unable to update last topic', __FILE__, __LINE__, $db->error());
+				}
+			}
+		}
+
+		// Since 3.00-alpha.2: Insert new config option o_header_desc
+		if (!array_key_exists('o_header_desc', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_desc\', \'1\')') or error('Unable to insert config value \'o_header_desc\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.0-alpha.3: Insert new config option o_show_index_stats
+		if (!array_key_exists('o_show_index_stats', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_index_stats\', \'1\')') or error('Unable to insert config value \'o_show_index_stats\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.1: Add o_show_index
+		if (!array_key_exists('o_show_index', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_index\', \'1\')') or error('Unable to insert config value \'o_show_index\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.1: Add o_show_userlist
+		if (!array_key_exists('o_show_userlist', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_userlist\', \'1\')') or error('Unable to insert config value \'o_show_userlist\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.1: Add o_show_search
+		if (!array_key_exists('o_show_search', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_search\', \'1\')') or error('Unable to insert config value \'o_show_search\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.1: Add o_show_rules
+		if (!array_key_exists('o_show_rules', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_rules\', \'1\')') or error('Unable to insert config value \'o_show_rules\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.2-alpha: Add the first_run column to the users table
+		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.2-alpha: Insert new config option o_show_first_run
+		if (!array_key_exists('o_show_first_run', $luna_config))
+
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_first_run\', \'1\')') or error('Unable to insert config value \'o_show_first_run\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.2-alpha: Insert new config option o_first_run_guests
+		if (!array_key_exists('o_show_first_run', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_guests\', \'1\')') or error('Unable to insert config value \'o_first_run_guests\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.2-alpha: Insert new config option o_first_run_message
+		if (!array_key_exists('o_first_run_message', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_message\', \'\')') or error('Unable to insert config value \'o_first_run_message\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.2-alpha: Remove obsolete o_redirect_delay permission from config table
+		if (array_key_exists('o_redirect_delay', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_redirect_delay\'') or error('Unable to remove config value \'o_redirect_delay\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.2-beta: Add o_has_posted
+		if (!array_key_exists('o_has_posted', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_has_posted\', \'1\')') or error('Unable to insert config value \'o_has_posted\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.3-alpha: Add o_enable_advanced_search
+		if (!array_key_exists('o_enable_advanced_search', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_enable_advanced_search\', \'1\')') or error('Unable to insert config value \'o_enable_advanced_search\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.3-beta: Add last_poster_id field for each forums
+		$db->add_field('forums', 'last_poster_id', 'INT(10)', true, NULL, 'last_poster') or error('Unable to add forums.last_poster_id column', __FILE__, __LINE__, $db->error());
+
+		$result_forums = $db->query('SELECT id, last_poster FROM '.$db->prefix.'forums') or error('Unable to fetch forums list', __FILE__, __LINE__, $db->error());
+		while ( $cur_forum = $db->fetch_assoc( $result_forums ) )
+		{
+			if ( ! is_null($cur_forum['last_poster']) )
+			{
+				$result_poster_id = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username="'.$db->escape( $cur_forum['last_poster'] ).'"') or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
+				if ( $db->num_rows( $result_poster_id ) )
+				{
+					$poster_id = $db->result($result_poster_id);
+					$db->query('UPDATE '.$db->prefix.'forums SET last_poster_id='.$db->escape($poster_id).' WHERE id='.$cur_forum['id']) or error('Unable to update last topic', __FILE__, __LINE__, $db->error());
+				}
+			}
+		}
+
+		// Since 3.3-beta: Add last_poster_id field for each topics
+		$db->add_field('topics', 'last_poster_id', 'INT(10)', true, NULL, 'last_poster') or error('Unable to add topics.last_poster_id column', __FILE__, __LINE__, $db->error());
+
+		$result_topics = $db->query('SELECT id, last_poster FROM '.$db->prefix.'topics') or error('Unable to fetch topics list', __FILE__, __LINE__, $db->error());
+		while ( $cur_topic = $db->fetch_assoc( $result_topics ) )
+		{
+			if ( ! is_null($cur_topic['last_poster']) )
+			{
+				$result_poster_id = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username="'.$db->escape( $cur_topic['last_poster'] ).'"') or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
+				if ( $db->num_rows( $result_poster_id ) )
+				{
+					$poster_id = $db->result($result_poster_id);
+					$db->query('UPDATE '.$db->prefix.'topics SET last_poster_id='.$db->escape($poster_id).' WHERE id='.$cur_topic['id']) or error('Unable to update last topic', __FILE__, __LINE__, $db->error());
+				}
+			}
+		}
+
+		// Since 3.3-beta: Add the backstage_color column to the users table
+		$db->add_field('users', 'backstage_color', 'VARCHAR(25)', false, '#14a3ff') or error('Unable to add backstage_color field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.3-beta: Drop the backstage_style column from the forums table
+		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4-rc: Insert new config option o_cookie_bar
+		if (!array_key_exists('o_cookie_bar', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar\', \'0\')') or error('Unable to insert config value \'o_cookie_bar\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4-rc: Insert new config option o_moderated_by
+		if (!array_key_exists('o_moderated_by', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_moderated_by\', \'1\')') or error('Unable to insert config value \'o_moderated_by\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4-rc: Make password field VARCHAR(256)
+		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4-rc: Insert new config option video_width
+		if (!array_key_exists('o_video_width', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_video_width\', \'640\')') or error('Unable to insert config value \'o_video_width\'', __FILE__, __LINE__, $db->error());
+
+		// Since 3.4-rc: Insert new config option video_height
+		if (!array_key_exists('o_video_height', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_video_height\', \'360\')') or error('Unable to insert config value \'o_video_height\'', __FILE__, __LINE__, $db->error());
+
 		// Since 3.5-beta: Remove obsolete o_antispam_api permission from config table
 		if (array_key_exists('o_antispam_api', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_antispam_api\'') or error('Unable to remove config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
