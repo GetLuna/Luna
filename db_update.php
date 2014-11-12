@@ -230,7 +230,7 @@ switch ($stage) {
 			break;
 
 		// Change the default style if the old doesn't exist anymore
-		if ($pun_config['o_default_style'] != $default_style)
+		if ($luna_config['o_default_style'] != $default_style)
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 
 		// Since 2.0-beta.1: Add the marked column to the posts table
