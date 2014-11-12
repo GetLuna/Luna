@@ -297,76 +297,70 @@ a.list-group-item-cat:hover .forum-description {
 	border: none;
 }
 
-/* Sidebar */
-.sidebar {
-	background: #efefef;
-	border: none;
-}
-
-.btn-group-sidebar {
-	margin-top: 13px;
-}
-
-.sidebar-content {
+/* First run */
+.first-run-content {
 	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: 10px;
 }
 
-.sidebar-content h2 {
-	margin: 0;
+.first-run-content h3 {
+	margin-top: 15px;
 }
 
-.sidebar-profile {
-	background: #0d4382;
-	padding: 15px;
+.first-run-profile {
+	background: #444;
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
+	padding-bottom: 16px;
 }
 
-.sidebar .avatar {
-	height: 75px;
-	width: auto;
-}
-
-.sidebar-title {
+.first-run-title {
 	color: #fff;
+	text-align: center;
 }
 
-.sidebar-title small {
-	color: rgba(255,255,255,.7);
-}
-
-.sidebar-avatar {
+.first-run-avatar {
 	background: none;
 	border: none;
 }
 
-.sidebar-login {
+.first-run-avatar img {
+	border-radius: 3px;
+	box-shadow: 0px 0px 13px #808080;
+}
+
+.first-run-list {
+	margin: 15px;
+}
+
+.first-run-login {
 	margin-right: 15px;
 }
 
-.sidebar .active {
+.first-run .active {
 	text-align: center;
 }
 
 @media screen and (max-width: 767px) {
-	.sidebar-content {
+	.first-run-content {
 		padding-right: 15px;
 	}
 
-	.sidebar-profile {
+	.first-run-profile {
 		margin-top: -15px;
+		border-bottom-left-radius: 0;
+		border-top-right-radius: 3px;
 	}
 
-	.sidebar-title {
+	.first-run-title {
 		padding-top: 15px;
 	}
 
-	.sidebar-list {
+	.first-run-list {
 		margin-left: 0;
 		margin-right: 0;
 	}
 
-	.sidebar-login {
+	.first-run-login {
 		margin-right: 0;
 	}
 }
