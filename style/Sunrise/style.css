@@ -891,6 +891,29 @@ textarea {
 	color: rgba(255,255,255,.6);
 }
 
+.me-jumbotron  {
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.me-jumbotron .media {
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.me-jumbotron .avatar {
+	height: 70px;
+	width: auto;
+}
+
+.me-jumbotron .media .media-heading {
+	margin-top: 4px;
+}
+
+.me-jumbotron .media h2 {
+	font-size: 45px !important;
+}
+
 /* Debug */
 #debug {
 	border-style: dotted none none none;

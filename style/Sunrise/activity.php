@@ -4,8 +4,24 @@
 if (!defined('FORUM'))
     exit;
 
+$jumbo_style = 'style="background:'.$user['color'].';"';
+
 ?>
 
+</div>
+<div class="jumbotron me-jumbotron"<?php echo $jumbo_style ?>>
+	<div class="container">
+        <div class="media">
+            <a class="pull-left" href="#">
+                <?php echo generate_avatar_markup($luna_user['id']) ?>
+            </a>
+            <div class="media-body">
+                <h2 class="media-heading"><?php echo $luna_user['username']; ?></h2>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="container">
 <div class="col-sm-3 profile-nav">
 <?php
     generate_me_menu('view');
@@ -37,7 +53,7 @@ if (!defined('FORUM'))
 	</ul>
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="posts">
-			<h2 class="activity-header">Recent posts</h2>
+			<h2 class="activity-header">Recent posts<span class="pull-right"><a href="#" class="btn btn-primary">Show everything</a></span></h2>
 <?php
 	$result = $db->query('SELECT id, poster, poster_id, message, posted, edited, edited_by, marked FROM '.$db->prefix.'posts WHERE poster_id='.$luna_user['id'].' ORDER BY id DESC LIMIT 10') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_post = $db->fetch_assoc($result)) {
@@ -61,7 +77,7 @@ if (!defined('FORUM'))
 			<a href="#" class="btn btn-primary btn-lg btn-block">Show everything</a>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="topics">
-			<h2 class="activity-header">Recent topics</h2>
+			<h2 class="activity-header">Recent topics<span class="pull-right"><a href="#" class="btn btn-primary">Show everything</a></span></h2>
 <?php
 	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, forum_id FROM '.$db->prefix.'topics WHERE poster=\''.$luna_user['username'].'\' ORDER BY id DESC LIMIT 10') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 	while ($cur_topic = $db->fetch_assoc($result)) {
@@ -77,7 +93,7 @@ if (!defined('FORUM'))
 <?php
 	}
 ?>
-			<a href="#" class="btn btn-primary btn-lg btn-block">Show everything</a>
+			
 		</div>
 		<div role="tabpanel" class="tab-pane" id="subscriptions">
 			<h2 class="activity-header">Subscriptions</h2>
