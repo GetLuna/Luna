@@ -29,15 +29,15 @@ if (!defined('FORUM'))
 		</tbody>
 	</table>
 	<?php } ?>
-	<h1>Activity feed</h1>
-	<ul class="nav nav-tabs" role="tablist">
+	<h1 class="visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline">Activity feed</h1>
+	<ul class="nav nav-tabs pull-right visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline activity-tab" role="tablist">
 		<li role="presentation" class="active"><a href="#posts" role="tab" data-toggle="tab">Recent posts</a></li>
 		<li role="presentation"><a href="#topics" role="tab" data-toggle="tab">Recent topics</a></li>
 		<li role="presentation"><a href="#subscriptions" role="tab" data-toggle="tab">Subscriptions</a></li>
 	</ul>
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="posts">
-			<h2>Recent posts</h2>
+			<h2 class="activity-header">Recent posts</h2>
 <?php
 	$result = $db->query('SELECT id, poster, poster_id, message, posted, edited, edited_by, marked FROM '.$db->prefix.'posts WHERE poster_id='.$luna_user['id'].' ORDER BY id DESC LIMIT 10') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_post = $db->fetch_assoc($result)) {
@@ -61,7 +61,7 @@ if (!defined('FORUM'))
 			<a href="#" class="btn btn-primary btn-lg btn-block">Show everything</a>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="topics">
-			<h2>Recent topics</h2>
+			<h2 class="activity-header">Recent topics</h2>
 <?php
 	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, forum_id FROM '.$db->prefix.'topics WHERE poster=\''.$luna_user['username'].'\' ORDER BY id DESC LIMIT 10') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 	while ($cur_topic = $db->fetch_assoc($result)) {
@@ -80,7 +80,7 @@ if (!defined('FORUM'))
 			<a href="#" class="btn btn-primary btn-lg btn-block">Show everything</a>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="subscriptions">
-			<h2>Subscriptions</h2>
+			<h2 class="activity-header">Subscriptions</h2>
 		</div>
 	</div>
 </div>

@@ -456,6 +456,34 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-bottom: 0;
 }
 
+/* Me */
+.nav-tabs.activity-tab {
+	border: none;
+}
+
+.nav-tabs > li > a {
+	border: none;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	border: none;
+	color: #fff;
+	background-color: #0d4382;
+}
+
+.nav-tabs > li > a:hover {
+	border: none;
+	color: #fff;
+	background-color: #0d4382;
+}
+
+.activity-header {
+	margin-top: 0;
+	padding: 10px 10px 15px;
+	color: #fff;
+	background-color: #0d4382;
+}
+
 /* Post messages */
 .bblinks {
 	padding-top: 5px;
