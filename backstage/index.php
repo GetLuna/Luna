@@ -86,7 +86,7 @@ require 'header.php';
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
 
-if (file_exists('../z.txt') && ($luna_config['o_notifications'] == '1' || $luna_config['o_forum_new_style'] == '1' || $luna_config['o_backstage_dark'] == '1' || $luna_config['o_reading_list'] == '1')) {
+if (file_exists('../z.txt') && ($luna_config['o_notifications'] == '1' || $luna_config['o_forum_new_style'] == '1' || $luna_config['o_reading_list'] == '1')) {
 ?>
 <div class="alert alert-danger">
 	<h4>zSettings enabled!</h4>

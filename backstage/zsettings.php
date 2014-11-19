@@ -24,7 +24,6 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/zsettings.php', $lang['Bad HTTP Referer message']);
 
 	$form = array(
-		'backstage_dark'		=> isset($_POST['form']['backstage_dark']) ? '1' : '0',
 		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0',
 		'forum_new_style'		=> isset($_POST['form']['forum_new_style']) ? '1' : '0',
 		'reading_list'			=> isset($_POST['form']['reading_list']) ? '1' : '0'
@@ -73,17 +72,6 @@ if (isset($_GET['saved']))
         <div class="panel-body">
             <input type="hidden" name="form_sent" value="1" />
             <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">zBackstageDark<span class="help-block"><span class="label label-info">low</span></span></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[backstage_dark]" value="1" <?php if ($luna_config['o_backstage_dark'] == '1') echo ' checked="checked"' ?> />
-								enabled dark mode for backstage, including improved design
-							</label>
-						</div>
-					</div>
-                </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">zForumNewStyle<span class="help-block"><span class="label label-warning">high</span></span></label>
                     <div class="col-sm-9">

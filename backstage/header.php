@@ -27,7 +27,7 @@ $p = isset($p) ? $p : null;
         <meta name="ROBOTS" content="NOINDEX, FOLLOW" />
         <title>Backstage</title>
 	</head>
-	<body<?php if ((file_exists('../z.txt')) && $luna_config['o_backstage_dark'] == '1') { echo ' class="zset"'; }?>>
+	<body>
 <?php
 include FORUM_ROOT.'include/backstage_functions.php';
 
