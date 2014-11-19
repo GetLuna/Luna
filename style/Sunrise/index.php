@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <div class="first-run panel panel-default">
     <div class="row first-run-content">
-        <div class="col-md-4 col-sm-6 first-run-profile">
+        <div class="col-md-4 col-sm-6 first-run-profile"<?php echo $background_user_color ?>>
             <h3 class="first-run-title"><?php echo sprintf($lang['Hi there'], luna_htmlspecialchars($luna_user['username'])) ?></h3>
             <span class="first-run-avatar thumbnail">
                 <?php echo $user_avatar ?>
@@ -23,7 +23,7 @@ if (!defined('FORUM'))
                 <a href="profile.php?action=upload_avatar&id=<?php echo $luna_user['id'] ?>" class="list-group-item"><?php echo $lang['Change your avatar'] ?></a>
                 <a href="profile.php?section=personality&id=<?php echo $luna_user['id'] ?>" class="list-group-item"><?php echo $lang['Extend profile'] ?></a>
                 <a href="help.php" class="list-group-item"><?php echo $lang['Get help'] ?></a>
-                <a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active"><?php echo $lang['Do not show again'] ?></a>
+                <a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active" <?php echo $background_border_user_color ?>><?php echo $lang['Do not show again'] ?></a>
             </div>
         </div>
         <?php } else { ?>

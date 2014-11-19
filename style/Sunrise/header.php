@@ -3,6 +3,7 @@
 require ('header.php');
 
 $background_user_color = 'style="background:'.$luna_user['color'].';"';
+$background_border_user_color = 'style="background:'.$luna_user['color'].';border-color:'.$luna_user['color'].';"';
 
 ?>
 <!DOCTYPE html>
