@@ -788,8 +788,7 @@ function parse_message($text) {
 	if (strpos($text, '[') !== false && strpos($text, ']') !== false)
 		$text = do_bbcode($text);
 
-	if ($luna_config['o_smilies'] == '1' && $luna_user['show_smilies'] == '1')
-		$text = do_smilies($text);
+	$text = do_smilies($text);
 
 	// Deal with newlines, tabs and multiple spaces
 	$pattern = array("\n", "\t", '  ', '  ');
@@ -808,16 +807,19 @@ function parse_message($text) {
 				if (strpos($first_line, '[[') !== false && strpos($first_line, ']]') !== false) {
 					// fetching the language name
 					$language = strtolower(trim(str_replace(array('[[', ']]'), '', $first_line)));
-					// Markup case
-					if($language == 'html' || $language == 'xhtml' || $language == 'xml') { $h_class = ' class="language-markup"'; }
-					// C-like languages case
-					elseif($language == 'php' || $language == 'c++' || $language == 'perl') { $h_class = ' class="language-clike"'; }
-					// JavaScript case
-					elseif($language == 'javascript') { $h_class = ' class="language-javascript"'; }
-					// C-like languages case
-					elseif($language == 'php') { $h_class = ' class="language-php"'; }
-					// Other cases
-					else { $h_class = ' class="language-none"'; }
+
+					if ($language == 'html' || $language == 'xhtml' || $language == 'xml') { // Markup case
+						$h_class = ' class="language-markup"';
+					} else if ($language == 'php' || $language == 'c++' || $language == 'perl') { // C-like languages case
+						$h_class = ' class="language-clike"';
+					} else if ($language == 'javascript') { // JavaScript case
+						$h_class = ' class="language-javascript"';
+					} else if ($language == 'php') { // C-like languages case
+						$h_class = ' class="language-php"';
+					} else { // Other cases
+						$h_class = ' class="language-none"';
+					}
+
 					// Deleting the line giving the code name
 					$inside[$i] = str_replace($first_line, '', $inside[$i]);
 					// Generating the the HTML code block
