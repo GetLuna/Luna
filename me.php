@@ -459,9 +459,6 @@ if ($action == 'change_pass') {
 				else if ($form['signature'] && $luna_config['p_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$luna_user['is_admmod'])
 					$form['signature'] = utf8_ucwords(utf8_strtolower($form['signature']));
 
-				// Validate BBCode syntax
-				require FORUM_ROOT.'include/parser.php';
-
 				$errors = array();
 				$form['signature'] = preparse_bbcode($form['signature'], $errors, true);
 
@@ -605,7 +602,6 @@ if ($action == 'change_pass') {
 	$last_post = format_time($user['last_post']);
 	
 	if ($user['signature'] != '') {
-		require FORUM_ROOT.'include/parser.php';
 		$parsed_signature = parse_signature($user['signature']);
 	}
 	
