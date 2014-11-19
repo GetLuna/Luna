@@ -248,13 +248,13 @@ if (isset($_GET['saved']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Video height'] ?><span class="help-block"><?php echo $lang['Video height help'] ?></span></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[video_width]" maxlength="4" value="<?php echo $luna_config['o_video_width'] ?>" />
+                        <input type="text" class="form-control" name="form[video_height]" maxlength="4" value="<?php echo $luna_config['o_video_height'] ?>" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Video width'] ?><span class="help-block"><?php echo $lang['Video width help'] ?></span></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[video_height]" maxlength="4" value="<?php echo $luna_config['o_video_height'] ?>" />
+                        <input type="text" class="form-control" name="form[video_width]" maxlength="4" value="<?php echo $luna_config['o_video_width'] ?>" />
                     </div>
                 </div>
             </fieldset>
