@@ -63,7 +63,7 @@ label .help-block {
 
 /* Navbars */
 .navbar-default {
-	background: #175296;
+	background: #1f62b0;
 	border-bottom-color: rgba(255,255,255,.3);
 }
 
@@ -103,7 +103,7 @@ label .help-block {
 /* Heading - jumbotron and navtabs */
 .jumboheader {
 	color: #fff;
-	background: #175296;
+	background: #1f62b0;
 	padding-top: 0;
 	padding-bottom: 1px;
 	margin-bottom: 17px;
@@ -469,7 +469,7 @@ h3.panel-title {
 .form-heading {
 	margin-bottom: 0;
 	font-weight: 100;
-	background: #175296;
+	background: #1f62b0;
 	color: #fff;
 	padding: 20px;
 }
