@@ -68,41 +68,6 @@ load_admin_nav('settings', 'inbox');
 
 ?>
 
-<form class="form-horizontal" method="post" action="inbox.php">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Inbox permissions<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
-        </div>
-        <div class="panel-body">
-            <input type="hidden" name="form_sent" value="1" />
-            <fieldset>
-<?php
-	$result = $db->query('SELECT g_id, g_title, g_pm, g_pm_limit FROM '.$db->prefix.'groups WHERE g_id !=1 AND g_id !=3 ORDER BY g_id') or error('Unable to find usergroup list', __FILE__, __LINE__, $db->error());
-	while ($cur_group = $db->fetch_assoc($result)) :
-		if ($luna_user['is_admmod']) :
-?>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-							<label>
-								<input type="checkbox" name="allow[<?php echo $cur_group['g_id'] ?>]" value="1" <?php if ($cur_group['g_pm'] == '1') echo ' checked="checked"' ?> />
-								Allow users to be notified through email about new Inbox messages.
-							</label>
-						</div>
-                        <input type="text" class="form-control" name="limit[<?php echo $cur_group['g_id'] ?>]" maxlength="5" value="<?php echo $cur_group['g_pm_limit'] ?>" />
-						<p class="help-block">The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.</p>
-                    </div>
-                </div>
-<?php
-		endif;
-	endwhile;
-?>
-            </fieldset>
-        </div>
-    </div>
-</form>
-
 <?php
 
 require 'footer.php';
