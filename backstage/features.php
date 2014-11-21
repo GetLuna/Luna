@@ -21,26 +21,29 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/features.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
-		'post_responsive'             => isset($_POST['form']['post_responsive']) ? '1' : '0',
-		'users_online'                => isset($_POST['form']['users_online']) ? '1' : '0',
-		'censoring'                   => isset($_POST['form']['censoring']) ? '1' : '0',
-		'signatures'                  => isset($_POST['form']['signatures']) ? '1' : '0',
-		'ranks'                       => isset($_POST['form']['ranks']) ? '1' : '0',
-		'topic_views'                 => isset($_POST['form']['topic_views']) ? '1' : '0',
-		'has_posted'                  => isset($_POST['form']['has_posted']) ? '1' : '0',
-		'show_first_run'              => isset($_POST['form']['show_first_run']) ? '1' : '0',
-		'first_run_guests'            => isset($_POST['form']['first_run_guests']) ? '1' : '0',
-		'first_run_message'           => luna_trim($_POST['form']['first_run_message']),
-		'smilies'                     => isset($_POST['form']['smilies']) ? '1' : '0',
-		'smilies_sig'                 => isset($_POST['form']['smilies_sig']) ? '1' : '0',
-		'make_links'			      => isset($_POST['form']['make_links']) ? '1' : '0',
-		'indent_num_spaces'		      => (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
-		'quote_depth'			      => (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
-		'video_width'		          => (intval($_POST['form']['video_width']) > 0) ? intval($_POST['form']['video_width']) : 640,
-		'video_height'			      => (intval($_POST['form']['video_height']) > 0) ? intval($_POST['form']['video_height']) : 360,
-		'gzip'						  => isset($_POST['form']['gzip']) ? '1' : '0',
-		'search_all_forums'			  => isset($_POST['form']['search_all_forums']) ? '1' : '0',
-		'enable_advanced_search'	  => isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
+		'post_responsive'				=> isset($_POST['form']['post_responsive']) ? '1' : '0',
+		'users_online'					=> isset($_POST['form']['users_online']) ? '1' : '0',
+		'censoring'						=> isset($_POST['form']['censoring']) ? '1' : '0',
+		'signatures'					=> isset($_POST['form']['signatures']) ? '1' : '0',
+		'ranks'							=> isset($_POST['form']['ranks']) ? '1' : '0',
+		'topic_views'					=> isset($_POST['form']['topic_views']) ? '1' : '0',
+		'has_posted'					=> isset($_POST['form']['has_posted']) ? '1' : '0',
+		'show_first_run'				=> isset($_POST['form']['show_first_run']) ? '1' : '0',
+		'first_run_guests'				=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
+		'first_run_message'				=> luna_trim($_POST['form']['first_run_message']),
+		'smilies'						=> isset($_POST['form']['smilies']) ? '1' : '0',
+		'smilies_sig'					=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
+		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
+		'indent_num_spaces'				=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
+		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
+		'video_width'					=> (intval($_POST['form']['video_width']) > 0) ? intval($_POST['form']['video_width']) : 640,
+		'video_height'					=> (intval($_POST['form']['video_height']) > 0) ? intval($_POST['form']['video_height']) : 360,
+		'gzip'							=> isset($_POST['form']['gzip']) ? '1' : '0',
+		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
+		'enable_advanced_search'		=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
+		'pms_enabled'					=> isset($_POST['form']['pms_enabled']) ? '1' : '0',
+		'pms_notification'				=> isset($_POST['form']['pms_notification']) ? '1' : '0',
+		'pms_max_receiver'				=> (intval($_POST['form']['pms_max_receiver']) > 0) ? intval($_POST['form']['pms_max_receiver']) : 5
 	);
 
 	foreach ($form as $key => $input) {
@@ -148,6 +151,44 @@ if (isset($_GET['saved']))
 								<?php echo $lang['Search all help'] ?>
                             </label>
                         </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Inbox<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+        </div>
+        <div class="panel-body">
+            <input type="hidden" name="form_sent" value="1" />
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Use Inbox</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[pms_enabled]" value="1" <?php if ($luna_config['o_pms_enabled'] == '1') echo ' checked="checked"' ?> />
+								Allow users to use Inbox.
+							</label>
+						</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Inbox Notifications</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[pms_notification]" value="1" <?php if ($luna_config['o_pms_notification'] == '1') echo ' checked="checked"' ?> />
+								Allow users to be notified through email about new Inbox messages.
+							</label>
+						</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Receivers<span class="help-block">The number of receivers an Inbox message can have</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[pms_max_receiver]" maxlength="5" value="<?php echo $luna_config['o_pms_max_receiver'] ?>" />
                     </div>
                 </div>
             </fieldset>

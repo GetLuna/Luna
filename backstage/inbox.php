@@ -71,44 +71,6 @@ load_admin_nav('settings', 'inbox');
 <form class="form-horizontal" method="post" action="inbox.php">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Inbox settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
-        </div>
-        <div class="panel-body">
-            <input type="hidden" name="form_sent" value="1" />
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Use Inbox</label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[pms_enabled]" value="1" <?php if ($luna_config['o_pms_enabled'] == '1') echo ' checked="checked"' ?> />
-								Allow users to use Inbox.
-							</label>
-						</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Inbox Notifications</label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[pms_notification]" value="1" <?php if ($luna_config['o_pms_notification'] == '1') echo ' checked="checked"' ?> />
-								Allow users to be notified through email about new Inbox messages.
-							</label>
-						</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Receivers<span class="help-block">The number of receivers an Inbox message can have</span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[pms_max_receiver]" maxlength="5" value="<?php echo luna_htmlspecialchars($luna_config['o_pms_max_receiver'] - 1) ?>" />
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
             <h3 class="panel-title">Inbox permissions<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
         </div>
         <div class="panel-body">
