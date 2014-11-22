@@ -131,6 +131,19 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 5px !important;
 }
 
+.dropdown-menu {
+    border-width: 0 1px 1px;
+	padding: 0;
+}
+
+.dropdown-menu .divider {
+	margin: 0;
+}
+
+.dropdown-menu > li > a, .dropdown-header {
+	padding: 9px 20px;
+}
+
 /* Index */
 .tclcon {
 	margin-left: 25px;
