@@ -112,6 +112,19 @@ label .help-block {
 	}
 }
 
+.dropdown-menu {
+    border-width: 0 1px 1px;
+	padding: 0;
+}
+
+.dropdown-menu .divider {
+	margin: 0;
+}
+
+.dropdown-menu > li > a, .dropdown-header {
+	padding: 9px 20px;
+}
+
 /* Footer */
 footer {
 	color: #fff;
