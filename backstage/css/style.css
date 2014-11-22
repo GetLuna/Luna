@@ -12,7 +12,8 @@
 }
 
 body {
-	margin-top: 40px;
+	margin-top: 30px;
+	background: #333;
 }
 
 td, th {
@@ -39,6 +40,11 @@ h3 {
 
 .modal h2 {
 	margin-top: 0;
+}
+
+h2 {
+	margin-top: 30px;
+	margin-bottom: 20px;
 }
 
 @media all and (max-width:767px) {
@@ -104,6 +110,11 @@ label .help-block {
 	.nav-inner {
 		padding-left: 0;
 	}
+}
+
+/* Footer */
+footer {
+	color: #fff;
 }
 
 /* Panels */
