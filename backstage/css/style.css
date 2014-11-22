@@ -112,6 +112,12 @@ label .help-block {
 	}
 }
 
+@media all and (max-width:767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar-brand,  .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+		color: #fff !important;
+	}
+}
+
 .dropdown-menu {
     border-width: 0 1px 1px;
 	padding: 0;
