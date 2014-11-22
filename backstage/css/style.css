@@ -64,19 +64,19 @@ label .help-block {
 
 /* Navbar */
 .navbar {
-	background: #fff;
+	background: #14a3ff;
 	border: none;
-	border-bottom: 5px solid #14a3ff;
+	color: #fff;
 }
 
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > li > a:hover,  .navbar-default .navbar-nav > li > a:focus  {
 	background: none;
-    color: #14a3ff;
+	color: #fff;
     font-size: 14px;
 }
 
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background: #fff;
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > li > a {
+    color: #fff;
 }
 
 .navbar-default .navbar-brand {
@@ -90,10 +90,6 @@ label .help-block {
 .navbar-default .navbar-collapse {
 	border: none;
 	box-shadow: none;
-}
-
-.navbar-default .navbar-nav > li > a {
-	color: #aaa;
 }
 
 .navbar-default .navbar-toggle {
