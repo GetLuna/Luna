@@ -13,10 +13,10 @@ Luna is an open source board software app released under the GPLv3 license. The 
 
 ## Recommendations
  - Make use of a PHP accelerator such as APC or XCache
- - Make sure PHP has the zlib module installed to allow ModernBB to gzip output
+ - Make sure PHP has the zlib module installed to allow Luna to gzip output
 
 ## Links
  - Homepage: http://modernbb.be
  - Forums: http://modernbb.be/forum
  - Documentation: TBA
- - Development: http://github.com/modernbb/modernbb/
+ - Development: http://github.com/modernbb/luna/
