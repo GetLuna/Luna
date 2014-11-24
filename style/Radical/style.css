@@ -71,8 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #f15300;
 	color: #fff;
 }
 
@@ -110,11 +109,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .announcement a {
 	text-decoration: underline;
-}
-@media screen and (min-width: 768px) {
-	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #901b00;
-	}
 }
 
 .avatar-item .avatar {
@@ -168,8 +162,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .first-run-profile {
-	background-image: url(../../img/core/firstrun.png);
-	background-size: cover;
+	background: #f15300;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	padding-bottom: 16px;
@@ -187,7 +180,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .first-run-avatar img {
 	border-radius: 3px;
-	box-shadow: 0px 0px 13px #808080;
 }
 
 .first-run-list {
@@ -283,8 +275,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #f15300;
 	color: #fff;
 	height: 37px;
 }
@@ -308,23 +299,13 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0 auto;
 }
 
-@media(min-width:767px) {
-	ul.nav li.dropdown:hover > ul.dropdown-menu{
-		display: block;
-	}
-}
-
 .navbar {
-	border: none;
-	background: #d33200;
+	background: #f15300;
+	border-bottom-color: rgba(255,255,255,.3);
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #b62b00;
-}
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #b62b00;
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+background-color: transparent;
     color: #fff;
 }
 
@@ -351,7 +332,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #d33200;
+	background-color: #f15300;
 }
 
 /* Pagination */
@@ -366,8 +347,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #f42e00;
-	background-color: #f42e00;
+	border: 1px solid #f15300;
+	background-color: #f15300;
 }
 
 /* Profile */
@@ -377,8 +358,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #f42e00;
-	border-color: #f42e00;
+	background-color: #f15300;
+	border-color: #f15300;
 }
 
 .profile-h2 {
@@ -524,14 +505,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #f15300;
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #f15300;
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -583,13 +562,13 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #f04400;
-	border: 1px solid #f06000;
+	background-color: #f15300;
+	border: 1px solid #d64a00;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #f07700;
-	border: 1px solid #f0af00;
+	background-color: #d64a00;
+	border: 1px solid #b83f00;
 	color: #fff;
 }
 
@@ -928,7 +907,7 @@ textarea {
 
 .profile-card-head {
 	height: 59px;
-	background-color: #ea3700;
+	background-color: #f15300;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -996,12 +975,11 @@ textarea {
     left: 4px;
     margin-top: -2px;
     border-left-width: 0px;
-    border-right-color: #ea3700;;
+    border-right-color: #f15300;;
 }
 
 .topic .panel-heading {
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #f15300;
 }
 
 .post-actions {
@@ -1019,8 +997,7 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #ea3700;
-		background: linear-gradient(to right, #ea3700, #fd8300);
+		background: #f15300;
 	}
 
 	.topic .panel-heading  {
@@ -1104,8 +1081,7 @@ blockquote footer {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #ea3700;
-	background: linear-gradient(to right, #ea3700, #fd8300);
+	background: #f15300;
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;

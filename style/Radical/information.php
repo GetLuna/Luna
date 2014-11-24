@@ -15,8 +15,8 @@ $xmlstr = <<<XML
 	<id>radical</id>
 	<name>Radical</name>
 	<developer>Studio 384</developer>
-	<date>23 November 2014</date>
-	<version>3.2.2</version>
+	<date>24 November 2014</date>
+	<version>4.0-dev</version>
 	<description>As fancy as can be, Awesome is a style designed to be great and simple. Make it look red, my friend!</description>
 	<minversion>3.4.1</minversion>
 	<maxversion>3.5.3</maxversion>
