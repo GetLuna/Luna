@@ -71,8 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #679e0d;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #74bb01;
 	color: #fff;
 }
 
@@ -95,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #92c820;
+		background: #74bb01;
 	}
 
 	.dropdown-menu .divider {
@@ -110,12 +109,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .announcement a {
 	text-decoration: underline;
-}
-
-@media screen and (min-width: 768px) {
-	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #447000;
-	}
 }
 
 .avatar-item .avatar {
@@ -170,8 +163,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .first-run-profile {
-	background-image: url(../../img/core/firstrun.png);
-	background-size: cover;
+	background: #74bb01;
 	height: 100%;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
@@ -190,7 +182,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .first-run-avatar img {
 	border-radius: 3px;
-	box-shadow: 0px 0px 13px #808080;
 }
 
 .first-run-list {
@@ -290,8 +281,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #679e0d;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #74bb01;
 	color: #fff;
 	height: 37px;
 }
@@ -315,23 +305,13 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0 auto;
 }
 
-@media(min-width:767px) {
-	ul.nav li.dropdown:hover > ul.dropdown-menu{
-		display: block;
-	}
-}
-
 .navbar {
-	border: none;
-	background: #538700;
+	background: #74bb01;
+	border-bottom-color: rgba(255,255,255,.3);
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #4c7c00;
-}
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #4c7c00;
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+background-color: transparent;
     color: #fff;
 }
 
@@ -358,7 +338,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #538700;
+	background-color: #74bb01;
 }
 
 /* Pagination */
@@ -373,8 +353,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #6b9b12;
-	background-color: #6b9b12;
+	border: 1px solid #74bb01;
+	background-color: #74bb01;
 }
 
 /* Profile */
@@ -384,8 +364,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #6b9b12;
-	border-color: #6b9b12;
+	background-color: #74bb01;
+	border-color: #74bb01;
 }
 
 .profile-h2 {
@@ -530,14 +510,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #92c820;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #74bb01;
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #92c820;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #74bb01;
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -589,13 +567,13 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background: #699934;
-	border-color: #4f7327;
+	background: #74bb01;
+	border-color: #68a700;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background: #88c149;
-	border-color: #4f7327;
+	background: #68a700;
+	border-color: #5a9100;
 	color: #fff;
 }
 
@@ -933,7 +911,7 @@ textarea {
 
 .profile-card-head {
 	height: 59px;
-	background-color: #679e0d;
+	background-color: #74bb01;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -1001,12 +979,11 @@ textarea {
     left: 4px;
     margin-top: -2px;
     border-left-width: 0px;
-    border-right-color: #679e0d;;
+    border-right-color: #74bb01;;
 }
 
 .topic .panel-heading {
-	background: #679e0d;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #74bb01;
 }
 
 .post-actions {
@@ -1024,8 +1001,7 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #679e0d;
-		background: linear-gradient(to right, #679e0d, #a4da28);
+		background: #74bb01;
 	}
 
 	.topic .panel-heading  {
@@ -1109,8 +1085,7 @@ blockquote footer {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #92c820;
-	background: linear-gradient(to right, #679e0d, #a4da28);
+	background: #74bb01;
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;
@@ -1177,7 +1152,6 @@ blockquote footer {
 
 .form-errors {
 	background: #ff6000;
-	background: linear-gradient(to right, #ce4e00, #ff6000);
 }
 
 @media screen and (max-width: 767px) {
