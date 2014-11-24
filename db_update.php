@@ -242,6 +242,119 @@ switch ($stage)
 		// If we don't need to update the database, skip this stage
 		if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revision'] >= Version::FORUM_DB_VERSION)
 			break;
+			
+		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
+		if (!array_key_exists('o_base_url', $pun_config))
+		{
+			// If it isn't in $pun_config['o_base_url'] it should be in $base_url, but just in-case it isn't we can make a guess at it
+			if (!isset($base_url))
+			{
+				// Make an educated guess regarding base_url
+				$base_url  = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://';	// protocol
+				$base_url .= preg_replace('%:(80|443)$%', '', $_SERVER['HTTP_HOST']);							// host[:port]
+				$base_url .= str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));							// path
+			}
+
+			if (substr($base_url, -1) == '/')
+				$base_url = substr($base_url, 0, -1);
+
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_base_url\', \''.$db->escape($base_url).'\')') or error('Unable to insert config value \'o_base_url\'', __FILE__, __LINE__, $db->error());
+		}
+		
+		// Since 1.4-beta.1: Add an index to username on the bans table
+		if ($mysql || $mariadb)
+			$db->add_index('bans', 'username_idx', array('username(25)')) or error('Unable to add username_idx index', __FILE__, __LINE__, $db->error());
+		else
+			$db->add_index('bans', 'username_idx', array('username')) or error('Unable to add username_idx index', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Change the username_idx on users to a unique index of max size 25
+		$db->drop_index('users', 'username_idx') or error('Unable to drop old username_idx index', __FILE__, __LINE__, $db->error());
+		$field = $mysql || $mariadb ? 'username(25)' : 'username';
+
+		// Since 1.4-beta.1: Attempt to add a unique index. If the user doesn't use a transactional database this can fail due to multiple matching usernames in the
+		// users table. This is bad, but just giving up if it happens is even worse! If it fails just add a regular non-unique index.
+		if (!$db->add_index('users', 'username_idx', array($field), true))
+			$db->add_index('users', 'username_idx', array($field)) or error('Unable to add username_idx field', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Add the last_report_sent column to the users table and the g_report_flood
+		// column to the groups table
+		$db->add_field('users', 'last_report_sent', 'INT(10) UNSIGNED', true, null, 'last_email_sent') or error('Unable to add last_report_sent field', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_report_flood', 'SMALLINT(6)', false, 60, 'g_email_flood') or error('Unable to add g_report_flood field', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Change the search_data column to mediumtext
+		$db->alter_field('search_cache', 'search_data', 'MEDIUMTEXT', true) or error('Unable to alter search_data field', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Rename the subscription table
+		$db->rename_table('subscriptions', 'topic_subscriptions');
+
+		// Since 1.4-beta.1: If we don't have the forum_subscriptions table, create it
+		if (!$db->table_exists('forum_subscriptions'))
+		{
+			$schema = array(
+				'FIELDS'		=> array(
+					'user_id'		=> array(
+						'datatype'		=> 'INT(10) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					),
+					'forum_id'		=> array(
+						'datatype'		=> 'INT(10) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('user_id', 'forum_id')
+			);
+
+			$db->create_table('forum_subscriptions', $schema) or error('Unable to create forum subscriptions table', __FILE__, __LINE__, $db->error());
+		}
+
+		// Since 1.4-beta.1: Insert new config option o_forum_subscriptions
+		if (!array_key_exists('o_forum_subscriptions', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Rename config option o_subscriptions to o_topic_subscriptions
+		if (!array_key_exists('o_topic_subscriptions', $pun_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_topic_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
+
+
+		// Since 1.4-beta.1: Add search index revision number
+		if (!array_key_exists('o_searchindex_revision', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_searchindex_revision\', \'0\')') or error('Unable to insert config value \'o_searchindex_revision\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Add parser revision number
+		if (!array_key_exists('o_parser_revision', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_parser_revision\', \'0\')') or error('Unable to insert config value \'o_parser_revision\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Insert new config option o_quote_depth
+		if (!array_key_exists('o_quote_depth', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_quote_depth\', \'3\')') or error('Unable to insert config value \'o_quote_depth\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Insert new config option o_feed_type
+		if (!array_key_exists('o_feed_type', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_type\', \'2\')') or error('Unable to insert config value \'o_feed_type\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.4-beta.1: Insert new config option o_feed_ttl
+		if (!array_key_exists('o_feed_ttl', $pun_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-beta.1: Add the marked column to the posts table
+		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-beta.2: Insert new config option o_antispam_api
+		if (!array_key_exists('o_antispam_api', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_antispam_api\', NULL)') or error('Unable to insert config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
+		if (array_key_exists('o_quickjump', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-rc.1: Drop the parent_forum_id column from the forums table
+		$db->drop_field('forums', 'parent_forum_id', 'INT', true, 0) or error('Unable to drop parent_forum_id field', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
+		if (array_key_exists('o_show_dot', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
 
 		// Since 2.1-beta: Insert new config option o_menu_title
 		if (!array_key_exists('o_menu_title', $luna_config))
