@@ -13,9 +13,6 @@ else
 if ($luna_config['o_show_index_stats'] == 1) {
 ?>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $lang['Board stats'] ?></h3>
-    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-2 col-sm-4 col-xs-6"><span><?php printf($lang['No of users'], '<strong>'.forum_number_format($stats['total_users']).'</strong>') ?></span></div>
