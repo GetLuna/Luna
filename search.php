@@ -503,7 +503,9 @@ if (!$search_id) {
 		define('FORUM_ACTIVE_PAGE', 'search');
 		require load_page('header.php');
 	
-		require get_view_path('search-form.tpl.php');
+		require load_page('search.php');
+
+		require load_page('footer.php');
 	} else {
 		if ($luna_config['o_enable_advanced_search'] == 0) {
 			message($lang['No permission'], false, '403 Forbidden');

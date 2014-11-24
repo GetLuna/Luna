@@ -27,7 +27,3 @@ if (!defined('FORUM'))
         </div>
     </div>
 </form>
-
-<?php
-
-    require load_page('footer.php');
