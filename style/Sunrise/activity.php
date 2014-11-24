@@ -74,22 +74,17 @@ $jumbo_style = 'style="background:'.$user['color'].';"';
 <?php
 	}
 ?>
-			<a href="#" class="btn btn-primary btn-lg btn-block">Show everything</a>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="topics">
 			<h2 class="activity-header">Recent topics<span class="pull-right"><a href="#" class="btn btn-primary">Show everything</a></span></h2>
 <?php
 	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, forum_id FROM '.$db->prefix.'topics WHERE poster=\''.$luna_user['username'].'\' ORDER BY id DESC LIMIT 10') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 	while ($cur_topic = $db->fetch_assoc($result)) {
+		$subject = $cur_topic['subject'];
 ?>
-			<div class="row topics">
-				<div class="col-xs-6">
-                	<a href="viewtopic.php?id=<?php echo $cur_topic['id'] ?>"><?php echo $cur_topic['subject'] ?></a>
-				</div>
-				<div class="col-xs-6">
-                	<a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo $cur_topic['subject'] ?></a>
-				</div>
-			</div>
+<div class="topic-entry <?php echo $item_status ?>">
+    <h3><a href="viewtopic.php?id=<?php echo $cur_topic['id'] ?>"><?php echo $subject ?></a> <small><?php echo $last_post ?></small></h3>
+</div>
 <?php
 	}
 ?>
@@ -97,6 +92,7 @@ $jumbo_style = 'style="background:'.$user['color'].';"';
 		</div>
 		<div role="tabpanel" class="tab-pane" id="subscriptions">
 			<h2 class="activity-header">Subscriptions</h2>
+			<p class="lead">Not available in this build</p>
 		</div>
 	</div>
 </div>
