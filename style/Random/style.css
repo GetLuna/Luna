@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #1299ef;
+	background: #14a3ff;
 	color: #fff;
 }
 
@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #1299ef;
+		background: #14a3ff;
 	}
 
 	.dropdown-menu .divider {
@@ -162,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .first-run-profile {
-	background: #1299ef;
+	background: #14a3ff;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	padding-bottom: 16px;
@@ -279,7 +279,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #1299ef;
+	background: #14a3ff;
 	color: #fff;
 	height: 37px;
 }
@@ -304,7 +304,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-	background: #1299ef;
+	background: #14a3ff;
 	border-bottom-color: rgba(255,255,255,.3);
 }
 
@@ -342,7 +342,7 @@ background-color: transparent;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #1299ef;
+	background-color: #14a3ff;
 }
 
 /* Pagination */
@@ -357,8 +357,8 @@ background-color: transparent;
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #1d8ae0;
-	background-color: #1d8ae0;
+	border: 1px solid #14a3ff;
+	background-color: #14a3ff;
 }
 
 /* Profile */
@@ -368,8 +368,8 @@ background-color: transparent;
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #1299ef;
-	border-color: #1299ef;
+	background-color: #14a3ff;
+	border-color: #14a3ff;
 }
 
 .profile-h2 {
@@ -517,12 +517,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #1299ef;
+	background: #14a3ff;
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #1299ef;
+	background: #14a3ff;
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -574,7 +574,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #1299ef;
+	background-color: #14a3ff;
 	border-color: #0a82d7;
 }
 
@@ -924,7 +924,7 @@ textarea {
 
 .profile-card-head {
 	height: 59px;
-	background-color: #1299ef;
+	background-color: #14a3ff;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -992,11 +992,11 @@ textarea {
 	left: 4px;
 	margin-top: -2px;
 	border-left-width: 0px;
-	border-right-color: #1299ef;;
+	border-right-color: #14a3ff;;
 }
 
 .topic .panel-heading {
-	background: #1299ef;
+	background: #14a3ff;
 }
 
 .post-actions {
@@ -1014,7 +1014,7 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #1299ef;
+		background: #14a3ff;
 	}
 
 	.topic .panel-heading  {
@@ -1098,7 +1098,7 @@ blockquote footer {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #1299ef;
+	background: #14a3ff;
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;
