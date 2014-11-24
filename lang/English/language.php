@@ -1211,6 +1211,8 @@ $lang = array(
 'About head'						=>	'About ModernBB',
 'ModernBB version label'			=>	'ModernBB version',
 'ModernBB version data'				=>	'ModernBB version ',
+'ModernBB core label'				=>	'ModernBB core',
+'ModernBB core data'				=>	'ModernBB core ',
 'Server statistics label'			=>	'Server statistics',
 'View server statistics'			=>	'View server statistics',
 

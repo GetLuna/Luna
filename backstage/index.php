@@ -152,13 +152,15 @@ else
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="col-lg-6"><?php echo $lang['ModernBB version label'] ?></th>
-                        <th class="col-lg-6"><?php echo $lang['Server statistics label'] ?></th>
+                        <th class="col-lg-4"><?php echo $lang['ModernBB version label'] ?></th>
+                        <th class="col-lg-4"><?php echo $lang['ModernBB core label'] ?></th>
+                        <th class="col-lg-4"><?php echo $lang['Server statistics label'] ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><?php printf($lang['ModernBB version data'].$luna_config['o_cur_version']) ?></td>
+                        <td><?php printf($lang['ModernBB core data'].$luna_config['o_core_version']) ?></td>
                         <td><a href="statistics.php"><?php echo $lang['View server statistics'] ?></a></td>
                     </tr>
                 </tbody>
