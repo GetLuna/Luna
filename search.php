@@ -515,7 +515,9 @@ if (!$search_id) {
 			define('FORUM_ACTIVE_PAGE', 'search');
 			require load_page('header.php');
 	
-			require get_view_path('search-form_advanced.tpl.php');
+			require load_page('search-advanced.php');
+
+			require load_page('footer.php');
 		}
 	}
 }
