@@ -29,7 +29,6 @@ if (!defined('FORUM'))
                         $pposter = '<strong>'.$pposter.'</strong>';
                 }
 ?>
-
 <div class="result-card blockpost<?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_search['pid'] == $cur_search['first_post_id']) echo ' firstpost' ?><?php if ($post_count == 1) echo ' blockpost1' ?><?php if ($item_status != '') echo ' '.$item_status ?>">
 	<h3><a href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo luna_htmlspecialchars($cur_search['subject']) ?></a><small> by <?php echo $pposter ?></small></h3>
     <span class="help-block"><?php echo $forum ?> > <a href="viewtopic.php?id=<?php echo $cur_search['tid'] ?>"><?php echo luna_htmlspecialchars($cur_search['subject']) ?></a> > <a href="viewtopic.php?pid=<?php echo $cur_search['pid'].'#p'.$cur_search['pid'] ?>"><?php if ($cur_search['pid'] != $cur_search['first_post_id']) echo $lang['Re'].' ' ?><?php echo format_time($cur_search['pposted']) ?></a></span>

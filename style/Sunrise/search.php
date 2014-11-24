@@ -10,7 +10,7 @@ if (!defined('FORUM'))
 	<div class="container">
 		<h2><?php echo $lang['Search'] ?></h2>
 		<?php if ($luna_config['o_enable_advanced_search'] == 1) { ?>
-        <span class="pull-right">
+        <span class="pull-right hidden-xs hidden-sm hidden-md hidden-lg">
             <a class="btn btn-default hidden-xs" href="search.php?section=advanced"><?php echo $lang['Advanced'] ?></a>
         </span>
         <?php } ?>
