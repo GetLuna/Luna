@@ -1,4 +1,4 @@
-ModernBB 3.5 "Kate"
+ModernBB 3.6 "Blue"
 ===================
 
 ## About
@@ -20,4 +20,4 @@ ModernBB is an open source forum application released under the GPLv3 license. I
  - Homepage: http://modernbb.be
  - Forums: http://modernbb.be/forum
  - Documentation: http://modernbb.be/docs
- - Development: http://github.com/modernbb/modernbb/
+ - Development: http://github.com/modernbb/luna/
