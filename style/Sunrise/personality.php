@@ -65,7 +65,7 @@ if (!defined('FORUM'))
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?></label>
                     <div class="col-sm-9">
-                        <a class="btn btn-primary" href="me.php?action=change_pass&amp;id=<?php echo $id ?>"><?php echo $lang['Change pass'] ?></a>
+                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newpass"><?php echo $lang['Change pass'] ?></a>
                     </div>
                 </div>
                 <?php endif; ?>

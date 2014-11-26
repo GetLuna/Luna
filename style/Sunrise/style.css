@@ -260,7 +260,7 @@ a.list-group-item-cat:hover .forum-description {
 	max-width: 300px;
 }
 
-#newpass .modal-xs, #newmail .modal-xs {
+#newpass .modal-xs, #newmail .modal-xs, #newpass .modal-xs {
 	max-width: 500px;
 }
 
@@ -295,7 +295,7 @@ a.list-group-item-cat:hover .forum-description {
 	background: #e8e8e8;
 }
 
-#login .form-control, #newmail .form-control {
+#login .form-control, #newmail .form-control, #newpass .form-control {
 	margin-bottom: 10px;
 }
 
