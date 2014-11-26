@@ -744,7 +744,7 @@ function update_forum($forum_id) {
 
 		$db->query('UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster_id=\''.$db->escape($last_poster_id).'\' WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
 	} else // There are no topics
-		$db->query('UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post=NULL, last_post_id=NULL, last_poster_id=NULL WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id/last_topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post=NULL, last_post_id=NULL, last_poster_id=NULL WHERE id='.$forum_id) or error('Unable to update last_post/last_post_id', __FILE__, __LINE__, $db->error());
 }
 
 
@@ -2126,19 +2126,6 @@ function get_forum_id($post_id)
 
     if($row)
         return $row[0];
-    else
-        return false;
-}
-
-// Update forum's last_topic
-function set_forum_topic($fid, $fmessage)
-{
-	global $db;
-
-    $result = $db->query('UPDATE '.$db->prefix.'forums SET last_topic=\''.$db->escape($fmessage).'\' WHERE id='.intval($fid), true) or error('Unable to set forum last topic', __FILE__, __LINE__, $db->error());
-
-    if($db->affected_rows($result))
-        return true;
     else
         return false;
 }

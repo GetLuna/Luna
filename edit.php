@@ -126,13 +126,6 @@ if (isset($_POST['form_sent'])) {
 		// Update the post
 		$db->query('UPDATE '.$db->prefix.'posts SET message=\''.$db->escape($message).'\', hide_smilies='.$hide_smilies.$edited_sql.' WHERE id='.$id) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
-		// Update the last topic in index
-		if ($subject != '')
-		{
-			$fid = get_forum_id($id);
-			set_forum_topic($fid, $subject);
-		}
-
 		redirect('viewtopic.php?pid='.$id.'#p'.$id);
 	}
 }
