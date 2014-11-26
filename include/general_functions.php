@@ -267,7 +267,7 @@ function draw_category_list() {
 			$forum_count = 0;
 
 ?>
-<div class="row"><div class="col-xs-12"><h3 class="category-title"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h3></div></div>
+<h3 class="category-title"><?php echo luna_htmlspecialchars($cur_forum['cat_name']) ?></h3>
 <div class="row">
 <?php
 	
@@ -309,7 +309,7 @@ function draw_category_list() {
 	
 	// Did we output any categories and forums?
 	if ($cur_category > 0)
-		echo '</div>';
+		echo '';
 	else
 		echo '<div><p>'.$lang['Empty board'].'</p></div>';
 
