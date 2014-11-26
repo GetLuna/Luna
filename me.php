@@ -19,6 +19,8 @@ require FORUM_ROOT.'include/utf8/substr_replace.php';
 require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
 require FORUM_ROOT.'include/utf8/strcasecmp.php';
 
+require load_page('me-modals.php');
+
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $section = isset($_GET['section']) ? $_GET['section'] : null;
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;

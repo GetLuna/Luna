@@ -18,7 +18,7 @@ if (!defined('FORUM'))
         $username_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Username'].'</label><div class="col-sm-9"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" /></div></div>'."\n";
 
         if ($luna_config['o_regs_verify'] == '1')
-            $email_field = '<p>'.sprintf($lang['Email info'], luna_htmlspecialchars($user['email']).' &middot; <a href="me.php?action=change_email&amp;id='.$id.'">'.$lang['Change email'].'</a>').'</p>'."\n";
+            $email_field = '<p>'.sprintf($lang['Email info'], luna_htmlspecialchars($user['email']).' &middot; <a href="#" data-toggle="modal" data-target="#newmail">'.$lang['Change email'].'</a>').'</p>'."\n";
         else
             $email_field = '<div class="form-group"><label class="col-sm-3 control-label">'.$lang['Email'].'</label><div class="col-sm-9"><input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" /></div></div>'."\n";
     }
