@@ -29,14 +29,14 @@ if (!defined('FORUM'))
     if ($luna_config['o_avatars'] == '0' && $luna_config['o_signatures'] == '0')
         message($lang['Bad request'], false, '404 Not Found');
 
-    $avatar_field = '<a class="btn btn-primary" href="me.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Change avatar'].'</a>';
+    $avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Change avatar'].'</a>';
 
     $user_avatar = generate_avatar_markup($id);
     $avatar_set = check_avatar($id);
     if ($user_avatar && $avatar_set)
         $avatar_field .= ' <a class="btn btn-primary" href="me.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
     else
-        $avatar_field = '<a class="btn btn-primary" href="me.php?action=upload_avatar&amp;id='.$id.'">'.$lang['Upload avatar'].'</a>';
+        $avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Upload avatar'].'</a>';
 
     if ($user['signature'] != '')
         $signature_preview = $parsed_signature;
