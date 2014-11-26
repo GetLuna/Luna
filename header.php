@@ -20,6 +20,9 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 // Send the Content-type header in case the web server is setup to send something else
 header('Content-type: text/html; charset=utf-8');
 
+// Prevent site from being embedded in a frame 
+header('X-Frame-Options: deny'); 
+
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 
