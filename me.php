@@ -616,7 +616,7 @@ if ($action == 'change_pass') {
 		define('FORUM_ACTIVE_PAGE', 'me');
 		require load_page('header.php');
 	
-		require get_view_path('me-personality.tpl.php');
+		require load_page('personality.php');
 	} else if ($section == 'settings') {
 		if ($luna_user['id'] != $id && (!$luna_user['is_admmod'] || ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_mod_edit_users'] == '0' || $user['g_id'] == FORUM_ADMIN || $user['g_moderator'] == '1'))))
 			message($lang['Bad request'], false, '403 Forbidden');
@@ -625,7 +625,7 @@ if ($action == 'change_pass') {
 		define('FORUM_ACTIVE_PAGE', 'me');
 		require load_page('header.php');
 	
-		require get_view_path('me-settings.tpl.php');
+		require load_page('settings.php');
 	} else if ($section == 'admin') {
 		if (!$luna_user['is_admmod'] || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '0'))
 			message($lang['Bad request'], false, '403 Forbidden');
@@ -634,7 +634,7 @@ if ($action == 'change_pass') {
 		define('FORUM_ACTIVE_PAGE', 'me');
 		require load_page('header.php');
 	
-		require get_view_path('me-admin.tpl.php');
+		require load_page('me-admin.php');
 	} else {
 		message($lang['Bad request'], false, '404 Not Found');
 	}
