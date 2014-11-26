@@ -81,6 +81,8 @@ function load_admin_nav($section, $page) {
 
                     else if ($page == 'board')
                         echo '<span class="fa fa-fw fa-sort-amount-desc"></span> Board structure';
+                    else if ($page == 'moderate')
+                        echo '<span class="fa fa-fw fa-tasks"></span> Moderate';
                     else if ($page == 'censoring')
                         echo '<span class="fa fa-fw fa-eye-slash"></span> Censoring';
                     else if ($page == 'reports')
@@ -134,6 +136,7 @@ function load_admin_nav($section, $page) {
             <?php } if ($section == 'content') { ?>
             <ul class="nav nav-tabs" role="tablist">
                 <li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-sort-amount-desc"></span> Board structure</a></li>
+                <li<?php if($page == 'moderate') echo ' class="active"' ?>><a href="moderate.php"><span class="fa fa-tasks"></span> Moderate</a></li>
                 <li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><span class="fa fa-eye-slash"></span> Censoring</a></li>
                 <li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><span class="fa fa-exclamation-triangle"></span> Reports</a></li>
             </ul>
