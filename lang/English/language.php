@@ -1185,7 +1185,6 @@ $lang = array(
 'Report flood help'				=>	'Time users have to wait between reports',
 'Moderator info'				=>	'Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.',
 'seconds'						=>	'seconds',
-'pixels'						=>	'pixels',
 
 //
 // Language used in index.php and update.php for Backstage
