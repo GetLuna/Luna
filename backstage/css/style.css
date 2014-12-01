@@ -345,6 +345,11 @@ h3.panel-title {
 	padding: 0;
 }
 
+/* Form groups */ 
+.form-group:last-child { 
+	margin-bottom: 0; 
+} 
+
 /* Pills */
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
 	background-color: #0072dc;
