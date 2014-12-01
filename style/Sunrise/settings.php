@@ -204,7 +204,7 @@ if (count($languages) > 1) {
 <?php endif; ?>
                 <hr />
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Topics'] ?></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Topics per page'] ?></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
                     </div>
