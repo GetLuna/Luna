@@ -253,10 +253,7 @@ else if (isset($_POST['add_edit_ban'])) {
 
 	generate_bans_cache();
 
-	if ($_POST['mode'] == 'edit')
-		redirect('backstage/bans.php');
-	else
-		redirect('backstage/bans.php');
+	redirect('backstage/bans.php');
 }
 
 // Remove a ban
