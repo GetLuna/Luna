@@ -15,11 +15,11 @@ $xmlstr = <<<XML
 	<id>sunrise</id>
 	<name>Sunrise</name>
 	<developer>Studio 384</developer>
-	<date>19 October 2014</date>
+	<date>1 December 2014</date>
 	<version>1.0-dev</version>
 	<description>Sunrise is the default theme of the Luna software, this modern, fresh, yet colorfull design makes your board an unique piece!</description>
-	<minversion>0.0</minversion>
-	<maxversion>1.0</maxversion>
+	<minversion>1.0 Preview 0 Update 4</minversion>
+	<maxversion>1.0 Preview 1</maxversion>
 </style>
 XML;
 ?>
