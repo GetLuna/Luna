@@ -15,11 +15,11 @@ $xmlstr = <<<XML
 	<id>happy</id>
 	<name>Happy</name>
 	<developer>Studio 384</developer>
-	<date>24 November 2014</date>
-	<version>4.0-dev</version>
+	<date>1 December 2014</date>
+	<version>4.0.0</version>
 	<description>As fancy as can be, Awesome is a style designed to be great and simple. Make it look orange, my friend!</description>
 	<minversion>3.4.1</minversion>
-	<maxversion>3.5.3</maxversion>
+	<maxversion>3.6-beta</maxversion>
 </style>
 XML;
 ?> 
