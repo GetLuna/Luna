@@ -128,7 +128,7 @@ else if ($action == 'forget' || $action == 'forget_2')
 						message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
 
 					// Generate a new password and a new password activation code
-					$new_password = random_pass(8);
+					$new_password = random_pass(12);
 					$new_password_key = random_pass(8);
 
 					$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.luna_hash($new_password).'\', activate_key=\''.$new_password_key.'\', last_email_sent = '.time().' WHERE id='.$cur_hit['id']) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());

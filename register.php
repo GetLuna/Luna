@@ -47,7 +47,7 @@ if (isset($_POST['form_sent'])) {
 	if ($luna_config['o_regs_verify'] == '1') {
 		$email2 = strtolower(luna_trim($_POST['req_email2']));
 
-		$password1 = random_pass(8);
+		$password1 = random_pass(12);
 		$password2 = $password1;
 	} else {
 		$password1 = luna_trim($_POST['req_password1']);
