@@ -58,7 +58,7 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after login)
+	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after the email is sent)
 	$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
 
 	redirect(luna_htmlspecialchars($redirect_url));
@@ -154,6 +154,6 @@ else if ($action == 'forget' || $action == 'forget_2')
 		$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
 
 	if (!isset($redirect_url))
-		$redirect_url = 'index.php';
+		$redirect_url = get_base_url(true).'/index.php';
 	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];

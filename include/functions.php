@@ -2069,6 +2069,10 @@ function validate_redirect($redirect_url, $fallback_url)
 {
 	$referrer = parse_url(strtolower($redirect_url));
 	
+	// Make sure the host component exists  
+	if (!isset($referrer['host']))  
+		$referrer['host'] = '';  
+	
 	// Remove www subdomain if it exists
 	if (strpos($referrer['host'], 'www.') === 0)
 		$referrer['host'] = substr($referrer['host'], 4);
