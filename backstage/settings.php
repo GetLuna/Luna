@@ -428,7 +428,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                     	<div class="input-group">
 							<input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
-							<span class="input-group-addon"><?php echo $lang['pixels'] ?></span>
+							<span class="input-group-addon"><?php echo $lang['bytes'] ?></span>
                         </div>
                     </div>
                 </div>
