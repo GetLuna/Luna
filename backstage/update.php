@@ -68,7 +68,7 @@ require 'header.php';
 <?php } ?>
     </div>
     <div class="panel-footer">
-    	<p>Luna is developed by the <a href="http://modernbb.be/luna">Luna Group</a>. Copyright 2013-2014. Released under the GPLv3 license.</p>
+    	<p>Luna is developed by the <a href="http://modernbb.be/luna.php">Luna Group</a>. Copyright 2013-2014. Released under the GPLv3 license.</p>
     </div>
 </div>
 <?php
