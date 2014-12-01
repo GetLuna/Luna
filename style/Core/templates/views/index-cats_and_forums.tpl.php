@@ -100,7 +100,7 @@ while ($cur_forum = $db->fetch_assoc($result))
         $topics_label = $lang['topics'];
     }
 
-    if (forum_number_format($num_topics) == '1') {
+    if (forum_number_format($num_posts) == '1') {
         $posts_label = $lang['post'];
     } else {
         $posts_label = $lang['posts'];
