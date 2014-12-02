@@ -19,7 +19,7 @@ $xmlstr = <<<XML
 	<version>4.0.0</version>
 	<description>As fancy as can be, Shy is a style designed to be great and simple. Make it look Aquamarine, my friend!</description>
 	<minversion>3.4.1</minversion>
-	<maxversion>3.6-beta</maxversion>
+	<maxversion>3.6.0</maxversion>
 </style>
 XML;
 ?> 
