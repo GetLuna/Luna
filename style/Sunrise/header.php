@@ -2,6 +2,7 @@
 
 require ('header.php');
 
+
 //$background_user_color = 'style="background:'.$luna_user['color'].';"';
 //$background_border_user_color = 'style="background:'.$luna_user['color'].';border-color:'.$luna_user['color'].';"';
 
@@ -57,7 +58,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 					</div>
 				</div>
 			</div>
-			<div class="navbar navbar-inverse navbar-secundary navbar-static-top"<?php echo $background_user_color ?>>
+			<div class="navbar navbar-inverse navbar-secondary navbar-static-top"<?php echo $background_user_color ?>>
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -74,3 +75,6 @@ if (!defined('FORUM_ALLOW_INDEX'))
         </div>
         <div class="container">
 			<?php echo $announcement; ?>	
+<?php 
+include ('style/Sunrise/style.php');
+?>

@@ -98,27 +98,27 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: 0 0 5px 1px rgba(255, 255, 255, .5);
 }
 
-.navbar-secundary {
+.navbar-secondary {
 	background: #1a79bc;
 }
 
 
 @media all and (min-width: 768px) {
-	.navbar-secundary {
+	.navbar-secondary {
 		z-index: 998;
 	}
 
-	.navbar-secundary .container {
+	.navbar-secondary .container {
 		padding: 0;
 		font-size: 16px;
 		z-index: 0;
 	}
 
-	.navbar.navbar-secundary {
+	.navbar.navbar-secondary {
 		min-height: 42px !important;
 	}
 
-	.navbar-secundary .navbar-nav > li > a {
+	.navbar-secondary .navbar-nav > li > a {
 		padding-top: 10px;
 		padding-bottom: 15px;
 	}
