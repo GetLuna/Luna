@@ -983,7 +983,7 @@ blockquote footer {
 }
 
 /* Update and login form */
-.form {
+.form-update {
 	max-width: 330px;
 	margin: 60px auto 20px;
 	background-color: #fff;
@@ -1029,8 +1029,8 @@ blockquote footer {
 }
 
 .form .btn-login {
-	margin-top: -65px;
-	margin-right: 5px;
+	margin-top: -35px;
+	margin-right: 15px;
 }
 
 .form .btn-update {

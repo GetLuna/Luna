@@ -43,16 +43,10 @@ if (!defined('FORUM'))
                         <input class="form-control top-form" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
                         <input class="form-control bottom-form" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" />
                     </div>
-                    <div class="form-content">
-                        <div class="control-group">
-                            <div class="controls remember">
-                                <label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
-                            </div>
-                        </div>
-                        <div class="control-group pull-right">
-                            <input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
-                        </div>
-                    </div>
+						<label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
+						<span class="pull-right">
+							<input class="btn btn-primary btn-login" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
+						</span>
                 </fieldset>
             </form>
         </div>
