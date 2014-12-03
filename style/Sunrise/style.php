@@ -36,12 +36,16 @@ if ($luna_user['color'] == '#33b5e5') {
 	background-color: <?php echo $primary_color ?>;
 }
 
-.navbar-secondary, .first-run-profile, footer .copyright, .panel-default .panel-heading {
+.navbar-secondary, .first-run-profile, footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover {
 	background-color: <?php echo $secondary_color ?>;
 }
 
 a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
 	background-color: <?php echo $tertiary_color ?>;
 	border-color: <?php echo $tertiary_color ?>;
+}
+
+.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	background-color: <?php echo $tertiary_color ?>;
 }
 </style>
