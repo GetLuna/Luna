@@ -161,7 +161,7 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 }
 
 $default_style = $luna_config['o_default_style'];
-if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
+if (!file_exists(FORUM_ROOT.'style/'.$default_style.'/style.css'))
 	$default_style = 'Random';
 
 // Empty all output buffers and stop buffering
