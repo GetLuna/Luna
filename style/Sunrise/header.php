@@ -2,8 +2,8 @@
 
 require ('header.php');
 
-$background_user_color = 'style="background:'.$luna_user['color'].';"';
-$background_border_user_color = 'style="background:'.$luna_user['color'].';border-color:'.$luna_user['color'].';"';
+//$background_user_color = 'style="background:'.$luna_user['color'].';"';
+//$background_border_user_color = 'style="background:'.$luna_user['color'].';border-color:'.$luna_user['color'].';"';
 
 ?>
 <!DOCTYPE html>
@@ -35,10 +35,39 @@ if (!defined('FORUM_ALLOW_INDEX'))
 						</button>
 					</div>
 					<div class="navbar-collapse collapse">
-						<ul class="nav navbar-nav"><?php echo implode("\n\t\t\t\t", $links); ?></ul>
+						<!--<ul class="nav navbar-nav"><?php echo implode("\n\t\t\t\t", $links); ?></ul>-->
+						<ul class="nav navbar-nav navbar-center">
+							<form id="search" class="navbar-form" method="get" action="search.php?section=simple">
+								<fieldset>
+									<input type="hidden" name="action" value="search" />
+									<div class="input-group">
+										<input class="form-control" type="text" name="keywords" placeholder="Search..." maxlength="100" />
+										<span class="input-group-btn">
+											<button class="btn btn-primary" type="submit" name="search" accesskey="s" />
+												<span class="fa fa-search"></span>
+											</button>
+										</span>
+									</div>
+								</fieldset>
+							</form>
+						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<?php echo $usermenu; ?>
 						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="navbar navbar-inverse navbar-secundary navbar-static-top"<?php echo $background_user_color ?>>
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav"><?php echo implode("\n\t\t\t\t", $links); ?></ul>
 					</div>
 				</div>
 			</div>
