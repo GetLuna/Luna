@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-inverse {
 	border: none;
 	margin-bottom: 0;
-    background-color: #555;
+    background-color: #2788cb;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-secundary {
-	background: #444;
+	background: #1a79bc;
 }
 
 
@@ -177,8 +177,8 @@ h1, h2, h3, h4, h5, h6 {
 	border: none;
 }
 
-.navbar-form #search .btn {
-	padding: 8px 12px 8px !important;
+.btn-search {
+	padding: 7px 12px !important;
 }
 
 /* Index */
@@ -296,7 +296,7 @@ a.list-group-item-cat:hover .forum-description {
 
 .modal-form .modal-header, .modal-form .modal-footer {
 	color: #fff;
-	background: #555;
+	background: #2788cb;
 }
 
 .modal-form .modal-title {
@@ -341,7 +341,7 @@ a.list-group-item-cat:hover .forum-description {
 }
 
 .first-run-profile {
-	background: #444;
+	background: #1a79bc;
 	padding-bottom: 16px;
 }
 
@@ -710,7 +710,6 @@ input[type="text"].power-control {
 	border: none;
 	margin-bottom: 10px;
 	background-color: #ffffff;
-	border-left: #555 5px solid;
 }
 
 .alert-warning {
@@ -963,7 +962,7 @@ a:hover, a:active {
 }
 
 a.list-group-item:hover, a.list-group-item:active {
-	color: #555;
+	color: #2788cb;
 }
 
 /* BBCode */
