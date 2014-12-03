@@ -136,6 +136,10 @@ h1, h2, h3, h4, h5, h6 {
 	border: none;
 }
 
+.navbar #search {
+	align-content: center;
+}
+
 .announcement a {
 	text-decoration: underline;
 }
@@ -162,6 +166,11 @@ h1, h2, h3, h4, h5, h6 {
 
 	.navbar-inverse .navbar-toggle {
 		margin: 8px 15px 8px 0;
+	}
+	
+	.navbar #search {
+		margin-left: 0;
+		margin-right: 0;
 	}
 }
 

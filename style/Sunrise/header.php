@@ -29,15 +29,15 @@ if (!defined('FORUM_ALLOW_INDEX'))
 				<div class="container">
 					<a class="navbar-brand" href="index.php"><?php echo $menu_title ?></a>
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-primary-collapse">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
 					</div>
-					<div class="navbar-collapse collapse">
+					<div class="navbar-primary-collapse navbar-collapse collapse">
 						<!--<ul class="nav navbar-nav"><?php echo implode("\n\t\t\t\t", $links); ?></ul>-->
-						<ul class="nav navbar-nav navbar-center">
+						<ul class="nav navbar-nav">
 							<form id="search" class="navbar-form" method="get" action="search.php?section=simple">
 								<fieldset>
 									<input type="hidden" name="action" value="search" />
@@ -61,13 +61,13 @@ if (!defined('FORUM_ALLOW_INDEX'))
 			<div class="navbar navbar-inverse navbar-secondary navbar-static-top"<?php echo $background_user_color ?>>
 				<div class="container">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-secondary-collapse">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
 					</div>
-					<div class="navbar-collapse collapse">
+					<div class="navbar-secondary-collapse navbar-collapse collapse">
 						<ul class="nav navbar-nav"><?php echo implode("\n\t\t\t\t", $links); ?></ul>
 					</div>
 				</div>

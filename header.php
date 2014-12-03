@@ -83,7 +83,7 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 if (!$luna_user['is_admmod'])
 	$backstage = '';
 else
-	$backstage = '<li><a href="backstage/"><span class="fa fa-fw fa-tachometer"></span></a></li>';
+	$backstage = '<li><a href="backstage/"><span class="fa fa-fw fa-tachometer"></span><span class="visible-xs-inline"> Backstage</span></a></li>';
 
 $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
@@ -93,7 +93,7 @@ if ($luna_user['is_guest'])
 else
 	$usermenu = $backstage.'
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-circle"></i></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-circle"></i><span class="visible-xs-inline"> Notifications</span></a>
 					<ul class="dropdown-menu notification-menu">
 						<li role="presentation" class="dropdown-header">Notifications</li>
 						<li class="divider"></li>
