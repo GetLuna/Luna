@@ -9,7 +9,6 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/general_functions.php';
 
 // If we are logged in, we shouldn't be here
 if (!$luna_user['is_guest']) {

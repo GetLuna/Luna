@@ -12,7 +12,6 @@ if (isset($_GET['action']))
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/general_functions.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 

@@ -6,6 +6,9 @@
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
+if (!defined('FORUM_CACHE_DIR'))
+	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
+	
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 	include FORUM_CACHE_DIR.'cache_users_info.php';
 

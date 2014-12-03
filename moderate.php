@@ -9,7 +9,6 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/general_functions.php';
 
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins

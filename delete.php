@@ -9,7 +9,6 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/general_functions.php';
 
 if ($luna_user['g_read_board'] == '0')
     message($lang['No view'], false, '403 Forbidden');
