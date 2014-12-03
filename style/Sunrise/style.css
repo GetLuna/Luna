@@ -11,14 +11,6 @@ body, html {
 	font-family: "Segoe UI", Arial;
 }
 
-footer {
-	padding-bottom: 15px;
-}
-
-footer .pull-right {
-	padding-bottom: 15px;
-}
-
 h2 {
 	margin-top: 0;
 }
@@ -181,6 +173,37 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 7px 12px !important;
 }
 
+/* Footer */
+footer {
+	background: #2788cb;
+	color: #fff;
+}
+
+footer a {
+	color: #fff;
+}
+
+footer .copyright {
+	background: #1a79bc;
+	padding: 10px 0;
+}
+
+.stats {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.statistic-item {
+	font-size: 17px;
+	text-align: right;
+}
+
+.statistic-item-stat {
+	font-size: 17px;
+	text-align: left;
+	text-transform: lowercase;
+}
+
 /* Index */
 .category-title {
 	margin-top: 0;
@@ -261,19 +284,6 @@ a.list-group-item-cat:hover .forum-description {
 .hr-forum-entry hr {
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.statistic-item {
-	font-size: 17px;
-	color: #0068b0;
-	text-align: center;
-}
-
-.statistic-grey {
-	font-size: 17px;
-	color: #bbb;
-	text-align: center;
-	text-transform: lowercase;
 }
 
 /* Modal forms */

@@ -19,7 +19,6 @@ if (!$luna_user['is_guest'])
 ?>
 </div>
 <div class="container">
-	<footer>
 <?php if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'viewtopic') && $is_admmod) { ?>
 
 		<div class="modcontrols">
@@ -79,15 +78,50 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>'."\n";
 }
 
-if (!defined('FORUM_FORM')) { ?>
-		<?php echo $markread ?>
-		<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://modernbb.be/">Luna</a> '.$luna_config['o_cur_version']) ?></span>
-		<script src="include/js/jquery.js"></script>
-		<script src="include/js/bootstrap.min.js"></script>
-		<script src="include/js/prism.js"></script>
-<?php } ?>
-    </footer>
+if (!defined('FORUM_FORM')) {
+	echo $markread;
+} ?>
+	</div>
 </div>
+<footer>
+	<div class="container">
+		<div class="row stats">
+			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+				<div class="statistic-item"><?php total_users() ?></div>
+				<div class="statistic-item"><?php total_topics() ?></div>
+			</div>
+			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of users'] ?></div>
+				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
+			</div>
+			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+				<div class="statistic-item"><?php guests_online() ?></div>
+				<div class="statistic-item"><?php newest_user() ?></div>
+			</div>
+			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
+			</div>
+			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+				<div class="statistic-item"><?php users_online() ?></div>
+				<div class="statistic-item"><?php guests_online() ?></div>
+			</div>
+			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Users online'] ?></div>
+				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+			</div>
+		</div>
+		<span class="users-online"><?php online_list() ?></span>
+	</div>
+	<div class="copyright">
+		<div class="container">
+			Copyright &copy; 2014 &middot Luna<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://modernbb.be/">Luna</a> '.$luna_config['o_cur_version']) ?></span>
+		</div>
+	</div>
+	<script src="include/js/jquery.js"></script>
+	<script src="include/js/bootstrap.min.js"></script>
+	<script src="include/js/prism.js"></script>
+</footer>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 <div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 	<div class="container">
