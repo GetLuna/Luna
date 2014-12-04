@@ -60,6 +60,20 @@ if (!defined('FORUM'))
 		</div>
 	</div>
 	<div class="col-xs-9">
+<?php
+// This is a Sunrise-thing and won't be supported in core for other styles
+if ($id != 0) {
+	$result = $db->query('SELECT * FROM '.$db->prefix.'forums where id = '.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	
+	if (!$db->num_rows($result))
+		message($lang['Bad request'], false, '404 Not Found');
+	
+	$cur_section = $db->fetch_assoc($result);
+?>
+	<h3><?php echo $cur_section['forum_name']; ?></h3>
+<?php
+}
+?>
 		<ul class="pagination"><?php echo $paging_links ?></ul>
 		<?php draw_index_topics_list($id) ?>
 		<ul class="pagination"><?php echo $paging_links ?></ul>
