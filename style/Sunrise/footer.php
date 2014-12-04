@@ -124,7 +124,7 @@ if (!defined('FORUM_FORM')) {
 	</div>
 	<div class="copyright">
 		<div class="container">
-			Copyright &copy; 2014 &middot Luna<span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://modernbb.be/">Luna</a> '.$luna_config['o_cur_version']) ?></span>
+			Copyright &copy; <?php echo date(Y) ?> &middot <?php echo $luna_config['o_board_title'] ?><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://modernbb.be/">Luna '.$luna_config['o_cur_version']).'</a>' ?></span>
 		</div>
 	</div>
 	<script src="include/js/jquery.js"></script>
