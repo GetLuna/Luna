@@ -357,7 +357,6 @@ function draw_index_topics_list() {
 	
 			if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') {
 				if ($cur_topic['has_posted'] == $luna_user['id']) {
-					$status_text[] = '<span class="fa fa-asterisk"></span>';
 					$item_status .= ' posted-item';
 				}
 			}
@@ -398,7 +397,7 @@ function draw_index_topics_list() {
 				$views_label = $lang['views'];
 			}
 	
-			require get_view_path('topic.php');
+			require get_view_path('topic2.php');
 	
 		}
 	

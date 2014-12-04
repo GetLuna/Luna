@@ -861,12 +861,28 @@ textarea {
 	margin-bottom: 10px;
 }
 
+.topic-index-entry {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.topic-index-entry:last-child {
+	border-bottom: none;
+}
+
 .topic-entry h3 {
 	margin: 0;
 }
 
+.middot {
+	visibility: hidden;
+}
+
+.posted-item .middot {
+	visibility: visible;
+}
+
 .posted-item {
-	border-right: 10px solid #ddd;
 }
 
 /* Titles */

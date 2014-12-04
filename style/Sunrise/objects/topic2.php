@@ -1,0 +1,3 @@
+<div class="topic-index-entry <?php echo $item_status ?>">
+    <span class="middot">&middot;</span> <span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> <?php echo $by ?> &middot; <span class="text-muted"><?php echo $last_post ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span>
+</div>
