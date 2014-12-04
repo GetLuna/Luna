@@ -53,6 +53,13 @@ if (!defined('FORUM'))
         <?php } ?>
     </div>
 </div>
-<div class="col-xs-12">
-<?php draw_category_list() ?>
+<div class="row">
+	<div class="col-xs-4">
+		<div class="list-group list-group-forum">
+			<?php draw_forum_list() ?>
+		</div>
+	</div>
+	<div class="col-xs-8">
+		<?php draw_index_topics_list() ?>
+	</div>
 </div>
