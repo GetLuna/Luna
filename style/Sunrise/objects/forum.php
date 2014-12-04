@@ -12,6 +12,6 @@ if ($cur_forum['last_post'] != '') {
 
 $forum_stats = '<span class="list-group-item" '.$group_style.'>'.$cur_forum['num_topics'].' topics and '.$cur_forum['num_posts'].' posts</span>';
 ?>
-<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="list-group-item list-group-item-cat" <?php echo $forum_style ?>>
-	<h4><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h4>
+<a href="viewforum.php?id=<?php echo $cur_forum['fid'] ?>" class="list-group-item" <?php echo $forum_style ?>>
+	<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>
 </a>

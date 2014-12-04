@@ -222,10 +222,6 @@ footer .copyright {
 	margin-bottom: 7px;
 }
 
-.list-group-item-cat {
-	padding: 0;
-}
-
 .list-group-forum .list-group-item:not(:first-child) {
 	border-top-color: #ccc !important;
 }
