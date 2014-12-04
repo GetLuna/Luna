@@ -56,10 +56,12 @@ if (!defined('FORUM'))
 <div class="row">
 	<div class="col-xs-3">
 		<div class="list-group list-group-forum">
-			<?php draw_forum_list() ?>
+			<?php draw_forum_list('index.php') ?>
 		</div>
 	</div>
 	<div class="col-xs-9">
-		<?php draw_index_topics_list() ?>
+		<ul class="pagination"><?php echo $paging_links ?></ul>
+		<?php draw_index_topics_list($id) ?>
+		<ul class="pagination"><?php echo $paging_links ?></ul>
 	</div>
 </div>

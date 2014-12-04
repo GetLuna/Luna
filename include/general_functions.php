@@ -250,7 +250,7 @@ function draw_topics_list() {
 	
 }
 
-function draw_forum_list() {
+function draw_forum_list($page) {
 	global $lang, $result, $db, $luna_config, $zset;
 
 	$cur_category = 0;
@@ -293,11 +293,14 @@ function draw_forum_list() {
 	}
 }
 
-function draw_index_topics_list() {
+function draw_index_topics_list($section_id) {
 	global $luna_user, $luna_config, $db, $start_from, $id, $lang;
 	
 	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT id FROM '.$db->prefix.'topics ORDER BY sticky DESC, id DESC LIMIT '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+	if ($section_id != 0)
+		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id = '.$section_id.' ORDER BY sticky DESC, id DESC LIMIT '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+	else
+		$result = $db->query('SELECT id FROM '.$db->prefix.'topics ORDER BY sticky DESC, id DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
