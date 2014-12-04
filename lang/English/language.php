@@ -843,7 +843,7 @@ $lang = array(
 
 'User search info'	=>	'Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.',
 'User group'		=>	'User group',
-'No of posts'		=>	'Number of posts',
+'No of posts'		=>	'Posts',
 'All users'			=>	'All users',
 'Sort no of posts'	=>	'Sort by number of posts',
 'Sort username'		=>	'Sort by username',

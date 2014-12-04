@@ -95,11 +95,11 @@ if (!defined('FORUM_FORM')) {
 				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
 			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
-				<div class="statistic-item"><?php guests_online() ?></div>
+				<div class="statistic-item"><?php total_posts() ?></div>
 				<div class="statistic-item"><?php newest_user() ?></div>
 			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
-				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of posts'] ?></div>
 				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
 			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
