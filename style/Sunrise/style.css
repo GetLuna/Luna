@@ -1,9 +1,8 @@
 @import url('../../include/css/font-awesome.min.css');
 
 /* General fixes */
-* {
+body * {
 	border-radius: 0 !important;
-	box-shadow: none !important;
 }
 
 body, html {
