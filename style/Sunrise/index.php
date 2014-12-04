@@ -71,6 +71,7 @@ if ($id != 0) {
 	$cur_section = $db->fetch_assoc($result);
 ?>
 	<h3><?php echo $cur_section['forum_name']; ?></h3>
+	<p><?php echo $cur_section['forum_desc']; ?></p>
 <?php
 }
 ?>
