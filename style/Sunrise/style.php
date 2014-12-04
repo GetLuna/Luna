@@ -48,4 +48,8 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 .activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	background-color: <?php echo $tertiary_color ?>;
 }
+
+.list-group-forum a.list-group-item:hover {
+	border-left-color: <?php echo $primary_color ?>;
+}
 </style>

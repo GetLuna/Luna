@@ -244,6 +244,13 @@ a.list-group-item-cat:hover .forum-description {
 	background-color: #e6e6e6;
 }
 
+.list-group-forum a.list-group-item {
+	border: 0;
+	border-left-width: 5px;
+	border-left-style: solid;
+	border-left-color: #fff;
+}
+
 .col-md-9 {
 	padding-left: 30px;
 	padding-right: 15px;
