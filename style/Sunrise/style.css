@@ -10,6 +10,10 @@ body, html {
 	font-family: "Segoe UI", Arial;
 }
 
+.container * {
+	box-shadow: none !important;
+}
+
 h2 {
 	margin-top: 0;
 }
