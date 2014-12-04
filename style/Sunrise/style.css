@@ -1118,8 +1118,16 @@ blockquote footer {
 	background-color: #0d4382 !important;
 }
 
-.accent-grey {
+.accent-white {
 	background-color: #ccc !important;
+}
+
+.accent-grey {
+	background-color: #999 !important;
+}
+
+.accent-black {
+	background-color: #444 !important;
 }
 
 /* Cookie bar */

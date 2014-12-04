@@ -25,9 +25,17 @@ if ($luna_user['color'] == '#33b5e5') {
 	$secondary_color = '#0d4382';
 	$tertiary_color = '#0b3c75';
 } elseif ($luna_user['color'] == '#cccccc') {
+	$primary_color = '#eeeeee';
+	$secondary_color = '#dddddd';
+	$tertiary_color = '#cccccc';
+} elseif ($luna_user['color'] == '#999999') {
 	$primary_color = '#afafaf';
 	$secondary_color = '#9e9e9e';
 	$tertiary_color = '#8e8e8e';
+} elseif ($luna_user['color'] == '#444444') {
+	$primary_color = '#555555';
+	$secondary_color = '#444444';
+	$tertiary_color = '#333333';
 }
 
 ?>
@@ -52,4 +60,10 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 .list-group-forum a.list-group-item:hover {
 	border-left-color: <?php echo $primary_color ?>;
 }
+
+<?php if ($luna_user['color'] == '#cccccc') { ?>
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus, .first-run-title, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, footer, footer a {
+	color: #555;
+}
+<?php } ?>
 </style>
