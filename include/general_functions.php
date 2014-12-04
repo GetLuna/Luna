@@ -250,7 +250,7 @@ function draw_topics_list() {
 	
 }
 
-function draw_forum_list($page) {
+function draw_forum_list($page, $current_id) {
 	global $lang, $result, $db, $luna_config, $zset;
 
 	$cur_category = 0;
@@ -287,6 +287,9 @@ function draw_forum_list($page) {
 			$posts_label = $lang['post'];
 		else
 			$posts_label = $lang['posts'];
+		
+		if ($current_id == $cur_forum['fid'])
+			$item_status .= ' active';
 	
 		require get_view_path('forum.php'); 
 	
