@@ -51,9 +51,9 @@
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title"><?php echo $lang['Change pass'] ?></h4>
+				<h4 class="modal-title"><?php echo $lang['Change avatar'] ?></h4>
 			</div>
-			<form id="upload_avatar" method="post" enctype="multipart/form-data" action="me.php?action=upload_avatar2&amp;id=<?php echo $id ?>" onsubmit="return process_form(this)">
+			<form id="upload_avatar" method="post" enctype="multipart/form-data" action="me.php?action=upload_avatar2&amp;id=<?php echo $luna_user['id'] ?>" onsubmit="return process_form(this)">
 				<div class="modal-body">
 					<fieldset>
 						<input type="hidden" name="form_sent" value="1" />
