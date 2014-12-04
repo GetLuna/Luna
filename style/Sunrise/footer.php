@@ -107,11 +107,20 @@ if (!defined('FORUM_FORM')) {
 				<div class="statistic-item"><?php guests_online() ?></div>
 			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
-				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Users online'] ?></div>
+				<div class="statistic-grey statistic-item-stat">
+					<div class="dropup">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							<?php echo $lang['Users online'] ?> <span class="fa fa-angle-up"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<?php echo online_list() ?>
+						</ul>
+					</div>
+				</div>
 				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
 			</div>
 		</div>
-		<span class="users-online"><?php online_list() ?></span>
 	</div>
 	<div class="copyright">
 		<div class="container">
