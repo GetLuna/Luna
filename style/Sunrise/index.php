@@ -54,12 +54,12 @@ if (!defined('FORUM'))
     </div>
 </div>
 <div class="row">
-	<div class="col-xs-4">
+	<div class="col-xs-3">
 		<div class="list-group list-group-forum">
 			<?php draw_forum_list() ?>
 		</div>
 	</div>
-	<div class="col-xs-8">
+	<div class="col-xs-9">
 		<?php draw_index_topics_list() ?>
 	</div>
 </div>
