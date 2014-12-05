@@ -75,7 +75,7 @@ if ($action == 'disable_cookiebar') {
 if ($id != 0)
 	$paging_links = paginate($num_pages, $p, 'index.php?id='.$id);
 else
-	$paging_links == '';
+	$paging_links = '';
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']));
 define('FORUM_ALLOW_INDEX', 1);
