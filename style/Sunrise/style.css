@@ -731,28 +731,14 @@ input[type="text"].power-control {
 }
 
 /* Alerts */
-.alert {
+.alert-section {
+	color: #fff;
 	border: none;
-	margin-bottom: 10px;
-	background-color: #ffffff;
 }
 
-.alert-warning {
-	border-left: #f79f13 5px solid;
-}
-
-.alert-info, #redirect {
-	border-left: #2ca0e9 5px solid;
-}
-
-.alert-danger {
-	border-left: #ff5a00 5px solid;
-	color: #d33200;
-}
-
-.alert-success {
-	border-left: #41d300 5px solid;
-	color: #4e9e00;
+.alert-section h3 {
+	margin-top: 0;
+	margin-bottom: 4px;
 }
 
 .announcement {

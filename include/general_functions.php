@@ -291,8 +291,23 @@ function draw_forum_list($page, $current_id) {
 		if ($current_id == $cur_forum['fid'])
 			$item_status .= ' active';
 	
-		require get_view_path('forum.php'); 
+		require get_view_path('forum.php');
 	
+	}
+}
+
+function draw_section_info($current_id) {
+	global $lang, $result, $db, $luna_config;
+
+	if ($current_id != 0) {
+		$result = $db->query('SELECT * FROM '.$db->prefix.'forums where id = '.$current_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+		
+		if (!$db->num_rows($result))
+			message($lang['Bad request'], false, '404 Not Found');
+		
+		$cur_section = $db->fetch_assoc($result);
+	
+		require get_view_path('section-info.php');
 	}
 }
 

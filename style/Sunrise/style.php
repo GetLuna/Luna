@@ -40,7 +40,7 @@ if ($luna_user['color'] == '#33b5e5') {
 
 ?>
 <style type="text/css">
-.navbar-inverse, footer {
+.navbar-inverse, footer, .alert-section {
 	background-color: <?php echo $primary_color ?>;
 }
 
