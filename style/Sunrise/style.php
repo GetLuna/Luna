@@ -1,14 +1,26 @@
 <?php
 
-if ($luna_user['color'] == '#33b5e5') {
+if ($luna_user['color'] == '#14a3ff') {
+	$primary_color = '#14a3ff';
+	$secondary_color = '#0b95ed';
+	$tertiary_color = '#0589de';
+} elseif ($luna_user['color'] == '#2788cb') {
 	$primary_color = '#2788cb';
 	$secondary_color = '#1a79bc';
 	$tertiary_color = '#136cab';
+} elseif ($luna_user['color'] == '#0d4382') {
+	$primary_color = '#145198';
+	$secondary_color = '#0d4382';
+	$tertiary_color = '#0b3c75';
 } elseif ($luna_user['color'] == '#c58be2') {
 	$primary_color = '#b679d4';
 	$secondary_color = '#a268bf';
 	$tertiary_color = '#8b54a7';
 } elseif ($luna_user['color'] == '#99cc00') {
+	$primary_color = '#8bb805';
+	$secondary_color = '#7ea703';
+	$tertiary_color = '#779e01';
+} elseif ($luna_user['color'] == '#047a36') {
 	$primary_color = '#08893e';
 	$secondary_color = '#047a36';
 	$tertiary_color = '#016a2d';
@@ -16,14 +28,14 @@ if ($luna_user['color'] == '#33b5e5') {
 	$primary_color = '#ffcb1a';
 	$secondary_color = '#ffb61a';
 	$tertiary_color = '#ffa11a';
+} elseif ($luna_user['color'] == '#ff7521') {
+	$primary_color = '#ff7521';
+	$secondary_color = '#ff5a21';
+	$tertiary_color = '#ff4021';
 } elseif ($luna_user['color'] == '#ff4444') {
 	$primary_color = '#ff4444';
 	$secondary_color = '#e63838';
 	$tertiary_color = '#d42f2f';
-} elseif ($luna_user['color'] == '#0d4382') {
-	$primary_color = '#145198';
-	$secondary_color = '#0d4382';
-	$tertiary_color = '#0b3c75';
 } elseif ($luna_user['color'] == '#cccccc') {
 	$primary_color = '#eeeeee';
 	$secondary_color = '#dddddd';
@@ -62,7 +74,7 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 }
 
 <?php if ($luna_user['color'] == '#cccccc') { ?>
-.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus, .first-run-title, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, footer, footer a {
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus, .first-run-title, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, footer, footer a, .panel-default .panel-heading, .active.list-group-item, .active.list-group-item:hover, .active.list-group-item:focus, .alert-all {
 	color: #555;
 }
 <?php } ?>

@@ -131,8 +131,14 @@ if (!defined('FORUM'))
 				<label class="col-sm-3 control-label">Profile color</label>
 				<div class="col-sm-9">
 					<div class="btn-group accent-group" data-toggle="buttons">
-						<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color'] == '#33b5e5') echo ' active' ?>">
-							<input type="radio" name="form[color]" id="blue" value="#33b5e5"<?php if ($luna_user['color'] == '#33b5e5') echo ' checked' ?>>
+						<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color'] == '#14a3ff') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="blue" value="#14a3ff"<?php if ($luna_user['color'] == '#14a3ff') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-denim<?php if ($luna_user['color'] == '#2788cb') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="denim" value="#2788cb"<?php if ($luna_user['color'] == '#2788cb') echo ' checked' ?>>
+						</label>
+						<label class="btn btn-primary color-accent accent-luna<?php if ($luna_user['color'] == '#0d4382') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="luna" value="#0d4382"<?php if ($luna_user['color'] == '#0d4382') echo ' checked' ?>>
 						</label>
 						<label class="btn btn-primary color-accent accent-purple<?php if ($luna_user['color'] == '#c58be2') echo ' active' ?>">
 							<input type="radio" name="form[color]" id="purple" value="#c58be2"<?php if ($luna_user['color'] == '#c58be2') echo ' checked' ?>>
@@ -140,14 +146,17 @@ if (!defined('FORUM'))
 						<label class="btn btn-primary color-accent accent-green<?php if ($luna_user['color'] == '#99cc00') echo ' active' ?>">
 							<input type="radio" name="form[color]" id="green" value="#99cc00"<?php if ($luna_user['color'] == '#99cc00') echo ' checked' ?>>
 						</label>
+						<label class="btn btn-primary color-accent accent-ao<?php if ($luna_user['color'] == '#047a36') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="ao" value="#047a36"<?php if ($luna_user['color'] == '#047a36') echo ' checked' ?>>
+						</label>
 						<label class="btn btn-primary color-accent accent-yellow<?php if ($luna_user['color'] == '#ffcd21') echo ' active' ?>">
 							<input type="radio" name="form[color]" id="yellow" value="#ffcd21"<?php if ($luna_user['color'] == '#ffcd21') echo ' checked' ?>>
 						</label>
+						<label class="btn btn-primary color-accent accent-orange<?php if ($luna_user['color'] == '#ff7521') echo ' active' ?>">
+							<input type="radio" name="form[color]" id="orange" value="#ff7521"<?php if ($luna_user['color'] == '#ff7521') echo ' checked' ?>>
+						</label>
 						<label class="btn btn-primary color-accent accent-red<?php if ($luna_user['color'] == '#ff4444') echo ' active' ?>">
 							<input type="radio" name="form[color]" id="red" value="#ff4444"<?php if ($luna_user['color'] == '#ff4444') echo ' checked' ?>>
-						</label>
-						<label class="btn btn-primary color-accent accent-luna<?php if ($luna_user['color'] == '#0d4382') echo ' active' ?>">
-							<input type="radio" name="form[color]" id="luna" value="#0d4382"<?php if ($luna_user['color'] == '#0d4382') echo ' checked' ?>>
 						</label>
 						<label class="btn btn-primary color-accent accent-white<?php if ($luna_user['color'] == '#cccccc') echo ' active' ?>">
 							<input type="radio" name="form[color]" id="white" value="#cccccc"<?php if ($luna_user['color'] == '#cccccc') echo ' checked' ?>>

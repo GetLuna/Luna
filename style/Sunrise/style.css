@@ -1100,15 +1100,31 @@ blockquote footer {
 }
 
 .accent-blue {
-    background-color: #33b5e5 !important;
+    background-color: #14a3ff !important;
+}
+
+.accent-denim {
+    background-color: #2788cb !important;
+}
+
+.accent-luna {
+	background-color: #0d4382 !important;
 }
 
 .accent-green {
     background-color: #99cc00 !important;
 }
 
+.accent-ao {
+	background-color: #047a36 !important;
+}
+
 .accent-yellow {
     background-color: #ffcd21 !important;
+}
+
+.accent-orange {
+    background-color: #ff7521 !important;
 }
 
 .accent-red {
