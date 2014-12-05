@@ -232,27 +232,42 @@ else if (isset($_POST['update_positions'])) {
                     <label class="col-sm-3 control-label">Forum color</label>
                     <div class="col-sm-9">
                         <div class="btn-group accent-group" data-toggle="buttons">
-                            <label class="btn btn-primary color-accent accent-blue<?php if ($cur_forum['color'] == '#33b5e5') echo ' active' ?>">
-                                <input type="radio" name="color" id="blue" value="#33b5e5"<?php if ($cur_forum['color'] == '#33b5e5') echo ' checked' ?>>
-                            </label>
-                            <label class="btn btn-primary color-accent accent-purple<?php if ($cur_forum['color'] == '#c58be2') echo ' active' ?>">
-                                <input type="radio" name="color" id="purple" value="#c58be2"<?php if ($cur_forum['color'] == '#c58be2') echo ' checked' ?>>
-                            </label>
-                            <label class="btn btn-primary color-accent accent-green<?php if ($cur_forum['color'] == '#99cc00') echo ' active' ?>">
-                                <input type="radio" name="color" id="green" value="#99cc00"<?php if ($cur_forum['color'] == '#99cc00') echo ' checked' ?>>
-                            </label>
-                            <label class="btn btn-primary color-accent accent-yellow<?php if ($cur_forum['color'] == '#ffcd21') echo ' active' ?>">
-                                <input type="radio" name="color" id="yellow" value="#ffcd21"<?php if ($cur_forum['color'] == '#ffcd21') echo ' checked' ?>>
-                            </label>
-                            <label class="btn btn-primary color-accent accent-red<?php if ($cur_forum['color'] == '#ff4444') echo ' active' ?>">
-                                <input type="radio" name="color" id="red" value="#ff4444"<?php if ($cur_forum['color'] == '#ff4444') echo ' checked' ?>>
-                            </label>
-                            <label class="btn btn-primary color-accent accent-luna<?php if ($cur_forum['color'] == '#0d4382') echo ' active' ?>">
-                                <input type="radio" name="color" id="red" value="#0d4382"<?php if ($cur_forum['color'] == '#0d4382') echo ' checked' ?>>
-                            </label>
-                            <label class="btn btn-primary color-accent accent-grey<?php if ($cur_forum['color'] == '#cccccc') echo ' active' ?>">
-                                <input type="radio" name="color" id="red" value="#cccccc"<?php if ($cur_forum['color'] == '#cccccc') echo ' checked' ?>>
-                            </label>
+							<label class="btn btn-primary color-accent accent-blue<?php if ($cur_forum['color'] == '#14a3ff') echo ' active' ?>">
+								<input type="radio" name="color" id="blue" value="#14a3ff"<?php if ($cur_forum['color'] == '#14a3ff') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-denim<?php if ($cur_forum['color'] == '#2788cb') echo ' active' ?>">
+								<input type="radio" name="color" id="denim" value="#2788cb"<?php if ($cur_forum['color'] == '#2788cb') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-luna<?php if ($cur_forum['color'] == '#0d4382') echo ' active' ?>">
+								<input type="radio" name="color" id="luna" value="#0d4382"<?php if ($cur_forum['color'] == '#0d4382') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-purple<?php if ($cur_forum['color'] == '#c58be2') echo ' active' ?>">
+								<input type="radio" name="color" id="purple" value="#c58be2"<?php if ($cur_forum['color'] == '#c58be2') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-green<?php if ($cur_forum['color'] == '#99cc00') echo ' active' ?>">
+								<input type="radio" name="color" id="green" value="#99cc00"<?php if ($cur_forum['color'] == '#99cc00') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-ao<?php if ($cur_forum['color'] == '#047a36') echo ' active' ?>">
+								<input type="radio" name="color" id="ao" value="#047a36"<?php if ($cur_forum['color'] == '#047a36') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-yellow<?php if ($cur_forum['color'] == '#ffcd21') echo ' active' ?>">
+								<input type="radio" name="color" id="yellow" value="#ffcd21"<?php if ($cur_forum['color'] == '#ffcd21') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-orange<?php if ($cur_forum['color'] == '#ff7521') echo ' active' ?>">
+								<input type="radio" name="color" id="orange" value="#ff7521"<?php if ($cur_forum['color'] == '#ff7521') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-red<?php if ($cur_forum['color'] == '#ff4444') echo ' active' ?>">
+								<input type="radio" name="color" id="red" value="#ff4444"<?php if ($cur_forum['color'] == '#ff4444') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-white<?php if ($cur_forum['color'] == '#cccccc') echo ' active' ?>">
+								<input type="radio" name="color" id="white" value="#cccccc"<?php if ($cur_forum['color'] == '#cccccc') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-grey<?php if ($cur_forum['color'] == '#999999') echo ' active' ?>">
+								<input type="radio" name="color" id="grey" value="#999999"<?php if ($cur_forum['color'] == '#999999') echo ' checked' ?>>
+							</label>
+							<label class="btn btn-primary color-accent accent-black<?php if ($cur_forum['color'] == '#444444') echo ' active' ?>">
+								<input type="radio" name="color" id="black" value="#444444"<?php if ($cur_forum['color'] == '#444444') echo ' checked' ?>>
+							</label>
                         </div>
                     </div>
                 </div>
