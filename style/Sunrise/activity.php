@@ -4,12 +4,10 @@
 if (!defined('FORUM'))
     exit;
 
-$jumbo_style = 'style="background:'.$user['color'].';"';
-
 ?>
 
 </div>
-<div class="jumbotron me-jumbotron"<?php echo $jumbo_style ?>>
+<div class="jumbotron me-jumbotron">
 	<div class="container">
         <div class="media">
             <a class="pull-left" href="#">
@@ -53,7 +51,7 @@ $jumbo_style = 'style="background:'.$user['color'].';"';
 	</ul>
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="posts">
-			<h2 class="activity-header">Recent posts<span class="pull-right"><a href="#" class="btn btn-primary">Show everything</a></span></h2>
+			<h2 class="activity-header">Recent posts<span class="pull-right"><a href="#" class="btn btn-default">Show everything</a></span></h2>
 <?php
 	$result = $db->query('SELECT id, poster, poster_id, message, posted, edited, edited_by, marked FROM '.$db->prefix.'posts WHERE poster_id='.$user['id'].' ORDER BY id DESC LIMIT 10') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_post = $db->fetch_assoc($result)) {
@@ -76,7 +74,7 @@ $jumbo_style = 'style="background:'.$user['color'].';"';
 ?>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="topics">
-			<h2 class="activity-header">Recent topics<span class="pull-right"><a href="#" class="btn btn-primary">Show everything</a></span></h2>
+			<h2 class="activity-header">Recent topics<span class="pull-right"><a href="#" class="btn btn-default">Show everything</a></span></h2>
 <?php
 	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, forum_id FROM '.$db->prefix.'topics WHERE poster=\''.$user['username'].'\' ORDER BY id DESC LIMIT 10') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 	while ($cur_topic = $db->fetch_assoc($result)) {

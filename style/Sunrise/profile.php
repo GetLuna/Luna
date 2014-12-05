@@ -4,12 +4,10 @@
 if (!defined('FORUM'))
     exit;
 
-$jumbo_style = 'style="background:'.$user['color'].';"';
-
 ?>
 
 </div>
-<div class="jumbotron profile-jumbotron"<?php echo $jumbo_style ?>>
+<div class="jumbotron profile-jumbotron">
 	<div class="container">
         <div class="media">
             <a class="pull-left" href="#">
