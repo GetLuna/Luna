@@ -306,9 +306,12 @@ function draw_section_info($current_id) {
 			message($lang['Bad request'], false, '404 Not Found');
 		
 		$cur_section = $db->fetch_assoc($result);
-	
-		require get_view_path('section-info.php');
-	}
+
+		$section_head = '1';
+	} else
+		$section_head = '2';
+
+	require get_view_path('section-info.php');
 }
 
 function draw_index_topics_list($section_id) {
