@@ -51,7 +51,7 @@ if (!defined('FORUM'))
                             </div>
                         </div>
                         <div class="control-group pull-right">
-                            <input class="btn btn-primary" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
+                            <input class="btn btn-primary btn-login" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
                         </div>
                     </div>
                 </fieldset>
