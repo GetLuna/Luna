@@ -244,9 +244,9 @@ switch ($stage)
 			break;
 			
 		// Since 1.4-beta.1: Insert config option o_base_url which was removed in 1.3
-		if (!array_key_exists('o_base_url', $pun_config))
+		if (!array_key_exists('o_base_url', $luna_config))
 		{
-			// If it isn't in $pun_config['o_base_url'] it should be in $base_url, but just in-case it isn't we can make a guess at it
+			// If it isn't in $luna_config['o_base_url'] it should be in $base_url, but just in-case it isn't we can make a guess at it
 			if (!isset($base_url))
 			{
 				// Make an educated guess regarding base_url
@@ -310,32 +310,32 @@ switch ($stage)
 		}
 
 		// Since 1.4-beta.1: Insert new config option o_forum_subscriptions
-		if (!array_key_exists('o_forum_subscriptions', $pun_config))
+		if (!array_key_exists('o_forum_subscriptions', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
 
 		// Since 1.4-beta.1: Rename config option o_subscriptions to o_topic_subscriptions
-		if (!array_key_exists('o_topic_subscriptions', $pun_config))
+		if (!array_key_exists('o_topic_subscriptions', $luna_config))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_topic_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
 
 
 		// Since 1.4-beta.1: Add search index revision number
-		if (!array_key_exists('o_searchindex_revision', $pun_config))
+		if (!array_key_exists('o_searchindex_revision', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_searchindex_revision\', \'0\')') or error('Unable to insert config value \'o_searchindex_revision\'', __FILE__, __LINE__, $db->error());
 
 		// Since 1.4-beta.1: Add parser revision number
-		if (!array_key_exists('o_parser_revision', $pun_config))
+		if (!array_key_exists('o_parser_revision', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_parser_revision\', \'0\')') or error('Unable to insert config value \'o_parser_revision\'', __FILE__, __LINE__, $db->error());
 
 		// Since 1.4-beta.1: Insert new config option o_quote_depth
-		if (!array_key_exists('o_quote_depth', $pun_config))
+		if (!array_key_exists('o_quote_depth', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_quote_depth\', \'3\')') or error('Unable to insert config value \'o_quote_depth\'', __FILE__, __LINE__, $db->error());
 
 		// Since 1.4-beta.1: Insert new config option o_feed_type
-		if (!array_key_exists('o_feed_type', $pun_config))
+		if (!array_key_exists('o_feed_type', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_type\', \'2\')') or error('Unable to insert config value \'o_feed_type\'', __FILE__, __LINE__, $db->error());
 
 		// Since 1.4-beta.1: Insert new config option o_feed_ttl
-		if (!array_key_exists('o_feed_ttl', $pun_config))
+		if (!array_key_exists('o_feed_ttl', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 
 		// Since 2.0-beta.1: Add the marked column to the posts table
