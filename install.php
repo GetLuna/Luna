@@ -809,6 +809,11 @@ else
 				'datatype'		=> 'VARCHAR(255)',
 				'allow_null'	=> false,
 				'default'		=> '0'
+			),
+			'parent_id'		=> array(
+				'datatype'		=> 'INT',
+				'allow_null'	=> true,
+				'default'		=> 0
 			)
 		),
 		'PRIMARY KEY'	=> array('id')
