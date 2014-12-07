@@ -5,7 +5,7 @@ if (!defined('FORUM'))
     exit;
 
 ?>
-<div class="first-run panel panel-default">
+<div class="first-run panel panel-default hidden-xs hidden-sm">
     <div class="row first-run-content">
         <div class="col-md-4 col-sm-6 first-run-profile"<?php echo $background_user_color ?>>
             <h3 class="first-run-title"><?php echo sprintf($lang['Hi there'], luna_htmlspecialchars($luna_user['username'])) ?></h3>
@@ -54,12 +54,12 @@ if (!defined('FORUM'))
     </div>
 </div>
 <div class="row">
-	<div class="col-xs-3">
+	<div class="col-sm-3">
 		<div class="list-group list-group-forum">
 			<?php draw_forum_list('index.php', $id) ?>
 		</div>
 	</div>
-	<div class="col-xs-9">
+	<div class="col-sm-9">
 		<?php draw_section_info($id); ?>
 		<ul class="pagination"><?php echo $paging_links ?></ul>
 		<?php draw_index_topics_list($id) ?>
