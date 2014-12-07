@@ -773,6 +773,11 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				'datatype'		=> 'VARCHAR(25)',
 				'allow_null'	=> false,
 				'default'		=> '\'#0d4382\''
+			),
+			'parent_id'		=> array(
+				'datatype'		=> 'INT',
+				'allow_null'	=> true,
+				'default'		=> 0
 			)
 		),
 		'PRIMARY KEY'	=> array('id')

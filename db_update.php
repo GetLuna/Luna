@@ -245,6 +245,9 @@ switch ($stage) {
 		if (array_key_exists('o_index_update_check', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_index_update_check\'') or error('Unable to remove config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.37.2564: Add the parent_id column to the forums table
+		$db->add_field('forums', 'parent_id', 'INT', true, 0) or error('Unable to add parent_id field', __FILE__, __LINE__, $db->error());
+
 		// Since 0.0.40.2944: Drop the redirect_url column to the forums table
 		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
 
