@@ -245,7 +245,7 @@ function draw_topics_list() {
 		}
 	
 	} else {
-		echo '<h3 class="nothing">There are no thread in this forum, be the first one!</h3>';
+		echo '<h3 class="nothing">There are no thread in this forum, <a href="post.php?fid='.$id.'">be the first one!</a></h3>';
 	}
 	
 }
@@ -437,7 +437,7 @@ function draw_index_topics_list($section_id) {
 		}
 	
 	} else {
-		echo '<h3 class="nothing">There are no thread in this forum, be the first one!</h3>';
+		echo '<h3 class="nothing">There are no thread in this forum, <a href="post.php?fid='.$id.'">be the first one!</a></h3>';
 	}
 	
 }

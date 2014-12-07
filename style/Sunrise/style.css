@@ -18,6 +18,10 @@ h2 {
 	margin-top: 0;
 }
 
+.inline {
+	display: inline-block;
+}
+
 .nothing {
 	margin: 30px 0;
 }
