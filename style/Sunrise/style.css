@@ -58,7 +58,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 .dropdown-menu {
-    border-width: 0 1px 1px;
 	padding: 0;
 }
 
@@ -477,12 +476,8 @@ textarea.textarea, textarea.textarea:focus {
 /* Pagination */
 .pagination {
 	margin: 0;
-	float: right;
-}
-
-.pagination-fix {
 	margin-top: 10px;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
@@ -856,8 +851,8 @@ textarea {
 	border-bottom: 1px solid #ddd;
 }
 
-.topic-index-entry:last-child {
-	border-bottom: none;
+.topic-index-entry:first-child {
+	border-top: 1px solid #ddd;
 }
 
 .topic-entry h3 {
