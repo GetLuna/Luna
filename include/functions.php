@@ -941,9 +941,9 @@ function paginate($num_pages, $cur_page, $link) {
 		$link_to_all = true;
 	}
 
-	if ($num_pages <= 1)
-		$pages = array('');
-	else {
+	if ($num_pages <= 1) {
+		return '';
+	} else {
 		// Add a previous page link
 		if ($num_pages > 1 && $cur_page > 1)
 			$pages[] = '<li><a rel="prev" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page - 1).'">&laquo;</a></li>';
@@ -979,9 +979,9 @@ function paginate($num_pages, $cur_page, $link) {
 			$pages[] = '<li><a rel="next" '.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.($cur_page +1).'">&raquo;</a></li>';
 		else
 			$pages[] = '<li class="disabled"><span>&raquo;</span></li>';
-	}
 
-	return implode(' ', $pages);
+		return '<ul class="pagination">'.implode(' ', $pages).'</ul>';
+	}
 }
 
 

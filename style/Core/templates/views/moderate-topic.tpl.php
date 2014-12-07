@@ -16,9 +16,7 @@ if (!defined('FORUM'))
         </div>
     </div>
     <div class="col-sm-6">
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-        </ul>
+		<?php echo $paging_links ?>
     </div>
 </div>
 
@@ -109,10 +107,8 @@ if (!defined('FORUM'))
         </div>
     </div>
     <div class="col-sm-6">
-        <ul class="pagination">
-            <?php echo $paging_links ?>
-            <div class="btn-group"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></div>
-        </ul>
+		<?php echo $paging_links ?>
+		<div class="btn-group"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></div>
     </div>
 </div>
 </form>

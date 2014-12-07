@@ -343,9 +343,7 @@ else if (isset($_GET['find_ban'])) {
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
+		<?php echo $paging_links ?>
 	</div>
 	<table class="table table-striped table-hover">
 		<thead>
@@ -389,9 +387,7 @@ else if (isset($_GET['find_ban'])) {
 		</tbody>
 	</table>
 	<div class="panel-body">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
+		<?php echo $paging_links ?>
     </div>
 </div>
 <?php

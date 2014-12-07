@@ -136,9 +136,7 @@ if (isset($_GET['ip_stats'])) {
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
+		<?php echo $paging_links ?>
 	</div>
 	<table class="table table-striped table-hover">
 		<thead>
@@ -173,9 +171,7 @@ if (isset($_GET['ip_stats'])) {
 		</tbody>
 	</table>
 	<div class="panel-body">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
+		<?php echo $paging_links ?>
 	</div>
 </div>
 <?php
@@ -214,9 +210,7 @@ if (isset($_GET['show_users'])) {
         <h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
     </div>
     <div class="panel-body">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
+		<?php echo $paging_links ?>
 	</div>
 	<table class="table table-striped table-hover">
 		<thead>
@@ -286,9 +280,7 @@ if (isset($_GET['show_users'])) {
 		</tbody>
 	</table>
 	<div class="panel-body">
-		<ul class="pagination">
-			<?php echo $paging_links ?>
-		</ul>
+		<?php echo $paging_links ?>
 	</div>
 </div>
 <?php
@@ -808,9 +800,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
     </div>
 	<form id="search-users-form" action="users.php" method="post">
 		<div class="panel-body">
-			<ul class="pagination">
-				<?php echo $paging_links ?>
-			</ul>
+			<?php echo $paging_links ?>
 			<?php if ($can_action): ?>
 				<span class="btn-toolbar pull-right">
 					<div class="btn-group">
@@ -872,9 +862,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			</tbody>
 		</table>
 		<div class="panel-body">
-			<ul class="pagination">
-				<?php echo $paging_links ?>
-			</ul>
+			<?php echo $paging_links ?>
 			<?php if ($can_action): ?>
 				<span class="btn-toolbar pull-right">
 					<div class="btn-group">

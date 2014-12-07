@@ -61,8 +61,8 @@ if (!defined('FORUM'))
 	</div>
 	<div class="col-sm-9">
 		<?php draw_section_info($id); ?>
-		<ul class="pagination"><?php echo $paging_links ?></ul>
+		<?php echo $paging_links ?>
 		<?php draw_index_topics_list($id) ?>
-		<ul class="pagination"><?php echo $paging_links ?></ul>
+		<?php echo $paging_links ?>
 	</div>
 </div>

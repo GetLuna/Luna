@@ -10,9 +10,7 @@ if (!defined('FORUM'))
 	<div class="container">
 		<h2><?php echo $lang['Search'] ?></h2>
         <span class="pull-right">
-            <ul class="pagination">
-                <?php echo $paging_links ?>
-            </ul>
+			<?php echo $paging_links ?>
         </span>
 	</div>
 </div>
