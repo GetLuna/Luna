@@ -121,6 +121,7 @@ else if (isset($_POST['update_positions'])) {
 		// Start with the forum details
 		$forum_name = luna_trim($_POST['forum_name']);
 		$forum_desc = luna_linebreaks(luna_trim($_POST['forum_desc']));
+		$parent_id = luna_trim($_POST['parent_id']);
 		$cat_id = intval($_POST['cat_id']);
 		$sort_by = intval($_POST['sort_by']);
 		$color = luna_trim($_POST['color']);
@@ -133,7 +134,7 @@ else if (isset($_POST['update_positions'])) {
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 
-		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', sort_by='.$sort_by.', cat_id='.$cat_id.', color=\''.$color.'\' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', color=\''.$color.'\' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old'])) {
@@ -168,7 +169,7 @@ else if (isset($_POST['update_positions'])) {
 	}
 
 	// Fetch forum info
-	$result = $db->query('SELECT id, forum_name, forum_desc, num_topics, sort_by, cat_id, color FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, color FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result))
 		message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -200,6 +201,12 @@ else if (isset($_POST['update_positions'])) {
                     <label class="col-sm-3 control-label"><?php echo $lang['Forum description label'] ?></label>
                     <div class="col-sm-9">
                         <textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Parent section</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="parent_id" maxlength="30" value="<?php echo luna_htmlspecialchars($cur_forum['parent_id']) ?>" tabindex="1" />
                     </div>
                 </div>
                 <div class="form-group">
