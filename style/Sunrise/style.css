@@ -190,7 +190,7 @@ footer {
 	color: #fff;
 }
 
-footer a {
+footer a, footer a:hover, footer a:active {
 	color: #fff;
 }
 
