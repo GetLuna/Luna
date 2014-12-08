@@ -199,7 +199,7 @@ h3.panel-title {
 
 .panel-success > .panel-heading {
 	background-color: #78bb28;
-	border-color: #5ea707;
+	border-color: #78bb28;
 	color: #fff;
 }
 
@@ -209,7 +209,7 @@ h3.panel-title {
 
 .panel-info > .panel-heading {
 	background-color: #007ed6;
-	border-color: #0065ac;
+	border-color: #007ed6;
 	color: #fff;
 }
 
@@ -219,7 +219,7 @@ h3.panel-title {
 
 .panel-warning > .panel-heading {
 	background-color: #ffc600;
-	border-color: #f1a400;
+	border-color: #ffc600;
 	color: #fff;
 }
 
@@ -229,7 +229,7 @@ h3.panel-title {
 
 .panel-danger > .panel-heading {
 	background-color: #f65625;
-	border-color: #d23100;
+	border-color: #f65625;
 	color: #fff;
 }
 
