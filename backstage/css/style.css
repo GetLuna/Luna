@@ -174,7 +174,8 @@ h3.panel-title {
 }
 
 .panel-default .panel-heading {
-	color: #1f62b0;
+	color: #fff;
+	background-color: #1f62b0;
 	border-bottom-color: #1f62b0;
 }
 
@@ -187,8 +188,8 @@ h3.panel-title {
 }
 
 .panel-primary > .panel-heading {
-	background-color: #fe99e5;
-	border-color: #ed6bcd;
+	background-color: #0d4382;
+	border-color: #0d4382;
 	color: #fff;
 }
 
