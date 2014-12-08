@@ -203,26 +203,6 @@ if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) {
 		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">Welcome to the Luna Preview</h3>
-			</div>
-			<div class="panel-body">
-				<p>Hello and welcome to the Luna Preview 1. It's great that you are using this software. However, we hope you are using it far away from a productive environment. This preview is only ment to show what's coming next to Luna.</p>
-				<p>Keep an eye on new releases, we release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of it at <a href="http://modernbb.be/lunareleases.php">our website</a>. New builds can contain new features, improved features, or bugfixes (mostly all at once).</p>
-				<p>We would like to ask you to send in feedback. Feedback is very important for us. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already. Most obvious bugs that you'll find are already known and beeing solved. If you find any issues in the interface, we don't need to know those either, as we're still working on that too (through ideas are always welcome).</p>
-			</div>
-			<div class="panel-footer">
-				<div class="btn-group">
-					<a class="btn btn-info" href="https://github.com/ModernBB/Luna/issues/863">Shiplist</a>
-					<a class="btn btn-info" href="http://modernbb.be/releases/luna1.0.php">Changelog</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <?php
 
 require 'footer.php';
