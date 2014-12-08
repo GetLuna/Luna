@@ -95,9 +95,34 @@ if (file_exists('../z.txt') && ($luna_config['o_reading_list'] == '1')) {
 <?php } if ($luna_config['o_first_run'] != 1) { ?>
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3 class="panel-title">Welcome to Luna</h3>
+		<h3 class="panel-title">Welcome to Luna<span class="pull-right"><a href="#" class="btn btn-success"><span class="fa fa-check"></span> Got it</a></span></h3>
 	</div>
 	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-4">
+				<p>Welcome to the Backstage. Here, you can manage your newly set up board. We're ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!</p>
+				<p>If you're done, you can click on "Got it" in the upper right corner of this panel to disable this field.</p>
+				<div class="list-group">
+					<a href="about.php" class="list-group-item">What's new?</a>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="list-group">
+					<a href="board.php" class="list-group-item">Create new sections</a>
+					<a href="censoring.php" class="list-group-item">Censor words</a>
+					<a href="groups.php" class="list-group-item">Add more groups</a>
+					<a href="ranks.php" class="list-group-item">Add additional ranks</a>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="list-group">
+					<a href="menu.php" class="list-group-item">Customize the menu</a>
+					<a href="theme.php" class="list-group-item">Change the appearance</a>
+					<a href="features.php" class="list-group-item">Alter the community's functionality</a>
+					<a href="settings.php" class="list-group-item">Change general settings</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <?php } ?>
