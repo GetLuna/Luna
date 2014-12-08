@@ -24,7 +24,6 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/zsettings.php', $lang['Bad HTTP Referer message']);
 
 	$form = array(
-		'notifications'			=> isset($_POST['form']['notifications']) ? '1' : '0',
 		'reading_list'			=> isset($_POST['form']['reading_list']) ? '1' : '0'
 	);
 
@@ -78,17 +77,6 @@ if (isset($_GET['saved']))
 							<label>
 								<input disabled type="checkbox" name="form[hooks]" value="1" <?php if ($luna_config['o_hooks'] == '1') echo ' checked="checked"' ?> />
 								enable hooks to be used by plugins
-							</label>
-						</div>
-					</div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">zNotifications<span class="help-block"><span class="label label-warning">high</span></span></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[notifications]" value="1" <?php if ($luna_config['o_notifications'] == '1') echo ' checked="checked"' ?> />
-								enable notifications through Luna
 							</label>
 						</div>
 					</div>

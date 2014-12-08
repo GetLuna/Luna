@@ -1886,7 +1886,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
         'o_moderated_by'            => 1,
         'o_post_responsive'         => 0,
 		'o_admin_notes'				=> "Add some notes...",
-		'o_notifications'			=> 0, // Experimental
 		'o_reading_list'			=> 0, // Experimental
 		'o_pms_enabled'				=> 1,
 		'o_pms_mess_per_page'		=> 10,
