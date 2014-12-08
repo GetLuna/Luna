@@ -254,48 +254,110 @@ function draw_forum_list($page, $current_id) {
 	global $lang, $db, $luna_config, $luna_user;
 	
 	// Print the categories and forums
-	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 	$cur_category = 0;
 	$cat_count = 0;
 	$forum_count = 0;
 	while ($cur_forum = $db->fetch_assoc($result)) {
-		$moderators = '';
+		if(!isset($cur_forum['parent_id']) || $cur_forum['parent_id'] == 0) {
+			$moderators = '';
 	
-		++$forum_count;
-		$item_status = ($forum_count % 2 == 0) ? 'roweven' : 'rowodd';
-		$forum_field_new = '';
-		$forum_desc = '';
-		$icon_type = 'icon';
-		$last_post = '';
-	
-		// Are there new posts since our last visit?
-		if (isset($new_topics[$cur_forum['fid']])) {
-			$item_status .= ' new-item';
-			$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
-			$icon_type = 'icon icon-new';
-		}
-	
-		$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
-	
-		if ($cur_forum['forum_desc'] != '')
-			$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
-	
-		if (forum_number_format($num_topics) == '1')
-			$topics_label = $lang['topic'];
-		else
-			$topics_label = $lang['topics'];
-	
-		if (forum_number_format($num_topics) == '1')
-			$posts_label = $lang['post'];
-		else
-			$posts_label = $lang['posts'];
+			++$forum_count;
+			$item_status = ($forum_count % 2 == 0) ? 'roweven' : 'rowodd';
+			$forum_field_new = '';
+			$forum_desc = '';
+			$icon_type = 'icon';
+			$last_post = '';
 		
-		if ($current_id == $cur_forum['fid'])
-			$item_status .= ' active';
+			// Are there new posts since our last visit?
+			if (isset($new_topics[$cur_forum['fid']])) {
+				$item_status .= ' new-item';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
+				$icon_type = 'icon icon-new';
+			}
+		
+			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+		
+			if ($cur_forum['forum_desc'] != '')
+				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
+		
+			if (forum_number_format($num_topics) == '1')
+				$topics_label = $lang['topic'];
+			else
+				$topics_label = $lang['topics'];
+		
+			if (forum_number_format($num_topics) == '1')
+				$posts_label = $lang['post'];
+			else
+				$posts_label = $lang['posts'];
+			
+			if ($current_id == $cur_forum['fid'])
+				$item_status .= ' active';
+		
+			require get_view_path('forum.php');
+		}
+	}
+}
+
+function draw_subforum_list($page, $current_id) {
+	global $lang, $db, $luna_config, $luna_user;
 	
-		require get_view_path('forum.php');
+	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$current_id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
+	$cur_parent = $db->fetch_assoc($result);
 	
+	if ($cur_parent['parent_id'] == '0')
+		$subforum_parent_id = $current_id;
+	else
+		$subforum_parent_id = $cur_parent['parent_id'];
+	
+	// Print the categories and forums
+	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.parent_id='.$subforum_parent_id.' ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+
+	$cur_category = 0;
+	$cat_count = 0;
+	$forum_count = 0;
+	while ($cur_forum = $db->fetch_assoc($result)) {
+		if ($cur_forum['parent_id'] != 0)
+			$parent_id = $cur_forum['parent_id'];
+
+		if($cur_forum['parent_id'] == $parent_id) {
+			$moderators = '';
+	
+			++$forum_count;
+			$item_status = ($forum_count % 2 == 0) ? 'roweven' : 'rowodd';
+			$forum_field_new = '';
+			$forum_desc = '';
+			$icon_type = 'icon';
+			$last_post = '';
+		
+			// Are there new posts since our last visit?
+			if (isset($new_topics[$cur_forum['fid']])) {
+				$item_status .= ' new-item';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
+				$icon_type = 'icon icon-new';
+			}
+		
+			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+		
+			if ($cur_forum['forum_desc'] != '')
+				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
+		
+			if (forum_number_format($num_topics) == '1')
+				$topics_label = $lang['topic'];
+			else
+				$topics_label = $lang['topics'];
+		
+			if (forum_number_format($num_topics) == '1')
+				$posts_label = $lang['post'];
+			else
+				$posts_label = $lang['posts'];
+			
+			if ($current_id == $cur_forum['fid'])
+				$item_status .= ' active';
+		
+			require get_view_path('forum.php');
+		}
 	}
 }
 
