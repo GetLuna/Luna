@@ -78,6 +78,8 @@ function load_admin_nav($section, $page) {
                         echo '<span class="fa fa-fw fa-info-circle"></span> System info';
                     else if ($page == 'update')
                         echo '<span class="fa fa-fw fa-cloud-upload"></span> Luna software update';
+                    else if ($page == 'about')
+                        echo '<span class="fa fa-fw fa-moon-o"></span> About Luna';
 
                     else if ($page == 'board')
                         echo '<span class="fa fa-fw fa-sort-amount-desc"></span> Board structure';
@@ -132,6 +134,7 @@ function load_admin_nav($section, $page) {
                 <li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><span class="fa fa-tachometer"></span> Backstage</a></li>
                 <li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-info-circle"></span> System info</a></li>
                 <li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-cloud-upload"></span> Update</a></li>
+                <li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="fa fa-moon-o"></span> About</a></li>
             </ul>
             <?php } if ($section == 'content') { ?>
             <ul class="nav nav-tabs" role="tablist">
