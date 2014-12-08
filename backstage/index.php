@@ -93,7 +93,7 @@ if (file_exists('../z.txt') && ($luna_config['o_reading_list'] == '1')) {
 	We've found out that some zSettings have been enabled. These settings control feature that are still in major development, might not work at all and/or can possibly corrupt your forum. We strongly recommend you to use these features only when necessary (for example, when you're developing Luna). Otherwise, you can disable them in <span class="fa fa-cog"></span> Settings > <span class="fa fa-cogs"></span> zSettings.
 </div>
 <?php } if ($luna_config['o_first_run'] != 1) { ?>
-<div class="panel panel-primary">
+<div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">
 		<h3 class="panel-title">Welcome to Luna<span class="pull-right"><a href="#" class="btn btn-success"><span class="fa fa-check"></span> Got it</a></span></h3>
 	</div>
