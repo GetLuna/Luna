@@ -201,4 +201,5 @@ if (!defined('FORUM_MAX_COOKIE_SIZE'))
 	define('FORUM_MAX_COOKIE_SIZE', 4048);
 
 require FORUM_ROOT.'include/general_functions.php';
+require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/statistic_functions.php';
