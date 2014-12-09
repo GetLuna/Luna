@@ -820,7 +820,7 @@ switch ($stage) {
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Sunrise\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 			
 		// Give a "Success" notifcation
-		new_notification('2', '/backstabe/index.php', 'Luna has been updated', 'fa-cloud-upload');
+		new_notification('2', 'backstage/index.php', 'Luna has been updated', 'fa-cloud-upload');
 
 		// This feels like a good time to synchronize the forums
 		$result = $db->query('SELECT id FROM '.$db->prefix.'forums') or error('Unable to fetch forum IDs', __FILE__, __LINE__, $db->error());
