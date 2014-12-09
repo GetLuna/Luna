@@ -80,13 +80,13 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 		$new_inbox = '';	
 }
 
+// Check for new notifications
 $result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 $num_notifications = $db->result($result);
 
 if ($num_notifications == '0') {
 	$notificon = 'fa-circle-o';
 	$ind_notification[] = '<li><a href="notifications.php">No new notifications</a></li>';
-	$notifications = implode('', $ind_notification);
 } else {
 	$notificon = 'fa-circle';
 	
@@ -94,10 +94,11 @@ if ($num_notifications == '0') {
 	while ($cur_notifi = $db->fetch_assoc($result)) {
 		$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$cur_notifi['time'].'</span></a></li>';
 	}
-	$notifications = implode('<li class="divider"></li>', $ind_notification);
 }
 
+$notifications = implode('<li class="divider"></li>', $ind_notification);
 
+// Generate navigation items
 if (!$luna_user['is_admmod'])
 	$backstage = '';
 else
@@ -117,7 +118,7 @@ else
 						<li class="divider"></li>
 						'.$notifications.'
 						<li class="divider"></li>
-						<li><a class="pull-right" href="#">More <i class="fa fa-arrow-right"></i></a></li>
+						<li><a class="pull-right" href="notifications.php">More <i class="fa fa-arrow-right"></i></a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
