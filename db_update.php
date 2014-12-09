@@ -48,6 +48,7 @@ if (!defined('FORUM_DEBUG'))
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
+require FORUM_ROOT.'include/general_functions.php';
 
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
@@ -817,6 +818,9 @@ switch ($stage) {
 		// Check the default style still exists!
 		if (!file_exists(FORUM_ROOT.'style/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Sunrise\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
+			
+		// Give a "Success" notifcation
+		new_notification('2', '/backstabe/index.php', 'Luna has been updated', 'fa-cloud-upload');
 
 		// This feels like a good time to synchronize the forums
 		$result = $db->query('SELECT id FROM '.$db->prefix.'forums') or error('Unable to fetch forum IDs', __FILE__, __LINE__, $db->error());
