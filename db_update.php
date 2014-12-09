@@ -623,6 +623,56 @@ switch ($stage) {
 		if (array_key_exists('o_notifications', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_notifications\'') or error('Unable to remove config value \'o_notifications\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.2.3423: Add the messages table
+		if (!$db->table_exists('notifications')) {
+			$schema = array(
+				'FIELDS'			=> array(
+					'id'				=> array(
+						'datatype'			=> 'SERIAL',
+						'allow_null'    	=> false
+					),
+					'user_id'			=> array(
+						'datatype'			=> 'INT(10)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'message'			=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'icon'				=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'link'			=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'color'				=> array(
+						'datatype'			=> 'VARCHAR(255)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'time'				=> array(
+						'datatype'			=> 'INT(11)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+					'viewed'			=> array(
+						'datatype'		=> 'TINYINT(1)',
+						'allow_null'		=> false,
+						'default'			=> '0'
+					),
+				),
+				'PRIMARY KEY'		=> array('id'),
+			);
+			
+			$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
+		}
+
 		break;
 
 	// Preparse posts

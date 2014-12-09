@@ -956,6 +956,54 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 
 	$schema = array(
+		'FIELDS'			=> array(
+			'id'				=> array(
+				'datatype'			=> 'SERIAL',
+				'allow_null'    	=> false
+			),
+			'user_id'			=> array(
+				'datatype'			=> 'INT(10)',
+				'allow_null'		=> false,
+				'default'			=> '0'
+			),
+			'message'			=> array(
+				'datatype'			=> 'VARCHAR(255)',
+				'allow_null'		=> false,
+				'default'			=> '0'
+			),
+			'icon'				=> array(
+				'datatype'			=> 'VARCHAR(255)',
+				'allow_null'		=> false,
+				'default'			=> '0'
+			),
+			'link'			=> array(
+				'datatype'			=> 'VARCHAR(255)',
+				'allow_null'		=> false,
+				'default'			=> '0'
+			),
+			'color'				=> array(
+				'datatype'			=> 'VARCHAR(255)',
+				'allow_null'		=> false,
+				'default'			=> '0'
+			),
+			'time'				=> array(
+				'datatype'			=> 'INT(11)',
+				'allow_null'		=> false,
+				'default'			=> '0'
+			),
+			'viewed'			=> array(
+				'datatype'		=> 'TINYINT(1)',
+				'allow_null'		=> false,
+				'default'			=> '0'
+			),
+		),
+		'PRIMARY KEY'		=> array('id'),
+	);
+	
+	$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
+
+
+	$schema = array(
 		'FIELDS'		=> array(
 			'user_id'		=> array(
 				'datatype'		=> 'INT(10) UNSIGNED',
