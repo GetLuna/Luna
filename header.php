@@ -85,8 +85,16 @@ $num_notifications = $db->result($result);
 
 if ($num_notifications == '0') {
 	$notificon = 'fa-circle-o';
+	$ind_notification[] = '<li><a href="notifications.php">No new notifications</a></li>';
+	$notifications = implode('', $ind_notification);
 } else {
 	$notificon = 'fa-circle';
+	
+	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+	while ($cur_notifi = $db->fetch_assoc($result)) {
+		$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$cur_notifi['time'].'</span></a></li>';
+	}
+	$notifications = implode('<li class="divider"></li>', $ind_notification);
 }
 
 
@@ -107,7 +115,7 @@ else
 					<ul class="dropdown-menu notification-menu">
 						<li role="presentation" class="dropdown-header">Notifications</li>
 						<li class="divider"></li>
-						<li>No new notifications</li>
+						'.$notifications.'
 						<li class="divider"></li>
 						<li><a class="pull-right" href="#">More <i class="fa fa-arrow-right"></i></a></li>
 					</ul>
