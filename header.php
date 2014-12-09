@@ -92,7 +92,8 @@ if ($num_notifications == '0') {
 	
 	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
-		$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$cur_notifi['time'].'</span></a></li>';
+		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
+		$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
 	}
 }
 

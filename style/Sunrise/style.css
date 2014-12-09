@@ -81,6 +81,10 @@ h1, h2, h3, h4, h5, h6 {
 	width: 400px;
 }
 
+.notification-menu .timestamp {
+	color: #aaa;
+}
+
 @media screen and (max-width: 767px) {
 	.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
 		border: none;
