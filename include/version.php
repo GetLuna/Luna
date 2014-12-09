@@ -11,16 +11,16 @@ class Version {
 	const FORUM_VERSION = '0.1.9';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '0.2.3423';
+	const FORUM_CORE_VERSION = '0.2.3424';
 
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = 86.00;
+	const FORUM_DB_VERSION = '86.00';
 
 	// The parser version number, every change to the parser requires this number to go one up
-	const FORUM_PARSER_VERSION = 11;
+	const FORUM_PARSER_VERSION = '11.0';
 
 	// The search index version number, every change to the search index requires this number to go one up
-	const FORUM_SI_VERSION = 2;
+	const FORUM_SI_VERSION = '2.0';
 
 	// The minimal required PHP version to install Luna
 	const MIN_PHP_VERSION = '5.1.0';
