@@ -981,11 +981,6 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				'allow_null'		=> false,
 				'default'			=> '0'
 			),
-			'color'				=> array(
-				'datatype'			=> 'VARCHAR(255)',
-				'allow_null'		=> false,
-				'default'			=> '0'
-			),
 			'time'				=> array(
 				'datatype'			=> 'INT(11)',
 				'allow_null'		=> false,

@@ -651,11 +651,6 @@ switch ($stage) {
 						'allow_null'		=> false,
 						'default'			=> '0'
 					),
-					'color'				=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
 					'time'				=> array(
 						'datatype'			=> 'INT(11)',
 						'allow_null'		=> false,
@@ -672,6 +667,9 @@ switch ($stage) {
 			
 			$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
 		}
+
+		// Since 0.2.3425: Drop the color column from the notifications table
+		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
 		break;
 
