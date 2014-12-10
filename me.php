@@ -613,6 +613,11 @@ if ($action == 'change_pass') {
 		define('FORUM_ACTIVE_PAGE', 'me');
 		require load_page('header.php');
 		require load_page('activity.php');
+	} else if ($section == 'notifications') {
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
+		define('FORUM_ACTIVE_PAGE', 'me');
+		require load_page('header.php');
+		require load_page('notifications.php');
 	} else if ($section == 'personality') {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Section personality']);
 		define('FORUM_ACTIVE_PAGE', 'me');
