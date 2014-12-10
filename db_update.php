@@ -798,6 +798,11 @@ switch ($stage) {
 
 	// Show results page
 	case 'finish':
+		
+		// Give a "Success" notifcation
+		if ($luna_config['o_cur_version'] != Version::FORUM_VERSION)
+			new_notification('2', 'backstage/index.php', 'Luna has been updated', 'fa-cloud-upload');
+
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
@@ -818,9 +823,6 @@ switch ($stage) {
 		// Check the default style still exists!
 		if (!file_exists(FORUM_ROOT.'style/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Sunrise\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
-			
-		// Give a "Success" notifcation
-		new_notification('2', 'backstage/index.php', 'Luna has been updated', 'fa-cloud-upload');
 
 		// This feels like a good time to synchronize the forums
 		$result = $db->query('SELECT id FROM '.$db->prefix.'forums') or error('Unable to fetch forum IDs', __FILE__, __LINE__, $db->error());
