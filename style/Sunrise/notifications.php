@@ -62,9 +62,11 @@ $not_seen = implode('', $ind_not_seen);
 			<a href="me.php?section=notifications&id=2&action=newnoti&type=comment" class="btn btn-default"><span class="fa fa-fw fa-comment"></span></a>
 			<a href="me.php?section=notifications&id=2&action=newnoti&type=check" class="btn btn-default"><span class="fa fa-fw fa-check"></span></a>
 			<a href="me.php?section=notifications&id=2&action=newnoti&type=version" class="btn btn-default"><span class="fa fa-fw fa-moon-o"></span></a>
+			<a href="me.php?section=notifications&id=2&action=newnoti&type=cogs" class="btn btn-default"><span class="fa fa-fw fa-cogs"></span></a>
 		</span>
 		<span class="btn-group">
-			<a href="me.php?section=notifications&id=2&action=readnoti" class="btn btn-default pull-right">Mark as seen</a>
+			<a href="me.php?section=notifications&id=2&action=readnoti" class="btn btn-default">Mark as seen</a>
+			<a href="me.php?section=notifications&id=2&action=delnoti" class="btn btn-default">Delete seen notifications</a>
 		</span>
 	</span>
 	<div class="list-group">

@@ -355,11 +355,18 @@ if ($action == 'change_pass') {
 		new_notification('2', 'index.php', 'Check this out', 'fa-check');
 	} elseif ($type == 'version') {
 		new_notification('2', 'index.php', 'You are using Luna '.$luna_config['o_core_version'].'! Awesome!', 'fa-moon-o');
+	} elseif ($type == 'cogs') {
+		new_notification('2', 'index.php', 'This icon usualy indicates settings, not now through...', 'fa-cogs');
 	}
 
 	redirect('me.php?section=notifications&amp;id='.$id);
 } else if ($action == 'readnoti') {
 	$db->query('UPDATE '.$db->prefix.'notifications SET viewed = 1 WHERE user_id = '.$id.' AND viewed = 0') or error('Unable to update the notification status', __FILE__, __LINE__, $db->error());
+	confirm_referrer('me.php');
+
+	redirect('me.php?section=notifications&amp;id='.$id);
+} else if ($action == 'delnoti') {
+	$db->query('DELETE FROM '.$db->prefix.'notifications WHERE viewed = 1') or error('Unable to remove notifications', __FILE__, __LINE__, $db->error());
 	confirm_referrer('me.php');
 
 	redirect('me.php?section=notifications&amp;id='.$id);
