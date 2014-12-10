@@ -86,7 +86,7 @@ $num_notifications = $db->result($result);
 
 if ($num_notifications == '0') {
 	$notificon = 'fa-circle-o';
-	$ind_notification[] = '<li><a href="notifications.php">No new notifications</a></li>';
+	$ind_notification[] = '<li><a href="me.php?section=notifications&id='.$luna_user['id'].'">No new notifications</a></li>';
 } else {
 	$notificon = 'fa-circle';
 	
@@ -119,7 +119,7 @@ else
 						<li class="divider"></li>
 						'.$notifications.'
 						<li class="divider"></li>
-						<li><a class="pull-right" href="notifications.php">More <i class="fa fa-arrow-right"></i></a></li>
+						<li><a class="pull-right" href="me.php?section=notifications&id='.$luna_user['id'].'">More <i class="fa fa-arrow-right"></i></a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
