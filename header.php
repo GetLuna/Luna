@@ -81,7 +81,7 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 }
 
 // Check for new notifications
-$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 $num_notifications = $db->result($result);
 
 if ($num_notifications == '0') {

@@ -358,6 +358,11 @@ if ($action == 'change_pass') {
 	}
 
 	redirect('me.php?section=notifications&amp;id='.$id);
+} else if ($action == 'readnoti') {
+	$db->query('UPDATE '.$db->prefix.'notifications SET viewed = 1 WHERE user_id = '.$id.' AND viewed = 0') or error('Unable to update the notification status', __FILE__, __LINE__, $db->error());
+	confirm_referrer('me.php');
+
+	redirect('me.php?section=notifications&amp;id='.$id);
 } else if (isset($_POST['form_sent'])) {
 	// Fetch the user group of the user we are editing
 	$result = $db->query('SELECT u.username, u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
