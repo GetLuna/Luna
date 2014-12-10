@@ -22,6 +22,7 @@ require FORUM_ROOT.'include/utf8/strcasecmp.php';
 require load_page('me-modals.php');
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
+$type = isset($_GET['type']) ? $_GET['type'] : null;
 $section = isset($_GET['section']) ? $_GET['section'] : null;
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 2)
@@ -345,6 +346,18 @@ if ($action == 'change_pass') {
 	delete_avatar($id);
 
 	redirect('me.php?section=personality&amp;id='.$id);
+} else if ($action == 'newnoti') {
+	if ($type == 'windows') {
+		new_notification('2', 'index.php', 'Windows 8.1 is recent', 'fa-windows');
+	} elseif ($type == 'comment') {
+		new_notification('2', 'index.php', 'Someone made a comment on your topic', 'fa-comment');
+	} elseif ($type == 'check') {
+		new_notification('2', 'index.php', 'Check this out', 'fa-check');
+	} elseif ($type == 'version') {
+		new_notification('2', 'index.php', 'You are using Luna '.$luna_config['o_core_version'].'! Awesome!', 'fa-moon-o');
+	}
+
+	redirect('me.php?section=notifications&amp;id='.$id);
 } else if (isset($_POST['form_sent'])) {
 	// Fetch the user group of the user we are editing
 	$result = $db->query('SELECT u.username, u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -543,7 +556,6 @@ if ($action == 'change_pass') {
 	if (empty($temp))
 		message($lang['Bad request'], false, '404 Not Found');
 
-
 	$db->query('UPDATE '.$db->prefix.'users SET '.implode(',', $temp).' WHERE id='.$id) or error('Unable to update profile', __FILE__, __LINE__, $db->error());
 
 	// If we changed the username we have to update some stuff
@@ -614,6 +626,7 @@ if ($action == 'change_pass') {
 		require load_page('header.php');
 		require load_page('activity.php');
 	} else if ($section == 'notifications') {
+
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 		define('FORUM_ACTIVE_PAGE', 'me');
 		require load_page('header.php');
