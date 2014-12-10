@@ -121,7 +121,7 @@ else if (isset($_POST['update_positions'])) {
 		// Start with the forum details
 		$forum_name = luna_trim($_POST['forum_name']);
 		$forum_desc = luna_linebreaks(luna_trim($_POST['forum_desc']));
-		$parent_id = luna_trim($_POST['parent_id']);
+		$parent_id = intval($_POST['parent_id']);
 		$cat_id = intval($_POST['cat_id']);
 		$sort_by = intval($_POST['sort_by']);
 		$color = luna_trim($_POST['color']);
