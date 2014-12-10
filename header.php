@@ -85,10 +85,10 @@ $result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE vi
 $num_notifications = $db->result($result);
 
 if ($num_notifications == '0') {
-	$notificon = 'fa-circle-o';
+	$notificon = '<span class="fa fa-circle-o">';
 	$ind_notification[] = '<li><a href="me.php?section=notifications&id='.$luna_user['id'].'">No new notifications</a></li>';
 } else {
-	$notificon = 'fa-circle';
+	$notificon = $num_notifications.' <span class="fa fa-circle">';
 	
 	$notification_result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($notification_result)) {
@@ -113,7 +113,7 @@ if ($luna_user['is_guest'])
 else
 	$usermenu = $backstage.'
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa '.$notificon.'"></i><span class="visible-xs-inline"> Notifications</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'</span><span class="visible-xs-inline"> Notifications</span></a>
 					<ul class="dropdown-menu notification-menu">
 						<li role="presentation" class="dropdown-header">Notifications</li>
 						<li class="divider"></li>
