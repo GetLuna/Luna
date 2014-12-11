@@ -589,10 +589,10 @@ function generate_avatar_markup($user_id) {
 		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
 		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path)) {
-			$avatar_markup = '<img class="avatar" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
+			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		} else {
-			$avatar_markup = '<img class="avatar" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
+			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
 		}
 	}
 
@@ -615,10 +615,10 @@ function draw_user_avatar($user_id, $class) {
 		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
 		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path)) {
-			$avatar_markup = '<img class="avatar'.$class.'" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
+			$avatar_markup = '<img class="img-responsive '.$class.'" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		} else {
-			$avatar_markup = '<img class="avatar'.$class.'" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
+			$avatar_markup = '<img class="img-responsive '.$class.'" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
 		}
 	}
 
