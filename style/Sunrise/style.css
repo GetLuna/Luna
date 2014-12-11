@@ -458,7 +458,7 @@ textarea.textarea, textarea.textarea:focus {
 
 .textarea-toolbar .btn {
 	border: none;
-	padding: 12px 18px;
+	padding: 12px 18px 13px;
 }
 
 .fa-fw {
@@ -726,11 +726,6 @@ input[type="text"].power-control {
 
 .label-danger {
 	background: #ea4322;
-}
-
-.fa-asterisk {
-	color: #c9c9c9;
-	font-size: 80%;
 }
 
 /* Alerts */
