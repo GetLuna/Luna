@@ -38,6 +38,20 @@ require 'header.php';
 				</div>
 			</div>
 		</div>
+		<div class="list-group">
+			<a href="#brand" class="list-group-item"><span class="fa fa-fw fa-moon-o"></span> New brand</a>
+			<a href="#users" class="list-group-item"><span class="fa fa-fw fa-user"></span> Users</a>
+			<a href="#inbox" class="list-group-item"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
+			<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
+			<a href="#management" class="list-group-item"><span class="fa fa-fw fa-coffee"></span> Management</a>
+			<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
+			<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Theme engine</a>
+			<a href="#themes" class="list-group-item"><span class="fa fa-fw fa-pencil"></span> Themes</a>
+		</div>
+		<div class="list-group">
+			<a href="#others" class="list-group-item">Other improvements and notes</a>
+			<a href="#updates" class="list-group-item">Updates</a>
+		</div>
 	</div>
 	<div class="col-sm-9">
 		<div class="panel panel-default">
@@ -45,10 +59,10 @@ require 'header.php';
 				<h3 class="panel-title">About Luna 1.0 Preview 2</h3>
 			</div>
 			<div class="panel-body">
-				<h3>New brand, same software, but much better</h3>
+				<a id="brand"><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3></a>
 				<img class="img-responsive" src="../img/release/brand.png" />
 				<p>Welcome to the first stable release of the third generation of our board software! This release officialy rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an intresting feature, so read on to the more awesome parts of our giant changelog:</p>
-				<h3><span class="fa fa-fw fa-user"></span> User features</h3>
+				<a id="users"><h3><span class="fa fa-fw fa-user"></span> User features</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Profile + Me</h4>
@@ -57,6 +71,10 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>Make it yours</h4>
 						<p>As a user, you can now select your own color in the Me settings. When a theme is compatible with this feature, it can use this color throughout the board to reflect your preferences.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Notifications</h4>
+						<p>Comments on your thread? Stuff you have to know? Notifications will help you out. Luna now shows notifications in the main interface and under Me, we have a full view of notifications.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Smarter editor</h4>
@@ -69,7 +87,7 @@ require 'header.php';
 						<p>Do your users want to share some HTML, PHP, CSS or JavaScript? Well, Luna will show these languages nicely with a brand new syntax highlighter based on PrismJS.</p>
 					</div>
 				</div>
-				<h3><span class="fa fa-fw fa-paper-plane-o"></span> Luna Inbox</h3>
+				<a id="inbox"><h3><span class="fa fa-fw fa-paper-plane-o"></span> Luna Inbox</h3></a>
 				<img class="img-responsive" src="../img/release/inbox.png" />
 				<p>Inbox is the new private messaging system included in Luna. It allows user to connect to other users through Luna without the need to exchange an email address or any other personal data.</p>
 				<div class="row">
@@ -82,7 +100,7 @@ require 'header.php';
 						<p>Lists are groups of users, it will allow users to send a message to more then 1 person much easier then needing to find them one by one.</p>
 					</div>
 				</div>
-				<h3><span class="fa fa-fw fa-align-justify"></span> Board</h3>
+				<a id="board"><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Sub sections</h4>
@@ -93,14 +111,14 @@ require 'header.php';
 						<p>When you're setting up a section, you can give it a color to make it stand out of the crowd, which are the other sections, in this case.</p>
 					</div>
 				</div>
-				<h3><span class="fa fa-fw fa-coffee"></span> Management</h3>
+				<a id="management"><h3><span class="fa fa-fw fa-coffee"></span> Management</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Moderation tools</h4>
 						<p>The moderation tools have been improved with a brand new design and additional improvements.</p>
 					</div>
 				</div>
-				<h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3>
+				<a id="backstage"><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3></a>
 				<img class="img-responsive" src="../img/release/backstage.png" />
 				<p>The Backstage has been redesigned from scratch with an all new design and more focus on management. The Backstage has now more visual appeal due to icons. New features have jumped into the Backstage, like <i>Admin Notes</i> and more. However, we did remove the Backstage Accent feature. Sorry.</p>
 				<div class="row">
@@ -120,15 +138,25 @@ require 'header.php';
 						<h4>Forum colors</h4>
 						<p>Forums can now be given a color, when the theme is compatible with this, the color can be used throughout the design to give the forum its own personality.</p>
 					</div>
+					<div class="col-sm-6">
+						<h4>Ready for smallness...</h4>
+						<img class="img-responsive" src="../img/release/smallness.png" />
+						<p>While to Backstage from ModernBB was already responsive and ready for your phone, we've made improvements to make your experience even beter.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>..and ready for you</h4>
+						<img class="img-responsive" src="../img/release/backstagefirstrun.png" />
+						<p>New to Luna? We'll give you a hand with the important settings you need to get your community ready to kick off and grow beyond! Of course, you can remove it too.</p>
+					</div>
 				</div>
-				<h3><span class="fa fa-fw fa-paint-brush"></span> Theme engine</h3>
+				<a id="theme"><h3><span class="fa fa-fw fa-paint-brush"></span> Theme engine</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>New developer tools</h4>
 						<p>The possibilities for developing your own theme have been extended drasticaly! You can do whatever you want now. Luna won't force you to use Bootstrap anymore, as the choise is now up to you.</p>
 					</div>
 				</div>
-				<h3><span class="fa fa-fw fa-pencil"></span> Themes</h3>
+				<a id="themes"><h3><span class="fa fa-fw fa-pencil"></span> Themes</h3></a>
 				<p>The Style Engine v5.2 has made place for our brand new Theme Engine v6.0.</p>
 				<h4>Sunrise</h4>
 				<img class="img-responsive" src="../img/release/sunrise.png" />
@@ -143,7 +171,7 @@ require 'header.php';
 						<p>Sunrise will give you a refreshed experience from the ground up. Because not just the index has been redone, every page has. The result is a beautiful native experience that uses all power Luna has to provide. And as it is a first version, expect more in later updates.</p>
 					</div>
 				</div>
-				<h3>Ohter improvements and notes</h3>
+				<a id="others"><h3>Ohter improvements and notes</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 					<h4>Packages</h4>
@@ -160,7 +188,7 @@ require 'header.php';
 					</div>
 				</div>
 				<hr />
-				<h3>Luna 1.0 Updates</h3>
+				<a id="updates"><h3>Luna 1.0 Updates</h3></a>
 				<h4>Preview 0 (version 0.0.40.2900-0.0.3232)</h4>
 				<div class="row">
 					<div class="col-sm-6">
@@ -194,7 +222,7 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<p>
-							<span class="label label-warning">3231</span> The design of multiple pages has been drasticaly improved<br />
+							<span class="label label-warning">3231</span> Drasticaly improved design on all pages<br />
 							<span class="label label-warning">3231</span> Advanced Search has been improved with a new interface<br />
 							<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
 							<span class="label label-warning">3231</span> New zFeatures have been added, and are disabled<br />
@@ -240,7 +268,7 @@ require 'header.php';
 					<div class="col-sm-6">
 						<p>
 							<span class="label label-primary">3361</span> You can now set a color for your profile<br />
-							<span class="label label-primary">3361</span> Some Backstage pages are updated for interface guidelines<br />
+							<span class="label label-primary">3361</span> Backstage pages are updated for interface guidelines<br />
 							<span class="label label-primary">3361</span> You can now save all ranks at once instead of one by one<br />
 							<span class="label label-primary">3361</span> Inbox has been added as a private messaging system<br />
 							<span class="label label-primary">3361</span> Some obsolete features have been removed<br />
@@ -264,7 +292,10 @@ require 'header.php';
 							<span class="label label-info">34xx</span> The board stats are now displayed on every page<br />
 							<span class="label label-info">34xx</span> The index has been redesigned with new features<br />
 							<span class="label label-info">34xx</span> The footer now displays the board's copyright<br />
-							<span class="label label-info">34xx</span> Support for sub sections has been added
+							<span class="label label-info">34xx</span> Support for sub sections has been added<br />
+							<span class="label label-info">34xx</span> Improved Backstage interface for small screens<br />
+							<span class="label label-info">34xx</span> The Notification icon now works<br />
+							<span class="label label-info">34xx</span> Backstage now has release notes included
 						</p>
 					</div>
 					<div class="col-sm-6">
@@ -273,7 +304,9 @@ require 'header.php';
 							<span class="label label-info">34xx</span> Online list is now hidden under "users online"<br />
 							<span class="label label-info">34xx</span> The notification button is now always visible<br />
 							<span class="label label-info">34xx</span> Profile and Me have been improved with better UX<br />
-							<span class="label label-info">34xx</span> The About section has been added to the Backstage<br />
+							<span class="label label-info">34xx</span> First Run has been added to the Backstage<br />
+							<span class="label label-info">34xx</span> zFeatures clean up<br />
+							<span class="label label-info">34xx</span> Notifications has been added to Me<br />
 							<span class="label label-info">34xx</span> Multiple bugfixes
 						</p>
 					</div>
