@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 <h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
 
 <div class="row-nav">
-	<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+	<a class="btn btn-primary" href="index.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 	<span class="pull-right">
 		<?php echo $paging_links ?>
 	</span>
@@ -21,7 +21,7 @@ if (!defined('FORUM'))
 </form>
 
 <div class="row-nav">
-	<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+	<a class="btn btn-primary" href="index.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 	<span class="pull-right">
 		<?php echo $paging_links ?>
 	</span>
