@@ -60,6 +60,14 @@ h1, h2, h3, h4, h5, h6 {
 	color: #FF6E00;
 }
 
+.fade-50 {
+	opacity: .5;
+}
+
+.fade-50:hover {
+	opacity: 1;
+}
+
 /* Header */
 .dropdown-menu {
 	padding: 0;
@@ -132,6 +140,10 @@ h1, h2, h3, h4, h5, h6 {
 		padding-top: 10px;
 		padding-bottom: 15px;
 	}
+}
+
+.navbar .avatar {
+	display: inline;
 }
 
 .open .avatar-item .avatar {
@@ -596,12 +608,13 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Threads */
-.comment .avatar {
-	max-height: 45px;
-	width: auto;
+.comment .panel-default {
+	margin: 0;
+	margin-left: 10px;
+	border: none;
+	background-color: #f8f8f8;
 }
-
-.comment h2 {
+.comment h3 {
 	margin-top: -6px;
 	margin-bottom: 0;
 }
