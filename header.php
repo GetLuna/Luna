@@ -62,7 +62,7 @@ function process_form(the_form) {
 }
 
 // Generate avatar
-$user_avatar = draw_user_avatar($luna_user['id'], '');
+$user_avatar = draw_user_avatar($luna_user['id'], 'avatar');
 
 // Navbar data
 $links = array();
