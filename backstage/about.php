@@ -60,7 +60,7 @@ require 'header.php';
 			</div>
 			<div class="panel-body">
 				<a id="brand"><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3></a>
-				<img class="img-responsive" src="../img/release/brand.png" />
+				<img class="img-responsive" src="../img/about/brand.png" />
 				<p>Welcome to the first stable release of the third generation of our board software! This release officialy rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an intresting feature, so read on to the more awesome parts of our giant changelog:</p>
 				<a id="users"><h3><span class="fa fa-fw fa-user"></span> User features</h3></a>
 				<div class="row">
@@ -78,17 +78,17 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Smarter editor</h4>
-						<img class="img-responsive" src="../img/release/editor.png" />
+						<img class="img-responsive" src="../img/about/editor.png" />
 						<p>The editor will act smarther than it did before now. When adding a list, for example, it will also add the first list item. For code boxes, it adds an additional white line.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Sharing code</h4>
-						<img class="img-responsive" src="../img/release/syntax.png" />
+						<img class="img-responsive" src="../img/about/syntax.png" />
 						<p>Do your users want to share some HTML, PHP, CSS or JavaScript? Well, Luna will show these languages nicely with a brand new syntax highlighter based on PrismJS.</p>
 					</div>
 				</div>
 				<a id="inbox"><h3><span class="fa fa-fw fa-paper-plane-o"></span> Luna Inbox</h3></a>
-				<img class="img-responsive" src="../img/release/inbox.png" />
+				<img class="img-responsive" src="../img/about/inbox.png" />
 				<p>Inbox is the new private messaging system included in Luna. It allows user to connect to other users through Luna without the need to exchange an email address or any other personal data.</p>
 				<div class="row">
 					<div class="col-sm-6">
@@ -119,7 +119,7 @@ require 'header.php';
 					</div>
 				</div>
 				<a id="backstage"><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3></a>
-				<img class="img-responsive" src="../img/release/backstage.png" />
+				<img class="img-responsive" src="../img/about/backstage.png" />
 				<p>The Backstage has been redesigned from scratch with an all new design and more focus on management. The Backstage has now more visual appeal due to icons. New features have jumped into the Backstage, like <i>Admin Notes</i> and more. However, we did remove the Backstage Accent feature. Sorry.</p>
 				<div class="row">
 					<div class="col-sm-6">
@@ -140,12 +140,12 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Ready for smallness...</h4>
-						<img class="img-responsive" src="../img/release/smallness.png" />
+						<img class="img-responsive" src="../img/about/smallness.png" />
 						<p>While to Backstage from ModernBB was already responsive and ready for your phone, we've made improvements to make your experience even beter.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>..and ready for you</h4>
-						<img class="img-responsive" src="../img/release/backstagefirstrun.png" />
+						<img class="img-responsive" src="../img/about/backstagefirstrun.png" />
 						<p>New to Luna? We'll give you a hand with the important settings you need to get your community ready to kick off and grow beyond! Of course, you can remove it too.</p>
 					</div>
 				</div>
@@ -159,7 +159,7 @@ require 'header.php';
 				<a id="themes"><h3><span class="fa fa-fw fa-pencil"></span> Themes</h3></a>
 				<p>The Style Engine v5.2 has made place for our brand new Theme Engine v6.0.</p>
 				<h4>Sunrise</h4>
-				<img class="img-responsive" src="../img/release/sunrise.png" />
+				<img class="img-responsive" src="../img/about/sunrise.png" />
 				<p>Due to the new Theme Engine, we had to rebuild our styles anyway, so why not throw in something new and fresh? That's why you're now free to use our brand new default theme, Sunrise, which will replace Random. Sunrise uses new features from Luna to show of it's capabilities. For example, Sunrise doesn't replace just Random, but also Awesome, Kind, Luna (the theme from ModernBB that is), Pinkie, Magic, Radical, Happy and Shy. In 1 theme, you get 12 different colorschemes available to you and your users.</p>
 				<div class="row">
 					<div class="col-sm-6">
