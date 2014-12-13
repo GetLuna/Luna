@@ -175,6 +175,11 @@ else if (isset($_POST['update_positions'])) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	$cur_forum = $db->fetch_assoc($result);
+
+	$parent_forums = Array();
+	$result = $db->query('SELECT DISTINCT parent_id FROM '.$db->prefix.'forums WHERE parent_id != 0');
+	while ($r = $db->fetch_row($result))
+		$parent_forums[] = $r[0];
 	
 	$cur_index = 7;
 	
@@ -206,7 +211,33 @@ else if (isset($_POST['update_positions'])) {
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Parent section</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="parent_id" maxlength="30" value="<?php echo luna_htmlspecialchars($cur_forum['parent_id']) ?>" tabindex="1" />
+						<select name="parent_id" class="form-control">
+							<option value="0">No parent forum selected</option>
+<?php
+
+	if (!in_array($cur_forum['id'],$parent_forums)) {
+		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id, f.forum_name, f.parent_id FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+
+		$cur_category = 0;
+		while ($forum_list = $db->fetch_assoc($result)) {
+			if ($forum_list['cid'] != $cur_category) { // A new category since last iteration?
+				if ($cur_category)
+					echo "\t\t\t\t\t\t".'</optgroup>'."\n";
+
+				echo "\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($forum_list['cat_name']).'">'."\n";
+				$cur_category = $forum_list['cid'];
+			}
+
+			$selected = ($forum_list['id'] == $cur_forum['parent_id']) ? ' selected="selected"' : '';
+
+			if(!$forum_list['parent_id'] && $forum_list['id'] != $cur_forum['id'])
+				echo "\t\t\t\t\t\t\t".'<option value="'.$forum_list['id'].'"'.$selected.'>'.luna_htmlspecialchars($forum_list['forum_name']).'</option>'."\n";
+		}
+	}
+
+?>
+							</optgroup>
+						</select>
                     </div>
                 </div>
                 <div class="form-group">
