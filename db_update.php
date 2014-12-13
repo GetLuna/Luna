@@ -672,6 +672,10 @@ switch ($stage) {
 		// Since 0.2.3425: Drop the color column from the notifications table
 		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
+		// Since 0.0.3459: Add o_first_run_backstage feature
+		if (!array_key_exists('o_first_run_backstage', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_backstage\', \'0\')') or error('Unable to insert config value \'o_first_run_backstage\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

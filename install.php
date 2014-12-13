@@ -1907,6 +1907,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		'o_first_run_message'		=> $lang['First run message'],
 		'o_show_first_run'			=> 1,
 		'o_first_run_guests'		=> 1,
+		'o_first_run_backstage'		=> 0,
 		'o_smtp_host'				=> NULL,
 		'o_smtp_user'				=> NULL,
 		'o_smtp_pass'				=> NULL,
