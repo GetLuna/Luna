@@ -982,6 +982,15 @@ textarea {
 	font-size: 45px !important;
 }
 
+.thread-jumbotron {
+	padding: 45px 15px 15px !important;
+	margin-bottom: 5px;
+}
+
+.thread-jumbotron h2 {
+	margin: 0;
+}
+
 /* Debug */
 #debug {
 	border-style: dotted none none none;
