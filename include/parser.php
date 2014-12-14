@@ -41,30 +41,30 @@ $re_list = '%\[list(?:=([1*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1*])?+\]|\[/list\]
 
 // Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
 $smilies = array(
-	':)' => 'smile.png',
-	':|' => 'neutral.png',
-	':(' => 'sad.png',
-	':d' => 'big_smile.png',
-	':D' => 'big_smile.png',
-	':o' => 'yikes.png',
-	':O' => 'yikes.png',
-	';)' => 'wink.png',
-	':/' => 'hmm.png',
-	':P' => 'tongue.png',
-	':p' => 'tongue.png',
-	':lol:' => 'lol.png',
-	':-))' => 'lol.png',
-	':@' => 'mad.png',
-	'%)' => 'roll.png',
-	'b:' => 'cool.png',
-	'B:' => 'cool.png',
-	':hc:' => 'happycry.png',
-	'(A)' => 'angel.png',
-	'^-^' => 'ohyeah.png',
-	'(a)' => 'angel.png',
-	'(A)' => 'angel.png',
-	'^.^' => 'happy.png'
-	);
+	':)' => '😊',
+	':|' => '😐',
+	':(' => '😩',
+	':d' => '😄',
+	':D' => '😄',
+	':o' => '😲',
+	':O' => '😲',
+	';)' => '😉',
+	':/' => '😒',
+	':P' => '😋',
+	':p' => '😋',
+	':lol:' => '😁',
+	':-))' => '😁',
+	':@' => '😠',
+	'%)' => '😆',
+	'b:' => '😎',
+	'B:' => '😎',
+	':hc:' => '😂',
+	'(A)' => '😇',
+	'(a)' => '😇',
+	'(A)' => '😇',
+	'^-^' => '😏',
+	'^.^' => '😀'
+);
 
 //
 // Make sure all BBCodes are lower case and do a little cleanup
@@ -762,7 +762,7 @@ function do_smilies($text) {
 
 	foreach ($smilies as $smiley_text => $smiley_img) {
 		if (strpos($text, $smiley_text) !== false)
-			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/style/Sunrise/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
+			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$smiley_img.'</span>', $text);
 	}
 
 	return substr($text, 1, -1);
