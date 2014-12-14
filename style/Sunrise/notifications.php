@@ -40,7 +40,7 @@ $not_seen = implode('', $ind_not_seen);
 	<div class="container">
         <div class="media">
             <a class="pull-left" href="#">
-                <?php echo generate_avatar_markup($luna_user['id']) ?>
+                <?php echo draw_user_avatar($luna_user['id'], 'avatar-me') ?>
             </a>
             <div class="media-body">
                 <h2 class="media-heading"><?php echo $user['username']; ?></h2>

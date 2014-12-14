@@ -184,6 +184,11 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 5px !important;
 }
 
+.avatar-me {
+	height: 70px;
+	width: auto;
+}
+
 @media all and (max-width: 767px) {
 	.navbar-brand {
 		height: 50px;
