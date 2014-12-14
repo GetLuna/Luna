@@ -61,6 +61,25 @@ label .help-block {
     font-size: 85%;
 }
 
+.panel-about #brand h3 {
+	margin-top: 0;
+}
+
+.panel-about h3 {
+	font-size: 32px !important;
+	margin-top: 15px;
+}
+
+.panel-about h4 {
+	font-size: 24px !important;
+	margin-bottom: 3px;
+	color: #1f62b0;
+}
+
+.change-list {
+	line-height: 1.7;
+}
+
 /* Navbars */
 .navbar-default {
 	background: #1f62b0;

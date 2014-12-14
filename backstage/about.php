@@ -58,7 +58,7 @@ require 'header.php';
 			<div class="panel-heading">
 				<h3 class="panel-title">About Luna 1.0 Preview 2</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body panel-about">
 				<a id="brand"><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3></a>
 				<img class="img-responsive" src="../img/about/brand.png" />
 				<p>Welcome to the first stable release of the third generation of our board software! This release officialy rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an intresting feature, so read on to the more awesome parts of our giant changelog:</p>
@@ -200,131 +200,133 @@ require 'header.php';
 				</div>
 				<hr />
 				<a id="updates"><h3>Luna 1.0 Updates</h3></a>
-				<h4>Preview 0 (version 0.0.40.2900-0.0.3232)</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-info">3112</span> <i>Initial release</i>
-						</p>
+				<span class="change-list">
+					<h4>Preview 0 (version 0.0.40.2900-0.0.3232)</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-info">3112</span> <i>Initial release</i>
+							</p>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-success">3136</span> The index now displays the latest topic<br />
-							<span class="label label-success">3136</span> The "Board stats" have been updated with a new design<br />
-							<span class="label label-success">3136</span> Fixes a security vulnerability in redirects
-						</p>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-success">3136</span> The index now displays the latest topic<br />
+								<span class="label label-success">3136</span> The "Board stats" have been updated with a new design<br />
+								<span class="label label-success">3136</span> Fixes a security vulnerability in redirects
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-success">3136</span> The index now displays the amount of topics and posts<br />
+								<span class="label label-success">3136</span> 1 bugfix
+							</p>
+						</div>
 					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-success">3136</span> The index now displays the amount of topics and posts<br />
-							<span class="label label-success">3136</span> 1 bugfix
-						</p>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-danger">3137</span> An issue with the installer has been fixed
+							</p>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-danger">3137</span> An issue with the installer has been fixed
-						</p>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-warning">3231</span> Drasticaly improved design on all pages<br />
+								<span class="label label-warning">3231</span> Advanced Search has been improved with a new interface<br />
+								<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
+								<span class="label label-warning">3231</span> New zFeatures have been added, and are disabled<br />
+								<span class="label label-warning">3231</span> Start of developiment of Reading List
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-warning">3231</span> Founcations for Profile and Me have been added<br />
+								<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
+								<span class="label label-warning">3231</span> Small improvements to the editor<br />
+								<span class="label label-warning">3231</span> Bootstrap has been updated to version 3.3.0<br />
+								<span class="label label-warning">3231</span> Multiple bugfixes
+							</p>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-warning">3231</span> Drasticaly improved design on all pages<br />
-							<span class="label label-warning">3231</span> Advanced Search has been improved with a new interface<br />
-							<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
-							<span class="label label-warning">3231</span> New zFeatures have been added, and are disabled<br />
-							<span class="label label-warning">3231</span> Start of developiment of Reading List
-						</p>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-default">3232</span> Fixes a security issue
+							</p>
+						</div>
 					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-warning">3231</span> Founcations for Profile and Me have been added<br />
-							<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
-							<span class="label label-warning">3231</span> Small improvements to the editor<br />
-							<span class="label label-warning">3231</span> Bootstrap has been updated to version 3.3.0<br />
-							<span class="label label-warning">3231</span> Multiple bugfixes
-						</p>
+					<h4>Preview 1 (version 0.0.3233-0.1.3361)</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">3361</span> The Me Personality settings have been redesigned<br />
+								<span class="label label-primary">3361</span> The editor has been improved for lists and codeboxes<br />
+								<span class="label label-primary">3361</span> Panels in the Me section are accessible again (avatar, etc.)<br />
+								<span class="label label-primary">3361</span> Backstage has been given a small redesign<br />
+								<span class="label label-primary">3361</span> The moderation tools have been improved<br />
+								<span class="label label-primary">3361</span> Any action the updater does can give an error message<br />
+								<span class="label label-primary">3361</span> Icons provide visual aide in the Backstage<br />
+								<span class="label label-primary">3361</span> First Run is now back to its previous panel design<br />
+								<span class="label label-primary">3361</span> Start of development for support of notifications<br />
+								<span class="label label-primary">3361</span> Improvements to the Theme engine have been made<br />
+								<span class="label label-primary">3361</span> Improvements to Sunrise<br />
+								<span class="label label-primary">3361</span> Improved support for large touchscreens<br />
+								<span class="label label-primary">3361</span> The description of mutliple fields have been improved
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">3361</span> You can now set a color for your profile<br />
+								<span class="label label-primary">3361</span> Backstage pages are updated for interface guidelines<br />
+								<span class="label label-primary">3361</span> You can now save all ranks at once instead of one by one<br />
+								<span class="label label-primary">3361</span> Inbox has been added as a private messaging system<br />
+								<span class="label label-primary">3361</span> Some obsolete features have been removed<br />
+								<span class="label label-primary">3361</span> Redesigned experminental index page<br />
+								<span class="label label-primary">3361</span> Luna supports Syntax Highlighting<br />
+								<span class="label label-primary">3361</span> The Activity tracker has been added to Me<br />
+								<span class="label label-primary">3361</span> A new installation and update system<br />
+								<span class="label label-primary">3361</span> Bootstrap has been updated to version 3.3.1<br />
+								<span class="label label-primary">3361</span> Multiple interface improvements<br />
+								<span class="label label-primary">3361</span> Luna will now generate longer passwords<br />
+								<span class="label label-primary">3361</span> Multiple bugfixes
+							</p>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-default">3232</span> Fixes a security issue
-						</p>
+					<h4>Preview 2 (version 0.1.3362-0.2.34xx)</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-info">34xx</span> Revamped interface<br />
+								<span class="label label-info">34xx</span> The navbar has been split in 2 new navbars<br />
+								<span class="label label-info">34xx</span> The board stats are now displayed on every page<br />
+								<span class="label label-info">34xx</span> The index has been redesigned with new features<br />
+								<span class="label label-info">34xx</span> The footer now displays the board's copyright<br />
+								<span class="label label-info">34xx</span> Support for sub sections has been added<br />
+								<span class="label label-info">34xx</span> Improved Backstage interface for small screens<br />
+								<span class="label label-info">34xx</span> The Notification icon now works<br />
+								<span class="label label-info">34xx</span> Backstage now has release notes included<br />
+								<span class="label label-info">34xx</span> Emoticons have been replaced with Emojis
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-info">34xx</span> The main navbar now contains a search box<br />
+								<span class="label label-info">34xx</span> Online list is now hidden under "users online"<br />
+								<span class="label label-info">34xx</span> The notification button is now always visible<br />
+								<span class="label label-info">34xx</span> Profile and Me have been improved with better UX<br />
+								<span class="label label-info">34xx</span> First Run has been added to the Backstage<br />
+								<span class="label label-info">34xx</span> zFeatures clean up<br />
+								<span class="label label-info">34xx</span> Notifications has been added to Me<br />
+								<span class="label label-info">34xx</span> The code behind the installer has been revamped<br />
+								<span class="label label-info">34xx</span> Emojis list in Help has been improved<br />
+								<span class="label label-info">34xx</span> Multiple bugfixes
+							</p>
+						</div>
 					</div>
-				</div>
-				<h4>Preview 1 (version 0.0.3233-0.1.3361)</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">3361</span> The Me Personality settings have been redesigned<br />
-							<span class="label label-primary">3361</span> The editor has been improved for lists and codeboxes<br />
-							<span class="label label-primary">3361</span> Panels in the Me section are accessible again (avatar, etc.)<br />
-							<span class="label label-primary">3361</span> Backstage has been given a small redesign<br />
-							<span class="label label-primary">3361</span> The moderation tools have been improved<br />
-							<span class="label label-primary">3361</span> Any action the updater does can give an error message<br />
-							<span class="label label-primary">3361</span> Icons provide visual aide in the Backstage<br />
-							<span class="label label-primary">3361</span> First Run is now back to its previous panel design<br />
-							<span class="label label-primary">3361</span> Start of development for support of notifications<br />
-							<span class="label label-primary">3361</span> Improvements to the Theme engine have been made<br />
-							<span class="label label-primary">3361</span> Improvements to Sunrise<br />
-							<span class="label label-primary">3361</span> Improved support for large touchscreens<br />
-							<span class="label label-primary">3361</span> The description of mutliple fields have been improved
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">3361</span> You can now set a color for your profile<br />
-							<span class="label label-primary">3361</span> Backstage pages are updated for interface guidelines<br />
-							<span class="label label-primary">3361</span> You can now save all ranks at once instead of one by one<br />
-							<span class="label label-primary">3361</span> Inbox has been added as a private messaging system<br />
-							<span class="label label-primary">3361</span> Some obsolete features have been removed<br />
-							<span class="label label-primary">3361</span> Redesigned experminental index page<br />
-							<span class="label label-primary">3361</span> Luna supports Syntax Highlighting<br />
-							<span class="label label-primary">3361</span> The Activity tracker has been added to Me<br />
-							<span class="label label-primary">3361</span> A new installation and update system<br />
-							<span class="label label-primary">3361</span> Bootstrap has been updated to version 3.3.1<br />
-							<span class="label label-primary">3361</span> Multiple interface improvements<br />
-							<span class="label label-primary">3361</span> Luna will now generate longer passwords<br />
-							<span class="label label-primary">3361</span> Multiple bugfixes
-						</p>
-					</div>
-				</div>
-				<h4>Preview 2 (version 0.1.3362-0.2.34xx)</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-info">34xx</span> Revamped interface<br />
-							<span class="label label-info">34xx</span> The navbar has been split in 2 new navbars<br />
-							<span class="label label-info">34xx</span> The board stats are now displayed on every page<br />
-							<span class="label label-info">34xx</span> The index has been redesigned with new features<br />
-							<span class="label label-info">34xx</span> The footer now displays the board's copyright<br />
-							<span class="label label-info">34xx</span> Support for sub sections has been added<br />
-							<span class="label label-info">34xx</span> Improved Backstage interface for small screens<br />
-							<span class="label label-info">34xx</span> The Notification icon now works<br />
-							<span class="label label-info">34xx</span> Backstage now has release notes included<br />
-							<span class="label label-info">34xx</span> Emoticons have been replaced with Emojis
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-info">34xx</span> The main navbar now contains a search box<br />
-							<span class="label label-info">34xx</span> Online list is now hidden under "users online"<br />
-							<span class="label label-info">34xx</span> The notification button is now always visible<br />
-							<span class="label label-info">34xx</span> Profile and Me have been improved with better UX<br />
-							<span class="label label-info">34xx</span> First Run has been added to the Backstage<br />
-							<span class="label label-info">34xx</span> zFeatures clean up<br />
-							<span class="label label-info">34xx</span> Notifications has been added to Me<br />
-							<span class="label label-info">34xx</span> The code behind the installer has been revamped<br />
-							<span class="label label-info">34xx</span> Emojis list in Help has been improved<br />
-							<span class="label label-info">34xx</span> Multiple bugfixes
-						</p>
-					</div>
-				</div>
+				</span>
 			</div>
 			<div class="panel-footer">
 				<p>Luna is developed by the <a href="http://modernbb.be/luna.php">Luna Group</a>. Copyright 2013-2014. Released under the GPLv3 license.</p>
