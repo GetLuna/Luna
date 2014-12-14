@@ -31,7 +31,7 @@ h2 {
 }
 
 .emoji {
-	font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji" !important;
+	font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", "Android Emoji", "NotoColorEmoji", "EmojiSymbols" !important;
 }
 
 /* Text */
