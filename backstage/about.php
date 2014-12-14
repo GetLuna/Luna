@@ -76,16 +76,6 @@ require 'header.php';
 						<h4>Notifications</h4>
 						<p>Comments on your thread? Stuff you have to know? Notifications will help you out. Luna now shows notifications in the main interface and under Me, we have a full view of notifications.</p>
 					</div>
-					<div class="col-sm-6">
-						<h4>Smarter editor</h4>
-						<img class="img-responsive" src="../img/about/editor.png" />
-						<p>The editor will act smarther than it did before now. When adding a list, for example, it will also add the first list item. For code boxes, it adds an additional white line.</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>Sharing code</h4>
-						<img class="img-responsive" src="../img/about/syntax.png" />
-						<p>Do your users want to share some HTML, PHP, CSS or JavaScript? Well, Luna will show these languages nicely with a brand new syntax highlighter based on PrismJS.</p>
-					</div>
 				</div>
 				<a id="inbox"><h3><span class="fa fa-fw fa-paper-plane-o"></span> Luna Inbox</h3></a>
 				<img class="img-responsive" src="../img/about/inbox.png" />
@@ -109,6 +99,21 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>Section colors</h4>
 						<p>When you're setting up a section, you can give it a color to make it stand out of the crowd, which are the other sections, in this case.</p>
+					</div>
+				</div>
+				<h4>Emojis</h4>
+				<img class="img-responsive" src="../img/about/emoji.png" />
+				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwhite as they are a font and not an image, which makes them also ready for high DPI screens. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above.</p>
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Smarter editor</h4>
+						<img class="img-responsive" src="../img/about/editor.png" />
+						<p>The editor will act smarther than it did before now. When adding a list, for example, it will also add the first list item. For code boxes, it adds an additional white line.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Sharing code</h4>
+						<img class="img-responsive" src="../img/about/syntax.png" />
+						<p>Do your users want to share some HTML, PHP, CSS or JavaScript? Well, Luna will show these languages nicely with a brand new syntax highlighter based on PrismJS.</p>
 					</div>
 				</div>
 				<a id="management"><h3><span class="fa fa-fw fa-coffee"></span> Management</h3></a>
@@ -172,6 +177,12 @@ require 'header.php';
 					</div>
 				</div>
 				<a id="others"><h3>Ohter improvements and notes</h3></a>
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Installation</h4>
+						<p>We've revamped the code behind the installer to be more modern (using fancy PHP 5 stuff like classes), while you won't notice a lot in these changes, it is a step forward.</p>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-sm-6">
 					<h4>Packages</h4>
@@ -295,7 +306,8 @@ require 'header.php';
 							<span class="label label-info">34xx</span> Support for sub sections has been added<br />
 							<span class="label label-info">34xx</span> Improved Backstage interface for small screens<br />
 							<span class="label label-info">34xx</span> The Notification icon now works<br />
-							<span class="label label-info">34xx</span> Backstage now has release notes included
+							<span class="label label-info">34xx</span> Backstage now has release notes included<br />
+							<span class="label label-info">34xx</span> Emoticons have been replaced with Emojis
 						</p>
 					</div>
 					<div class="col-sm-6">
@@ -307,6 +319,8 @@ require 'header.php';
 							<span class="label label-info">34xx</span> First Run has been added to the Backstage<br />
 							<span class="label label-info">34xx</span> zFeatures clean up<br />
 							<span class="label label-info">34xx</span> Notifications has been added to Me<br />
+							<span class="label label-info">34xx</span> The code behind the installer has been revamped<br />
+							<span class="label label-info">34xx</span> Emojis list in Help has been improved<br />
 							<span class="label label-info">34xx</span> Multiple bugfixes
 						</p>
 					</div>
