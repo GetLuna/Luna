@@ -114,6 +114,7 @@ if ($db->num_rows($result) > 0)
             </div>
 			<div class="tab-pane" id="smilies">
                 <p><a name="smilies"></a><?php echo $lang['Smilies info'] ?></p>
+				<div class="row">
 <?php
 
 // Display the smiley set
@@ -125,9 +126,10 @@ foreach ($smilies as $smiley_text => $smiley_img)
 	$smiley_groups[$smiley_img][] = $smiley_text;
 
 foreach ($smiley_groups as $smiley_img => $smiley_texts)
-	echo "\t\t".'<p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <span class="emoji">'.$smiley_img.'</span></p>'."\n";
+	echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <span class="emoji">'.$smiley_img.'</span></p></div>'."\n";
 
 ?>
+				</div>
             </div>
 		</div>
     </div>
