@@ -9,20 +9,20 @@
 					<fieldset>
 						<input type="hidden" name="form_sent" value="1" />
 						<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
-						<input class="form-control" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
-						<input class="form-control" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" />
+						<input class="form-control" type="text" name="req_username" maxlength="25" tabindex="901" placeholder="<?php echo $lang['Username'] ?>" />
+						<input class="form-control" type="password" name="req_password" tabindex="902" placeholder="<?php echo $lang['Password'] ?>" />
 						<div class="control-group">
 							<div class="controls remember">
-								<label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="3" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
+								<label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="903" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
 							</div>
 						</div>
-						<input class="btn btn-primary btn-block" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
-						<a class="btn btn-default btn-block" href="register.php">Register</a>
+						<input class="btn btn-primary btn-block" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="904" />
+						<a class="btn btn-default btn-block" href="register.php" tabindex="905">Register</a>
 					</fieldset>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<?php if ($luna_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="5"><?php echo $lang['Register'] ?></a> &middot; <?php }; ?><a href="#" data-toggle="modal" data-target="#newpass" data-dismiss="modal" tabindex="6"><?php echo $lang['Forgotten pass'] ?></a>
+				<?php if ($luna_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="906"><?php echo $lang['Register'] ?></a> &middot; <?php }; ?><a href="#" data-toggle="modal" data-target="#newpass" data-dismiss="modal" tabindex="907"><?php echo $lang['Forgotten pass'] ?></a>
 			</div>
 		</div>
 	</div>
