@@ -52,7 +52,7 @@ if ($luna_user['color'] == '#14a3ff') { // ModernBB
 
 ?>
 <style type="text/css">
-.navbar-inverse, footer, .alert-all {
+.navbar-inverse, footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer {
 	background-color: <?php echo $primary_color ?>;
 }
 
