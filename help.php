@@ -125,7 +125,7 @@ foreach ($smilies as $smiley_text => $smiley_img)
 	$smiley_groups[$smiley_img][] = $smiley_text;
 
 foreach ($smiley_groups as $smiley_img => $smiley_texts)
-	echo "\t\t".'<p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <img src="'.luna_htmlspecialchars(get_base_url(true)).'/style/Sunrise/smilies/'.$smiley_img.'" width="15" height="15" alt="'.$smiley_texts[0].'" /></p>'."\n";
+	echo "\t\t".'<p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <span class="emoji">'.$smiley_img.'</span></p>'."\n";
 
 ?>
             </div>
