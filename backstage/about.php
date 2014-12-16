@@ -295,34 +295,34 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4>Preview 2 (version 0.1.3362-0.2.34xx)</h4>
+					<h4>Preview 2 (version 0.1.3362-0.2.3478)</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-info">34xx</span> Revamped interface<br />
-								<span class="label label-info">34xx</span> The navbar has been split in 2 new navbars<br />
-								<span class="label label-info">34xx</span> The board stats are now displayed on every page<br />
-								<span class="label label-info">34xx</span> The index has been redesigned with new features<br />
-								<span class="label label-info">34xx</span> The footer now displays the board's copyright<br />
-								<span class="label label-info">34xx</span> Support for sub sections has been added<br />
-								<span class="label label-info">34xx</span> Improved Backstage interface for small screens<br />
-								<span class="label label-info">34xx</span> The Notification icon now works<br />
-								<span class="label label-info">34xx</span> Backstage now has release notes included<br />
-								<span class="label label-info">34xx</span> Emoticons have been replaced with Emojis
+								<span class="label label-info">3478</span> Revamped interface<br />
+								<span class="label label-info">3478</span> The navbar has been split in 2 new navbars<br />
+								<span class="label label-info">3478</span> The board stats are now displayed on every page<br />
+								<span class="label label-info">3478</span> The index has been redesigned with new features<br />
+								<span class="label label-info">3478</span> The footer now displays the board's copyright<br />
+								<span class="label label-info">3478</span> Support for sub sections has been added<br />
+								<span class="label label-info">3478</span> Improved Backstage interface for small screens<br />
+								<span class="label label-info">3478</span> The Notification icon now works<br />
+								<span class="label label-info">3478</span> Backstage now has release notes included<br />
+								<span class="label label-info">3478</span> Emoticons have been replaced with Emojis
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-info">34xx</span> The main navbar now contains a search box<br />
-								<span class="label label-info">34xx</span> Online list is now hidden under "users online"<br />
-								<span class="label label-info">34xx</span> The notification button is now always visible<br />
-								<span class="label label-info">34xx</span> Profile and Me have been improved with better UX<br />
-								<span class="label label-info">34xx</span> First Run has been added to the Backstage<br />
-								<span class="label label-info">34xx</span> zFeatures clean up<br />
-								<span class="label label-info">34xx</span> Notifications has been added to Me<br />
-								<span class="label label-info">34xx</span> The code behind the installer has been revamped<br />
-								<span class="label label-info">34xx</span> Emojis list in Help has been improved<br />
-								<span class="label label-info">34xx</span> Multiple bugfixes
+								<span class="label label-info">3478</span> The main navbar now contains a search box<br />
+								<span class="label label-info">3478</span> Online list is now hidden under "users online"<br />
+								<span class="label label-info">3478</span> The notification button is now always visible<br />
+								<span class="label label-info">3478</span> Profile and Me have been improved with better UX<br />
+								<span class="label label-info">3478</span> First Run has been added to the Backstage<br />
+								<span class="label label-info">3478</span> zFeatures clean up<br />
+								<span class="label label-info">3478</span> Notifications has been added to Me<br />
+								<span class="label label-info">3478</span> The code behind the installer has been revamped<br />
+								<span class="label label-info">3478</span> Emojis list in Help has been improved<br />
+								<span class="label label-info">3478</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
