@@ -86,27 +86,27 @@ if (!defined('FORUM_FORM')) {
 <footer>
 	<div class="container">
 		<div class="row stats">
-			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
 				<div class="statistic-item"><?php total_users() ?></div>
 				<div class="statistic-item"><?php total_topics() ?></div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
 				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of users'] ?></div>
 				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
 				<div class="statistic-item"><?php total_posts() ?></div>
 				<div class="statistic-item"><?php newest_user() ?></div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
 				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of posts'] ?></div>
 				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
 				<div class="statistic-item"><?php users_online() ?></div>
 				<div class="statistic-item"><?php guests_online() ?></div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-6 statistics">
+			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
 				<div class="statistic-grey statistic-item-stat">
 					<div class="dropup">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
