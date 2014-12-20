@@ -295,7 +295,7 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4>Preview 2 (version 0.1.3362-0.2.3478)</h4>
+					<h4>Preview 2 (version 0.1.3362-0.2.35xx)</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
@@ -323,6 +323,20 @@ require 'header.php';
 								<span class="label label-info">3478</span> The code behind the installer has been revamped<br />
 								<span class="label label-info">3478</span> Emojis list in Help has been improved<br />
 								<span class="label label-info">3478</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-success">35xx</span> Major changes to the profile system<br />
+								<span class="label label-success">35xx</span> Actitiy has been removed
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-success">35xx</span> "Settings" is now an option in the user menu<br />
+								<span class="label label-success">35xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
