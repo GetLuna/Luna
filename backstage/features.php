@@ -141,13 +141,13 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[enable_advanced_search]" value="1" <?php if ($luna_config['o_enable_advanced_search'] == '1') echo ' checked="checked"' ?> />
+                            	<input disabled type="checkbox" name="form[enable_advanced_search]" value="1" <?php if ($luna_config['o_enable_advanced_search'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Enable advanced search'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />
+                            	<input disabled type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Search all help'] ?>
                             </label>
                         </div>
@@ -238,13 +238,13 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[smilies]" value="1" <?php if ($luna_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
+                                <input disabled type="checkbox" name="form[smilies]" value="1" <?php if ($luna_config['o_smilies'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Smilies help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />
+                                <input disabled type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Smilies sigs help'] ?>
                             </label>
                         </div>   
