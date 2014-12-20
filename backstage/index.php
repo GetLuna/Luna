@@ -95,7 +95,7 @@ if (file_exists('../z.txt') && ($luna_config['o_reading_list'] == '1')) {
 <?php } if ($luna_config['o_first_run'] != 1) { ?>
 <div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">
-		<h3 class="panel-title">Welcome to Luna<span class="pull-right"><a href="#" class="btn btn-success"><span class="fa fa-check"></span> Got it</a></span></h3>
+		<h3 class="panel-title">Welcome to Luna<span class="pull-right"><a href="#" class="btn btn-success disabled"><span class="fa fa-check"></span> Got it</a></span></h3>
 	</div>
 	<div class="panel-body">
 		<div class="row">
