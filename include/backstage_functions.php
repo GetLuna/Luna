@@ -92,6 +92,8 @@ function load_admin_nav($section, $page) {
 
                     else if ($page == 'users')
                         echo '<span class="fa fa-fw fa-search"></span> User search';
+                    else if ($page == 'tools')
+                        echo '<span class="fa fa-fw fa-wrench"></span> Tools';
                     else if ($page == 'ranks')
                         echo '<span class="fa fa-fw fa-chevron-up"></span> Ranks';
                     else if ($page == 'groups')
@@ -146,6 +148,7 @@ function load_admin_nav($section, $page) {
             <?php } if ($section == 'users') { ?>
             <ul class="nav nav-tabs" role="tablist">
                 <li<?php if($page == 'users') echo ' class="active"' ?>><a href="users.php"><span class="fa fa-fw fa-search"></span><span class="hidden-xs"> User search</span></a></li>
+                <li<?php if($page == 'tools') echo ' class="active"' ?>><a href="tools.php"><span class="fa fa-fw fa-wrench"></span><span class="hidden-xs"> Tools</span></a></li>
                 <li<?php if($page == 'ranks') echo ' class="active"' ?>><a href="ranks.php"><span class="fa fa-fw fa-chevron-up"></span><span class="hidden-xs"> Ranks</span></a></li>
                 <li<?php if($page == 'groups') echo ' class="active"' ?>><a href="groups.php"><span class="fa fa-fw fa-group"></span><span class="hidden-xs"> Groups</span></a></li>
                 <li<?php if($page == 'permissions') echo ' class="active"' ?>><a href="permissions.php"><span class="fa fa-fw fa-check-circle"></span><span class="hidden-xs"> Permissions</span></a></li>
