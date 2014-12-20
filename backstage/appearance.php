@@ -110,7 +110,10 @@ if (isset($_GET['saved']))
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Emojis<span class="help-block">The font size emojis should be displayed in</span></label>
                     <div class="col-sm-9">
-                        <input disabled type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
+						<div class="input-group">
+							<input disabled type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
+							<span class="input-group-addon"><?php echo $lang['pixels'] ?></span>
+						</div>
                     </div>
                 </div>
                 <hr />
