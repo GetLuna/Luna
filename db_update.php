@@ -672,9 +672,30 @@ switch ($stage) {
 		// Since 0.2.3425: Drop the color column from the notifications table
 		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3459: Add o_first_run_backstage feature
+		// Since 0.2.3459: Add o_first_run_backstage feature
 		if (!array_key_exists('o_first_run_backstage', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_backstage\', \'0\')') or error('Unable to insert config value \'o_first_run_backstage\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.2.3495: Add o_emoji_size feature
+		if (!array_key_exists('o_emoji_size', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji_size\', \'14\')') or error('Unable to insert config value \'o_emoji_size\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.2.3495: Add o_back_to_top feature
+		if (!array_key_exists('o_back_to_top', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_back_to_top\', \'1\')') or error('Unable to insert config value \'o_back_to_top\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.2.3495: Add o_show_copyright feature
+		if (!array_key_exists('o_show_copyright', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_copyright\', \'1\')') or error('Unable to insert config value \'o_show_copyright\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.2.3495: Add o_copyright_type feature
+		if (!array_key_exists('o_copyright_type', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_copyright_type\', \'0\')') or error('Unable to insert config value \'o_copyright_type\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.2.3495: Add o_copyright_type feature
+		if (!array_key_exists('o_custom_copyright', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_custom_copyright\', NULL)') or error('Unable to insert config value \'o_custom_copyright\'', __FILE__, __LINE__, $db->error());
+
 
 		break;
 
