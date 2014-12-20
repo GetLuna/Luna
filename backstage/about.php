@@ -188,6 +188,7 @@ require 'header.php';
 					<h4>Packages</h4>
 						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.1.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
+						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
 						<b>Core</b> has been updated from version 0.0.35.2491 to 0.1.3361.</p>
 					</div>
@@ -330,12 +331,14 @@ require 'header.php';
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-success">35xx</span> Major changes to the profile system<br />
-								<span class="label label-success">35xx</span> Actitiy has been removed
+								<span class="label label-success">35xx</span> Actitiy has been removed<br />
+								<span class="label label-success">35xx</span> "Tools" is a new page under "Users"
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-success">35xx</span> "Settings" is now an option in the user menu<br />
+								<span class="label label-success">35xx</span> jQuery has been updated to version 2.1.3<br />
 								<span class="label label-success">35xx</span> Multiple bugfixes
 							</p>
 						</div>
