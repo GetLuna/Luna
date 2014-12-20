@@ -89,7 +89,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                            	<input type="checkbox" name="form[post_responsive]" value="1" <?php if ($luna_config['o_post_responsive'] == '1') echo ' checked="checked"' ?> />
+                            	<input disabled type="checkbox" name="form[post_responsive]" value="1" <?php if ($luna_config['o_post_responsive'] == '1') echo ' checked="checked"' ?> />
 								<?php echo $lang['Responsive post help'] ?>
                             </label>
                         </div>
