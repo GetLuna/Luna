@@ -1540,7 +1540,7 @@ class Installer {
 			'o_back_to_top'				=> 1,
 			'o_show_copyright'			=> 1,
 			'o_copyright_type'			=> 0,
-			'o_copyright_type'			=> NULL,
+			'o_custom_copyright'		=> NULL,
 			'p_message_img_tag'			=> 1,
 			'p_message_all_caps'		=> 1,
 			'p_subject_all_caps'		=> 1,
