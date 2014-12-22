@@ -34,6 +34,21 @@ if ($luna_user['is_admmod']) {
 	}
 }
 
+if ($luna_user['g_set_title'] == '1')
+	$title_field = '<input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" />';
+
+$avatar_user = draw_user_avatar($id, 'visible-lg-inline');
+$avatar_set = check_avatar($id);
+if ($user_avatar && $avatar_set)
+	$avatar_field .= ' <a class="btn btn-primary" href="me.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
+else
+	$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Upload avatar'].'</a>';
+
+if ($user['signature'] != '')
+	$signature_preview = $parsed_signature;
+else
+	$signature_preview = $lang['No sig'];
+
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
 define('FORUM_ACTIVE_PAGE', 'me');
 require load_page('header.php');

@@ -73,7 +73,12 @@ if (!defined('FORUM'))
                     </div>
                 </div>
                 <?php if (isset($title_field)): ?>
-                    <?php echo $title_field ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Title'] ?><span class="help-block"><?php echo $lang['Leave blank'] ?></span></label>
+                    <div class="col-sm-9">
+						<?php echo $title_field ?>
+                    </div>
+                </div>
                 <?php endif; ?>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Location'] ?></label>
@@ -85,7 +90,7 @@ if (!defined('FORUM'))
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
 					<div class="col-sm-9">
-						<img src="img/avatars/placeholder.png" class="img-responsive visible-lg-inline" />
+						<?php echo $avatar_user ?>
 						<a href="#" class="btn btn-default">Upload</a>
 					</div>
 				</div>
@@ -100,7 +105,7 @@ if (!defined('FORUM'))
                     <label class="col-sm-3 control-label"><?php echo $lang['Sig preview'] ?></label>
                     <div class="col-sm-9">
 						<div class="well">
-							No signature set
+							<?php echo $signature_preview ?>
 						</div>
                     </div>
                 </div>
