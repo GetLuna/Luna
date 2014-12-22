@@ -468,7 +468,7 @@ if (!defined('FORUM'))
                     if ($cur_category != 0)
                         echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
 
-                    echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'<div>';
+                    echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'</div>';
                     $cur_category = $cur_forum['cid'];
                 }
 
