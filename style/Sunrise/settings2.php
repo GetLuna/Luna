@@ -39,7 +39,49 @@ if (!defined('FORUM'))
 	</ul>
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="profile">
-			<fieldset id="personality" class="form-horizontal form-setting">
+			<fieldset class="form-horizontal form-setting">
+                <input type="hidden" name="form_sent" value="1" />
+                <div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Username']?></label>
+					<div class="col-sm-9">
+						<?php echo $username_field ?>
+					</div>
+				</div>
+                <?php if ($luna_user['id'] == $id || $luna_user['g_id'] == FORUM_ADMIN || ($user['g_moderator'] == '0' && $luna_user['g_mod_change_passwords'] == '1')): ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?></label>
+                    <div class="col-sm-9">
+                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newpass"><?php echo $lang['Change pass'] ?></a>
+                    </div>
+                </div>
+                <?php endif; ?>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Email'] ?></label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<?php echo $email_field ?>
+							<?php echo $email_button ?>
+						</div>
+					</div>
+				</div>
+                <hr />
+                <input type="hidden" name="form_sent" value="1" />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Realname'] ?></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[realname]" value="<?php echo luna_htmlspecialchars($user['realname']) ?>" maxlength="40" />
+                    </div>
+                </div>
+                <?php if (isset($title_field)): ?>
+                    <?php echo $title_field ?>
+                <?php endif; ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Location'] ?></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[location]" value="<?php echo luna_htmlspecialchars($user['location']) ?>" maxlength="30" />
+                    </div>
+                </div>
+				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
 					<div class="col-sm-9">
@@ -65,7 +107,7 @@ if (!defined('FORUM'))
 			</fieldset>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="personalize">
-			<fieldset id="personality" class="form-horizontal form-setting">
+			<fieldset class="form-horizontal form-setting">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Profile color</label>
 					<div class="col-sm-9">
@@ -112,7 +154,7 @@ if (!defined('FORUM'))
 			</fieldset>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="email">
-			<fieldset id="personality" class="form-horizontal form-setting">
+			<fieldset class="form-horizontal form-setting">
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Email setting info'] ?></label>
                     <div class="col-sm-9">
@@ -157,7 +199,39 @@ if (!defined('FORUM'))
 			</fieldset>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="contact">
-			<h3>Under construction</h3>
+			<fieldset class="form-horizontal form-setting">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Website'] ?></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" />
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Microsoft'] ?></label>
+                    <div class="col-sm-9">
+                        <input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Facebook'] ?></label>
+                    <div class="col-sm-9">
+                        <input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Twitter'] ?></label>
+                    <div class="col-sm-9">
+                        <input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Google+'] ?></label>
+                    <div class="col-sm-9">
+                        <input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" />
+                    </div>
+                </div>
+			</fieldset>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="threads">
 			<h3>Under construction</h3>
