@@ -67,7 +67,7 @@ if (!defined('FORUM'))
 		<div role="tabpanel" class="tab-pane" id="personalize">
 			<fieldset id="personality" class="form-horizontal form-setting">
 				<div class="form-group">
-				<label class="col-sm-3 control-label">Profile color</label>
+					<label class="col-sm-3 control-label">Profile color</label>
 					<div class="col-sm-9">
 						<div class="btn-group accent-group" data-toggle="buttons">
 							<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color'] == '#14a3ff') echo ' active' ?>">
@@ -112,7 +112,49 @@ if (!defined('FORUM'))
 			</fieldset>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="email">
-			<h3>Under construction</h3>
+			<fieldset id="personality" class="form-horizontal form-setting">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Email setting info'] ?></label>
+                    <div class="col-sm-9">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Email setting 1'] ?>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="form[email_setting]" value="1"<?php if ($user['email_setting'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Email setting 2'] ?>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Email setting 3'] ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+				<hr />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Subscriptions head'] ?></label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Notify full'] ?>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked="checked"' ?> />
+                                <?php echo $lang['Auto notify full'] ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+			</fieldset>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="contact">
 			<h3>Under construction</h3>
