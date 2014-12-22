@@ -23,13 +23,13 @@ require 'header.php';
 	?>
 <div class="row">
 	<div class="col-sm-3">
-		<div class="panel panel-info">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Welcome to the Luna Preview</h3>
 			</div>
 			<div class="panel-body">
-				<p>Hello and welcome to the Luna Preview 2. It's great that you are using this software. However, we hope you are using it far away from a productive environment. This preview is only ment to show what's coming next to Luna.</p>
-				<p>Keep an eye on new releases, we release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of it at <a href="http://modernbb.be/lunareleases.php">our website</a>. New builds can contain new features, improved features, or bugfixes (mostly all at once). Note that the updater is not able to see these builds and thus, won't notify you.</p>
+				<p>Welcome to Luna Preview 2. It's great that you are using this software. However, don't use Luna in a productive environment yet. This preview is only ment to show what's coming next to Luna.</p>
+				<p>We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href="http://modernbb.be/lunareleases.php">our website</a>. New builds can contain new features, improved features, and/or bugfixes. Note that the updater is not able to see these builds and thus, won't notify you.</p>
 				<p>We would like to ask you to send in feedback. Feedback is very important for us. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already.</p>
 			</div>
 			<div class="panel-footer">
@@ -65,8 +65,8 @@ require 'header.php';
 				<a id="users"><h3><span class="fa fa-fw fa-user"></span> User features</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Profile + Me</h4>
-						<p>The profile has been split up in "Profile" and "Me". In profile, you can view your profile. Me is your personal home that keeps track of everything that happens around you on the board.</p>
+						<h4>Profile</h4>
+						<p>The profile has been completely revamped with a new design and a new codebase. Personality settings and board settings can now be saved all at once, these pages are also more to-the-point then ever before. The profile has been extended with a notification system, too!</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Make it yours</h4>
@@ -190,7 +190,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.35.2491 to 0.1.3361.</p>
+						<b>Core</b> has been updated from version 0.0.35.2491 to 0.2.3478.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -332,13 +332,15 @@ require 'header.php';
 							<p>
 								<span class="label label-success">35xx</span> Major changes to the profile system<br />
 								<span class="label label-success">35xx</span> Actitiy has been removed<br />
-								<span class="label label-success">35xx</span> "Tools" is a new page under "Users"
+								<span class="label label-success">35xx</span> "Tools" is a new page under "Users"<br />
+								<span class="label label-success">35xx</span> User settings has been completely revamped
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-success">35xx</span> "Settings" is now an option in the user menu<br />
 								<span class="label label-success">35xx</span> jQuery has been updated to version 2.1.3<br />
+								<span class="label label-success">35xx</span> All user settings can be saved at once<br />
 								<span class="label label-success">35xx</span> Multiple bugfixes
 							</p>
 						</div>
