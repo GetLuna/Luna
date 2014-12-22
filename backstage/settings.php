@@ -369,7 +369,7 @@ if (isset($_GET['saved']))
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Cookie bar'] ?><span class="help-block"><a href="http://modernbb.be/docs/cookies.php"><?php echo $lang['More info'] ?></a></span></label>
+                    <label class="col-sm-3 control-label"><?php echo $lang['Cookie bar'] ?><span class="help-block"><a href="http://getluna.org/docs/cookies.php"><?php echo $lang['More info'] ?></a></span></label>
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>

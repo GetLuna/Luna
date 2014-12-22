@@ -127,7 +127,7 @@ if (!defined('FORUM_FORM')) {
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">Copyright &copy; <?php echo date(Y) ?> &middot <?php echo $luna_config['o_board_title'] ?></div>
 				<div class="col-sm-4 col-xs-12"><div class="text-center"><a href="#"><span class="fa fa-chevron-up"></span></a></div></div>
-				<div class="col-sm-4 col-xs-12"><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://modernbb.be/">Luna '.$luna_config['o_cur_version']).'</a>' ?></span></div>
+				<div class="col-sm-4 col-xs-12"><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version']).'</a>' ?></span></div>
 			</div>
 		</div>
 	</div>
@@ -141,7 +141,7 @@ if (!defined('FORUM_FORM')) {
 		<p class="navbar-text"><?php echo $lang['Cookie info'] ?></p>
 		<form class="navbar-form navbar-right">
 			<div class="form-group">
-				<div class="btn-toolbar"><a class="btn btn-link" href="http://modernbb.be/docs/cookies.php"><?php echo $lang['More info'] ?></a><a class="btn btn-default" href="index.php?action=disable_cookiebar"><?php echo $lang['Do not show again'] ?></a></div>
+				<div class="btn-toolbar"><a class="btn btn-link" href="http://getluna.org/docs/cookies.php"><?php echo $lang['More info'] ?></a><a class="btn btn-default" href="index.php?action=disable_cookiebar"><?php echo $lang['Do not show again'] ?></a></div>
 			</div>
 		</form>
 	</div>

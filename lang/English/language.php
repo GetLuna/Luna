@@ -424,7 +424,7 @@ $lang = array(
 //
 
 'Topics'		=>	'Topics',
-'Link to'		=>	'Link to:', // As in "Link to: http://modernbb.be/"
+'Link to'		=>	'Link to:', // As in "Link to: http://getluna.org/"
 'Empty board'	=>	'Board is empty.',
 'Newest user'	=>	'Newest user',
 'Users online'	=>	'Users online',
