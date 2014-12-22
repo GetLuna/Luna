@@ -29,7 +29,6 @@ require 'header.php';
 			</div>
 			<div class="panel-body">
 				<p>Welcome to Luna Preview 2. It's great that you are using this software. However, don't use Luna in a productive environment yet. This preview is only ment to show what's coming next to Luna.</p>
-				<p>We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href="http://getluna.org/lunareleases.php">our website</a>. New builds can contain new features, improved features, and/or bugfixes. Note that the updater is not able to see these builds and thus, won't notify you.</p>
 				<p>We would like to ask you to send in feedback. Feedback is very important for us. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already.</p>
 			</div>
 			<div class="panel-footer">
