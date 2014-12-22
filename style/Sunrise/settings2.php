@@ -25,7 +25,7 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9">
-<h2>Settings</h2>
+<h2>Settings<span class="pull-right"><a class="btn btn-success"><span class="fa fa-check"></span> Save</a></h2>
 <div role="tabpanel">
 	<ul class="nav nav-tabs" role="tablist">
 		<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
