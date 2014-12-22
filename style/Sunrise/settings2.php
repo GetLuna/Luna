@@ -387,7 +387,110 @@ if (!defined('FORUM'))
 			</fieldset>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="admin">
-			<h3>Under construction</h3>
+			<fieldset class="form-horizontal form-setting">
+<?php
+
+    if ($luna_user['g_moderator'] == '1') {
+
+?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Delete ban legend'] ?></label>
+                    <div class="col-sm-9">
+						<input class="btn btn-danger" type="submit" name="ban" value="<?php echo $lang['Ban user'] ?>" />
+					</div>
+				</div>
+<?php
+
+    } else {
+        if ($luna_user['id'] != $id) {
+
+?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Group membership legend'] ?></label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<select id="group_id" class="form-control" name="group_id">
+<?php
+
+            $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+
+            while ($cur_group = $db->fetch_assoc($result)) {
+                if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
+                    echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected="selected">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+                else
+                    echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+            }
+
+?>
+							</select> 
+							<span class="input-group-btn"> 
+								<input type="submit" class="btn btn-primary" name="update_group_membership" value="<?php echo $lang['Save'] ?>" /> 
+							</span> 
+						</div>
+					</div>
+				</div>
+<?php
+
+        }
+
+?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Delete ban legend'] ?></label>
+					<div class="col-sm-9">
+						<button type="submit" class="btn btn-danger" name="delete_user"?><?php echo $lang['Delete user'] ?></button>
+						<button type="submit" class="btn btn-danger" name="ban"><?php echo $lang['Ban user'] ?></button>
+					</div>
+				</div>
+<?php
+
+        if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) {
+
+?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?></label>
+					<div class="col-sm-9">
+						<p><?php echo $lang['Moderator in info'] ?></p>
+<?php
+
+            $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.moderators FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+
+            $cur_category = 0;
+            while ($cur_forum = $db->fetch_assoc($result)) {
+                if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
+                    if ($cur_category)
+                        echo "\n\t\t\t\t\t\t\t\t".'</div>';
+
+                    if ($cur_category != 0)
+                        echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
+
+                    echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'<div>';
+                    $cur_category = $cur_forum['cid'];
+                }
+
+                $moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
+
+                echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked="checked"' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
+            }
+
+?>
+					</div>
+				</div>
+<?php
+
+        }
+    }
+
+?>
+                <?php if ($luna_user['is_admmod']): ?>
+				<hr />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><?php echo $lang['Admin note'] ?></label>
+                    <div class="col-sm-9">
+                        <input id="admin_note" type="text" class="form-control" name="admin_note" value="<?php echo luna_htmlspecialchars($user['admin_note']) ?>" maxlength="30" />
+                    </div>
+                </div>
+                <?php endif; ?>
+			</fieldset>
 		</div>
 	</div>
 </div>
