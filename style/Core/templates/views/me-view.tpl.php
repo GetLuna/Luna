@@ -8,7 +8,7 @@ if (!defined('FORUM'))
 
 <div class="col-sm-3 profile-nav">
 <?php
-    generate_me_menu('view');
+    load_me_nav('view');
 ?>
 </div>
 <div class="col-sm-9 col-profile">

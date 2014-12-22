@@ -21,7 +21,7 @@ if (!defined('FORUM'))
 <div class="container">
 <div class="col-sm-3 profile-nav">
 <?php
-    generate_me_menu('settings');
+    load_me_nav('settings');
 ?>
 </div>
 <div class="col-sm-9">

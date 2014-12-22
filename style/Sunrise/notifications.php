@@ -51,7 +51,7 @@ $not_seen = implode('', $ind_not_seen);
 <div class="container">
 <div class="col-sm-3 profile-nav">
 <?php
-    generate_me_menu('notifications');
+    load_me_nav('notifications');
 ?>
 </div>
 <div class="col-sm-9 col-profile">
