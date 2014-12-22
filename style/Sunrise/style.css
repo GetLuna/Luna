@@ -536,6 +536,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-bottom: 0;
 }
 
+.form-setting {
+	margin-top: 10px;
+}
+
 /* Me */
 .nav-tabs.activity-tab {
 	border: none;
