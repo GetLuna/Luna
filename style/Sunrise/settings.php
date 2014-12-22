@@ -82,7 +82,7 @@ if (!defined('FORUM'))
                         </select>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[dst]" value="1"<?php if ($user['dst'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[dst]" value="1"<?php if ($user['dst'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['DST'] ?>
                             </label>
                         </div>
@@ -180,14 +180,14 @@ if (count($languages) > 1) {
 <?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1'): ?>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Show smilies'] ?>
                             </label>
                         </div>
 <?php endif; if ($luna_config['o_signatures'] == '1'): ?>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[show_sig]" value="1"<?php if ($user['show_sig'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Show sigs'] ?>
 
                             </label>
@@ -195,21 +195,21 @@ if (count($languages) > 1) {
 <?php endif; if ($luna_config['o_avatars'] == '1'): ?>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Show avatars'] ?>
                             </label>
                         </div>
 <?php endif; if ($luna_config['p_message_img_tag'] == '1'): ?>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Show images'] ?>
                             </label>
                         </div>
 <?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[show_img_sig]" value="1"<?php if ($user['show_img_sig'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Show images sigs'] ?>
                             </label>
                         </div>
@@ -236,19 +236,19 @@ if (count($languages) > 1) {
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked="checked"' ?> />
+                                <input type="radio" name="form[email_setting]" value="0"<?php if ($user['email_setting'] == '0') echo ' checked' ?> />
                                 <?php echo $lang['Email setting 1'] ?>
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="form[email_setting]" value="1"<?php if ($user['email_setting'] == '1') echo ' checked="checked"' ?> />
+                                <input type="radio" name="form[email_setting]" value="1"<?php if ($user['email_setting'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Email setting 2'] ?>
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked="checked"' ?> />
+                                <input type="radio" name="form[email_setting]" value="2"<?php if ($user['email_setting'] == '2') echo ' checked' ?> />
                                 <?php echo $lang['Email setting 3'] ?>
                             </label>
                         </div>
@@ -260,14 +260,14 @@ if (count($languages) > 1) {
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Notify full'] ?>
                             </label>
                         </div>
 <?php if ($luna_config['o_topic_subscriptions'] == '1'): ?>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Auto notify full'] ?>
                             </label>
                         </div>

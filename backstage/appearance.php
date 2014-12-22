@@ -84,13 +84,13 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Info in posts help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($luna_config['o_show_post_count'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($luna_config['o_show_post_count'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Post count help'] ?>
                             </label>
                         </div>
@@ -101,7 +101,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Moderated by help'] ?>
                             </label>
                         </div>
@@ -149,7 +149,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-								<input disabled type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') echo ' checked="checked"' ?> />
+								<input disabled type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') echo ' checked' ?> />
 								Show a "Back to top" link in the footer.
                             </label>
                         </div>
@@ -161,7 +161,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-								<input disabled type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') echo ' checked="checked"' ?> />
+								<input disabled type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') echo ' checked' ?> />
 								Show the copyright notice in the footer.
                             </label>
                         </div>
@@ -172,13 +172,13 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
-                                <input disabled type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') echo ' checked="checked"' ?> />
+                                <input disabled type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') echo ' checked' ?> />
                                 Show default copyright
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input disabled type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked="checked"' ?> />
+                                <input disabled type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked' ?> />
                                 <input disabled type="text" class="form-control" name="form[custom_copyright]" placeholder="Your copyright" value="<?php echo $luna_config['o_custom_copyright'] ?>" />
                             </label>
                         </div>

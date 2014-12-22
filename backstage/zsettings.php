@@ -75,7 +75,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input disabled type="checkbox" name="form[hooks]" value="1" <?php if ($luna_config['o_hooks'] == '1') echo ' checked="checked"' ?> />
+								<input disabled type="checkbox" name="form[hooks]" value="1" <?php if ($luna_config['o_hooks'] == '1') echo ' checked' ?> />
 								enable hooks to be used by plugins
 							</label>
 						</div>
@@ -86,7 +86,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[reading_list]" value="1" <?php if ($luna_config['o_reading_list'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[reading_list]" value="1" <?php if ($luna_config['o_reading_list'] == '1') echo ' checked' ?> />
 								enable reading list
 							</label>
 						</div>

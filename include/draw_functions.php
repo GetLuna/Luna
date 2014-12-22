@@ -55,7 +55,7 @@ function draw_editor($height) {
 	$pin_btn = $silence_btn = '';
 
 	if (isset($_POST['stick_topic']) || $cur_post['sticky'] == '1') {
-		$pin_status = ' checked="checked"';
+		$pin_status = ' checked';
 		$pin_active = ' active';
 	}
 
@@ -64,7 +64,7 @@ function draw_editor($height) {
 
 	if (FORUM_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
-			$silence_status = ' checked="checked"';
+			$silence_status = ' checked';
 			$silence_active = ' active';
 		}
 	

@@ -259,7 +259,7 @@ if (isset($_GET['saved']))
                         </select>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[default_dst]" value="1" <?php if ($luna_config['o_default_dst'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[default_dst]" value="1" <?php if ($luna_config['o_default_dst'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['DST help'] ?>
                             </label>
                         </div>
@@ -298,15 +298,15 @@ if (isset($_GET['saved']))
                     <label class="col-sm-3 control-label"><?php echo $lang['Default feed label'] ?><span class="help-block"><?php echo $lang['Default feed help'] ?></span></label>
                     <div class="col-sm-9">
                         <label class="radio-inline">
-                            <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') echo ' checked="checked"' ?>>
+                            <input type="radio" name="form[feed_type]" value="0"<?php if ($luna_config['o_feed_type'] == '0') echo ' checked' ?>>
                             <?php echo $lang['None'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[feed_type]" value="1"<?php if ($luna_config['o_feed_type'] == '1') echo ' checked="checked"' ?>>
+                            <input type="radio" name="form[feed_type]" value="1"<?php if ($luna_config['o_feed_type'] == '1') echo ' checked' ?>>
                             <?php echo $lang['RSS'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[feed_type]" value="2"<?php if ($luna_config['o_feed_type'] == '2') echo ' checked="checked"' ?>>
+                            <input type="radio" name="form[feed_type]" value="2"<?php if ($luna_config['o_feed_type'] == '2') echo ' checked' ?>>
                             <?php echo $lang['Atom'] ?>
                         </label>
                     </div>
@@ -340,15 +340,15 @@ if (isset($_GET['saved']))
                     <label class="col-sm-3 control-label"><?php echo $lang['Reporting method label'] ?><span class="help-block"><?php echo $lang['Reporting method help'] ?></span></label>
                     <div class="col-sm-9">
                         <label class="radio-inline">
-                            <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') echo ' checked="checked"' ?> />
+                            <input type="radio" name="form[report_method]" value="0"<?php if ($luna_config['o_report_method'] == '0') echo ' checked' ?> />
                             <?php echo $lang['Internal'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[report_method]" value="1"<?php if ($luna_config['o_report_method'] == '1') echo ' checked="checked"' ?> />
+                            <input type="radio" name="form[report_method]" value="1"<?php if ($luna_config['o_report_method'] == '1') echo ' checked' ?> />
                             <?php echo $lang['Email'] ?>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') echo ' checked="checked"' ?> />
+                            <input type="radio" name="form[report_method]" value="2"<?php if ($luna_config['o_report_method'] == '2') echo ' checked' ?> />
                             <?php echo $lang['Both'] ?>
                         </label>
                     </div>
@@ -373,7 +373,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[cookie_bar]" value="1" <?php if ($luna_config['o_cookie_bar'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Cookie set info'] ?>
 							</label>
 						</div>
@@ -393,7 +393,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[avatars]" value="1" <?php if ($luna_config['o_avatars'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="form[avatars]" value="1" <?php if ($luna_config['o_avatars'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Use avatars help'] ?>
 							</label>
 						</div>
@@ -446,7 +446,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[announcement]" value="1" <?php if ($luna_config['o_announcement'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Display announcement help'] ?>
                             </label>
                         </div>

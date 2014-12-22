@@ -77,7 +77,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked="checked"' ?> tabindex="5" />
+                                <input type="checkbox" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked' ?> tabindex="5" />
                                 <?php echo $lang['Mod privileges help'] ?>
                             </label>
                         </div>
@@ -88,7 +88,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked="checked"' ?> tabindex="7" />
+                                <input type="checkbox" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked' ?> tabindex="7" />
                                 <?php echo $lang['Edit profile help'] ?>
                             </label>
                         </div>
@@ -99,7 +99,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked="checked"' ?> tabindex="9" />
+                                <input type="checkbox" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked' ?> tabindex="9" />
 								<?php echo $lang['Rename users help'] ?>
                             </label>
                         </div>
@@ -110,7 +110,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked="checked"' ?> tabindex="11" />
+                                <input type="checkbox" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked' ?> tabindex="11" />
                             	<?php echo $lang['Change passwords help'] ?>
                             </label>
                         </div>
@@ -121,7 +121,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked="checked"' ?> tabindex="13" />
+                                <input type="checkbox" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked' ?> tabindex="13" />
                             	<?php echo $lang['Ban users help'] ?>
                             </label>
                         </div>
@@ -135,7 +135,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                         <div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_pm'] == '1') echo ' checked="checked"' ?> />
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_pm'] == '1') echo ' checked' ?> />
 								Allow users to be notified through email about new Inbox messages.
 							</label>
 						</div>
@@ -150,7 +150,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked="checked"' ?> tabindex="15" />
+                                <input type="checkbox" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked' ?> tabindex="15" />
                                 <?php echo $lang['Read board help'] ?>
                             </label>
                         </div>
@@ -161,7 +161,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked="checked"' ?> tabindex="17" />
+                                <input type="checkbox" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked' ?> tabindex="17" />
                             	<?php echo $lang['View user info help'] ?>
                             </label>
                         </div>
@@ -172,7 +172,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked="checked"' ?> tabindex="19" />
+                                <input type="checkbox" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked' ?> tabindex="19" />
                             	<?php echo $lang['Post replies help'] ?>
                             </label>
                         </div>
@@ -183,7 +183,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked="checked"' ?> tabindex="21" />
+                                <input type="checkbox" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked' ?> tabindex="21" />
                             	<?php echo $lang['Post topics help'] ?>
                             </label>
                         </div>
@@ -196,7 +196,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked="checked"' ?> tabindex="23" />
+                                <input type="checkbox" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked' ?> tabindex="23" />
                             	<?php echo $lang['Edit posts help'] ?>
                             </label>
                         </div>
@@ -207,7 +207,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked="checked"' ?> tabindex="25" />
+                                <input type="checkbox" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked' ?> tabindex="25" />
                             	<?php echo $lang['Delete posts help'] ?>
                             </label>
                         </div>
@@ -218,7 +218,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked="checked"' ?> tabindex="27" />
+                                <input type="checkbox" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked' ?> tabindex="27" />
                             	<?php echo $lang['Delete topics help'] ?>
                             </label>
                         </div>
@@ -232,7 +232,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked="checked"' ?> tabindex="31" />
+                                <input type="checkbox" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked' ?> tabindex="31" />
                             	<?php echo $lang['Set own title help'] ?>
                             </label>
                         </div>
@@ -245,7 +245,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked="checked"' ?> tabindex="33" />
+                                <input type="checkbox" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked' ?> tabindex="33" />
                             	<?php echo $lang['User search help'] ?>
                             </label>
                         </div>
@@ -256,7 +256,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked="checked"' ?> tabindex="35" />
+                                <input type="checkbox" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked' ?> tabindex="35" />
                             	<?php echo $lang['User list search help'] ?>
                             </label>
                         </div>
@@ -269,7 +269,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
                     <div class="col-sm-9">
                     	<div class="checkbox">
                             <label>
-                                <input type="checkbox" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked="checked"' ?> tabindex="37" />
+                                <input type="checkbox" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked' ?> tabindex="37" />
 								<?php echo $lang['Send e-mails help'] ?>
                             </label>
                         </div>

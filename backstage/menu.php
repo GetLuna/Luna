@@ -134,7 +134,7 @@ if ($db->num_rows($result)) {
 								<input type="text" class="form-control" name="item[<?php echo $cur_item['id'] ?>][order]" value="<?php echo $cur_item['disp_position'] ?>" />
 							</td>
 							<td>
-								<input type="checkbox" value="1" name="item[<?php echo $cur_item['id'] ?>][visible]" <?php if ($cur_item['visible'] == 1) echo ' checked="checked"' ?> />
+								<input type="checkbox" value="1" name="item[<?php echo $cur_item['id'] ?>][visible]" <?php if ($cur_item['visible'] == 1) echo ' checked' ?> />
 							</td>
 							<td>
 <?php

@@ -143,7 +143,7 @@ if (isset($_GET['user_failed']))
                         <input type="password" class="form-control" name="password" tabindex="28" />
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="random_pass" value="1" checked="checked" tabindex="29" />
+                                <input type="checkbox" name="random_pass" value="1" checked tabindex="29" />
                                 <?php echo $lang['Random password info'] ?>
                             </label>
                         </div>

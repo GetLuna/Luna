@@ -17,7 +17,7 @@ if (!defined('FORUM'))
                 <?php echo $lang['Delete warning'] ?>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="delete_posts" value="1" checked="checked" />
+                        <input type="checkbox" name="delete_posts" value="1" checked />
                         <?php echo $lang['Delete all posts'] ?>
                     </label>
                 </div>

@@ -40,7 +40,7 @@ if (!defined('FORUM'))
                         </select>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked' ?> />
                                 <?php echo $lang['Leave redirect'] ?>
                             </label>
                         </div>

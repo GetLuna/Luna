@@ -73,7 +73,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['p_message_img_tag'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['p_message_img_tag'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Image tag help'] ?>
                             </label>
                         </div>
@@ -84,13 +84,13 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['p_message_all_caps'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[message_all_caps]" value="1" <?php if ($luna_config['p_message_all_caps'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['All caps message help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($luna_config['p_subject_all_caps'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[subject_all_caps]" value="1" <?php if ($luna_config['p_subject_all_caps'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['All caps subject help'] ?>
                             </label>
                         </div>
@@ -101,7 +101,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['p_force_guest_email'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['p_force_guest_email'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Require e-mail help'] ?>
                             </label>
                         </div>
@@ -121,13 +121,13 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['p_sig_img_tag'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['p_sig_img_tag'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Image tag sigs help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($luna_config['p_sig_all_caps'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[sig_all_caps]" value="1" <?php if ($luna_config['p_sig_all_caps'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['All caps sigs help'] ?>
                             </label>
                         </div>
@@ -159,13 +159,13 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[allow_banned_email]" value="1" <?php if ($luna_config['p_allow_banned_email'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Banned e-mail help'] ?>
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[allow_dupe_email]" value="1" <?php if ($luna_config['p_allow_dupe_email'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Duplicate e-mail help'] ?>
                             </label>
                         </div>

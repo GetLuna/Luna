@@ -426,7 +426,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) 
             	<p><?php echo $lang['Delete warning'] ?></p>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="delete_posts" value="1" checked="checked" />
+						<input type="checkbox" name="delete_posts" value="1" checked />
 						<?php echo $lang['Delete all posts'] ?>
 					</label>
 				</div>
@@ -558,11 +558,11 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 					<label class="col-sm-3 control-label"><?php echo $lang['Ban IP label'] ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
-							<input type="radio" name="ban_the_ip" tabindex="3" value="1" checked="checked" />
+							<input type="radio" name="ban_the_ip" tabindex="3" value="1" checked />
 							<?php echo $lang['Yes'] ?>
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="ban_the_ip" tabindex="4" value="0" checked="checked" />
+							<input type="radio" name="ban_the_ip" tabindex="4" value="0" checked />
 							<?php echo $lang['No'] ?>
 						</label>
 						<span class="help-block"><?php echo $lang['Ban IP help'] ?></span>

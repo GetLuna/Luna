@@ -82,7 +82,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Allow new help'] ?>
                             </label>
                         </div>
@@ -93,7 +93,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Verify help'] ?>
                             </label>
                         </div>
@@ -104,7 +104,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Report new help'] ?>
                             </label>
                         </div>
@@ -116,7 +116,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') echo ' checked="checked"' ?> />
+                                <input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Use rules help'] ?>
                             </label>
                         </div>
@@ -135,19 +135,19 @@ if (isset($_GET['saved']))
                         <span class="help-block"><?php echo $lang['E-mail default help'] ?></span>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') echo ' checked="checked"' ?> />
+                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') echo ' checked' ?> />
                                 <?php echo $lang['Display e-mail label'] ?>
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') echo ' checked="checked"' ?> />
+                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') echo ' checked' ?> />
                                 <?php echo $lang['Hide allow form label'] ?>
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') echo ' checked="checked"' ?> />
+                                <input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') echo ' checked' ?> />
                                 <?php echo $lang['Hide both label'] ?>
                             </label>
                         </div>
