@@ -5,28 +5,20 @@ if (!defined('FORUM'))
     exit;
 
 ?>
-</div>
-<div class="jumbotron me-jumbotron">
-	<div class="container">
-        <div class="media">
-            <a class="pull-left" href="#">
-                <?php echo draw_user_avatar($luna_user['id'], 'avatar-me') ?>
-            </a>
-            <div class="media-body">
-                <h2 class="media-heading"><?php echo $user['username']; ?></h2>
-            </div>
-        </div>
-	</div>
-</div>
-<div class="container">
 <div class="col-sm-3 profile-nav">
+	<div class="user-card-profile">
+		<h3 class="user-card-title"><?php echo luna_htmlspecialchars($luna_user['username']) ?></h3>
+		<span class="user-card-avatar thumbnail">
+			<?php echo $user_avatar ?>
+		</span>
+	</div>
 <?php
     load_me_nav('settings');
 ?>
 </div>
 <div class="col-sm-9">
 <form id="profile-settings" method="post" action="settings.php">
-	<h2>Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
+	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
 		<h3>Under construction</h3>
 		<ul class="nav nav-tabs" role="tablist">

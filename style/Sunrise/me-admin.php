@@ -5,27 +5,18 @@ if (!defined('FORUM'))
     exit;
 
 ?>
-
-</div>
-<div class="jumbotron me-jumbotron">
-	<div class="container">
-        <div class="media">
-            <a class="pull-left" href="#">
-                <?php echo draw_user_avatar($luna_user['id'], 'avatar-me') ?>
-            </a>
-            <div class="media-body">
-                <h2 class="media-heading"><?php echo $user['username']; ?></h2>
-            </div>
-        </div>
-	</div>
-</div>
-<div class="container">
 <div class="col-sm-3 profile-nav">
+	<div class="user-card-profile">
+		<h3 class="user-card-title"><?php echo luna_htmlspecialchars($luna_user['username']) ?></h3>
+		<span class="user-card-avatar thumbnail">
+			<?php echo $user_avatar ?>
+		</span>
+	</div>
 <?php
     load_me_nav('admin');
 ?>
 </div>
-<div class="col-sm-9 col-profile">
+<div class="col-sm-9">
 <h2 class="profile-h2"><?php echo $lang['Section admin'] ?></h2>
 <form id="profile7" method="post" action="me.php?section=admin&amp;id=<?php echo $id ?>">
 <?php

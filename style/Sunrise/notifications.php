@@ -34,28 +34,19 @@ if ($num_not_seen == '0') {
 $not = implode('', $ind_not);
 $not_seen = implode('', $ind_not_seen);
 ?>
-
-</div>
-<div class="jumbotron me-jumbotron">
-	<div class="container">
-        <div class="media">
-            <a class="pull-left" href="#">
-                <?php echo draw_user_avatar($luna_user['id'], 'avatar-me') ?>
-            </a>
-            <div class="media-body">
-                <h2 class="media-heading"><?php echo $user['username']; ?></h2>
-            </div>
-        </div>
-	</div>
-</div>
-<div class="container">
 <div class="col-sm-3 profile-nav">
+	<div class="user-card-profile">
+		<h3 class="user-card-title"><?php echo luna_htmlspecialchars($luna_user['username']) ?></h3>
+		<span class="user-card-avatar thumbnail">
+			<?php echo $user_avatar ?>
+		</span>
+	</div>
 <?php
     load_me_nav('notifications');
 ?>
 </div>
-<div class="col-sm-9 col-profile">
-	<h2>Notifications</h2>
+<div class="col-sm-9">
+	<h2 class="profile-settings-head">Notifications</h2>
 	<span class="btn-toolbar">
 		<span class="btn-group">
 			<a href="me.php?section=notifications&id=2&action=newnoti&type=windows" class="btn btn-default"><span class="fa fa-fw fa-windows"></span></a>

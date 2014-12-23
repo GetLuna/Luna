@@ -536,6 +536,24 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-bottom: 0;
 }
 
+.user-card-title {
+	color: #fff;
+	text-align: center;
+	padding-top: 10px;
+	margin-top: 0;
+	font-size: 29px;
+}
+
+.user-card-avatar {
+	background: none;
+	border: none;
+	padding-bottom: 17px;
+}
+
+.profile-settings-head {
+	padding-top: 10px;
+}
+
 .form-setting {
 	margin-top: 10px;
 }
@@ -948,51 +966,6 @@ textarea {
 
 .jumbotron .pagination > .active > a, .jumbotron .pagination > .active > span, .jumbotron .pagination > .active > a:hover, .jumbotron .pagination > .active > span:hover, .jumbotron .pagination > .active > a:focus, .jumbotron .pagination > .active > span:focus {
 	border: none;
-}
-
-.profile-jumbotron  {
-	height: 200px;
-}
-
-.profile-jumbotron .media {
-	display: inline-block;
-	margin-top: 76px;
-}
-
-.profile-jumbotron .media .media-heading {
-	margin-top: 56px;
-}
-
-.profile-jumbotron .media h2 {
-	font-size: 45px !important;
-	margin-bottom: 0;
-}
-
-.profile-jumbotron .media h2 small {
-	color: rgba(255,255,255,.6);
-}
-
-.me-jumbotron  {
-	height: 100px;
-	margin-bottom: 10px;
-}
-
-.me-jumbotron .media {
-	display: inline-block;
-	margin-top: 5px;
-}
-
-.me-jumbotron .avatar {
-	height: 70px;
-	width: auto;
-}
-
-.me-jumbotron .media .media-heading {
-	margin-top: 4px;
-}
-
-.me-jumbotron .media h2 {
-	font-size: 45px !important;
 }
 
 .thread-jumbotron {
