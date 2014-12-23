@@ -115,7 +115,7 @@ if (!defined('FORUM'))
 			<div role="tabpanel" class="tab-pane" id="personalize">
 				<fieldset class="form-horizontal form-setting">
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Profile color</label>
+						<label class="col-sm-3 control-label">Color</label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
 								<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color'] == '#14a3ff') echo ' active' ?>">
@@ -157,6 +157,54 @@ if (!defined('FORUM'))
 							</div>
 						</div>
 					</div>
+<?php
+$languages = forum_list_langs();
+
+// Only display the language selection box if there's more than one language available
+if (count($languages) > 1) {
+?>
+					<hr />
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php echo $lang['Language'] ?></label>
+						<div class="col-sm-9">
+							<select class="form-control" name="form[language]">
+<?php
+        foreach ($languages as $temp) {
+            if ($user['language'] == $temp)
+                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
+            else
+                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
+        }
+?>
+							</select>
+						</div>
+					</div>
+<?php
+    }
+    $styles = forum_list_styles();
+
+    // Only display the style selection box if there's more than one style available
+    if (count($styles) == 1)
+        echo "\t\t\t".'<div><input type="hidden" name="form[style]" value="'.$styles[0].'" /></div>'."\n";
+    else if (count($styles) > 1) {
+?>
+					<hr />
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php echo $lang['Style'] ?></label>
+						<div class="col-sm-9">
+							<select class="form-control" name="form[style]">
+<?php
+        foreach ($styles as $temp) {
+            if ($user['style'] == $temp)
+                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
+            else
+                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
+        }
+?>
+							</select>
+						</div>
+					</div>
+<?php } ?>
 				</fieldset>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="email">
