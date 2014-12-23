@@ -7,7 +7,6 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/parser.php';
 
 // Load the me functions script
 require FORUM_ROOT.'include/me_functions.php';
@@ -38,6 +37,11 @@ if ($luna_user['is_admmod']) {
 		$email_field = '<input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" />';
 		$email_button = '';
 	}
+}
+
+if ($user['signature'] != '') {
+	require FORUM_ROOT.'include/parser.php';
+	$parsed_signature = parse_signature($user['signature']);
 }
 
 if (isset($_POST['form_sent'])) {
