@@ -848,7 +848,7 @@ if (isset($_GET['deleted']))
 					<th><?php echo $lang['User group'] ?></th>
 					<td>
 						<select class="form-control" name="user_group" tabindex="23">
-							<option value="-1" selected="selected"><?php echo $lang['All groups'] ?></option>
+							<option value="-1" selected><?php echo $lang['All groups'] ?></option>
 							<option value="0"><?php echo $lang['Unverified users'] ?></option>
 <?php
 
@@ -893,14 +893,14 @@ if (isset($_GET['deleted']))
 					<th><?php echo $lang['Order by label'] ?></th>
 					<td colspan="3">
 						<select class="form-control" name="order_by" tabindex="22">
-							<option value="username" selected="selected"><?php echo $lang['Username'] ?></option>
+							<option value="username" selected><?php echo $lang['Username'] ?></option>
 							<option value="email"><?php echo $lang['Email'] ?></option>
 							<option value="num_posts"><?php echo $lang['Order by posts'] ?></option>
 							<option value="last_post"><?php echo $lang['Last post'] ?></option>
 							<option value="last_visit"><?php echo $lang['Order by last visit'] ?></option>
 							<option value="registered"><?php echo $lang['Order by registered'] ?></option>
 						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">
-							<option value="ASC" selected="selected"><?php echo $lang['Ascending'] ?></option>
+							<option value="ASC" selected><?php echo $lang['Ascending'] ?></option>
 							<option value="DESC"><?php echo $lang['Descending'] ?></option>
 						</select>
 					</td>

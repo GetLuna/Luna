@@ -13,9 +13,9 @@ if (!defined('FORUM'))
         <div class="pull-right">
             <form class="form-inline" id="userlist" method="get" action="userlist.php">
                 <select class="form-control hidden-xs" name="sort">
-                    <option value="username"<?php if ($sort_by == 'username') echo ' selected="selected"' ?>><?php echo $lang['Sort username'] ?></option>
-                    <option value="registered"<?php if ($sort_by == 'registered') echo ' selected="selected"' ?>><?php echo $lang['Sort registered'] ?></option>
-                    <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected="selected"' ?>><?php echo $lang['Sort no of posts'] ?></option>
+                    <option value="username"<?php if ($sort_by == 'username') echo ' selected' ?>><?php echo $lang['Sort username'] ?></option>
+                    <option value="registered"<?php if ($sort_by == 'registered') echo ' selected' ?>><?php echo $lang['Sort registered'] ?></option>
+                    <option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected' ?>><?php echo $lang['Sort no of posts'] ?></option>
                 </select>
                 <div class="input-group">
                     <input class="form-control" type="text" name="username" value="<?php echo luna_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Search'] ?>" maxlength="25" />

@@ -452,12 +452,12 @@ require 'header.php';
 					<th><?php echo $lang['Order by label'] ?></th>
 					<td colspan="3">
 						<select class="form-control" name="order_by" tabindex="10">
-							<option value="username" selected="selected"><?php echo $lang['Username'] ?></option>
+							<option value="username" selected><?php echo $lang['Username'] ?></option>
 							<option value="ip"><?php echo $lang['Order by ip'] ?></option>
 							<option value="email"><?php echo $lang['Email'] ?></option>
 							<option value="expire"><?php echo $lang['Order by expire'] ?></option>
 						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="11">
-							<option value="ASC" selected="selected"><?php echo $lang['Ascending'] ?></option>
+							<option value="ASC" selected><?php echo $lang['Ascending'] ?></option>
 							<option value="DESC"><?php echo $lang['Descending'] ?></option>
 						</select>
 					</td>

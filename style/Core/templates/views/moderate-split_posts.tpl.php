@@ -31,7 +31,7 @@ if (!defined('FORUM'))
             $cur_category = $cur_forum['cid'];
         }
 
-        echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected="selected"' : '').'>'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
+        echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected' : '').'>'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
     }
 
 ?>

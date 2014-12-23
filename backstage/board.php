@@ -228,7 +228,7 @@ else if (isset($_POST['update_positions'])) {
 				$cur_category = $forum_list['cid'];
 			}
 
-			$selected = ($forum_list['id'] == $cur_forum['parent_id']) ? ' selected="selected"' : '';
+			$selected = ($forum_list['id'] == $cur_forum['parent_id']) ? ' selected' : '';
 
 			if(!$forum_list['parent_id'] && $forum_list['id'] != $cur_forum['id'])
 				echo "\t\t\t\t\t\t\t".'<option value="'.$forum_list['id'].'"'.$selected.'>'.luna_htmlspecialchars($forum_list['forum_name']).'</option>'."\n";
@@ -248,7 +248,7 @@ else if (isset($_POST['update_positions'])) {
 
 	$result = $db->query('SELECT id, cat_name FROM '.$db->prefix.'categories ORDER BY disp_position') or error('Unable to fetch category list', __FILE__, __LINE__, $db->error());
 	while ($cur_cat = $db->fetch_assoc($result)) {
-		$selected = ($cur_cat['id'] == $cur_forum['cat_id']) ? ' selected="selected"' : '';
+		$selected = ($cur_cat['id'] == $cur_forum['cat_id']) ? ' selected' : '';
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_cat['id'].'"'.$selected.'>'.luna_htmlspecialchars($cur_cat['cat_name']).'</option>'."\n";
 	}
 
@@ -260,9 +260,9 @@ else if (isset($_POST['update_positions'])) {
                     <label class="col-sm-3 control-label"><?php echo $lang['Sort by label'] ?></label>
 					<div class="col-sm-9">
                         <select class="form-control" name="sort_by" tabindex="4">
-                            <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected="selected"' ?>><?php echo $lang['Last post'] ?></option>
-                            <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected="selected"' ?>><?php echo $lang['Topic start'] ?></option>
-                            <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected="selected"' ?>><?php echo $lang['Subject'] ?></option>
+                            <option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected' ?>><?php echo $lang['Last post'] ?></option>
+                            <option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php echo $lang['Topic start'] ?></option>
+                            <option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected' ?>><?php echo $lang['Subject'] ?></option>
                         </select>
                     </div>
                 </div>

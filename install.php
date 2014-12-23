@@ -222,7 +222,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 
 		foreach ($languages as $temp) {
 			if ($temp == $install_lang)
-				echo "\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
+				echo "\t\t\t\t\t".'<option value="'.$temp.'" selected>'.$temp.'</option>'."\n";
 			else
 				echo "\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
 		}
@@ -271,7 +271,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 	foreach ($db_extensions as $temp) {
 		if ($temp[0] == $db_type)
-			echo "\t\t\t\t\t\t\t".'<option value="'.$temp[0].'" selected="selected">'.$temp[1].'</option>'."\n";
+			echo "\t\t\t\t\t\t\t".'<option value="'.$temp[0].'" selected>'.$temp[1].'</option>'."\n";
 		else
 			echo "\t\t\t\t\t\t\t".'<option value="'.$temp[0].'">'.$temp[1].'</option>'."\n";
 	}
@@ -380,7 +380,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		$languages = forum_list_langs();
 		foreach ($languages as $temp) {
 			if ($temp == $default_lang)
-				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.$temp.'</option>'."\n";
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected>'.$temp.'</option>'."\n";
 			else
 				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
 		}
@@ -398,7 +398,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		$styles = forum_list_styles();
 		foreach ($styles as $temp) {
 			if ($temp == $default_style)
-				echo "\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected="selected">'.str_replace('_', ' ', $temp).'</option>'."\n";
+				echo "\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected>'.str_replace('_', ' ', $temp).'</option>'."\n";
 			else
 				echo "\t\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
 		}
