@@ -17,7 +17,7 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9">
-<form id="profile-settings" method="post" action="settings.php">
+<form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
 	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
 		<h3>Under construction</h3>

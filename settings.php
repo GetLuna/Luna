@@ -7,6 +7,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+require FORUM_ROOT.'include/parser.php';
 
 // Load the me functions script
 require FORUM_ROOT.'include/me_functions.php';
@@ -40,7 +41,6 @@ if ($luna_user['is_admmod']) {
 }
 
 if ($user['signature'] != '') {
-	require FORUM_ROOT.'include/parser.php';
 	$parsed_signature = parse_signature($user['signature']);
 }
 
@@ -61,7 +61,7 @@ if (isset($_POST['form_sent'])) {
 		message($lang['No permission'], false, '403 Forbidden');
 
 	// Make sure they got here from the site
-	confirm_referrer('settings.php');
+	!empty($_GET['id']) ? confirm_referrer('settings.php?id='.$id) : confirm_referrer('settings.php');
 
 	$username_updated = false;
 
@@ -219,7 +219,7 @@ if (isset($_POST['form_sent'])) {
 	if (empty($temp))
 		message($lang['Bad request'], false, '404 Not Found');
 
-	$db->query('UPDATE '.$db->prefix.'users SET '.implode(',', $temp).' WHERE id='.$id) or error('Unable to update profile', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'users SET '.implode(', ', $temp).' WHERE id='.$id) or error('Unable to update profile', __FILE__, __LINE__, $db->error());
 
 	// If we changed the username we have to update some stuff
 	if ($username_updated) {
@@ -267,7 +267,7 @@ if (isset($_POST['form_sent'])) {
 			generate_bans_cache();
 	}
 
-	redirect('settings.php');
+	!empty($_GET['id']) ? redirect('settings.php?id='.$id) : redirect('settings.php');
 }
 
 if ($luna_user['g_set_title'] == '1')

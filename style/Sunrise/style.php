@@ -60,7 +60,7 @@ if ($luna_user['color'] == '#14a3ff') { // ModernBB
 	background-color: <?php echo $secondary_color ?>;
 }
 
-.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .profile-jumbotron {
+.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	background-color: <?php echo $tertiary_color ?>;
 }
 
