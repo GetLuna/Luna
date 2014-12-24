@@ -39,14 +39,14 @@ if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. e
 		$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" />';
 		$email_button = '<span class="input-group-btn"><a class="btn btn-primary" href="misc.php?email='.$id.'">'.$lang['Send email'].'</a></span>';
 	} else {
-		$username_field = '<div class="col-sm-9"><input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" />';
+		$username_field = '<input class="form-control" type="text"  value="'.luna_htmlspecialchars($user['username']).'" disabled="disabled" />';
 	
 		if ($luna_config['o_regs_verify'] == '1') {
 			$email_field = '<input type="text" class="form-control" name="req_email" value="'.luna_htmlspecialchars($user['email']).'" maxlength="80" disabled />';
 			$email_button = '<span class="input-group-btn"><a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newmail">'.$lang['Change email'].'</a></span>';
 		} else {
 			$email_field = '<input type="text" class="form-control" name="req_email" value="'.$user['email'].'" maxlength="80" />';
-			$email_button = '';
+			$email_button = '<span class="input-group-btn"><a class="btn btn-danger disabled" href="#" data-toggle="modal" data-target="#newmail">Unverified</a></span>';
 		}
 	}
 	
