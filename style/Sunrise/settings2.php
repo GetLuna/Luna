@@ -28,7 +28,9 @@ if (!defined('FORUM'))
 			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
 			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab">Threads</a></li>
 			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab">Time</a></li>
+			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
 			<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">Admin</a></li>
+			<?php endif; ?>
 		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="profile">
@@ -432,6 +434,7 @@ if (count($languages) > 1) {
 					</div>
 				</fieldset>
 			</div>
+			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
 			<div role="tabpanel" class="tab-pane" id="admin">
 				<fieldset class="form-horizontal form-setting">
 					<?php if ($luna_user['g_moderator'] == '1') { ?>
@@ -517,6 +520,7 @@ if (count($languages) > 1) {
 					<?php endif; ?>
 				</fieldset>
 			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </form>
