@@ -7,9 +7,9 @@ if (!defined('FORUM'))
 ?>
 <div class="col-sm-3 profile-nav">
 	<div class="user-card-profile">
-		<h3 class="user-card-title"><?php echo luna_htmlspecialchars($luna_user['username']) ?></h3>
+		<h3 class="user-card-title"><?php echo luna_htmlspecialchars($user['username']) ?></h3>
 		<span class="user-card-avatar thumbnail">
-			<?php echo $user_avatar ?>
+			<?php echo $avatar_user_card ?>
 		</span>
 	</div>
 <?php

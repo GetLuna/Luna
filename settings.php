@@ -284,6 +284,7 @@ if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. e
 		$title_field = '<input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" />';
 	
 	$avatar_user = draw_user_avatar($id, 'visible-lg-inline');
+	$avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
 	$avatar_set = check_avatar($id);
 	if ($user_avatar && $avatar_set)
 		$avatar_field .= ' <a class="btn btn-primary" href="me.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';

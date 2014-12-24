@@ -5,26 +5,26 @@ if (!defined('FORUM'))
     exit;
 
 // Show notifications
-$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 $num_not_unseen = $db->result($result);
 
 if ($num_not_unseen == '0') {
-	$ind_not[] = '<a class="list-group-item disabled" href="me.php?section=notifications&id='.$luna_user['id'].'">No new notifications</a>';
+	$ind_not[] = '<a class="list-group-item disabled" href="me.php?section=notifications&id='.$user['id'].'">No new notifications</a>';
 } else {
-	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id'].' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$user['id'].' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
 		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
 		$ind_not[] = '<a class="list-group-item" href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a>';
 	}
 }
 
-$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 $num_not_seen = $db->result($result);
 
 if ($num_not_seen == '0') {
-	$ind_not_seen[] = '<a class="list-group-item disabled" href="me.php?section=notifications&id='.$luna_user['id'].'">No new notifications</a>';
+	$ind_not_seen[] = '<a class="list-group-item disabled" href="me.php?section=notifications&id='.$user['id'].'">No new notifications</a>';
 } else {
-	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$luna_user['id'].' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$user['id'].' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
 		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
 		$ind_not_seen[] = '<a class="list-group-item" href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a>';
@@ -36,9 +36,9 @@ $not_seen = implode('', $ind_not_seen);
 ?>
 <div class="col-sm-3 profile-nav">
 	<div class="user-card-profile">
-		<h3 class="user-card-title"><?php echo luna_htmlspecialchars($luna_user['username']) ?></h3>
+		<h3 class="user-card-title"><?php echo luna_htmlspecialchars($user['username']) ?></h3>
 		<span class="user-card-avatar thumbnail">
-			<?php echo $user_avatar ?>
+			<?php echo $avatar_user_card ?>
 		</span>
 	</div>
 <?php
