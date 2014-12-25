@@ -623,7 +623,7 @@ if (isset($_POST['update_group_membership'])) {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 		define('FORUM_ACTIVE_PAGE', 'me');
 		require load_page('header.php');
-		require load_page('me.php');
+		require load_page('profile.php');
 	} else if ($section == 'notifications') {
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
