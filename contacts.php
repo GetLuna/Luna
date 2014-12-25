@@ -156,7 +156,7 @@ else if (isset($_POST['add']))
 	else
 	{
 		$sql_where = 'u.id='.intval($_POST['add']);
-		$redirect = 'profile.php?id='.intval($_POST['add']);
+		$redirect = 'me.php?id='.intval($_POST['add']);
 		$authorized = 1;
 	}
 	
@@ -299,7 +299,7 @@ if ($db->num_rows($result))
 			<tr<?php echo $status_class ?>>
 	<?php
 		if ($luna_user['g_view_users'] == '1')
-			echo '<td><a href="profile.php?id='.$cur_contact['contact_id'].'">'.luna_htmlspecialchars($cur_contact['contact_name']).'</a></td>';
+			echo '<td><a href="me.php?id='.$cur_contact['contact_id'].'">'.luna_htmlspecialchars($cur_contact['contact_name']).'</a></td>';
 		else
 			echo '<td>'.luna_htmlspecialchars($cur_contact['contact_name']).'</td>';
 	?>

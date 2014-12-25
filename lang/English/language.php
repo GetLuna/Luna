@@ -567,7 +567,7 @@ $lang = array(
 'Edit post'			=>	'Edit post',
 
 //
-// Language for both profile.php and register.php
+// Language for both me.php and register.php
 //
 
 'Email legend'				=>	'Enter a valid email address',
@@ -598,7 +598,7 @@ $lang = array(
 'Bad ICQ'					=>	'You entered an invalid ICQ UIN. Please go back and correct.',
 
 //
-// Language for profile.php
+// Language for me.php
 //
 
 'Section personality'			=>	'Personality',

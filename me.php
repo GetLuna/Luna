@@ -128,7 +128,7 @@ if (isset($_POST['update_group_membership'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('profile.php');
+	confirm_referrer('me.php');
 
 	$new_group_id = intval($_POST['group_id']);
 
@@ -166,12 +166,12 @@ if (isset($_POST['update_group_membership'])) {
 		}
 	}
 
-	redirect('profile.php?section=admin&amp;id='.$id);
+	redirect('me.php?section=admin&amp;id='.$id);
 } else if (isset($_POST['ban'])) {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('profile.php');
+	confirm_referrer('me.php');
 
 	// Get the username of the user we are banning
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch username', __FILE__, __LINE__, $db->error());
@@ -623,7 +623,7 @@ if (isset($_POST['update_group_membership'])) {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 		define('FORUM_ACTIVE_PAGE', 'me');
 		require load_page('header.php');
-		require load_page('profile.php');
+		require load_page('me.php');
 	} else if ($section == 'notifications') {
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);

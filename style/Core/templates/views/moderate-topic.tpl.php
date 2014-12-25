@@ -43,7 +43,7 @@ if (!defined('FORUM'))
         // If the poster is a registered user
         if ($cur_post['poster_id'] > 1) {
             if ($luna_user['g_view_users'] == '1')
-                $poster = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
+                $poster = '<a href="me.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
             else
                 $poster = luna_htmlspecialchars($cur_post['poster']);
 

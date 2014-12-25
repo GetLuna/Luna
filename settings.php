@@ -28,7 +28,7 @@ if (isset($_POST['update_group_membership'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('profile.php');
+	confirm_referrer('settings.php');
 
 	$new_group_id = intval($_POST['group_id']);
 
@@ -66,12 +66,12 @@ if (isset($_POST['update_group_membership'])) {
 		}
 	}
 
-	redirect('profile.php?section=admin&amp;id='.$id);
+	redirect('settings.php?id='.$id);
 } else if (isset($_POST['ban'])) {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('profile.php');
+	confirm_referrer('settings.php');
 
 	// Get the username of the user we are banning
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch username', __FILE__, __LINE__, $db->error());

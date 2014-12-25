@@ -17,7 +17,7 @@ if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $l
 // Add/edit a ban (stage 1)
 if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 	if (isset($_GET['add_ban']) || isset($_POST['add_ban'])) {
-		// If the ID of the user to ban was provided through GET (a link from ../profile.php)
+		// If the ID of the user to ban was provided through GET (a link from ../me.php)
 		if (isset($_GET['add_ban'])) {
 			$user_id = intval($_GET['add_ban']);
 			if ($user_id < 2)
@@ -374,7 +374,7 @@ else if (isset($_GET['find_ban'])) {
 				<td class="tc3"><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
 				<td class="tc4"><?php echo $expire ?></td>
 				<td class="tc5"><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-				<td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang['Unknown'] ?></td>
+				<td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../me.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang['Unknown'] ?></td>
 				<td class="tcr"><?php echo $actions ?></td>
 			</tr>
 <?php

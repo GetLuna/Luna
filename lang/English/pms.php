@@ -135,7 +135,7 @@ $lang_pms = array(
 'JS required'			=>	'JavaScript is required in order to use the sending lists.',
 'Yourself'				=>	'You cannot add yourself to a sending list.',
 
-// profile.php
+// me.php
 'use_pm_option'			=>	'Enable privates messages system',
 'email_option_infos'	=>	'With this enabled, an e-mail will be sent for all new private message.',
 'email_option'			=>	'Privates messages notification by e-mail',

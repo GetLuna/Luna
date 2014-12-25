@@ -57,7 +57,7 @@ function load_admin_nav($section, $page) {
                         <?php print(luna_htmlspecialchars($luna_user['username'])) ?> <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><?php echo '<a href="../profile.php?id='.$luna_user['id'].'">' ?><?php echo $lang['Profile'] ?></a></li>
+                        <li><?php echo '<a href="../me.php?id='.$luna_user['id'].'">' ?><?php echo $lang['Profile'] ?></a></li>
                         <li><a href="http://getluna.org"><?php echo $lang['Support'] ?></a></li>
                         <li class="divider"></li>
                         <li><?php echo '<a href="../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">' ?><?php echo $lang['Logout'] ?></a></li>

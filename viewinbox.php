@@ -337,7 +337,7 @@ while ($cur_post = $db->fetch_assoc($result))
 	if ($cur_post['id'])
 	{
 		if ($luna_user['g_view_users'] == '1')
-			$username = '<a href="profile.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
+			$username = '<a href="me.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
 		else
 			$username = luna_htmlspecialchars($cur_post['sender']);
 			

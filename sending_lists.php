@@ -220,7 +220,7 @@ if ($db->num_rows($result))
 		for($i = 0; $i < count($ids_list); $i++){
 			if ($i > 0 && $i < count($ids_list))
 					$usernames = $usernames.', ';
-			$usernames = $usernames.'<a href="profile.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($usernames_list[$i]).'</a>';
+			$usernames = $usernames.'<a href="me.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($usernames_list[$i]).'</a>';
 		} 
 ?>
 				<tr>
