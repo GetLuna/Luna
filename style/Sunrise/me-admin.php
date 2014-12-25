@@ -80,51 +80,11 @@ if (!defined('FORUM'))
         </div>
         <div class="panel-body">
             <fieldset>
-                <button type="submit" class="btn btn-danger" name="delete_user"?><?php echo $lang['Delete user'] ?></button> <button type="submit" class="btn btn-danger" name="ban"><?php echo $lang['Ban user'] ?></button>
+                <button type="submit" class="btn btn-danger" name="delete_user"><?php echo $lang['Delete user'] ?></button> <button type="submit" class="btn btn-danger" name="ban"><?php echo $lang['Ban user'] ?></button>
             </fieldset>
         </div>
     </div>
 <?php
-
-        if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) {
-
-?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Set mods legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="update_forums" value="<?php echo $lang['Update forums'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <p><?php echo $lang['Moderator in info'] ?></p>
-<?php
-
-            $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.moderators FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
-
-            $cur_category = 0;
-            while ($cur_forum = $db->fetch_assoc($result)) {
-                if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
-                    if ($cur_category)
-                        echo "\n\t\t\t\t\t\t\t\t".'</div>';
-
-                    if ($cur_category != 0)
-                        echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
-
-                    echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'<div>';
-                    $cur_category = $cur_forum['cid'];
-                }
-
-                $moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
-
-                echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
-            }
-
-?>
-            </fieldset>
-        </div>
-    </div>
-<?php
-
-        }
     }
 
     if ($luna_user['g_id'] == FORUM_ADMIN)

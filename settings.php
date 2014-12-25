@@ -22,6 +22,40 @@ if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. e
 	$is_moderator))))																			// or the user is another mod
 	|| $id == '1') {																				// or the ID is 1, and thus a guest
 	message($lang['No permission'], false, '403 Forbidden');
+} else if (isset($_POST['update_forums'])) {
+	if ($luna_user['g_id'] > FORUM_ADMIN)
+		message($lang['No permission'], false, '403 Forbidden');
+
+	confirm_referrer('settings.php');
+
+	// Get the username of the user we are processing
+	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$username = $db->result($result);
+
+	$moderator_in = (isset($_POST['moderator_in'])) ? array_keys($_POST['moderator_in']) : array();
+
+	// Loop through all forums
+	$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+
+	while ($cur_forum = $db->fetch_assoc($result)) {
+		$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
+		// If the user should have moderator access (and he/she doesn't already have it)
+		if (in_array($cur_forum['id'], $moderator_in) && !in_array($id, $cur_moderators)) {
+			$cur_moderators[$username] = $id;
+			uksort($cur_moderators, 'utf8_strcasecmp');
+
+			$db->query('UPDATE '.$db->prefix.'forums SET moderators=\''.$db->escape(serialize($cur_moderators)).'\' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+		}
+		// If the user shouldn't have moderator access (and he/she already has it)
+		else if (!in_array($cur_forum['id'], $moderator_in) && in_array($id, $cur_moderators)) {
+			unset($cur_moderators[$username]);
+			$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
+
+			$db->query('UPDATE '.$db->prefix.'forums SET moderators='.$cur_moderators.' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+		}
+	}
+
+	redirect('settings.php?&amp;id='.$id);
 } else {
 	
 	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());

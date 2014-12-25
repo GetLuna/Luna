@@ -479,7 +479,7 @@ if (count($languages) > 1) {
 					</div>
 					<?php if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) { ?>
 						<div class="form-group">
-							<label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?></label>
+							<label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-check"></span> <?php echo $lang['Update forums'] ?></button></label>
 							<div class="col-sm-9">
 								<p><?php echo $lang['Moderator in info'] ?></p>
 <?php
