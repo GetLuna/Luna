@@ -167,40 +167,6 @@ if (isset($_POST['update_group_membership'])) {
 	}
 
 	redirect('profile.php?section=admin&amp;id='.$id);
-} else if (isset($_POST['update_forums'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
-		message($lang['No permission'], false, '403 Forbidden');
-
-	confirm_referrer('profile.php');
-
-	// Get the username of the user we are processing
-	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-	$username = $db->result($result);
-
-	$moderator_in = (isset($_POST['moderator_in'])) ? array_keys($_POST['moderator_in']) : array();
-
-	// Loop through all forums
-	$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
-
-	while ($cur_forum = $db->fetch_assoc($result)) {
-		$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
-		// If the user should have moderator access (and he/she doesn't already have it)
-		if (in_array($cur_forum['id'], $moderator_in) && !in_array($id, $cur_moderators)) {
-			$cur_moderators[$username] = $id;
-			uksort($cur_moderators, 'utf8_strcasecmp');
-
-			$db->query('UPDATE '.$db->prefix.'forums SET moderators=\''.$db->escape(serialize($cur_moderators)).'\' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
-		}
-		// If the user shouldn't have moderator access (and he/she already has it)
-		else if (!in_array($cur_forum['id'], $moderator_in) && in_array($id, $cur_moderators)) {
-			unset($cur_moderators[$username]);
-			$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
-
-			$db->query('UPDATE '.$db->prefix.'forums SET moderators='.$cur_moderators.' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
-		}
-	}
-
-	redirect('profile.php?section=admin&amp;id='.$id);
 } else if (isset($_POST['ban'])) {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
@@ -302,7 +268,7 @@ if (isset($_POST['update_group_membership'])) {
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require load_page('header.php');
 
-	require get_view_path('profile-delete_user.tpl.php');
+	require get_view_path('me-delete_user.tpl.php');
 } else if ($action == 'change_pass') {
 	if (isset($_GET['key'])) {
 		// If the user is already logged in we shouldn't be here :)

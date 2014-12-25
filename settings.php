@@ -22,6 +22,153 @@ if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. e
 	$is_moderator))))																			// or the user is another mod
 	|| $id == '1') {																				// or the ID is 1, and thus a guest
 	message($lang['No permission'], false, '403 Forbidden');
+}
+
+if (isset($_POST['update_group_membership'])) {
+	if ($luna_user['g_id'] > FORUM_ADMIN)
+		message($lang['No permission'], false, '403 Forbidden');
+
+	confirm_referrer('profile.php');
+
+	$new_group_id = intval($_POST['group_id']);
+
+	$result = $db->query('SELECT group_id FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user group', __FILE__, __LINE__, $db->error());
+	$old_group_id = $db->result($result);
+
+	$db->query('UPDATE '.$db->prefix.'users SET group_id='.$new_group_id.' WHERE id='.$id) or error('Unable to change user group', __FILE__, __LINE__, $db->error());
+
+	// Regenerate the users info cache
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_users_info_cache();
+
+	if ($old_group_id == FORUM_ADMIN || $new_group_id == FORUM_ADMIN)
+		generate_admins_cache();
+
+	$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$new_group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
+	$new_group_mod = $db->result($result);
+
+	// If the user was a moderator or an administrator, we remove him/her from the moderator list in all forums as well
+	if ($new_group_id != FORUM_ADMIN && $new_group_mod != '1') {
+		$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+
+		while ($cur_forum = $db->fetch_assoc($result)) {
+			$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
+
+			if (in_array($id, $cur_moderators)) {
+				$username = array_search($id, $cur_moderators);
+				unset($cur_moderators[$username]);
+				$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
+
+				$db->query('UPDATE '.$db->prefix.'forums SET moderators='.$cur_moderators.' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+			}
+		}
+	}
+
+	redirect('profile.php?section=admin&amp;id='.$id);
+} else if (isset($_POST['ban'])) {
+	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+		message($lang['No permission'], false, '403 Forbidden');
+
+	confirm_referrer('profile.php');
+
+	// Get the username of the user we are banning
+	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch username', __FILE__, __LINE__, $db->error());
+	$username = $db->result($result);
+
+	// Check whether user is already banned
+	$result = $db->query('SELECT id FROM '.$db->prefix.'bans WHERE username = \''.$db->escape($username).'\' ORDER BY expire IS NULL DESC, expire DESC LIMIT 1') or error('Unable to fetch ban ID', __FILE__, __LINE__, $db->error());
+	if ($db->num_rows($result)) {
+		$ban_id = $db->result($result);
+		redirect('backstage/bans.php?edit_ban='.$ban_id.'&amp;exists');
+	} else
+		redirect('backstage/bans.php?add_ban='.$id);
+} else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply'])) {
+	if ($luna_user['g_id'] > FORUM_ADMIN)
+		message($lang['No permission'], false, '403 Forbidden');
+
+	// Get the username and group of the user we are deleting
+	$result = $db->query('SELECT group_id, username FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	list($group_id, $username) = $db->fetch_row($result);
+
+	if ($group_id == FORUM_ADMIN)
+		message($lang['No delete admin message']);
+
+	if (isset($_POST['delete_user_comply'])) {
+		// If the user is a moderator or an administrator, we remove him/her from the moderator list in all forums as well
+		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group', __FILE__, __LINE__, $db->error());
+		$group_mod = $db->result($result);
+
+		if ($group_id == FORUM_ADMIN || $group_mod == '1') {
+			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+
+			while ($cur_forum = $db->fetch_assoc($result)) {
+				$cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
+
+				if (in_array($id, $cur_moderators)) {
+					unset($cur_moderators[$username]);
+					$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
+
+					$db->query('UPDATE '.$db->prefix.'forums SET moderators='.$cur_moderators.' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+				}
+			}
+		}
+
+		// Delete any subscriptions
+		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$id) or error('Unable to delete topic subscriptions', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE user_id='.$id) or error('Unable to delete forum subscriptions', __FILE__, __LINE__, $db->error());
+
+		// Remove him/her from the online list (if they happen to be logged in)
+		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id='.$id) or error('Unable to remove user from online list', __FILE__, __LINE__, $db->error());
+
+		// Should we delete all posts made by this user?
+		if (isset($_POST['delete_posts'])) {
+			require FORUM_ROOT.'include/search_idx.php';
+			@set_time_limit(0);
+
+			// Find all posts made by this user
+			$result = $db->query('SELECT p.id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id='.$id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+			if ($db->num_rows($result)) {
+				while ($cur_post = $db->fetch_assoc($result)) {
+					// Determine whether this post is the "topic post" or not
+					$result2 = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['topic_id'].' ORDER BY posted LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+
+					if ($db->result($result2) == $cur_post['id'])
+						delete_topic($cur_post['topic_id']);
+					else
+						delete_post($cur_post['id'], $cur_post['topic_id']);
+
+					update_forum($cur_post['forum_id']);
+				}
+			}
+		} else
+			// Set all his/her posts to guest
+			$db->query('UPDATE '.$db->prefix.'posts SET poster_id=1 WHERE poster_id='.$id) or error('Unable to update posts', __FILE__, __LINE__, $db->error());
+
+		// Delete the user
+		$db->query('DELETE FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to delete user', __FILE__, __LINE__, $db->error());
+
+		// Delete user avatar
+		delete_avatar($id);
+
+		// Regenerate the users info cache
+		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+			require FORUM_ROOT.'include/cache.php';
+
+		generate_users_info_cache();
+
+		if ($group_id == FORUM_ADMIN)
+			generate_admins_cache();
+
+		redirect('index.php');
+	}
+
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Confirm delete user']);
+	define('FORUM_ACTIVE_PAGE', 'profile');
+	require load_page('header.php');
+
+	require get_view_path('me-delete_user.tpl.php');
 } else if (isset($_POST['update_forums'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
@@ -321,7 +468,7 @@ if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. e
 	$avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
 	$avatar_set = check_avatar($id);
 	if ($user_avatar && $avatar_set)
-		$avatar_field .= ' <a class="btn btn-primary" href="me.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
+		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
 	else
 		$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Upload avatar'].'</a>';
 	
