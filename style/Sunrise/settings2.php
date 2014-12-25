@@ -444,6 +444,7 @@ if (count($languages) > 1) {
 								<input class="btn btn-danger" type="submit" name="ban" value="<?php echo $lang['Ban user'] ?>" />
 							</div>
 						</div>
+						<hr />
 					<?php } else { if ($luna_user['id'] != $id) { ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php echo $lang['Group membership legend'] ?></label>
@@ -469,6 +470,7 @@ if (count($languages) > 1) {
 								</div>
 							</div>
 						</div>
+						<hr />
 					<?php } ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Delete ban legend'] ?></label>
@@ -477,6 +479,7 @@ if (count($languages) > 1) {
 							<button type="submit" class="btn btn-danger" name="ban"><?php echo $lang['Ban user'] ?></button>
 						</div>
 					</div>
+					<hr />
 					<?php if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) { ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-check"></span> <?php echo $lang['Update forums'] ?></button></label>
@@ -507,10 +510,17 @@ if (count($languages) > 1) {
 ?>
 								</div>
 							</div>
+							<hr />
 						<?php } ?>
 					<?php } ?>
-					<?php if ($luna_user['is_admmod']): ?>
-						<hr />
+					<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
+						<div class="form-group">
+							<label class="col-sm-3 control-label"><?php echo $lang['Posts table'] ?></label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="num_posts" value="<?php echo $user['num_posts'] ?>" maxlength="8" />
+							</div>
+						</div>
+					<?php endif; if ($luna_user['is_admmod']): ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php echo $lang['Admin note'] ?></label>
 							<div class="col-sm-9">
