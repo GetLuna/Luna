@@ -20,7 +20,6 @@ if (!defined('FORUM'))
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
 	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
-		<h3>Under construction</h3>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
 			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab">Personalize</a></li>

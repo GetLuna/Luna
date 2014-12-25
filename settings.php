@@ -480,6 +480,6 @@ if (isset($_POST['update_group_membership'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
 	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
-	require load_page('settings2.php');
+	require load_page('settings.php');
 	require load_page('footer.php');
 }
