@@ -28,6 +28,7 @@ if (isset($_POST['form_sent'])) {
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
+		'back_to_top'		    => isset($_POST['form']['back_to_top']) ? '1' : '0',
 	);
 
 	// Make sure the number of displayed topics and posts is between 3 and 75
@@ -149,7 +150,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-								<input disabled type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') echo ' checked' ?> />
 								Show a "Back to top" link in the footer.
                             </label>
                         </div>
