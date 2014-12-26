@@ -443,7 +443,7 @@ a.list-group-item-cat:hover .forum-description {
 	}
 }
 
-@media screen and (min-width: 76px) {
+@media screen and (min-width: 767px) {
 	.first-run-list {
 		margin: 15px 0;
 	}
@@ -477,8 +477,10 @@ textarea.textarea, textarea.textarea:focus {
 	border-right: none;
 }
 
-.textarea-toolbar .btn-with-text {
-	padding: 12px 18px 13px !important;
+@media screen and (min-width: 767px) {
+	.textarea-toolbar .btn-with-text {
+		padding: 12px 18px 13px !important;
+	}
 }
 
 .textarea-toolbar .btn {
