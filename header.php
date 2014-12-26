@@ -75,7 +75,7 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 	$num_new_pm = $db->result($result);
 	
 	if ($num_new_pm > 0)
-		$new_inbox = '<span class="label label-danger">'.$num_new_pm.'</span>&nbsp;&nbsp;&nbsp;&nbsp;';	
+		$new_inbox = $num_new_pm.' ';	
 	else
 		$new_inbox = '';	
 }
@@ -85,10 +85,10 @@ $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE v
 $num_notifications = $db->result($result);
 
 if ($num_notifications == '0') {
-	$notificon = '<span class="fa fa-circle-o">';
+	$notificon = '<span class="fa fa-circle-o"></span>';
 	$ind_notification[] = '<li><a href="me.php?section=notifications&id='.$luna_user['id'].'">No new notifications</a></li>';
 } else {
-	$notificon = $num_notifications.' <span class="fa fa-circle">';
+	$notificon = $num_notifications.' <span class="fa fa-circle"></span>';
 	
 	$notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($notification_result)) {
@@ -113,7 +113,7 @@ if ($luna_user['is_guest'])
 else
 	$usermenu = $backstage.'
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'</span><span class="visible-xs-inline"> Notifications</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> Notifications</span></a>
 					<ul class="dropdown-menu notification-menu">
 						<li role="presentation" class="dropdown-header">Notifications</li>
 						<li class="divider"></li>
@@ -122,10 +122,10 @@ else
 						<li><a class="pull-right" href="me.php?section=notifications&id='.$luna_user['id'].'">More <i class="fa fa-arrow-right"></i></a></li>
 					</ul>
 				</li>
+				<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.$new_inbox.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></a>
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></a>
 					<ul class="dropdown-menu">
-						<li><a href="inbox.php">Inbox<span class="pull-right">'.$new_inbox.'</span></a></li>
 						<li><a href="me.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="settings.php">Settings</a></li>
 						<li class="divider"></li>
