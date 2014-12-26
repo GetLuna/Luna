@@ -16,22 +16,23 @@ if (!$luna_user['is_admmod']) {
 
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/index.php', $lang['Bad HTTP Referer message']);
-	
-	$form = array(
-		'admin_note'			=> luna_trim($_POST['form']['admin_note'])
-	);
 
-	foreach ($form as $key => $input) {
-		// Only update values that have changed
-		if (array_key_exists('o_'.$key, $luna_config) && $luna_config['o_'.$key] != $input) {
-			if ($input != '' || is_int($input))
-				$value = '\''.$db->escape($input).'\'';
-			else
-				$value = 'NULL';
+	$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.luna_htmlspecialchars($_POST['form']['admin_note']).'\' WHERE conf_name=\'o_admin_note\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
-			$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$db->escape($key).'\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
-		}
-	}
+	// Regenerate the config cache
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+
+	generate_config_cache();
+	clear_feed_cache();
+
+	redirect('backstage/index.php?saved=true');
+}
+
+if (isset($_POST['first_run_disable'])) {
+	confirm_referrer('backstage/index.php', $lang['Bad HTTP Referer message']);
+
+	$db->query('UPDATE '.$db->prefix.'config SET conf_value=1 WHERE conf_name=\'o_first_run_backstage\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
@@ -92,10 +93,17 @@ if (file_exists('../z.txt') && ($luna_config['o_reading_list'] == '1')) {
 	<h4>zSettings enabled!</h4>
 	We've found out that some zSettings have been enabled. These settings control feature that are still in major development, might not work at all and/or can possibly corrupt your forum. We strongly recommend you to use these features only when necessary (for example, when you're developing Luna). Otherwise, you can disable them in <span class="fa fa-cog"></span> Settings > <span class="fa fa-cogs"></span> zSettings.
 </div>
-<?php } if ($luna_config['o_first_run'] != 1) { ?>
+<?php } if ($luna_config['o_first_run_backstage'] == 0) { ?>
 <div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">
-		<h3 class="panel-title">Welcome to Luna<span class="pull-right"><a href="#" class="btn btn-success disabled"><span class="fa fa-check"></span> Got it</a></span></h3>
+		<h3 class="panel-title">Welcome to Luna
+			<span class="pull-right">
+				<form class="form-horizontal" method="post" action="index.php">
+					<input type="hidden" name="first_run_disable" value="1" />
+					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-check"></span> Got it</button>
+				</form>
+			</span>
+		</h3>
 	</div>
 	<div class="panel-body">
 		<div class="row">
@@ -228,7 +236,7 @@ if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) {
 							<h3 class="panel-title">Admin notes<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 						</div>
 						<div class="panel-body">
-							<textarea class="form-control" name="form[admin_note]" placeholder="Add a note..." accesskey="n" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_admin_note']) ?></textarea>
+							<textarea class="form-control" name="form[admin_note]" placeholder="Add a note..." accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
 						</div>
 					</div>
 				</form>
