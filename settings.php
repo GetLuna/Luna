@@ -203,6 +203,317 @@ if (isset($_POST['update_group_membership'])) {
 	}
 
 	redirect('settings.php?&amp;id='.$id);
+} else if ($action == 'change_pass') {
+	if (isset($_GET['key'])) {
+		// If the user is already logged in we shouldn't be here :)
+		if (!$luna_user['is_guest']) {
+			header('Location: index.php');
+			exit;
+		}
+
+		$key = $_GET['key'];
+
+		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch new password', __FILE__, __LINE__, $db->error());
+		$cur_user = $db->fetch_assoc($result);
+
+		if ($key == '' || $key != $cur_user['activate_key'])
+			message($lang['Pass key bad'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
+		else {
+			$db->query('UPDATE '.$db->prefix.'users SET password=\''.$db->escape($cur_user['activate_string']).'\', activate_string=NULL, activate_key=NULL'.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
+
+			message($lang['Pass updated'], true);
+		}
+	}
+
+	// Make sure we are allowed to change this user's password
+	if ($luna_user['id'] != $id) {
+		if (!$luna_user['is_admmod']) // A regular user trying to change another user's password?
+			message($lang['No permission'], false, '403 Forbidden');
+		else if ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's password?
+			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+			if (!$db->num_rows($result))
+				message($lang['Bad request'], false, '404 Not Found');
+
+			list($group_id, $is_moderator) = $db->fetch_row($result);
+
+			if ($luna_user['g_mod_edit_users'] == '0' || $luna_user['g_mod_change_passwords'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
+				message($lang['No permission'], false, '403 Forbidden');
+		}
+	}
+
+	if (isset($_POST['form_sent'])) {
+		// Make sure they got here from the site
+		confirm_referrer('me.php');
+
+		$old_password = isset($_POST['req_old_password']) ? luna_trim($_POST['req_old_password']) : '';
+		$new_password1 = luna_trim($_POST['req_new_password1']);
+		$new_password2 = luna_trim($_POST['req_new_password2']);
+
+		if ($new_password1 != $new_password2)
+			message($lang['Pass not match']);
+		if (luna_strlen($new_password1) < 6)
+			message($lang['Pass too short']);
+
+		$result = $db->query('SELECT * FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch password', __FILE__, __LINE__, $db->error());
+		$cur_user = $db->fetch_assoc($result);
+
+		$authorized = false;
+
+		if (!empty($cur_user['password'])) {
+			$old_password_hash = luna_hash($old_password);
+
+			if ($cur_user['password'] == $old_password_hash || $luna_user['is_admmod'])
+				$authorized = true;
+		}
+
+		if (!$authorized)
+			message($lang['Wrong pass']);
+
+		$new_password_hash = luna_hash($new_password1);
+
+		$db->query('UPDATE '.$db->prefix.'users SET password=\''.$new_password_hash.'\''.(!empty($cur_user['salt']) ? ', salt=NULL' : '').' WHERE id='.$id) or error('Unable to update password', __FILE__, __LINE__, $db->error());
+
+		if ($luna_user['id'] == $id)
+			luna_setcookie($luna_user['id'], $new_password_hash, time() + $luna_config['o_timeout_visit']);
+
+		redirect('me.php?section=personality&amp;id='.$id);
+	}
+
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change pass']);
+	$required_fields = array('req_old_password' => $lang['Old pass'], 'req_new_password1' => $lang['New pass'], 'req_new_password2' => $lang['Confirm new pass']);
+	$focus_element = array('change_pass', ((!$luna_user['is_admmod']) ? 'req_old_password' : 'req_new_password1'));
+	define('FORUM_ACTIVE_PAGE', 'me');
+	require load_page('header.php');
+
+	require get_view_path('me-change_pass.tpl.php');
+} else if ($action == 'change_email') {
+	// Make sure we are allowed to change this user's email
+	if ($luna_user['id'] != $id) {
+		if (!$luna_user['is_admmod']) // A regular user trying to change another user's email?
+			message($lang['No permission'], false, '403 Forbidden');
+		else if ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's email?
+			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+			if (!$db->num_rows($result))
+				message($lang['Bad request'], false, '404 Not Found');
+
+			list($group_id, $is_moderator) = $db->fetch_row($result);
+
+			if ($luna_user['g_mod_edit_users'] == '0' || $group_id == FORUM_ADMIN || $is_moderator == '1')
+				message($lang['No permission'], false, '403 Forbidden');
+		}
+	}
+
+	if (isset($_GET['key'])) {
+		$key = $_GET['key'];
+
+		$result = $db->query('SELECT activate_string, activate_key FROM '.$db->prefix.'users WHERE id='.$id) or error('Unable to fetch activation data', __FILE__, __LINE__, $db->error());
+		list($new_email, $new_email_key) = $db->fetch_row($result);
+
+		if ($key == '' || $key != $new_email_key)
+			message($lang['Email key bad'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
+		else {
+			$db->query('UPDATE '.$db->prefix.'users SET email=activate_string, activate_string=NULL, activate_key=NULL WHERE id='.$id) or error('Unable to update email address', __FILE__, __LINE__, $db->error());
+
+			message($lang['Email updated'], true);
+		}
+	} else if (isset($_POST['form_sent'])) {
+		if (luna_hash($_POST['req_password']) !== $luna_user['password'])
+			message($lang['Wrong pass']);
+
+		// Make sure they got here from the site
+		confirm_referrer('me.php');
+
+		require FORUM_ROOT.'include/email.php';
+
+		// Validate the email address
+		$new_email = strtolower(luna_trim($_POST['req_new_email']));
+		if (!is_valid_email($new_email))
+			message($lang['Invalid email']);
+
+		// Check if it's a banned email address
+		if (is_banned_email($new_email)) {
+			if ($luna_config['p_allow_banned_email'] == '0')
+				message($lang['Banned email']);
+			else if ($luna_config['o_mailing_list'] != '') {
+				// Load the "banned email change" template
+				$mail_tpl = trim($lang['banned_email_change.tpl']);
+
+				// The first row contains the subject
+				$first_crlf = strpos($mail_tpl, "\n");
+				$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
+				$mail_message = trim(substr($mail_tpl, $first_crlf));
+
+				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
+				$mail_message = str_replace('<email>', $new_email, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$id, $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
+
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
+			}
+		}
+
+		// Check if someone else already has registered with that email address
+		$result = $db->query('SELECT id, username FROM '.$db->prefix.'users WHERE email=\''.$db->escape($new_email).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+		if ($db->num_rows($result)) {
+			if ($luna_config['p_allow_dupe_email'] == '0')
+				message($lang['Dupe email']);
+			else if ($luna_config['o_mailing_list'] != '') {
+				while ($cur_dupe = $db->fetch_assoc($result))
+					$dupe_list[] = $cur_dupe['username'];
+
+				// Load the "dupe email change" template
+				$mail_tpl = trim($lang['dupe_email_change.tpl']);
+
+				// The first row contains the subject
+				$first_crlf = strpos($mail_tpl, "\n");
+				$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
+				$mail_message = trim(substr($mail_tpl, $first_crlf));
+
+				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
+				$mail_message = str_replace('<dupe_list>', implode(', ', $dupe_list), $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$id, $mail_message);
+				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
+
+				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
+			}
+		}
+
+
+		$new_email_key = random_pass(8);
+
+		$db->query('UPDATE '.$db->prefix.'users SET activate_string=\''.$db->escape($new_email).'\', activate_key=\''.$new_email_key.'\' WHERE id='.$id) or error('Unable to update activation data', __FILE__, __LINE__, $db->error());
+
+		// Load the "activate email" template
+		$mail_tpl = trim($lang['activate_email.tpl']);
+
+		// The first row contains the subject
+		$first_crlf = strpos($mail_tpl, "\n");
+		$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
+		$mail_message = trim(substr($mail_tpl, $first_crlf));
+
+		$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
+		$mail_message = str_replace('<base_url>', get_base_url(), $mail_message);
+		$mail_message = str_replace('<activation_url>', get_base_url().'/me.php?action=change_email&id='.$id.'&key='.$new_email_key, $mail_message);
+		$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
+
+		luna_mail($new_email, $mail_subject, $mail_message);
+
+		message($lang['Activate email sent'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
+	}
+
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change email']);
+	$required_fields = array('req_new_email' => $lang['New email'], 'req_password' => $lang['Password']);
+	$focus_element = array('change_email', 'req_new_email');
+	define('FORUM_ACTIVE_PAGE', 'me');
+	require load_page('header.php');
+
+	require get_view_path('me-change_email.tpl.php');
+} else if ($action == 'upload_avatar' || $action == 'upload_avatar2') {
+	if ($luna_config['o_avatars'] == '0')
+		message($lang['Avatars disabled']);
+
+	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
+		message($lang['No permission'], false, '403 Forbidden');
+
+	if (isset($_POST['form_sent'])) {
+		if (!isset($_FILES['req_file']))
+			message($lang['No file']);
+
+		// Make sure they got here from the site
+		confirm_referrer('me.php');
+
+		$uploaded_file = $_FILES['req_file'];
+
+		// Make sure the upload went smooth
+		if (isset($uploaded_file['error'])) {
+			switch ($uploaded_file['error']) {
+				case 1: // UPLOAD_ERR_INI_SIZE
+				case 2: // UPLOAD_ERR_FORM_SIZE
+					message($lang['Too large ini']);
+					break;
+
+				case 3: // UPLOAD_ERR_PARTIAL
+					message($lang['Partial upload']);
+					break;
+
+				case 4: // UPLOAD_ERR_NO_FILE
+					message($lang['No file']);
+					break;
+
+				case 6: // UPLOAD_ERR_NO_TMP_DIR
+					message($lang['No tmp directory']);
+					break;
+
+				default:
+					// No error occured, but was something actually uploaded?
+					if ($uploaded_file['size'] == 0)
+						message($lang['No file']);
+					break;
+			}
+		}
+
+		if (is_uploaded_file($uploaded_file['tmp_name'])) {
+			// Preliminary file check, adequate in most cases
+			$allowed_types = array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+			if (!in_array($uploaded_file['type'], $allowed_types))
+				message($lang['Bad type']);
+
+			// Make sure the file isn't too big
+			if ($uploaded_file['size'] > $luna_config['o_avatars_size'])
+				message($lang['Too large'].' '.forum_number_format($luna_config['o_avatars_size']).' '.$lang['bytes'].'.');
+
+			// Move the file to the avatar directory. We do this before checking the width/height to circumvent open_basedir restrictions
+			if (!@move_uploaded_file($uploaded_file['tmp_name'], FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp'))
+				message($lang['Move failed'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.');
+
+			list($width, $height, $type,) = @getimagesize(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
+
+			// Determine type
+			if ($type == IMAGETYPE_GIF)
+				$extension = '.gif';
+			else if ($type == IMAGETYPE_JPEG)
+				$extension = '.jpg';
+			else if ($type == IMAGETYPE_PNG)
+				$extension = '.png';
+			else {
+				// Invalid type
+				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
+				message($lang['Bad type']);
+			}
+
+			// Now check the width/height
+			if (empty($width) || empty($height) || $width > $luna_config['o_avatars_width'] || $height > $luna_config['o_avatars_height']) {
+				@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp');
+				message($lang['Too wide or high'].' '.$luna_config['o_avatars_width'].'x'.$luna_config['o_avatars_height'].' '.$lang['pixels'].'.');
+			}
+
+
+			// Delete any old avatars and put the new one in place
+			delete_avatar($id);
+			@rename(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension);
+			@chmod(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension, 0644);
+		} else
+			message($lang['Unknown failure']);
+
+		redirect('me.php?section=personality&amp;id='.$id);
+	}
+
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Upload avatar']);
+	$required_fields = array('req_file' => $lang['File']);
+	$focus_element = array('upload_avatar', 'req_file');
+	define('FORUM_ACTIVE_PAGE', 'me');
+	require load_page('header.php');
+
+	require get_view_path('me-upload_avatar.tpl.php');
+} else if ($action == 'delete_avatar') {
+	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
+		message($lang['No permission'], false, '403 Forbidden');
+
+	confirm_referrer('me.php');
+
+	delete_avatar($id);
+
+	redirect('me.php?section=personality&amp;id='.$id);
 } else {
 	
 	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());

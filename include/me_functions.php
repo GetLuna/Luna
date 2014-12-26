@@ -17,11 +17,6 @@ function load_me_nav($page = '') {
         <a class="<?php if ($page == 'settings') echo 'active'; ?> list-group-item" href="settings.php?id=<?php echo $id ?>"><?php echo $lang['Settings'] ?></a>
 	<?php endif; ?>
 </div>
-<div class="list-group">
-    <?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-		<a class="<?php if ($page == 'admin') echo 'active'; ?> list-group-item" href="me.php?section=admin&amp;id=<?php echo $id ?>"><?php echo $lang['Section admin'] ?></a>
-	<?php endif; ?>
-</div>
 <?php
 
 }
