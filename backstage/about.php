@@ -334,7 +334,10 @@ require 'header.php';
 								<span class="label label-success">35xx</span> "Tools" is a new page under "Users"<br />
 								<span class="label label-success">35xx</span> User settings has been completely revamped<br />
 								<span class="label label-success">35xx</span> Brand update<br />
-								<span class="label label-success">35xx</span> You can now disable the "Back to top" link
+								<span class="label label-success">35xx</span> You can now disable the "Back to top" link<br />
+								<span class="label label-success">35xx</span> Emoji's are now part of the Editor interface<br />
+								<span class="label label-success">35xx</span> Mainstage First Run has new actions<br />
+								<span class="label label-success">35xx</span> Responsive footer has been improved
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -342,8 +345,10 @@ require 'header.php';
 								<span class="label label-success">35xx</span> "Settings" is now an option in the user menu<br />
 								<span class="label label-success">35xx</span> jQuery has been updated to version 2.1.3<br />
 								<span class="label label-success">35xx</span> All user settings can be saved at once<br />
-								<span class="label label-success">35xx</span> Continueation of coding conventions<br />
+								<span class="label label-success">35xx</span> More coding conventions<br />
 								<span class="label label-success">35xx</span> New interface for profile, settings and notifications<br />
+								<span class="label label-success">35xx</span> Inbox now has it's own icon in the menubar<br />
+								<span class="label label-success">35xx</span> Improved visual appearance of editor<br />
 								<span class="label label-success">35xx</span> Multiple bugfixes
 							</p>
 						</div>
