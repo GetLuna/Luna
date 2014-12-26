@@ -477,6 +477,10 @@ textarea.textarea, textarea.textarea:focus {
 	border-right: none;
 }
 
+.textarea-toolbar .btn-emoji {
+	padding: 11px 16px 12px !important;
+}
+
 @media screen and (min-width: 767px) {
 	.textarea-toolbar .btn-with-text {
 		padding: 12px 18px 13px !important;
@@ -496,6 +500,9 @@ textarea.textarea, textarea.textarea:focus {
 	margin: 3px 0;
 }
 
+.text-emoji {
+	font-size: 17px;
+}
 /* Panels */
 .panel {
 	margin-bottom: 10px;

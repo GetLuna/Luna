@@ -104,6 +104,30 @@ function draw_editor($height) {
 				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php echo $lang['List']; ?>"><span class="fa fa-list-ul fa-fw"></span></a>
 				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php echo $lang['List item']; ?>"><span class="fa fa-asterisk fa-fw"></span></a>
 			</div>
+			<div class="btn-group hidden-xs">
+				<div class="btn-group">
+					<a class="btn btn-default btn-editor btn-emoji dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						<span class="fa fa-fw text-emoji emoji">&#x263a;</span>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji">&#x263a;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji">&#x1f611;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji">&#x1f629;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji">&#x1f604;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji">&#x1f632;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji">&#x1f609;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji">&#x1f612;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji">&#x1f60b;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji">&#x1f600;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji">&#x1f620;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji">&#x1f606;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji">&#x1f60e;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji">&#x1f605;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji">&#x1f607;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji">&#x1f60f;</span></a></li>
+					</ul>
+				</div>
+			</div>
 			<div class="btn-group pull-right">
 				<button class="btn btn-with-text btn-default<?php if ($luna_config['o_post_responsive'] == 0) echo ' hidden-sm hidden-xs'; ?>" type="submit" name="preview" accesskey="p"><span class="fa fa-eye"></span><span class="hidden-xs"> <?php echo $lang['Preview'] ?></span></button>
 				<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s"><span class="fa fa-plus"></span><span class="hidden-xs hidden-sm"> <?php echo $lang['Submit'] ?></span></button>
@@ -130,6 +154,8 @@ function AddTag(type, tag) {
 	   Field.value = before_txt + '[list]' + "\r" + '[*]' + selected_txt + '[/*]' + "\r" + '[/list]' + after_txt;
    else if (type == 'code')
 	   Field.value = before_txt + '[' + tag + ']' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
+   else if (type == 'emoji')
+	   Field.value = before_txt + tag + after_txt;
 }
 </script>
 <?php
