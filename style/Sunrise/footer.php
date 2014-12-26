@@ -86,39 +86,75 @@ if (!defined('FORUM_FORM')) {
 <footer>
 	<div class="container">
 		<div class="row stats">
-			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
-				<div class="statistic-item"><?php total_users() ?></div>
-				<div class="statistic-item"><?php total_topics() ?></div>
-			</div>
-			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
-				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of users'] ?></div>
-				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
-			</div>
-			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
-				<div class="statistic-item"><?php total_posts() ?></div>
-				<div class="statistic-item"><?php newest_user() ?></div>
-			</div>
-			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
-				<div class="statistic-grey statistic-item-stat"><?php echo $lang['No of posts'] ?></div>
-				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
-			</div>
-			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
-				<div class="statistic-item"><?php users_online() ?></div>
-				<div class="statistic-item"><?php guests_online() ?></div>
-			</div>
-			<div class="col-md-2 col-sm-3 col-xs-6 statistics">
-				<div class="statistic-grey statistic-item-stat">
-					<div class="dropup">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-							<?php echo $lang['Users online'] ?> <span class="fa fa-angle-up"></span>
-							<span class="sr-only">Toggle Dropdown</span>
-						</a>
-						<ul class="dropdown-menu" role="menu">
-							<?php echo online_list() ?>
-						</ul>
+			<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="statistic-item"><?php total_users() ?></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="statistic-item-stat"><?php echo $lang['No of users'] ?></div>
 					</div>
 				</div>
-				<div class="statistic-grey statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="statistic-item"><?php total_topics() ?></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="statistic-item"><?php total_posts() ?></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="statistic-item-stat"><?php echo $lang['No of posts'] ?></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="statistic-item"><?php newest_user() ?></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="statistic-item"><?php users_online() ?></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="statistic-item-stat">
+							<div class="dropup">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<?php echo $lang['Users online'] ?> <span class="fa fa-angle-up"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									<?php echo online_list() ?>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="statistic-item"><?php guests_online() ?></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
