@@ -11,6 +11,63 @@
 function load_admin_nav($section, $page) {
 	global $luna_user, $lang, $luna_config;
 
+	// What page are we on?
+	if ($page == 'index')
+		$page_title = '<span class="fa fa-fw fa-tachometer"></span> Backstage';
+	else if ($page == 'stats')
+		$page_title = '<span class="fa fa-fw fa-info-circle"></span> System info';
+	else if ($page == 'update')
+		$page_title = '<span class="fa fa-fw fa-cloud-upload"></span> Luna software update';
+	else if ($page == 'about')
+		$page_title = '<span class="fa fa-fw fa-moon-o"></span> About Luna';
+
+	else if ($page == 'board')
+		$page_title = '<span class="fa fa-fw fa-sort-amount-desc"></span> Board structure';
+	else if ($page == 'moderate')
+		$page_title = '<span class="fa fa-fw fa-tasks"></span> Moderate';
+	else if ($page == 'censoring')
+		$page_title = '<span class="fa fa-fw fa-eye-slash"></span> Censoring';
+	else if ($page == 'reports')
+		$page_title = '<span class="fa fa-fw fa-exclamation-triangle"></span> Reports';
+
+	else if ($page == 'users')
+		$page_title = '<span class="fa fa-fw fa-search"></span> User search';
+	else if ($page == 'tools')
+		$page_title = '<span class="fa fa-fw fa-wrench"></span> Tools';
+	else if ($page == 'ranks')
+		$page_title = '<span class="fa fa-fw fa-chevron-up"></span> Ranks';
+	else if ($page == 'groups')
+		$page_title = '<span class="fa fa-fw fa-group"></span> Groups';
+	else if ($page == 'permissions')
+		$page_title = '<span class="fa fa-fw fa-check-circle"></span> Permissions';
+	else if ($page == 'bans')
+		$page_title = '<span class="fa fa-fw fa-ban"></span> Bans';
+
+	else if ($page == 'settings')
+		$page_title = '<span class="fa fa-fw fa-cogs"></span> Settings';
+	else if ($page == 'features')
+		$page_title = '<span class="fa fa-fw fa-sliders"></span> Features';
+	else if ($page == 'registration')
+		$page_title = '<span class="fa fa-fw fa-plus-circle"></span> Registration';
+	else if ($page == 'email')
+		$page_title = '<span class="fa fa-fw fa-envelope"></span> Email';
+	else if ($page == 'appearance')
+		$page_title = '<span class="fa fa-fw fa-eye"></span> Appearance';
+	else if ($page == 'menu')
+		$page_title = '<span class="fa fa-fw fa-bars"></span> Menu';
+	else if ($page == 'theme')
+		$page_title = '<span class="fa fa-fw fa-paint-brush"></span> Theme';
+	else if ($page == 'maintenance')
+		$page_title = '<span class="fa fa-fw fa-coffee"></span> Maintenance';
+	else if ($page == 'zsettings')
+		$page_title = '<span class="fa fa-fw fa-cogs"></span> zSettings';
+
+	else if ($page == 'database')
+		$page_title = 'Database management';
+		
+	else
+		$page_title = $page;
+
 ?>
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
     <div class="container">
@@ -21,7 +78,7 @@ function load_admin_nav($section, $page) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.php"><span class="fa fa-arrow-left hidden-xs"></span><span class="visible-xs-inline">Luna</span></a>
+            <a class="navbar-brand" href="../index.php"><span class="fa fa-arrow-left hidden-xs"></span><span class="visible-xs-inline"><?php echo $page_title ?></span></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -70,64 +127,9 @@ function load_admin_nav($section, $page) {
 <div class="jumbotron jumboheader">
     <div class="container">
         <div class="row">
-            <h2>
+            <h2 class="hidden-xs">
                 <?php
-                    if ($page == 'index')
-                        echo '<span class="fa fa-fw fa-tachometer"></span> Backstage';
-                    else if ($page == 'stats')
-                        echo '<span class="fa fa-fw fa-info-circle"></span> System info';
-                    else if ($page == 'update')
-                        echo '<span class="fa fa-fw fa-cloud-upload"></span> Luna software update';
-                    else if ($page == 'about')
-                        echo '<span class="fa fa-fw fa-moon-o"></span> About Luna';
-
-                    else if ($page == 'board')
-                        echo '<span class="fa fa-fw fa-sort-amount-desc"></span> Board structure';
-                    else if ($page == 'moderate')
-                        echo '<span class="fa fa-fw fa-tasks"></span> Moderate';
-                    else if ($page == 'censoring')
-                        echo '<span class="fa fa-fw fa-eye-slash"></span> Censoring';
-                    else if ($page == 'reports')
-                        echo '<span class="fa fa-fw fa-exclamation-triangle"></span> Reports';
-
-                    else if ($page == 'users')
-                        echo '<span class="fa fa-fw fa-search"></span> User search';
-                    else if ($page == 'tools')
-                        echo '<span class="fa fa-fw fa-wrench"></span> Tools';
-                    else if ($page == 'ranks')
-                        echo '<span class="fa fa-fw fa-chevron-up"></span> Ranks';
-                    else if ($page == 'groups')
-                        echo '<span class="fa fa-fw fa-group"></span> Groups';
-                    else if ($page == 'permissions')
-                        echo '<span class="fa fa-fw fa-check-circle"></span> Permissions';
-                    else if ($page == 'bans')
-                        echo '<span class="fa fa-fw fa-ban"></span> Bans';
-
-                    else if ($page == 'settings')
-                        echo '<span class="fa fa-fw fa-cogs"></span> Settings';
-                    else if ($page == 'features')
-                        echo '<span class="fa fa-fw fa-sliders"></span> Features';
-                    else if ($page == 'registration')
-                        echo '<span class="fa fa-fw fa-plus-circle"></span> Registration';
-                    else if ($page == 'email')
-                        echo '<span class="fa fa-fw fa-envelope"></span> Email';
-                    else if ($page == 'appearance')
-                        echo '<span class="fa fa-fw fa-eye"></span> Appearance';
-                    else if ($page == 'menu')
-                        echo '<span class="fa fa-fw fa-bars"></span> Menu';
-                    else if ($page == 'theme')
-                        echo '<span class="fa fa-fw fa-paint-brush"></span> Theme';
-                    else if ($page == 'maintenance')
-                        echo '<span class="fa fa-fw fa-coffee"></span> Maintenance';
-                    else if ($page == 'zsettings')
-                        echo '<span class="fa fa-fw fa-cogs"></span> zSettings';
-
-                    else if ($page == 'database')
-                        echo 'Database management';
-						
-					else
-						echo $page;
-						
+					echo $page_title;
 					echo '<span class="pull-right" style="font-size: 70%;">Core '.Version::FORUM_CORE_VERSION.'</span>';
                 ?>
             </h2>

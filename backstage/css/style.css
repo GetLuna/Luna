@@ -91,7 +91,7 @@ label .help-block {
 }
 
 .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	background-color: rgba(255,255,255,.6);
+	background-color: #fff;
 }
 
 .navbar-default .navbar-toggle, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -164,6 +164,12 @@ label .help-block {
 .nav-tabs > li > a:hover, .nav > li > a:hover, .nav > li > a:focus {
     border-color: #555;
 	background-color: #555;
+}
+
+@media all and (max-width:767px) {
+	.nav-tabs {
+		padding-top: 10px;
+	}
 }
 
 /* Panels */
