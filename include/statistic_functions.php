@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2014 Luna
+ * Copyright (C) 2014-2015 Luna
  * Based on work by PunBB (2002-2009), FluxBB (2009-2012)
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
