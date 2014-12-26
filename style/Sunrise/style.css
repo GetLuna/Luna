@@ -477,9 +477,13 @@ textarea.textarea, textarea.textarea:focus {
 	border-right: none;
 }
 
+.textarea-toolbar .btn-with-text {
+	padding: 12px 18px 13px !important;
+}
+
 .textarea-toolbar .btn {
 	border: none;
-	padding: 12px 18px 13px;
+	padding: 13px 18px 13px;
 }
 
 .fa-fw {
