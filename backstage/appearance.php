@@ -146,6 +146,18 @@ if (isset($_GET['saved']))
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label">Notifications</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+								<input disabled type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
+								Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+				<hr />
+                <div class="form-group">
                     <label class="col-sm-3 control-label">Search</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
