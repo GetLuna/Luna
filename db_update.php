@@ -399,10 +399,6 @@ switch ($stage) {
 			$db->create_table('reading_list', $schema) or error('Unable to create reading list table', __FILE__, __LINE__, $db->error());
 		}
 
-		// Since 0.0.3226: Add o_reading_list/experimental feature
-		if (!array_key_exists('o_reading_list', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_reading_list\', \'0\')') or error('Unable to insert config value \'o_reading_list\'', __FILE__, __LINE__, $db->error());
-
 		// Since 0.0.3247: Remove obsolete o_quickpost permission from config table
 		if (array_key_exists('o_quickpost', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickpost\'') or error('Unable to remove config value \'o_quickpost\'', __FILE__, __LINE__, $db->error());
@@ -695,6 +691,10 @@ switch ($stage) {
 		// Since 0.2.3495: Add o_copyright_type feature
 		if (!array_key_exists('o_custom_copyright', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_custom_copyright\', NULL)') or error('Unable to insert config value \'o_custom_copyright\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.2.3558: Remove obsolete o_reading_list permission from config table
+		if (array_key_exists('o_reading_list', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_reading_list\'') or error('Unable to remove config value \'o_reading_list\'', __FILE__, __LINE__, $db->error());
 
 
 		break;

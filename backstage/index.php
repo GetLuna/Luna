@@ -87,13 +87,7 @@ require 'header.php';
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
 
-if (file_exists('../z.txt') && ($luna_config['o_reading_list'] == '1')) {
-?>
-<div class="alert alert-danger">
-	<h4>zSettings enabled!</h4>
-	We've found out that some zSettings have been enabled. These settings control feature that are still in major development, might not work at all and/or can possibly corrupt your forum. We strongly recommend you to use these features only when necessary (for example, when you're developing Luna). Otherwise, you can disable them in <span class="fa fa-cog"></span> Settings > <span class="fa fa-cogs"></span> zSettings.
-</div>
-<?php } if ($luna_config['o_first_run_backstage'] == 0) { ?>
+if ($luna_config['o_first_run_backstage'] == 0) { ?>
 <div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">
 		<h3 class="panel-title">Welcome to Luna

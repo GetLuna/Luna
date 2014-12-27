@@ -59,8 +59,6 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-paint-brush"></span> Theme';
 	else if ($page == 'maintenance')
 		$page_title = '<span class="fa fa-fw fa-coffee"></span> Maintenance';
-	else if ($page == 'zsettings')
-		$page_title = '<span class="fa fa-fw fa-cogs"></span> zSettings';
 
 	else if ($page == 'database')
 		$page_title = 'Database management';
@@ -166,9 +164,6 @@ function load_admin_nav($section, $page) {
                 <li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-fw fa-bars"></span><span class="hidden-xs"> Menu</span></a></li>
                 <li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> Theme</span></a></li>
                 <li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><span class="fa fa-fw fa-coffee"></span><span class="hidden-xs"> Maintenance</span></a></li>
-				<?php if (file_exists('../z.txt')) { ?>
-                <li<?php if($page == 'zsettings') echo ' class="active"' ?>><a href="zsettings.php"><span class="fa fa-fw fa-cogs"></span><span class="hidden-xs"> zSettings</span></a></li>
-				<?php } ?>
             </ul>
             <?php } ?>
         </div>

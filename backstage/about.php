@@ -189,11 +189,11 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.35.2491 to 0.2.3478.</p>
+						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.3478.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>28 bugs have been fixed.</p>
+						<p>40 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>3 security issue has been fixed.</p>
 					</div>
@@ -337,7 +337,8 @@ require 'header.php';
 								<span class="label label-success">35xx</span> You can now disable the "Back to top" link<br />
 								<span class="label label-success">35xx</span> Emoji's are now part of the Editor interface<br />
 								<span class="label label-success">35xx</span> Mainstage First Run has new actions<br />
-								<span class="label label-success">35xx</span> Responsive footer has been improved
+								<span class="label label-success">35xx</span> Responsive footer has been improved<br />
+								<span class="label label-success">35xx</span> zSettings has been dropped
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -349,6 +350,7 @@ require 'header.php';
 								<span class="label label-success">35xx</span> New interface for profile, settings and notifications<br />
 								<span class="label label-success">35xx</span> Inbox now has it's own icon in the menubar<br />
 								<span class="label label-success">35xx</span> Improved visual appearance of editor<br />
+								<span class="label label-success">35xx</span> Backstage's First Run can be disabled<br />
 								<span class="label label-success">35xx</span> Multiple bugfixes
 							</p>
 						</div>

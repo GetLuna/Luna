@@ -10,9 +10,6 @@
 if (!defined('FORUM_ROOT'))
 	exit('The constant FORUM_ROOT must be defined and point to a valid Luna installation root directory.');
 
-if (file_exists('z.txt'))
-	$zset = '1';
-
 // Load the version class
 require FORUM_ROOT.'include/version.php';
 
