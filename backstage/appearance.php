@@ -146,6 +146,17 @@ if (isset($_GET['saved']))
         <div class="panel-body">
             <fieldset>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label">Statistics</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+								<input disabled type="checkbox" name="form[board_statistics]" value="1" <?php if ($luna_config['o_board_statistics'] == '1') echo ' checked' ?> />
+								Show the board statistics in the footer.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-3 control-label">Back to top</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
