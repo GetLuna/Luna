@@ -696,6 +696,10 @@ switch ($stage) {
 		if (array_key_exists('o_reading_list', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_reading_list\'') or error('Unable to remove config value \'o_reading_list\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.2.3561: Add o_header_search feature
+		if (!array_key_exists('o_header_search', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_search\', \'1\')') or error('Unable to insert config value \'o_header_search\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
