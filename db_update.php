@@ -696,7 +696,6 @@ switch ($stage) {
 		if (array_key_exists('o_reading_list', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_reading_list\'') or error('Unable to remove config value \'o_reading_list\'', __FILE__, __LINE__, $db->error());
 
-
 		break;
 
 	// Preparse posts
@@ -826,7 +825,7 @@ switch ($stage) {
 		
 		// Give a "Success" notifcation
 		if ($luna_config['o_cur_version'] != Version::FORUM_VERSION)
-			new_notification('2', 'backstage/index.php', 'Luna has been updated', 'fa-cloud-upload');
+			new_notification('2', 'backstage/index.php', 'Luna has been updated to '.Version::FORUM_VERSION, 'fa-cloud-upload');
 
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
