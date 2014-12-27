@@ -1542,6 +1542,7 @@ class Installer {
 			'o_custom_copyright'		=> NULL,
 			'o_header_search'			=> 1,
 			'o_board_statistics'		=> 1,
+			'o_notification_flyout'		=> 1,
 			'p_message_img_tag'			=> 1,
 			'p_message_all_caps'		=> 1,
 			'p_subject_all_caps'		=> 1,

@@ -704,6 +704,10 @@ switch ($stage) {
 		if (!array_key_exists('o_board_statistics', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_board_statistics\', \'1\')') or error('Unable to insert config value \'o_board_statistics\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.2.3563: Add o_notification_flyout feature
+		if (!array_key_exists('o_notification_flyout', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_notification_flyout\', \'1\')') or error('Unable to insert config value \'o_notification_flyout\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
