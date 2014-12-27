@@ -700,6 +700,10 @@ switch ($stage) {
 		if (!array_key_exists('o_header_search', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_search\', \'1\')') or error('Unable to insert config value \'o_header_search\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.2.3562: Add o_board_statistics feature
+		if (!array_key_exists('o_board_statistics', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_board_statistics\', \'1\')') or error('Unable to insert config value \'o_board_statistics\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
