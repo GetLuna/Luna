@@ -141,6 +141,26 @@ if (isset($_GET['saved']))
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
+            <h3 class="panel-title">Header settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+        </div>
+        <div class="panel-body">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Search</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+								<input disabled type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') echo ' checked' ?> />
+								Show the search bar in the heading.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
             <h3 class="panel-title">Footer settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
         </div>
         <div class="panel-body">
