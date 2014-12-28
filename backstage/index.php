@@ -87,6 +87,10 @@ require 'header.php';
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
 
+if(is_writable(FORUM_ROOT.'config.php')): ?>
+<div class="alert alert-warning">The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.</div>
+<?php endif;
+
 if ($luna_config['o_first_run_backstage'] == 0) { ?>
 <div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">
