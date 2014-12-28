@@ -18,8 +18,8 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 if (isset($_POST['add_item'])) {
 	confirm_referrer('backstage/menu.php');
 	
-	$item_name = luna_trim($_POST['name']); 
-	$item_url = luna_trim($_POST['url']); 
+	$item_name = luna_trim($_POST['name']);
+	$item_url = luna_trim($_POST['url']);
 
 	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$item_url.'\', \''.$item_name.'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
@@ -34,16 +34,7 @@ if (isset($_POST['add_item'])) {
 	$db->query('DELETE FROM '.$db->prefix.'menu WHERE id='.$item_id) or error('Unable to delete menu item', __FILE__, __LINE__, $db->error());
 
 	redirect('backstage/menu.php');
-}
-
-// Generate an array with all menu items
-$result = $db->query('SELECT id, url, name, disp_position, visible, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items list', __FILE__, __LINE__, $db->error());
-$num_items = $db->num_rows($result);
-
-for ($i = 0; $i < $num_items; ++$i)
-	$item_list[] = $db->fetch_assoc($result);
-
-if (isset($_POST['update'])) {
+} else if (isset($_POST['update'])) {
 	confirm_referrer('backstage/menu.php');
 	
 	$menu_items = $_POST['item'];
@@ -55,13 +46,13 @@ if (isset($_POST['update'])) {
 		$cur_item['name'] = luna_trim($cur_item['name']);
 		$cur_item['order'] = luna_trim($cur_item['order']);
 
-		if ($cur_item['name'] == '')
+		if (empty($cur_item['name']))
 			message_backstage($lang['Must enter name message']);
 
-		if ($cur_item['url'] == '')
+		if (empty($cur_item['url']))
 			message_backstage($lang['Must enter name message']);
 
-		if ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order']))
+		if (is_int($cur_item['order']))
 			message_backstage($lang['Must enter integer message']);
 
 		$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$cur_item['name'].'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
@@ -70,7 +61,7 @@ if (isset($_POST['update'])) {
 	redirect('backstage/menu.php');
 }
 	
-$result = $db->query('SELECT id, url, name, disp_position, visible, sys_entry FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT * FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
 require 'header.php';
 load_admin_nav('settings', 'menu');
