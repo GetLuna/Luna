@@ -55,11 +55,11 @@ if (!defined('FORUM'))
 </div>
 <div class="row">
 	<div class="col-sm-3">
-		<?php if ($id != '0') { ?>
-		<div class="list-group list-group-forum">
-			<?php draw_subforum_list('index.php', $id) ?>
-		</div>
-		<?php } ?>
+		<?php if (is_subforum($id)): ?>
+			<div class="list-group list-group-forum">
+				<?php draw_subforum_list('index.php', $id) ?>
+			</div>
+		<?php endif; ?>
 		<div class="list-group list-group-forum">
 			<?php draw_forum_list('index.php', $id) ?>
 		</div>

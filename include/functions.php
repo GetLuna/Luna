@@ -1056,6 +1056,26 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	require 'footer.php';
 }
 
+//
+// Check if we have to show a list of subforums
+//
+function is_subforum($id) {
+	global $db;
+
+	$result = $db->query('SELECT count(*) FROM '.$db->prefix.'forums WHERE parent_id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
+	$num_subforums = $db->result($result);
+	
+	if ($num_subforums == '0') {
+		$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
+		$forum_is_subforum = $db->result($result);
+		
+		if ($forum_is_subforum != '0')
+			return true;
+		else
+			return false;
+	} else
+		return true;
+}
 
 //
 // Format a time string according to $time_format and time zones
