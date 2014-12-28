@@ -189,7 +189,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.3573.</p>
+						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.36xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -295,7 +295,7 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4>Preview 2 (version 0.1.3362-0.2.3573)</h4>
+					<h4>Preview 2 (version 0.1.3362-0.2.36xx)</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
@@ -352,6 +352,18 @@ require 'header.php';
 								<span class="label label-success">3573</span> Improved visual appearance of editor<br />
 								<span class="label label-success">3573</span> Backstage's First Run can be disabled<br />
 								<span class="label label-success">3573</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-danger">36xx</span> Backstage will check of config is writeable
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-danger">36xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
