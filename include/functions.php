@@ -1017,6 +1017,8 @@ function message($message, $no_back_link = false, $http_status = null) {
 </div>
 <?php
 	require load_page('footer.php');
+	
+	exit;
 }
 
 
