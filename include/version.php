@@ -2,7 +2,6 @@
 
 /*
  * Copyright (C) 2014-2015 Luna
- * Based on work by PunBB (2002-2009), FluxBB (2009-2012)
  * Licensed under GPLv3 (http://modernbb.be/license.php)
  */
 
@@ -11,7 +10,7 @@ class Version {
 	const FORUM_VERSION = '0.2-dev.2015';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '0.2.3567';
+	const FORUM_CORE_VERSION = '0.2.3569';
 
 	// The database version number, every change in the database requires this number to go one up
 	const FORUM_DB_VERSION = '87.14';
@@ -22,13 +21,9 @@ class Version {
 	// The search index version number, every change to the search index requires this number to go one up
 	const FORUM_SI_VERSION = '2.0';
 
-	// The minimal required PHP version to install Luna
+	// Luna system requirements
 	const MIN_PHP_VERSION = '5.1.0';
-
-	// The minimal required MySQL version to install Luna
 	const MIN_MYSQL_VERSION = '5.0.0';
-
-	// The minimal required PostgreSQL version to install Luna
 	const MIN_PGSQL_VERSION = '8.0.0';
 }
 ?>
