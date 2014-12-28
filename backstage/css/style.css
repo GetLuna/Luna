@@ -167,18 +167,23 @@ label .help-block {
 }
 
 @media all and (max-width:767px) {
+	.jumbotron {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
 	.nav-tabs {
 		padding-top: 10px;
+	}
+
+	.nav-tabs > li > a {
+		margin-right: 0;
 	}
 }
 
 /* Panels */
 .panel-heading {
 	height: 38px;
-}
-
-.panel, .alert {
-	margin-top: 11px;
 }
 
 h3.panel-title {
@@ -260,6 +265,18 @@ h3.panel-title {
 
 .panel-body .form-group:last-child, .panel-body p:last-child {
 	margin-bottom: 0;
+}
+
+@media all and (min-width:768px) {
+	.panel, .alert {
+		margin-top: 11px;
+	}
+}
+
+@media all and (max-width:767px) {
+	.panel {
+		margin-bottom: 0;
+	}
 }
 
 /* Forms */
