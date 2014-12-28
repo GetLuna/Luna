@@ -45,17 +45,15 @@ if (isset($_POST['add_item'])) {
 		$cur_item['url'] = luna_trim($cur_item['url']);
 		$cur_item['name'] = luna_trim($cur_item['name']);
 		$cur_item['order'] = luna_trim($cur_item['order']);
-
-		if (empty($cur_item['name']))
+		
+		if ($cur_item['name'] == '')
 			message_backstage($lang['Must enter name message']);
-
-		if (empty($cur_item['url']))
+		else if ($cur_item['url'] == '')
 			message_backstage($lang['Must enter name message']);
-
-		if (is_int($cur_item['order']))
+		else if ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order']))
 			message_backstage($lang['Must enter integer message']);
-
-		$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$cur_item['name'].'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
+		else
+			$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$cur_item['name'].'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/menu.php');
