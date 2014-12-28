@@ -53,22 +53,19 @@ else if (isset($_POST['update'])) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	foreach ($rank as $item_id => $cur_rank) {
-		$cur_rank['id'] = luna_trim($cur_rank['id']);
 		$cur_rank['rank'] = luna_trim($cur_rank['rank']);
 		$cur_rank['min_posts'] = luna_trim($cur_rank['min_posts']);
 
 		if ($cur_rank['rank'] == '')
 			message_backstage($lang['Must enter title message']);
-
-		if ($cur_rank['min_posts'] == '' || (!is_int($cur_rank['min_posts'])))
+		else if ($cur_rank['min_posts'] == '' || preg_match('%[^0-9]%', $cur_rank['min_posts']))
 			message_backstage($lang['Must be integer message']);
-		else {
-			$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.intval($item_id).' AND min_posts='.$cur_rank['min_posts']) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result) != 0)
-				message_backstage(sprintf($lang['Dupe min posts message'], $ranks['min_posts']));
-		}
+		else
+			$rank_check = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.intval($item_id).' AND min_posts='.$cur_rank['min_posts']) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
+			if ($db->num_rows($rank_check) != 0)
+				message_backstage(sprintf($lang['Dupe min posts message'], $cur_rank['min_posts']));
 
-		$db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($cur_rank['rank']).'\', min_posts=\''.$cur_rank['min_posts'].'\' WHERE id='.intval($item_id)) or message_backstage('Unable to update ranks', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($cur_rank['rank']).'\', min_posts=\''.$cur_rank['min_posts'].'\' WHERE id='.intval($item_id)) or error('Unable to update ranks', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/ranks.php');
