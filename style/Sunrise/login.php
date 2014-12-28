@@ -22,12 +22,12 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<?php if ($luna_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="906"><?php echo $lang['Register'] ?></a> &middot; <?php }; ?><a href="#" data-toggle="modal" data-target="#newpass" data-dismiss="modal" tabindex="907"><?php echo $lang['Forgotten pass'] ?></a>
+				<?php if ($luna_config['o_regs_allow'] == '1') { ?><a href="register.php" tabindex="906"><?php echo $lang['Register'] ?></a> &middot; <?php }; ?><a href="#" data-toggle="modal" data-target="#reqpass" data-dismiss="modal" tabindex="907"><?php echo $lang['Forgotten pass'] ?></a>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="modal fade modal-form" id="newpass" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade modal-form" id="reqpass" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
 			<div class="modal-header">
