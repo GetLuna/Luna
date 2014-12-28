@@ -75,7 +75,7 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 	$num_new_pm = $db->result($result);
 	
 	if ($num_new_pm > 0)
-		$new_inbox = $num_new_pm.' ';	
+		$new_inbox = $num_new_pm.' ';
 	else
 		$new_inbox = '';	
 }

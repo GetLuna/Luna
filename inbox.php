@@ -14,7 +14,7 @@ require FORUM_ROOT.'include/inbox_functions.php';
 // No guest here !
 if ($luna_user['is_guest'])
 	message($lang['No permission']);
-	
+
 // User enable PM ?
 if (!$luna_user['use_pm'] == '1')
 	message($lang['No permission']);
