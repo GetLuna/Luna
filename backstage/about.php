@@ -358,11 +358,13 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-danger">36xx</span> Backstage will check of config is writeable
+								<span class="label label-danger">36xx</span> Backstage will check of config is writeable<br />
+								<span class="label label-danger">36xx</span> More improvements to Backstage for small screens
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
+								<span class="label label-danger">36xx</span> Optimalization of multiple code snippets<br />
 								<span class="label label-danger">36xx</span> Multiple bugfixes
 							</p>
 						</div>
