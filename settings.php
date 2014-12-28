@@ -13,6 +13,7 @@ require FORUM_ROOT.'include/parser.php';
 require FORUM_ROOT.'include/me_functions.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : $luna_user['id'];
+$action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if (($luna_user['id'] != $id &&																	// If we aren't the user (i.e. editing your own profile)
 	(!$luna_user['is_admmod'] ||																	// and we are not an admin or mod
@@ -243,7 +244,7 @@ if (isset($_POST['update_group_membership'])) {
 
 	if (isset($_POST['form_sent'])) {
 		// Make sure they got here from the site
-		confirm_referrer('me.php');
+		confirm_referrer('settings.php');
 
 		$old_password = isset($_POST['req_old_password']) ? luna_trim($_POST['req_old_password']) : '';
 		$new_password1 = luna_trim($_POST['req_new_password1']);
@@ -276,16 +277,8 @@ if (isset($_POST['update_group_membership'])) {
 		if ($luna_user['id'] == $id)
 			luna_setcookie($luna_user['id'], $new_password_hash, time() + $luna_config['o_timeout_visit']);
 
-		redirect('me.php?section=personality&amp;id='.$id);
+		redirect('settings.php?id='.$id);
 	}
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Change pass']);
-	$required_fields = array('req_old_password' => $lang['Old pass'], 'req_new_password1' => $lang['New pass'], 'req_new_password2' => $lang['Confirm new pass']);
-	$focus_element = array('change_pass', ((!$luna_user['is_admmod']) ? 'req_old_password' : 'req_new_password1'));
-	define('FORUM_ACTIVE_PAGE', 'me');
-	require load_page('header.php');
-
-	require get_view_path('me-change_pass.tpl.php');
 } else if ($action == 'change_email') {
 	// Make sure we are allowed to change this user's email
 	if ($luna_user['id'] != $id) {
@@ -321,7 +314,7 @@ if (isset($_POST['update_group_membership'])) {
 			message($lang['Wrong pass']);
 
 		// Make sure they got here from the site
-		confirm_referrer('me.php');
+		confirm_referrer('settings.php');
 
 		require FORUM_ROOT.'include/email.php';
 
@@ -393,7 +386,7 @@ if (isset($_POST['update_group_membership'])) {
 
 		$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 		$mail_message = str_replace('<base_url>', get_base_url(), $mail_message);
-		$mail_message = str_replace('<activation_url>', get_base_url().'/me.php?action=change_email&id='.$id.'&key='.$new_email_key, $mail_message);
+		$mail_message = str_replace('<activation_url>', get_base_url().'/settings.php?action=change_email&id='.$id.'&key='.$new_email_key, $mail_message);
 		$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 		luna_mail($new_email, $mail_subject, $mail_message);
@@ -420,7 +413,7 @@ if (isset($_POST['update_group_membership'])) {
 			message($lang['No file']);
 
 		// Make sure they got here from the site
-		confirm_referrer('me.php');
+		confirm_referrer('settings.php');
 
 		$uploaded_file = $_FILES['req_file'];
 
@@ -487,7 +480,6 @@ if (isset($_POST['update_group_membership'])) {
 				message($lang['Too wide or high'].' '.$luna_config['o_avatars_width'].'x'.$luna_config['o_avatars_height'].' '.$lang['pixels'].'.');
 			}
 
-
 			// Delete any old avatars and put the new one in place
 			delete_avatar($id);
 			@rename(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.'.tmp', FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$id.$extension);
@@ -495,25 +487,18 @@ if (isset($_POST['update_group_membership'])) {
 		} else
 			message($lang['Unknown failure']);
 
-		redirect('me.php?section=personality&amp;id='.$id);
+		redirect('settings.php?id='.$id);
 	}
-
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Upload avatar']);
-	$required_fields = array('req_file' => $lang['File']);
-	$focus_element = array('upload_avatar', 'req_file');
-	define('FORUM_ACTIVE_PAGE', 'me');
-	require load_page('header.php');
-
-	require get_view_path('me-upload_avatar.tpl.php');
+	
 } else if ($action == 'delete_avatar') {
 	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
-	confirm_referrer('me.php');
+	confirm_referrer('settings.php');
 
 	delete_avatar($id);
 
-	redirect('me.php?section=personality&amp;id='.$id);
+	redirect('settings.php?id='.$id);
 } else {
 	
 	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -774,14 +759,16 @@ if (isset($_POST['update_group_membership'])) {
 	
 	if ($luna_user['g_set_title'] == '1')
 		$title_field = '<input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" />';
-	
+
+    $avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Change avatar'].'</a>';
+
 	$avatar_user = draw_user_avatar($id, 'visible-lg-inline');
 	$avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
-	$avatar_set = check_avatar($id);
-	if ($user_avatar && $avatar_set)
-		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
-	else
-		$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Upload avatar'].'</a>';
+    $avatar_set = check_avatar($id);
+    if ($avatar_user && $avatar_set)
+        $avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';
+    else
+        $avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Upload avatar'].'</a>';
 	
 	if ($user['signature'] != '')
 		$signature_preview = $parsed_signature;

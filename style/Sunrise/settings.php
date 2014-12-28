@@ -85,7 +85,7 @@ if (!defined('FORUM'))
 						<label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
 						<div class="col-sm-9">
 							<?php echo $avatar_user ?>
-							<a href="#" class="btn btn-default">Upload</a>
+							<?php echo $avatar_field ?>
 						</div>
 					</div>
 					<div class="form-group">
