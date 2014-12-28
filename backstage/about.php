@@ -189,7 +189,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.3478.</p>
+						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.3573.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -295,7 +295,7 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4>Preview 2 (version 0.1.3362-0.2.3572)</h4>
+					<h4>Preview 2 (version 0.1.3362-0.2.3573)</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
@@ -329,29 +329,29 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-success">3572</span> Major changes to the profile system<br />
-								<span class="label label-success">3572</span> Actitiy has been removed<br />
-								<span class="label label-success">3572</span> "Tools" is a new page under "Users"<br />
-								<span class="label label-success">3572</span> User settings has been completely revamped<br />
-								<span class="label label-success">3572</span> Brand update<br />
-								<span class="label label-success">3572</span> You can now disable the "Back to top" link<br />
-								<span class="label label-success">3572</span> Emoji's are now part of the Editor interface<br />
-								<span class="label label-success">3572</span> Mainstage First Run has new actions<br />
-								<span class="label label-success">3572</span> Responsive footer has been improved<br />
-								<span class="label label-success">3572</span> zSettings has been dropped
+								<span class="label label-success">3573</span> Major changes to the profile system<br />
+								<span class="label label-success">3573</span> Actitiy has been removed<br />
+								<span class="label label-success">3573</span> "Tools" is a new page under "Users"<br />
+								<span class="label label-success">3573</span> User settings has been completely revamped<br />
+								<span class="label label-success">3573</span> Brand update<br />
+								<span class="label label-success">3573</span> You can now disable the "Back to top" link<br />
+								<span class="label label-success">3573</span> Emoji's are now part of the Editor interface<br />
+								<span class="label label-success">3573</span> Mainstage First Run has new actions<br />
+								<span class="label label-success">3573</span> Responsive footer has been improved<br />
+								<span class="label label-success">3573</span> zSettings has been dropped
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-success">3572</span> "Settings" is now an option in the user menu<br />
-								<span class="label label-success">3572</span> jQuery has been updated to version 2.1.3<br />
-								<span class="label label-success">3572</span> All user settings can be saved at once<br />
-								<span class="label label-success">3572</span> More coding conventions<br />
-								<span class="label label-success">3572</span> New interface for profile, settings and notifications<br />
-								<span class="label label-success">3572</span> Inbox now has it's own icon in the menubar<br />
-								<span class="label label-success">3572</span> Improved visual appearance of editor<br />
-								<span class="label label-success">3572</span> Backstage's First Run can be disabled<br />
-								<span class="label label-success">3572</span> Multiple bugfixes
+								<span class="label label-success">3573</span> "Settings" is now an option in the user menu<br />
+								<span class="label label-success">3573</span> jQuery has been updated to version 2.1.3<br />
+								<span class="label label-success">3573</span> All user settings can be saved at once<br />
+								<span class="label label-success">3573</span> More coding conventions<br />
+								<span class="label label-success">3573</span> New interface for profile, settings and notifications<br />
+								<span class="label label-success">3573</span> Inbox now has it's own icon in the menubar<br />
+								<span class="label label-success">3573</span> Improved visual appearance of editor<br />
+								<span class="label label-success">3573</span> Backstage's First Run can be disabled<br />
+								<span class="label label-success">3573</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
