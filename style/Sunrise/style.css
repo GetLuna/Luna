@@ -609,6 +609,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	display: inline;
 }
 
+.player {
+	max-width: 100%;
+	max-height: 100%;
+}
+
 .blockpost .postbody {
 	border-left-style: solid;
 	border-left-width: 1px;
