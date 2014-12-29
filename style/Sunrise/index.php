@@ -55,7 +55,7 @@ if (!defined('FORUM'))
 </div>
 <div class="row">
 	<div class="col-sm-3">
-		<?php if (is_subforum($id)): ?>
+		<?php if ((is_subforum($id) && $id != '0')): ?>
 			<div class="list-group list-group-forum">
 				<?php draw_subforum_list('index.php', $id) ?>
 			</div>
