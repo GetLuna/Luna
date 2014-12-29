@@ -8,6 +8,14 @@
 body, html {
 	background-color: #fff;
 	font-family: "Segoe UI", Arial;
+	min-height: 100%;
+	height: 100%;
+}
+
+#main {
+	overflow: auto;
+	padding-bottom: 130px;
+	min-height: 100%;
 }
 
 .container * {
@@ -217,6 +225,12 @@ h1, h2, h3, h4, h5, h6 {
 footer {
 	background: #2788cb;
 	color: #fff;
+	position: inherit;
+	bottom: 0px;
+	width: 100%;
+	margin-top: -110px;
+	height: 110px;
+	clear: both;
 }
 
 footer a, footer a:hover, footer a:active {
