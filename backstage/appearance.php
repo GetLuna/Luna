@@ -30,6 +30,7 @@ if (isset($_POST['form_sent'])) {
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
 		'back_to_top'		    => isset($_POST['form']['back_to_top']) ? '1' : '0',
 		'notification_flyout'	=> isset($_POST['form']['notification_flyout']) ? '1' : '0',
+		'header_search'			=> isset($_POST['form']['header_search']) ? '1' : '0',
 	);
 
 	// Make sure the number of displayed topics and posts is between 3 and 75
@@ -163,7 +164,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-								<input disabled type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') echo ' checked' ?> />
 								Show the search bar in the heading.
                             </label>
                         </div>
