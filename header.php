@@ -84,20 +84,40 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 $num_notifications = $db->result($result);
 
-if ($num_notifications == '0') {
-	$notificon = '<span class="fa fa-circle-o"></span>';
-	$ind_notification[] = '<li><a href="me.php?section=notifications&id='.$luna_user['id'].'">No new notifications</a></li>';
-} else {
-	$notificon = $num_notifications.' <span class="fa fa-circle"></span>';
-	
-	$notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
-	while ($cur_notifi = $db->fetch_assoc($notification_result)) {
-		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
-		$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
+if ($luna_config['o_notification_flyout'] == 1) {
+	if ($num_notifications == '0') {
+		$notificon = '<span class="fa fa-circle-o"></span>';
+		$ind_notification[] = '<li><a href="me.php?section=notifications&id='.$luna_user['id'].'">No new notifications</a></li>';
+	} else {
+		$notificon = $num_notifications.' <span class="fa fa-circle"></span>';
+		
+		$notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+		while ($cur_notifi = $db->fetch_assoc($notification_result)) {
+			$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
+			$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
+		}
 	}
-}
 
-$notifications = implode('<li class="divider"></li>', $ind_notification);
+	$notifications = implode('<li class="divider"></li>', $ind_notification);
+	$notification_menu_item = '
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> Notifications</span></a>
+					<ul class="dropdown-menu notification-menu">
+						<li role="presentation" class="dropdown-header">Notifications</li>
+						<li class="divider"></li>
+						'.$notifications.'
+						<li class="divider"></li>
+						<li><a class="pull-right" href="me.php?section=notifications&id='.$luna_user['id'].'">More <i class="fa fa-arrow-right"></i></a></li>
+					</ul>
+				</li>';
+} else {
+	if ($num_notifications == '0')
+		$notificon = '<span class="fa fa-circle-o"></span>';
+	else
+		$notificon = $num_notifications.' <span class="fa fa-circle"></span>';
+
+	$notification_menu_item = '<li><a href="me.php?section=notifications&id='.$luna_user['id'].'">'.$notificon.'<span class="visible-xs-inline"> Notifications</span></a></li>';
+}
 
 // Generate navigation items
 if (!$luna_user['is_admmod'])
@@ -111,17 +131,7 @@ if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
 				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
 else
-	$usermenu = $backstage.'
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> Notifications</span></a>
-					<ul class="dropdown-menu notification-menu">
-						<li role="presentation" class="dropdown-header">Notifications</li>
-						<li class="divider"></li>
-						'.$notifications.'
-						<li class="divider"></li>
-						<li><a class="pull-right" href="me.php?section=notifications&id='.$luna_user['id'].'">More <i class="fa fa-arrow-right"></i></a></li>
-					</ul>
-				</li>
+	$usermenu = $backstage.$notification_menu_item.'
 				<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></a>

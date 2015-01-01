@@ -29,6 +29,7 @@ if (isset($_POST['form_sent'])) {
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
 		'back_to_top'		    => isset($_POST['form']['back_to_top']) ? '1' : '0',
+		'notification_flyout'	=> isset($_POST['form']['notification_flyout']) ? '1' : '0',
 	);
 
 	// Make sure the number of displayed topics and posts is between 3 and 75
@@ -150,7 +151,7 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-								<input disabled type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
 								Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance.
                             </label>
                         </div>
