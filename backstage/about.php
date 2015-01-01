@@ -359,12 +359,15 @@ require 'header.php';
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-danger">36xx</span> Backstage will check of config is writeable<br />
-								<span class="label label-danger">36xx</span> More improvements to Backstage for small screens
+								<span class="label label-danger">36xx</span> More improvements to Backstage for small screens<br />
+								<span class="label label-danger">36xx</span> The notification fly-out is now optional<br />
+								<span class="label label-danger">36xx</span> You can now change the size of emojis
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-danger">36xx</span> Optimalization of multiple code snippets<br />
+								<span class="label label-danger">36xx</span> The search bar in themes can be disabled now<br />
 								<span class="label label-danger">36xx</span> Multiple bugfixes
 							</p>
 						</div>

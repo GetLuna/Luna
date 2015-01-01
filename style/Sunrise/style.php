@@ -82,4 +82,8 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	text-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
 }
 <?php } ?>
+
+.emoji {
+	font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
+}
 </style>

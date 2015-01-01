@@ -21,10 +21,10 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/appearance.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
-		'default_style'			=> luna_trim($_POST['form']['default_style']),
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
 		'moderated_by'		    => isset($_POST['form']['moderated_by']) ? '1' : '0',
+		'emoji_size'			=> intval($_POST['form']['emoji_size']),
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
@@ -114,7 +114,7 @@ if (isset($_GET['saved']))
                     <label class="col-sm-3 control-label">Emojis<span class="help-block">The font size emojis should be displayed in</span></label>
                     <div class="col-sm-9">
 						<div class="input-group">
-							<input disabled type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
+							<input type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
 							<span class="input-group-addon"><?php echo $lang['pixels'] ?></span>
 						</div>
                     </div>
