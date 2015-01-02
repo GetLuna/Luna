@@ -38,8 +38,12 @@ h2 {
 	margin-bottom: 5px;
 }
 
-.emoji {
+.emoji, .emoji-ed {
 	font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", "Android Emoji", "NotoColorEmoji", "EmojiSymbols" !important;
+}
+
+.emoji-ed {
+	font-size: 16px;
 }
 
 /* Text */
@@ -504,6 +508,20 @@ textarea.textarea, textarea.textarea:focus {
 .textarea-toolbar .btn {
 	border: none;
 	padding: 13px 18px 13px;
+}
+
+.dropdown-emoji {
+	width: 230px;
+}
+
+.dropdown-emoji > li {
+	display: inline-block;
+	float: left;
+}
+
+.dropdown-emoji > .open > ul {
+	display: inline-flex !important;
+	width: 230px;
 }
 
 .fa-fw {

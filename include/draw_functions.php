@@ -107,24 +107,24 @@ function draw_editor($height) {
 			<div class="btn-group hidden-xs">
 				<div class="btn-group">
 					<a class="btn btn-default btn-editor btn-emoji dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<span class="fa fa-fw text-emoji emoji">&#x263a;</span>
+						<span class="fa fa-fw text-emoji emoji-ed">&#x263a;</span>
 					</a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji">&#x263a;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji">&#x1f611;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji">&#x1f629;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji">&#x1f604;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji">&#x1f632;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji">&#x1f609;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji">&#x1f612;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji">&#x1f60b;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji">&#x1f600;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji">&#x1f620;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji">&#x1f606;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji">&#x1f60e;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji">&#x1f605;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji">&#x1f607;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji">&#x1f60f;</span></a></li>
+					<ul class="dropdown-menu dropdown-menu-right dropdown-emoji" role="menu">
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed">&#x263a;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed">&#x1f611;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed">&#x1f629;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed">&#x1f604;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed">&#x1f632;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed">&#x1f609;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed">&#x1f612;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed">&#x1f60b;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed">&#x1f600;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed">&#x1f620;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed">&#x1f60e;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed">&#x1f605;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed">&#x1f607;</span></a></li>
+						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed">&#x1f60f;</span></a></li>
 					</ul>
 				</div>
 			</div>

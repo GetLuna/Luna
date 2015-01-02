@@ -28,8 +28,8 @@ require 'header.php';
 				<h3 class="panel-title">Welcome to the Luna Preview</h3>
 			</div>
 			<div class="panel-body">
-				<p>Welcome to Luna Preview 2. It's great that you are using this software. However, don't use Luna in a productive environment yet. This preview is only ment to show what's coming next to Luna.</p>
-				<p>We would like to ask you to send in feedback. Feedback is very important for us. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already.</p>
+				<p>Welcome to Luna Preview 2. It's great that you are using this software. This preview is ment to show what's coming next to Luna.</p>
+				<p>Feedback is very important for us, it would be great if you give us some. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already.</p>
 			</div>
 			<div class="panel-footer">
 				<div class="btn-group">
@@ -102,7 +102,7 @@ require 'header.php';
 				</div>
 				<h4>Emojis</h4>
 				<img class="img-responsive" src="../img/about/emoji.png" />
-				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwhite as they are a font and not an image, which makes them also ready for high DPI screens. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above.</p>
+				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwhite as they are a font and not an image, which makes them also ready for high DPI screens and improve performance. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above. Unlike emoticons, you can change the size of the emojis across your whole board (and they'll stay nice).</p>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Smarter editor</h4>
@@ -156,12 +156,15 @@ require 'header.php';
 				<a id="theme"><h3><span class="fa fa-fw fa-paint-brush"></span> Theme engine</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
+						<h4>Theme Engine 6</h4>
+						<p>Luna includes, what we like to call "Theme Engine 6", which is the successor to ModernBB 3.6' "Style Engine 5.2". The new core of Luna allows extended customization, without losing the ability to upgrade.</p>
+					</div>
+					<div class="col-sm-6">
 						<h4>New developer tools</h4>
 						<p>The possibilities for developing your own theme have been extended drasticaly! You can do whatever you want now. Luna won't force you to use Bootstrap anymore, as the choise is now up to you.</p>
 					</div>
 				</div>
 				<a id="themes"><h3><span class="fa fa-fw fa-pencil"></span> Themes</h3></a>
-				<p>The Style Engine v5.2 has made place for our brand new Theme Engine v6.0.</p>
 				<h4>Sunrise</h4>
 				<img class="img-responsive" src="../img/about/sunrise.png" />
 				<p>Due to the new Theme Engine, we had to rebuild our styles anyway, so why not throw in something new and fresh? That's why you're now free to use our brand new default theme, Sunrise, which will replace Random. Sunrise uses new features from Luna to show of it's capabilities. For example, Sunrise doesn't replace just Random, but also Awesome, Kind, Luna (the theme from ModernBB that is), Pinkie, Magic, Radical, Happy and Shy. In 1 theme, you get 12 different colorschemes available to you and your users.</p>
@@ -193,7 +196,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>40 bugs have been fixed.</p>
+						<p>45 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>3 security issue has been fixed.</p>
 					</div>
@@ -368,6 +371,7 @@ require 'header.php';
 							<p>
 								<span class="label label-danger">36xx</span> Optimalization of multiple code snippets<br />
 								<span class="label label-danger">36xx</span> The search bar in themes can be disabled now<br />
+								<span class="label label-danger">36xx</span> The emoji dropdown in the editor has been improved<br />
 								<span class="label label-danger">36xx</span> Multiple bugfixes
 							</p>
 						</div>
