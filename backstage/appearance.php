@@ -32,6 +32,9 @@ if (isset($_POST['form_sent'])) {
 		'back_to_top'		    => isset($_POST['form']['back_to_top']) ? '1' : '0',
 		'notification_flyout'	=> isset($_POST['form']['notification_flyout']) ? '1' : '0',
 		'header_search'			=> isset($_POST['form']['header_search']) ? '1' : '0',
+		'show_copyright'		=> isset($_POST['form']['show_copyright']) ? '1' : '0',
+		'copyright_type'		=> intval($_POST['form']['copyright_type']),
+		'custom_copyright'		=> luna_trim($_POST['form']['custom_copyright']),
 	);
 
 	// Make sure the number of displayed topics and posts is between 3 and 75
@@ -208,26 +211,27 @@ if (isset($_GET['saved']))
                     <div class="col-sm-9">
                         <div class="checkbox">
                             <label>
-								<input disabled type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') echo ' checked' ?> />
 								Show the copyright notice in the footer.
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label"></label>
+                    <label class="col-sm-3 control-label">Copyright content</label>
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
-                                <input disabled type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') echo ' checked' ?> />
+                                <input type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') echo ' checked' ?> />
                                 Show default copyright
                             </label>
                         </div>
                         <div class="radio">
                             <label>
-                                <input disabled type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked' ?> />
-                                <input disabled type="text" class="form-control" name="form[custom_copyright]" placeholder="Your copyright" value="<?php echo $luna_config['o_custom_copyright'] ?>" />
-                            </label>
+                                <input type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked' ?> />
+								show personalized copyright notices:
+                            </label><br /><br />
+							<input type="text" class="form-control" name="form[custom_copyright]" placeholder="Your copyright" value="<?php echo $luna_config['o_custom_copyright'] ?>" />
                         </div>
                     </div>
                 </div>

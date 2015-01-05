@@ -164,7 +164,16 @@ if (!defined('FORUM_FORM')) {
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4 col-xs-12">Copyright &copy; <?php echo date(Y) ?> &middot <?php echo $luna_config['o_board_title'] ?></div>
+				<div class="col-sm-4 col-xs-12">
+<?php
+	if ($luna_config['o_show_copyright'] == '1') {
+		if ($luna_config['o_copyright_type'] == '0')
+			echo 'Copyright &copy; '.date(Y).' &middot '.$luna_config['o_board_title'];
+		if ($luna_config['o_copyright_type'] == '1')
+			echo $luna_config['o_custom_copyright'];
+	}
+?>
+				</div>
 				<div class="col-sm-4 col-xs-12"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center"><a href="#"><span class="fa fa-chevron-up"></span></a></div><?php endif; ?></div>
 				<div class="col-sm-4 col-xs-12"><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version']).'</a>' ?></span></div>
 			</div>
