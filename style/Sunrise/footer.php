@@ -86,6 +86,7 @@ if (!defined('FORUM_FORM')) {
 </div>
 <footer>
 	<div class="container">
+		<?php if ($luna_config['o_board_statistics'] == 1): ?>
 		<div class="row stats">
 			<div class="col-md-4 col-sm-6 col-xs-12 statistics">
 				<div class="row">
@@ -158,6 +159,7 @@ if (!defined('FORUM_FORM')) {
 				</div>
 			</div>
 		</div>
+		<?php endif; ?>
 	</div>
 	<div class="copyright">
 		<div class="container">
