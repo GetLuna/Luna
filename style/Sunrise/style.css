@@ -84,6 +84,27 @@ h1, h2, h3, h4, h5, h6 {
 	opacity: 1;
 }
 
+/* Addons */
+#microsoft-addon, #facebook-addon, #twitter-addon, #google-addon {
+	color: #fff;
+}
+
+#microsoft-addon {
+	background-color: #21c9ff;
+}
+
+#facebook-addon {
+	background-color: #4862a3;
+}
+
+#twitter-addon {
+	background-color: #00acee;
+}
+
+#google-addon {
+	background-color: #da4836;
+}
+
 /* Header */
 .dropdown-menu {
 	padding: 0;

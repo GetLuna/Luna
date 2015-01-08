@@ -257,25 +257,37 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Microsoft'] ?></label>
 						<div class="col-sm-9">
-							<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" />
+							<div class="input-group input">
+								<span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></span>
+								<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" aria-describedby="microsoft-addon">
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Facebook'] ?></label>
 						<div class="col-sm-9">
-							<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" />
+							<div class="input-group">
+								<span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span></span>
+								<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" aria-describedby="facebook-addon">
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Twitter'] ?></label>
 						<div class="col-sm-9">
-							<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" />
+							<div class="input-group">
+								<span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span></span>
+								<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" aria-describedby="twitter-addon">
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Google+'] ?></label>
 						<div class="col-sm-9">
-							<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" />
+							<div class="input-group">
+								<span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></span>
+								<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" aria-describedby="google-addon">
+							</div>
 						</div>
 					</div>
 				</fieldset>
