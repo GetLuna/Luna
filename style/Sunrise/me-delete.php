@@ -6,12 +6,11 @@ if (!defined('FORUM'))
 
 ?>
 
-<h2 class="profile-h2"><?php echo $lang['Confirm delete user'] ?></h2>
 <form id="confirm_del_user" method="post" action="me.php?id=<?php echo $id ?>">
     <fieldset>
         <div class="panel panel-danger">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.luna_htmlspecialchars($username).'</strong>' ?></h3>
+                <h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.luna_htmlspecialchars($username).'</strong>' ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /></span></h3>
             </div>
             <div class="panel-body">
                 <?php echo $lang['Delete warning'] ?>
@@ -21,9 +20,6 @@ if (!defined('FORUM'))
                         <?php echo $lang['Delete all posts'] ?>
                     </label>
                 </div>
-            </div>
-            <div class="panel-footer">
-                <input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /> <a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
             </div>
         </div>
     </fieldset>

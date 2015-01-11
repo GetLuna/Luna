@@ -169,7 +169,7 @@ if (isset($_POST['update_group_membership'])) {
 	define('FORUM_ACTIVE_PAGE', 'profile');
 	require load_page('header.php');
 
-	require get_view_path('me-delete_user.tpl.php');
+	require load_page('me-delete.php');
 } else if (isset($_POST['update_forums'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
