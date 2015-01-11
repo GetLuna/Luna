@@ -20,7 +20,7 @@ if (!defined('FORUM'))
     </div>
 </div>
 
-<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+<form method="post" action="backstage/moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
 
     require FORUM_ROOT.'include/parser.php';

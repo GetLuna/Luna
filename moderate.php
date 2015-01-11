@@ -72,7 +72,7 @@ if (isset($_GET['tid'])) {
 			message($lang['No posts selected']);
 
 		if (isset($_POST['delete_posts_comply'])) {
-			confirm_referrer('moderate.php');
+			confirm_referrer('backstage/moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
 				message($lang['Bad request'], false, '404 Not Found');
@@ -117,7 +117,7 @@ if (isset($_GET['tid'])) {
 			message($lang['No posts selected']);
 
 		if (isset($_POST['split_posts_comply'])) {
-			confirm_referrer('moderate.php');
+			confirm_referrer('backstage/moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
 				message($lang['Bad request'], false, '404 Not Found');
@@ -203,7 +203,7 @@ if (isset($_GET['tid'])) {
 	$start_from = $luna_user['disp_posts'] * ($p - 1);
 
 	// Generate paging links
-	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
+	$paging_links = paginate($num_pages, $p, 'backstage/moderate.php?fid='.$fid.'&amp;tid='.$tid);
 
 
 	if ($luna_config['o_censoring'] == '1')
@@ -221,7 +221,7 @@ if (isset($_GET['tid'])) {
 // Move one or more topics
 if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 	if (isset($_POST['move_topics_to'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message($lang['Bad request'], false, '404 Not Found');
@@ -297,7 +297,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 // Merge two or more topics
 else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 	if (isset($_POST['merge_topics_comply'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message($lang['Bad request'], false, '404 Not Found');
@@ -377,7 +377,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 		message($lang['No topics selected']);
 
 	if (isset($_POST['delete_topics_comply'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $topics))
 			message($lang['Bad request'], false, '404 Not Found');
@@ -437,7 +437,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 	// There could be an array of topic IDs in $_POST
 	if (isset($_POST['open']) || isset($_POST['close'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
 		if (empty($topics))
@@ -446,7 +446,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
 		$redirect_msg = ($action) ? $lang['Close topics redirect'] : $lang['Open topics redirect'];
-		redirect('moderate.php?fid='.$fid);
+		redirect('backstage/moderate.php?fid='.$fid);
 	}
 	// Or just one in $_GET
 	else {
@@ -523,7 +523,7 @@ else if (isset($_GET['unstick'])) {
 	$start_from = $luna_user['disp_topics'] * ($p - 1);
 	
 	// Generate paging links
-	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
+	$paging_links = paginate($num_pages, $p, 'backstage/moderate.php?fid='.$fid);
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
 	define('FORUM_ACTIVE_PAGE', 'moderate');
