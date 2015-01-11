@@ -55,7 +55,7 @@ if ($fid < 1) {
 			<h3 class="panel-title">Moderate content</h3>
 		</div>
 		<div class="panel-body">
-			<p>Visit a forum or topic to moderate content.</p>
+			<p>Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.</p>
 		</div>
 	</div>
 	<?php
