@@ -20,7 +20,7 @@ if ($luna_user['g_id'] != FORUM_ADMIN)
 // by all moderators and admins
 if (isset($_GET['get_host'])) {
 	if (!$luna_user['is_admmod'])
-		message($lang['No permission'], false, '403 Forbidden');
+		message_backstage($lang['No permission'], false, '403 Forbidden');
 
 	// Is get_host an IP address or a post ID?
 	if (@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $_GET['get_host']) || @preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $_GET['get_host']))
@@ -28,23 +28,41 @@ if (isset($_GET['get_host'])) {
 	else {
 		$get_host = intval($_GET['get_host']);
 		if ($get_host < 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$result = $db->query('SELECT poster_ip FROM '.$db->prefix.'posts WHERE id='.$get_host) or error('Unable to fetch post IP address', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$ip = $db->result($result);
 	}
 
-	message(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
+	message_backstage(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
 }
 
 
 // All other functions require moderator/admin access
 $fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
-if ($fid < 1)
-	message($lang['Bad request'], false, '404 Not Found');
+if ($fid < 1) {
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Moderate']);
+	define('FORUM_ACTIVE_PAGE', 'admin');
+	require 'header.php';
+	load_admin_nav('content', 'moderate');
+	
+	?>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Moderate content</h3>
+		</div>
+		<div class="panel-body">
+			<p>Visit a forum or topic to moderate content.</p>
+		</div>
+	</div>
+	<?php
+	
+	require 'footer.php';
+	exit;
+}
 
 $result = $db->query('SELECT moderators FROM '.$db->prefix.'forums WHERE id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
@@ -52,7 +70,7 @@ $moderators = $db->result($result);
 $mods_array = ($moderators != '') ? unserialize($moderators) : array();
 
 if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] == '0' || !array_key_exists($luna_user['username'], $mods_array)))
-	message($lang['No permission'], false, '403 Forbidden');
+	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 // Get topic/forum tracking data
 if (!$luna_user['is_guest'])
@@ -62,12 +80,12 @@ if (!$luna_user['is_guest'])
 if (isset($_GET['tid'])) {
 	$tid = intval($_GET['tid']);
 	if ($tid < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	// Fetch some info about the topic
 	$result = $db->query('SELECT t.subject, t.num_replies, t.first_post_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	$cur_topic = $db->fetch_assoc($result);
 
@@ -75,20 +93,20 @@ if (isset($_GET['tid'])) {
 	if (isset($_POST['delete_posts']) || isset($_POST['delete_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
-			message($lang['No posts selected']);
+			message_backstage($lang['No posts selected']);
 
 		if (isset($_POST['delete_posts_comply'])) {
 			confirm_referrer('moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
-				message($lang['Bad request'], false, '404 Not Found');
+				message_backstage($lang['Bad request'], false, '404 Not Found');
 
 			// Verify that the post IDs are valid
 			$admins_sql = ($luna_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
-				message($lang['Bad request'], false, '404 Not Found');
+				message_backstage($lang['Bad request'], false, '404 Not Found');
 
 			// Delete the posts
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
@@ -116,24 +134,38 @@ if (isset($_GET['tid'])) {
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
 		
-		include('../style/Core/templates/views/moderate-delete_posts.tpl.php');
+		?>
+		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Delete posts'] ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="delete_posts_comply" value="<?php echo $lang['Delete'] ?>" /></span></h3>
+				</div>
+				<div class="panel-body">
+					<fieldset>
+						<input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
+						<p><?php echo $lang['Delete posts comply'] ?></p>
+					</fieldset>
+				</div>
+			</div>
+		</form>
+		<?php
 		
 		require 'footer.php';
 
 	} else if (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
-			message($lang['No posts selected']);
+			message_backstage($lang['No posts selected']);
 
 		if (isset($_POST['split_posts_comply'])) {
 			confirm_referrer('moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
-				message($lang['Bad request'], false, '404 Not Found');
+				message_backstage($lang['Bad request'], false, '404 Not Found');
 
 			$move_to_forum = isset($_POST['move_to_forum']) ? intval($_POST['move_to_forum']) : 0;
 			if ($move_to_forum < 1)
-				message($lang['Bad request'], false, '404 Not Found');
+				message_backstage($lang['Bad request'], false, '404 Not Found');
 
 			// How many posts did we just split off?
 			$num_posts_splitted = substr_count($posts, ',') + 1;
@@ -141,20 +173,20 @@ if (isset($_GET['tid'])) {
 			// Verify that the post IDs are valid
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result) != $num_posts_splitted)
-				message($lang['Bad request'], false, '404 Not Found');
+				message_backstage($lang['Bad request'], false, '404 Not Found');
 
 			// Verify that the move to forum ID is valid
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$luna_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
-				message($lang['Bad request'], false, '404 Not Found');
+				message_backstage($lang['Bad request'], false, '404 Not Found');
 
 			// Check subject
 			$new_subject = isset($_POST['new_subject']) ? luna_trim($_POST['new_subject']) : '';
 
 			if ($new_subject == '')
-				message($lang['No subject']);
+				message_backstage($lang['No subject']);
 			else if (luna_strlen($new_subject) > 70)
-				message($lang['Too long subject']);
+				message_backstage($lang['Too long subject']);
 
 			// Get data from the new first post
 			$result = $db->query('SELECT p.id, p.poster, p.posted FROM '.$db->prefix.'posts AS p WHERE id IN('.$posts.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
@@ -192,8 +224,52 @@ if (isset($_GET['tid'])) {
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
+		?>
 		
-		include('../style/Core/templates/views/moderate-split_posts.tpl.php');
+		<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Split posts'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php echo $lang['Split'] ?>" /></span></h3>
+				</div>
+				<div class="panel-body">
+					<fieldset>
+						<input type="hidden" class="form-control" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><?php echo $lang['Move to'] ?></label>
+							<div class="col-sm-10">
+								<select class="form-control" name="move_to_forum">
+		<?php
+		
+			$cur_category = 0;
+			while ($cur_forum = $db->fetch_assoc($result)) {
+				if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
+					if ($cur_category)
+						echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
+		
+					echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
+					$cur_category = $cur_forum['cid'];
+				}
+		
+				echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'"'.($fid == $cur_forum['fid'] ? ' selected' : '').'>'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
+			}
+		
+		?>
+									</optgroup>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><?php echo $lang['New subject'] ?></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" name="new_subject" maxlength="70" />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</form>
+		
+		<?php
 		
 		require 'footer.php';
 	}
@@ -246,23 +322,23 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$topics = explode(',', $_POST['topics']);
 		$move_to_forum = isset($_POST['move_to_forum']) ? intval($_POST['move_to_forum']) : 0;
 		if (empty($topics) || $move_to_forum < 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		// Verify that the topic IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.implode(',',$topics).') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) != count($topics))
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		// Verify that the move to forum ID is valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$luna_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		// Delete any redirect topics if there are any (only if we moved/copied the topic back to where it was once moved from)
 		$db->query('DELETE FROM '.$db->prefix.'topics WHERE forum_id='.$move_to_forum.' AND moved_to IN('.implode(',',$topics).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
@@ -292,28 +368,73 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 	if (isset($_POST['move_topics'])) {
 		$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 		if (empty($topics))
-			message($lang['No topics selected']);
+			message_backstage($lang['No topics selected']);
 
 		$topics = implode(',', array_map('intval', array_keys($topics)));
 		$action = 'multi';
 	} else {
 		$topics = intval($_GET['move_topics']);
 		if ($topics < 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$action = 'single';
 	}
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) < 2)
-		message($lang['Nowhere to move']);
+		message_backstage($lang['Nowhere to move']);
 	
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
+	?>
+
+	<form class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo ($action == 'single') ? $lang['Move topic'] : $lang['Move topics'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php echo $lang['Move'] ?>" /></span></h3>
+			</div>
+			<div class="panel-body">
+				<input type="hidden" name="topics" value="<?php echo $topics ?>" />
+				<fieldset>
+					<div class="form-group">
+						<label class="col-sm-2 control-label"><?php echo $lang['Move to'] ?></label>
+						<div class="col-sm-10">
+							<select class="form-control" name="move_to_forum">
+	<?php
 	
-	include('../style/Core/templates/views/moderate-move_topics.tpl.php');
+		$cur_category = 0;
+		while ($cur_forum = $db->fetch_assoc($result)) {
+			if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
+				if ($cur_category)
+					echo "\t\t\t\t\t\t\t".'</optgroup>'."\n";
+	
+				echo "\t\t\t\t\t\t\t".'<optgroup label="'.luna_htmlspecialchars($cur_forum['cat_name']).'">'."\n";
+				$cur_category = $cur_forum['cid'];
+			}
+	
+			if ($cur_forum['fid'] != $fid)
+				echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</option>'."\n";
+		}
+	
+	?>
+								</optgroup>
+							</select>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked' ?> />
+									<?php echo $lang['Leave redirect'] ?>
+								</label>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</form>
+	
+	<?php
 	
 	require 'footer.php';
 }
@@ -324,16 +445,16 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) 
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$topics = explode(',', $_POST['topics']);
 		if (count($topics) < 2)
-			message($lang['Not enough topics selected']);
+			message_backstage($lang['Not enough topics selected']);
 
 		// Verify that the topic IDs are valid (redirect links will point to the merged topic after the merge)
 		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid.' ORDER BY id ASC') or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result) != count($topics))
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		// The topic that we are merging into is the one with the smallest ID
 		$merge_to_tid = $db->result($result);
@@ -384,14 +505,34 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) 
 
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (count($topics) < 2)
-		message($lang['Not enough topics selected']);
+		message_backstage($lang['Not enough topics selected']);
 	else {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Moderate']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
+		?>
+
+		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Merge topics'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php echo $lang['Merge'] ?>" /></span></h3>
+				</div>
+				<div class="panel-body">
+					<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
+					<fieldset>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="with_redirect" value="1" />
+								<?php echo $lang['Leave redirect'] ?>
+							</label>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</form>
 		
-		include('../style/Core/templates/views/moderate-merge_topics.tpl.php');
+		<?php
 		
 		require 'footer.php';
 	}
@@ -401,13 +542,13 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) 
 else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (empty($topics))
-		message($lang['No topics selected']);
+		message_backstage($lang['No topics selected']);
 
 	if (isset($_POST['delete_topics_comply'])) {
 		confirm_referrer('moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $topics))
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		require FORUM_ROOT.'include/search_idx.php';
 
@@ -415,13 +556,13 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.$topics.') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) != substr_count($topics, ',') + 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		// Verify that the posts are not by admins
 		if ($luna_user['g_id'] != FORUM_ADMIN) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
-				message($lang['No permission'], false, '403 Forbidden');
+				message_backstage($lang['No permission'], false, '403 Forbidden');
 		}
 
 		// Delete the topics and any redirect topics
@@ -453,9 +594,23 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
+	?>
+
+	<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $lang['Delete topics'] ?><span class="pull-right"><input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /></span></h3>
+			</div>
+			<div class="panel-body">
+				<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
+				<fieldset>
+					<p><?php echo $lang['Delete topics comply'] ?></p>
+				</fieldset>
+			</div>
+		</div>
+	</form>
 	
-	include('../style/Core/templates/views/moderate-delete_topics.tpl.php');
-	
+	<?php
 	require 'footer.php';
 }
 
@@ -470,7 +625,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
 		if (empty($topics))
-			message($lang['No topics selected']);
+			message_backstage($lang['No topics selected']);
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
@@ -483,7 +638,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message_backstage($lang['Bad request'], false, '404 Not Found');
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
@@ -499,7 +654,7 @@ else if (isset($_GET['stick'])) {
 
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to stick topic', __FILE__, __LINE__, $db->error());
 
@@ -513,7 +668,7 @@ else if (isset($_GET['unstick'])) {
 
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
 
@@ -521,7 +676,7 @@ else if (isset($_GET['unstick'])) {
 } 
 
 // If absolutely none of them are going on
-else if (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_topics']) && !isset($_POST['delete_topics_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_topics']) && !isset($_POST['merge_topics_comply'])) {
+else {
 
 	// No specific forum moderation action was specified in the query string, so we'll display the moderator forum
 	
@@ -529,7 +684,7 @@ else if (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST[
 	$result = $db->query('SELECT f.forum_name, f.num_topics, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
-		message($lang['Bad request'], false, '404 Not Found');
+		message_backstage($lang['Bad request'], false, '404 Not Found');
 	
 	$cur_forum = $db->fetch_assoc($result);
 	
@@ -568,32 +723,117 @@ else if (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST[
 			<h3 class="panel-title">Moderate content</h3>
 		</div>
 		<div class="panel-body">
-			<?php include('../style/Core/templates/views/moderate-form.tpl.php'); ?>
+			<div class="jumbotron<?php echo $item_status ?>"<?php echo $jumbo_style ?>>
+				<div class="container">
+					<h2>Moderating <?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right"><?php echo $paging_links ?></span>
+				</div>
+			</div>
+			<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+<?php
+
+
+// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
+$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$fid.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+
+// If there are topics in this forum
+if ($db->num_rows($result)) {
+    $topic_ids = array();
+    for ($i = 0;$cur_topic_id = $db->result($result, $i);$i++)
+        $topic_ids[] = $cur_topic_id;
+
+    // Select topics
+    $result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
+
+    $button_status = '';
+    $topic_count = 0;
+    while ($cur_topic = $db->fetch_assoc($result)) {
+
+        ++$topic_count;
+        $status_text = array();
+        $item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
+        $icon_type = 'icon';
+
+        if (is_null($cur_topic['moved_to'])) {
+            $last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="me.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+            $ghost_topic = false;
+        } else {
+            $last_post = '- - -';
+            $ghost_topic = true;
+        }
+
+        if ($luna_config['o_censoring'] == '1')
+            $cur_topic['subject'] = censor_words($cur_topic['subject']);
+
+        if ($cur_topic['sticky'] == '1') {
+            $item_status .= ' isticky';
+            $status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
+        }
+
+        if ($cur_topic['moved_to'] != 0) {
+            $subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+            $status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
+            $item_status .= ' imoved';
+        } else if ($cur_topic['closed'] == '0')
+            $subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+        else {
+            $subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+            $status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
+            $item_status .= ' iclosed';
+        }
+
+        if (!$ghost_topic && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$fid]) || $tracked_topics['forums'][$fid] < $cur_topic['last_post'])) {
+            $item_status .= ' inew';
+            $icon_type = 'icon icon-new';
+            $subject = '<strong>'.$subject.'</strong>';
+            $subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
+        } else
+            $subject_new_posts = null;
+
+        // Insert the status text before the subject
+        $subject = implode(' ', $status_text).' '.$subject;
+
+        $num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
+
+        if ($num_pages_topic > 1)
+            $subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
+        else
+            $subject_multipage = null;
+
+        // Should we show the "New posts" and/or the multipage links?
+        if (!empty($subject_new_posts) || !empty($subject_multipage)) {
+            $subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
+            $subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
+        }
+
+?>
+			<div class="topic-entry-list">
+<?php require get_view_path('topic.php'); ?>
+			</div>
+<?php
+
+    }
+} else {
+    $colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
+    $button_status = ' disabled="disabled"';
+    echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.$lang['Empty forum'].'</td></tr>'."\n";
+}
+
+?>	
+				<div class="pull-right">
+					<div class="btn-group">
+						<input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> />
+						<input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> />
+						<input type="submit" class="btn btn-primary" name="merge_topics" value="<?php echo $lang['Merge'] ?>"<?php echo $button_status ?> />
+					</div>
+					<div class="btn-group">
+						<input type="submit" class="btn btn-primary" name="open" value="<?php echo $lang['Open'] ?>"<?php echo $button_status ?> />
+						<input type="submit" class="btn btn-primary" name="close" value="<?php echo $lang['Close'] ?>"<?php echo $button_status ?> />
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 	<?php
 	
 	require 'footer.php';
-}
-
-// The final possibility
-else {
-
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Moderate']);
-define('FORUM_ACTIVE_PAGE', 'admin');
-require 'header.php';
-load_admin_nav('content', 'moderate');
-
-?>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title">Moderate content</h3>
-	</div>
-	<div class="panel-body">
-		<p>Visit a forum or topic to moderate content.</p>
-	</div>
-</div>
-<?php
-
-require 'footer.php';
 }
