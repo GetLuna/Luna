@@ -102,17 +102,18 @@ if ($email_field != '') {
 
 $user_messaging = array();
 
-if ($user['facebook'] != '')
-	$user_messaging[] = '<b>'.$lang['Facebook'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']);
-
 if ($user['msn'] != '')
-	$user_messaging[] = '<b>'.$lang['Microsoft'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']);
+	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" aria-describedby="microsoft-addon" readonly></div>';
+
+if ($user['facebook'] != '')
+	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['facebook']) : $user['facebook']).'" aria-describedby="facebook-addon" readonly></div>';
 
 if ($user['twitter'] != '')
-	$user_messaging[] = '<b>'.$lang['Twitter'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']);
+	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['twitter']) : $user['twitter']).'" aria-describedby="twitter-addon" readonly></div>';
 
 if ($user['google'] != '')
-	$user_messaging[] = '<b>'.$lang['Google+'].':</b> '.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']);
+	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" aria-describedby="google-addon" readonly></div>';
+
 
 if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
 	$user_signature = $parsed_signature;
