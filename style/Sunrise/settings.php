@@ -250,7 +250,10 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Website'] ?></label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" />
+							<div class="input-group input">
+								<span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></span>
+								<input id="website" type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" aria-describedby="website-addon">
+							</div>
 						</div>
 					</div>
 					<hr />
