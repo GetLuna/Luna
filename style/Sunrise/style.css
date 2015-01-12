@@ -85,8 +85,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Addons */
-#microsoft-addon, #facebook-addon, #twitter-addon, #google-addon {
+#website-addon, #microsoft-addon, #facebook-addon, #twitter-addon, #google-addon {
 	color: #fff;
+}
+
+#website-addon {
+	background-color: #00c48a;
 }
 
 #microsoft-addon {

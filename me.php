@@ -102,6 +102,9 @@ if ($email_field != '') {
 
 $user_messaging = array();
 
+if ($user['url'] != '')
+	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" aria-describedby="website-addon" readonly></div>';
+
 if ($user['msn'] != '')
 	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['msn']) : $user['msn']).'" aria-describedby="microsoft-addon" readonly></div>';
 
