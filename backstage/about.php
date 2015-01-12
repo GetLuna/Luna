@@ -64,8 +64,12 @@ require 'header.php';
 				<a id="users"><h3><span class="fa fa-fw fa-user"></span> User features</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Profile</h4>
-						<p>The profile has been completely revamped with a new design and a new codebase. Personality settings and board settings can now be saved all at once, these pages are also more to-the-point then ever before. The profile has been extended with a notification system, too!</p>
+						<h4>Settings</h4>
+						<p>Personality settings and board settings can now be saved all at once, these pages are also more to-the-point then ever before. The profile has been extended with a notification system, too!</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>A more fun design</h4>
+						<p>The design of the profile has been improved to give a little bit more color to your users their profile. They need to fill in most of the fields for it, through.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Make it yours</h4>
@@ -118,8 +122,12 @@ require 'header.php';
 				<a id="management"><h3><span class="fa fa-fw fa-coffee"></span> Management</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
+						<h4>Mainstage independent</h4>
+						<p>The moderation tools are now part of the Backstage and thus no longer depending on the Maisntage. This makes the way they work more unified and theme developers don't need to worry about them, either. In the future, this will allow us to add new features more easly without disturbing theme developers.</p>
+					</div>
+					<div class="col-sm-6">
 						<h4>Moderation tools</h4>
-						<p>The moderation tools have been improved with a brand new design and additional improvements.</p>
+						<p>The moderation tools have been improved with a brand new design and additional improvements. Most of the changes where done due to the move from Mainstage to Backstage, but they also contain (a lot of) usability improvements.</p>
 					</div>
 				</div>
 				<a id="backstage"><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3></a>
@@ -365,7 +373,9 @@ require 'header.php';
 								<span class="label label-danger">36xx</span> More improvements to Backstage for small screens<br />
 								<span class="label label-danger">36xx</span> The notification fly-out is now optional<br />
 								<span class="label label-danger">36xx</span> You can now change the size of emojis<br />
-								<span class="label label-danger">36xx</span> The copyright notice now can be altered by admins
+								<span class="label label-danger">36xx</span> The copyright notice now can be altered by admins<br />
+								<span class="label label-danger">36xx</span> Moderation tools are now a Backstage feature<br />
+								<span class="label label-danger">36xx</span> The profile now shows the user's URL again
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -374,6 +384,8 @@ require 'header.php';
 								<span class="label label-danger">36xx</span> The search bar in themes can be disabled now<br />
 								<span class="label label-danger">36xx</span> The emoji dropdown in the editor has been improved<br />
 								<span class="label label-danger">36xx</span> Statistics in the footer can be disabled<br />
+								<span class="label label-danger">36xx</span> Core has been removed from the theme engine<br />
+								<span class="label label-danger">36xx</span> Improvements to the new profile settings<br />
 								<span class="label label-danger">36xx</span> Multiple bugfixes
 							</p>
 						</div>
