@@ -84,12 +84,6 @@ if ($luna_user['g_search'] == '1') {
 if ($posts_field != '')
 	$user_personality[] = '<br /><div class="btn-group">'.$posts_field.'</div>';
 
-if ($user['url'] != '') {
-	$user_website = '<a class="btn btn-default btn-block" href="'.luna_htmlspecialchars($user['url']).'" rel="nofollow"><span class="fa fa-globe"></span> '.$lang['Website'].'</a>';
-} else {
-	$user_website = '';
-}
-
 if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 	$email_field = '<a class="btn btn-default btn-block" href="mailto:'.luna_htmlspecialchars($user['email']).'"><span class="fa fa-send-o"></span> '.luna_htmlspecialchars($user['email']).'</a>';
 else if ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
