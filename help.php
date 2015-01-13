@@ -18,7 +18,13 @@ define('FORUM_ACTIVE_PAGE', 'help');
 require load_page('header.php');
 
 ?>
-<h2><?php echo $lang['Help'] ?></h2>
+</div>
+<div class="jumbotron" style="background:#999;">
+	<div class="container">
+		<h2><?php echo $lang['Help'] ?></h2>
+	</div>
+</div>
+<div class="container">
 <?php if ($luna_config['o_rules'] == '1') { ?>
 <div class="panel panel-default">
     <div id="rules-block" class="panel-heading">
