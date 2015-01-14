@@ -524,8 +524,10 @@ function draw_index_topics_list($section_id) {
 	
 		}
 	
-	} else {
+	} else if ($section_id != 0) {
 		echo '<h3 class="nothing">There are no thread in this forum, <a href="post.php?fid='.$id.'">be the first one!</a></h3>';
+	} else {
+		echo '<h3 class="nothing">There are no thread on this board, choose a forum and be the first one.</h3>';
 	}
 	
 }
