@@ -226,20 +226,9 @@ h1, h2, h3, h4, h5, h6 {
 	width: auto;
 }
 
-@media all and (max-width: 767px) {
-	.navbar-brand {
-		height: 50px;
-		padding: 15px 15px;
-	}
-
-	.navbar-inverse .navbar-toggle {
-		margin: 8px 15px 8px 0;
-	}
-	
-	.navbar #search {
-		margin-left: 0;
-		margin-right: 0;
-	}
+.navbar #search {
+	margin-left: 0;
+	margin-right: 0;
 }
 
 .navbar-form * {
@@ -248,6 +237,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-search {
 	padding: 7px 12px !important;
+}
+
+.navbar-inverse .navbar-toggle {
+	border: none;
+}
+
+.navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+	background-color: #fff;
 }
 
 /* Footer */
