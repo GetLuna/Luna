@@ -11,11 +11,6 @@
 if (!defined('FORUM'))
 	exit;
 
-// Display a "mark all as read" link
-$markread = '';
-if (!$luna_user['is_guest'])
-	$markread = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
-
 ?>
 	</div>
 	<div class="container">

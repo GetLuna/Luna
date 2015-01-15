@@ -957,3 +957,13 @@ function draw_search_forum_list() {
 		echo "\t\t\t\t\t\t".'<br /></label></div>'."\n";
 	}
 }
+
+function draw_mark_read($class) {
+	global $lang, $luna_user;
+	
+	if (!empty($class))
+		$classes = ' class="'.$class.'"';
+
+	if (!$luna_user['is_guest'])
+		echo '<a'.$classes.' href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
+}

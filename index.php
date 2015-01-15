@@ -50,10 +50,6 @@ else if ($luna_config['o_feed_type'] == '2')
 
 $forum_actions = array();
 
-// Display a "mark as read" link
-if (!$luna_user['is_guest'])
-	$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
-
 // Someone clicked "Do not show again"
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
