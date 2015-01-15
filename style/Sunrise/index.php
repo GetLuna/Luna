@@ -59,9 +59,14 @@ if (!defined('FORUM'))
 			<div class="list-group list-group-forum">
 				<?php draw_subforum_list('index.php', $id) ?>
 			</div>
+			<hr />
 		<?php endif; ?>
 		<div class="list-group list-group-forum">
 			<?php draw_forum_list('index.php', $id) ?>
+		</div>
+		<hr />
+		<div class="list-group list-group-forum">
+			<?php draw_mark_read('list-group-item') ?>
 		</div>
 	</div>
 	<div class="col-sm-9">
