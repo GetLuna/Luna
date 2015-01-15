@@ -38,7 +38,7 @@ if ($action != '') {
 	if ($action == 'send')
 	{
 		if (empty($_POST['selected_contacts']))
-			message($lang_pms['Must select contacts']);
+			message($lang['Must select contacts']);
 			
 		$idlist = array_map('trim', $_POST['selected_contacts']);
 		$idlist = array_map('intval', $idlist);
@@ -60,7 +60,7 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 	elseif ($action == 'authorize')
 	{
 		if (empty($_POST['selected_contacts']))
-			message($lang_pms['Must select contacts']);
+			message($lang['Must select contacts']);
 		
 		$idlist = array_map('trim', $_POST['selected_contacts']);
 		$idlist = array_map('intval', $idlist);
@@ -68,13 +68,13 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 		
 		$db->query('UPDATE '.$db->prefix.'contacts SET allow_msg=1 WHERE id IN('.$idlist.') AND user_id='.$luna_user['id']) or error('Unable to update the status of the contacts', __FILE__, __LINE__, $db->error());
 		
-		redirect('contacts.php', $lang_pms['Multiples status redirect']);
+		redirect('contacts.php', $lang['Multiples status redirect']);
 	}
 	// refuse multiple contacts
 	elseif ($action == 'refuse')
 	{
 		if (empty($_POST['selected_contacts']))
-			message($lang_pms['Must select contacts']);
+			message($lang['Must select contacts']);
 			
 		$idlist = array_map('trim', $_POST['selected_contacts']);
 		$idlist = array_map('intval', $idlist);
@@ -82,7 +82,7 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 		
 		$db->query('UPDATE '.$db->prefix.'contacts SET allow_msg=0 WHERE id IN('.$idlist.') AND user_id='.$luna_user['id']) or error('Unable to update the status of the contacts', __FILE__, __LINE__, $db->error());
 		
-		redirect('contacts.php', $lang_pms['Multiples status redirect']);
+		redirect('contacts.php', $lang['Multiples status redirect']);
 	}
 	elseif ($action == 'delete_multiple')
 	{
@@ -111,13 +111,13 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 		else
 		{
 			if (empty($_POST['selected_contacts']))
-				message($lang_pms['Must select contacts']);
+				message($lang['Must select contacts']);
 			
 			$idlist = array_map('trim', $_POST['selected_contacts']);
 			$idlist = array_map('intval', $idlist);
 			$idlist = implode(',', array_values($idlist));
 			
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Multidelete contacts'], $lang_pms['Contacts']);
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Multidelete contacts'], $lang['Contacts']);
 			define('FORUM_ACTIVE_PAGE', 'pm');
 			require load_page('header.php');
 
@@ -126,13 +126,13 @@ $result = $db->query('SELECT contact_id FROM '.$db->prefix.'contacts WHERE id IN
 <form method="post" action="inbox.php">
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /></span></h3>
+			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang['Delete'] ?>" /></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="delete_multiple" />
 			<input type="hidden" name="contacts" value="<?php echo $idlist ?>" />
 			<input type="hidden" name="delete_multiple_comply" value="1" />
-			<p><?php echo $lang_pms['Delete contacts comply'] ?></p>
+			<p><?php echo $lang['Delete contacts comply'] ?></p>
 		</div>
 	</div>
 </form>
@@ -170,16 +170,16 @@ else if (isset($_POST['add']))
 			{
 				$result = $db->query('INSERT INTO '.$db->prefix.'contacts (user_id, contact_id, contact_name, allow_msg) VALUES ('.$luna_user['id'].', '.$contact['id'].', \''.$db->escape($contact['username']).'\', '.$authorized.')') or error('Unable to add the contact', __FILE__, __LINE__, $db->error());
 				
-				redirect($redirect,$lang_pms['Added contact redirect']);
+				redirect($redirect,$lang['Added contact redirect']);
 			}
 			else
-				message($lang_pms['Authorize user']);
+				message($lang['Authorize user']);
 		}
 		else
-			message($lang_pms['User already contact']);
+			message($lang['User already contact']);
 	}
 	else
-		message($lang_pms['User not exists']);
+		message($lang['User not exists']);
 }
 
 // Delete a contact
@@ -197,7 +197,7 @@ else if (isset($_GET['delete']))
 
 	$result = $db->query('DELETE FROM '.$db->prefix.'contacts WHERE id= '.$id) or error('Unable to delete the contact', __FILE__, __LINE__, $db->error());
 	
-	redirect('contacts.php',$lang_pms['Deleted contact redirect']);
+	redirect('contacts.php',$lang['Deleted contact redirect']);
 }
 
 // Switch contact status
@@ -215,10 +215,10 @@ else if (isset($_GET['switch']))
 
 	$result = $db->query('UPDATE '.$db->prefix.'contacts SET allow_msg = 1-allow_msg WHERE id= '.$id) or error('Unable to edit the status of the contact', __FILE__, __LINE__, $db->error());
 	
-	redirect('contacts.php',$lang_pms['Status redirect']);
+	redirect('contacts.php',$lang['Status redirect']);
 } else {
 // Build page
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Contacts']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Contacts']);
 
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
@@ -241,18 +241,18 @@ function checkAll(checkWhat,command){
 <form class="form-horizontal" action="contacts.php" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Add contact<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></span></h3>
+			<h3 class="panel-title">Add contact<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang['Add'] ?>" accesskey="s" /></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang_pms['Contact name'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Contact name'] ?></label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="req_username" size="25" maxlength="120" tabindex="1" />
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="req_refuse" value="1" tabindex="2" />
-								<?php echo $lang_pms['Refuse user'] ?>
+								<?php echo $lang['Refuse user'] ?>
                             </label>
                         </div>
 					</div>
@@ -269,11 +269,11 @@ function checkAll(checkWhat,command){
 		<table class="table">
 			<thead>
 				<tr>
-					<th><?php echo $lang_pms['Contact name'] ?></th>
-					<th><?php echo $lang_pms['Rights contact'] ?></th>
-					<th><?php echo $lang_pms['Delete'] ?></th>
-					<th><?php echo $lang_pms['Quick message'] ?></th>
-					<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_contacts[]','checkAllButon');" /></label></th>
+					<th><?php echo $lang['Contact name'] ?></th>
+					<th><?php echo $lang['Rights contact'] ?></th>
+					<th><?php echo $lang['Delete'] ?></th>
+					<th><?php echo $lang['Quick message'] ?></th>
+					<th><label style="display: inline; white-space: nowrap;"><?php echo $lang['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_contacts[]','checkAllButon');" /></label></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -288,11 +288,11 @@ if ($db->num_rows($result))
 		// authorized or refused
 		if ($cur_contact['allow_msg'])
 		{
-			$status_text = $lang_pms['Authorized messages'].' - <a href="contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang_pms['Refuse from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang_pms['Refuse'].'</a>';
+			$status_text = $lang['Authorized messages'].' - <a href="contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang['Refuse from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang['Refuse'].'</a>';
 			$status_class = '';
 		}
 		else {
-			$status_text = $lang_pms['Refused messages'].' - <a href="contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang_pms['Authorize from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang_pms['Authorize'].'</a>';
+			$status_text = $lang['Refused messages'].' - <a href="contacts.php?switch='.$cur_contact['id'].'" title="'.sprintf($lang['Authorize from'], luna_htmlspecialchars($cur_contact['contact_name'])).'">'.$lang['Authorize'].'</a>';
 			$status_class =  ' class="iclosed"';
 		}
 ?>
@@ -304,15 +304,15 @@ if ($db->num_rows($result))
 			echo '<td>'.luna_htmlspecialchars($cur_contact['contact_name']).'</td>';
 	?>
 					<td><?php echo $status_text; ?></td>
-					<td><a href="contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang_pms['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete contact confirm'] ?>')"><?php echo $lang_pms['Delete'] ?></a></td>
-					<td><a href="new_inbox.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang_pms['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+					<td><a href="contacts.php?delete=<?php echo $cur_contact['id']?>" title="<?php printf($lang['Delete x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>" onclick="return window.confirm('<?php echo $lang['Delete contact confirm'] ?>')"><?php echo $lang['Delete'] ?></a></td>
+					<td><a href="new_inbox.php?uid=<?php echo $cur_contact['contact_id']?>" title="<?php printf($lang['Quick message x'], luna_htmlspecialchars($cur_contact['contact_name'])) ?>"><?php echo $lang['Quick message'] ?></a></td>
 					<td class="tcmod"><input type="checkbox" name="selected_contacts[]" value="<?php echo $cur_contact['id']; ?>" /></td>
 				</tr>
 <?php
 	}
 }
 else
-	echo "\t".'<tr><td colspan="5">'.$lang_pms['No contacts'].'</td></tr>'."\n";
+	echo "\t".'<tr><td colspan="5">'.$lang['No contacts'].'</td></tr>'."\n";
 ?>
 			</tbody>
 		</table>
@@ -320,13 +320,13 @@ else
 	<label>With selection</label>
 	<div class="input-group">
 		<select class="form-control" name="action">
-			<option value="send"><?php echo $lang_pms['Quick message'] ?></option>
-			<option value="authorize"><?php echo $lang_pms['Authorize'] ?></option>
-			<option value="refuse"><?php echo $lang_pms['Refuse'] ?></option>
-			<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
+			<option value="send"><?php echo $lang['Quick message'] ?></option>
+			<option value="authorize"><?php echo $lang['Authorize'] ?></option>
+			<option value="refuse"><?php echo $lang['Refuse'] ?></option>
+			<option value="delete_multiple"><?php echo $lang['Delete'] ?></option>
 		</select>
 		<div class="input-group-btn">
-			<input class="btn btn-primary" type="submit" value="<?php echo $lang_pms['OK'] ?>" />
+			<input class="btn btn-primary" type="submit" value="<?php echo $lang['OK'] ?>" />
 		</div>
 	</div>
 </form>

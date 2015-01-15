@@ -139,11 +139,11 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 		session_start();
 
 	if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_post_flood'])
-		$errors[] = sprintf( $lang_pms['Flood'], $luna_user['g_post_flood'] );
+		$errors[] = sprintf( $lang['Flood'], $luna_user['g_post_flood'] );
 		
 	// Check users boxes
 	if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_pm_limit'])
-		$errors[] = $lang_pms['Sender full'];
+		$errors[] = $lang['Sender full'];
 	
 	// Build receivers list
 	$p_destinataire = isset($_POST['p_username']) ? luna_trim($_POST['p_username']) : '';
@@ -165,9 +165,9 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 	}
 
 	 if (count($dest_list) < '1' && $edit == '0')
-		$errors[] = $lang_pms['Must receiver'];
+		$errors[] = $lang['Must receiver'];
     	elseif (count($dest_list) > $luna_config['o_pms_max_receiver'])
-		$errors[] = sprintf($lang_pms['Too many receiver'], $luna_config['o_pms_max_receiver']-1);
+		$errors[] = sprintf($lang['Too many receiver'], $luna_config['o_pms_max_receiver']-1);
 
 	$destinataires = array(); $i = '0';
 	$list_ids = array();
@@ -186,22 +186,22 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 			{
 				$result = $db->query('SELECT 1 FROM '.$db->prefix.'messages WHERE shared_id='.$r.' AND show_message=1 AND owner='.$destinataires[$i]['id']) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 				if (!$db->num_rows($result))
-					$errors[] = sprintf($lang_pms['User left'], luna_htmlspecialchars($destinataire));
+					$errors[] = sprintf($lang['User left'], luna_htmlspecialchars($destinataire));
 			}
 			// Begin to build usernames' list
 			$list_usernames[] = $destinataires[$i]['username'];
 			// Receivers enable PM ?
 			if (!$destinataires[$i]['use_pm'] == '1' || !$destinataires[$i]['g_pm'] == '1')
-				$errors[] = sprintf($lang_pms['User disable PM'], luna_htmlspecialchars($destinataire));			
+				$errors[] = sprintf($lang['User disable PM'], luna_htmlspecialchars($destinataire));			
 			// Check receivers boxes
 			elseif ($destinataires[$i]['g_id'] > FORUM_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
-				$errors[] = sprintf($lang_pms['Dest full'], luna_htmlspecialchars($destinataire));	
+				$errors[] = sprintf($lang['Dest full'], luna_htmlspecialchars($destinataire));	
 			// Are we authorized?
 			elseif (!$luna_user['is_admmod'] && $destinataires[$i]['allow_msg'] == '0')
-				$errors[] = sprintf($lang_pms['User blocked'], luna_htmlspecialchars($destinataire));
+				$errors[] = sprintf($lang['User blocked'], luna_htmlspecialchars($destinataire));
 		}
 		else
-			$errors[] = sprintf($lang_pms['No user'], luna_htmlspecialchars($destinataire));
+			$errors[] = sprintf($lang['No user'], luna_htmlspecialchars($destinataire));
 		$i++;
 	}
 	// Build IDs' & usernames' list : the end
@@ -390,7 +390,7 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 			// Finally, edit the message - maybe this query is unsafe?
 			$db->query('UPDATE '.$db->prefix.'messages SET message=\''.$db->escape($p_message).'\' WHERE message=\''.$db->escape($message).'\' AND id IN ('.$ids_edit.')') or error('Unable to edit the message', __FILE__, __LINE__, $db->error());
 		}
-			redirect('inbox.php', $lang_pms['Sent redirect']);
+			redirect('inbox.php', $lang['Sent redirect']);
 	}
 }
 else
@@ -433,7 +433,7 @@ else
 	}
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Send a message']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Send a message']);
 
 $required_fields = array('req_message' => $lang['Message']);
 $focus_element = array('post');
@@ -514,10 +514,10 @@ $cur_index = 1;
 					if ($db->num_rows($result)) {
 					?>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo $lang_pms['Sending lists'] ?></label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Sending lists'] ?></label>
 						<div class="col-sm-9">
 							<select class="form-control" id="sending_list" name="sending_list">
-								<option value="" selected><?php echo $lang_pms['Select a list'] ?></option>
+								<option value="" selected><?php echo $lang['Select a list'] ?></option>
 								<?php
 								while ($cur_list = $db->fetch_assoc($result)) {
 									$usernames = '';
@@ -534,7 +534,7 @@ $cur_index = 1;
 								?>
 							</select>
 						</div>
-						<noscript><p><?php echo $lang_pms['JS required'] ?></p></noscript>	
+						<noscript><p><?php echo $lang['JS required'] ?></p></noscript>	
 					</div>
 					<?php } ?>
 				<?php else : ?>
@@ -542,7 +542,7 @@ $cur_index = 1;
 				<input type="hidden" name="req_subject" value="<?php echo luna_htmlspecialchars($p_subject) ?>" />
 				<?php endif; ?>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang_pms['Send to'] ?><span class="help-block">Separate names with commas, maximum <?php echo ($luna_config['o_pms_max_receiver']-1) ?> names</span></label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Send to'] ?><span class="help-block">Separate names with commas, maximum <?php echo ($luna_config['o_pms_max_receiver']-1) ?> names</span></label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="p_username" id="p_username" size="30" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" tabindex="<?php echo $cur_index++ ?>" />
 					</div>

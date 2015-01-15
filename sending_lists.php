@@ -45,13 +45,13 @@ if ($action != '')
 		else
 		{
 			if (empty($_POST['selected_lists']))
-				message($lang_pms['Must select lists']);
+				message($lang['Must select lists']);
 			
 			$idlist = array_map('trim', $_POST['selected_lists']);
 			$idlist = array_map('intval', $idlist);
 			$idlist = implode(',', array_values($idlist));
 			
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Multidelete lists'], $lang_pms['Sending lists']);
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Multidelete lists'], $lang['Sending lists']);
 			define('FORUM_ACTIVE_PAGE', 'pm');
 			require load_page('header.php');
 
@@ -60,13 +60,13 @@ if ($action != '')
 <form method="post" action="sending_lists.php">
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /></span></h3>
+			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang['Delete'] ?>" /></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="delete_multiple" />
 			<input type="hidden" name="selected_lists" value="<?php echo $idlist ?>" />
 			<input type="hidden" name="delete_multiple_comply" value="1" />
-			<p><?php echo $lang_pms['Delete lists comply'] ?></p>
+			<p><?php echo $lang['Delete lists comply'] ?></p>
 		</div>
 	</div>
 </form>
@@ -98,7 +98,7 @@ else if (isset($_POST['form_sent']))
 	}
 
     if (count($dest_list) > $luna_config['o_pms_max_receiver'])
-		$errors[] = sprintf($lang_pms['Too many receiver'], $luna_config['o_pms_max_receiver']-1);
+		$errors[] = sprintf($lang['Too many receiver'], $luna_config['o_pms_max_receiver']-1);
 
 	$destinataires = array();
 	$i = 0;
@@ -117,10 +117,10 @@ else if (isset($_POST['form_sent']))
 			$list_usernames[] = $destinataires[$i]['username'];
 			// Receivers enable PM ?
 			if (!$destinataires[$i]['use_pm'] == '1')
-				$errors[] = sprintf($lang_pms['User disable PM'], luna_htmlspecialchars($destinataire));			
+				$errors[] = sprintf($lang['User disable PM'], luna_htmlspecialchars($destinataire));			
 		}
 		else
-			$errors[] = sprintf($lang_pms['No user'], luna_htmlspecialchars($destinataire));
+			$errors[] = sprintf($lang['No user'], luna_htmlspecialchars($destinataire));
 		$i++;
 	}
 	
@@ -142,11 +142,11 @@ else if (isset($_GET['delete']))
 
 	$result = $db->query('DELETE FROM '.$db->prefix.'sending_lists WHERE id= '.$id) or error('Unable to delete the list', __FILE__, __LINE__, $db->error());
 	
-	redirect('sending_lists.php', $lang_pms['Deleted list redirect']);
+	redirect('sending_lists.php', $lang['Deleted list redirect']);
 } else {
 
 // Build page
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Sending lists']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Sending lists']);
 
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
@@ -169,19 +169,19 @@ function checkAll(checkWhat,command){
 <form class="form-horizontal" action="sending_lists.php" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Add a list<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang_pms['Add'] ?>" accesskey="s" /></span></h3>
+			<h3 class="panel-title">Add a list<span class="pull-right"><input class="btn btn-primary" type="submit" name="add" value="<?php echo $lang['Add'] ?>" accesskey="s" /></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<input type="hidden" name="form_sent" value="1" />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang_pms['List name'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo $lang['List name'] ?></label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="list_name" size="25" maxlength="255" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang_pms['List usernames comma'] ?><span class="help-block">Separate names with commas</span></label>
+					<label class="col-sm-3 control-label"><?php echo $lang['List usernames comma'] ?><span class="help-block">Separate names with commas</span></label>
 					<div class="col-sm-9">
 						<textarea class="form-control" name="req_username" rows="2" cols="50" tabindex="1"></textarea>
 					</div>
@@ -198,11 +198,11 @@ function checkAll(checkWhat,command){
 		<table class="table">
 			<thead>
 				<tr>
-					<th><?php echo $lang_pms['List name'] ?></th>
-					<th><?php echo $lang_pms['List usernames'] ?></th>
-					<th><?php echo $lang_pms['Delete'] ?></th>
-					<th><?php echo $lang_pms['Quick message'] ?></th>
-					<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_lists[]','checkAllButon');" /></label></th>
+					<th><?php echo $lang['List name'] ?></th>
+					<th><?php echo $lang['List usernames'] ?></th>
+					<th><?php echo $lang['Delete'] ?></th>
+					<th><?php echo $lang['Quick message'] ?></th>
+					<th><label style="display: inline; white-space: nowrap;"><?php echo $lang['Select'] ?>&nbsp;<input type="checkbox" id="checkAllButon" value="1" onclick="javascript:checkAll('selected_lists[]','checkAllButon');" /></label></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -226,15 +226,15 @@ if ($db->num_rows($result))
 				<tr>
 					<td><?php echo luna_htmlspecialchars($cur_list['name']) ?></td>
 					<td><?php echo $usernames ?></td>
-					<td><a href="sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang_pms['Delete list confirm'] ?>')"><?php echo $lang_pms['Delete this list'] ?></a></td>
-					<td><a href="new_inbox.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang_pms['Quick message'] ?>"><?php echo $lang_pms['Quick message'] ?></a></td>
+					<td><a href="sending_lists.php?delete=<?php echo $cur_list['id'] ?>" title="<?php $usernames ?>" onclick="return window.confirm('<?php echo $lang['Delete list confirm'] ?>')"><?php echo $lang['Delete this list'] ?></a></td>
+					<td><a href="new_inbox.php?lid=<?php echo $cur_list['id'] ?>" title="<?php echo $lang['Quick message'] ?>"><?php echo $lang['Quick message'] ?></a></td>
 					<td><input type="checkbox" name="selected_lists[]" value="<?php echo $cur_list['id'] ?>" /></td>
 				</tr>
 <?php
 	}
 }
 else
-	echo "\t".'<tr><td colspan="5">'.$lang_pms['No sending lists'].'</td></tr>'."\n";
+	echo "\t".'<tr><td colspan="5">'.$lang['No sending lists'].'</td></tr>'."\n";
 ?>
 			</tbody>
 		</table>
@@ -242,10 +242,10 @@ else
 	<label>With selection</label>
 	<div class="input-group">
 		<select class="form-control" name="action">
-			<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
+			<option value="delete_multiple"><?php echo $lang['Delete'] ?></option>
 		</select>
 		<div class="input-group-btn">
-			<input class="btn btn-primary" type="submit" value="<?php echo $lang_pms['OK'] ?>" />
+			<input class="btn btn-primary" type="submit" value="<?php echo $lang['OK'] ?>" />
 		</div>
 	</div>
 </form>

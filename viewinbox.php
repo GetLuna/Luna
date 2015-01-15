@@ -169,11 +169,11 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 			}
 			
 			// Redirect
-			redirect('inbox.php', $lang_pms['Del redirect']);
+			redirect('inbox.php', $lang['Del redirect']);
 		}
 		else
 		{
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Delete message']);
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Delete message']);
 			
 			define('FORUM_ACTIVE_PAGE', 'pm');
 			require load_page('header.php');
@@ -191,9 +191,9 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 	<div class="inbox crumbsplus">
 		<ul class="crumbs">
 			<li><a href="index.php"><?php echo $lang['Index'] ?></a></li>
-			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang_pms['Private Messages'] ?></a></li>
-			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-			<li><span>»&#160;</span><?php echo $lang_pms['Delete message'] ?></li>
+			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang['Private Messages'] ?></a></li>
+			<li><span>»&#160;</span><a href="inbox.php"><?php echo $lang['Inbox'] ?></a></li>
+			<li><span>»&#160;</span><?php echo $lang['Delete message'] ?></li>
 		</ul>
 		<div class="pagepost"></div>
 		<div class="clearer"></div>
@@ -201,14 +201,14 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 </div>
 <div class="block2col">
 	<div class="blockmenu">
-		<h2><span><?php echo $lang_pms['PM Menu'] ?></span></h2>
+		<h2><span><?php echo $lang['PM Menu'] ?></span></h2>
 		<div class="box">
 			<div class="inbox">
 				<ul>
-					<li class="isactive"><a href="inbox.php"><?php echo $lang_pms['Inbox'] ?></a></li>
-					<li><a href="new_inbox.php"><?php echo $lang_pms['Write message'] ?></a></li>
-					<li><a href="sending_lists.php"><?php echo $lang_pms['Sending lists'] ?></a></li>
-					<li><a href="contacts.php"><?php echo $lang_pms['Contacts'] ?></a></li>
+					<li class="isactive"><a href="inbox.php"><?php echo $lang['Inbox'] ?></a></li>
+					<li><a href="new_inbox.php"><?php echo $lang['Write message'] ?></a></li>
+					<li><a href="sending_lists.php"><?php echo $lang['Sending lists'] ?></a></li>
+					<li><a href="contacts.php"><?php echo $lang['Contacts'] ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -225,13 +225,13 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 			<div class="inform">
 				<div class="forminfo">
 					<h3><span><?php printf($cur_delete['show_message'] ? $lang_delete['Topic by'] : $lang_delete['Reply by'], '<strong>'.luna_htmlspecialchars($cur_delete['sender']).'</strong>', format_time($cur_delete['posted'])) ?></span></h3>
-					<p><?php echo ($cur_delete['show_message']) ? '<strong>'.$lang_delete['Topic warning'].'<br /></strong>'.$lang_pms['Topic warning info'].'' : '<strong>'.$lang_delete['Warning'].'</strong>' ?><br /><?php echo $lang_delete['Delete info'] ?></p>
+					<p><?php echo ($cur_delete['show_message']) ? '<strong>'.$lang_delete['Topic warning'].'<br /></strong>'.$lang['Topic warning info'].'' : '<strong>'.$lang_delete['Warning'].'</strong>' ?><br /><?php echo $lang_delete['Delete info'] ?></p>
 					<?php if ($luna_user['is_admmod']) : ?>
-					<label><input type="checkbox" name="delete_all" value="1" /><?php echo $lang_pms['Delete for everybody'] ?></label>
+					<label><input type="checkbox" name="delete_all" value="1" /><?php echo $lang['Delete for everybody'] ?></label>
 					<?php endif; ?>
 				</div>
 			</div>
-			<p class="buttons"><input type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
+			<p class="buttons"><input type="submit" name="delete" value="<?php echo $lang['Delete'] ?>" /> <a href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
 		</form>
 	</div>
 </div>
@@ -281,7 +281,7 @@ while ($receiver = $db->fetch_assoc($result_receivers))
 	$uid = $receiver['sender_id'];
 }
 
-$r_usernames = str_replace('Deleted', $lang_pms['Deleted'], $r_usernames);
+$r_usernames = str_replace('Deleted', $lang['Deleted'], $r_usernames);
 
 $result = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND show_message=1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
@@ -290,7 +290,7 @@ if (!$db->num_rows($result))
 
 $p_subject = $db->result($result);
 
-$messageh2 = luna_htmlspecialchars($p_subject).' '.$lang_pms['With'].' '.luna_htmlspecialchars($r_usernames);
+$messageh2 = luna_htmlspecialchars($p_subject).' '.$lang['With'].' '.luna_htmlspecialchars($r_usernames);
 
 $quickpost = false;
 	if ($luna_config['o_quickpost'] == '1')
@@ -299,7 +299,7 @@ $quickpost = false;
 		$quickpost = true;
 	}
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['View']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['View']);
 
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
@@ -317,7 +317,7 @@ $result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m
 if (!$db->num_rows($result))
 	message($lang['Bad request']);
 	
-$reply_link = '<a href="new_inbox.php?reply='.$tid.'">'.$lang_pms['Reply'].'</a>';
+$reply_link = '<a href="new_inbox.php?reply='.$tid.'">'.$lang['Reply'].'</a>';
 
 load_inbox_nav('view');
 ?>
@@ -382,7 +382,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_post['use_pm'] == '1')
 			{
 				$pid = isset($cur_post['sender_id']) ? $cur_post['sender_id'] : $cur_post['sender_id'];
-				$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.$lang_pms['PM'].'</a></span>';
+				$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.$lang['PM'].'</a></span>';
 			}
 
 			if ($cur_post['url'] != '')

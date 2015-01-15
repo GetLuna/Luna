@@ -43,27 +43,27 @@ if ($action != '')
 	if ($action == 'markread')
 	{
 		if (empty($_POST['selected_messages']))
-			message($lang_pms['Must select']);
+			message($lang['Must select']);
 			
 		$idlist = array_values($_POST['selected_messages']);
 		$idlist = array_map('intval', $idlist);
 		$idlist = implode(',', array_values($idlist));
 		
 		$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
-		redirect('inbox.php', $lang_pms['Read redirect']);
+		redirect('inbox.php', $lang['Read redirect']);
 	}
 	// Mark as unread multiple posts
 	elseif ($action == 'markunread')
 	{
 		if (empty($_POST['selected_messages']))
-			message($lang_pms['Must select']);
+			message($lang['Must select']);
 			
 		$idlist = array_values($_POST['selected_messages']);
 		$idlist = array_map('intval', $idlist);
 		$idlist = implode(',', array_values($idlist));
 		
 		$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
-		redirect('inbox.php', $lang_pms['Unread redirect']);
+		redirect('inbox.php', $lang['Unread redirect']);
 	}
 	// Delete multiple posts
 	elseif ($action == 'delete_multiple')
@@ -82,13 +82,13 @@ if ($action != '')
 		else
 		{
 			if (empty($_POST['selected_messages']))
-				message($lang_pms['Must select']);
+				message($lang['Must select']);
 			
 			$idlist = array_values($_POST['selected_messages']);
 			$idlist = array_map('intval', $idlist);
 			$idlist = implode(',', array_values($idlist));
 			
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Multidelete'], $lang_pms['Private Messages']);
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Multidelete'], $lang['Private Messages']);
 			define('FORUM_ACTIVE_PAGE', 'pm');
 			require load_page('header.php');
 			
@@ -106,13 +106,13 @@ if ($action != '')
 <form method="post" action="inbox.php">
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang_pms['Delete'] ?>" /></span></h3>
+			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang['Delete'] ?>" /></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="delete_multiple" />
 			<input type="hidden" name="messages" value="<?php echo $idlist ?>" />
 			<input type="hidden" name="delete_multiple_comply" value="1" />
-			<p><?php echo $lang_pms['Delete messages comply'] ?></p>
+			<p><?php echo $lang['Delete messages comply'] ?></p>
 		</div>
 	</div>
 </form>
@@ -133,7 +133,7 @@ $limit = $start_from.','.$luna_config['o_pms_mess_per_page'];
 
 
 // Start building page
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang_pms['Private Messages'], $lang_pms['Inbox']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Inbox']);
 
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
@@ -164,11 +164,11 @@ function checkAll(checkWhat,command){
 			<table class="table">
 				<thead>
 					<tr>
-						<th><?php echo $lang_pms['Messages'] ?></th>
-						<th><?php echo $lang_pms['Sender'] ?></th>
-						<th><?php echo $lang_pms['Receiver'] ?></th>
+						<th><?php echo $lang['Messages'] ?></th>
+						<th><?php echo $lang['Sender'] ?></th>
+						<th><?php echo $lang['Receiver'] ?></th>
 						<th><?php echo $lang['Last post'] ?></th>
-						<th><label style="display: inline; white-space: nowrap;"><?php echo $lang_pms['Select'] ?> <input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></label></th>
+						<th><label style="display: inline; white-space: nowrap;"><?php echo $lang['Select'] ?> <input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></label></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -219,7 +219,7 @@ if ($db->num_rows($result))
 			{
 				$ids_list = explode(', ', $cur_mess['receiver_id']);
 				$sender_list = explode(', ', $cur_mess['receiver']);
-				$sender_list = str_replace('Deleted', $lang_pms['Deleted'], $sender_list);
+				$sender_list = str_replace('Deleted', $lang['Deleted'], $sender_list);
 				
 				for($i = '0'; $i < count($ids_list); $i++){
 				echo '<a href="me.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($sender_list[$i]).'</a>';
@@ -239,7 +239,7 @@ if ($db->num_rows($result))
 	}
 }
 else
-	echo "\t".'<tr><td colspan="4">'.$lang_pms['No messages'].'</td></tr>'."\n";
+	echo "\t".'<tr><td colspan="4">'.$lang['No messages'].'</td></tr>'."\n";
 ?>
 				</tbody>
 			</table>
@@ -248,12 +248,12 @@ else
 		<label>With selection</label>
 		<div class="input-group">
 			<select class="form-control" name="action">
-				<option value="markread"><?php echo $lang_pms['Mark as read select'] ?></option>
-				<option value="markunread"><?php echo $lang_pms['Mark as unread select'] ?></option>
-				<option value="delete_multiple"><?php echo $lang_pms['Delete'] ?></option>
+				<option value="markread"><?php echo $lang['Mark as read select'] ?></option>
+				<option value="markunread"><?php echo $lang['Mark as unread select'] ?></option>
+				<option value="delete_multiple"><?php echo $lang['Delete'] ?></option>
 			</select>
 			<div class="input-group-btn">
-				<input class="btn btn-primary" type="submit" value="<?php echo $lang_pms['OK'] ?>" />
+				<input class="btn btn-primary" type="submit" value="<?php echo $lang['OK'] ?>" />
 			</div>
 		</div>
 	</fieldset>
