@@ -204,7 +204,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>45 bugs have been fixed.</p>
+						<p>47 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>3 security issue has been fixed.</p>
 					</div>
@@ -375,7 +375,10 @@ require 'header.php';
 								<span class="label label-danger">36xx</span> You can now change the size of emojis<br />
 								<span class="label label-danger">36xx</span> The copyright notice now can be altered by admins<br />
 								<span class="label label-danger">36xx</span> Moderation tools are now a Backstage feature<br />
-								<span class="label label-danger">36xx</span> The profile now shows the user's URL again
+								<span class="label label-danger">36xx</span> The profile now shows the user's URL again<br />
+								<span class="label label-danger">36xx</span> Multiple design improvements to Sunrise<br />
+								<span class="label label-danger">36xx</span> Help page design has been improved<br />
+								<span class="label label-danger">36xx</span> Improved design for the "Mark as read" button
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -386,6 +389,8 @@ require 'header.php';
 								<span class="label label-danger">36xx</span> Statistics in the footer can be disabled<br />
 								<span class="label label-danger">36xx</span> Core has been removed from the theme engine<br />
 								<span class="label label-danger">36xx</span> Improvements to the new profile settings<br />
+								<span class="label label-danger">36xx</span> Notifications have been split from the profile file<br />
+								<span class="label label-danger">36xx</span> The index no longer shows invalid messages<br />
 								<span class="label label-danger">36xx</span> Multiple bugfixes
 							</p>
 						</div>
