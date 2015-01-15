@@ -71,9 +71,7 @@ elseif ($luna_config['o_feed_type'] == 2)
 if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (isset($footer_style)))
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>'."\n";
 
-if (!defined('FORUM_FORM')) {
-	echo $markread;
-} ?>
+?>
 		</div>
 	</div>
 </div>
