@@ -850,6 +850,10 @@ input[type="text"].power-control {
 	border: none;
 }
 
+.alert-section .btn {
+	border: none;
+}
+
 .alert-section h3 {
 	margin-top: 0;
 	margin-bottom: 4px;
