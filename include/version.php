@@ -2,7 +2,7 @@
 
 /*
  * Copyright (C) 2014-2015 Luna
- * Licensed under GPLv3 (http://modernbb.be/license.php)
+ * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
 class Version {
