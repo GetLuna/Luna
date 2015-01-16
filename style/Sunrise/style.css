@@ -504,6 +504,13 @@ textarea.textarea, textarea.textarea:focus {
 
 .textarea-toolbar {
     margin: 0;
+}
+
+.textarea-bottom {
+    border-top: #ddd 1px solid;
+}
+
+.textarea-top {
     border-bottom: #ddd 1px solid;
 }
 
