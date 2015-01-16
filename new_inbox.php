@@ -24,7 +24,6 @@ if (!$luna_config['o_pms_enabled'] == '1' || $luna_user['g_pm'] == '0')
 
 // Load the additionals language files
 require FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
-require FORUM_ROOT.'lang/'.$luna_user['language'].'/pms.php';
 
 $p_destinataire = '';
 $p_contact = '';
