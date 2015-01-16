@@ -204,7 +204,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>47 bugs have been fixed.</p>
+						<p>48 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>3 security issue has been fixed.</p>
 					</div>
@@ -378,7 +378,10 @@ require 'header.php';
 								<span class="label label-danger">36xx</span> The profile now shows the user's URL again<br />
 								<span class="label label-danger">36xx</span> Multiple design improvements to Sunrise<br />
 								<span class="label label-danger">36xx</span> Help page design has been improved<br />
-								<span class="label label-danger">36xx</span> Improved design for the "Mark as read" button
+								<span class="label label-danger">36xx</span> Improved design for the "Mark as read" button<br />
+								<span class="label label-danger">36xx</span> The thread design has been majorly improved<br />
+								<span class="label label-danger">36xx</span> Index no longer sorts on sticky when no forum is set<br />
+								<span class="label label-danger">36xx</span> More work on coding conventions has been done
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -391,6 +394,10 @@ require 'header.php';
 								<span class="label label-danger">36xx</span> Improvements to the new profile settings<br />
 								<span class="label label-danger">36xx</span> Notifications have been split from the profile file<br />
 								<span class="label label-danger">36xx</span> The index no longer shows invalid messages<br />
+								<span class="label label-danger">36xx</span> Post.php now shows the correct title for the page<br />
+								<span class="label label-danger">36xx</span> "Moderate" link is added to forum view<br />
+								<span class="label label-danger">36xx</span> The language files have been cleaned up<br />
+								<span class="label label-danger">36xx</span> General code cleanup<br />
 								<span class="label label-danger">36xx</span> Multiple bugfixes
 							</p>
 						</div>
