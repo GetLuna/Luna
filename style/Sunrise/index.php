@@ -67,6 +67,9 @@ if (!defined('FORUM'))
 		<hr />
 		<div class="list-group list-group-forum">
 			<?php draw_mark_read('list-group-item') ?>
+			<?php if ($id != '0' && $is_admmod) { ?>
+				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Moderate forum'] ?></a>
+			<?php } ?>
 		</div>
 	</div>
 	<div class="col-sm-9">
