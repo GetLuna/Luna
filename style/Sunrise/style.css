@@ -755,6 +755,10 @@ input[type="text"].power-control {
 	margin-top: 10px;
 }
 
+.list-group-manage {
+	margin-top: 5px;
+}
+
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;
