@@ -817,12 +817,10 @@ else if (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST[
 		<div class="panel-heading">
 			<h3 class="panel-title">Moderate content</h3>
 		</div>
+		<div class="jumbotron jumbotron-moderate-forum">
+			<h2>Moderating "<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>"</h2><span class="pull-right"><?php echo $paging_links ?></span>
+		</div>
 		<div class="panel-body">
-			<div class="jumbotron<?php echo $item_status ?>"<?php echo $jumbo_style ?>>
-				<div class="container">
-					<h2>Moderating <?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right"><?php echo $paging_links ?></span>
-				</div>
-			</div>
 			<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 <?php
 
@@ -902,7 +900,9 @@ if ($db->num_rows($result)) {
 
 ?>
 			<div class="topic-entry-list">
-<?php require get_view_path('topic.php'); ?>
+				<div class="topic-moderate-entry <?php echo $item_status ?>">
+					<input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /> <span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> <?php echo $by ?> &middot; <span class="text-muted"><?php echo $last_post ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span>
+				</div>
 			</div>
 <?php
 
@@ -914,7 +914,7 @@ if ($db->num_rows($result)) {
 }
 
 ?>	
-				<div class="pull-right">
+				<div class="pull-right btn-margin-top">
 					<div class="btn-group">
 						<input type="submit" class="btn btn-primary" name="move_topics" value="<?php echo $lang['Move'] ?>"<?php echo $button_status ?> />
 						<input type="submit" class="btn btn-primary" name="delete_topics" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> />

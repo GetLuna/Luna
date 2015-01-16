@@ -544,6 +544,24 @@ h3.panel-title {
 	border-top: none;
 }
 
+/* Moderate */
+.topic-moderate-entry {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.topic-moderate-entry:first-child {
+	border-top: 1px solid #ddd;
+}
+
+.jumbotron-moderate-forum {
+	padding: 5px 15px 15px 15px !important;
+}
+
+.btn-margin-top {
+	margin-top: 10px;
+}
+
 /* Color choise */
 .color-accent {
 	padding: 21px;
