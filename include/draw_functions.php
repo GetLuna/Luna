@@ -617,7 +617,7 @@ function draw_topic_list() {
 			if (isset($user_avatar_cache[$cur_post['poster_id']]))
 				$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
 			else
-				$user_avatar = generate_avatar_markup($cur_post['poster_id']);
+				$user_avatar = draw_user_avatar($cur_post['poster_id'], 'thread-avatar');
 		}
 	
 		// Generation post action array (quote, edit, delete etc.)

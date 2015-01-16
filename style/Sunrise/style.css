@@ -720,10 +720,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 /* Threads */
 .comment .panel-default {
 	margin: 0;
-	margin-left: 10px;
+	margin-left: 5px;
 	border: none;
 	background-color: #f8f8f8;
+	margin-bottom: 5px;
 }
+
 .comment h3 {
 	margin-top: -6px;
 	margin-bottom: 0;
@@ -764,6 +766,14 @@ input[type="text"].power-control {
 
 .list-group-manage {
 	margin-top: 5px;
+}
+
+.col-no-padding-right {
+	padding-right: 0;
+}
+
+.col-no-padding-left {
+	padding-left: 0;
 }
 
 /* Table */
