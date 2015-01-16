@@ -522,7 +522,7 @@ function draw_index_topics_list($section_id) {
 				$views_label = $lang['views'];
 			}
 	
-			require get_view_path('topic2.php');
+			require get_view_path('topic.php');
 	
 		}
 	
