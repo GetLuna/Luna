@@ -758,7 +758,7 @@ if (isset($_POST['update_group_membership'])) {
 	}
 	
 	if ($luna_user['g_set_title'] == '1')
-		$title_field = '<input class="form-control" type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" />';
+		$title_field = '<input type="text" class="form-control" name="title" value="'.luna_htmlspecialchars($user['title']).'" maxlength="50" />';
 
     $avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Change avatar'].'</a>';
 

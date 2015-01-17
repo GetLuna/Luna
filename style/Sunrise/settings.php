@@ -489,7 +489,7 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Delete ban legend'] ?></label>
 						<div class="col-sm-9">
-							<button type="submit" class="btn btn-danger" name="delete_user"?><?php echo $lang['Delete user'] ?></button>
+							<button type="submit" class="btn btn-danger" name="delete_user"><?php echo $lang['Delete user'] ?></button>
 							<button type="submit" class="btn btn-danger" name="ban"><?php echo $lang['Ban user'] ?></button>
 						</div>
 					</div>
