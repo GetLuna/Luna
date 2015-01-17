@@ -414,7 +414,7 @@ if (isset($_GET['tid'])) {
 // Move one or more topics
 if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 	if (isset($_POST['move_topics_to'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message_backstage($lang['Bad request'], false, '404 Not Found');
