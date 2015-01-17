@@ -195,16 +195,16 @@ require 'header.php';
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-					<h4>Packages</h4>
+						<h4>Packages</h4>
 						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.1.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.36xx.</p>
+						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.3640.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>48 bugs have been fixed.</p>
+						<p>49 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>3 security issue has been fixed.</p>
 					</div>
@@ -306,7 +306,7 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4>Preview 2 (version 0.1.3362-0.2.36xx)</h4>
+					<h4>Preview 2 (version 0.1.3362-0.2.3640)</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
@@ -369,36 +369,39 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-danger">36xx</span> Backstage will check of config is writeable<br />
-								<span class="label label-danger">36xx</span> More improvements to Backstage for small screens<br />
-								<span class="label label-danger">36xx</span> The notification fly-out is now optional<br />
-								<span class="label label-danger">36xx</span> You can now change the size of emojis<br />
-								<span class="label label-danger">36xx</span> The copyright notice now can be altered by admins<br />
-								<span class="label label-danger">36xx</span> Moderation tools are now a Backstage feature<br />
-								<span class="label label-danger">36xx</span> The profile now shows the user's URL again<br />
-								<span class="label label-danger">36xx</span> Multiple design improvements to Sunrise<br />
-								<span class="label label-danger">36xx</span> Help page design has been improved<br />
-								<span class="label label-danger">36xx</span> Improved design for the "Mark as read" button<br />
-								<span class="label label-danger">36xx</span> The thread design has been majorly improved<br />
-								<span class="label label-danger">36xx</span> Index no longer sorts on sticky when no forum is set<br />
-								<span class="label label-danger">36xx</span> More work on coding conventions has been done
+								<span class="label label-danger">3640</span> Backstage will check of config is writeable<br />
+								<span class="label label-danger">3640</span> More improvements to Backstage for small screens<br />
+								<span class="label label-danger">3640</span> The notification fly-out is now optional<br />
+								<span class="label label-danger">3640</span> You can now change the size of emojis<br />
+								<span class="label label-danger">3640</span> The copyright notice now can be altered by admins<br />
+								<span class="label label-danger">3640</span> Moderation tools are now a Backstage feature<br />
+								<span class="label label-danger">3640</span> The profile now shows the user's URL again<br />
+								<span class="label label-danger">3640</span> Multiple design improvements to Sunrise<br />
+								<span class="label label-danger">3640</span> Help page design has been improved<br />
+								<span class="label label-danger">3640</span> Improved design for the "Mark as read" button<br />
+								<span class="label label-danger">3640</span> The thread design has been majorly improved<br />
+								<span class="label label-danger">3640</span> Index no longer sorts on sticky when no forum is set<br />
+								<span class="label label-danger">3640</span> More work on coding conventions has been done<br />
+								<span class="label label-danger">3640</span> Improved design for the moderation tools<br />
+								<span class="label label-danger">3640</span> Dummy notifications have been removed
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-danger">36xx</span> Optimalization of multiple code snippets<br />
-								<span class="label label-danger">36xx</span> The search bar in themes can be disabled now<br />
-								<span class="label label-danger">36xx</span> The emoji dropdown in the editor has been improved<br />
-								<span class="label label-danger">36xx</span> Statistics in the footer can be disabled<br />
-								<span class="label label-danger">36xx</span> Core has been removed from the theme engine<br />
-								<span class="label label-danger">36xx</span> Improvements to the new profile settings<br />
-								<span class="label label-danger">36xx</span> Notifications have been split from the profile file<br />
-								<span class="label label-danger">36xx</span> The index no longer shows invalid messages<br />
-								<span class="label label-danger">36xx</span> Post.php now shows the correct title for the page<br />
-								<span class="label label-danger">36xx</span> "Moderate" link is added to forum view<br />
-								<span class="label label-danger">36xx</span> The language files have been cleaned up<br />
-								<span class="label label-danger">36xx</span> General code cleanup<br />
-								<span class="label label-danger">36xx</span> Multiple bugfixes
+								<span class="label label-danger">3640</span> Optimalization of multiple code snippets<br />
+								<span class="label label-danger">3640</span> The search bar in themes can be disabled now<br />
+								<span class="label label-danger">3640</span> The emoji dropdown in the editor has been improved<br />
+								<span class="label label-danger">3640</span> Statistics in the footer can be disabled<br />
+								<span class="label label-danger">3640</span> Core has been removed from the theme engine<br />
+								<span class="label label-danger">3640</span> Improvements to the new profile settings<br />
+								<span class="label label-danger">3640</span> Notifications have been split from the profile file<br />
+								<span class="label label-danger">3640</span> The index no longer shows invalid messages<br />
+								<span class="label label-danger">3640</span> Post.php now shows the correct title for the page<br />
+								<span class="label label-danger">3640</span> "Moderate" link is added to forum view<br />
+								<span class="label label-danger">3640</span> The language files have been cleaned up<br />
+								<span class="label label-danger">3640</span> General code cleanup<br />
+								<span class="label label-danger">3640</span> New user menu in the Backstage to match the Mainstage's<br />
+								<span class="label label-danger">3640</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>

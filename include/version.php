@@ -7,10 +7,10 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const FORUM_VERSION = '0.2-rc';
+	const FORUM_VERSION = '0.2.0';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '0.2.3639';
+	const FORUM_CORE_VERSION = '0.2.3640';
 
 	// The database version number, every change in the database requires this number to go one up
 	const FORUM_DB_VERSION = '87.14';
