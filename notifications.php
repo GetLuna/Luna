@@ -34,21 +34,7 @@ $user_username = luna_htmlspecialchars($user['username']);
 $avatar_field = generate_avatar_markup($id);
 $avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
 
-if ($action == 'newnoti') {
-	if ($type == 'windows') {
-		new_notification('2', 'index.php', 'Windows 8.1 is recent', 'fa-windows');
-	} elseif ($type == 'comment') {
-		new_notification('2', 'index.php', 'Someone made a comment on your topic', 'fa-comment');
-	} elseif ($type == 'check') {
-		new_notification('2', 'index.php', 'Check this out', 'fa-check');
-	} elseif ($type == 'version') {
-		new_notification('2', 'index.php', 'You are using Luna '.$luna_config['o_core_version'].'! Awesome!', 'fa-moon-o');
-	} elseif ($type == 'cogs') {
-		new_notification('2', 'index.php', 'This icon usualy indicates settings, not now through...', 'fa-cogs');
-	}
-
-	redirect('notifications.php?id='.$id);
-} else if ($action == 'readnoti') {
+if ($action == 'readnoti') {
 	$db->query('UPDATE '.$db->prefix.'notifications SET viewed = 1 WHERE user_id = '.$id.' AND viewed = 0') or error('Unable to update the notification status', __FILE__, __LINE__, $db->error());
 	confirm_referrer('me.php');
 
