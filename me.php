@@ -101,10 +101,6 @@ if ($user['twitter'] != '')
 if ($user['google'] != '')
 	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['google']) : $user['google']).'" aria-describedby="google-addon" readonly></div>';
 
-
-if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
-	$user_signature = $parsed_signature;
-
 $user_activity = array();
 
 if ($user['signature'] != '') {
@@ -117,6 +113,9 @@ $last_post = format_time($user['last_post']);
 if ($user['signature'] != '') {
 	$parsed_signature = parse_signature($user['signature']);
 }
+
+if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
+	$user_signature = $parsed_signature;
 
 // View or edit?
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
