@@ -132,6 +132,21 @@ label .help-block {
 	padding: 9px 20px;
 }
 
+.avatar {
+	padding: 0;
+	border: 0;
+	margin: 0;
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	display: inline;
+}
+
+.dropdown-toggle {
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+}
+
 /* Heading - jumbotron and navtabs */
 .jumboheader {
 	color: #fff;

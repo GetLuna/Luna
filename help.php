@@ -96,7 +96,7 @@ if ($db->num_rows($result) > 0)
 		if ($cur_item['visible'] == '1')
 			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
 [/code]
-</pre></p>
+				</pre></p>
                 <p><?php echo $lang['produces code box'] ?></p>
 <div class="codebox"><pre class=" language-php"><code class=" language-php">if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))

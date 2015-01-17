@@ -109,13 +109,16 @@ function load_admin_nav($section, $page) {
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown usermenu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php print(luna_htmlspecialchars($luna_user['username'])) ?> <span class="fa fa-angle-down"></span>
+                        <?php print(luna_htmlspecialchars($luna_user['username'])) ?> <?php echo draw_user_avatar($luna_user['id'], 'avatar'); ?> <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><?php echo '<a href="../me.php?id='.$luna_user['id'].'">' ?><?php echo $lang['Profile'] ?></a></li>
+                        <li><a href="../me.php?id=<?php echo $luna_user['id'] ?>"><?php echo $lang['Profile'] ?></a></li>
+                        <li><a href="../settings.php?id=<?php echo ''.$luna_user['id'] ?>"><?php echo $lang['Settings'] ?></a></li>
+                        <li class="divider"></li>
+                        <li><a href="../help.php"><?php echo $lang['Help'] ?></a></li>
                         <li><a href="http://getluna.org"><?php echo $lang['Support'] ?></a></li>
                         <li class="divider"></li>
-                        <li><?php echo '<a href="../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">' ?><?php echo $lang['Logout'] ?></a></li>
+                        <li><a href="../login.php?action=out&amp;id=<?php echo ''.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())) ?>"><?php echo $lang['Logout'] ?></a></li>
                     </ul>
                 </li>
             </ul>
