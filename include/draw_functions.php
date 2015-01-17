@@ -630,15 +630,15 @@ function draw_topic_list() {
 				}
 			}
 	
-			if ($cur_topic['closed'] == '0') {
+			if ($cur_topic['closed'] == 0) {
 				if ($cur_post['poster_id'] == $luna_user['id']) {
-					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == '1') || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == '1'))
+					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == 0) || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == 1))
 						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
-					if ($luna_user['g_edit_posts'] == '1')
+					if ($luna_user['g_edit_posts'] == 1)
 						$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 				}
 	
-				if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
+				if (($cur_topic['post_replies'] == '0' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1')
 					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
 			}
 		} else {
