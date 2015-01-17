@@ -4,6 +4,7 @@
 if (!defined('FORUM'))
     exit;
 
+if ($luna_user['first_run'] == '0') {
 ?>
 <div class="first-run panel panel-default hidden-xs hidden-sm">
     <div class="row first-run-content">
@@ -43,16 +44,17 @@ if (!defined('FORUM'))
                         <input class="form-control top-form" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
                         <input class="form-control bottom-form" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" />
                     </div>
-						<label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked /> <?php echo $lang['Remember me'] ?></label>
-						<span class="pull-right">
-							<input class="btn btn-primary btn-login" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
-						</span>
+					<label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked /> <?php echo $lang['Remember me'] ?></label>
+					<span class="pull-right">
+						<input class="btn btn-primary btn-login" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="4" />
+					</span>
                 </fieldset>
             </form>
         </div>
         <?php } ?>
     </div>
 </div>
+<?php } ?>
 <div class="row">
 	<div class="col-sm-3">
 		<?php if ((is_subforum($id) && $id != '0')): ?>
