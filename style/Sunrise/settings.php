@@ -506,11 +506,6 @@ if (count($languages) > 1) {
             $cur_category = 0;
             while ($cur_forum = $db->fetch_assoc($result)) {
                 if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
-                    if ($cur_category)
-                        echo "\n\t\t\t\t\t\t\t\t".'</div>';
-
-                    if ($cur_category != 0)
-                        echo "\n\t\t\t\t\t\t\t".'</div>'."\n";
 
                     echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'</div>';
                     $cur_category = $cur_forum['cid'];
