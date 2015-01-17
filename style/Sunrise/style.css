@@ -259,8 +259,9 @@ footer {
 	clear: both;
 }
 
-footer a, footer a:hover, footer a:active {
+footer a, footer a:hover, footer a:active, footer a:focus {
 	color: #fff;
+	text-decoration: none;
 }
 
 footer .copyright {
