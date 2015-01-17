@@ -748,7 +748,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			if (($user_data['g_id'] == '' || $user_data['g_id'] == FORUM_UNVERIFIED) && $user_title != $lang['Banned'])
 				$user_title = '<span class="warntext">'.$lang['Not verified'].'</span>';
 
-			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang['Results view IP link'].'</a> &middot <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang['Posts table'].'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.$lang['Results view IP link'].'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.$lang['Posts table'].'</a>';
 
 ?>
 				<tr>

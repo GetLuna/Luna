@@ -134,7 +134,7 @@ else
 	$usermenu = $backstage.$notification_menu_item.'
 				<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></a>
+					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="me.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="settings.php">Settings</a></li>
