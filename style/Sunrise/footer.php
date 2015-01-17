@@ -53,7 +53,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 		</div>
 	</div>
 </div>
-<footer>
+<footer class="footer">
 	<div class="container">
 		<?php if ($luna_config['o_board_statistics'] == 1): ?>
 		<div class="row stats">

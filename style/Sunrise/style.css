@@ -248,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Footer */
-footer {
+.footer {
 	background: #2788cb;
 	color: #fff;
 	position: inherit;
@@ -259,12 +259,12 @@ footer {
 	clear: both;
 }
 
-footer a, footer a:hover, footer a:active, footer a:focus {
+.footer a, .footer a:hover, .footer a:active, .footer a:focus {
 	color: #fff;
 	text-decoration: none;
 }
 
-footer .copyright {
+.footer .copyright {
 	background: #1a79bc;
 	padding: 10px 0;
 }
