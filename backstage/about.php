@@ -28,7 +28,7 @@ require 'header.php';
 				<h3 class="panel-title">Welcome to the Luna Preview</h3>
 			</div>
 			<div class="panel-body">
-				<p>Welcome to Luna Preview 2. It's great that you are using this software. This preview is ment to show what's coming next to Luna.</p>
+				<p>Welcome to Luna Preview 2. It's great that you are using this software. This preview is meant to show what's coming next to Luna.</p>
 				<p>Feedback is very important for us, it would be great if you give us some. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already.</p>
 			</div>
 			<div class="panel-footer">
@@ -60,16 +60,16 @@ require 'header.php';
 			<div class="panel-body panel-about">
 				<a id="brand"><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3></a>
 				<img class="img-responsive" src="../img/about/brand.png" />
-				<p>Welcome to the first stable release of the third generation of our board software! This release officialy rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an intresting feature, so read on to the more awesome parts of our giant changelog:</p>
+				<p>Welcome to the first stable release of the third generation of our board software! This release officially rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an interesting feature, so read on to the more awesome parts of our giant changelog:</p>
 				<a id="users"><h3><span class="fa fa-fw fa-user"></span> User features</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Settings</h4>
-						<p>Personality settings and board settings can now be saved all at once, these pages are also more to-the-point then ever before. The profile has been extended with a notification system, too!</p>
+						<p>Personality settings and board settings can now be saved all at once, these pages are also more to-the-point than ever before. The profile has been extended with a notification system, too!</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>A more fun design</h4>
-						<p>The design of the profile has been improved to give a little bit more color to your users their profile. They need to fill in most of the fields for it, through.</p>
+						<p>The design of the profile has been improved to give a little bit more color to your users' profile. They need to fill in most of the fields for it, though.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Make it yours</h4>
@@ -86,11 +86,11 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Contacts</h4>
-						<p>Users can create contacts, this is list to make sending Inbox messages easier. With Contacts, users can choose to block messages from other users.</p>
+						<p>Users can create contacts. This list is to make sending Inbox messages easier. With Contacts, users can choose to block messages from other users.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Lists</h4>
-						<p>Lists are groups of users, it will allow users to send a message to more then 1 person much easier then needing to find them one by one.</p>
+						<p>Lists are groups of users. It will allow users to send a message to more than 1 person much easier than needing to find them one by one.</p>
 					</div>
 				</div>
 				<a id="board"><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3></a>
@@ -106,12 +106,12 @@ require 'header.php';
 				</div>
 				<h4>Emojis</h4>
 				<img class="img-responsive" src="../img/about/emoji.png" />
-				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwhite as they are a font and not an image, which makes them also ready for high DPI screens and improve performance. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above. Unlike emoticons, you can change the size of the emojis across your whole board (and they'll stay nice).</p>
+				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwidth as they are a font and not an image, which makes them also ready for high DPI screens and improve performance. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above. Unlike emoticons, you can change the size of the emojis across your whole board (and they'll stay nice).</p>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Smarter editor</h4>
 						<img class="img-responsive" src="../img/about/editor.png" />
-						<p>The editor will act smarther than it did before now. When adding a list, for example, it will also add the first list item. For code boxes, it adds an additional white line.</p>
+						<p>The editor will act smarter than it did before now. When adding a list, for example, it will also add the first list item. For code boxes, it adds an additional white line.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Sharing code</h4>
@@ -123,11 +123,11 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Mainstage independent</h4>
-						<p>The moderation tools are now part of the Backstage and thus no longer depending on the Maisntage. This makes the way they work more unified and theme developers don't need to worry about them, either. In the future, this will allow us to add new features more easly without disturbing theme developers.</p>
+						<p>The moderation tools are now part of the Backstage and thus no longer depending on the Mainstage. This makes the way they work more unified and theme developers don't need to worry about them, either. In the future, this will allow us to add new features more easily without disturbing theme developers.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Moderation tools</h4>
-						<p>The moderation tools have been improved with a brand new design and additional improvements. Most of the changes where done due to the move from Mainstage to Backstage, but they also contain (a lot of) usability improvements.</p>
+						<p>The moderation tools have been improved with a brand new design and additional improvements. Most of the changes were done due to the move from Mainstage to Backstage, but they also contain (a lot of) usability improvements.</p>
 					</div>
 				</div>
 				<a id="backstage"><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3></a>
@@ -136,7 +136,7 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>New menu management</h4>
-						<p>The old "Additional menu items" feature had to give its position up to our new, more advanced and easier to use "Menu" settings page under settings. Here, you can manage your boards menu easier then ever before.</p>
+						<p>The old "Additional menu items" feature had to give its position up to our new, more advanced and easier to use "Menu" settings page under settings. Here, you can manage your boards menu easier than ever before.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Admin Notes</h4>
@@ -153,7 +153,7 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>Ready for smallness...</h4>
 						<img class="img-responsive" src="../img/about/smallness.png" />
-						<p>While to Backstage from ModernBB was already responsive and ready for your phone, we've made improvements to make your experience even beter.</p>
+						<p>While the Backstage from ModernBB was already responsive and ready for your phone, we've made improvements to make your experience even better.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>..and ready for you</h4>
@@ -169,24 +169,24 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>New developer tools</h4>
-						<p>The possibilities for developing your own theme have been extended drasticaly! You can do whatever you want now. Luna won't force you to use Bootstrap anymore, as the choise is now up to you.</p>
+						<p>The possibilities for developing your own theme have been extended drastically! You can do whatever you want now. Luna won't force you to use Bootstrap anymore, as the choice is now up to you.</p>
 					</div>
 				</div>
 				<a id="themes"><h3><span class="fa fa-fw fa-pencil"></span> Themes</h3></a>
 				<h4>Sunrise</h4>
 				<img class="img-responsive" src="../img/about/sunrise.png" />
-				<p>Due to the new Theme Engine, we had to rebuild our styles anyway, so why not throw in something new and fresh? That's why you're now free to use our brand new default theme, Sunrise, which will replace Random. Sunrise uses new features from Luna to show of it's capabilities. For example, Sunrise doesn't replace just Random, but also Awesome, Kind, Luna (the theme from ModernBB that is), Pinkie, Magic, Radical, Happy and Shy. In 1 theme, you get 12 different colorschemes available to you and your users.</p>
+				<p>Due to the new Theme Engine, we had to rebuild our styles anyway, so why not throw in something new and fresh? That's why you're now free to use our brand new default theme, Sunrise, which will replace Random. Sunrise uses new features from Luna to show off its capabilities. For example, Sunrise doesn't replace just Random, but also Awesome, Kind, Luna (the theme from ModernBB that is), Pinkie, Magic, Radical, Happy and Shy. In 1 theme, you get 12 different colorschemes available to you and your users.</p>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Revamped index</h4>
-						<p>The index has been redesigned to replace not only the orignal index, but also the forum view. This is a Sunrise-thing, and thus, other themes can use the classic Index > Forum > Topic structure. Sunrise provides this all on one page, through. Also taking a step down from categories.</p>
+						<p>The index has been redesigned to replace not only the original index, but also the forum view. This is a Sunrise-thing, and thus, other themes can use the classic Index > Forum > Topic structure. Sunrise provides this all on one page, though. Also taking a step down from categories.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Fresh ideas</h4>
 						<p>Sunrise will give you a refreshed experience from the ground up. Because not just the index has been redone, every page has. The result is a beautiful native experience that uses all power Luna has to provide. And as it is a first version, expect more in later updates.</p>
 					</div>
 				</div>
-				<a id="others"><h3>Ohter improvements and notes</h3></a>
+				<a id="others"><h3>Other improvements and notes</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Installation</h4>
@@ -245,16 +245,16 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-warning">3231</span> Drasticaly improved design on all pages<br />
+								<span class="label label-warning">3231</span> Drastically improved design on all pages<br />
 								<span class="label label-warning">3231</span> Advanced Search has been improved with a new interface<br />
 								<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
 								<span class="label label-warning">3231</span> New zFeatures have been added, and are disabled<br />
-								<span class="label label-warning">3231</span> Start of developiment of Reading List
+								<span class="label label-warning">3231</span> Start of development of Reading List
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-warning">3231</span> Founcations for Profile and Me have been added<br />
+								<span class="label label-warning">3231</span> Foundations for Profile and Me have been added<br />
 								<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
 								<span class="label label-warning">3231</span> Small improvements to the editor<br />
 								<span class="label label-warning">3231</span> Bootstrap has been updated to version 3.3.0<br />
@@ -285,7 +285,7 @@ require 'header.php';
 								<span class="label label-primary">3361</span> Improvements to the Theme engine have been made<br />
 								<span class="label label-primary">3361</span> Improvements to Sunrise<br />
 								<span class="label label-primary">3361</span> Improved support for large touchscreens<br />
-								<span class="label label-primary">3361</span> The description of mutliple fields have been improved
+								<span class="label label-primary">3361</span> The description of multiple fields have been improved
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -295,7 +295,7 @@ require 'header.php';
 								<span class="label label-primary">3361</span> You can now save all ranks at once instead of one by one<br />
 								<span class="label label-primary">3361</span> Inbox has been added as a private messaging system<br />
 								<span class="label label-primary">3361</span> Some obsolete features have been removed<br />
-								<span class="label label-primary">3361</span> Redesigned experminental index page<br />
+								<span class="label label-primary">3361</span> Redesigned experimental index page<br />
 								<span class="label label-primary">3361</span> Luna supports Syntax Highlighting<br />
 								<span class="label label-primary">3361</span> The Activity tracker has been added to Me<br />
 								<span class="label label-primary">3361</span> A new installation and update system<br />
@@ -341,7 +341,7 @@ require 'header.php';
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-success">3573</span> Major changes to the profile system<br />
-								<span class="label label-success">3573</span> Actitiy has been removed<br />
+								<span class="label label-success">3573</span> Activity has been removed<br />
 								<span class="label label-success">3573</span> "Tools" is a new page under "Users"<br />
 								<span class="label label-success">3573</span> User settings has been completely revamped<br />
 								<span class="label label-success">3573</span> Brand update<br />
@@ -388,7 +388,7 @@ require 'header.php';
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-danger">3652</span> Optimalization of multiple code snippets<br />
+								<span class="label label-danger">3652</span> Optimization of multiple code snippets<br />
 								<span class="label label-danger">3652</span> The search bar in themes can be disabled now<br />
 								<span class="label label-danger">3652</span> The emoji dropdown in the editor has been improved<br />
 								<span class="label label-danger">3652</span> Statistics in the footer can be disabled<br />
