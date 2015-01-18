@@ -656,6 +656,10 @@ h3.panel-title {
     margin: 0 auto;
 }
 
+.well .alert-danger {
+	margin: -10px 0 0 0;
+}
+
 .well form {
 	margin: 15px;
 	padding-bottom: 15px;

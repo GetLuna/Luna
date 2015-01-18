@@ -202,14 +202,16 @@ if (empty($stage)) {
         <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
-        <form class="form" id="install" method="post" action="db_update.php">
-            <h1 class="form-heading">Luna</h1>
+		<div class="well form-box">
+			<h3 class="form-title">Luna</h3>
 			<p class="alert alert-danger">This is a preview version! Do not install this upon a working ModernBB installation if you're using it in a productive environment!</p>
-            <fieldset>
-                <input type="hidden" name="stage" value="start" />
-				<input class="btn btn-default btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
-            </fieldset>
-		</form>
+			<form id="install" method="post" action="db_update.php">
+				<input type="hidden" name="form_sent" value="1" />
+				<div class="form-group">
+					<input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
+				</div>
+			</form>
+		</div>
 	</body>
 </html>
 <?php
