@@ -90,7 +90,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Lists</h4>
-						<p>Lists are groups of users, it will allow users to send a message to more then 1 person much easier then needing to find them one by one.</p>
+						<p>Lists are groups of users. It will allow users to send a message to more than 1 person much easier than needing to find them one by one.</p>
 					</div>
 				</div>
 				<a id="board"><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3></a>
