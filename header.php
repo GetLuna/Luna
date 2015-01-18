@@ -151,8 +151,6 @@ if ($db->num_rows($result) > 0)
 		if ($cur_item['visible'] == '1')
 			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
 
-require load_page('login.php');
-
 // Announcement
 if ($luna_config['o_announcement'] == '1')
 	$announcement = '<div class="alert alert-info announcement"><div>'.$luna_config['o_announcement_message'].'</div></div>';
