@@ -146,7 +146,7 @@ load_admin_nav('backstage', 'stats');
                 <?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
                 <td>
                     <?php printf($lang['Environment data OS'], PHP_OS) ?><br />
-                    <?php printf($lang['Environment data version'], phpversion(), '<a href="statistics.php?action=phpinfo">'.$lang['Show info'].'</a>') ?><br />
+                    <?php printf($lang['Environment data version'], phpversion(), '<a href="system.php?action=phpinfo">'.$lang['Show info'].'</a>') ?><br />
                     <?php printf($lang['Environment data acc']."\n", $php_accelerator) ?>
                 </td>
                 <td>

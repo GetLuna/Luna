@@ -413,7 +413,7 @@ if (isset($_GET['cache_cleared']))
         <div class="panel-body">
             <input type="hidden" name="action" value="prune" />
             <fieldset>
-                <p><?php printf($lang['Prune info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+                <p><?php printf($lang['Prune info'], '<a href="maintenance.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Days old label'] ?><span class="help-block"><?php echo $lang['Days old help'] ?></span></label>
                     <div class="col-sm-9">
@@ -471,7 +471,7 @@ if (isset($_GET['cache_cleared']))
         </div>
         <div class="panel-body">
             <fieldset>
-                <p><?php printf($lang['Prune info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+                <p><?php printf($lang['Prune info'], '<a href="maintenance.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><?php echo $lang['Prune by'] ?><span class="help-block"><?php echo $lang['Prune by info'] ?></span></label>
                     <div class="col-sm-9">
