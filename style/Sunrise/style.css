@@ -845,9 +845,21 @@ input[type="text"].power-control {
 }
 
 /* Labels */
+.label {
+	padding: 4px 7px;
+}
+
 .label-primary {
 	background: #e8e8e8;
 	color: #8e8e8e;
+}
+
+.label-default {
+	background: #d8d8d8;
+}
+
+.new-item .label-default {
+	background: #949494;
 }
 
 .label-success {
