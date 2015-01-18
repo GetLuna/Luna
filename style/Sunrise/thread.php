@@ -10,15 +10,19 @@ if (!defined('FORUM'))
 		<div class="list-group list-group-forum list-group-manage">
 			<a class="list-group-item" href="index.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 		</div>
-		<?php if ($is_admmod): ?>
+		<?php if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') { ?>
 		<hr />
 		<div class="list-group list-group-forum">
-			<?php if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1')
-				if ($cur_topic['is_subscribed']) { ?>
+			<?php if ($cur_topic['is_subscribed']) { ?>
 				<a class="list-group-item" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star-o"></span> <?php echo $lang['Unsubscribe'] ?></a>
 			<?php } else { ?>
 				<a class="list-group-item" href="misc.php?action=subscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star"></span> <?php echo $lang['Subscribe'] ?></a>
 			<?php } ?>
+		</div>
+		<?php } ?>
+		<?php if ($is_admmod): ?>
+		<hr />
+		<div class="list-group list-group-forum">
 			<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Moderate topic'] ?></a>
 			<?php if($num_pages > 1) { ?>
 				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&action=all"><span class="fa fa-fw fa-list"></span> <?php echo $lang['All'] ?></a>
