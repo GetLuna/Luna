@@ -32,7 +32,7 @@ if ($luna_user['first_run'] == '0') {
             <h3 class="first-run-forumtitle"><?php echo sprintf($lang['Welcome to'], $luna_config['o_board_title']) ?></h3>
             <div class="list-group first-run-list">
                 <a href="register.php" class="list-group-item"><?php echo $lang['Register'] ?></a>
-                <a href="login.php?action=forget" class="list-group-item"><?php echo $lang['Forgotten pass'] ?></a>
+                <a href="#" data-toggle="modal" data-target="#reqpass" class="list-group-item"><?php echo $lang['Forgotten pass'] ?></a>
             </div>
         </div>
         <div class="col-md-4 col-sm-6">
