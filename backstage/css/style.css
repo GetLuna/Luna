@@ -1,7 +1,7 @@
 /*
  * Copyright Studio 384 and Luna Group
  * Bootstrap Template: Trent
- * Version:            0.2
+ * Version:            0.3
  * Based on:           Trent v1.3 (http://studio384.be/trent.php)
  * Since:              0.0.40.2900
  * Bootstrap:          3.3.1
@@ -642,4 +642,37 @@ h3.panel-title {
 
 .accent-black {
 	background-color: #444 !important;
+}
+
+/* Forms */
+.well {
+    background-color: #fff !important;
+    border: none !important;
+	padding: 0;
+}
+
+.well.form-box {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.well form {
+	margin: 15px;
+	padding-bottom: 15px;
+}
+
+.well.form-box label {
+	font-weight: 500;
+}
+
+.well .form-title {
+	padding: 25px 15px;
+	font-size: 30px;
+	background-color: #1f62b0;
+	color: #fff;
+}
+
+.well.form-box input[type="text"] {
+	box-shadow: none;
+	border-color: #ddd;
 }
