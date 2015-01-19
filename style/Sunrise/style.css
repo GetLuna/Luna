@@ -986,7 +986,7 @@ textarea {
 .user-entry {
 	background-color: #eee;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 10px 0;
 }
 
 .user-entry h2 {
