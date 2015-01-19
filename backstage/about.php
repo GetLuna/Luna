@@ -28,7 +28,7 @@ require 'header.php';
 				<h3 class="panel-title">Welcome to the Luna Preview</h3>
 			</div>
 			<div class="panel-body">
-				<p>Welcome to Luna Preview 2. It's great that you are using this software. This preview is meant to show what's coming next to Luna.</p>
+				<p>Welcome to Luna Preview 3. It's great that you are using this software. This preview is meant to show what's coming next to Luna.</p>
 				<p>Feedback is very important for us, it would be great if you give us some. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already.</p>
 			</div>
 			<div class="panel-footer">
@@ -55,7 +55,7 @@ require 'header.php';
 	<div class="col-sm-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.0 Preview 2</h3>
+				<h3 class="panel-title">About Luna 1.0 Preview 3</h3>
 			</div>
 			<div class="panel-body panel-about">
 				<a id="brand"><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3></a>
@@ -196,7 +196,7 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.1.<br />
+						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.2.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
@@ -204,7 +204,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>62 bugs have been fixed.</p>
+						<p>64 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>4 security issue has been fixed.</p>
 					</div>
@@ -402,6 +402,24 @@ require 'header.php';
 								<span class="label label-danger">3660</span> General code cleanup<br />
 								<span class="label label-danger">3660</span> New user menu in the Backstage to match the Mainstage's<br />
 								<span class="label label-danger">3660</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4>Preview 3 (version 0.0.2.3661-0.3.38xx)</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-warning">38xx</span> Moved topics aren't displayed on the index anymore<br />
+								<span class="label label-warning">38xx</span> Improved forum display for moved topics<br />
+								<span class="label label-warning">38xx</span> The update dialogue now has a similar design as login<br />
+								<span class="label label-warning">38xx</span> Bootstrap has been updated to version 3.3.2
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-warning">38xx</span> Backstage now has it's own login form<br />
+								<span class="label label-warning">38xx</span> Improved edit interface<br />
+								<span class="label label-warning">38xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
