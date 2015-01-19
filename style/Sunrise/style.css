@@ -971,7 +971,7 @@ textarea {
 }
 
 #search .btn {
-	padding: 7px 12px 6px;
+	padding: 7px 12px 6px !important;
 }
 
 #search .form-inline .form-control {
