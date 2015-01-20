@@ -16,19 +16,17 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 <div class="container">
 	<div class="row forumview">
 		<div class="col-sm-3 col-xs-12">
+			<div class="list-group list-group-forum hidden-xs">
+				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> Back to index</a>
+			</div>
+			<hr />
 			<?php if ((is_subforum($id) && $id != '0')): ?>
+				<h5 class="list-group-head">Subforums</h5>
 				<div class="list-group list-group-forum">
 					<?php draw_subforum_list('index.php', $id) ?>
 				</div>
 				<hr />
 			<?php endif; ?>
-			<div class="list-group list-group-forum hidden-xs">
-				<?php draw_forum_list('index.php', $id) ?>
-			</div>
-			<div class="list-group list-group-forum visible-xs-block">
-				<?php draw_forum_list('viewforum.php', $id) ?>
-			</div>
-			<hr />
 			<div class="list-group list-group-forum">
 				<?php draw_mark_read('list-group-item', 'forumview') ?>
 				<?php if ($id != '0' && $is_admmod) { ?>

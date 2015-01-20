@@ -298,6 +298,12 @@ h1, h2, h3, h4, h5, h6 {
 	border-top-color: #ccc !important;
 }
 
+h5.list-group-head {
+	text-transform: uppercase;
+	margin-left: 20px;
+	font-family: "Segoe UI Semibold";
+}
+
 a.list-group-item-cat h4 {
 	margin-top: 0;
 	margin-bottom: 3px;
