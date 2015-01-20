@@ -374,6 +374,11 @@ a.list-group-item-cat:hover .forum-description {
     margin-bottom: 10px;
 }
 
+/* Forumview */
+.forumview {
+	margin-top: 10px;
+}
+
 /* Modal forms */
 #login .modal-xs {
 	max-width: 300px;
