@@ -290,45 +290,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 }
 
-.list-group {
-	margin-bottom: 7px;
-}
-
-.list-group-forum .list-group-item:not(:first-child) {
-	border-top-color: #ccc !important;
-}
-
-h5.list-group-head {
-	text-transform: uppercase;
-	margin-left: 20px;
-	font-family: "Segoe UI Semibold";
-}
-
-a.list-group-item-cat h4 {
-	margin-top: 0;
-	margin-bottom: 3px;
-	padding: 10px 15px;
-	color: #fff;
-}
-
-a.list-group-item-cat .forum-description {
-	display: block;
-	padding: 10px 0 10px 15px;
-	border-top: #ddd 1px solid;
-	background-color: #eee;
-}
-
-a.list-group-item-cat:hover .forum-description {
-	background-color: #e6e6e6;
-}
-
-.list-group-forum a.list-group-item {
-	border: 0;
-	border-left-width: 5px;
-	border-left-style: solid;
-	border-left-color: #fff;
-}
-
 .index {
 	margin-top: 10px;
 }
@@ -338,7 +299,7 @@ a.list-group-item-cat:hover .forum-description {
 	padding-right: 15px;
 }
 
-.forum-entry .col-sm-4 {
+.forum-entry .col-sm-3 {
 	text-align: right;
 }
 
@@ -378,6 +339,51 @@ a.list-group-item-cat:hover .forum-description {
 .hr-forum-entry hr {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+/* Sidebar */
+.col-sm-3 hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.list-group {
+	margin-bottom: 7px;
+}
+
+.list-group-forum .list-group-item:not(:first-child) {
+	border-top-color: #ccc !important;
+}
+
+h5.list-group-head {
+	text-transform: uppercase;
+	margin-left: 20px;
+	font-family: "Segoe UI Semibold";
+}
+
+a.list-group-item-cat h4 {
+	margin-top: 0;
+	margin-bottom: 3px;
+	padding: 10px 15px;
+	color: #fff;
+}
+
+a.list-group-item-cat .forum-description {
+	display: block;
+	padding: 10px 0 10px 15px;
+	border-top: #ddd 1px solid;
+	background-color: #eee;
+}
+
+a.list-group-item-cat:hover .forum-description {
+	background-color: #e6e6e6;
+}
+
+.list-group-forum a.list-group-item {
+	border: 0;
+	border-left-width: 5px;
+	border-left-style: solid;
+	border-left-color: #fff;
 }
 
 /* Forumview */
@@ -734,6 +740,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Threads */
+.topicview {
+	margin-top: 10px;
+}
+
 .comment .panel-default {
 	margin: 0;
 	margin-left: 5px;
@@ -778,10 +788,6 @@ input[type="text"].power-control {
 
 #commentform > .panel {
 	margin-top: 10px;
-}
-
-.list-group-manage {
-	margin-top: 5px;
 }
 
 .col-no-padding-right {
@@ -1100,6 +1106,7 @@ textarea {
 .thread-jumbotron {
 	padding: 45px 15px 15px !important;
 	margin-bottom: 5px;
+	margin-top: 0;
 }
 
 .thread-jumbotron h2 {

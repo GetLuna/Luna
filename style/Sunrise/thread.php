@@ -5,7 +5,7 @@ if (!defined('FORUM'))
     exit;
 
 ?>
-<div class="row">
+<div class="row topicview">
 	<div class="col-sm-3">
 		<div class="list-group list-group-forum list-group-manage">
 			<a class="list-group-item" href="index.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
