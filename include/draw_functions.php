@@ -966,11 +966,10 @@ function draw_mark_read($class, $page) {
 	if (!empty($class))
 		$classes = ' class="'.$class.'"';
 		
-	if ($page == 'index') {
+	if ($page == 'index')
 		$url = 'misc.php?action=markread';
-	} else if ($page == 'forumview') {
+	else if ($page == 'forumview')
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
-	}
 
 	if (!$luna_user['is_guest'])
 		echo '<a'.$classes.' href="'.$url.'">'.$lang['Mark as read'].'</a>';
