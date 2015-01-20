@@ -14,17 +14,6 @@ if (!defined('FORUM'))
 ?>
 	</div>
 	<div class="container">
-<?php if (isset($footer_style) && ($footer_style == 'viewforum' || $footer_style == 'viewtopic') && $is_admmod) { ?>
-
-		<div class="modcontrols">
-		<?php if ($footer_style == 'viewforum') { ?>
-
-			<a href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>" class="btn btn-primary btn-sm"><span class="fa fa-eye"></span> <?php echo $lang['Moderate forum'] ?></a>
-
-		<?php } ?>
-
-<?php } ?>
-
 <?php
 // If no footer style has been specified, we use the default (only copyright/debug info)
 $footer_style = isset($footer_style) ? $footer_style : NULL;
