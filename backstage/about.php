@@ -200,13 +200,13 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.3660.</p>
+						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.38xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
 						<p>64 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
-						<p>4 security issue has been fixed.</p>
+						<p>5 security issue has been fixed.</p>
 					</div>
 				</div>
 				<hr />
@@ -412,13 +412,16 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Moved topics aren't displayed on the index anymore<br />
 								<span class="label label-warning">38xx</span> Improved forum display for moved topics<br />
 								<span class="label label-warning">38xx</span> The update dialogue now has a similar design as login<br />
-								<span class="label label-warning">38xx</span> Bootstrap has been updated to version 3.3.2
+								<span class="label label-warning">38xx</span> Bootstrap has been updated to version 3.3.2<br />
+								<span class="label label-warning">38xx</span> Updated design for the user list
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-warning">38xx</span> Backstage now has it's own login form<br />
 								<span class="label label-warning">38xx</span> Improved edit interface<br />
+								<span class="label label-warning">38xx</span> A security issue with the installer has been fixed<br />
+								<span class="label label-warning">38xx</span> Major improvements to the responsive design<br />
 								<span class="label label-warning">38xx</span> Multiple bugfixes
 							</p>
 						</div>
