@@ -149,7 +149,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#forum" data-toggle="tab"><?php echo $lang['Forums and topics'] ?></a></li>
 			<li><a href="#profile" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
-			<li><a href="#search" data-toggle="tab"><?php echo $lang['Search'] ?></a></li>
+			<li><a href="#searching" data-toggle="tab"><?php echo $lang['Search'] ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div class="tab-pane active" id="forum">
@@ -164,7 +164,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts)
                 <h3><?php echo $lang['Information question'] ?></h3>
                 <p><?php echo $lang['Information answer'] ?></p>
             </div>
-			<div class="tab-pane" id="search">
+			<div class="tab-pane" id="searching">
                 <h3><?php echo $lang['Advanced search question'] ?></h3>
                 <p><?php echo $lang['Advanced search answer'] ?></p>
                 <h3><?php echo $lang['More search question'] ?></h3>
