@@ -323,6 +323,10 @@ a.list-group-item-cat:hover .forum-description {
 	border-left-color: #fff;
 }
 
+.index {
+	margin-top: 10px;
+}
+
 .col-md-9 {
 	padding-left: 30px;
 	padding-right: 15px;
@@ -987,6 +991,7 @@ textarea {
 	background-color: #eee;
 	padding: 0;
 	margin: 0 0 10px 0;
+	height: 100px;
 }
 
 .user-entry h2 {

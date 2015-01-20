@@ -55,8 +55,8 @@ if ($luna_user['first_run'] == '0') {
     </div>
 </div>
 <?php } ?>
-<div class="row">
-	<div class="col-sm-3">
+<div class="row index">
+	<div class="col-sm-3 col-xs-12">
 		<?php if ((is_subforum($id) && $id != '0')): ?>
 			<div class="list-group list-group-forum">
 				<?php draw_subforum_list('index.php', $id) ?>
@@ -74,7 +74,7 @@ if ($luna_user['first_run'] == '0') {
 			<?php } ?>
 		</div>
 	</div>
-	<div class="col-sm-9">
+	<div class="col-sm-9 hidden-xs">
 		<?php draw_section_info($id); ?>
 		<?php echo $paging_links ?>
 		<?php draw_index_topics_list($id) ?>
