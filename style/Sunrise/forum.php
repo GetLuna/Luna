@@ -15,8 +15,8 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 </div>
 <div class="container">
 	<div class="row forumview">
-		<div class="col-sm-3 col-xs-12">
-			<div class="list-group list-group-forum hidden-xs">
+		<div class="col-sm-3">
+			<div class="list-group list-group-forum">
 				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> Back to index</a>
 			</div>
 			<hr />
@@ -34,7 +34,7 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 				<?php } ?>
 			</div>
 		</div>
-		<div class="col-sm-9 hidden-xs">
+		<div class="col-sm-9">
 			<?php draw_topics_list(); ?>
 		</div>
 	</div>
