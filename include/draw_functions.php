@@ -227,7 +227,6 @@ function draw_topics_list() {
 	
 			if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') {
 				if ($cur_topic['has_posted'] == $luna_user['id']) {
-					$status_text[] = '<span class="fa fa-asterisk"></span>';
 					$item_status .= ' posted-item';
 				}
 			}
