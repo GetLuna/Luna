@@ -960,12 +960,18 @@ function draw_search_forum_list() {
 	}
 }
 
-function draw_mark_read($class) {
+function draw_mark_read($class, $page) {
 	global $lang, $luna_user;
 	
 	if (!empty($class))
 		$classes = ' class="'.$class.'"';
+		
+	if ($page == 'index') {
+		$url = 'misc.php?action=markread';
+	} else if ($page == 'forumview') {
+		$url = 'misc.php?action=markforumread&amp;fid='.$id;
+	}
 
 	if (!$luna_user['is_guest'])
-		echo '<a'.$classes.' href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
+		echo '<a'.$classes.' href="'.$url.'">'.$lang['Mark as read'].'</a>';
 }
