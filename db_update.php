@@ -676,7 +676,7 @@ switch ($stage) {
 
 		// Since 0.2.3495: Add o_emoji_size feature
 		if (!array_key_exists('o_emoji_size', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji_size\', \'14\')') or error('Unable to insert config value \'o_emoji_size\'', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji_size\', \'16\')') or error('Unable to insert config value \'o_emoji_size\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.2.3495: Add o_back_to_top feature
 		if (!array_key_exists('o_back_to_top', $luna_config))

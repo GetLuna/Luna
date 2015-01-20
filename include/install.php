@@ -1535,7 +1535,7 @@ class Installer {
 			'o_pms_mess_per_page'		=> 10,
 			'o_pms_max_receiver'		=> 5,
 			'o_pms_notification'		=> 1,
-			'o_emoji_size'				=> 14,
+			'o_emoji_size'				=> 16,
 			'o_back_to_top'				=> 1,
 			'o_show_copyright'			=> 1,
 			'o_copyright_type'			=> 0,
