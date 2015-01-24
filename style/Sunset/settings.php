@@ -185,7 +185,7 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Style'] ?></label>
 						<div class="col-sm-9">
-							<select class="form-control" name="form[style]">
+							<select disabled class="form-control" name="form[style]">
 <?php
         foreach ($styles as $temp) {
             if ($user['style'] == $temp)
