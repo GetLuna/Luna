@@ -94,7 +94,7 @@ function load_admin_nav($section, $page) {
 	{
 ?>
                 <li class="dropdown <?php if ($section == 'extensions') echo 'active'; ?>">
-                    <a href="#" class="dropdown-toggle dropdown-toggle-header" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="fa fa-cogs"></span> <?php echo $lang['Extensions'] ?> <span class="fa fa-angle-down">
                     </a>
                     <ul class="dropdown-menu">
