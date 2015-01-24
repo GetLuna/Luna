@@ -197,7 +197,7 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>Packages</h4>
 						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.2.<br />
-						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.2.0.<br />
+						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
 						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.38xx.</p>
@@ -413,7 +413,10 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Improved forum display for moved topics<br />
 								<span class="label label-warning">38xx</span> The update dialogue now has a similar design as login<br />
 								<span class="label label-warning">38xx</span> Bootstrap has been updated to version 3.3.2<br />
-								<span class="label label-warning">38xx</span> Updated design for the user list
+								<span class="label label-warning">38xx</span> Updated design for the user list<br />
+								<span class="label label-warning">38xx</span> Font Awesome has been updated to version 4.3.0<br />
+								<span class="label label-warning">38xx</span> Users can no longer select a per-user style<br />
+								<span class="label label-warning">38xx</span> Emojis have a default size of 16px instead of 14px
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -422,6 +425,9 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Improved edit interface<br />
 								<span class="label label-warning">38xx</span> A security issue with the installer has been fixed<br />
 								<span class="label label-warning">38xx</span> Major improvements to the responsive design<br />
+								<span class="label label-warning">38xx</span> Sunset is added as a build-in style<br />
+								<span class="label label-warning">38xx</span> The Theme settings have been improved<br />
+								<span class="label label-warning">38xx</span> Improvements to the topic view have been made<br />
 								<span class="label label-warning">38xx</span> Multiple bugfixes
 							</p>
 						</div>
