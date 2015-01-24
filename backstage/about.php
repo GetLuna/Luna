@@ -416,7 +416,8 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Updated design for the user list<br />
 								<span class="label label-warning">38xx</span> Font Awesome has been updated to version 4.3.0<br />
 								<span class="label label-warning">38xx</span> Users can no longer select a per-user style<br />
-								<span class="label label-warning">38xx</span> Emojis have a default size of 16px instead of 14px
+								<span class="label label-warning">38xx</span> Emojis have a default size of 16px instead of 14px<br />
+								<span class="label label-warning">38xx</span> Themes now can set a parent to inherit their design
 							</p>
 						</div>
 						<div class="col-sm-6">
