@@ -19,6 +19,7 @@ if (isset($_GET['default_style'])) {
 	
 	$default_style = htmlspecialchars($_GET["default_style"]);
 
+	$db->query('UPDATE '.$db->prefix.'users SET style=\''.$default_style.'\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$default_style.'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
@@ -29,14 +30,6 @@ if (isset($_GET['default_style'])) {
 	clear_feed_cache();
 
 	redirect('backstage/theme.php?saved=true');
-}
-
-if (isset($_GET['force_default'])) {
-	confirm_referrer('backstage/theme.php');
-	
-	$force_default = htmlspecialchars($_GET["force_default"]);
-	
-	$db->query('UPDATE '.$db->prefix.'users SET style=\''.$force_default.'\' WHERE id > 0') or error('Unable to set style settings', __FILE__, __LINE__, $db->error());
 }
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
