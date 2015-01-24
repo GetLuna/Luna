@@ -2009,7 +2009,7 @@ function get_view_path($object) {
 	include FORUM_ROOT.'/style/'.$current_theme.'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
 	
-	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/'.$object)))
+	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/objects/'.$object)))
 		return FORUM_ROOT.'style/'.$luna_user['style'].'/objects/'.$object;
 	else
 		return FORUM_ROOT.'style/'.$style_info->parent_theme.'/objects/'.$object;
