@@ -57,20 +57,6 @@ if ($luna_user['first_run'] == '0') {
 <?php } ?>
 <div class="row index">
 	<div class="col-sm-3 col-xs-12">
-		<?php if ((is_subforum($id) && $id != '0')): ?>
-			<h5 class="list-group-head">Subforums</h5>
-			<div class="list-group list-group-forum">
-				<?php draw_subforum_list('index.php', $id) ?>
-			</div>
-			<hr />
-		<?php endif; ?>
-		<div class="list-group list-group-forum hidden-xs">
-			<?php draw_forum_list('index.php', $id) ?>
-		</div>
-		<div class="list-group list-group-forum visible-xs-block">
-			<?php draw_forum_list('viewforum.php', $id) ?>
-		</div>
-		<hr />
 		<div class="list-group list-group-forum">
 			<?php draw_mark_read('list-group-item', 'index') ?>
 			<?php if ($id != '0' && $is_admmod) { ?>
@@ -79,9 +65,8 @@ if ($luna_user['first_run'] == '0') {
 		</div>
 	</div>
 	<div class="col-sm-9 hidden-xs">
-		<?php draw_section_info($id); ?>
-		<?php echo $paging_links ?>
-		<?php draw_index_topics_list($id) ?>
-		<?php echo $paging_links ?>
+		<div class="list-group list-group-forum">
+			<?php draw_forum_list('viewforum.php', $id) ?>
+		</div>
 	</div>
 </div>
