@@ -15,7 +15,7 @@ if (!$luna_user['is_admmod']) {
 }
 
 if (isset($_GET['default_style'])) {
-	confirm_referrer('backstage/style.php');
+	confirm_referrer('backstage/theme.php');
 	
 	$default_style = htmlspecialchars($_GET["default_style"]);
 
@@ -28,11 +28,11 @@ if (isset($_GET['default_style'])) {
 	generate_config_cache();
 	clear_feed_cache();
 
-	redirect('backstage/style.php?saved=true');
+	redirect('backstage/theme.php?saved=true');
 }
 
 if (isset($_GET['force_default'])) {
-	confirm_referrer('backstage/style.php');
+	confirm_referrer('backstage/theme.php');
 	
 	$force_default = htmlspecialchars($_GET["force_default"]);
 	
@@ -138,11 +138,10 @@ if (file_exists(FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php')) {
 										if ($luna_config['o_default_style'] == $style_info->name)
 											echo '<a class="btn btn-primary disabled">'.$lang['Default'].'</a>';
 										else
-											echo '<a class="btn btn-primary" href="style.php?default_style='.$style_info->name.'">'.$lang['Set as default'].'</a>';
+											echo '<a class="btn btn-primary" href="theme.php?default_style='.$style_info->name.'">'.$lang['Set as default'].'</a>';
 									?>
 									<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-										<span class="caret"></span>
-										<span class="sr-only">Toggle Dropdown</span>
+										<span class="fa fa-fw fa-angle-down"></span>
 									</a>
 									<ul class="dropdown-menu" role="menu">
 										<?php
