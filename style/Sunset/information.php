@@ -20,6 +20,7 @@ $xmlstr = <<<XML
 	<description>Sunset is a variant upon Sunrise, featuring a more classic design.</description>
 	<minversion>1.0 Preview 3</minversion>
 	<maxversion>1.0 Preview 3</maxversion>
+	<parent_theme>Sunrise</parent_theme>
 </style>
 XML;
 ?>
