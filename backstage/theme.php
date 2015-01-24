@@ -136,18 +136,12 @@ if (file_exists(FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php')) {
 								<div class="btn-group pull-right">
 									<?php
 										if ($luna_config['o_default_style'] == $style_info->name)
-											echo '<a class="btn btn-primary disabled">'.$lang['Default'].'</a>';
+											echo '<a class="btn btn-primary disabled">In use</a>';
 										else
-											echo '<a class="btn btn-primary" href="theme.php?default_style='.$style_info->name.'">'.$lang['Set as default'].'</a>';
+											echo '<a class="btn btn-primary" href="theme.php?default_style='.$style_info->name.'">Use</a>';
+										
+										echo '<a class="btn btn-primary" data-toggle="modal" href="#" data-target="#'.$temp.'"><span class="fa fa-info-circle"></span></a>';
 									?>
-									<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-										<span class="fa fa-fw fa-angle-down"></span>
-									</a>
-									<ul class="dropdown-menu" role="menu">
-										<?php
-											echo '<li><a data-toggle="modal" href="#" data-target="#'.$temp.'">'.$lang['About'].'</a></li>';
-										?>
-									</ul>
 								</div>
 							</div>
 						</div>
