@@ -2032,6 +2032,22 @@ function load_page($page) {
 }
 
 //
+// Get the styles that are required
+//
+function load_css() {
+	global $luna_config;
+	
+	$current_theme = $luna_config['o_default_style'];
+	include FORUM_ROOT.'/style/'.$current_theme.'/information.php';
+	$style_info = new SimpleXMLElement($xmlstr);
+
+	echo '<link rel="stylesheet" type="text/css" href="style/'.$luna_config['o_default_style'].'/style.css" />';
+	
+	if ($style_info->parent_theme != '')
+		echo '<link rel="stylesheet" type="text/css" href="style/'.$style_info->parent_theme.'/style.css" />';
+}
+
+//
 // Delete all content in a folder
 //
 function delete_all($path) {
