@@ -2,3 +2,13 @@
 .list-group-item h3 {
 	margin: 0;
 }
+
+/* Forum */
+.jumbotron h2 {
+	margin-bottom: 0;
+}
+
+.forum-desc {
+	color: #fff;
+	margin-bottom: 10px;
+}
