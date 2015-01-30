@@ -321,6 +321,20 @@ function draw_forum_list($page, $object_name = 'forum.php') {
 			
 			if ($id == $cur_forum['fid'])
 				$item_status .= ' active';
+
+			// If there is a last_post/last_poster
+			if ($cur_forum['last_post'] != '') {
+				if (luna_strlen($cur_forum['subject']) > 43)
+					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 40).'...';
+		
+					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
+						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+					else
+						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+			} else if ($cur_forum['redirect_url'] != '')
+				$last_post = '- - -';
+			else
+				$last_post = $lang['Never'];
 		
 			require get_view_path($object_name);
 		}

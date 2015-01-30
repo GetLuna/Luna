@@ -8,7 +8,8 @@
 	margin-bottom: 0;
 }
 
-.forum-desc {
-	color: #fff;
-	margin-bottom: 10px;
+.forum-entry {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: #ddd 1px solid;
 }
