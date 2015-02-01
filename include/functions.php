@@ -2005,8 +2005,7 @@ function get_template_path($tpl_file) {
 function get_view_path($object) {
 	global $luna_user, $luna_config;
 	
-	$current_theme = $luna_config['o_default_style'];
-	include FORUM_ROOT.'/style/'.$current_theme.'/information.php';
+	include FORUM_ROOT.'/style/'.$luna_config['o_default_style'].'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
 	
 	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/objects/'.$object)))
@@ -2021,12 +2020,11 @@ function get_view_path($object) {
 function load_page($page) {
 	global $luna_user, $luna_config;
 	
-	$current_theme = $luna_config['o_default_style'];
-	include FORUM_ROOT.'/style/'.$current_theme.'/information.php';
+	include FORUM_ROOT.'/style/'.$luna_config['o_default_style'].'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
 	
-	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/'.$page)))
-		return FORUM_ROOT.'style/'.$luna_user['style'].'/'.$page;
+	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'style/'.$luna_config['o_default_style'].'/'.$page)))
+		return FORUM_ROOT.'style/'.$luna_config['o_default_style'].'/'.$page;
 	else
 		return FORUM_ROOT.'style/'.$style_info->parent_theme.'/'.$page;
 }
@@ -2037,8 +2035,7 @@ function load_page($page) {
 function load_css() {
 	global $luna_config;
 	
-	$current_theme = $luna_config['o_default_style'];
-	include FORUM_ROOT.'/style/'.$current_theme.'/information.php';
+	include FORUM_ROOT.'/style/'.$luna_config['o_default_style'].'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
 	
 	if ($style_info->parent_theme != '')
