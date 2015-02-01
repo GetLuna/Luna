@@ -1216,6 +1216,10 @@ $lang = array(
 'New version'						=>	'It\'s time to update, a new version is available',
 'Latest version'					=>	'Thanks for using the latest version of Luna',
 'Development version'				=>	'You\'re using a development release',
+'Warning head'						=>	'Warning', 
+'Install file exists'				=>	'The file install.php still exists, but should be removed.', 
+'Delete install file'				=>	'Delete it', 
+'Delete install.php failed'			=>	'Could not remove install.php. Please do so by hand.', 
 
 //
 // Reports

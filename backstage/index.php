@@ -14,6 +14,18 @@ if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
+// Check if install.php is a thing
+if ($action == 'remove_install_file') {
+	$deleted = @unlink(FORUM_ROOT.'install.php');
+
+	if ($deleted)
+		redirect('admin_index.php');
+	else
+		message($lang['Delete install.php failed']);
+}
+
+$install_file_exists = is_file(FORUM_ROOT.'install.php');
+
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/index.php', $lang['Bad HTTP Referer message']);
 
@@ -89,6 +101,12 @@ if (isset($_GET['saved']))
 
 if(is_writable(FORUM_ROOT.'config.php')): ?>
 <div class="alert alert-warning">The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.</div>
+<?php endif;
+
+if ($install_file_exists) : ?>
+<div class="alert alert-warning">
+    <p><?php echo $lang['Install file exists'] ?> <a href="index.php?action=remove_install_file"><?php echo $lang['Delete install file'] ?></a></p>
+</div>
 <?php endif;
 
 if ($luna_config['o_first_run_backstage'] == 0) { ?>
