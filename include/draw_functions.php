@@ -277,7 +277,7 @@ function draw_topics_list() {
 	
 }
 
-function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags) {
+function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags = '') {
 	global $lang, $db, $luna_config, $luna_user, $id;
 	
 	// Print the categories and forums
@@ -292,7 +292,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
             
             if ($cur_forum['cid'] != $cur_category && $use_cat == 1) {
                 if ($cur_category != 0)
-                    echo "\t\t".'</div>'."\n\n";
+                    echo '</div></div>';
 
                 ++$cat_count;
                 $forum_count = 0;
@@ -349,16 +349,16 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 				$last_post = $lang['Never'];
 		
 			require get_view_path($forum_object_name);
-            
-            // Any need to close of a category?
-            if ($use_cat == 1) {
-                if ($cur_category > 0)
-                    echo $close_tags;
-                else
-                    echo '<div class="no-board"><p>'.$lang['Empty board'].'</p></div>';
-            }
 		}
 	}
+            
+    // Any need to close of a category?
+    if ($use_cat == 1) {
+        if ($cur_category > 0)
+            echo $close_tags;
+        else
+            echo '<div class="no-board"><p>'.$lang['Empty board'].'</p></div>';
+    }
 }
 
 function draw_subforum_list($page, $object_name = 'forum.php') {
