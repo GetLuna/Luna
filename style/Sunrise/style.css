@@ -386,6 +386,14 @@ a.list-group-item-cat:hover .forum-description {
 	border-left-color: #fff;
 }
 
+.list-group-enabled {
+    border-left-color: #95f4ac !important;
+}
+
+.list-group-disabled {
+    border-left-color: #ef978e !important;
+}
+
 /* Forumview */
 .forumview {
 	margin-top: 10px;
