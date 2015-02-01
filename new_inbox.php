@@ -506,40 +506,8 @@ $cur_index = 1;
 				<?php echo (($edit != '0') ? '<input type="hidden" name="edit" value="'.$edit.'" />' : '') ?>
 				<?php echo (($q != '0') ? '<input type="hidden" name="quote" value="1" />' : '') ?>
 				<?php echo (($tid != '0') ? '<input type="hidden" name="tid" value="'.$tid.'" />' : '') ?>
-				<?php if ($r == '0' && $q == '0' && $edit == '0') : ?>
-					<?php
-					$result = $db->query('SELECT * FROM '.$db->prefix.'sending_lists WHERE user_id='.$luna_user['id'].' ORDER BY id DESC') or error('Unable to update the list of the contacts', __FILE__, __LINE__, $db->error());
-	
-					if ($db->num_rows($result)) {
-					?>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo $lang['Sending lists'] ?></label>
-						<div class="col-sm-9">
-							<select class="form-control" id="sending_list" name="sending_list">
-								<option value="" selected><?php echo $lang['Select a list'] ?></option>
-								<?php
-								while ($cur_list = $db->fetch_assoc($result)) {
-									$usernames = '';
-									$ids_list = unserialize($cur_list['array_id']);
-									$usernames_list = unserialize($cur_list['receivers']);
-									for($i = 0; $i < count($ids_list); $i++) {
-										if ($i > 0 && $i < count($ids_list))
-												$usernames = $usernames.', ';
-										
-										$usernames = $usernames.luna_htmlspecialchars($usernames_list[$i]);
-									} 
-									echo '<option value="'.$usernames.'">'.luna_htmlspecialchars($cur_list['name']).'</option>';
-								}
-								?>
-							</select>
-						</div>
-						<noscript><p><?php echo $lang['JS required'] ?></p></noscript>	
-					</div>
-					<?php } ?>
-				<?php else : ?>
 				<input type="hidden" name="p_username" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" />
 				<input type="hidden" name="req_subject" value="<?php echo luna_htmlspecialchars($p_subject) ?>" />
-				<?php endif; ?>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Send to'] ?><span class="help-block">Separate names with commas, maximum <?php echo ($luna_config['o_pms_max_receiver']-1) ?> names</span></label>
 					<div class="col-sm-9">
