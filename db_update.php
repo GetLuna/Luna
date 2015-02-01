@@ -795,10 +795,6 @@ switch ($stage) {
 		if (!file_exists(FORUM_ROOT.'lang/'.$luna_config['o_default_lang'].'/common.php'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'English\' WHERE conf_name = \'o_default_lang\'') or error('Unable to update default language', __FILE__, __LINE__, $db->error());
 
-		// Check the default style still exists!
-		if (!file_exists(FORUM_ROOT.'style/'.$luna_config['o_default_style'].'/style.css'))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Sunrise\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
-
 		// This feels like a good time to synchronize the forums
 		$result = $db->query('SELECT id FROM '.$db->prefix.'forums') or error('Unable to fetch forum IDs', __FILE__, __LINE__, $db->error());
 
