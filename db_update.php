@@ -498,38 +498,6 @@ switch ($stage) {
 			$db->create_table('contacts', $schema) or error('Unable to create contacts table', __FILE__, __LINE__, $db->error());
 		}
 
-		// Since 0.0.3250: Add the messages table
-		if (!$db->table_exists('sending_lists')) {
-			$schema = array(
-				'FIELDS'			=> array(
-					'id'				=> array(
-						'datatype'			=> 'SERIAL',
-						'allow_null'    	=> false
-					),
-					'user_id'			=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'array_id'			=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-					),
-					'name'				=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-					),
-					'receivers'		=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-					),
-				),
-				'PRIMARY KEY'		=> array('id'),
-			);
-			
-			$db->create_table('sending_lists', $schema) or error('Unable to create sending lists table', __FILE__, __LINE__, $db->error());
-		}
-
 		// Since 0.0.3263: Add the g_pm column to the groups table
 		$db->add_field('groups', 'g_pm', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_pm" to table "groups"', __FILE__, __LINE__, $db->error());
 
@@ -678,6 +646,10 @@ switch ($stage) {
 		// Since 0.3.3721: Remove reading_list table
 		if ($db->table_exists('reading_list'))
 			$db->drop_table('reading_list') or error('Unable to drop reading_list table', __FILE__, __LINE__, $db->error());
+
+		// Since 0.3.3722: Remove sending_lists table
+		if ($db->table_exists('sending_lists'))
+			$db->drop_table('sending_lists') or error('Unable to drop sending_lists table', __FILE__, __LINE__, $db->error());
 
 		break;
 

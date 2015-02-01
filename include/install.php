@@ -1393,35 +1393,6 @@ class Installer {
 		);
 		
 		$db->create_table('contacts', $schema) or error('Unable to create contacts table', __FILE__, __LINE__, $db->error());
-		
-		$schema = array(
-			'FIELDS'			=> array(
-				'id'				=> array(
-					'datatype'			=> 'SERIAL',
-					'allow_null'    	=> false
-				),
-				'user_id'			=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'array_id'			=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-				),
-				'name'				=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-				),
-				'receivers'		=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-				),
-			),
-			'PRIMARY KEY'		=> array('id'),
-		);
-		
-		$db->create_table('sending_lists', $schema) or error('Unable to create sending lists table', __FILE__, __LINE__, $db->error());
 
 		// Insert config data
 		$luna_config = array(
