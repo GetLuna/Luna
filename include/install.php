@@ -953,39 +953,6 @@ class Installer {
 					'datatype'		=> 'SERIAL',
 					'allow_null'	=> false
 				),
-				'user_id'		=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'topic_id'		=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'forum_id'		=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
-				'date'			=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				)
-			),
-			'PRIMARY KEY'	=> array('id')
-		);
-	
-		$db->create_table('reading_list', $schema) or error('Unable to create reading list table', __FILE__, __LINE__, $db->error());
-	
-	
-		$schema = array(
-			'FIELDS'		=> array(
-				'id'			=> array(
-					'datatype'		=> 'SERIAL',
-					'allow_null'	=> false
-				),
 				'poster'		=> array(
 					'datatype'		=> 'VARCHAR(200)',
 					'allow_null'	=> false,

@@ -366,41 +366,6 @@ switch ($stage) {
 		// Since 0.0.3221: Drop the last_topic column to the forums table
 		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3224: Add the menu table
-		if (!$db->table_exists('reading_list')) {
-			$schema = array(
-				'FIELDS'		=> array(
-					'id'			=> array(
-						'datatype'		=> 'SERIAL',
-						'allow_null'	=> false
-					),
-					'user_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'topic_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'forum_id'		=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'date'			=> array(
-						'datatype'		=> 'INT(10) UNSIGNED',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					)
-				),
-				'PRIMARY KEY'	=> array('id')
-			);
-		
-			$db->create_table('reading_list', $schema) or error('Unable to create reading list table', __FILE__, __LINE__, $db->error());
-		}
-
 		// Since 0.0.3247: Remove obsolete o_quickpost permission from config table
 		if (array_key_exists('o_quickpost', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickpost\'') or error('Unable to remove config value \'o_quickpost\'', __FILE__, __LINE__, $db->error());
@@ -709,6 +674,10 @@ switch ($stage) {
 		// Since 0.2.3563: Add o_notification_flyout feature
 		if (!array_key_exists('o_notification_flyout', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_notification_flyout\', \'1\')') or error('Unable to insert config value \'o_notification_flyout\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.3.3721: Remove reading_list table
+		if ($db->table_exists('reading_list'))
+			$db->drop_table('reading_list') or error('Unable to drop reading_list table', __FILE__, __LINE__, $db->error());
 
 		break;
 
