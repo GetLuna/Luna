@@ -2040,11 +2040,11 @@ function load_css() {
 	$current_theme = $luna_config['o_default_style'];
 	include FORUM_ROOT.'/style/'.$current_theme.'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
-
-	echo '<link rel="stylesheet" type="text/css" href="style/'.$luna_config['o_default_style'].'/style.css" />';
 	
 	if ($style_info->parent_theme != '')
 		echo '<link rel="stylesheet" type="text/css" href="style/'.$style_info->parent_theme.'/style.css" />';
+
+	echo '<link rel="stylesheet" type="text/css" href="style/'.$luna_config['o_default_style'].'/style.css" />';
 }
 
 //

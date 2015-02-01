@@ -16,6 +16,7 @@ require ('header.php');
 <?php
 // Allow childs
 load_css();
+include ('style/'.$luna_config['o_default_style'].'/style.php');
 
 if (!defined('FORUM_ALLOW_INDEX'))
 	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
@@ -77,6 +78,3 @@ if (!defined('FORUM_ALLOW_INDEX'))
 			</div>
 			<div class="container">
 				<?php echo $announcement; ?>	
-<?php 
-include ('style/Sunrise/style.php');
-?>
