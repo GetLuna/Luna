@@ -417,7 +417,9 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Font Awesome has been updated to version 4.3.0<br />
 								<span class="label label-warning">38xx</span> Users can no longer select a per-user style<br />
 								<span class="label label-warning">38xx</span> Emojis have a default size of 16px instead of 14px<br />
-								<span class="label label-warning">38xx</span> Themes now can set a parent to inherit their design
+								<span class="label label-warning">38xx</span> Themes now can set a parent to inherit their design<br />
+								<span class="label label-warning">38xx</span> Support to display categories in themes<br />
+								<span class="label label-warning">38xx</span> Threads now have visual help for their status
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -429,6 +431,8 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Sunset is added as a build-in style<br />
 								<span class="label label-warning">38xx</span> The Theme settings have been improved<br />
 								<span class="label label-warning">38xx</span> Improvements to the topic view have been made<br />
+								<span class="label label-warning">38xx</span> More improvements to Theme engine 6<br />
+								<span class="label label-warning">38xx</span> Luna now asks to remove install.php after installation<br />
 								<span class="label label-warning">38xx</span> Multiple bugfixes
 							</p>
 						</div>
