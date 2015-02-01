@@ -151,10 +151,6 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 	error($lang['No update error']);
 }
 
-$default_style = $luna_config['o_default_style'];
-if (!file_exists(FORUM_ROOT.'style/'.$default_style.'.css'))
-	$default_style = 'Sunrise';
-
 // Empty all output buffers and stop buffering
 while (@ob_end_clean());
 
