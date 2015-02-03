@@ -42,8 +42,7 @@ require 'header.php';
 			<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
 			<a href="#management" class="list-group-item"><span class="fa fa-fw fa-coffee"></span> Management</a>
 			<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
-			<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Theme engine</a>
-			<a href="#themes" class="list-group-item"><span class="fa fa-fw fa-pencil"></span> Themes</a>
+			<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
 		</div>
 		<div class="list-group">
 			<a href="#others" class="list-group-item">Other improvements and notes</a>
@@ -78,19 +77,9 @@ require 'header.php';
 						<p>Comments on your thread? Stuff you have to know? Notifications will help you out. Luna now shows notifications in the main interface and under Me, we have a full view of notifications.</p>
 					</div>
 				</div>
-				<a id="inbox"><h3><span class="fa fa-fw fa-paper-plane-o"></span> Luna Inbox</h3></a>
+				<a id="inbox"><h3><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</h3></a>
 				<img class="img-responsive" src="../img/about/inbox.png" />
 				<p>Inbox is the new private messaging system included in Luna. It allows user to connect to other users through Luna without the need to exchange an email address or any other personal data.</p>
-				<div class="row">
-					<div class="col-sm-6">
-						<h4>Contacts</h4>
-						<p>Users can create contacts. This list is to make sending Inbox messages easier. With Contacts, users can choose to block messages from other users.</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>Lists</h4>
-						<p>Lists are groups of users. It will allow users to send a message to more than 1 person much easier than needing to find them one by one.</p>
-					</div>
-				</div>
 				<a id="board"><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
@@ -159,7 +148,7 @@ require 'header.php';
 						<p>New to Luna? We'll give you a hand with the important settings you need to get your community ready to kick off and grow beyond! Of course, you can remove it too.</p>
 					</div>
 				</div>
-				<a id="theme"><h3><span class="fa fa-fw fa-paint-brush"></span> Theme engine</h3></a>
+				<a id="theme"><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Theme Engine 6</h4>
@@ -170,7 +159,6 @@ require 'header.php';
 						<p>The possibilities for developing your own theme have been extended drastically! You can do whatever you want now. Luna won't force you to use Bootstrap anymore, as the choice is now up to you.</p>
 					</div>
 				</div>
-				<a id="themes"><h3><span class="fa fa-fw fa-pencil"></span> Themes</h3></a>
 				<h4>Sunrise</h4>
 				<img class="img-responsive" src="../img/about/sunrise.png" />
 				<p>Due to the new Theme Engine, we had to rebuild our styles anyway, so why not throw in something new and fresh? That's why you're now free to use our brand new default theme, Sunrise, which will replace Random. Sunrise uses new features from Luna to show off its capabilities. For example, Sunrise doesn't replace just Random, but also Awesome, Kind, Luna (the theme from ModernBB that is), Pinkie, Magic, Radical, Happy and Shy. In 1 theme, you get 12 different colorschemes available to you and your users.</p>
@@ -355,7 +343,7 @@ require 'header.php';
 								<span class="label label-success">3573</span> "Settings" is now an option in the user menu<br />
 								<span class="label label-success">3573</span> jQuery has been updated to version 2.1.3<br />
 								<span class="label label-success">3573</span> All user settings can be saved at once<br />
-								<span class="label label-success">3573</span> More coding conventions<br />
+								<span class="label label-success">3573</span> A lot more coding conventions<br />
 								<span class="label label-success">3573</span> New interface for profile, settings and notifications<br />
 								<span class="label label-success">3573</span> Inbox now has it's own icon in the menubar<br />
 								<span class="label label-success">3573</span> Improved visual appearance of editor<br />
@@ -417,7 +405,8 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Emojis have a default size of 16px instead of 14px<br />
 								<span class="label label-warning">38xx</span> Themes now can set a parent to inherit their design<br />
 								<span class="label label-warning">38xx</span> Support to display categories in themes<br />
-								<span class="label label-warning">38xx</span> Threads now have visual help for their status
+								<span class="label label-warning">38xx</span> Threads now have visual help for their status<br />
+								<span class="label label-warning">38xx</span> Inbox has been revamped
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -431,6 +420,8 @@ require 'header.php';
 								<span class="label label-warning">38xx</span> Improvements to the topic view have been made<br />
 								<span class="label label-warning">38xx</span> More improvements to Theme engine 6<br />
 								<span class="label label-warning">38xx</span> Luna now asks to remove install.php after installation<br />
+								<span class="label label-warning">38xx</span> Major improvements to the database<br />
+								<span class="label label-warning">38xx</span> New notifications have been added<br />
 								<span class="label label-warning">38xx</span> Multiple bugfixes
 							</p>
 						</div>
