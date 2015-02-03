@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 if (isset($_GET['default_style'])) {
 	confirm_referrer('backstage/theme.php');
 	

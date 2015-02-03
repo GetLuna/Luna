@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -39,7 +37,7 @@ if (isset($_POST['add_word'])) {
 }
 
 // Update a censor word
-else if (isset($_POST['update'])) {
+elseif (isset($_POST['update'])) {
 	confirm_referrer('backstage/censoring.php');
 	
 	$id = intval(key($_POST['update']));
@@ -62,7 +60,7 @@ else if (isset($_POST['update'])) {
 }
 
 // Remove a censor word
-else if (isset($_POST['remove'])) {
+elseif (isset($_POST['remove'])) {
 	confirm_referrer('backstage/censoring.php');
 	
 	$id = intval(key($_POST['remove']));

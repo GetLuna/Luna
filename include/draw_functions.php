@@ -132,7 +132,7 @@ function draw_editor($height) {
 		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>"><?php
 			if (FORUM_ACTIVE_PAGE == 'post')
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
-			else if (FORUM_ACTIVE_PAGE == 'edit')
+			elseif (FORUM_ACTIVE_PAGE == 'edit')
 				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
 ?></textarea>
 		<div class="btn-toolbar textarea-toolbar textarea-bottom">
@@ -152,11 +152,11 @@ function AddTag(type, tag) {
    var after_txt = val.substring(Field.selectionEnd, val.length);
    if (type == 'inline')
 	   Field.value = before_txt + '[' + tag + ']' + selected_txt + '[/' + tag + ']' + after_txt;
-   else if (type == 'list')
+   elseif (type == 'list')
 	   Field.value = before_txt + '[list]' + "\r" + '[*]' + selected_txt + '[/*]' + "\r" + '[/list]' + after_txt;
-   else if (type == 'code')
+   elseif (type == 'code')
 	   Field.value = before_txt + '[' + tag + ']' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
-   else if (type == 'emoji')
+   elseif (type == 'emoji')
 	   Field.value = before_txt + tag + after_txt;
 }
 </script>
@@ -215,7 +215,7 @@ function draw_topics_list() {
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 				$item_status .= ' moved-item';
-			} else if ($cur_topic['closed'] == '0') {
+			} elseif ($cur_topic['closed'] == '0') {
 				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			} else {
@@ -343,7 +343,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
 						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
-			} else if ($cur_forum['redirect_url'] != '')
+			} elseif ($cur_forum['redirect_url'] != '')
 				$last_post = '- - -';
 			else
 				$last_post = $lang['Never'];
@@ -503,7 +503,7 @@ function draw_index_topics_list($section_id) {
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 				$item_status .= ' moved-item';
-			} else if ($cur_topic['closed'] == '0') {
+			} elseif ($cur_topic['closed'] == '0') {
 				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			} else {
@@ -559,7 +559,7 @@ function draw_index_topics_list($section_id) {
 	
 		}
 	
-	} else if ($section_id != 0) {
+	} elseif ($section_id != 0) {
 		echo '<h3 class="nothing">There are no thread in this forum, <a href="post.php?fid='.$id.'">be the first one!</a></h3>';
 	} else {
 		echo '<h3 class="nothing">There are no thread on this board, choose a forum and be the first one.</h3>';
@@ -611,7 +611,7 @@ function draw_topic_list() {
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
 					$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a>';
-				else if ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+				elseif ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_post['poster_id'].'">'.$lang['Email'].'</a>';
 	
 				if ($cur_post['url'] != '') {
@@ -1001,7 +1001,7 @@ function draw_mark_read($class, $page) {
 		
 	if ($page == 'index')
 		$url = 'misc.php?action=markread';
-	else if ($page == 'forumview')
+	elseif ($page == 'forumview')
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 
 	if (!$luna_user['is_guest'])

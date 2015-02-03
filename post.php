@@ -67,11 +67,11 @@ if (isset($_POST['form_sent'])) {
 
 		if ($subject == '')
 			$errors[] = $lang['No subject'];
-		else if ($luna_config['o_censoring'] == '1' && $censored_subject == '')
+		elseif ($luna_config['o_censoring'] == '1' && $censored_subject == '')
 			$errors[] = $lang['No subject after censoring'];
-		else if (luna_strlen($subject) > 70)
+		elseif (luna_strlen($subject) > 70)
 			$errors[] = $lang['Too long subject'];
-		else if ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
+		elseif ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
 			$errors[] = $lang['All caps subject'];
 	}
 
@@ -112,7 +112,7 @@ if (isset($_POST['form_sent'])) {
 	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 	if (strlen($message) > FORUM_MAX_POSTSIZE)
 		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
-	else if ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
+	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = $lang['All caps message'];
 
 	// Validate BBCode syntax
@@ -122,7 +122,7 @@ if (isset($_POST['form_sent'])) {
 	if (empty($errors)) {
 		if ($message == '')
 			$errors[] = $lang['No message'];
-		else if ($luna_config['o_censoring'] == '1') {
+		elseif ($luna_config['o_censoring'] == '1') {
 			// Censor message to see if that causes problems
 			$censored_message = luna_trim(censor_words($message));
 
@@ -157,7 +157,7 @@ if (isset($_POST['form_sent'])) {
 				if ($luna_config['o_topic_subscriptions'] == '1') {
 					if ($subscribe && !$is_subscribed)
 						$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
-					else if (!$subscribe && $is_subscribed)
+					elseif (!$subscribe && $is_subscribed)
 						$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$tid) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 				}
 			} else {
@@ -256,7 +256,7 @@ if (isset($_POST['form_sent'])) {
 			}
 		}
 		// If it's a new topic
-		else if ($fid) {
+		elseif ($fid) {
 			if (!$luna_user['is_guest'])
 				$user_id_poster = $db->escape($id);
 			else
@@ -453,7 +453,7 @@ if ($tid) {
 			// Deal with quoting "Username" or 'Username' (becomes '"Username"' or "'Username'")
 			if ($ends == '\'\'')
 				$q_poster = '"'.$q_poster.'"';
-			else if ($ends == '""')
+			elseif ($ends == '""')
 				$q_poster = '\''.$q_poster.'\'';
 		}
 
@@ -461,7 +461,7 @@ if ($tid) {
 	}
 }
 // If a forum ID was specified in the url (new topic)
-else if ($fid) {
+elseif ($fid) {
 	$action = $lang['Post new topic'];
 	$form = '<form id="post" method="post" action="post.php?action=post&amp;fid='.$fid.'" onsubmit="return process_form(this)">';
 } else

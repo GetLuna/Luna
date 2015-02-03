@@ -70,7 +70,7 @@ $paging_links = paginate($num_pages, $p, 'viewforum.php?id='.$id);
 
 if ($luna_config['o_feed_type'] == '1')
 	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=rss" title="'.$lang['RSS forum feed'].'" />');
-else if ($luna_config['o_feed_type'] == '2')
+elseif ($luna_config['o_feed_type'] == '2')
 	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=atom" title="'.$lang['Atom forum feed'].'" />');
 
 $forum_actions = array();

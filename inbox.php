@@ -33,14 +33,12 @@ $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUE
 $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete_multiple' || $_REQUEST['action'] == 'markread' || $_REQUEST['action'] == 'markunread')) ? $_REQUEST['action'] : '');
 
 
-if ($action != '')
-{	
+if ($action != '') {	
 	// Make sure they got here from the site
 	confirm_referrer('inbox.php');
 	
 	// Mark as read multiple posts
-	if ($action == 'markread')
-	{
+	if ($action == 'markread') {
 		if (empty($_POST['selected_messages']))
 			message($lang['Must select']);
 			
@@ -50,10 +48,7 @@ if ($action != '')
 		
 		$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 		redirect('inbox.php', $lang['Read redirect']);
-	}
-	// Mark as unread multiple posts
-	elseif ($action == 'markunread')
-	{
+	} elseif ($action == 'markunread') { // Mark as unread multiple posts
 		if (empty($_POST['selected_messages']))
 			message($lang['Must select']);
 			
@@ -63,12 +58,8 @@ if ($action != '')
 		
 		$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 		redirect('inbox.php', $lang['Unread redirect']);
-	}
-	// Delete multiple posts
-	elseif ($action == 'delete_multiple')
-	{
-		if (isset($_POST['delete_multiple_comply']))
-		{
+	} elseif ($action == 'delete_multiple') { // Delete multiple posts
+		if (isset($_POST['delete_multiple_comply'])) {
 			$idlist = explode(',', $_POST['messages']);
 			$idlist = array_map('intval', $idlist);
 			$idlist = implode(',', array_values($idlist));
@@ -77,9 +68,7 @@ if ($action != '')
 
 			$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\'') or error('Unable to delete the messages', __FILE__, __LINE__, $db->error());
 			$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-'.count($number).' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
-		}
-		else
-		{
+		} else {
 			if (empty($_POST['selected_messages']))
 				message($lang['Must select']);
 			
@@ -130,7 +119,6 @@ if ($page > $num_pages) $page = 1;
 $start_from = intval($luna_config['o_pms_mess_per_page'])*($page-1);
 $limit = $start_from.','.$luna_config['o_pms_mess_per_page'];
 
-
 // Start building page
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Inbox']);
 
@@ -176,21 +164,16 @@ function checkAll(checkWhat,command){
 $result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1 AND owner='".$luna_user['id']."' ORDER BY last_post DESC LIMIT ".$limit) or error("Unable to find the list of the pms.", __FILE__, __LINE__, $db->error()); 
 
 // If there are messages in this folder.
-if ($db->num_rows($result))
-{
-	while ($cur_mess = $db->fetch_assoc($result))
-	{
+if ($db->num_rows($result)) {
+	while ($cur_mess = $db->fetch_assoc($result)) {
 		$item_status = 'roweven';
-		if ($cur_mess['showed'] == '0')
-		{
+		if ($cur_mess['showed'] == '0') {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
 			$subject = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
 					   '<strong>'.luna_htmlspecialchars($cur_mess['subject']).'</strong>'.
 					   '</a>';
-		}
-		else
-		{
+		} else {
 			$icon_type = 'icon';
 			$subject = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
 					   luna_htmlspecialchars($cur_mess['subject']).
@@ -214,8 +197,7 @@ if ($db->num_rows($result))
 						</td>
 						<td>
 		<?php
-			if ($luna_user['g_view_users'] == '1')
-			{
+			if ($luna_user['g_view_users'] == '1') {
 				$ids_list = explode(', ', $cur_mess['receiver_id']);
 				$sender_list = explode(', ', $cur_mess['receiver']);
 				$sender_list = str_replace('Deleted', $lang['Deleted'], $sender_list);
@@ -226,8 +208,7 @@ if ($db->num_rows($result))
 				if($ids_list[$i][count($ids_list[$i])-'1'])
 					echo'<br />';
 				} 
-			}
-			else
+			} else
 				echo luna_htmlspecialchars($cur_mess['receiver']);
 		?>
 						</td>
@@ -236,8 +217,7 @@ if ($db->num_rows($result))
 					</tr>
 <?php
 	}
-}
-else
+} else
 	echo "\t".'<tr><td colspan="4">'.$lang['No messages'].'</td></tr>'."\n";
 ?>
 				</tbody>

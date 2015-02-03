@@ -179,7 +179,7 @@ if (count($languages) > 1) {
     // Only display the style selection box if there's more than one style available
     if (count($styles) == 1)
         echo "\t\t\t".'<div><input type="hidden" name="form[style]" value="'.$styles[0].'" /></div>'."\n";
-    else if (count($styles) > 1) {
+    elseif (count($styles) > 1) {
 ?>
 					<hr />
 					<div class="form-group">

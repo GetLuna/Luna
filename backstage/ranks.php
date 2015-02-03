@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -45,7 +43,7 @@ if (isset($_POST['add_rank'])) {
 }
 
 // Update a rank
-else if (isset($_POST['update'])) {
+elseif (isset($_POST['update'])) {
 	confirm_referrer('backstage/ranks.php');
 	
 	$rank = $_POST['rank'];
@@ -58,7 +56,7 @@ else if (isset($_POST['update'])) {
 
 		if ($cur_rank['rank'] == '')
 			message_backstage($lang['Must enter title message']);
-		else if ($cur_rank['min_posts'] == '' || preg_match('%[^0-9]%', $cur_rank['min_posts']))
+		elseif ($cur_rank['min_posts'] == '' || preg_match('%[^0-9]%', $cur_rank['min_posts']))
 			message_backstage($lang['Must be integer message']);
 		else
 			$rank_check = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.intval($item_id).' AND min_posts='.$cur_rank['min_posts']) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
@@ -72,7 +70,7 @@ else if (isset($_POST['update'])) {
 }
 
 // Remove a rank
-else if (isset($_POST['remove'])) {
+elseif (isset($_POST['remove'])) {
 	$id = intval(key($_POST['remove']));
 
 	$db->query('DELETE FROM '.$db->prefix.'ranks WHERE id='.$id) or error('Unable to delete rank', __FILE__, __LINE__, $db->error());

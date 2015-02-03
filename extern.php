@@ -315,7 +315,7 @@ if ($action == 'feed') {
 					$item['author']['email'] = $cur_post['email'];
 
 				$item['author']['uri'] = get_base_url(true).'/me.php?id='.$cur_post['poster_id'];
-			} else if ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
+			} elseif ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
 				$item['author']['email'] = $cur_post['poster_email'];
 
 			$feed['items'][] = $item;
@@ -396,7 +396,7 @@ if ($action == 'feed') {
 						$item['author']['email'] = $cur_topic['email'];
 
 					$item['author']['uri'] = '/me.php?id='.$cur_topic['poster_id'];
-				} else if ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
+				} elseif ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_topic['poster_email'];
 
 				$feed['items'][] = $item;
@@ -434,7 +434,7 @@ if ($action == 'feed') {
 }
 
 // Show users online
-else if ($action == 'online' || $action == 'online_full') {
+elseif ($action == 'online' || $action == 'online_full') {
 	// Fetch users online info and generate strings for output
 	$num_guests = $num_users = 0;
 	$users = array();
@@ -466,7 +466,7 @@ else if ($action == 'online' || $action == 'online_full') {
 }
 
 // Show board statistics
-else if ($action == 'stats') {
+elseif ($action == 'stats') {
 	// Collect some statistics from the database
 	if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 		include FORUM_CACHE_DIR.'cache_users_info.php';

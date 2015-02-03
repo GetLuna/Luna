@@ -64,11 +64,11 @@ if (isset($_POST['form_sent'])) {
 
 		if ($subject == '')
 			$errors[] = $lang['No subject'];
-		else if ($luna_config['o_censoring'] == '1' && $censored_subject == '')
+		elseif ($luna_config['o_censoring'] == '1' && $censored_subject == '')
 			$errors[] = $lang['No subject after censoring'];
-		else if (luna_strlen($subject) > 70)
+		elseif (luna_strlen($subject) > 70)
 			$errors[] = $lang['Too long subject'];
-		else if ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
+		elseif ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
 			$errors[] = $lang['All caps subject'];
 	}
 
@@ -78,7 +78,7 @@ if (isset($_POST['form_sent'])) {
 	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 	if (strlen($message) > FORUM_MAX_POSTSIZE)
 		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
-	else if ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
+	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = $lang['All caps message'];
 
 	// Validate BBCode syntax
@@ -90,7 +90,7 @@ if (isset($_POST['form_sent'])) {
 	if (empty($errors)) {
 		if ($message == '')
 			$errors[] = $lang['No message'];
-		else if ($luna_config['o_censoring'] == '1') {
+		elseif ($luna_config['o_censoring'] == '1') {
 			// Censor message to see if that causes problems
 			$censored_message = luna_trim(censor_words($message));
 

@@ -13,7 +13,7 @@ require FORUM_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
-else if ($luna_user['g_view_users'] == '0')
+elseif ($luna_user['g_view_users'] == '0')
 	message($lang['No permission'], false, '403 Forbidden');
 
 // Determine if we are allowed to view post counts
@@ -23,7 +23,7 @@ $username = isset($_GET['username']) && $luna_user['g_search_users'] == '1' ? lu
 if (isset($_GET['sort'])) {
 	if ($_GET['sort'] == 'username') {
 		$sort_query = 'username ASC';
-	} else if ($_GET['sort'] == 'registered') {
+	} elseif ($_GET['sort'] == 'registered') {
 		$sort_query = 'registered ASC';
 	} else {
 		$sort_query = 'num_posts DESC';

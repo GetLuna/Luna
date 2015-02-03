@@ -152,7 +152,7 @@ if (isset($_GET['tid'])) {
 		
 		require 'footer.php';
 
-	} else if (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
+	} elseif (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
 			message_backstage($lang['No posts selected']);
@@ -185,7 +185,7 @@ if (isset($_GET['tid'])) {
 
 			if ($new_subject == '')
 				message_backstage($lang['No subject']);
-			else if (luna_strlen($new_subject) > 70)
+			elseif (luna_strlen($new_subject) > 70)
 				message_backstage($lang['Too long subject']);
 
 			// Get data from the new first post
@@ -535,7 +535,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 }
 
 // Merge two or more topics
-else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
+elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 	if (isset($_POST['merge_topics_comply'])) {
 		confirm_referrer('moderate.php');
 
@@ -634,7 +634,7 @@ else if (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) 
 }
 
 // Delete one or more topics
-else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
+elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (empty($topics))
 		message_backstage($lang['No topics selected']);
@@ -711,7 +711,7 @@ else if (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])
 
 
 // Open or close one or more topics
-else if (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
+elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 	$action = (isset($_REQUEST['open'])) ? 0 : 1;
 
 	// There could be an array of topic IDs in $_POST
@@ -744,7 +744,7 @@ else if (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 
 // Stick a topic
-else if (isset($_GET['stick'])) {
+elseif (isset($_GET['stick'])) {
 	confirm_referrer('viewtopic.php');
 
 	$stick = intval($_GET['stick']);
@@ -758,7 +758,7 @@ else if (isset($_GET['stick'])) {
 
 
 // Unstick a topic
-else if (isset($_GET['unstick'])) {
+elseif (isset($_GET['unstick'])) {
 	confirm_referrer('viewtopic.php');
 
 	$unstick = intval($_GET['unstick']);
@@ -771,7 +771,7 @@ else if (isset($_GET['unstick'])) {
 } 
 
 // If absolutely none of them are going on
-else if (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_topics']) && !isset($_POST['delete_topics_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_topics']) && !isset($_POST['merge_topics_comply'])) {
+elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['open']) && !isset($_REQUEST['close']) && !isset($_POST['delete_topics']) && !isset($_POST['delete_topics_comply']) && !isset($_GET['tid']) && !isset($_POST['merge_topics']) && !isset($_POST['merge_topics_comply'])) {
 
 	// No specific forum moderation action was specified in the query string, so we'll display the moderator forum
 	
@@ -866,7 +866,7 @@ if ($db->num_rows($result)) {
             $subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
             $status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
             $item_status .= ' imoved';
-        } else if ($cur_topic['closed'] == '0')
+        } elseif ($cur_topic['closed'] == '0')
             $subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
         else {
             $subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';

@@ -14,53 +14,53 @@ function load_admin_nav($section, $page) {
 	// What page are we on?
 	if ($page == 'index')
 		$page_title = '<span class="fa fa-fw fa-tachometer"></span> Backstage';
-	else if ($page == 'stats')
+	elseif ($page == 'stats')
 		$page_title = '<span class="fa fa-fw fa-info-circle"></span> System info';
-	else if ($page == 'update')
+	elseif ($page == 'update')
 		$page_title = '<span class="fa fa-fw fa-cloud-upload"></span> Luna software update';
-	else if ($page == 'about')
+	elseif ($page == 'about')
 		$page_title = '<span class="fa fa-fw fa-moon-o"></span> About Luna';
 
-	else if ($page == 'board')
+	elseif ($page == 'board')
 		$page_title = '<span class="fa fa-fw fa-sort-amount-desc"></span> Board structure';
-	else if ($page == 'moderate')
+	elseif ($page == 'moderate')
 		$page_title = '<span class="fa fa-fw fa-tasks"></span> Moderate';
-	else if ($page == 'censoring')
+	elseif ($page == 'censoring')
 		$page_title = '<span class="fa fa-fw fa-eye-slash"></span> Censoring';
-	else if ($page == 'reports')
+	elseif ($page == 'reports')
 		$page_title = '<span class="fa fa-fw fa-exclamation-triangle"></span> Reports';
 
-	else if ($page == 'users')
+	elseif ($page == 'users')
 		$page_title = '<span class="fa fa-fw fa-search"></span> User search';
-	else if ($page == 'tools')
+	elseif ($page == 'tools')
 		$page_title = '<span class="fa fa-fw fa-wrench"></span> Tools';
-	else if ($page == 'ranks')
+	elseif ($page == 'ranks')
 		$page_title = '<span class="fa fa-fw fa-chevron-up"></span> Ranks';
-	else if ($page == 'groups')
+	elseif ($page == 'groups')
 		$page_title = '<span class="fa fa-fw fa-group"></span> Groups';
-	else if ($page == 'permissions')
+	elseif ($page == 'permissions')
 		$page_title = '<span class="fa fa-fw fa-check-circle"></span> Permissions';
-	else if ($page == 'bans')
+	elseif ($page == 'bans')
 		$page_title = '<span class="fa fa-fw fa-ban"></span> Bans';
 
-	else if ($page == 'settings')
+	elseif ($page == 'settings')
 		$page_title = '<span class="fa fa-fw fa-cogs"></span> Settings';
-	else if ($page == 'features')
+	elseif ($page == 'features')
 		$page_title = '<span class="fa fa-fw fa-sliders"></span> Features';
-	else if ($page == 'registration')
+	elseif ($page == 'registration')
 		$page_title = '<span class="fa fa-fw fa-plus-circle"></span> Registration';
-	else if ($page == 'email')
+	elseif ($page == 'email')
 		$page_title = '<span class="fa fa-fw fa-envelope"></span> Email';
-	else if ($page == 'appearance')
+	elseif ($page == 'appearance')
 		$page_title = '<span class="fa fa-fw fa-eye"></span> Appearance';
-	else if ($page == 'menu')
+	elseif ($page == 'menu')
 		$page_title = '<span class="fa fa-fw fa-bars"></span> Menu';
-	else if ($page == 'theme')
+	elseif ($page == 'theme')
 		$page_title = '<span class="fa fa-fw fa-paint-brush"></span> Theme';
-	else if ($page == 'maintenance')
+	elseif ($page == 'maintenance')
 		$page_title = '<span class="fa fa-fw fa-coffee"></span> Maintenance';
 
-	else if ($page == 'database')
+	elseif ($page == 'database')
 		$page_title = 'Database management';
 		
 	else

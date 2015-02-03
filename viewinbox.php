@@ -36,8 +36,7 @@ $delete_all = '0';
 $topic_msg = isset($_REQUEST['all_topic']) ? intval($_REQUEST['all_topic']) : '0';
 $delete_all = isset($_POST['delete_all']) ? '1' : '0';
 
-if ($pid)
-{
+if ($pid) {
 	$result = $db->query('SELECT shared_id FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message($lang['Bad request']);
@@ -48,8 +47,7 @@ if ($pid)
 	$result = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE shared_id='.$id.' AND owner='.$luna_user['id'].' ORDER BY posted') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_posts = $db->num_rows($result);
 
-	for ($i = 0; $i < $num_posts; ++$i)
-	{
+	for ($i = 0; $i < $num_posts; ++$i) {
 		$cur_id = $db->result($result, $i);
 		if ($cur_id == $pid)
 			break;
@@ -78,22 +76,17 @@ if ($mid <= 0)
 $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $_REQUEST['action'] : '');
 
 	// Delete a single message or a full topic
-	if ($action == 'delete')
-	{
+	if ($action == 'delete') {
 		// Make sure they got here from the site
 		confirm_referrer('viewinbox.php');
 		
-		if (isset($_POST['delete_comply']))
-		{
+		if (isset($_POST['delete_comply'])) {
 			if ($topic_msg > '1' || $topic_msg < '0')
 				message($lang['Bad request']);
 			
-			if ($topic_msg == '0')
-			{
-				if ($luna_user['is_admmod'])
-				{
-					if ($delete_all == '1')
-					{
+			if ($topic_msg == '0') {
+				if ($luna_user['is_admmod']) {
+					if ($delete_all == '1') {
 						$result_msg = $db->query('SELECT message FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 				
 						if (!$db->num_rows($result_msg))
@@ -111,12 +104,9 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 						
 						// Finally, delete the messages!
 						$db->query('DELETE FROM '.$db->prefix.'messages WHERE id IN ('.$ids_msg.')') or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
-					}
-					else
+					} else
 						$db->query('DELETE FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
-				}
-				else
-				{
+				} else {
 					$result = $db->query('SELECT owner FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 					$owner = $db->result($result);
 					
@@ -125,20 +115,15 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 						
 					$db->query('DELETE FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 				}
-			}
-			else
-			{
-				if ($luna_user['is_admmod'])
-				{
-					if ($delete_all == '1')
-					{
+			} else {
+				if ($luna_user['is_admmod']) {
+					if ($delete_all == '1') {
 						$result_ids = $db->query('SELECT DISTINCT owner FROM '.$db->prefix.'messages WHERE shared_id='.$tid) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 						
 						if (!$db->num_rows($result_ids))
 							message($lang['Bad request']);
 						
-						while ($user_ids = $db->fetch_assoc($result_ids))
-						{
+						while ($user_ids = $db->fetch_assoc($result_ids)) {
 							$ids_users[] = $user_ids['owner'];
 						}
 						
@@ -146,16 +131,12 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 						
 						$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-1 WHERE id IN('.$ids_users.')') or error('Unable to update user', __FILE__, __LINE__, $db->error());
 						$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id='.$tid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
-					}
-					else
-					{
+					} else {
 						$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND owner='.$luna_user['id']) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 						$db->query('UPDATE '.$db->prefix.'messages SET receiver=REPLACE(receiver,\''.$db->escape($luna_user['username']).'\',\''.$db->escape($luna_user['username'].' Deleted').'\') WHERE receiver LIKE \'%'.$db->escape($luna_user['username']).'%\' AND shared_id='.$tid) or error('Unable to update private messages', __FILE__, __LINE__, $db->error());
 						$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-1 WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 					}
-				}
-				else
-				{
+				} else {
 					$result = $db->query('SELECT owner FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 					$owner = $db->result($result);
 					
@@ -169,9 +150,7 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 			
 			// Redirect
 			redirect('inbox.php', $lang['Del redirect']);
-		}
-		else
-		{
+		} else {
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Delete message']);
 			
 			define('FORUM_ACTIVE_PAGE', 'pm');
@@ -273,8 +252,7 @@ if (!$db->num_rows($result_receivers))
 		
 $owner = array();
 		
-while ($receiver = $db->fetch_assoc($result_receivers))
-{	
+while ($receiver = $db->fetch_assoc($result_receivers)) {	
 	$r_usernames = $receiver['receiver'];
 	$owner[] = $receiver['owner'];
 	$uid = $receiver['sender_id'];
@@ -292,8 +270,7 @@ $p_subject = $db->result($result);
 $messageh2 = luna_htmlspecialchars($p_subject).' '.$lang['With'].' '.luna_htmlspecialchars($r_usernames);
 
 $quickpost = false;
-	if ($luna_config['o_quickpost'] == '1')
-	{
+	if ($luna_config['o_quickpost'] == '1') {
 		$required_fields = array('req_message' => $lang['Message']);
 		$quickpost = true;
 	}
@@ -333,8 +310,7 @@ while ($cur_post = $db->fetch_assoc($result))
 	$signature = '';
 	
 	// If the poster is a registered user
-	if ($cur_post['id'])
-	{
+	if ($cur_post['id']) {
 		if ($luna_user['g_view_users'] == '1')
 			$username = '<a href="me.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
 		else
@@ -348,8 +324,7 @@ while ($cur_post = $db->fetch_assoc($result))
 		// Format the online indicator
 		$is_online = ($cur_post['is_online'] == $cur_post['sender_id']) ? '<strong>'.$lang_topic['Online'].'</strong>' : '<span>'.$lang_topic['Offline'].'</span>';
 
-		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0')
-		{
+		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
 			if (isset($user_avatar_cache[$cur_post['sender_id']]))
 				$user_avatar = $user_avatar_cache[$cur_post['sender_id']];
 			else
@@ -357,10 +332,8 @@ while ($cur_post = $db->fetch_assoc($result))
 		}
 
 		// We only show location, register date, post count and the contact links if "Show user info" is enabled
-		if ($luna_config['o_show_user_info'] == '1')
-		{
-			if ($cur_post['location'] != '')
-			{
+		if ($luna_config['o_show_user_info'] == '1') {
+			if ($cur_post['location'] != '') {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_post['location'] = censor_words($cur_post['location']);
 
@@ -375,11 +348,10 @@ while ($cur_post = $db->fetch_assoc($result))
 			// Now let's deal with the contact links (Email and URL)
 			if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
 				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['email'].'">'.$lang['Email'].'</a></span>';
-			else if ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+			elseif ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 				$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_post['sender_id'].'">'.$lang['Email'].'</a></span>';
 				
-			if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_post['use_pm'] == '1')
-			{
+			if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_post['use_pm'] == '1') {
 				$pid = isset($cur_post['sender_id']) ? $cur_post['sender_id'] : $cur_post['sender_id'];
 				$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.$lang['PM'].'</a></span>';
 			}
@@ -389,17 +361,13 @@ while ($cur_post = $db->fetch_assoc($result))
 				
 		}
 
-		if ($luna_user['is_admmod'])
-		{
+		if ($luna_user['is_admmod']) {
 			$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_ip'].'" title="'.$cur_post['sender_ip'].'">'.$lang_topic['IP address logged'].'</a></span></dd>';
 
 			if ($cur_post['admin_note'] != '')
 				$user_info[] = '<dd><span>'.$lang_topic['Note'].' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 		}
-	}
-	// If the poster is a guest (or a user that has been deleted)
-	else
-	{
+	} else { // If the poster is a guest (or a user that has been deleted)
 		$username = luna_htmlspecialchars($cur_post['username']);
 		$user_title = get_title($cur_post);
 
@@ -413,8 +381,7 @@ while ($cur_post = $db->fetch_assoc($result))
 	$username_quickreply = luna_htmlspecialchars($cur_post['username']);
 
 		// Generation post action array (reply, delete etc.)
-		if ($luna_user['id'] == $cur_post['sender_id'] || $luna_user['is_admmod'])
-		{
+		if ($luna_user['id'] == $cur_post['sender_id'] || $luna_user['is_admmod']) {
 			$post_actions[] = '<li class="postdelete"><span><a href="viewinbox.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Delete'].'</a></span></li>';
 			$post_actions[] = '<li class="postedit"><span><a href="new_inbox.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Edit'].'</a></span></li>';
 		}
@@ -424,12 +391,10 @@ while ($cur_post = $db->fetch_assoc($result))
 	$cur_post['message'] = parse_message($cur_post['message']);
 
 	// Do signature parsing/caching
-	if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0')
-	{
+	if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0') {
 		if (isset($signature_cache[$cur_post['id']]))
 			$signature = $signature_cache[$cur_post['id']];
-		else
-		{
+		else {
 			$signature = parse_signature($cur_post['signature']);
 			$signature_cache[$cur_post['id']] = $signature;
 		}
@@ -463,8 +428,7 @@ while ($cur_post = $db->fetch_assoc($result))
 <p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
 <?php
 // Display quick post if enabled
-if (!empty($reply_link) && $quickpost)
-{
+if (!empty($reply_link) && $quickpost) {
 ?>
 <div id="quickpost" class="blockform">
 	<h2><span><?php echo $lang_topic['Quick post'] ?></span></h2>

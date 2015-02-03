@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 // Check if install.php is a thing
 if ($action == 'remove_install_file') {
 	$deleted = @unlink(FORUM_ROOT.'install.php');

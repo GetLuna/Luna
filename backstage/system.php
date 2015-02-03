@@ -42,7 +42,7 @@ if (@file_exists('/proc/loadavg') && is_readable('/proc/loadavg')) {
 
 	$load_averages = @explode(' ', $load_averages);
 	$server_load = isset($load_averages[2]) ? $load_averages[0].' '.$load_averages[1].' '.$load_averages[2] : $lang['Not available'];
-} else if (!in_array(PHP_OS, array('WINNT', 'WIN32')) && preg_match('%averages?: ([0-9\.]+),?\s+([0-9\.]+),?\s+([0-9\.]+)%i', @exec('uptime'), $load_averages))
+} elseif (!in_array(PHP_OS, array('WINNT', 'WIN32')) && preg_match('%averages?: ([0-9\.]+),?\s+([0-9\.]+),?\s+([0-9\.]+)%i', @exec('uptime'), $load_averages))
 	$server_load = $load_averages[1].' '.$load_averages[2].' '.$load_averages[3];
 else
 	$server_load = $lang['Not available'];
@@ -71,15 +71,15 @@ if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' ||
 // Check for the existence of various PHP opcode caches/optimizers
 if (function_exists('mmcache'))
 	$php_accelerator = '<a href="http://'.$lang['Turck MMCache link'].'">'.$lang['Turck MMCache'].'</a>';
-else if (isset($_PHPA))
+elseif (isset($_PHPA))
 	$php_accelerator = '<a href="http://'.$lang['ionCube PHP Accelerator link'].'">'.$lang['ionCube PHP Accelerator'].'</a>';
-else if (ini_get('apc.enabled'))
+elseif (ini_get('apc.enabled'))
 	$php_accelerator ='<a href="http://'.$lang['Alternative PHP Cache (APC) link'].'">'.$lang['Alternative PHP Cache (APC)'].'</a>';
-else if (ini_get('zend_optimizer.optimization_level'))
+elseif (ini_get('zend_optimizer.optimization_level'))
 	$php_accelerator = '<a href="http://'.$lang['Zend Optimizer link'].'">'.$lang['Zend Optimizer'].'</a>';
-else if (ini_get('eaccelerator.enable'))
+elseif (ini_get('eaccelerator.enable'))
 	$php_accelerator = '<a href="http://'.$lang['eAccelerator link'].'">'.$lang['eAccelerator'].'</a>';
-else if (ini_get('xcache.cacher'))
+elseif (ini_get('xcache.cacher'))
 	$php_accelerator = '<a href="http://'.$lang['XCache link'].'">'.$lang['XCache'].'</a>';
 else
 	$php_accelerator = $lang['NA'];

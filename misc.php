@@ -28,7 +28,7 @@ if ($action == 'markread') {
 }
 
 // Mark the topics/posts in a forum as read?
-else if ($action == 'markforumread') {
+elseif ($action == 'markforumread') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -41,7 +41,7 @@ else if ($action == 'markforumread') {
 	set_tracked_topics($tracked_topics);
 
 	redirect('viewforum.php?id='.$fid);
-} else if (isset($_GET['email'])) {
+} elseif (isset($_GET['email'])) {
 	if ($luna_user['is_guest'] || $luna_user['g_send_email'] == '0')
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -68,10 +68,10 @@ else if ($action == 'markforumread') {
 
 		if ($subject == '')
 			message($lang['No email subject']);
-		else if ($message == '')
+		elseif ($message == '')
 			message($lang['No email message']);
 		// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
-		else if (strlen($message) > FORUM_MAX_POSTSIZE)
+		elseif (strlen($message) > FORUM_MAX_POSTSIZE)
 			message($lang['Too long email message']);
 
 		if ($luna_user['last_email_sent'] != '' && (time() - $luna_user['last_email_sent']) < $luna_user['g_email_flood'] && (time() - $luna_user['last_email_sent']) >= 0)
@@ -110,7 +110,7 @@ else if ($action == 'markforumread') {
 
 	if (!isset($redirect_url))
 		$redirect_url = get_base_url(true).'/me.php?id='.$recipient_id;
-	else if (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
+	elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Send email to'].' '.luna_htmlspecialchars($recipient));
@@ -122,7 +122,7 @@ else if ($action == 'markforumread') {
 	require load_page('mail.php');
 
 	require load_page('footer.php');
-} else if (isset($_GET['report'])) {
+} elseif (isset($_GET['report'])) {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -138,7 +138,7 @@ else if ($action == 'markforumread') {
 		$reason = luna_linebreaks(luna_trim($_POST['req_reason']));
 		if ($reason == '')
 			message($lang['No reason']);
-		else if (strlen($reason) > 65535) // TEXT field can only hold 65535 bytes
+		elseif (strlen($reason) > 65535) // TEXT field can only hold 65535 bytes
 			message($lang['Reason too long']);
 
 		if ($luna_user['last_report_sent'] != '' && (time() - $luna_user['last_report_sent']) < $luna_user['g_report_flood'] && (time() - $luna_user['last_report_sent']) >= 0)
@@ -213,7 +213,7 @@ else if ($action == 'markforumread') {
 	require load_page('report.php');
 
     require load_page('footer.php');
-} else if ($action == 'subscribe') {
+} elseif ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -257,7 +257,7 @@ else if ($action == 'markforumread') {
 
 		redirect('viewforum.php?id='.$forum_id);
 	}
-} else if ($action == 'unsubscribe') {
+} elseif ($action == 'unsubscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
 

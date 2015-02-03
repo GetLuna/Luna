@@ -19,7 +19,7 @@ if (!$luna_user['is_guest']) {
 if ($luna_config['o_regs_allow'] == '0')
 	message($lang['No new regs']);
 
-else if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent'])) {
+elseif ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register'], $lang['Forum rules']);
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require load_page('header.php');
@@ -58,7 +58,7 @@ if (isset($_POST['form_sent'])) {
 
 	if (luna_strlen($password1) < 6)
 		$errors[] = $lang['Pass too short'];
-	else if ($password1 != $password2)
+	elseif ($password1 != $password2)
 		$errors[] = $lang['Pass not match'];
 
 	// Validate email
@@ -66,7 +66,7 @@ if (isset($_POST['form_sent'])) {
 
 	if (!is_valid_email($email1))
 		$errors[] = $lang['Invalid email'];
-	else if ($luna_config['o_regs_verify'] == '1' && $email1 != $email2)
+	elseif ($luna_config['o_regs_verify'] == '1' && $email1 != $email2)
 		$errors[] = $lang['Email not match'];
 
 	// Check if it's a banned email address

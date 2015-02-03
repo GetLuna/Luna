@@ -68,7 +68,7 @@ if (isset($_POST['update_group_membership'])) {
 	}
 
 	redirect('settings.php?id='.$id);
-} else if (isset($_POST['ban'])) {
+} elseif (isset($_POST['ban'])) {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -85,7 +85,7 @@ if (isset($_POST['update_group_membership'])) {
 		redirect('backstage/bans.php?edit_ban='.$ban_id.'&amp;exists');
 	} else
 		redirect('backstage/bans.php?add_ban='.$id);
-} else if (isset($_POST['delete_user']) || isset($_POST['delete_user_comply'])) {
+} elseif (isset($_POST['delete_user']) || isset($_POST['delete_user_comply'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -170,7 +170,7 @@ if (isset($_POST['update_group_membership'])) {
 	require load_page('header.php');
 
 	require load_page('me-delete.php');
-} else if (isset($_POST['update_forums'])) {
+} elseif (isset($_POST['update_forums'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -195,7 +195,7 @@ if (isset($_POST['update_group_membership'])) {
 			$db->query('UPDATE '.$db->prefix.'forums SET moderators=\''.$db->escape(serialize($cur_moderators)).'\' WHERE id='.$cur_forum['id']) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		}
 		// If the user shouldn't have moderator access (and he/she already has it)
-		else if (!in_array($cur_forum['id'], $moderator_in) && in_array($id, $cur_moderators)) {
+		elseif (!in_array($cur_forum['id'], $moderator_in) && in_array($id, $cur_moderators)) {
 			unset($cur_moderators[$username]);
 			$cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
 
@@ -204,7 +204,7 @@ if (isset($_POST['update_group_membership'])) {
 	}
 
 	redirect('settings.php?&amp;id='.$id);
-} else if ($action == 'change_pass') {
+} elseif ($action == 'change_pass') {
 	if (isset($_GET['key'])) {
 		// If the user is already logged in we shouldn't be here :)
 		if (!$luna_user['is_guest']) {
@@ -230,7 +230,7 @@ if (isset($_POST['update_group_membership'])) {
 	if ($luna_user['id'] != $id) {
 		if (!$luna_user['is_admmod']) // A regular user trying to change another user's password?
 			message($lang['No permission'], false, '403 Forbidden');
-		else if ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's password?
+		elseif ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's password?
 			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
 				message($lang['Bad request'], false, '404 Not Found');
@@ -279,12 +279,12 @@ if (isset($_POST['update_group_membership'])) {
 
 		redirect('settings.php?id='.$id);
 	}
-} else if ($action == 'change_email') {
+} elseif ($action == 'change_email') {
 	// Make sure we are allowed to change this user's email
 	if ($luna_user['id'] != $id) {
 		if (!$luna_user['is_admmod']) // A regular user trying to change another user's email?
 			message($lang['No permission'], false, '403 Forbidden');
-		else if ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's email?
+		elseif ($luna_user['g_moderator'] == '1') { // A moderator trying to change a user's email?
 			$result = $db->query('SELECT u.group_id, g.g_moderator FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON (g.g_id=u.group_id) WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result))
 				message($lang['Bad request'], false, '404 Not Found');
@@ -309,7 +309,7 @@ if (isset($_POST['update_group_membership'])) {
 
 			message($lang['Email updated'], true);
 		}
-	} else if (isset($_POST['form_sent'])) {
+	} elseif (isset($_POST['form_sent'])) {
 		if (luna_hash($_POST['req_password']) !== $luna_user['password'])
 			message($lang['Wrong pass']);
 
@@ -327,7 +327,7 @@ if (isset($_POST['update_group_membership'])) {
 		if (is_banned_email($new_email)) {
 			if ($luna_config['p_allow_banned_email'] == '0')
 				message($lang['Banned email']);
-			else if ($luna_config['o_mailing_list'] != '') {
+			elseif ($luna_config['o_mailing_list'] != '') {
 				// Load the "banned email change" template
 				$mail_tpl = trim($lang['banned_email_change.tpl']);
 
@@ -350,7 +350,7 @@ if (isset($_POST['update_group_membership'])) {
 		if ($db->num_rows($result)) {
 			if ($luna_config['p_allow_dupe_email'] == '0')
 				message($lang['Dupe email']);
-			else if ($luna_config['o_mailing_list'] != '') {
+			elseif ($luna_config['o_mailing_list'] != '') {
 				while ($cur_dupe = $db->fetch_assoc($result))
 					$dupe_list[] = $cur_dupe['username'];
 
@@ -401,7 +401,7 @@ if (isset($_POST['update_group_membership'])) {
 	require load_page('header.php');
 
 	require get_view_path('me-change_email.tpl.php');
-} else if ($action == 'upload_avatar' || $action == 'upload_avatar2') {
+} elseif ($action == 'upload_avatar' || $action == 'upload_avatar2') {
 	if ($luna_config['o_avatars'] == '0')
 		message($lang['Avatars disabled']);
 
@@ -464,9 +464,9 @@ if (isset($_POST['update_group_membership'])) {
 			// Determine type
 			if ($type == IMAGETYPE_GIF)
 				$extension = '.gif';
-			else if ($type == IMAGETYPE_JPEG)
+			elseif ($type == IMAGETYPE_JPEG)
 				$extension = '.jpg';
-			else if ($type == IMAGETYPE_PNG)
+			elseif ($type == IMAGETYPE_PNG)
 				$extension = '.png';
 			else {
 				// Invalid type
@@ -490,7 +490,7 @@ if (isset($_POST['update_group_membership'])) {
 		redirect('settings.php?id='.$id);
 	}
 	
-} else if ($action == 'delete_avatar') {
+} elseif ($action == 'delete_avatar') {
 	if ($luna_user['id'] != $id && !$luna_user['is_admmod'])
 		message($lang['No permission'], false, '403 Forbidden');
 
@@ -624,7 +624,7 @@ if (isset($_POST['update_group_membership'])) {
 	
 		if ($luna_user['g_id'] == FORUM_ADMIN)
 			$form['title'] = luna_trim($_POST['title']);
-		else if ($luna_user['g_set_title'] == '1') {
+		elseif ($luna_user['g_set_title'] == '1') {
 			$form['title'] = luna_trim($_POST['title']);
 	
 			if ($form['title'] != '') {
@@ -648,9 +648,9 @@ if (isset($_POST['update_group_membership'])) {
 			// Validate signature
 			if (luna_strlen($form['signature']) > $luna_config['p_sig_length'])
 				message(sprintf($lang['Sig too long'], $luna_config['p_sig_length'], luna_strlen($form['signature']) - $luna_config['p_sig_length']));
-			else if (substr_count($form['signature'], "\n") > ($luna_config['p_sig_lines']-1))
+			elseif (substr_count($form['signature'], "\n") > ($luna_config['p_sig_lines']-1))
 				message(sprintf($lang['Sig too many lines'], $luna_config['p_sig_lines']));
-			else if ($form['signature'] && $luna_config['p_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$luna_user['is_admmod'])
+			elseif ($form['signature'] && $luna_config['p_sig_all_caps'] == '0' && is_all_uppercase($form['signature']) && !$luna_user['is_admmod'])
 				$form['signature'] = utf8_ucwords(utf8_strtolower($form['signature']));
 	
 			$errors = array();
@@ -664,7 +664,7 @@ if (isset($_POST['update_group_membership'])) {
 			$form['disp_topics'] = intval($form['disp_topics']);
 			if ($form['disp_topics'] < 3)
 				$form['disp_topics'] = 3;
-			else if ($form['disp_topics'] > 75)
+			elseif ($form['disp_topics'] > 75)
 				$form['disp_topics'] = 75;
 		}
 	
@@ -672,7 +672,7 @@ if (isset($_POST['update_group_membership'])) {
 			$form['disp_posts'] = intval($form['disp_posts']);
 			if ($form['disp_posts'] < 3)
 				$form['disp_posts'] = 3;
-			else if ($form['disp_posts'] > 75)
+			elseif ($form['disp_posts'] > 75)
 				$form['disp_posts'] = 75;
 		}
 	

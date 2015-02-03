@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -40,12 +38,12 @@ if (isset($_POST['form_sent'])) {
 	// Make sure the number of displayed topics and posts is between 3 and 75
 	if ($form['disp_topics_default'] < 3)
 		$form['disp_topics_default'] = 3;
-	else if ($form['disp_topics_default'] > 75)
+	elseif ($form['disp_topics_default'] > 75)
 		$form['disp_topics_default'] = 75;
 
 	if ($form['disp_posts_default'] < 3)
 		$form['disp_posts_default'] = 3;
-	else if ($form['disp_posts_default'] > 75)
+	elseif ($form['disp_posts_default'] > 75)
 		$form['disp_posts_default'] = 75;
 
 	foreach ($form as $key => $input) {

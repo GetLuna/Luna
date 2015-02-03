@@ -39,7 +39,7 @@ if ($action == 'readnoti') {
 	confirm_referrer('me.php');
 
 	redirect('notifications.php?id='.$id);
-} else if ($action == 'delnoti') {
+} elseif ($action == 'delnoti') {
 	$db->query('DELETE FROM '.$db->prefix.'notifications WHERE viewed = 1') or error('Unable to remove notifications', __FILE__, __LINE__, $db->error());
 	confirm_referrer('me.php');
 

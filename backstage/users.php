@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 // Show IP statistics for a certain user ID
 if (isset($_GET['ip_stats'])) {
 	$ip_stats = intval($_GET['ip_stats']);
@@ -197,7 +195,7 @@ if (isset($_GET['show_users'])) {
 
 
 // Move multiple users to other user groups
-else if (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
+elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -308,7 +306,7 @@ else if (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 
 
 // Delete multiple users
-else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
+elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 	if ($luna_user['g_id'] > FORUM_ADMIN)
 		message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -445,7 +443,7 @@ else if (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) 
 
 
 // Ban multiple users
-else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
+elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -575,7 +573,7 @@ else if (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 <?php
 
 	require 'footer.php';
-} else if (isset($_GET['find_user'])) {
+} elseif (isset($_GET['find_user'])) {
 	$form = isset($_GET['form']) ? $_GET['form'] : array();
 
 	// trim() all elements in $form

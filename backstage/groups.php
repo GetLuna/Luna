@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -328,7 +326,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 
 
 // Add/edit a group (stage 2)
-else if (isset($_POST['add_edit_group'])) {
+elseif (isset($_POST['add_edit_group'])) {
 	confirm_referrer('backstage/groups.php');
 
 	$title = luna_trim($_POST['req_title']);
@@ -392,7 +390,7 @@ else if (isset($_POST['add_edit_group'])) {
 
 
 // Set default group
-else if (isset($_POST['set_default_group'])) {
+elseif (isset($_POST['set_default_group'])) {
 	confirm_referrer('backstage/groups.php');
 	
 	$group_id = intval($_POST['default_group']);
@@ -419,7 +417,7 @@ else if (isset($_POST['set_default_group'])) {
 
 
 // Remove a group
-else if (isset($_GET['del_group'])) {
+elseif (isset($_GET['del_group'])) {
 	confirm_referrer('backstage/groups.php');
 	
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);

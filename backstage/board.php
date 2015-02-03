@@ -10,10 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod']) {
+if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
-}
-
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -33,7 +31,7 @@ if (isset($_POST['add_forum'])) {
 }
 
 // Delete a forum
-else if (isset($_GET['del_forum'])) {
+elseif (isset($_GET['del_forum'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$forum_id = intval($_GET['del_forum']);
@@ -97,7 +95,7 @@ else if (isset($_GET['del_forum'])) {
 }
 
 // Update forum positions
-else if (isset($_POST['update_positions'])) {
+elseif (isset($_POST['update_positions'])) {
 	confirm_referrer('backstage/board.php');
 	
 	foreach ($_POST['position'] as $forum_id => $disp_position) {
@@ -109,7 +107,7 @@ else if (isset($_POST['update_positions'])) {
 	}
 
 	redirect('backstage/board.php?saved=true');
-} else if (isset($_GET['edit_forum'])) {
+} elseif (isset($_GET['edit_forum'])) {
 	$forum_id = intval($_GET['edit_forum']);
 	if ($forum_id < 1)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -160,7 +158,7 @@ else if (isset($_POST['update_positions'])) {
 		}
 
 		redirect('backstage/board.php?saved=true');
-	} else if (isset($_POST['revert_perms'])) {
+	} elseif (isset($_POST['revert_perms'])) {
 		confirm_referrer('backstage/board.php');
 	
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
@@ -378,7 +376,7 @@ else if (isset($_POST['update_positions'])) {
 }
 
 // Add a new category
-else if (isset($_POST['add_cat'])) {
+elseif (isset($_POST['add_cat'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$new_cat_name = luna_trim($_POST['new_cat_name']);
@@ -391,7 +389,7 @@ else if (isset($_POST['add_cat'])) {
 }
 
 // Delete a category
-else if (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
+elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$cat_to_delete = intval($_POST['cat_to_delete']);

@@ -306,7 +306,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 		$current_arg = '';
 		if (strpos($current, '/') === 1) {
 			$current_tag = substr($current, 2, -1);
-		} else if (strpos($current, '=') === false) {
+		} elseif (strpos($current, '=') === false) {
 			$current_tag = substr($current, 1, -1);
 		} else {
 			$current_tag = substr($current, 1, strpos($current, '=')-1);
@@ -448,7 +448,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 							$errors[] = sprintf($lang['BBCode error no opening tag'], $current_tag);
 							return false;
 						}
-					} else if (in_array($open_tags[$opened_tag], $tags_closed))
+					} elseif (in_array($open_tags[$opened_tag], $tags_closed))
 						break;
 					else {
 						array_pop($open_tags);
@@ -497,7 +497,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 				// We nested a tag we shouldn't
 				$errors[] = sprintf($lang['BBCode error invalid self-nesting'], $current_tag);
 				return false;
-			} else if (in_array($current_tag, array_keys($tags_nested))) {
+			} elseif (in_array($current_tag, array_keys($tags_nested))) {
 				// We are allowed to nest this tag
 
 				if (isset($current_depth[$current_tag]))
@@ -585,11 +585,11 @@ function handle_url_tag($url, $link = '', $bbcode = false) {
 	$full_url = str_replace(array(' ', '\'', '`', '"'), array('%20', '', '', ''), $url);
 	if (strpos($url, 'www.') === 0) // If it starts with www, we add http://
 		$full_url = 'http://'.$full_url;
-	else if (strpos($url, 'ftp.') === 0) // Else if it starts with ftp, we add ftp://
+	elseif (strpos($url, 'ftp.') === 0) // elseif it starts with ftp, we add ftp://
 		$full_url = 'ftp://'.$full_url;
-	else if (strpos($url, '/') === 0) // Allow for relative URLs that start with a slash
+	elseif (strpos($url, '/') === 0) // Allow for relative URLs that start with a slash
 		$full_url = get_base_url(true).$full_url;
-	else if (!preg_match('#^([a-z0-9]{3,6})://#', $url)) // Else if it doesn't start with abcdef://, we add http://
+	elseif (!preg_match('#^([a-z0-9]{3,6})://#', $url)) // elseif it doesn't start with abcdef://, we add http://
 		$full_url = 'http://'.$full_url;
 
 	// Ok, not very pretty :-)
@@ -624,7 +624,7 @@ function handle_img_tag($url, $is_signature = false, $alt = null) {
 
 	if ($is_signature && $luna_user['show_img_sig'] != '0')
 		$img_tag = '<img class="sigimage img-responsive" src="'.$url.'" alt="'.$alt.'" />';
-	else if (!$is_signature && $luna_user['show_img'] != '0')
+	elseif (!$is_signature && $luna_user['show_img'] != '0')
 		$img_tag = '<span class="postimg"><img class="img-responsive" src="'.$url.'" alt="'.$alt.'" /></span>';
 
 	return $img_tag;
@@ -809,11 +809,11 @@ function parse_message($text) {
 
 					if ($language == 'html' || $language == 'xhtml' || $language == 'xml') { // Markup case
 						$h_class = ' class="language-markup"';
-					} else if ($language == 'php' || $language == 'c++' || $language == 'perl') { // C-like languages case
+					} elseif ($language == 'php' || $language == 'c++' || $language == 'perl') { // C-like languages case
 						$h_class = ' class="language-clike"';
-					} else if ($language == 'javascript') { // JavaScript case
+					} elseif ($language == 'javascript') { // JavaScript case
 						$h_class = ' class="language-javascript"';
-					} else if ($language == 'php') { // C-like languages case
+					} elseif ($language == 'php') { // C-like languages case
 						$h_class = ' class="language-php"';
 					} else { // Other cases
 						$h_class = ' class="language-none"';

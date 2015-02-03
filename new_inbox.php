@@ -225,9 +225,9 @@ if (isset($_POST['form_sent'])) // The post button has been pressed
 		$errors[] = $lang['No message'];
 
 	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
-	else if (strlen($p_message) > FORUM_MAX_POSTSIZE)
+	elseif (strlen($p_message) > FORUM_MAX_POSTSIZE)
 		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
-	else if ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
+	elseif ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
 		$p_message = ucwords(strtolower($p_message));
 
 	// Validate BBCode syntax
@@ -473,7 +473,7 @@ if (!empty($errors)) {
 </div>
 <?php
 
-} else if (isset($_POST['preview'])) {
+} elseif (isset($_POST['preview'])) {
 	require_once FORUM_ROOT.'include/parser.php';
 	$preview_message = parse_message($p_message);
 
