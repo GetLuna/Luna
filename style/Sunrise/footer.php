@@ -137,9 +137,6 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 			</div>
 		</div>
 	</div>
-	<script src="include/js/jquery.js"></script>
-	<script src="include/js/bootstrap.min.js"></script>
-	<script src="include/js/prism.js"></script>
 </footer>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 <div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
