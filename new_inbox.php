@@ -480,7 +480,7 @@ $cur_index = 1;
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Message'] ?></label>
 					<div class="col-sm-9">
-						<textarea class="form-control" name="req_message" rows="10" tabindex="<?php echo $cur_index++ ?>"><?php echo ($p_message != '' ? luna_htmlspecialchars($p_message) : ''); ?></textarea>
+						<?php draw_editor('10'); ?>
 					</div>
 				</div>
 			</fieldset>
