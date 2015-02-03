@@ -1362,37 +1362,6 @@ class Installer {
 		);
 		
 		$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
-		
-		$schema = array(
-			'FIELDS'			=> array(
-				'id'				=> array(
-					'datatype'			=> 'SERIAL',
-					'allow_null'    	=> false
-				),
-				'user_id'			=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'contact_id'		=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'contact_name'		=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-				),
-				'allow_msg'			=> array(
-					'datatype'			=> 'TINYINT(1)',
-					'allow_null'		=> false,
-					'default'		=> '1'
-				)
-			),
-			'PRIMARY KEY'		=> array('id'),
-		);
-		
-		$db->create_table('contacts', $schema) or error('Unable to create contacts table', __FILE__, __LINE__, $db->error());
 
 		// Insert config data
 		$luna_config = array(
@@ -1574,7 +1543,4 @@ class Installer {
 		
 		$db->end_transaction();
 	}
-	
-	
-	
 }
