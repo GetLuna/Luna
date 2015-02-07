@@ -152,11 +152,11 @@ function AddTag(type, tag) {
    var after_txt = val.substring(Field.selectionEnd, val.length);
    if (type == 'inline')
 	   Field.value = before_txt + '[' + tag + ']' + selected_txt + '[/' + tag + ']' + after_txt;
-   elseif (type == 'list')
+   else if (type == 'list')
 	   Field.value = before_txt + '[list]' + "\r" + '[*]' + selected_txt + '[/*]' + "\r" + '[/list]' + after_txt;
-   elseif (type == 'code')
+   else if (type == 'code')
 	   Field.value = before_txt + '[' + tag + ']' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
-   elseif (type == 'emoji')
+   else if (type == 'emoji')
 	   Field.value = before_txt + tag + after_txt;
 }
 </script>
