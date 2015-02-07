@@ -10,6 +10,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/parser.php';
 require FORUM_ROOT.'include/inbox_functions.php';
+require FORUM_ROOT.'include/me_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
@@ -25,6 +26,9 @@ if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_pm'] == '0')
 
 // Load the additionals language files
 require FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
+
+// User block
+$avatar_user_card = draw_user_avatar($luna_user['id'], 'visible-lg-block');
 
 // Page ?
 $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUEST['p']);
@@ -125,7 +129,6 @@ $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang[
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
 
-load_inbox_nav('inbox');
 ?>
 <script type="text/javascript">
 /* <![CDATA[ */
