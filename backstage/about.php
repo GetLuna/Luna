@@ -43,10 +43,20 @@ require 'header.php';
 			<a href="#management" class="list-group-item"><span class="fa fa-fw fa-coffee"></span> Management</a>
 			<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
 			<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
+			<a href="#others" class="list-group-item">Other improvements and notes</a>
 		</div>
 		<div class="list-group">
-			<a href="#others" class="list-group-item">Other improvements and notes</a>
 			<a href="#updates" class="list-group-item">Updates</a>
+			<a href="#p0" class="list-group-item">Preview 0</a>
+			<a href="#p0u1" class="list-group-item">Preview 0 Update 1</a>
+			<a href="#p0u2" class="list-group-item">Preview 0 Update 2</a>
+			<a href="#p0u3" class="list-group-item">Preview 0 Update 3</a>
+			<a href="#p0u4" class="list-group-item">Preview 0 Update 4</a>
+			<a href="#p1" class="list-group-item">Preview 1</a>
+			<a href="#p2" class="list-group-item">Preview 2</a>
+			<a href="#p2u1" class="list-group-item">Preview 2 Update 1</a>
+			<a href="#p2u2" class="list-group-item">Preview 2 Update 2</a>
+			<a href="#p3" class="list-group-item">Preview 3</a>
 		</div>
 	</div>
 	<div class="col-sm-9">
@@ -143,9 +153,13 @@ require 'header.php';
 						<p>While the Backstage from ModernBB was already responsive and ready for your phone, we've made improvements to make your experience even better.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>..and ready for you</h4>
+						<h4>...and ready for you</h4>
 						<img class="img-responsive" src="../img/about/backstagefirstrun.png" />
 						<p>New to Luna? We'll give you a hand with the important settings you need to get your community ready to kick off and grow beyond! Of course, you can remove it too.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Backstage login</h4>
+						<p>Did your theme break the login form? No worries, there now is a login form build into the Backstage, so you can change the theme back or manage your forum through there.</p>
 					</div>
 				</div>
 				<a id="theme"><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3></a>
@@ -157,6 +171,10 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>New developer tools</h4>
 						<p>The possibilities for developing your own theme have been extended drastically! You can do whatever you want now. Luna won't force you to use Bootstrap anymore, as the choice is now up to you.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Child themes</h4>
+						<p>Luna comes with support for child-themes. Thanks to this, themes can be based upon one another without the need to hae duplicated files for 2 themes. Luna's own Sunrise (parent) and Sunset (child) themes are an example of this new behavior.</p>
 					</div>
 				</div>
 				<h4>Sunrise</h4>
@@ -172,11 +190,21 @@ require 'header.php';
 						<p>Sunrise will give you a refreshed experience from the ground up. Because not just the index has been redone, every page has. The result is a beautiful native experience that uses all power Luna has to provide. And as it is a first version, expect more in later updates.</p>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<h4>Sunset</h4>
+						<p>Sunset is a theme based on Sunrise, however, it uses a more classic view on forum software. This is a nice team if you want to kick off with a fresh design, yet like the old way of working with forum software better.</p>
+					</div>
+				</div>
 				<a id="others"><h3>Other improvements and notes</h3></a>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Installation</h4>
 						<p>We've revamped the code behind the installer to be more modern (using fancy PHP 5 stuff like classes), while you won't notice a lot in these changes, it is a step forward.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Security first</h4>
+						<p>Not only does Luna come with security fixes, it also has some features to warn you for possible security threaths like the <code>install.php</code> file after installation and a writeabe <code>config.php</code>.</p>
 					</div>
 				</div>
 				<div class="row">
@@ -186,7 +214,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.38xx.</p>
+						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.37xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -198,64 +226,68 @@ require 'header.php';
 				<hr />
 				<a id="updates"><h3>Luna 1.0 Updates</h3></a>
 				<span class="change-list">
-					<h4>Preview 0 (version 0.0.40.2900-0.0.3232)</h4>
+					<h4><a id="p0"></a>Preview 0 &middot; Build 3112</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-info">3112</span> <i>Initial release</i>
+								<span class="label label-primary">3112</span> <i>Initial release</i>
 							</p>
 						</div>
 					</div>
+					<h4><a id="p0u1"></a>Preview 0 Update 1 &middot; Build 3136</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-success">3136</span> The index now displays the latest topic<br />
-								<span class="label label-success">3136</span> The "Board stats" have been updated with a new design<br />
-								<span class="label label-success">3136</span> Fixes a security vulnerability in redirects
+								<span class="label label-primary">3136</span> The index now displays the latest topic<br />
+								<span class="label label-primary">3136</span> The "Board stats" have been updated with a new design<br />
+								<span class="label label-primary">3136</span> Fixes a security vulnerability in redirects
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-success">3136</span> The index now displays the amount of topics and posts<br />
-								<span class="label label-success">3136</span> 1 bugfix
+								<span class="label label-primary">3136</span> The index now displays the amount of topics and posts<br />
+								<span class="label label-primary">3136</span> 1 bugfix
 							</p>
 						</div>
 					</div>
+					<h4><a id="p0u2"></a>Preview 0 Update 2 &middot; Build 3137</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-danger">3137</span> An issue with the installer has been fixed
+								<span class="label label-primary">3137</span> An issue with the installer has been fixed
 							</p>
 						</div>
 					</div>
+					<h4><a id="p0u3"></a>Preview 0 Update 3 &middot; Build 3231</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-warning">3231</span> Drastically improved design on all pages<br />
-								<span class="label label-warning">3231</span> Advanced Search has been improved with a new interface<br />
-								<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
-								<span class="label label-warning">3231</span> New zFeatures have been added, and are disabled<br />
-								<span class="label label-warning">3231</span> Start of development of Reading List
+								<span class="label label-primary">3231</span> Drastically improved design on all pages<br />
+								<span class="label label-primary">3231</span> Advanced Search has been improved with a new interface<br />
+								<span class="label label-primary">3231</span> First Run now acts like a sidebar and control panel<br />
+								<span class="label label-primary">3231</span> New zFeatures have been added, and are disabled<br />
+								<span class="label label-primary">3231</span> Start of development of Reading List
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-warning">3231</span> Foundations for Profile and Me have been added<br />
-								<span class="label label-warning">3231</span> First Run now acts like a sidebar and control panel<br />
-								<span class="label label-warning">3231</span> Small improvements to the editor<br />
-								<span class="label label-warning">3231</span> Bootstrap has been updated to version 3.3.0<br />
-								<span class="label label-warning">3231</span> Multiple bugfixes
+								<span class="label label-primary">3231</span> Foundations for Profile and Me have been added<br />
+								<span class="label label-primary">3231</span> First Run now acts like a sidebar and control panel<br />
+								<span class="label label-primary">3231</span> Small improvements to the editor<br />
+								<span class="label label-primary">3231</span> Bootstrap has been updated to version 3.3.0<br />
+								<span class="label label-primary">3231</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
+					<h4><a id="p0u4"></a>Preview 0 Update 4 &middot; Build 3132</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-default">3232</span> Fixes a security issue
+								<span class="label label-primary">3232</span> Fixes a security issue
 							</p>
 						</div>
 					</div>
-					<h4>Preview 1 (version 0.0.3233-0.1.3361)</h4>
+					<h4><a id="p1"></a>Preview 1 &middot; Build 3361</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
@@ -292,137 +324,139 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4>Preview 2 (version 0.1.3362-0.2.3660)</h4>
+					<h4><a id="p2"></a>Preview 2 &middot; Build 3478</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-info">3478</span> Revamped interface<br />
-								<span class="label label-info">3478</span> The navbar has been split in 2 new navbars<br />
-								<span class="label label-info">3478</span> The board stats are now displayed on every page<br />
-								<span class="label label-info">3478</span> The index has been redesigned with new features<br />
-								<span class="label label-info">3478</span> The footer now displays the board's copyright<br />
-								<span class="label label-info">3478</span> Support for sub sections has been added<br />
-								<span class="label label-info">3478</span> Improved Backstage interface for small screens<br />
-								<span class="label label-info">3478</span> The Notification icon now works<br />
-								<span class="label label-info">3478</span> Backstage now has release notes included<br />
-								<span class="label label-info">3478</span> Emoticons have been replaced with Emojis
+								<span class="label label-primary">3478</span> Revamped interface<br />
+								<span class="label label-primary">3478</span> The navbar has been split in 2 new navbars<br />
+								<span class="label label-primary">3478</span> The board stats are now displayed on every page<br />
+								<span class="label label-primary">3478</span> The index has been redesigned with new features<br />
+								<span class="label label-primary">3478</span> The footer now displays the board's copyright<br />
+								<span class="label label-primary">3478</span> Support for sub sections has been added<br />
+								<span class="label label-primary">3478</span> Improved Backstage interface for small screens<br />
+								<span class="label label-primary">3478</span> The Notification icon now works<br />
+								<span class="label label-primary">3478</span> Backstage now has release notes included<br />
+								<span class="label label-primary">3478</span> Emoticons have been replaced with Emojis
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-info">3478</span> The main navbar now contains a search box<br />
-								<span class="label label-info">3478</span> Online list is now hidden under "users online"<br />
-								<span class="label label-info">3478</span> The notification button is now always visible<br />
-								<span class="label label-info">3478</span> Profile and Me have been improved with better UX<br />
-								<span class="label label-info">3478</span> First Run has been added to the Backstage<br />
-								<span class="label label-info">3478</span> zFeatures clean up<br />
-								<span class="label label-info">3478</span> Notifications has been added to Me<br />
-								<span class="label label-info">3478</span> The code behind the installer has been revamped<br />
-								<span class="label label-info">3478</span> Emojis list in Help has been improved<br />
-								<span class="label label-info">3478</span> Multiple bugfixes
+								<span class="label label-primary">3478</span> The main navbar now contains a search box<br />
+								<span class="label label-primary">3478</span> Online list is now hidden under "users online"<br />
+								<span class="label label-primary">3478</span> The notification button is now always visible<br />
+								<span class="label label-primary">3478</span> Profile and Me have been improved with better UX<br />
+								<span class="label label-primary">3478</span> First Run has been added to the Backstage<br />
+								<span class="label label-primary">3478</span> zFeatures clean up<br />
+								<span class="label label-primary">3478</span> Notifications has been added to Me<br />
+								<span class="label label-primary">3478</span> The code behind the installer has been revamped<br />
+								<span class="label label-primary">3478</span> Emojis list in Help has been improved<br />
+								<span class="label label-primary">3478</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
+					<h4><a id="p2u1"></a>Preview 2 Update 1 &middot; Build 3573</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-success">3573</span> Major changes to the profile system<br />
-								<span class="label label-success">3573</span> Activity has been removed<br />
-								<span class="label label-success">3573</span> "Tools" is a new page under "Users"<br />
-								<span class="label label-success">3573</span> User settings has been completely revamped<br />
-								<span class="label label-success">3573</span> Brand update<br />
-								<span class="label label-success">3573</span> You can now disable the "Back to top" link<br />
-								<span class="label label-success">3573</span> Emoji's are now part of the Editor interface<br />
-								<span class="label label-success">3573</span> Mainstage First Run has new actions<br />
-								<span class="label label-success">3573</span> Responsive footer has been improved<br />
-								<span class="label label-success">3573</span> zSettings has been dropped
+								<span class="label label-primary">3573</span> Major changes to the profile system<br />
+								<span class="label label-primary">3573</span> Activity has been removed<br />
+								<span class="label label-primary">3573</span> "Tools" is a new page under "Users"<br />
+								<span class="label label-primary">3573</span> User settings has been completely revamped<br />
+								<span class="label label-primary">3573</span> Brand update<br />
+								<span class="label label-primary">3573</span> You can now disable the "Back to top" link<br />
+								<span class="label label-primary">3573</span> Emoji's are now part of the Editor interface<br />
+								<span class="label label-primary">3573</span> Mainstage First Run has new actions<br />
+								<span class="label label-primary">3573</span> Responsive footer has been improved<br />
+								<span class="label label-primary">3573</span> zSettings has been dropped
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-success">3573</span> "Settings" is now an option in the user menu<br />
-								<span class="label label-success">3573</span> jQuery has been updated to version 2.1.3<br />
-								<span class="label label-success">3573</span> All user settings can be saved at once<br />
-								<span class="label label-success">3573</span> A lot more coding conventions<br />
-								<span class="label label-success">3573</span> New interface for profile, settings and notifications<br />
-								<span class="label label-success">3573</span> Inbox now has it's own icon in the menubar<br />
-								<span class="label label-success">3573</span> Improved visual appearance of editor<br />
-								<span class="label label-success">3573</span> Backstage's First Run can be disabled<br />
-								<span class="label label-success">3573</span> Multiple bugfixes
+								<span class="label label-primary">3573</span> "Settings" is now an option in the user menu<br />
+								<span class="label label-primary">3573</span> jQuery has been updated to version 2.1.3<br />
+								<span class="label label-primary">3573</span> All user settings can be saved at once<br />
+								<span class="label label-primary">3573</span> A lot more coding conventions<br />
+								<span class="label label-primary">3573</span> New interface for profile, settings and notifications<br />
+								<span class="label label-primary">3573</span> Inbox now has it's own icon in the menubar<br />
+								<span class="label label-primary">3573</span> Improved visual appearance of editor<br />
+								<span class="label label-primary">3573</span> Backstage's First Run can be disabled<br />
+								<span class="label label-primary">3573</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
+					<h4><a id="p2u2"></a>Preview 2 Update 2 &middot; Build 3660</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-danger">3660</span> Backstage will check of config is writeable<br />
-								<span class="label label-danger">3660</span> More improvements to Backstage for small screens<br />
-								<span class="label label-danger">3660</span> The notification fly-out is now optional<br />
-								<span class="label label-danger">3660</span> You can now change the size of emojis<br />
-								<span class="label label-danger">3660</span> The copyright notice now can be altered by admins<br />
-								<span class="label label-danger">3660</span> Moderation tools are now a Backstage feature<br />
-								<span class="label label-danger">3660</span> The profile now shows the user's URL again<br />
-								<span class="label label-danger">3660</span> Multiple design improvements to Sunrise<br />
-								<span class="label label-danger">3660</span> Help page design has been improved<br />
-								<span class="label label-danger">3660</span> Improved design for the "Mark as read" button<br />
-								<span class="label label-danger">3660</span> The thread design has been majorly improved<br />
-								<span class="label label-danger">3660</span> Index no longer sorts on sticky when no forum is set<br />
-								<span class="label label-danger">3660</span> More work on coding conventions has been done<br />
-								<span class="label label-danger">3660</span> Improved design for the moderation tools<br />
-								<span class="label label-danger">3660</span> Dummy notifications have been removed
+								<span class="label label-primary">3660</span> Backstage will check of config is writeable<br />
+								<span class="label label-primary">3660</span> More improvements to Backstage for small screens<br />
+								<span class="label label-primary">3660</span> The notification fly-out is now optional<br />
+								<span class="label label-primary">3660</span> You can now change the size of emojis<br />
+								<span class="label label-primary">3660</span> The copyright notice now can be altered by admins<br />
+								<span class="label label-primary">3660</span> Moderation tools are now a Backstage feature<br />
+								<span class="label label-primary">3660</span> The profile now shows the user's URL again<br />
+								<span class="label label-primary">3660</span> Multiple design improvements to Sunrise<br />
+								<span class="label label-primary">3660</span> Help page design has been improved<br />
+								<span class="label label-primary">3660</span> Improved design for the "Mark as read" button<br />
+								<span class="label label-primary">3660</span> The thread design has been majorly improved<br />
+								<span class="label label-primary">3660</span> Index no longer sorts on sticky when no forum is set<br />
+								<span class="label label-primary">3660</span> More work on coding conventions has been done<br />
+								<span class="label label-primary">3660</span> Improved design for the moderation tools<br />
+								<span class="label label-primary">3660</span> Dummy notifications have been removed
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-danger">3660</span> Optimization of multiple code snippets<br />
-								<span class="label label-danger">3660</span> The search bar in themes can be disabled now<br />
-								<span class="label label-danger">3660</span> The emoji dropdown in the editor has been improved<br />
-								<span class="label label-danger">3660</span> Statistics in the footer can be disabled<br />
-								<span class="label label-danger">3660</span> Core has been removed from the theme engine<br />
-								<span class="label label-danger">3660</span> Improvements to the new profile settings<br />
-								<span class="label label-danger">3660</span> Notifications have been split from the profile file<br />
-								<span class="label label-danger">3660</span> The index no longer shows invalid messages<br />
-								<span class="label label-danger">3660</span> Post.php now shows the correct title for the page<br />
-								<span class="label label-danger">3660</span> "Moderate" link is added to forum view<br />
-								<span class="label label-danger">3660</span> The language files have been cleaned up<br />
-								<span class="label label-danger">3660</span> General code cleanup<br />
-								<span class="label label-danger">3660</span> New user menu in the Backstage to match the Mainstage's<br />
-								<span class="label label-danger">3660</span> Multiple bugfixes
+								<span class="label label-primary">3660</span> Optimization of multiple code snippets<br />
+								<span class="label label-primary">3660</span> The search bar in themes can be disabled now<br />
+								<span class="label label-primary">3660</span> The emoji dropdown in the editor has been improved<br />
+								<span class="label label-primary">3660</span> Statistics in the footer can be disabled<br />
+								<span class="label label-primary">3660</span> Core has been removed from the theme engine<br />
+								<span class="label label-primary">3660</span> Improvements to the new profile settings<br />
+								<span class="label label-primary">3660</span> Notifications have been split from the profile file<br />
+								<span class="label label-primary">3660</span> The index no longer shows invalid messages<br />
+								<span class="label label-primary">3660</span> Post.php now shows the correct title for the page<br />
+								<span class="label label-primary">3660</span> "Moderate" link is added to forum view<br />
+								<span class="label label-primary">3660</span> The language files have been cleaned up<br />
+								<span class="label label-primary">3660</span> General code cleanup<br />
+								<span class="label label-primary">3660</span> New user menu in the Backstage to match the Mainstage's<br />
+								<span class="label label-primary">3660</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
-					<h4>Preview 3 (version 0.0.2.3661-0.3.38xx)</h4>
+					<h4><a id="p3"></a>Preview 3 &middot; Build 37xx</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-warning">38xx</span> Moved topics aren't displayed on the index anymore<br />
-								<span class="label label-warning">38xx</span> Improved forum display for moved topics<br />
-								<span class="label label-warning">38xx</span> The update dialogue now has a similar design as login<br />
-								<span class="label label-warning">38xx</span> Bootstrap has been updated to version 3.3.2<br />
-								<span class="label label-warning">38xx</span> Updated design for the user list<br />
-								<span class="label label-warning">38xx</span> Font Awesome has been updated to version 4.3.0<br />
-								<span class="label label-warning">38xx</span> Users can no longer select a per-user style<br />
-								<span class="label label-warning">38xx</span> Emojis have a default size of 16px instead of 14px<br />
-								<span class="label label-warning">38xx</span> Themes now can set a parent to inherit their design<br />
-								<span class="label label-warning">38xx</span> Support to display categories in themes<br />
-								<span class="label label-warning">38xx</span> Threads now have visual help for their status<br />
-								<span class="label label-warning">38xx</span> Inbox has been revamped
+								<span class="label label-primary">37xx</span> Moved topics aren't displayed on the index anymore<br />
+								<span class="label label-primary">37xx</span> Improved forum display for moved topics<br />
+								<span class="label label-primary">37xx</span> The update dialogue now has a similar design as login<br />
+								<span class="label label-primary">37xx</span> Bootstrap has been updated to version 3.3.2<br />
+								<span class="label label-primary">37xx</span> Updated design for the user list<br />
+								<span class="label label-primary">37xx</span> Font Awesome has been updated to version 4.3.0<br />
+								<span class="label label-primary">37xx</span> Users can no longer select a per-user style<br />
+								<span class="label label-primary">37xx</span> Emojis have a default size of 16px instead of 14px<br />
+								<span class="label label-primary">37xx</span> Themes now can set a parent to inherit their design<br />
+								<span class="label label-primary">37xx</span> Support to display categories in themes<br />
+								<span class="label label-primary">37xx</span> Threads now have visual help for their status<br />
+								<span class="label label-primary">37xx</span> Inbox has been revamped
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-warning">38xx</span> Backstage now has it's own login form<br />
-								<span class="label label-warning">38xx</span> Improved edit interface<br />
-								<span class="label label-warning">38xx</span> A security issue with the installer has been fixed<br />
-								<span class="label label-warning">38xx</span> Major improvements to the responsive design<br />
-								<span class="label label-warning">38xx</span> Sunset is added as a build-in style<br />
-								<span class="label label-warning">38xx</span> The Theme settings have been improved<br />
-								<span class="label label-warning">38xx</span> Improvements to the topic view have been made<br />
-								<span class="label label-warning">38xx</span> More improvements to Theme engine 6<br />
-								<span class="label label-warning">38xx</span> Luna now asks to remove install.php after installation<br />
-								<span class="label label-warning">38xx</span> Major improvements to the database<br />
-								<span class="label label-warning">38xx</span> New notifications have been added<br />
-								<span class="label label-warning">38xx</span> Multiple bugfixes
+								<span class="label label-primary">37xx</span> Backstage now has it's own login form<br />
+								<span class="label label-primary">37xx</span> Improved edit interface<br />
+								<span class="label label-primary">37xx</span> A security issue with the installer has been fixed<br />
+								<span class="label label-primary">37xx</span> Major improvements to the responsive design<br />
+								<span class="label label-primary">37xx</span> Sunset is added as a build-in style<br />
+								<span class="label label-primary">37xx</span> The Theme settings have been improved<br />
+								<span class="label label-primary">37xx</span> Improvements to the topic view have been made<br />
+								<span class="label label-primary">37xx</span> More improvements to Theme engine 6<br />
+								<span class="label label-primary">37xx</span> Luna now asks to remove install.php after installation<br />
+								<span class="label label-primary">37xx</span> Major improvements to the database<br />
+								<span class="label label-primary">37xx</span> New notifications have been added<br />
+								<span class="label label-primary">37xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
