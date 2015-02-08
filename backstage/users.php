@@ -431,8 +431,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			</fieldset>
 		</div>
 		<div class="panel-footer">
-			<input class="btn btn-danger" type="submit" name="delete_users_comply" value="<?php echo $lang['Delete'] ?>" />
-			<a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
+			<button class="btn btn-danger" type="submit" name="delete_users_comply"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button>
 		</div>
 	</div>
 </form>
@@ -713,7 +712,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 						<?php if ($can_ban) : ?>
 						<input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang['Ban'] ?>" />
 						<?php endif; if ($can_delete) : ?>
-						<input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang['Delete'] ?>" />
+						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button>
 						<?php endif; if ($can_move) : ?>
 						<input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang['Change group'] ?>" />
 						<?php endif; ?>
@@ -775,7 +774,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 						<?php if ($can_ban) : ?>
 						<input class="btn btn-danger" type="submit" name="ban_users" value="<?php echo $lang['Ban'] ?>" />
 						<?php endif; if ($can_delete) : ?>
-						<input class="btn btn-danger" type="submit" name="delete_users" value="<?php echo $lang['Delete'] ?>" />
+						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button>
 						<?php endif; if ($can_move) : ?>
 						<input class="btn btn-primary" type="submit" name="move_users" value="<?php echo $lang['Change group'] ?>" />
 						<?php endif; ?>

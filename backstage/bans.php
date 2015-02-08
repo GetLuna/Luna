@@ -412,7 +412,7 @@ require 'header.php';
 				<div class="input-group">
 					<input type="text" class="form-control" name="new_ban_user" maxlength="25" tabindex="1" />
 					<span class="input-group-btn">
-						<input class="btn btn-danger" type="submit" name="add_ban" value="<?php echo $lang['Add'] ?>" tabindex="2" />
+						<button class="btn btn-danger" type="submit" name="add_ban" tabindex="2"><span class="fa fa-plus"></span> <?php echo $lang['Add'] ?></button>
 					</span>
 				</div>
 				<span class="help-block"><?php echo $lang['Username advanced help'] ?></span>

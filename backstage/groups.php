@@ -550,7 +550,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 ?>
 							</select>
 							<span class="input-group-btn">
-								<input class="btn btn-primary" type="submit" name="add_group" value="<?php echo $lang['Add'] ?>" tabindex="2" />
+								<button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-plus"></span> <?php echo $lang['Add'] ?></button>
 							</span>
 						</div>
 						<span class="help-block"><?php echo $lang['Create new group'] ?></span>

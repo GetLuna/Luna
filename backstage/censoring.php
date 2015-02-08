@@ -88,7 +88,7 @@ require 'header.php';
 		<form id="censoring" method="post" action="censoring.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Add word subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_word" value="<?php echo $lang['Add'] ?>" tabindex="3" /></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Add word subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_word" tabindex="3"><span class="fa fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
 				</div>
 					<fieldset>
 					<div class="panel-body">

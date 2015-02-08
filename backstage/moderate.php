@@ -400,7 +400,7 @@ if (isset($_GET['tid'])) {
 						<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
 					</div>
 					<?php echo $paging_links ?>
-					<div class="btn-group pull-right"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><input type="submit" class="btn btn-primary" name="delete_posts" value="<?php echo $lang['Delete'] ?>"<?php echo $button_status ?> /></div>
+					<div class="btn-group pull-right"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><button type="submit" class="btn btn-primary" name="delete_posts"<?php echo $button_status ?>><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button></div>
 				</div>
 			</form>
 		</div>
@@ -694,7 +694,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 	<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Delete topics'] ?><span class="pull-right"><input type="submit" class="btn btn-danger" name="delete_topics_comply" value="<?php echo $lang['Delete'] ?>" /></span></h3>
+				<h3 class="panel-title"><?php echo $lang['Delete topics'] ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_topics_comply"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
