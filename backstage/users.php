@@ -802,7 +802,7 @@ if (isset($_GET['deleted']))
 <form id="find_user" method="get" action="users.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['User search'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang['Submit search'] ?>" tabindex="1" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['User search'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_user" value="<?php echo $lang['Search'] ?>" tabindex="1" /></span></h3>
 		</div>
 		<fieldset>
 			<div class="panel-body">

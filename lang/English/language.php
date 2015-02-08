@@ -888,7 +888,6 @@ $lang = array(
 'Order by label'			=>	'Order by',
 'Order by ip'				=>	'IP',
 'Order by expire'			=>	'Expire date',
-'Submit search'				=>	'Submit search',
 
 'E-mail help'				=>	'The email or email domain you wish to ban',
 'IP label'					=>	'IP address/IP-ranges',
