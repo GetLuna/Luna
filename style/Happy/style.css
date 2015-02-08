@@ -518,7 +518,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 .table > thead > tr.active {
 	color: #fff;
 	background: #f08b10;
-
 }
 
 .category-header, .forum-header {
