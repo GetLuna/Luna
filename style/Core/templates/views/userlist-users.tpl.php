@@ -2,7 +2,7 @@
 
 // Make sure no one attempts to run this view directly.
 if (!defined('FORUM'))
-    exit;
+	exit;
 
 require get_view_path('userlist-breadcrumbs.tpl.php');
 
@@ -21,17 +21,17 @@ $result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AN
 
 if ($db->num_rows($result))
 {
-    $user_ids = array();
-    for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)
-        $user_ids[] = $cur_user_id;
+	$user_ids = array();
+	for ($i = 0;$cur_user_id = $db->result($result, $i);$i++)
+		$user_ids[] = $cur_user_id;
 
-    // Grab the users
-    $result = $db->query('SELECT u.id, u.username, u.title, u.num_posts, u.registered, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id IN('.implode(',', $user_ids).') ORDER BY '.$sort_by.' '.$sort_dir.', u.id ASC') or error('Unable to fetch user list', __FILE__, __LINE__, $db->error());
+	// Grab the users
+	$result = $db->query('SELECT u.id, u.username, u.title, u.num_posts, u.registered, g.g_id, g.g_user_title FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id IN('.implode(',', $user_ids).') ORDER BY '.$sort_by.' '.$sort_dir.', u.id ASC') or error('Unable to fetch user list', __FILE__, __LINE__, $db->error());
 
-    while ($user_data = $db->fetch_assoc($result))
-    {
-        $user_title_field = get_title($user_data);
-        $user_avatar = generate_avatar_markup($user_data['id']);
+	while ($user_data = $db->fetch_assoc($result))
+	{
+		$user_title_field = get_title($user_data);
+		$user_avatar = generate_avatar_markup($user_data['id']);
 
 ?>
 	<div class="row user-row">
@@ -46,16 +46,16 @@ if ($db->num_rows($result))
 	</div>
 <?php
 
-    }
+	}
 }
 else
-    echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang['No hits'].'</td></tr>'."\n";
+	echo "\t\t\t".'<tr>'."\n\t\t\t\t\t".'<td class="tcl" colspan="'.(($show_post_count) ? 4 : 3).'">'.$lang['No hits'].'</td></tr>'."\n";
 
 ?>
 </div>
 
 <?php
 
-    require get_view_path('userlist-breadcrumbs.tpl.php');
+	require get_view_path('userlist-breadcrumbs.tpl.php');
 
-    require FORUM_ROOT.'footer.php';
+	require FORUM_ROOT.'footer.php';

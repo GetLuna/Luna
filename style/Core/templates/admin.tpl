@@ -9,13 +9,13 @@
 		<luna_head>
 	</head>
 	<body>
-    	<div class="container">
-            <div class="row">
-                <luna_main>
-            </div>
-            <div class="row">
-                <luna_footer>
-            </div>
+		<div class="container">
+			<div class="row">
+				<luna_main>
+			</div>
+			<div class="row">
+				<luna_footer>
+			</div>
 		</div>
-    </body>
+	</body>
 </html>

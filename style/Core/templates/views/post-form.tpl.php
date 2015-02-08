@@ -2,37 +2,37 @@
 
 // Make sure no one attempts to run this view directly.
 if (!defined('FORUM'))
-    exit;
+	exit;
 
 $cur_index = 1;
 
 ?>
 
 <?php echo $form."\n" ?>
-    <div class="panel panel-border panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $action ?></h3>
-        </div>
-        <fieldset class="postfield">
-            <input type="hidden" name="form_sent" value="1" />
+	<div class="panel panel-border panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $action ?></h3>
+		</div>
+		<fieldset class="postfield">
+			<input type="hidden" name="form_sent" value="1" />
 <?php
 
 if ($luna_user['is_guest'])
 {
-    $email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].'</strong>' : $lang['Email'];
-    $email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
+	$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].'</strong>' : $lang['Email'];
+	$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
-            <label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="form-control" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
-            <label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="form-control" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
+			<label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="form-control" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
+			<label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="form-control" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php
 
 }
 
 if ($fid): ?>
-            <label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
+			<label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="longinput form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
 <?php endif; ?>
-            <div class="btn-toolbar textarea-toolbar">
+			<div class="btn-toolbar textarea-toolbar">
 				<div class="btn-group">
 					<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php echo $lang['Bold']; ?>"><span class="fa fa-bold fa-fw"></span></a>
 					<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php echo $lang['Underline']; ?>"><span class="fa fa-underline fa-fw"></span></a>
@@ -58,12 +58,12 @@ if ($fid): ?>
 					<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php echo $lang['List']; ?>"><span class="fa fa-list-ul fa-fw"></span></a>
 					<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php echo $lang['List item']; ?>"><span class="fa fa-asterisk fa-fw"></span></a>
 				</div>
-            </div>
-            <textarea class="form-control"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="20" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
-        </fieldset>
-        <div class="panel-footer">
-            <div class="btn-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div><div class="btn-group"><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
-            <ul class="bblinks">
+			</div>
+			<textarea class="form-control"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="20" tabindex="<?php echo $cur_index++ ?>"><?php echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : ''); ?></textarea>
+		</fieldset>
+		<div class="panel-footer">
+			<div class="btn-group"><input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /><input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" /></div><div class="btn-group"><a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a></div>
+			<ul class="bblinks">
 				<li><?php echo ($luna_config['p_message_bbcode'] == '1') 
 					? '<a class="label label-success" href="help.php#bbcode" onclick="window.open(this.href); return false;">'.$lang['BBCode'].'</a>' 
 					: '<span class="label label-danger">'.$lang['BBCode'].'</span>'; ?>
@@ -76,54 +76,54 @@ if ($fid): ?>
 					? '<a class="label label-success" href="help.php#smilies" onclick="window.open(this.href); return false;">'.$lang['Smilies'].'</a>' 
 					: '<span class="label label-danger">'.$lang['Smilies'].'</span>'; ?>
 				</li>
-            </ul>
-        </div>
-    </div>
+			</ul>
+		</div>
+	</div>
 <?php
 
 $checkboxes = array();
 if ($fid && $is_admmod)
-    $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /> '.$lang['Stick topic'].'</label></div>';
+	$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="stick_topic" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['stick_topic']) ? ' checked="checked"' : '').' /> '.$lang['Stick topic'].'</label></div>';
 
 if (!$luna_user['is_guest'])
 {
-    if ($luna_config['o_smilies'] == '1')
-        $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
+	if ($luna_config['o_smilies'] == '1')
+		$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
 
-    if ($luna_config['o_topic_subscriptions'] == '1')
-    {
-        $subscr_checked = false;
+	if ($luna_config['o_topic_subscriptions'] == '1')
+	{
+		$subscr_checked = false;
 
-        // If it's a preview
-        if (isset($_POST['preview']))
-            $subscr_checked = isset($_POST['subscribe']) ? true : false;
-        // If auto subscribed
-        else if ($luna_user['auto_notify'])
-            $subscr_checked = true;
-        // If already subscribed to the topic
-        else if ($is_subscribed)
-            $subscr_checked = true;
+		// If it's a preview
+		if (isset($_POST['preview']))
+			$subscr_checked = isset($_POST['subscribe']) ? true : false;
+		// If auto subscribed
+		else if ($luna_user['auto_notify'])
+			$subscr_checked = true;
+		// If already subscribed to the topic
+		else if ($is_subscribed)
+			$subscr_checked = true;
 
-        $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang['Stay subscribed'] : $lang['Subscribe topic']).'</label></div>';
-    }
+		$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="subscribe" value="1" tabindex="'.($cur_index++).'"'.($subscr_checked ? ' checked="checked"' : '').' /> '.($is_subscribed ? $lang['Stay subscribed'] : $lang['Subscribe topic']).'</label></div>';
+	}
 }
 else if ($luna_config['o_smilies'] == '1')
-    $checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
+	$checkboxes[] = '<div class="checkbox"><label><input type="checkbox" name="hide_smilies" value="1" tabindex="'.($cur_index++).'"'.(isset($_POST['hide_smilies']) ? ' checked="checked"' : '').' /> '.$lang['Hide smilies'].'</label></div>';
 
 if (!empty($checkboxes))
 {
 
 ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Options'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <?php echo implode($checkboxes) ?>
-            </fieldset>
-        </div>
-    </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Options'] ?></h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<?php echo implode($checkboxes) ?>
+			</fieldset>
+		</div>
+	</div>
 </form>
 <script>
 function AddTag(type, tag) {

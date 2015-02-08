@@ -2,12 +2,12 @@
 
 // Make sure no one attempts to run this view directly.
 if (!defined('FORUM'))
-    exit;
+	exit;
 
 ?>
 
 <div class="postview">
-    <div class="row topic">
+	<div class="row topic">
 		<div class="col-md-3">
 			<div class="profile-card">
 				<div class="profile-card-head profile-card-quickpost">
@@ -28,25 +28,25 @@ if (!defined('FORUM'))
 					</div>
 					<fieldset class="quickpostfield">
 						<input type="hidden" name="form_sent" value="1" />
-<?php if ($luna_config['o_topic_subscriptions'] == '1' && ($luna_user['auto_notify'] == '1' || $cur_topic['is_subscribed'])): ?>                        <input type="hidden" name="subscribe" value="1" />
+<?php if ($luna_config['o_topic_subscriptions'] == '1' && ($luna_user['auto_notify'] == '1' || $cur_topic['is_subscribed'])): ?>						<input type="hidden" name="subscribe" value="1" />
 <?php endif; ?>
 <?php
 
 if ($luna_user['is_guest'])
 {
-    $email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong>' : $lang['Email'];
-    $email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
+	$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].' <span>'.$lang['Required'].'</span></strong>' : $lang['Email'];
+	$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
 						<label class="conl required hidden"><?php echo $lang['Guest name'] ?></label><input type="text" placeholder="<?php echo $lang['Guest name'] ?>" class="form-control" name="req_username" value="<?php if (isset($_POST['req_username'])) echo luna_htmlspecialchars($username); ?>" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
 						<label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input type="text" placeholder="<?php echo $lang['Email'] ?>" class="form-control" name="<?php echo $email_form_name ?>" value="<?php if (isset($_POST[$email_form_name])) echo luna_htmlspecialchars($email); ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php
 
-    echo "\t\t\t\t\t\t".'<label class="required hidden"><strong>'.$lang['Message'].' <span>'.$lang['Required'].'</span></strong></label>';
+	echo "\t\t\t\t\t\t".'<label class="required hidden"><strong>'.$lang['Message'].' <span>'.$lang['Required'].'</span></strong></label>';
 }
 
 ?>
-                        <div class="btn-toolbar textarea-toolbar">
+						<div class="btn-toolbar textarea-toolbar">
 							<div class="btn-group">
 								<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php echo $lang['Bold']; ?>"><span class="fa fa-bold fa-fw"></span></a>
 								<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php echo $lang['Underline']; ?>"><span class="fa fa-underline fa-fw"></span></a>
@@ -72,7 +72,7 @@ if ($luna_user['is_guest'])
 								<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php echo $lang['List']; ?>"><span class="fa fa-list-ul fa-fw"></span></a>
 								<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php echo $lang['List item']; ?>"><span class="fa fa-asterisk fa-fw"></span></a>
 							</div>
-                        </div>
+						</div>
 						<textarea placeholder="<?php echo $lang['Start typing'] ?>" class="form-control" name="req_message" id="post_field" rows="7" tabindex="<?php echo $cur_index++ ?>"></textarea>
 					</fieldset>
 					<div class="panel-footer">
