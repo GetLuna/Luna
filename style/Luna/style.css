@@ -1124,13 +1124,16 @@ blockquote footer {
 	padding: 20px;
 }
 
-.form .btn {
+.form .btn-login {
 	margin-top: -65px;
 	margin-right: 5px;
 }
 
 .form .btn-update {
 	margin-top: 0 !important;
+	border-top: none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .form .actions, .form .remember {
