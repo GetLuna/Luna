@@ -35,28 +35,38 @@ require 'header.php';
 				</div>
 			</div>
 		</div>
-		<div class="list-group">
-			<a href="#brand" class="list-group-item"><span class="fa fa-fw fa-moon-o"></span> New brand</a>
-			<a href="#users" class="list-group-item"><span class="fa fa-fw fa-user"></span> Users</a>
-			<a href="#inbox" class="list-group-item"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
-			<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
-			<a href="#management" class="list-group-item"><span class="fa fa-fw fa-coffee"></span> Management</a>
-			<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
-			<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
-			<a href="#others" class="list-group-item">Other improvements and notes</a>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Navigation</h3>
+			</div>
+			<div class="list-group">
+				<a href="#brand" class="list-group-item"><span class="fa fa-fw fa-moon-o"></span> New brand</a>
+				<a href="#users" class="list-group-item"><span class="fa fa-fw fa-user"></span> Users</a>
+				<a href="#inbox" class="list-group-item"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
+				<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
+				<a href="#management" class="list-group-item"><span class="fa fa-fw fa-coffee"></span> Management</a>
+				<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
+				<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
+				<a href="#others" class="list-group-item">Other improvements and notes</a>
+			</div>
 		</div>
-		<div class="list-group">
-			<a href="#updates" class="list-group-item">Updates</a>
-			<a href="#p0" class="list-group-item">Preview 0</a>
-			<a href="#p0u1" class="list-group-item">Preview 0 Update 1</a>
-			<a href="#p0u2" class="list-group-item">Preview 0 Update 2</a>
-			<a href="#p0u3" class="list-group-item">Preview 0 Update 3</a>
-			<a href="#p0u4" class="list-group-item">Preview 0 Update 4</a>
-			<a href="#p1" class="list-group-item">Preview 1</a>
-			<a href="#p2" class="list-group-item">Preview 2</a>
-			<a href="#p2u1" class="list-group-item">Preview 2 Update 1</a>
-			<a href="#p2u2" class="list-group-item">Preview 2 Update 2</a>
-			<a href="#p3" class="list-group-item">Preview 3</a>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Updates</h3>
+			</div>
+			<div class="list-group">
+				<a href="#updates" class="list-group-item">Updates</a>
+				<a href="#p0" class="list-group-item">Preview 0</a>
+				<a href="#p0u1" class="list-group-item">Preview 0 Update 1</a>
+				<a href="#p0u2" class="list-group-item">Preview 0 Update 2</a>
+				<a href="#p0u3" class="list-group-item">Preview 0 Update 3</a>
+				<a href="#p0u4" class="list-group-item">Preview 0 Update 4</a>
+				<a href="#p1" class="list-group-item">Preview 1</a>
+				<a href="#p2" class="list-group-item">Preview 2</a>
+				<a href="#p2u1" class="list-group-item">Preview 2 Update 1</a>
+				<a href="#p2u2" class="list-group-item">Preview 2 Update 2</a>
+				<a href="#p3" class="list-group-item">Preview 3</a>
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-9">
