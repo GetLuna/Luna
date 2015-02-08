@@ -60,9 +60,11 @@ if (get_magic_quotes_gpc())
 // Turn off PHP time limit
 @set_time_limit(0);
 
-
 // If we've been passed a default language, use it
 $install_lang = isset($_REQUEST['install_lang']) ? luna_trim($_REQUEST['install_lang']) : 'English';
+
+// Make sure we got a valid language string  
+$install_lang = preg_replace('%[\.\\\/]%', '', $install_lang);  
 
 // If such a language pack doesn't exist, or isn't up-to-date enough to translate this page, default to English
 if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/language.php'))
@@ -809,11 +811,6 @@ else
 				'datatype'		=> 'VARCHAR(255)',
 				'allow_null'	=> false,
 				'default'		=> '0'
-			),
-			'parent_id'		=> array(
-				'datatype'		=> 'INT',
-				'allow_null'	=> true,
-				'default'		=> 0
 			)
 		),
 		'PRIMARY KEY'	=> array('id')
