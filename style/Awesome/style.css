@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Header */
 #header {
-	background: #f08b10;
+	background: #74bb01;
 	color: #fff;
 }
 
@@ -94,11 +94,11 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #e36b00;
+		background: #74bb01;
 	}
 
 	.dropdown-menu .divider {
-		background-color: #0068b0;
+		background-color: #4c7c00;
 	}
 
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -162,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .first-run-profile {
-	background: #f08b10;
+	background: #74bb01;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	padding-bottom: 16px;
@@ -279,7 +279,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #f08b10;
+	background: #74bb01;
 	color: #fff;
 	height: 37px;
 }
@@ -304,7 +304,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-	background: #f08b10;
+	background: #74bb01;
 	border-bottom-color: rgba(255,255,255,.3);
 }
 
@@ -342,7 +342,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #f08b10;
+	background-color: #74bb01;
 }
 
 /* Pagination */
@@ -357,8 +357,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	border: 1px solid #f08b10;
-	background-color: #f08b10;
+	border: 1px solid #74bb01;
+	background-color: #74bb01;
 }
 
 /* Profile */
@@ -368,8 +368,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #f08b10;
-	border-color: #f08b10;
+	background-color: #74bb01;
+	border-color: #74bb01;
 }
 
 .profile-h2 {
@@ -517,13 +517,12 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .table > thead > tr.active {
 	color: #fff;
-	background: #f08b10;
-
+	background: #74bb01;
 }
 
 .category-header, .forum-header {
 	color: #fff;
-	background: #f08b10;
+	background: #74bb01;
 	padding: 8px 0;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -575,18 +574,18 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .btn-primary {
 	color: #fff;
-	background-color: #f08b10;
-	border-color: #e38007;
+	background: #74bb01;
+	border-color: #68a700;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-	background-color: #e38007;
-	border-color: #d67600;
+	background: #68a700;
+	border-color: #5a9100;
 	color: #fff;
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #d78900 9;
+	background-color: #408140 9;
 }
 
 .btn-post {
@@ -646,7 +645,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .alert-info, #redirect {
-	border-left: #2ca0e9 5px solid;
+	border-left: #93c920 5px solid;
 }
 
 .alert-danger {
@@ -655,7 +654,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .alert-success {
-	border-left: #41d300 5px solid;
+	border-left: #523f6d 5px solid;
 	color: #4e9e00;
 }
 
@@ -737,7 +736,7 @@ textarea {
 }
 
 .inew .icon {
-	border-color: #2ca0e9;
+	border-color: #81c400;
 }
 
 /* Search */
@@ -920,7 +919,7 @@ textarea {
 
 .profile-card-head {
 	height: 59px;
-	background-color: #f08b10;
+	background-color: #74bb01;
 	color: #fff;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
@@ -988,11 +987,11 @@ textarea {
 	left: 4px;
 	margin-top: -2px;
 	border-left-width: 0px;
-	border-right-color: #f08b10;;
+	border-right-color: #74bb01;;
 }
 
 .topic .panel-heading {
-	background: #f08b10;
+	background: #74bb01;
 }
 
 .post-actions {
@@ -1010,7 +1009,7 @@ textarea {
 	}
 
 	.profile-card-head {
-		background: #f08b10;
+		background: #74bb01;
 	}
 
 	.topic .panel-heading  {
@@ -1043,15 +1042,15 @@ textarea {
 
 /* Links */
 a {
-	color: #f08b10;
+	color: #60920e;
 }
 
 a:hover, a:active {
-	color: #f0a910;
+	color: #523f6d;
 }
 
 a.list-group-item:hover, a.list-group-item:active {
-	color: #f08b10;
+	color: #555555;
 }
 
 /* BBCode */
@@ -1094,7 +1093,7 @@ blockquote footer {
 .form-heading {
 	margin-bottom: 0px;
 	font-weight: 100;
-	background: #f08b10;
+	background: #74bb01;
 	color: #fff;
 	padding: 20px;
 	border-top-right-radius: 3px;
