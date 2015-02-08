@@ -15,11 +15,11 @@ $xmlstr = <<<XML
 	<id>shy</id>
 	<name>Shy</name>
 	<developer>Studio 384</developer>
-	<date>1 December 2014</date>
-	<version>4.0.0</version>
+	<date>8 February 2015</date>
+	<version>4.1.0</version>
 	<description>As fancy as can be, Shy is a style designed to be great and simple. Make it look Aquamarine, my friend!</description>
 	<minversion>3.4.1</minversion>
-	<maxversion>3.6.0</maxversion>
+	<maxversion>3.7.0</maxversion>
 </style>
 XML;
 ?> 
