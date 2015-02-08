@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-    header("Location: ../login.php");
+	header("Location: ../login.php");
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -70,103 +70,103 @@ if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
 ?>
 <form class="form-horizontal" method="post" action="email.php">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Contact head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
-        </div>
-        <div class="panel-body">
-            <input type="hidden" name="form_sent" value="1" />
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Admin e-mail label'] ?><span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_admin_email']) ?>" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Webmaster e-mail label'] ?><span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span></label>
-						<div class="col-sm-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_webmaster_email']) ?>" />
-                    </div>
-                </div>
-            </fieldset>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Contact head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Subscriptions head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
-        </div>
-        <div class="panel-body">
-            <input type="hidden" name="form_sent" value="1" />
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Subscriptions head'] ?></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
+		<div class="panel-body">
+			<input type="hidden" name="form_sent" value="1" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Admin e-mail label'] ?><span class="help-block"><?php echo $lang['Admin e-mail help'] ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[admin_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_admin_email']) ?>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Webmaster e-mail label'] ?><span class="help-block"><?php echo $lang['Webmaster e-mail help'] ?></span></label>
+						<div class="col-sm-9"><input type="text" class="form-control" name="form[webmaster_email]" maxlength="80" value="<?php echo luna_htmlspecialchars($luna_config['o_webmaster_email']) ?>" />
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Subscriptions head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="form_sent" value="1" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Subscriptions head'] ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
 								<input type="checkbox" name="form[forum_subscriptions]" value="1" <?php if ($luna_config['o_forum_subscriptions'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Forum subscriptions help'] ?>
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
 								<input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($luna_config['o_topic_subscriptions'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Topic subscriptions help'] ?>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
+							</label>
+						</div>
+					</div>
+				</div>
+			</fieldset>
 		</div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['SMTP head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
-        </div>
-        <div class="panel-body">
-            <input type="hidden" name="form_sent" value="1" />
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP address label'] ?><span class="help-block"><?php echo $lang['SMTP address help'] ?></span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[smtp_host]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP username label'] ?><span class="help-block"><?php echo $lang['SMTP username help'] ?></span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="form[smtp_user]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['SMTP password label'] ?><span class="help-block"><?php echo $lang['SMTP password help'] ?></span></label>
-                    <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                            	<input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />
-                                <?php echo $lang['SMTP change password help'] ?>
-                            </label>
-                        </div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['SMTP head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="form_sent" value="1" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['SMTP address label'] ?><span class="help-block"><?php echo $lang['SMTP address help'] ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[smtp_host]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_host']) ?>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['SMTP username label'] ?><span class="help-block"><?php echo $lang['SMTP username help'] ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[smtp_user]" maxlength="50" value="<?php echo luna_htmlspecialchars($luna_config['o_smtp_user']) ?>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['SMTP password label'] ?><span class="help-block"><?php echo $lang['SMTP password help'] ?></span></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[smtp_change_pass]" id="form_smtp_change_pass" value="1" />
+								<?php echo $lang['SMTP change password help'] ?>
+							</label>
+						</div>
 <?php $smtp_pass = !empty($luna_config['o_smtp_pass']) ? random_key(luna_strlen($luna_config['o_smtp_pass']), true) : ''; ?>
 						<div class="row">
-                        	<div class="col-sm-6">
+							<div class="col-sm-6">
 								<input class="form-control" type="password" name="form[smtp_pass1]" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                            </div>
-                        	<div class="col-sm-6">
+							</div>
+							<div class="col-sm-6">
 								<input class="form-control" type="password" name="form[smtp_pass2]" maxlength="50" value="<?php echo $smtp_pass ?>" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"></label>
-                    <div class="col-sm-9">
-                        <input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') echo ' checked' ?> />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"></label>
+					<div class="col-sm-9">
+						<input type="checkbox" name="form[smtp_ssl]" value="1" <?php if ($luna_config['o_smtp_ssl'] == '1') echo ' checked' ?> />
 						<?php echo $lang['SMTP SSL help'] ?>
-                    </div>
-                </div>
-            </fieldset>
+					</div>
+				</div>
+			</fieldset>
 		</div>
-    </div>
+	</div>
 </form>
 <?php
 

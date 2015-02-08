@@ -2,7 +2,7 @@
 
 // Make sure no one attempts to run this view directly.
 if (!defined('FORUM'))
-    exit;
+	exit;
 
 // Show notifications
 $result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$id) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
@@ -42,7 +42,7 @@ $not_seen = implode('', $ind_not_seen);
 		</span>
 	</div>
 <?php
-    load_me_nav('notifications');
+	load_me_nav('notifications');
 ?>
 </div>
 <div class="col-sm-9">

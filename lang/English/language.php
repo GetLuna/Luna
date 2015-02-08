@@ -32,8 +32,8 @@ $lang = array(
 'Pun include error'					=>  'Unable to process user include %s from template %s. There is no such file in neither the template directory nor in the user include directory',  
 'Settings saved'					=>  'Your settings have been saved.',
 'User deleted'						=>  'The user has been deleted.',
-'User failed'                       =>  'Failed to create user, no password was given.',
-'User created'                      =>  'User created',
+'User failed'					   =>  'Failed to create user, no password was given.',
+'User created'					  =>  'User created',
 'Cache cleared'						=>  'The cache files have been removed.',
 
 //
@@ -67,7 +67,7 @@ $lang = array(
 'Moderated by'						=>	'Moderated by',
 'Registered table'					=>	'Registered',
 'Subject'							=>	'Subject',
-'Start typing'                      =>  'Start typing...',
+'Start typing'					  =>  'Start typing...',
 'Message'							=>	'Message',
 'Topic'								=>	'Topic',
 'Forum'								=>	'Forum',
@@ -610,7 +610,7 @@ $lang = array(
 
 'Personal details legend'		=>	'Contact details',
 'User tools'					=>	'User tools',
-'Unknown'          				=>  'Unknown',
+'Unknown'		  				=>  'Unknown',
 
 //
 // Password stuff
@@ -1006,15 +1006,15 @@ $lang = array(
 'Posts per page help'				=>	'Default amount of posts per page',
 'Indent label'						=>	'Indent size',
 'Index panels head'					=>	'Index settings',
-'Moderated by help'                 =>  'Show the "Moderated by" list when moderators are set on a per-forum base.',
+'Moderated by help'				 =>  'Show the "Moderated by" list when moderators are set on a per-forum base.',
 'Index statistics help'				=>	'Show the statistics panel on the index.',
 'Indent help'						=>	'Amount of spaces that represent a tab',
 'Quote depth label'					=>	'Maximum [quote] depth',
 'Quote depth help'					=>	'Maximum [quote] can be used in [quote]',
-'Video height'                      =>  'Video height',
-'Video height help'                 =>  'Height of an embedded video',
-'Video width'                       =>  'Video width',
-'Video width help'                  =>  'Width of an embedded video',
+'Video height'					  =>  'Video height',
+'Video height help'				 =>  'Height of an embedded video',
+'Video width'					   =>  'Video width',
+'Video width help'				  =>  'Width of an embedded video',
 'Menu items head'					=>	'Additional menu items',
 'Menu items help'					=>	'This feature allows you to add more menu items to the navigation bar on every page. The format for adding new links is <code>X = &lt;a href="URL"&gt;LINK&lt;/a&gt;</code> where X is the position at which the link should be inserted. Separate entries with a line break.',
 'Default menu'						=>	'Default menu items',
@@ -1062,7 +1062,7 @@ $lang = array(
 'Search'							=>	'Search',
 'Advanced'							=>	'Advanced',
 'Quick post help'					=>	'Show a quick post form so users can post a reaction from the topic view.',
-'Responsive post help'              =>  'Show "Post" and "Preview" button in topic view on small screens, leave quick post enabled when this is disabled to allow small devices to post comments.',
+'Responsive post help'			  =>  'Show "Post" and "Preview" button in topic view on small screens, leave quick post enabled when this is disabled to allow small devices to post comments.',
 'Users online help'					=>	'Display info on the index page about users currently browsing the board.',
 'Censor words help'					=>	'Censor words in posts. See %s for more info.',
 'Signatures help'					=>	'Allow users to attach a signature to their posts.',
@@ -1786,7 +1786,7 @@ $lang = array(
 //
 
 // Email - activate_email.tpl
-'activate_email.tpl'          =>
+'activate_email.tpl'		  =>
 'Subject: Change email address requested
 
 Hello <username>,
@@ -1803,7 +1803,7 @@ To change your email address, please visit the following page:
 //
 // Email - activate_password.tpl
 //
-'activate_password.tpl'          =>
+'activate_password.tpl'		  =>
 'Subject: New password requested
 
 Hello <username>,
@@ -1820,7 +1820,7 @@ To change your password, please visit the following page:
 (Do not reply to this message)',
 
 // Email - banned_email_change.tpl
-'banned_email_change.tpl'          =>
+'banned_email_change.tpl'		  =>
 'Subject: Alert - Banned email detected
 
 User "<username>" changed to banned email address: <email>
@@ -1832,7 +1832,7 @@ User profile: <profile_url>
 (Do not reply to this message)',
 
 // Email - banned_email_post.tpl
-'banned_email_post.tpl'          =>
+'banned_email_post.tpl'		  =>
 'Subject: Alert - Banned email detected
 
 User "<username>" posted with banned email address: <email>
@@ -1844,7 +1844,7 @@ Post URL: <post_url>
 (Do not reply to this message)',
 
 // Email - banned_email_register.tpl
-'banned_email_register.tpl'          =>
+'banned_email_register.tpl'		  =>
 'Subject: Alert - Banned email detected
 
 User "<username>" registered with banned email address: <email>
@@ -1856,7 +1856,7 @@ User profile: <profile_url>
 (Do not reply to this message)',
 
 // Email - dupe_email_change.tpl
-'dupe_email_change.tpl'          =>
+'dupe_email_change.tpl'		  =>
 'Subject: Alert - Duplicate email detected
 
 User "<username>" changed to an email address that also belongs to: <dupe_list>
@@ -1868,7 +1868,7 @@ User profile: <profile_url>
 (Do not reply to this message)',
 
 // Email - dupe_email_register.tpl
-'dupe_email_register.tpl'          =>
+'dupe_email_register.tpl'		  =>
 'Subject: Alert - Duplicate email detected
 
 User "<username>" registered with an email address that also belongs to: <dupe_list>
@@ -1880,7 +1880,7 @@ User profile: <profile_url>
 (Do not reply to this message)',
 
 // Email - form_email.tpl
-'form_email.tpl'          =>
+'form_email.tpl'		  =>
 'Subject: <mail_subject>
 
 <sender> from <board_title> has sent you a message. You can reply to <sender> by replying to this email.
@@ -1896,7 +1896,7 @@ The message reads as follows:
 <board_mailer> Mailer',
 
 // Email - new_reply.tpl
-'new_reply.tpl'          =>
+'new_reply.tpl'		  =>
 'Subject: Reply to topic: "<topic_subject>"
 
 <replier> has replied to the topic "<topic_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
@@ -1910,7 +1910,7 @@ You can unsubscribe by going to <unsubscribe_url>
 (Do not reply to this message)',
 
 // Email - new_reply_full.tpl
-'new_reply_full.tpl'          =>
+'new_reply_full.tpl'		  =>
 'Subject: Reply to topic: "<topic_subject>"
 
 <replier> has replied to the topic "<topic_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
@@ -1931,7 +1931,7 @@ You can unsubscribe by going to <unsubscribe_url>
 (Do not reply to this message)',
 
 // Email - new_report.tpl
-'new_report.tpl'          =>
+'new_report.tpl'		  =>
 'Subject: Report(<forum_id>) - "<topic_subject>"
 
 User "<username>" has reported the following message: <post_url>
@@ -1943,7 +1943,7 @@ Reason: <reason>
 (Do not reply to this message)',
 
 // Email - new_topic.tpl
-'new_topic.tpl'          =>
+'new_topic.tpl'		  =>
 'Subject: New topic in forum: "<forum_name>"
 
 <poster> has posted a new topic "<topic_subject>" in the forum "<forum_name>", to which you are subscribed.
@@ -1957,7 +1957,7 @@ You can unsubscribe by going to <unsubscribe_url>
 (Do not reply to this message)',
 
 // Email - new_topic_full.tpl
-'new_topic_full.tpl'          =>
+'new_topic_full.tpl'		  =>
 'Subject: New topic in forum: "<forum_name>"
 
 <poster> has posted a new topic "<topic_subject>" in the forum "<forum_name>", to which you are subscribed.
@@ -1978,7 +1978,7 @@ You can unsubscribe by going to <unsubscribe_url>
 (Do not reply to this message)',
 
 // Email - new_user.tpl
-'new_user.tpl'          =>
+'new_user.tpl'		  =>
 'Subject: Alert - New registration
 
 User "<username>" registered in the forums at <base_url>
@@ -1993,7 +1993,7 @@ To administer this account, please visit the following page:
 (Do not reply to this message)',
 
 // Email - rename.tpl
-'rename.tpl'          =>
+'rename.tpl'		  =>
 'Subject: User account renamed
 
 During an upgrade to the forums at <base_url> it was determined your username is too similar to an existing user. Your username has been changed accordingly.
@@ -2008,7 +2008,7 @@ We apologise for any inconvenience caused.
 (Do not reply to this message)',
 
 // Email - welcome.tpl
-'welcome.tpl'          =>
+'welcome.tpl'		  =>
 'Subject: Welcome to <board_title>!
 
 Thank you for registering in the forums at <base_url>. Your account details are:

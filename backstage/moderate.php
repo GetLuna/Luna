@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-    header("Location: ../login.php");
+	header("Location: ../login.php");
 
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
@@ -319,48 +319,48 @@ if (isset($_GET['tid'])) {
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
 
-    require FORUM_ROOT.'include/parser.php';
+	require FORUM_ROOT.'include/parser.php';
 
-    $post_count = 0; // Keep track of post numbers
+	$post_count = 0; // Keep track of post numbers
 
-    // Retrieve a list of post IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-    $result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
+	// Retrieve a list of post IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
+	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
-    $post_ids = array();
-    for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
-        $post_ids[] = $cur_post_id;
+	$post_ids = array();
+	for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
+		$post_ids[] = $cur_post_id;
 
-    // Retrieve the posts (and their respective poster)
-    $result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	// Retrieve the posts (and their respective poster)
+	$result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
-    while ($cur_post = $db->fetch_assoc($result)) {
-        $post_count++;
+	while ($cur_post = $db->fetch_assoc($result)) {
+		$post_count++;
 
-        // If the poster is a registered user
-        if ($cur_post['poster_id'] > 1) {
-            if ($luna_user['g_view_users'] == '1')
-                $poster = '<a href="me.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
-            else
-                $poster = luna_htmlspecialchars($cur_post['poster']);
+		// If the poster is a registered user
+		if ($cur_post['poster_id'] > 1) {
+			if ($luna_user['g_view_users'] == '1')
+				$poster = '<a href="me.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
+			else
+				$poster = luna_htmlspecialchars($cur_post['poster']);
 
-            // get_title() requires that an element 'username' be present in the array
-            $cur_post['username'] = $cur_post['poster'];
-            $user_title = get_title($cur_post);
+			// get_title() requires that an element 'username' be present in the array
+			$cur_post['username'] = $cur_post['poster'];
+			$user_title = get_title($cur_post);
 
-            if ($luna_config['o_censoring'] == '1')
-                $user_title = censor_words($user_title);
-        }
-        // If the poster is a guest (or a user that has been deleted)
-        else {
-            $poster = luna_htmlspecialchars($cur_post['poster']);
-            $user_title = $lang['Guest'];
-        }
+			if ($luna_config['o_censoring'] == '1')
+				$user_title = censor_words($user_title);
+		}
+		// If the poster is a guest (or a user that has been deleted)
+		else {
+			$poster = luna_htmlspecialchars($cur_post['poster']);
+			$user_title = $lang['Guest'];
+		}
 
-        // Format the online indicator, those are ment as CSS classes
-        $is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
+		// Format the online indicator, those are ment as CSS classes
+		$is_online = ($cur_post['is_online'] == $cur_post['poster_id']) ? 'is-online' : 'is-offline';
 
-        // Perform the main parsing of the message (BBCode, smilies, censor words etc)
-        $cur_post['message'] = parse_message($cur_post['message']);
+		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
+		$cur_post['message'] = parse_message($cur_post['message']);
 
 ?>
 		<div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
@@ -389,7 +389,7 @@ if (isset($_GET['tid'])) {
 
 <?php
 
-    }
+	}
 
 ?>
 				<div class="panel-body">
@@ -830,73 +830,73 @@ $result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$fid
 
 // If there are topics in this forum
 if ($db->num_rows($result)) {
-    $topic_ids = array();
-    for ($i = 0;$cur_topic_id = $db->result($result, $i);$i++)
-        $topic_ids[] = $cur_topic_id;
+	$topic_ids = array();
+	for ($i = 0;$cur_topic_id = $db->result($result, $i);$i++)
+		$topic_ids[] = $cur_topic_id;
 
-    // Select topics
-    $result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
+	// Select topics
+	$result = $db->query('SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC') or error('Unable to fetch topic list for forum', __FILE__, __LINE__, $db->error());
 
-    $button_status = '';
-    $topic_count = 0;
-    while ($cur_topic = $db->fetch_assoc($result)) {
+	$button_status = '';
+	$topic_count = 0;
+	while ($cur_topic = $db->fetch_assoc($result)) {
 
-        ++$topic_count;
-        $status_text = array();
-        $item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
-        $icon_type = 'icon';
+		++$topic_count;
+		$status_text = array();
+		$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
+		$icon_type = 'icon';
 
-        if (is_null($cur_topic['moved_to'])) {
-            $last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="me.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
-            $ghost_topic = false;
-        } else {
-            $last_post = '- - -';
-            $ghost_topic = true;
-        }
+		if (is_null($cur_topic['moved_to'])) {
+			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="me.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+			$ghost_topic = false;
+		} else {
+			$last_post = '- - -';
+			$ghost_topic = true;
+		}
 
-        if ($luna_config['o_censoring'] == '1')
-            $cur_topic['subject'] = censor_words($cur_topic['subject']);
+		if ($luna_config['o_censoring'] == '1')
+			$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
-        if ($cur_topic['sticky'] == '1') {
-            $item_status .= ' isticky';
-            $status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
-        }
+		if ($cur_topic['sticky'] == '1') {
+			$item_status .= ' isticky';
+			$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
+		}
 
-        if ($cur_topic['moved_to'] != 0) {
-            $subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-            $status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
-            $item_status .= ' imoved';
-        } elseif ($cur_topic['closed'] == '0')
-            $subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-        else {
-            $subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-            $status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
-            $item_status .= ' iclosed';
-        }
+		if ($cur_topic['moved_to'] != 0) {
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
+			$item_status .= ' imoved';
+		} elseif ($cur_topic['closed'] == '0')
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+		else {
+			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
+			$item_status .= ' iclosed';
+		}
 
-        if (!$ghost_topic && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$fid]) || $tracked_topics['forums'][$fid] < $cur_topic['last_post'])) {
-            $item_status .= ' inew';
-            $icon_type = 'icon icon-new';
-            $subject = '<strong>'.$subject.'</strong>';
-            $subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
-        } else
-            $subject_new_posts = null;
+		if (!$ghost_topic && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$fid]) || $tracked_topics['forums'][$fid] < $cur_topic['last_post'])) {
+			$item_status .= ' inew';
+			$icon_type = 'icon icon-new';
+			$subject = '<strong>'.$subject.'</strong>';
+			$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
+		} else
+			$subject_new_posts = null;
 
-        // Insert the status text before the subject
-        $subject = implode(' ', $status_text).' '.$subject;
+		// Insert the status text before the subject
+		$subject = implode(' ', $status_text).' '.$subject;
 
-        $num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
+		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 
-        if ($num_pages_topic > 1)
-            $subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
-        else
-            $subject_multipage = null;
+		if ($num_pages_topic > 1)
+			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
+		else
+			$subject_multipage = null;
 
-        // Should we show the "New posts" and/or the multipage links?
-        if (!empty($subject_new_posts) || !empty($subject_multipage)) {
-            $subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
-            $subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
-        }
+		// Should we show the "New posts" and/or the multipage links?
+		if (!empty($subject_new_posts) || !empty($subject_multipage)) {
+			$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
+			$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
+		}
 
 ?>
 			<div class="topic-entry-list">
@@ -906,11 +906,11 @@ if ($db->num_rows($result)) {
 			</div>
 <?php
 
-    }
+	}
 } else {
-    $colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
-    $button_status = ' disabled="disabled"';
-    echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.$lang['Empty forum'].'</td></tr>'."\n";
+	$colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
+	$button_status = ' disabled="disabled"';
+	echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.$lang['Empty forum'].'</td></tr>'."\n";
 }
 
 ?>	

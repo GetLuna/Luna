@@ -142,7 +142,7 @@ function utf8_is_valid($str) {
 * may or may not be a significant risk, depending on what you are
 * are doing)
 * Note: Does not pass five and six octet UTF-8 sequences anymore in
-*       in the unit tests.
+*	   in the unit tests.
 * @see utf8_is_valid
 * @see http://www.php.net/manual/en/reference.pcre.pattern.modifiers.php#54805
 * @param string UTF-8 string to check

@@ -156,7 +156,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
 	 if (count($dest_list) < '1' && $edit == '0')
 		$errors[] = $lang['Must receiver'];
-    	elseif (count($dest_list) > $luna_config['o_pms_max_receiver'])
+		elseif (count($dest_list) > $luna_config['o_pms_max_receiver'])
 		$errors[] = sprintf($lang['Too many receiver'], $luna_config['o_pms_max_receiver']-1);
 
 	$destinataires = array(); $i = '0';

@@ -11,17 +11,17 @@ function draw_error_panel($errors) {
 
 	if (!empty($errors)) {
 ?>
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Post errors'] ?></h3>
-        </div>
-        <div class="panel-body">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Post errors'] ?></h3>
+		</div>
+		<div class="panel-body">
 <?php
-    foreach ($errors as $cur_error)
-        echo $cur_error;
+	foreach ($errors as $cur_error)
+		echo $cur_error;
 ?>
-        </div>
-    </div>
+		</div>
+	</div>
 <?php
 	}
 
@@ -289,18 +289,18 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 	while ($cur_forum = $db->fetch_assoc($result)) {
 		if(!isset($cur_forum['parent_id']) || $cur_forum['parent_id'] == 0) {
 			$moderators = '';
-            
-            if ($cur_forum['cid'] != $cur_category && $use_cat == 1) {
-                if ($cur_category != 0)
-                    echo '</div></div>';
+			
+			if ($cur_forum['cid'] != $cur_category && $use_cat == 1) {
+				if ($cur_category != 0)
+					echo '</div></div>';
 
-                ++$cat_count;
-                $forum_count = 0;
+				++$cat_count;
+				$forum_count = 0;
 
-                require get_view_path($cat_object_name);
+				require get_view_path($cat_object_name);
 
-                $cur_category = $cur_forum['cid'];
-            }
+				$cur_category = $cur_forum['cid'];
+			}
 	
 			++$forum_count;
 			$item_status = ($forum_count % 2 == 0) ? 'roweven' : 'rowodd';
@@ -351,14 +351,14 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 			require get_view_path($forum_object_name);
 		}
 	}
-            
-    // Any need to close of a category?
-    if ($use_cat == 1) {
-        if ($cur_category > 0)
-            echo $close_tags;
-        else
-            echo '<div class="no-board"><p>'.$lang['Empty board'].'</p></div>';
-    }
+			
+	// Any need to close of a category?
+	if ($use_cat == 1) {
+		if ($cur_category > 0)
+			echo $close_tags;
+		else
+			echo '<div class="no-board"><p>'.$lang['Empty board'].'</p></div>';
+	}
 }
 
 function draw_subforum_list($page, $object_name = 'forum.php') {
@@ -734,10 +734,10 @@ function draw_delete_form($id) {
 	global $is_topic_post, $lang;
 
 ?>
-        <form method="post" action="delete.php?id=<?php echo $id ?>">
-            <p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '<strong>'.$lang['Warning'].'</strong>' ?><br /><?php echo $lang['Delete info'] ?></p>
-            <input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" />
-        </form>
+		<form method="post" action="delete.php?id=<?php echo $id ?>">
+			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '<strong>'.$lang['Warning'].'</strong>' ?><br /><?php echo $lang['Delete info'] ?></p>
+			<input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" />
+		</form>
 <?php
 }
 
@@ -752,55 +752,55 @@ function draw_registration_form() {
 ?>
 
 <form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Register legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="register" value="<?php echo $lang['Register'] ?>" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <input type="hidden" name="form_sent" value="1" />
-                <label class="required hidden"><?php echo $lang['If human'] ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Username'] ?><span class="help-block"><?php echo $lang['Username legend'] ?></span></label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
-                    </div>
-                </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Register legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="register" value="<?php echo $lang['Register'] ?>" /></span></h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<input type="hidden" name="form_sent" value="1" />
+				<label class="required hidden"><?php echo $lang['If human'] ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Username'] ?><span class="help-block"><?php echo $lang['Username legend'] ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
+					</div>
+				</div>
 <?php if ($luna_config['o_regs_verify'] == '0'): ?>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Pass info'] ?></span></label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo luna_htmlspecialchars($_POST['req_password1']); ?>" />
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo luna_htmlspecialchars($_POST['req_password2']); ?>" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Pass info'] ?></span></label>
+					<div class="col-sm-9">
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="password" class="form-control" name="req_password1" value="<?php if (isset($_POST['req_password1'])) echo luna_htmlspecialchars($_POST['req_password1']); ?>" />
+							</div>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" name="req_password2" value="<?php if (isset($_POST['req_password2'])) echo luna_htmlspecialchars($_POST['req_password2']); ?>" />
+							</div>
+						</div>
+					</div>
+				</div>
 <?php endif; ?>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Email'] ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email help info'] ?></span><?php endif; ?></label>
-                    <div class="col-sm-9">
-                        <?php if ($luna_config['o_regs_verify'] == '1'): ?>
-                        <div class="row">
-                            <div class="col-sm-6">
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Email'] ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email help info'] ?></span><?php endif; ?></label>
+					<div class="col-sm-9">
+						<?php if ($luna_config['o_regs_verify'] == '1'): ?>
+						<div class="row">
+							<div class="col-sm-6">
 						<?php endif; ?>
-                                <input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
-                        <?php if ($luna_config['o_regs_verify'] == '1'): ?>
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
-                            </div>
-                        </div>
+								<input type="text" class="form-control" name="req_email1" value="<?php if (isset($_POST['req_email1'])) echo luna_htmlspecialchars($_POST['req_email1']); ?>" maxlength="80" />
+						<?php if ($luna_config['o_regs_verify'] == '1'): ?>
+							</div>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="req_email2" value="<?php if (isset($_POST['req_email2'])) echo luna_htmlspecialchars($_POST['req_email2']); ?>" maxlength="80" />
+							</div>
+						</div>
 						<?php endif; ?>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
 </form>
 <?php
 }
@@ -810,19 +810,19 @@ function draw_rules_form() {
 ?>
 
 <form method="get" action="register.php">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Rules legend'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <div class="usercontent"><?php echo $luna_config['o_rules_message'] ?></div>
-            </fieldset>
-        </div>
-        <div class="panel-footer">
-        	<div class="btn-group"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang['Agree'] ?>" /></div>
-        </div>
-    </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Rules legend'] ?></h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<div class="usercontent"><?php echo $luna_config['o_rules_message'] ?></div>
+			</fieldset>
+		</div>
+		<div class="panel-footer">
+			<div class="btn-group"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang['Agree'] ?>" /></div>
+		</div>
+	</div>
 </form>
 <?php
 }
@@ -902,12 +902,12 @@ function draw_mail_form($recipient_id) {
 	<div class="panel panel-default panel-editor">
 		<fieldset class="postfield">
 			<input type="hidden" name="form_sent" value="1" />
-            <input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
-            <textarea name="req_message" class="form-control textarea" rows="10" tabindex="2"></textarea>
-        </fieldset>
-        <div class="panel-footer">
-            <div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="Send" tabindex="3" accesskey="s" /></div>
-        </div>
+			<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
+			<textarea name="req_message" class="form-control textarea" rows="10" tabindex="2"></textarea>
+		</fieldset>
+		<div class="panel-footer">
+			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="Send" tabindex="3" accesskey="s" /></div>
+		</div>
 	</div>
 </form>
 <?php
@@ -922,13 +922,13 @@ function draw_report_form($post_id) {
 		<div class="panel-heading">
 			<h3 class="panel-title">Tell us why you are reporting this</h3>
 		</div>
-        <fieldset>
-            <input type="hidden" name="form_sent" value="1" />
-            <textarea class="form-control textarea" name="req_reason" rows="5"></textarea>
-        </fieldset>
-        <div class="panel-footer">
-            <input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" />
-        </div>
+		<fieldset>
+			<input type="hidden" name="form_sent" value="1" />
+			<textarea class="form-control textarea" name="req_reason" rows="5"></textarea>
+		</fieldset>
+		<div class="panel-footer">
+			<input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" />
+		</div>
 	</div>
 </form>
 <?php

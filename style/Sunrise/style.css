@@ -144,17 +144,17 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-inverse {
 	border: none;
 	margin-bottom: 0;
-    background-color: #2788cb;
+	background-color: #2788cb;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
-    color: #fff;
-    background-color: transparent;
+	color: #fff;
+	background-color: transparent;
 }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-    background: transparent;
-    text-shadow: 0 0 5px 1px rgba(255, 255, 255, .5);
+	background: transparent;
+	text-shadow: 0 0 5px 1px rgba(255, 255, 255, .5);
 }
 
 .navbar-secondary {
@@ -188,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .open .avatar-item .avatar {
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, .5) !important;
+	box-shadow: 0 0 5px 1px rgba(255, 255, 255, .5) !important;
 }
 
 .navbar-right > .dropdown, :last-child.navbar-right.navbar-nav {
@@ -315,9 +315,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .forum-entry .col-sm-4 .help-block {
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    font-size: 85%;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	font-size: 85%;
 	margin-bottom: 0;
 }
 
@@ -337,8 +337,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hr-forum-entry hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 /* Sidebar */
@@ -387,11 +387,11 @@ a.list-group-item-cat:hover .forum-description {
 }
 
 .list-group-enabled {
-    border-left-color: #95f4ac !important;
+	border-left-color: #95f4ac !important;
 }
 
 .list-group-disabled {
-    border-left-color: #ef978e !important;
+	border-left-color: #ef978e !important;
 }
 
 /* Forumview */
@@ -533,15 +533,15 @@ textarea.textarea, textarea.textarea:focus {
 }
 
 .textarea-toolbar {
-    margin: 0;
+	margin: 0;
 }
 
 .textarea-bottom {
-    border-top: #ddd 1px solid;
+	border-top: #ddd 1px solid;
 }
 
 .textarea-top {
-    border-bottom: #ddd 1px solid;
+	border-bottom: #ddd 1px solid;
 }
 
 .textarea-toolbar .btn-group {
@@ -788,10 +788,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 input[type="text"].power-control {
 	border: none;
-    background-color: transparent;
+	background-color: transparent;
 	font-size: 20px;
 	line-height: 0.8;
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 #commentform > .panel {
@@ -938,9 +938,9 @@ fieldset label {
 }
 
 label .help-block {
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    font-size: 85%;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	font-size: 85%;
 }
 
 textarea {
@@ -1232,29 +1232,29 @@ blockquote footer {
 /* Color choise */
 .color-accent {
 	padding: 21px;
-    margin-left: 1px;
-    margin-right: 1px;
+	margin-left: 1px;
+	margin-right: 1px;
 }
 
 .accent-group .btn-group > :first-child:not(.dropdown-toggle):not(:last-child).btn, .accent-group .btn-group > :last-child:not(:first-child).btn, .btn-group > :not(:first-child).dropdown-toggle {
-    border-radius: 0;
+	border-radius: 0;
 }
 
 .accent-group .btn {
-    box-shadow: none;
-    border: 3px solid #fff;
+	box-shadow: none;
+	border: 3px solid #fff;
 }
 
 .accent-group .btn:hover, .accent-group .btn:focus, .accent-group .btn:active, .accent-group .active.btn {
-    border: 3px solid #bbb;
+	border: 3px solid #bbb;
 }
 
 .accent-blue {
-    background-color: #14a3ff !important;
+	background-color: #14a3ff !important;
 }
 
 .accent-denim {
-    background-color: #2788cb !important;
+	background-color: #2788cb !important;
 }
 
 .accent-luna {
@@ -1262,7 +1262,7 @@ blockquote footer {
 }
 
 .accent-green {
-    background-color: #99cc00 !important;
+	background-color: #99cc00 !important;
 }
 
 .accent-ao {
@@ -1270,19 +1270,19 @@ blockquote footer {
 }
 
 .accent-yellow {
-    background-color: #ffcd21 !important;
+	background-color: #ffcd21 !important;
 }
 
 .accent-orange {
-    background-color: #ff7521 !important;
+	background-color: #ff7521 !important;
 }
 
 .accent-red {
-    background-color: #ff4444 !important;
+	background-color: #ff4444 !important;
 }
 
 .accent-purple {
-    background-color: #c58be2 !important;
+	background-color: #c58be2 !important;
 }
 
 .accent-luna {

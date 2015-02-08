@@ -15,10 +15,10 @@
 *
 * <code>
 * if ( utf8_is_ascii($someString) ) {
-*     // It's just ASCII - use the native PHP version
-*     $someString = strtolower($someString);
+*	 // It's just ASCII - use the native PHP version
+*	 $someString = strtolower($someString);
 * } else {
-*     $someString = utf8_strtolower($someString);
+*	 $someString = utf8_strtolower($someString);
 * }
 * </code>
 *

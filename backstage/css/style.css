@@ -1,10 +1,10 @@
 /*
  * Copyright Studio 384 and Luna Group
  * Bootstrap Template: Trent
- * Version:            0.3
- * Based on:           Trent v1.3 (http://studio384.be/trent.php)
- * Since:              0.0.40.2900
- * Bootstrap:          3.3.1
+ * Version:			0.3
+ * Based on:		   Trent v1.3 (http://studio384.be/trent.php)
+ * Since:			  0.0.40.2900
+ * Bootstrap:		  3.3.1
  */
  
 @import url('../../include/css/font-awesome.min.css');
@@ -17,12 +17,12 @@
 
 body {
 	margin-top: 50px;
-    font-family: "Segoe UI";
+	font-family: "Segoe UI";
 	background-color: #444;
 }
 
 td, th {
-    vertical-align: middle !important;
+	vertical-align: middle !important;
 }
 
 /* Text */
@@ -56,9 +56,9 @@ h3 {
 }
 
 label .help-block {
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    font-size: 85%;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	font-size: 85%;
 }
 
 .panel-about #brand h3 {
@@ -95,7 +95,7 @@ label .help-block {
 }
 
 .navbar-default .navbar-toggle, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    border-color: transparent;
+	border-color: transparent;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -103,24 +103,24 @@ label .help-block {
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: #fff;
-    background-color: transparent;
-    text-shadow: 0 0 5px 1px rgba(255, 255, 255, .5);
+	color: #fff;
+	background-color: transparent;
+	text-shadow: 0 0 5px 1px rgba(255, 255, 255, .5);
 }
 
 @media all and (max-width:767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #fff;
-        background-color: rgba(255,255,255,.2);
-    }
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+		color: #fff;
+		background-color: rgba(255,255,255,.2);
+	}
 
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #fff;
-    }
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: #fff;
+	}
 }
 
 .dropdown-menu {
-    border-width: 0 1px 1px;
+	border-width: 0 1px 1px;
 	padding: 0;
 }
 
@@ -177,7 +177,7 @@ label .help-block {
 }
 
 .nav-tabs > li > a:hover, .nav > li > a:hover, .nav > li > a:focus {
-    border-color: #555;
+	border-color: #555;
 	background-color: #555;
 }
 
@@ -202,8 +202,8 @@ label .help-block {
 }
 
 h3.panel-title {
-    font-size: 130%;
-    margin-top: -2px;
+	font-size: 130%;
+	margin-top: -2px;
 }
 
 .panel-body, .panel .table {
@@ -211,11 +211,11 @@ h3.panel-title {
 }
 
 .panel-footer {
-    border-top-color: #e8e8e8;
+	border-top-color: #e8e8e8;
 }
 
 .panel {
-    border: none;
+	border: none;
 }
 
 .panel-default .panel-heading {
@@ -305,10 +305,10 @@ h3.panel-title {
 }
 
 [disabled].form-control, [readonly].form-control, fieldset[disabled] .form-control {
-    cursor: not-allowed;
-    background-color: #ddd;
+	cursor: not-allowed;
+	background-color: #ddd;
 	border-color: #ffbc89;
-    opacity: 1;
+	opacity: 1;
 }
 
 .input-group-addon {
@@ -326,7 +326,7 @@ h3.panel-title {
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
-    background: #1f62b0;
+	background: #1f62b0;
 }
 
 .btn-success {
@@ -415,8 +415,8 @@ h3.panel-title {
 
 /* Label */
 .label {
-    letter-spacing: 0.6px;
-    padding: .4em .6em .3em;
+	letter-spacing: 0.6px;
+	padding: .4em .6em .3em;
 }
 
 .label-default {
@@ -540,24 +540,24 @@ h3.panel-title {
 /* Color choise */
 .color-accent {
 	padding: 21px;
-    margin-left: 1px;
-    margin-right: 1px;
+	margin-left: 1px;
+	margin-right: 1px;
 }
 
 .accent-group .btn {
-    border: 3px solid #fff;
+	border: 3px solid #fff;
 }
 
 .accent-group .btn:hover, .accent-group .btn:focus, .accent-group .btn:active, .accent-group .active.btn {
-    border: 3px solid #bbb;
+	border: 3px solid #bbb;
 }
 
 .accent-blue {
-    background-color: #14a3ff !important;
+	background-color: #14a3ff !important;
 }
 
 .accent-denim {
-    background-color: #2788cb !important;
+	background-color: #2788cb !important;
 }
 
 .accent-luna {
@@ -565,7 +565,7 @@ h3.panel-title {
 }
 
 .accent-green {
-    background-color: #99cc00 !important;
+	background-color: #99cc00 !important;
 }
 
 .accent-ao {
@@ -573,19 +573,19 @@ h3.panel-title {
 }
 
 .accent-yellow {
-    background-color: #ffcd21 !important;
+	background-color: #ffcd21 !important;
 }
 
 .accent-orange {
-    background-color: #ff7521 !important;
+	background-color: #ff7521 !important;
 }
 
 .accent-red {
-    background-color: #ff4444 !important;
+	background-color: #ff4444 !important;
 }
 
 .accent-purple {
-    background-color: #c58be2 !important;
+	background-color: #c58be2 !important;
 }
 
 .accent-luna {
@@ -606,14 +606,14 @@ h3.panel-title {
 
 /* Forms */
 .well {
-    background-color: #fff !important;
-    border: none !important;
+	background-color: #fff !important;
+	border: none !important;
 	padding: 0;
 }
 
 .well.form-box {
-    width: 300px;
-    margin: 0 auto;
+	width: 300px;
+	margin: 0 auto;
 }
 
 .well .alert-danger {

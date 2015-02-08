@@ -166,60 +166,60 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang['Luna Installation'] ?></title>
-        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
-        <script type="text/javascript">
-        /* <![CDATA[ */
-        function process_form(the_form) {
-            var required_fields = {
-                "req_db_type": "<?php echo $lang['Database type'] ?>",
-                "req_db_host": "<?php echo $lang['Database server hostname'] ?>",
-                "req_db_name": "<?php echo $lang['Database name'] ?>",
-                "req_username": "<?php echo $lang['Administrator username'] ?>",
-                "req_password1": "<?php echo $lang['Administrator password 1'] ?>",
-                "req_password2": "<?php echo $lang['Administrator password 2'] ?>",
-                "req_email": "<?php echo $lang['Administrator email'] ?>",
-                "req_title": "<?php echo $lang['Board title'] ?>",
-                "req_base_url": "<?php echo $lang['Base URL'] ?>",
-            };
-            if (document.all || document.getElementById) {
-                for (var i = 0; i < the_form.length; ++i) {
-                    var elem = the_form.elements[i];
-                    if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type))) {
-                        alert('"' + required_fields[elem.name] + '" <?php echo $lang['Required field'] ?>');
-                        elem.focus();
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        /* ]]> */
-        </script>
-        <style>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title><?php echo $lang['Luna Installation'] ?></title>
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		function process_form(the_form) {
+			var required_fields = {
+				"req_db_type": "<?php echo $lang['Database type'] ?>",
+				"req_db_host": "<?php echo $lang['Database server hostname'] ?>",
+				"req_db_name": "<?php echo $lang['Database name'] ?>",
+				"req_username": "<?php echo $lang['Administrator username'] ?>",
+				"req_password1": "<?php echo $lang['Administrator password 1'] ?>",
+				"req_password2": "<?php echo $lang['Administrator password 2'] ?>",
+				"req_email": "<?php echo $lang['Administrator email'] ?>",
+				"req_title": "<?php echo $lang['Board title'] ?>",
+				"req_base_url": "<?php echo $lang['Base URL'] ?>",
+			};
+			if (document.all || document.getElementById) {
+				for (var i = 0; i < the_form.length; ++i) {
+					var elem = the_form.elements[i];
+					if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type))) {
+						alert('"' + required_fields[elem.name] + '" <?php echo $lang['Required field'] ?>');
+						elem.focus();
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		/* ]]> */
+		</script>
+		<style>
 		.container {
 			margin: 0 auto 30px;
 		}
 		</style>
-    </head>
-    <body onload="document.getElementById('install').start.disabled=false;" onunload="">
-    	<div class="container">
-            <h1><?php echo sprintf($lang['Install'], Version::FORUM_VERSION) ?></h1>
-            <?php if (count($languages) > 1): ?>
-            <form  class="form-horizontal" id="install" method="post" action="install.php">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo $lang['Choose install language'] ?></h3>
-                    </div>
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Install language'] ?><span class="help-block"><?php echo $lang['Choose install language info'] ?></span></label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="install_lang">
+	</head>
+	<body onload="document.getElementById('install').start.disabled=false;" onunload="">
+		<div class="container">
+			<h1><?php echo sprintf($lang['Install'], Version::FORUM_VERSION) ?></h1>
+			<?php if (count($languages) > 1): ?>
+			<form  class="form-horizontal" id="install" method="post" action="install.php">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><?php echo $lang['Choose install language'] ?></h3>
+					</div>
+					<div class="panel-body">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Install language'] ?><span class="help-block"><?php echo $lang['Choose install language info'] ?></span></label>
+								<div class="col-sm-9">
+									<select class="form-control" name="install_lang">
 <?php
 
 		foreach ($languages as $temp) {
@@ -230,45 +230,45 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 		}
 
 ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="panel-footer">
-                        <input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
-                    </div>
-                </div>
-            </form>
+									</select>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="panel-footer">
+						<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
+					</div>
+				</div>
+			</form>
 <?php endif; ?>
 <?php if (!empty($alerts)): ?>
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $lang['Errors'] ?></h3>
-                </div>
-                <div class="panel-body">
-                    <div class="forminfo error-info">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Errors'] ?></h3>
+				</div>
+				<div class="panel-body">
+					<div class="forminfo error-info">
 <?php
 
 foreach ($alerts as $cur_alert)
 echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 ?>
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
 <?php endif; ?>
-            <form  class="form-horizontal" id="install" method="post" action="install.php" onsubmit="this.start.disabled=true;if(process_form(this)){return true;}else{this.start.disabled=false;return false;}">
-                <div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo luna_htmlspecialchars($install_lang) ?>" /></div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo $lang['Database setup'] ?></h3>
-                    </div>
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Database type'] ?><span class="help-block"><?php echo $lang['Info 1'] ?></span></label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="req_db_type">
+			<form  class="form-horizontal" id="install" method="post" action="install.php" onsubmit="this.start.disabled=true;if(process_form(this)){return true;}else{this.start.disabled=false;return false;}">
+				<div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo luna_htmlspecialchars($install_lang) ?>" /></div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><?php echo $lang['Database setup'] ?></h3>
+					</div>
+					<div class="panel-body">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Database type'] ?><span class="help-block"><?php echo $lang['Info 1'] ?></span></label>
+								<div class="col-sm-9">
+									<select class="form-control" name="req_db_type">
 <?php
 
 	foreach ($db_extensions as $temp) {
@@ -279,57 +279,57 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 	}
 
 ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Database server hostname'] ?><span class="help-block"><?php echo $lang['Info 2'] ?></span></label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Database name'] ?><span class="help-block"><?php echo $lang['Info 3'] ?></span></label>
-                                <div class="col-sm-9">
-                                    <input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo luna_htmlspecialchars($db_name) ?>" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Database username'] ?><span class="help-block"><?php echo $lang['Info 4'] ?></span></label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="db_username" value="<?php echo luna_htmlspecialchars($db_username) ?>" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Database password'] ?></label>
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="db_password" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Table prefix'] ?><span class="help-block"><?php echo $lang['Info 5'] ?></span></label>
-                                <div class="col-sm-9">
-                                    <input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix) ?>" maxlength="30" />
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo $lang['Administration setup'] ?></h3>
-                    </div>
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Administrator username'] ?><span class="help-block"><?php echo $lang['Info 6'] ?></span></label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="req_username" value="<?php echo luna_htmlspecialchars($username) ?>" maxlength="25" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Info 7'] ?></span></label>
-                                <div class="col-sm-9">
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Database server hostname'] ?><span class="help-block"><?php echo $lang['Info 2'] ?></span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Database name'] ?><span class="help-block"><?php echo $lang['Info 3'] ?></span></label>
+								<div class="col-sm-9">
+									<input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo luna_htmlspecialchars($db_name) ?>" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Database username'] ?><span class="help-block"><?php echo $lang['Info 4'] ?></span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="db_username" value="<?php echo luna_htmlspecialchars($db_username) ?>" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Database password'] ?></label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" name="db_password" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Table prefix'] ?><span class="help-block"><?php echo $lang['Info 5'] ?></span></label>
+								<div class="col-sm-9">
+									<input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix) ?>" maxlength="30" />
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><?php echo $lang['Administration setup'] ?></h3>
+					</div>
+					<div class="panel-body">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Administrator username'] ?><span class="help-block"><?php echo $lang['Info 6'] ?></span></label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" name="req_username" value="<?php echo luna_htmlspecialchars($username) ?>" maxlength="25" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Info 7'] ?></span></label>
+								<div class="col-sm-9">
 									<div class="row">
 										<div class="col-sm-6">
 											<input id="req_password1" type="password" class="form-control" name="req_password1" />
@@ -338,45 +338,45 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 											<input type="password" class="form-control" name="req_password2" />
 										</div>
 									</div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Administrator email'] ?></label>
-                                <div class="col-sm-9">
-                                    <input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo luna_htmlspecialchars($email) ?>" maxlength="80" />
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><?php echo $lang['Board setup'] ?></h3>
-                    </div>
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Board title'] ?></label>
-                                <div class="col-sm-9">
-                                    <input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo luna_htmlspecialchars($title) ?>" maxlength="255" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Board description'] ?></label>
-                                <div class="col-sm-9">
-                                    <input id="desc" type="text" class="form-control" name="desc" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Base URL label'] ?><span class="help-block"><?php echo $lang['Base URL'] ?><span></label>
-                                <div class="col-sm-9">
-                                    <input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Default language'] ?></label>
-                                <div class="col-sm-9">
-                                    <select id="req_default_lang" class="form-control" name="req_default_lang">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Administrator email'] ?></label>
+								<div class="col-sm-9">
+									<input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo luna_htmlspecialchars($email) ?>" maxlength="80" />
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><?php echo $lang['Board setup'] ?></h3>
+					</div>
+					<div class="panel-body">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Board title'] ?></label>
+								<div class="col-sm-9">
+									<input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo luna_htmlspecialchars($title) ?>" maxlength="255" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Board description'] ?></label>
+								<div class="col-sm-9">
+									<input id="desc" type="text" class="form-control" name="desc" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Base URL label'] ?><span class="help-block"><?php echo $lang['Base URL'] ?><span></label>
+								<div class="col-sm-9">
+									<input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Default language'] ?></label>
+								<div class="col-sm-9">
+									<select id="req_default_lang" class="form-control" name="req_default_lang">
 <?php
 
 		$languages = forum_list_langs();
@@ -388,13 +388,13 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		}
 
 ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"><?php echo $lang['Default style'] ?></label>
-                                <div class="col-sm-9">
-                                    <select id="req_default_style" class="form-control" name="req_default_style">
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label"><?php echo $lang['Default style'] ?></label>
+								<div class="col-sm-9">
+									<select id="req_default_style" class="form-control" name="req_default_style">
 <?php
 
 		$styles = forum_list_styles();
@@ -406,18 +406,18 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		}
 
 ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="panel-footer">
-                        <input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
-                    </div>
-                </div>
-            </form>
-        </div>
-    </body>
+									</select>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="panel-footer">
+						<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
 </html>
 <?php
 
@@ -459,28 +459,28 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $lang['Luna Installation'] ?></title>
-        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
-    </head>
-    <body>
-        <div class="container">
-            <div class="panel panel-default">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title><?php echo $lang['Luna Installation'] ?></title>
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php echo $lang['Luna Installation'] ?></h3>
 				</div>
-                <div class="panel-body">
+				<div class="panel-body">
 					<p><?php echo $lang['Luna has been installed'] ?></p>
 <?php
 
 if (!$written) {
 
 ?>
-                    <form  class="form-horizontal" method="post" action="install.php">
-                        <p><?php echo $lang['Info 8'] ?></p>
-                        <p><?php echo $lang['Info 9'] ?></p>
+					<form  class="form-horizontal" method="post" action="install.php">
+						<p><?php echo $lang['Info 8'] ?></p>
+						<p><?php echo $lang['Info 9'] ?></p>
 						<input type="hidden" name="generate_config" value="1" />
 						<input type="hidden" name="db_type" value="<?php echo $db_type; ?>" />
 						<input type="hidden" name="db_host" value="<?php echo $db_host; ?>" />
@@ -489,14 +489,14 @@ if (!$written) {
 						<input type="hidden" name="db_password" value="<?php echo luna_htmlspecialchars($db_password); ?>" />
 						<input type="hidden" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix); ?>" />
 
-<?php if (!empty($alerts)): ?>                        	<div class="alert alert-danger">
-                        		<ul>
+<?php if (!empty($alerts)): ?>							<div class="alert alert-danger">
+								<ul>
 <?php
 
 foreach ($alerts as $cur_alert)
 	echo "\t\t\t\t\t".'<li>'.$cur_alert.'</li>'."\n";
 ?>
-                        		</ul>
+								</ul>
 							</div>
 <?php endif; ?>						</div>
 						<input type="submit" class="btn btn-primary" value="<?php echo $lang['Download config.php file'] ?>" />
@@ -514,9 +514,9 @@ foreach ($alerts as $cur_alert)
 
 ?>
 				</div>
-            </div>
-        </div>
-    </body>
+			</div>
+		</div>
+	</body>
 </html>
 <?php
 

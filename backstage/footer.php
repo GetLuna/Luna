@@ -34,11 +34,11 @@ if (defined('FORUM_DEBUG')) {
 $db->end_transaction();
 
 ?>
-            </div>
+			</div>
 		</div>
 		<script src="../include/js/jquery.js"></script>
 		<script src="../include/js/bootstrap.min.js"></script>
-    </body>
+	</body>
 </html>
 <?php
 

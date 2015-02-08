@@ -592,7 +592,7 @@ class Installer {
 			'FIELDS'			=> array(
 				'id'				=> array(
 					'datatype'			=> 'SERIAL',
-					'allow_null'    	=> false
+					'allow_null'		=> false
 				),
 				'user_id'			=> array(
 					'datatype'			=> 'INT(10)',
@@ -1276,7 +1276,7 @@ class Installer {
 			'FIELDS'			=> array(
 				'id'				=> array(
 					'datatype'		=> 'SERIAL',
-					'allow_null'    => false
+					'allow_null'	=> false
 				),
 				'shared_id'		=> array(
 					'datatype'		=> 'INT(10)',
@@ -1422,7 +1422,7 @@ class Installer {
 			'o_smtp_ssl'				=> 0,
 			'o_regs_allow'				=> 1,
 			'o_regs_verify'				=> 0,
-			'o_video_width'			    => 640,
+			'o_video_width'				=> 640,
 			'o_video_height'			=> 360,
 			'o_enable_advanced_search'	=> 1,
 			'o_announcement'			=> 0,
@@ -1435,8 +1435,8 @@ class Installer {
 			'o_feed_type'				=> 2,
 			'o_feed_ttl'				=> 0,
 			'o_cookie_bar'				=> 0,
-			'o_moderated_by'            => 1,
-			'o_post_responsive'         => 0,
+			'o_moderated_by'			=> 1,
+			'o_post_responsive'		 => 0,
 			'o_admin_notes'				=> "Add some notes...",
 			'o_pms_enabled'				=> 1,
 			'o_pms_mess_per_page'		=> 10,

@@ -133,13 +133,13 @@ require load_page('header.php');
 <script type="text/javascript">
 /* <![CDATA[ */
 function checkAll(checkWhat,command){
-    var inputs = document.getElementsByTagName('input');
+	var inputs = document.getElementsByTagName('input');
    
-    for(index = 0; index < inputs.length; index++){
-        if(inputs[index].name == checkWhat){
-            inputs[index].checked=document.getElementById(command).checked;
-        }
-    }
+	for(index = 0; index < inputs.length; index++){
+		if(inputs[index].name == checkWhat){
+			inputs[index].checked=document.getElementById(command).checked;
+		}
+	}
 }
 /* ]]> */
 </script>

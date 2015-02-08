@@ -4,7 +4,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if ($luna_user['is_admmod'])
-    header("Location: index.php");
+	header("Location: index.php");
 
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';

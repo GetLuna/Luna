@@ -13,8 +13,8 @@ require ('header.php');
 		<link rel="stylesheet" type="text/css" href="include/css/font-awesome.css" />
 		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
 		<script src="include/js/jquery.js"></script>
-        <script src="include/js/bootstrap.min.js"></script>
-        <script src="include/js/prism.js"></script>
+		<script src="include/js/bootstrap.min.js"></script>
+		<script src="include/js/prism.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 // Allow childs

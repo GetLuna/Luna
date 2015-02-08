@@ -37,13 +37,13 @@
 			xml - output as XML
 			html - output as HTML (<li>'s)
 
-	fid:    One or more forum IDs (comma-separated). If ignored,
+	fid:	One or more forum IDs (comma-separated). If ignored,
 			topics from all readable forums will be pulled.
 
 	nfid:   One or more forum IDs (comma-separated) that are to be
 			excluded. E.g. the ID of a a test forum.
 
-	tid:    A topic ID from which to show posts. If a tid is supplied,
+	tid:	A topic ID from which to show posts. If a tid is supplied,
 			fid and nfid are ignored.
 
 	show:   Any integer value between 1 and 50. The default is 15.

@@ -192,10 +192,10 @@ if (empty($stage)) {
 	<head>
 		<meta charset="utf-8">
 		<title>Luna &middot; <?php echo $lang['Update'] ?></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="noindex, nofollow">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="robots" content="noindex, nofollow">
 		<link href="include/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link href="backstage/css/style.css" type="text/css" rel="stylesheet">
+		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
 		<div class="well form-box">
@@ -372,7 +372,7 @@ switch ($stage) {
 				'FIELDS'			=> array(
 					'id'				=> array(
 						'datatype'		=> 'SERIAL',
-						'allow_null'    => false
+						'allow_null'	=> false
 					),
 					'shared_id'		=> array(
 						'datatype'		=> 'INT(10)',
@@ -523,7 +523,7 @@ switch ($stage) {
 				'FIELDS'			=> array(
 					'id'				=> array(
 						'datatype'			=> 'SERIAL',
-						'allow_null'    	=> false
+						'allow_null'		=> false
 					),
 					'user_id'			=> array(
 						'datatype'			=> 'INT(10)',

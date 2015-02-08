@@ -8,8 +8,8 @@
 		<link rel="stylesheet" type="text/css" href="include/css/font-awesome.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Maintenance</title>
-    </head>
-    <body>
+	</head>
+	<body>
 		<div class="container">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
@@ -20,5 +20,5 @@
 				</div>
 			</div>
 		</div>
-    </body>
+	</body>
 </html>

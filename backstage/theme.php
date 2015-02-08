@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-    header("Location: ../login.php");
+	header("Location: ../login.php");
 if (isset($_GET['default_style'])) {
 	confirm_referrer('backstage/theme.php');
 	
@@ -80,13 +80,13 @@ if (file_exists(FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php')) {
 	</div>
 </div>
 <form class="form-horizontal" method="post" action="permissions.php">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Default style'] ?></h3>
-        </div>
-        <div class="panel-body">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Default style'] ?></h3>
+		</div>
+		<div class="panel-body">
 			<p>Here are all themes we could find in the <code>/styles/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.</p>
-            <fieldset>
+			<fieldset>
 				<div class="row">
 <?php
 		$styles = forum_list_styles();
@@ -141,9 +141,9 @@ if (file_exists(FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php')) {
 		}
 ?>
 				</div>
-            </fieldset>
-        </div>
-    </div>
+			</fieldset>
+		</div>
+	</div>
 </form>
 <?php
 

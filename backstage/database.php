@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-    header("Location: ../login.php");
+	header("Location: ../login.php");
 if ($luna_user['g_id'] != FORUM_ADMIN)
 	message_backstage($lang['No permission'], false, '403 Forbidden');
 
@@ -39,11 +39,11 @@ function field_name($offset, $query_id = 0) {
 	if($query_id) {
 		switch($db_type) {
 			case 'mysql':
-            case 'mysql_innodb':
+			case 'mysql_innodb':
 				$result = @mysql_field_name($query_id, $offset);
 			break;
 			case 'mysqli':
-            case 'mysqli_innodb':
+			case 'mysqli_innodb':
 				$finfo = @mysqli_fetch_field_direct($query_id, $offset);
 				$result = $finfo->name;
 		}
@@ -58,11 +58,11 @@ function num_fields($query_id = 0) {
 		$query_id = $this->query_result;
 		switch($db_type) {
 			case 'mysql':
-            case 'mysql_innodb':
+			case 'mysql_innodb':
 				return ($query_id) ? @mysql_num_fields($query_id) : false;
 			break;
 			case 'mysqli':
-            case 'mysqli_innodb':
+			case 'mysqli_innodb':
 				return ($query_id) ? @mysqli_num_fields($query_id) : false;
 		}
 }
@@ -337,9 +337,9 @@ function split_sql_file($sql, $delimiter) {
 // Check this is a mysql Luna setup
 switch($db_type) {
 	case 'mysql':
-    case 'mysql_innodb':
+	case 'mysql_innodb':
 	case 'mysqli':
-    case 'mysqli_innodb':
+	case 'mysqli_innodb':
 		break;
 	default:
 		require 'header.php';
@@ -562,77 +562,77 @@ require 'header.php';
 	load_admin_nav('database', 'database');
 ?>
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <p><?php echo $lang['Backup info 1'] ?></p>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Backup type'] ?></label>
-                    <div class="col-sm-9">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></span></h3>
+		</div>
+		<div class="panel-body">
+			<fieldset>
+				<p><?php echo $lang['Backup info 1'] ?></p>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Backup type'] ?></label>
+					<div class="col-sm-9">
 						<label class="radio-inline">
-                            <input type="radio" name="backup_type" value="full" checked />
-                            <?php echo $lang['Full'] ?>
-                        </label>
+							<input type="radio" name="backup_type" value="full" checked />
+							<?php echo $lang['Full'] ?>
+						</label>
 						<label class="radio-inline">
-                            <input type="radio" name="backup_type" value="structure" />
-                            <?php echo $lang['Structure only'] ?>
-                        </label>
+							<input type="radio" name="backup_type" value="structure" />
+							<?php echo $lang['Structure only'] ?>
+						</label>
 						<label class="radio-inline">
-                            <input type="radio" name="backup_type" value="data" />
-                            <?php echo $lang['Data only'] ?>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label"><?php echo $lang['Gzip compression'] ?></label>
-                    <div class="col-sm-9">
+							<input type="radio" name="backup_type" value="data" />
+							<?php echo $lang['Data only'] ?>
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Gzip compression'] ?></label>
+					<div class="col-sm-9">
 						<label class="radio-inline">
-                            <input type="radio" name="gzipcompress" value="1" />
-                            <?php echo $lang['Yes'] ?>
-                        </label>
+							<input type="radio" name="gzipcompress" value="1" />
+							<?php echo $lang['Yes'] ?>
+						</label>
 						<label class="radio-inline">
-                            <input type="radio" name="gzipcompress" value="0" checked />
-                            <?php echo $lang['No'] ?>
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
+							<input type="radio" name="gzipcompress" value="0" checked />
+							<?php echo $lang['No'] ?>
+						</label>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
 </form>
 <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" /></span></h3>
-        </div>
-        <div class="panel-body">
-            <fieldset>
-                <p><?php echo $lang['Restore info 1'] ?></p>
-                <input type="file" name="backup_file" />
-            </fieldset>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" /></span></h3>
 		</div>
-    </div>
+		<div class="panel-body">
+			<fieldset>
+				<p><?php echo $lang['Restore info 1'] ?></p>
+				<input type="file" name="backup_file" />
+			</fieldset>
+		</div>
+	</div>
 </form>
 <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $lang['Additional functions'] ?></h3>
-        </div>
-        <div class="panel-body">
-            <p><?php echo $lang['Additional info 1'] ?></p>
-        </div>
-        <div class="panel-footer">
-            <fieldset>
-                <span class="btn-group">
-                    <input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />
-                    <input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" />
-                </span>
-            </fieldset>
-        </div>
-    </div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php echo $lang['Additional functions'] ?></h3>
+		</div>
+		<div class="panel-body">
+			<p><?php echo $lang['Additional info 1'] ?></p>
+		</div>
+		<div class="panel-footer">
+			<fieldset>
+				<span class="btn-group">
+					<input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />
+					<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" />
+				</span>
+			</fieldset>
+		</div>
+	</div>
 </form>
 <?php
 }

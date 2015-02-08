@@ -31,8 +31,8 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	$authorized = false;
 
 	if (!empty($cur_user['password'])) {
-        $form_password_hash = luna_hash($form_password); // Will result in a SHA-1 hash
-        $authorized = ($cur_user['password'] == $form_password_hash);
+		$form_password_hash = luna_hash($form_password); // Will result in a SHA-1 hash
+		$authorized = ($cur_user['password'] == $form_password_hash);
 	}
 
 	if (!$authorized)

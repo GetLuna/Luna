@@ -199,8 +199,8 @@ if (isset($_POST['form_sent'])) {
 
 					// Loop through subscribed users and send emails
 					while ($cur_subscriber = $db->fetch_assoc($result)) {
-                        // First of all, add a new notification
-                        new_notification($cur_subscriber['id'], get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $username.' replied to '.$cur_posting['subject'], 'fa-reply');
+						// First of all, add a new notification
+						new_notification($cur_subscriber['id'], get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $username.' replied to '.$cur_posting['subject'], 'fa-reply');
 
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {

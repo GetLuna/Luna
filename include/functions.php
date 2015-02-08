@@ -1204,7 +1204,7 @@ function luna_hash($str) {
 // Compute a hash of $str with SHA512
 //
 function luna_sha2($str, $salt) {
-    return hash("sha512", $salt . hash("sha512", $str));
+	return hash("sha512", $salt . hash("sha512", $str));
 }
 
 
@@ -1410,17 +1410,17 @@ function error($message, $file = null, $line = null, $db_error = false) {
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<?php $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), 'Error') ?>
-        <title><?php echo generate_page_title($page_title) ?></title>
+		<title><?php echo generate_page_title($page_title) ?></title>
 		<style type="text/css">
 			body { margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px; }
 			h2 { margin: 0; color: #00a5f5; font-size: 26px; padding: 0 4px; font-weight: 100; }
 			#errorbox div { padding: 0 5px; }
-        </style>
-    </head>
-    <body>
-        <div id="errorbox">
-            <h2>An error was encountered</h2>
-            <div>
+		</style>
+	</head>
+	<body>
+		<div id="errorbox">
+			<h2>An error was encountered</h2>
+			<div>
 <?php
 
 	if (defined('FORUM_DEBUG') && !is_null($file) && !is_null($line)) {
@@ -1436,9 +1436,9 @@ function error($message, $file = null, $line = null, $db_error = false) {
 		echo "\t\t".'Error: <strong>'.$message.'.</strong>'."\n";
 
 ?>
-            </div>
-        </div>
-    </body>
+			</div>
+		</div>
+	</body>
 </html>
 <?php
 
@@ -2048,12 +2048,12 @@ function load_css() {
 // Delete all content in a folder
 //
 function delete_all($path) {
-    $dir = dir($path);
+	$dir = dir($path);
 
-    while ($file = $dir->read()) {
-        if ($file == '.' || $file == '..') continue;
+	while ($file = $dir->read()) {
+		if ($file == '.' || $file == '..') continue;
 
-        $file = $path.'/'.$file;
+		$file = $path.'/'.$file;
 
 		if ($file != $path.'/.htaccess') { // Never remove a .htaccess
 			if (is_dir($file)) {
@@ -2063,7 +2063,7 @@ function delete_all($path) {
 				unlink($file);
 			}
 		}
-    }
+	}
 }
 
 
@@ -2110,18 +2110,18 @@ function validate_redirect($redirect_url, $fallback_url)
 function num_users_online() {
 	global $db;
 
-    $result_num_users = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1', false) or error('Unable to fetch online users list', __FILE__, __LINE__, $db->error());
+	$result_num_users = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id>1', false) or error('Unable to fetch online users list', __FILE__, __LINE__, $db->error());
 
-    return $db->num_rows($result_num_users);
+	return $db->num_rows($result_num_users);
 }
 
 // Number of guests online
 function num_guests_online() {
 	global $db;
 
-    $result_num_guests = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id=1', true) or error('Unable to fetch online guests list', __FILE__, __LINE__, $db->error());
+	$result_num_guests = $db->query('SELECT user_id FROM '.$db->prefix.'online WHERE idle=0 AND user_id=1', true) or error('Unable to fetch online guests list', __FILE__, __LINE__, $db->error());
 
-    return $db->num_rows($result_num_guests);
+	return $db->num_rows($result_num_guests);
 }
 
 // Get forum_id by post_id
@@ -2129,12 +2129,12 @@ function get_forum_id($post_id)
 {
 	global $db;
 
-    $result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'posts as p INNER JOIN '.$db->prefix.'topics as t ON p.topic_id = t.id WHERE p.id='.intval($post_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
+	$result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'posts as p INNER JOIN '.$db->prefix.'topics as t ON p.topic_id = t.id WHERE p.id='.intval($post_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
 
-    $row = $db->fetch_row($result_fid);
+	$row = $db->fetch_row($result_fid);
 
-    if($row)
-        return $row[0];
-    else
-        return false;
+	if($row)
+		return $row[0];
+	else
+		return false;
 }

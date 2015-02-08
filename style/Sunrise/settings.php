@@ -2,7 +2,7 @@
 
 // Make sure no one attempts to run this view directly.
 if (!defined('FORUM'))
-    exit;
+	exit;
 
 ?>
 <div class="col-sm-3 profile-nav">
@@ -13,7 +13,7 @@ if (!defined('FORUM'))
 		</span>
 	</div>
 <?php
-    load_me_nav('settings');
+	load_me_nav('settings');
 ?>
 </div>
 <div class="col-sm-9">
@@ -162,24 +162,24 @@ if (count($languages) > 1) {
 						<div class="col-sm-9">
 							<select class="form-control" name="form[language]">
 <?php
-        foreach ($languages as $temp) {
-            if ($user['language'] == $temp)
-                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected>'.$temp.'</option>'."\n";
-            else
-                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
-        }
+		foreach ($languages as $temp) {
+			if ($user['language'] == $temp)
+				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected>'.$temp.'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.$temp.'</option>'."\n";
+		}
 ?>
 							</select>
 						</div>
 					</div>
 <?php
-    }
-    $styles = forum_list_styles();
+	}
+	$styles = forum_list_styles();
 
-    // Only display the style selection box if there's more than one style available
-    if (count($styles) == 1)
-        echo "\t\t\t".'<div><input type="hidden" name="form[style]" value="'.$styles[0].'" /></div>'."\n";
-    elseif (count($styles) > 1) {
+	// Only display the style selection box if there's more than one style available
+	if (count($styles) == 1)
+		echo "\t\t\t".'<div><input type="hidden" name="form[style]" value="'.$styles[0].'" /></div>'."\n";
+	elseif (count($styles) > 1) {
 ?>
 					<hr />
 					<div class="form-group">
@@ -187,12 +187,12 @@ if (count($languages) > 1) {
 						<div class="col-sm-9">
 							<select disabled class="form-control" name="form[style]">
 <?php
-        foreach ($styles as $temp) {
-            if ($user['style'] == $temp)
-                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected>'.str_replace('_', ' ', $temp).'</option>'."\n";
-            else
-                echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-        }
+		foreach ($styles as $temp) {
+			if ($user['style'] == $temp)
+				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected>'.str_replace('_', ' ', $temp).'</option>'."\n";
+			else
+				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
+		}
 ?>
 							</select>
 						</div>
@@ -415,15 +415,15 @@ if (count($languages) > 1) {
 						<div class="col-sm-9">
 							<select class="form-control" name="form[time_format]">
 <?php
-                    foreach (array_unique($forum_time_formats) as $key => $time_format) {
-                        echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
-                        if ($user['time_format'] == $key)
-                            echo ' selected';
-                        echo '>'. format_time(time(), false, null, $time_format, true, true);
-                        if ($key == 0)
-                            echo ' ('.$lang['Default'].')';
-                        echo "</option>\n";
-                    }
+					foreach (array_unique($forum_time_formats) as $key => $time_format) {
+						echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
+						if ($user['time_format'] == $key)
+							echo ' selected';
+						echo '>'. format_time(time(), false, null, $time_format, true, true);
+						if ($key == 0)
+							echo ' ('.$lang['Default'].')';
+						echo "</option>\n";
+					}
 ?>
 							</select>
 						</div>
@@ -433,15 +433,15 @@ if (count($languages) > 1) {
 						<div class="col-sm-9">
 							<select class="form-control" name="form[date_format]">
 <?php
-                    foreach (array_unique($forum_date_formats) as $key => $date_format) {
-                        echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
-                        if ($user['date_format'] == $key)
-                            echo ' selected';
-                        echo '>'. format_time(time(), true, $date_format, null, false, true);
-                        if ($key == 0)
-                            echo ' ('.$lang['Default'].')';
-                        echo "</option>\n";
-                    }
+					foreach (array_unique($forum_date_formats) as $key => $date_format) {
+						echo "\t\t\t\t\t\t\t\t".'<option value="'.$key.'"';
+						if ($user['date_format'] == $key)
+							echo ' selected';
+						echo '>'. format_time(time(), true, $date_format, null, false, true);
+						if ($key == 0)
+							echo ' ('.$lang['Default'].')';
+						echo "</option>\n";
+					}
 ?>
 							</select>
 						</div>
@@ -467,14 +467,14 @@ if (count($languages) > 1) {
 									<select id="group_id" class="form-control" name="group_id">
 <?php
 
-            $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
-            while ($cur_group = $db->fetch_assoc($result)) {
-                if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
-                    echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-                else
-                    echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
-            }
+			while ($cur_group = $db->fetch_assoc($result)) {
+				if ($cur_group['g_id'] == $user['g_id'] || ($cur_group['g_id'] == $luna_config['o_default_user_group'] && $user['g_id'] == ''))
+					echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+				else
+					echo "\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
+			}
 
 ?>
 									</select> 
@@ -501,20 +501,20 @@ if (count($languages) > 1) {
 								<p><?php echo $lang['Moderator in info'] ?></p>
 <?php
 
-            $result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.moderators FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.moderators FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
-            $cur_category = 0;
-            while ($cur_forum = $db->fetch_assoc($result)) {
-                if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
+			$cur_category = 0;
+			while ($cur_forum = $db->fetch_assoc($result)) {
+				if ($cur_forum['cid'] != $cur_category) { // A new category since last iteration?
 
-                    echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'</div>';
-                    $cur_category = $cur_forum['cid'];
-                }
+					echo "\t\t\t\t\t\t\t".'<div>'."\n\t\t\t\t\t\t\t\t".'<br /><strong>'.luna_htmlspecialchars($cur_forum['cat_name']).'</strong>'."\n\t\t\t\t\t\t\t\t".'</div>';
+					$cur_category = $cur_forum['cid'];
+				}
 
-                $moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
+				$moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
 
-                echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
-            }
+				echo "\n\t\t\t\t\t\t\t\t\t".'<input type="checkbox" name="moderator_in['.$cur_forum['fid'].']" value="1"'.((in_array($id, $moderators)) ? ' checked' : '').' /> '.luna_htmlspecialchars($cur_forum['forum_name']).'<br />'."\n";
+			}
 
 ?>
 								</div>

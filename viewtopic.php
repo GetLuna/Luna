@@ -86,9 +86,9 @@ $admin_ids = get_admin_ids();
 
 // Can we or can we not post replies?
 if ($luna_config['o_post_responsive'] == 0)
-    $responsive_post = ' hidden-sm hidden-xs';
+	$responsive_post = ' hidden-sm hidden-xs';
 else
-    $responsive_post = '';
+	$responsive_post = '';
 
 if ($cur_topic['closed'] == '0') {
 	if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)

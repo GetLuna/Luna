@@ -212,7 +212,7 @@ elseif ($action == 'markforumread') {
 
 	require load_page('report.php');
 
-    require load_page('footer.php');
+	require load_page('footer.php');
 } elseif ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');

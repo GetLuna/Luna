@@ -20,14 +20,14 @@ $footer_style = isset($footer_style) ? $footer_style : NULL;
 
 // Generate the feed links
 if ($footer_style == 'index') {
-    $feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS active topics feed'] : $lang['Atom active topics feed'];
-    $feed_id = '';
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS active topics feed'] : $lang['Atom active topics feed'];
+	$feed_id = '';
 } elseif ($footer_style == 'viewforum') {
-    $feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS forum feed'] : $lang['Atom forum feed'];
-    $feed_id = '&fid='.$forum_id;
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS forum feed'] : $lang['Atom forum feed'];
+	$feed_id = '&fid='.$forum_id;
 } elseif ($footer_style == 'viewtopic') {
-    $feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS topic feed'] : $lang['Atom topic feed'];
-    $feed_id = '&tid='.$id;
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS topic feed'] : $lang['Atom topic feed'];
+	$feed_id = '&tid='.$id;
 }
 
 if ($luna_config['o_feed_type'] == 1)

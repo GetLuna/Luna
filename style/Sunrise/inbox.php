@@ -2,7 +2,7 @@
 
 // Make sure no one attempts to run this view directly.
 if (!defined('FORUM'))
-    exit;
+	exit;
 
 ?>
 <div class="col-sm-3 profile-nav">

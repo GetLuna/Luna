@@ -24,9 +24,9 @@ elseif ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POS
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require load_page('header.php');
 
-    require load_page('rules.php');
+	require load_page('rules.php');
 
-    require load_page('footer.php');
+	require load_page('footer.php');
 }
 
 // Start with a clean slate
