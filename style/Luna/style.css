@@ -1046,11 +1046,11 @@ textarea {
 
 /* Links */
 a {
-	color: #2f47c0;
+	color: #2360a7;
 }
 
 a:hover, a:active {
-	color: #2840a5;
+	color: #1a569c;
 }
 
 a.list-group-item:hover, a.list-group-item:active {
