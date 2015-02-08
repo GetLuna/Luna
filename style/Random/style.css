@@ -684,7 +684,7 @@ label .help-block {
 }
 
 textarea {
-		resize: vertical;
+	resize: vertical;
 }
 
 .multiselect {
