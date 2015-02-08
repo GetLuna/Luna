@@ -12,12 +12,13 @@ require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
     header("Location: ../login.php");
+
 // Check if install.php is a thing
 if ($action == 'remove_install_file') {
 	$deleted = @unlink(FORUM_ROOT.'install.php');
 
 	if ($deleted)
-		redirect('admin_index.php');
+		redirect('index.php');
 	else
 		message($lang['Delete install.php failed']);
 }
@@ -103,7 +104,7 @@ if(is_writable(FORUM_ROOT.'config.php')): ?>
 
 if ($install_file_exists) : ?>
 <div class="alert alert-warning">
-    <p><?php echo $lang['Install file exists'] ?> <a href="index.php?action=remove_install_file"><?php echo $lang['Delete install file'] ?></a></p>
+    <p><?php echo $lang['Install file exists'] ?> <span class="pull-right"><a href="index.php?action=remove_install_file"><?php echo $lang['Delete install file'] ?></a></span></p>
 </div>
 <?php endif;
 
