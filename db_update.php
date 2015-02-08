@@ -188,7 +188,7 @@ if (empty($stage))
 	<head>
 		<meta charset="utf-8">
 		<title><?php echo $lang['Maintenance'] ?></title>
-        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
@@ -211,7 +211,7 @@ if (empty($stage))
 		<title>ModernBB &middot; <?php echo $lang['Update'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
-        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
         <link href="style/<?php echo $default_style ?>/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
@@ -697,7 +697,7 @@ switch ($stage)
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo $lang['Update ModernBB'] ?></title>
-        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
         <link href="style/<?php echo $default_style ?>.css" type="text/css" rel="stylesheet">
     </head>
     <body>
@@ -921,7 +921,7 @@ foreach ($errors[$id] as $cur_error)
 		<title><?php echo $lang['Update ModernBB'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
-        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
         <link href="style/<?php echo $default_style ?>/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
