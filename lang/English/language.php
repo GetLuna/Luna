@@ -1231,6 +1231,11 @@ $lang = array(
 'Hard reset help'					=>	'The button below will remove the config.php file and database, this will cause the install to start so you can install ModernBB again. You will lose all your data. This can\'t be undone. Be sure you made a back-up before doing this.',
 'Reset'								=>	'Reset',
 
+'Warning head'						=>	'Warning',
+'Install file exists'				=>	'The file install.php still exists, but should be removed.',
+'Delete install file'				=>	'Delete it',
+'Delete install.php failed'			=>	'Could not remove install.php. Please do so by hand.',
+
 //
 // Reports
 //

@@ -17,6 +17,18 @@ if (!$luna_user['is_admmod']) {
     header("Location: ../login.php");
 }
 
+// Check if install.php is a thing
+if ($action == 'remove_install_file') {
+	$deleted = @unlink(FORUM_ROOT.'install.php');
+
+	if ($deleted)
+		redirect('index.php');
+	else
+		message($lang['Delete install.php failed']);
+}
+
+$install_file_exists = is_file(FORUM_ROOT.'install.php');
+
 // Collect some statistics from the database
 if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
 	include FORUM_CACHE_DIR.'cache_users_info.php';
@@ -72,6 +84,15 @@ require FORUM_ROOT.'backstage/header.php';
 </div>
 <?php
     }
+	
+if ($install_file_exists) : ?>
+<div class="col-xs-12">
+	<div class="alert alert-warning">
+		<p><?php echo $lang['Install file exists'] ?> <span class="pull-right"><a href="index.php?action=remove_install_file"><?php echo $lang['Delete install file'] ?></a></span></p>
+	</div>
+</div>
+<?php endif;
+
 if ($luna_user['g_id'] == FORUM_ADMIN) {
 ?>
     <div class="col-lg-3">
