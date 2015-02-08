@@ -147,6 +147,7 @@ $lang = array(
 'Moderate forum'					=>	'Moderate forum',
 'Powered by'						=>	'Powered by %s',
 'Thanks'							=>	'Thanks for using %s',
+'Back to top'						=>	'Back to top',
 
 //
 // Debug information
