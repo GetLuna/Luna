@@ -1041,7 +1041,7 @@ textarea {
 	margin-top: 15px;
 }
 
-.topic-index-entry .soft {
+.topic-index-entry.soft {
 	background-color: #fffbe7;
 	border-bottom: 1px solid #fbeb91;
 }
