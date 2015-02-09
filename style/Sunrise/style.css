@@ -747,6 +747,14 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border-top: 1px solid #ffc8b3;
 }
 
+.soft .panel-body {
+	background-color: #fffbe7;
+}
+
+.soft .panel-body hr {
+	border-top: 1px solid #fbeb91;
+}
+
 /* Threads */
 .topicview {
 	margin-top: 10px;
@@ -1031,6 +1039,11 @@ textarea {
 /* Forum */
 .topic-entry-list {
 	margin-top: 15px;
+}
+
+.topic-index-entry .soft {
+	background-color: #fffbe7;
+	border-bottom: 1px solid #fbeb91;
 }
 
 .topic-entry {

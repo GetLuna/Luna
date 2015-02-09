@@ -14,6 +14,7 @@ if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$action = isset($_GET['action']) ? intval($_GET['action']) : 0;
 if ($id < 1)
 	message($lang['Bad request'], false, '404 Not Found');
 
@@ -44,6 +45,32 @@ if (($luna_user['g_delete_posts'] == '0' ||
 if ($is_admmod && $luna_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
 	message($lang['No permission'], false, '403 Forbidden');
 
+// Soft delete posts
+if (isset($_POST['soft_delete'])) {
+	// Make sure they got here from the site
+	confirm_referrer('delete.php');
+
+	require FORUM_ROOT.'include/search_idx.php';
+
+	if ($is_topic_post) {
+		// Delete the topic and all of its posts
+		delete_topic($cur_post['tid'], "soft");
+		update_forum($cur_post['fid']);
+
+		redirect('viewforum.php?id='.$cur_post['fid']);
+	} else {
+		// Delete just this one post
+		$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
+		update_forum($cur_post['fid']);
+
+		// Redirect towards the previous post
+		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$cur_post['tid'].' AND id < '.$id.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+		$post_id = $db->result($result);
+
+		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
+	}
+}
+
 if (isset($_POST['delete'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');
@@ -52,7 +79,7 @@ if (isset($_POST['delete'])) {
 
 	if ($is_topic_post) {
 		// Delete the topic and all of its posts
-		delete_topic($cur_post['tid']);
+		delete_topic($cur_post['tid'], "hard");
 		update_forum($cur_post['fid']);
 
 		redirect('viewforum.php?id='.$cur_post['fid']);
@@ -77,6 +104,9 @@ $cur_post['message'] = parse_message($cur_post['message']);
 
 require load_page('header.php');
 
-require load_page('delete.php');
+if ($action == "soft")
+	require load_page('soft.php');
+else
+	require load_page('delete.php');
 
 require load_page('footer.php');

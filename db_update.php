@@ -617,6 +617,12 @@ switch ($stage) {
 		if ($db->table_exists('contacts'))
 			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
+		// Since 0.3.3752: Add the soft column to the posts table
+		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+
+		// Since 0.3.3752: Add the soft column to the topics table
+		$db->add_field('topics', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

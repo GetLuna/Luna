@@ -738,6 +738,11 @@ class Installer {
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'
+				),
+				'soft'		=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '0'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),
@@ -1018,6 +1023,11 @@ class Installer {
 				),
 				'forum_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
+					'allow_null'	=> false,
+					'default'		=> '0'
+				),
+				'soft'		=> array(
+					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'
 				)

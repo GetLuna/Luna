@@ -728,11 +728,14 @@ function delete_avatar($user_id) {
 //
 // Delete a topic and all of its posts
 //
-function delete_topic($topic_id) {
+function delete_topic($topic_id, $type) {
 	global $db;
 
 	// Delete the topic and any redirect topics
-	$db->query('DELETE FROM '.$db->prefix.'topics WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
+	if ($type == "hard")
+		$db->query('DELETE FROM '.$db->prefix.'topics WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
+	else
+		$db->query('UPDATE '.$db->prefix.'topics SET soft = 1 WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
 
 	// Create a list of the post IDs in this topic
 	$post_ids = '';
@@ -742,10 +745,13 @@ function delete_topic($topic_id) {
 
 	// Make sure we have a list of post IDs
 	if ($post_ids != '') {
-		strip_search_index($post_ids);
-
-		// Delete posts in topic
-		$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+		if ($type == "hard") {
+			strip_search_index($post_ids);
+			// Delete posts in topic
+			$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+		} else
+			// Or not
+			$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE topic_id='.$topic_id) or error('Unable to soft delete posts', __FILE__, __LINE__, $db->error());
 	}
 
 	// Delete any subscriptions for this topic
