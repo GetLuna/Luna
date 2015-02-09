@@ -136,6 +136,10 @@ require 'header.php';
 						<h4>Moderation tools</h4>
 						<p>The moderation tools have been improved with a brand new design and additional improvements. Most of the changes were done due to the move from Mainstage to Backstage, but they also contain (a lot of) usability improvements.</p>
 					</div>
+					<div class="col-sm-12">
+						<h4>Soft delete</h4>
+						<p>Ever had to delete a post but didn't want to delete it for ever? Now you don't have to anymore. Luna introduces soft delete support. Posts or topics will be hidden from user's view and only visible for admins and moderators. They'll be marked in a different color (similar to reported posts). <span class="text-danger">Note: this feature is partially functional in Preview 3, it's unable to hide posts from sight at this point, but can mark them.</span></p>
+					</div>
 				</div>
 				<a id="backstage"><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3></a>
 				<img class="img-responsive" src="../img/about/backstage.png" />
@@ -224,11 +228,11 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.36.2563 to 0.2.37xx.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.3754.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>64 bugs have been fixed.</p>
+						<p>68 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -435,38 +439,43 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="p3"></a>Preview 3 &middot; Build 37xx</h4>
+					<h4><a id="p3"></a>Preview 3 &middot; Build 3754</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">37xx</span> Moved topics aren't displayed on the index anymore<br />
-								<span class="label label-primary">37xx</span> Improved forum display for moved topics<br />
-								<span class="label label-primary">37xx</span> The update dialogue now has a similar design as login<br />
-								<span class="label label-primary">37xx</span> Bootstrap has been updated to version 3.3.2<br />
-								<span class="label label-primary">37xx</span> Updated design for the user list<br />
-								<span class="label label-primary">37xx</span> Font Awesome has been updated to version 4.3.0<br />
-								<span class="label label-primary">37xx</span> Users can no longer select a per-user style<br />
-								<span class="label label-primary">37xx</span> Emojis have a default size of 16px instead of 14px<br />
-								<span class="label label-primary">37xx</span> Themes now can set a parent to inherit their design<br />
-								<span class="label label-primary">37xx</span> Support to display categories in themes<br />
-								<span class="label label-primary">37xx</span> Threads now have visual help for their status<br />
-								<span class="label label-primary">37xx</span> Inbox has been revamped
+								<span class="label label-primary">3754</span> Moved topics aren't displayed on the index anymore<br />
+								<span class="label label-primary">3754</span> Improved forum display for moved topics<br />
+								<span class="label label-primary">3754</span> The update dialogue now has a similar design as login<br />
+								<span class="label label-primary">3754</span> Bootstrap has been updated to version 3.3.2<br />
+								<span class="label label-primary">3754</span> Updated design for the user list<br />
+								<span class="label label-primary">3754</span> Font Awesome has been updated to version 4.3.0<br />
+								<span class="label label-primary">3754</span> Users can no longer select a per-user style<br />
+								<span class="label label-primary">3754</span> Emojis have a default size of 16px instead of 14px<br />
+								<span class="label label-primary">3754</span> Themes now can set a parent to inherit their design<br />
+								<span class="label label-primary">3754</span> Support to display categories in themes<br />
+								<span class="label label-primary">3754</span> Threads now have visual help for their status<br />
+								<span class="label label-primary">3754</span> Inbox has been revamped<br />
+								<span class="label label-primary">3754</span> A first implementation of soft delete has been added<br />
+								<span class="label label-primary">3754</span> Component clean-up<br />
+								<span class="label label-primary">3754</span> Improved performance
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">37xx</span> Backstage now has it's own login form<br />
-								<span class="label label-primary">37xx</span> Improved edit interface<br />
-								<span class="label label-primary">37xx</span> A security issue with the installer has been fixed<br />
-								<span class="label label-primary">37xx</span> Major improvements to the responsive design<br />
-								<span class="label label-primary">37xx</span> Sunset is added as a build-in style<br />
-								<span class="label label-primary">37xx</span> The Theme settings have been improved<br />
-								<span class="label label-primary">37xx</span> Improvements to the topic view have been made<br />
-								<span class="label label-primary">37xx</span> More improvements to Theme engine 6<br />
-								<span class="label label-primary">37xx</span> Luna now asks to remove install.php after installation<br />
-								<span class="label label-primary">37xx</span> Major improvements to the database<br />
-								<span class="label label-primary">37xx</span> New notifications have been added<br />
-								<span class="label label-primary">37xx</span> Multiple bugfixes
+								<span class="label label-primary">3754</span> Backstage now has it's own login form<br />
+								<span class="label label-primary">3754</span> Improved edit interface<br />
+								<span class="label label-primary">3754</span> A security issue with the installer has been fixed<br />
+								<span class="label label-primary">3754</span> Major improvements to the responsive design<br />
+								<span class="label label-primary">3754</span> Sunset is added as a build-in style<br />
+								<span class="label label-primary">3754</span> The Theme settings have been improved<br />
+								<span class="label label-primary">3754</span> Improvements to the topic view have been made<br />
+								<span class="label label-primary">3754</span> More improvements to Theme engine 6<br />
+								<span class="label label-primary">3754</span> Luna now asks to remove install.php after installation<br />
+								<span class="label label-primary">3754</span> Major improvements to the database<br />
+								<span class="label label-primary">3754</span> New notifications have been added<br />
+								<span class="label label-primary">3754</span> A lot of coding convention improvements<br />
+								<span class="label label-primary">3754</span> More extensive use of icons throughout the interface<br />
+								<span class="label label-primary">3754</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
