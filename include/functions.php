@@ -734,8 +734,10 @@ function delete_topic($topic_id, $type) {
 	// Delete the topic and any redirect topics
 	if ($type == "hard")
 		$db->query('DELETE FROM '.$db->prefix.'topics WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
-	else
+	elseif ($type == "soft")
 		$db->query('UPDATE '.$db->prefix.'topics SET soft = 1 WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
+	else
+		$db->query('UPDATE '.$db->prefix.'topics SET soft = 0 WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to soft delete topic', __FILE__, __LINE__, $db->error());
 
 	// Create a list of the post IDs in this topic
 	$post_ids = '';
@@ -749,13 +751,18 @@ function delete_topic($topic_id, $type) {
 			strip_search_index($post_ids);
 			// Delete posts in topic
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
-		} else
-			// Or not
-			$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE topic_id='.$topic_id) or error('Unable to soft delete posts', __FILE__, __LINE__, $db->error());
+		} else {
+			if ($type == "soft")
+				$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE topic_id='.$topic_id) or error('Unable to soft delete posts', __FILE__, __LINE__, $db->error());
+			else
+				$db->query('UPDATE '.$db->prefix.'posts SET soft = 0 WHERE topic_id='.$topic_id) or error('Unable to soft delete posts', __FILE__, __LINE__, $db->error());
+		}
 	}
 
-	// Delete any subscriptions for this topic
-	$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE topic_id='.$topic_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
+	if ($type != "reset") {
+		// Delete any subscriptions for this topic
+		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE topic_id='.$topic_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
+	}
 }
 
 

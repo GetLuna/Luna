@@ -694,7 +694,10 @@ function draw_topic_list() {
 				if ($cur_post['poster_id'] == $luna_user['id']) {
 					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == 0) || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == 1)) {
 						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
-						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">Soft delete</a>';
+						if ($cur_post['soft'] == 0)
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">Soft delete</a>';
+						else
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">Soft reset</a>';
 					}
 					if ($luna_user['g_edit_posts'] == 1)
 						$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
@@ -711,7 +714,10 @@ function draw_topic_list() {
 			}
 			if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
 				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
-				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">Soft delete</a>';
+					if ($cur_post['soft'] == 0)
+						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">Soft delete</a>';
+					else
+						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">Soft reset</a>';
 				$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
 			}
 			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
@@ -778,6 +784,17 @@ function draw_soft_delete_form($id) {
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
 			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br />The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.</p>
 			<input type="submit" class="btn btn-danger" name="soft_delete" value="Soft delete" />
+		</form>
+<?php
+}
+
+function draw_soft_reset_form($id) {
+	global $is_topic_post, $lang;
+
+?>
+		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
+			<p>This post has been soft deleted. We'll enable it again with a click on the button.</p>
+			<input type="submit" class="btn btn-primary" name="reset" value="Reset post" />
 		</form>
 <?php
 }
