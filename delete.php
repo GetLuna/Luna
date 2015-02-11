@@ -128,9 +128,6 @@ $cur_post['message'] = parse_message($cur_post['message']);
 
 require load_page('header.php');
 
-echo $action;
-echo $id;
-
 if ($action == "reset")
 	require load_page('reset.php');
 elseif ($action == "soft")
