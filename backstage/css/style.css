@@ -76,8 +76,12 @@ label .help-block {
 	color: #1f62b0;
 }
 
+.panel-about p {
+	line-height: 1.8;
+}
+
 .change-list {
-	line-height: 1.7;
+	line-height: 1.8;
 }
 
 /* Navbars */

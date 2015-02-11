@@ -26,7 +26,7 @@ require 'header.php';
 				<h3 class="panel-title">Welcome to the Luna Preview</h3>
 			</div>
 			<div class="panel-body">
-				<p>Welcome to Luna Preview 3. It's great that you are using this software. This preview is meant to show what's coming next to Luna.</p>
+				<p>Welcome to the Luna Preview. It's great that you are using this software. This preview is meant to show what's coming next to Luna.</p>
 				<p>Feedback is very important for us, it would be great if you give us some. Feedback can be about everything: bugs that need to be fixed, features you would like to see, etc. Be sure to check our shiplist (see links below) before you request a feature or fill a bug, as it might be noted already.</p>
 			</div>
 			<div class="panel-footer">
@@ -66,16 +66,17 @@ require 'header.php';
 				<a href="#p2u1" class="list-group-item">Preview 2 Update 1</a>
 				<a href="#p2u2" class="list-group-item">Preview 2 Update 2</a>
 				<a href="#p3" class="list-group-item">Preview 3</a>
+				<a href="#p3u1" class="list-group-item">Preview 3 Update 1</a>
 			</div>
 		</div>
 	</div>
 	<div class="col-sm-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.0 Preview 3</h3>
+				<h3 class="panel-title">About Luna 1.0 Preview</h3>
 			</div>
 			<div class="panel-body panel-about">
-				<a id="brand"><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3></a>
+				<a id="brand"></a><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3>
 				<img class="img-responsive" src="../img/about/brand.png" />
 				<p>Welcome to the first stable release of the third generation of our board software! This release officially rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an interesting feature, so read on to the more awesome parts of our giant changelog:</p>
 				<a id="users"><h3><span class="fa fa-fw fa-user"></span> User features</h3></a>
@@ -97,10 +98,10 @@ require 'header.php';
 						<p>Comments on your thread? Stuff you have to know? Notifications will help you out. Luna now shows notifications in the main interface and under Me, we have a full view of notifications.</p>
 					</div>
 				</div>
-				<a id="inbox"><h3><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</h3></a>
+				<a id="inbox"></a><h3><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</h3>
 				<img class="img-responsive" src="../img/about/inbox.png" />
 				<p>Inbox is the new private messaging system included in Luna. It allows user to connect to other users through Luna without the need to exchange an email address or any other personal data.</p>
-				<a id="board"><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3></a>
+				<a id="board"></a><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Sub sections</h4>
@@ -126,7 +127,7 @@ require 'header.php';
 						<p>Do your users want to share some HTML, PHP, CSS or JavaScript? Well, Luna will show these languages nicely with a brand new syntax highlighter based on PrismJS.</p>
 					</div>
 				</div>
-				<a id="management"><h3><span class="fa fa-fw fa-coffee"></span> Management</h3></a>
+				<a id="management"></a><h3><span class="fa fa-fw fa-coffee"></span> Management</h3>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Mainstage independent</h4>
@@ -138,10 +139,10 @@ require 'header.php';
 					</div>
 					<div class="col-sm-12">
 						<h4>Soft delete</h4>
-						<p>Ever had to delete a post but didn't want to delete it for ever? Now you don't have to anymore. Luna introduces soft delete support. Posts or topics will be hidden from user's view and only visible for admins and moderators. They'll be marked in a different color (similar to reported posts). <span class="text-danger">Note: this feature is partially functional in Preview 3, it's unable to hide posts from sight at this point, but can mark them.</span></p>
+						<p>Ever had to delete a post but didn't want to delete it for ever? Now you don't have to anymore. Luna introduces soft delete support. Posts or topics will be hidden from user's view and only visible for admins and moderators. They'll be marked in a different color (similar to reported posts).</p>
 					</div>
 				</div>
-				<a id="backstage"><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3></a>
+				<a id="backstage"></a><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3>
 				<img class="img-responsive" src="../img/about/backstage.png" />
 				<p>The Backstage has been redesigned from scratch with an all new design and more focus on management. The Backstage has now more visual appeal due to icons. New features have jumped into the Backstage, like <i>Admin Notes</i> and more. However, we did remove the Backstage Accent feature. Sorry.</p>
 				<div class="row">
@@ -176,7 +177,7 @@ require 'header.php';
 						<p>Did your theme break the login form? No worries, there now is a login form build into the Backstage, so you can change the theme back or manage your forum through there.</p>
 					</div>
 				</div>
-				<a id="theme"><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3></a>
+				<a id="theme"></a><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Theme Engine 6</h4>
@@ -210,7 +211,7 @@ require 'header.php';
 						<p>Sunset is a theme based on Sunrise, however, it uses a more classic view on forum software. This is a nice team if you want to kick off with a fresh design, yet like the old way of working with forum software better.</p>
 					</div>
 				</div>
-				<a id="others"><h3>Other improvements and notes</h3></a>
+				<a id="others"></a><h3>Other improvements and notes</h3>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Installation</h4>
@@ -228,7 +229,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.3754.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.38xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -238,7 +239,7 @@ require 'header.php';
 					</div>
 				</div>
 				<hr />
-				<a id="updates"><h3>Luna 1.0 Updates</h3></a>
+				<a id="updates"></a><h3>Luna 1.0 Updates</h3>
 				<span class="change-list">
 					<h4><a id="p0"></a>Preview 0 &middot; Build 3112</h4>
 					<div class="row">
@@ -476,6 +477,19 @@ require 'header.php';
 								<span class="label label-primary">3754</span> A lot of coding convention improvements<br />
 								<span class="label label-primary">3754</span> More extensive use of icons throughout the interface<br />
 								<span class="label label-primary">3754</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4><a id="p3"></a>Preview 3 Update 1 &middot; Build 38xx</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> You can now undo a soft delete
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
