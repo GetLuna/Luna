@@ -36,12 +36,12 @@ $avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
 
 if ($action == 'readnoti') {
 	$db->query('UPDATE '.$db->prefix.'notifications SET viewed = 1 WHERE user_id = '.$id.' AND viewed = 0') or error('Unable to update the notification status', __FILE__, __LINE__, $db->error());
-	confirm_referrer('me.php');
+	confirm_referrer('notifications.php');
 
 	redirect('notifications.php?id='.$id);
 } elseif ($action == 'delnoti') {
 	$db->query('DELETE FROM '.$db->prefix.'notifications WHERE viewed = 1') or error('Unable to remove notifications', __FILE__, __LINE__, $db->error());
-	confirm_referrer('me.php');
+	confirm_referrer('notifications.php');
 
 	redirect('notifications.php?id='.$id);
 }
