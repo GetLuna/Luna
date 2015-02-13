@@ -172,9 +172,13 @@ require 'header.php';
 						<img class="img-responsive" src="../img/about/backstagefirstrun.png" />
 						<p>New to Luna? We'll give you a hand with the important settings you need to get your community ready to kick off and grow beyond! Of course, you can remove it too.</p>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-5">
 						<h4>Backstage login</h4>
 						<p>Did your theme break the login form? No worries, there now is a login form build into the Backstage, so you can change the theme back or manage your forum through there.</p>
+					</div>
+					<div class="col-sm-7">
+						<h4>Maintenance options</h4>
+						<p>We're adding a couple of new maintenance options to Luna under the new category "Maintenance" in the Backstage. You can find the contents from the Maintenance-page that used to be under Settings here, but also manage your database and other features to clean up a bit.</p>
 					</div>
 				</div>
 				<a id="theme"></a><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3>
@@ -233,7 +237,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>68 bugs have been fixed.</p>
+						<p>69 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -484,11 +488,15 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> You can now undo a soft delete
+								<span class="label label-primary">38xx</span> You can now undo a soft delete<br />
+								<span class="label label-primary">38xx</span> Managing notifications is now possible again<br />
+								<span class="label label-primary">38xx</span> Maintenance and Prune are split from each other
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
+								<span class="label label-primary">38xx</span> Maintenance is a new category in the Backstage<br />
+								<span class="label label-primary">38xx</span> Database has been added udner "Maintenance"<br />
 								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
