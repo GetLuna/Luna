@@ -57,6 +57,7 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-bars"></span> Menu';
 	elseif ($page == 'theme')
 		$page_title = '<span class="fa fa-fw fa-paint-brush"></span> Theme';
+
 	elseif ($page == 'maintenance')
 		$page_title = '<span class="fa fa-fw fa-coffee"></span> Maintenance';
 
@@ -83,7 +84,8 @@ function load_admin_nav($section, $page) {
 				<li class="<?php if ($section == 'backstage') echo 'active'; ?>"><a href="index.php"><span class="fa fa-dashboard"></span> <?php echo $lang['Backstage'] ?></a></li>
 				<li class="<?php if ($section == 'content') echo 'active'; ?>"><a href="board.php"><span class="fa fa-file"></span> <?php echo $lang['Content'] ?></a></li>
 				<li class="<?php if ($section == 'users') echo 'active'; ?>"><a href="users.php"><span class="fa fa-users"></span> <?php echo $lang['Users'] ?></a></li>
-				<li class="<?php if ($section == 'settings') echo 'active'; ?>"><a href="settings.php"><span class="fa fa-cog"></span> <?php echo $lang['Settings'] ?></a></li>		
+				<li class="<?php if ($section == 'settings') echo 'active'; ?>"><a href="settings.php"><span class="fa fa-cog"></span> <?php echo $lang['Settings'] ?></a></li>
+				<li class="<?php if ($section == 'maintenance') echo 'active'; ?>"><a href="settings.php"><span class="fa fa-coffee"></span> <?php echo $lang['Maintenance'] ?></a></li>	
 <?php
 
 	// See if there are any plugins
@@ -166,7 +168,11 @@ function load_admin_nav($section, $page) {
 				<li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><span class="fa fa-fw fa-eye"></span><span class="hidden-xs"> Appearance</span></a></li>
 				<li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-fw fa-bars"></span><span class="hidden-xs"> Menu</span></a></li>
 				<li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> Theme</span></a></li>
-				<li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><span class="fa fa-fw fa-coffee"></span><span class="hidden-xs"> Maintenance</span></a></li>
+			</ul>
+			<?php } if ($section == 'maintenance') { ?>
+			<ul class="nav nav-tabs" role="tablist">
+				<li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="settings.php"><span class="fa fa-fw fa-coffee"></span><span class="hidden-xs"> Maintenance</span></a></li>
+				<li<?php if($page == 'database') echo ' class="active"' ?>><a href="features.php"><span class="fa fa-fw fa-database"></span><span class="hidden-xs"> Database</span></a></li>
 			</ul>
 			<?php } ?>
 		</div>

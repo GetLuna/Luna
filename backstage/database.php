@@ -86,7 +86,7 @@ function get_table_def_mysql($table, $crlf) {
 	$result = $db->query($field_query);
 	if(!$result) {
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Failed to get field list');
 	}
 
@@ -118,7 +118,7 @@ function get_table_def_mysql($table, $crlf) {
 	$result = $db->query($key_query);
 	if(!$result) {
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Failed to get Indexed Fields');
 	}
 
@@ -168,7 +168,7 @@ function get_table_content_mysql($table, $handler) {
 	// Grab the data from the table.
 	if (!($result = $db->query("SELECT * FROM $table"))) {
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Failed to get table content');
 	}
 
@@ -343,7 +343,7 @@ switch($db_type) {
 		break;
 	default:
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Sorry your database type is not supported');
 }
 // Start actual db stuff
@@ -413,7 +413,7 @@ exit;
 	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "") {
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('No file was uploaed or the upload failed, the database was not restored');
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) ) {
@@ -433,7 +433,7 @@ exit;
 				}
 			} else {
 				require 'header.php';
-				load_admin_nav('database', 'database');
+				load_admin_nav('maintenance', 'database');
 				message_backstage('Sorry the database could not be restored');
 			}
 		} else {
@@ -441,7 +441,7 @@ exit;
 		}
 	} else {
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Error the file name or file format caused an error, the database was not restored');
 	}
 	if($sql_query != "") {
@@ -450,7 +450,7 @@ exit;
 		$pieces = split_sql_file($sql_query, ";");
 		if(defined('FORUM_DEBUG')) {
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 ?>
 	<div>
 		<h2>Debug info</h2>
@@ -468,7 +468,7 @@ exit;
 				$result = $db->query($sql);
 				if(!$result) {
 					require 'header.php';
-					load_admin_nav('database', 'database');
+					load_admin_nav('maintenance', 'database');
 					message_backstage('Error imported backup file, the database probably has not been restored');
 				}
 			}
@@ -491,7 +491,7 @@ exit;
 <?php
 	} else {
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Restore Complete');
 	}
 } elseif (isset($_POST['repairall'])) {
@@ -501,7 +501,7 @@ exit;
 	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Tables error, repair failed');
 	}
 	$tables = array();
@@ -517,7 +517,7 @@ exit;
 		$sql = 'REPAIR TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql)) {
 			require 'header.php';
-			load_admin_nav('database', 'database');
+			load_admin_nav('maintenance', 'database');
 			message_backstage('SQL error, repair failed');
 		}
 	}
@@ -530,7 +530,7 @@ exit;
 	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
 		require 'header.php';
-		load_admin_nav('database', 'database');
+		load_admin_nav('maintenance', 'database');
 		message_backstage('Tables error, optimise failed');
 	}
 	$tables = array();
@@ -546,12 +546,12 @@ exit;
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql)) {
 			require 'header.php';
-			load_admin_nav('database', 'database');
+			load_admin_nav('maintenance', 'database');
 			message_backstage('SQL error, optimise failed');
 		}
 	}
 	require 'header.php';
-	load_admin_nav('database', 'database');
+	load_admin_nav('maintenance', 'database');
 	message_backstage('All tables optimised');
 } else {
 	
@@ -559,7 +559,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Database']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
-	load_admin_nav('database', 'database');
+	load_admin_nav('maintenance', 'database');
 ?>
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">

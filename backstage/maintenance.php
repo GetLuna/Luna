@@ -25,7 +25,7 @@ if ($action == 'rebuild') {
 
 	// Check per page is > 0
 	if ($per_page < 1) {
-		load_admin_nav('settings', 'maintenance');
+		load_admin_nav('maintenance', 'maintenance');
 		message_backstage($lang['Posts must be integer message']);
 	}
 
@@ -155,7 +155,7 @@ if ($action == 'prune') {
 
 	$prune_days = luna_trim($_POST['req_prune_days']);
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days)) {
-		load_admin_nav('settings', 'maintenance');
+		load_admin_nav('maintenance', 'maintenance');
 		message_backstage($lang['Days must be integer message']);
 	}
 
@@ -181,7 +181,7 @@ if ($action == 'prune') {
 	$num_topics = $db->result($result);
 
 	if (!$num_topics) {
-		load_admin_nav('settings', 'maintenance');
+		load_admin_nav('maintenance', 'maintenance');
 		message_backstage(sprintf($lang['No old topics message'], $prune_days));
 	}
 
@@ -189,7 +189,7 @@ if ($action == 'prune') {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Prune']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('settings', 'maintenance');
+	load_admin_nav('maintenance', 'maintenance');
 
 ?>
 <div class="panel panel-default">
@@ -226,7 +226,7 @@ if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
 	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '') {
-		load_admin_nav('settings', 'maintenance');
+		load_admin_nav('maintenance', 'maintenance');
 		message_backstage('You need to set all settings!');
 	}
 
@@ -261,7 +261,7 @@ if (isset($_POST['userprune'])) {
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
-	load_admin_nav('settings', 'maintenance');
+	load_admin_nav('maintenance', 'maintenance');
 	message_backstage('Pruning complete. Users pruned '.$users_pruned.'.');
 }
 
@@ -322,7 +322,7 @@ if (isset($_POST['form_sent'])) {
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
-	load_admin_nav('settings', 'maintenance');
+	load_admin_nav('maintenance', 'maintenance');
 
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
