@@ -60,9 +60,10 @@ function load_admin_nav($section, $page) {
 
 	elseif ($page == 'maintenance')
 		$page_title = '<span class="fa fa-fw fa-coffee"></span> Maintenance';
-
+	elseif ($page == 'prune')
+		$page_title = '<span class="fa fa-fw fa-recycle"></span> Prune';
 	elseif ($page == 'database')
-		$page_title = 'Database management';
+		$page_title = '<span class="fa fa-fw fa-database"></span> Database management';
 		
 	else
 		$page_title = $page;
@@ -85,7 +86,7 @@ function load_admin_nav($section, $page) {
 				<li class="<?php if ($section == 'content') echo 'active'; ?>"><a href="board.php"><span class="fa fa-file"></span> <?php echo $lang['Content'] ?></a></li>
 				<li class="<?php if ($section == 'users') echo 'active'; ?>"><a href="users.php"><span class="fa fa-users"></span> <?php echo $lang['Users'] ?></a></li>
 				<li class="<?php if ($section == 'settings') echo 'active'; ?>"><a href="settings.php"><span class="fa fa-cog"></span> <?php echo $lang['Settings'] ?></a></li>
-				<li class="<?php if ($section == 'maintenance') echo 'active'; ?>"><a href="settings.php"><span class="fa fa-coffee"></span> <?php echo $lang['Maintenance'] ?></a></li>	
+				<li class="<?php if ($section == 'maintenance') echo 'active'; ?>"><a href="maintenance.php"><span class="fa fa-coffee"></span> <?php echo $lang['Maintenance'] ?></a></li>	
 <?php
 
 	// See if there are any plugins
@@ -171,8 +172,9 @@ function load_admin_nav($section, $page) {
 			</ul>
 			<?php } if ($section == 'maintenance') { ?>
 			<ul class="nav nav-tabs" role="tablist">
-				<li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="settings.php"><span class="fa fa-fw fa-coffee"></span><span class="hidden-xs"> Maintenance</span></a></li>
-				<li<?php if($page == 'database') echo ' class="active"' ?>><a href="features.php"><span class="fa fa-fw fa-database"></span><span class="hidden-xs"> Database</span></a></li>
+				<li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><span class="fa fa-fw fa-coffee"></span><span class="hidden-xs"> Maintenance</span></a></li>
+				<li<?php if($page == 'prune') echo ' class="active"' ?>><a href="prune.php"><span class="fa fa-fw fa-recycle"></span><span class="hidden-xs"> Prune</span></a></li>
+				<li<?php if($page == 'database') echo ' class="active"' ?>><a href="database.php"><span class="fa fa-fw fa-database"></span><span class="hidden-xs"> Database</span></a></li>
 			</ul>
 			<?php } ?>
 		</div>
