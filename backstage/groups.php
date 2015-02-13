@@ -129,7 +129,43 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo luna_htmlspecialchars($group['g_title']) ?></label>
+					<label class="col-sm-3 control-label">Show deleted content</label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
+								Allow users to view topics and posts that have been soft deleted.
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Soft delete posts</label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
+								Allow users soft delete posts from all users.
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Soft delete topics</label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
+								Allow users soft delete topics from all users.
+							</label>
+						</div>
+					</div>
+				</div>
+	<?php endif; endif; ?>
+	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
+				<hr />
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Inbox</label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
