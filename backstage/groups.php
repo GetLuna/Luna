@@ -155,7 +155,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
 								Allow users soft delete topics from all users.
 							</label>
 						</div>
