@@ -543,6 +543,21 @@ class Installer {
 					'datatype'		=> 'SMALLINT(6)',
 					'allow_null'	=> false,
 					'default'		=> '60'
+				),
+				'g_soft_delete_view'		=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '1'
+				),
+				'g_soft_delete_posts'		=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '1'
+				),
+				'g_soft_delete_topics'		=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '1'
 				)
 			),
 			'PRIMARY KEY'	=> array('g_id')
@@ -1506,14 +1521,14 @@ class Installer {
 		
 		$db->start_transaction();
 
-		// Insert guest and first admin user
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape($lang['Administrators']).'\', \''.$db->escape($lang['Administrator']).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		// Insert the first 4 groups
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape($lang['Administrators']).'\', \''.$db->escape($lang['Administrator']).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape($lang['Moderators']).'\', \''.$db->escape($lang['Moderator']).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape($lang['Moderators']).'\', \''.$db->escape($lang['Moderator']).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape($lang['Guests']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape($lang['Guests']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape($lang['Members']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape($lang['Members']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		
 		$db->end_transaction();
 	}
