@@ -22,7 +22,7 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-moon-o"></span> About Luna';
 
 	elseif ($page == 'board')
-		$page_title = '<span class="fa fa-fw fa-sort-amount-desc"></span> Board structure';
+		$page_title = '<span class="fa fa-fw fa-sort-amount-desc"></span> Board';
 	elseif ($page == 'moderate')
 		$page_title = '<span class="fa fa-fw fa-tasks"></span> Moderate';
 	elseif ($page == 'censoring')
@@ -31,7 +31,7 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-exclamation-triangle"></span> Reports';
 
 	elseif ($page == 'users')
-		$page_title = '<span class="fa fa-fw fa-search"></span> User search';
+		$page_title = '<span class="fa fa-fw fa-search"></span> Search';
 	elseif ($page == 'tools')
 		$page_title = '<span class="fa fa-fw fa-wrench"></span> Tools';
 	elseif ($page == 'ranks')
@@ -47,12 +47,12 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-cogs"></span> Settings';
 	elseif ($page == 'features')
 		$page_title = '<span class="fa fa-fw fa-sliders"></span> Features';
+	elseif ($page == 'appearance')
+		$page_title = '<span class="fa fa-fw fa-eye"></span> Appearance';
 	elseif ($page == 'registration')
 		$page_title = '<span class="fa fa-fw fa-plus-circle"></span> Registration';
 	elseif ($page == 'email')
 		$page_title = '<span class="fa fa-fw fa-envelope"></span> Email';
-	elseif ($page == 'appearance')
-		$page_title = '<span class="fa fa-fw fa-eye"></span> Appearance';
 	elseif ($page == 'menu')
 		$page_title = '<span class="fa fa-fw fa-bars"></span> Menu';
 	elseif ($page == 'theme')
@@ -146,14 +146,14 @@ function load_admin_nav($section, $page) {
 			</ul>
 			<?php } if ($section == 'content') { ?>
 			<ul class="nav nav-tabs" role="tablist">
-				<li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-fw fa-sort-amount-desc"></span><span class="hidden-xs"> Board structure</span></a></li>
+				<li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-fw fa-sort-amount-desc"></span><span class="hidden-xs"> Board</span></a></li>
 				<li<?php if($page == 'moderate') echo ' class="active"' ?>><a href="moderate.php"><span class="fa fa-fw fa-tasks"></span><span class="hidden-xs">  Moderate</span></a></li>
 				<li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><span class="fa fa-fw fa-eye-slash"></span><span class="hidden-xs"> Censoring</span></a></li>
 				<li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><span class="fa fa-fw fa-exclamation-triangle"></span><span class="hidden-xs"> Reports</span></a></li>
 			</ul>
 			<?php } if ($section == 'users') { ?>
 			<ul class="nav nav-tabs" role="tablist">
-				<li<?php if($page == 'users') echo ' class="active"' ?>><a href="users.php"><span class="fa fa-fw fa-search"></span><span class="hidden-xs"> User search</span></a></li>
+				<li<?php if($page == 'users') echo ' class="active"' ?>><a href="users.php"><span class="fa fa-fw fa-search"></span><span class="hidden-xs"> Search</span></a></li>
 				<li<?php if($page == 'tools') echo ' class="active"' ?>><a href="tools.php"><span class="fa fa-fw fa-wrench"></span><span class="hidden-xs"> Tools</span></a></li>
 				<li<?php if($page == 'ranks') echo ' class="active"' ?>><a href="ranks.php"><span class="fa fa-fw fa-chevron-up"></span><span class="hidden-xs"> Ranks</span></a></li>
 				<li<?php if($page == 'groups') echo ' class="active"' ?>><a href="groups.php"><span class="fa fa-fw fa-group"></span><span class="hidden-xs"> Groups</span></a></li>
@@ -164,9 +164,9 @@ function load_admin_nav($section, $page) {
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'settings') echo ' class="active"' ?>><a href="settings.php"><span class="fa fa-fw fa-cogs"></span><span class="hidden-xs"> Settings</span></a></li>
 				<li<?php if($page == 'features') echo ' class="active"' ?>><a href="features.php"><span class="fa fa-fw fa-sliders"></span><span class="hidden-xs"> Features</span></a></li>
+				<li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><span class="fa fa-fw fa-eye"></span><span class="hidden-xs"> Appearance</span></a></li>
 				<li<?php if($page == 'registration') echo ' class="active"' ?>><a href="registration.php"><span class="fa fa-fw fa-plus-circle"></span><span class="hidden-xs"> Registration</span></a></li>
 				<li<?php if($page == 'email') echo ' class="active"' ?>><a href="email.php"><span class="fa fa-fw fa-envelope"></span><span class="hidden-xs"> Email</span></a></li>
-				<li<?php if($page == 'appearance') echo ' class="active"' ?>><a href="appearance.php"><span class="fa fa-fw fa-eye"></span><span class="hidden-xs"> Appearance</span></a></li>
 				<li<?php if($page == 'menu') echo ' class="active"' ?>><a href="menu.php"><span class="fa fa-fw fa-bars"></span><span class="hidden-xs"> Menu</span></a></li>
 				<li<?php if($page == 'theme') echo ' class="active"' ?>><a href="theme.php"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> Theme</span></a></li>
 			</ul>
