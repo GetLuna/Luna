@@ -108,8 +108,6 @@ $lang = array(
 'Moderate forum'					=>	'Moderate forum',
 'Powered by'						=>	'Powered by %s',
 
-// Checked untill this line
-
 // Debug information
 'Debug table'						=>	'Debug information',
 'Querytime'							=>	'Generated in %1$s seconds, %2$s queries executed',
@@ -139,10 +137,6 @@ $lang = array(
 'RSS topic feed'					=>	'RSS topic feed',
 'Atom topic feed'					=>	'Atom topic feed',
 
-// Admin related stuff in the header
-'New reports'						=>	'There are new reports',
-'Maintenance mode enabled'			=>	'Maintenance mode is enabled!',
-
 // Units for file sizes
 'Size unit B'						=>	'%s B',
 'Size unit KiB'						=>	'%s KiB',
@@ -151,6 +145,8 @@ $lang = array(
 'Size unit TiB'						=>	'%s TiB',
 'Size unit PiB'						=>	'%s PiB',
 'Size unit EiB'						=>	'%s EiB',
+
+// Checked untill this line
 
 // Language for installation
 'Choose install language'		=>	'Choose the install script language',
