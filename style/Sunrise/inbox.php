@@ -23,11 +23,11 @@ if (!defined('FORUM'))
 		<fieldset>
             <div class="btn-toolbar">
             	<div class="btn-group">
-					<button type="submit" value="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Mark as read select'] ?></button>
-					<button type="submit" value="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php echo $lang['Mark as unread select'] ?></button>
+					<button type="submit" name="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Mark as read select'] ?></button>
+					<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php echo $lang['Mark as unread select'] ?></button>
                 </div>
                 <div class="btn-group">
-					<button type="submit" value="delete_multiple" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></button>
+					<button type="submit" name="delete_multiple" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></button>
                 </div>
 			</div>
 			<div class="panel panel-default">
@@ -111,16 +111,6 @@ if ($db->num_rows($result)) {
 				</table>
 			</div>
 			<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'inbox.php?') ?></p>
-			<div class="input-group">
-				<select class="form-control" name="action">
-					<option value="markread"><?php echo $lang['Mark as read select'] ?></option>
-					<option value="markunread"><?php echo $lang['Mark as unread select'] ?></option>
-					<option value="delete_multiple"><?php echo $lang['Delete'] ?></option>
-				</select>
-				<div class="input-group-btn">
-					<input class="btn btn-primary" type="submit" value="<?php echo $lang['OK'] ?>" />
-				</div>
-			</div>
 		</fieldset>
 	</form>
 </div>

@@ -491,13 +491,14 @@ require 'header.php';
 								<span class="label label-primary">38xx</span> You can now undo a soft delete<br />
 								<span class="label label-primary">38xx</span> Managing notifications is now possible again<br />
 								<span class="label label-primary">38xx</span> Maintenance and Prune are split from each other<br />
-								<span class="label label-primary">38xx</span> The notifications page has been improved
+								<span class="label label-primary">38xx</span> The notifications page has been improved<br />
+								<span class="label label-primary">38xx</span> Split logic from markup for help and Inbox
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-primary">38xx</span> Maintenance is a new category in the Backstage<br />
-								<span class="label label-primary">38xx</span> Database has been added udner "Maintenance"<br />
+								<span class="label label-primary">38xx</span> Database has been added under "Maintenance"<br />
 								<span class="label label-primary">38xx</span> Further usability improvements to Inbox<br />
 								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
