@@ -36,6 +36,7 @@ $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUE
 // Action ?
 $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete_multiple' || $_REQUEST['action'] == 'markread' || $_REQUEST['action'] == 'markunread')) ? $_REQUEST['action'] : '');
 
+$id = $luna_user['id'];
 
 if ($action != '') {	
 	// Make sure they got here from the site
