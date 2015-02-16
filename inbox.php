@@ -34,7 +34,7 @@ $avatar_user_card = draw_user_avatar($luna_user['id'], 'visible-lg-block');
 $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUEST['p']);
 
 // Action ?
-$action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete_multiple' || $_REQUEST['action'] == 'markread' || $_REQUEST['action'] == 'markunread')) ? $_REQUEST['action'] : '');
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
 $id = $luna_user['id'];
 
@@ -93,8 +93,6 @@ if ($action != '') {
 			
 			if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
 				message($lang['No permission']);
-
-			load_inbox_nav('inbox');
 ?>
 <form method="post" action="inbox.php">
 	<div class="panel panel-danger">
