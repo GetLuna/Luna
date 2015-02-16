@@ -79,7 +79,7 @@ require 'header.php';
 				<a id="brand"></a><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3>
 				<img class="img-responsive" src="../img/about/brand.png" />
 				<p>Welcome to the first stable release of the third generation of our board software! This release officially rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an interesting feature, so read on to the more awesome parts of our giant changelog:</p>
-				<a id="users"><h3><span class="fa fa-fw fa-user"></span> User features</h3></a>
+				<a id="users"></a><h3><span class="fa fa-fw fa-user"></span> User features</h3>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Settings</h4>
