@@ -420,12 +420,10 @@ if (!empty($errors)) {
 	</div>
 	<div class="panel-body">
 		<p><?php echo $lang['Post errors info'] ?></p>
-			<ul>
 <?php
 	foreach ($errors as $cur_error)
-		echo "\t\t\t\t".'<li><strong>'.$cur_error.'</strong></li>'."\n";
+		echo "\t\t\t\t".$cur_error."\n";
 ?>
-			</ul>
 	</div>
 </div>
 <?php
@@ -484,9 +482,6 @@ $cur_index = 1;
 					</div>
 				</div>
 			</fieldset>
-		</div>
-		<div class="panel-footer">
-			<input class="btn btn-primary" type="submit" name="submit" value="<?php echo $lang['Submit'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="s" /> <input class="btn btn-default" type="submit" name="preview" value="<?php echo $lang['Preview'] ?>" tabindex="<?php echo $cur_index++ ?>" accesskey="p" />
 		</div>
 	</div>
 </form>
