@@ -46,6 +46,36 @@ if ($action == 'readnoti') {
 	redirect('notifications.php?id='.$id);
 }
 
+// Show notifications
+$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$id) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+$num_not_unseen = $db->result($result);
+
+if ($num_not_unseen == '0') {
+	$ind_not[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">No new notifications</a>';
+} else {
+	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+	while ($cur_notifi = $db->fetch_assoc($result)) {
+		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
+		$ind_not[] = '<a class="list-group-item" href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a>';
+	}
+}
+
+$result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$id) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+$num_not_seen = $db->result($result);
+
+if ($num_not_seen == '0') {
+	$ind_not_seen[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">No new notifications</a>';
+} else {
+	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+	while ($cur_notifi = $db->fetch_assoc($result)) {
+		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
+		$ind_not_seen[] = '<a class="list-group-item" href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a>';
+	}
+}
+
+$not = implode('', $ind_not);
+$not_seen = implode('', $ind_not_seen);
+
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 define('FORUM_ACTIVE_PAGE', 'me');
 require load_page('header.php');
