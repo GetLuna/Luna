@@ -17,16 +17,10 @@ if (!defined('FORUM'))
 </div>
 <div class="col-sm-9">
 	<h2 class="profile-settings-head">Notifications</h2>
-	<span class="btn-toolbar">
-		<span class="btn-group">
-			<a href="notifications.php?id=2&action=readnoti" class="btn btn-default">Mark as seen</a>
-			<a href="notifications.php?id=2&action=delnoti" class="btn btn-default">Delete seen notifications</a>
-		</span>
-	</span>
 	<div class="list-group">
-		<h3>New notifications</h3>
+		<h3>New notifications<span class="pull-right"><a href="notifications.php?id=2&action=readnoti" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> Mark as seen</a></span></h3>
 		<?php echo $not ?>
-		<h3>Old notifications</h3>
+		<h3>Seen notifications<span class="pull-right"><a href="notifications.php?id=2&action=delnoti" class="btn btn-danger"><span class="fa fa-fw fa-times"></span> Delete notifications</a></span></h3>
 		<?php echo $not_seen ?>
 	</div>
 </div>
