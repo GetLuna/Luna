@@ -43,24 +43,14 @@ if (!defined('FORUM'))
 		<?php endif; ?>
 	</div>
 	<div class="col-sm-9">
-		<div class="row-nav">
-			<span class="pull-right">
-				<?php echo $paging_links ?>
-			</span>
-		</div>
-		
 		<div class="jumbotron thread-jumbotron">
+			<span class="pull-right"><?php echo $paging_links ?></span>
 			<h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
 		</div>
 		<?php draw_topic_list(); ?>
 		<form method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 		<?php draw_editor('10'); ?>
 		</form>
-		
-		<div class="row-nav">
-			<span class="pull-right">
-				<?php echo $paging_links ?>
-			</span>
-		</div>
+		<div class="pull-right"><?php echo $paging_links ?></div>
 	</div>
 </div>
