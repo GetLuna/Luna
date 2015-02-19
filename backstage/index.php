@@ -12,13 +12,15 @@ require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: ../login.php");
+	
+$action = isset($_GET['action']) ? $_GET['action'] : null;
 
 // Check if install.php is a thing
 if ($action == 'remove_install_file') {
 	$deleted = @unlink(FORUM_ROOT.'install.php');
 
 	if ($deleted)
-		redirect('index.php');
+		redirect('backstage/index.php');
 	else
 		message_backstage($lang['Delete install.php failed']);
 }
