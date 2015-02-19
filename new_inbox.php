@@ -355,7 +355,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			// Finally, edit the message - maybe this query is unsafe?
 			$db->query('UPDATE '.$db->prefix.'messages SET message=\''.$db->escape($p_message).'\' WHERE message=\''.$db->escape($message).'\' AND id IN ('.$ids_edit.')') or error('Unable to edit the message', __FILE__, __LINE__, $db->error());
 		}
-			redirect('inbox.php', $lang['Sent redirect']);
+			redirect('inbox.php');
 	}
 } else {
 	// To user(s)
