@@ -202,8 +202,8 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 					<input type="hidden" name="all_topic" value="<?php echo $cur_delete['show_message'] ?>" />
 			<div class="inform">
 				<div class="forminfo">
-					<h3><span><?php printf($cur_delete['show_message'] ? $lang_delete['Topic by'] : $lang_delete['Reply by'], '<strong>'.luna_htmlspecialchars($cur_delete['sender']).'</strong>', format_time($cur_delete['posted'])) ?></span></h3>
-					<p><?php echo ($cur_delete['show_message']) ? '<strong>'.$lang_delete['Topic warning'].'<br /></strong>'.$lang['Topic warning info'].'' : '<strong>'.$lang_delete['Warning'].'</strong>' ?><br /><?php echo $lang_delete['Delete info'] ?></p>
+					<h3><span><?php printf($cur_delete['show_message'] ? $lang['Topic by'] : $lang['Reply by'], '<strong>'.luna_htmlspecialchars($cur_delete['sender']).'</strong>', format_time($cur_delete['posted'])) ?></span></h3>
+					<p><?php echo ($cur_delete['show_message']) ? '<strong>'.$lang['Topic warning'].'<br /></strong>'.$lang['Topic warning info'].'' : '<strong>'.$lang['Warning'].'</strong>' ?><br /><?php echo $lang['Delete info'] ?></p>
 					<?php if ($luna_user['is_admmod']) : ?>
 					<label><input type="checkbox" name="delete_all" value="1" /><?php echo $lang['Delete for everybody'] ?></label>
 					<?php endif; ?>
@@ -322,7 +322,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			$user_title = censor_words($user_title);
 
 		// Format the online indicator
-		$is_online = ($cur_post['is_online'] == $cur_post['sender_id']) ? '<strong>'.$lang_topic['Online'].'</strong>' : '<span>'.$lang_topic['Offline'].'</span>';
+		$is_online = ($cur_post['is_online'] == $cur_post['sender_id']) ? '<strong>'.$lang['Online'].'</strong>' : '<span>'.$lang['Offline'].'</span>';
 
 		if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
 			if (isset($user_avatar_cache[$cur_post['sender_id']]))
@@ -337,13 +337,13 @@ while ($cur_post = $db->fetch_assoc($result))
 				if ($luna_config['o_censoring'] == '1')
 					$cur_post['location'] = censor_words($cur_post['location']);
 
-				$user_info[] = '<dd><span>'.$lang_topic['From'].' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
+				$user_info[] = '<dd><span>'.$lang['From'].' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
 			}
 
-			$user_info[] = '<dd><span>'.$lang_topic['Registered'].' '.format_time($cur_post['registered'], true).'</span></dd>';
+			$user_info[] = '<dd><span>'.$lang['Registered'].' '.format_time($cur_post['registered'], true).'</span></dd>';
 
 			if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
-				$user_info[] = '<dd><span>'.$lang_topic['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+				$user_info[] = '<dd><span>'.$lang['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 
 			// Now let's deal with the contact links (Email and URL)
 			if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
@@ -357,22 +357,22 @@ while ($cur_post = $db->fetch_assoc($result))
 			}
 
 			if ($cur_post['url'] != '')
-				$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_post['url']).'">'.$lang_topic['Website'].'</a></span>';
+				$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_post['url']).'">'.$lang['Website'].'</a></span>';
 				
 		}
 
 		if ($luna_user['is_admmod']) {
-			$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_ip'].'" title="'.$cur_post['sender_ip'].'">'.$lang_topic['IP address logged'].'</a></span></dd>';
+			$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_ip'].'" title="'.$cur_post['sender_ip'].'">'.$lang['IP address logged'].'</a></span></dd>';
 
 			if ($cur_post['admin_note'] != '')
-				$user_info[] = '<dd><span>'.$lang_topic['Note'].' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+				$user_info[] = '<dd><span>'.$lang['Note'].' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 		}
 	} else { // If the poster is a guest (or a user that has been deleted)
 		$username = luna_htmlspecialchars($cur_post['username']);
 		$user_title = get_title($cur_post);
 
 		if ($luna_user['is_admmod'])
-			$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_id'].'" title="'.$cur_post['sender_ip'].'">'.$lang_topic['IP address logged'].'</a></span></dd>';
+			$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_id'].'" title="'.$cur_post['sender_ip'].'">'.$lang['IP address logged'].'</a></span></dd>';
 
 		if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
 			$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['poster_email'].'">'.$lang['Email'].'</a></span>';
@@ -382,10 +382,10 @@ while ($cur_post = $db->fetch_assoc($result))
 
 		// Generation post action array (reply, delete etc.)
 		if ($luna_user['id'] == $cur_post['sender_id'] || $luna_user['is_admmod']) {
-			$post_actions[] = '<li class="postdelete"><span><a href="viewinbox.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Delete'].'</a></span></li>';
-			$post_actions[] = '<li class="postedit"><span><a href="new_inbox.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang_topic['Edit'].'</a></span></li>';
+			$post_actions[] = '<li class="postdelete"><span><a href="viewinbox.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Delete'].'</a></span></li>';
+			$post_actions[] = '<li class="postedit"><span><a href="new_inbox.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Edit'].'</a></span></li>';
 		}
-		$post_actions[] = '<li class="postquote"><span><a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang_topic['Quote'].'</a></span></li>';
+		$post_actions[] = '<li class="postquote"><span><a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang['Quote'].'</a></span></li>';
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 	$cur_post['message'] = parse_message($cur_post['message']);
@@ -426,12 +426,9 @@ while ($cur_post = $db->fetch_assoc($result))
 }
 ?>
 <p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
-<?php
-// Display quick post if enabled
-if (!empty($reply_link) && $quickpost) {
-?>
+
 <div id="quickpost" class="blockform">
-	<h2><span><?php echo $lang_topic['Quick post'] ?></span></h2>
+	<h2><span><?php echo $lang['Quick post'] ?></span></h2>
 	<div class="box">
 		<form method="post" id="post" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
 			<div class="inform">
@@ -452,13 +449,10 @@ if (!empty($reply_link) && $quickpost) {
 					</div>
 				</fieldset>
 			</div>
-			<p class="buttons"><input type="submit" name="submit" tabindex="2" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input type="submit" name="preview" tabindex="2" value="<?php echo $lang_topic['Preview'] ?>" accesskey="s" /></p>
+			<p class="buttons"><input type="submit" name="submit" tabindex="2" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input type="submit" name="preview" tabindex="2" value="<?php echo $lang['Preview'] ?>" accesskey="s" /></p>
 		</form>
 	</div>
 </div>
-<?php
-}
-?>
 </div>
 <?php
 require load_page('footer.php');

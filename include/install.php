@@ -160,7 +160,7 @@ class Installer {
 			case 'pgsql':
 				$pgsql_info = $db->get_version();
 				if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
-					error(sprintf($lang_install['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+					error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
 				break;
 	
 			case 'sqlite':
@@ -183,7 +183,7 @@ class Installer {
 
 		// Validate prefix
 		if (strlen($db_prefix) > 0 && (!preg_match('%^[a-zA-Z_][a-zA-Z0-9_]*$%', $db_prefix) || strlen($db_prefix) > 40))
-		error(sprintf($lang_install['Table prefix error'], $db->prefix));
+		error(sprintf($lang['Table prefix error'], $db->prefix));
 		
 		// Load the appropriate DB layer class
 		Installer::load_database_driver($db_type);
@@ -197,7 +197,7 @@ class Installer {
 		// Make sure FluxBB isn't already installed
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE id=1');
 		if ($db->num_rows($result))
-		error(sprintf($lang_install['Existing table error'], $db->prefix, $db_name));
+		error(sprintf($lang['Existing table error'], $db->prefix, $db_name));
 		
 		// Start a transaction
 		$db->start_transaction();

@@ -138,7 +138,7 @@ switch ($db_type) {
 	case 'pgsql':
 		$pgsql_info = $db->get_version();
 		if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
-			error(sprintf($lang_update['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+			error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
 
 		break;
 }
