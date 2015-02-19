@@ -380,10 +380,10 @@ while ($cur_post = $db->fetch_assoc($result))
 
 		// Generation post action array (reply, delete etc.)
 		if ($luna_user['id'] == $cur_post['sender_id'] || $luna_user['is_admmod']) {
-			$post_actions[] = '<li class="postdelete"><span><a href="viewinbox.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Delete'].'</a></span></li>';
-			$post_actions[] = '<li class="postedit"><span><a href="new_inbox.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Edit'].'</a></span></li>';
+			$post_actions[] = '<a href="viewinbox.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Delete'].'</a>';
+			$post_actions[] = '<a href="new_inbox.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Edit'].'</a>';
 		}
-		$post_actions[] = '<li class="postquote"><span><a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang['Quote'].'</a></span></li>';
+		$post_actions[] = '<a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang['Quote'].'</a>';
 
 	// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 	$cur_post['message'] = parse_message($cur_post['message']);
