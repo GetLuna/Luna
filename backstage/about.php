@@ -492,7 +492,8 @@ require 'header.php';
 								<span class="label label-primary">38xx</span> Managing notifications is now possible again<br />
 								<span class="label label-primary">38xx</span> Maintenance and Prune are split from each other<br />
 								<span class="label label-primary">38xx</span> The notifications page has been improved<br />
-								<span class="label label-primary">38xx</span> Split logic from markup for help and Inbox
+								<span class="label label-primary">38xx</span> Split logic from markup for help and Inbox<br />
+								<span class="label label-primary">38xx</span> Revamped conversation managment in Inbox
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -500,6 +501,8 @@ require 'header.php';
 								<span class="label label-primary">38xx</span> Maintenance is a new category in the Backstage<br />
 								<span class="label label-primary">38xx</span> Database has been added under "Maintenance"<br />
 								<span class="label label-primary">38xx</span> Further usability improvements to Inbox<br />
+								<span class="label label-primary">38xx</span> More parts of Inbox are now part of the Theme Engine<br />
+								<span class="label label-primary">38xx</span> Design improvements to Sunrise and Sunset<br />
 								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
