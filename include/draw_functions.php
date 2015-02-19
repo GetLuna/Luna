@@ -137,7 +137,7 @@ function draw_editor($height) {
 ?></textarea>
 		<div class="btn-toolbar textarea-toolbar textarea-bottom">
 			<div class="btn-group pull-right">
-				<button class="btn btn-with-text btn-default<?php if ($luna_config['o_post_responsive'] == 0) echo ' hidden-sm hidden-xs'; ?>" type="submit" name="preview" accesskey="p"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Preview'] ?></button>
+				<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Preview'] ?></button>
 				<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Submit'] ?></button>
 			</div>
 		</div>

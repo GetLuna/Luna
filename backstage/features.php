@@ -19,7 +19,6 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/features.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
-		'post_responsive'				=> isset($_POST['form']['post_responsive']) ? '1' : '0',
 		'users_online'					=> isset($_POST['form']['users_online']) ? '1' : '0',
 		'censoring'						=> isset($_POST['form']['censoring']) ? '1' : '0',
 		'signatures'					=> isset($_POST['form']['signatures']) ? '1' : '0',
@@ -85,12 +84,6 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Topics and posts'] ?></label>
 					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input disabled type="checkbox" name="form[post_responsive]" value="1" <?php if ($luna_config['o_post_responsive'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Responsive post help'] ?>
-							</label>
-						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[censoring]" value="1" <?php if ($luna_config['o_censoring'] == '1') echo ' checked' ?> />

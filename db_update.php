@@ -650,6 +650,10 @@ switch ($stage) {
 			$db->query('UPDATE '.$db->prefix.'groups SET g_soft_delete_topics = 1 WHERE g_id < 3') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
 		}
 
+		// Since 0.3.3800: Remove obsolete o_post_responsive permission from config table
+		if (array_key_exists('o_post_responsive', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_post_responsive\'') or error('Unable to remove config value \'o_post_responsive\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
