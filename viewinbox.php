@@ -149,7 +149,7 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 			}
 			
 			// Redirect
-			redirect('inbox.php', $lang['Del redirect']);
+			redirect('inbox.php');
 		} else {
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Delete message']);
 			
@@ -185,8 +185,6 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 				<ul>
 					<li class="isactive"><a href="inbox.php"><?php echo $lang['Inbox'] ?></a></li>
 					<li><a href="new_inbox.php"><?php echo $lang['Write message'] ?></a></li>
-					<li><a href="sending_lists.php"><?php echo $lang['Sending lists'] ?></a></li>
-					<li><a href="contacts.php"><?php echo $lang['Contacts'] ?></a></li>
 				</ul>
 			</div>
 		</div>
@@ -195,11 +193,11 @@ $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $
 <div class="blockform">
 	<div class="box">
 		<form action="viewinbox.php" method="post">
-					<input type="hidden" name="action" value="delete" />
-					<input type="hidden" name="mid" value="<?php echo $mid ?>" />
-					<input type="hidden" name="tid" value="<?php echo $tid ?>" />
-					<input type="hidden" name="delete_comply" value="1" />
-					<input type="hidden" name="all_topic" value="<?php echo $cur_delete['show_message'] ?>" />
+			<input type="hidden" name="action" value="delete" />
+			<input type="hidden" name="mid" value="<?php echo $mid ?>" />
+			<input type="hidden" name="tid" value="<?php echo $tid ?>" />
+			<input type="hidden" name="delete_comply" value="1" />
+			<input type="hidden" name="all_topic" value="<?php echo $cur_delete['show_message'] ?>" />
 			<div class="inform">
 				<div class="forminfo">
 					<h3><span><?php printf($cur_delete['show_message'] ? $lang['Topic by'] : $lang['Reply by'], '<strong>'.luna_htmlspecialchars($cur_delete['sender']).'</strong>', format_time($cur_delete['posted'])) ?></span></h3>
@@ -399,61 +397,16 @@ while ($cur_post = $db->fetch_assoc($result))
 			$signature_cache[$cur_post['id']] = $signature;
 		}
 	}
-?>
-<div id="p<?php echo $cur_post['id'] ?>" class="row comment <?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; ?><?php if ($post_count == 1) echo ' onlypost'; ?><?php if ($cur_post['marked'] == true) echo ' marked'; ?>">
-	<div class="col-xs-12">
-		<div class="panel panel-default level<?php echo $cur_post['level'] ?>">
-			<div class="panel-body">
-				<div class="media">
-					<a class="pull-left <?php echo $is_online; ?>" href="#">
-						<?php echo $user_avatar; ?>
-					</a>
-					<div class="media-body">
-						<h2><?php echo $username ?> <small><?php echo $user_title ?></small></h2>
-						<a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a>
-					</div>
-				</div>
-				<hr />
-				<?php echo $cur_post['message']."\n" ?>
-				<?php if (($signature != '') || (!$luna_user['is_guest'])) echo '<hr />'; ?>
-				<?php if ($signature != '') echo "\t\t\t\t\t".'<div class="postsignature">'.$signature.'</div>'."\n"; ?>
-				<div class="pull-right post-actions"><?php if (count($post_actions)) echo implode(" &middot; ", $post_actions) ?></div>
-			</div>
-		</div>
-	</div>
-</div>
-<?php	
+
+	require get_view_path('comment.php');
 }
 ?>
 <p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
 
-<div id="quickpost" class="blockform">
-	<h2><span><?php echo $lang['Quick post'] ?></span></h2>
-	<div class="box">
-		<form method="post" id="post" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
-			<div class="inform">
-				<fieldset>
-					<legend><?php echo $lang['Write message legend'] ?></legend>
-					<div class="infldset txtarea">
-						<input type="hidden" name="reply" value="<?php echo $tid ?>" />
-						<input type="hidden" name="form_sent" value="1" />
-						<input type="hidden" name="form_user" value="<?php echo luna_htmlspecialchars($luna_user['username']) ?>" />
-						<input type="hidden" name="req_subject" value="<?php echo luna_htmlspecialchars($p_subject) ?>" />
-						<input type="hidden" name="p_username" value="<?php echo luna_htmlspecialchars($r_usernames) ?>" />
-						<label><textarea name="req_message" rows="7" cols="75" tabindex="1"></textarea></label>
-						<ul class="bblinks">
-							<li><span><a href="help.php#bbcode" onclick="window.open(this.href); return false;"><?php echo $lang['BBCode'] ?></a> <?php echo ($luna_config['p_message_bbcode'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-							<li><span><a href="help.php#img" onclick="window.open(this.href); return false;"><?php echo $lang['img tag'] ?></a> <?php echo ($luna_config['p_message_img_tag'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-							<li><span><a href="help.php#smilies" onclick="window.open(this.href); return false;"><?php echo $lang['Smilies'] ?></a> <?php echo ($luna_config['o_smilies'] == '1') ? $lang['on'] : $lang['off']; ?></span></li>
-						</ul>
-					</div>
-				</fieldset>
-			</div>
-			<p class="buttons"><input type="submit" name="submit" tabindex="2" value="<?php echo $lang['Submit'] ?>" accesskey="s" /><input type="submit" name="preview" tabindex="2" value="<?php echo $lang['Preview'] ?>" accesskey="s" /></p>
-		</form>
-	</div>
-</div>
-</div>
+
+<form method="post" id="post" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
+<?php draw_editor('10'); ?>
+</form>
 <?php
 require load_page('footer.php');
 ?>

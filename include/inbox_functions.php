@@ -7,7 +7,7 @@
 
 // Display the me navigation
 function load_inbox_nav($page) {
-	global $lang, $luna_config, $luna_user;
+	global $lang, $luna_config, $luna_user, $tid;
 
 ?>
 <nav class="navbar navbar-default" role="navigation">
