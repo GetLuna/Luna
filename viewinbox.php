@@ -166,42 +166,8 @@ if ($action == 'delete') {
 		$cur_delete['message'] = parse_message($cur_delete['message']);
 
 		load_inbox_nav($page);
-?>
-<div class="panel panel-danger">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php printf($cur_delete['show_message'] ? $lang['Topic by'] : $lang['Reply by'], '<strong>'.luna_htmlspecialchars($cur_delete['sender']).'</strong>', format_time($cur_delete['posted'])) ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="delete"><span class="fa fa-fw fa-trash"></span><?php echo $lang['Delete'] ?></button></span></h3>
-	</div>
-	<div class="panel-body">
-		<form action="viewinbox.php" method="post">
-			<input type="hidden" name="action" value="delete" />
-			<input type="hidden" name="mid" value="<?php echo $mid ?>" />
-			<input type="hidden" name="tid" value="<?php echo $tid ?>" />
-			<input type="hidden" name="delete_comply" value="1" />
-			<input type="hidden" name="all_topic" value="<?php echo $cur_delete['show_message'] ?>" />
-			<p><?php echo ($cur_delete['show_message']) ? $lang['Topic warning info'].'' : '<strong>'.$lang['Warning'].'</strong>' ?><br /><?php echo $lang['Delete info'] ?></p>
-			<?php if ($luna_user['is_admmod']) : ?>
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" name="delete_all" value="1" /><?php echo $lang['Delete for everybody'] ?>
-				</label>
-			</div>
-			<?php endif; ?>
-		</form>
-	</div>
-</div>
+		require load_page('inbox-delete-post.php');
 
-<div class="row comment">
-	<div class="col-xs-12">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<h3>By <b><?php echo luna_htmlspecialchars($cur_delete['sender']) ?></b><small class="pull-right"><?php echo format_time($cur_delete['posted']) ?></small></h3>
-				<hr />
-				<?php echo $cur_delete['message']."\n" ?>
-			</div>
-		</div>
-	</div>
-</div>
-<?php
 		require load_page('footer.php');
 	}
 } else {
@@ -258,9 +224,9 @@ if ($action == 'delete') {
 	$reply_link = '<a href="new_inbox.php?reply='.$tid.'">'.$lang['Reply'].'</a>';
 	
 	load_inbox_nav('view');
-?>
-<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?></p>
-<?php
+	
+	paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid);
+
 	while ($cur_post = $db->fetch_assoc($result)) {	
 		$post_count++;
 		$user_avatar = '';
@@ -363,9 +329,8 @@ if ($action == 'delete') {
 	
 		require get_view_path('comment.php');
 	}
-?>
-<p class="pagelink conl"><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?></span></p>	
 
+paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid)  ?>	
 
 <form method="post" id="post" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
 <?php draw_editor('10'); ?>
