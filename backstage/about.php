@@ -233,7 +233,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.38xx.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.3802.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -484,26 +484,27 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="p3"></a>Preview 3 Update 1 &middot; Build 38xx</h4>
+					<h4><a id="p3u1"></a>Preview 3 Update 1 &middot; Build 3802</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> You can now undo a soft delete<br />
-								<span class="label label-primary">38xx</span> Managing notifications is now possible again<br />
-								<span class="label label-primary">38xx</span> Maintenance and Prune are split from each other<br />
-								<span class="label label-primary">38xx</span> The notifications page has been improved<br />
-								<span class="label label-primary">38xx</span> Split logic from markup for help and Inbox<br />
-								<span class="label label-primary">38xx</span> Revamped conversation managment in Inbox
+								<span class="label label-primary">3802</span> You can now undo a soft delete<br />
+								<span class="label label-primary">3802</span> Managing notifications is now possible again<br />
+								<span class="label label-primary">3802</span> Maintenance and Prune are split from each other<br />
+								<span class="label label-primary">3802</span> The notifications page has been improved<br />
+								<span class="label label-primary">3802</span> Split logic from markup for help and Inbox<br />
+								<span class="label label-primary">3802</span> Revamped conversation managment in Inbox<br />
+								<span class="label label-primary">3802</span> Search results have an improved design
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> Maintenance is a new category in the Backstage<br />
-								<span class="label label-primary">38xx</span> Database has been added under "Maintenance"<br />
-								<span class="label label-primary">38xx</span> Further usability improvements to Inbox<br />
-								<span class="label label-primary">38xx</span> More parts of Inbox are now part of the Theme Engine<br />
-								<span class="label label-primary">38xx</span> Design improvements to Sunrise and Sunset<br />
-								<span class="label label-primary">38xx</span> Multiple bugfixes
+								<span class="label label-primary">3802</span> Maintenance is a new category in the Backstage<br />
+								<span class="label label-primary">3802</span> Database has been added under "Maintenance"<br />
+								<span class="label label-primary">3802</span> Further usability improvements to Inbox<br />
+								<span class="label label-primary">3802</span> More parts of Inbox are now part of the Theme Engine<br />
+								<span class="label label-primary">3802</span> Design improvements to Sunrise and Sunset<br />
+								<span class="label label-primary">3802</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
