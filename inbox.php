@@ -95,21 +95,8 @@ if (isset($_REQUEST['markread'])) {
 		
 		if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
 			message($lang['No permission']);
-?>
-<form method="post" action="inbox.php">
-	<div class="panel panel-danger">
-		<div class="panel-heading">
-			<h3 class="panel-title">Confirm deletion<span class="pull-right"><input class="btn btn-danger" type="submit" name="delete" value="<?php echo $lang['Delete'] ?>" /></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="action" value="delete_multiple" />
-			<input type="hidden" name="messages" value="<?php echo $idlist ?>" />
-			<input type="hidden" name="delete_multiple_comply" value="1" />
-			<p><?php echo $lang['Delete messages comply'] ?></p>
-		</div>
-	</div>
-</form>
-<?php
+
+		require load_page('inbox-delete.php');
 	}
 } else {
 
