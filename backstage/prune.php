@@ -129,6 +129,19 @@ if ($action == 'prune') {
 if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 	require FORUM_ROOT.'include/cache.php';
 
+if (isset($_POST['notiprune'])) {
+	if ($_POST['prune_type'] == 1)
+		$type = ' WHERE viewed = 1';
+	elseif ($_POST['prune_type'] == 2)
+		$type = ' WHERE viewed = 0';
+	else
+		$type = '';
+
+	$db->query('DELETE FROM '.$db->prefix.'notifications'.$type) or error('Unable to delete notifications', __FILE__, __LINE__, $db->error());
+	
+	message_backstage('Pruning complete. Notifications pruned.');
+}
+
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
 	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '') {
@@ -181,6 +194,36 @@ require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 ?>
 
+<form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Prune notifications<span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="action" value="notiprune" />
+			<fieldset>
+				<p><?php printf($lang['Prune info'], '<a href="maintenance.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Type</label>
+					<div class="col-sm-9">
+						<label class="radio-inline">
+							<input type="radio" name="prune_type" value="0" tabindex="6" />
+							All notifications
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="prune_type" value="1" checked />
+							Seen notifications
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="prune_type" value="2" />
+							New notifications
+						</label>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+</form>
 <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
