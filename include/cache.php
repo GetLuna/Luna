@@ -34,7 +34,7 @@ function generate_config_cache() {
 //
 function generate_update_cache() {
 	// Get the version number from GitHub
-	$output = trim(@file_get_contents('https://raw.github.com/ModernBB/Luna/lunastable/version.txt'));
+	$output = trim(@file_get_contents('http://getluna.org/version.txt'));
 
 	// Output version as PHP code
 	$content = '<?php'."\n\n".'define(\'FORUM_UPDATE_LOADED\', 1);'."\n\n".'$update_cache = '.var_export($output, true).';'."\n".'$last_check_time = '.time().';'."\n\n".'?>';
