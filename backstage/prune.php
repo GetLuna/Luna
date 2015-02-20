@@ -24,7 +24,7 @@ if ($action == 'prune') {
 	$prune_sticky = intval($_POST['prune_sticky']);
 
 	if (isset($_POST['prune_comply'])) {
-		confirm_referrer('backstage/maintenance.php');
+		confirm_referrer('backstage/prune.php');
 		
 		$prune_days = intval($_POST['prune_days']);
 		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
@@ -58,12 +58,11 @@ if ($action == 'prune') {
 			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
-		redirect('backstage/maintenance.php');
+		redirect('backstage/prune.php');
 	}
 
 	$prune_days = luna_trim($_POST['req_prune_days']);
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days)) {
-		load_admin_nav('maintenance', 'prune');
 		message_backstage($lang['Days must be integer message']);
 	}
 
@@ -105,7 +104,7 @@ if ($action == 'prune') {
 		<h3 class="panel-title"><?php echo $lang['Prune'] ?></h3>
 	</div>
 	<div class="panel-body">
-		<form method="post" action="maintenance.php">
+		<form method="post" action="prune.php">
 			<input type="hidden" name="action" value="prune" />
 			<input type="hidden" name="prune_days" value="<?php echo $prune_days ?>" />
 			<input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
@@ -169,7 +168,6 @@ if (isset($_POST['userprune'])) {
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
-	load_admin_nav('maintenance', 'prune');
 	message_backstage('Pruning complete. Users pruned '.$users_pruned.'.');
 }
 
@@ -185,7 +183,7 @@ require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 ?>
 
-<form class="form-horizontal" method="post" action="maintenance.php" onsubmit="return process_form(this)">
+<form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php echo $lang['Prune subhead'] ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
