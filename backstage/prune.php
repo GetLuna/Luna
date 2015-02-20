@@ -62,9 +62,8 @@ if ($action == 'prune') {
 	}
 
 	$prune_days = luna_trim($_POST['req_prune_days']);
-	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days)) {
+	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
 		message_backstage($lang['Days must be integer message']);
-	}
 
 	$prune_date = time() - ($prune_days * 86400);
 
@@ -137,11 +136,10 @@ if (isset($_POST['userprune'])) {
 		message_backstage('You need to set all settings!');
 	}
 
-	if ($_POST['admods_delete']) {
+	if ($_POST['admods_delete'])
 		$admod_delete = 'group_id > 0';
-	} else {
+	else
 		$admod_delete = 'group_id > 3';
-	}
 
 	if ($_POST['verified'] == 1)
 		$verified = '';
