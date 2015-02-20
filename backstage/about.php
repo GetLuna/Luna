@@ -234,11 +234,11 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.3802.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.38xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>70 bugs have been fixed.</p>
+						<p>71 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -513,12 +513,15 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> Continued improvements to Inbox
+								<span class="label label-primary">38xx</span> Continued improvements to Inbox<br />
+								<span class="label label-primary">38xx</span> You can now prune notifications from the Backstage<br />
+								<span class="label label-primary">38xx</span> More improvements to coding conventions
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> Luna can now check for updates again
+								<span class="label label-primary">38xx</span> Luna can now check for updates again<br />
+								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
