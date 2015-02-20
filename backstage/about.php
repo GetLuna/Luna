@@ -67,6 +67,7 @@ require 'header.php';
 				<a href="#p2u2" class="list-group-item">Preview 2 Update 2</a>
 				<a href="#p3" class="list-group-item">Preview 3</a>
 				<a href="#p3u1" class="list-group-item">Preview 3 Update 1</a>
+				<a href="#p3u2" class="list-group-item">Preview 3 Update 2</a>
 			</div>
 		</div>
 	</div>
@@ -505,6 +506,19 @@ require 'header.php';
 								<span class="label label-primary">3802</span> More parts of Inbox are now part of the Theme Engine<br />
 								<span class="label label-primary">3802</span> Design improvements to Sunrise and Sunset<br />
 								<span class="label label-primary">3802</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4><a id="p3u2"></a>Preview 3 Update 2 &middot; Build 38xx</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> Continued improvements to Inbox
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> Luna can now check for updates again
 							</p>
 						</div>
 					</div>
