@@ -84,6 +84,18 @@ label .help-block {
 	line-height: 1.8;
 }
 
+.panel-footer > .checkbox {
+	margin-bottom: 0;
+}
+
+.panel-heading a {
+	color: rgba(255,255,255,.7);
+}
+
+.panel-heading a:hover {
+	color: #fff;
+}
+
 /* Navbars */
 .navbar-default {
 	background: #1f62b0;
@@ -453,8 +465,14 @@ h3.panel-title {
 }
 
 /* Pagination */
+.pagination {
+	margin: 0;
+	margin-left: 10px;
+}
+
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
-	background: #14a3ff;
+	background: #1f62b0;
+	border-color: #1f62b0;
 }
 
 /* Alerts */

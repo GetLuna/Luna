@@ -292,7 +292,6 @@ if (isset($_GET['tid'])) {
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid.'&amp;tid='.$tid);
 
-
 	if ($luna_config['o_censoring'] == '1')
 		$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
@@ -308,15 +307,14 @@ if (isset($_GET['tid'])) {
 		</div>
 		<div class="panel-body">
 			<div class="btn-group btn-breadcrumb">
-				<a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
-				<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-				<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
+					<a class="btn btn-primary" href="../index.php"><span class="fa fa-home"></span></a>
+					<a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+					<a class="btn btn-primary" href="../viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
 				<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
 			</div>
-			<?php echo $paging_links ?>
-		</div>
+			<span class="pull-right"><?php echo $paging_links ?></span>
 		
-		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
+			<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
 
 	require FORUM_ROOT.'include/parser.php';
@@ -363,49 +361,42 @@ if (isset($_GET['tid'])) {
 		$cur_post['message'] = parse_message($cur_post['message']);
 
 ?>
-		<div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
-			<table class="table postview">
-				<tr>
-					<td class="col-lg-2 user-data">
-						<dd class="usertitle <?php echo $is_online; ?>"><strong><?php echo $poster ?></strong></dd><?php echo $user_title ?>
-					</td>
-					<td class="col-lg-10 post-content">
-						<span class="time-nr pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span>
-						<div class="postmsg">
+				<div id="p<?php echo $cur_post['id'] ?>" class="blockpost<?php if($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost' ?><?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if ($post_count == 1) echo ' blockpost1' ?>">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title"><?php echo $poster ?> <span class="small"><?php echo $user_title ?></span><span class="pull-right">#<?php echo ($start_from + $post_count) ?> &middot; <a href="../viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></span></h3>
+						</div>
+						<div class="panel-body">
 							<?php echo $cur_post['message']."\n" ?>
 							<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
 						</div>
-					</td>
-				</tr>
-				<?php if (!$luna_user['is_guest']) { ?>
-				<tr>
-					<td colspan="2" class="postfooter" style="padding-bottom: 0;">
-						<?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<div class="checkbox pull-right" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label></div>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
-					</td>
-				</tr>
-				<?php } ?>
-			</table>
-		</div>
+						<div class="panel-footer">
+							<?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.$lang['Select'].'</label></div>' : '<p>'.$lang['Cannot select first'].'</p>' ?>
+						</div>
+					</div>
+				</div>
 
 <?php
 
 	}
 
 ?>
-				<div class="panel-body">
-					<div class="btn-group btn-breadcrumb">
-						<a class="btn btn-primary" href="index.php"><span class="fa fa-home"></span></a>
-						<a class="btn btn-primary" href="viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
-						<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
-						<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
-					</div>
-					<?php echo $paging_links ?>
-					<div class="btn-group pull-right"><input type="submit" class="btn btn-primary" name="split_posts" value="<?php echo $lang['Split'] ?>"<?php echo $button_status ?> /><button type="submit" class="btn btn-primary" name="delete_posts"<?php echo $button_status ?>><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button></div>
+				<div class="btn-group btn-breadcrumb">
+					<a class="btn btn-primary" href="../index.php"><span class="fa fa-home"></span></a>
+					<a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+					<a class="btn btn-primary" href="../viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
+					<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
 				</div>
-			</form>
-		</div>
+				<span class="pull-right"><?php echo $paging_links ?></span>
+				<div class="btn-group pull-right">
+					<button type="submit" class="btn btn-primary" name="split_posts" <?php echo $button_status ?>><span class="fa fa-fw fa-code-fork"></span> <?php echo $lang['Split'] ?></button>
+					<button type="submit" class="btn btn-primary" name="delete_posts"<?php echo $button_status ?>><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></button>
+				</div>
+			</div>
+		</form>
 	</div>
-	<?php
+</div>
+<?php
 	
 	require 'footer.php';
 }
