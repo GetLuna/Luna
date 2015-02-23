@@ -654,6 +654,10 @@ switch ($stage) {
 		if (array_key_exists('o_post_responsive', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_post_responsive\'') or error('Unable to remove config value \'o_post_responsive\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.3.3814: Add o_emoji feature
+		if (!array_key_exists('o_emoji', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji\', \'0\')') or error('Unable to insert config value \'o_emoji\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
