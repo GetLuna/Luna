@@ -22,6 +22,7 @@ if (isset($_POST['form_sent'])) {
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
 		'moderated_by'			=> isset($_POST['form']['moderated_by']) ? '1' : '0',
+		'emoji'					=> isset($_POST['form']['emoji']) ? '1' : '0',
 		'emoji_size'			=> intval($_POST['form']['emoji_size']),
 		'topic_review'			=> (intval($_POST['form']['topic_review']) >= 0) ? intval($_POST['form']['topic_review']) : 0,
 		'disp_topics_default'	=> intval($_POST['form']['disp_topics_default']),
@@ -112,8 +113,20 @@ if (isset($_GET['saved']))
 						</div>
 					</div>
 				</div>
+				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Emojis<span class="help-block">The font size emojis should be displayed in</span></label>
+					<label class="col-sm-3 control-label">Emoji</label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[emoji]" value="1" <?php if ($luna_config['o_emoji'] == '1') echo ' checked' ?> />
+								Use emojis instead of emoticons.
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Emoji size<span class="help-block">The font size emojis should be displayed in</span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />

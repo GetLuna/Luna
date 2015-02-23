@@ -115,7 +115,7 @@ require 'header.php';
 				</div>
 				<h4>Emojis</h4>
 				<img class="img-responsive" src="../img/about/emoji.png" />
-				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwidth as they are a font and not an image, which makes them also ready for high DPI screens and improve performance. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above. Unlike emoticons, you can change the size of the emojis across your whole board (and they'll stay nice).</p>
+				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwidth as they are a font and not an image, which makes them also ready for high DPI screens and improve performance. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above. Unlike emoticons, you can change the size of the emojis across your whole board (and they'll stay nice). Emojis will be, however, optional and are disabled by default due to old platforms like Windows 7 not completely supporting them.</p>
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Smarter editor</h4>
@@ -515,12 +515,16 @@ require 'header.php';
 							<p>
 								<span class="label label-primary">38xx</span> Continued improvements to Inbox<br />
 								<span class="label label-primary">38xx</span> You can now prune notifications from the Backstage<br />
-								<span class="label label-primary">38xx</span> More improvements to coding conventions
+								<span class="label label-primary">38xx</span> More improvements to coding conventions<br />
+								<span class="label label-primary">38xx</span> The registration form has been updated<br />
+								<span class="label label-primary">38xx</span> Emotioncs are now the default smilies
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-primary">38xx</span> Luna can now check for updates again<br />
+								<span class="label label-primary">38xx</span> The Moderation tools in the Backstage have been finished<br />
+								<span class="label label-primary">38xx</span> You can now choose to use emoticons or emojis<br />
 								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
