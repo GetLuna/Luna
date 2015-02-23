@@ -118,8 +118,12 @@ $smiley_groups = array();
 foreach ($smilies as $smiley_text => $smiley_img)
 	$smiley_groups[$smiley_img][] = $smiley_text;
 
-foreach ($smiley_groups as $smiley_img => $smiley_texts)
-	echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <span class="emoji">'.$smiley_img.'</span></p></div>'."\n";
+foreach ($smiley_groups as $smiley_img => $smiley_texts) {
+	if ($luna_config['o_emoji'] == 1)
+		echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <span class="emoji">'.$smiley_img.'</span></p></div>'."\n";
+	else
+		echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <img src="'.luna_htmlspecialchars(get_base_url(true)).'/img/smilies/'.$smiley_img.'" width="15" height="15" alt="'.$smiley_texts[0].'" /></p></div>'."\n";
+}
 
 ?>
 				</div>

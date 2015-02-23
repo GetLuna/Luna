@@ -40,30 +40,58 @@ if (!defined('FORUM'))
 $re_list = '%\[list(?:=([1*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1*])?+\]|\[/list\])\[[^\[]*+)*+|(?R))*)\[/list\]%i';
 
 // Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
-$smilies = array(
-	':)' => '&#x263a;',
-	':|' => '&#x1f611;',
-	':(' => '&#x1f629;',
-	':d' => '&#x1f604;',
-	':D' => '&#x1f604;',
-	':o' => '&#x1f632;',
-	':O' => '&#x1f632;',
-	';)' => '&#x1f609;',
-	':/' => '&#x1f612;',
-	':P' => '&#x1f60b;',
-	':p' => '&#x1f60b;',
-	':lol:' => '&#x1f600;',
-	':-))' => '&#x1f600;',
-	':@' => '&#x1f620;',
-	'%)' => '&#x1f606;',
-	'b:' => '&#x1f60e;',
-	'B:' => '&#x1f60e;',
-	':hc:' => '&#x1f605;',
-	'(A)' => '&#x1f607;',
-	'(a)' => '&#x1f607;',
-	'^-^' => '&#x1f60f;',
-	'^.^' => '&#x1f600;'
-);
+if ($luna_config['o_emoji'] == 1) {
+	$smilies = array(
+		':)' => '&#x263a;',
+		':|' => '&#x1f611;',
+		':(' => '&#x1f629;',
+		':d' => '&#x1f604;',
+		':D' => '&#x1f604;',
+		':o' => '&#x1f632;',
+		':O' => '&#x1f632;',
+		';)' => '&#x1f609;',
+		':/' => '&#x1f612;',
+		':P' => '&#x1f60b;',
+		':p' => '&#x1f60b;',
+		':lol:' => '&#x1f600;',
+		':-))' => '&#x1f600;',
+		':@' => '&#x1f620;',
+		'%)' => '&#x1f606;',
+		'b:' => '&#x1f60e;',
+		'B:' => '&#x1f60e;',
+		':hc:' => '&#x1f605;',
+		'(A)' => '&#x1f607;',
+		'(a)' => '&#x1f607;',
+		'^-^' => '&#x1f60f;',
+		'^.^' => '&#x1f600;'
+	);
+} else {
+	$smilies = array(
+		':)' => 'smile.png',
+		':|' => 'neutral.png',
+		':(' => 'sad.png',
+		':d' => 'big_smile.png',
+		':D' => 'big_smile.png',
+		':o' => 'yikes.png',
+		':O' => 'yikes.png',
+		';)' => 'wink.png',
+		':/' => 'hmm.png',
+		':P' => 'tongue.png',
+		':p' => 'tongue.png',
+		':lol:' => 'lol.png',
+		':-))' => 'lol.png',
+		':@' => 'mad.png',
+		'%)' => 'roll.png',
+		'b:' => 'cool.png',
+		'B:' => 'cool.png',
+		':hc:' => 'happycry.png',
+		'(A)' => 'angel.png',
+		'^-^' => 'ohyeah.png',
+		'(a)' => 'angel.png',
+		'(A)' => 'angel.png',
+		'^.^' => 'happy.png'
+	);
+}
 
 //
 // Make sure all BBCodes are lower case and do a little cleanup
@@ -761,7 +789,10 @@ function do_smilies($text) {
 
 	foreach ($smilies as $smiley_text => $smiley_img) {
 		if (strpos($text, $smiley_text) !== false)
-			$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$smiley_img.'</span>', $text);
+			if ($luna_config['o_emoji'] == 1)
+				$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$smiley_img.'</span>', $text);
+			else
+				$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
 	}
 
 	return substr($text, 1, -1);
