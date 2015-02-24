@@ -86,10 +86,10 @@ $num_notifications = $db->result($result);
 
 if ($luna_config['o_notification_flyout'] == 1) {
 	if ($num_notifications == '0') {
-		$notificon = '<span class="fa fa-circle-o"></span>';
+		$notificon = '<span class="fa fa-fw fa-circle-o"></span>';
 		$ind_notification[] = '<li><a href="notifications.php?id='.$luna_user['id'].'">No new notifications</a></li>';
 	} else {
-		$notificon = $num_notifications.' <span class="fa fa-circle"></span>';
+		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 		
 		$notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 		while ($cur_notifi = $db->fetch_assoc($notification_result)) {
@@ -107,14 +107,14 @@ if ($luna_config['o_notification_flyout'] == 1) {
 						<li class="divider"></li>
 						'.$notifications.'
 						<li class="divider"></li>
-						<li><a class="pull-right" href="notifications.php?id='.$luna_user['id'].'">More <i class="fa fa-arrow-right"></i></a></li>
+						<li><a class="pull-right" href="notifications.php?id='.$luna_user['id'].'">More <i class="fa fa-fw fa-arrow-right"></i></a></li>
 					</ul>
 				</li>';
 } else {
 	if ($num_notifications == '0')
-		$notificon = '<span class="fa fa-circle-o"></span>';
+		$notificon = '<span class="fa fa-fw fa-circle-o"></span>';
 	else
-		$notificon = $num_notifications.' <span class="fa fa-circle"></span>';
+		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 
 	$notification_menu_item = '<li><a href="notifications.php?id='.$luna_user['id'].'">'.$notificon.'<span class="visible-xs-inline"> Notifications</span></a></li>';
 }
@@ -132,7 +132,7 @@ if ($luna_user['is_guest'])
 				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
 else
 	$usermenu = $backstage.$notification_menu_item.'
-				<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>
+				<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></span></a>
 					<ul class="dropdown-menu">

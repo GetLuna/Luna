@@ -22,7 +22,7 @@ if (!defined('FORUM'))
 		<div class="panel-body">
 			<fieldset>
 				<input type="hidden" name="action" value="search" />
-				<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="Search..." maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-search"></span> <?php echo $lang['Search'] ?></button></span></div>
+				<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="Search..." maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></button></span></div>
 			</fieldset>
 		</div>
 	</div>

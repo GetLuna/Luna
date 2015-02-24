@@ -503,7 +503,7 @@ elseif (isset($_GET['del_group'])) {
 			<p><?php echo $lang['Confirm delete warn'] ?></p>
 		</div>
 		<div class="panel-footer">
-			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button>
+			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fa fa-fw fa-minus"></span> <?php echo $lang['Delete'] ?></button>
 		</div>
 	</div>
 </form>

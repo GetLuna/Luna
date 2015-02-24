@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 				<div class="input-group">
 					<input class="form-control" type="text" name="username" value="<?php echo luna_htmlspecialchars($username) ?>" placeholder="<?php echo $lang['Search'] ?>" maxlength="25" />
 					<span class="input-group-btn">
-						<button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-search"></span></button>
+						<button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span></button>
 					</span>
 				</div>
 			</form>

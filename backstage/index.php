@@ -117,7 +117,7 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 			<span class="pull-right">
 				<form class="form-horizontal" method="post" action="index.php">
 					<input type="hidden" name="first_run_disable" value="1" />
-					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-check"></span> Got it</button>
+					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> Got it</button>
 				</form>
 			</span>
 		</h3>
@@ -157,7 +157,7 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['New reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-eye"></span> <?php echo $lang['View all'] ?></a></span></h3>
+						<h3 class="panel-title"><?php echo $lang['New reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['View all'] ?></a></span></h3>
 					</div>
 					<table class="table">
 						<thead>
@@ -250,7 +250,7 @@ if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) {
 					<input type="hidden" name="form_sent" value="1" />
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Admin notes<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+							<h3 class="panel-title">Admin notes<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 						</div>
 						<div class="panel-body">
 							<textarea class="form-control" name="form[admin_note]" placeholder="Add a note..." accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>

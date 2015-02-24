@@ -95,7 +95,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 						<div class="statistic-item-stat">
 							<div class="dropup">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-									<?php echo $lang['Users online'] ?> <span class="fa fa-angle-up"></span>
+									<?php echo $lang['Users online'] ?> <span class="fa fa-fw fa-angle-up"></span>
 									<span class="sr-only">Toggle Dropdown</span>
 								</a>
 								<ul class="dropdown-menu" role="menu">
@@ -132,7 +132,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 	}
 ?>
 				</div>
-				<div class="col-sm-4 col-xs-12"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center"><a href="#"><span class="fa fa-chevron-up"></span></a></div><?php endif; ?></div>
+				<div class="col-sm-4 col-xs-12"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
 				<div class="col-sm-4 col-xs-12"><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
 			</div>
 		</div>

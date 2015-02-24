@@ -307,7 +307,7 @@ if (isset($_GET['tid'])) {
 		</div>
 		<div class="panel-body">
 			<div class="btn-group btn-breadcrumb">
-					<a class="btn btn-primary" href="../index.php"><span class="fa fa-home"></span></a>
+					<a class="btn btn-primary" href="../index.php"><span class="fa fa-fw fa-home"></span></a>
 					<a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 					<a class="btn btn-primary" href="../viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
 				<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
@@ -382,7 +382,7 @@ if (isset($_GET['tid'])) {
 
 ?>
 				<div class="btn-group btn-breadcrumb">
-					<a class="btn btn-primary" href="../index.php"><span class="fa fa-home"></span></a>
+					<a class="btn btn-primary" href="../index.php"><span class="fa fa-fw fa-home"></span></a>
 					<a class="btn btn-primary" href="../viewforum.php?id=<?php echo $fid ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 					<a class="btn btn-primary" href="../viewtopic.php?id=<?php echo $tid ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
 					<a class="btn btn-primary" href="#"><?php echo $lang['Moderate'] ?></a>
@@ -685,7 +685,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 	<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Delete topics'] ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_topics_comply"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button></span></h3>
+				<h3 class="panel-title"><?php echo $lang['Delete topics'] ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_topics_comply"><span class="fa fa-fw fa-minus"></span> <?php echo $lang['Delete'] ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />

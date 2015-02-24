@@ -76,7 +76,7 @@ if (isset($_GET['saved']))
 <form class="form-horizontal" method="post" action="features.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['General'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php echo $lang['General'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="form_sent" value="1" />
@@ -149,7 +149,7 @@ if (isset($_GET['saved']))
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Inbox<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title">Inbox<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="form_sent" value="1" />
@@ -187,7 +187,7 @@ if (isset($_GET['saved']))
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['First run'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php echo $lang['First run'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="form_sent" value="1" />
@@ -220,7 +220,7 @@ if (isset($_GET['saved']))
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['BBCode'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php echo $lang['BBCode'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -278,7 +278,7 @@ if (isset($_GET['saved']))
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Advanced'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Advanced'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="form_sent" value="1" />

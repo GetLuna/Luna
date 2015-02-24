@@ -50,7 +50,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 											<input class="form-control" type="text" name="keywords" placeholder="Search in posts" maxlength="100" />
 											<span class="input-group-btn">
 												<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s" />
-													<span class="fa fa-search"></span>
+													<span class="fa fa-fw fa-search"></span>
 												</button>
 											</span>
 										</div>

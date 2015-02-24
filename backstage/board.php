@@ -510,7 +510,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 ?>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Add forum'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_forum" tabindex="2"><span class="fa fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Add forum'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_forum" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">
@@ -539,7 +539,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Add categories head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_cat" tabindex="2"><span class="fa fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Add categories head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_cat" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">

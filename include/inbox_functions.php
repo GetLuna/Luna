@@ -18,7 +18,7 @@ function load_inbox_nav($page) {
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="inbox.php" class="navbar-brand"><span class="fa fa-paper-plane-o"></span> Inbox</a>
+		<a href="inbox.php" class="navbar-brand"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
 	</div>
 	<div class="collapse navbar-collapse" id="inbox-nav">
 		<ul class="nav navbar-nav">
@@ -34,9 +34,9 @@ function load_inbox_nav($page) {
 		<ul class="nav navbar-nav navbar-right">
 			<div class="btn-compose pull-left">
 				<?php if ($page == 'view') { ?>
-					<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-reply"></span> Reply</a>
+					<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> Reply</a>
 				<?php } ?>
-				<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php"><span class="fa fa-pencil"></span> Compose</a>
+				<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> Compose</a>
 			</div>
 		</ul>
 	</div>

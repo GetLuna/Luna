@@ -197,7 +197,7 @@ require 'header.php';
 <form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Prune notifications<span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+			<h3 class="panel-title">Prune notifications<span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="notiprune" />
@@ -227,7 +227,7 @@ require 'header.php';
 <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Prune subhead'] ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Prune subhead'] ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="prune" />
@@ -286,7 +286,7 @@ require 'header.php';
 <form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Prune users head'] ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fa fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Prune users head'] ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>

@@ -131,7 +131,7 @@ if (file_exists(FORUM_ROOT.'/style/'.$current_theme.'/theme_settings.php')) {
 										else
 											echo '<a class="btn btn-primary" href="theme.php?default_style='.$style_info->name.'">Use</a>';
 										
-										echo '<a class="btn btn-primary" data-toggle="modal" href="#" data-target="#'.$temp.'"><span class="fa fa-info-circle"></span></a>';
+										echo '<a class="btn btn-primary" data-toggle="modal" href="#" data-target="#'.$temp.'"><span class="fa fa-fw fa-info-circle"></span></a>';
 									?>
 								</div>
 							</div>

@@ -18,7 +18,7 @@ if (!defined('FORUM'))
 </div>
 <div class="col-sm-9">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
-	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
+	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
@@ -496,7 +496,7 @@ if (count($languages) > 1) {
 					<hr />
 					<?php if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) { ?>
 						<div class="form-group">
-							<label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-check"></span> <?php echo $lang['Update forums'] ?></button></label>
+							<label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update forums'] ?></button></label>
 							<div class="col-sm-9">
 								<p><?php echo $lang['Moderator in info'] ?></p>
 <?php
