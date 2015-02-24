@@ -205,7 +205,7 @@ if (isset($_GET['cache_cleared']))
 		<div class="form-group">
 			<label class="col-sm-3 control-label"><?php echo $lang['Cache'] ?><span class="help-block"><?php echo $lang['Cache info'] ?></span></label>
 			<div class="col-sm-9">
-				<a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><?php echo $lang['Clear cache'] ?></a>
+				<a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Clear cache'] ?></a>
 			</div>
 		</div>
 	</div>
@@ -213,7 +213,7 @@ if (isset($_GET['cache_cleared']))
 <form class="form-horizontal" method="get" action="maintenance.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="rebuild_index" value="<?php echo $lang['Rebuild index'] ?>" tabindex="4" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fa fa-fw fa-repeat"></span> <?php echo $lang['Rebuild index'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="rebuild" />

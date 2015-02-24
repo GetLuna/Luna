@@ -567,13 +567,13 @@ elseif (isset($_GET['del_group'])) {
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Add group subhead'] ?></h3>
+				<h3 class="panel-title"><?php echo $lang['Add group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<form id="groups" method="post" action="groups.php">
 					<fieldset>
-						<div class="input-group">
-							<select class="form-control" id="base_group" name="base_group" tabindex="1">
+						<span class="help-block"><?php echo $lang['Create new group'] ?></span>
+						<select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
@@ -586,24 +586,19 @@ while ($cur_group = $db->fetch_assoc($result)) {
 }
 
 ?>
-							</select>
-							<span class="input-group-btn">
-								<button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-plus"></span> <?php echo $lang['Add'] ?></button>
-							</span>
-						</div>
-						<span class="help-block"><?php echo $lang['Create new group'] ?></span>
+						</select>
 					</fieldset>
 				</form>
 			</div>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Default group subhead'] ?></h3>
+				<h3 class="panel-title"><?php echo $lang['Default group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<form id="groups" method="post" action="groups.php">
-				<fieldset>
-					<div class="input-group">
+					<fieldset>
+						<span class="help-block"><?php echo $lang['Default group help'] ?></span>
 						<select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
@@ -617,12 +612,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 }
 
 ?>
-							</select>
-							<span class="input-group-btn">
-								<input class="btn btn-primary" type="submit" name="set_default_group" value="<?php echo $lang['Save'] ?>" tabindex="4" />
-							</span>
-						</div>
-						<span class="help-block"><?php echo $lang['Default group help'] ?></span>
+						</select>
 					</fieldset>
 				</form>
 			</div>
@@ -634,7 +624,6 @@ while ($cur_group = $db->fetch_assoc($result)) {
 				<h3 class="panel-title"><?php echo $lang['Existing groups head'] ?></h3>
 			</div>
 			<table class="table">
-				<thead></thead>
 				<tbody>
 <?php
 
@@ -642,9 +631,21 @@ $cur_index = 5;
 
 $result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups ORDER BY g_id') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
-while ($cur_group = $db->fetch_assoc($result))
-	echo "\t\t\t\t\t\t\t\t".'<tr><td><a class="btn btn-primary" href="groups.php?edit_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'">'.$lang['Edit'].'</a></td><td class="col-lg-10">'.luna_htmlspecialchars($cur_group['g_title']).'</td><td>'.(($cur_group['g_id'] > FORUM_MEMBER) ? '<a class="btn btn-danger" href="groups.php?del_group='.$cur_group['g_id'].'" tabindex="'.$cur_index++.'"><span class="fa fa-minus"></span>'.$lang['Delete'].'</a>' : '').'</td></tr>'."\n";
-
+while ($cur_group = $db->fetch_assoc($result)) {
+?>
+					<tr>
+						<td>
+						<a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php echo $lang['Edit'] ?></a>
+						</td>
+						<td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
+						<td>
+							<?php if ($cur_group['g_id'] > FORUM_MEMBER) { ?>
+								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-minus"></span> <?php echo $lang['Delete'] ?></a>
+							<?php } ?>
+						</td>
+					</tr>
+<?php
+}
 ?>
 				</tbody>
 			</table>

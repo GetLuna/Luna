@@ -423,7 +423,7 @@ require 'header.php';
 <form id="find_bans" method="get" action="bans.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Ban search head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="find_ban" value="<?php echo $lang['Search'] ?>" tabindex="12" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Ban search head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_ban"><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></button></span></h3>
 		</div>
 		<fieldset>
 			<div class="panel-body">
@@ -451,15 +451,22 @@ require 'header.php';
 				<tr>
 					<th><?php echo $lang['Order by label'] ?></th>
 					<td colspan="3">
-						<select class="form-control" name="order_by" tabindex="10">
-							<option value="username" selected><?php echo $lang['Username'] ?></option>
-							<option value="ip"><?php echo $lang['Order by ip'] ?></option>
-							<option value="email"><?php echo $lang['Email'] ?></option>
-							<option value="expire"><?php echo $lang['Order by expire'] ?></option>
-						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="11">
-							<option value="ASC" selected><?php echo $lang['Ascending'] ?></option>
-							<option value="DESC"><?php echo $lang['Descending'] ?></option>
-						</select>
+						<div class="row">
+							<div class="col-sm-6">
+								<select class="form-control" name="order_by" tabindex="10">
+									<option value="username" selected><?php echo $lang['Username'] ?></option>
+									<option value="ip"><?php echo $lang['Order by ip'] ?></option>
+									<option value="email"><?php echo $lang['Email'] ?></option>
+									<option value="expire"><?php echo $lang['Order by expire'] ?></option>
+								</select>
+							</div>
+							<div class="col-sm-6">
+								<select class="form-control" name="direction" tabindex="11">
+									<option value="ASC" selected><?php echo $lang['Ascending'] ?></option>
+									<option value="DESC"><?php echo $lang['Descending'] ?></option>
+								</select>
+							</div>
+						</div>
 					</td>
 				</tr>
 			</table>

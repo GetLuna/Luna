@@ -92,6 +92,10 @@ label .help-block {
 	color: rgba(255,255,255,.7);
 }
 
+.panel-heading a.btn {
+	color: rgba(255,255,255,1);
+}
+
 .panel-heading a:hover {
 	color: #fff;
 }

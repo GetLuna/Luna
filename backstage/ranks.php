@@ -122,7 +122,7 @@ if ($luna_config['o_ranks'] == 0) {
 		<div class="col-sm-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Manage ranks<span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Save'] ?>" /></span></h3>
+					<h3 class="panel-title">Manage ranks<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 				</div>
 				<fieldset>
 <?php
@@ -151,7 +151,7 @@ if ($db->num_rows($result)) {
 									<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_posts]" value="<?php echo $cur_rank['min_posts'] ?>" maxlength="7" />
 								</td>
 								<td>
-									<input class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]" value="<?php echo $lang['Remove'] ?>" />
+									<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button>
 								</td>
 							</tr>
 <?php

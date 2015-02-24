@@ -119,7 +119,7 @@ if (isset($_GET['user_failed']))
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Add user head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_user" value="<?php echo $lang['Submit'] ?>" tabindex="30" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Add user head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_user"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>

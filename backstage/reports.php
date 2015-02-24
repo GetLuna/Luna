@@ -82,7 +82,7 @@ if ($db->num_rows($result)) {
 							<div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
 							<?php echo $post ?>
 						</td>
-						<td><input class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]" value="<?php echo $lang['Zap'] ?>" /></td>
+						<td><button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Zap'] ?></button></td>
 					</tr>
 <?php
 

@@ -83,7 +83,7 @@ elseif (isset($_GET['del_forum'])) {
 				<p><?php printf($lang['Confirm delete forum info'], $forum_name) ?> <?php echo $lang['Confirm delete forum'] ?></p>
 			</div>
 			<div class="panel-footer">
-				<button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button>
+				<button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button>
 			</div>
 		</div>
 	</fieldset>
@@ -452,7 +452,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 				<p><?php printf($lang['Confirm delete cat info'], $forum_name) ?> <?php echo $lang['Delete category warn'] ?></p>
 			</div>
 			<div class="panel-footer">
-				<button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button>
+				<button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button>
 			</div>
 		</div>
 	</fieldset>
@@ -556,7 +556,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Delete categories head'] ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat" tabindex="4"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Delete categories head'] ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat" tabindex="4"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">
@@ -592,7 +592,7 @@ if ($db->num_rows($result) > 0) {
 		<form id="edforum" method="post" action="board.php?action=edit">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update_positions" value="<?php echo $lang['Update positions'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_positions"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update positions'] ?></button></span></h3>
 				</div>
 				<fieldset>
 <?php
@@ -620,7 +620,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 ?>
 							<tr>
-								<td class="col-xs-3"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><?php echo $lang['Edit'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-minus"></span> <?php echo $lang['Delete'] ?></a></div></td>
+								<td class="col-xs-3"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php echo $lang['Edit'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></a></div></td>
 								<td class="col-xs-4"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
 								<td class="col-xs-5"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 							</tr>
@@ -638,7 +638,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="update" value="<?php echo $lang['Update positions'] ?>" /></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update positions'] ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">

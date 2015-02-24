@@ -564,7 +564,7 @@ require 'header.php';
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="backupstart" value="<?php echo $lang['Start backup'] ?>" class="mainoption" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="backupstart"><span class="fa fa-fw fa-floppy-o"></span> <?php echo $lang['Start backup'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -606,7 +606,7 @@ require 'header.php';
 <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="restore_start" value="<?php echo $lang['Start restore'] ?>" class="mainoption" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="restore_start"><span class="fa fa-fw fa-reply"></span> <?php echo $lang['Start restore'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -627,8 +627,8 @@ require 'header.php';
 		<div class="panel-footer">
 			<fieldset>
 				<span class="btn-group">
-					<input class="btn btn-primary" type="submit" name="repairall" value="<?php echo $lang['Repair all tables'] ?>" />
-					<input class="btn btn-primary" type="submit" name="optimizeall" value="<?php echo $lang['Optimise all tables'] ?>" />
+					<button class="btn btn-primary" type="submit" name="repairall"><span class="fa fa-fw fa-wrench"></span> <?php echo $lang['Repair all tables'] ?></button>
+					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php echo $lang['Optimise all tables'] ?></button>
 				</span>
 			</fieldset>
 		</div>
