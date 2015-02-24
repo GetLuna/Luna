@@ -517,7 +517,8 @@ require 'header.php';
 								<span class="label label-primary">38xx</span> You can now prune notifications from the Backstage<br />
 								<span class="label label-primary">38xx</span> More improvements to coding conventions<br />
 								<span class="label label-primary">38xx</span> The registration form has been updated<br />
-								<span class="label label-primary">38xx</span> Emotioncs are now the default smilies
+								<span class="label label-primary">38xx</span> Emotioncs are now the default smilies<br />
+								<span class="label label-primary">38xx</span> Some Backstage pages have an improved design
 							</p>
 						</div>
 						<div class="col-sm-6">
@@ -525,6 +526,8 @@ require 'header.php';
 								<span class="label label-primary">38xx</span> Luna can now check for updates again<br />
 								<span class="label label-primary">38xx</span> The Moderation tools in the Backstage have been finished<br />
 								<span class="label label-primary">38xx</span> You can now choose to use emoticons or emojis<br />
+								<span class="label label-primary">38xx</span> Icons are now used all over the Backstage<br />
+								<span class="label label-primary">38xx</span> Small code optimalizations throughout the software<br />
 								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
