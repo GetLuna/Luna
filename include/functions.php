@@ -68,7 +68,7 @@ function check_cookie(&$luna_user) {
 			$luna_user['language'] = $luna_config['o_default_lang'];
 
 		// Set a default style if the user selected style no longer exists
-		if (!file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/style.css'))
+		if (!file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/style.css'))
 			$luna_user['style'] = $luna_config['o_default_style'];
 
 		if (!$luna_user['disp_topics'])
@@ -1590,7 +1590,7 @@ function forum_list_styles() {
 		if ($entry{0} == '.')
 			continue;
 
-		if (is_dir(FORUM_ROOT.'style/'.$entry) && file_exists(FORUM_ROOT.'style/'.$entry.'/style.css'))
+		if (is_dir(FORUM_ROOT.'themes/'.$entry) && file_exists(FORUM_ROOT.'themes/'.$entry.'/style.css'))
 			$styles[] = $entry;
 	}
 	$d->close();
@@ -2005,10 +2005,10 @@ function dump() {
 function get_template_path($tpl_file) {
 	global $luna_user;
 
-	if (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file)) {
-		return FORUM_ROOT.'style/'.$luna_user['style'].'/templates/'.$tpl_file;
+	if (file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/templates/'.$tpl_file)) {
+		return FORUM_ROOT.'themes/'.$luna_user['style'].'/templates/'.$tpl_file;
 	} else {
-		return FORUM_ROOT.'style/Core/templates/'.$tpl_file;
+		return FORUM_ROOT.'themes/Core/templates/'.$tpl_file;
 	}
 }
 
@@ -2018,13 +2018,13 @@ function get_template_path($tpl_file) {
 function get_view_path($object) {
 	global $luna_user, $luna_config;
 	
-	include FORUM_ROOT.'/style/'.$luna_config['o_default_style'].'/information.php';
+	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
 	
-	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'style/'.$luna_user['style'].'/objects/'.$object)))
-		return FORUM_ROOT.'style/'.$luna_user['style'].'/objects/'.$object;
+	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object)))
+		return FORUM_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object;
 	else
-		return FORUM_ROOT.'style/'.$style_info->parent_theme.'/objects/'.$object;
+		return FORUM_ROOT.'themes/'.$style_info->parent_theme.'/objects/'.$object;
 }
 
 //
@@ -2033,13 +2033,13 @@ function get_view_path($object) {
 function load_page($page) {
 	global $luna_user, $luna_config;
 	
-	include FORUM_ROOT.'/style/'.$luna_config['o_default_style'].'/information.php';
+	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
 	
-	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'style/'.$luna_config['o_default_style'].'/'.$page)))
-		return FORUM_ROOT.'style/'.$luna_config['o_default_style'].'/'.$page;
+	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
+		return FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page;
 	else
-		return FORUM_ROOT.'style/'.$style_info->parent_theme.'/'.$page;
+		return FORUM_ROOT.'themes/'.$style_info->parent_theme.'/'.$page;
 }
 
 //
@@ -2048,13 +2048,13 @@ function load_page($page) {
 function load_css() {
 	global $luna_config;
 	
-	include FORUM_ROOT.'/style/'.$luna_config['o_default_style'].'/information.php';
+	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$style_info = new SimpleXMLElement($xmlstr);
 	
 	if ($style_info->parent_theme != '')
-		echo '<link rel="stylesheet" type="text/css" href="style/'.$style_info->parent_theme.'/style.css" />';
+		echo '<link rel="stylesheet" type="text/css" href="themes/'.$style_info->parent_theme.'/style.css" />';
 
-	echo '<link rel="stylesheet" type="text/css" href="style/'.$luna_config['o_default_style'].'/style.css" />';
+	echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/style.css" />';
 }
 
 //
