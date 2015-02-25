@@ -46,6 +46,10 @@ h2 {
 	font-size: 16px;
 }
 
+.emoticon-ed {
+	padding: 12px 18px 15px !important;
+}
+
 /* Text */
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Segoe UI Light", "Segoe UI", Arial;
@@ -573,12 +577,16 @@ textarea.textarea, textarea.textarea:focus {
 	width: 230px;
 }
 
-.dropdown-emoji > li {
+.dropdown-emoticon {
+	width: 206px;
+}
+
+.dropdown-emoji > li, .dropdown-emoticon > li {
 	display: inline-block;
 	float: left;
 }
 
-.dropdown-emoji > .open > ul {
+.dropdown-emoji > .open > ul, .dropdown-emoticon > .open > ul {
 	display: inline-flex !important;
 	width: 230px;
 }
