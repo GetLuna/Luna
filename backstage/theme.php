@@ -85,7 +85,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 			<h3 class="panel-title"><?php echo $lang['Default style'] ?></h3>
 		</div>
 		<div class="panel-body">
-			<p>Here are all themes we could find in the <code>/styles/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.</p>
+			<p>Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.</p>
 			<fieldset>
 				<div class="row">
 <?php

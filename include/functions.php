@@ -1585,7 +1585,7 @@ function file_size($size) {
 function forum_list_styles() {
 	$styles = array();
 
-	$d = dir(FORUM_ROOT.'style');
+	$d = dir(FORUM_ROOT.'themes');
 	while (($entry = $d->read()) !== false) {
 		if ($entry{0} == '.')
 			continue;
