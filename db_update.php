@@ -641,7 +641,7 @@ switch ($stage) {
 			$db->query('UPDATE '.$db->prefix.'groups SET g_soft_delete_posts = 1 WHERE g_id < 3') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
 		}
 		
-		// Since 0.3.3765: Add new g_soft_delete_posts field to the groups table
+		// Since 0.3.3765: Add new g_soft_delete_topics field to the groups table
 		if (!$db->field_exists('groups', 'g_soft_delete_topics')) {
 			// Add g_moderator column to groups table
 			$db->add_field('groups', 'g_soft_delete_topics', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_topics field', __FILE__, __LINE__, $db->error());
