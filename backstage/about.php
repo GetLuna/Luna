@@ -234,7 +234,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.38xx.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.3827.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -509,26 +509,26 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="p3u2"></a>Preview 3 Update 2 &middot; Build 38xx</h4>
+					<h4><a id="p3u2"></a>Preview 3 Update 2 &middot; Build 3827</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> Continued improvements to Inbox<br />
-								<span class="label label-primary">38xx</span> You can now prune notifications from the Backstage<br />
-								<span class="label label-primary">38xx</span> More improvements to coding conventions<br />
-								<span class="label label-primary">38xx</span> The registration form has been updated<br />
-								<span class="label label-primary">38xx</span> Emotioncs are now the default smilies<br />
-								<span class="label label-primary">38xx</span> Some Backstage pages have an improved design
+								<span class="label label-primary">3827</span> Continued improvements to Inbox<br />
+								<span class="label label-primary">3827</span> You can now prune notifications from the Backstage<br />
+								<span class="label label-primary">3827</span> More improvements to coding conventions<br />
+								<span class="label label-primary">3827</span> The registration form has been updated<br />
+								<span class="label label-primary">3827</span> Emotioncs are now the default smilies<br />
+								<span class="label label-primary">3827</span> Some Backstage pages have an improved design
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> Luna can now check for updates again<br />
-								<span class="label label-primary">38xx</span> The Moderation tools in the Backstage have been finished<br />
-								<span class="label label-primary">38xx</span> You can now choose to use emoticons or emojis<br />
-								<span class="label label-primary">38xx</span> Icons are now used all over the Backstage<br />
-								<span class="label label-primary">38xx</span> Small code optimalizations throughout the software<br />
-								<span class="label label-primary">38xx</span> Multiple bugfixes
+								<span class="label label-primary">3827</span> Luna can now check for updates again<br />
+								<span class="label label-primary">3827</span> The Moderation tools in the Backstage have been finished<br />
+								<span class="label label-primary">3827</span> You can now choose to use emoticons or emojis<br />
+								<span class="label label-primary">3827</span> Icons are now used all over the Backstage<br />
+								<span class="label label-primary">3827</span> Small code optimalizations throughout the software<br />
+								<span class="label label-primary">3827</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
