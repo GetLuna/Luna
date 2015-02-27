@@ -207,10 +207,6 @@ h1, h2, h3, h4, h5, h6 {
 	align-content: center;
 }
 
-.announcement a {
-	text-decoration: underline;
-}
-
 .avatar-item .avatar {
 	padding: 0;
 	border: 0;
@@ -936,15 +932,6 @@ input[type="text"].power-control {
 .alert-section h3 {
 	margin-top: 0;
 	margin-bottom: 4px;
-}
-
-.announcement {
-	border: none;
-	color: #fff;
-	background: rgba(255,255,255,.2);
-	margin-top: 30px;
-	margin-bottom: 0;
-	padding: 5px 8px;
 }
 
 /* Forms */

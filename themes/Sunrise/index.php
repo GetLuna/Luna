@@ -79,9 +79,16 @@ if ($luna_user['first_run'] == '0') {
 		</div>
 	</div>
 	<div class="col-sm-9 hidden-xs">
-		<?php draw_section_info($id); ?>
-		<?php echo $paging_links ?>
-		<?php draw_index_topics_list($id) ?>
-		<?php echo $paging_links ?>
+<?php
+		// Announcement
+		if ($luna_config['o_announcement'] == '1')
+			echo '<div class="alert alert-info announcement"><div>'.$luna_config['o_announcement_message'].'</div></div>';
+
+		draw_section_info($id);
+
+		echo $paging_links;
+		draw_index_topics_list($id);
+		echo $paging_links;
+?>
 	</div>
 </div>

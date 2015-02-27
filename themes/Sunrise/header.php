@@ -80,4 +80,3 @@ if (!defined('FORUM_ALLOW_INDEX'))
 				</div>
 			</div>
 			<div class="container">
-				<?php echo $announcement; ?>	
