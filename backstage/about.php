@@ -68,6 +68,7 @@ require 'header.php';
 				<a href="#p3" class="list-group-item">Preview 3</a>
 				<a href="#p3u1" class="list-group-item">Preview 3 Update 1</a>
 				<a href="#p3u2" class="list-group-item">Preview 3 Update 2</a>
+				<a href="#p4" class="list-group-item">Preview 4</a>
 			</div>
 		</div>
 	</div>
@@ -234,7 +235,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.3827.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.38xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -529,6 +530,20 @@ require 'header.php';
 								<span class="label label-primary">3827</span> Icons are now used all over the Backstage<br />
 								<span class="label label-primary">3827</span> Small code optimalizations throughout the software<br />
 								<span class="label label-primary">3827</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4><a id="p4"></a>Preview 4 &middot; Build 38xx</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> Improvements for color schemes in Sunrise and Sunset<br />
+								<span class="label label-primary">38xx</span> Announcements now work again
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
