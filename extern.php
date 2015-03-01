@@ -314,7 +314,7 @@ if ($action == 'feed') {
 				if ($cur_post['email_setting'] == '0' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_post['email'];
 
-				$item['author']['uri'] = get_base_url(true).'/me.php?id='.$cur_post['poster_id'];
+				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_post['poster_id'];
 			} elseif ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
 				$item['author']['email'] = $cur_post['poster_email'];
 
@@ -395,7 +395,7 @@ if ($action == 'feed') {
 					if ($cur_topic['email_setting'] == '0' && !$luna_user['is_guest'])
 						$item['author']['email'] = $cur_topic['email'];
 
-					$item['author']['uri'] = '/me.php?id='.$cur_topic['poster_id'];
+					$item['author']['uri'] = '/profile.php?id='.$cur_topic['poster_id'];
 				} elseif ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_topic['poster_email'];
 
@@ -443,7 +443,7 @@ elseif ($action == 'online' || $action == 'online_full') {
 
 	while ($luna_user_online = $db->fetch_assoc($result)) {
 		if ($luna_user_online['user_id'] > 1) {
-			$users[] = ($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/me.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>' : luna_htmlspecialchars($luna_user_online['ident']);
+			$users[] = ($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>' : luna_htmlspecialchars($luna_user_online['ident']);
 			++$num_users;
 		} else
 			++$num_guests;
@@ -489,7 +489,7 @@ elseif ($action == 'stats') {
 	header('Pragma: public');
 
 	echo sprintf($lang['No of users'], forum_number_format($stats['total_users'])).'<br />'."\n";
-	echo sprintf($lang['Newest user'], (($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/me.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
+	echo sprintf($lang['Newest user'], (($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
 	echo sprintf($lang['No of topics'], forum_number_format($stats['total_topics'])).'<br />'."\n";
 	echo sprintf($lang['No of posts'], forum_number_format($stats['total_posts'])).'<br />'."\n";
 

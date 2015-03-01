@@ -338,7 +338,7 @@ if (isset($_POST['update_group_membership'])) {
 
 				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 				$mail_message = str_replace('<email>', $new_email, $mail_message);
-				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$id, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$id, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
@@ -364,7 +364,7 @@ if (isset($_POST['update_group_membership'])) {
 
 				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 				$mail_message = str_replace('<dupe_list>', implode(', ', $dupe_list), $mail_message);
-				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$id, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$id, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);

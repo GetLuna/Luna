@@ -67,7 +67,7 @@ $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.crea
 
 if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {
-		$reporter = ($cur_report['reporter'] != '') ? '<a href="../me.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
+		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
 		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
 		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.$lang['Deleted'].'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
@@ -123,12 +123,12 @@ $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.mess
 
 if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {
-		$reporter = ($cur_report['reporter'] != '') ? '<a href="../me.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
+		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
 		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
 		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.$lang['Deleted'].'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
 		$post_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf($lang['Post ID'], $cur_report['pid']).'</a></span>' : '<span> <span class="divider">/</span> '.$lang['Deleted'].'</span>';
-		$zapped_by = ($cur_report['zapped_by'] != '') ? '<a href="../me.php?id='.$cur_report['zapped_by_id'].'">'.luna_htmlspecialchars($cur_report['zapped_by']).'</a>' : $lang['NA'];
+		$zapped_by = ($cur_report['zapped_by'] != '') ? '<a href="../profile.php?id='.$cur_report['zapped_by_id'].'">'.luna_htmlspecialchars($cur_report['zapped_by']).'</a>' : $lang['NA'];
 		$zapped_by = ($cur_report['zapped_by'] != '') ? '<strong>'.luna_htmlspecialchars($cur_report['zapped_by']).'</strong>' : $lang['NA'];
 		$report_location = array($forum, $topic, $post_id);
 

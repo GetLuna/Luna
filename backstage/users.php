@@ -155,7 +155,7 @@ if (isset($_GET['show_users'])) {
 			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Results view IP link'].'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.$lang['Posts table'].'</a>';
 ?>
 			<tr>
-				<td><?php echo '<a href="../me.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
+				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
 				<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?>"><?php echo luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['email']) ?></a></td>
 				<td><?php echo $user_title ?></td>
 				<td class="text-center"><?php echo forum_number_format($user_data[$cur_poster['poster_id']]['num_posts']) ?></td>
@@ -749,7 +749,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 ?>
 				<tr>
-					<td><?php echo '<a href="../me.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
+					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
 					<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
 					<td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
 					<td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>

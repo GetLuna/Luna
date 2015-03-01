@@ -6,7 +6,7 @@ if (!defined('FORUM'))
 
 ?>
 
-<form id="confirm_del_user" method="post" action="me.php?id=<?php echo $id ?>">
+<form id="confirm_del_user" method="post" action="profile.php?id=<?php echo $id ?>">
 	<fieldset>
 		<div class="panel panel-danger">
 			<div class="panel-heading">

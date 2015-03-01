@@ -109,7 +109,7 @@ elseif ($action == 'markforumread') {
 		$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
 
 	if (!isset($redirect_url))
-		$redirect_url = get_base_url(true).'/me.php?id='.$recipient_id;
+		$redirect_url = get_base_url(true).'/profile.php?id='.$recipient_id;
 	elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];
 

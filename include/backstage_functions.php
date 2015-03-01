@@ -115,7 +115,7 @@ function load_admin_nav($section, $page) {
 						<?php print(luna_htmlspecialchars($luna_user['username'])) ?> <?php echo draw_user_avatar($luna_user['id'], 'avatar'); ?> <span class="fa fa-fw fa-angle-down"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="../me.php?id=<?php echo $luna_user['id'] ?>"><?php echo $lang['Profile'] ?></a></li>
+						<li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><?php echo $lang['Profile'] ?></a></li>
 						<li><a href="../settings.php?id=<?php echo ''.$luna_user['id'] ?>"><?php echo $lang['Settings'] ?></a></li>
 						<li class="divider"></li>
 						<li><a href="../help.php"><?php echo $lang['Help'] ?></a></li>

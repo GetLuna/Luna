@@ -136,7 +136,7 @@ else
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="me.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
+						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="settings.php">Settings</a></li>
 						<li class="divider"></li>
 						<li><a href="help.php">'.$lang['Help'].'</a></li>
