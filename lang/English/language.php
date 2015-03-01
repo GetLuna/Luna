@@ -1074,6 +1074,7 @@ $lang = array(
 'Essentials subhead'				=>	'Essentials',
 'Board desc help'					=>	'What\'s this board about?',
 'Base URL label'					=>	'Board URL',
+'URL scheme'						=> 'URL scheme',
 'Base URL problem'					=>  'Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter.',
 'Timezone label'					=>	'Default time zone',
 'DST help'							=>	'Advance time by 1 hour for daylight saving.',
