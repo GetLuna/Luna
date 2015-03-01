@@ -143,7 +143,8 @@ if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
-define('FORUM_ALLOW_INDEX', 1);
+if (!$pid)
+	define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'viewtopic');
 require load_page('header.php');
 
