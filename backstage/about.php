@@ -538,11 +538,14 @@ require 'header.php';
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-primary">38xx</span> Improvements for color schemes in Sunrise and Sunset<br />
-								<span class="label label-primary">38xx</span> Announcements now work again
+								<span class="label label-primary">38xx</span> Announcements now work again<br />
+								<span class="label label-primary">38xx</span> URLs are now readable links for better SEO
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
+								<span class="label label-primary">38xx</span> You can now change the URL-format<br />
+								<span class="label label-primary">38xx</span> The profile is now named profile.php instead of me.php<br />
 								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
