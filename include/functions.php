@@ -2199,7 +2199,7 @@ function forum_sublink($link, $sublink, $subarg, $args = null) {
 }
 
 // Make a string safe to use in a URL
-function sef_friendly($str) {
+function url_friendly($str) {
 	global $luna_config, $luna_user;
 	static $forum_reserved_strings;
 
@@ -2225,7 +2225,7 @@ function sef_friendly($str) {
 }
 
 // Get topic/forum title
-function sef_name($type, $id) {
+function url_name($type, $id) {
 	global $db;
 
 	if ($type == 'f') // forum
@@ -2234,7 +2234,7 @@ function sef_name($type, $id) {
 	else // topic
 		$result = $db->query('SELECT subject FROM '.$db->prefix.'topics WHERE id='.$id) or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
 
-	return ($db->num_rows($result)) ? sef_friendly($db->result($result)) : '';
+	return ($db->num_rows($result)) ? url_friendly($db->result($result)) : '';
 }
 
 // Convert rewritten url back to normal url
