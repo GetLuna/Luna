@@ -658,6 +658,10 @@ switch ($stage) {
 		if (!array_key_exists('o_emoji', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji\', \'0\')') or error('Unable to insert config value \'o_emoji\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.3.3832: Add o_url_scheme feature
+		if (!isset($luna_config['o_url_scheme']))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_url_scheme\', \'Folder_based_(fancy)\')') or error('Unable to add o_url_scheme to config table', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
