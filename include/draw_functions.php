@@ -279,7 +279,7 @@ function draw_topics_list() {
 			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> ('.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).')</span>';
 			else
 				$subject_multipage = null;
 	
@@ -585,7 +585,7 @@ function draw_index_topics_list($section_id) {
 			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
+				$subject_multipage = '<span class="inline-pagination"> ('.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).')</span>';
 			else
 				$subject_multipage = null;
 	
@@ -1063,7 +1063,7 @@ function draw_search_results() {
 			$num_pages_topic = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_posts']);
 			
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).'</span>';
+				$subject_multipage = '<span class="pagestext">('.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).')</span>';
 			else
 				$subject_multipage = null;
 			
