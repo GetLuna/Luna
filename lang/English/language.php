@@ -153,7 +153,7 @@ $lang = array(
 'Choose install language info'	=>	'The language used for this install script. The default language used for the board itself can be set below.',
 'Install language'				=>	'Install language',
 'Change language'				=>	'Change language',
-'Already installed'				=>	'It seems like Luna is already installed. You should go <a href="index.php">here</a> instead.',
+'Already installed'				=>	'It seems like Luna is already installed. You should go <a href="'.forum_link($GLOBALS['forum_url']['index']).'">here</a> instead.',
 'You are running error'			=>	'You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.',
 'My Luna Forum'				=>	'My Luna Forum',
 'Description'					=>	'You can do anything',
@@ -219,9 +219,9 @@ $lang = array(
 'Alert upload'					=>	'<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features.',
 'Luna has been installed'	=>	'Luna has been installed. To finalize the installation please follow the instructions below.',
 'Info 8'						=>	'To finalize the installation, you need to click on the button below to download a file called config.php. You then need to upload this file to the root directory of your Luna installation.',
-'Info 9'						=>	'Once you have uploaded config.php, Luna will be fully installed! At that point, you may <a href="index.php">go to the forum index</a>.',
+'Info 9'						=>	'Once you have uploaded config.php, Luna will be fully installed! At that point, you may <a href="'.forum_link($GLOBALS['forum_url']['index']).'">go to the forum index</a>.',
 'Download config.php file'		=>	'Download config.php file',
-'Luna fully installed'		=>	'Luna has been fully installed! You may now <a href="index.php">go to the forum index</a>.',
+'Luna fully installed'		=>	'Luna has been fully installed! You may now <a href="'.forum_link($GLOBALS['forum_url']['index']).'">go to the forum index</a>.',
 
 // Language for updating
 'Update Luna'				=>	'Update Luna',

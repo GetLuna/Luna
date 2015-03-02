@@ -162,7 +162,7 @@ if (isset($_POST['update_group_membership'])) {
 		if ($group_id == FORUM_ADMIN)
 			generate_admins_cache();
 
-		redirect('index.php');
+		redirect(forum_link($GLOBALS['forum_url']['index']));
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Confirm delete user']);
@@ -208,7 +208,7 @@ if (isset($_POST['update_group_membership'])) {
 	if (isset($_GET['key'])) {
 		// If the user is already logged in we shouldn't be here :)
 		if (!$luna_user['is_guest']) {
-			header('Location: index.php');
+			header('Location: '.forum_link($GLOBALS['forum_url']['index']));
 			exit;
 		}
 

@@ -17,7 +17,7 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 	<div class="row forumview">
 		<div class="col-sm-3">
 			<div class="list-group list-group-forum">
-				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> Back to index</a>
+				<a class="list-group-item" href="<?php echo forum_link($GLOBALS['forum_url']['index']) ?>"><span class="fa fa-fw fa-chevron-left"></span> Back to index</a>
 			</div>
 			<hr />
 			<?php if ((is_subforum($id) && $id != '0')): ?>

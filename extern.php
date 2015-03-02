@@ -118,7 +118,7 @@ function output_rss($feed) {
 	echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
 	echo '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'."\n";
 	echo "\t".'<channel>'."\n";
-	echo "\t\t".'<atom:link href="'.luna_htmlspecialchars(get_current_url()).'" rel="self" type="application/rss+xml" />'."\n";
+	echo "\t\t".'<atom:link href="'.forum_link(get_current_url()).'" rel="self" type="application/rss+xml" />'."\n";
 	echo "\t\t".'<title><![CDATA['.escape_cdata($feed['title']).']]></title>'."\n";
 	echo "\t\t".'<link>'.luna_htmlspecialchars($feed['link']).'</link>'."\n";
 	echo "\t\t".'<description><![CDATA['.escape_cdata($feed['description']).']]></description>'."\n";
@@ -158,8 +158,8 @@ function output_atom($feed) {
 	echo '<feed xmlns="http://www.w3.org/2005/Atom">'."\n";
 
 	echo "\t".'<title type="html"><![CDATA['.escape_cdata($feed['title']).']]></title>'."\n";
-	echo "\t".'<link rel="self" href="'.luna_htmlspecialchars(get_current_url()).'"/>'."\n";
-	echo "\t".'<link href="'.luna_htmlspecialchars($feed['link']).'"/>'."\n";
+	echo "\t".'<link rel="self" href="'.forum_link(get_current_url()).'"/>'."\n";
+	echo "\t".'<link href="'.forum_link($feed['link']).'"/>'."\n";
 	echo "\t".'<updated>'.gmdate('Y-m-d\TH:i:s\Z', count($feed['items']) ? $feed['items'][0]['pubdate'] : time()).'</updated>'."\n";
 	echo "\t".'<generator version="'.$luna_config['o_cur_version'].'">Luna</generator>'."\n";
 
@@ -170,7 +170,7 @@ function output_atom($feed) {
 	foreach ($feed['items'] as $item) {
 		echo "\t".'<entry>'."\n";
 		echo "\t\t".'<title type="html"><![CDATA['.escape_cdata($item['title']).']]></title>'."\n";
-		echo "\t\t".'<link rel="alternate" href="'.luna_htmlspecialchars($item['link']).'"/>'."\n";
+		echo "\t\t".'<link rel="alternate" href="'.forum_link($item['link']).'"/>'."\n";
 		echo "\t\t".'<'.$content_tag.' type="html"><![CDATA['.escape_cdata($item['description']).']]></'.$content_tag.'>'."\n";
 		echo "\t\t".'<author>'."\n";
 		echo "\t\t\t".'<name><![CDATA['.escape_cdata($item['author']['name']).']]></name>'."\n";
@@ -252,7 +252,7 @@ function output_html($feed) {
 		else
 			$subject_truncated = luna_htmlspecialchars($item['title']);
 
-		echo '<li><a href="'.luna_htmlspecialchars($item['link']).'" title="'.luna_htmlspecialchars($item['title']).'">'.$subject_truncated.'</a></li>'."\n";
+		echo '<li><a href="'.forum_link($item['link']).'" title="'.luna_htmlspecialchars($item['title']).'">'.$subject_truncated.'</a></li>'."\n";
 	}
 }
 
@@ -288,7 +288,7 @@ if ($action == 'feed') {
 		// Setup the feed
 		$feed = array(
 			'title' 		=>	$luna_config['o_board_title'].$lang['Title separator'].$cur_topic['subject'],
-			'link'			=>	get_base_url(true).'/viewtopic.php?id='.$tid,
+			'link'			=>	forum_link($GLOBALS['forum_url']['topic'], array($tid, (isset($cur_topic['subject']) ? sef_friendly($cur_topic['subject']) : sef_name('t', $tid)))),
 			'description'		=>	sprintf($lang['RSS description topic'], $cur_topic['subject']),
 			'items'			=>	array(),
 			'type'			=>	'posts'
@@ -302,7 +302,7 @@ if ($action == 'feed') {
 			$item = array(
 				'id'			=>	$cur_post['id'],
 				'title'			=>	$cur_topic['first_post_id'] == $cur_post['id'] ? $cur_topic['subject'] : $lang['RSS reply'].$cur_topic['subject'],
-				'link'			=>	get_base_url(true).'/viewtopic.php?pid='.$cur_post['id'].'#p'.$cur_post['id'],
+				'link'			=>	forum_link($GLOBALS['forum_url']['post'], $cur_post['id']),
 				'description'		=>	$cur_post['message'],
 				'author'		=>	array(
 					'name'	=> $cur_post['poster'],
@@ -314,7 +314,7 @@ if ($action == 'feed') {
 				if ($cur_post['email_setting'] == '0' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_post['email'];
 
-				$item['author']['uri'] = get_base_url(true).'/profile.php?id='.$cur_post['poster_id'];
+				$item['author']['uri'] = forum_link($GLOBALS['forum_url']['user'], $cur_post['poster_id']);
 			} elseif ($cur_post['poster_email'] != '' && !$luna_user['is_guest'])
 				$item['author']['email'] = $cur_post['poster_email'];
 
@@ -366,7 +366,7 @@ if ($action == 'feed') {
 			// Setup the feed
 			$feed = array(
 				'title' 		=>	$luna_config['o_board_title'].$forum_name,
-				'link'			=>	'/index.php',
+				'link'			=>	forum_link($GLOBALS['forum_url']['index']),
 				'description'	=>	sprintf($lang['RSS description'], $luna_config['o_board_title']),
 				'items'			=>	array(),
 				'type'			=>	'topics'
@@ -383,7 +383,7 @@ if ($action == 'feed') {
 				$item = array(
 					'id'			=>	$cur_topic['id'],
 					'title'			=>	$cur_topic['subject'],
-					'link'			=>	'/viewtopic.php?id='.$cur_topic['id'].($order_posted ? '' : '&action=new'),
+					'link'			=>	forum_link($GLOBALS['forum_url']['topic'.($order_posted ? '_new_posts' : '')], array($cur_topic['id'], sef_friendly($cur_topic['subject']))),
 					'description'	=>	$cur_topic['message'],
 					'author'		=>	array(
 						'name'	=> $order_posted ? $cur_topic['poster'] : $cur_topic['last_poster']
@@ -395,7 +395,7 @@ if ($action == 'feed') {
 					if ($cur_topic['email_setting'] == '0' && !$luna_user['is_guest'])
 						$item['author']['email'] = $cur_topic['email'];
 
-					$item['author']['uri'] = '/profile.php?id='.$cur_topic['poster_id'];
+					$item['author']['uri'] = forum_link($GLOBALS['forum_url']['user'], $cur_topic['poster_id']);
 				} elseif ($cur_topic['poster_email'] != '' && !$luna_user['is_guest'])
 					$item['author']['email'] = $cur_topic['poster_email'];
 
@@ -417,13 +417,13 @@ if ($action == 'feed') {
 			$feed['items'] = array_slice($feed['items'], 0, $show);
 
 		// Prepend the current base URL onto some links. Done after caching to handle http/https correctly
-		$feed['link'] = get_base_url(true).$feed['link'];
+		$feed['link'] = forum_link($feed['link']);
 
 		foreach ($feed['items'] as $key => $item) {
-			$feed['items'][$key]['link'] = get_base_url(true).$item['link'];
+			$feed['items'][$key]['link'] = forum_link($item['link']);
 
 			if (isset($item['author']['uri']))
-				$feed['items'][$key]['author']['uri'] = get_base_url(true).$item['author']['uri'];
+				$feed['items'][$key]['author']['uri'] = forum_link($item['author']['uri']);
 		}
 
 		$output_func = 'output_'.$type;
@@ -443,7 +443,7 @@ elseif ($action == 'online' || $action == 'online_full') {
 
 	while ($luna_user_online = $db->fetch_assoc($result)) {
 		if ($luna_user_online['user_id'] > 1) {
-			$users[] = ($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>' : luna_htmlspecialchars($luna_user_online['ident']);
+			$users[] = ($luna_user['g_view_users'] == '1') ? '<a href="'.forum_link($GLOBALS['forum_url']['user'], $luna_user_online['user_id']).'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a>' : luna_htmlspecialchars($luna_user_online['ident']);
 			++$num_users;
 		} else
 			++$num_guests;
@@ -489,7 +489,7 @@ elseif ($action == 'stats') {
 	header('Pragma: public');
 
 	echo sprintf($lang['No of users'], forum_number_format($stats['total_users'])).'<br />'."\n";
-	echo sprintf($lang['Newest user'], (($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
+	echo sprintf($lang['Newest user'], (($luna_user['g_view_users'] == '1') ? '<a href="'.forum_link($GLOBALS['forum_url']['user'], $stats['last_user']['id']).'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
 	echo sprintf($lang['No of topics'], forum_number_format($stats['total_topics'])).'<br />'."\n";
 	echo sprintf($lang['No of posts'], forum_number_format($stats['total_posts'])).'<br />'."\n";
 

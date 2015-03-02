@@ -58,7 +58,7 @@ if (isset($_POST['soft_delete'])) {
 		delete_topic($cur_post['tid'], "soft");
 		update_forum($cur_post['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid']);
+		redirect(forum_link($GLOBALS['forum_url']['forum'], array($cur_post['fid'], (isset($cur_post['forum_name']) ? url_friendly($cur_post['forum_name']) : url_name('f', $cur_post['fid'])))));
 	} else {
 		// Delete just this one post
 		$db->query('UPDATE '.$db->prefix.'posts SET soft = 1 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
@@ -84,14 +84,14 @@ if (isset($_POST['reset'])) {
 		delete_topic($cur_post['tid'], "reset");
 		update_forum($cur_post['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid']);
+		redirect(forum_link($GLOBALS['forum_url']['forum'], array($cur_post['fid'], (isset($cur_post['forum_name']) ? url_friendly($cur_post['forum_name']) : url_name('f', $cur_post['fid'])))));
 	} else {
 		// Reset just this one post
 		$db->query('UPDATE '.$db->prefix.'posts SET soft = 0 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
 		update_forum($cur_post['fid']);
 
 		// Redirect towards the post
-		redirect('viewtopic.php?pid='.$id.'#p'.$id);
+		redirect(forum_link($GLOBALS['forum_url']['post'], $id));
 	}
 }
 
@@ -106,7 +106,7 @@ if (isset($_POST['delete'])) {
 		delete_topic($cur_post['tid'], "hard");
 		update_forum($cur_post['fid']);
 
-		redirect('viewforum.php?id='.$cur_post['fid']);
+		redirect(forum_link($GLOBALS['forum_url']['forum'], array($cur_post['fid'], (isset($cur_post['forum_name']) ? url_friendly($cur_post['forum_name']) : url_name('f', $cur_post['fid'])))));
 	} else {
 		// Delete just this one post
 		delete_post($id, $cur_post['tid']);

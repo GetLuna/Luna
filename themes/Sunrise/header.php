@@ -31,7 +31,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 			<div id="header">
 				<div class="navbar navbar-inverse navbar-static-top">
 					<div class="container">
-						<a class="navbar-brand" href="index.php"><?php echo $menu_title ?></a>
+						<a class="navbar-brand" href="<?php echo forum_link($GLOBALS['forum_url']['index']) ?>"><?php echo $menu_title ?></a>
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-primary-collapse">
 								<span class="icon-bar"></span>

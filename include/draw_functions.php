@@ -346,7 +346,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 			// Are there new posts since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="'.forum_link($GLOBALS['forum_url']['search_new_forum'], $cur_forum['fid']).'">'.$lang['New posts'].'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -429,7 +429,7 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 			// Are there new posts since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="'.forum_link($GLOBALS['forum_url']['search_new_forum'], $cur_forum['fid']).'">'.$lang['New posts'].'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -1192,7 +1192,7 @@ function draw_mark_read($class, $page) {
 		$classes = ' class="'.$class.'"';
 		
 	if ($page == 'index')
-		$url = 'misc.php?action=markread';
+		$url = forum_link($GLOBALS['forum_url']['mark_read']);
 	elseif ($page == 'forumview')
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 

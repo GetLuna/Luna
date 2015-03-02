@@ -24,7 +24,7 @@ if ($action == 'markread') {
 	// Reset tracked topics
 	set_tracked_topics(null);
 
-	redirect('index.php');
+	redirect(forum_link($GLOBALS['forum_url']['index']));
 }
 
 // Mark the topics/posts in a forum as read?
@@ -98,7 +98,7 @@ elseif ($action == 'markforumread') {
 		$db->query('UPDATE '.$db->prefix.'users SET last_email_sent='.time().' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 		// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after login)
-		$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
+		$redirect_url = validate_redirect($_POST['redirect_url'], forum_link($GLOBALS['forum_url']['index']));
 
 		redirect(luna_htmlspecialchars($redirect_url));
 	}

@@ -44,9 +44,9 @@ if (!$luna_user['is_guest']) {
 }
 
 if ($luna_config['o_feed_type'] == '1')
-	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;type=rss" title="'.$lang['RSS active topics feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="'.forum_link($GLOBALS['forum_url']['index_rss']).'" title="'.$lang['RSS active topics feed'].'" />');
 elseif ($luna_config['o_feed_type'] == '2')
-	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;type=atom" title="'.$lang['Atom active topics feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="'.forum_link($GLOBALS['forum_url']['index_atom']).'" title="'.$lang['Atom active topics feed'].'" />');
 
 $forum_actions = array();
 
@@ -54,18 +54,18 @@ $forum_actions = array();
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 if ($action == 'do_not_show') {
-	confirm_referrer('index.php');
+	confirm_referrer(forum_link($GLOBALS['forum_url']['index']));
 
 	$db->query('UPDATE '.$db->prefix.'users SET first_run = 1 WHERE id='.$luna_user['id']) or error('Unable to disable first run', __FILE__, __LINE__, $db->error());
 
-	redirect('index.php');
+	redirect(forum_link($GLOBALS['forum_url']['index']));
 }
 
 // Or want to disable the cookiebar
 if ($action == 'disable_cookiebar') {
 	luna_cookiebarcookie();
 
-	redirect('index.php');
+	redirect(forum_link($GLOBALS['forum_url']['index']));
 }
 
 if ($id != 0) {
