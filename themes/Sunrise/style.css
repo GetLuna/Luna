@@ -694,6 +694,15 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	background-color: #0d4382;
 }
 
+/* Inbox */
+.navbar-default {
+	border: none;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+	color: #fff;
+}
+
 /* Post messages */
 .bblinks {
 	padding-top: 5px;
