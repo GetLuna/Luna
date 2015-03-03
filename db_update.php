@@ -826,7 +826,7 @@ switch ($stage) {
 		// Delete the update lock file
 		@unlink(FORUM_CACHE_DIR.'db_update.lock');
 
-		header('Location: '.forum_link($GLOBALS['forum_url']['index']));
+		header('Location: index.php');
 		break;
 }
 
