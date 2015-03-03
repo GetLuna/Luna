@@ -143,18 +143,6 @@ if (!defined('FORUM_DISABLE_BUFFERING')) {
 		ob_start();
 }
 
-// Setup the URL rewriting scheme
-if (file_exists(FORUM_ROOT.'include/url/'.$luna_config['o_url_scheme'].'/forum_urls.php'))
-	require FORUM_ROOT.'include/url/'.$luna_config['o_url_scheme'].'/forum_urls.php';
-else
-	require FORUM_ROOT.'include/url/Default/forum_urls.php';
-
-// Convert rewritten url back to normal url
-if (isset($_SERVER['HTTP_REFERER'])) {
-	$_SERVER['HTTP_REFERER_REWRITTEN'] = $_SERVER['HTTP_REFERER'];
-	$_SERVER['HTTP_REFERER'] = fix_referer();
-}
-
 // Define standard date/time formats
 $forum_time_formats = array($luna_config['o_time_format'], 'H:i:s', 'H:i', 'g:i:s a', 'g:i a');
 $forum_date_formats = array($luna_config['o_date_format'], 'Y-m-d', 'Y-d-m', 'd-m-Y', 'm-d-Y', 'M j Y', 'jS M Y');
