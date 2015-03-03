@@ -288,7 +288,7 @@ if ($action == 'feed') {
 		// Setup the feed
 		$feed = array(
 			'title' 		=>	$luna_config['o_board_title'].$lang['Title separator'].$cur_topic['subject'],
-			'link'			=>	forum_link($GLOBALS['forum_url']['topic'], array($tid, (isset($cur_topic['subject']) ? sef_friendly($cur_topic['subject']) : sef_name('t', $tid)))),
+			'link'			=>	forum_link($GLOBALS['forum_url']['topic'], array($tid, (isset($cur_topic['subject']) ? url_friendly($cur_topic['subject']) : url_name('t', $tid)))),
 			'description'		=>	sprintf($lang['RSS description topic'], $cur_topic['subject']),
 			'items'			=>	array(),
 			'type'			=>	'posts'
@@ -383,7 +383,7 @@ if ($action == 'feed') {
 				$item = array(
 					'id'			=>	$cur_topic['id'],
 					'title'			=>	$cur_topic['subject'],
-					'link'			=>	forum_link($GLOBALS['forum_url']['topic'.($order_posted ? '_new_posts' : '')], array($cur_topic['id'], sef_friendly($cur_topic['subject']))),
+					'link'			=>	forum_link($GLOBALS['forum_url']['topic'.($order_posted ? '_new_posts' : '')], array($cur_topic['id'], url_friendly($cur_topic['subject']))),
 					'description'	=>	$cur_topic['message'],
 					'author'		=>	array(
 						'name'	=> $order_posted ? $cur_topic['poster'] : $cur_topic['last_poster']

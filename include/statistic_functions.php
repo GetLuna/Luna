@@ -77,7 +77,7 @@ function online_list() {
 			$ctr = 1;
 			while ($luna_user_online = $db->fetch_assoc($result)) {
 				if ($luna_user['g_view_users'] == '1')
-					echo "\n\t\t\t\t".'<li><a href="'.forum_link($GLOBALS['forum_url']['user'], $pun_user_online['user_id']).'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a></li>';
+					echo "\n\t\t\t\t".'<li><a href="'.forum_link($GLOBALS['forum_url']['user'], $luna_user_online['user_id']).'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a></li>';
 				else
 					echo "\n\t\t\t\t".'<li>'.luna_htmlspecialchars($luna_user_online['ident']).'</li>';
 			}

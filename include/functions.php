@@ -2151,6 +2151,7 @@ function get_forum_id($post_id)
 	else
 		return false;
 }
+
 // Generate a hyperlink with parameters and anchor
 function forum_link($link, $args = null) {
 	global $luna_config;

@@ -350,7 +350,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 				$icon_type = 'icon icon-new';
 			}
 		
-			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+			$forum_field = '<a href="'.forum_link($GLOBALS['forum_url']['forum'], array($cur_forum['fid'], (isset($cur_forum['forum_name']) ? url_friendly($cur_forum['forum_name']) : url_name('f', $cur_forum['fid'])))).'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
@@ -374,9 +374,9 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 40).'...';
 		
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
-						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_post = '<a href="'.forum_link($GLOBALS['forum_url']['post'], $cur_forum['last_post_id']).'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
-						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+						$last_post = '<a href="'.forum_link($GLOBALS['forum_url']['post'], $cur_forum['last_post_id']).'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} elseif ($cur_forum['redirect_url'] != '')
 				$last_post = '- - -';
 			else
@@ -433,7 +433,7 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 				$icon_type = 'icon icon-new';
 			}
 		
-			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+			$forum_field = '<a href="'.forum_link($GLOBALS['forum_url']['forum'], array($cur_forum['fid'], (isset($cur_forum['forum_name']) ? url_friendly($cur_forum['forum_name']) : url_name('f', $cur_forum['fid'])))).'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
