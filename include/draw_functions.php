@@ -279,7 +279,7 @@ function draw_topics_list() {
 			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> ('.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).')</span>';
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
@@ -346,11 +346,11 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 			// Are there new posts since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="'.forum_link($GLOBALS['forum_url']['search_new_forum'], $cur_forum['fid']).'">'.$lang['New posts'].'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
-			$forum_field = '<a href="'.forum_link($GLOBALS['forum_url']['forum'], array($cur_forum['fid'], (isset($cur_forum['forum_name']) ? url_friendly($cur_forum['forum_name']) : url_name('f', $cur_forum['fid'])))).'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
@@ -374,9 +374,9 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 40).'...';
 		
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
-						$last_post = '<a href="'.forum_link($GLOBALS['forum_url']['post'], $cur_forum['last_post_id']).'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
-						$last_post = '<a href="'.forum_link($GLOBALS['forum_url']['post'], $cur_forum['last_post_id']).'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} elseif ($cur_forum['redirect_url'] != '')
 				$last_post = '- - -';
 			else
@@ -429,11 +429,11 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 			// Are there new posts since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="'.forum_link($GLOBALS['forum_url']['search_new_forum'], $cur_forum['fid']).'">'.$lang['New posts'].'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
-			$forum_field = '<a href="'.forum_link($GLOBALS['forum_url']['forum'], array($cur_forum['fid'], (isset($cur_forum['forum_name']) ? url_friendly($cur_forum['forum_name']) : url_name('f', $cur_forum['fid'])))).'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
+			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
@@ -585,7 +585,7 @@ function draw_index_topics_list($section_id) {
 			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 	
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="inline-pagination"> ('.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).')</span>';
+				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
 			else
 				$subject_multipage = null;
 	
@@ -1063,7 +1063,7 @@ function draw_search_results() {
 			$num_pages_topic = ceil(($cur_search['num_replies'] + 1) / $luna_user['disp_posts']);
 			
 			if ($num_pages_topic > 1)
-				$subject_multipage = '<span class="pagestext">('.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).')</span>';
+				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).'</span>';
 			else
 				$subject_multipage = null;
 			
@@ -1192,7 +1192,7 @@ function draw_mark_read($class, $page) {
 		$classes = ' class="'.$class.'"';
 		
 	if ($page == 'index')
-		$url = forum_link($GLOBALS['forum_url']['mark_read']);
+		$url = 'misc.php?action=markread';
 	elseif ($page == 'forumview')
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 

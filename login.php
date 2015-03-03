@@ -59,7 +59,7 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	set_tracked_topics(null);
 
 	// Try to determine if the data in redirect_url is valid (if not, we redirect to index.php after the email is sent)
-	$redirect_url = validate_redirect($_POST['redirect_url'], forum_link($GLOBALS['forum_url']['index']));
+	$redirect_url = validate_redirect($_POST['redirect_url'], 'index.php');
 
 	redirect(luna_htmlspecialchars($redirect_url));
 }
@@ -69,7 +69,7 @@ elseif ($action == 'out')
 {
 	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address())))
 	{
-		header('Location: '.forum_link($GLOBALS['forum_url']['index']));
+		header('Location: index.php');
 		exit;
 	}
 
@@ -82,7 +82,7 @@ elseif ($action == 'out')
 
 	luna_setcookie(1, luna_hash(uniqid(rand(), true)), time() + 31536000);
 
-	redirect(forum_link($GLOBALS['forum_url']['index']));
+	redirect('index.php');
 }
 
 
@@ -90,7 +90,7 @@ elseif ($action == 'forget' || $action == 'forget_2')
 {
 	if (!$luna_user['is_guest'])
 	{
-		header('Location: '.forum_link($GLOBALS['forum_url']['index']));
+		header('Location: index.php');
 		exit;
 	}
 
@@ -154,6 +154,6 @@ elseif ($action == 'forget' || $action == 'forget_2')
 		$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
 
 	if (!isset($redirect_url))
-		$redirect_url = get_base_url(true).'/'.forum_link($GLOBALS['forum_url']['index']);
+		$redirect_url = get_base_url(true).'/index.php';
 	elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
 		$redirect_url .= '#p'.$matches[1];

@@ -12,7 +12,7 @@ require FORUM_ROOT.'include/common.php';
 
 // If we are logged in, we shouldn't be here
 if (!$luna_user['is_guest']) {
-	header('Location: '.forum_link($GLOBALS['forum_url']['index']));
+	header('Location: index.php');
 	exit;
 }
 
@@ -198,7 +198,7 @@ if (isset($_POST['form_sent'])) {
 
 		luna_setcookie($new_uid, $password_hash, time() + $luna_config['o_timeout_visit']);
 
-		redirect(forum_link($GLOBALS['forum_url']['index']));
+		redirect('index.php');
 	}
 }
 

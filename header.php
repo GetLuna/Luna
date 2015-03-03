@@ -139,7 +139,7 @@ else
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="settings.php">Settings</a></li>
 						<li class="divider"></li>
-						<li><a href="'.forum_link($GLOBALS['forum_url']['help']).'">'.$lang['Help'].'</a></li>
+						<li><a href="help.php">'.$lang['Help'].'</a></li>
 						<li class="divider"></li>
 						<li><a href="login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())).'">'.$lang['Logout'].'</a></li>
 					</ul>

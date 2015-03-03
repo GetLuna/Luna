@@ -129,9 +129,9 @@ if ($luna_config['o_censoring'] == '1')
 	$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 if ($luna_config['o_feed_type'] == '1')
-	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="'.forum_link($GLOBALS['forum_url']['topic_rss'], $id).'" title="'.$lang['RSS topic feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.$lang['RSS topic feed'].'" />');
 elseif ($luna_config['o_feed_type'] == '2')
-	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="'.forum_link($GLOBALS['forum_url']['topic_atom'], $id).'" title="'.$lang['Atom topic feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.$lang['Atom topic feed'].'" />');
 
 $topic_actions = array();
 

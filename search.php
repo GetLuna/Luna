@@ -390,7 +390,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 	// If we're on the new posts search, display a "mark all as read" link
 	if (!$luna_user['is_guest'] && $search_type[0] == 'action' && $search_type[1] == 'show_new')
-		$forum_actions[] = '<a href="'.forum_link($GLOBALS['forum_url']['mark_read']).'">'.$lang['Mark as read'].'</a>';
+		$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
 
 	// Fetch results to display
 	if (!empty($search_ids)) {

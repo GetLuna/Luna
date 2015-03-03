@@ -25,7 +25,6 @@ if (isset($_POST['form_sent'])) {
 		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
 		'default_dst'			=> isset($_POST['form']['default_dst']) ? '1' : '0',
 		'default_lang'			=> luna_trim($_POST['form']['default_lang']),
-		'url_scheme'			=> luna_trim($_POST['form']['url_scheme']),
 		'time_format'			=> luna_trim($_POST['form']['time_format']),
 		'date_format'			=> luna_trim($_POST['form']['date_format']),
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
@@ -450,33 +449,6 @@ if (isset($_GET['saved']))
 							</label>
 						</div>
 						<textarea class="form-control" name="form[announcement_message]" rows="5"><?php echo luna_htmlspecialchars($luna_config['o_announcement_message']) ?></textarea>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['URL scheme'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['URL scheme'] ?></label>
-					<div class="col-sm-9">
-						<select name="url_scheme" class="form-control">
-<?php
-
-	$url_schemes = array();
-	$d = dir(FORUM_ROOT.'include/url/');
-	while ($f = $d->read()) {
-		if (substr($f, 0, 1) != '.' && is_dir(FORUM_ROOT.'include/url/'.$f))
-			$url_schemes[$f] = "\t\t\t\t\t\t\t\t".'<option value="'.$f.'"'.($luna_config['o_url_scheme'] == $f ? ' selected="selected"' : '').'>'.str_replace('_', ' ', $f).'</option>'."\n";
-	}
-	ksort($url_schemes);
-	echo implode("\n", $url_schemes);
-?>
-						</select>
 					</div>
 				</div>
 			</fieldset>
