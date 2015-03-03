@@ -783,7 +783,7 @@ function do_clickable($text) {
 // Convert a series of smilies to images
 //
 function do_smilies($text) {
-	global $smilies;
+	global $smilies, $luna_config;
 
 	$text = ' '.$text.' ';
 
