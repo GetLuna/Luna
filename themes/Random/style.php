@@ -2,12 +2,14 @@
 
 if ($luna_user['color_scheme'] == '1') { // ModernBB
 	$primary_color = '#057ed4';
-	$secondary_color = '#10c1f0';
-	$tertiary_color = '#0589de';
+	$secondary_color = '#088edb';
+	$tertiary_color = '#0a9fe2';
+	$fourth_color = '#10c1f0';
 } else { // Luna fallback
 	$primary_color = '#057ed4';
-	$secondary_color = '#10c1f0';
-	$tertiary_color = '#0b3c75';
+	$secondary_color = '#088edb';
+	$tertiary_color = '#0a9fe2';
+	$fourth_color = '#10c1f0';
 }
 
 ?>
