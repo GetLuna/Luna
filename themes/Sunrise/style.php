@@ -48,6 +48,10 @@ if ($luna_user['color'] == '#14a3ff') { // ModernBB
 	$primary_color = '#555555';
 	$secondary_color = '#444444';
 	$tertiary_color = '#333333';
+} else { // Luna fallback
+	$primary_color = '#145198';
+	$secondary_color = '#0d4382';
+	$tertiary_color = '#0b3c75';
 }
 
 ?>
