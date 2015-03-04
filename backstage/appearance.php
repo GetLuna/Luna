@@ -200,7 +200,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[board_statistics]" value="1" <?php if ($luna_config['o_board_statistics'] == '1') echo ' checked' ?> />
-								Show the board statistics in the footer.
+								Show the board statistics.
 							</label>
 						</div>
 					</div>
