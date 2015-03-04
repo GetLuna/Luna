@@ -111,8 +111,8 @@ if (!defined('FORUM'))
 						<label class="col-sm-3 control-label">Color</label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
-								<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color_scheme'] == '#14a3ff') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="blue" value="#14a3ff"<?php if ($luna_user['color_scheme'] == '#14a3ff') echo ' checked' ?>>
+								<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color_scheme'] == '1') echo ' active' ?>">
+									<input type="radio" name="form[color_scheme]" id="blue" value="1"<?php if ($luna_user['color_scheme'] == '1') echo ' checked' ?>>
 								</label>
 							</div>
 						</div>
