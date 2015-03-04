@@ -1,0 +1,3 @@
+<div class="topic-index-entry <?php echo $item_status ?><?php if ($cur_topic['soft'] == true) echo ' soft'; ?>">
+	<span class="middot">&middot;</span><span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> <?php echo $by ?><?php if ($cur_topic['moved_to'] == 0) { ?> &middot; <span class="text-muted"><?php echo $last_poster ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_search['num_replies']) ?><?php } ?></span>
+</div>
