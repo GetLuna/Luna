@@ -350,9 +350,6 @@ switch ($stage) {
 		if (array_key_exists('o_additional_navlinks', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_additional_navlinks\'') or error('Unable to remove config value \'o_additional_navlinks\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3122: Add the color column to the forums table
-		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '#0d4382') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
-
 		// Since 0.0.3177: Add the color column to the users table
 		$db->add_field('users', 'color', 'VARCHAR(25)', false, '#0d4382') or error('Unable to add column "color" to table "users"', __FILE__, __LINE__, $db->error());
 
@@ -657,6 +654,12 @@ switch ($stage) {
 		// Since 0.3.3814: Add o_emoji feature
 		if (!array_key_exists('o_emoji', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji\', \'0\')') or error('Unable to insert config value \'o_emoji\'', __FILE__, __LINE__, $db->error());
+
+		// Since 0.4.3861: Add the color_scheme column to the users table
+		$db->add_field('users', 'color_scheme', 'INT(25)', false, '3') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
+
+		// Since 0.4.3861: Drop the color column to the users table
+		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
 		break;
 

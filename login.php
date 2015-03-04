@@ -135,7 +135,7 @@ elseif ($action == 'forget' || $action == 'forget_2')
 
 					// Do the user specific replacements to the template
 					$cur_mail_message = str_replace('<username>', $cur_hit['username'], $mail_message);
-					$cur_mail_message = str_replace('<activation_url>', get_base_url().'/me.php?id='.$cur_hit['id'].'&action=change_pass&key='.$new_password_key, $cur_mail_message);
+					$cur_mail_message = str_replace('<activation_url>', get_base_url().'/profile.php?id='.$cur_hit['id'].'&action=change_pass&key='.$new_password_key, $cur_mail_message);
 					$cur_mail_message = str_replace('<new_password>', $new_password, $cur_mail_message);
 
 					luna_mail($email, $mail_subject, $cur_mail_message);

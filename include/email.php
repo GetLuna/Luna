@@ -71,7 +71,7 @@ function bbcode2email($text, $wrap_length = 72) {
 		'topic' => '/viewtopic.php?id=$1',
 		'post' => '/viewtopic.php?pid=$1#p$1',
 		'forum' => '/viewforum.php?id=$1',
-		'user' => '/me.php?id=$1',
+		'user' => '/profile.php?id=$1',
 	);
 
 	// Split code blocks and text so BBcode in codeblocks won't be touched

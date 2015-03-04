@@ -230,7 +230,7 @@ function draw_topics_list() {
 	
 			if (is_null($cur_topic['moved_to']))
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="me.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
 					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 			else
@@ -374,7 +374,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 40).'...';
 		
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
-						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="me.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
 						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} elseif ($cur_forum['redirect_url'] != '')
@@ -536,7 +536,7 @@ function draw_index_topics_list($section_id) {
 	
 			if (is_null($cur_topic['moved_to']))
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="me.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
 					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 			else
@@ -636,7 +636,7 @@ function draw_topic_list() {
 		// If the poster is a registered user
 		if ($cur_post['poster_id'] > 1) {
 			if ($luna_user['g_view_users'] == '1')
-				$username = '<a href="me.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['username']).'</a>';
+				$username = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['username']).'</a>';
 			else
 				$username = luna_htmlspecialchars($cur_post['username']);
 	
@@ -782,7 +782,7 @@ function draw_response_list() {
 		// If the poster is a registered user
 		if ($cur_post['id']) {
 			if ($luna_user['g_view_users'] == '1')
-				$username = '<a href="me.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
+				$username = '<a href="profile.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
 			else
 				$username = luna_htmlspecialchars($cur_post['sender']);
 				
@@ -1075,7 +1075,7 @@ function draw_search_results() {
 			
 			
 			if ($cur_search['last_poster_id'] > '1' && $luna_user['g_view_users'] == '1')
-				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="me.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
+				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
 			else
 				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['last_poster']);
 

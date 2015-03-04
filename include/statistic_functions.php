@@ -46,7 +46,7 @@ function newest_user() {
 	global $lang, $stats, $luna_user;
 
 	if ($luna_user['g_view_users'] == '1')
-		$stats['newest_user'] = '<a href="me.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>';
+		$stats['newest_user'] = '<a href="profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>';
 	else
 		$stats['newest_user'] = luna_htmlspecialchars($stats['last_user']['username']);
 
@@ -77,7 +77,7 @@ function online_list() {
 			$ctr = 1;
 			while ($luna_user_online = $db->fetch_assoc($result)) {
 				if ($luna_user['g_view_users'] == '1')
-					echo "\n\t\t\t\t".'<li><a href="me.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a></li>';
+					echo "\n\t\t\t\t".'<li><a href="profile.php?id='.$luna_user_online['user_id'].'">'.luna_htmlspecialchars($luna_user_online['ident']).'</a></li>';
 				else
 					echo "\n\t\t\t\t".'<li>'.luna_htmlspecialchars($luna_user_online['ident']).'</li>';
 			}

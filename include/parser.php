@@ -78,8 +78,8 @@ if ($luna_config['o_emoji'] == 1) {
 		':/' => 'hmm.png',
 		':P' => 'tongue.png',
 		':p' => 'tongue.png',
-		':lol:' => 'lol.png',
-		':-))' => 'lol.png',
+		':lol:' => 'happy.png',
+		':-))' => 'happy.png',
 		':@' => 'mad.png',
 		'%)' => 'roll.png',
 		'b:' => 'cool.png',
@@ -783,7 +783,7 @@ function do_clickable($text) {
 // Convert a series of smilies to images
 //
 function do_smilies($text) {
-	global $smilies;
+	global $smilies, $luna_config;
 
 	$text = ' '.$text.' ';
 
@@ -792,7 +792,7 @@ function do_smilies($text) {
 			if ($luna_config['o_emoji'] == 1)
 				$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<span class="emoji">'.$smiley_img.'</span>', $text);
 			else
-				$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="15" height="15" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
+				$text = ucp_preg_replace('%(?<=[>\s])'.preg_quote($smiley_text, '%').'(?=[^\p{L}\p{N}])%um', '<img src="'.luna_htmlspecialchars(get_base_url(true).'/img/smilies/'.$smiley_img).'" width="'.$luna_config['o_emoji_size'].'" height="'.$luna_config['o_emoji_size'].'" alt="'.substr($smiley_img, 0, strrpos($smiley_img, '.')).'" />', $text);
 	}
 
 	return substr($text, 1, -1);

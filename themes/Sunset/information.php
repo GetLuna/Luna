@@ -15,10 +15,10 @@ $xmlstr = <<<XML
 	<id>sunset</id>
 	<name>Sunset</name>
 	<developer>Studio 384</developer>
-	<date>26 February 2015</date>
-	<version>1.0-dev</version>
-	<minversion>1.0 Preview 3</minversion>
-	<maxversion>1.0 Preview 3 Update 2</maxversion>
+	<date>27 February 2015</date>
+	<version>0.4</version>
+	<minversion>1.0 Preview 4</minversion>
+	<maxversion>1.0 Preview 4</maxversion>
 	<description>Sunset is a variant upon Sunrise, featuring a more classic design.</description>
 	<parent_theme>Sunrise</parent_theme>
 </style>

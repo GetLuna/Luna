@@ -136,7 +136,7 @@ else
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="me.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
+						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
 						<li><a href="settings.php">Settings</a></li>
 						<li class="divider"></li>
 						<li><a href="help.php">'.$lang['Help'].'</a></li>
@@ -150,9 +150,3 @@ if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
 		if ($cur_item['visible'] == '1')
 			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
-
-// Announcement
-if ($luna_config['o_announcement'] == '1')
-	$announcement = '<div class="alert alert-info announcement"><div>'.$luna_config['o_announcement_message'].'</div></div>';
-else
-	$announcement = '';

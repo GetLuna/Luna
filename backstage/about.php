@@ -68,6 +68,7 @@ require 'header.php';
 				<a href="#p3" class="list-group-item">Preview 3</a>
 				<a href="#p3u1" class="list-group-item">Preview 3 Update 1</a>
 				<a href="#p3u2" class="list-group-item">Preview 3 Update 2</a>
+				<a href="#p4" class="list-group-item">Preview 4</a>
 			</div>
 		</div>
 	</div>
@@ -216,6 +217,12 @@ require 'header.php';
 						<p>Sunset is a theme based on Sunrise, however, it uses a more classic view on forum software. This is a nice team if you want to kick off with a fresh design, yet like the old way of working with forum software better.</p>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<h4>Random</h4>
+						<p>While no longer the default, in Luna 1.0, Random returns. Our classic ModernBB theme has been revamped to work with Luna, uses some of its new capabilities and is ready for the fun on every device. Unlike the Random design you've seen in ModernBB 3.6, 3.7 and 3.8, we've decided to include the ModernBB 3.5 version instead.</p>
+					</div>
+				</div>
 				<a id="others"></a><h3>Other improvements and notes</h3>
 				<div class="row">
 					<div class="col-sm-6">
@@ -234,7 +241,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.3.3827.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.38xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -529,6 +536,26 @@ require 'header.php';
 								<span class="label label-primary">3827</span> Icons are now used all over the Backstage<br />
 								<span class="label label-primary">3827</span> Small code optimalizations throughout the software<br />
 								<span class="label label-primary">3827</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4><a id="p4"></a>Preview 4 &middot; Build 38xx</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> Improvements for color schemes in Sunrise and Sunset<br />
+								<span class="label label-primary">38xx</span> Announcements now work again<br />
+								<span class="label label-primary">38xx</span> Inbox has been given an updated design<br />
+								<span class="label label-primary">38xx</span> Emoticons now can be resized<br />
+								<span class="label label-primary">38xx</span> Random has been added as an experimental theme
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">38xx</span> You can now change the URL-format<br />
+								<span class="label label-primary">38xx</span> The profile is now named profile.php instead of me.php<br />
+								<span class="label label-primary">38xx</span> A new emoticon set has been added<br />
+								<span class="label label-primary">38xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>

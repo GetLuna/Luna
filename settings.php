@@ -338,7 +338,7 @@ if (isset($_POST['update_group_membership'])) {
 
 				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 				$mail_message = str_replace('<email>', $new_email, $mail_message);
-				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$id, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$id, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
@@ -364,7 +364,7 @@ if (isset($_POST['update_group_membership'])) {
 
 				$mail_message = str_replace('<username>', $luna_user['username'], $mail_message);
 				$mail_message = str_replace('<dupe_list>', implode(', ', $dupe_list), $mail_message);
-				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$id, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$id, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
@@ -501,7 +501,7 @@ if (isset($_POST['update_group_membership'])) {
 	redirect('settings.php?id='.$id);
 } else {
 	
-	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message($lang['Bad request'], false, '404 Not Found');
 	
@@ -561,7 +561,7 @@ if (isset($_POST['update_group_membership'])) {
 			'msn'				=> luna_trim($_POST['form']['msn']),
 			'twitter'			=> luna_trim($_POST['form']['twitter']),
 			'google'			=> luna_trim($_POST['form']['google']),
-			'color'				=> luna_trim($_POST['form']['color']),
+			'color_scheme'		=> luna_trim($_POST['form']['color_scheme']),
 			'timezone'			=> floatval($_POST['form']['timezone']),
 			'dst'				=> isset($_POST['form']['dst']) ? '1' : '0',
 			'time_format'		=> intval($_POST['form']['time_format']),

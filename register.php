@@ -130,7 +130,7 @@ if (isset($_POST['form_sent'])) {
 
 				$mail_message = str_replace('<username>', $username, $mail_message);
 				$mail_message = str_replace('<email>', $email1, $mail_message);
-				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$new_uid, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$new_uid, $mail_message);
 				$mail_message = str_replace('<admin_url>', get_base_url().'/settings.php?id='.$new_uid, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
@@ -149,7 +149,7 @@ if (isset($_POST['form_sent'])) {
 
 				$mail_message = str_replace('<username>', $username, $mail_message);
 				$mail_message = str_replace('<dupe_list>', implode(', ', $dupe_list), $mail_message);
-				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$new_uid, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$new_uid, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
@@ -167,7 +167,7 @@ if (isset($_POST['form_sent'])) {
 
 				$mail_message = str_replace('<username>', $username, $mail_message);
 				$mail_message = str_replace('<base_url>', get_base_url().'/', $mail_message);
-				$mail_message = str_replace('<profile_url>', get_base_url().'/me.php?id='.$new_uid, $mail_message);
+				$mail_message = str_replace('<profile_url>', get_base_url().'/profile.php?id='.$new_uid, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);

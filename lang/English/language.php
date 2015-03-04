@@ -457,7 +457,7 @@ $lang = array(
 'Silent edit'		=>	'Silent edit (don\'t display "Edited by ..." in topic view)',
 'Edit post'			=>	'Edit post',
 
-// Language for both me.php and register.php
+// Language for both profile.php and register.php
 'Email legend'				=>	'Enter a valid email address',
 'Time zone'					=>	'Time zone',
 'DST'						=>	'Advance time by 1 hour for daylight saving.',
@@ -485,7 +485,7 @@ $lang = array(
 'Sig too many lines'		=>	'Signatures cannot have more than %s lines.',
 'Bad ICQ'					=>	'You entered an invalid ICQ UIN. Please go back and correct.',
 
-// Language for me.php
+// Language for profile.php
 'Section personality'			=>	'Personality',
 'Section admin'					=>	'Administration',
 
@@ -1074,6 +1074,7 @@ $lang = array(
 'Essentials subhead'				=>	'Essentials',
 'Board desc help'					=>	'What\'s this board about?',
 'Base URL label'					=>	'Board URL',
+'URL scheme'						=> 'URL scheme',
 'Base URL problem'					=>  'Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter.',
 'Timezone label'					=>	'Default time zone',
 'DST help'							=>	'Advance time by 1 hour for daylight saving.',
@@ -1500,7 +1501,7 @@ $lang = array(
 'JS required'			=>	'JavaScript is required in order to use the sending lists.',
 'Yourself'				=>	'You cannot add yourself to a sending list.',
 
-// me.php
+// profile.php
 'use_pm_option'			=>	'Enable privates messages system',
 'email_option_infos'	=>	'With this enabled, an e-mail will be sent for all new private message.',
 'email_option'			=>	'Privates messages notification by e-mail',
