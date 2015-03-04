@@ -1,50 +1,50 @@
 <?php
 
-if ($luna_user['color'] == '#14a3ff') { // ModernBB
+if ($luna_user['color_scheme'] == '1') { // ModernBB
 	$primary_color = '#14a3ff';
 	$secondary_color = '#0b95ed';
 	$tertiary_color = '#0589de';
-} elseif ($luna_user['color'] == '#2788cb') { // Blue
+} elseif ($luna_user['color_scheme'] == '2') { // Blue
 	$primary_color = '#2788cb';
 	$secondary_color = '#1a79bc';
 	$tertiary_color = '#136cab';
-} elseif ($luna_user['color'] == '#0d4382') { // Luna
+} elseif ($luna_user['color_scheme'] == '3') { // Luna
 	$primary_color = '#145198';
 	$secondary_color = '#0d4382';
 	$tertiary_color = '#0b3c75';
-} elseif ($luna_user['color'] == '#c58be2') { // Purple
+} elseif ($luna_user['color_scheme'] == '4') { // Purple
 	$primary_color = '#b679d4';
 	$secondary_color = '#a268bf';
 	$tertiary_color = '#8b54a7';
-} elseif ($luna_user['color'] == '#99cc00') { // Lime
+} elseif ($luna_user['color_scheme'] == '5') { // Lime
 	$primary_color = '#8bb805';
 	$secondary_color = '#7ea703';
 	$tertiary_color = '#779e01';
-} elseif ($luna_user['color'] == '#047a36') { // Ao
+} elseif ($luna_user['color_scheme'] == '6') { // Ao
 	$primary_color = '#08893e';
 	$secondary_color = '#047a36';
 	$tertiary_color = '#016a2d';
-} elseif ($luna_user['color'] == '#ffcd21') { // Yellow
+} elseif ($luna_user['color_scheme'] == '7') { // Yellow
 	$primary_color = '#ffcb1a';
 	$secondary_color = '#ffb61a';
 	$tertiary_color = '#ffa11a';
-} elseif ($luna_user['color'] == '#ff7521') { // Orange
+} elseif ($luna_user['color_scheme'] == '8') { // Orange
 	$primary_color = '#ff7521';
 	$secondary_color = '#ff5a21';
 	$tertiary_color = '#ff4021';
-} elseif ($luna_user['color'] == '#ff4444') { // Red
+} elseif ($luna_user['color_scheme'] == '9') { // Red
 	$primary_color = '#ff4444';
 	$secondary_color = '#e63838';
 	$tertiary_color = '#d42f2f';
-} elseif ($luna_user['color'] == '#cccccc') { // White
+} elseif ($luna_user['color_scheme'] == '10') { // White
 	$primary_color = '#eeeeee';
 	$secondary_color = '#dddddd';
 	$tertiary_color = '#cccccc';
-} elseif ($luna_user['color'] == '#999999') { // Grey
+} elseif ($luna_user['color_scheme'] == '11') { // Grey
 	$primary_color = '#afafaf';
 	$secondary_color = '#9e9e9e';
 	$tertiary_color = '#8e8e8e';
-} elseif ($luna_user['color'] == '#444444') { // Black
+} elseif ($luna_user['color_scheme'] == '12') { // Black
 	$primary_color = '#555555';
 	$secondary_color = '#444444';
 	$tertiary_color = '#333333';
@@ -90,7 +90,7 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	border-color: <?php echo $secondary_color ?>;
 }
 
-<?php if ($luna_user['color'] == '#cccccc'): ?>
+<?php if ($luna_user['color_scheme'] == '#cccccc'): ?>
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus, .first-run-title, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, .footer, .footer a, .panel-default .panel-heading, .active.list-group-item, .active.list-group-item:hover, .active.list-group-item:focus, .alert-all, .jumbotron h2, .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus, .user-card-title, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .nav > li > a, a.list-group-item:hover, .navbar-default .navbar-brand, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover, .category-header {
 	color: #555;
 }
