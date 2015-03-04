@@ -114,6 +114,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Header */
+#header {
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
+	color: #fff;
+}
+
+#header a {
+	color: #fff;
+}
+
+#header a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+#header .dropdown-menu a, #header .dropdown-menu a:hover {
+	color: #000;
+}
+
+@media screen and (max-width: 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #header .dropdown-menu > li > a {
+		color: #fff;
+	}
+
+	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
+		background: #47a9f5;
+	}
+
+	.dropdown-menu .divider {
+		background-color: #0068b0;
+	}
+
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		border: none;
+	}
+}
+
 .dropdown-menu {
 	padding: 0;
 }
@@ -148,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-inverse {
 	border: none;
 	margin-bottom: 0;
-	background-color: #2788cb;
+	background-color: #057ed4;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
