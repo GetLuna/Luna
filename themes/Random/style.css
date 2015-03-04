@@ -436,6 +436,22 @@ a.list-group-item-cat:hover .forum-description {
 	margin-top: 10px;
 }
 
+/* Forum list */
+.jumbotron h2.forum-title {
+	margin-bottom: 10px;
+	color: #fff !important;
+}
+
+.forum-entry {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: #ddd 1px solid;
+}
+
+.forum-desc {
+	color: #fff;
+}
+
 /* Modal forms */
 #login .modal-xs {
 	max-width: 300px;

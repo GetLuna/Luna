@@ -55,16 +55,9 @@ if ($luna_user['first_run'] == '0') {
 	</div>
 </div>
 <?php } ?>
-<div class="row index">
-	<div class="col-sm-3 col-xs-12">
-		<div class="list-group list-group-forum">
-			<?php draw_mark_read('list-group-item', 'index') ?>
-			<?php if ($id != '0' && $is_admmod) { ?>
-				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Moderate forum'] ?></a>
-			<?php } ?>
-		</div>
-	</div>
-	<div class="col-sm-9 hidden-xs">
+<div class="index">
+	<div class="col-xs-12">
+		<!-- <?php draw_mark_read('list-group-item', 'index') ?> -->
 		<div class="list-group list-group-forum">
 			<?php draw_forum_list('viewforum.php', 'forum.php', 1, 'category.php', '</div></div></div>') ?>
 		</div>
