@@ -217,6 +217,12 @@ require 'header.php';
 						<p>Sunset is a theme based on Sunrise, however, it uses a more classic view on forum software. This is a nice team if you want to kick off with a fresh design, yet like the old way of working with forum software better.</p>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<h4>Random</h4>
+						<p>While no longer the default, in Luna 1.0, Random returns. Our classic ModernBB theme has been revamped to work with Luna, uses some of its new capabilities and is ready for the fun on every device. Unlike the Random design you've seen in ModernBB 3.6, 3.7 and 3.8, we've decided to include the ModernBB 3.5 version instead.</p>
+					</div>
+				</div>
 				<a id="others"></a><h3>Other improvements and notes</h3>
 				<div class="row">
 					<div class="col-sm-6">
@@ -540,7 +546,8 @@ require 'header.php';
 								<span class="label label-primary">38xx</span> Improvements for color schemes in Sunrise and Sunset<br />
 								<span class="label label-primary">38xx</span> Announcements now work again<br />
 								<span class="label label-primary">38xx</span> Inbox has been given an updated design<br />
-								<span class="label label-primary">38xx</span> Emoticons now can be resized
+								<span class="label label-primary">38xx</span> Emoticons now can be resized<br />
+								<span class="label label-primary">38xx</span> Random has been added as an experimental theme
 							</p>
 						</div>
 						<div class="col-sm-6">
