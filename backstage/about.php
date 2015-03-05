@@ -241,7 +241,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.38xx.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.39xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -539,23 +539,26 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="p4"></a>Preview 4 &middot; Build 38xx</h4>
+					<h4><a id="p4"></a>Preview 4 &middot; Build 39xx</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> Improvements for color schemes in Sunrise and Sunset<br />
-								<span class="label label-primary">38xx</span> Announcements now work again<br />
-								<span class="label label-primary">38xx</span> Inbox has been given an updated design<br />
-								<span class="label label-primary">38xx</span> Emoticons now can be resized<br />
-								<span class="label label-primary">38xx</span> Random has been added as an experimental theme
+								<span class="label label-primary">39xx</span> Improvements for color schemes in Sunrise and Sunset<br />
+								<span class="label label-primary">39xx</span> Announcements now work again<br />
+								<span class="label label-primary">39xx</span> Inbox has been given an updated design<br />
+								<span class="label label-primary">39xx</span> Emoticons now can be resized<br />
+								<span class="label label-primary">39xx</span> Random has been added as an experimental theme<br />
+								<span class="label label-primary">39xx</span> Improvements to the language files
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">38xx</span> You can now change the URL-format<br />
-								<span class="label label-primary">38xx</span> The profile is now named profile.php instead of me.php<br />
-								<span class="label label-primary">38xx</span> A new emoticon set has been added<br />
-								<span class="label label-primary">38xx</span> Multiple bugfixes
+								<span class="label label-primary">39xx</span> You can now change the URL-format<br />
+								<span class="label label-primary">39xx</span> The profile is now named profile.php instead of me.php<br />
+								<span class="label label-primary">39xx</span> A new emoticon set has been added<br />
+								<span class="label label-primary">39xx</span> Bootstrap, Font Awesome and jQuery from CDNs<br />
+								<span class="label label-primary">39xx</span> Theme color schemes are now ID based<br />
+								<span class="label label-primary">39xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
