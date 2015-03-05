@@ -69,16 +69,4 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 .emoji {
 	font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
 }
-
-<?php if ($luna_config['o_board_statistics'] == 0): ?>
-#main {
-	padding-bottom: 55px;
-}
-
-.footer {
-	margin-top: -55px;
-	height: 55px;
-	padding-top: 15px;
-}
-<?php endif; ?>
 </style>

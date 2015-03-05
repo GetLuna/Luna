@@ -8,14 +8,6 @@
 body, html {
 	background-color: #fff;
 	font-family: "Segoe UI", Arial;
-	min-height: 100%;
-	height: 100%;
-}
-
-#main {
-	overflow: auto;
-	padding-bottom: 130px;
-	min-height: 100%;
 }
 
 .container * {
@@ -285,39 +277,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Footer */
-.footer {
-	background: #2788cb;
-	color: #fff;
-	position: inherit;
-	bottom: 0px;
-	width: 100%;
-	margin-top: -110px;
-	height: 110px;
-	clear: both;
-}
-
-.footer a, .footer a:hover, .footer a:active, .footer a:focus {
-	color: #fff;
-	text-decoration: none;
-}
-
-.footer .copyright {
-	background: #1a79bc;
-	padding: 10px 0;
-}
-
 .stats {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
 .statistic-item {
-	font-size: 17px;
 	text-align: right;
 }
 
 .statistic-item-stat {
-	font-size: 17px;
 	text-align: left;
 	text-transform: lowercase;
 }
