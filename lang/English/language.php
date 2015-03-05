@@ -146,8 +146,6 @@ $lang = array(
 'Size unit PiB'						=>	'%s PiB',
 'Size unit EiB'						=>	'%s EiB',
 
-// Checked untill this line
-
 // Language for installation
 'Choose install language'		=>	'Choose the install script language',
 'Choose install language info'	=>	'The language used for this install script. The default language used for the board itself can be set below.',
@@ -155,8 +153,8 @@ $lang = array(
 'Change language'				=>	'Change language',
 'Already installed'				=>	'It seems like Luna is already installed. You should go <a href="index.php">here</a> instead.',
 'You are running error'			=>	'You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.',
-'My Luna Forum'				=>	'My Luna Forum',
-'Description'					=>	'You can do anything',
+'My Luna Forum'					=>	'My Luna Forum',
+'Description'					=>	'You can do anything', // Do not translate this string
 'Username 1'					=>	'Usernames must be at least 2 characters long.',
 'Username 2'					=>	'Usernames must not be more than 25 characters long.',
 'Username 3'					=>	'The username guest is reserved.',
@@ -177,7 +175,7 @@ $lang = array(
 'Board title'					=>	'Board title',
 'Base URL'						=>	'No trailing slash',
 'Required field'				=>	'is a required field in this form.',
-'Luna Installation'			=>	'Luna Installation',
+'Luna Installation'				=>	'Luna Installation',
 'Install'						=>	'Install Luna %s',
 'Errors'						=>	'The following errors need to be corrected:',
 'Database setup'				=>	'Database setup',
@@ -188,7 +186,6 @@ $lang = array(
 'Info 3'						=>	'The database name',
 'Database server hostname'		=>	'Server hostname',
 'Database name'					=>	'Name',
-'Database enter informations'	=>	'Enter your database username and password',
 'Database username'				=>	'Username',
 'Info 4'						=>	'Your database username',
 'Info 5'						=>	'Set for more Luna installation in this database',
@@ -217,17 +214,16 @@ $lang = array(
 'Alert cache'					=>	'<strong>The cache directory is currently not writable!</strong> In order for Luna to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.',
 'Alert avatar'					=>	'<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.',
 'Alert upload'					=>	'<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features.',
-'Luna has been installed'	=>	'Luna has been installed. To finalize the installation please follow the instructions below.',
+'Luna has been installed'		=>	'Luna has been installed. To finalize the installation please follow the instructions below.',
 'Info 8'						=>	'To finalize the installation, you need to click on the button below to download a file called config.php. You then need to upload this file to the root directory of your Luna installation.',
 'Info 9'						=>	'Once you have uploaded config.php, Luna will be fully installed! At that point, you may <a href="index.php">go to the forum index</a>.',
 'Download config.php file'		=>	'Download config.php file',
-'Luna fully installed'		=>	'Luna has been fully installed! You may now <a href="index.php">go to the forum index</a>.',
+'Luna fully installed'			=>	'Luna has been fully installed! You may now <a href="index.php">go to the forum index</a>.',
 
 // Language for updating
-'Update Luna'				=>	'Update Luna',
+'Update Luna'					=>	'Update Luna',
 'Down'							=>	'The forums are temporarily down for maintenance. Please try again in a few minutes.',
 
-'Version mismatch error'		=>	'Version mismatch. The database \'%s\' doesn\'t seem to be running a Luna database schema supported by this update script.',
 'No update error'				=>	'Your forum is already as up-to-date as this script can make it',
 
 'Start update'					=>	'Start update',
@@ -252,6 +248,8 @@ $lang = array(
 
 // Language for help.php
 'produces'				=>	'produces',
+
+// Checked untill this line
 
 'BBCode info'			=>	'BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature.',
 
