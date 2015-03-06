@@ -194,7 +194,6 @@ h1, h2, h3, h4, h5, h6 {
 	background: #1a79bc;
 }
 
-
 @media all and (min-width: 768px) {
 	.navbar-secondary {
 		z-index: 998;
@@ -274,6 +273,43 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background-color: #fff;
+}
+
+.board-title {
+	margin: 3px 0;
+}
+
+.description {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
+.announcement {
+	border: none;
+	color: #fff;
+	background: rgba(255,255,255,.2);
+	margin-top: 30px;
+	margin-bottom: 0;
+	padding: 5px 8px;
+}
+
+.page-status {
+	margin: 7px 0 7px;
+	height: 1px;
+}
+
+.conl, .conr {
+	display: inline;
+	padding: 0;
+	list-style: none;
+}
+
+.conl {
+  float: left;
+}
+
+.conr {
+  float: right;
 }
 
 /* Footer */

@@ -65,8 +65,67 @@ if (!defined('FORUM_ALLOW_INDEX'))
 					</div>
 				</div>
 				<div class="container">
-					<h1 class="hidden-xs"><a href="index.php"><?php echo $menu_title ?></a></h1>
-					<p><?php echo $luna_config['o_board_desc'] ?></p>
+					<h1 class="hidden-xs board-title"><a href="index.php"><?php echo $menu_title ?></a></h1>
+					<div class="description">
+						<p><?php echo $luna_config['o_board_desc'] ?></p>
+					</div>
+<?php
+if (!$luna_user['is_guest']) {
+	if (!empty($forum_actions)) {
+		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $forum_actions).'</span></li>';
+	}
+
+	if (!empty($topic_actions)) {
+		$page_statusinfo[] = '<li><span>'.implode(' &middot; ', $topic_actions).'</span></li>';
+	}
+
+	if ($luna_user['is_admmod']) {
+		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2') {
+			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
+
+			if ($db->result($result_header))
+				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.$lang['New reports'].'</a></strong></span></li>';
+		}
+
+		if ($luna_config['o_maintenance'] == '1')
+			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/settings.php#maintenance">'.$lang['Maintenance mode enabled'].'</a></strong></span></li>';
+	}
+
+	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
+		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new posts'].'">New</a>';
+	}
+}
+
+// Quick searches
+if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
+	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">Active</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">Unanswered</a>';
+}
+
+?><div class="page-status"><?php
+
+// The status information
+if (is_array($page_statusinfo)) { ?>
+	<ul class="conl">
+		<?php echo implode("\n\t\t\t\t", $page_statusinfo) ?>
+	</ul>
+<?php }
+
+// Generate quicklinks
+if (!empty($page_topicsearches)) { ?>
+	<ul class="conr">
+		<li><span><?php echo implode(' &middot; ', $page_topicsearches) ?></span></li>
+	</ul>
+<?php }
+
+?></div><?php
+
+if ($luna_user['g_read_board'] == '1' && $luna_config['o_announcement'] == '1') {
+?>
+					<div class="alert alert-info announcement">
+						<div><?php echo $luna_config['o_announcement_message'] ?></div>
+					</div>
+<?php } ?>
 				</div>
 			</div>
 			<div class="container">
