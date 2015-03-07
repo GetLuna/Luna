@@ -8,19 +8,23 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 
 ?>
 </div>
-<div class="jumbotron<?php echo $item_status ?>"<?php echo $jumbo_style ?>>
-	<div class="container">
-		<h2 class="forum-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right"><?php echo $post_link ?><?php echo $paging_links ?></span>
-		<div class="forum-desc"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></div>
-	</div>
-</div>
 <div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 class="forum-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="btn-group">
+			<a class="btn btn-primary" href="index.php"><span class="fa fa-fw fa-home"></span></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $forum_id ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a>
+			</div>
+			<span class="pull-right"><?php echo $post_link ?><?php echo $paging_links ?></span>
+		</div>
+	</div>
 	<div class="row forumview">
 		<div class="col-sm-3">
-			<div class="list-group list-group-forum">
-				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> Back to index</a>
-			</div>
-			<hr />
 			<?php if ((is_subforum($id) && $id != '0')): ?>
 				<h5 class="list-group-head">Subforums</h5>
 				<div class="list-group list-group-forum">
