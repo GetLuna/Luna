@@ -312,7 +312,12 @@ h1, h2, h3, h4, h5, h6 {
   float: right;
 }
 
-/* Footer */
+/* Index */
+.panel-stats .panel-body {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
 .stats {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -327,7 +332,6 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform: lowercase;
 }
 
-/* Index */
 .category-title {
 	margin-top: 0;
 }
@@ -507,8 +511,7 @@ a.list-group-item-cat:hover .forum-description {
 
 /* First run */
 .first-run {
-	border: none;
-	margin-top: 0 !important;
+	border: 1px solid #e3e3e3;
 }
 
 .first-run-content {
@@ -1191,6 +1194,11 @@ textarea {
 .thread-jumbotron h2 {
 	margin: 0;
 	padding-top: 40px;
+}
+
+/* Footer */
+footer.container {
+	margin-bottom: 15px !important;
 }
 
 /* Debug */

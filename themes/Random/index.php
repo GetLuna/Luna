@@ -65,7 +65,7 @@ if ($luna_user['first_run'] == '0') {
 </div>
 <?php if ($luna_config['o_board_statistics'] == 1): ?>
 <div class="container">
-	<div class="panel panel-default">
+	<div class="panel panel-default panel-stats">
 		<div class="panel-heading">
 			<h3 class="panel-title">Board statistics</h3>
 		</div>
