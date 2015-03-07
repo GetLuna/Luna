@@ -12,8 +12,8 @@ $xmlstr = <<<XML
 -->
 
 <style engine="1.0">
-	<id>sunset</id>
-	<name>Sunset</name>
+	<id>sunrise</id>
+	<name>Sunrise</name>
 	<developer>Studio 384</developer>
 	<date>7 March 2015</date>
 	<version>0.4</version>
