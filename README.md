@@ -16,7 +16,7 @@ Luna is an open source board software app released under the GPLv3 license. The 
  - Make sure PHP has the zlib module installed to allow Luna to gzip output
 
 ## Links
- - Homepage: http://modernbb.be
- - Forums: http://modernbb.be/forum
- - Documentation: TBA
+ - Homepage: http://getluna.org/
+ - Forums: http://forum.getluna.org/
+ - Documentation: http://getluna.org/docs/
  - Development: http://github.com/modernbb/luna/

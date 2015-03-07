@@ -241,7 +241,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.39xx.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.3900.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -539,27 +539,27 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="p4"></a>Preview 4 &middot; Build 39xx</h4>
+					<h4><a id="p4"></a>Preview 4 &middot; Build 3900</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">39xx</span> Improvements for color schemes in Luna and Sunrise<br />
-								<span class="label label-primary">39xx</span> Announcements now work again<br />
-								<span class="label label-primary">39xx</span> Inbox has been given an updated design<br />
-								<span class="label label-primary">39xx</span> Emoticons now can be resized<br />
-								<span class="label label-primary">39xx</span> Random has been added as an experimental theme<br />
-								<span class="label label-primary">39xx</span> Improvements to the language files<br />
-								<span class="label label-primary">39xx</span> The Sunrise theme is now named Luna
+								<span class="label label-primary">3900</span> Improvements for color schemes in Luna and Sunrise<br />
+								<span class="label label-primary">3900</span> Announcements now work again<br />
+								<span class="label label-primary">3900</span> Inbox has been given an updated design<br />
+								<span class="label label-primary">3900</span> Emoticons now can be resized<br />
+								<span class="label label-primary">3900</span> Random has been added as an experimental theme<br />
+								<span class="label label-primary">3900</span> Improvements to the language files<br />
+								<span class="label label-primary">3900</span> The Sunrise theme is now named Luna
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">39xx</span> The profile is now named profile.php instead of me.php<br />
-								<span class="label label-primary">39xx</span> A new emoticon set has been added<br />
-								<span class="label label-primary">39xx</span> Bootstrap, Font Awesome and jQuery from CDNs<br />
-								<span class="label label-primary">39xx</span> Theme color schemes are now ID based<br />
-								<span class="label label-primary">39xx</span> The Sunset theme is now named Sunrise<br />
-								<span class="label label-primary">39xx</span> Multiple bugfixes
+								<span class="label label-primary">3900</span> The profile is now named profile.php instead of me.php<br />
+								<span class="label label-primary">3900</span> A new emoticon set has been added<br />
+								<span class="label label-primary">3900</span> Bootstrap, Font Awesome and jQuery from CDNs<br />
+								<span class="label label-primary">3900</span> Theme color schemes are now ID based<br />
+								<span class="label label-primary">3900</span> The Sunset theme is now named Sunrise<br />
+								<span class="label label-primary">3900</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
