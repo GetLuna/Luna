@@ -554,7 +554,6 @@ require 'header.php';
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">39xx</span> You can now change the URL-format<br />
 								<span class="label label-primary">39xx</span> The profile is now named profile.php instead of me.php<br />
 								<span class="label label-primary">39xx</span> A new emoticon set has been added<br />
 								<span class="label label-primary">39xx</span> Bootstrap, Font Awesome and jQuery from CDNs<br />
