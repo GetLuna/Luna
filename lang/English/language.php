@@ -1346,7 +1346,6 @@ $lang = array(
 
 // General actions and more
 'Admin'					=>	'Admin',
-'Go back'				=>	'Go back',
 'Update'				=>	'Update',
 'Add'					=>	'Add',
 'Remove'				=>	'Remove',

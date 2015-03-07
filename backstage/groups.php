@@ -547,7 +547,6 @@ elseif (isset($_GET['del_group'])) {
 			</fieldset>
 			<p class="control-group">
 				<input class="btn btn-danger" type="submit" name="del_group" value="<?php echo $lang['Delete group'] ?>" />
-				<a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 			</p>
 		</form>
 	</div>

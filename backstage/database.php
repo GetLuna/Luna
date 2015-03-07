@@ -484,9 +484,6 @@ exit;
 ?>
 	<div>
 	<h2><?php echo $lang['Restore complete'] ?></h2>
-		<p>
-			<a class="btn btn-link" href="database.php"><?php echo $lang['Go back'] ?></a>
-		</p>
 	</div>
 <?php
 	} else {

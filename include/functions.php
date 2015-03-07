@@ -1024,9 +1024,6 @@ function message($message, $no_back_link = false, $http_status = null) {
 <div class="container">
 	<h2 style="margin-top: 60px;">We've got us a situation here</h2>
 	<p><?php echo $message ?></p>
-	<?php if (!$no_back_link): ?>
-		<p><a href="javascript: history.go(-1)"><?php echo $lang['Go back'] ?></a></p>
-	<?php endif; ?>
 </div>
 <?php
 	require load_page('footer.php');
@@ -1059,11 +1056,6 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	<div class="panel-body">
 		<p><?php echo $message ?></p>
 	</div>
-	<?php if (!$no_back_link): ?>
-		<div class="panel-footer">
-			<a href="javascript: history.go(-1)" href="btn btn-link"><?php echo $lang['Go back'] ?></a>
-		</div>
-	<?php endif; ?>
 </div>
 <?php
 	require 'footer.php';

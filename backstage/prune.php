@@ -115,7 +115,6 @@ if ($action == 'prune') {
 			</fieldset>
 			<div class="btn-group">
 				<input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang['Prune'] ?>" />
-				<a class="btn btn-link" href="javascript:history.go(-1)"><?php echo $lang['Go back'] ?></a>
 			</div>
 		</form>
 	</div>
