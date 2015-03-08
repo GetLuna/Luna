@@ -88,7 +88,7 @@ load_admin_nav('settings', 'menu');
 						</tbody>
 					</table>
 				</div>
-			<fieldset>
+			</fieldset>
 		</form>
 	</div>
 	<div class="col-sm-8 col-md-9">

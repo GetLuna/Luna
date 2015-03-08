@@ -89,8 +89,6 @@ if ($stats['total_posts'] == 0)
 if ($stats['total_topics'] == 0)
 	$stats['total_topics'] == '0';
 
-$latest_version = $update_cache;
-
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Index']);
 define('FORUM_ACTIVE_PAGE', 'admin');
@@ -236,10 +234,10 @@ if ($db->num_rows($result)) {
 	<div class="col-sm-4">
 <?php
 //Update checking
-if (version_compare(Version::FORUM_VERSION, $latest_version, '<')) {
+if (version_compare(Version::FORUM_VERSION, $update_cache, '<')) {
 ?>
 		<div class="alert alert-info">
-			<h4><?php echo sprintf($lang['Available'], $latest_version, '<a href="update.php">'.$lang['update now'].'</a>') ?></h4>
+			<h4><?php echo sprintf($lang['Available'], $update_cache, '<a href="update.php">'.$lang['update now'].'</a>') ?></h4>
 		</div>
 <?php
 }

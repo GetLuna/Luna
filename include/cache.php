@@ -34,7 +34,14 @@ function generate_config_cache() {
 //
 function generate_update_cache() {
 	// Get the version number from GitHub
-	$output = trim(@file_get_contents('https://raw.githubusercontent.com/ModernBB/Luna/lunadev/version.txt'));
+	if ($luna_config['o_update_ring'] == 0)
+		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/version.txt'));
+	elseif ($luna_config['o_update_ring'] == 1)
+		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/master/version.txt'));
+	elseif ($luna_config['o_update_ring'] == 2)
+		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/preview/version.txt'));
+	elseif ($luna_config['o_update_ring'] == 3)
+		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/nightly/version.txt'));
 
 	// Output version as PHP code
 	$content = '<?php'."\n\n".'define(\'FORUM_UPDATE_LOADED\', 1);'."\n\n".'$update_cache = '.var_export($output, true).';'."\n".'$last_check_time = '.time().';'."\n\n".'?>';
