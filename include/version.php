@@ -7,16 +7,16 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const FORUM_VERSION = '0.4.0';
+	const FORUM_VERSION = '0.4.1-dev';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '0.4.3902';
+	const FORUM_CORE_VERSION = '0.4.3903';
 	
 	// The Luna Core code name
 	const FORUM_CODE_NAME = 'aero';
 
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = '87.56';
+	const FORUM_DB_VERSION = '87.57';
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const FORUM_PARSER_VERSION = '11.1.2';
