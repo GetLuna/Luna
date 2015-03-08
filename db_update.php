@@ -151,6 +151,11 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 	error($lang['No update error']);
 }
 
+// Check style
+$default_style = $luna_config['o_default_style'];
+if (!file_exists(FORUM_ROOT.'theme/'.$default_style.'/style.css'))
+	$default_style = 'Luna';
+
 // Empty all output buffers and stop buffering
 while (@ob_end_clean());
 
@@ -661,6 +666,10 @@ switch ($stage) {
 		// Since 0.4.3861: Drop the color column to the users table
 		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
+		// Since 0.4.3902: Add o_code_name feature
+		if (!array_key_exists('o_code_name', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_code_name\', \''.Version::FORUM_CODE_NAME.'\')') or error('Unable to insert config value \'o_code_name\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
@@ -795,6 +804,7 @@ switch ($stage) {
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_CODE_NAME.'\' WHERE conf_name = \'o_code_name\'') or error('Unable to update code name', __FILE__, __LINE__, $db->error());
 
 		// And the database revision number
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_DB_VERSION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
