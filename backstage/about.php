@@ -69,6 +69,7 @@ require 'header.php';
 				<a href="#p3u1" class="list-group-item">Preview 3 Update 1</a>
 				<a href="#p3u2" class="list-group-item">Preview 3 Update 2</a>
 				<a href="#p4" class="list-group-item">Preview 4</a>
+				<a href="#p4u1" class="list-group-item">Preview 4 Update 1</a>
 			</div>
 		</div>
 	</div>
@@ -241,7 +242,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.3900.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.39xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -560,6 +561,19 @@ require 'header.php';
 								<span class="label label-primary">3900</span> Theme color schemes are now ID based<br />
 								<span class="label label-primary">3900</span> The Sunset theme is now named Sunrise<br />
 								<span class="label label-primary">3900</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4><a id="p4"></a>Preview 4 Update 1 &middot; Build 39xx</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">39xx</span> New options for checking for updates
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">39xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
