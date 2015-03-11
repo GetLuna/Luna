@@ -1,4 +1,4 @@
-<div class="topic-index-entry list-group-item <?php echo $item_status ?><?php if ($cur_topic['soft'] == true) echo ' soft'; ?>">
+<div class="list-group-item <?php echo $item_status ?><?php if ($cur_topic['soft'] == true) echo ' soft'; ?>">
 	<span class="middot">&middot;</span>
 	<span class="hidden-xs hidden-sm hidden-md hidden-lg">
 		<?php echo forum_number_format($topic_count + $start_from) ?>

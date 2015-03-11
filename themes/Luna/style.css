@@ -356,6 +356,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .list-group-forum .list-group-item.new-item {
+	border-left-color: #e3e3e3;
+	background-color: #f3f3f3;
+}
+
+.list-group-topic .list-group-item {
+	border: none;
+	border-left: 5px solid #f8f8f8;
+	background-color: #fbfbfb;
+	margin-top: 2px;
+}
+
+.list-group-topic .list-group-item.new-item {
+	border-left: 5px solid #e3e3e3;
+	background-color: #f3f3f3;
+}
+
+.list-group-topic .list-group-item:hover {
 	border-left-color: #e8e8e8;
 	background-color: #f8f8f8;
 }
