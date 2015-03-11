@@ -87,7 +87,13 @@ if ($luna_user['first_run'] == '0') {
 		draw_section_info($id);
 
 		echo $paging_links;
+?>
+<div class="list-group list-group-topics">
+<?php
 		draw_index_topics_list($id);
+?>
+</div>
+<?php
 		echo $paging_links;
 ?>
 	</div>
