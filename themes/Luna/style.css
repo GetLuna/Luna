@@ -6,20 +6,27 @@
 }
 
 body, html {
-	background-color: #fff;
+	background-color: #e8e8e8;
 	font-family: "Segoe UI", Arial;
 	min-height: 100%;
 	height: 100%;
 }
 
-#main {
-	overflow: auto;
-	padding-bottom: 130px;
-	min-height: 100%;
-}
-
 .container * {
 	box-shadow: none !important;
+}
+
+.container-main {
+	background: #fff;
+	box-shadow: 0 0 30px #aaa;
+	padding: 0;
+	height: 100%;
+}
+
+@media screen and (min-width: 1500px) {
+	.container-main {
+		width: 1400px;
+	}
 }
 
 h2 {
@@ -251,12 +258,6 @@ h1, h2, h3, h4, h5, h6 {
 .footer {
 	background: #2788cb;
 	color: #fff;
-	position: inherit;
-	bottom: 0px;
-	width: 100%;
-	margin-top: -110px;
-	height: 110px;
-	clear: both;
 }
 
 .footer a, .footer a:hover, .footer a:active, .footer a:focus {

@@ -27,7 +27,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 	</head>
 	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
-		<div id="main">
+		<div class="container container-main" id="main">
 			<div id="header">
 				<div class="navbar navbar-inverse navbar-static-top">
 					<div class="container">
