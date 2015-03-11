@@ -568,11 +568,15 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">39xx</span> New options for checking for updates
+								<span class="label label-primary">39xx</span> New options for checking for updates<br />
+								<span class="label label-primary">39xx</span> Improvements to the Theme Engine<br />
+								<span class="label label-primary">39xx</span> Major documentation improvements
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
+								<span class="label label-primary">39xx</span> New design for topic lists in Luna and Sunrise<br />
+								<span class="label label-primary">39xx</span> The forum list now alo indicates new topics<br />
 								<span class="label label-primary">39xx</span> Multiple bugfixes
 							</p>
 						</div>

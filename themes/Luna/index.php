@@ -88,11 +88,11 @@ if ($luna_user['first_run'] == '0') {
 
 		echo $paging_links;
 ?>
-<div class="list-group list-group-topic">
+		<div class="list-group list-group-topic">
 <?php
-		draw_index_topics_list($id);
+			draw_index_topics_list($id);
 ?>
-</div>
+		</div>
 <?php
 		echo $paging_links;
 ?>
