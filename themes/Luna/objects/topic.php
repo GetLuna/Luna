@@ -3,7 +3,7 @@
 	<span class="hidden-xs hidden-sm hidden-md hidden-lg">
 		<?php echo forum_number_format($topic_count + $start_from) ?>
 	</span>
-	<a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_posts ?> <?php echo $subject_multipage ?> <?php echo $by ?>
+	<a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_posts ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 	<?php if ($cur_topic['moved_to'] == 0) { ?>
 		&middot; <span class="text-muted">
 			<?php echo $last_post_date ?>
