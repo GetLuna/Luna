@@ -355,6 +355,11 @@ h1, h2, h3, h4, h5, h6 {
 	border-top-color: #ccc !important;
 }
 
+.list-group-forum .list-group-item.new-item {
+	border-left-color: #e8e8e8;
+	background-color: #f8f8f8;
+}
+
 h5.list-group-head {
 	text-transform: uppercase;
 	margin-left: 20px;
