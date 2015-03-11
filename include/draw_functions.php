@@ -227,12 +227,14 @@ function draw_topics_list() {
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
+			$subject = luna_htmlspecialchars($cur_topic['subject']);
+			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
 	
 			if (is_null($cur_topic['moved_to']))
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+					$last_poster = '<span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
-					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
+					$last_poster = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 			else
 				$last_post = '';
 	
@@ -245,15 +247,15 @@ function draw_topics_list() {
 			}
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$url = 'viewtopic.php?id='.$cur_topic['moved_to'];
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 				$item_status .= ' moved-item';
 			} elseif ($cur_topic['closed'] == '0') {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$url = 'viewtopic.php?id='.$cur_topic['id'];
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			} else {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$url = 'viewtopic.php?id='.$cur_topic['id'];
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 				$item_status .= ' closed-item';
@@ -282,12 +284,6 @@ function draw_topics_list() {
 				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
 			else
 				$subject_multipage = null;
-	
-			// Should we show the "New posts" and/or the multipage links?
-			if (!empty($subject_new_posts) || !empty($subject_multipage)) {
-				$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
-				$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
-			}
 	
 			if (forum_number_format($cur_topic['num_replies']) == '1') {
 				$replies_label = $lang['reply'];
@@ -533,12 +529,14 @@ function draw_index_topics_list($section_id) {
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-	
+			$subject = luna_htmlspecialchars($cur_topic['subject']);
+			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
+
 			if (is_null($cur_topic['moved_to']))
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+					$last_poster = '<span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
-					$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
+					$last_poster = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 			else
 				$last_post = '';
 	
@@ -551,15 +549,14 @@ function draw_index_topics_list($section_id) {
 			}
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$url = 'viewtopic.php?id='.$cur_topic['moved_to'];
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 				$item_status .= ' moved-item';
 			} elseif ($cur_topic['closed'] == '0') {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
+				$url = 'viewtopic.php?id='.$cur_topic['id'];
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			} else {
-				$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a>';
 				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 				$item_status .= ' closed-item';
@@ -574,7 +571,6 @@ function draw_index_topics_list($section_id) {
 			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject = '<strong>'.$subject.'</strong>';
 				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
@@ -588,12 +584,6 @@ function draw_index_topics_list($section_id) {
 				$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
 			else
 				$subject_multipage = null;
-	
-			// Should we show the "New posts" and/or the multipage links?
-			if (!empty($subject_new_posts) || !empty($subject_multipage)) {
-				$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
-				$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
-			}
 	
 			if (forum_number_format($cur_topic['num_replies']) == '1') {
 				$replies_label = $lang['reply'];
@@ -1066,13 +1056,6 @@ function draw_search_results() {
 				$subject_multipage = '<span class="pagestext">'.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_search['tid']).'</span>';
 			else
 				$subject_multipage = null;
-			
-			// Should we show the "New posts" and/or the multipage links?
-			if (!empty($subject_new_posts) || !empty($subject_multipage)) {
-				$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
-				$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
-			}
-			
 			
 			if ($cur_search['last_poster_id'] > '1' && $luna_user['g_view_users'] == '1')
 				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
