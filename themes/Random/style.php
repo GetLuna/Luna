@@ -36,7 +36,7 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	border-color: <?php echo $tertiary_color ?>;
 }
 
-.list-group-forum a.list-group-item:hover {
+.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
 	border-left-color: <?php echo $primary_color ?>;
 }
 
