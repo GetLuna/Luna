@@ -134,7 +134,8 @@ function load_admin_nav($section, $page) {
 			<h2 class="hidden-xs">
 				<?php
 					echo $page_title;
-					echo '<span class="pull-right" style="font-size: 70%;">Core '.Version::FORUM_CORE_VERSION.'</span>';
+					if ($luna_config['o_update_ring'] > 1)
+						echo '<span class="pull-right" style="font-size: 70%;">Core '.Version::FORUM_CORE_VERSION.'</span>';
 				?>
 			</h2>
 			<?php if ($section == 'backstage') { ?>
