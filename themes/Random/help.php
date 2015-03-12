@@ -144,6 +144,36 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 		</ul>
 		<div class="tab-content">
 		  <div class="tab-pane active" id="forum">
+                <h3><?php echo $lang['Labels question'] ?></h3>
+                <p><?php echo $lang['Labels info'] ?></p>
+				<table class="table">
+                	<thead>
+                        <tr>
+                            <th><?php echo $lang['Label'] ?></th>
+                            <th><?php echo $lang['Explanation'] ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="label label-success"><?php echo $lang['Sticky'] ?></span></td>
+                            <td><?php echo $lang['Sticky explanation'] ?></td>
+                        </tr>
+                        <tr>
+                            <td><span class="label label-danger"><?php echo $lang['Closed'] ?></span></td>
+                            <td><?php echo $lang['Closed explanation'] ?></td>
+                        </tr>
+                        <tr>
+                            <td><span class="label label-info"><?php echo $lang['Moved'] ?></span></td>
+                            <td><?php echo $lang['Moved explanation'] ?></td>
+                        </tr>
+                        <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
+                        <tr>
+                            <td>&middot;</td>
+                            <td><?php echo $lang['Posted explanation'] ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
 				<h3><?php echo $lang['Content question'] ?></h3>
 				<p><?php echo $lang['Content answer'] ?></p>
 				<h3><?php echo $lang['Topics question'] ?></h3>
