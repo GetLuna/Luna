@@ -115,7 +115,14 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 										</div>
 									</div>
 									<div class="modal-footer">
-										<span class="pull-left"><?php printf($lang['Released on'], $style_info->date) ?></span><span class="pull-right"><?php printf($lang['Designed for'], $style_info->minversion, $style_info->maxversion) ?></span>
+										<span class="pull-left"><?php printf($lang['Released on'], $style_info->date) ?></span><span class="pull-right">
+<?php 
+	if ($style_info->minversion == $style_info->maxversion)
+		echo 'Designed for '.$style_info->minversion;
+	else
+		printf($lang['Designed for'], $style_info->minversion, $style_info->maxversion);
+?>
+										</span>
 									</div>
 								</div>
 							</div>
