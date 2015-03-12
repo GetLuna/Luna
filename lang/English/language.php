@@ -249,8 +249,6 @@ $lang = array(
 // Language for help.php
 'produces'				=>	'produces',
 
-// Checked untill this line
-
 'BBCode info'			=>	'BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature.',
 
 'Text style'			=>	'Text style',
@@ -267,10 +265,10 @@ $lang = array(
 'Sup text'				=>	'Superscript text',
 
 'Multimedia'			=>  'Multimedia',
-'Links info'			=>	'You can create links to other documents or to email addresses using the following tags:',
+'Links info'			=>	'You can create links to other locations or to email addresses using the following tags:',
 'My email address'		=>	'My email address',
 'Images info'			=>	'If you want to display an image you can use the img tag. The text appearing after the "=" sign in the opening tag is used for the alt attribute and should be included whenever possible.',
-'Luna bbcode test'  =>  'Luna BBCode Test',
+'Luna bbcode test'  	=>  'Luna BBCode Test',
 'Video info'			=>  'Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos.',
 'Video link'			=>  'Put the link to the video here', 
 
@@ -320,9 +318,7 @@ $lang = array(
 'Sticky explanation'			=>	'Sticky topics are usually important topics which you should read. It\'s worth it to take a look there.',
 'Closed explanation'			=>	'When a you see a closed label, it means you can\'t post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, through.',
 'Moved explanation'				=>	'This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won\'t show any topic stats anymore.',
-'Star'							=>	'Star',
-'Star explanation'				=>	'You\'re following this topic, they will show up in you\'re subscription list.',
-'Posted explanation'			=>	'This label means you have made a post in this topic.',
+'Posted explanation'			=>	'This little dot appears when you have made a post in this topic.',
 'Content question'				=>	'Smilies, signatures, avatars and images are not visible?',
 'Content answer'				=>	'You can change the behavior of the topic view in your profile settings. There you can enable smilies, signatures, avatars and images in posts, but they should be enabled by default unless your forum admin has disabled those features.',
 'Topics question'				=>	'Why can\'t I see any topics or forums?',
@@ -349,7 +345,6 @@ $lang = array(
 
 // Language for index.php
 'Topics'		=>	'Topics',
-'Link to'		=>	'Link to:', // As in "Link to: http://getluna.org/"
 'Empty board'	=>	'Board is empty.',
 'Newest user'	=>	'Newest user',
 'Users online'	=>	'Users online',
@@ -358,19 +353,17 @@ $lang = array(
 'No of topics'	=>	'Topics',
 'No of post'	=>	'Posts',
 'Online'		=>	'Online:', // As in "Online: User A, User B etc."
-'Board stats'	=>	'Board statistics',
 
 // Language for login.php
 'Wrong user/pass'			=>	'Wrong username and/or password.',
 'Forgotten pass'			=>	'Forgotten password',
 'No email match'			=>	'There is no user registered with the email address',
-'Request pass'				=>	'Request password',
 'Remember me'				=>	'Remember me',
-'New password errors'		=>	'Password request error',
-'New passworderrors info'	=>	'The following error needs to be corrected before a new password can be sent:',
 
 'Forget mail'				=>	'An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at',
 'Password request flood'	=>  'This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again.',
+
+// Checked untill this line
 
 // Send email
 'Form email disabled'			=>	'The user you are trying to send an email to has disabled form email.',
