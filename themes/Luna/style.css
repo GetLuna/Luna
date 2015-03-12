@@ -86,7 +86,6 @@ h1, h2, h3, h4, h5, h6 {
 	background: #fff;
 	box-shadow: 0 0 30px #aaa;
 	padding: 0;
-	height: 100%;
 }
 
 @media screen and (min-width: 1500px) {
