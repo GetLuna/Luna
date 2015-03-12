@@ -2011,12 +2011,12 @@ function get_view_path($object) {
 	global $luna_user, $luna_config;
 	
 	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
-	$style_info = new SimpleXMLElement($xmlstr);
+	$theme_info = new SimpleXMLElement($xmlstr);
 	
-	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object)))
+	if (($theme_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object)))
 		return FORUM_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object;
 	else
-		return FORUM_ROOT.'themes/'.$style_info->parent_theme.'/objects/'.$object;
+		return FORUM_ROOT.'themes/'.$theme_info->parent_theme.'/objects/'.$object;
 }
 
 //
@@ -2026,12 +2026,12 @@ function load_page($page) {
 	global $luna_user, $luna_config;
 	
 	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
-	$style_info = new SimpleXMLElement($xmlstr);
+	$theme_info = new SimpleXMLElement($xmlstr);
 	
-	if (($style_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
+	if (($theme_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
 		return FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page;
 	else
-		return FORUM_ROOT.'themes/'.$style_info->parent_theme.'/'.$page;
+		return FORUM_ROOT.'themes/'.$theme_info->parent_theme.'/'.$page;
 }
 
 //
@@ -2041,10 +2041,10 @@ function load_css() {
 	global $luna_config;
 	
 	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
-	$style_info = new SimpleXMLElement($xmlstr);
+	$theme_info = new SimpleXMLElement($xmlstr);
 	
-	if ($style_info->parent_theme != '')
-		echo '<link rel="stylesheet" type="text/css" href="themes/'.$style_info->parent_theme.'/style.css" />';
+	if ($theme_info->parent_theme != '')
+		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/style.css" />';
 
 	echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/style.css" />';
 }
