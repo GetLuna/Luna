@@ -16,19 +16,6 @@ body, html {
 	box-shadow: none !important;
 }
 
-.container-main {
-	background: #fff;
-	box-shadow: 0 0 30px #aaa;
-	padding: 0;
-	height: 100%;
-}
-
-@media screen and (min-width: 1500px) {
-	.container-main {
-		width: 1400px;
-	}
-}
-
 h2 {
 	margin-top: 0;
 }
@@ -93,6 +80,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .fade-50:hover {
 	opacity: 1;
+}
+
+/* General design */
+.container-main {
+	background: #fff;
+	box-shadow: 0 0 30px #aaa;
+	padding: 0;
+	height: 100%;
+}
+
+@media screen and (min-width: 1500px) {
+	.container-main {
+		width: 1400px;
+	}
 }
 
 /* Addons */
@@ -170,8 +171,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-secondary {
 	background: #1a79bc;
+	box-shadow: 0 0 20px rgba(0,0,0,.2) !important;
 }
-
 
 @media all and (min-width: 768px) {
 	.navbar-secondary {
