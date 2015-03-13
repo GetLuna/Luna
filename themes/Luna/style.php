@@ -82,7 +82,11 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	border-left-color: <?php echo $primary_color ?>;
 }
 
-.nav > li > a, a.list-group-item:hover {
+a, a:focus, .pagination > li > a, .pagination > li > span {
+	color: <?php echo $secondary_color ?>;
+}
+
+.nav > li > a, a.list-group-item:hover, a:hover, a:active {
 	color: <?php echo $tertiary_color ?>;
 }
 
