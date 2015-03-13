@@ -5,7 +5,7 @@
 	</span>
 	<a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_posts ?> <?php echo $by ?> <?php echo $subject_multipage ?>
 	<?php if ($cur_topic['moved_to'] == 0) { ?>
-		&middot; <span class="text-muted">
+		<span class="text-muted"> &middot; 
 			<?php echo $last_post_date ?>
 			<span class="hidden-xs">
 				<?php echo $last_poster ?>
