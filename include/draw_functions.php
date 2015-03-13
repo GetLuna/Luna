@@ -274,9 +274,8 @@ function draw_topics_list() {
 				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
-	
-			// Insert the status text before the subject
-			$subject = implode(' ', $status_text).' '.$subject;
+
+			$subject_status = implode(' ', $status_text);
 	
 			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 	
@@ -575,8 +574,7 @@ function draw_index_topics_list($section_id) {
 			} else
 				$subject_new_posts = null;
 	
-			// Insert the status text before the subject
-			$subject = implode(' ', $status_text).' '.$subject;
+			$subject_status = implode(' ', $status_text);
 	
 			$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 	
