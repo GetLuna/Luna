@@ -1486,7 +1486,8 @@ class Installer {
 			'p_sig_lines'				=> 4,
 			'p_allow_banned_email'		=> 1,
 			'p_allow_dupe_email'		=> 0,
-			'p_force_guest_email'		=> 1
+			'p_force_guest_email'		=> 1,
+			't_luna_default_color'		=> 3
 		);
 	
 		foreach ($luna_config as $conf_name => $conf_value) {
