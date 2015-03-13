@@ -13,6 +13,6 @@ draw_response_list();
 echo $paging_links;
 
 ?>
-<form method="post" id="post" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
+<!-- <form method="post" id="post" action="new_inbox.php?reply=<?php echo $tid ?>" onsubmit="return process_form(this)">
 <?php draw_editor('10'); ?>
-</form>
+</form> -->
