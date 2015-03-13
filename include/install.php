@@ -1487,6 +1487,7 @@ class Installer {
 			'p_allow_banned_email'		=> 1,
 			'p_allow_dupe_email'		=> 0,
 			'p_force_guest_email'		=> 1,
+			't_luna_revision'			=> '0.4.0',
 			't_luna_default_color'		=> 3
 		);
 	

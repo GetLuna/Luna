@@ -31,6 +31,10 @@ if (isset($_POST['uninstall_theme'])) {
 	confirm_referrer('backstage/theme.php', $lang['Bad HTTP Referer message']);
 
 	// Remove obsolete t_luna_default_color permission from config table
+	if (array_key_exists('t_luna_revision', $luna_config))
+		$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'t_luna_revision\'') or error('Unable to remove config value \'t_luna_revision\'', __FILE__, __LINE__, $db->error());
+
+	// Remove obsolete t_luna_default_color permission from config table
 	if (array_key_exists('t_luna_default_color', $luna_config))
 		$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'t_luna_default_color\'') or error('Unable to remove config value \'t_luna_default_color\'', __FILE__, __LINE__, $db->error());
 
@@ -46,9 +50,15 @@ if (isset($_POST['uninstall_theme'])) {
 if (isset($_POST['install_theme'])) {
 	confirm_referrer('backstage/theme.php', $lang['Bad HTTP Referer message']);
 
-	// SAdd t_luna_default_color feature
+	// Add t_luna_revision feature
+	if (!array_key_exists('t_luna_revision', $luna_config))
+		$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'t_luna_revision\', \''.$theme_info->version.'\')') or error('Unable to insert config value \'t_luna_revision\'', __FILE__, __LINE__, $db->error());
+
+	// Add t_luna_default_color feature
 	if (!array_key_exists('t_luna_default_color', $luna_config))
 		$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'t_luna_default_color\', \'3\')') or error('Unable to insert config value \'t_luna_default_color\'', __FILE__, __LINE__, $db->error());
+		
+	$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$theme_info->version.'\' WHERE conf_name = \'t_luna_revision\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
@@ -60,24 +70,36 @@ if (isset($_POST['install_theme'])) {
 	redirect('backstage/theme.php?saved=true');
 }
 ?>
-<?php if (isset($luna_config['t_luna_default_color'])) { ?>
+<?php if (!isset($luna_config['t_luna_revision'])) { ?>
+	<div class="alert alert-info">If you install this theme, it will add additional configuration options which can be managed here.</div>
 	<form class="form-horizontal" method="post" action="theme.php">
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Install theme</label>
+			<label class="col-sm-3 control-label">Theme</label>
 			<div class="col-sm-9">
-				<input type="hidden" name="uninstall_theme" value="1" />
+				<input type="hidden" name="install_theme" value="1" />
+				<button class="btn btn-success" type="submit" name="install"><span class="fa fa-fw fa-check"></span> Install</button>
+			</div>
+		</div>
+	</form>
+<?php } elseif ((isset($luna_config['t_luna_revision'])) && ($luna_config['t_luna_revision'] < $theme_info->version)) { ?>
+	<div class="alert alert-info">The theme version doesn't match the database version, please update now.</div>
+	<form class="form-horizontal" method="post" action="theme.php">
+		<div class="form-group">
+			<label class="col-sm-3 control-label">Theme</label>
+			<div class="col-sm-9">
+				<input type="hidden" name="install_theme" value="1" />
+				<button class="btn btn-success" type="submit" name="uninstall"><span class="fa fa-fw fa-trash"></span> Update</button>
 				<button class="btn btn-danger" type="submit" name="uninstall"><span class="fa fa-fw fa-trash"></span> Uninstall</button>
 			</div>
 		</div>
 	</form>
 <?php } else { ?>
-	<div class="alert alert-info">This theme requires installation before you can use it!</div>
 	<form class="form-horizontal" method="post" action="theme.php">
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Install theme</label>
+			<label class="col-sm-3 control-label">Theme</label>
 			<div class="col-sm-9">
-				<input type="hidden" name="install_theme" value="1" />
-				<button class="btn btn-success" type="submit" name="install"><span class="fa fa-fw fa-check"></span> Install</button>
+				<input type="hidden" name="uninstall_theme" value="1" />
+				<button class="btn btn-danger" type="submit" name="uninstall"><span class="fa fa-fw fa-trash"></span> Uninstall</button>
 			</div>
 		</div>
 	</form>

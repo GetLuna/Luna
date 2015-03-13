@@ -678,6 +678,10 @@ switch ($stage) {
 		if (!array_key_exists('t_luna_default_color', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'t_luna_default_color\', \'3\')') or error('Unable to insert config value \'t_luna_default_color\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.4.3929: Add t_luna_revision feature
+		if (!array_key_exists('t_luna_revision', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'t_luna_revision\', \'0.4.0\')') or error('Unable to insert config value \'t_luna_revision\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
