@@ -246,7 +246,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>72 bugs have been fixed.</p>
+						<p>73 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -570,13 +570,18 @@ require 'header.php';
 							<p>
 								<span class="label label-primary">39xx</span> New options for checking for updates<br />
 								<span class="label label-primary">39xx</span> Improvements to the Theme Engine<br />
-								<span class="label label-primary">39xx</span> Major documentation improvements
+								<span class="label label-primary">39xx</span> Major documentation improvements<br />
+								<span class="label label-primary">39xx</span> Core version is now displayed for Nightly and Preview<br />
+								<span class="label label-primary">39xx</span> Grey color schemes now work better for Luna and Sunrise<br />
+								<span class="label label-primary">39xx</span> Improvements to mobile design
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-primary">39xx</span> New design for topic lists in Luna and Sunrise<br />
 								<span class="label label-primary">39xx</span> The forum list now alo indicates new topics<br />
+								<span class="label label-primary">39xx</span> Fixed a bug with long names in the user list<br />
+								<span class="label label-primary">39xx</span> The Luna theme now has some additional options<br />
 								<span class="label label-primary">39xx</span> Multiple bugfixes
 							</p>
 						</div>
