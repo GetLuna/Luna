@@ -110,6 +110,14 @@ a, a:focus, .pagination > li > a, .pagination > li > span {
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
 	text-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
 }
+<?php endif; if ($luna_user['color_scheme'] > 9): ?>
+a, a:focus, .pagination > li > a, .pagination > li > span {
+	color: #2a6496;
+}
+
+.nav > li > a, a.list-group-item:hover, a:hover, a:active {
+	color: #23527c;
+}
 <?php endif; ?>
 
 .emoji {
