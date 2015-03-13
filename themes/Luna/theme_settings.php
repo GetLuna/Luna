@@ -71,7 +71,7 @@ if (isset($_POST['install_theme'])) {
 }
 ?>
 <?php if (!isset($luna_config['t_luna_revision'])) { ?>
-	<div class="alert alert-info">If you install this theme, it will add additional configuration options which can be managed here.</div>
+	<div class="alert alert-info">If you install this theme, it will add additional configuration options which can be managed here. This theme works without installing it, but of course, you'll get a better experience if you do this.</div>
 	<form class="form-horizontal" method="post" action="theme.php">
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Theme</label>
