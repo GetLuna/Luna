@@ -363,8 +363,6 @@ $lang = array(
 'Forget mail'				=>	'An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at',
 'Password request flood'	=>  'This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again.',
 
-// Checked untill this line
-
 // Send email
 'Form email disabled'			=>	'The user you are trying to send an email to has disabled form email.',
 'No email subject'				=>	'You must enter a subject.',
@@ -379,14 +377,12 @@ $lang = array(
 'Report flood'					=>  'At least %s seconds have to pass between reports. Please wait %s seconds and try sending again.',
 'Report post'					=>	'Report post',
 'Reason'						=>	'Reason',
-'Reason desc'					=>	'Please enter a short reason why you are reporting this post',
 
 // Subscriptions
-'Not subscribed topic'			=>	'You\re not subscribed to this topic.',
+'Not subscribed topic'			=>	'You\'re not subscribed to this topic.',
 
 // General forum and topic moderation
 'Moderate'						=>	'Moderate',
-'Select'						=>	'Select', // the header of a column of checkboxes
 'Move'							=>	'Move',
 'Split'							=>	'Split',
 'Merge'							=>	'Merge',
@@ -398,7 +394,6 @@ $lang = array(
 'Move to'						=>	'Move to',
 'Nowhere to move'				=>	'There are no forums into which you can move topics.',
 'Leave redirect'				=>	'Leave redirect topic(s)',
-'Delete topics'					=>	'Delete topics',
 'Delete topics comply'			=>	'Are you sure you want to delete the selected topics?',
 'No topics selected'			=>	'You must select at least one topic for move/delete/open/close.',
 'Not enough topics selected'	=>	'You must select at least two topics for merge.',
@@ -418,6 +413,8 @@ $lang = array(
 'Host info 1'					=>	'The IP address is: %s',
 'Host info 2'					=>	'The host name is: %s',
 'Show more users'				=>	'Show more users for this IP',
+
+// Checked untill this line
 
 // Language for post.php and edit.php
 // Post validation stuff (many are similiar to those in edit.php)
