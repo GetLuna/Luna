@@ -637,10 +637,6 @@ if (isset($_POST['update_group_membership'])) {
 			}
 		}
 	
-		// If the ICQ UIN contains anything other than digits it's invalid
-		if (preg_match('%[^0-9]%', $form['icq']))
-			message($lang['Bad ICQ']);
-	
 		// Clean up signature from POST
 		if ($luna_config['o_signatures'] == '1') {
 			$form['signature'] = luna_linebreaks(luna_trim($_POST['signature']));
