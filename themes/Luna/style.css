@@ -613,13 +613,10 @@ textarea.textarea, textarea.textarea:focus {
 	width: 1.1em !important;
 }
 
-.fa {
-	margin: 3px 0;
-}
-
 .text-emoji {
 	font-size: 17px;
 }
+
 /* Panels */
 .panel {
 	margin-bottom: 10px;
@@ -829,14 +826,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	line-height: 0.8;
 }
 
-input[type="text"].power-control {
-	border: none;
-	background-color: transparent;
-	font-size: 20px;
-	line-height: 0.8;
-	margin-top: 10px;
-}
-
 #commentform > .panel {
 	margin-top: 10px;
 }
@@ -1027,14 +1016,6 @@ textarea {
 
 #search .panel-body {
 	background-color: #ddd;
-}
-
-#search .btn {
-	padding: 7px 12px 6px !important;
-}
-
-#search .form-inline .form-control {
-	margin-bottom: 5px;
 }
 
 /* Userlist */
