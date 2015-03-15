@@ -421,6 +421,10 @@ a.list-group-item-cat:hover .forum-description {
 	margin-top: 10px;
 }
 
+.forum-desc {
+	color: #fff;
+}
+
 /* Modal forms */
 #login .modal-xs {
 	max-width: 300px;
