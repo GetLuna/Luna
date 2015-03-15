@@ -42,21 +42,21 @@ if (!defined('FORUM_ALLOW_INDEX'))
 						<div class="navbar-primary-collapse navbar-collapse collapse">
 							<ul class="nav navbar-nav hidden-lg hidden-md hidden-sm"><?php echo implode("\n\t\t\t\t", $links); ?></ul>
 							<?php if ($luna_config['o_header_search']): ?>
-							<ul class="nav navbar-nav hidden-xs">
+							<span class="nav navbar-nav hidden-xs">
 								<form id="search" class="navbar-form" method="get" action="search.php?section=simple">
 									<fieldset>
 										<input type="hidden" name="action" value="search" />
 										<div class="input-group">
 											<input class="form-control" type="text" name="keywords" placeholder="Search in posts" maxlength="100" />
 											<span class="input-group-btn">
-												<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s" />
+												<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s">
 													<span class="fa fa-fw fa-search"></span>
 												</button>
 											</span>
 										</div>
 									</fieldset>
 								</form>
-							</ul>
+							</span>
 							<?php endif; ?>
 							<ul class="nav navbar-nav navbar-right">
 								<?php echo $usermenu; ?>

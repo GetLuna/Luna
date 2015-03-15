@@ -5,7 +5,7 @@
 				<h4 class="modal-title">Login</h4>
 			</div>
 			<div class="modal-body">
-				<form id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
+				<form id="login-fr" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
 					<fieldset>
 						<input type="hidden" name="form_sent" value="1" />
 						<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
