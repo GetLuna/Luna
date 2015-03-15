@@ -414,8 +414,6 @@ $lang = array(
 'Host info 2'					=>	'The host name is: %s',
 'Show more users'				=>	'Show more users for this IP',
 
-// Checked untill this line
-
 // Language for post.php and edit.php
 // Post validation stuff (many are similiar to those in edit.php)
 'No subject'		=>	'Topics must contain a subject.',
@@ -428,25 +426,17 @@ $lang = array(
 'All caps message'	=>	'Posts cannot contain only capital letters.',
 'Empty after strip'	=>	'It seems your post consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level.',
 
-// Posting
+// Posts
 'Post errors'		=>	'Post errors',
 'Post preview'		=>	'Post preview',
 'Guest name'		=>	'Name', // For guests (instead of Username)
 'Post a reply'		=>	'Post a reply',
 'Post new topic'	=>	'Post topic',
-'Hide smilies'		=>	'Never show smilies as icons for this post',
-'Subscribe topic'	=>	'Subscribe to this topic',
-'Stay subscribed'	=>	'Stay subscribed to this topic',
-'Topic review'		=>	'Topic review (newest first)',
 'Flood start'		=>  'At least %s seconds have to pass between posts. Please wait %s seconds and try posting again.',
 'Preview'			=>	'Preview',
-
-// Edit post
-'Silent edit'		=>	'Silent edit (don\'t display "Edited by ..." in topic view)',
 'Edit post'			=>	'Edit post',
 
 // Language for both profile.php and register.php
-'Email legend'				=>	'Enter a valid email address',
 'Time zone'					=>	'Time zone',
 'DST'						=>	'Advance time by 1 hour for daylight saving.',
 'Time format'				=>	'Time format',
@@ -471,15 +461,8 @@ $lang = array(
 'Dupe email'				=>	'Someone else is already registered with that email address. Please choose another email address.',
 'Sig too long'				=>	'Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters.',
 'Sig too many lines'		=>	'Signatures cannot have more than %s lines.',
-'Bad ICQ'					=>	'You entered an invalid ICQ UIN. Please go back and correct.',
 
 // Language for profile.php
-'Section personality'			=>	'Personality',
-'Section admin'					=>	'Administration',
-
-// Miscellaneous
-'Personal details legend'		=>	'Contact details',
-'User tools'					=>	'User tools',
 'Unknown'		  				=>  'Unknown',
 
 // Password stuff
@@ -516,14 +499,12 @@ $lang = array(
 'Avatar desc'					=>	'An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than',
 'Upload avatar'					=>	'Upload avatar',
 'Delete avatar'					=>	'Delete avatar', // only for admins
-'File'							=>	'File',
 'Upload'						=>	'Upload', // submit button
 
 // Form validation stuff
 'Forbidden title'				=>	'The title you entered contains a forbidden word. You must choose a different title.',
 
 // Profile display stuff
-'Email info'					=>	'Email: %s',
 'Last visit info'				=>	'Last visit',
 'Show posts'					=>	'Show posts',
 'Show topics'					=>	'Show topics',
@@ -556,9 +537,10 @@ $lang = array(
 'Show avatars'					=>	'Show user avatars in posts.',
 'Show sigs'						=>	'Show user signatures.',
 'Style'							=>	'Style',
-'Backstage Accent'				=>	'Backstage Accent',
 'Admin note'					=>	'Admin note',
 'Post display'					=>	'Post display',
+
+// Checked untill this line
 
 // Administration stuff
 'Group membership legend'		=>	'Choose user group',
@@ -968,7 +950,6 @@ $lang = array(
 'Report flood help'				=>	'Time users have to wait between reports',
 'Moderator info'				=>	'Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.',
 'seconds'						=>	'seconds',
-'pixels'						=>	'pixels',
 
 // Language used in index.php and update.php for Backstage
 'Luna intro'					=>	'Welcome to Luna',
