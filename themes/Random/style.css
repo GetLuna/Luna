@@ -868,14 +868,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	line-height: 0.8;
 }
 
-input[type="text"].power-control {
-	border: none;
-	background-color: transparent;
-	font-size: 20px;
-	line-height: 0.8;
-	margin-top: 10px;
-}
-
 #commentform > .panel {
 	margin-top: 10px;
 }
