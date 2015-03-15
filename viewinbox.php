@@ -198,10 +198,10 @@ if ($action == 'delete') {
 	$messageh2 = luna_htmlspecialchars($p_subject).' '.$lang['With'].' '.luna_htmlspecialchars($r_usernames);
 	
 	$quickpost = false;
-		if ($luna_config['o_quickpost'] == '1') {
-			$required_fields = array('req_message' => $lang['Message']);
-			$quickpost = true;
-		}
+	if ($luna_config['o_quickpost'] == '1') {
+		$required_fields = array('req_message' => $lang['Message']);
+		$quickpost = true;
+	}
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['View']);
 	
