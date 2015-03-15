@@ -42,7 +42,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 						<div class="navbar-primary-collapse navbar-collapse collapse">
 							<ul class="nav navbar-nav hidden-lg hidden-md hidden-sm"><?php echo implode("\n\t\t\t\t", $links); ?></ul>
 							<?php if ($luna_config['o_header_search']): ?>
-							<span class="nav navbar-nav hidden-xs">
+							<div class="nav navbar-nav hidden-xs">
 								<form id="search" class="navbar-form" method="get" action="search.php?section=simple">
 									<fieldset>
 										<input type="hidden" name="action" value="search" />
@@ -56,7 +56,7 @@ if (!defined('FORUM_ALLOW_INDEX'))
 										</div>
 									</fieldset>
 								</form>
-							</span>
+							</div>
 							<?php endif; ?>
 							<ul class="nav navbar-nav navbar-right">
 								<?php echo $usermenu; ?>
