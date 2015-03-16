@@ -12,8 +12,8 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-	</div>
-	<div class="container">
+		</div>
+		<div class="container">
 <?php
 // If no footer style has been specified, we use the default (only copyright/debug info)
 $footer_style = isset($footer_style) ? $footer_style : NULL;
@@ -39,88 +39,88 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 	'<span><a href="extern.php?action=feed&type='.$feed_type.$feed_id.'">'.$feed_lang.'</a></span>'."\n";
 
 ?>
-		</div>
-		<footer class="footer">
-			<div class="container">
-				<?php if ($luna_config['o_board_statistics'] == 1): ?>
-				<div class="row stats">
-					<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-						<div class="row">
-							<div class="col-xs-6">
-								<div class="statistic-item"><?php total_users() ?></div>
-							</div>
-							<div class="col-xs-6">
-								<div class="statistic-item-stat"><?php echo $lang['No of users'] ?></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-						<div class="row">
-							<div class="col-xs-6">
-								<div class="statistic-item"><?php total_topics() ?></div>
-							</div>
-							<div class="col-xs-6">
-								<div class="statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
+			</div>
+			<footer class="footer">
+				<div class="container">
+					<?php if ($luna_config['o_board_statistics'] == 1): ?>
+					<div class="row stats">
+						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="statistic-item"><?php total_users() ?></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="statistic-item-stat"><?php echo $lang['No of users'] ?></div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-						<div class="row">
-							<div class="col-xs-6">
-								<div class="statistic-item"><?php total_posts() ?></div>
-							</div>
-							<div class="col-xs-6">
-								<div class="statistic-item-stat"><?php echo $lang['No of posts'] ?></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-						<div class="row">
-							<div class="col-xs-6">
-								<div class="statistic-item"><?php newest_user() ?></div>
-							</div>
-							<div class="col-xs-6">
-								<div class="statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
+						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="statistic-item"><?php total_topics() ?></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-						<div class="row">
-							<div class="col-xs-6">
-								<div class="statistic-item"><?php users_online() ?></div>
+						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="statistic-item"><?php total_posts() ?></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="statistic-item-stat"><?php echo $lang['No of posts'] ?></div>
+								</div>
 							</div>
-							<div class="col-xs-6">
-								<div class="statistic-item-stat">
-									<div class="dropup">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-											<?php echo $lang['Users online'] ?> <span class="fa fa-fw fa-angle-up"></span>
-											<span class="sr-only">Toggle Dropdown</span>
-										</a>
-										<ul class="dropdown-menu" role="menu">
-											<?php echo online_list() ?>
-										</ul>
+						</div>
+						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="statistic-item"><?php newest_user() ?></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="statistic-item"><?php users_online() ?></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="statistic-item-stat">
+										<div class="dropup">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+												<?php echo $lang['Users online'] ?> <span class="fa fa-fw fa-angle-up"></span>
+												<span class="sr-only">Toggle Dropdown</span>
+											</a>
+											<ul class="dropdown-menu" role="menu">
+												<?php echo online_list() ?>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12 statistics">
-						<div class="row">
-							<div class="col-xs-6">
-								<div class="statistic-item"><?php guests_online() ?></div>
-							</div>
-							<div class="col-xs-6">
-								<div class="statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="statistic-item"><?php guests_online() ?></div>
+								</div>
+								<div class="col-xs-6">
+									<div class="statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+								</div>
 							</div>
 						</div>
 					</div>
+					<?php endif; ?>
 				</div>
-				<?php endif; ?>
-			</div>
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-4 col-xs-12">
+				<div class="copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-4 col-xs-12">
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
@@ -129,30 +129,29 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 			echo $luna_config['o_custom_copyright'];
 	}
 ?>
+							</div>
+							<div class="col-sm-4 col-xs-12"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
+							<div class="col-sm-4 col-xs-12"><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
 						</div>
-						<div class="col-sm-4 col-xs-12"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
-						<div class="col-sm-4 col-xs-12"><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
 					</div>
 				</div>
-			</div>
-		</footer>
-	</div>
-</div>
+			</footer>
+		</div>
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
-<div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
-	<div class="container">
-		<p class="navbar-text"><?php echo $lang['Cookie info'] ?></p>
-		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<div class="btn-toolbar"><a class="btn btn-link" href="http://getluna.org/docs/cookies.php"><?php echo $lang['More info'] ?></a><a class="btn btn-default" href="index.php?action=disable_cookiebar"><?php echo $lang['Do not show again'] ?></a></div>
+		<div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
+			<div class="container">
+				<p class="navbar-text"><?php echo $lang['Cookie info'] ?></p>
+				<form class="navbar-form navbar-right">
+					<div class="form-group">
+						<div class="btn-toolbar"><a class="btn btn-link" href="http://getluna.org/docs/cookies.php"><?php echo $lang['More info'] ?></a><a class="btn btn-default" href="index.php?action=disable_cookiebar"><?php echo $lang['Do not show again'] ?></a></div>
+					</div>
+				</form>
 			</div>
-		</form>
-	</div>
-</div>
-<style>
-body { margin-bottom: 40px; }
-@media screen and (max-width: 767px) { body { margin-bottom: 80px; } }
-</style>
+		</div>
+		<style>
+			body { margin-bottom: 40px; }
+			@media screen and (max-width: 767px) { body { margin-bottom: 80px; } }
+		</style>
 <?php
 }
 
@@ -186,6 +185,5 @@ if (defined('FORUM_SHOW_QUERIES'))
 // Close the db connection (and free up any result data)
 $db->close();
 ?>
-		</div>
 	</body>
 </html>
