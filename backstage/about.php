@@ -239,7 +239,7 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.2.<br />
+						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.4.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
@@ -461,7 +461,7 @@ require 'header.php';
 								<span class="label label-primary">3754</span> Moved topics aren't displayed on the index anymore<br />
 								<span class="label label-primary">3754</span> Improved forum display for moved topics<br />
 								<span class="label label-primary">3754</span> The update dialogue now has a similar design as login<br />
-								<span class="label label-primary">3754</span> Bootstrap has been updated to version 3.3.2<br />
+								<span class="label label-primary">3754</span> Bootstrap has been updated to version 3.3.4<br />
 								<span class="label label-primary">3754</span> Updated design for the user list<br />
 								<span class="label label-primary">3754</span> Font Awesome has been updated to version 4.3.0<br />
 								<span class="label label-primary">3754</span> Users can no longer select a per-user style<br />
@@ -593,7 +593,8 @@ require 'header.php';
 							<p>
 								<span class="label label-primary">39xx</span> Hovering over a username now shows the full username<br />
 								<span class="label label-primary">39xx</span> Improvements to Luna theme<br />
-								<span class="label label-primary">39xx</span> 2 CSS3 errors have been corrected
+								<span class="label label-primary">39xx</span> 2 CSS3 errors have been corrected<br />
+								<span class="label label-primary">39xx</span> Bootstrap has been updated to version 3.3.4
 							</p>
 						</div>
 						<div class="col-sm-6">
