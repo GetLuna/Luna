@@ -164,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
 	background: transparent;
-	text-shadow: 0 0 5px 1px rgba(255, 255, 255, .5);
+	text-shadow: 0 5px 1px rgba(255, 255, 255, .5);
 }
 
 .navbar-secondary {
@@ -893,7 +893,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #0062a8 9;
+	background-color: #0062a8;
 }
 
 .btn-post {
