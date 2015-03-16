@@ -81,14 +81,14 @@ if (!defined('FORUM'))
 if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
 		if ($cur_item['visible'] == '1')
-			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
+			$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;';
 [/code]
 				</pre></p>
 				<p><?php echo $lang['produces code box'] ?></p>
 <div class="codebox"><pre class=" language-php"><code class=" language-php">if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
 		if ($cur_item['visible'] == '1')
-			$links[] = '<li><a href="'.$cur_item['url'].'">'.$cur_item['name'].'</a></li>';
+			$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;';
 </code></pre></div>
 				<p><code>[c]<?php echo $lang['Code text'] ?>[/c]</code> <?php echo $lang['produces code box'] ?> <code><?php echo $lang['Code text'] ?></code></p>
 			</div>
