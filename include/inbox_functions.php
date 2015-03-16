@@ -24,19 +24,19 @@ function load_inbox_nav($page) {
 		<ul class="nav navbar-nav">
 			<li>
 <?php
-	if ($luna_user['g_pm_limit'] != '0') { // && !$luna_user['is_admmod']
+	if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod']) {
 		$per_cent_box = ceil($luna_user['num_pms'] / $luna_user['g_pm_limit'] * '100');	
 		echo '<div class="progress" style="width: 250px;"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'.$per_cent_box.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$per_cent_box.'%;">'.$per_cent_box.'%</div></div>';
 	}
 ?>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<div class="btn-compose pull-left">
+		<ul class="navbar-form navbar-right">
+			<div class="btn-compose">
 				<?php if ($page == 'view') { ?>
-					<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> Reply</a>
+					<a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> Reply</a>
 				<?php } ?>
-				<a type="button" class="btn btn-danger navbar-btn" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> Compose</a>
+				<a type="button" class="btn btn-default" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> Compose</a>
 			</div>
 		</ul>
 	</div>
