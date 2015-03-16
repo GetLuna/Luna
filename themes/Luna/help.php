@@ -75,7 +75,7 @@ if (!defined('FORUM'))
 				<p><?php echo $lang['produces code box'] ?></p>
 				<pre><code><?php echo $lang['Code text'] ?></code></pre>
 				<p><?php echo $lang['Syntax info'] ?></p>
-				<p><pre>
+				<pre>
 [code]
 [[php]]	
 if ($db->num_rows($result) > 0)
@@ -83,17 +83,16 @@ if ($db->num_rows($result) > 0)
 		if ($cur_item['visible'] == '1')
 			$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;';
 [/code]
-				</pre></p>
+				</pre>
 				<p><?php echo $lang['produces code box'] ?></p>
-<div class="codebox"><pre class=" language-php"><code class=" language-php">if ($db->num_rows($result) > 0)
+				<div class="codebox"><pre><code class="language-php">if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
 		if ($cur_item['visible'] == '1')
-			$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;';
-</code></pre></div>
+			$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;'; </code></pre></div>
 				<p><code>[c]<?php echo $lang['Code text'] ?>[/c]</code> <?php echo $lang['produces code box'] ?> <code><?php echo $lang['Code text'] ?></code></p>
 			</div>
 			<div class="tab-pane" id="lists">
-				<p><a id="lists"></a><?php echo $lang['List info'] ?></p>
+				<p><a id="list"></a><?php echo $lang['List info'] ?></p>
 				<p><code>[list][*]<?php echo $lang['List text 1'] ?>[/*][*]<?php echo $lang['List text 2'] ?>[/*][*]<?php echo $lang['List text 3'] ?>[/*][/list]</code>
 				<br /><span><?php echo $lang['produces list'] ?></span></p>
 				<div class="postmsg">
@@ -106,7 +105,7 @@ if ($db->num_rows($result) > 0)
 				</div>
 			</div>
 			<div class="tab-pane" id="smilies">
-				<p><a id="smilies"></a><?php echo $lang['Smilies info'] ?></p>
+				<p><a id="emoticons"></a><?php echo $lang['Smilies info'] ?></p>
 				<div class="row">
 <?php
 
