@@ -109,13 +109,13 @@ load_admin_nav('backstage', 'stats');
 				<td>Software version</td>
 				<td><?php echo $luna_config['o_cur_version']; ?></td>
 				<td>Bootstrap version</td>
-				<td>3.3.1</td>
+				<td>3.3.4</td>
 			</tr>
 			<tr>
 				<td>Core version</td>
 				<td><?php echo $luna_config['o_core_version']; ?></td>
 				<td>Font Awesome version</td>
-				<td>4.2.0</td>
+				<td>4.3.0</td>
 			</tr>
 			<tr>
 				<td>Database version</td>
