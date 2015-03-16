@@ -47,7 +47,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#" data-toggle="modal" data-target="#login" data-dismiss="modal">Back</a>
+				<a href="#" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back</a>
 			</div>
 		</div>
 	</div>

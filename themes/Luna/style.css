@@ -426,7 +426,7 @@ a.list-group-item-cat:hover .forum-description {
 }
 
 /* Modal forms */
-#login .modal-xs {
+#login-form .modal-xs {
 	max-width: 300px;
 }
 
@@ -465,7 +465,7 @@ a.list-group-item-cat:hover .forum-description {
 	background: #e8e8e8;
 }
 
-#login .form-control, #newmail .form-control, #newpass .form-control {
+#login-form .form-control, #newmail .form-control, #newpass .form-control {
 	margin-bottom: 10px;
 }
 

@@ -129,7 +129,7 @@ $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->p
 
 if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
-				 <li><a href="#" data-toggle="modal" data-target="#login">'.$lang['Login'].'</a></li>';
+				 <li><a href="#" data-toggle="modal" data-target="#login-form">'.$lang['Login'].'</a></li>';
 else
 	$usermenu = $backstage.$notification_menu_item.'
 				<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>
