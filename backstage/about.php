@@ -247,7 +247,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>73 bugs have been fixed.</p>
+						<p>96 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -592,11 +592,14 @@ require 'header.php';
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-primary">39xx</span> Hovering over a username now shows the full username<br />
-								<span class="label label-primary">39xx</span> Improvements to Luna theme
+								<span class="label label-primary">39xx</span> Improvements to Luna theme<br />
+								<span class="label label-primary">39xx</span> 2 CSS3 errors have been corrected
 							</p>
 						</div>
 						<div class="col-sm-6">
-							<p>
+							<p><br />
+								<span class="label label-primary">39xx</span> Improvements to the coding conventions<br />
+								<span class="label label-primary">39xx</span> 20 HTML5 errors have been corrected<br />
 								<span class="label label-primary">39xx</span> Multiple bugfixes
 							</p>
 						</div>
