@@ -23,6 +23,9 @@ include ('themes/'.$luna_config['o_default_style'].'/style.php');
 
 if (!defined('FORUM_ALLOW_INDEX'))
 	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
+
+// Required fields check
+required_fields();
 ?>
 	</head>
 	<body>
