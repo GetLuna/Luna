@@ -5,14 +5,12 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-</div>
-<div class="jumbotron" style="background:#999;">
-	<div class="container">
-		<h2><?php echo $lang['Search'] ?></h2>
-		<span class="pull-right">
-			<?php echo $paging_links ?>
-		</span>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> Search</a>
 	</div>
+</nav>
+<?php echo $paging_links ?>
+<div class="list-group list-group-topic">
+	<?php draw_search_results(); ?>
 </div>
-<div class="container">
-<?php draw_search_results(); ?>

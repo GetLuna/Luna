@@ -5,18 +5,16 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-</div>
-<div class="jumbotron" style="background:#999;">
-	<div class="container">
-		<h2><?php echo $lang['Search'] ?></h2>
-		<?php if ($luna_config['o_enable_advanced_search'] == 1) { ?>
-		<span class="pull-right">
-			<a class="btn btn-default hidden-xs" href="search.php?section=advanced"><?php echo $lang['Advanced'] ?></a>
-		</span>
-		<?php } ?>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> Search</a>
 	</div>
-</div>
-<div class="container">
+	<div class="collapse navbar-collapse hidden-xs" id="search-nav">
+		<ul class="navbar-form navbar-right">
+			<a class="btn btn-default" href="search.php?section=advanced"><?php echo $lang['Advanced'] ?></a>
+		</ul>
+	</div>
+</nav>
 <form id="search" method="get" action="search.php?section=simple">
 	<div class="panel panel-default">
 		<div class="panel-body">
