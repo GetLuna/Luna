@@ -82,6 +82,6 @@ function online_list() {
 					echo "\n\t\t\t\t".'<li>'.luna_htmlspecialchars($luna_user_online['ident']).'</li>';
 			}
 		} else
-			echo '<li>No users online</li>';
+			echo '<li><a>No users online</a></li>';
 	}
 }
