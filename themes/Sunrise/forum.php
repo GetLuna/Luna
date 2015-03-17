@@ -36,6 +36,8 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 			</div>
 		</div>
 		<div class="col-sm-9">
-			<?php draw_topics_list(); ?>
+			<div class="list-group list-group-topic">
+				<?php draw_topics_list(); ?>
+			</div>
 		</div>
 	</div>

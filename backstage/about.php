@@ -599,7 +599,7 @@ require 'header.php';
 							</p>
 						</div>
 						<div class="col-sm-6">
-							<p><br />
+							<p>
 								<span class="label label-primary">39xx</span> Improvements to the coding conventions<br />
 								<span class="label label-primary">39xx</span> 20 HTML5 errors have been corrected<br />
 								<span class="label label-primary">39xx</span> Jumbotrons have been replaced with navbars<br />
