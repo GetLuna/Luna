@@ -80,7 +80,7 @@ if ($luna_config['o_emoji'] == 1) {
 		':p' => 'tongue.png',
 		':lol:' => 'happy.png',
 		':-))' => 'happy.png',
-		':@' => 'mad.png',
+		':@' => 'angry.png',
 		'%)' => 'roll.png',
 		'b:' => 'cool.png',
 		'B:' => 'cool.png',

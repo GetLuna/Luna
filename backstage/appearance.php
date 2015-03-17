@@ -126,7 +126,7 @@ if (isset($_GET['saved']))
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Smilies size<span class="help-block">The emoticons and emojis are shown, don't go above 33 pixels when using normal emoticons</span></label>
+					<label class="col-sm-3 control-label">Smilies size<span class="help-block">The emoticons and emojis are shown, don't go above 29 pixels when using normal emoticons</span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
