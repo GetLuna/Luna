@@ -594,13 +594,16 @@ require 'header.php';
 								<span class="label label-primary">39xx</span> Hovering over a username now shows the full username<br />
 								<span class="label label-primary">39xx</span> Improvements to Luna theme<br />
 								<span class="label label-primary">39xx</span> 2 CSS3 errors have been corrected<br />
-								<span class="label label-primary">39xx</span> Bootstrap has been updated to version 3.3.4
+								<span class="label label-primary">39xx</span> Bootstrap has been updated to version 3.3.4<br />
+								<span class="label label-primary">39xx</span> Admins no longer see a limit to their Inbox messages
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p><br />
 								<span class="label label-primary">39xx</span> Improvements to the coding conventions<br />
 								<span class="label label-primary">39xx</span> 20 HTML5 errors have been corrected<br />
+								<span class="label label-primary">39xx</span> Jumbotrons have been replaced with navbars<br />
+								<span class="label label-primary">39xx</span> The Inbox navbar has been updated with a better design<br />
 								<span class="label label-primary">39xx</span> Multiple bugfixes
 							</p>
 						</div>
