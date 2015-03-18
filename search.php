@@ -77,7 +77,6 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 	elseif ($action != 'show_new' && $action != 'show_unanswered')
 		message($lang['Bad request'], false, '404 Not Found');
 
-
 	// If a valid search_id was supplied we attempt to fetch the search results from the db
 	if (isset($search_id)) {
 		$ident = ($luna_user['is_guest']) ? get_remote_address() : $luna_user['username'];
@@ -493,7 +492,8 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		require load_page('footer.php');
 	} else
 		message($lang['No hits']);
-}
+} else
+	$search_id = '';
 
 if (!$search_id) {
 	if (!$section || $section == 'simple') {

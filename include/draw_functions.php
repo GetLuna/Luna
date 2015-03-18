@@ -1004,7 +1004,7 @@ function draw_rules_form() {
 }
 
 function draw_search_results() {
-	global $search_set, $cur_search, $luna_user;
+	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $lang, $cur_topic, $subject_status, $last_post_date;
 
 	foreach ($search_set as $cur_search) {
 		$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
@@ -1013,7 +1013,7 @@ function draw_search_results() {
 			$cur_search['subject'] = censor_words($cur_search['subject']);
 
 		if ($show_as == 'posts') {
-			require get_view_path('search-show_as_posts.tpl.php');
+			require get_view_path('comment.php');
 		} else {
 			++$topic_count;
 			$status_text = array();
