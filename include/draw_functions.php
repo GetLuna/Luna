@@ -50,7 +50,7 @@ function draw_preview_panel($message) {
 
 // Show the editor panel
 function draw_editor($height) {
-	global $lang, $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message;
+	global $lang, $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message, $luna_config;
 	
 	$pin_btn = $silence_btn = '';
 
