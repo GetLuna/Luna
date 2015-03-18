@@ -417,6 +417,19 @@ a.list-group-item-cat:hover .forum-description {
 }
 
 /* Forumview */
+h2.forum-title {
+	margin: 10px 0 5px;
+	color: #fff !important;
+}
+
+h2.forum-title .btn {
+	border: none;
+}
+
+.forum-desc {
+	margin-bottom: 10px;
+}
+
 .forumview {
 	margin-top: 10px;
 }
