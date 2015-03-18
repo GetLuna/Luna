@@ -31,7 +31,7 @@ if (!defined('FORUM'))
 						<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span></button>
 					</span>
 				</div>
-			</span>
+			</div>
 		</form>
 	</div>
 </nav>
