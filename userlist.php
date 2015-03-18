@@ -10,7 +10,6 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-
 if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 elseif ($luna_user['g_view_users'] == '0')
@@ -21,16 +20,18 @@ $show_post_count = ($luna_config['o_show_post_count'] == '1' || $luna_user['is_a
 
 $username = isset($_GET['username']) && $luna_user['g_search_users'] == '1' ? luna_trim($_GET['username']) : '';
 if (isset($_GET['sort'])) {
-	if ($_GET['sort'] == 'username') {
+	if ($_GET['sort'] == 'username')
 		$sort_query = 'username ASC';
-	} elseif ($_GET['sort'] == 'registered') {
+	elseif ($_GET['sort'] == 'registered')
 		$sort_query = 'registered ASC';
-	} else {
+	else
 		$sort_query = 'num_posts DESC';
-	}
+		
+	$sort_by = $_GET['sort'];
 } else {
 	$sort_query = 'username ASC';
-}
+	$sort_by = '';
+}	
 
 // Create any SQL for the WHERE clause
 $where_sql = array();
@@ -38,8 +39,6 @@ $like_command = ($db_type == 'pgsql') ? 'ILIKE' : 'LIKE';
 
 if ($username != '')
 	$where_sql[] = 'u.username '.$like_command.' \''.$db->escape(str_replace('*', '%', $username)).'\'';
-if ($show_group > -1)
-	$where_sql[] = 'u.group_id='.$show_group;
 
 // Fetch user count
 $result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.FORUM_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '')) or error('Unable to fetch user list count', __FILE__, __LINE__, $db->error());
@@ -56,8 +55,7 @@ if ($luna_user['g_search_users'] == '1')
 	$focus_element = array('userlist', 'username');
 
 // Generate paging links
-$paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($username).'&amp;show_group='.$show_group.'&amp;sort_by='.$sort_by.'&amp;sort_dir='.$sort_dir);
-
+$paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($username).'&amp;sort_by='.$sort_by);
 
 define('FORUM_ALLOW_INDEX', 1);
 define('FORUM_ACTIVE_PAGE', 'userlist');
