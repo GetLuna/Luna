@@ -8,7 +8,7 @@ if ($luna_user['first_run'] == '0') {
 ?>
 <div class="first-run panel panel-default hidden-xs hidden-sm">
 	<div class="row first-run-content">
-		<div class="col-md-4 col-sm-6 first-run-profile"<?php echo $background_user_color ?>>
+		<div class="col-md-4 col-sm-6 first-run-profile">
 			<h3 class="first-run-title"><?php echo sprintf($lang['Hi there'], luna_htmlspecialchars($luna_user['username'])) ?></h3>
 			<span class="first-run-avatar thumbnail">
 				<?php echo $user_avatar ?>
@@ -24,7 +24,7 @@ if ($luna_user['first_run'] == '0') {
 				<a href="settings.php" class="list-group-item"><?php echo $lang['Extend profile'] ?></a>
 				<a href="help.php" class="list-group-item"><?php echo $lang['Get help'] ?></a>
 				<a href="search.php" class="list-group-item">Search the board</a>
-				<a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active" <?php echo $background_border_user_color ?>><?php echo $lang['Do not show again'] ?></a>
+				<a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active"><?php echo $lang['Do not show again'] ?></a>
 			</div>
 		</div>
 		<?php } else { ?>
