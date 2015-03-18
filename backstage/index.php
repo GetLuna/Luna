@@ -223,7 +223,7 @@ if ($db->num_rows($result)) {
 	<div class="col-sm-4">
 <?php
 //Update checking
-if (version_compare(Version::FORUM_VERSION, $update_cache, '<')) {
+if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 		<div class="alert alert-info">
 			<h4><?php echo sprintf($lang['Available'], $update_cache, '<a href="update.php">'.$lang['update now'].'</a>') ?></h4>

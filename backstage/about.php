@@ -247,7 +247,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>96 bugs have been fixed.</p>
+						<p>119 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -595,7 +595,8 @@ require 'header.php';
 								<span class="label label-primary">39xx</span> Improvements to Luna theme<br />
 								<span class="label label-primary">39xx</span> 2 CSS3 errors have been corrected<br />
 								<span class="label label-primary">39xx</span> Bootstrap has been updated to version 3.3.4<br />
-								<span class="label label-primary">39xx</span> Admins no longer see a limit to their Inbox messages
+								<span class="label label-primary">39xx</span> Admins no longer see a limit to their Inbox messages<br />
+								<span class="label label-primary">39xx</span> 23 fixes to the Luna core
 							</p>
 						</div>
 						<div class="col-sm-6">
