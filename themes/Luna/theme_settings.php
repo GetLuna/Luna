@@ -103,57 +103,57 @@ if (isset($_POST['install_theme'])) {
 			</div>
 		</div>
 	</form>
-<?php } ?>
-<hr />
-<form class="form-horizontal" method="post" action="theme.php">
-	<input type="hidden" name="form_sent" value="1" />
-	<div class="form-group">
-		<label class="col-sm-3 control-label">Save settings</label>
-		<div class="col-sm-9">
-			<button class="btn btn-primary" type="submit" name="install"><span class="fa fa-fw fa-check"></span> Save</button>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-3 control-label">Default color</label>
-		<div class="col-sm-9">
-			<div class="btn-group accent-group" data-toggle="buttons">
-				<label class="btn btn-primary color-accent accent-blue<?php if ($luna_config['t_luna_default_color'] == '1') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="blue" value="1"<?php if ($luna_config['t_luna_default_color'] == '1') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-denim<?php if ($luna_config['t_luna_default_color'] == '2') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="denim" value="2"<?php if ($luna_config['t_luna_default_color'] == '2') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-luna<?php if ($luna_config['t_luna_default_color'] == '3') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="luna" value="3"<?php if ($luna_config['t_luna_default_color'] == '3') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-purple<?php if ($luna_config['t_luna_default_color'] == '4') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="purple" value="4"<?php if ($luna_config['t_luna_default_color'] == '4') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-green<?php if ($luna_config['t_luna_default_color'] == '5') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="green" value="5"<?php if ($luna_config['t_luna_default_color'] == '5') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-ao<?php if ($luna_config['t_luna_default_color'] == '6') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="ao" value="6"<?php if ($luna_config['t_luna_default_color'] == '6') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-yellow<?php if ($luna_config['t_luna_default_color'] == '7') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="yellow" value="7"<?php if ($luna_config['t_luna_default_color'] == '7') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-orange<?php if ($luna_config['t_luna_default_color'] == '8') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="orange" value="8"<?php if ($luna_config['t_luna_default_color'] == '8') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-red<?php if ($luna_config['t_luna_default_color'] == '9') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="red" value="9"<?php if ($luna_config['t_luna_default_color'] == '9') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-white<?php if ($luna_config['t_luna_default_color'] == '10') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="white" value="10"<?php if ($luna_config['t_luna_default_color'] == '10') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-grey<?php if ($luna_config['t_luna_default_color'] == '11') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="grey" value="11"<?php if ($luna_config['t_luna_default_color'] == '11') echo ' checked' ?>>
-				</label>
-				<label class="btn btn-primary color-accent accent-black<?php if ($luna_config['t_luna_default_color'] == '12') echo ' active' ?>">
-					<input type="radio" name="form[color_scheme]" id="black" value="12"<?php if ($luna_config['t_luna_default_color'] == '12') echo ' checked' ?>>
-				</label>
+	<hr />
+	<form class="form-horizontal" method="post" action="theme.php">
+		<input type="hidden" name="form_sent" value="1" />
+		<div class="form-group">
+			<label class="col-sm-3 control-label">Save settings</label>
+			<div class="col-sm-9">
+				<button class="btn btn-primary" type="submit" name="install"><span class="fa fa-fw fa-check"></span> Save</button>
 			</div>
 		</div>
-	</div>
-</form>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">Default color</label>
+			<div class="col-sm-9">
+				<div class="btn-group accent-group" data-toggle="buttons">
+					<label class="btn btn-primary color-accent accent-blue<?php if ($luna_config['t_luna_default_color'] == '1') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="blue" value="1"<?php if ($luna_config['t_luna_default_color'] == '1') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-denim<?php if ($luna_config['t_luna_default_color'] == '2') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="denim" value="2"<?php if ($luna_config['t_luna_default_color'] == '2') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-luna<?php if ($luna_config['t_luna_default_color'] == '3') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="luna" value="3"<?php if ($luna_config['t_luna_default_color'] == '3') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-purple<?php if ($luna_config['t_luna_default_color'] == '4') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="purple" value="4"<?php if ($luna_config['t_luna_default_color'] == '4') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-green<?php if ($luna_config['t_luna_default_color'] == '5') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="green" value="5"<?php if ($luna_config['t_luna_default_color'] == '5') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-ao<?php if ($luna_config['t_luna_default_color'] == '6') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="ao" value="6"<?php if ($luna_config['t_luna_default_color'] == '6') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-yellow<?php if ($luna_config['t_luna_default_color'] == '7') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="yellow" value="7"<?php if ($luna_config['t_luna_default_color'] == '7') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-orange<?php if ($luna_config['t_luna_default_color'] == '8') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="orange" value="8"<?php if ($luna_config['t_luna_default_color'] == '8') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-red<?php if ($luna_config['t_luna_default_color'] == '9') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="red" value="9"<?php if ($luna_config['t_luna_default_color'] == '9') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-white<?php if ($luna_config['t_luna_default_color'] == '10') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="white" value="10"<?php if ($luna_config['t_luna_default_color'] == '10') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-grey<?php if ($luna_config['t_luna_default_color'] == '11') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="grey" value="11"<?php if ($luna_config['t_luna_default_color'] == '11') echo ' checked' ?>>
+					</label>
+					<label class="btn btn-primary color-accent accent-black<?php if ($luna_config['t_luna_default_color'] == '12') echo ' active' ?>">
+						<input type="radio" name="form[color_scheme]" id="black" value="12"<?php if ($luna_config['t_luna_default_color'] == '12') echo ' checked' ?>>
+					</label>
+				</div>
+			</div>
+		</div>
+	</form>
+<?php } ?>
