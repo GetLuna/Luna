@@ -9,7 +9,7 @@
 // Display the admin navigation menu
 //
 function load_admin_nav($section, $page) {
-	global $luna_user, $lang, $luna_config;
+	global $luna_user, $lang, $luna_config, $is_admin;
 
 	// What page are we on?
 	if ($page == 'index')

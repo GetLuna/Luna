@@ -33,6 +33,8 @@ function generate_config_cache() {
 // Generate the update cache
 //
 function generate_update_cache() {
+	global $luna_config;
+
 	// Get the version number from GitHub
 	if ($luna_config['o_update_ring'] == 0)
 		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/version.txt'));
