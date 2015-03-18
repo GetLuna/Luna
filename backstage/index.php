@@ -58,16 +58,6 @@ if (isset($_POST['first_run_disable'])) {
 }
 
 // Collect some statistics from the database
-if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
-	include FORUM_CACHE_DIR.'cache_users_info.php';
-else {
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
-
-	generate_users_info_cache();
-	require FORUM_CACHE_DIR.'cache_users_info.php';
-}
-
 if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
 	include FORUM_CACHE_DIR.'cache_update.php';
 
