@@ -49,7 +49,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
-			echo 'Copyright &copy; '.date(Y).' &middot; '.$luna_config['o_board_title'];
+			echo 'Copyright &copy; '.date('Y').' &middot; '.$luna_config['o_board_title'];
 		if ($luna_config['o_copyright_type'] == '1')
 			echo $luna_config['o_custom_copyright'];
 	}
