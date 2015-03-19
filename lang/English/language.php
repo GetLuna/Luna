@@ -540,8 +540,6 @@ $lang = array(
 'Admin note'					=>	'Admin note',
 'Post display'					=>	'Post display',
 
-// Checked untill this line
-
 // Administration stuff
 'Group membership legend'		=>	'Choose user group',
 'Save'							=>	'Save',
@@ -563,11 +561,9 @@ $lang = array(
 'Rules legend'				=>	'You must agree to the following in order to register',
 'Registration flood'		=>	'A new user was registered with the same IP address as you within the last hour. To prevent registration flooding, at least an hour has to pass between registrations from the same IP. Sorry for the inconvenience.',
 'Agree'						=>	'Agree',
-'Cancel'					=>	'Cancel',
 'Register legend'			=>	'Enter the requested data',
 
 // Form validation stuff (some of these are also used in post.php)
-'Registration errors'		=>	'Registration errors',
 'Username censor'			=>	'The username you entered contains one or more censored words. Please choose a different username.',
 'Username dupe 1'			=>	'Someone is already registered with the username',
 'Username dupe 2'			=>	'The username you entered is too similar. The username must differ from that by at least one alphanumerical character (a-z or 0-9). Please choose a different username.',
@@ -586,31 +582,18 @@ $lang = array(
 'User search'						=>	'User search',
 'No search permission'				=>	'You do not have permission to use the search feature.',
 'Search flood'						=>  'At least %s seconds have to pass between searches. Please wait %s seconds and try searching again.',
-'Search criteria legend'			=>	'Enter your search criteria',
-'Search info'						=>	'To search by keyword, enter a term or terms to search for. Separate terms with spaces. Use AND, OR and NOT to refine your search. To search by author enter the username of the author whose posts you wish to search for. Use wildcard character * for partial matches.',
-'Keyword search'					=>	'Keyword search',
-'Author search'						=>	'Author search',
 'All forums'						=>	'All forums',
-'Search in'							=>	'Search in',
 'Message and subject'				=>	'Message text and topic subject',
 'Message only'						=>	'Message text only',
 'Topic only'						=>	'Topic subject only',
-'Sort by'							=>	'Sort by',
-'Sort order'						=>	'Sort order',
-'Search results info'				=>	'You can choose how you wish to sort and show your results.',
 'Sort by post time'					=>	'Post time',
 'Sort by author'					=>	'Author',
 'Ascending'							=>	'Ascending',
 'Descending'						=>	'Descending',
-'Show as'							=>	'Show as',
 'Show as posts'						=>	'Posts',
-'Advanced search'					=>	'Advanced search',
 
 // Results
 'Search results'					=>	'Search results',
-'Quick search show_new'				=>	'New',
-'Quick search show_recent'			=>	'Active',
-'Quick search show_unanswered'		=>	'Unanswered',
 'Quick search show_user_topics'		=>	'Topics by %s',
 'Quick search show_user_posts'		=>	'Posts by %s',
 'Quick search show_subscriptions'	=>	'Subscribed by %s',
@@ -628,8 +611,6 @@ $lang = array(
 'No new posts'						=>	'There are no topics with new posts since your last visit.',
 'No recent posts'					=>	'No new posts have been made within the last 24 hours.',
 'No unanswered'						=>	'There are no unanswered posts in this forum.',
-'Go to post'						=>	'Go to post',
-'Go to topic'						=>	'Go to topic',
 
 // Language for viewtopic.php
 'Post reply'		=>	'Post reply',
@@ -638,7 +619,6 @@ $lang = array(
 'IP address logged'	=>	'IP log',
 'Note'				=>	'Note:', // Admin note
 'Posts'				=>	'Posts:',
-'Replies'			=>	'Replies:',
 'Last edit'			=>	'Last edited by',
 'Report'			=>	'Report',
 'Edit'				=>	'Edit',
@@ -646,23 +626,17 @@ $lang = array(
 'Is subscribed'		=>	'You are subscribed',
 'Unsubscribe'		=>	'Unsubscribe',
 'Subscribe'			=>	'Subscribe',
-'Quick post'		=>	'Quick post',
-'New icon'			=>	'New post',
-'Re'				=>	'Re:',
 
 // Language for userlist.php
 'User search info'	=>	'Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches.',
 'User group'		=>	'User group',
 'No of posts'		=>	'Posts',
-'All users'			=>	'All users',
 'Sort no of posts'	=>	'Sort by number of posts',
 'Sort username'		=>	'Sort by username',
 'Sort registered'	=>	'Sort by registration date',
 
 // Language for viewforum.php
-'Views'			=>	'Views',
 'Moved'			=>	'Moved',
-'Star'			=>	'Star',
 'Sticky'		=>	'Sticky',
 'Closed'		=>	'Closed',
 'Empty forum'	=>	'Forum is empty.',
@@ -697,7 +671,6 @@ $lang = array(
 'IP label'					=>	'IP address/IP-ranges',
 'IP help'					=>	'The IP you wish to ban, separate addresses with spaces',
 'IP help link'				=>	'Click %s to see IP statistics for this user.',
-'Ban advanced head'			=>	'Advanced ban settings',
 'Ban advanced subhead'		=>	'Supplement ban with IP and email',
 'Ban message label'			=>	'Ban message',
 'Ban message help'			=>	'A message for banned users',
@@ -722,6 +695,8 @@ $lang = array(
 'Edit categories head'			=>	'Edit categories',
 'Category position label'		=>	'Position',
 'Category name label'			=>	'Name',
+
+// Checked untill this line
 
 // Language fox censoring.php
 'Must enter word message'	=>	'You must enter a word to censor.',
@@ -1371,7 +1346,6 @@ $lang = array(
 // View a message
 'View'					=>	'View a private discussion',
 'Reply'					=>	'Reply',
-'Quote'					=>	'Quote',
 'Deleted User'			=>	'Deleted User',
 'Deleted'				=>	'(deleted)',
 'With'					=>	'with',
