@@ -605,6 +605,7 @@ require 'header.php';
 								<span class="label label-primary">39xx</span> 20 HTML5 errors have been corrected<br />
 								<span class="label label-primary">39xx</span> Jumbotrons have been replaced with navbars<br />
 								<span class="label label-primary">39xx</span> The Inbox navbar has been updated with a better design<br />
+								<span class="label label-primary">39xx</span> Updates to the language files<br />
 								<span class="label label-primary">39xx</span> Multiple bugfixes
 							</p>
 						</div>
