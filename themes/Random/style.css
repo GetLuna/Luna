@@ -341,7 +341,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .col-md-9 {
-	padding-left: 30px;
+	padding-left: 15px;
 	padding-right: 15px;
 }
 
@@ -829,7 +829,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border-top: 1px solid #fbeb91;
 }
 
-/* Topicview */
+/* Topic */
 .profile-card h1 a:hover, .profile-card h2 a:hover, .profile-card h3 a:hover, .topic .panel-heading h3 a:hover, .profile-card h4 a:hover, .profile-card h5 a:hover, .profile-card h6 a:hover, .profile-card h1 a:active, .profile-card h2 a:active, .profile-card h3 a:active, .profile-card h4 a:active, .profile-card h5 a:active, .profile-card h6 a:active, .profile-card h1 a:focus, .profile-card h2 a:focus, .profile-card h3 a:focus, .profile-card h4 a:focus, .profile-card h5 a:focus, .profile-card h6 a:focus {
 	text-decoration: none;
 	color: #ddd;
@@ -843,6 +843,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-bottom: 0;
 }
 
+.topic .panel {
+	border: none;
+}
+
 .panel-topic {
 	margin-top: 10px;
 }
@@ -853,6 +857,9 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .topic .panel-body {
 	padding: 7px;
+	border-color: #ddd;
+	border-style: solid;
+	border-width: 0 1px 1px 1px;
 }
 
 .topic .profile-card-head .user-avatar {
