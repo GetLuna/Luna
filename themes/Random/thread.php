@@ -10,16 +10,6 @@ if (!defined('FORUM'))
 		<div class="list-group list-group-forum list-group-manage">
 			<a class="list-group-item" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 		</div>
-		<?php if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') { ?>
-		<hr />
-		<div class="list-group list-group-forum">
-			<?php if ($cur_topic['is_subscribed']) { ?>
-				<a class="list-group-item" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star-o"></span> <?php echo $lang['Unsubscribe'] ?></a>
-			<?php } else { ?>
-				<a class="list-group-item" href="misc.php?action=subscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star"></span> <?php echo $lang['Subscribe'] ?></a>
-			<?php } ?>
-		</div>
-		<?php } ?>
 		<?php if ($is_admmod): ?>
 		<hr />
 		<div class="list-group list-group-forum">
