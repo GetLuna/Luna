@@ -1,4 +1,4 @@
-# Luna 1.0 "Aero" Preview
+# Luna 1.0 "Aero" Beta
 
 ## About
 Luna is an open source board software app released under the GPLv3 license. The goal of this project is to be light and small, yet fully functional for a good board. Everything else is up to plugins.
