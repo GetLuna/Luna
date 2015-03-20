@@ -58,9 +58,7 @@ if ($luna_user['first_run'] == '0') {
 <div class="index">
 	<div class="col-xs-12">
 		<!-- <?php draw_mark_read('list-group-item', 'index') ?> -->
-		<div class="list-group list-group-forum">
-			<?php draw_forum_list('viewforum.php', 'forum.php', 1, 'category.php', '</div></div></div>') ?>
-		</div>
+		<?php draw_forum_list('viewforum.php', 'forum.php', 1, 'category.php', '</div></div></div>') ?>
 	</div>
 </div>
 <?php if ($luna_config['o_board_statistics'] == 1): ?>
