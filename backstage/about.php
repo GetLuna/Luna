@@ -243,11 +243,11 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.39xx.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.4.3999.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>119 bugs have been fixed.</p>
+						<p>120 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -587,26 +587,27 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="p4u2"></a>Preview 4 Update 2 &middot; Build 39xx</h4>
+					<h4><a id="p4u2"></a>Preview 4 Update 2 &middot; Build 3999</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">39xx</span> Hovering over a username now shows the full username<br />
-								<span class="label label-primary">39xx</span> Improvements to Luna theme<br />
-								<span class="label label-primary">39xx</span> 2 CSS3 errors have been corrected<br />
-								<span class="label label-primary">39xx</span> Bootstrap has been updated to version 3.3.4<br />
-								<span class="label label-primary">39xx</span> Admins no longer see a limit to their Inbox messages<br />
-								<span class="label label-primary">39xx</span> 23 fixes to the Luna core
+								<span class="label label-primary">3999</span> Hovering over a username now shows the full username<br />
+								<span class="label label-primary">3999</span> Improvements to Luna theme<br />
+								<span class="label label-primary">3999</span> 2 CSS3 errors have been corrected<br />
+								<span class="label label-primary">3999</span> Bootstrap has been updated to version 3.3.4<br />
+								<span class="label label-primary">3999</span> Admins no longer see a limit to their Inbox messages<br />
+								<span class="label label-primary">3999</span> Major improvements to Random<br />
+								<span class="label label-primary">3999</span> 23 fixes to the Luna core
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">39xx</span> Improvements to the coding conventions<br />
-								<span class="label label-primary">39xx</span> 20 HTML5 errors have been corrected<br />
-								<span class="label label-primary">39xx</span> Jumbotrons have been replaced with navbars<br />
-								<span class="label label-primary">39xx</span> The Inbox navbar has been updated with a better design<br />
-								<span class="label label-primary">39xx</span> Updates to the language files<br />
-								<span class="label label-primary">39xx</span> Multiple bugfixes
+								<span class="label label-primary">3999</span> Improvements to the coding conventions<br />
+								<span class="label label-primary">3999</span> 20 HTML5 errors have been corrected<br />
+								<span class="label label-primary">3999</span> Jumbotrons have been replaced with navbars<br />
+								<span class="label label-primary">3999</span> The Inbox navbar has been updated with a better design<br />
+								<span class="label label-primary">3999</span> Updates to the language files<br />
+								<span class="label label-primary">3999</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
