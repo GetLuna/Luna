@@ -63,7 +63,7 @@
 					</fieldset>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-default" name="upload"><?php echo $lang['Upload'] ?></button></div>
+					<button type="submit" class="btn btn-default" name="upload"><?php echo $lang['Upload'] ?></button>
 				</div>
 			</form>
 		</div>

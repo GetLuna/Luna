@@ -771,11 +771,10 @@ if (isset($_POST['update_group_membership'])) {
 	else
 		$signature_preview = $lang['No sig'];
 
-	require load_page('me-modals.php');
-
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Profile'], $lang['Settings']);
 	define('FORUM_ACTIVE_PAGE', 'me');
 	require load_page('header.php');
+	require load_page('me-modals.php');
 	require load_page('settings.php');
 	require load_page('footer.php');
 }
