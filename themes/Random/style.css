@@ -636,7 +636,8 @@ textarea.textarea, textarea.textarea:focus {
 
 .panel-default .panel-heading {
 	border: none;
-	background: #0d4382;
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
 	color: #fff;
 }
 
@@ -1046,7 +1047,8 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .category-header {
 	color: #fff;
-	background: #0d4382;
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
 	padding: 8px 0;
 }
 

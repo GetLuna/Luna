@@ -10,7 +10,7 @@ class Version {
 	const FORUM_VERSION = '0.4.2-dev';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '0.4.3995';
+	const FORUM_CORE_VERSION = '0.4.3997';
 	
 	// The Luna Core code name
 	const FORUM_CODE_NAME = 'aero';
