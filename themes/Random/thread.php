@@ -10,7 +10,8 @@ if (!defined('FORUM'))
 		<h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
 		<div class="btn-group">
 			<a class="btn btn-primary" href="index.php"><span class="fa fa-fw fa-home"></span></a>
-			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+			<a class="btn btn-primary" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+			<a class="btn btn-primary" href="viewtopic.php?id=<?php echo $cur_topic['id'] ?>"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
 		</div>
 		<?php echo $paging_links ?>
 		<?php draw_topic_list(); ?>
