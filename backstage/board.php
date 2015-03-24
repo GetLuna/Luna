@@ -592,7 +592,7 @@ if ($db->num_rows($result) > 0) {
 		<form id="edforum" method="post" action="board.php?action=edit">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_positions"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update positions'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_positions"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 				</div>
 				<fieldset>
 <?php
@@ -638,7 +638,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update positions'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">

@@ -199,7 +199,7 @@ if (isset($_GET['saved']))
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Time format'] ?><span class="help-block"><?php printf($lang['Time format help'], gmdate($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span></label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Time format'] ?><span class="help-block"><?php printf($lang['Date format help'], gmdate($luna_config['o_time_format'], $timestamp), '<a href="http://www.php.net/manual/en/function.date.php">'.$lang['PHP manual'].'</a>') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[time_format]" maxlength="25" value="<?php echo luna_htmlspecialchars($luna_config['o_time_format']) ?>" />
 					</div>

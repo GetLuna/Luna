@@ -1026,7 +1026,6 @@ $lang = array(
 // Timeout Section
 'Timeouts subhead'					=>	'Time and timeouts',
 'PHP manual'						=>	'PHP manual',
-'Time format help'					=>	'Now: %s. See %s for more info',
 'Date format help'					=>	'Now: %s. See %s for more info',
 'Visit timeout label'				=>	'Visit timeout',
 'Visit timeout help'				=>	'Time before a visit ends',
@@ -1094,7 +1093,6 @@ $lang = array(
 // Language for permissions.php
 'All caps'					=>	'All caps',
 'Posting subhead'			=>	'Posting',
-'BBCode help'				=>	'Allow BBCode in posts (recommended).',
 'Image tag help'			=>	'Allow the BBCode [img] tag in posts.',
 'All caps message help'		=>	'Allow a message to contain only capital letters.',
 'All caps subject help'		=>	'Allow a subject to contain only capital letters.',
@@ -1218,7 +1216,6 @@ $lang = array(
 // Main menu
 'Content'				=>	'Content',
 'Forums'				=>	'Forums',
-'Forum settings'		=>	'Forum settings',
 'Categories'			=>	'Categories',
 'Board'					=>	'Board',
 'Board structure'		=>	'Board structure',
@@ -1230,20 +1227,16 @@ $lang = array(
 'Permissions'			=>	'Permissions',
 'Bans'					=>	'Bans',
 'Settings'				=>	'Settings',
-'Global'				=>	'Global',
 'Registration'			=>	'Registration',
 'Email'					=>	'Email',
 'Database'				=>	'Database management',
 'Extensions'			=>	'Extensions',
-
-// Others
 'Prune'					=>	'Prune',
 'Server statistics'		=>  'Server statistics',
 
 // Update service
 'Available'				=>	'Luna v%s is available, %s!',
 'update now'			=>	'update now',
-'Development'			=>	'You are running version %s, the latest stable release is version %s.',
 'Download'				=>	'Download v%s',
 'Changelog'				=>	'Changelog',
 
@@ -1269,27 +1262,13 @@ $lang = array(
 'Plugin failed message'	=>	'Loading of the plugin - <strong>%s</strong> - failed.',
 
 // Common
-'Login required'		=>	'You must be logged in to use the privates messages system',
-'Disabled PM'			=>	'You have disable the privates messages system',
 'Private Messages'		=>	'Private Messages',
 'PM'					=>	'PM',
-'Quick message'			=>	'Send private message',
-'Write message'			=>	'Send new message',
 'Inbox'					=>	'Inbox',
-'Outbox'				=>	'Sent',
-'Please confirm'		=>	'Please confirm',
-'Full boxes'			=>	'Your private message boxes are full!',
-'Empty boxes'			=>	'Your private message boxes are empty.',
-'Full to'				=>	'Private message boxes full to %s',
 'Select'				=>	'Select',
-'For select'			=>	'For the selection:',
 'Messages'				=>	'Messages',
-'OK'					=>	'OK',
-'PM Menu'				=>	'Private messaging',
-'Sending lists'			=>	'Sending lists',
 
 // List a box
-'Date'					=>	'Date',
 'Subject'				=>	'Subject',
 'Sender'				=>	'Sender',
 'Receiver'				=>	'Receiver(s)',
@@ -1303,17 +1282,11 @@ $lang = array(
 // View a message
 'View'					=>	'View a private discussion',
 'Reply'					=>	'Reply',
-'Deleted User'			=>	'Deleted User',
-'Deleted'				=>	'(deleted)',
 'With'					=>	'with',
 
 // Send a message
 'Send a message'		=>	'Send a message',
 'Send to'				=>	'Send to',
-'Send multiple'			=>	'You can send the message to several receivers by separating them by commas. Maximum: ',
-'Save message'			=>	'Save message in "Sent" box',
-'Send'					=>	'Send',
-'Sent redirect'			=>	'Messages sent to user, redirecting...',
 'No user'				=>	'There\'s no user with the username "%s".',
 'Dest full'				=>	'%s inbox is full, you can not send you message to this user.',
 'Sender full'			=>	'Can\'t save message, your boxes are full.',
@@ -1330,15 +1303,8 @@ $lang = array(
 
 // Delete
 'Delete message'		=>	'Delete message',
-'Delete message comply'	=>	'Are you sure you want to delete the message?',
 'Topic warning info'	=>	'The topic will be deleted from your inbox, but it will stays in the others receivers\' boxes.',
 'Delete for everybody'	=>	'If you tick this checkbox, you will delete the message (or the topic) for all the receivers (available only for admins &amp; mods)',
-
-// profile.php
-'use_pm_option'			=>	'Enable privates messages system',
-'email_option_infos'	=>	'With this enabled, an e-mail will be sent for all new private message.',
-'email_option'			=>	'Privates messages notification by e-mail',
-'email_option_full'		=>	'Include private messages content',
 
 // Email templtes
 // Email - activate_email.tpl
@@ -1541,21 +1507,6 @@ User profile: <profile_url>
 
 To administer this account, please visit the following page:
 <admin_url>
-
---
-<board_mailer> Mailer
-(Do not reply to this message)',
-
-// Email - rename.tpl
-'rename.tpl'		  =>
-'Subject: User account renamed
-
-During an upgrade to the forums at <base_url> it was determined your username is too similar to an existing user. Your username has been changed accordingly.
-
-Old username: <old_username>
-New username: <new_username>
-
-We apologise for any inconvenience caused.
 
 --
 <board_mailer> Mailer
