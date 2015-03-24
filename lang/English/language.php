@@ -696,14 +696,10 @@ $lang = array(
 'Category position label'		=>	'Position',
 'Category name label'			=>	'Name',
 
-// Checked untill this line
-
 // Language fox censoring.php
 'Must enter word message'	=>	'You must enter a word to censor.',
 'Add word subhead'			=>	'Add word',
 'Add word info'				=>	'Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted.',
-'Censoring enabled'			=>	'<strong>Censoring is enabled in %s.</strong>',
-'Censoring disabled'		=>	'<strong>Censoring is disabled in %s.</strong>',
 'Censored word label'		=>	'Censored word',
 'Replacement label'			=>	'Replacement word',
 'Edit remove words'			=>	'Manage words',
@@ -744,19 +740,12 @@ $lang = array(
 'Timeout error message'				=>	'The value of "Timeout online" must be smaller than the value of "Timeout visit".',
 
 // Language for appearance.php
-'Header appearance'					=>	'Header appearance',
-'Footer appearance'					=>	'Footer appearance',
-'Footer'							=>	'Footer',
 'Display head'						=>	'Display settings',
-'Default style help'				=>	'The default style will be used by new users and guests. Users can change the style they use, so changing the default style here won\'t change the design for already existing users. You can also force a style, this will reset the style setting for every user except the guest user.',
 'About style'						=>	'About %s',
 'version'							=>	'version %s',
 'Released on'						=>	'Released on %s',
 'Designed for'						=>	'Designed for Luna %s to %s',
-'Force style'						=>	'Force style',
-'Set as default'					=>	'Set as default',
 'About'								=>	'About',
-'Version number help'				=>	'Show Luna version number in footer.',
 'Info in posts help'				=>	'Show information about the poster under the username in topic view.',
 'Post count help'					=>	'Show the number of posts a user has made in topic view, profile and user list.',
 'Smilies help'						=>	'Convert smilies to small graphic icons in forum posts.',
@@ -769,28 +758,16 @@ $lang = array(
 'Posts per page help'				=>	'Default amount of posts per page',
 'Indent label'						=>	'Indent size',
 'Index panels head'					=>	'Index settings',
-'Moderated by help'				 =>  'Show the "Moderated by" list when moderators are set on a per-forum base.',
+'Moderated by help'				 	=>  'Show the "Moderated by" list when moderators are set on a per-forum base (requires theme support).',
 'Index statistics help'				=>	'Show the statistics panel on the index.',
 'Indent help'						=>	'Amount of spaces that represent a tab',
 'Quote depth label'					=>	'Maximum [quote] depth',
 'Quote depth help'					=>	'Maximum [quote] can be used in [quote]',
-'Video height'					  =>  'Video height',
-'Video height help'				 =>  'Height of an embedded video',
-'Video width'					   =>  'Video width',
-'Video width help'				  =>  'Width of an embedded video',
-'Menu items head'					=>	'Additional menu items',
-'Menu items help'					=>	'This feature allows you to add more menu items to the navigation bar on every page. The format for adding new links is <code>X = &lt;a href="URL"&gt;LINK&lt;/a&gt;</code> where X is the position at which the link should be inserted. Separate entries with a line break.',
-'Default menu'						=>	'Default menu items',
-'Menu show index'					=>	'Show the index menu item.',
-'Menu show user list'				=>	'Show the user list menu item.',
-'Menu show search'					=>	'Show the search menu item.',
-'Menu show rules'					=>	'Show the rules menu item.',
+'Video height'						=>  'Video height',
+'Video height help'					=>  'Height of an embedded video',
+'Video width'						=>  'Video width',
+'Video width help'					=>  'Width of an embedded video',
 'User profile head'					=>	'User profile',
-'Title settings head'				=>	'Title settings',
-'Title in menu'						=>	'Show board title in menu.',
-'Title in header'					=>	'Show board title in header.',
-'Description in header'				=>	'Show board description in header.',
-'Description settings head'			=>	'Description settings',
 
 // Language for email.php
 'Contact head'						=>	'Contact settings',
@@ -812,14 +789,11 @@ $lang = array(
 'SMTP SSL help'						=>	'Encrypts the connection to the SMTP server using SSL, only when required and supported.',
 
 // Language for features.php
-'Features head'						=>	'Features settings',
 'General'							=>	'General',
 'Topics and posts'					=>	'Topics and posts',
 'User features'						=>	'User features',
 'Search'							=>	'Search',
 'Advanced'							=>	'Advanced',
-'Quick post help'					=>	'Show a quick post form so users can post a reaction from the topic view.',
-'Responsive post help'			  =>  'Show "Post" and "Preview" button in topic view on small screens, leave quick post enabled when this is disabled to allow small devices to post comments.',
 'Users online help'					=>	'Display info on the index page about users currently browsing the board.',
 'Censor words help'					=>	'Censor words in posts. See %s for more info.',
 'Signatures help'					=>	'Allow users to attach a signature to their posts.',
@@ -839,11 +813,9 @@ $lang = array(
 
 // Language for forums.php
 'Post must be integer message'	=>	'Position must be a positive integer value.',
-'New forum'						=>	'New forum',
 
 // Entry page
 'Add forum'					=>	'Add forum',
-'Update positions'			=>	'Update positions',
 'Confirm delete head'		=>	'Confirm delete forum',
 'Confirm delete forum info'	=>	'Are you sure that you want to delete the forum <strong>%s</strong>?',
 'Confirm delete forum'		=>	'Warning! Deleting a forum will delete all posts (if any) in that forum!',
@@ -857,9 +829,8 @@ $lang = array(
 'Sort by label'				=>	'Sort topics by',
 'Topic start'				=>	'Topic start',
 'User groups'				=>	'User groups',
-'Redirect label'			=>	'Redirect URL',
 'Group permissions subhead'	=>	'Edit group permissions',
-'Group permissions info'	=>	'In this form, you can set the forum specific permissions for the different user groups. Administrators always have full permissions. Permission settings that differ from the default permissions for the user group are marked red. Some permissions are disabled under some conditions.',
+'Group permissions info'	=>	'Here you can set the forum specific permissions for the different user groups. Administrators always have full permissions. Permission settings that differ from the default permissions for the user group are marked red. Some permissions are disabled under some conditions.',
 'Read forum label'			=>	'Read forum',
 'Post replies label'		=>	'Post replies',
 'Post topics label'			=>	'Post topics',
@@ -927,13 +898,11 @@ $lang = array(
 'seconds'						=>	'seconds',
 
 // Language used in index.php and update.php for Backstage
-'Luna intro'					=>	'Welcome to Luna',
 'Backup head'						=>	'Back-up',
 'Backup info'						=>	'Create new database backup.',
 'Backup button'						=>	'Create new backup',
 'New reports head'					=>	'New reports',
 'Statistics head'					=>	'Statistics',
-'Updates'							=>	'Updates',
 'View all'							=>	'View all',
 'posts'								=>	'posts',
 'replies'							=>	'replies',
@@ -945,19 +914,9 @@ $lang = array(
 
 'Not available'						=>	'Not available',
 'NA'								=>	'N/A',
-'About head'						=>	'About Luna',
-'Luna version label'			=>	'Luna version',
-'Luna version data'				=>	'Luna version ',
-'Server statistics label'			=>	'Server statistics',
-'View server statistics'			=>	'View server statistics',
 
-'Luna software updates'			=>	'Luna software updates',
-'Luna updates'					=>	'Luna updates',
+'Luna updates'						=>	'Luna software updates',
 'Check for updates'					=>	'Check for updates',
-'New version'						=>	'It\'s time to update, a new version is available',
-'Latest version'					=>	'Thanks for using the latest version of Luna',
-'Development version'				=>	'You\'re using a development release',
-'Warning head'						=>	'Warning', 
 'Install file exists'				=>	'The file install.php still exists, but should be removed.', 
 'Delete install file'				=>	'Delete it', 
 'Delete install.php failed'			=>	'Could not remove install.php. Please do so by hand.', 
@@ -1011,14 +970,10 @@ $lang = array(
 'Delete only verified'		=>	'Delete only verified',
 'Delete only unverified'	=>	'Delete only unverified',
 
-// Language for settings.php
-'Options head'						=>	'Global settings',
-
 // Essentials section
 'Essentials subhead'				=>	'Essentials',
 'Board desc help'					=>	'What\'s this board about?',
 'Base URL label'					=>	'Board URL',
-'URL scheme'						=> 'URL scheme',
 'Base URL problem'					=>  'Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter.',
 'Timezone label'					=>	'Default time zone',
 'DST help'							=>	'Advance time by 1 hour for daylight saving.',
@@ -1065,6 +1020,8 @@ $lang = array(
 'UTC+12:45'							=>	'(UTC+12:45) Chatham Islands',
 'UTC+13:00'							=>	'(UTC+13:00) Tonga, Phoenix Islands, Kamchatka',
 'UTC+14:00'							=>	'(UTC+14:00) Line Islands',
+
+// Checked untill this line
 
 // Timeout Section
 'Timeouts subhead'					=>	'Time and timeouts',
