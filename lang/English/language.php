@@ -1554,4 +1554,25 @@ Login at <login_url> to activate the account.
 'Menu'					=>	'Menu',
 'Theme'					=>	'Theme',
 
+'Emoji'					=>	'Emoji',
+'Use emojis'			=>	'Use emojis instead of emoticons.',
+'Smilie size'			=>	'Smilie size',
+'Smilie size info'		=>	'The emoticons and emojis are shown, don\'t go above 29 pixels when using normal emoticons',
+'Header settings'		=>	'Header settings',
+'Notification fly-out'	=>	'Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance.',
+'Search bar visible'	=>	'Show the search bar in the heading.',
+'Footer settings'		=>	'Footer settings',
+'Statistics'			=>	'Statistics',
+'Show board statistics'	=>	'Show the board statistics.',
+'Back to top'			=>	'Back to top',
+'Show back'				=>	'Show a "Back to top" link in the footer.',
+'Copyright'				=>	'Copyright',
+'Show copyright notice'	=>	'Show the copyright notice in the footer.',
+'Copyright content'		=>	'Copyright content',
+'Show default copyright'=>	'Show default copyright',
+'Show personalized'		=>	'Show personalized copyright notices:',
+'Your copyright'		=>	'Your copyright',
+
+
+
 );
