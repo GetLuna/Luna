@@ -265,7 +265,7 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Forum color</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Forum color'] ?></label>
 					<div class="col-sm-9">
 						<div class="btn-group accent-group" data-toggle="buttons">
 							<label class="btn btn-primary color-accent accent-blue<?php if ($cur_forum['color'] == '#14a3ff') echo ' active' ?>">
@@ -322,7 +322,7 @@ elseif (isset($_POST['update_positions'])) {
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="atcl">&#160;</th>
+						<th>&#160;</th>
 						<th><?php echo $lang['Read forum label'] ?></th>
 						<th><?php echo $lang['Post replies label'] ?></th>
 						<th><?php echo $lang['Post topics label'] ?></th>

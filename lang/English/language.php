@@ -1573,6 +1573,6 @@ Login at <login_url> to activate the account.
 'Show personalized'		=>	'Show personalized copyright notices:',
 'Your copyright'		=>	'Your copyright',
 
-
+'Forum color'			=>	'Forum color',
 
 );
