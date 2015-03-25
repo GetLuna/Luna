@@ -45,7 +45,7 @@ if (isset($_GET['saved']))
 	<div class="col-md-3">
 		<div class="panel panel-default panel-current">
 			<div class="panel-heading">
-				<h3 class="panel-title">Current theme</h3>
+				<h3 class="panel-title"><?php echo $lang['Current theme'] ?></h3>
 			</div>
 <?php
 
@@ -63,7 +63,7 @@ $theme_info = new SimpleXMLElement($xmlstr);
 	<div class="col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Theme settings for <?php echo $luna_config['o_default_style'] ?> <?php echo $theme_info->version; ?></h3>
+				<h3 class="panel-title"><?php printf($lang['Theme settings for'], $luna_config['o_default_style'].' '.$theme_info->version) ?></h3>
 			</div>
 			<div class="panel-body">
 <?php
@@ -85,7 +85,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 			<h3 class="panel-title"><?php echo $lang['Default style'] ?></h3>
 		</div>
 		<div class="panel-body">
-			<p>Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.</p>
+			<p><?php echo $lang['Available themes'] ?></p>
 			<fieldset>
 				<div class="row">
 <?php
@@ -132,7 +132,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 										if ($luna_config['o_default_style'] == $theme_info->name)
 											echo '<a class="btn btn-primary disabled">In use</a>';
 										else
-											echo '<a class="btn btn-primary" href="theme.php?default_style='.$theme_info->name.'">Use</a>';
+											echo '<a class="btn btn-primary" href="theme.php?default_style='.$theme_info->name.'">'.$lang['Use'].'</a>';
 										
 										echo '<a class="btn btn-primary" data-toggle="modal" href="#" data-target="#'.$temp.'"><span class="fa fa-fw fa-info-circle"></span></a>';
 									?>
