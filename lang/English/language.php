@@ -1616,4 +1616,9 @@ Login at <login_url> to activate the account.
 'Admin notes'			=>	'Admin notes',
 'Add a note...'			=>	'Add a note...',
 
+'New menu item'			=>	'New menu item',
+'Name'					=>	'Name',
+'Position'				=>	'Position',
+'Show'					=>	'Show',
+
 );
