@@ -205,7 +205,6 @@ if (empty($stage)) {
 	<body onload="document.getElementById('install').start.disabled=false;">
 		<div class="well form-box">
 			<h3 class="form-title">Luna</h3>
-			<p class="alert alert-danger">This is a preview version! Do not install this upon a working ModernBB installation if you're using it in a productive environment!</p>
 			<form id="install" method="post" action="db_update.php">
 				<input type="hidden" name="stage" value="start" />
 				<div class="form-group">
