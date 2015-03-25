@@ -1643,4 +1643,9 @@ Login at <login_url> to activate the account.
 'Database version'		=>	'Database version',
 'jQuery version'		=>	'jQuery version',
 
+'Current theme'			=>	'Current theme',
+'Theme settings for'	=>	'Theme settings for %s',
+'Available themes'		=>	'Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.',
+'Use'					=>	'Use',
+
 );
