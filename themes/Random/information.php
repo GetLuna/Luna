@@ -15,10 +15,10 @@ $xmlstr = <<<XML
 	<id>random</id>
 	<name>Random</name>
 	<developer>Studio 384</developer>
-	<date>20 March 2015</date>
+	<date>25 March 2015</date>
 	<version>5.0 Preview</version>
 	<minversion>1.0 Preview 4 Update 2</minversion>
-	<maxversion>1.0 Preview 4 Update 2</maxversion>
+	<maxversion>1.0 Beta 1</maxversion>
 	<description>Serving since summer 2013, Random has been ModernBB's default style since the beginning of the modern versions of the software. And for Luna, it's back in all its glory, making use of new capabilities in Luna, like color schemes. Thanks to this, the whole Random-family is now one single theme. And still as awesome as ever.</description>
 </style>
 XML;
