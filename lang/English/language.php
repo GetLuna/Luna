@@ -1575,4 +1575,15 @@ Login at <login_url> to activate the account.
 
 'Forum color'			=>	'Forum color',
 
+'No file uploaded'		=>	'No file was uploaded or the upload failed, the database was not restored.',
+'Not restored'			=>	'Sorry the database could not be restored.',
+'File format error'		=>	'Error the file name or file format caused an error, the database was not restored.',
+'Debug info'			=>	'Debug info',
+'Imported error'		=>	'Error imported backup file, the database probably has not been restored.',
+'Restore completed'		=>	'Restore completed',
+'Failed repair'			=>	'Tables error, repair failed.',
+'Failed repair SQL'		=>	'SQL error, repair failed.',
+'Failed optimize'		=>	'Tables error, optimise failed.',
+'Failed optimize SQL'	=>	'SQL error, optimise failed.',
+
 );

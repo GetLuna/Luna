@@ -414,7 +414,7 @@ exit;
 	if($backup_file_tmpname == "" || $backup_file_name == "") {
 		require 'header.php';
 		load_admin_nav('maintenance', 'database');
-		message_backstage('No file was uploaed or the upload failed, the database was not restored');
+		message_backstage($lang['No file uploaded']);
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) ) {
 		if( preg_match("/\.gz$/is",$backup_file_name) ) {
@@ -434,7 +434,7 @@ exit;
 			} else {
 				require 'header.php';
 				load_admin_nav('maintenance', 'database');
-				message_backstage('Sorry the database could not be restored');
+				message_backstage($lang['Not restored']);
 			}
 		} else {
 			$sql_query = fread(fopen($backup_file_tmpname, 'r'), filesize($backup_file_tmpname));
@@ -442,7 +442,7 @@ exit;
 	} else {
 		require 'header.php';
 		load_admin_nav('maintenance', 'database');
-		message_backstage('Error the file name or file format caused an error, the database was not restored');
+		message_backstage($lang['File format error']);
 	}
 	if($sql_query != "") {
 		// Strip out sql comments
@@ -453,7 +453,7 @@ exit;
 		load_admin_nav('maintenance', 'database');
 ?>
 	<div>
-		<h2>Debug info</h2>
+		<h2><?php echo $lang['Debug info'] ?></h2>
 		<p>
 <?php
 		}
@@ -469,7 +469,7 @@ exit;
 				if(!$result) {
 					require 'header.php';
 					load_admin_nav('maintenance', 'database');
-					message_backstage('Error imported backup file, the database probably has not been restored');
+					message_backstage($lang['Imported error']);
 				}
 			}
 		}
@@ -489,7 +489,7 @@ exit;
 	} else {
 		require 'header.php';
 		load_admin_nav('maintenance', 'database');
-		message_backstage('Restore Complete');
+		message_backstage($lang['Restore completed']);
 	}
 } elseif (isset($_POST['repairall'])) {
 	// repair all tables
@@ -499,7 +499,7 @@ exit;
 		// This makes no sense, the board would be dead :P
 		require 'header.php';
 		load_admin_nav('maintenance', 'database');
-		message_backstage('Tables error, repair failed');
+		message_backstage($lang['Failed repair']);
 	}
 	$tables = array();
 	$counter = 0;
@@ -515,7 +515,7 @@ exit;
 		if (!$result = $db->query($sql)) {
 			require 'header.php';
 			load_admin_nav('maintenance', 'database');
-			message_backstage('SQL error, repair failed');
+			message_backstage($lang['Failed repair SQL']);
 		}
 	}
 	require 'header.php';
@@ -528,7 +528,7 @@ exit;
 		// This makes no sense, the board would be dead :P
 		require 'header.php';
 		load_admin_nav('maintenance', 'database');
-		message_backstage('Tables error, optimise failed');
+		message_backstage($lang['Failed optimize']);
 	}
 	$tables = array();
 	$counter = 0;
@@ -544,7 +544,7 @@ exit;
 		if (!$result = $db->query($sql)) {
 			require 'header.php';
 			load_admin_nav('maintenance', 'database');
-			message_backstage('SQL error, optimise failed');
+			message_backstage($lang['Failed optimize SQL']);
 		}
 	}
 	require 'header.php';
