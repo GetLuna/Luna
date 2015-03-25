@@ -129,34 +129,34 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Show deleted content</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Show deleted content'] ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
-								Allow users to view topics and posts that have been soft deleted.
+								<?php echo $lang['Allow soft deleted'] ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Soft delete posts</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Soft delete posts'] ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
-								Allow users soft delete posts from all users.
+								<?php echo $lang['Allow posts soft delete'] ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Soft delete topics</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Soft delete topic'] ?>s</label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
-								Allow users soft delete topics from all users.
+								<?php echo $lang['Allow topic soft delete'] ?>
 							</label>
 						</div>
 					</div>
@@ -165,16 +165,10 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Inbox</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Inbox'] ?></label>
 					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_pm'] == '1') echo ' checked' ?> />
-								Allow users to be notified through email about new Inbox messages.
-							</label>
-						</div>
 						<input type="text" class="form-control" name="inbox_limit" maxlength="5" value="<?php echo $group['g_pm_limit'] ?>" />
-						<p class="help-block">The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.</p>
+						<p class="help-block"><?php echo $lang['Inbox messages'] ?></p>
 					</div>
 				</div>
 	<?php endif; endif; ?>
