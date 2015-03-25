@@ -11,7 +11,7 @@ require 'header.php';
 
 ?>
 <div class="well form-box">
-	<h3 class="form-title">Login</h3>
+	<h3 class="form-title"><?php echo $lang['Login'] ?></h3>
 	<form id="login-form" method="post" action="../login.php?action=in" onsubmit="return">
 		<input type="hidden" name="form_sent" value="1" />
 		<div class="form-group">
