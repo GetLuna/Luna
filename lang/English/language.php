@@ -1586,4 +1586,9 @@ Login at <login_url> to activate the account.
 'Failed optimize'		=>	'Tables error, optimise failed.',
 'Failed optimize SQL'	=>	'SQL error, optimise failed.',
 
+'Use Inbox'				=>	'Use Inbox', // "Inbox" is the name of a feature, capital required
+'Allow Inbox'			=>	'Allow users to use Inbox.',
+'Receivers'				=>	'Receivers',
+'Number receivers'		=>	'The number of receivers an Inbox message can have.'
+
 );
