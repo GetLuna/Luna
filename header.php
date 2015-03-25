@@ -66,9 +66,9 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	$notifications = implode('<li class="divider"></li>', $ind_notification);
 	$notification_menu_item = '
 					<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> Notifications</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> '.$lang['Notifications'].'</span></a>
 					<ul class="dropdown-menu notification-menu">
-						<li role="presentation" class="dropdown-header">Notifications</li>
+						<li role="presentation" class="dropdown-header">'.$lang['Notifications'].'</li>
 						<li class="divider"></li>
 						'.$notifications.'
 						<li class="divider"></li>
@@ -81,14 +81,14 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	else
 		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 
-	$notification_menu_item = '<li><a href="notifications.php?id='.$luna_user['id'].'">'.$notificon.'<span class="visible-xs-inline"> Notifications</span></a></li>';
+	$notification_menu_item = '<li><a href="notifications.php?id='.$luna_user['id'].'">'.$notificon.'<span class="visible-xs-inline"> '.$lang['Notifications'].'</span></a></li>';
 }
 
 // Generate navigation items
 if (!$luna_user['is_admmod'])
 	$backstage = '';
 else
-	$backstage = '<li><a href="backstage/"><span class="fa fa-fw fa-tachometer"></span><span class="visible-xs-inline"> Backstage</span></a></li>';
+	$backstage = '<li><a href="backstage/"><span class="fa fa-fw fa-tachometer"></span><span class="visible-xs-inline"> '.$lang['Backstage'].'</span></a></li>';
 
 $result = $db->query('SELECT id, url, name, disp_position, visible FROM '.$db->prefix.'menu ORDER BY disp_position') or error('Unable to fetch menu items', __FILE__, __LINE__, $db->error());
 
@@ -102,7 +102,7 @@ else
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="profile.php?id='.$luna_user['id'].'">'.$lang['Profile'].'</a></li>
-						<li><a href="settings.php">Settings</a></li>
+						<li><a href="settings.php">'.$lang['Settings'].'</a></li>
 						<li class="divider"></li>
 						<li><a href="help.php">'.$lang['Help'].'</a></li>
 						<li class="divider"></li>

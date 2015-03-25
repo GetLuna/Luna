@@ -1529,27 +1529,29 @@ Login at <login_url> to activate the account.
 // New translations
 
 // Shared
-'Toggle navigation'	=>	'Toggle navigation',
+'Toggle navigation'		=>	'Toggle navigation',
 
 // Mainstage
-'Reply'				=>	'Reply',
-'Compose'			=>	'Compose',
-'Notifications'		=>	'Notifications',
+'Reply'					=>	'Reply',
+'Compose'				=>	'Compose',
+'Notifications'			=>	'Notifications',
 
-'No threads'		=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
-'No threads board'	=>	'There are no thread on this board, choose a forum and be the first one.',
+'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
+'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
 
-'Soft delete info'	=>	'The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.',
+'Soft delete info'		=>	'The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.',
 'Revert soft delete'	=>	'This post has been soft deleted. We\'ll enable it again with a click on the button.',
-'Report reason'		=>	'Tell us why you are reporting this.',
+'Report reason'			=>	'Tell us why you are reporting this.',
 
-'No users online'	=>	'No users online',
+'No new notifications'	=>	'No new notifications',
+
+'No users online'		=>	'No users online',
 
 // Backstage
-'Luna update'		=>	'Luna software update',
-'System info'		=>	'System info',
-'Tools'				=>	'Tools',
-'Menu'				=>	'Menu',
-'Theme'				=>	'Theme',
+'Luna update'			=>	'Luna software update',
+'System info'			=>	'System info',
+'Tools'					=>	'Tools',
+'Menu'					=>	'Menu',
+'Theme'					=>	'Theme',
 
 );

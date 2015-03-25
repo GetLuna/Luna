@@ -225,42 +225,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	} if (empty($errors) && !isset($_POST['preview'])) { // Send message(s)	
 		$_SESSION['last_session_request'] = $now = time();
 		
-		if ($luna_config['o_pms_notification'] == '1') {
-			require_once FORUM_ROOT.'include/email.php';
-			
-			// Load the "new_pm" template
-			if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_pm.tpl'))
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_pm.tpl'));
-			else
-				$mail_tpl = trim(file_get_contents(FORUM_ROOT.'lang/English/mail_templates/new_pm.tpl'));
-				
-			// Load the "new_pm_full" template
-			if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_pm_full.tpl'))
-				$mail_tpl_full = trim(file_get_contents(FORUM_ROOT.'lang/'.$luna_user['language'].'/mail_templates/new_pm_full.tpl'));
-			else
-				$mail_tpl_full = trim(file_get_contents(FORUM_ROOT.'lang/English/mail_templates/new_pm_full.tpl'));
-			
-			// The first row contains the subject
-			$first_crlf = strpos($mail_tpl, "\n");
-			$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
-			$mail_message = trim(substr($mail_tpl, $first_crlf));
-	
-			$mail_subject = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject);
-			$mail_message = str_replace('<sender>', $luna_user['username'], $mail_message);
-			$mail_message = str_replace('<board_mailer>', sprintf($lang['Mailer'], $luna_config['o_board_title']), $mail_message);
-			
-			// The first row contains the subject
-			$first_crlf_full = strpos($mail_tpl_full, "\n");
-			$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf_full-8));
-			$mail_message_full = trim(substr($mail_tpl_full, $first_crlf_full));
-			
-			$cleaned_message = bbcode2email($p_message, -1);
-	
-			$mail_subject_full = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject_full);
-			$mail_message_full = str_replace('<sender>', $luna_user['username'], $mail_message_full);
-			$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
-			$mail_message_full = str_replace('<board_mailer>', sprintf($lang['Mailer'], $luna_config['o_board_title']), $mail_message_full);
-		} if (empty($r) && empty($edit)) { // It's a new message
+		if (empty($r) && empty($edit)) { // It's a new message
 			$result_shared = $db->query('SELECT last_shared_id FROM '.$db->prefix.'messages ORDER BY last_shared_id DESC LIMIT 1') or error('Unable to fetch last_shared_id', __FILE__, __LINE__, $db->error());
 			if (!$db->num_rows($result_shared))
 				$shared_id = '1';
@@ -401,9 +366,6 @@ if ($r == '0' && $q == '0' && $edit == '0') {
 	$focus_element[] = 'p_username';
 } else
 	$focus_element[] = 'req_message';
-
-$page_head['jquery'] = '<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>';
-$page_head['script'] = '<script type="text/javascript" src="include/pms.js"></script>';
 
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
