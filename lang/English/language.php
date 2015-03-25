@@ -1632,4 +1632,6 @@ Login at <login_url> to activate the account.
 'Seen notifications'	=>	'Seen notifications',
 'New notifications'		=>	'New notifications',
 
+'Manage ranks'			=>	'Manage ranks',
+
 );

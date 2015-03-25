@@ -122,7 +122,7 @@ if ($luna_config['o_ranks'] == 0) {
 		<div class="col-sm-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Manage ranks<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Manage ranks'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 				</div>
 				<fieldset>
 <?php
