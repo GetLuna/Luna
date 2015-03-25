@@ -13,12 +13,12 @@ function load_inbox_nav($page) {
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#inbox-nav">
-			<span class="sr-only">Toggle navigation</span>
+			<span class="sr-only"><?php echo $lang['Toggle navigation'] ?></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="inbox.php" class="navbar-brand"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
+		<a href="inbox.php" class="navbar-brand"><span class="fa fa-fw fa-paper-plane-o"></span> <?php echo $lang['Inbox'] ?></a>
 	</div>
 	<div class="collapse navbar-collapse" id="inbox-nav">
 		<ul class="nav navbar-nav">
@@ -34,9 +34,9 @@ function load_inbox_nav($page) {
 		<ul class="navbar-form navbar-right">
 			<div class="btn-compose">
 				<?php if ($page == 'view') { ?>
-					<a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> Reply</a>
+					<a type="button" class="btn btn-default" href="new_inbox.php?reply=<?php echo $tid ?>"><span class="fa fa-fw fa-reply"></span> <?php echo $lang['Reply'] ?></a>
 				<?php } ?>
-				<a type="button" class="btn btn-default" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> Compose</a>
+				<a type="button" class="btn btn-default" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> <?php echo $lang['Compose'] ?></a>
 			</div>
 		</ul>
 	</div>
