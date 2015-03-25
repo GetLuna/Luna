@@ -50,9 +50,9 @@ if ($action == 'readnoti') {
 $result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$id) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 $num_not_unseen = $db->result($result);
 
-if ($num_not_unseen == '0') {
-	$ind_not[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">No new notifications</a>';
-} else {
+if ($num_not_unseen == '0')
+	$ind_not[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">'.$lang['No new notifications'].'</a>';
+else {
 	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
 		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
@@ -63,9 +63,9 @@ if ($num_not_unseen == '0') {
 $result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$id) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 $num_not_seen = $db->result($result);
 
-if ($num_not_seen == '0') {
-	$ind_not_seen[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">No new notifications</a>';
-} else {
+if ($num_not_seen == '0')
+	$ind_not_seen[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">'.$lang['No new notifications'].'</a>';
+else {
 	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
 		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
