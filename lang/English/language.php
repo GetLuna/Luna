@@ -1621,4 +1621,12 @@ Login at <login_url> to activate the account.
 'Position'				=>	'Position',
 'Show'					=>	'Show',
 
+'Prune complete notifications'	=>	'Pruning complete. Notifications pruned.',
+'Pruned users'			=>	'Pruning complete. Users pruned %s.',
+'Prune notifications'	=>	'Prune notifications',
+'Type'					=>	'Type',
+'All notifications'		=>	'All notifications',
+'Seen notifications'	=>	'Seen notifications',
+'New notifications'		=>	'New notifications',
+
 );

@@ -138,7 +138,7 @@ if (isset($_POST['notiprune'])) {
 
 	$db->query('DELETE FROM '.$db->prefix.'notifications'.$type) or error('Unable to delete notifications', __FILE__, __LINE__, $db->error());
 	
-	message_backstage('Pruning complete. Notifications pruned.');
+	message_backstage($lang['Prune complete notifications']);
 }
 
 if (isset($_POST['userprune'])) {
@@ -178,7 +178,7 @@ if (isset($_POST['userprune'])) {
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
-	message_backstage('Pruning complete. Users pruned '.$users_pruned.'.');
+	message_backstage(printf($lang['Pruned users'], $users_pruned));
 }
 
 
@@ -196,26 +196,26 @@ require 'header.php';
 <form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Prune notifications<span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Prune notifications'] ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="notiprune" />
 			<fieldset>
 				<p><?php printf($lang['Prune info'], '<a href="maintenance.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Type</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Type'] ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_type" value="0" tabindex="6" />
-							All notifications
+							<?php echo $lang['All notifications'] ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_type" value="1" checked />
-							Seen notifications
+							<?php echo $lang['Seen notifications'] ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_type" value="2" />
-							New notifications
+							<?php echo $lang['New notifications'] ?>
 						</label>
 					</div>
 				</div>
