@@ -93,34 +93,34 @@ load_admin_nav('backstage', 'stats');
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Luna version information</h3>
+		<h3 class="panel-title"><?php echo $lang['Version information'] ?></h3>
 	</div>
 	<table class="table">
 		<thead>
 			<tr>
 				<th class="col-md-3"></th>
-				<th class="col-md-3">Version</th>
+				<th class="col-md-3"><?php echo $lang['Version'] ?></th>
 				<th class="col-md-3"></th>
-				<th class="col-md-3">Version</th>
+				<th class="col-md-3"><?php echo $lang['Version'] ?></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Software version</td>
+				<td><?php echo $lang['Software version'] ?></td>
 				<td><?php echo $luna_config['o_cur_version']; ?></td>
-				<td>Bootstrap version</td>
+				<td><?php echo $lang['Bootstrap version'] ?></td>
 				<td>3.3.4</td>
 			</tr>
 			<tr>
-				<td>Core version</td>
+				<td><?php echo $lang['Core version'] ?></td>
 				<td><?php echo $luna_config['o_core_version']; ?></td>
-				<td>Font Awesome version</td>
+				<td><?php echo $lang['Font Awesome version'] ?></td>
 				<td>4.3.0</td>
 			</tr>
 			<tr>
-				<td>Database version</td>
+				<td><?php echo $lang['Database version'] ?></td>
 				<td><?php echo $luna_config['o_database_revision']; ?></td>
-				<td>jQuery version</td>
+				<td><?php echo $lang['jQuery version'] ?></td>
 				<td>2.1.3</td>
 			</tr>
 		</tbody>
