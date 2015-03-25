@@ -1634,4 +1634,13 @@ Login at <login_url> to activate the account.
 
 'Manage ranks'			=>	'Manage ranks',
 
+'Version information'	=>	'Luna version information',
+'Version'				=>	'Version',
+'Software version'		=>	'Software version',
+'Bootstrap version'		=>	'Bootstrap version',
+'Core version'			=>	'Core version',
+'Font Awesome version'	=>	'Font Awesome version',
+'Database version'		=>	'Database version',
+'jQuery version'		=>	'jQuery version',
+
 );
