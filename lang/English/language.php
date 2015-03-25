@@ -1621,6 +1621,9 @@ Login at <login_url> to activate the account.
 'Position'				=>	'Position',
 'Show'					=>	'Show',
 
+'Moderate content'		=>	'Moderate content',
+'Visit to moderate'		=>	'Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.',
+
 'Prune complete notifications'	=>	'Pruning complete. Notifications pruned.',
 'Pruned users'			=>	'Pruning complete. Users pruned %s.',
 'Prune notifications'	=>	'Prune notifications',

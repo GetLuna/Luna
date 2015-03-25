@@ -52,10 +52,10 @@ if ($fid < 1) {
 	?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Moderate content</h3>
+			<h3 class="panel-title"><?php echo $lang['Moderate content'] ?></h3>
 		</div>
 		<div class="panel-body">
-			<p>Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.</p>
+			<p><?php echo $lang['Visit to moderate'] ?></p>
 		</div>
 	</div>
 	<?php
