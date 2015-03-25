@@ -1151,7 +1151,7 @@ $lang = array(
 'eAccelerator link'					=>	'www.eaccelerator.net/',
 'XCache'							=>	'XCache',
 'XCache link'						=>	'xcache.lighttpd.net/',
-'Database label'					=>	'Database',
+'Database'					=>	'Database',
 'Database data rows'				=>	'Rows: %s',
 'Database data size'				=>	'Size: %s',
 
@@ -1229,7 +1229,6 @@ $lang = array(
 'Settings'				=>	'Settings',
 'Registration'			=>	'Registration',
 'Email'					=>	'Email',
-'Database'				=>	'Database management',
 'Extensions'			=>	'Extensions',
 'Prune'					=>	'Prune',
 'Server statistics'		=>  'Server statistics',
@@ -1526,5 +1525,14 @@ Login at <login_url> to activate the account.
 --
 <board_mailer> Mailer
 (Do not reply to this message)',
+
+// New translations
+
+// Backstage
+'Luna update'		=>	'Luna software update',
+'System info'		=>	'System info',
+'Tools'				=>	'Tools',
+'Menu'				=>	'Menu',
+'Theme'				=>	'Theme',
 
 );
