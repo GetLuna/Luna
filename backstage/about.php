@@ -71,6 +71,7 @@ require 'header.php';
 				<a href="#p4u1" class="list-group-item">Preview 4 Update 1</a>
 				<a href="#p4u2" class="list-group-item">Preview 4 Update 2</a>
 				<a href="#b1" class="list-group-item">Beta 1</a>
+				<a href="#b2" class="list-group-item">Beta 2</a>
 			</div>
 		</div>
 	</div>
@@ -621,7 +622,20 @@ require 'header.php';
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">3999</span> Multiple bugfixes
+								<span class="label label-primary">4008</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4><a id="b2"></a>Beta 2 &middot; Build 40xx</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">40xx</span> Luna is now fully translatable again
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">40xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
