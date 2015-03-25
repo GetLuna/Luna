@@ -71,7 +71,7 @@ load_admin_nav('settings', 'menu');
 			<fieldset>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">New menu item<span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+						<h3 class="panel-title"><?php echo $lang['New menu item'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
 					</div>
 					<table class="table">
 						<tbody>
@@ -95,16 +95,16 @@ load_admin_nav('settings', 'menu');
 		<form method="post" action="menu.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Menu<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo $lang['Menu'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 				</div>
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>URL</th>
-							<th class="col-xs-1">Position</th>
-							<th class="col-xs-1">Show</th>
-							<th class="col-xs-1">Delete</th>
+							<th><?php echo $lang['Name'] ?></th>
+							<th><?php echo $lang['URL'] ?></th>
+							<th class="col-xs-1"><?php echo $lang['Position'] ?></th>
+							<th class="col-xs-1"><?php echo $lang['Show'] ?></th>
+							<th class="col-xs-1"><?php echo $lang['Delete'] ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -128,9 +128,9 @@ if ($db->num_rows($result)) {
 							<td>
 <?php
 if ($cur_item['sys_entry'] == 0)
-	echo '<a href="menu.php?del_item='.$cur_item['id'].'" class="btn btn-danger">Delete</a>';
+	echo '<a href="menu.php?del_item='.$cur_item['id'].'" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> '.$lang['Delete'].'</a>';
 else
-	echo '<a class="btn btn-danger" disabled="disabled">Delete</a>';
+	echo '<a class="btn btn-danger" disabled="disabled"><span class="fa fa-fw fa-trash"></span> '.$lang['Delete'].'</a>';
 ?>
 							</td>
 						</tr>
