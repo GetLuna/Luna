@@ -1589,6 +1589,31 @@ Login at <login_url> to activate the account.
 'Use Inbox'				=>	'Use Inbox', // "Inbox" is the name of a feature, capital required
 'Allow Inbox'			=>	'Allow users to use Inbox.',
 'Receivers'				=>	'Receivers',
-'Number receivers'		=>	'The number of receivers an Inbox message can have.'
+'Number receivers'		=>	'The number of receivers an Inbox message can have.',
+
+'Show deleted content'	=>	'Show deleted content',
+'Allow soft deleted'	=>	'Allow users to view topics and posts that have been soft deleted.',
+'Soft delete posts'		=>	'Soft delete posts',
+'Allow post soft delete'	=>	'Allow users to soft delete posts from all users.',
+'Soft delete topics'	=>	'Soft delete topics',
+'Allow topic soft delete'	=> 'Allow users soft delete topics from all users.',
+'Inbox messages'		=>	'The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.',
+
+'Config warning'		=>	'The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.',
+'Welcome to Luna'		=>	'Welcome to Luna',
+'Welcome to Luna info 1'=>	'Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!',
+'Welcome to Luna info 2'=>	'If you\'re done, you can click on "Got it" in the upper right corner of this panel to disable this field.',
+'Got it'				=>	'Got it',
+'What\'s new'			=>	'What\'s new',
+'Create new sections'	=>	'Create new sections',
+'Censor words'			=>	'Censor words',
+'Add more groups'		=>	'Add more groups',
+'Add additional ranks'	=>	'Add additional ranks',
+'Customize the menu'	=>	'Customize the menu',
+'Change the appearance'	=>	'Change the appearance',
+'Alter functionality'	=>	'Alter functionality',
+'Change settings'		=>	'Change settings',
+'Admin notes'			=>	'Admin notes',
+'Add a note...'			=>	'Add a note...',
 
 );

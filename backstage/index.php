@@ -88,7 +88,7 @@ if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
 
 if(is_writable(FORUM_ROOT.'config.php')): ?>
-<div class="alert alert-warning">The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.</div>
+<div class="alert alert-warning"><?php echo $lang['Config warning'] ?></div>
 <?php endif;
 
 if ($install_file_exists) : ?>
@@ -100,11 +100,11 @@ if ($install_file_exists) : ?>
 if ($luna_config['o_first_run_backstage'] == 0) { ?>
 <div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">
-		<h3 class="panel-title">Welcome to Luna
+		<h3 class="panel-title"><?php echo $lang['Welcome to Luna'] ?>
 			<span class="pull-right">
 				<form class="form-horizontal" method="post" action="index.php">
 					<input type="hidden" name="first_run_disable" value="1" />
-					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> Got it</button>
+					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Got it'] ?></button>
 				</form>
 			</span>
 		</h3>
@@ -112,26 +112,26 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-sm-4">
-				<p>Welcome to the Backstage. Here, you can manage your newly set up board. We're ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!</p>
-				<p>If you're done, you can click on "Got it" in the upper right corner of this panel to disable this field.</p>
+				<p><?php echo $lang['Welcome to Luna info 1'] ?></p>
+				<p><?php echo $lang['Welcome to Luna info 2'] ?></p>
 				<div class="list-group">
-					<a href="about.php" class="list-group-item">What's new?</a>
+					<a href="about.php" class="list-group-item"><?php echo $lang['What\'s new?'] ?></a>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="list-group">
-					<a href="board.php" class="list-group-item">Create new sections</a>
-					<a href="censoring.php" class="list-group-item">Censor words</a>
-					<a href="groups.php" class="list-group-item">Add more groups</a>
-					<a href="ranks.php" class="list-group-item">Add additional ranks</a>
+					<a href="board.php" class="list-group-item"><?php echo $lang['Create new sections'] ?></a>
+					<a href="censoring.php" class="list-group-item"><?php echo $lang['Censor words'] ?></a>
+					<a href="groups.php" class="list-group-item"><?php echo $lang['Add more groups'] ?></a>
+					<a href="ranks.php" class="list-group-item"><?php echo $lang['Add additional ranks'] ?></a>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="list-group">
-					<a href="menu.php" class="list-group-item">Customize the menu</a>
-					<a href="theme.php" class="list-group-item">Change the appearance</a>
-					<a href="features.php" class="list-group-item">Alter the community's functionality</a>
-					<a href="settings.php" class="list-group-item">Change general settings</a>
+					<a href="menu.php" class="list-group-item"><?php echo $lang['Customize the menu'] ?></a>
+					<a href="theme.php" class="list-group-item"><?php echo $lang['Change the appearance'] ?></a>
+					<a href="features.php" class="list-group-item"><?php echo $lang['Alter functionality'] ?></a>
+					<a href="settings.php" class="list-group-item"><?php echo $lang['Change general settings'] ?></a>
 				</div>
 			</div>
 		</div>
@@ -237,10 +237,10 @@ if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 					<input type="hidden" name="form_sent" value="1" />
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">Admin notes<span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+							<h3 class="panel-title"><?php echo $lang['Admin notes'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 						</div>
 						<div class="panel-body">
-							<textarea class="form-control" name="form[admin_note]" placeholder="Add a note..." accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
+							<textarea class="form-control" name="form[admin_note]" placeholder="<?php echo $lang['Add a note...'] ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
 						</div>
 					</div>
 				</form>
