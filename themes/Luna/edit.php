@@ -4,9 +4,11 @@
 if (!defined('FORUM'))
 	exit;
 
+$jumbo_style = 'style="background:'.$cur_post['color'].';"';
+
 ?>
 </div>
-<div class="jumbotron<?php echo $item_status ?>">
+<div class="jumbotron<?php echo $item_status ?>"<?php echo $jumbo_style ?>>
 	<div class="container">
 		<h2>Edit "<?php echo luna_htmlspecialchars($cur_post['subject']) ?>"</h2><span class="pull-right"><a class="btn btn-danger" href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> Cancel</a></span>
 	</div>
