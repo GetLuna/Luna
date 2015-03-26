@@ -26,7 +26,7 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 	<div class="row forumview">
 		<?php if ((is_subforum($id) && $id != '0')) { ?>
 		<div class="col-sm-3">
-				<h5 class="list-group-head">Subforums</h5>
+				<h5 class="list-group-head"><?php echo $lang['Subforums'] ?></h5>
 				<div class="list-group list-group-forum">
 					<?php draw_subforum_list('viewforum.php', 'subforum.php') ?>
 				</div>

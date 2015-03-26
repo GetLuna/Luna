@@ -33,7 +33,7 @@ if (!defined('FORUM'))
 	<div class="col-xs-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<h3>By <b><?php echo luna_htmlspecialchars($cur_delete['sender']) ?></b><small class="pull-right"><?php echo format_time($cur_delete['posted']) ?></small></h3>
+				<h3><?php printf($lang['By username'], luna_htmlspecialchars($cur_delete['sender']) ?><small class="pull-right"><?php echo format_time($cur_delete['posted']) ?></small></h3>
 				<hr />
 				<?php echo $cur_delete['message']."\n" ?>
 			</div>

@@ -2,7 +2,7 @@
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Login</h4>
+				<h4 class="modal-title"><?php echo $lang['Login'] ?></h4>
 			</div>
 			<div class="modal-body">
 				<form id="login-fr" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
@@ -31,7 +31,7 @@
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Request password</h4>
+				<h4 class="modal-title"><?php echo $lang['Request password'] ?></h4>
 			</div>
 			<div class="modal-body">
 				<form id="request_pass" method="post" action="login.php?action=forget_2" onsubmit="this.request_pass.disabled=true;if(process_form(this)){return true;}else{this.request_pass.disabled=false;return false;}">

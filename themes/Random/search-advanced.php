@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 <form id="search" method="get" action="search.php?section=advanced">
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-header">
-			<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> Search</a>
+			<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></a>
 		</div>
 		<div class="collapse navbar-collapse hidden-xs" id="search-nav">
 			<ul class="navbar-form navbar-right">
@@ -21,8 +21,8 @@ if (!defined('FORUM'))
 		<div class="panel-body">
 			<fieldset class="form-inline">
 				<input type="hidden"  name="action" value="search" />
-				<input placeholder="Keyword..." class="form-control" type="text" name="keywords" maxlength="100" />
-				<input placeholder="Author..."  class="form-control" id="author" type="text" name="author" maxlength="25" />
+				<input placeholder="<?php echo $lang['Keyword'] ?>" class="form-control" type="text" name="keywords" maxlength="100" />
+				<input placeholder="<?php echo $lang['Author'] ?>"  class="form-control" id="author" type="text" name="author" maxlength="25" />
 				<select class="form-control" id="search_in" name="search_in">
 					<option value="0"><?php echo $lang['Message and subject'] ?></option>
 					<option value="1"><?php echo $lang['Message only'] ?></option>

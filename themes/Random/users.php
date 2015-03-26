@@ -13,7 +13,7 @@ if (!defined('FORUM'))
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="userlist.php" class="navbar-brand"><span class="fa fa-fw fa-users"></span> Users</a>
+		<a href="userlist.php" class="navbar-brand"><span class="fa fa-fw fa-users"></span> <?php echo $lang['Users'] ?></a>
 	</div>
 	<div class="collapse navbar-collapse" id="users-nav">
 		<form class="navbar-form navbar-right" id="userlist" method="get" action="userlist.php">

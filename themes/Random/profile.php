@@ -19,7 +19,7 @@ if (!defined('FORUM'))
 <div class="col-sm-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">About user</h3>
+			<h3 class="panel-title"><?php echo $lang['About user'] ?></h3>
 		</div>
 		<div class="panel-body">
 			<?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
