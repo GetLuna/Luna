@@ -1666,5 +1666,9 @@ Login at <login_url> to activate the account.
 'Subforums'             =>  'Subforums',
 'Confirm deletion'      =>  'Confirm deletion',
 'Write message'         =>  'Write message',
+'Request password'      =>  'Request password',
+'New topic in'          =>  'New topic in "%s"',
+'New comment in'        =>  'New comment in "%s"',
+'About user'            =>  'About user',
 
 );

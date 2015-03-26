@@ -58,7 +58,7 @@ if ($luna_user['first_run'] == '0') {
 <div class="row index">
 	<div class="col-sm-3 col-xs-12">
 		<?php if ((is_subforum($id) && $id != '0')): ?>
-			<h5 class="list-group-head">Subforums</h5>
+			<h5 class="list-group-head"><?php echo $lang['Subforums'] ?></h5>
 			<div class="list-group list-group-forum">
 				<?php draw_subforum_list('index.php') ?>
 			</div>
