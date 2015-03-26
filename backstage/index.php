@@ -198,7 +198,7 @@ if ($db->num_rows($result)) {
 						<h3 class="panel-title"><?php echo $lang['Backup head'] ?></h3>
 					</div>
 					<div class="panel-body">
-						<a class="btn btn-block btn-primary disabled" href="database.php"><?php echo $lang['Backup button'] ?></a>
+						<a class="btn btn-block btn-primary" href="database.php"><?php echo $lang['Backup button'] ?></a>
 					</div>
 				 </div>
 			</div>

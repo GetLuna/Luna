@@ -172,31 +172,6 @@ if (count($languages) > 1) {
 							</select>
 						</div>
 					</div>
-<?php
-	}
-	$styles = forum_list_styles();
-
-	// Only display the style selection box if there's more than one style available
-	if (count($styles) == 1)
-		echo "\t\t\t".'<div><input type="hidden" name="form[style]" value="'.$styles[0].'" /></div>'."\n";
-	elseif (count($styles) > 1) {
-?>
-					<hr />
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo $lang['Style'] ?></label>
-						<div class="col-sm-9">
-							<select disabled class="form-control" name="form[style]">
-<?php
-		foreach ($styles as $temp) {
-			if ($user['style'] == $temp)
-				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'" selected>'.str_replace('_', ' ', $temp).'</option>'."\n";
-			else
-				echo "\t\t\t\t\t\t\t\t".'<option value="'.$temp.'">'.str_replace('_', ' ', $temp).'</option>'."\n";
-		}
-?>
-							</select>
-						</div>
-					</div>
 <?php } ?>
 				</fieldset>
 			</div>
@@ -304,7 +279,7 @@ if (count($languages) > 1) {
 								<?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1'): ?>
 									<div class="checkbox">
 										<label>
-											<input disabled type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />
+											<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />
 											<?php echo $lang['Show smilies'] ?>
 										</label>
 									</div>
