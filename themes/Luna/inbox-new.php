@@ -5,14 +5,13 @@ if (!defined('FORUM'))
 	exit;
 
 load_inbox_nav('send');
-?>
-<?php
+
 // If there are errors, we display them
 if (!empty($errors)) {
 ?>
 <div class="panel panel-danger">
 	<div class="panel-heading">
-		<h3 class="panel-title">Post errors</h3>
+		<h3 class="panel-title"><?php echo $lang['Post errors'] ?></h3>
 	</div>
 	<div class="panel-body">
 		<p><?php echo $lang['Post errors info'] ?></p>
@@ -31,7 +30,7 @@ if (!empty($errors)) {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Post preview</h3>
+		<h3 class="panel-title"><?php echo $lang['Post preview'] ?></h3>
 	</div>
 	<div class="panel-body">
 		<p><?php echo $preview_message."\n" ?></p>
@@ -47,7 +46,7 @@ $cur_index = 1;
 <form class="form-horizontal" method="post" id="post" action="new_inbox.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Write message</h3>
+			<h3 class="panel-title"><?php echo $lang['Write message'] ?></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>

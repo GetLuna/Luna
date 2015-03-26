@@ -1664,5 +1664,7 @@ Login at <login_url> to activate the account.
 // Theme languages
 'Back to index'         =>  'Back to index',
 'Subforums'             =>  'Subforums',
+'Confirm deletion'      =>  'Confirm deletion',
+'Write message'         =>  'Write message',
 
 );
