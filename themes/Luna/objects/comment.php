@@ -5,7 +5,7 @@
 	<div class="col-xs-10 col-md-10 col-lg-11 col-no-padding-left">
 		<div class="panel panel-default level<?php echo $cur_post['level'] ?>">
 			<div class="panel-body">
-				<h3>By <b><?php echo $username ?></b><small class="pull-right"><a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></small></h3>
+				<h3><?php printf($lang['By username'], $username) ?></b><small class="pull-right"><a class="posttime" href="viewtopic.php?pid=<?php echo $cur_post['id'].'#p'.$cur_post['id'] ?>"><?php echo format_time($cur_post['posted']) ?></a></small></h3>
 				<hr />
 				<?php echo $cur_post['message']."\n" ?>
 				<?php if ($cur_post['edited'] != '') echo '<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'; ?>

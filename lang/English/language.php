@@ -1673,5 +1673,6 @@ Login at <login_url> to activate the account.
 'Keryword'              =>  'Keyword',
 'Author'                =>  'Author',
 'Color'                 =>  'Color',
+'By username'           =>  'By %s',
 
 );
