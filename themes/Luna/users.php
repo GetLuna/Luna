@@ -8,12 +8,12 @@ if (!defined('FORUM'))
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#users-nav">
-			<span class="sr-only">Toggle navigation</span>
+			<span class="sr-only"><?php echo $lang['Toggle navigation'] ?></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="userlist.php" class="navbar-brand"><span class="fa fa-fw fa-users"></span> Users</a>
+		<a href="userlist.php" class="navbar-brand"><span class="fa fa-fw fa-users"></span> <?php echo $lang['Users'] ?></a>
 	</div>
 	<div class="collapse navbar-collapse" id="users-nav">
 		<form class="navbar-form navbar-right" id="userlist" method="get" action="userlist.php">

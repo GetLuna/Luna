@@ -108,7 +108,7 @@ if (!defined('FORUM'))
 			<div role="tabpanel" class="tab-pane" id="personalize">
 				<fieldset class="form-horizontal form-setting">
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Color</label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
 								<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color_scheme'] == '1') echo ' active' ?>">

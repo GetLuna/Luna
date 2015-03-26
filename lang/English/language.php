@@ -1670,5 +1670,8 @@ Login at <login_url> to activate the account.
 'New topic in'          =>  'New topic in "%s"',
 'New comment in'        =>  'New comment in "%s"',
 'About user'            =>  'About user',
+'Keryword'              =>  'Keyword',
+'Author'                =>  'Author',
+'Color'                 =>  'Color',
 
 );

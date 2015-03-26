@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
-		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> Search</a>
+		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></a>
 	</div>
 	<div class="collapse navbar-collapse hidden-xs" id="search-nav">
 		<ul class="navbar-form navbar-right">
@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 		<div class="panel-body">
 			<fieldset>
 				<input type="hidden" name="action" value="search" />
-				<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="Search..." maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></button></span></div>
+				<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php echo $lang['Search'] ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></button></span></div>
 			</fieldset>
 		</div>
 	</div>
