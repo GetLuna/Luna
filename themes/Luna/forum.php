@@ -18,11 +18,11 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 	<div class="row forumview">
 		<div class="col-sm-3">
 			<div class="list-group list-group-forum">
-				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> Back to index</a>
+				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Back to index'] ?></a>
 			</div>
 			<hr />
 			<?php if ((is_subforum($id) && $id != '0')): ?>
-				<h5 class="list-group-head">Subforums</h5>
+				<h5 class="list-group-head"><?php echo $lang['Subforums'] ?></h5>
 				<div class="list-group list-group-forum">
 					<?php draw_subforum_list('viewforum.php', 'forum.php') ?>
 				</div>
