@@ -187,6 +187,7 @@ $lang = array(
 'Database server hostname'		=>	'Server hostname',
 'Database name'					=>	'Name',
 'Database username'				=>	'Username',
+'Database password'             =>  'Password',
 'Info 4'						=>	'Your database username',
 'Info 5'						=>	'Set for more Luna installation in this database',
 'Table prefix'					=>	'Table prefix',
