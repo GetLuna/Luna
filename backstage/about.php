@@ -630,11 +630,17 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">40xx</span> Luna is now fully translatable again
+								<span class="label label-primary">40xx</span> Backstage is now fully translatable again<br />
+								<span class="label label-primary">40xx</span> Mainstage is now fully translatable again<br />
+								<span class="label label-primary">40xx</span> Luna is now fully translatable again<br />
+								<span class="label label-primary">40xx</span> Features that where disabled are available again
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
+								<span class="label label-primary">40xx</span> Sunrise is now fully translatable again<br />
+								<span class="label label-primary">40xx</span> Random is now fully translatable again<br />
+								<span class="label label-primary">40xx</span> Language clean-up<br />
 								<span class="label label-primary">40xx</span> Multiple bugfixes
 							</p>
 						</div>
