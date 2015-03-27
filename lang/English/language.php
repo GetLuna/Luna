@@ -1550,6 +1550,7 @@ Login at <login_url> to activate the account.
 
 // Backstage
 'Luna update'			=>	'Luna software update',
+'About Luna'			=>	'About Luna',
 'System info'			=>	'System info',
 'Tools'					=>	'Tools',
 'Menu'					=>	'Menu',
