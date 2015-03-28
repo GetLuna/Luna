@@ -72,6 +72,7 @@ require 'header.php';
 				<a href="#p4u2" class="list-group-item">Preview 4 Update 2</a>
 				<a href="#b1" class="list-group-item">Beta 1</a>
 				<a href="#b2" class="list-group-item">Beta 2</a>
+				<a href="#b3" class="list-group-item">Beta 3</a>
 			</div>
 		</div>
 	</div>
@@ -244,7 +245,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.6.4049.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.7.40xx.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -645,6 +646,18 @@ require 'header.php';
 								<span class="label label-primary">4049</span> Language clean-up<br />
 								<span class="label label-primary">4049</span> The post screen has been fixed<br />
 								<span class="label label-primary">4049</span> Multiple bugfixes
+							</p>
+						</div>
+					</div>
+					<h4><a id="b3"></a>Beta 3 &middot; Build 40xx</h4>
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								<span class="label label-primary">40xx</span> Multiple bugfixes
+							</p>
+						</div>
+						<div class="col-sm-6">
+							<p>
 							</p>
 						</div>
 					</div>
