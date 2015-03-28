@@ -847,7 +847,7 @@ function parse_message($text) {
 					} elseif ($language == 'php') { // C-like languages case
 						$h_class = ' class="language-php"';
 					} else { // Other cases
-						$h_class = ' class="language-none"';
+						$h_class = '';
 					}
 
 					// Deleting the line giving the code name
