@@ -244,17 +244,17 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.5.4008.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.6.4049.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>120 bugs have been fixed.</p>
+						<p>124 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
 				</div>
 				<hr />
-				<a id="updates"></a><h3>Luna 1.0 Updates</h3>
+				<h3><a id="updates"></a>Luna 1.0 Updates</h3>
 				<span class="change-list">
 					<h4><a id="p0"></a>Preview 0 &middot; Build 3112</h4>
 					<div class="row">
@@ -626,22 +626,25 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="b2"></a>Beta 2 &middot; Build 40xx</h4>
+					<h4><a id="b2"></a>Beta 2 &middot; Build 4049</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">40xx</span> Backstage is now fully translatable again<br />
-								<span class="label label-primary">40xx</span> Mainstage is now fully translatable again<br />
-								<span class="label label-primary">40xx</span> Luna is now fully translatable again<br />
-								<span class="label label-primary">40xx</span> Features that where disabled are available again
+								<span class="label label-primary">4049</span> Backstage is now fully translatable again<br />
+								<span class="label label-primary">4049</span> Mainstage is now fully translatable again<br />
+								<span class="label label-primary">4049</span> Luna is now fully translatable again<br />
+								<span class="label label-primary">4049</span> Features that where disabled are available again<br />
+								<span class="label label-primary">4049</span> Code-tags without language default back to Bootstrap<br />
+								<span class="label label-primary">4049</span> Improvements to Random
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">40xx</span> Sunrise is now fully translatable again<br />
-								<span class="label label-primary">40xx</span> Random is now fully translatable again<br />
-								<span class="label label-primary">40xx</span> Language clean-up<br />
-								<span class="label label-primary">40xx</span> Multiple bugfixes
+								<span class="label label-primary">4049</span> Sunrise is now fully translatable again<br />
+								<span class="label label-primary">4049</span> Random is now fully translatable again<br />
+								<span class="label label-primary">4049</span> Language clean-up<br />
+								<span class="label label-primary">4049</span> The post screen has been fixed<br />
+								<span class="label label-primary">4049</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
