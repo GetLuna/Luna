@@ -1004,7 +1004,7 @@ function draw_rules_form() {
 }
 
 function draw_search_results() {
-	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $lang, $cur_topic, $subject_status, $last_post_date;
+	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $lang, $cur_topic, $subject_status, $last_post_date, $tracked_topics;
 
 	foreach ($search_set as $cur_search) {
 		$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
