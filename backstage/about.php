@@ -243,7 +243,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>124 bugs have been fixed.</p>
+						<p>125 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -648,11 +648,13 @@ require 'header.php';
 						<div class="col-sm-6">
 							<p>
 								<span class="label label-primary">40xx</span> Random is no longer part of the package<br />
-								<span class="label label-primary">40xx</span> Update graphics for themes
+								<span class="label label-primary">40xx</span> Update graphics for themes<br />
+								<span class="label label-primary">40xx</span> Your own topics are no longer marked as new
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
+								<span class="label label-primary">40xx</span> Readed topics are no longer marked as new<br />
 								<span class="label label-primary">40xx</span> Multiple bugfixes
 							</p>
 						</div>
