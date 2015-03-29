@@ -189,7 +189,7 @@ function AddTag(type, tag) {
 }
 
 function draw_topics_list() {
-	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $lang, $db_type;
+	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $lang, $db_type, $tracked_topics;
 	
 	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
@@ -470,7 +470,7 @@ function draw_section_info($current_id) {
 }
 
 function draw_index_topics_list($section_id) {
-	global $luna_user, $luna_config, $db, $start_from, $id, $lang, $sort_by, $start_from, $db_type, $cur_topic;
+	global $luna_user, $luna_config, $db, $start_from, $id, $lang, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
 	
 	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($section_id != 0)
