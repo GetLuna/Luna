@@ -221,12 +221,6 @@ require 'header.php';
 						<p>Sunrise is a theme based on Luna, however, it uses a more classic view on forum software. This is a nice team if you want to kick off with a fresh design, yet like the old way of working with forum software better.</p>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<h4>Random</h4>
-						<p>While no longer the default, in Luna 1.0, Random returns. Our classic ModernBB theme has been revamped to work with Luna, uses some of its new capabilities and is ready for the fun on every device. Unlike the Random design you've seen in ModernBB 3.6, 3.7 and 3.8, we've decided to include the ModernBB 3.5 version instead.</p>
-					</div>
-				</div>
 				<a id="others"></a><h3>Other improvements and notes</h3>
 				<div class="row">
 					<div class="col-sm-6">
@@ -249,7 +243,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>124 bugs have been fixed.</p>
+						<p>125 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -653,11 +647,15 @@ require 'header.php';
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">40xx</span> Multiple bugfixes
+								<span class="label label-primary">40xx</span> Random is no longer part of the package<br />
+								<span class="label label-primary">40xx</span> Update graphics for themes<br />
+								<span class="label label-primary">40xx</span> Your own topics are no longer marked as new
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
+								<span class="label label-primary">40xx</span> Readed topics are no longer marked as new<br />
+								<span class="label label-primary">40xx</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
