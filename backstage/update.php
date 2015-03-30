@@ -99,7 +99,6 @@ if (isset($_GET['saved']))
 				</div>
 			</fieldset>
 		</form>
-		</div>
 	</div>
 	<div class="col-sm-8 col-md-9">
 		<div class="panel panel-default">
