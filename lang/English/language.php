@@ -1606,7 +1606,7 @@ Login at <login_url> to activate the account.
 'Welcome to Luna info 1'=>	'Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!',
 'Welcome to Luna info 2'=>	'If you\'re done, you can click on "Got it" in the upper right corner of this panel to disable this field.',
 'Got it'				=>	'Got it',
-'What\'s new'			=>	'What\'s new',
+'What\'s new'			=>	'What\'s new?',
 'Create new sections'	=>	'Create new sections',
 'Censor words'			=>	'Censor words',
 'Add more groups'		=>	'Add more groups',

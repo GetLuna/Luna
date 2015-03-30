@@ -115,7 +115,7 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 				<p><?php echo $lang['Welcome to Luna info 1'] ?></p>
 				<p><?php echo $lang['Welcome to Luna info 2'] ?></p>
 				<div class="list-group">
-					<a href="about.php" class="list-group-item"><?php echo $lang['What\'s new?'] ?></a>
+					<a href="about.php" class="list-group-item"><?php echo $lang['What\'s new'] ?></a>
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -131,7 +131,7 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 					<a href="menu.php" class="list-group-item"><?php echo $lang['Customize the menu'] ?></a>
 					<a href="theme.php" class="list-group-item"><?php echo $lang['Change the appearance'] ?></a>
 					<a href="features.php" class="list-group-item"><?php echo $lang['Alter functionality'] ?></a>
-					<a href="settings.php" class="list-group-item"><?php echo $lang['Change general settings'] ?></a>
+					<a href="settings.php" class="list-group-item"><?php echo $lang['Change settings'] ?></a>
 				</div>
 			</div>
 		</div>
