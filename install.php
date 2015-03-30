@@ -207,7 +207,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;" onunload="">
 		<div class="container">
-			<h1><?php echo sprintf($lang['Install'], Version::FORUM_VERSION) ?></h1>
+			<h1 class="background-title"><?php echo sprintf($lang['Install'], Version::FORUM_VERSION) ?></h1>
 			<?php if (count($languages) > 1): ?>
 			<form  class="form-horizontal" id="install" method="post" action="install.php">
 				<div class="panel panel-default">
