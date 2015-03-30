@@ -1555,6 +1555,7 @@ Login at <login_url> to activate the account.
 'Tools'					=>	'Tools',
 'Menu'					=>	'Menu',
 'Theme'					=>	'Theme',
+'Database management'	=>	'Database management',
 
 'Emoji'					=>	'Emoji',
 'Use emojis'			=>	'Use emojis instead of emoticons.',
