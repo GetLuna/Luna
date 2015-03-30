@@ -43,6 +43,10 @@ h2 {
 	padding: 12px 18px 15px !important;
 }
 
+.dropdown-backdrop {
+	top: auto;
+}
+
 /* Text */
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Segoe UI Light", "Segoe UI", Arial;
