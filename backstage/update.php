@@ -112,7 +112,7 @@ if (isset($_GET['saved']))
 				<h3><?php echo $lang['New version'] ?></h3>
 				<p><?php printf($lang['New version info'], $update_cache) ?></p>
 				<div class="btn-group">
-					<a href="http://modernbb.be/cnt/get.php?id=1" class="btn btn-primary"><?php echo sprintf($lang['Download'], $update_cache) ?></a>
+					<a href="http://modernbb.be/cnt/get.php?id=4" class="btn btn-primary"><?php echo sprintf($lang['Download'], $update_cache) ?></a>
 					<a href="http://getluna.org/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
 				</div>
 <?php
