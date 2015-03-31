@@ -239,11 +239,11 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.7.40xx.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.7.4069.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>125 bugs have been fixed.</p>
+						<p>129 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -643,19 +643,19 @@ require 'header.php';
 							</p>
 						</div>
 					</div>
-					<h4><a id="b3"></a>Beta 3 &middot; Build 40xx</h4>
+					<h4><a id="b3"></a>Beta 3 &middot; Build 4069</h4>
 					<div class="row">
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">40xx</span> Random is no longer part of the package<br />
-								<span class="label label-primary">40xx</span> Update graphics for themes<br />
-								<span class="label label-primary">40xx</span> Your own topics are no longer marked as new
+								<span class="label label-primary">4069</span> Random is no longer part of the package<br />
+								<span class="label label-primary">4069</span> Update graphics for themes<br />
+								<span class="label label-primary">4069</span> Your own topics are no longer marked as new
 							</p>
 						</div>
 						<div class="col-sm-6">
 							<p>
-								<span class="label label-primary">40xx</span> Readed topics are no longer marked as new<br />
-								<span class="label label-primary">40xx</span> Multiple bugfixes
+								<span class="label label-primary">4069</span> Readed topics are no longer marked as new<br />
+								<span class="label label-primary">4069</span> Multiple bugfixes
 							</p>
 						</div>
 					</div>
