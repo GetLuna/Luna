@@ -447,7 +447,6 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		update_forum($fid); // Update the forum FROM which the topic was moved
 		update_forum($move_to_forum); // Update the forum TO which the topic was moved
 
-		$redirect_msg = (count($topics) > 1) ? $lang['Move topics redirect'] : $lang['Move topic redirect'];
 		redirect('viewforum.php?id='.$move_to_forum);
 	}
 
