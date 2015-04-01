@@ -149,11 +149,11 @@ elseif ($action == 'forget' || $action == 'forget_2')
 	}
 }
 
-	// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to index.php after login)
-	if (!empty($_SERVER['HTTP_REFERER']))
-		$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
+// Try to determine if the data in HTTP_REFERER is valid (if not, we redirect to index.php after login)
+if (!empty($_SERVER['HTTP_REFERER']))
+	$redirect_url = validate_redirect($_SERVER['HTTP_REFERER'], null);
 
-	if (!isset($redirect_url))
-		$redirect_url = get_base_url(true).'/index.php';
-	elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
-		$redirect_url .= '#p'.$matches[1];
+if (!isset($redirect_url))
+	$redirect_url = get_base_url(true).'/index.php';
+elseif (preg_match('%viewtopic\.php\?pid=(\d+)$%', $redirect_url, $matches))
+	$redirect_url .= '#p'.$matches[1];
