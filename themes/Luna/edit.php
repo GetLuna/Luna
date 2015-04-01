@@ -14,8 +14,12 @@ $jumbo_style = 'style="background:'.$cur_post['color'].';"';
 	</div>
 </div>
 <div class="container">
-<?php draw_error_panel($errors); ?>
-<?php draw_preview_panel($message); ?>
+<?php 
+if (isset($errors))
+	draw_error_panel($errors);
+if (isset($message))
+	draw_preview_panel($message);
+?>
 
 <form id="edit" method="post" action="edit.php?id=<?php echo $id ?>&amp;action=edit" onsubmit="return process_form(this)">
 <?php if ($can_edit_subject): ?>
