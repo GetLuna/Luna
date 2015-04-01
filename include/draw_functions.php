@@ -702,7 +702,7 @@ function draw_topic_list() {
 			if ($cur_topic['closed'] == 0) {
 				if ($cur_post['poster_id'] == $luna_user['id']) {
 					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == 0) || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == 1))
-						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
+						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.$lang['Delete'].'</a>';
 					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_topics'] == 0) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_posts'] == 1)) {
 						if ($cur_post['soft'] == 0)
 							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">Soft delete</a>';
@@ -723,7 +723,7 @@ function draw_topic_list() {
 				$post_actions[] = '<a class="reported" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
 			}
 			if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
-				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'">'.$lang['Delete'].'</a>';
+				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.$lang['Delete'].'</a>';
 				if ($cur_post['soft'] == 0)
 					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">Soft delete</a>';
 				else
