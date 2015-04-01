@@ -393,14 +393,14 @@ elseif (isset($_GET['find_ban'])) {
 <?php
 
 	require 'footer.php';
-}
+} else {
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
-$focus_element = array('bans', 'new_ban_user');
-define('FORUM_ACTIVE_PAGE', 'admin');
-require 'header.php';
-	load_admin_nav('users', 'bans');
-
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
+	$focus_element = array('bans', 'new_ban_user');
+	define('FORUM_ACTIVE_PAGE', 'admin');
+	require 'header.php';
+		load_admin_nav('users', 'bans');
+	
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -475,4 +475,5 @@ require 'header.php';
 </form>
 <?php
 
-require 'footer.php';
+	require 'footer.php';
+}
