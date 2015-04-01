@@ -96,7 +96,7 @@ if (isset($_GET['tid'])) {
 			message_backstage($lang['No posts selected']);
 
 		if (isset($_POST['delete_posts_comply'])) {
-			confirm_referrer('moderate.php');
+			confirm_referrer('backstage/moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
 				message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -158,7 +158,7 @@ if (isset($_GET['tid'])) {
 			message_backstage($lang['No posts selected']);
 
 		if (isset($_POST['split_posts_comply'])) {
-			confirm_referrer('moderate.php');
+			confirm_referrer('backstage/moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
 				message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -528,7 +528,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 // Merge two or more topics
 elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 	if (isset($_POST['merge_topics_comply'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -631,7 +631,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 		message_backstage($lang['No topics selected']);
 
 	if (isset($_POST['delete_topics_comply'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $topics))
 			message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -707,7 +707,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 	// There could be an array of topic IDs in $_POST
 	if (isset($_POST['open']) || isset($_POST['close'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
 		if (empty($topics))
@@ -717,9 +717,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$redirect_msg = ($action) ? $lang['Close topics redirect'] : $lang['Open topics redirect'];
 		redirect('moderate.php?fid='.$fid);
-	}
-	// Or just one in $_GET
-	else {
+	} else { // Or just one in $_GET
 		confirm_referrer('viewtopic.php');
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
