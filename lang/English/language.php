@@ -1601,6 +1601,7 @@ Login at <login_url> to activate the account.
 'Soft delete topics'	=>	'Soft delete topics',
 'Allow topic soft delete'	=> 'Allow users soft delete topics from all users.',
 'Inbox messages'		=>	'The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.',
+'Delete topics'			=>	'Delete topics',
 
 'Config warning'		=>	'The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.',
 'Welcome to Luna'		=>	'Welcome to Luna',
