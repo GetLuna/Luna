@@ -218,7 +218,7 @@ if (isset($_GET['cache_cleared']))
 		<div class="panel-body">
 			<input type="hidden" name="action" value="rebuild" />
 			<fieldset>
-				<p><?php printf($lang['Rebuild index info'], '<a href="settings.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+				<p><?php echo $lang['Rebuild index info'] ?></p>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Posts per cycle label'] ?><span class="help-block"><?php echo $lang['Posts per cycle help'] ?></span></label>
 					<div class="col-sm-9">

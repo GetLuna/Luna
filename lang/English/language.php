@@ -928,7 +928,7 @@ $lang = array(
 
 // Language for maintenance.php
 'Rebuild index subhead'			=>	'Rebuild search index',
-'Rebuild index info'			=>	'If you changes something about topics and posts in the database you should rebuild the search index. It\'s recommended to activate %s during rebuilding. This can take a while and can increase the server load during the process!',
+'Rebuild index info'			=>	'If you changes something about topics and posts in the database you should rebuild the search index. It\'s recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!',
 'Posts per cycle label'			=>	'Posts per cycle',
 'Posts per cycle help'			=>	'Number of posts per pageview, this prevents a timeout, 300 recommended',
 'Starting post label'			=>	'Starting post ID',
