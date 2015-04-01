@@ -452,8 +452,10 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 
 	if (isset($_POST['move_topics'])) {
 		$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
-		if (empty($topics))
+		if (empty($topics)) {
 			message_backstage($lang['No topics selected']);
+			exit;
+		}
 
 		$topics = implode(',', array_map('intval', array_keys($topics)));
 		$action = 'multi';
@@ -626,8 +628,10 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 // Delete one or more topics
 elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
-	if (empty($topics))
+	if (empty($topics)) {
 		message_backstage($lang['No topics selected']);
+		exit;
+	}
 
 	if (isset($_POST['delete_topics_comply'])) {
 		confirm_referrer('backstage/moderate.php');
@@ -709,8 +713,10 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 		confirm_referrer('backstage/moderate.php');
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
-		if (empty($topics))
+		if (empty($topics)) {
 			message_backstage($lang['No topics selected']);
+			exit;
+		}
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
