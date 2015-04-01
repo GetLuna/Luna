@@ -18,7 +18,7 @@ if (!defined('FORUM'))
 </div>
 <div class="col-sm-9">
 	<?php load_inbox_nav('inbox'); ?>
-	<p><span class="pages-label"><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'inbox.php?') ?></span></p>
+	<p><span class="pages-label"><?php echo paginate($num_pages, $page, 'inbox.php?') ?></span></p>
 	<form method="post" action="inbox.php">
 		<fieldset>
             <div class="btn-toolbar">
@@ -110,7 +110,7 @@ if ($db->num_rows($result)) {
 					</tbody>
 				</table>
 			</div>
-			<p><?php echo $lang['Pages'].' '.paginate($num_pages, $page, 'inbox.php?') ?></p>
+			<p><?php echo paginate($num_pages, $page, 'inbox.php?') ?></p>
 		</fieldset>
 	</form>
 </div>
