@@ -1012,9 +1012,9 @@ function draw_search_results() {
 		if ($luna_config['o_censoring'] == '1')
 			$cur_search['subject'] = censor_words($cur_search['subject']);
 
-		if ($show_as == 'posts') {
+		/* if ($show_as == 'posts') {
 			require get_view_path('comment.php');
-		} else {
+		} else { */
 			++$topic_count;
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
@@ -1057,7 +1057,7 @@ function draw_search_results() {
 				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['last_poster']);
 
 			require get_view_path('search-topic.php');
-		}
+		// }
 	}
 
 }
