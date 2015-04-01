@@ -130,9 +130,9 @@ require load_page('header.php');
 
 if ($action == "reset")
 	require load_page('reset.php');
-elseif ($action == "soft")
+if ($action == "soft")
 	require load_page('soft.php');
-else
+if ($action == "delete")
 	require load_page('delete.php');
 
 require load_page('footer.php');

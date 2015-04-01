@@ -1277,10 +1277,10 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'color'			=> array(
-					'datatype'		=> 'VARCHAR(25)',
+				'color_scheme'	=> array(
+					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '\'#0d4382\''
+					'default'		=> '3'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),

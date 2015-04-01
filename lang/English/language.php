@@ -1555,6 +1555,7 @@ Login at <login_url> to activate the account.
 'Tools'					=>	'Tools',
 'Menu'					=>	'Menu',
 'Theme'					=>	'Theme',
+'Database management'	=>	'Database management',
 
 'Emoji'					=>	'Emoji',
 'Use emojis'			=>	'Use emojis instead of emoticons.',
@@ -1600,13 +1601,14 @@ Login at <login_url> to activate the account.
 'Soft delete topics'	=>	'Soft delete topics',
 'Allow topic soft delete'	=> 'Allow users soft delete topics from all users.',
 'Inbox messages'		=>	'The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.',
+'Delete topics'			=>	'Delete topics',
 
 'Config warning'		=>	'The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.',
 'Welcome to Luna'		=>	'Welcome to Luna',
 'Welcome to Luna info 1'=>	'Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!',
 'Welcome to Luna info 2'=>	'If you\'re done, you can click on "Got it" in the upper right corner of this panel to disable this field.',
 'Got it'				=>	'Got it',
-'What\'s new'			=>	'What\'s new',
+'What\'s new'			=>	'What\'s new?',
 'Create new sections'	=>	'Create new sections',
 'Censor words'			=>	'Censor words',
 'Add more groups'		=>	'Add more groups',
