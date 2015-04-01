@@ -18,8 +18,12 @@ $jumbo_style = 'style="background:'.$cur_posting['color'].';"';
 	</div>
 </div>
 <div class="container">
-<?php draw_error_panel($errors); ?>
-<?php draw_preview_panel($message); ?>
+<?php
+if (isset($errors))
+	draw_error_panel($errors);
+if (isset($message))
+	draw_preview_panel($message);
+?>
 
 <?php 
 

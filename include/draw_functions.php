@@ -57,6 +57,9 @@ function draw_editor($height) {
 	if (isset($_POST['stick_topic']) || $cur_post['sticky'] == '1') {
 		$pin_status = ' checked';
 		$pin_active = ' active';
+	} else {
+		$pin_status = '';
+		$pin_active = '';
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
