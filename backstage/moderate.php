@@ -715,7 +715,6 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
-		$redirect_msg = ($action) ? $lang['Close topics redirect'] : $lang['Open topics redirect'];
 		redirect('moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
 		confirm_referrer('viewtopic.php');
@@ -726,7 +725,6 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
-		$redirect_msg = ($action) ? $lang['Close topic redirect'] : $lang['Open topic redirect'];
 		redirect('viewtopic.php?id='.$topic_id);
 	}
 }
