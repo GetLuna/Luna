@@ -1531,6 +1531,7 @@ Login at <login_url> to activate the account.
 
 // Shared
 'Toggle navigation'		=>	'Toggle navigation',
+'Offline'				=>	'Offline',
 
 // Mainstage
 'Reply'					=>	'Reply',
