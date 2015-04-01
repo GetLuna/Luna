@@ -892,7 +892,7 @@ if ($db->num_rows($result)) {
 ?>
 			<div class="topic-entry-list">
 				<div class="topic-moderate-entry <?php echo $item_status ?>">
-					<input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /> <span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> <?php echo $by ?> &middot; <span class="text-muted"><?php echo $last_post ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span>
+					<input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /> <span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> &middot; <span class="text-muted"><?php echo $last_post ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span>
 				</div>
 			</div>
 <?php
