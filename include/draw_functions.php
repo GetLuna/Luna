@@ -753,7 +753,7 @@ function draw_topic_list() {
 }
 
 function draw_response_list() {
-	global $lang, $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user;
+	global $lang, $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $inbox;
 
 	while ($cur_post = $db->fetch_assoc($result)) {	
 		$post_count++;
