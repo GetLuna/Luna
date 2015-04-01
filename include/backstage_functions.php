@@ -64,6 +64,9 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-recycle"></span> '.$lang['Prune'];
 	elseif ($page == 'database')
 		$page_title = '<span class="fa fa-fw fa-database"></span> '.$lang['Database management'];
+
+	elseif ($page == 'info')
+		$page_title = '<span class="fa fa-fw fa-info-circle"></span> '.$lang['Info'];
 		
 	else
 		$page_title = $page;
