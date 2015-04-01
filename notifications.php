@@ -55,7 +55,7 @@ if ($num_not_unseen == '0')
 else {
 	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
-		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
+		$notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
 		$ind_not[] = '<a class="list-group-item" href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a>';
 	}
 }
@@ -68,7 +68,7 @@ if ($num_not_seen == '0')
 else {
 	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
-		$notifitime = format_time($cur_notifi['time'], false, null, $time_format, true, true);
+		$notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
 		$ind_not_seen[] = '<a class="list-group-item" href="'.$cur_notifi['link'].'"><span class="fa fa-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a>';
 	}
 }
