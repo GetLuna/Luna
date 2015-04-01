@@ -8,7 +8,7 @@ $jumbo_style = 'style="background:'.$cur_posting['color'].';"';
 
 ?>
 </div>
-<div class="jumbotron<?php echo $item_status ?>"<?php echo $jumbo_style ?>>
+<div class="jumbotron"<?php echo $jumbo_style ?>>
 	<div class="container">
 		<?php if ($fid) { ?>
 			<h2><?php printf($lang['New topic in'], luna_htmlspecialchars($cur_posting['forum_name'])) ?></h2><span class="pull-right"><a class="btn btn-danger" href="index.php?id=<?php echo $cur_posting['id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> Cancel</a></span>
@@ -23,9 +23,6 @@ if (isset($errors))
 	draw_error_panel($errors);
 if (isset($message))
 	draw_preview_panel($message);
-?>
-
-<?php 
 
 echo $form;
 
