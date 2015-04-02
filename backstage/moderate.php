@@ -722,7 +722,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		redirect('moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
-		confirm_referrer('../viewtopic.php');
+		confirm_referrer('viewtopic.php');
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
@@ -730,14 +730,14 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
-		redirect('../viewtopic.php?id='.$topic_id);
+		redirect('viewtopic.php?id='.$topic_id);
 	}
 }
 
 
 // Stick a topic
 elseif (isset($_GET['stick'])) {
-	confirm_referrer('../viewtopic.php');
+	confirm_referrer('viewtopic.php');
 
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
@@ -745,13 +745,13 @@ elseif (isset($_GET['stick'])) {
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to stick topic', __FILE__, __LINE__, $db->error());
 
-	redirect('../viewtopic.php?id='.$stick);
+	redirect('viewtopic.php?id='.$stick);
 }
 
 
 // Unstick a topic
 elseif (isset($_GET['unstick'])) {
-	confirm_referrer('../viewtopic.php');
+	confirm_referrer('viewtopic.php');
 
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)
@@ -759,7 +759,7 @@ elseif (isset($_GET['unstick'])) {
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
 
-	redirect('../viewtopic.php?id='.$unstick);
+	redirect('viewtopic.php?id='.$unstick);
 } 
 
 // If absolutely none of them are going on
