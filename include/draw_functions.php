@@ -57,6 +57,9 @@ function draw_editor($height) {
 	if (isset($_POST['stick_topic']) || $cur_post['sticky'] == '1') {
 		$pin_status = ' checked';
 		$pin_active = ' active';
+	} else {
+		$pin_status = '';
+		$pin_active = '';
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
@@ -372,9 +375,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
 						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
-			} elseif ($cur_forum['redirect_url'] != '')
-				$last_post = '- - -';
-			else
+			} else
 				$last_post = $lang['Never'];
 		
 			require get_view_path($forum_object_name);
@@ -752,7 +753,7 @@ function draw_topic_list() {
 }
 
 function draw_response_list() {
-	global $lang, $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user;
+	global $lang, $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $inbox;
 
 	while ($cur_post = $db->fetch_assoc($result)) {	
 		$post_count++;
@@ -1004,7 +1005,7 @@ function draw_rules_form() {
 }
 
 function draw_search_results() {
-	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $lang, $cur_topic, $subject_status, $last_post_date, $tracked_topics;
+	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $lang, $cur_topic, $subject_status, $last_post_date, $tracked_topics, $start_from;
 
 	foreach ($search_set as $cur_search) {
 		$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
@@ -1105,7 +1106,7 @@ function draw_report_form($post_id) {
 
 
 function draw_search_forum_list() {
-	global $db, $luna_config, $luna_user;
+	global $db, $luna_config, $luna_user, $lang;
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 

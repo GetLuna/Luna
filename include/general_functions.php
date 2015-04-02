@@ -53,3 +53,9 @@ function required_fields() {
 	
 	}
 }
+
+function check_url() {
+	global $redirect_url;
+
+	$redirect_url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+}

@@ -11,6 +11,8 @@ require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/parser.php';
 require FORUM_ROOT.'include/inbox_functions.php';
 
+$inbox = 1;
+
 // No guest here !
 if ($luna_user['is_guest'])
 	message($lang['No permission']);
@@ -197,11 +199,7 @@ if ($action == 'delete') {
 	
 	$messageh2 = luna_htmlspecialchars($p_subject).' '.$lang['With'].' '.luna_htmlspecialchars($r_usernames);
 	
-	$quickpost = false;
-	if ($luna_config['o_quickpost'] == '1') {
-		$required_fields = array('req_message' => $lang['Message']);
-		$quickpost = true;
-	}
+	$required_fields = array('req_message' => $lang['Message']);
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['View']);
 	

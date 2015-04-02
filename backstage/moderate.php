@@ -96,7 +96,7 @@ if (isset($_GET['tid'])) {
 			message_backstage($lang['No posts selected']);
 
 		if (isset($_POST['delete_posts_comply'])) {
-			confirm_referrer('moderate.php');
+			confirm_referrer('backstage/moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
 				message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -158,7 +158,7 @@ if (isset($_GET['tid'])) {
 			message_backstage($lang['No posts selected']);
 
 		if (isset($_POST['split_posts_comply'])) {
-			confirm_referrer('moderate.php');
+			confirm_referrer('backstage/moderate.php');
 
 			if (@preg_match('%[^0-9,]%', $posts))
 				message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -447,14 +447,15 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		update_forum($fid); // Update the forum FROM which the topic was moved
 		update_forum($move_to_forum); // Update the forum TO which the topic was moved
 
-		$redirect_msg = (count($topics) > 1) ? $lang['Move topics redirect'] : $lang['Move topic redirect'];
 		redirect('viewforum.php?id='.$move_to_forum);
 	}
 
 	if (isset($_POST['move_topics'])) {
 		$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
-		if (empty($topics))
+		if (empty($topics)) {
 			message_backstage($lang['No topics selected']);
+			exit;
+		}
 
 		$topics = implode(',', array_map('intval', array_keys($topics)));
 		$action = 'multi';
@@ -528,7 +529,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 // Merge two or more topics
 elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 	if (isset($_POST['merge_topics_comply'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $_POST['topics']))
 			message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -627,11 +628,13 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 // Delete one or more topics
 elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
-	if (empty($topics))
+	if (empty($topics)) {
 		message_backstage($lang['No topics selected']);
+		exit;
+	}
 
 	if (isset($_POST['delete_topics_comply'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		if (@preg_match('%[^0-9,]%', $topics))
 			message_backstage($lang['Bad request'], false, '404 Not Found');
@@ -707,19 +710,18 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 	// There could be an array of topic IDs in $_POST
 	if (isset($_POST['open']) || isset($_POST['close'])) {
-		confirm_referrer('moderate.php');
+		confirm_referrer('backstage/moderate.php');
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
-		if (empty($topics))
+		if (empty($topics)) {
 			message_backstage($lang['No topics selected']);
+			exit;
+		}
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
-		$redirect_msg = ($action) ? $lang['Close topics redirect'] : $lang['Open topics redirect'];
 		redirect('moderate.php?fid='.$fid);
-	}
-	// Or just one in $_GET
-	else {
+	} else { // Or just one in $_GET
 		confirm_referrer('viewtopic.php');
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
@@ -728,7 +730,6 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
-		$redirect_msg = ($action) ? $lang['Close topic redirect'] : $lang['Open topic redirect'];
 		redirect('viewtopic.php?id='.$topic_id);
 	}
 }
@@ -892,7 +893,7 @@ if ($db->num_rows($result)) {
 ?>
 			<div class="topic-entry-list">
 				<div class="topic-moderate-entry <?php echo $item_status ?>">
-					<input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /> <span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> <?php echo $by ?> &middot; <span class="text-muted"><?php echo $last_post ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span>
+					<input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /> <span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> &middot; <span class="text-muted"><?php echo $last_post ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span>
 				</div>
 			</div>
 <?php

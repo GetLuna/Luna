@@ -928,7 +928,7 @@ $lang = array(
 
 // Language for maintenance.php
 'Rebuild index subhead'			=>	'Rebuild search index',
-'Rebuild index info'			=>	'If you changes something about topics and posts in the database you should rebuild the search index. It\'s recommended to activate %s during rebuilding. This can take a while and can increase the server load during the process!',
+'Rebuild index info'			=>	'If you changes something about topics and posts in the database you should rebuild the search index. It\'s recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!',
 'Posts per cycle label'			=>	'Posts per cycle',
 'Posts per cycle help'			=>	'Number of posts per pageview, this prevents a timeout, 300 recommended',
 'Starting post label'			=>	'Starting post ID',
@@ -1531,6 +1531,7 @@ Login at <login_url> to activate the account.
 
 // Shared
 'Toggle navigation'		=>	'Toggle navigation',
+'Offline'				=>	'Offline',
 
 // Mainstage
 'Reply'					=>	'Reply',
@@ -1674,7 +1675,7 @@ Login at <login_url> to activate the account.
 'New topic in'          =>  'New topic in "%s"',
 'New comment in'        =>  'New comment in "%s"',
 'About user'            =>  'About user',
-'Keryword'              =>  'Keyword',
+'Keyword'				=>  'Keyword',
 'Author'                =>  'Author',
 'Color'                 =>  'Color',
 'By username'           =>  'By %s',

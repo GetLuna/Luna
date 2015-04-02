@@ -28,7 +28,6 @@ function gzip_PrintFourChars($Val) {
 	return $return;
 }
 
-
 // db functions (not in Luna dblayer)
 function field_name($offset, $query_id = 0) {
 	global $db_type;
@@ -85,8 +84,6 @@ function get_table_def_mysql($table, $crlf) {
 	//
 	$result = $db->query($field_query);
 	if(!$result) {
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage('Failed to get field list');
 	}
 
@@ -117,8 +114,6 @@ function get_table_def_mysql($table, $crlf) {
 	//
 	$result = $db->query($key_query);
 	if(!$result) {
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage('Failed to get Indexed Fields');
 	}
 
@@ -167,8 +162,6 @@ function get_table_content_mysql($table, $handler) {
 
 	// Grab the data from the table.
 	if (!($result = $db->query("SELECT * FROM $table"))) {
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage('Failed to get table content');
 	}
 
@@ -342,8 +335,6 @@ switch($db_type) {
 	case 'mysqli_innodb':
 		break;
 	default:
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage('Sorry your database type is not supported');
 }
 // Start actual db stuff
@@ -368,11 +359,11 @@ if (isset($_POST['backupstart'])) {
 	if($do_gzip_compress) {
 		@ob_start();
 		@ob_implicit_flush(0);
-		header("Content-Type: application/x-gzip; name=\"modernbb_backup." . gmdate("Y-m-d") . ".sql.gz\"");
-		header("Content-disposition: attachment; filename=modernbb_backup." . gmdate("Y-m-d") . ".sql.gz");
+		header("Content-Type: application/x-gzip; name=\"luna_backup." . gmdate("Y-m-d") . ".sql.gz\"");
+		header("Content-disposition: attachment; filename=luna_backup." . gmdate("Y-m-d") . ".sql.gz");
 	} else {
-		header("Content-Type: text/x-delimtext; name=\"modernbb_backup." . gmdate("Y-m-d") . ".sql\"");
-		header("Content-disposition: attachment; filename=modernbb_backup." . gmdate("Y-m-d") . ".sql");
+		header("Content-Type: text/x-delimtext; name=\"luna_backup." . gmdate("Y-m-d") . ".sql\"");
+		header("Content-disposition: attachment; filename=luna_backup." . gmdate("Y-m-d") . ".sql");
 	}
 	//
 	// Build the sql script file
@@ -401,7 +392,7 @@ if (isset($_POST['backupstart'])) {
 		ob_end_clean();
 		echo "\x1f\x8b\x08\x00\x00\x00\x00\x00".substr($contents, 0, strlen($contents) - 4).gzip_PrintFourChars($Crc).gzip_PrintFourChars($Size);
 	}
-exit;
+	exit;
 } elseif ( isset($_POST['restore_start']) ) {
 	// Restore SQL Dump
 	//
@@ -412,8 +403,6 @@ exit;
 	$backup_file_tmpname = ($HTTP_POST_FILES['backup_file']['tmp_name'] != "none") ? $HTTP_POST_FILES['backup_file']['tmp_name'] : "";
 	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "") {
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage($lang['No file uploaded']);
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) ) {
@@ -432,19 +421,15 @@ exit;
 					$sql_query .= gzgets($gz_ptr, 100000);
 				}
 			} else {
-				require 'header.php';
-				load_admin_nav('maintenance', 'database');
 				message_backstage($lang['Not restored']);
 			}
 		} else {
 			$sql_query = fread(fopen($backup_file_tmpname, 'r'), filesize($backup_file_tmpname));
 		}
 	} else {
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage($lang['File format error']);
 	}
-	if($sql_query != "") {
+	if ($sql_query != "") {
 		// Strip out sql comments
 		$sql_query = remove_remarks($sql_query);
 		$pieces = split_sql_file($sql_query, ";");
@@ -467,8 +452,6 @@ exit;
 				}
 				$result = $db->query($sql);
 				if(!$result) {
-					require 'header.php';
-					load_admin_nav('maintenance', 'database');
 					message_backstage($lang['Imported error']);
 				}
 			}
@@ -482,13 +465,9 @@ exit;
 	}
 	if(defined('FORUM_DEBUG')) {
 ?>
-	<div>
 	<h2><?php echo $lang['Restore complete'] ?></h2>
-	</div>
 <?php
 	} else {
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage($lang['Restore completed']);
 	}
 } elseif (isset($_POST['repairall'])) {
@@ -497,8 +476,6 @@ exit;
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage($lang['Failed repair']);
 	}
 	$tables = array();
@@ -513,21 +490,15 @@ exit;
 	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'REPAIR TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql)) {
-			require 'header.php';
-			load_admin_nav('maintenance', 'database');
 			message_backstage($lang['Failed repair SQL']);
 		}
 	}
-	require 'header.php';
-	load_admin_nav('database', 'database');
 	message_backstage('All tables repaired');
 } elseif (isset($_POST['optimizeall'])) {
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
-		require 'header.php';
-		load_admin_nav('maintenance', 'database');
 		message_backstage($lang['Failed optimize']);
 	}
 	$tables = array();
@@ -542,21 +513,17 @@ exit;
 	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql)) {
-			require 'header.php';
-			load_admin_nav('maintenance', 'database');
 			message_backstage($lang['Failed optimize SQL']);
 		}
 	}
-	require 'header.php';
-	load_admin_nav('maintenance', 'database');
 	message_backstage('All tables optimised');
 } else {
 	
-$action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Database']);
-define('FORUM_ACTIVE_PAGE', 'admin');
-require 'header.php';
-	load_admin_nav('maintenance', 'database');
+	$action = isset($_GET['action']) ? $_GET['action'] : null;
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Database']);
+	define('FORUM_ACTIVE_PAGE', 'admin');
+	require 'header.php';
+		load_admin_nav('maintenance', 'database');
 ?>
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
@@ -633,4 +600,5 @@ require 'header.php';
 </form>
 <?php
 }
+
 require 'footer.php';

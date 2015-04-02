@@ -1045,10 +1045,9 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Info']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
-	load_admin_nav('', '');
+	load_admin_nav('info', 'info');
 
 ?>
-<h2><?php echo $lang['Info'] ?></h2>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php echo $lang['Info'] ?></h3>
@@ -1058,7 +1057,6 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	</div>
 </div>
 <?php
-	require 'footer.php';
 }
 
 //

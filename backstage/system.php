@@ -136,7 +136,7 @@ load_admin_nav('backstage', 'stats');
 				<th class="col-md-4"><?php echo $lang['Server load label'] ?></th>
 				<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
 				<th class="col-md-4"><?php echo $lang['Environment label'] ?></th>
-				<th class="col-md-4"><?php echo $lang['Database label'] ?></th>
+				<th class="col-md-4"><?php echo $lang['Database'] ?></th>
 				<?php endif; ?>
 			</tr>
 		</thead>

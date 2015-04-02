@@ -4,7 +4,7 @@
 if (!defined('FORUM'))
 	exit;
 
-$jumbo_style = 'style="background:'.$cur_forum['color'].';"';
+$jumbo_style = ' style="background:'.$cur_forum['color'].';"';
 
 ?>
 </div>

@@ -6,11 +6,11 @@ if (!defined('FORUM'))
 
 ?>
 
-<form id="confirm_del_user" method="post" action="profile.php?id=<?php echo $id ?>">
+<form id="confirm_del_user" method="post" action="settings.php?id=<?php echo $id ?>">
 	<fieldset>
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.luna_htmlspecialchars($username).'</strong>' ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /></span></h3>
+				<h3 class="panel-title"><?php echo $lang['Confirmation info'].' <strong>'.luna_htmlspecialchars($username).'</strong>' ?><span class="pull-right"><input type="submit" class="btn btn-danger" name="delete_user_comply" value="<?php echo $lang['Delete'] ?>" /></span></h3>
 			</div>
 			<div class="panel-body">
 				<?php echo $lang['Delete warning'] ?>
