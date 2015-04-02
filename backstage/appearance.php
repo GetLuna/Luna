@@ -242,7 +242,7 @@ if (isset($_GET['saved']))
 								<input type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Show personalized'] ?>
 							</label><br /><br />
-							<input type="text" class="form-control" name="form[custom_copyright]" placeholder="<?php echo $lang['Your copyright'] ?>" value="<?php echo $luna_config['o_custom_copyright'] ?>" />
+							<input type="text" class="form-control" name="form[custom_copyright]" placeholder="<?php echo $lang['Your copyright'] ?>" value="<?php echo luna_htmlspecialchars($luna_config['o_custom_copyright']) ?>" />
 						</div>
 					</div>
 				</div>
