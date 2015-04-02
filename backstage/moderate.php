@@ -399,6 +399,7 @@ if (isset($_GET['tid'])) {
 <?php
 	
 	require 'footer.php';
+	exit;
 }
 
 
