@@ -400,10 +400,11 @@ if (isset($_POST['backupstart'])) {
 	// If no file was uploaded report an error
 	//
 	$backup_file_name = (!empty($HTTP_POST_FILES['backup_file']['name'])) ? $HTTP_POST_FILES['backup_file']['name'] : "";
-	$backup_file_tmpname = ($HTTP_POST_FILES['backup_file']['tmp_name'] != "none") ? $HTTP_POST_FILES['backup_file']['tmp_name'] : "";
+	$backup_file_tmpname = ((!empty($HTTP_POST_FILES['backup_file']['tmp_name'])) && ($HTTP_POST_FILES['backup_file']['tmp_name'] != "none")) ? $HTTP_POST_FILES['backup_file']['tmp_name'] : "";
 	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "") {
 		message_backstage($lang['No file uploaded']);
+		exit;
 	}
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) ) {
 		if( preg_match("/\.gz$/is",$backup_file_name) ) {
