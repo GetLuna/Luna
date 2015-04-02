@@ -52,7 +52,7 @@ $num_notifications = $db->result($result);
 if ($luna_config['o_notification_flyout'] == 1) {
 	if ($num_notifications == '0') {
 		$notificon = '<span class="fa fa-fw fa-circle-o"></span>';
-		$ind_notification[] = '<li><a href="notifications.php?id='.$luna_user['id'].'">No new notifications</a></li>';
+		$ind_notification[] = '<li><a href="notifications.php">No new notifications</a></li>';
 	} else {
 		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 		
@@ -72,7 +72,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 						<li class="divider"></li>
 						'.$notifications.'
 						<li class="divider"></li>
-						<li><a class="pull-right" href="notifications.php?id='.$luna_user['id'].'">More <i class="fa fa-fw fa-arrow-right"></i></a></li>
+						<li><a class="pull-right" href="notifications.php">More <i class="fa fa-fw fa-arrow-right"></i></a></li>
 					</ul>
 				</li>';
 } else {
@@ -81,7 +81,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	else
 		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 
-	$notification_menu_item = '<li><a href="notifications.php?id='.$luna_user['id'].'">'.$notificon.'<span class="visible-xs-inline"> '.$lang['Notifications'].'</span></a></li>';
+	$notification_menu_item = '<li><a href="notifications.php">'.$notificon.'<span class="visible-xs-inline"> '.$lang['Notifications'].'</span></a></li>';
 }
 
 // Generate navigation items

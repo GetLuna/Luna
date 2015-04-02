@@ -16,7 +16,7 @@ function load_me_nav($page = '') {
 </div>
 <div class="list-group">
 		<a class="<?php if ($page == 'inbox') echo 'active'; ?> list-group-item" href="inbox.php"><?php echo $lang['Inbox'] ?></a>
-		<a class="<?php if ($page == 'notifications') echo 'active'; ?> list-group-item" href="notifications.php?id=<?php echo $id ?>"><?php echo $lang['Notifications'] ?></a>
+		<a class="<?php if ($page == 'notifications') echo 'active'; ?> list-group-item" href="notifications.php"><?php echo $lang['Notifications'] ?></a>
 </div>
 <div class="list-group">
 		<a class="<?php if ($page == 'settings') echo 'active'; ?> list-group-item" href="settings.php?id=<?php echo $id ?>"><?php echo $lang['Settings'] ?></a>
