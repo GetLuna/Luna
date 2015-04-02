@@ -4,7 +4,7 @@
 if (!defined('FORUM'))
 	exit;
 
-$jumbo_style = 'style="background:'.$cur_posting['color'].';"';
+$jumbo_style = ' style="background:'.$cur_posting['color'].';"';
 
 ?>
 </div>
