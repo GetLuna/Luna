@@ -82,10 +82,8 @@ if (isset($_POST['form_sent'])) {
 		$errors[] = $lang['All caps message'];
 
 	// Validate BBCode syntax
-	if ($luna_config['p_message_bbcode'] == '1') {
-		require FORUM_ROOT.'include/parser.php';
-		$message = preparse_bbcode($message, $errors);
-	}
+	require FORUM_ROOT.'include/parser.php';
+	$message = preparse_bbcode($message, $errors);
 
 	if (empty($errors)) {
 		if ($message == '')

@@ -219,10 +219,10 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		$p_message = ucwords(strtolower($p_message));
 
 	// Validate BBCode syntax
-	if ($luna_config['p_message_bbcode'] == '1') {
-		require FORUM_ROOT.'include/parser.php';
-		$p_message = preparse_bbcode($p_message, $errors);
-	} if (empty($errors) && !isset($_POST['preview'])) { // Send message(s)	
+	require FORUM_ROOT.'include/parser.php';
+	$p_message = preparse_bbcode($p_message, $errors);
+	
+	if (empty($errors) && !isset($_POST['preview'])) { // Send message(s)	
 		$_SESSION['last_session_request'] = $now = time();
 		
 		if (empty($r) && empty($edit)) { // It's a new message

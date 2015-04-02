@@ -204,7 +204,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>165 bugs have been fixed.</p>
+						<p>188 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>

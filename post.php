@@ -10,10 +10,8 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
-
 if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
-
 
 $tid = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
 $fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
@@ -479,6 +477,7 @@ else {
 	$focus_element[] = 'req_username';
 }
 
+$cur_index = 0;
 define('FORUM_ACTIVE_PAGE', 'post');
 require load_page('header.php');
 

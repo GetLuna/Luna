@@ -45,6 +45,8 @@ if (isset($_POST['add_item'])) {
 		$cur_item['url'] = luna_trim($cur_item['url']);
 		$cur_item['name'] = luna_trim($cur_item['name']);
 		$cur_item['order'] = luna_trim($cur_item['order']);
+		if (!isset($cur_item['visible']))
+			$cur_item['visible'] = 0;
 		
 		if ($cur_item['name'] == '')
 			message_backstage($lang['Must enter name message']);

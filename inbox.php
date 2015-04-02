@@ -51,7 +51,7 @@ if (isset($_REQUEST['markread'])) {
 	
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 	redirect('inbox.php');
-} elseif (isset($_REQUEST['markunread'])) { // Mark as unread multiple posts
+} elseif (isset($_REQUEST['markunread'])) { // Mark as unread
 	confirm_referrer('inbox.php');
 
 	if (empty($_POST['selected_messages']))
@@ -63,41 +63,23 @@ if (isset($_REQUEST['markread'])) {
 	
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 	redirect('inbox.php');
-} elseif (isset($_REQUEST['delete_multiple'])) { // Delete multiple posts
+} elseif (isset($_REQUEST['delete_multiple'])) { // Delete posts
 	confirm_referrer('inbox.php');
 
-	if (isset($_POST['delete_multiple_comply'])) {
-		$idlist = explode(',', $_POST['messages']);
-		$idlist = array_map('intval', $idlist);
-		$idlist = implode(',', array_values($idlist));
-		$number = explode(',', $_POST['messages']);
-		$number = array_map('intval', $number);
+	if (empty($_POST['selected_messages']))
+		message($lang['Must select']);
 
-		$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\'') or error('Unable to delete the messages', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-'.count($number).' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
-	} else {
-		if (empty($_POST['selected_messages']))
-			message($lang['Must select']);
-		
-		$idlist = array_values($_POST['selected_messages']);
-		$idlist = array_map('intval', $idlist);
-		$idlist = implode(',', array_values($idlist));
-		
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Multidelete'], $lang['Private Messages']);
-		define('FORUM_ACTIVE_PAGE', 'pm');
-		require load_page('header.php');
-		
-		// If you're not the owner of the message, you can't delete it.
-		$result = $db->query('SELECT DISTINCT owner FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.')') or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
-		$owner = array();
-		while ($cur_mess_delete = $db->fetch_assoc($result))
-			$owner[] = $cur_mess_delete['owner'];
-		
-		if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
-			message($lang['No permission']);
+	$idlist = array_values($_POST['selected_messages']);
+	$idlist = array_map('intval', $idlist);
+	$idlist = implode(',', array_values($idlist));
+	$number = explode(',', $_POST['messages']);
+	$number = array_map('intval', $number);
+	$number = count($number);
 
-		require load_page('inbox-delete.php');
-	}
+	$db->query('DELETE FROM '.$db->prefix.'messages WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\'') or error('Unable to delete the messages', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-'.$number.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+	
+	redirect('inbox.php');
 } else {
 
 // Get message count for this box

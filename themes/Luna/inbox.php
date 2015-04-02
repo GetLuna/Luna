@@ -27,7 +27,8 @@ if (!defined('FORUM'))
 					<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php echo $lang['Mark as unread select'] ?></button>
                 </div>
                 <div class="btn-group">
-					<button type="submit" name="delete_multiple" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></button>
+					<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></a>
+					<?php include load_page('inbox-delete-post.php'); ?>
                 </div>
 			</div>
 			<div class="panel panel-default">

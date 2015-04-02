@@ -1532,10 +1532,12 @@ Login at <login_url> to activate the account.
 // Shared
 'Toggle navigation'		=>	'Toggle navigation',
 'Offline'				=>	'Offline',
+'Cancel'				=>	'Cancel',
 
 // Mainstage
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
+'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
 'Notifications'			=>	'Notifications',
 
 'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
@@ -1630,7 +1632,7 @@ Login at <login_url> to activate the account.
 'Visit to moderate'		=>	'Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.',
 
 'Prune complete notifications'	=>	'Pruning complete. Notifications pruned.',
-'Pruned users'			=>	'Pruning complete. Users pruned %s.',
+'Pruned users'			=>	'Pruning complete, all users pruned that matched the requirements have been pruned.',
 'Prune notifications'	=>	'Prune notifications',
 'Type'					=>	'Type',
 'All notifications'		=>	'All notifications',

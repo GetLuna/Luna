@@ -344,7 +344,7 @@ switch ($stage) {
 
 		// Since 0.0.40.2989: Add o_admin_note
 		if (!array_key_exists('o_admin_note', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_note\', "Add some notes...")') or error('Unable to insert config value \'o_admin_note\'', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_note\', NULL)') or error('Unable to insert config value \'o_admin_note\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.0.40.2985: Remove obsolete p_message_bbcode permission from config table
 		if (array_key_exists('p_message_bbcode', $luna_config))

@@ -126,7 +126,7 @@ if (isset($_GET['tid'])) {
 
 			update_forum($fid);
 
-			redirect('viewtopic.php?id='.$tid);
+			redirect('../viewtopic.php?id='.$tid);
 		}
 		
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Moderate']);
@@ -215,7 +215,7 @@ if (isset($_GET['tid'])) {
 			update_forum($fid);
 			update_forum($move_to_forum);
 
-			redirect('viewtopic.php?id='.$new_tid);
+			redirect('../viewtopic.php?id='.$new_tid);
 		}
 
 		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -272,8 +272,8 @@ if (isset($_GET['tid'])) {
 		<?php
 		
 		require 'footer.php';
+		exit;
 	}
-
 
 	// Show the moderate posts view
 
@@ -337,7 +337,7 @@ if (isset($_GET['tid'])) {
 		// If the poster is a registered user
 		if ($cur_post['poster_id'] > 1) {
 			if ($luna_user['g_view_users'] == '1')
-				$poster = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
+				$poster = '<a href="../profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
 			else
 				$poster = luna_htmlspecialchars($cur_post['poster']);
 
@@ -399,6 +399,7 @@ if (isset($_GET['tid'])) {
 <?php
 	
 	require 'footer.php';
+	exit;
 }
 
 
@@ -720,9 +721,9 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
-		redirect('moderate.php?fid='.$fid);
+		redirect('backstage/moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
-		confirm_referrer('viewtopic.php');
+		confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
@@ -737,7 +738,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 // Stick a topic
 elseif (isset($_GET['stick'])) {
-	confirm_referrer('viewtopic.php');
+	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
@@ -751,7 +752,7 @@ elseif (isset($_GET['stick'])) {
 
 // Unstick a topic
 elseif (isset($_GET['unstick'])) {
-	confirm_referrer('viewtopic.php');
+	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)
@@ -839,7 +840,7 @@ if ($db->num_rows($result)) {
 		$icon_type = 'icon';
 
 		if (is_null($cur_topic['moved_to'])) {
-			$last_post = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+			$last_post = '<a href="../viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="../profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 			$ghost_topic = false;
 		} else {
 			$last_post = '- - -';
@@ -855,13 +856,13 @@ if ($db->num_rows($result)) {
 		}
 
 		if ($cur_topic['moved_to'] != 0) {
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="../viewtopic.php?id='.$cur_topic['moved_to'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 			$item_status .= ' imoved';
 		} elseif ($cur_topic['closed'] == '0')
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="../viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 		else {
-			$subject = '<a href="viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$subject = '<a href="../viewtopic.php?id='.$cur_topic['id'].'">'.luna_htmlspecialchars($cur_topic['subject']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 			$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 			$item_status .= ' iclosed';
 		}
@@ -870,7 +871,7 @@ if ($db->num_rows($result)) {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
 			$subject = '<strong>'.$subject.'</strong>';
-			$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
+			$subject_new_posts = '<span class="newtext">[ <a href="../viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
 		} else
 			$subject_new_posts = null;
 
@@ -880,7 +881,7 @@ if ($db->num_rows($result)) {
 		$num_pages_topic = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 
 		if ($num_pages_topic > 1)
-			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, 'viewtopic.php?id='.$cur_topic['id']).'</span>';
+			$subject_multipage = '<span class="inline-pagination"> '.simple_paginate($num_pages_topic, -1, '../viewtopic.php?id='.$cur_topic['id']).'</span>';
 		else
 			$subject_multipage = null;
 
