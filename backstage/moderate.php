@@ -720,9 +720,9 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
 
-		redirect('moderate.php?fid='.$fid);
+		redirect('backstage/moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
-		confirm_referrer('viewtopic.php');
+		confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
@@ -737,7 +737,7 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 
 // Stick a topic
 elseif (isset($_GET['stick'])) {
-	confirm_referrer('viewtopic.php');
+	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
@@ -751,7 +751,7 @@ elseif (isset($_GET['stick'])) {
 
 // Unstick a topic
 elseif (isset($_GET['unstick'])) {
-	confirm_referrer('viewtopic.php');
+	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)
