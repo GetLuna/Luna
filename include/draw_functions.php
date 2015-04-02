@@ -835,12 +835,6 @@ function draw_response_list() {
 		
 		$username_quickreply = luna_htmlspecialchars($cur_post['username']);
 
-		// Generation post action array (reply, delete etc.)
-		if ($luna_user['id'] == $cur_post['sender_id'] || $luna_user['is_admmod']) {
-			$post_actions[] = '<a href="viewinbox.php?action=delete&amp;mid='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Delete'].'</a>';
-			$post_actions[] = '<a href="new_inbox.php?edit='.$cur_post['mid'].'&amp;tid='.$cur_post['shared_id'].'">'.$lang['Edit'].'</a>';
-		}
-
 		$post_actions[] = '<a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang['Quote'].'</a>';
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
