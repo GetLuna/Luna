@@ -42,14 +42,18 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 
 		// Make sure we're not banning an admin or moderator
 		if (isset($group_id)) {
-			if ($group_id == FORUM_ADMIN)
+			if ($group_id == FORUM_ADMIN) {
 				message_backstage(sprintf($lang['User is admin message'], luna_htmlspecialchars($ban_user)));
+				exit;
+			}
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 			$is_moderator_group = $db->result($result);
 
-			if ($is_moderator_group)
+			if ($is_moderator_group) {
 				message_backstage(sprintf($lang['User is mod message'], luna_htmlspecialchars($ban_user)));
+				exit;
+			}
 		}
 
 		// If we have a $user_id, we can try to find the last known IP of that user
