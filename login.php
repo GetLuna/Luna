@@ -102,8 +102,10 @@ elseif ($action == 'forget' || $action == 'forget_2')
 
 		// Validate the email address
 		$email = strtolower(luna_trim($_POST['req_email']));
-		if (!is_valid_email($email))
-			$errors[] = $lang['Invalid email'];
+		if (!is_valid_email($email)) {
+			message($lang['Invalid email']);
+			exit;
+		}
 
 		// Did everything go according to plan?
 		if (empty($errors)) {
