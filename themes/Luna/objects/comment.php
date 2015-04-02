@@ -5,7 +5,7 @@
 	<div class="col-xs-10 col-md-10 col-lg-11 col-no-padding-left">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<h3><?php printf($lang['By username'], $username) ?></b><small class="pull-right"><a class="posttime" href="<?php if (!isset($inbox)) { echo 'viewtopic.php?pid'.$cur_post['id'].'#p'.$cur_post['id']; } else { echo 'viewinbox.php?tid='.$cur_post['shared_id'].'&mid='.$cur_post['mid']; } ?>"><?php echo format_time($cur_post['posted']) ?></a></small></h3>
+				<h3><?php printf($lang['By username'], $username) ?></b><small class="pull-right"><a class="posttime" href="<?php if (!isset($inbox)) { echo 'viewtopic.php?pid='.$cur_post['id'].'#p'.$cur_post['id']; } else { echo 'viewinbox.php?tid='.$cur_post['shared_id'].'&mid='.$cur_post['mid']; } ?>"><?php echo format_time($cur_post['posted']) ?></a></small></h3>
 				<hr />
 				<?php echo $cur_post['message']."\n" ?>
 				<?php if (!isset($inbox)) { if ($cur_post['edited'] != '') echo '<p class="postedit"><em>'.$lang['Last edit'].' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'; }; ?>
