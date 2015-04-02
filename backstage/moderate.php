@@ -272,8 +272,8 @@ if (isset($_GET['tid'])) {
 		<?php
 		
 		require 'footer.php';
+		exit;
 	}
-
 
 	// Show the moderate posts view
 
