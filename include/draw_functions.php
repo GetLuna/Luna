@@ -248,18 +248,14 @@ function draw_topics_list() {
 				$item_status .= ' sticky-item';
 				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 			}
+
+			$url = 'viewtopic.php?id='.$cur_topic['id'];
+			$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$url = 'viewtopic.php?id='.$cur_topic['moved_to'];
-				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 				$item_status .= ' moved-item';
-			} elseif ($cur_topic['closed'] == '0') {
-				$url = 'viewtopic.php?id='.$cur_topic['id'];
-				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-			} else {
-				$url = 'viewtopic.php?id='.$cur_topic['id'];
-				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			} elseif ($cur_topic['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 				$item_status .= ' closed-item';
 			}
@@ -543,17 +539,14 @@ function draw_index_topics_list($section_id) {
 				$item_status .= ' sticky-item';
 				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 			}
+
+			$url = 'viewtopic.php?id='.$cur_topic['id'];
+			$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$url = 'viewtopic.php?id='.$cur_topic['moved_to'];
-				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
 				$item_status .= ' moved-item';
-			} elseif ($cur_topic['closed'] == '0') {
-				$url = 'viewtopic.php?id='.$cur_topic['id'];
-				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
-			} else {
-				$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			} elseif ($cur_topic['closed'] == '1') {
 				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
 				$item_status .= ' closed-item';
 			}
