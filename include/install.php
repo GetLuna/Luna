@@ -1462,7 +1462,7 @@ class Installer {
 			'o_feed_ttl'				=> 0,
 			'o_cookie_bar'				=> 0,
 			'o_moderated_by'			=> 1,
-			'o_admin_notes'				=> "Add some notes...",
+			'o_admin_notes'				=> NULL,
 			'o_pms_enabled'				=> 1,
 			'o_pms_mess_per_page'		=> 10,
 			'o_pms_max_receiver'		=> 5,
