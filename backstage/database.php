@@ -85,6 +85,7 @@ function get_table_def_mysql($table, $crlf) {
 	$result = $db->query($field_query);
 	if(!$result) {
 		message_backstage('Failed to get field list');
+		exit;
 	}
 
 	while ($row = $db->fetch_assoc($result)) {
@@ -107,7 +108,7 @@ function get_table_def_mysql($table, $crlf) {
 	//
 	// Drop the last ',$crlf' off ;)
 	//
-	$schema_create = preg_replace(',' . $crlf . '$', "", $schema_create);
+	$schema_create = preg_replace(','.$crlf.'$', "", $schema_create);
 
 	//
 	// Get any Indexed fields from the database
@@ -115,6 +116,7 @@ function get_table_def_mysql($table, $crlf) {
 	$result = $db->query($key_query);
 	if(!$result) {
 		message_backstage('Failed to get Indexed Fields');
+		exit;
 	}
 
 	while($row = $db->fetch_assoc($result)) {
@@ -163,6 +165,7 @@ function get_table_content_mysql($table, $handler) {
 	// Grab the data from the table.
 	if (!($result = $db->query("SELECT * FROM $table"))) {
 		message_backstage('Failed to get table content');
+		exit;
 	}
 
 	// Loop through the resulting rows and build the sql statement.
@@ -422,12 +425,14 @@ if (isset($_POST['backupstart'])) {
 				}
 			} else {
 				message_backstage($lang['Not restored']);
+				exit;
 			}
 		} else {
 			$sql_query = fread(fopen($backup_file_tmpname, 'r'), filesize($backup_file_tmpname));
 		}
 	} else {
 		message_backstage($lang['File format error']);
+		exit;
 	}
 	if ($sql_query != "") {
 		// Strip out sql comments
@@ -453,6 +458,7 @@ if (isset($_POST['backupstart'])) {
 				$result = $db->query($sql);
 				if(!$result) {
 					message_backstage($lang['Imported error']);
+					exit;
 				}
 			}
 		}
@@ -469,6 +475,7 @@ if (isset($_POST['backupstart'])) {
 <?php
 	} else {
 		message_backstage($lang['Restore completed']);
+		exit;
 	}
 } elseif (isset($_POST['repairall'])) {
 	// repair all tables
@@ -477,6 +484,7 @@ if (isset($_POST['backupstart'])) {
 	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
 		message_backstage($lang['Failed repair']);
+		exit;
 	}
 	$tables = array();
 	$counter = 0;
@@ -491,15 +499,18 @@ if (isset($_POST['backupstart'])) {
 		$sql = 'REPAIR TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql)) {
 			message_backstage($lang['Failed repair SQL']);
+			exit;
 		}
 	}
 	message_backstage('All tables repaired');
+	exit;
 } elseif (isset($_POST['optimizeall'])) {
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql)) {
 		// This makes no sense, the board would be dead :P
 		message_backstage($lang['Failed optimize']);
+		exit;
 	}
 	$tables = array();
 	$counter = 0;
@@ -514,9 +525,11 @@ if (isset($_POST['backupstart'])) {
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql)) {
 			message_backstage($lang['Failed optimize SQL']);
+			exit;
 		}
 	}
 	message_backstage('All tables optimised');
+	exit;
 } else {
 	
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
