@@ -1532,10 +1532,12 @@ Login at <login_url> to activate the account.
 // Shared
 'Toggle navigation'		=>	'Toggle navigation',
 'Offline'				=>	'Offline',
+'Cancel'				=>	'Cancel',
 
 // Mainstage
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
+'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
 'Notifications'			=>	'Notifications',
 
 'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',

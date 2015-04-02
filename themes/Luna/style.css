@@ -443,7 +443,7 @@ h2.forum-title .btn {
 }
 
 /* Modal forms */
-#login-form .modal-xs {
+#login-form .modal-xs, #delete-form .modal-xs {
 	max-width: 300px;
 }
 
@@ -463,6 +463,11 @@ h2.forum-title .btn {
 .modal-form .modal-header, .modal-form .modal-footer {
 	color: #fff;
 	background: #2788cb;
+}
+
+.modal-form#delete-form .modal-header, .modal-form#delete-form .modal-footer {
+	color: #fff;
+	background: #d9534f;
 }
 
 .modal-form .modal-title {
