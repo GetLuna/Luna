@@ -1632,7 +1632,7 @@ Login at <login_url> to activate the account.
 'Visit to moderate'		=>	'Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.',
 
 'Prune complete notifications'	=>	'Pruning complete. Notifications pruned.',
-'Pruned users'			=>	'Pruning complete. Users pruned %s.',
+'Pruned users'			=>	'Pruning complete, all users pruned that matched the requirements have been pruned.',
 'Prune notifications'	=>	'Prune notifications',
 'Type'					=>	'Type',
 'All notifications'		=>	'All notifications',

@@ -147,7 +147,6 @@ if (isset($_POST['notiprune'])) {
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
 	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '') {
-		load_admin_nav('maintenance', 'prune');
 		message_backstage('You need to set all settings!');
 		exit;
 	}
@@ -182,7 +181,7 @@ if (isset($_POST['userprune'])) {
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
-	message_backstage(printf($lang['Pruned users'], $users_pruned));
+	message_backstage($lang['Pruned users']);
 	exit;
 }
 
