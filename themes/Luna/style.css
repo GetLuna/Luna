@@ -5,6 +5,10 @@
 	border-radius: 0 !important;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body, html {
 	background-color: #e8e8e8;
 	font-family: "Segoe UI", Arial;
