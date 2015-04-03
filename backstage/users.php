@@ -15,8 +15,10 @@ if (!$luna_user['is_admmod'])
 // Show IP statistics for a certain user ID
 if (isset($_GET['ip_stats'])) {
 	$ip_stats = intval($_GET['ip_stats']);
-	if ($ip_stats < 1)
+	if ($ip_stats < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	// Fetch ip count
 	$result = $db->query('SELECT poster_ip, MAX(posted) AS last_used FROM '.$db->prefix.'posts WHERE poster_id='.$ip_stats.' GROUP BY poster_ip') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -86,8 +88,10 @@ if (isset($_GET['ip_stats'])) {
 } elseif (isset($_GET['show_users'])) {
 	$ip = luna_trim($_GET['show_users']);
 
-	if (!@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $ip) && !@preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $ip))
+	if (!@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $ip) && !@preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $ip)) {
 		message_backstage($lang['Bad IP message']);
+		exit;
+	}
 
 	// Fetch user count
 	$result = $db->query('SELECT DISTINCT poster_id, poster FROM '.$db->prefix.'posts WHERE poster_ip=\''.$db->escape($ip).'\'') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -193,8 +197,10 @@ if (isset($_GET['ip_stats'])) {
 
 // Move multiple users to other user groups
 elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > FORUM_ADMIN) {
 		message_backstage($lang['No permission'], false, '403 Forbidden');
+		exit;
+	}
 
 	confirm_referrer('backstage/users.php');
 
@@ -207,13 +213,17 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 	} else
 		$user_ids = array();
 
-	if (empty($user_ids))
+	if (empty($user_ids)) {
 		message_backstage($lang['No users selected']);
+		exit;
+	}
 
 	// Are we trying to batch move any admins?
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-	if ($db->result($result) > 0)
+	if ($db->result($result) > 0) {
 		message_backstage($lang['No move admins message']);
+		exit;
+	}
 
 	// Fetch all user groups
 	$all_groups = array();
@@ -222,7 +232,12 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 		$all_groups[$row[0]] = $row[1];
 
 	if (isset($_POST['move_users_comply'])) {
-		$new_group = isset($_POST['new_group']) && isset($all_groups[$_POST['new_group']]) ? $_POST['new_group'] : message_backstage($lang['Invalid group message']);
+		if (isset($_POST['new_group']) && isset($all_groups[$_POST['new_group']]))
+			$new_group = $_POST['new_group'];
+		else {
+			message_backstage($lang['Invalid group message']);
+			exit;
+		}
 
 		// Is the new group a moderator group?
 		$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$new_group) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -304,8 +319,10 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 
 // Delete multiple users
 elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > FORUM_ADMIN) {
 		message_backstage($lang['No permission'], false, '403 Forbidden');
+		exit;
+	}
 
 	confirm_referrer('backstage/users.php');
 
@@ -318,13 +335,17 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 	} else
 		$user_ids = array();
 
-	if (empty($user_ids))
+	if (empty($user_ids)) {
 		message_backstage($lang['No users selected']);
+		exit;
+	}
 
 	// Are we trying to delete any admins?
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
-	if ($db->result($result) > 0)
+	if ($db->result($result) > 0) {
 		message_backstage($lang['No delete admins message']);
+		exit;
+	}
 
 	if (isset($_POST['delete_users_comply'])) {
 		// Fetch user groups
@@ -439,8 +460,10 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 
 // Ban multiple users
 elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
-	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0')) {
 		message_backstage($lang['No permission'], false, '403 Forbidden');
+		exit;
+	}
 
 	confirm_referrer('backstage/users.php');
 
@@ -453,18 +476,24 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	} else
 		$user_ids = array();
 
-	if (empty($user_ids))
+	if (empty($user_ids)) {
 		message_backstage($lang['No users selected']);
+		exit;
+	}
 
 	// Are we trying to ban any admins?
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
-	if ($db->result($result) > 0)
+	if ($db->result($result) > 0) {
 		message_backstage($lang['No ban admins message']);
+		exit;
+	}
 
 	// Also, we cannot ban moderators
 	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id WHERE g.g_moderator=1 AND u.id IN ('.implode(',', $user_ids).')') or error('Unable to fetch moderator group info', __FILE__, __LINE__, $db->error());
-	if ($db->result($result) > 0)
+	if ($db->result($result) > 0) {
 		message_backstage($lang['No ban mods message']);
+		exit;
+	}
 
 	if (isset($_POST['ban_users_comply'])) {
 		$ban_message = luna_trim($_POST['ban_message']);
@@ -474,14 +503,18 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		if ($ban_expire != '' && $ban_expire != 'Never') {
 			$ban_expire = strtotime($ban_expire.' GMT');
 
-			if ($ban_expire == -1 || !$ban_expire)
+			if ($ban_expire == -1 || !$ban_expire) {
 				message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
+				exit;
+			}
 
 			$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 			$ban_expire -= $diff;
 
-			if ($ban_expire <= time())
+			if ($ban_expire <= time()) {
 				message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
+				exit;
+			}
 		} else
 			$ban_expire = 'NULL';
 
@@ -591,16 +624,20 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$query_str[] = 'direction='.$direction;
 	$query_str[] = 'user_group='.$user_group;
 
-	if (preg_match('%[^0-9]%', $posts_greater.$posts_less))
+	if (preg_match('%[^0-9]%', $posts_greater.$posts_less)) {
 		message_backstage($lang['Non numeric message']);
+		exit;
+	}
 
 	// Try to convert date/time to timestamps
 	if ($last_post_after != '') {
 		$query_str[] = 'last_post_after='.$last_post_after;
 
 		$last_post_after = strtotime($last_post_after);
-		if ($last_post_after === false || $last_post_after == -1)
+		if ($last_post_after === false || $last_post_after == -1) {
 			message_backstage($lang['Invalid date time message']);
+			exit;
+		}
 
 		$conditions[] = 'u.last_post>'.$last_post_after;
 	}
@@ -608,8 +645,10 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		$query_str[] = 'last_post_before='.$last_post_before;
 
 		$last_post_before = strtotime($last_post_before);
-		if ($last_post_before === false || $last_post_before == -1)
+		if ($last_post_before === false || $last_post_before == -1) {
 			message_backstage($lang['Invalid date time message']);
+			exit;
+		}
 
 		$conditions[] = 'u.last_post<'.$last_post_before;
 	}
@@ -617,8 +656,10 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		$query_str[] = 'last_visit_after='.$last_visit_after;
 
 		$last_visit_after = strtotime($last_visit_after);
-		if ($last_visit_after === false || $last_visit_after == -1)
+		if ($last_visit_after === false || $last_visit_after == -1) {
 			message_backstage($lang['Invalid date time message']);
+			exit;
+		}
 
 		$conditions[] = 'u.last_visit>'.$last_visit_after;
 	}
@@ -626,8 +667,10 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		$query_str[] = 'last_visit_before='.$last_visit_before;
 
 		$last_visit_before = strtotime($last_visit_before);
-		if ($last_visit_before === false || $last_visit_before == -1)
+		if ($last_visit_before === false || $last_visit_before == -1) {
 			message_backstage($lang['Invalid date time message']);
+			exit;
+		}
 
 		$conditions[] = 'u.last_visit<'.$last_visit_before;
 	}
@@ -635,8 +678,10 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		$query_str[] = 'registered_after='.$registered_after;
 
 		$registered_after = strtotime($registered_after);
-		if ($registered_after === false || $registered_after == -1)
+		if ($registered_after === false || $registered_after == -1) {
 			message_backstage($lang['Invalid date time message']);
+			exit;
+		}
 
 		$conditions[] = 'u.registered>'.$registered_after;
 	}
@@ -644,8 +689,10 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		$query_str[] = 'registered_before='.$registered_before;
 
 		$registered_before = strtotime($registered_before);
-		if ($registered_before === false || $registered_before == -1)
+		if ($registered_before === false || $registered_before == -1) {
 			message_backstage($lang['Invalid date time message']);
+			exit;
+		}
 
 		$conditions[] = 'u.registered<'.$registered_before;
 	}
