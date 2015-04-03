@@ -449,7 +449,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 				<h3 class="panel-title"><?php echo $lang['Confirm delete cat head'] ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php printf($lang['Confirm delete cat info'], $forum_name) ?> <?php echo $lang['Delete category warn'] ?></p>
+				<p><?php printf($lang['Confirm delete cat info'], $cat_name) ?> <?php echo $lang['Delete category warn'] ?></p>
 			</div>
 			<div class="panel-footer">
 				<button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button>
