@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
+	header("Location: login.php");
 if (isset($_GET['default_style'])) {
 	confirm_referrer('backstage/theme.php');
 	
@@ -29,9 +29,6 @@ if (isset($_GET['default_style'])) {
 
 	redirect('backstage/theme.php?saved=true');
 }
-
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Style']);
 define('FORUM_ACTIVE_PAGE', 'admin');

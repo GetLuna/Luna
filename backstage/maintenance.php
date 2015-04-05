@@ -13,10 +13,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'rebuild') {
@@ -145,9 +142,6 @@ if (isset($_POST['form_sent'])) {
 
 	if ($action == 'clear_cache') {
 		confirm_referrer('backstage/maintenance.php');
-	
-		if ($luna_user['g_id'] != FORUM_ADMIN)
-			message_backstage($lang['No permission'], false, '403 Forbidden');
 	
 		delete_all(FORUM_ROOT.'cache');
 		redirect('backstage/maitenance.php?cache_cleared=true');
