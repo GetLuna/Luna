@@ -73,7 +73,7 @@ if ($luna_user['color_scheme'] == '1') { // ModernBB
 	border-color: <?php echo $tertiary_color ?>;
 }
 
-a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.new-item {
 	background-color: <?php echo $tertiary_color ?>;
 	border-color: <?php echo $tertiary_color ?>;
 }
