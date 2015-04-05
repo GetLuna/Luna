@@ -130,8 +130,9 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if (!isset($_SESSION))
 		session_start();
 
-	if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_post_flood'])
-		$errors[] = sprintf( $lang['Flood'], $luna_user['g_post_flood'] );
+	if (isset($_SESION['last_session_request']))
+		if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_post_flood'])
+			$errors[] = sprintf( $lang['Flood'], $luna_user['g_post_flood'] );
 		
 	// Check users boxes
 	if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_pm_limit'])
