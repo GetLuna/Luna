@@ -52,7 +52,7 @@ if (isset($_POST['add_item'])) {
 		elseif ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order']))
 			message_backstage($lang['Must enter integer message']);
 		else
-			$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$cur_item['name'].'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$db->escape($cur_item['name']).'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/menu.php');
