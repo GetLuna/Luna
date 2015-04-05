@@ -28,6 +28,7 @@ if ($luna_user['first_run'] == '0') {
 			</div>
 		</div>
 		<?php } else { ?>
+		<?php $redirect_url = check_url(); ?>
 		<div class="col-md-4 hidden-sm">
 			<h3 class="first-run-forumtitle"><?php echo sprintf($lang['Welcome to'], $luna_config['o_board_title']) ?></h3>
 			<div class="list-group first-run-list">
