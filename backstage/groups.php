@@ -556,11 +556,11 @@ elseif (isset($_GET['del_group'])) {
 <div class="row">
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Add group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
-			</div>
-			<div class="panel-body">
-				<form id="groups" method="post" action="groups.php">
+			<form id="groups" method="post" action="groups.php">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Add group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+				</div>
+				<div class="panel-body">
 					<fieldset>
 						<span class="help-block"><?php echo $lang['Create new group'] ?></span>
 						<select class="form-control" id="base_group" name="base_group" tabindex="1">
@@ -578,8 +578,8 @@ while ($cur_group = $db->fetch_assoc($result)) {
 ?>
 						</select>
 					</fieldset>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
