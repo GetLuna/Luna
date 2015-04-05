@@ -28,7 +28,7 @@ if ($action == 'remove_install_file') {
 $install_file_exists = is_file(FORUM_ROOT.'install.php');
 
 if (isset($_POST['form_sent'])) {
-	confirm_referrer('backstage/index.php');
+	confirm_referrer(array('backstage/index.php', 'backstage/'));
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.$db->escape(luna_htmlspecialchars($_POST['form']['admin_note'])).'\' WHERE conf_name=\'o_admin_note\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
@@ -43,7 +43,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 if (isset($_POST['first_run_disable'])) {
-	confirm_referrer('backstage/index.php');
+	confirm_referrer(array('backstage/index.php', 'backstage/'));
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value=1 WHERE conf_name=\'o_first_run_backstage\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
