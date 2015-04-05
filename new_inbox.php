@@ -185,9 +185,6 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			// Check receivers boxes
 			elseif ($destinataires[$i]['g_id'] > FORUM_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
 				$errors[] = sprintf($lang['Dest full'], luna_htmlspecialchars($destinataire));	
-			// Are we authorized?
-			elseif (!$luna_user['is_admmod'] && $destinataires[$i]['allow_msg'] == '0')
-				$errors[] = sprintf($lang['User blocked'], luna_htmlspecialchars($destinataire));
 		} else
 			$errors[] = sprintf($lang['No user'], luna_htmlspecialchars($destinataire));
 		$i++;
