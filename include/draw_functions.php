@@ -157,7 +157,7 @@ function draw_editor($height) {
 <?php } ?>
 			</div>
 		</div>
-		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>"><?php
+		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
 			if (FORUM_ACTIVE_PAGE == 'post')
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			elseif (FORUM_ACTIVE_PAGE == 'edit')
