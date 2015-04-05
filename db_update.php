@@ -625,31 +625,13 @@ switch ($stage) {
 		$db->add_field('topics', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		
 		// Since 0.3.3765: Add new g_soft_delete_view field to the groups table
-		if (!$db->field_exists('groups', 'g_soft_delete_view')) {
-			// Add g_moderator column to groups table
-			$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
-
-			// Give the moderator group moderator privileges
-			$db->query('UPDATE '.$db->prefix.'groups SET g_soft_delete_view = 1 WHERE g_id < 3') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
+		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
 		
 		// Since 0.3.3765: Add new g_soft_delete_posts field to the groups table
-		if (!$db->field_exists('groups', 'g_soft_delete_posts')) {
-			// Add g_moderator column to groups table
-			$db->add_field('groups', 'g_soft_delete_posts', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_posts field', __FILE__, __LINE__, $db->error());
-
-			// Give the moderator group moderator privileges
-			$db->query('UPDATE '.$db->prefix.'groups SET g_soft_delete_posts = 1 WHERE g_id < 3') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
+		$db->add_field('groups', 'g_soft_delete_posts', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_posts field', __FILE__, __LINE__, $db->error());
 		
 		// Since 0.3.3765: Add new g_soft_delete_topics field to the groups table
-		if (!$db->field_exists('groups', 'g_soft_delete_topics')) {
-			// Add g_moderator column to groups table
-			$db->add_field('groups', 'g_soft_delete_topics', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_topics field', __FILE__, __LINE__, $db->error());
-
-			// Give the moderator group moderator privileges
-			$db->query('UPDATE '.$db->prefix.'groups SET g_soft_delete_topics = 1 WHERE g_id < 3') or error('Unable to update moderator powers', __FILE__, __LINE__, $db->error());
-		}
+		$db->add_field('groups', 'g_soft_delete_topics', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_topics field', __FILE__, __LINE__, $db->error());
 
 		// Since 0.3.3800: Remove obsolete o_post_responsive permission from config table
 		if (array_key_exists('o_post_responsive', $luna_config))
