@@ -658,6 +658,10 @@ switch ($stage) {
 		// Since 0.9.4156: Add the color column to the forums table
 		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#0d4382\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
 
+		// Since 0.9.4191: Remove obsolete o_quickpost permission from config table
+		if (array_key_exists('o_admin_notes', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_admin_notes\'') or error('Unable to remove config value \'o_admin_notes\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
