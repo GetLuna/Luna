@@ -673,6 +673,9 @@ switch ($stage) {
 		if (!array_key_exists('o_update_ring', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_update_ring\', \'1\')') or error('Unable to insert config value \'o_update_ring\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.9.4156: Add the color column to the forums table
+		$db->add_field('forums', 'color', 'INT(25)', false, '\'#0d4382\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
