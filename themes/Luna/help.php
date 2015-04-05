@@ -110,6 +110,8 @@ if ($db->num_rows($result) > 0)
 // Display the smiley set
 require FORUM_ROOT.'include/parser.php';
 
+$smilies = get_smilies();
+
 $smiley_groups = array();
 
 foreach ($smilies as $smiley_text => $smiley_img)

@@ -724,13 +724,9 @@ function do_clickable($text) {
 	return substr($text, 1);
 }
 
-
-//
-// Convert a series of smilies to images
-//
-function do_smilies($text) {
+function get_smilies() {
 	global $luna_config;
-	
+
 	// Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
 	if ($luna_config['o_emoji'] == 1) {
 		$smilies = array(
@@ -784,6 +780,18 @@ function do_smilies($text) {
 			'^.^' => 'happy.png'
 		);
 	}
+	
+	return $smilies;
+}
+
+
+//
+// Convert a series of smilies to images
+//
+function do_smilies($text) {
+	global $luna_config;
+
+	$smilies = get_smilies();
 
 	$text = ' '.$text.' ';
 
