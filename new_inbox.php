@@ -365,7 +365,7 @@ if ($r == '0' && $q == '0' && $edit == '0') {
 } else
 	$focus_element[] = 'req_message';
 
-define('FORUM_ACTIVE_PAGE', 'pm');
+define('FORUM_ACTIVE_PAGE', 'new-inbox');
 require load_page('header.php');
 
 require load_page('inbox-new.php');

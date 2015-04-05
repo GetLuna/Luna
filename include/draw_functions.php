@@ -50,7 +50,7 @@ function draw_preview_panel($message) {
 
 // Show the editor panel
 function draw_editor($height) {
-	global $lang, $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message, $luna_config, $cur_index;
+	global $lang, $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message, $luna_config, $cur_index, $p_message;
 	
 	$pin_btn = $silence_btn = '';
 
@@ -157,12 +157,16 @@ function draw_editor($height) {
 <?php } ?>
 			</div>
 		</div>
-		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
+		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>">
+<?php
 			if (FORUM_ACTIVE_PAGE == 'post')
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			elseif (FORUM_ACTIVE_PAGE == 'edit')
 				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
-?></textarea>
+			elseif (FORUM_ACTIVE_PAGE == 'new-inbox')
+				echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
+?>
+		</textarea>
 		<div class="btn-toolbar textarea-toolbar textarea-bottom">
 			<div class="btn-group pull-right">
 				<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Preview'] ?></button>
