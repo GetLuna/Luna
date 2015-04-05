@@ -14,7 +14,6 @@ if (!empty($errors)) {
 		<h3 class="panel-title"><?php echo $lang['Post errors'] ?></h3>
 	</div>
 	<div class="panel-body">
-		<p><?php echo $lang['Post errors info'] ?></p>
 <?php
 	foreach ($errors as $cur_error)
 		echo "\t\t\t\t".$cur_error."\n";
