@@ -8,6 +8,9 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/parser.php';
+require FORUM_ROOT.'include/utf8/substr_replace.php';
+require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
+require FORUM_ROOT.'include/utf8/strcasecmp.php';
 
 // Load the me functions script
 require FORUM_ROOT.'include/me_functions.php';
