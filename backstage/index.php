@@ -240,7 +240,7 @@ if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 							<h3 class="panel-title"><?php echo $lang['Admin notes'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 						</div>
 						<div class="panel-body">
-							<textarea class="form-control" name="form[admin_note]" placeholder="<?php echo $lang['Add a note...'] ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
+							<textarea class="form-control" name="form[admin_note]" placeholder="<?php echo $lang['Add a note...'] ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_notes'] ?></textarea>
 						</div>
 					</div>
 				</form>
