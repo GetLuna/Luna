@@ -63,7 +63,7 @@ function draw_editor($height) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
+		$pin_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
 
 	if (FORUM_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
@@ -72,7 +72,7 @@ function draw_editor($height) {
 		}
 	
 		if ($is_admmod)
-			$silence_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
+			$silence_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
 	}
 
 ?>
@@ -83,29 +83,29 @@ function draw_editor($height) {
 			<?php echo $pin_btn ?>
 			<?php echo $silence_btn ?>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php echo $lang['Bold']; ?>"><span class="fa fa-fw fa-bold fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php echo $lang['Underline']; ?>"><span class="fa fa-fw fa-underline fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php echo $lang['Italic']; ?>"><span class="fa fa-fw fa-italic fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php echo $lang['Strike']; ?>"><span class="fa fa-fw fa-strikethrough fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php echo $lang['Bold']; ?>" tabindex="-1"><span class="fa fa-fw fa-bold fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php echo $lang['Underline']; ?>" tabindex="-1"><span class="fa fa-fw fa-underline fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php echo $lang['Italic']; ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php echo $lang['Strike']; ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php echo $lang['Heading']; ?>"><span class="fa fa-fw fa-header fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php echo $lang['Subscript']; ?>"><span class="fa fa-fw fa-subscript fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php echo $lang['Superscript']; ?>"><span class="fa fa-fw fa-superscript fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php echo $lang['Heading']; ?>" tabindex="-1"><span class="fa fa-fw fa-header fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php echo $lang['Subscript']; ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php echo $lang['Superscript']; ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php echo $lang['Quote']; ?>"><span class="fa fa-fw fa-quote-left fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php echo $lang['Code']; ?>"><span class="fa fa-fw fa-code fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php echo $lang['Inline code']; ?>"><span class="fa fa-fw fa-file-code-o fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php echo $lang['Quote']; ?>" tabindex="-1"><span class="fa fa-fw fa-quote-left fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php echo $lang['Code']; ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php echo $lang['Inline code']; ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php echo $lang['URL']; ?>"><span class="fa fa-fw fa-link fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php echo $lang['Image']; ?>"><span class="fa fa-fw fa-image fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php echo $lang['Video']; ?>"><span class="fa fa-fw fa-play-circle fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php echo $lang['URL']; ?>" tabindex="-1"><span class="fa fa-fw fa-link fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php echo $lang['Image']; ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php echo $lang['Video']; ?>" tabindex="-1"><span class="fa fa-fw fa-play-circle fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php echo $lang['List']; ?>"><span class="fa fa-fw fa-list-ul fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php echo $lang['List item']; ?>"><span class="fa fa-fw fa-asterisk fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php echo $lang['List']; ?>" tabindex="-1"><span class="fa fa-fw fa-list-ul fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php echo $lang['List item']; ?>" tabindex="-1"><span class="fa fa-fw fa-asterisk fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
 <?php if ($luna_config['o_emoji'] == 1) { ?>
