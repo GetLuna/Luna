@@ -105,7 +105,7 @@ function get_table_def_mysql($table, $crlf) {
 	//
 	// Drop the last ',$crlf' off ;)
 	//
-	$schema_create = preg_replace(','.$crlf.'$', "", $schema_create);
+	$schema_create = preg_replace('/,'.$crlf.'$/', "", $schema_create);
 
 	//
 	// Get any Indexed fields from the database
