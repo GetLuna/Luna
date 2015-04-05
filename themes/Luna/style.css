@@ -11,7 +11,7 @@ html {
 
 body, html {
 	background-color: #e8e8e8;
-	font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	min-height: 100%;
 }
 
@@ -53,7 +53,7 @@ h2 {
 
 /* Text */
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Segoe UI Light", "Segoe UI", Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI Light", "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	font-weight: 100;
 }
 

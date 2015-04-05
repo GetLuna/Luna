@@ -17,7 +17,7 @@
 
 body {
 	margin-top: 50px;
-	font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	background-color: #444;
 }
 
@@ -27,7 +27,7 @@ td, th {
 
 /* Text */
 h1, h2, h3, h4, h5, h6, .btn, .navbar {
-	font-family: "Segoe UI Semilight", "Segoe UI", Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI Semilight", "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 }
 
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6, .btn, .navbar {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: "Segoe UI Light", "Segoe UI Semilight", "Segoe UI", Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI Light", "Segoe UI Semilight", "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 h3 {
