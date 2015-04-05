@@ -118,7 +118,7 @@ $lang = array(
 'Total query time'					=>	'Total query time: %s',
 
 // First run
-'First run message'					=>	'Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Through we like to point out some actions you might want to do first.',
+'First run message'					=>	'Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Trough we like to point out some actions you might want to do first.',
 'Hi there'							=>	'Hi there, %s',
 'Welcome to'						=>	'Welcome to %s',
 'Change your avatar'				=>	'Change your avatar',
