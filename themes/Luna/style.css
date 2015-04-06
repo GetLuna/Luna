@@ -103,8 +103,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Addons */
-#website-addon, #microsoft-addon, #facebook-addon, #twitter-addon, #google-addon {
+#mail-addon, #website-addon, #microsoft-addon, #facebook-addon, #twitter-addon, #google-addon {
 	color: #fff;
+}
+
+#mail-addon {
+	background-color: #fdcd00;
 }
 
 #website-addon {

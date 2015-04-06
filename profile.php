@@ -74,17 +74,13 @@ if ($luna_user['g_search'] == '1') {
 if ($posts_field != '')
 	$user_personality[] = '<br /><div class="btn-group">'.$posts_field.'</div>';
 
-if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-	$email_field = '<a class="btn btn-default btn-block" href="mailto:'.luna_htmlspecialchars($user['email']).'"><span class="fa fa-fw fa-send-o"></span> '.luna_htmlspecialchars($user['email']).'</a>';
-elseif ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-	$email_field = '<a class="btn btn-default btn-block" href="misc.php?email='.$id.'"><span class="fa fa-fw fa-send-o"></span> '.$lang['Send email'].'</a>';
-else
-	$email_field = '';
-
-if ($email_field != '')
-	$email_field;
-
 $user_messaging = array();
+
+if ($user['email_setting'] == '0' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="mail-addon"><span class="fa fa-fw fa-envelope-o"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars($user['email']).'" aria-describedby="mail-addon" readonly></div>';
+
+elseif ($user['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+	$user_messaging[] = '<a class="btn btn-default btn-block" href="misc.php?email='.$id.'"><span class="fa fa-fw fa-send-o"></span> '.$lang['Send email'].'</a>';
 
 if ($user['url'] != '')
 	$user_messaging[] = '<div class="input-group input"><span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></span><input type="text" class="form-control" value="'.luna_htmlspecialchars(($luna_config['o_censoring'] == '1') ? censor_words($user['url']) : $user['url']).'" aria-describedby="website-addon" readonly></div>';
@@ -121,6 +117,7 @@ if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
 define('FORUM_ACTIVE_PAGE', 'me');
 require load_page('header.php');
+
 require load_page('profile.php');
 
 require load_page('footer.php');
