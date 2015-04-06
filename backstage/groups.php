@@ -130,7 +130,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_view" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Allow soft deleted'] ?>
 							</label>
 						</div>
@@ -141,7 +141,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_posts" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Allow post soft delete'] ?>
 							</label>
 						</div>
@@ -152,7 +152,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_topics" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Allow topic soft delete'] ?>
 							</label>
 						</div>
