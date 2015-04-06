@@ -9,10 +9,7 @@ define('FORUM_ROOT', '../');
 require '../include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
+	header("Location: login.php");
 
 // Add a new item
 if (isset($_POST['add_item'])) {
@@ -55,7 +52,7 @@ if (isset($_POST['add_item'])) {
 		elseif ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order']))
 			message_backstage($lang['Must enter integer message']);
 		else
-			$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$cur_item['name'].'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$db->escape($cur_item['name']).'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
 	}
 
 	redirect('backstage/menu.php');

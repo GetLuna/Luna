@@ -31,14 +31,14 @@ if ($luna_user['is_guest']) {
 	$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
 
 ?>
-			<label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="info-textfield form-control" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" />
+			<label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="info-textfield form-control" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" autofocus="autofocus" />
 			<label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="info-textfield form-control" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
 <?php
 
 }
 
 if ($fid): ?>
-			<label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="info-textfield form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>" />
+			<label class="required hidden"><?php echo $lang['Subject'] ?></label><input class="info-textfield form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" value="<?php if (isset($_POST['req_subject'])) echo luna_htmlspecialchars($subject); ?>" maxlength="70" tabindex="<?php echo $cur_index++ ?>"<?php if (!$luna_user['is_guest']) { echo ' autofocus="autofocus"'; } ?> />
 <?php endif; ?>
 <?php draw_editor('20'); ?>
 </form>

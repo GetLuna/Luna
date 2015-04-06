@@ -11,10 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 // Add/edit a group (stage 1)
 if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	if (isset($_POST['add_group'])) {
@@ -133,7 +130,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_view" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Allow soft deleted'] ?>
 							</label>
 						</div>
@@ -144,7 +141,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_posts" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Allow post soft delete'] ?>
 							</label>
 						</div>
@@ -155,7 +152,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
+								<input type="checkbox" name="soft_delete_topics" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
 								<?php echo $lang['Allow topic soft delete'] ?>
 							</label>
 						</div>
@@ -164,6 +161,17 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php endif; endif; ?>
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Use Inbox'] ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_pm'] == '1') echo ' checked' ?> />
+								<?php echo $lang['Use Inbox info'] ?>
+							</label>
+						</div>
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Inbox'] ?></label>
 					<div class="col-sm-9">
@@ -559,11 +567,11 @@ elseif (isset($_GET['del_group'])) {
 <div class="row">
 	<div class="col-sm-4">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Add group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
-			</div>
-			<div class="panel-body">
-				<form id="groups" method="post" action="groups.php">
+			<form id="groups" method="post" action="groups.php">
+				<div class="panel-heading">
+					<h3 class="panel-title"><?php echo $lang['Add group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+				</div>
+				<div class="panel-body">
 					<fieldset>
 						<span class="help-block"><?php echo $lang['Create new group'] ?></span>
 						<select class="form-control" id="base_group" name="base_group" tabindex="1">
@@ -581,8 +589,8 @@ while ($cur_group = $db->fetch_assoc($result)) {
 ?>
 						</select>
 					</fieldset>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">

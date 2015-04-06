@@ -10,9 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0')) {
-	header("Location: ../login.php");
-}
+if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+	header("Location: login.php");
 
 // Add/edit a ban (stage 1)
 if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {

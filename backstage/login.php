@@ -9,11 +9,14 @@ if ($luna_user['is_admmod'])
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 
+$redirect_url = check_url();
+
 ?>
 <div class="well form-box">
 	<h3 class="form-title"><?php echo $lang['Login'] ?></h3>
 	<form id="login-form" method="post" action="../login.php?action=in" onsubmit="return">
 		<input type="hidden" name="form_sent" value="1" />
+		<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
 		<div class="form-group">
 			<input class="form-control top-form" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
 		</div>

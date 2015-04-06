@@ -39,60 +39,6 @@ if (!defined('FORUM'))
 %iex' */
 $re_list = '%\[list(?:=([1*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1*])?+\]|\[/list\])\[[^\[]*+)*+|(?R))*)\[/list\]%i';
 
-// Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
-if ($luna_config['o_emoji'] == 1) {
-	$smilies = array(
-		':)' => '&#x263a;',
-		':|' => '&#x1f611;',
-		':(' => '&#x1f629;',
-		':d' => '&#x1f604;',
-		':D' => '&#x1f604;',
-		':o' => '&#x1f632;',
-		':O' => '&#x1f632;',
-		';)' => '&#x1f609;',
-		':/' => '&#x1f612;',
-		':P' => '&#x1f60b;',
-		':p' => '&#x1f60b;',
-		':lol:' => '&#x1f600;',
-		':-))' => '&#x1f600;',
-		':@' => '&#x1f620;',
-		'%)' => '&#x1f606;',
-		'b:' => '&#x1f60e;',
-		'B:' => '&#x1f60e;',
-		':hc:' => '&#x1f605;',
-		'(A)' => '&#x1f607;',
-		'(a)' => '&#x1f607;',
-		'^-^' => '&#x1f60f;',
-		'^.^' => '&#x1f600;'
-	);
-} else {
-	$smilies = array(
-		':)' => 'smile.png',
-		':|' => 'neutral.png',
-		':(' => 'sad.png',
-		':d' => 'big_smile.png',
-		':D' => 'big_smile.png',
-		':o' => 'yikes.png',
-		':O' => 'yikes.png',
-		';)' => 'wink.png',
-		':/' => 'hmm.png',
-		':P' => 'tongue.png',
-		':p' => 'tongue.png',
-		':lol:' => 'happy.png',
-		':-))' => 'happy.png',
-		':@' => 'angry.png',
-		'%)' => 'roll.png',
-		'b:' => 'cool.png',
-		'B:' => 'cool.png',
-		':hc:' => 'happycry.png',
-		'(A)' => 'angel.png',
-		'^-^' => 'ohyeah.png',
-		'(a)' => 'angel.png',
-		'(A)' => 'angel.png',
-		'^.^' => 'happy.png'
-	);
-}
-
 //
 // Make sure all BBCodes are lower case and do a little cleanup
 //
@@ -778,12 +724,74 @@ function do_clickable($text) {
 	return substr($text, 1);
 }
 
+function get_smilies() {
+	global $luna_config;
+
+	// Here you can add additional smilies if you like (please note that you must escape single quote and backslash)
+	if ($luna_config['o_emoji'] == 1) {
+		$smilies = array(
+			':)' => '&#x263a;',
+			':|' => '&#x1f611;',
+			':(' => '&#x1f629;',
+			':d' => '&#x1f604;',
+			':D' => '&#x1f604;',
+			':o' => '&#x1f632;',
+			':O' => '&#x1f632;',
+			';)' => '&#x1f609;',
+			':/' => '&#x1f612;',
+			':P' => '&#x1f60b;',
+			':p' => '&#x1f60b;',
+			':lol:' => '&#x1f600;',
+			':-))' => '&#x1f600;',
+			':@' => '&#x1f620;',
+			'%)' => '&#x1f606;',
+			'b:' => '&#x1f60e;',
+			'B:' => '&#x1f60e;',
+			':hc:' => '&#x1f605;',
+			'(A)' => '&#x1f607;',
+			'(a)' => '&#x1f607;',
+			'^-^' => '&#x1f60f;',
+			'^.^' => '&#x1f600;'
+		);
+	} else {
+		$smilies = array(
+			':)' => 'smile.png',
+			':|' => 'neutral.png',
+			':(' => 'sad.png',
+			':d' => 'big_smile.png',
+			':D' => 'big_smile.png',
+			':o' => 'yikes.png',
+			':O' => 'yikes.png',
+			';)' => 'wink.png',
+			':/' => 'hmm.png',
+			':P' => 'tongue.png',
+			':p' => 'tongue.png',
+			':lol:' => 'happy.png',
+			':-))' => 'happy.png',
+			':@' => 'angry.png',
+			'%)' => 'roll.png',
+			'b:' => 'cool.png',
+			'B:' => 'cool.png',
+			':hc:' => 'happycry.png',
+			'(A)' => 'angel.png',
+			'^-^' => 'ohyeah.png',
+			'(a)' => 'angel.png',
+			'(A)' => 'angel.png',
+			'^.^' => 'happy.png'
+		);
+	}
+	
+	return $smilies;
+}
+
 
 //
 // Convert a series of smilies to images
 //
 function do_smilies($text) {
-	global $smilies, $luna_config;
+	global $luna_config;
+
+	$smilies = get_smilies();
 
 	$text = ' '.$text.' ';
 

@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
+	header("Location: login.php");
 	
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -28,9 +28,9 @@ if ($action == 'remove_install_file') {
 $install_file_exists = is_file(FORUM_ROOT.'install.php');
 
 if (isset($_POST['form_sent'])) {
-	confirm_referrer('backstage/index.php');
+	confirm_referrer(array('backstage/index.php', 'backstage/'));
 
-	$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.luna_htmlspecialchars($_POST['form']['admin_note']).'\' WHERE conf_name=\'o_admin_note\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.$db->escape(luna_htmlspecialchars($_POST['form']['admin_note'])).'\' WHERE conf_name=\'o_admin_note\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
 	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
@@ -43,7 +43,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 if (isset($_POST['first_run_disable'])) {
-	confirm_referrer('backstage/index.php');
+	confirm_referrer(array('backstage/index.php', 'backstage/'));
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value=1 WHERE conf_name=\'o_first_run_backstage\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 

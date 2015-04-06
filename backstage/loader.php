@@ -11,7 +11,8 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
+	header("Location: login.php");
+
 // The plugin to load should be supplied via GET
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 if (!preg_match('%^AM?P_(\w*?)\.php$%i', $plugin))

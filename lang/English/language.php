@@ -118,7 +118,7 @@ $lang = array(
 'Total query time'					=>	'Total query time: %s',
 
 // First run
-'First run message'					=>	'Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Through we like to point out some actions you might want to do first.',
+'First run message'					=>	'Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.',
 'Hi there'							=>	'Hi there, %s',
 'Welcome to'						=>	'Welcome to %s',
 'Change your avatar'				=>	'Change your avatar',
@@ -1539,15 +1539,21 @@ Login at <login_url> to activate the account.
 'Compose'				=>	'Compose',
 'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
 'Notifications'			=>	'Notifications',
+'Use Inbox info'		=>	'Allow users to send messages with Inbox.',
 
 'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
 'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
+'Soft delete'			=>	'Soft delete',
+'Soft reset'			=>	'Soft reset',
 
 'Soft delete info'		=>	'The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.',
 'Revert soft delete'	=>	'This post has been soft deleted. We\'ll enable it again with a click on the button.',
 'Report reason'			=>	'Tell us why you are reporting this.',
 
 'No new notifications'	=>	'No new notifications',
+'Personalize'			=>	'Personalize',
+'Threads'				=>	'Threads',
+'Time'					=>	'Time',
 
 'No users online'		=>	'No users online',
 

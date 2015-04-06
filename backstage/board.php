@@ -11,10 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 // Add a "default" forum
 if (isset($_POST['add_forum'])) {
 	confirm_referrer('backstage/board.php');

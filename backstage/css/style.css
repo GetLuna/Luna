@@ -1,13 +1,13 @@
 /*
  * Copyright Studio 384 and Luna Group
- * Bootstrap Template: Trent
- * Version:			0.3
- * Based on:		   Trent v1.3 (http://studio384.be/trent.php)
- * Since:			  0.0.40.2900
- * Bootstrap:		  3.3.1
+ * Bootstrap Template: 	Trent
+ * Version:				0.3
+ * Based on:			Trent v1.3 (http://studio384.be/trent.php)
+ * Since:				0.0.40.2900
+ * Bootstrap:			3.3.1
  */
- 
-@import url('../../include/css/font-awesome.min.css');
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
  
 /* General fixes */
 * {
@@ -17,7 +17,7 @@
 
 body {
 	margin-top: 50px;
-	font-family: "Segoe UI";
+	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	background-color: #444;
 }
 
@@ -27,7 +27,7 @@ td, th {
 
 /* Text */
 h1, h2, h3, h4, h5, h6, .btn, .navbar {
-	font-family: "Segoe UI Semilight", "Segoe UI";
+	font-family: "Segoe UI Semilight", "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	font-weight: 300;
 }
 
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6, .btn, .navbar {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: "Segoe UI Light", "Segoe UI Semilight", "Segoe UI";
+	font-family: "Segoe UI Light", "Segoe UI Semilight", "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 h3 {
@@ -183,7 +183,7 @@ label .help-block {
 .jumboheader h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
-	font-family: "Segoe UI Light";
+	font-family: "Segoe UI Light", "Open Sans";
 }
 
 .nav-tabs > li > a {
