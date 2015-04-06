@@ -162,6 +162,17 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Use Inbox'] ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_pm'] == '1') echo ' checked' ?> />
+								<?php echo $lang['Use Inbox info'] ?>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Inbox'] ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="inbox_limit" maxlength="5" value="<?php echo $group['g_pm_limit'] ?>" />

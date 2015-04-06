@@ -1539,6 +1539,7 @@ Login at <login_url> to activate the account.
 'Compose'				=>	'Compose',
 'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
 'Notifications'			=>	'Notifications',
+'Use Inbox info'		=>	'Allow users to send messages with Inbox.',
 
 'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
 'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
