@@ -1551,6 +1551,9 @@ Login at <login_url> to activate the account.
 'Report reason'			=>	'Tell us why you are reporting this.',
 
 'No new notifications'	=>	'No new notifications',
+'Personalize'			=>	'Personalize',
+'Threads'				=>	'Threads',
+'Time'					=>	'Time',
 
 'No users online'		=>	'No users online',
 
