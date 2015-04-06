@@ -18,6 +18,14 @@ if (isset($_POST['add_item'])) {
 	$item_name = luna_trim($_POST['name']);
 	$item_url = luna_trim($_POST['url']);
 
+	if ($item_name == '') {
+		message_backstage($lang['Must add title']);
+		exit;
+	} elseif ($item_url == '') {
+		message_backstage($lang['Must add URL']);
+		exit;
+	}
+
 	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$db->escape($item_url).'\', \''.$db->escape($item_name).'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
 	redirect('backstage/menu.php');
@@ -50,10 +58,10 @@ if (isset($_POST['add_item'])) {
 			$cur_item['visible'] = 0;
 		
 		if ($cur_item['name'] == '') {
-			message_backstage($lang['Must enter name message']);
+			message_backstage($lang['Must add title']);
 			exit;
 		} elseif ($cur_item['url'] == '') {
-			message_backstage($lang['Must enter name message']);
+			message_backstage($lang['Must add URL']);
 			exit;
 		} elseif ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order'])) {
 			message_backstage($lang['Must enter integer message']);

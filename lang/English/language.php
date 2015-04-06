@@ -1633,6 +1633,8 @@ Login at <login_url> to activate the account.
 'Name'					=>	'Name',
 'Position'				=>	'Position',
 'Show'					=>	'Show',
+'Must add URL'			=>	'You must give your menu item an URL.',
+'Must add title'		=>	'You must give your menu item a title.',
 
 'Moderate content'		=>	'Moderate content',
 'Visit to moderate'		=>	'Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.',
