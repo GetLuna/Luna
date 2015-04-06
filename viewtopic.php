@@ -168,6 +168,8 @@ for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
 if (empty($post_ids))
 	error('The post table and topic table seem to be out of sync!', __FILE__, __LINE__);
 
+$cur_index = 0;
+
 require load_page('thread.php');
 
 // Increment "num_views" for topic

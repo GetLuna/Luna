@@ -9,6 +9,7 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/inbox_functions.php';
+require FORUM_ROOT.'include/email.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
@@ -129,8 +130,9 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if (!isset($_SESSION))
 		session_start();
 
-	if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_post_flood'])
-		$errors[] = sprintf( $lang['Flood'], $luna_user['g_post_flood'] );
+	if (isset($_SESION['last_session_request']))
+		if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_post_flood'])
+			$errors[] = sprintf( $lang['Flood'], $luna_user['g_post_flood'] );
 		
 	// Check users boxes
 	if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_pm_limit'])
@@ -184,9 +186,6 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			// Check receivers boxes
 			elseif ($destinataires[$i]['g_id'] > FORUM_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
 				$errors[] = sprintf($lang['Dest full'], luna_htmlspecialchars($destinataire));	
-			// Are we authorized?
-			elseif (!$luna_user['is_admmod'] && $destinataires[$i]['allow_msg'] == '0')
-				$errors[] = sprintf($lang['User blocked'], luna_htmlspecialchars($destinataire));
 		} else
 			$errors[] = sprintf($lang['No user'], luna_htmlspecialchars($destinataire));
 		$i++;
@@ -367,7 +366,7 @@ if ($r == '0' && $q == '0' && $edit == '0') {
 } else
 	$focus_element[] = 'req_message';
 
-define('FORUM_ACTIVE_PAGE', 'pm');
+define('FORUM_ACTIVE_PAGE', 'new-inbox');
 require load_page('header.php');
 
 require load_page('inbox-new.php');

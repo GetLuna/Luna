@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
+	header("Location: login.php");
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Update']);
 define('FORUM_ACTIVE_PAGE', 'admin');

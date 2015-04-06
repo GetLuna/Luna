@@ -28,6 +28,7 @@ if ($luna_user['first_run'] == '0') {
 			</div>
 		</div>
 		<?php } else { ?>
+		<?php $redirect_url = check_url(); ?>
 		<div class="col-md-4 hidden-sm">
 			<h3 class="first-run-forumtitle"><?php echo sprintf($lang['Welcome to'], $luna_config['o_board_title']) ?></h3>
 			<div class="list-group first-run-list">
@@ -40,6 +41,7 @@ if ($luna_user['first_run'] == '0') {
 				<fieldset>
 					<h3><?php echo $lang['Login'] ?></h3>
 					<input type="hidden" name="form_sent" value="1" />
+					<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
 					<div class="first-run-login">
 						<input class="form-control top-form" type="text" name="req_username" maxlength="25" tabindex="1" placeholder="<?php echo $lang['Username'] ?>" />
 						<input class="form-control bottom-form" type="password" name="req_password" tabindex="2" placeholder="<?php echo $lang['Password'] ?>" />

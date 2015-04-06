@@ -1,13 +1,17 @@
-@import url('../../include/css/font-awesome.min.css');
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
 /* General fixes */
 * {
 	border-radius: 0 !important;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body, html {
 	background-color: #e8e8e8;
-	font-family: "Segoe UI", Arial;
+	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	min-height: 100%;
 }
 
@@ -49,7 +53,7 @@ h2 {
 
 /* Text */
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Segoe UI Light", "Segoe UI", Arial;
+	font-family: "Segoe UI Light", "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	font-weight: 100;
 }
 

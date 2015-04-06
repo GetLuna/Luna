@@ -32,6 +32,7 @@ $user_avatar = draw_user_avatar($luna_user['id'], 'avatar');
 // Navbar data
 $links = array();
 $menu_title = $luna_config['o_board_title'];
+$inbox_menu_item = '';
 
 $num_new_pm = 0;
 if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1') {
@@ -42,7 +43,9 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 	if ($num_new_pm > 0)
 		$new_inbox = $num_new_pm.' ';
 	else
-		$new_inbox = '';	
+		$new_inbox = '';
+
+	$inbox_menu_item = '<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>';
 }
 
 // Check for new notifications
@@ -96,8 +99,7 @@ if ($luna_user['is_guest'])
 	$usermenu = '<li id="navregister"'.((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : '').'><a href="register.php">'.$lang['Register'].'</a></li>
 				 <li><a href="#" data-toggle="modal" data-target="#login-form">'.$lang['Login'].'</a></li>';
 else
-	$usermenu = $backstage.$notification_menu_item.'
-				<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>
+	$usermenu = $backstage.$notification_menu_item.$inbox_menu_item.'
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown">'.luna_htmlspecialchars($luna_user['username']).' '.$user_avatar.' <span class="fa fa-fw fa-angle-down"></span></a>
 					<ul class="dropdown-menu">

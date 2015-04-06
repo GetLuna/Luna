@@ -11,10 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 //
 // Increase maximum execution time, but don't complain about it if it isn't allowed.
 //
@@ -108,7 +105,7 @@ function get_table_def_mysql($table, $crlf) {
 	//
 	// Drop the last ',$crlf' off ;)
 	//
-	$schema_create = preg_replace(','.$crlf.'$', "", $schema_create);
+	$schema_create = preg_replace('/,'.$crlf.'$/', "", $schema_create);
 
 	//
 	// Get any Indexed fields from the database

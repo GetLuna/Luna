@@ -36,7 +36,7 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	}
 
 	if (!$authorized)
-		message($lang['Wrong user/pass'].' <a href="login.php?action=forget">'.$lang['Forgotten pass'].'</a>');
+		message($lang['Wrong user/pass'].' <a data-toggle="modal" data-target="#reqpass" data-dismiss="modal">'.$lang['Forgotten pass'].'</a>.');
 
 	// Update the status if this is the first time the user logged in
 	if ($cur_user['group_id'] == FORUM_UNVERIFIED) {
@@ -65,10 +65,8 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 }
 
 
-elseif ($action == 'out')
-{
-	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address())))
-	{
+elseif ($action == 'out') {
+	if ($luna_user['is_guest'] || !isset($_GET['id']) || $_GET['id'] != $luna_user['id'] || !isset($_GET['csrf_token']) || $_GET['csrf_token'] != luna_hash($luna_user['id'].luna_hash(get_remote_address()))) {
 		header('Location: index.php');
 		exit;
 	}
@@ -86,10 +84,8 @@ elseif ($action == 'out')
 }
 
 
-elseif ($action == 'forget' || $action == 'forget_2')
-{
-	if (!$luna_user['is_guest'])
-	{
+elseif ($action == 'forget' || $action == 'forget_2') {
+	if (!$luna_user['is_guest']) {
 		header('Location: index.php');
 		exit;
 	}

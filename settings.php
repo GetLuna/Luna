@@ -8,6 +8,9 @@
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/parser.php';
+require FORUM_ROOT.'include/utf8/substr_replace.php';
+require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
+require FORUM_ROOT.'include/utf8/strcasecmp.php';
 
 // Load the me functions script
 require FORUM_ROOT.'include/me_functions.php';
@@ -501,7 +504,7 @@ if (isset($_POST['update_group_membership'])) {
 	redirect('settings.php?id='.$id);
 } else {
 	
-	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.use_pm, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message($lang['Bad request'], false, '404 Not Found');
 	
@@ -573,6 +576,7 @@ if (isset($_POST['update_group_membership'])) {
 			'show_img_sig'		=> isset($_POST['form']['show_img_sig']) ? '1' : '0',
 			'show_avatars'		=> isset($_POST['form']['show_avatars']) ? '1' : '0',
 			'show_sig'			=> isset($_POST['form']['show_sig']) ? '1' : '0',
+			'use_pm'			=> isset($_POST['form']['use_pm']) ? '1' : '0',
 			'email_setting'		=> intval($_POST['form']['email_setting']),
 			'notify_with_post'	=> isset($_POST['form']['notify_with_post']) ? '1' : '0',
 			'auto_notify'		=> isset($_POST['form']['auto_notify']) ? '1' : '0'

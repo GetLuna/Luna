@@ -11,7 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
+	header("Location: login.php");
 // Show IP statistics for a certain user ID
 if (isset($_GET['ip_stats'])) {
 	$ip_stats = intval($_GET['ip_stats']);
