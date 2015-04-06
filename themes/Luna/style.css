@@ -402,6 +402,10 @@ a.list-group-item-cat h4 {
 	color: #fff;
 }
 
+.new-item.active {
+	color: #fff;
+}
+
 a.list-group-item-cat .forum-description {
 	display: block;
 	padding: 10px 0 10px 15px;
