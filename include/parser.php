@@ -60,8 +60,8 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 	if ($is_signature) {
 		global $lang;
 
-		if (preg_match('%\[/?(?:quote|code|list|h)\b[^\]]*\]%i', $text))
-			$errors[] = $lang['Signature quote/code/list/h'];
+		if (preg_match('%\[/?(?:quote|code|video|list|h)\b[^\]]*\]%i', $text))
+			$errors[] = $lang['Signature unallowed'];
 	}
 
 	// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
