@@ -18,7 +18,7 @@ if (isset($_POST['add_item'])) {
 	$item_name = luna_trim($_POST['name']);
 	$item_url = luna_trim($_POST['url']);
 
-	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$item_url.'\', \''.$item_name.'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
+	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$db->escape($item_url).'\', \''.$db->escape($item_name).'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
 	redirect('backstage/menu.php');
 } elseif (isset($_GET['del_item'])) {
