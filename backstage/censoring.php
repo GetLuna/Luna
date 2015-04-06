@@ -12,6 +12,7 @@ require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
+
 // Add a censor word
 if (isset($_POST['add_word'])) {
 	confirm_referrer('backstage/censoring.php');
@@ -19,8 +20,10 @@ if (isset($_POST['add_word'])) {
 	$search_for = luna_trim($_POST['new_search_for']);
 	$replace_with = luna_trim($_POST['new_replace_with']);
 
-	if ($search_for == '')
+	if ($search_for == '') {
 		message_backstage($lang['Must enter word message']);
+		exit;
+	}
 
 	$db->query('INSERT INTO '.$db->prefix.'censoring (search_for, replace_with) VALUES (\''.$db->escape($search_for).'\', \''.$db->escape($replace_with).'\')') or error('Unable to add censor word', __FILE__, __LINE__, $db->error());
 
