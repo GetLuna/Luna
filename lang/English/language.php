@@ -1608,7 +1608,7 @@ Login at <login_url> to activate the account.
 'Soft delete posts'		=>	'Soft delete posts',
 'Allow post soft delete'	=>	'Allow users to soft delete posts from all users.',
 'Soft delete topics'	=>	'Soft delete topics',
-'Allow topic soft delete'	=> 'Allow users soft delete topics from all users.',
+'Allow topic soft delete'	=> 'Allow users to soft delete topics from all users.',
 'Inbox messages'		=>	'The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.',
 'Delete topics'			=>	'Delete topics',
 
