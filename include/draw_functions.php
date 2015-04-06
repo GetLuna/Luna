@@ -701,9 +701,9 @@ function draw_topic_list() {
 						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.$lang['Delete'].'</a>';
 					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_topics'] == 0) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_posts'] == 1)) {
 						if ($cur_post['soft'] == 0)
-							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">Soft delete</a>';
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.$lang['Soft delete'].'</a>';
 						else
-							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">Soft reset</a>';
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.$lang['Soft reset'].'</a>';
 					}
 					if ($luna_user['g_edit_posts'] == 1)
 						$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';

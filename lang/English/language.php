@@ -1542,6 +1542,8 @@ Login at <login_url> to activate the account.
 
 'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
 'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
+'Soft delete'			=>	'Soft delete',
+'Soft reset'			=>	'Soft reset',
 
 'Soft delete info'		=>	'The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.',
 'Revert soft delete'	=>	'This post has been soft deleted. We\'ll enable it again with a click on the button.',
