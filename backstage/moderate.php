@@ -170,7 +170,7 @@ if (isset($_GET['tid'])) {
 
 	} elseif (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
-		if (empty($posts)) ç
+		if (empty($posts)) {
 			message_backstage($lang['No posts selected']);
 			exit;
 		}
