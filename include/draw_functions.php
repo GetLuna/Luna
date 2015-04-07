@@ -137,21 +137,21 @@ function draw_editor($height) {
 						<img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" width="15" height="15" />
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right dropdown-emoticon" role="menu">
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
 					</ul>
 				</div>
 <?php } ?>
