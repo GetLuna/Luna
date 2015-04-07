@@ -1042,9 +1042,9 @@ function draw_search_results() {
 				$subject_multipage = null;
 			
 			if ($cur_search['last_poster_id'] > '1' && $luna_user['g_view_users'] == '1')
-				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
+				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].'</span> <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
 			else
-				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['last_poster']);
+				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
 
 			require get_view_path('search-topic.php');
 		// }
