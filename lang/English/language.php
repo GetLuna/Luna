@@ -1546,6 +1546,8 @@ Login at <login_url> to activate the account.
 'Soft delete'			=>	'Soft delete',
 'Soft reset'			=>	'Soft reset',
 
+'Send'					=>	'Send',
+
 'Soft delete info'		=>	'The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.',
 'Revert soft delete'	=>	'This post has been soft deleted. We\'ll enable it again with a click on the button.',
 'Report reason'			=>	'Tell us why you are reporting this.',

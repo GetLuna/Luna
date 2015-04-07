@@ -1063,10 +1063,12 @@ function draw_mail_form($recipient_id) {
 			<input type="hidden" name="form_sent" value="1" />
 			<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
 			<textarea name="req_message" class="form-control textarea" rows="10" tabindex="2"></textarea>
+			<div class="btn-toolbar textarea-toolbar textarea-bottom">
+				<div class="btn-group pull-right">
+					<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-envelope-o"></span> <?php echo $lang['Send'] ?></button>
+				</div>
+			</div>
 		</fieldset>
-		<div class="panel-footer">
-			<div class="btn-group"><input type="submit" class="btn btn-primary" name="submit" value="Send" tabindex="3" accesskey="s" /></div>
-		</div>
 	</div>
 </form>
 <?php
