@@ -707,7 +707,7 @@ $lang = array(
 'No words in list'			=>	'No censor words in list.',
 
 // Language fox database.php
-'Backup options'		=>	'Backup options',
+'Backup options'		=>	'Backup',
 'Backup type'			=>	'Backup type',
 'Full'					=>	'Full',
 'Structure only'		=>	'Structure only',
@@ -718,7 +718,7 @@ $lang = array(
 'Backup info 1'			=>	'If your server supports it, you may also gzip-compress the file to reduce its size.',
 
 'Restore complete'		=>	'Restore complete',
-'Restore options'		=>	'Restore options',
+'Restore options'		=>	'Restore',
 'Start restore'			=>	'Start restore',
 
 'Restore info 1'		=>	'This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.',
