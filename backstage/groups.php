@@ -23,12 +23,16 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 		$mode = 'add';
 	} else { // We are editing a group
 		$group_id = intval($_GET['edit_group']);
-		if ($group_id < 1)
+		if ($group_id < 1) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
-
+			exit;
+		}
+	
 		$result = $db->query('SELECT * FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch user group info', __FILE__, __LINE__, $db->error());
-		if (!$db->num_rows($result))
+		if (!$db->num_rows($result)) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$group = $db->fetch_assoc($result);
 
@@ -401,15 +405,19 @@ elseif (isset($_POST['add_edit_group'])) {
 		$moderator = $post_flood = $search_flood = $email_flood = $report_flood = '0';
 	}
 
-	if ($title == '')
+	if ($title == '') {
 		message_backstage($lang['Must enter title message']);
+		exit;
+	}
 
 	$user_title = ($user_title != '') ? '\''.$db->escape($user_title).'\'' : 'NULL';
 
 	if ($_POST['mode'] == 'add') {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\'') or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
-		if ($db->num_rows($result))
+		if ($db->num_rows($result)) {
 			message_backstage(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
+			exit;
+		}
 
 		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_pm, g_pm_limit, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$post_replies.', '.$post_topics.', '.$edit_posts.', '.$delete_posts.', '.$delete_topics.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$post_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.', '.$inbox_allow.', '.$inbox_limit.', '.$soft_delete_view.', '.$soft_delete_posts.', '.$soft_delete_topics.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		$new_group_id = $db->insert_id();
@@ -420,8 +428,10 @@ elseif (isset($_POST['add_edit_group'])) {
 			$db->query('INSERT INTO '.$db->prefix.'forum_perms (group_id, forum_id, read_forum, post_replies, post_topics) VALUES('.$new_group_id.', '.$cur_forum_perm['forum_id'].', '.$cur_forum_perm['read_forum'].', '.$cur_forum_perm['post_replies'].', '.$cur_forum_perm['post_topics'].')') or error('Unable to insert group forum permissions', __FILE__, __LINE__, $db->error());
 	} else {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\' AND g_id!='.intval($_POST['group_id'])) or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
-		if ($db->num_rows($result))
+		if ($db->num_rows($result)) {
 			message_backstage(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
+			exit;
+		}
 
 		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_post_replies='.$post_replies.', g_post_topics='.$post_topics.', g_edit_posts='.$edit_posts.', g_delete_posts='.$delete_posts.', g_delete_topics='.$delete_topics.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_post_flood='.$post_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.', g_pm='.$inbox_allow.', g_pm_limit='.$inbox_limit.', g_soft_delete_view='.$soft_delete_view.', g_soft_delete_posts='.$soft_delete_posts.', g_soft_delete_topics='.$soft_delete_topics.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	}
@@ -437,13 +447,17 @@ elseif (isset($_POST['set_default_group'])) {
 	$group_id = intval($_POST['default_group']);
 
 	// Make sure it's not the admin or guest groups
-	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
+	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	// Make sure it's not a moderator group
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_id='.$group_id.' AND g_moderator=0') or error('Unable to check group moderator status', __FILE__, __LINE__, $db->error());
-	if (!$db->num_rows($result))
+	if (!$db->num_rows($result)) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$group_id.' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
@@ -462,12 +476,16 @@ elseif (isset($_GET['del_group'])) {
 	confirm_referrer('backstage/groups.php');
 	
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
-	if ($group_id < 5)
+	if ($group_id < 5) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	// Make sure we don't remove the default group
-	if ($group_id == $luna_config['o_default_user_group'])
+	if ($group_id == $luna_config['o_default_user_group']) {
 		message_backstage($lang['Cannot remove default message']);
+		exit;
+	}
 
 	// Check if this group has any members
 	$result = $db->query('SELECT g.g_title, COUNT(u.id) FROM '.$db->prefix.'groups AS g INNER JOIN '.$db->prefix.'users AS u ON g.g_id=u.group_id WHERE g.g_id='.$group_id.' GROUP BY g.g_id, g_title') or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());

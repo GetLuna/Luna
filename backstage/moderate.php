@@ -16,25 +16,32 @@ if (!$luna_user['is_admmod'])
 // This particular function doesn't require forum-based moderator access. It can be used
 // by all moderators and admins
 if (isset($_GET['get_host'])) {
-	if (!$luna_user['is_admmod'])
+	if (!$luna_user['is_admmod']) {
 		message_backstage($lang['No permission'], false, '403 Forbidden');
+		exit;
+	}
 
 	// Is get_host an IP address or a post ID?
 	if (@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $_GET['get_host']) || @preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $_GET['get_host']))
 		$ip = $_GET['get_host'];
 	else {
 		$get_host = intval($_GET['get_host']);
-		if ($get_host < 1)
+		if ($get_host < 1) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$result = $db->query('SELECT poster_ip FROM '.$db->prefix.'posts WHERE id='.$get_host) or error('Unable to fetch post IP address', __FILE__, __LINE__, $db->error());
-		if (!$db->num_rows($result))
+		if (!$db->num_rows($result)) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$ip = $db->result($result);
 	}
 
 	message_backstage(sprintf($lang['Host info 1'], $ip).'<br />'.sprintf($lang['Host info 2'], @gethostbyaddr($ip)).'<br /><br /><a class="btn btn-primary" href="backstage/users.php?show_users='.$ip.'">'.$lang['Show more users'].'</a>');
+	exit;
 }
 
 
@@ -66,8 +73,10 @@ $result = $db->query('SELECT moderators FROM '.$db->prefix.'forums WHERE id='.$f
 $moderators = $db->result($result);
 $mods_array = ($moderators != '') ? unserialize($moderators) : array();
 
-if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] == '0' || !array_key_exists($luna_user['username'], $mods_array)))
+if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] == '0' || !array_key_exists($luna_user['username'], $mods_array))) {
 	message_backstage($lang['No permission'], false, '403 Forbidden');
+	exit;
+}
 
 // Get topic/forum tracking data
 if (!$luna_user['is_guest'])
@@ -76,34 +85,44 @@ if (!$luna_user['is_guest'])
 // All other topic moderation features require a topic ID in GET
 if (isset($_GET['tid'])) {
 	$tid = intval($_GET['tid']);
-	if ($tid < 1)
+	if ($tid < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	// Fetch some info about the topic
 	$result = $db->query('SELECT t.subject, t.num_replies, t.first_post_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
-	if (!$db->num_rows($result))
+	if (!$db->num_rows($result)) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	$cur_topic = $db->fetch_assoc($result);
 
 	// Delete one or more posts
 	if (isset($_POST['delete_posts']) || isset($_POST['delete_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
-		if (empty($posts))
+		if (empty($posts)) {
 			message_backstage($lang['No posts selected']);
+			exit;
+		}
 
 		if (isset($_POST['delete_posts_comply'])) {
 			confirm_referrer('backstage/moderate.php');
 
-			if (@preg_match('%[^0-9,]%', $posts))
+			if (@preg_match('%[^0-9,]%', $posts)) {
 				message_backstage($lang['Bad request'], false, '404 Not Found');
+				exit;
+			}
 
 			// Verify that the post IDs are valid
 			$admins_sql = ($luna_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
-			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
+			if ($db->num_rows($result) != substr_count($posts, ',') + 1) {
 				message_backstage($lang['Bad request'], false, '404 Not Found');
+				exit;
+			}
 
 			// Delete the posts
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
@@ -151,39 +170,52 @@ if (isset($_GET['tid'])) {
 
 	} elseif (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
-		if (empty($posts))
+		if (empty($posts)) {
 			message_backstage($lang['No posts selected']);
+			exit;
+		}
 
 		if (isset($_POST['split_posts_comply'])) {
 			confirm_referrer('backstage/moderate.php');
 
-			if (@preg_match('%[^0-9,]%', $posts))
+			if (@preg_match('%[^0-9,]%', $posts)) {
 				message_backstage($lang['Bad request'], false, '404 Not Found');
+				exit;
+			}
 
 			$move_to_forum = isset($_POST['move_to_forum']) ? intval($_POST['move_to_forum']) : 0;
-			if ($move_to_forum < 1)
+			if ($move_to_forum < 1) {
 				message_backstage($lang['Bad request'], false, '404 Not Found');
+				exit;
+			}
 
 			// How many posts did we just split off?
 			$num_posts_splitted = substr_count($posts, ',') + 1;
 
 			// Verify that the post IDs are valid
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result) != $num_posts_splitted)
+			if ($db->num_rows($result) != $num_posts_splitted) {
 				message_backstage($lang['Bad request'], false, '404 Not Found');
+				exit;
+			}
 
 			// Verify that the move to forum ID is valid
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$luna_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
-			if (!$db->num_rows($result))
+			if (!$db->num_rows($result)) {
 				message_backstage($lang['Bad request'], false, '404 Not Found');
+				exit;
+			}
 
 			// Check subject
 			$new_subject = isset($_POST['new_subject']) ? luna_trim($_POST['new_subject']) : '';
 
-			if ($new_subject == '')
+			if ($new_subject == '') {
 				message_backstage($lang['No subject']);
-			elseif (luna_strlen($new_subject) > 70)
+				exit;
+			} elseif (luna_strlen($new_subject) > 70) {
 				message_backstage($lang['Too long subject']);
+				exit;
+			}
 
 			// Get data from the new first post
 			$result = $db->query('SELECT p.id, p.poster, p.posted FROM '.$db->prefix.'posts AS p WHERE id IN('.$posts.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
@@ -405,24 +437,32 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 	if (isset($_POST['move_topics_to'])) {
 		confirm_referrer('backstage/moderate.php');
 
-		if (@preg_match('%[^0-9,]%', $_POST['topics']))
+		if (@preg_match('%[^0-9,]%', $_POST['topics'])) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$topics = explode(',', $_POST['topics']);
 		$move_to_forum = isset($_POST['move_to_forum']) ? intval($_POST['move_to_forum']) : 0;
-		if (empty($topics) || $move_to_forum < 1)
+		if (empty($topics) || $move_to_forum < 1) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		// Verify that the topic IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.implode(',',$topics).') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
-		if ($db->num_rows($result) != count($topics))
+		if ($db->num_rows($result) != count($topics)) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		// Verify that the move to forum ID is valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.group_id='.$luna_user['g_id'].' AND fp.forum_id='.$move_to_forum.') WHERE (fp.post_topics IS NULL OR fp.post_topics=1)') or error('Unable to fetch forum permissions', __FILE__, __LINE__, $db->error());
-		if (!$db->num_rows($result))
+		if (!$db->num_rows($result)) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		// Delete any redirect topics if there are any (only if we moved/copied the topic back to where it was once moved from)
 		$db->query('DELETE FROM '.$db->prefix.'topics WHERE forum_id='.$move_to_forum.' AND moved_to IN('.implode(',',$topics).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
@@ -459,15 +499,19 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		$action = 'multi';
 	} else {
 		$topics = intval($_GET['move_topics']);
-		if ($topics < 1)
+		if ($topics < 1) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$action = 'single';
 	}
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
-	if ($db->num_rows($result) < 2)
+	if ($db->num_rows($result) < 2) {
 		message_backstage($lang['Nowhere to move']);
+		exit;
+	}
 	
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Moderate']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -529,17 +573,23 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 	if (isset($_POST['merge_topics_comply'])) {
 		confirm_referrer('backstage/moderate.php');
 
-		if (@preg_match('%[^0-9,]%', $_POST['topics']))
+		if (@preg_match('%[^0-9,]%', $_POST['topics'])) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$topics = explode(',', $_POST['topics']);
-		if (count($topics) < 2)
+		if (count($topics) < 2) {
 			message_backstage($lang['Not enough topics selected']);
+			exit;
+		}
 
 		// Verify that the topic IDs are valid (redirect links will point to the merged topic after the merge)
 		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid.' ORDER BY id ASC') or error('Unable to check topics', __FILE__, __LINE__, $db->error());
-		if ($db->num_rows($result) != count($topics))
+		if ($db->num_rows($result) != count($topics)) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		// The topic that we are merging into is the one with the smallest ID
 		$merge_to_tid = $db->result($result);
@@ -589,9 +639,10 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 	}
 
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
-	if (count($topics) < 2)
+	if (count($topics) < 2) {
 		message_backstage($lang['Not enough topics selected']);
-	else {
+		exit;
+	} else {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Moderate']);
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require 'header.php';
@@ -634,22 +685,28 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 	if (isset($_POST['delete_topics_comply'])) {
 		confirm_referrer('backstage/moderate.php');
 
-		if (@preg_match('%[^0-9,]%', $topics))
+		if (@preg_match('%[^0-9,]%', $topics)) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		require FORUM_ROOT.'include/search_idx.php';
 
 		// Verify that the topic IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.$topics.') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
-		if ($db->num_rows($result) != substr_count($topics, ',') + 1)
+		if ($db->num_rows($result) != substr_count($topics, ',') + 1) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		// Verify that the posts are not by admins
 		if ($luna_user['g_id'] != FORUM_ADMIN) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
-			if ($db->num_rows($result))
+			if ($db->num_rows($result)) {
 				message_backstage($lang['No permission'], false, '403 Forbidden');
+				exit;
+			}
 		}
 
 		// Delete the topics and any redirect topics
@@ -723,8 +780,10 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 		confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
-		if ($topic_id < 1)
+		if ($topic_id < 1) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
 
@@ -738,8 +797,10 @@ elseif (isset($_GET['stick'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 	$stick = intval($_GET['stick']);
-	if ($stick < 1)
+	if ($stick < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to stick topic', __FILE__, __LINE__, $db->error());
 
@@ -752,8 +813,10 @@ elseif (isset($_GET['unstick'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
 	$unstick = intval($_GET['unstick']);
-	if ($unstick < 1)
+	if ($unstick < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
 
@@ -768,8 +831,10 @@ elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['
 	// Fetch some info about the forum
 	$result = $db->query('SELECT f.forum_name, f.num_topics, f.sort_by FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 	
-	if (!$db->num_rows($result))
+	if (!$db->num_rows($result)) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 	
 	$cur_forum = $db->fetch_assoc($result);
 	

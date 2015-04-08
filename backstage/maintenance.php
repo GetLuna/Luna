@@ -24,6 +24,7 @@ if ($action == 'rebuild') {
 	if ($per_page < 1) {
 		load_admin_nav('maintenance', 'maintenance');
 		message_backstage($lang['Posts must be integer message']);
+		exit;
 	}
 
 	@set_time_limit(0);

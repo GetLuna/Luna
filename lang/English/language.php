@@ -167,7 +167,7 @@ $lang = array(
 'No board title'				=>	'You must enter a board title.',
 'Error default language'		=>	'The default language chosen doesn\'t seem to exist.',
 'Error default style'			=>	'The default style chosen doesn\'t seem to exist.',
-'No DB extensions'				=>	'PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, through',
+'No DB extensions'				=>	'PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, though',
 'Administrator username'		=>	'Username',
 'Administrator password 1'		=>	'Administrator password 1',
 'Administrator password 2'		=>	'Administrator password 2',
@@ -317,7 +317,7 @@ $lang = array(
 'Label'							=>	'Label',
 'Explanation'					=>	'Explanation',
 'Sticky explanation'			=>	'Sticky topics are usually important topics which you should read. It\'s worth it to take a look there.',
-'Closed explanation'			=>	'When a you see a closed label, it means you can\'t post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, through.',
+'Closed explanation'			=>	'When a you see a closed label, it means you can\'t post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though.',
 'Moved explanation'				=>	'This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won\'t show any topic stats anymore.',
 'Posted explanation'			=>	'This little dot appears when you have made a post in this topic.',
 'Content question'				=>	'Smilies, signatures, avatars and images are not visible?',
@@ -341,7 +341,7 @@ $lang = array(
 'Moderate topic answer 2'		=>	'Next to the "Moderate topic" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it.',
 'Moderate user question'		=>	'How do I moderate an user?',
 'Moderate user answer 1'		=>	'Moderating options are available in the users profile. You can find the moderation options under "Administration" in the users profile menu. Those features aren\'t available for all moderators.',
-'Moderate user answer 2'		=>	'The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, through the user must have a moderator account to be able to actually use those permissions.',
+'Moderate user answer 2'		=>	'The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions.',
 'Moderate user answer 3'		=>	'Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you\'re probably better off with the advanced user management features in the Backstage.',
 
 // Language for index.php
@@ -526,7 +526,7 @@ $lang = array(
 'Signature info'				=>	'Write a small piece to attach to every post you make',
 'Sig preview'					=>	'Signature preview',
 'No sig'						=>	'No signature currently stored in profile.',
-'Signature quote/code/list/h'	=>	'The quote, code, list, and heading BBCodes are not allowed in signatures.',
+'Signature unallowed'			=>	'The quote, code, list, video, and heading BBCodes are not allowed in signatures.',
 'Posts per page'				=>	'Posts per page',
 'Topics per page'				=>	'Topics per page',
 'Leave blank'					=>	'Leave blank to use default',
@@ -707,7 +707,7 @@ $lang = array(
 'No words in list'			=>	'No censor words in list.',
 
 // Language fox database.php
-'Backup options'		=>	'Backup options',
+'Backup options'		=>	'Backup',
 'Backup type'			=>	'Backup type',
 'Full'					=>	'Full',
 'Structure only'		=>	'Structure only',
@@ -718,7 +718,7 @@ $lang = array(
 'Backup info 1'			=>	'If your server supports it, you may also gzip-compress the file to reduce its size.',
 
 'Restore complete'		=>	'Restore complete',
-'Restore options'		=>	'Restore options',
+'Restore options'		=>	'Restore',
 'Start restore'			=>	'Start restore',
 
 'Restore info 1'		=>	'This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.',
@@ -749,7 +749,6 @@ $lang = array(
 'About'								=>	'About',
 'Info in posts help'				=>	'Show information about the poster under the username in topic view.',
 'Post count help'					=>	'Show the number of posts a user has made in topic view, profile and user list.',
-'Smilies help'						=>	'Convert smilies to small graphic icons in forum posts.',
 'Smilies sigs help'					=>	'Convert smilies to small graphic icons in user signatures.',
 'Clickable links help'				=>	'Convert URLs automatically to clickable hyperlinks.',
 'Topic review label'				=>	'Topic review',
@@ -1071,7 +1070,7 @@ $lang = array(
 'Report new label'					=>	'Report new registrations',
 'Report new help'					=>	'Notify people on the mailing list when new user registers.  ',
 'Use rules label'					=>	'User forum rules',
-'Use rules help'					=>	'Require users to agree with the rules. This will also enable a "Rules" link in the navigation bar.',
+'Use rules help'					=>	'Require users to agree with the rules. This will enable a "Rules" panel in Help.',
 'Rules label'						=>	'Enter your rules here',
 'Rules help'						=>	'Enter rules or useful information, required when rules are enabled',
 'E-mail default label'				=>	'Default email setting',
@@ -1535,6 +1534,9 @@ Login at <login_url> to activate the account.
 'Cancel'				=>	'Cancel',
 
 // Mainstage
+'Showing everything'	=>	'We\'re showing everything',
+'Post'					=>	'Post',
+
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
 'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
@@ -1546,6 +1548,8 @@ Login at <login_url> to activate the account.
 'Soft delete'			=>	'Soft delete',
 'Soft reset'			=>	'Soft reset',
 
+'Send'					=>	'Send',
+
 'Soft delete info'		=>	'The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.',
 'Revert soft delete'	=>	'This post has been soft deleted. We\'ll enable it again with a click on the button.',
 'Report reason'			=>	'Tell us why you are reporting this.',
@@ -1554,6 +1558,9 @@ Login at <login_url> to activate the account.
 'Personalize'			=>	'Personalize',
 'Threads'				=>	'Threads',
 'Time'					=>	'Time',
+
+'Pin topic'				=>	'Pin topic',
+'Mute edit'				=>	'Mute edit',
 
 'No users online'		=>	'No users online',
 
@@ -1608,7 +1615,7 @@ Login at <login_url> to activate the account.
 'Soft delete posts'		=>	'Soft delete posts',
 'Allow post soft delete'	=>	'Allow users to soft delete posts from all users.',
 'Soft delete topics'	=>	'Soft delete topics',
-'Allow topic soft delete'	=> 'Allow users soft delete topics from all users.',
+'Allow topic soft delete'	=> 'Allow users to soft delete topics from all users.',
 'Inbox messages'		=>	'The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.',
 'Delete topics'			=>	'Delete topics',
 
@@ -1633,6 +1640,8 @@ Login at <login_url> to activate the account.
 'Name'					=>	'Name',
 'Position'				=>	'Position',
 'Show'					=>	'Show',
+'Must add URL'			=>	'You must give your menu item an URL.',
+'Must add title'		=>	'You must give your menu item a title.',
 
 'Moderate content'		=>	'Moderate content',
 'Visit to moderate'		=>	'Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.',

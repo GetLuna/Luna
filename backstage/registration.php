@@ -31,8 +31,10 @@ if (isset($_POST['form_sent'])) {
 		$form['rules'] = '0';
 	}
 
-	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2)
+	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	foreach ($form as $key => $input) {
 		// Only update values that have changed
