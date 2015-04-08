@@ -14,7 +14,6 @@ require FORUM_ROOT.'include/common.php';
 if ($luna_user['g_read_board'] == '0')
 	message($lang['No view'], false, '403 Forbidden');
 
-
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 1)
 	message($lang['Bad request'], false, '404 Not Found');
