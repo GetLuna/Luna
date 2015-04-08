@@ -75,7 +75,7 @@ if ($luna_config['o_notification_flyout'] == 1) {
 						<li class="divider"></li>
 						'.$notifications.'
 						<li class="divider"></li>
-						<li><a class="pull-right" href="notifications.php">More <i class="fa fa-fw fa-arrow-right"></i></a></li>
+						<li><a class="pull-right" href="notifications.php">'.$lang['More'].' <i class="fa fa-fw fa-arrow-right"></i></a></li>
 					</ul>
 				</li>';
 } else {

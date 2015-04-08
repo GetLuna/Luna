@@ -1533,9 +1533,14 @@ Login at <login_url> to activate the account.
 'Offline'				=>	'Offline',
 'Cancel'				=>	'Cancel',
 
+'A situation'			=>	'We\'ve got us a situation here.',
+
 // Mainstage
 'Showing everything'	=>	'We\'re showing everything',
 'Post'					=>	'Post',
+
+'Search in posts'		=>	'Search in posts',
+'More'					=>	'More',
 
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
@@ -1563,6 +1568,7 @@ Login at <login_url> to activate the account.
 'Mute edit'				=>	'Mute edit',
 
 'No users online'		=>	'No users online',
+'posts since'			=>	'%s posts since %s', // As in 8 posts since 13 April 2015
 
 // Backstage
 'Luna update'			=>	'Luna software update',

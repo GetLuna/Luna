@@ -82,14 +82,14 @@ if (!defined('FORUM'))
 					</div>
 					<hr />
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Avatar'] ?><span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
 						<div class="col-sm-9">
 							<?php echo $avatar_user ?>
 							<?php echo $avatar_field ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Signature<span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Signature'] ?><span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
 						<div class="col-sm-9">
 							<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
 							<span class="help-block"><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></span>
