@@ -142,6 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .dropdown-menu > li > a, .dropdown-header {
 	padding: 9px 20px;
+	white-space: normal;
 }
 
 .dropdown-header {
