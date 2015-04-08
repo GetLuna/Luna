@@ -1560,6 +1560,8 @@ Login at <login_url> to activate the account.
 'Report reason'			=>	'Tell us why you are reporting this.',
 
 'No new notifications'	=>	'No new notifications',
+'Mark as seen'			=>	'Mark as seen',
+'Delete notifications'	=>	'Delete notifications',
 'Personalize'			=>	'Personalize',
 'Threads'				=>	'Threads',
 'Time'					=>	'Time',
