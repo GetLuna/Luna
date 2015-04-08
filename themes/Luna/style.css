@@ -954,11 +954,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .label-default {
-	background: #d8d8d8;
-}
-
-.new-item .label-default {
-	background: #949494;
+	background: #b8b8b8;
 }
 
 .label-success {
