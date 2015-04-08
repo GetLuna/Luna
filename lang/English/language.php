@@ -1534,6 +1534,9 @@ Login at <login_url> to activate the account.
 'Cancel'				=>	'Cancel',
 
 // Mainstage
+'Showing everything'	=>	'We\'re showing everything',
+'Post'					=>	'Post',
+
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
 'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',

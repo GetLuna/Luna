@@ -451,7 +451,7 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 }
 
 function draw_section_info($current_id) {
-	global $lang, $result, $db, $luna_config, $cur_section;
+	global $lang, $result, $db, $luna_config, $cur_section, $luna_user, $cur_posting, $cur_forum;
 
 	if ($current_id != 0) {
 		$result = $db->query('SELECT * FROM '.$db->prefix.'forums where id = '.$current_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
