@@ -187,7 +187,7 @@ function AddTag(type, tag) {
    else if (type == 'code')
 	   Field.value = before_txt + '[' + tag + ']' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
    else if (type == 'emoji')
-	   Field.value = before_txt + tag + after_txt;
+	   Field.value = before_txt + ' ' + tag + ' ' + after_txt;
 }
 </script>
 <?php
