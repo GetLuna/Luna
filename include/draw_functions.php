@@ -1053,7 +1053,7 @@ function draw_search_results() {
 }
 
 function draw_mail_form($recipient_id) {
-	global $lang, $recipient_id, $redirect_url;
+	global $lang, $recipient_id, $redirect_url, $cur_index;
 ?>
 
 <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
