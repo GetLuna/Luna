@@ -200,7 +200,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 0.8.4154.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 0.9.4238.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
