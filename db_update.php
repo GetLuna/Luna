@@ -662,6 +662,10 @@ switch ($stage) {
 		if (array_key_exists('o_admin_notes', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_admin_notes\'') or error('Unable to remove config value \'o_admin_notes\'', __FILE__, __LINE__, $db->error());
 
+		// Since 0.9.4229: Remove obsolete o_smilies permission from config table
+		if (array_key_exists('o_smilies', $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_smilies\'') or error('Unable to remove config value \'o_smilies\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

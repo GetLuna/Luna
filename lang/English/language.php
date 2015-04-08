@@ -749,7 +749,6 @@ $lang = array(
 'About'								=>	'About',
 'Info in posts help'				=>	'Show information about the poster under the username in topic view.',
 'Post count help'					=>	'Show the number of posts a user has made in topic view, profile and user list.',
-'Smilies help'						=>	'Convert smilies to small graphic icons in forum posts.',
 'Smilies sigs help'					=>	'Convert smilies to small graphic icons in user signatures.',
 'Clickable links help'				=>	'Convert URLs automatically to clickable hyperlinks.',
 'Topic review label'				=>	'Topic review',
