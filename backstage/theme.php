@@ -102,7 +102,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 									<div class="modal-body">
 										<div class="row">
 											<div class="col-sm-8">
-												<div class="thumbnail"><img src="../themes/<?php echo $temp ?>/screenshot.png" /></div>
+												<img class="img-responsive" src="../themes/<?php echo $temp ?>/screenshot.png" />
 											</div>
 											<div class="col-sm-4">
 												<h2><?php echo $theme_info->name; ?> <small><?php printf($lang['version'], $theme_info->version) ?></small></h2>
