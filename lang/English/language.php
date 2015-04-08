@@ -1556,6 +1556,9 @@ Login at <login_url> to activate the account.
 'Threads'				=>	'Threads',
 'Time'					=>	'Time',
 
+'Pin topic'				=>	'Pin topic',
+'Mute edit'				=>	'Mute edit',
+
 'No users online'		=>	'No users online',
 
 // Backstage

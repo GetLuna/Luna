@@ -63,7 +63,7 @@ function draw_editor($height) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
+		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.$lang['Pin topic'].'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
 
 	if (FORUM_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
@@ -72,7 +72,7 @@ function draw_editor($height) {
 		}
 	
 		if ($is_admmod)
-			$silence_btn = '<div class="btn-group" data-toggle="buttons"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
+			$silence_btn = '<div class="btn-group" data-toggle="buttons" title="'.$lang['Mute edit'].'"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
 	}
 
 ?>
