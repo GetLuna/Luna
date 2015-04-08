@@ -14,11 +14,11 @@
 						<input class="form-control" type="password" name="req_password" tabindex="902" placeholder="<?php echo $lang['Password'] ?>" />
 						<div class="control-group">
 							<div class="controls remember">
-								<label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="903" checked /> <?php echo $lang['Remember me'] ?></label>
+								<label class="remember"><input type="checkbox" name="save_pass" value="1" tabindex="903" checked="checked" /> <?php echo $lang['Remember me'] ?></label>
 							</div>
 						</div>
 						<input class="btn btn-primary btn-block" type="submit" name="login" value="<?php echo $lang['Login'] ?>" tabindex="904" />
-						<a class="btn btn-default btn-block" href="register.php" tabindex="905">Register</a>
+						<a class="btn btn-default btn-block" href="register.php" tabindex="905"><?php echo $lang['Register'] ?></a>
 					</fieldset>
 				</form>
 			</div>
