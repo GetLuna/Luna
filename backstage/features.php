@@ -25,7 +25,6 @@ if (isset($_POST['form_sent'])) {
 		'show_first_run'				=> isset($_POST['form']['show_first_run']) ? '1' : '0',
 		'first_run_guests'				=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
 		'first_run_message'				=> luna_trim($_POST['form']['first_run_message']),
-		'smilies'						=> isset($_POST['form']['smilies']) ? '1' : '0',
 		'smilies_sig'					=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
 		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
 		'indent_num_spaces'				=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
@@ -213,12 +212,6 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Topics and posts'] ?></label>
 					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[smilies]" value="1" <?php if ($luna_config['o_smilies'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Smilies help'] ?>
-							</label>
-						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[smilies_sig]" value="1" <?php if ($luna_config['o_smilies_sig'] == '1') echo ' checked' ?> />

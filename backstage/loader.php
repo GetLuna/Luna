@@ -15,17 +15,23 @@ if (!$luna_user['is_admmod'])
 
 // The plugin to load should be supplied via GET
 $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
-if (!preg_match('%^AM?P_(\w*?)\.php$%i', $plugin))
+if (!preg_match('%^AM?P_(\w*?)\.php$%i', $plugin)) {
 	message_backstage($lang['Bad request'], false, '404 Not Found');
+	exit;
+}
 
 // AP_ == Admins only, AMP_ == admins and moderators
 $prefix = substr($plugin, 0, strpos($plugin, '_'));
-if ($luna_user['g_moderator'] == '1' && $prefix == 'AP')
+if ($luna_user['g_moderator'] == '1' && $prefix == 'AP') {
 	message_backstage($lang['No permission'], false, '403 Forbidden');
+	exit;
+}
 
 // Make sure the file actually exists
-if (!file_exists(FORUM_ROOT.'plugins/'.$plugin))
+if (!file_exists(FORUM_ROOT.'plugins/'.$plugin)) {
 	message_backstage(sprintf($lang['No plugin message'], $plugin));
+	exit;
+}
 
 // Construct REQUEST_URI if it isn't set
 if (!isset($_SERVER['REQUEST_URI']))
@@ -39,8 +45,10 @@ require 'header.php';
 // because if we did and a parse error occurred in the plugin, we would only
 // get the "blank page of death"
 include FORUM_ROOT.'plugins/'.$plugin;
-if (!defined('FORUM_PLUGIN_LOADED'))
+if (!defined('FORUM_PLUGIN_LOADED')) {
 	message_backstage(sprintf($lang['Plugin failed message'], $plugin));
+	exit;
+}
 
 // Output the clearer div
 ?>

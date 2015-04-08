@@ -32,8 +32,10 @@ if (isset($_POST['form_sent'])) {
 
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
-		else
+		else {
 			message_backstage($lang['SMTP passwords did not match']);
+			exit;
+		}
 	}
 
 	foreach ($form as $key => $input) {

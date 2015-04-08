@@ -1333,7 +1333,7 @@ function maintenance_message() {
 	header('Content-type: text/html; charset=utf-8');
 
 	// Deal with newlines, tabs and multiple spaces
-	$message = str_replace($pattern, $replace, $luna_config['o_maintenance_message']);
+	$message = $luna_config['o_maintenance_message'];
 
 	require load_page('maintenance.php');
 

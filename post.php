@@ -477,7 +477,7 @@ else {
 	$focus_element[] = 'req_username';
 }
 
-$cur_index = 0;
+$cur_index = 1;
 define('FORUM_ACTIVE_PAGE', 'post');
 require load_page('header.php');
 
