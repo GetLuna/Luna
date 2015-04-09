@@ -1584,6 +1584,11 @@ Login at <login_url> to activate the account.
 'Theme'					=>	'Theme',
 'Database management'	=>	'Database management',
 
+'Moderating forum'		=>	'Moderating "%s"',
+
+'Parent section'		=>	'Parent section',
+'No parent'				=>	'No parent forum selected',
+
 'Emoji'					=>	'Emoji',
 'Use emojis'			=>	'Use emojis instead of emoticons.',
 'Smilie size'			=>	'Smilie size',

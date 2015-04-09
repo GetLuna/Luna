@@ -873,7 +873,7 @@ elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['
 			<h3 class="panel-title"><?php echo $lang['Moderate content'] ?></h3>
 		</div>
 		<div class="jumbotron jumbotron-moderate-forum">
-			<h2>Moderating "<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>"</h2><span class="pull-right"><?php echo $paging_links ?></span>
+			<h2><?php printf($lang['Moderating forum'], luna_htmlspecialchars($cur_forum['forum_name'])) ?></h2><span class="pull-right"><?php echo $paging_links ?></span>
 		</div>
 		<div class="panel-body">
 			<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
