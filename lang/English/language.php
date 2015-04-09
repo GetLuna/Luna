@@ -1532,10 +1532,16 @@ Login at <login_url> to activate the account.
 'Toggle navigation'		=>	'Toggle navigation',
 'Offline'				=>	'Offline',
 'Cancel'				=>	'Cancel',
+'Back'					=>	'Back',
+
+'A situation'			=>	'We\'ve got us a situation here.',
 
 // Mainstage
 'Showing everything'	=>	'We\'re showing everything',
 'Post'					=>	'Post',
+
+'Search in posts'		=>	'Search in posts',
+'More'					=>	'More',
 
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
@@ -1555,14 +1561,18 @@ Login at <login_url> to activate the account.
 'Report reason'			=>	'Tell us why you are reporting this.',
 
 'No new notifications'	=>	'No new notifications',
+'Mark as seen'			=>	'Mark as seen',
+'Delete notifications'	=>	'Delete notifications',
 'Personalize'			=>	'Personalize',
 'Threads'				=>	'Threads',
 'Time'					=>	'Time',
 
 'Pin topic'				=>	'Pin topic',
 'Mute edit'				=>	'Mute edit',
+'Edit subject'			=>	'Edit "%s"',
 
 'No users online'		=>	'No users online',
+'posts since'			=>	'%s posts since %s', // As in 8 posts since 13 April 2015
 
 // Backstage
 'Luna update'			=>	'Luna software update',
@@ -1618,6 +1628,7 @@ Login at <login_url> to activate the account.
 'Allow topic soft delete'	=> 'Allow users to soft delete topics from all users.',
 'Inbox messages'		=>	'The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.',
 'Delete topics'			=>	'Delete topics',
+'Maximum names'			=>	'Separate names with commas, maximum %s names',
 
 'Config warning'		=>	'The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.',
 'Welcome to Luna'		=>	'Welcome to Luna',
@@ -1669,6 +1680,8 @@ Login at <login_url> to activate the account.
 'Theme settings for'	=>	'Theme settings for %s',
 'Available themes'		=>	'Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.',
 'Use'					=>	'Use',
+'No settings'			=>	'This theme has no settings available...',
+'In use'				=>	'In use',
 
 'Update ring'			=>	'Update ring',
 'Slow'					=>	'Slow',
@@ -1688,6 +1701,7 @@ Login at <login_url> to activate the account.
 'Subforums'             =>  'Subforums',
 'Confirm deletion'      =>  'Confirm deletion',
 'Write message'         =>  'Write message',
+'Search the board'		=>	'Search the board',
 'Request password'      =>  'Request password',
 'New topic in'          =>  'New topic in "%s"',
 'New comment in'        =>  'New comment in "%s"',

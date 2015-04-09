@@ -187,7 +187,9 @@ function AddTag(type, tag) {
    else if (type == 'code')
 	   Field.value = before_txt + '[' + tag + ']' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
    else if (type == 'emoji')
-	   Field.value = before_txt + tag + after_txt;
+	   Field.value = before_txt + ' ' + tag + ' ' + after_txt;
+
+	document.getElementById('post_field').focus();
 }
 </script>
 <?php
@@ -1053,7 +1055,7 @@ function draw_search_results() {
 }
 
 function draw_mail_form($recipient_id) {
-	global $lang, $recipient_id, $redirect_url;
+	global $lang, $recipient_id, $redirect_url, $cur_index;
 ?>
 
 <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">

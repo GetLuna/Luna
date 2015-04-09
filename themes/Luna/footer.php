@@ -91,6 +91,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 								</div>
 								<div class="col-xs-6">
 									<div class="statistic-item-stat">
+										<?php if ($luna_config['o_users_online']) { ?>
 										<div class="dropup">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<?php echo $lang['Users online'] ?> <span class="fa fa-fw fa-angle-up"></span>
@@ -100,6 +101,8 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 												<?php echo online_list() ?>
 											</ul>
 										</div>
+										<?php } else
+											echo $lang['Users online']; ?>
 									</div>
 								</div>
 							</div>
