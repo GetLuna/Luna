@@ -295,7 +295,7 @@ require 'header.php';
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="1" checked />
-							<?php echo $lang['Registed date'] ?>
+							<?php echo $lang['Registered date'] ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="0" />
