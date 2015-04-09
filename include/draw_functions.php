@@ -188,6 +188,8 @@ function AddTag(type, tag) {
 	   Field.value = before_txt + '[' + tag + ']' + "\r" + '[[language]]' + "\r" + selected_txt + "\r" + '[/' + tag + ']' + after_txt;
    else if (type == 'emoji')
 	   Field.value = before_txt + ' ' + tag + ' ' + after_txt;
+
+	document.getElementById('post_field').focus();
 }
 </script>
 <?php
