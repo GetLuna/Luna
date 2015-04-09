@@ -55,7 +55,7 @@ $num_notifications = $db->result($result);
 if ($luna_config['o_notification_flyout'] == 1) {
 	if ($num_notifications == '0') {
 		$notificon = '<span class="fa fa-fw fa-circle-o"></span>';
-		$ind_notification[] = '<li><a href="notifications.php">No new notifications</a></li>';
+		$ind_notification[] = '<li><a href="notifications.php">'.$lang['No new notifications'].'</a></li>';
 	} else {
 		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
 		
