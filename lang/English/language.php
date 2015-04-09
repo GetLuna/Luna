@@ -727,7 +727,7 @@ $lang = array(
 
 'Additional functions'	=>	'Additional functions',
 'Repair all tables'		=>	'Repair all tables',
-'Optimise all tables'	=>	'Optimise all tables',
+'Optimize all tables'	=>	'Optimize all tables',
 
 'Additional info 1'		=>	'Additional features to help run a database, optimize and repair both do what they say.',
 

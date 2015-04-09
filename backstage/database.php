@@ -602,7 +602,7 @@ if (isset($_POST['backupstart'])) {
 			<fieldset>
 				<span class="btn-group">
 					<button class="btn btn-primary" type="submit" name="repairall"><span class="fa fa-fw fa-wrench"></span> <?php echo $lang['Repair all tables'] ?></button>
-					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php echo $lang['Optimise all tables'] ?></button>
+					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php echo $lang['Optimize all tables'] ?></button>
 				</span>
 			</fieldset>
 		</div>
