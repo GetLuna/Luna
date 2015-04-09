@@ -1553,6 +1553,7 @@ Login at <login_url> to activate the account.
 'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
 'Soft delete'			=>	'Soft delete',
 'Soft reset'			=>	'Soft reset',
+'Reset post'			=>	'Reset post',
 
 'Send'					=>	'Send',
 

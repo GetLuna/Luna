@@ -893,7 +893,7 @@ function draw_soft_delete_form($id) {
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
 			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br /><?php echo $lang['Soft delete info'] ?></p>
-			<input type="submit" class="btn btn-danger" name="soft_delete" value="Soft delete" />
+			<input type="submit" class="btn btn-danger" name="soft_delete" value="<?php echo $lang['Soft delete'] ?>" />
 		</form>
 <?php
 }
@@ -904,7 +904,7 @@ function draw_soft_reset_form($id) {
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
 			<p><?php echo $lang['Revert soft delete'] ?></p>
-			<input type="submit" class="btn btn-primary" name="reset" value="Reset post" />
+			<input type="submit" class="btn btn-primary" name="reset" value="<?php echo $lang['Reset post'] ?>" />
 		</form>
 <?php
 }
