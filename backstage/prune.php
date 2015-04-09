@@ -86,7 +86,6 @@ if ($action == 'prune') {
 	$num_topics = $db->result($result);
 
 	if (!$num_topics) {
-		load_admin_nav('maintenance', 'prune');
 		message_backstage(sprintf($lang['No old topics message'], $prune_days));
 		exit;
 	}
