@@ -729,7 +729,7 @@ $lang = array(
 'Repair all tables'		=>	'Repair all tables',
 'Optimise all tables'	=>	'Optimise all tables',
 
-'Additional info 1'		=>	'Additional features to help run a database, optimise and repair both do what they say.',
+'Additional info 1'		=>	'Additional features to help run a database, optimize and repair both do what they say.',
 
 // Language for appearance.php, settings.php, email.php and features.php
 'Bad HTTP Referer message'			=>	'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.',
@@ -957,7 +957,7 @@ $lang = array(
 
 'Prune users head'			=>	'Prune users',
 'Prune by'					=>	'Prune by',
-'Registed date'				=>	'Registered date',
+'Registered date'			=>	'Registered date',
 'Last login'				=>	'Last login',
 'Prune by info'				=>	'What should we count to prune?',
 'Minimum days'				=>	'Minimum days since registration/last login',
@@ -1110,7 +1110,7 @@ $lang = array(
 
 // Language for ranks.php
 'Must be integer message'	=>	'Minimum posts must be a positive integer value.',
-'Dupe min posts message'	=>	'There is already a rank with a minimun posts value of %s.',
+'Dupe min posts message'	=>	'There is already a rank with a minimum posts value of %s.',
 'Add rank subhead'			=>	'Add rank',
 'Ranks disabled'			=>	'<strong>User ranks is disabled in %s.</strong>',
 'Rank title label'			=>	'Rank title',
@@ -1613,8 +1613,8 @@ Login at <login_url> to activate the account.
 'Restore completed'		=>	'Restore completed',
 'Failed repair'			=>	'Tables error, repair failed.',
 'Failed repair SQL'		=>	'SQL error, repair failed.',
-'Failed optimize'		=>	'Tables error, optimise failed.',
-'Failed optimize SQL'	=>	'SQL error, optimise failed.',
+'Failed optimize'		=>	'Tables error, optimize failed.',
+'Failed optimize SQL'	=>	'SQL error, optimize failed.',
 
 'Use Inbox'				=>	'Use Inbox', // "Inbox" is the name of a feature, capital required
 'Allow Inbox'			=>	'Allow users to use Inbox.',

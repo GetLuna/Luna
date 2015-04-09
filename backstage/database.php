@@ -525,7 +525,7 @@ if (isset($_POST['backupstart'])) {
 			exit;
 		}
 	}
-	message_backstage('All tables optimised');
+	message_backstage('All tables optimized');
 	exit;
 } else {
 	
