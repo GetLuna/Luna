@@ -11,10 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/registration.php', $lang['Bad HTTP Referer message']);
 	
@@ -34,8 +31,10 @@ if (isset($_POST['form_sent'])) {
 		$form['rules'] = '0';
 	}
 
-	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2)
+	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	foreach ($form as $key => $input) {
 		// Only update values that have changed

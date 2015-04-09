@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
-		<a href="help.php" class="navbar-brand"><span class="fa fa-fw fa-info-circle"></span> Help</a>
+		<a href="help.php" class="navbar-brand"><span class="fa fa-fw fa-info-circle"></span> <?php echo $lang['Help'] ?></a>
 	</div>
 </nav>
 <?php if ($luna_config['o_rules'] == '1') { ?>
@@ -109,6 +109,8 @@ if ($db->num_rows($result) > 0)
 
 // Display the smiley set
 require FORUM_ROOT.'include/parser.php';
+
+$smilies = get_smilies();
 
 $smiley_groups = array();
 

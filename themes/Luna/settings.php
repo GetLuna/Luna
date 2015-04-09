@@ -18,17 +18,17 @@ if (!defined('FORUM'))
 </div>
 <div class="col-sm-9">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
-	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
+	<h2 class="profile-settings-head"><?php echo $lang['Settings'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab">Personalize</a></li>
-			<li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab">Email</a></li>
-			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
-			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab">Threads</a></li>
-			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab">Time</a></li>
+			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
+			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><?php echo $lang['Personalize'] ?></a></li>
+			<li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab"><?php echo $lang['Message'] ?></a></li>
+			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><?php echo $lang['Contact'] ?></a></li>
+			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab"><?php echo $lang['Threads'] ?></a></li>
+			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><?php echo $lang['Time'] ?></a></li>
 			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-			<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">Admin</a></li>
+			<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><?php echo $lang['Admin'] ?></a></li>
 			<?php endif; ?>
 		</ul>
 		<div class="tab-content">
@@ -82,14 +82,14 @@ if (!defined('FORUM'))
 					</div>
 					<hr />
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Avatar'] ?><span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
 						<div class="col-sm-9">
 							<?php echo $avatar_user ?>
 							<?php echo $avatar_field ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Signature<span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Signature'] ?><span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
 						<div class="col-sm-9">
 							<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
 							<span class="help-block"><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></span>
@@ -177,6 +177,20 @@ if (count($languages) > 1) {
 			</div>
 			<div role="tabpanel" class="tab-pane" id="email">
 				<fieldset class="form-horizontal form-setting">
+					<?php if ($luna_config['o_pms_enabled'] == 1) { ?>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php echo $lang['Inbox'] ?></label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="form[use_pm]" value="1"<?php if ($user['use_pm'] == '1') echo ' checked' ?> />
+									<?php echo $lang['Use Inbox info'] ?>
+								</label>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<?php } ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Email setting info'] ?></label>
 						<div class="col-sm-9">

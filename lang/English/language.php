@@ -118,7 +118,7 @@ $lang = array(
 'Total query time'					=>	'Total query time: %s',
 
 // First run
-'First run message'					=>	'Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Through we like to point out some actions you might want to do first.',
+'First run message'					=>	'Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.',
 'Hi there'							=>	'Hi there, %s',
 'Welcome to'						=>	'Welcome to %s',
 'Change your avatar'				=>	'Change your avatar',
@@ -167,7 +167,7 @@ $lang = array(
 'No board title'				=>	'You must enter a board title.',
 'Error default language'		=>	'The default language chosen doesn\'t seem to exist.',
 'Error default style'			=>	'The default style chosen doesn\'t seem to exist.',
-'No DB extensions'				=>	'PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, through',
+'No DB extensions'				=>	'PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, though',
 'Administrator username'		=>	'Username',
 'Administrator password 1'		=>	'Administrator password 1',
 'Administrator password 2'		=>	'Administrator password 2',
@@ -317,7 +317,7 @@ $lang = array(
 'Label'							=>	'Label',
 'Explanation'					=>	'Explanation',
 'Sticky explanation'			=>	'Sticky topics are usually important topics which you should read. It\'s worth it to take a look there.',
-'Closed explanation'			=>	'When a you see a closed label, it means you can\'t post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, through.',
+'Closed explanation'			=>	'When a you see a closed label, it means you can\'t post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though.',
 'Moved explanation'				=>	'This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won\'t show any topic stats anymore.',
 'Posted explanation'			=>	'This little dot appears when you have made a post in this topic.',
 'Content question'				=>	'Smilies, signatures, avatars and images are not visible?',
@@ -341,7 +341,7 @@ $lang = array(
 'Moderate topic answer 2'		=>	'Next to the "Moderate topic" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it.',
 'Moderate user question'		=>	'How do I moderate an user?',
 'Moderate user answer 1'		=>	'Moderating options are available in the users profile. You can find the moderation options under "Administration" in the users profile menu. Those features aren\'t available for all moderators.',
-'Moderate user answer 2'		=>	'The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, through the user must have a moderator account to be able to actually use those permissions.',
+'Moderate user answer 2'		=>	'The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions.',
 'Moderate user answer 3'		=>	'Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you\'re probably better off with the advanced user management features in the Backstage.',
 
 // Language for index.php
@@ -526,7 +526,7 @@ $lang = array(
 'Signature info'				=>	'Write a small piece to attach to every post you make',
 'Sig preview'					=>	'Signature preview',
 'No sig'						=>	'No signature currently stored in profile.',
-'Signature quote/code/list/h'	=>	'The quote, code, list, and heading BBCodes are not allowed in signatures.',
+'Signature unallowed'			=>	'The quote, code, list, video, and heading BBCodes are not allowed in signatures.',
 'Posts per page'				=>	'Posts per page',
 'Topics per page'				=>	'Topics per page',
 'Leave blank'					=>	'Leave blank to use default',
@@ -707,7 +707,7 @@ $lang = array(
 'No words in list'			=>	'No censor words in list.',
 
 // Language fox database.php
-'Backup options'		=>	'Backup options',
+'Backup options'		=>	'Backup',
 'Backup type'			=>	'Backup type',
 'Full'					=>	'Full',
 'Structure only'		=>	'Structure only',
@@ -718,7 +718,7 @@ $lang = array(
 'Backup info 1'			=>	'If your server supports it, you may also gzip-compress the file to reduce its size.',
 
 'Restore complete'		=>	'Restore complete',
-'Restore options'		=>	'Restore options',
+'Restore options'		=>	'Restore',
 'Start restore'			=>	'Start restore',
 
 'Restore info 1'		=>	'This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.',
@@ -727,9 +727,9 @@ $lang = array(
 
 'Additional functions'	=>	'Additional functions',
 'Repair all tables'		=>	'Repair all tables',
-'Optimise all tables'	=>	'Optimise all tables',
+'Optimize all tables'	=>	'Optimize all tables',
 
-'Additional info 1'		=>	'Additional features to help run a database, optimise and repair both do what they say.',
+'Additional info 1'		=>	'Additional features to help run a database, optimize and repair both do what they say.',
 
 // Language for appearance.php, settings.php, email.php and features.php
 'Bad HTTP Referer message'			=>	'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.',
@@ -749,7 +749,6 @@ $lang = array(
 'About'								=>	'About',
 'Info in posts help'				=>	'Show information about the poster under the username in topic view.',
 'Post count help'					=>	'Show the number of posts a user has made in topic view, profile and user list.',
-'Smilies help'						=>	'Convert smilies to small graphic icons in forum posts.',
 'Smilies sigs help'					=>	'Convert smilies to small graphic icons in user signatures.',
 'Clickable links help'				=>	'Convert URLs automatically to clickable hyperlinks.',
 'Topic review label'				=>	'Topic review',
@@ -958,7 +957,7 @@ $lang = array(
 
 'Prune users head'			=>	'Prune users',
 'Prune by'					=>	'Prune by',
-'Registed date'				=>	'Registered date',
+'Registered date'			=>	'Registered date',
 'Last login'				=>	'Last login',
 'Prune by info'				=>	'What should we count to prune?',
 'Minimum days'				=>	'Minimum days since registration/last login',
@@ -1071,7 +1070,7 @@ $lang = array(
 'Report new label'					=>	'Report new registrations',
 'Report new help'					=>	'Notify people on the mailing list when new user registers.  ',
 'Use rules label'					=>	'User forum rules',
-'Use rules help'					=>	'Require users to agree with the rules. This will also enable a "Rules" link in the navigation bar.',
+'Use rules help'					=>	'Require users to agree with the rules. This will enable a "Rules" panel in Help.',
 'Rules label'						=>	'Enter your rules here',
 'Rules help'						=>	'Enter rules or useful information, required when rules are enabled',
 'E-mail default label'				=>	'Default email setting',
@@ -1111,7 +1110,7 @@ $lang = array(
 
 // Language for ranks.php
 'Must be integer message'	=>	'Minimum posts must be a positive integer value.',
-'Dupe min posts message'	=>	'There is already a rank with a minimun posts value of %s.',
+'Dupe min posts message'	=>	'There is already a rank with a minimum posts value of %s.',
 'Add rank subhead'			=>	'Add rank',
 'Ranks disabled'			=>	'<strong>User ranks is disabled in %s.</strong>',
 'Rank title label'			=>	'Rank title',
@@ -1533,23 +1532,48 @@ Login at <login_url> to activate the account.
 'Toggle navigation'		=>	'Toggle navigation',
 'Offline'				=>	'Offline',
 'Cancel'				=>	'Cancel',
+'Back'					=>	'Back',
+
+'A situation'			=>	'We\'ve got us a situation here.',
 
 // Mainstage
+'Showing everything'	=>	'We\'re showing everything',
+'Post'					=>	'Post',
+
+'Search in posts'		=>	'Search in posts',
+'More'					=>	'More',
+
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
 'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
 'Notifications'			=>	'Notifications',
+'Use Inbox info'		=>	'Allow users to send messages with Inbox.',
 
 'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
 'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
+'Soft delete'			=>	'Soft delete',
+'Soft reset'			=>	'Soft reset',
+'Reset post'			=>	'Reset post',
+
+'Send'					=>	'Send',
 
 'Soft delete info'		=>	'The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.',
 'Revert soft delete'	=>	'This post has been soft deleted. We\'ll enable it again with a click on the button.',
 'Report reason'			=>	'Tell us why you are reporting this.',
 
 'No new notifications'	=>	'No new notifications',
+'Mark as seen'			=>	'Mark as seen',
+'Delete notifications'	=>	'Delete notifications',
+'Personalize'			=>	'Personalize',
+'Threads'				=>	'Threads',
+'Time'					=>	'Time',
+
+'Pin topic'				=>	'Pin topic',
+'Mute edit'				=>	'Mute edit',
+'Edit subject'			=>	'Edit "%s"',
 
 'No users online'		=>	'No users online',
+'posts since'			=>	'%s posts since %s', // As in 8 posts since 13 April 2015
 
 // Backstage
 'Luna update'			=>	'Luna software update',
@@ -1559,6 +1583,11 @@ Login at <login_url> to activate the account.
 'Menu'					=>	'Menu',
 'Theme'					=>	'Theme',
 'Database management'	=>	'Database management',
+
+'Moderating forum'		=>	'Moderating "%s"',
+
+'Parent section'		=>	'Parent section',
+'No parent'				=>	'No parent forum selected',
 
 'Emoji'					=>	'Emoji',
 'Use emojis'			=>	'Use emojis instead of emoticons.',
@@ -1589,8 +1618,8 @@ Login at <login_url> to activate the account.
 'Restore completed'		=>	'Restore completed',
 'Failed repair'			=>	'Tables error, repair failed.',
 'Failed repair SQL'		=>	'SQL error, repair failed.',
-'Failed optimize'		=>	'Tables error, optimise failed.',
-'Failed optimize SQL'	=>	'SQL error, optimise failed.',
+'Failed optimize'		=>	'Tables error, optimize failed.',
+'Failed optimize SQL'	=>	'SQL error, optimize failed.',
 
 'Use Inbox'				=>	'Use Inbox', // "Inbox" is the name of a feature, capital required
 'Allow Inbox'			=>	'Allow users to use Inbox.',
@@ -1602,9 +1631,10 @@ Login at <login_url> to activate the account.
 'Soft delete posts'		=>	'Soft delete posts',
 'Allow post soft delete'	=>	'Allow users to soft delete posts from all users.',
 'Soft delete topics'	=>	'Soft delete topics',
-'Allow topic soft delete'	=> 'Allow users soft delete topics from all users.',
+'Allow topic soft delete'	=> 'Allow users to soft delete topics from all users.',
 'Inbox messages'		=>	'The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.',
 'Delete topics'			=>	'Delete topics',
+'Maximum names'			=>	'Separate names with commas, maximum %s names',
 
 'Config warning'		=>	'The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.',
 'Welcome to Luna'		=>	'Welcome to Luna',
@@ -1627,6 +1657,8 @@ Login at <login_url> to activate the account.
 'Name'					=>	'Name',
 'Position'				=>	'Position',
 'Show'					=>	'Show',
+'Must add URL'			=>	'You must give your menu item an URL.',
+'Must add title'		=>	'You must give your menu item a title.',
 
 'Moderate content'		=>	'Moderate content',
 'Visit to moderate'		=>	'Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.',
@@ -1654,6 +1686,8 @@ Login at <login_url> to activate the account.
 'Theme settings for'	=>	'Theme settings for %s',
 'Available themes'		=>	'Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.',
 'Use'					=>	'Use',
+'No settings'			=>	'This theme has no settings available...',
+'In use'				=>	'In use',
 
 'Update ring'			=>	'Update ring',
 'Slow'					=>	'Slow',
@@ -1673,6 +1707,7 @@ Login at <login_url> to activate the account.
 'Subforums'             =>  'Subforums',
 'Confirm deletion'      =>  'Confirm deletion',
 'Write message'         =>  'Write message',
+'Search the board'		=>	'Search the board',
 'Request password'      =>  'Request password',
 'New topic in'          =>  'New topic in "%s"',
 'New comment in'        =>  'New comment in "%s"',

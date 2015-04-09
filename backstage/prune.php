@@ -13,10 +13,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
 if ($action == 'prune') {
@@ -89,7 +86,6 @@ if ($action == 'prune') {
 	$num_topics = $db->result($result);
 
 	if (!$num_topics) {
-		load_admin_nav('maintenance', 'prune');
 		message_backstage(sprintf($lang['No old topics message'], $prune_days));
 		exit;
 	}
@@ -299,7 +295,7 @@ require 'header.php';
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="1" checked />
-							<?php echo $lang['Registed date'] ?>
+							<?php echo $lang['Registered date'] ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="0" />

@@ -15,6 +15,8 @@ require FORUM_ROOT.'include/common.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
+$cur_index = 1;
+
 if ($action == 'markread') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');

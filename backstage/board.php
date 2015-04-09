@@ -11,18 +11,17 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 // Add a "default" forum
 if (isset($_POST['add_forum'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$forum_name = luna_trim($_POST['new_forum']); 
 	$add_to_cat = intval($_POST['add_to_cat']);
-	if ($add_to_cat < 1)
+	if ($add_to_cat < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	$db->query('INSERT INTO '.$db->prefix.'forums (forum_name, cat_id) VALUES(\''.$db->escape($forum_name).'\', '.$add_to_cat.')') or error('Unable to create forum', __FILE__, __LINE__, $db->error());
 	$new_fid = $db->insert_id();
@@ -35,8 +34,10 @@ elseif (isset($_GET['del_forum'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$forum_id = intval($_GET['del_forum']);
-	if ($forum_id < 1)
+	if ($forum_id < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	if (isset($_POST['del_forum_comply'])) { // Delete a forum with all posts
 		@set_time_limit(0);
@@ -100,8 +101,10 @@ elseif (isset($_POST['update_positions'])) {
 	
 	foreach ($_POST['position'] as $forum_id => $disp_position) {
 		$disp_position = trim($disp_position);
-		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position))
+		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position)) {
 			message_backstage($lang['Post must be integer message']);
+			exit;
+		}
 
 		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 	}
@@ -109,8 +112,10 @@ elseif (isset($_POST['update_positions'])) {
 	redirect('backstage/board.php?saved=true');
 } elseif (isset($_GET['edit_forum'])) {
 	$forum_id = intval($_GET['edit_forum']);
-	if ($forum_id < 1)
+	if ($forum_id < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	// Update group permissions for $forum_id
 	if (isset($_POST['save'])) {
@@ -124,11 +129,15 @@ elseif (isset($_POST['update_positions'])) {
 		$sort_by = intval($_POST['sort_by']);
 		$color = luna_trim($_POST['color']);
 
-		if ($forum_name == '')
+		if ($forum_name == '') {
 			message_backstage($lang['Must enter name message']);
+			exit;
+		}
 
-		if ($cat_id < 1)
+		if ($cat_id < 1) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 
@@ -169,8 +178,10 @@ elseif (isset($_POST['update_positions'])) {
 	// Fetch forum info
 	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, color FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
-	if (!$db->num_rows($result))
+	if (!$db->num_rows($result)) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	$cur_forum = $db->fetch_assoc($result);
 
@@ -207,10 +218,10 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Parent section</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Parent section'] ?></label>
 					<div class="col-sm-9">
 						<select name="parent_id" class="form-control">
-							<option value="0">No parent forum selected</option>
+							<option value="0"><?php echo $lang['No parent'] ?></option>
 <?php
 
 	if (!in_array($cur_forum['id'],$parent_forums)) {
@@ -380,8 +391,10 @@ elseif (isset($_POST['add_cat'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$new_cat_name = luna_trim($_POST['new_cat_name']);
-	if ($new_cat_name == '')
+	if ($new_cat_name == '') {
 		message_backstage($lang['Must enter name message']);
+		exit;
+	}
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
@@ -393,8 +406,10 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$cat_to_delete = intval($_POST['cat_to_delete']);
-	if ($cat_to_delete < 1)
+	if ($cat_to_delete < 1) {
 		message_backstage($lang['Bad request'], false, '404 Not Found');
+		exit;
+	}
 
 	if (isset($_POST['del_cat_comply'])) { // Delete a category with all forums and posts
 		@set_time_limit(0);
@@ -474,18 +489,24 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		confirm_referrer('backstage/board.php');
 		
 		$categories = $_POST['cat'];
-		if (empty($categories))
+		if (empty($categories)) {
 			message_backstage($lang['Bad request'], false, '404 Not Found');
+			exit;
+		}
 	
 		foreach ($categories as $cat_id => $cur_cat) {
 			$cur_cat['name'] = luna_trim($cur_cat['name']);
 			$cur_cat['order'] = luna_trim($cur_cat['order']);
 	
-			if ($cur_cat['name'] == '')
+			if ($cur_cat['name'] == '') {
 				message_backstage($lang['Must enter name message']);
+				exit;
+			}
 	
-			if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order']))
+			if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order'])) {
 				message_backstage($lang['Must enter integer message']);
+				exit;
+			}
 	
 			$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
 		}
@@ -526,7 +547,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 								</td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="Forum name" required="required" /></td>
+								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="<?php echo $lang['Name'] ?>" required="required" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -545,7 +566,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 					<table class="table">
 						<tbody>
 							<tr>
-								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="Category name" tabindex="1" /></td>
+								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="<?php echo $lang['Name'] ?>" tabindex="1" /></td>
 							</tr>
 						</tbody>
 					</table>

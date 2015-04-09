@@ -11,10 +11,7 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
-if ($luna_user['g_id'] != FORUM_ADMIN)
-	message_backstage($lang['No permission'], false, '403 Forbidden');
-
+	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/email.php', $lang['Bad HTTP Referer message']);
 	
@@ -35,8 +32,10 @@ if (isset($_POST['form_sent'])) {
 
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
-		else
+		else {
 			message_backstage($lang['SMTP passwords did not match']);
+			exit;
+		}
 	}
 
 	foreach ($form as $key => $input) {

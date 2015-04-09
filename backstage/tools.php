@@ -11,14 +11,9 @@ define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
-	header("Location: ../login.php");
+	header("Location: login.php");
 // Create new user
 if (isset($_POST['add_user'])) {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
-	define('FORUM_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('users', 'users');
-
 	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
@@ -38,18 +33,25 @@ if (isset($_POST['add_user'])) {
 	$username = preg_replace('#\s+#s', ' ', $username);
 
 	// Validate username and passwords
-	if (strlen($username) < 2)
+	if (strlen($username) < 2) {
 		message_backstage($lang['Username too short']);
-	elseif (luna_strlen($username) > 25)	// This usually doesn't happen since the form element only accepts 25 characters
+		exit;
+	} elseif (luna_strlen($username) > 25) {	// This usually doesn't happen since the form element only accepts 25 characters
 		message_backstage($lang['Pass too short']);
-	elseif (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang['Guest']))
+		exit;
+	} elseif (!strcasecmp($username, 'Guest') || !strcasecmp($username, $lang['Guest'])) {
 		message_backstage($lang['Username guest']);
-	elseif (preg_match('/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/', $username))
+		exit;
+	} elseif (preg_match('/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/', $username)) {
 		message_backstage($lang['Username IP']);
-	elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
+		exit;
+	} elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false) {
 		message_backstage($lang['Username reserved chars']);
-	elseif (preg_match('#\[b\]|\[/b\]|\[u\]|\[/u\]|\[i\]|\[/i\]|\[color|\[/color\]|\[quote\]|\[quote=|\[/quote\]|\[code\]|\[/code\]|\[img\]|\[/img\]|\[url|\[/url\]|\[email|\[/email\]#i', $username))
+		exit;
+	} elseif (preg_match('#\[b\]|\[/b\]|\[u\]|\[/u\]|\[i\]|\[/i\]|\[color|\[/color\]|\[quote\]|\[quote=|\[/quote\]|\[code\]|\[/code\]|\[img\]|\[/img\]|\[url|\[/url\]|\[email|\[/email\]#i', $username)) {
 		message_backstage($lang['Username BBCode']);
+		exit;
+	}
 
 	// Check that the username (or a too similar username) is not already registered
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE username=\''.$db->escape($username).'\' OR username=\''.$db->escape(preg_replace('/[^\w]/', '', $username)).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -57,6 +59,7 @@ if (isset($_POST['add_user'])) {
 	if ($db->num_rows($result)) {
 		$busy = $db->result($result);
 		message_backstage($lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2']);
+		exit;
 	}
 
 	$timezone = '0';

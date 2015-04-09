@@ -50,6 +50,14 @@ if (!defined('FORUM'))
 		<?php draw_topic_list(); ?>
 		<?php if ($quickpost): ?>
 			<form method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+<?php
+			if ($luna_user['is_guest']) {
+				$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.$lang['Email'].'</strong>' : $lang['Email'];
+				$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
+?>
+                <label class="required hidden"><?php echo $lang['Guest name'] ?></label><input class="info-textfield form-control" type="text" placeholder="<?php echo $lang['Guest name'] ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" autofocus />
+                <label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="info-textfield form-control" type="text" placeholder="<?php echo $lang['Email'] ?>" name="<?php echo $email_form_name ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
+<?php } ?>
 				<?php draw_editor('10'); ?>
 			</form>
 		<?php endif; ?>
