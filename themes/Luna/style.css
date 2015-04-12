@@ -1066,6 +1066,11 @@ textarea {
 	height: 100px;
 }
 
+.user-entry img.media-object {
+	width: 100px;
+	height: 100px;
+}
+
 .user-entry h2 {
 	margin-top: 13px;
 	margin-bottom: 0;
