@@ -437,6 +437,7 @@ a.list-group-item-cat:hover .forum-description {
 h2.forum-title {
 	margin: 10px 0 5px;
 	color: #fff !important;
+	display: inline-block;
 }
 
 h2.forum-title .btn {
