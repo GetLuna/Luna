@@ -234,8 +234,8 @@ function draw_topics_list() {
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			if (luna_strlen($cur_topic['subject']) > 43)
-				$subject = utf8_substr($cur_topic['subject'], 0, 40).'...';
+			if (luna_strlen($cur_topic['subject']) > 53)
+				$subject = utf8_substr($cur_topic['subject'], 0, 50).'...';
 			else
 				$subject = luna_htmlspecialchars($cur_topic['subject']);
 			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
@@ -371,8 +371,8 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 
 			// If there is a last_post/last_poster
 			if ($cur_forum['last_post'] != '') {
-				if (luna_strlen($cur_forum['subject']) > 43)
-					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 40).'...';
+				if (luna_strlen($cur_forum['subject']) > 53)
+					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
 		
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
 						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
