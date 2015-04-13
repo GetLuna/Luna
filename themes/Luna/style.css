@@ -1291,11 +1291,11 @@ blockquote footer {
 
 .accent-group .btn {
 	box-shadow: none;
-	border: 3px solid #fff;
+	border: 3px solid #fff !important;
 }
 
 .accent-group .btn:hover, .accent-group .btn:focus, .accent-group .btn:active, .accent-group .active.btn {
-	border: 3px solid #bbb;
+	border: 3px solid #bbb !important;
 }
 
 .accent-blue {
