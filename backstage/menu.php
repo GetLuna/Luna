@@ -91,12 +91,12 @@ load_admin_nav('settings', 'menu');
 						<tbody>
 							<tr>
 								<td>
-									<input type="text" class="form-control" name="name" placeholder="Name" value="" />
+									<input type="text" class="form-control" name="name" placeholder="<?php echo $lang['Name'] ?>" value="" />
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<input type="text" class="form-control" name="url" placeholder="URL" value="" />
+									<input type="text" class="form-control" name="url" placeholder="<?php echo $lang['URL'] ?>" value="" />
 								</td>
 							</tr>
 						</tbody>

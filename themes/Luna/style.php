@@ -64,7 +64,7 @@ if ($luna_user['color_scheme'] == '1') { // ModernBB
 	background-color: <?php echo $secondary_color ?>;
 }
 
-.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default {
+.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default {
 	background-color: <?php echo $tertiary_color ?>;
 }
 
@@ -95,8 +95,12 @@ a, a:focus, .pagination > li > a, .pagination > li > span {
 }
 
 <?php if ($luna_user['color_scheme'] == '10'): ?>
-.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus, .first-run-title, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, .footer, .footer a, .panel-default .panel-heading, .active.list-group-item, .active.list-group-item:hover, .active.list-group-item:focus, .alert-all, .jumbotron h2, .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus, .user-card-title, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .nav > li > a, a.list-group-item:hover, .navbar-default .navbar-brand, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover, .category-header {
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus, .first-run-title, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, .footer, .footer a, .panel-default .panel-heading, .active.list-group-item, .active.list-group-item:hover, .active.list-group-item:focus, .alert-all, .jumbotron h2, .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus, .user-card-title, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .nav > li > a, a.list-group-item:hover, .navbar-default .navbar-brand, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover, .category-header, .new-item .label-default  {
 	color: #555;
+}
+
+.jumbotron .container h2 {
+	color: #fff;
 }
 
 .navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
@@ -107,17 +111,18 @@ a, a:focus, .pagination > li > a, .pagination > li > span {
 	border-color: <?php echo $secondary_color ?>;
 }
 
+a, a:focus, .pagination > li > a, .pagination > li > span {
+	color: #333;
+}
+
+.nav > li > a, a.list-group-item:hover, a:hover, a:active {
+	color: #555;
+}
+
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
 	text-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
 }
 <?php endif; if ($luna_user['color_scheme'] > 9): ?>
-a, a:focus, .pagination > li > a, .pagination > li > span {
-	color: #2a6496;
-}
-
-.nav > li > a, a.list-group-item:hover, a:hover, a:active {
-	color: #23527c;
-}
 <?php endif; ?>
 
 .emoji {

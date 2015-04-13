@@ -86,7 +86,6 @@ if ($action == 'prune') {
 	$num_topics = $db->result($result);
 
 	if (!$num_topics) {
-		load_admin_nav('maintenance', 'prune');
 		message_backstage(sprintf($lang['No old topics message'], $prune_days));
 		exit;
 	}
@@ -296,7 +295,7 @@ require 'header.php';
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="1" checked />
-							<?php echo $lang['Registed date'] ?>
+							<?php echo $lang['Registered date'] ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="0" />
