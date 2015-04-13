@@ -68,7 +68,7 @@ $theme_info = new SimpleXMLElement($xmlstr);
 if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 	include FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php';
 } else {
-	echo 'This theme has no settings available...';
+	echo $lang['No settings'];
 }
 
 ?>
@@ -102,7 +102,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 									<div class="modal-body">
 										<div class="row">
 											<div class="col-sm-8">
-												<div class="thumbnail"><img src="../themes/<?php echo $temp ?>/screenshot.png" /></div>
+												<img class="img-responsive" src="../themes/<?php echo $temp ?>/screenshot.png" />
 											</div>
 											<div class="col-sm-4">
 												<h2><?php echo $theme_info->name; ?> <small><?php printf($lang['version'], $theme_info->version) ?></small></h2>
@@ -127,7 +127,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 								<div class="btn-group pull-right">
 									<?php
 										if ($luna_config['o_default_style'] == $theme_info->name)
-											echo '<a class="btn btn-primary disabled">In use</a>';
+											echo '<a class="btn btn-primary disabled">'.$lang['In use'].'</a>';
 										else
 											echo '<a class="btn btn-primary" href="theme.php?default_style='.$theme_info->name.'">'.$lang['Use'].'</a>';
 										

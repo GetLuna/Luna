@@ -1,10 +1,10 @@
 /*
  * Copyright Studio 384 and Luna Group
  * Bootstrap Template: 	Trent
- * Version:				0.3
+ * Version:				1.0
  * Based on:			Trent v1.3 (http://studio384.be/trent.php)
  * Since:				0.0.40.2900
- * Bootstrap:			3.3.1
+ * Bootstrap:			3.3.4
  */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
@@ -13,6 +13,10 @@
 * {
 	border-radius: 0 !important;
 	box-shadow: none !important;
+}
+
+html {
+    overflow-y: scroll;
 }
 
 body {

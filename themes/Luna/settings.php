@@ -18,7 +18,7 @@ if (!defined('FORUM'))
 </div>
 <div class="col-sm-9">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
-	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
+	<h2 class="profile-settings-head"><?php echo $lang['Settings'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
@@ -82,14 +82,14 @@ if (!defined('FORUM'))
 					</div>
 					<hr />
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Avatar'] ?><span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
 						<div class="col-sm-9">
 							<?php echo $avatar_user ?>
 							<?php echo $avatar_field ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Signature<span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
+						<label class="col-sm-3 control-label"><?php echo $lang['Signature'] ?><span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
 						<div class="col-sm-9">
 							<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
 							<span class="help-block"><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></span>
