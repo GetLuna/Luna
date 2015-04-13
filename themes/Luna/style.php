@@ -99,12 +99,24 @@ a, a:focus, .pagination > li > a, .pagination > li > span {
 	color: #555;
 }
 
+.jumbotron .container h2 {
+	color: #fff;
+}
+
 .navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background-color: #555;
 }
 
 .btn-primary, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
 	border-color: <?php echo $secondary_color ?>;
+}
+
+a, a:focus, .pagination > li > a, .pagination > li > span {
+	color: #333;
+}
+
+.nav > li > a, a.list-group-item:hover, a:hover, a:active {
+	color: #555;
 }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
