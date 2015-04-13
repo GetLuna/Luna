@@ -1545,12 +1545,12 @@ Login at <login_url> to activate the account.
 
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
-'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
+'Delete post warning'	=>	'Are you sure that you want to delete the message(s) from your inbox??',
 'Notifications'			=>	'Notifications',
 'Use Inbox info'		=>	'Allow users to send messages with Inbox.',
 
-'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
-'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
+'No threads'			=>	'There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.',
+'No threads board'		=>	'The board is empty; select a forum and create a topic to begin.',
 'Soft delete'			=>	'Soft delete',
 'Soft reset'			=>	'Soft reset',
 'Reset post'			=>	'Reset post',
@@ -1573,7 +1573,7 @@ Login at <login_url> to activate the account.
 'Edit subject'			=>	'Edit "%s"',
 
 'No users online'		=>	'No users online',
-'posts since'			=>	'%s posts since %s', // As in 8 posts since 13 April 2015
+'posts since'			=>	'posts since', // As in 8 posts since 13 April 2015
 
 // Backstage
 'Luna update'			=>	'Luna software update',

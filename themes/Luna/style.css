@@ -437,6 +437,7 @@ a.list-group-item-cat:hover .forum-description {
 h2.forum-title {
 	margin: 10px 0 5px;
 	color: #fff !important;
+	display: inline-block;
 }
 
 h2.forum-title .btn {
@@ -1063,6 +1064,11 @@ textarea {
 	background-color: #eee;
 	padding: 0;
 	margin: 0 0 10px 0;
+	height: 100px;
+}
+
+.user-entry img.media-object {
+	width: 100px;
 	height: 100px;
 }
 

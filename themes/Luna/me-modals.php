@@ -58,7 +58,7 @@
 					<fieldset>
 						<input type="hidden" name="form_sent" value="1" />
 						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $luna_config['o_avatars_size'] ?>" />
-						<input class="form-control" name="req_file" type="file" />
+						<input name="req_file" type="file" />
 						<span class="help-block"><?php echo $lang['Avatar desc'].' '.$luna_config['o_avatars_width'].' x '.$luna_config['o_avatars_height'].' '.$lang['pixels'].' '.$lang['and'].' '.forum_number_format($luna_config['o_avatars_size']).' '.$lang['bytes'].' ('.file_size($luna_config['o_avatars_size']).').' ?></span>
 					</fieldset>
 				</div>
