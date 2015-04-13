@@ -122,10 +122,5 @@ a, a:focus, .pagination > li > a, .pagination > li > span {
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
 	text-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
 }
-<?php endif; if ($luna_user['color_scheme'] > 9): ?>
 <?php endif; ?>
-
-.emoji {
-	font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
-}
 </style>

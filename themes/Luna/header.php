@@ -2,6 +2,8 @@
 
 require ('header.php');
 
+$body_classes = 'accent-'.$luna_user['color_scheme'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,8 +29,13 @@ if (!defined('FORUM_ALLOW_INDEX'))
 // Required fields check
 required_fields();
 ?>
+		<style>
+		.emoji {
+			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
+		}
+		</style>
 	</head>
-	<body>
+	<body class="<?php echo $body_classes ?>">
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
 		<div class="container container-main" id="main">
 			<div id="header">
