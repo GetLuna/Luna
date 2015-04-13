@@ -1,9 +1,9 @@
 <?php
 
 if ($luna_user['color_scheme'] == '1') { // ModernBB
-	$primary_color = '#14a3ff';
-	$secondary_color = '#0b95ed';
-	$tertiary_color = '#0589de';
+	$primary_color = '#000';
+	$secondary_color = '#000';
+	$tertiary_color = '#000';
 } elseif ($luna_user['color_scheme'] == '2') { // Blue
 	$primary_color = '#2788cb';
 	$secondary_color = '#1a79bc';
