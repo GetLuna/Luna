@@ -48,7 +48,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="#" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back</a>
+				<a href="#" data-toggle="modal" data-target="#login-form" data-dismiss="modal"><?php echo $lang['Back'] ?></a>
 			</div>
 		</div>
 	</div>

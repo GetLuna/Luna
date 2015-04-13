@@ -218,10 +218,10 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Parent section</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Parent section'] ?></label>
 					<div class="col-sm-9">
 						<select name="parent_id" class="form-control">
-							<option value="0">No parent forum selected</option>
+							<option value="0"><?php echo $lang['No parent'] ?></option>
 <?php
 
 	if (!in_array($cur_forum['id'],$parent_forums)) {
@@ -547,7 +547,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 								</td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="Forum name" required="required" /></td>
+								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="<?php echo $lang['Name'] ?>" required="required" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -566,7 +566,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 					<table class="table">
 						<tbody>
 							<tr>
-								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="Category name" tabindex="1" /></td>
+								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="<?php echo $lang['Name'] ?>" tabindex="1" /></td>
 							</tr>
 						</tbody>
 					</table>

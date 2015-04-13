@@ -14,11 +14,6 @@ if (!$luna_user['is_admmod'])
 	header("Location: login.php");
 // Create new user
 if (isset($_POST['add_user'])) {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Users'], $lang['Results head']);
-	define('FORUM_ACTIVE_PAGE', 'admin');
-	require 'header.php';
-	load_admin_nav('users', 'users');
-
 	$username = luna_trim($_POST['username']);
 	$email1 = strtolower(trim($_POST['email']));
 	$email2 = strtolower(trim($_POST['email']));
