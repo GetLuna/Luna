@@ -1573,7 +1573,7 @@ Login at <login_url> to activate the account.
 'Edit subject'			=>	'Edit "%s"',
 
 'No users online'		=>	'No users online',
-'posts since'			=>	'%s posts since %s', // As in 8 posts since 13 April 2015
+'posts since'			=>	'posts since', // As in 8 posts since 13 April 2015
 
 // Backstage
 'Luna update'			=>	'Luna software update',
