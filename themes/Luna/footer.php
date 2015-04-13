@@ -91,6 +91,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 								</div>
 								<div class="col-xs-6">
 									<div class="statistic-item-stat">
+										<?php if ($luna_config['o_users_online']) { ?>
 										<div class="dropup">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<?php echo $lang['Users online'] ?> <span class="fa fa-fw fa-angle-up"></span>
@@ -100,6 +101,8 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 												<?php echo online_list() ?>
 											</ul>
 										</div>
+										<?php } else
+											echo $lang['Users online']; ?>
 									</div>
 								</div>
 							</div>
@@ -124,7 +127,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
-			echo 'Copyright &copy; '.date('Y').' &middot; '.$luna_config['o_board_title'];
+			echo $lang['Copyright'].' &copy; '.date('Y').' &middot; '.$luna_config['o_board_title'];
 		if ($luna_config['o_copyright_type'] == '1')
 			echo $luna_config['o_custom_copyright'];
 	}

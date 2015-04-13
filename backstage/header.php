@@ -26,7 +26,7 @@ $p = isset($p) ? $p : null;
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
-		<title>Backstage</title>
+		<title><?php echo $lang['Backstage'] ?></title>
 	</head>
 	<body>
 <?php

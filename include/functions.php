@@ -1022,7 +1022,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 ?>
 
 <div class="container">
-	<h2 style="margin-top: 60px;">We've got us a situation here</h2>
+	<h2 style="margin-top: 60px;"><?php echo $lang['A situation'] ?></h2>
 	<p><?php echo $message ?></p>
 </div>
 <?php

@@ -33,7 +33,7 @@ if (!defined('FORUM'))
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Inbox messages</h3>
+					<h3 class="panel-title"><?php echo $lang['Inbox'] ?></h3>
 				</div>
 				<input type="hidden" name="box" value="0" />
 				<table class="table">
