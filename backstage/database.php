@@ -398,9 +398,9 @@ if (isset($_POST['backupstart'])) {
 	// Handle the file upload
 	// If no file was uploaded report an error
 	//
-	$backup_file_name = (!empty($HTTP_POST_FILES['backup_file']['name'])) ? $HTTP_POST_FILES['backup_file']['name'] : "";
-	$backup_file_tmpname = ((!empty($HTTP_POST_FILES['backup_file']['tmp_name'])) && ($HTTP_POST_FILES['backup_file']['tmp_name'] != "none")) ? $HTTP_POST_FILES['backup_file']['tmp_name'] : "";
-	$backup_file_type = (!empty($HTTP_POST_FILES['backup_file']['type'])) ? $HTTP_POST_FILES['backup_file']['type'] : "";
+	$backup_file_name = (!empty($_FILES['backup_file']['name'])) ? $_FILES['backup_file']['name'] : "";
+	$backup_file_tmpname = ($_FILES['backup_file']['tmp_name'] != "none") ? $_FILES['backup_file']['tmp_name'] : "";
+	$backup_file_type = (!empty($_FILES['backup_file']['type'])) ? $_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "") {
 		message_backstage($lang['No file uploaded']);
 		exit;
@@ -525,7 +525,7 @@ if (isset($_POST['backupstart'])) {
 			exit;
 		}
 	}
-	message_backstage('All tables optimised');
+	message_backstage('All tables optimized');
 	exit;
 } else {
 	
@@ -602,7 +602,7 @@ if (isset($_POST['backupstart'])) {
 			<fieldset>
 				<span class="btn-group">
 					<button class="btn btn-primary" type="submit" name="repairall"><span class="fa fa-fw fa-wrench"></span> <?php echo $lang['Repair all tables'] ?></button>
-					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php echo $lang['Optimise all tables'] ?></button>
+					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php echo $lang['Optimize all tables'] ?></button>
 				</span>
 			</fieldset>
 		</div>

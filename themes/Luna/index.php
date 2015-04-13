@@ -23,7 +23,7 @@ if ($luna_user['first_run'] == '0') {
 			<div class="list-group first-run-list">
 				<a href="settings.php" class="list-group-item"><?php echo $lang['Extend profile'] ?></a>
 				<a href="help.php" class="list-group-item"><?php echo $lang['Get help'] ?></a>
-				<a href="search.php" class="list-group-item">Search the board</a>
+				<a href="search.php" class="list-group-item"><?php echo $lang['Search the board'] ?></a>
 				<a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active"><?php echo $lang['Do not show again'] ?></a>
 			</div>
 		</div>

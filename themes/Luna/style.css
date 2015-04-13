@@ -142,6 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .dropdown-menu > li > a, .dropdown-header {
 	padding: 9px 20px;
+	white-space: normal;
 }
 
 .dropdown-header {
@@ -436,6 +437,7 @@ a.list-group-item-cat:hover .forum-description {
 h2.forum-title {
 	margin: 10px 0 5px;
 	color: #fff !important;
+	display: inline-block;
 }
 
 h2.forum-title .btn {
@@ -544,6 +546,7 @@ h2.forum-title .btn {
 
 .first-run-login {
 	margin-right: 15px;
+	padding-top: 5px;
 }
 
 .first-run .active {
@@ -954,11 +957,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .label-default {
-	background: #d8d8d8;
-}
-
-.new-item .label-default {
-	background: #949494;
+	background: #b8b8b8;
 }
 
 .label-success {
@@ -1065,6 +1064,11 @@ textarea {
 	background-color: #eee;
 	padding: 0;
 	margin: 0 0 10px 0;
+	height: 100px;
+}
+
+.user-entry img.media-object {
+	width: 100px;
 	height: 100px;
 }
 

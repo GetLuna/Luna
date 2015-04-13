@@ -27,7 +27,7 @@ $redirect_url = check_url();
 			<label><input type="checkbox" name="save_pass" value="1" tabindex="3" checked /> <?php echo $lang['Remember me'] ?></label>
 		</div>
 		<div class="form-group">
-			<input type="submit" class="btn btn-primary btn-block" value="Login" />
+			<input type="submit" class="btn btn-primary btn-block" value="<?php echo $lang['Login'] ?>" />
 		</div>
 	</form>
 </div>
