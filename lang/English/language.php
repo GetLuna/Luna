@@ -727,9 +727,9 @@ $lang = array(
 
 'Additional functions'	=>	'Additional functions',
 'Repair all tables'		=>	'Repair all tables',
-'Optimise all tables'	=>	'Optimise all tables',
+'Optimize all tables'	=>	'Optimize all tables',
 
-'Additional info 1'		=>	'Additional features to help run a database, optimise and repair both do what they say.',
+'Additional info 1'		=>	'Additional features to help run a database, optimize and repair both do what they say.',
 
 // Language for appearance.php, settings.php, email.php and features.php
 'Bad HTTP Referer message'			=>	'Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.',
@@ -957,7 +957,7 @@ $lang = array(
 
 'Prune users head'			=>	'Prune users',
 'Prune by'					=>	'Prune by',
-'Registed date'				=>	'Registered date',
+'Registered date'			=>	'Registered date',
 'Last login'				=>	'Last login',
 'Prune by info'				=>	'What should we count to prune?',
 'Minimum days'				=>	'Minimum days since registration/last login',
@@ -1110,7 +1110,7 @@ $lang = array(
 
 // Language for ranks.php
 'Must be integer message'	=>	'Minimum posts must be a positive integer value.',
-'Dupe min posts message'	=>	'There is already a rank with a minimun posts value of %s.',
+'Dupe min posts message'	=>	'There is already a rank with a minimum posts value of %s.',
 'Add rank subhead'			=>	'Add rank',
 'Ranks disabled'			=>	'<strong>User ranks is disabled in %s.</strong>',
 'Rank title label'			=>	'Rank title',
@@ -1545,14 +1545,15 @@ Login at <login_url> to activate the account.
 
 'Reply'					=>	'Reply',
 'Compose'				=>	'Compose',
-'Delete post warning'	=>	'You are about to delete some messages from Inbox. Are you sure you want to do this?',
+'Delete post warning'	=>	'Are you sure that you want to delete the message(s) from your inbox??',
 'Notifications'			=>	'Notifications',
 'Use Inbox info'		=>	'Allow users to send messages with Inbox.',
 
-'No threads'			=>	'There are no thread in this forum, <a href="post.php?fid=%s">be the first one!</a>',
-'No threads board'		=>	'There are no thread on this board, choose a forum and be the first one.',
+'No threads'			=>	'There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.',
+'No threads board'		=>	'The board is empty; select a forum and create a topic to begin.',
 'Soft delete'			=>	'Soft delete',
 'Soft reset'			=>	'Soft reset',
+'Reset post'			=>	'Reset post',
 
 'Send'					=>	'Send',
 
@@ -1572,7 +1573,7 @@ Login at <login_url> to activate the account.
 'Edit subject'			=>	'Edit "%s"',
 
 'No users online'		=>	'No users online',
-'posts since'			=>	'%s posts since %s', // As in 8 posts since 13 April 2015
+'posts since'			=>	'posts since', // As in 8 posts since 13 April 2015
 
 // Backstage
 'Luna update'			=>	'Luna software update',
@@ -1582,6 +1583,11 @@ Login at <login_url> to activate the account.
 'Menu'					=>	'Menu',
 'Theme'					=>	'Theme',
 'Database management'	=>	'Database management',
+
+'Moderating forum'		=>	'Moderating "%s"',
+
+'Parent section'		=>	'Parent section',
+'No parent'				=>	'No parent forum selected',
 
 'Emoji'					=>	'Emoji',
 'Use emojis'			=>	'Use emojis instead of emoticons.',
@@ -1612,8 +1618,8 @@ Login at <login_url> to activate the account.
 'Restore completed'		=>	'Restore completed',
 'Failed repair'			=>	'Tables error, repair failed.',
 'Failed repair SQL'		=>	'SQL error, repair failed.',
-'Failed optimize'		=>	'Tables error, optimise failed.',
-'Failed optimize SQL'	=>	'SQL error, optimise failed.',
+'Failed optimize'		=>	'Tables error, optimize failed.',
+'Failed optimize SQL'	=>	'SQL error, optimize failed.',
 
 'Use Inbox'				=>	'Use Inbox', // "Inbox" is the name of a feature, capital required
 'Allow Inbox'			=>	'Allow users to use Inbox.',

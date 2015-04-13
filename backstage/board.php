@@ -218,10 +218,10 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Parent section</label>
+					<label class="col-sm-3 control-label"><?php echo $lang['Parent section'] ?></label>
 					<div class="col-sm-9">
 						<select name="parent_id" class="form-control">
-							<option value="0">No parent forum selected</option>
+							<option value="0"><?php echo $lang['No parent'] ?></option>
 <?php
 
 	if (!in_array($cur_forum['id'],$parent_forums)) {
