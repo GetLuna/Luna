@@ -239,14 +239,18 @@ function draw_topics_list() {
 			else
 				$subject = luna_htmlspecialchars($cur_topic['subject']);
 			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
-	
-			if (is_null($cur_topic['moved_to']))
+
+			if (is_null($cur_topic['moved_to'])) {
+				$topic_id = $cur_topic['id'];
+
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
 					$last_poster = '<span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
 					$last_poster = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
-			else
+			} else {
 				$last_poster = '';
+				$topic_id = $cur_topic['moved_to'];
+			}
 	
 			if ($luna_config['o_censoring'] == '1')
 				$cur_topic['subject'] = censor_words($cur_topic['subject']);
@@ -256,7 +260,7 @@ function draw_topics_list() {
 				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 			}
 
-			$url = 'viewtopic.php?id='.$cur_topic['id'];
+			$url = 'viewtopic.php?id='.$topic_id;
 			$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
@@ -534,13 +538,17 @@ function draw_index_topics_list($section_id) {
 				$subject = luna_htmlspecialchars($cur_topic['subject']);
 			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
 
-			if (is_null($cur_topic['moved_to']))
+			if (is_null($cur_topic['moved_to'])) {
+				$topic_id = $cur_topic['id'];
+
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
 					$last_poster = '<span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
 					$last_poster = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
-			else
+			} else {
 				$last_poster = '';
+				$topic_id = $cur_topic['moved_to'];
+			}
 	
 			if ($luna_config['o_censoring'] == '1')
 				$cur_topic['subject'] = censor_words($cur_topic['subject']);
@@ -550,7 +558,7 @@ function draw_index_topics_list($section_id) {
 				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
 			}
 
-			$url = 'viewtopic.php?id='.$cur_topic['id'];
+			$url = 'viewtopic.php?id='.$topic_id;
 			$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
