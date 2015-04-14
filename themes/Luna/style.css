@@ -1954,10 +1954,34 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	background-color: #444;
 }
 
-.night .textarea-toolbar .btn-group {
+.night .textarea-toolbar .btn-group, .night .textarea-top, .night .textarea-bottom {
 	border-color: #555;
 }
 
 .night .panel-editor .btn-default {
 	color: #fff;
+}
+
+.night .input-group-addon {
+	border-color: #222;
+}
+
+.night .form-control {
+	background-color: #333;
+	color: #ddd;
+	border-color: #222;
+}
+
+.night .well {
+	background-color: #3d3d3d;
+	border-color: #333;
+}
+
+.night .btn-search {
+	background-color: #333;
+	color: #ddd;
+}
+
+.night .btn-search:hover {
+	background-color: #393939;
 }
