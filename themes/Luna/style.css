@@ -1945,3 +1945,15 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	border-color: #3e3e3e;
 	background-color: #404040;
 }
+
+.night .panel-editor .btn-default {
+	background-color: #444;
+}
+
+.night .textarea-toolbar .btn-group {
+	border-color: #555;
+}
+
+.night .panel-editor .btn-default {
+	color: #fff;
+}
