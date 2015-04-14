@@ -4,9 +4,14 @@ require ('header.php');
 
 $body_classes = 'accent-'.$luna_user['color_scheme'];
 
+if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && ((localtime(time(), tm_hour) < 7) || (localtime(time(), tm_hour) > 19))))
+	$body_classes .= ' night';
+else
+	$body_classes .= ' normal';
+
 ?>
 <!DOCTYPE html>
-<html>
+<html class="<?php echo $body_classes ?>">
 	<head>
 		<title><?php echo generate_page_title($page_title, $p) ?></title>
 		<meta charset="utf-8">
@@ -34,7 +39,7 @@ required_fields();
 		}
 		</style>
 	</head>
-	<body class="<?php echo $body_classes ?>">
+	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
 		<div class="container container-main" id="main">
 			<div id="header">
