@@ -1575,6 +1575,22 @@ Login at <login_url> to activate the account.
 'No users online'		=>	'No users online',
 'posts since'			=>	'posts since', // As in 8 posts since 13 April 2015
 
+'Smile'					=>	'Smile',
+'Neutral'				=>	'Neutral',
+'Sad'					=>	'Sad',
+'Big smile'				=>	'Big smile',
+'Yikes'					=>	'Yikes',
+'Wink'					=>	'Wink',
+'Hmmm'					=>	'Hmmm',
+'Tongue'				=>	'Tongue',
+'Happy'					=>	'Happy',
+'Angry'					=>	'Angry',
+'Eye roll'				=>	'Eye roll',
+'Cool'					=>	'Cool',
+'Happy cry'				=>	'Happy cry',
+'Angel'					=>	'Angel',
+'Oh yeah'				=>	'Oh yeah',
+
 // Backstage
 'Luna update'			=>	'Luna software update',
 'About Luna'			=>	'About Luna',
