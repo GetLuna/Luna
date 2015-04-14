@@ -1878,3 +1878,13 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 .accent-10 a.btn.btn-primary, .accent-10 a.btn.btn-danger, .accent-10 a.btn.btn-warning, .accent-10 .profile-nav a.list-group-item.active:hover {
 	color: #333 !important;
 }
+
+/* Night mode */
+.night body, html.night {
+	background-color: #333;
+}
+
+.night .container-main {
+	background: #444;
+	box-shadow: 0 0 30px #111;
+}
