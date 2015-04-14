@@ -14,9 +14,15 @@ if (!defined('FORUM'))
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 
+$hour = date("g", time());
+if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour < '7') || ($hour > '19'))))
+	$body_classes .= 'night';
+else
+	$body_classes .= 'normal';
+
 ?>
 <!DOCTYPE html>
-<html>
+<html class="<?php echo $body_classes ?>">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
