@@ -151,24 +151,24 @@ if (!defined('FORUM'))
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">zAdaptToTime</label>
+						<label class="col-sm-3 control-label">Night mode</label>
 						<div class="col-sm-9">
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
-									zDefault
+									Never use night mode
 								</label>
 							</div>
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
-									zDark
+									Always use night mode
 								</label>
 							</div>
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
-									zAutomatic
+									Enable night mode automaticaly
 								</label>
 							</div>
 						</div>
