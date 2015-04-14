@@ -1882,9 +1882,30 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 /* Night mode */
 .night body, html.night {
 	background-color: #333;
+	color: #ddd;
 }
 
 .night .container-main {
 	background: #444;
 	box-shadow: 0 0 30px #111;
+}
+
+.night .first-run-content {
+	background: #555;
+}
+
+.night hr {
+	border-top-color: #555;
+}
+
+.night .accent-group .btn {
+	border-color: #444 !important;
+}
+
+.night .accent-group .btn:hover, .night .accent-group .btn:focus, .night .accent-group .btn:active, .night .accent-group .active.btn {
+	border-color: #666 !important;
+}
+
+.night .nav-tabs {
+	border-color: #555;
 }
