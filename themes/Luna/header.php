@@ -21,7 +21,6 @@ $body_classes = 'accent-'.$luna_user['color_scheme'];
 <?php
 // Allow childs
 load_css();
-include ('themes/'.$luna_config['o_default_style'].'/style.php');
 
 if (!defined('FORUM_ALLOW_INDEX'))
 	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
