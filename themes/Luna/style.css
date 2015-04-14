@@ -1909,3 +1909,35 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 .night .nav-tabs {
 	border-color: #555;
 }
+
+.night .panel-default {
+	border-color: #555;
+	background-color: #444;
+}
+
+.night .list-group-item {
+	border-color: #555;
+	background-color: #444;
+	color: #fff;
+}
+
+.night .list-group-item:hover {
+	background-color: #3a3a3a;
+}
+
+.night #search .panel-body, .night .user-entry {
+	background-color: #555;
+}
+
+.night .list-group-forum a.list-group-item {
+	border-color: #3f3f3f;
+}
+
+.night .label-default {
+	background-color: #333;
+}
+
+.night .list-group-topic .list-group-item {
+	border-color: #3e3e3e;
+	background-color: #404040;
+}
