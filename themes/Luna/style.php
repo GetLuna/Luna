@@ -1,21 +1,9 @@
 <?php
 
-if ($luna_user['color_scheme'] < '7') {
+if ($luna_user['color_scheme'] < '10') {
 	$primary_color = '#000;';
 	$secondary_color = '#000';
 	$tertiary_color = '#000';
-} elseif ($luna_user['color_scheme'] == '7') { // Yellow
-	$primary_color = '#ffcb1a';
-	$secondary_color = '#ffb61a';
-	$tertiary_color = '#ffa11a';
-} elseif ($luna_user['color_scheme'] == '8') { // Orange
-	$primary_color = '#ff7521';
-	$secondary_color = '#ff5a21';
-	$tertiary_color = '#ff4021';
-} elseif ($luna_user['color_scheme'] == '9') { // Red
-	$primary_color = '#ff4444';
-	$secondary_color = '#e63838';
-	$tertiary_color = '#d42f2f';
 } elseif ($luna_user['color_scheme'] == '10') { // White
 	$primary_color = '#eeeeee';
 	$secondary_color = '#dddddd';
