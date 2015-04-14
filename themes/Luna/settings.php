@@ -150,6 +150,29 @@ if (!defined('FORUM'))
 							</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">zAdaptToTime</label>
+						<div class="col-sm-9">
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[email_setting]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
+									zDefault
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[email_setting]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
+									zDark
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[email_setting]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
+									zAutomatic
+								</label>
+							</div>
+						</div>
+					</div>
 <?php
 $languages = forum_list_langs();
 
