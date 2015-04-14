@@ -1281,6 +1281,11 @@ class Installer {
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
 					'default'		=> '3'
+				),
+				'accent'	=> array(
+					'datatype'		=> 'INT(25)',
+					'allow_null'	=> false,
+					'default'		=> '3'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),
