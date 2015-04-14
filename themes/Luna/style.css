@@ -1937,6 +1937,10 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	background-color: #333;
 }
 
+.night .comment .panel-default {
+	background-color: #3b3b3b;
+}
+
 .night .list-group-topic .list-group-item {
 	border-color: #3e3e3e;
 	background-color: #404040;
