@@ -666,6 +666,9 @@ switch ($stage) {
 		if (array_key_exists('o_smilies', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_smilies\'') or error('Unable to remove config value \'o_smilies\'', __FILE__, __LINE__, $db->error());
 
+		// Since 1.1.4286: Add the accent column to the users table
+		$db->add_field('users', 'accent', 'INT(10)', false, '3') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
