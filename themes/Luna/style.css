@@ -364,6 +364,8 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 7px;
 }
 
+}
+
 .list-group-forum .list-group-item:not(:first-child) {
 	border-top-color: #ccc !important;
 }
