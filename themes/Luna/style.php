@@ -1,29 +1,9 @@
 <?php
 
-if ($luna_user['color_scheme'] == '1') { // ModernBB
-	$primary_color = '#000';
+if ($luna_user['color_scheme'] < '7') {
+	$primary_color = '#000;';
 	$secondary_color = '#000';
 	$tertiary_color = '#000';
-} elseif ($luna_user['color_scheme'] == '2') { // Blue
-	$primary_color = '#000';
-	$secondary_color = '#000';
-	$tertiary_color = '#000';
-} elseif ($luna_user['color_scheme'] == '3') { // Luna
-	$primary_color = '#000';
-	$secondary_color = '#000';
-	$tertiary_color = '#000';
-} elseif ($luna_user['color_scheme'] == '4') { // Purple
-	$primary_color = '#b679d4';
-	$secondary_color = '#a268bf';
-	$tertiary_color = '#8b54a7';
-} elseif ($luna_user['color_scheme'] == '5') { // Lime
-	$primary_color = '#8bb805';
-	$secondary_color = '#7ea703';
-	$tertiary_color = '#779e01';
-} elseif ($luna_user['color_scheme'] == '6') { // Ao
-	$primary_color = '#08893e';
-	$secondary_color = '#047a36';
-	$tertiary_color = '#016a2d';
 } elseif ($luna_user['color_scheme'] == '7') { // Yellow
 	$primary_color = '#ffcb1a';
 	$secondary_color = '#ffb61a';
