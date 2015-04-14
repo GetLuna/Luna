@@ -1281,6 +1281,11 @@ class Installer {
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
 					'default'		=> '3'
+				),
+				'adapt_time'		=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '0'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),

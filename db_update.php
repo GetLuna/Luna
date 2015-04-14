@@ -666,6 +666,9 @@ switch ($stage) {
 		// Since 1.1.4286: Add the accent column to the users table
 		$db->add_field('users', 'accent', 'INT(10)', false, '3') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
 
+		// Since 1.1.4289: Add the adapt_time column to the users table
+		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
