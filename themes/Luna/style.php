@@ -5,13 +5,13 @@ if ($luna_user['color_scheme'] == '1') { // ModernBB
 	$secondary_color = '#000';
 	$tertiary_color = '#000';
 } elseif ($luna_user['color_scheme'] == '2') { // Blue
-	$primary_color = '#2788cb';
-	$secondary_color = '#1a79bc';
-	$tertiary_color = '#136cab';
+	$primary_color = '#000';
+	$secondary_color = '#000';
+	$tertiary_color = '#000';
 } elseif ($luna_user['color_scheme'] == '3') { // Luna
-	$primary_color = '#145198';
-	$secondary_color = '#0d4382';
-	$tertiary_color = '#0b3c75';
+	$primary_color = '#000';
+	$secondary_color = '#000';
+	$tertiary_color = '#000';
 } elseif ($luna_user['color_scheme'] == '4') { // Purple
 	$primary_color = '#b679d4';
 	$secondary_color = '#a268bf';
