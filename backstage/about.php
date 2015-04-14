@@ -40,7 +40,6 @@ require 'header.php';
 	<div class="col-sm-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.0 Beta</h3>
 			</div>
 			<div class="panel-body panel-about">
 				<a id="brand"></a><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3>
