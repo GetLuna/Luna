@@ -155,19 +155,19 @@ if (!defined('FORUM'))
 						<div class="col-sm-9">
 							<div class="radio">
 								<label>
-									<input type="radio" name="form[email_setting]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
+									<input type="radio" name="form[adapt_time]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
 									zDefault
 								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="form[email_setting]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
+									<input type="radio" name="form[adapt_time]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
 									zDark
 								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="form[email_setting]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
+									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
 									zAutomatic
 								</label>
 							</div>
