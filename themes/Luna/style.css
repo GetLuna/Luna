@@ -1383,26 +1383,24 @@ blockquote footer {
 	background-color: #14a3ff;
 }
 
-.accent-1 .navbar-secondary, .accent-1 .first-run-profile, .accent-1 .footer .copyright, .accent-1 .panel-default .panel-heading, .accent-1 .nav-tabs > li > a:hover, .accent-1 .thread-jumbotron, .accent-1 .jumbotron, .accent-1 .user-card-profile, .accent-1 .pagination > .active > a, .accent-1 .pagination > .active > span, .accent-1 .pagination > .active > a:hover, .accent-1 .pagination > .active > span:hover, .accent-1 .pagination > .active > a:focus, .accent-1 .pagination > .active > span:focus {
+.accent-1 .navbar-secondary, .accent-1 .first-run-profile, .accent-1 .footer .copyright, .accent-1 .panel-default .panel-heading, .accent-1 .nav-tabs > li > a:hover, .accent-1 .thread-jumbotron, .accent-1 .jumbotron, .accent-1 .user-card-profile, .accent-1 .pagination > .active > a, .accent-1 .pagination > .active > span, .accent-1 .pagination > .active > a:hover, .accent-1 .pagination > .active > span:hover, .accent-1 .pagination > .active > a:focus, .accent-1 .pagination > .active > span:focus, .accent-1 .btn-primary:hover, .accent-1 .btn-primary:focus, .accent-1 .btn-primary:active, .accent-1 .btn-primary.active, .accent-1 .btn-primary.disabled, .accent-1 [disabled].btn-primary, .accent-1 .category-header {
 	background-color: #0b95ed;
 }
 
-.accent-1 .activity-header, .accent-1 .nav-tabs > li.active > a, .accent-1 .nav-tabs > li.active > a:hover, .accent-1 .nav-tabs > li.active > a:focus, .accent-1 .navbar-default, .accent-1 .new-item .label-default {
+.accent-1 .activity-header, .accent-1 .nav-tabs > li.active > a, .accent-1 .nav-tabs > li.active > a:hover, .accent-1 .nav-tabs > li.active > a:focus, .accent-1 .navbar-default, .accent-1 .new-item .label-default, .accent-1 a.list-group-item.active, .accent-1 a.list-group-item.active:hover, .accent-1 a.list-group-item.active:focus, .accent-1 .list-group-forum .list-group-item.active.new-item  {
 	background-color: #0589de;
-}
-
-.accent-1 .btn-primary:hover, .accent-1 .btn-primary:focus, .accent-1 .btn-primary:active, .accent-1 .btn-primary.active, .accent-1 .btn-primary.disabled, .accent-1 [disabled].btn-primary, .accent-1 .category-header {
-	background-color: #0b95ed;
-	border-color: #0589de;
-}
-
-.accent-1 a.list-group-item.active, .accent-1 a.list-group-item.active:hover, .accent-1 a.list-group-item.active:focus, .accent-1 .list-group-forum .list-group-item.active.new-item {
-	background-color: #0589de;
-	border-color: #0589de;
 }
 
 .accent-1 .list-group-forum a.list-group-item:hover, .accent-1 .list-group-topic .list-group-item:hover {
-	border-left-color: #14a3ff;
+	border-color: #14a3ff;
+}
+
+.accent-1 .btn-primary {
+	border-color: #0b95ed;
+}
+
+.accent-1 .btn-primary:hover, .accent-1 .btn-primary:focus, .accent-1 .btn-primary:active, .accent-1 .btn-primary.active, .accent-1 .btn-primary.disabled, .accent-1 [disabled].btn-primary, .accent-1 .category-header, .accent-1 a.list-group-item.active, .accent-1 a.list-group-item.active:hover, .accent-1 a.list-group-item.active:focus, .accent-1 .list-group-forum .list-group-item.active.new-item {
+	border-color: #0589de;
 }
 
 .accent-1 .col-sm-9 a, .accent-1 a:focus, .accent-1 .pagination > li > a, .accent-1 .pagination > li > span {
@@ -1413,35 +1411,29 @@ blockquote footer {
 	color: #0589de;
 }
 
-.accent-1 .btn-primary {
-	border-color: #0b95ed;
-}
-
 /* Accent 2 - Blue */
 .accent-2 .navbar-inverse, .accent-2 .footer, .accent-2 .alert-all, .accent-2 .modal-form .modal-header, .accent-2 .modal-form .modal-footer, .accent-2 .navbar-inverse .navbar-toggle .icon-bar, .accent-2 .btn-primary {
 	background-color: #2788cb;
 }
 
-.accent-2 .navbar-secondary, .accent-2 .first-run-profile, .accent-2 .footer .copyright, .accent-2 .panel-default .panel-heading, .accent-2 .nav-tabs > li > a:hover, .accent-2 .thread-jumbotron, .accent-2 .jumbotron, .accent-2 .user-card-profile, .accent-2 .pagination > .active > a, .accent-2 .pagination > .active > span, .accent-2 .pagination > .active > a:hover, .accent-2 .pagination > .active > span:hover, .accent-2 .pagination > .active > a:focus, .accent-2 .pagination > .active > span:focus {
+.accent-2 .navbar-secondary, .accent-2 .first-run-profile, .accent-2 .footer .copyright, .accent-2 .panel-default .panel-heading, .accent-2 .nav-tabs > li > a:hover, .accent-2 .thread-jumbotron, .accent-2 .jumbotron, .accent-2 .user-card-profile, .accent-2 .pagination > .active > a, .accent-2 .pagination > .active > span, .accent-2 .pagination > .active > a:hover, .accent-2 .pagination > .active > span:hover, .accent-2 .pagination > .active > a:focus, .accent-2 .pagination > .active > span:focus, .accent-2 .btn-primary:hover, .accent-2 .btn-primary:focus, .accent-2 .btn-primary:active, .accent-2 .btn-primary.active, .accent-2 .btn-primary.disabled, .accent-2 [disabled].btn-primary, .accent-2 .category-header {
 	background-color: #1a79bc;
 }
 
-.accent-2 .activity-header, .accent-2 .nav-tabs > li.active > a, .accent-2 .nav-tabs > li.active > a:hover, .accent-2 .nav-tabs > li.active > a:focus, .accent-2 .navbar-default, .accent-2 .new-item .label-default {
+.accent-2 .activity-header, .accent-2 .nav-tabs > li.active > a, .accent-2 .nav-tabs > li.active > a:hover, .accent-2 .nav-tabs > li.active > a:focus, .accent-2 .navbar-default, .accent-2 .new-item .label-default, .accent-2 a.list-group-item.active, .accent-2 a.list-group-item.active:hover, .accent-2 a.list-group-item.active:focus, .accent-2 .list-group-forum .list-group-item.active.new-item {
 	background-color: #136cab;
-}
-
-.accent-2 .btn-primary:hover, .accent-2 .btn-primary:focus, .accent-2 .btn-primary:active, .accent-2 .btn-primary.active, .accent-2 .btn-primary.disabled, .accent-2 [disabled].btn-primary, .accent-2 .category-header {
-	background-color: #1a79bc;
-	border-color: #136cab;
-}
-
-.accent-2 a.list-group-item.active, .accent-2 a.list-group-item.active:hover, .accent-2 a.list-group-item.active:focus, .accent-2 .list-group-forum .list-group-item.active.new-item {
-	background-color: #136cab;
-	border-color: #136cab;
 }
 
 .accent-2 .list-group-forum a.list-group-item:hover, .accent-2 .list-group-topic .list-group-item:hover {
-	border-left-color: #2788cb;
+	border-color: #2788cb;
+}
+
+.accent-2 .btn-primary {
+	border-color: #1a79bc;
+}
+
+.accent-2 .btn-primary:hover, .accent-2 .btn-primary:focus, .accent-2 .btn-primary:active, .accent-2 .btn-primary.active, .accent-2 .btn-primary.disabled, .accent-2 [disabled].btn-primary, .accent-2 .category-header, .accent-2 a.list-group-item.active, .accent-2 a.list-group-item.active:hover, .accent-2 a.list-group-item.active:focus, .accent-2 .list-group-forum .list-group-item.active.new-item {
+	border-color: #136cab;
 }
 
 .accent-2 .col-sm-9 a, .accent-2 a:focus, .accent-2 .pagination > li > a, .accent-2 .pagination > li > span {
@@ -1452,35 +1444,29 @@ blockquote footer {
 	color: #136cab;
 }
 
-.accent-2 .btn-primary {
-	border-color: #1a79bc;
-}
-
 /* Accent 3 - Luna */
 .accent-3 .navbar-inverse, .accent-3 .footer, .accent-3 .alert-all, .accent-3 .modal-form .modal-header, .accent-3 .modal-form .modal-footer, .accent-3 .navbar-inverse .navbar-toggle .icon-bar, .accent-3 .btn-primary {
 	background-color: #145198;
 }
 
-.accent-3 .navbar-secondary, .accent-3 .first-run-profile, .accent-3 .footer .copyright, .accent-3 .panel-default .panel-heading, .accent-3 .nav-tabs > li > a:hover, .accent-3 .thread-jumbotron, .accent-3 .jumbotron, .accent-3 .user-card-profile, .accent-3 .pagination > .active > a, .accent-3 .pagination > .active > span, .accent-3 .pagination > .active > a:hover, .accent-3 .pagination > .active > span:hover, .accent-3 .pagination > .active > a:focus, .accent-3 .pagination > .active > span:focus {
+.accent-3 .navbar-secondary, .accent-3 .first-run-profile, .accent-3 .footer .copyright, .accent-3 .panel-default .panel-heading, .accent-3 .nav-tabs > li > a:hover, .accent-3 .thread-jumbotron, .accent-3 .jumbotron, .accent-3 .user-card-profile, .accent-3 .pagination > .active > a, .accent-3 .pagination > .active > span, .accent-3 .pagination > .active > a:hover, .accent-3 .pagination > .active > span:hover, .accent-3 .pagination > .active > a:focus, .accent-3 .pagination > .active > span:focus, .accent-3 .btn-primary:hover, .accent-3 .btn-primary:focus, .accent-3 .btn-primary:active, .accent-3 .btn-primary.active, .accent-3 .btn-primary.disabled, .accent-3 [disabled].btn-primary, .accent-3 .category-header {
 	background-color: #0d4382;
 }
 
-.accent-3 .activity-header, .accent-3 .nav-tabs > li.active > a, .accent-3 .nav-tabs > li.active > a:hover, .accent-3 .nav-tabs > li.active > a:focus, .accent-3 .navbar-default, .accent-3 .new-item .label-default {
+.accent-3 .activity-header, .accent-3 .nav-tabs > li.active > a, .accent-3 .nav-tabs > li.active > a:hover, .accent-3 .nav-tabs > li.active > a:focus, .accent-3 .navbar-default, .accent-3 .new-item .label-default, .accent-3 a.list-group-item.active, .accent-3 a.list-group-item.active:hover, .accent-3 a.list-group-item.active:focus, .accent-3 .list-group-forum .list-group-item.active.new-item {
 	background-color: #0b3c75;
-}
-
-.accent-3 .btn-primary:hover, .accent-3 .btn-primary:focus, .accent-3 .btn-primary:active, .accent-3 .btn-primary.active, .accent-3 .btn-primary.disabled, .accent-3 [disabled].btn-primary, .accent-3 .category-header {
-	background-color: #0d4382;
-	border-color: #0b3c75;
-}
-
-.accent-3 a.list-group-item.active, .accent-3 a.list-group-item.active:hover, .accent-3 a.list-group-item.active:focus, .accent-3 .list-group-forum .list-group-item.active.new-item {
-	background-color: #0b3c75;
-	border-color: #0b3c75;
 }
 
 .accent-3 .list-group-forum a.list-group-item:hover, .accent-3 .list-group-topic .list-group-item:hover {
-	border-left-color: #145198;
+	border-color: #145198;
+}
+
+.accent-3 .btn-primary {
+	border-color: #0d4382;
+}
+
+.accent-3 .btn-primary:hover, .accent-3 .btn-primary:focus, .accent-3 .btn-primary:active, .accent-3 .btn-primary.active, .accent-3 .btn-primary.disabled, .accent-3 [disabled].btn-primary, .accent-3 .category-header, .accent-3 a.list-group-item.active, .accent-3 a.list-group-item.active:hover, .accent-3 a.list-group-item.active:focus, .accent-3 .list-group-forum .list-group-item.active.new-item {
+	border-color: #0b3c75;
 }
 
 .accent-3 .col-sm-9 a, .accent-3 a:focus, .accent-3 .pagination > li > a, .accent-3 .pagination > li > span {
@@ -1500,26 +1486,24 @@ blockquote footer {
 	background-color: #b679d4;
 }
 
-.accent-4 .navbar-secondary, .accent-4 .first-run-profile, .accent-4 .footer .copyright, .accent-4 .panel-default .panel-heading, .accent-4 .nav-tabs > li > a:hover, .accent-4 .thread-jumbotron, .accent-4 .jumbotron, .accent-4 .user-card-profile, .accent-4 .pagination > .active > a, .accent-4 .pagination > .active > span, .accent-4 .pagination > .active > a:hover, .accent-4 .pagination > .active > span:hover, .accent-4 .pagination > .active > a:focus, .accent-4 .pagination > .active > span:focus {
+.accent-4 .navbar-secondary, .accent-4 .first-run-profile, .accent-4 .footer .copyright, .accent-4 .panel-default .panel-heading, .accent-4 .nav-tabs > li > a:hover, .accent-4 .thread-jumbotron, .accent-4 .jumbotron, .accent-4 .user-card-profile, .accent-4 .pagination > .active > a, .accent-4 .pagination > .active > span, .accent-4 .pagination > .active > a:hover, .accent-4 .pagination > .active > span:hover, .accent-4 .pagination > .active > a:focus, .accent-4 .pagination > .active > span:focus, .accent-4 .btn-primary:hover, .accent-4 .btn-primary:focus, .accent-4 .btn-primary:active, .accent-4 .btn-primary.active, .accent-4 .btn-primary.disabled, .accent-4 [disabled].btn-primary, .accent-4 .category-header  {
 	background-color: #a268bf;
 }
 
-.accent-4 .activity-header, .accent-4 .nav-tabs > li.active > a, .accent-4 .nav-tabs > li.active > a:hover, .accent-4 .nav-tabs > li.active > a:focus, .accent-4 .navbar-default, .accent-4 .new-item .label-default {
+.accent-4 .activity-header, .accent-4 .nav-tabs > li.active > a, .accent-4 .nav-tabs > li.active > a:hover, .accent-4 .nav-tabs > li.active > a:focus, .accent-4 .navbar-default, .accent-4 .new-item .label-default, .accent-4 a.list-group-item.active, .accent-4 a.list-group-item.active:hover, .accent-4 a.list-group-item.active:focus, .accent-4 .list-group-forum .list-group-item.active.new-item {
 	background-color: #8b54a7;
-}
-
-.accent-4 .btn-primary:hover, .accent-4 .btn-primary:focus, .accent-4 .btn-primary:active, .accent-4 .btn-primary.active, .accent-4 .btn-primary.disabled, .accent-4 [disabled].btn-primary, .accent-4 .category-header {
-	background-color: #a268bf;
-	border-color: #8b54a7;
-}
-
-.accent-4 a.list-group-item.active, .accent-4 a.list-group-item.active:hover, .accent-4 a.list-group-item.active:focus, .accent-4 .list-group-forum .list-group-item.active.new-item {
-	background-color: #8b54a7;
-	border-color: #8b54a7;
 }
 
 .accent-4 .list-group-forum a.list-group-item:hover, .accent-4 .list-group-topic .list-group-item:hover {
-	border-left-color: #b679d4;
+	border-color: #b679d4;
+}
+
+.accent-4 .btn-primary {
+	border-color: #a268bf;
+}
+
+.accent-4 .btn-primary:hover, .accent-4 .btn-primary:focus, .accent-4 .btn-primary:active, .accent-4 .btn-primary.active, .accent-4 .btn-primary.disabled, .accent-4 [disabled].btn-primary, .accent-4 .category-header, .accent-4 a.list-group-item.active, .accent-4 a.list-group-item.active:hover, .accent-4 a.list-group-item.active:focus, .accent-4 .list-group-forum .list-group-item.active.new-item {
+	border-color: #8b54a7;
 }
 
 .accent-4 .col-sm-9 a, .accent-4 a:focus, .accent-4 .pagination > li > a, .accent-4 .pagination > li > span {
@@ -1530,35 +1514,29 @@ blockquote footer {
 	color: #8b54a7;
 }
 
-.accent-4 .btn-primary {
-	border-color: #a268bf;
-}
-
 /* Accent 5 - Lime */
 .accent-5 .navbar-inverse, .accent-5 .footer, .accent-5 .alert-all, .accent-5 .modal-form .modal-header, .accent-5 .modal-form .modal-footer, .accent-5 .navbar-inverse .navbar-toggle .icon-bar, .accent-5 .btn-primary {
 	background-color: #8bb805;
 }
 
-.accent-5 .navbar-secondary, .accent-5 .first-run-profile, .accent-5 .footer .copyright, .accent-5 .panel-default .panel-heading, .accent-5 .nav-tabs > li > a:hover, .accent-5 .thread-jumbotron, .accent-5 .jumbotron, .accent-5 .user-card-profile, .accent-5 .pagination > .active > a, .accent-5 .pagination > .active > span, .accent-5 .pagination > .active > a:hover, .accent-5 .pagination > .active > span:hover, .accent-5 .pagination > .active > a:focus, .accent-5 .pagination > .active > span:focus {
+.accent-5 .navbar-secondary, .accent-5 .first-run-profile, .accent-5 .footer .copyright, .accent-5 .panel-default .panel-heading, .accent-5 .nav-tabs > li > a:hover, .accent-5 .thread-jumbotron, .accent-5 .jumbotron, .accent-5 .user-card-profile, .accent-5 .pagination > .active > a, .accent-5 .pagination > .active > span, .accent-5 .pagination > .active > a:hover, .accent-5 .pagination > .active > span:hover, .accent-5 .pagination > .active > a:focus, .accent-5 .pagination > .active > span:focus, .accent-5 .btn-primary:hover, .accent-5 .btn-primary:focus, .accent-5 .btn-primary:active, .accent-5 .btn-primary.active, .accent-5 .btn-primary.disabled, .accent-5 [disabled].btn-primary, .accent-5 .category-header {
 	background-color: #7ea703;
 }
 
-.accent-5 .activity-header, .accent-5 .nav-tabs > li.active > a, .accent-5 .nav-tabs > li.active > a:hover, .accent-5 .nav-tabs > li.active > a:focus, .accent-5 .navbar-default, .accent-5 .new-item .label-default {
+.accent-5 .activity-header, .accent-5 .nav-tabs > li.active > a, .accent-5 .nav-tabs > li.active > a:hover, .accent-5 .nav-tabs > li.active > a:focus, .accent-5 .navbar-default, .accent-5 .new-item .label-default, .accent-5 a.list-group-item.active, .accent-5 a.list-group-item.active:hover, .accent-5 a.list-group-item.active:focus, .accent-5 .list-group-forum .list-group-item.active.new-item {
 	background-color: #779e01;
-}
-
-.accent-5 .btn-primary:hover, .accent-5 .btn-primary:focus, .accent-5 .btn-primary:active, .accent-5 .btn-primary.active, .accent-5 .btn-primary.disabled, .accent-5 [disabled].btn-primary, .accent-5 .category-header {
-	background-color: #7ea703;
-	border-color: #779e01;
-}
-
-.accent-5 a.list-group-item.active, .accent-5 a.list-group-item.active:hover, .accent-5 a.list-group-item.active:focus, .accent-5 .list-group-forum .list-group-item.active.new-item {
-	background-color: #779e01;
-	border-color: #779e01;
 }
 
 .accent-5 .list-group-forum a.list-group-item:hover, .accent-5 .list-group-topic .list-group-item:hover {
-	border-left-color: #8bb805;
+	border-color: #8bb805;
+}
+
+.accent-5 .btn-primary {
+	border-color: #7ea703;
+}
+
+.accent-5 .btn-primary:hover, .accent-5 .btn-primary:focus, .accent-5 .btn-primary:active, .accent-5 .btn-primary.active, .accent-5 .btn-primary.disabled, .accent-5 [disabled].btn-primary, .accent-5 .category-header, .accent-5 a.list-group-item.active, .accent-5 a.list-group-item.active:hover, .accent-5 a.list-group-item.active:focus, .accent-5 .list-group-forum .list-group-item.active.new-item {
+	border-color: #779e01;
 }
 
 .accent-5 .col-sm-9 a, .accent-5 a:focus, .accent-5 .pagination > li > a, .accent-5 .pagination > li > span {
@@ -1569,35 +1547,29 @@ blockquote footer {
 	color: #779e01;
 }
 
-.accent-5 .btn-primary {
-	border-color: #7ea703;
-}
-
 /* Accent 6 - Ao */
 .accent-6 .navbar-inverse, .accent-6 .footer, .accent-6 .alert-all, .accent-6 .modal-form .modal-header, .accent-6 .modal-form .modal-footer, .accent-6 .navbar-inverse .navbar-toggle .icon-bar, .accent-6 .btn-primary {
 	background-color: #08893e;
 }
 
-.accent-6 .navbar-secondary, .accent-6 .first-run-profile, .accent-6 .footer .copyright, .accent-6 .panel-default .panel-heading, .accent-6 .nav-tabs > li > a:hover, .accent-6 .thread-jumbotron, .accent-6 .jumbotron, .accent-6 .user-card-profile, .accent-6 .pagination > .active > a, .accent-6 .pagination > .active > span, .accent-6 .pagination > .active > a:hover, .accent-6 .pagination > .active > span:hover, .accent-6 .pagination > .active > a:focus, .accent-6 .pagination > .active > span:focus {
+.accent-6 .navbar-secondary, .accent-6 .first-run-profile, .accent-6 .footer .copyright, .accent-6 .panel-default .panel-heading, .accent-6 .nav-tabs > li > a:hover, .accent-6 .thread-jumbotron, .accent-6 .jumbotron, .accent-6 .user-card-profile, .accent-6 .pagination > .active > a, .accent-6 .pagination > .active > span, .accent-6 .pagination > .active > a:hover, .accent-6 .pagination > .active > span:hover, .accent-6 .pagination > .active > a:focus, .accent-6 .pagination > .active > span:focus, .accent-6 .btn-primary:hover, .accent-6 .btn-primary:focus, .accent-6 .btn-primary:active, .accent-6 .btn-primary.active, .accent-6 .btn-primary.disabled, .accent-6 [disabled].btn-primary, .accent-6 .category-header {
 	background-color: #047a36;
 }
 
-.accent-6 .activity-header, .accent-6 .nav-tabs > li.active > a, .accent-6 .nav-tabs > li.active > a:hover, .accent-6 .nav-tabs > li.active > a:focus, .accent-6 .navbar-default, .accent-6 .new-item .label-default {
+.accent-6 .activity-header, .accent-6 .nav-tabs > li.active > a, .accent-6 .nav-tabs > li.active > a:hover, .accent-6 .nav-tabs > li.active > a:focus, .accent-6 .navbar-default, .accent-6 .new-item .label-default, .accent-6 a.list-group-item.active, .accent-6 a.list-group-item.active:hover, .accent-6 a.list-group-item.active:focus, .accent-6 .list-group-forum .list-group-item.active.new-item {
 	background-color: #016a2d;
-}
-
-.accent-6 .btn-primary:hover, .accent-6 .btn-primary:focus, .accent-6 .btn-primary:active, .accent-6 .btn-primary.active, .accent-6 .btn-primary.disabled, .accent-6 [disabled].btn-primary, .accent-6 .category-header {
-	background-color: #047a36;
-	border-color: #016a2d;
-}
-
-.accent-6 a.list-group-item.active, .accent-6 a.list-group-item.active:hover, .accent-6 a.list-group-item.active:focus, .accent-6 .list-group-forum .list-group-item.active.new-item {
-	background-color: #016a2d;
-	border-color: #016a2d;
 }
 
 .accent-6 .list-group-forum a.list-group-item:hover, .accent-6 .list-group-topic .list-group-item:hover {
-	border-left-color: #08893e;
+	border-color: #08893e;
+}
+
+.accent-6 .btn-primary {
+	border-color: #047a36;
+}
+
+.accent-6 .btn-primary:hover, .accent-6 .btn-primary:focus, .accent-6 .btn-primary:active, .accent-6 .btn-primary.active, .accent-6 .btn-primary.disabled, .accent-6 [disabled].btn-primary, .accent-6 .category-header, .accent-6 a.list-group-item.active, .accent-6 a.list-group-item.active:hover, .accent-6 a.list-group-item.active:focus, .accent-6 .list-group-forum .list-group-item.active.new-item {
+	border-color: #016a2d;
 }
 
 .accent-6 .col-sm-9 a, .accent-6 a:focus, .accent-6 .pagination > li > a, .accent-6 .pagination > li > span {
@@ -1608,35 +1580,29 @@ blockquote footer {
 	color: #016a2d;
 }
 
-.accent-6 .btn-primary {
-	border-color: #047a36;
-}
-
 /* Accent 7 - Yellow */
 .accent-7 .navbar-inverse, .accent-7 .footer, .accent-7 .alert-all, .accent-7 .modal-form .modal-header, .accent-7 .modal-form .modal-footer, .accent-7 .navbar-inverse .navbar-toggle .icon-bar, .accent-7 .btn-primary {
 	background-color: #ffcb1a;
 }
 
-.accent-7 .navbar-secondary, .accent-7 .first-run-profile, .accent-7 .footer .copyright, .accent-7 .panel-default .panel-heading, .accent-7 .nav-tabs > li > a:hover, .accent-7 .thread-jumbotron, .accent-7 .jumbotron, .accent-7 .user-card-profile, .accent-7 .pagination > .active > a, .accent-7 .pagination > .active > span, .accent-7 .pagination > .active > a:hover, .accent-7 .pagination > .active > span:hover, .accent-7 .pagination > .active > a:focus, .accent-7 .pagination > .active > span:focus {
+.accent-7 .navbar-secondary, .accent-7 .first-run-profile, .accent-7 .footer .copyright, .accent-7 .panel-default .panel-heading, .accent-7 .nav-tabs > li > a:hover, .accent-7 .thread-jumbotron, .accent-7 .jumbotron, .accent-7 .user-card-profile, .accent-7 .pagination > .active > a, .accent-7 .pagination > .active > span, .accent-7 .pagination > .active > a:hover, .accent-7 .pagination > .active > span:hover, .accent-7 .pagination > .active > a:focus, .accent-7 .pagination > .active > span:focus, .accent-7 .btn-primary:hover, .accent-7 .btn-primary:focus, .accent-7 .btn-primary:active, .accent-7 .btn-primary.active, .accent-7 .btn-primary.disabled, .accent-7 [disabled].btn-primary, .accent-7 .category-header {
 	background-color: #ffb61a;
 }
 
-.accent-7 .activity-header, .accent-7 .nav-tabs > li.active > a, .accent-7 .nav-tabs > li.active > a:hover, .accent-7 .nav-tabs > li.active > a:focus, .accent-7 .navbar-default, .accent-7 .new-item .label-default {
+.accent-7 .activity-header, .accent-7 .nav-tabs > li.active > a, .accent-7 .nav-tabs > li.active > a:hover, .accent-7 .nav-tabs > li.active > a:focus, .accent-7 .navbar-default, .accent-7 .new-item .label-default, .accent-7 a.list-group-item.active, .accent-7 a.list-group-item.active:hover, .accent-7 a.list-group-item.active:focus, .accent-7 .list-group-forum .list-group-item.active.new-item {
 	background-color: #ffa11a;
-}
-
-.accent-7 .btn-primary:hover, .accent-7 .btn-primary:focus, .accent-7 .btn-primary:active, .accent-7 .btn-primary.active, .accent-7 .btn-primary.disabled, .accent-7 [disabled].btn-primary, .accent-7 .category-header {
-	background-color: #ffb61a;
-	border-color: #ffa11a;
-}
-
-.accent-7 a.list-group-item.active, .accent-7 a.list-group-item.active:hover, .accent-7 a.list-group-item.active:focus, .accent-7 .list-group-forum .list-group-item.active.new-item {
-	background-color: #ffa11a;
-	border-color: #ffa11a;
 }
 
 .accent-7 .list-group-forum a.list-group-item:hover, .accent-7 .list-group-topic .list-group-item:hover {
-	border-left-color: #ffcb1a;
+	border-color: #ffcb1a;
+}
+
+.accent-7 .btn-primary {
+	border-color: #ffb61a;
+}
+
+.accent-7 .btn-primary:hover, .accent-7 .btn-primary:focus, .accent-7 .btn-primary:active, .accent-7 .btn-primary.active, .accent-7 .btn-primary.disabled, .accent-7 [disabled].btn-primary, .accent-7 .category-header, .accent-7 a.list-group-item.active, .accent-7 a.list-group-item.active:hover, .accent-7 a.list-group-item.active:focus, .accent-7 .list-group-forum .list-group-item.active.new-item {
+	border-color: #ffa11a;
 }
 
 .accent-7 .col-sm-9 a, .accent-7 a:focus, .accent-7 .pagination > li > a, .accent-7 .pagination > li > span {
@@ -1647,35 +1613,29 @@ blockquote footer {
 	color: #ffa11a;
 }
 
-.accent-7 .btn-primary {
-	border-color: #ffb61a;
-}
-
 /* Accent 8 - Orange */
 .accent-8 .navbar-inverse, .accent-8 .footer, .accent-8 .alert-all, .accent-8 .modal-form .modal-header, .accent-8 .modal-form .modal-footer, .accent-8 .navbar-inverse .navbar-toggle .icon-bar, .accent-8 .btn-primary {
 	background-color: #ff7521;
 }
 
-.accent-8 .navbar-secondary, .accent-8 .first-run-profile, .accent-8 .footer .copyright, .accent-8 .panel-default .panel-heading, .accent-8 .nav-tabs > li > a:hover, .accent-8 .thread-jumbotron, .accent-8 .jumbotron, .accent-8 .user-card-profile, .accent-8 .pagination > .active > a, .accent-8 .pagination > .active > span, .accent-8 .pagination > .active > a:hover, .accent-8 .pagination > .active > span:hover, .accent-8 .pagination > .active > a:focus, .accent-8 .pagination > .active > span:focus {
+.accent-8 .navbar-secondary, .accent-8 .first-run-profile, .accent-8 .footer .copyright, .accent-8 .panel-default .panel-heading, .accent-8 .nav-tabs > li > a:hover, .accent-8 .thread-jumbotron, .accent-8 .jumbotron, .accent-8 .user-card-profile, .accent-8 .pagination > .active > a, .accent-8 .pagination > .active > span, .accent-8 .pagination > .active > a:hover, .accent-8 .pagination > .active > span:hover, .accent-8 .pagination > .active > a:focus, .accent-8 .pagination > .active > span:focus, .accent-8 .btn-primary:hover, .accent-8 .btn-primary:focus, .accent-8 .btn-primary:active, .accent-8 .btn-primary.active, .accent-8 .btn-primary.disabled, .accent-8 [disabled].btn-primary, .accent-8 .category-header {
 	background-color: #ff5a21;
 }
 
-.accent-8 .activity-header, .accent-8 .nav-tabs > li.active > a, .accent-8 .nav-tabs > li.active > a:hover, .accent-8 .nav-tabs > li.active > a:focus, .accent-8 .navbar-default, .accent-8 .new-item .label-default {
+.accent-8 .activity-header, .accent-8 .nav-tabs > li.active > a, .accent-8 .nav-tabs > li.active > a:hover, .accent-8 .nav-tabs > li.active > a:focus, .accent-8 .navbar-default, .accent-8 .new-item .label-default, .accent-8 a.list-group-item.active, .accent-8 a.list-group-item.active:hover, .accent-8 a.list-group-item.active:focus, .accent-8 .list-group-forum .list-group-item.active.new-item {
 	background-color: #ff4021;
-}
-
-.accent-8 .btn-primary:hover, .accent-8 .btn-primary:focus, .accent-8 .btn-primary:active, .accent-8 .btn-primary.active, .accent-8 .btn-primary.disabled, .accent-8 [disabled].btn-primary, .accent-8 .category-header {
-	background-color: #ff5a21;
-	border-color: #ff4021;
-}
-
-.accent-8 a.list-group-item.active, .accent-8 a.list-group-item.active:hover, .accent-8 a.list-group-item.active:focus, .accent-8 .list-group-forum .list-group-item.active.new-item {
-	background-color: #ff4021;
-	border-color: #ff4021;
 }
 
 .accent-8 .list-group-forum a.list-group-item:hover, .accent-8 .list-group-topic .list-group-item:hover {
-	border-left-color: #ff7521;
+	border-color: #ff7521;
+}
+
+.accent-8 .btn-primary {
+	border-color: #ff5a21;
+}
+
+.accent-8 .btn-primary:hover, .accent-8 .btn-primary:focus, .accent-8 .btn-primary:active, .accent-8 .btn-primary.active, .accent-8 .btn-primary.disabled, .accent-8 [disabled].btn-primary, .accent-8 .category-header, .accent-8 a.list-group-item.active, .accent-8 a.list-group-item.active:hover, .accent-8 a.list-group-item.active:focus, .accent-8 .list-group-forum .list-group-item.active.new-item {
+	border-color: #ff4021;
 }
 
 .accent-8 .col-sm-9 a, .accent-8 a:focus, .accent-8 .pagination > li > a, .accent-8 .pagination > li > span {
@@ -1686,35 +1646,29 @@ blockquote footer {
 	color: #ff4021;
 }
 
-.accent-8 .btn-primary {
-	border-color: #ff5a21;
-}
-
 /* Accent 9 - Red */
 .accent-9 .navbar-inverse, .accent-9 .footer, .accent-9 .alert-all, .accent-9 .modal-form .modal-header, .accent-9 .modal-form .modal-footer, .accent-9 .navbar-inverse .navbar-toggle .icon-bar, .accent-9 .btn-primary {
 	background-color: #ff4444;
 }
 
-.accent-9 .navbar-secondary, .accent-9 .first-run-profile, .accent-9 .footer .copyright, .accent-9 .panel-default .panel-heading, .accent-9 .nav-tabs > li > a:hover, .accent-9 .thread-jumbotron, .accent-9 .jumbotron, .accent-9 .user-card-profile, .accent-9 .pagination > .active > a, .accent-9 .pagination > .active > span, .accent-9 .pagination > .active > a:hover, .accent-9 .pagination > .active > span:hover, .accent-9 .pagination > .active > a:focus, .accent-9 .pagination > .active > span:focus {
+.accent-9 .navbar-secondary, .accent-9 .first-run-profile, .accent-9 .footer .copyright, .accent-9 .panel-default .panel-heading, .accent-9 .nav-tabs > li > a:hover, .accent-9 .thread-jumbotron, .accent-9 .jumbotron, .accent-9 .user-card-profile, .accent-9 .pagination > .active > a, .accent-9 .pagination > .active > span, .accent-9 .pagination > .active > a:hover, .accent-9 .pagination > .active > span:hover, .accent-9 .pagination > .active > a:focus, .accent-9 .pagination > .active > span:focus, .accent-9 .btn-primary:hover, .accent-9 .btn-primary:focus, .accent-9 .btn-primary:active, .accent-9 .btn-primary.active, .accent-9 .btn-primary.disabled, .accent-9 [disabled].btn-primary, .accent-9 .category-header {
 	background-color: #e63838;
 }
 
-.accent-9 .activity-header, .accent-9 .nav-tabs > li.active > a, .accent-9 .nav-tabs > li.active > a:hover, .accent-9 .nav-tabs > li.active > a:focus, .accent-9 .navbar-default, .accent-9 .new-item .label-default {
+.accent-9 .activity-header, .accent-9 .nav-tabs > li.active > a, .accent-9 .nav-tabs > li.active > a:hover, .accent-9 .nav-tabs > li.active > a:focus, .accent-9 .navbar-default, .accent-9 .new-item .label-default, .accent-9 a.list-group-item.active, .accent-9 a.list-group-item.active:hover, .accent-9 a.list-group-item.active:focus, .accent-9 .list-group-forum .list-group-item.active.new-item {
 	background-color: #d42f2f;
-}
-
-.accent-9 .btn-primary:hover, .accent-9 .btn-primary:focus, .accent-9 .btn-primary:active, .accent-9 .btn-primary.active, .accent-9 .btn-primary.disabled, .accent-9 [disabled].btn-primary, .accent-9 .category-header {
-	background-color: #e63838;
-	border-color: #d42f2f;
-}
-
-.accent-9 a.list-group-item.active, .accent-9 a.list-group-item.active:hover, .accent-9 a.list-group-item.active:focus, .accent-9 .list-group-forum .list-group-item.active.new-item {
-	background-color: #d42f2f;
-	border-color: #d42f2f;
 }
 
 .accent-9 .list-group-forum a.list-group-item:hover, .accent-9 .list-group-topic .list-group-item:hover {
-	border-left-color: #ff4444;
+	border-color: #ff4444;
+}
+
+.accent-9 .btn-primary {
+	border-color: #e63838;
+}
+
+.accent-9 .btn-primary:hover, .accent-9 .btn-primary:focus, .accent-9 .btn-primary:active, .accent-9 .btn-primary.active, .accent-9 .btn-primary.disabled, .accent-9 [disabled].btn-primary, .accent-9 .category-header, .accent-9 a.list-group-item.active, .accent-9 a.list-group-item.active:hover, .accent-9 a.list-group-item.active:focus, .accent-9 .list-group-forum .list-group-item.active.new-item {
+	border-color: #d42f2f;
 }
 
 .accent-9 .col-sm-9 a, .accent-9 a:focus, .accent-9 .pagination > li > a, .accent-9 .pagination > li > span {
@@ -1725,35 +1679,29 @@ blockquote footer {
 	color: #d42f2f;
 }
 
-.accent-9 .btn-primary {
-	border-color: #e63838;
-}
-
 /* Accent 10 - White */
 .accent-10 .navbar-inverse, .accent-10 .footer, .accent-10 .alert-all, .accent-10 .modal-form .modal-header, .accent-10 .modal-form .modal-footer, .accent-10 .navbar-inverse .navbar-toggle .icon-bar, .accent-10 .btn-primary {
 	background-color: #eeeeee;
 }
 
-.accent-10 .navbar-secondary, .accent-10 .first-run-profile, .accent-10 .footer .copyright, .accent-10 .panel-default .panel-heading, .accent-10 .nav-tabs > li > a:hover, .accent-10 .thread-jumbotron, .accent-10 .jumbotron, .accent-10 .user-card-profile, .accent-10 .pagination > .active > a, .accent-10 .pagination > .active > span, .accent-10 .pagination > .active > a:hover, .accent-10 .pagination > .active > span:hover, .accent-10 .pagination > .active > a:focus, .accent-10 .pagination > .active > span:focus {
+.accent-10 .navbar-secondary, .accent-10 .first-run-profile, .accent-10 .footer .copyright, .accent-10 .panel-default .panel-heading, .accent-10 .nav-tabs > li > a:hover, .accent-10 .thread-jumbotron, .accent-10 .jumbotron, .accent-10 .user-card-profile, .accent-10 .pagination > .active > a, .accent-10 .pagination > .active > span, .accent-10 .pagination > .active > a:hover, .accent-10 .pagination > .active > span:hover, .accent-10 .pagination > .active > a:focus, .accent-10 .pagination > .active > span:focus, .accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .category-header {
 	background-color: #dddddd;
 }
 
-.accent-10 .activity-header, .accent-10 .nav-tabs > li.active > a, .accent-10 .nav-tabs > li.active > a:hover, .accent-10 .nav-tabs > li.active > a:focus, .accent-10 .navbar-default, .accent-10 .new-item .label-default {
+.accent-10 .activity-header, .accent-10 .nav-tabs > li.active > a, .accent-10 .nav-tabs > li.active > a:hover, .accent-10 .nav-tabs > li.active > a:focus, .accent-10 .navbar-default, .accent-10 .new-item .label-default, .accent-10 a.list-group-item.active, .accent-10 a.list-group-item.active:hover, .accent-10 a.list-group-item.active:focus, .accent-10 .list-group-forum .list-group-item.active.new-item {
 	background-color: #cccccc;
 }
 
-.accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .category-header {
-	background-color: #dddddd;
-	border-color: #cccccc;
+.accent-10 .list-group-forum a.list-group-item:hover, .accent-10 .list-group-topic .list-group-item:hover, .accent-10 .btn-primary, .accent-10 .btn-primary.active, .accent-10 .btn-primary.focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:hover, .accent-10 .open > .dropdown-toggle.btn-primary {
+	border-color: #eeeeee;
 }
 
-.accent-10 a.list-group-item.active, .accent-10 a.list-group-item.active:hover, .accent-10 a.list-group-item.active:focus, .accent-10 .list-group-forum .list-group-item.active.new-item {
-	background-color: #cccccc;
-	border-color: #cccccc;
+.accent-10 .btn-primary {
+	border-color: #dddddd;
 }
 
-.accent-10 .list-group-forum a.list-group-item:hover, .accent-10 .list-group-topic .list-group-item:hover {
-	border-left-color: #eeeeee;
+.accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .category-header, .accent-10 a.list-group-item.active, .accent-10 a.list-group-item.active:hover, .accent-10 a.list-group-item.active:focus, .accent-10 .list-group-forum .list-group-item.active.new-item {
+	border-color: #cccccc;
 }
 
 .accent-10 .col-sm-9 a, .accent-10 a:focus, .accent-10 .pagination > li > a, .accent-10 .pagination > li > span {
@@ -1764,11 +1712,7 @@ blockquote footer {
 	color: #cccccc;
 }
 
-.accent-10 .btn-primary {
-	border-color: #dddddd;
-}
-
-.accent-10 .navbar-inverse .navbar-brand:hover, .accent-10 .navbar-inverse .navbar-brand:focus, .accent-10 .first-run-title, .accent-10 .navbar-inverse .navbar-nav > li > a:hover, .accent-10 .navbar-inverse .navbar-nav > li > a:focus, .accent-10 .navbar-inverse .navbar-nav > li > a, .accent-10 .navbar-inverse .navbar-brand, .accent-10 .footer, .accent-10 .footer a, .accent-10 .panel-default .panel-heading, .accent-10 .active.list-group-item, .accent-10 .active.list-group-item:hover, .accent-10 .active.list-group-item:focus, .accent-10 .alert-all, .accent-10 .jumbotron h2, .accent-10 .navbar-inverse .navbar-nav > .open > a, .accent-10 .navbar-inverse .navbar-nav > .open > a:hover, .accent-10 .navbar-inverse .navbar-nav > .open > a:focus, .accent-10 .navbar-inverse .navbar-nav > .active > a, .accent-10 .navbar-inverse .navbar-nav > .active > a:hover, .accent-10 .navbar-inverse .navbar-nav > .active > a:focus, .accent-10 .user-card-title, .accent-10 .nav-tabs > li.active > a, .accent-10 .nav-tabs > li.active > a:hover, .accent-10 .nav-tabs > li.active > a:focus, .accent-10 .btn-primary, .accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .nav > li > a, .accent-10 a.list-group-item:hover, .accent-10 .navbar-default .navbar-brand, .accent-10 .navbar-default .navbar-brand:focus, .accent-10 .navbar-default .navbar-brand:hover, .accent-10 .category-header, .accent-10 .new-item .label-default  {
+.accent-10 .navbar-inverse .navbar-brand:hover, .accent-10 .navbar-inverse .navbar-brand:focus, .accent-10 .first-run-title, .accent-10 .navbar-inverse .navbar-nav > li > a:hover, .accent-10 .navbar-inverse .navbar-nav > li > a:focus, .accent-10 .navbar-inverse .navbar-nav > li > a, .accent-10 .navbar-inverse .navbar-brand, .accent-10 .footer, .accent-10 .footer a, .accent-10 .panel-default .panel-heading, .accent-10 .active.list-group-item, .accent-10 .active.list-group-item:hover, .accent-10 .active.list-group-item:focus, .accent-10 .alert-all, .accent-10 .jumbotron h2, .accent-10 .navbar-inverse .navbar-nav > .open > a, .accent-10 .navbar-inverse .navbar-nav > .open > a:hover, .accent-10 .navbar-inverse .navbar-nav > .open > a:focus, .accent-10 .navbar-inverse .navbar-nav > .active > a, .accent-10 .navbar-inverse .navbar-nav > .active > a:hover, .accent-10 .navbar-inverse .navbar-nav > .active > a:focus, .accent-10 .user-card-title, .accent-10 .nav-tabs > li.active > a, .accent-10 .nav-tabs > li.active > a:hover, .accent-10 .nav-tabs > li.active > a:focus, .accent-10 .btn-primary, .accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .nav > li > a, .accent-10 a.list-group-item:hover, .accent-10 .navbar-default .navbar-brand, .accent-10 .navbar-default .navbar-brand:focus, .accent-10 .navbar-default .navbar-brand:hover, .accent-10 .category-header, .accent-10 .new-item .label-default, .accent-10 .nav > li > a, .accent-10 a.list-group-item:hover, .accent-10 a:hover, .accent-10 a:active  {
 	color: #555;
 }
 
@@ -1780,16 +1724,8 @@ blockquote footer {
 	background-color: #555;
 }
 
-.accent-10 .btn-primary, .accent-10 .btn-primary.active, .accent-10 .btn-primary.focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:hover, .accent-10 .open > .dropdown-toggle.btn-primary {
-	border-color: #dddddd;
-}
-
 .accent-10 a, .accent-10 a:focus, .accent-10 .pagination > li > a, .accent-10 .pagination > li > span {
 	color: #333;
-}
-
-.accent-10 .nav > li > a, .accent-10 a.list-group-item:hover, .accent-10 a:hover, .accent-10 a:active {
-	color: #555;
 }
 
 .accent-10 .navbar-inverse .navbar-nav > .open > a, .accent-10 .navbar-inverse .navbar-nav > .open > a:hover, .accent-10 .navbar-inverse .navbar-nav > .open > a:focus, .accent-10 .navbar-inverse .navbar-nav > .active > a, .accent-10 .navbar-inverse .navbar-nav > .active > a:hover, .accent-10 .navbar-inverse .navbar-nav > .active > a:focus {
@@ -1801,26 +1737,24 @@ blockquote footer {
 	background-color: #afafaf;
 }
 
-.accent-11 .navbar-secondary, .accent-11 .first-run-profile, .accent-11 .footer .copyright, .accent-11 .panel-default .panel-heading, .accent-11 .nav-tabs > li > a:hover, .accent-11 .thread-jumbotron, .accent-11 .jumbotron, .accent-11 .user-card-profile, .accent-11 .pagination > .active > a, .accent-11 .pagination > .active > span, .accent-11 .pagination > .active > a:hover, .accent-11 .pagination > .active > span:hover, .accent-11 .pagination > .active > a:focus, .accent-11 .pagination > .active > span:focus {
+.accent-11 .navbar-secondary, .accent-11 .first-run-profile, .accent-11 .footer .copyright, .accent-11 .panel-default .panel-heading, .accent-11 .nav-tabs > li > a:hover, .accent-11 .thread-jumbotron, .accent-11 .jumbotron, .accent-11 .user-card-profile, .accent-11 .pagination > .active > a, .accent-11 .pagination > .active > span, .accent-11 .pagination > .active > a:hover, .accent-11 .pagination > .active > span:hover, .accent-11 .pagination > .active > a:focus, .accent-11 .pagination > .active > span:focus, .accent-11 .btn-primary:hover, .accent-11 .btn-primary:focus, .accent-11 .btn-primary:active, .accent-11 .btn-primary.active, .accent-11 .btn-primary.disabled, .accent-11 [disabled].btn-primary, .accent-11 .category-header {
 	background-color: #9e9e9e;
 }
 
-.accent-11 .activity-header, .accent-11 .nav-tabs > li.active > a, .accent-11 .nav-tabs > li.active > a:hover, .accent-11 .nav-tabs > li.active > a:focus, .accent-11 .navbar-default, .accent-11 .new-item .label-default {
+.accent-11 .activity-header, .accent-11 .nav-tabs > li.active > a, .accent-11 .nav-tabs > li.active > a:hover, .accent-11 .nav-tabs > li.active > a:focus, .accent-11 .navbar-default, .accent-11 .new-item .label-default, .accent-11 a.list-group-item.active, .accent-11 a.list-group-item.active:hover, .accent-11 a.list-group-item.active:focus, .accent-11 .list-group-forum .list-group-item.active.new-item {
 	background-color: #8e8e8e;
-}
-
-.accent-11 .btn-primary:hover, .accent-11 .btn-primary:focus, .accent-11 .btn-primary:active, .accent-11 .btn-primary.active, .accent-11 .btn-primary.disabled, .accent-11 [disabled].btn-primary, .accent-11 .category-header {
-	background-color: #9e9e9e;
-	border-color: #8e8e8e;
-}
-
-.accent-11 a.list-group-item.active, .accent-11 a.list-group-item.active:hover, .accent-11 a.list-group-item.active:focus, .accent-11 .list-group-forum .list-group-item.active.new-item {
-	background-color: #8e8e8e;
-	border-color: #8e8e8e;
 }
 
 .accent-11 .list-group-forum a.list-group-item:hover, .accent-11 .list-group-topic .list-group-item:hover {
-	border-left-color: #afafaf;
+	border-color: #afafaf;
+}
+
+.accent-11 .btn-primary {
+	border-color: #9e9e9e;
+}
+
+.accent-11 .btn-primary:hover, .accent-11 .btn-primary:focus, .accent-11 .btn-primary:active, .accent-11 .btn-primary.active, .accent-11 .btn-primary.disabled, .accent-11 [disabled].btn-primary, .accent-11 .category-header, .accent-11 a.list-group-item.active, .accent-11 a.list-group-item.active:hover, .accent-11 a.list-group-item.active:focus, .accent-11 .list-group-forum .list-group-item.active.new-item {
+	border-color: #8e8e8e;
 }
 
 .accent-11 .col-sm-9 a, .accent-11 a:focus, .accent-11 .pagination > li > a, .accent-11 .pagination > li > span {
@@ -1831,35 +1765,29 @@ blockquote footer {
 	color: #8e8e8e;
 }
 
-.accent-11 .btn-primary {
-	border-color: #9e9e9e;
-}
-
 /* Accent 12 - Dark grey */
 .accent-12 .navbar-inverse, .accent-12 .footer, .accent-12 .alert-all, .accent-12 .modal-form .modal-header, .accent-12 .modal-form .modal-footer, .accent-12 .navbar-inverse .navbar-toggle .icon-bar, .accent-12 .btn-primary {
 	background-color: #555555;
 }
 
-.accent-12 .navbar-secondary, .accent-12 .first-run-profile, .accent-12 .footer .copyright, .accent-12 .panel-default .panel-heading, .accent-12 .nav-tabs > li > a:hover, .accent-12 .thread-jumbotron, .accent-12 .jumbotron, .accent-12 .user-card-profile, .accent-12 .pagination > .active > a, .accent-12 .pagination > .active > span, .accent-12 .pagination > .active > a:hover, .accent-12 .pagination > .active > span:hover, .accent-12 .pagination > .active > a:focus, .accent-12 .pagination > .active > span:focus {
+.accent-12 .navbar-secondary, .accent-12 .first-run-profile, .accent-12 .footer .copyright, .accent-12 .panel-default .panel-heading, .accent-12 .nav-tabs > li > a:hover, .accent-12 .thread-jumbotron, .accent-12 .jumbotron, .accent-12 .user-card-profile, .accent-12 .pagination > .active > a, .accent-12 .pagination > .active > span, .accent-12 .pagination > .active > a:hover, .accent-12 .pagination > .active > span:hover, .accent-12 .pagination > .active > a:focus, .accent-12 .pagination > .active > span:focus, .accent-12 .btn-primary:hover, .accent-12 .btn-primary:focus, .accent-12 .btn-primary:active, .accent-12 .btn-primary.active, .accent-12 .btn-primary.disabled, .accent-12 [disabled].btn-primary, .accent-12 .category-header {
 	background-color: #444444;
 }
 
-.accent-12 .activity-header, .accent-12 .nav-tabs > li.active > a, .accent-12 .nav-tabs > li.active > a:hover, .accent-12 .nav-tabs > li.active > a:focus, .accent-12 .navbar-default, .accent-12 .new-item .label-default {
+.accent-12 .activity-header, .accent-12 .nav-tabs > li.active > a, .accent-12 .nav-tabs > li.active > a:hover, .accent-12 .nav-tabs > li.active > a:focus, .accent-12 .navbar-default, .accent-12 .new-item .label-default, .accent-12 a.list-group-item.active, .accent-12 a.list-group-item.active:hover, .accent-12 a.list-group-item.active:focus, .accent-12 .list-group-forum .list-group-item.active.new-item {
 	background-color: #333333;
-}
-
-.accent-12 .btn-primary:hover, .accent-12 .btn-primary:focus, .accent-12 .btn-primary:active, .accent-12 .btn-primary.active, .accent-12 .btn-primary.disabled, .accent-12 [disabled].btn-primary, .accent-12 .category-header {
-	background-color: #444444;
-	border-color: #333333;
-}
-
-.accent-12 a.list-group-item.active, .accent-12 a.list-group-item.active:hover, .accent-12 a.list-group-item.active:focus, .accent-12 .list-group-forum .list-group-item.active.new-item {
-	background-color: #333333;
-	border-color: #333333;
 }
 
 .accent-12 .list-group-forum a.list-group-item:hover, .accent-12 .list-group-topic .list-group-item:hover {
-	border-left-color: #555555;
+	border-color: #555555;
+}
+
+.accent-12 .btn-primary {
+	border-color: #444444;
+}
+
+.accent-12 .btn-primary:hover, .accent-12 .btn-primary:focus, .accent-12 .btn-primary:active, .accent-12 .btn-primary.active, .accent-12 .btn-primary.disabled, .accent-12 [disabled].btn-primary, .accent-12 .category-header, .accent-12 a.list-group-item.active, .accent-12 a.list-group-item.active:hover, .accent-12 a.list-group-item.active:focus, .accent-12 .list-group-forum .list-group-item.active.new-item {
+	border-color: #333333;
 }
 
 .accent-12 .col-sm-9 a, .accent-12 a:focus, .accent-12 .pagination > li > a, .accent-12 .pagination > li > span {
@@ -1868,10 +1796,6 @@ blockquote footer {
 
 .accent-12 a.list-group-item:hover, .accent-12 a:hover, .accent-12 a:active {
 	color: #333333;
-}
-
-.accent-12 .btn-primary {
-	border-color: #444444;
 }
 
 /* Accent - fixes */
