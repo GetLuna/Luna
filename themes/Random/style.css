@@ -660,6 +660,10 @@ nav .progress {
 }
 
 /* Profile */
+.user-card-profile {
+	margin-top: 16px;
+}
+
 .profile-nav {
 	padding-left: 0;
 	padding-right: 0;
@@ -730,6 +734,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Inbox */
+.container .navbar {
+	margin-top: 16px;
+}
+
 .navbar-default {
 	border: none;
 }
