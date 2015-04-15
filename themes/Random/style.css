@@ -1189,17 +1189,21 @@ textarea {
 .icon {
 	border-color: #dcdcdc;
 	margin-left: -3px;
-	margin-top: 1px;
+	margin-top: 2px;
+	border-style: solid;
+	border-width: 8px;
+	float: left;
+	height: 0;
+	overflow: hidden;
+	width: 0;
 }
 
-.iredirect .icon {
-	border-color: #818181;
-	border-width: 4px;
-	padding: 4px;
-}
-
-.inew .icon {
+.icon.icon-new {
 	border-color: #2ca0e9;
+}
+
+.tclcon {
+	margin-left: 25px;
 }
 
 /* Search */

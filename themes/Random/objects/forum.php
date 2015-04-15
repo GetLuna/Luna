@@ -1,7 +1,10 @@
 <div class="row forum-entry">
 	<div class="col-xs-6 col-sm-6 col-md-6">
-		<a href="<?php echo $page ?>?id=<?php echo $cur_forum['fid'] ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a><br />
-		<?php echo $forum_desc ?>
+		<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($forum_count) ?></div></div>
+		<div class="tclcon">
+			<a href="<?php echo $page ?>?id=<?php echo $cur_forum['fid'] ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a><br />
+			<?php echo $forum_desc ?>
+		</div>
 	</div>
 	<div class="col-md-1 text-center hidden-sm hidden-xs">
 		<?php echo '<b>'.$cur_forum['num_topics'].'</b> '.$topics_label; ?><br />
