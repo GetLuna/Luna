@@ -1057,6 +1057,8 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	</div>
 </div>
 <?php
+
+	exit;
 }
 
 //

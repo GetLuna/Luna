@@ -59,10 +59,8 @@ if ($action == 'prune') {
 	}
 
 	$prune_days = luna_trim($_POST['req_prune_days']);
-	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days)) {
+	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
 		message_backstage($lang['Days must be integer message']);
-		exit;
-	}
 
 	$prune_date = time() - ($prune_days * 86400);
 
@@ -85,10 +83,8 @@ if ($action == 'prune') {
 	$result = $db->query($sql) or error('Unable to fetch topic prune count', __FILE__, __LINE__, $db->error());
 	$num_topics = $db->result($result);
 
-	if (!$num_topics) {
+	if (!$num_topics)
 		message_backstage(sprintf($lang['No old topics message'], $prune_days));
-		exit;
-	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Prune']);
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -137,15 +133,12 @@ if (isset($_POST['notiprune'])) {
 	$db->query('DELETE FROM '.$db->prefix.'notifications'.$type) or error('Unable to delete notifications', __FILE__, __LINE__, $db->error());
 	
 	message_backstage($lang['Prune complete notifications']);
-	exit;
 }
 
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
-	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '') {
+	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
 		message_backstage('You need to set all settings!');
-		exit;
-	}
 
 	if ($_POST['admods_delete'])
 		$admod_delete = 'group_id > 0';
@@ -178,7 +171,6 @@ if (isset($_POST['userprune'])) {
 
 	$users_pruned = count($user_ids);
 	message_backstage($lang['Pruned users']);
-	exit;
 }
 
 
