@@ -26,7 +26,7 @@ require 'header.php';
 				<h3 class="panel-title">Navigation</h3>
 			</div>
 			<div class="list-group">
-				<a href="#brand" class="list-group-item"><span class="fa fa-fw fa-moon-o"></span> New brand</a>
+				<a href="#brand" class="list-group-item"><span class="luni luni-fw luni-logo"></span> New brand</a>
 				<a href="#users" class="list-group-item"><span class="fa fa-fw fa-user"></span> Users</a>
 				<a href="#inbox" class="list-group-item"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
 				<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
@@ -43,7 +43,7 @@ require 'header.php';
 				<h3 class="panel-title">About Luna 1.0 Aero</h3>
 			</div>
 			<div class="panel-body panel-about">
-				<a id="brand"></a><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3>
+				<a id="brand"></a><h3><span class="luni luni-fw luni-logo"></span>New brand</h3>
 				<img class="img-responsive" src="../img/about/brand.png" />
 				<p>Welcome to the first stable release of the third generation of our board software! This release officially rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an interesting feature, so read on to the more awesome parts of our giant changelog:</p>
 				<a id="users"></a><h3><span class="fa fa-fw fa-user"></span> User features</h3>
