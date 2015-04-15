@@ -15,7 +15,7 @@ if (!defined('FORUM'))
 $p = isset($p) ? $p : null;
 
 $hour = date("g", time());
-if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour < '7') || ($hour > '19'))))
+if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
 	$body_classes .= 'night';
 else
 	$body_classes .= 'normal';
