@@ -1585,7 +1585,7 @@ Login at <login_url> to activate the account.
 'Tongue'				=>	'Tongue',
 'Happy'					=>	'Happy',
 'Angry'					=>	'Angry',
-'Eye roll'				=>	'Eye roll',
+'Roll eye'				=>	'Roll eye',
 'Cool'					=>	'Cool',
 'Happy cry'				=>	'Happy cry',
 'Angel'					=>	'Angel',

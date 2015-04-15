@@ -124,7 +124,7 @@ function draw_editor($height) {
 						<li><a href="javascript:void(0);" title="<?php echo $lang['Tongue']; ?>" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed">&#x1f60b;</span></a></li>
 						<li><a href="javascript:void(0);" title="<?php echo $lang['Happy']; ?>" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed">&#x1f600;</span></a></li>
 						<li><a href="javascript:void(0);" title="<?php echo $lang['Angry']; ?>" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed">&#x1f620;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Eye roll']; ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Roll eye']; ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
 						<li><a href="javascript:void(0);" title="<?php echo $lang['Cool']; ?>" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed">&#x1f60e;</span></a></li>
 						<li><a href="javascript:void(0);" title="<?php echo $lang['Happy cry']; ?>" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed">&#x1f605;</span></a></li>
 						<li><a href="javascript:void(0);" title="<?php echo $lang['Angel']; ?>" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed">&#x1f607;</span></a></li>
