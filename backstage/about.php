@@ -31,6 +31,7 @@ require 'header.php';
 				<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
 				<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
 				<a href="#others" class="list-group-item">Other improvements and notes</a>
+				<a href="#updates" class="list-group-item">Updates</a>
 			</div>
 		</div>
 	</div>
