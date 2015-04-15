@@ -694,7 +694,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .form-setting {
-	margin-top: 10px;
+	padding: 10px;
+	background: #fff;
+	border-color: #ddd;
+	border-style: solid;
+	border-width: 0 1px 1px 1px;
 }
 
 /* Me */
