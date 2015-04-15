@@ -35,7 +35,12 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 			<?php } else { ?>
 		<div class="col-xs-12">
 			<?php } ?>
-			<?php draw_topics_list(); ?>
+			<div class="forum-box">
+				<div class="row forum-header">
+					<div class="col-xs-12"><?php echo $lang['Topic'] ?></div>
+				</div>
+				<?php draw_topics_list(); ?>
+			</div>
 			<div class="btn-group">
 				<?php if ($id != '0' && $is_admmod) { ?>
 					<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Moderate forum'] ?></a>

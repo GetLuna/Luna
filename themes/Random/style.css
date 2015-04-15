@@ -1245,6 +1245,37 @@ textarea {
 }
 
 /* Forum */
+.forum-header {
+	color: #fff;
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
+	padding: 8px 0;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.forum-box {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 10px;
+}
+
+.topic-row {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-bottom: 1px #eee solid;
+	border-left: 1px #ddd solid;
+	border-right: 1px #ddd solid;
+}
+
+.topic-row:last-child {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-bottom: 1px #ddd solid;
+}
+
 .topic-entry-list {
 	margin-top: 15px;
 }
