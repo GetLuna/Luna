@@ -37,7 +37,12 @@ if (!defined('FORUM'))
 </nav>
 <?php echo $paging_links ?>
 
-<div class="userlist row">
+<div class="userlist col-xs-12">
+	<div class="row forum-header">
+		<div class="col-sm-8 col-xs-9"><?php echo $lang['Username'] ?></div>
+		<div class="col-sm-1 align-center hidden-xs"><p class="text-center"><?php echo $lang['Posts table'] ?></p></div>
+		<div class="col-sm-3 col-xs-3"><?php echo $lang['Registered table'] ?></div>
+	</div>
 	<?php draw_user_list() ?>
 </div>
 

@@ -1229,23 +1229,55 @@ textarea {
 
 /* Userlist */
 .userlist {
+	padding: 0 15px;
+}
+
+.user-row .user-avatar {
+	max-width: 50px;
+	margin-top: 0;
+	margin-left: -6px;
+	position: absolute;
+	border-radius: 0;
+	height: 50px;
+	min-height: 50px;
+	min-width: 50px;
+	vertical-align: middle;
+}
+
+.userlist-name {
+	margin-left: 60px;
+	font-size: 24px;
+	line-height: 2;
+	font-family: "Segoe UI Light", "Segoe UI", "Segoe WP";
+}
+
+.userlist-name small {
+	font-size: 16px;
+	color: #999;
+}
+
+.user-row .thumbnail {
+	padding: 2px;
+}
+
+.user-row {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-bottom: 1px #eee solid;
+	border-left: 1px #ddd solid;
+	border-right: 1px #ddd solid;
+}
+
+.user-row:last-child {
+	color: #232323;
+	background-color: #fff;
+	padding: 8px 0;
+	border-bottom: 1px #ddd solid;
+}
+
+.user-row .collum-count {
 	padding-top: 15px;
-}
-
-.user-entry {
-	background-color: #eee;
-	padding: 0;
-	margin: 0 0 10px 0;
-	height: 100px;
-}
-
-.user-entry h2 {
-	margin-top: 13px;
-	margin-bottom: 0;
-}
-
-.user-entry h4 {
-	margin: 0;
 }
 
 /* Forum */
