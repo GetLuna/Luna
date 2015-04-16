@@ -219,14 +219,19 @@ require 'header.php';
 						<p>
 							<span class="label label-primary">Update 1</span> Lunicons v0.0.0 has been added<br />
 							<span class="label label-primary">Update 1</span> A design flaw in the editor has been fixed<br />
-							<span class="label label-primary">Update 1</span> Emoticons now have tooltips
+							<span class="label label-primary">Update 1</span> Emoticons now have tooltips<br />
+							<span class="label label-primary">Update 1</span> The index now shows the 30 latest active topics<br />
+							<span class="label label-primary">Update 1</span> Fix for Backstage menu when extensions are added<br />
+							<span class="label label-primary">Update 1</span> Improved mail form usability, updated tab order
 						</p>
 					</div>
 					<div class="col-sm-6">
 						<p>
 							<span class="label label-primary">Update 1</span> An update to CDNs has been made for SSL support<br />
 							<span class="label label-primary">Update 1</span> Remove an obsolete query from the update script<br />
-							<span class="label label-primary">Update 1</span> Removes the beta tag from "About"
+							<span class="label label-primary">Update 1</span> Removes the beta tag from "About"<br />
+							<span class="label label-primary">Update 1</span> Small changes to the notification center for new icons<br />
+							<span class="label label-primary">Update 1</span> Fix "Do not show again" bug on the index
 						</p>
 					</div>
 				</div>
