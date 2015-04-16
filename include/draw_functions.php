@@ -114,21 +114,21 @@ function draw_editor($height) {
 						<span class="fa fa-fw text-emoji emoji-ed">&#x263a;</span>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right dropdown-emoji" role="menu">
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed">&#x263a;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed">&#x1f611;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed">&#x1f629;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed">&#x1f604;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed">&#x1f632;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed">&#x1f609;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed">&#x1f612;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed">&#x1f60b;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed">&#x1f600;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed">&#x1f620;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed">&#x1f60e;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed">&#x1f605;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed">&#x1f607;</span></a></li>
-						<li><a href="javascript:void(0);" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed">&#x1f60f;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Smile']; ?>" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed">&#x263a;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Neutral']; ?>" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed">&#x1f611;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Sad']; ?>" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed">&#x1f629;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Big smile']; ?>" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed">&#x1f604;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Yikes']; ?>" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed">&#x1f632;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Wink']; ?>" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed">&#x1f609;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Hmmm']; ?>" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed">&#x1f612;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Tongue']; ?>" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed">&#x1f60b;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Happy']; ?>" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed">&#x1f600;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Angry']; ?>" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed">&#x1f620;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Roll eye']; ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Cool']; ?>" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed">&#x1f60e;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Happy cry']; ?>" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed">&#x1f605;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Angel']; ?>" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed">&#x1f607;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php echo $lang['Oh yeah']; ?>" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed">&#x1f60f;</span></a></li>
 					</ul>
 				</div>
 <?php } else { ?>
@@ -137,21 +137,21 @@ function draw_editor($height) {
 						<img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt="<?php echo $lang['Smilies'] ?>" width="15" height="15" />
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right dropdown-emoticon" role="menu">
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Smile']; ?>" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Neutral']; ?>" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Sad']; ?>" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Big smile']; ?>" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Yikes']; ?>" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Wink']; ?>" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Hmmm']; ?>" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Tongue']; ?>" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Happy']; ?>" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Angry']; ?>" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Roll eye']; ?>" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Cool']; ?>" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Happy cry']; ?>" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Angel']; ?>" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Oh yeah']; ?>" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
 					</ul>
 				</div>
 <?php } ?>
@@ -484,7 +484,7 @@ function draw_index_topics_list($section_id) {
 	if ($section_id != 0)
 		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$section_id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	else
-		$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 AND moved_to IS NULL ORDER BY id DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 AND moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
@@ -1073,12 +1073,12 @@ function draw_mail_form($recipient_id) {
 ?>
 
 <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-	<input class="info-textfield form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="1" />
+	<input class="info-textfield form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" autofocus />
 	<div class="panel panel-default panel-editor">
 		<fieldset class="postfield">
 			<input type="hidden" name="form_sent" value="1" />
 			<input type="hidden" name="redirect_url" value="<?php echo luna_htmlspecialchars($redirect_url) ?>" />
-			<textarea name="req_message" class="form-control textarea" rows="10" tabindex="2"></textarea>
+			<textarea name="req_message" class="form-control textarea" rows="10" tabindex="<?php echo $cur_index++ ?>"></textarea>
 			<div class="btn-toolbar textarea-toolbar textarea-bottom">
 				<div class="btn-group pull-right">
 					<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-envelope-o"></span> <?php echo $lang['Send'] ?></button>

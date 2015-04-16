@@ -26,7 +26,7 @@ require 'header.php';
 				<h3 class="panel-title">Navigation</h3>
 			</div>
 			<div class="list-group">
-				<a href="#brand" class="list-group-item"><span class="fa fa-fw fa-moon-o"></span> New brand</a>
+				<a href="#brand" class="list-group-item"><span class="luni luni-fw luni-logo"></span> New brand</a>
 				<a href="#users" class="list-group-item"><span class="fa fa-fw fa-user"></span> Users</a>
 				<a href="#inbox" class="list-group-item"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
 				<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
@@ -34,16 +34,17 @@ require 'header.php';
 				<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
 				<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
 				<a href="#others" class="list-group-item">Other improvements and notes</a>
+				<a href="#updates" class="list-group-item">Updates</a>
 			</div>
 		</div>
 	</div>
 	<div class="col-sm-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.0 Beta</h3>
+				<h3 class="panel-title">About Luna 1.0 Aero</h3>
 			</div>
 			<div class="panel-body panel-about">
-				<a id="brand"></a><h3><span class="fa fa-fw fa-moon-o"></span>New brand</h3>
+				<a id="brand"></a><h3><span class="luni luni-fw luni-logo"></span>New brand</h3>
 				<img class="img-responsive" src="../img/about/brand.png" />
 				<p>Welcome to the first stable release of the third generation of our board software! This release officially rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an interesting feature, so read on to the more awesome parts of our giant changelog:</p>
 				<a id="users"></a><h3><span class="fa fa-fw fa-user"></span> User features</h3>
@@ -197,6 +198,7 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>Packages</h4>
 						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.4.<br />
+						<b>Lunicons</b> version 0.0.0 has been added.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
@@ -204,9 +206,33 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>272 bugs have been fixed.</p>
+						<p>276 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
+					</div>
+				</div>
+				<hr />
+				<a id="updates"></a><h3>Updates</h3>
+				<h4>Luna 1.0.1 &middot Build 4284</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 1</span> Lunicons v0.0.0 has been added<br />
+							<span class="label label-primary">Update 1</span> A design flaw in the editor has been fixed<br />
+							<span class="label label-primary">Update 1</span> Emoticons now have tooltips<br />
+							<span class="label label-primary">Update 1</span> The index now shows the 30 latest active topics<br />
+							<span class="label label-primary">Update 1</span> Fix for Backstage menu when extensions are added<br />
+							<span class="label label-primary">Update 1</span> Improved mail form usability, updated tab order
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 1</span> An update to CDNs has been made for SSL support<br />
+							<span class="label label-primary">Update 1</span> Remove an obsolete query from the update script<br />
+							<span class="label label-primary">Update 1</span> Removes the beta tag from "About"<br />
+							<span class="label label-primary">Update 1</span> Small changes to the notification center for new icons<br />
+							<span class="label label-primary">Update 1</span> Fix "Do not show again" bug on the index
+						</p>
 					</div>
 				</div>
 			</div>
