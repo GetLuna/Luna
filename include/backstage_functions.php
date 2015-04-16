@@ -99,7 +99,7 @@ function load_admin_nav($section, $page) {
 	if (!empty($plugins))
 	{
 ?>
-				<li class="dropdown <?php if ($section == 'extensions') echo 'active'; ?>">
+				<li class="dropdown<?php if ($section == ' extensions') echo 'active'; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<span class="fa fa-fw fa-cogs"></span> <?php echo $lang['Extensions'] ?> <span class="fa fa-fw fa-angle-down">
 					</a>
@@ -114,7 +114,7 @@ function load_admin_nav($section, $page) {
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown usermenu">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
 						<?php print(luna_htmlspecialchars($luna_user['username'])) ?> <?php echo draw_user_avatar($luna_user['id'], 'avatar'); ?> <span class="fa fa-fw fa-angle-down"></span>
 					</a>
 					<ul class="dropdown-menu">
