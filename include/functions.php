@@ -1171,7 +1171,7 @@ function confirm_referrer($scripts, $error_msg = false) {
 
 	$valid_paths = array();
 	foreach ($scripts as $script) {
-		$valid = parse_url(strtolower(rtrim(get_base_url(), '/\\').'/'.$script));
+		$valid = parse_url(strtolower(rtrim(get_base_url(), '/\\').'/'.ltrim($script, '/\\')));
 		// Remove www subdomain if it exists
 		if (strpos($valid['host'], 'www.') === 0)
 			$valid['host'] = substr($valid['host'], 4);
