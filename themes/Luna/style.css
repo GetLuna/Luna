@@ -1421,7 +1421,7 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 }
 
 .night .list-group-item:hover {
-	background-color: #3a3a3a;
+	background-color: #3f3f3f;
 }
 
 .night #search .panel-body, .night .user-entry {
