@@ -21,11 +21,8 @@ if ($action == 'rebuild') {
 	$start_at = isset($_GET['i_start_at']) ? intval($_GET['i_start_at']) : 0;
 
 	// Check per page is > 0
-	if ($per_page < 1) {
-		load_admin_nav('maintenance', 'maintenance');
+	if ($per_page < 1)
 		message_backstage($lang['Posts must be integer message']);
-		exit;
-	}
 
 	@set_time_limit(0);
 

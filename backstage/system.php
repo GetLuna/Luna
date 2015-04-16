@@ -19,10 +19,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 // Show phpinfo() output
 if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN) {
 	// Is phpinfo() a disabled function?
-	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false) {
+	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
 		message_backstage($lang['PHPinfo disabled message']);
-		exit;
-	}
 
 	phpinfo();
 	exit;
