@@ -1594,6 +1594,30 @@ function forum_list_styles() {
 
 
 //
+// Fetch a list of available frontend styles
+//
+function forum_list_accents() {
+	global $luna_config;
+
+	$accents = array();
+
+	$d = dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/');
+	while (($entry = $d->read()) !== false) {
+		if ($entry{0} == '.')
+			continue;
+
+		if (substr($entry, -4) == '.css')
+			$accents[] = substr($entry, 0, -4);
+	}
+	$d->close();
+
+	natcasesort($accents);
+
+	return $accents;
+}
+
+
+//
 // Fetch a list of available language packs
 //
 function forum_list_langs() {
