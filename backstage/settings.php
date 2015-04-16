@@ -41,10 +41,8 @@ if (isset($_POST['form_sent'])) {
 		'announcement_message'	=> luna_trim($_POST['form']['announcement_message']),
 	);
 
-	if ($form['board_title'] == '') {
+	if ($form['board_title'] == '')
 		message_backstage($lang['Must enter title message']);
-		exit;
-	}
 
 	// Make sure base_url doesn't end with a slash
 	if (substr($form['base_url'], -1) == '/')
@@ -52,25 +50,21 @@ if (isset($_POST['form_sent'])) {
 		
 	// Convert IDN to Punycode if needed  
 	if (preg_match('/[^\x00-\x7F]/', $form['base_url'])) {
-		if (!function_exists('idn_to_ascii')) {
+		if (!function_exists('idn_to_ascii'))
 			message_backstage($lang['Base URL problem']);
-			exit;
-		} else
+		else
 			$form['base_url'] = idn_to_ascii($form['base_url']);
 	}
 
 	$languages = forum_list_langs();
-	if (!in_array($form['default_lang'], $languages)) {
+	if (!in_array($form['default_lang'], $languages))
 		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
 
 	if ($form['time_format'] == '')
 		$form['time_format'] = 'H:i:s';
 
 	if ($form['date_format'] == '')
 		$form['date_format'] = 'Y-m-d';
-
 
 	require FORUM_ROOT.'include/email.php';
 
@@ -88,10 +82,8 @@ if (isset($_POST['form_sent'])) {
 
 		if ($smtp_pass1 == $smtp_pass2)
 			$form['smtp_pass'] = $smtp_pass1;
-		else {
+		else
 			message_backstage($lang['SMTP passwords did not match']);
-			exit;
-		}
 	}
 
 	if ($form['announcement_message'] != '')
@@ -101,25 +93,17 @@ if (isset($_POST['form_sent'])) {
 		$form['announcement'] = '0';
 	}
 
-	if ($form['feed_type'] < 0 || $form['feed_type'] > 2) {
+	if ($form['feed_type'] < 0 || $form['feed_type'] > 2)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
 
-	if ($form['feed_ttl'] < 0) {
+	if ($form['feed_ttl'] < 0)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
 
-	if ($form['report_method'] < 0 || $form['report_method'] > 2) {
+	if ($form['report_method'] < 0 || $form['report_method'] > 2)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
 
-	if ($form['timeout_online'] >= $form['timeout_visit']) {
+	if ($form['timeout_online'] >= $form['timeout_visit'])
 		message_backstage($lang['Timeout error message']);
-		exit;
-	}
 
 	foreach ($form as $key => $input) {
 		// Only update values that have changed

@@ -178,7 +178,7 @@ if (empty($stage)) {
 	<head>
 		<meta charset="utf-8">
 		<title><?php echo $lang['Maintenance'] ?></title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
@@ -199,7 +199,7 @@ if (empty($stage)) {
 		<title>Luna &middot; <?php echo $lang['Update'] ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="robots" content="noindex, nofollow">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
@@ -353,9 +353,6 @@ switch ($stage) {
 		// Since 0.0.40.3048: Remove obsolete o_additional_navlinks permission from config table
 		if (array_key_exists('o_additional_navlinks', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_additional_navlinks\'') or error('Unable to remove config value \'o_additional_navlinks\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3177: Add the color column to the users table
-		$db->add_field('users', 'color', 'VARCHAR(25)', false, '#0d4382') or error('Unable to add column "color" to table "users"', __FILE__, __LINE__, $db->error());
 
 		// Since 0.0.3221: Drop the last_poster column to the forums table
 		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());

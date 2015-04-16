@@ -80,10 +80,8 @@ function get_table_def_mysql($table, $crlf) {
 	// Ok lets grab the fields
 	//
 	$result = $db->query($field_query);
-	if(!$result) {
+	if(!$result)
 		message_backstage('Failed to get field list');
-		exit;
-	}
 
 	while ($row = $db->fetch_assoc($result)) {
 		$schema_create .= '	' . $row['Field'] . ' ' . $row['Type'];
@@ -111,10 +109,8 @@ function get_table_def_mysql($table, $crlf) {
 	// Get any Indexed fields from the database
 	//
 	$result = $db->query($key_query);
-	if(!$result) {
+	if(!$result)
 		message_backstage('Failed to get Indexed Fields');
-		exit;
-	}
 
 	while($row = $db->fetch_assoc($result)) {
 		$kname = $row['Key_name'];
@@ -160,10 +156,8 @@ function get_table_content_mysql($table, $handler) {
 	global $db;
 
 	// Grab the data from the table.
-	if (!($result = $db->query("SELECT * FROM $table"))) {
+	if (!($result = $db->query("SELECT * FROM $table")))
 		message_backstage('Failed to get table content');
-		exit;
-	}
 
 	// Loop through the resulting rows and build the sql statement.
 	if ($row = $db->fetch_assoc($result)) {
@@ -401,10 +395,9 @@ if (isset($_POST['backupstart'])) {
 	$backup_file_name = (!empty($_FILES['backup_file']['name'])) ? $_FILES['backup_file']['name'] : "";
 	$backup_file_tmpname = ($_FILES['backup_file']['tmp_name'] != "none") ? $_FILES['backup_file']['tmp_name'] : "";
 	$backup_file_type = (!empty($_FILES['backup_file']['type'])) ? $_FILES['backup_file']['type'] : "";
-	if($backup_file_tmpname == "" || $backup_file_name == "") {
+	if($backup_file_tmpname == "" || $backup_file_name == "")
 		message_backstage($lang['No file uploaded']);
-		exit;
-	}
+
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) ) {
 		if( preg_match("/\.gz$/is",$backup_file_name) ) {
 			$do_gzip_compress = FALSE;
@@ -420,17 +413,14 @@ if (isset($_POST['backupstart'])) {
 				while( !gzeof($gz_ptr) ) {
 					$sql_query .= gzgets($gz_ptr, 100000);
 				}
-			} else {
+			} else
 				message_backstage($lang['Not restored']);
-				exit;
-			}
 		} else {
 			$sql_query = fread(fopen($backup_file_tmpname, 'r'), filesize($backup_file_tmpname));
 		}
-	} else {
+	} else
 		message_backstage($lang['File format error']);
-		exit;
-	}
+
 	if ($sql_query != "") {
 		// Strip out sql comments
 		$sql_query = remove_remarks($sql_query);
@@ -453,10 +443,8 @@ if (isset($_POST['backupstart'])) {
 					flush();
 				}
 				$result = $db->query($sql);
-				if(!$result) {
+				if(!$result)
 					message_backstage($lang['Imported error']);
-					exit;
-				}
 			}
 		}
 		if(defined('FORUM_DEBUG')) {
@@ -470,19 +458,14 @@ if (isset($_POST['backupstart'])) {
 ?>
 	<h2><?php echo $lang['Restore complete'] ?></h2>
 <?php
-	} else {
+	} else
 		message_backstage($lang['Restore completed']);
-		exit;
-	}
 } elseif (isset($_POST['repairall'])) {
 	// repair all tables
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
-	if (!$result = $db->query($sql)) {
-		// This makes no sense, the board would be dead :P
+	if (!$result = $db->query($sql)) // This makes no sense, the board would be dead :P
 		message_backstage($lang['Failed repair']);
-		exit;
-	}
 	$tables = array();
 	$counter = 0;
 	while ($row = $db->fetch_assoc($result)) {
@@ -494,21 +477,16 @@ if (isset($_POST['backupstart'])) {
 	// Repair All
 	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'REPAIR TABLE ' . $tables[$i];
-		if (!$result = $db->query($sql)) {
+		if (!$result = $db->query($sql))
 			message_backstage($lang['Failed repair SQL']);
-			exit;
-		}
 	}
+
 	message_backstage('All tables repaired');
-	exit;
 } elseif (isset($_POST['optimizeall'])) {
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
-	if (!$result = $db->query($sql)) {
-		// This makes no sense, the board would be dead :P
+	if (!$result = $db->query($sql)) // This makes no sense, the board would be dead :P
 		message_backstage($lang['Failed optimize']);
-		exit;
-	}
 	$tables = array();
 	$counter = 0;
 	while ($row = $db->fetch_assoc($result)) {
@@ -520,13 +498,11 @@ if (isset($_POST['backupstart'])) {
 	// Optimize All
 	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
-		if (!$result = $db->query($sql)) {
+		if (!$result = $db->query($sql))
 			message_backstage($lang['Failed optimize SQL']);
-			exit;
-		}
 	}
+
 	message_backstage('All tables optimized');
-	exit;
 } else {
 	
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
