@@ -1,0 +1,32 @@
+/* Accent 8 - Orange */
+.accent-8 .navbar-inverse, .accent-8 .footer, .accent-8 .alert-all, .accent-8 .modal-form .modal-header, .accent-8 .modal-form .modal-footer, .accent-8 .navbar-inverse .navbar-toggle .icon-bar, .accent-8 .btn-primary {
+	background-color: #ff7521;
+}
+
+.accent-8 .navbar-secondary, .accent-8 .first-run-profile, .accent-8 .footer .copyright, .accent-8 .panel-default .panel-heading, .accent-8 .nav-tabs > li > a:hover, .accent-8 .thread-jumbotron, .accent-8 .jumbotron, .accent-8 .user-card-profile, .accent-8 .pagination > .active > a, .accent-8 .pagination > .active > span, .accent-8 .pagination > .active > a:hover, .accent-8 .pagination > .active > span:hover, .accent-8 .pagination > .active > a:focus, .accent-8 .pagination > .active > span:focus, .accent-8 .btn-primary:hover, .accent-8 .btn-primary:focus, .accent-8 .btn-primary:active, .accent-8 .btn-primary.active, .accent-8 .btn-primary.disabled, .accent-8 [disabled].btn-primary, .accent-8 .category-header {
+	background-color: #ff5a21;
+}
+
+.accent-8 .activity-header, .accent-8 .nav-tabs > li.active > a, .accent-8 .nav-tabs > li.active > a:hover, .accent-8 .nav-tabs > li.active > a:focus, .accent-8 .navbar-default, .accent-8 .new-item .label-default, .accent-8 a.list-group-item.active, .accent-8 a.list-group-item.active:hover, .accent-8 a.list-group-item.active:focus, .accent-8 .list-group-forum .list-group-item.active.new-item {
+	background-color: #ff4021;
+}
+
+.accent-8 .list-group-forum a.list-group-item:hover, .accent-8 .list-group-topic .list-group-item:hover {
+	border-color: #ff7521;
+}
+
+.accent-8 .btn-primary {
+	border-color: #ff5a21;
+}
+
+.accent-8 .btn-primary:hover, .accent-8 .btn-primary:focus, .accent-8 .btn-primary:active, .accent-8 .btn-primary.active, .accent-8 .btn-primary.disabled, .accent-8 [disabled].btn-primary, .accent-8 .category-header, .accent-8 a.list-group-item.active, .accent-8 a.list-group-item.active:hover, .accent-8 a.list-group-item.active:focus, .accent-8 .list-group-forum .list-group-item.active.new-item {
+	border-color: #ff4021;
+}
+
+.accent-8 .col-sm-9 a, .accent-8 a:focus, .accent-8 .pagination > li > a, .accent-8 .pagination > li > span {
+	color: #ff5a21;
+}
+
+.accent-8 a.list-group-item:hover, .accent-8 a:hover, .accent-8 a:active {
+	color: #ff4021;
+}

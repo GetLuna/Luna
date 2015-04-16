@@ -1,0 +1,56 @@
+.accent-10 .navbar-inverse, .accent-10 .footer, .accent-10 .alert-all, .accent-10 .modal-form .modal-header, .accent-10 .modal-form .modal-footer, .accent-10 .navbar-inverse .navbar-toggle .icon-bar, .accent-10 .btn-primary {
+	background-color: #eeeeee;
+}
+
+.accent-10 .navbar-secondary, .accent-10 .first-run-profile, .accent-10 .footer .copyright, .accent-10 .panel-default .panel-heading, .accent-10 .nav-tabs > li > a:hover, .accent-10 .thread-jumbotron, .accent-10 .jumbotron, .accent-10 .user-card-profile, .accent-10 .pagination > .active > a, .accent-10 .pagination > .active > span, .accent-10 .pagination > .active > a:hover, .accent-10 .pagination > .active > span:hover, .accent-10 .pagination > .active > a:focus, .accent-10 .pagination > .active > span:focus, .accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .category-header {
+	background-color: #dddddd;
+}
+
+.accent-10 .activity-header, .accent-10 .nav-tabs > li.active > a, .accent-10 .nav-tabs > li.active > a:hover, .accent-10 .nav-tabs > li.active > a:focus, .accent-10 .navbar-default, .accent-10 .new-item .label-default, .accent-10 a.list-group-item.active, .accent-10 a.list-group-item.active:hover, .accent-10 a.list-group-item.active:focus, .accent-10 .list-group-forum .list-group-item.active.new-item {
+	background-color: #cccccc;
+}
+
+.accent-10 .list-group-forum a.list-group-item:hover, .accent-10 .list-group-topic .list-group-item:hover, .accent-10 .btn-primary, .accent-10 .btn-primary.active, .accent-10 .btn-primary.focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:hover, .accent-10 .open > .dropdown-toggle.btn-primary {
+	border-color: #eeeeee;
+}
+
+.accent-10 .btn-primary {
+	border-color: #dddddd;
+}
+/* Accent 10 - White */
+.accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .category-header,
+ .accent-10 a.list-group-item.active, .accent-10 a.list-group-item.active:hover, .accent-10 a.list-group-item.active:focus, .accent-10 .list-group-forum .list-group-item.active.new-item {
+	border-color: #cccccc;
+}
+
+.accent-10 .col-sm-9 a, .accent-10 a:focus, .accent-10 .pagination > li > a, .accent-10 .pagination > li > span {
+	color: #dddddd;
+}
+
+.accent-10 a.list-group-item:hover, .accent-10 a:hover, .accent-10 a:active {
+	color: #cccccc;
+}
+
+.accent-10 .navbar-inverse .navbar-brand:hover, .accent-10 .navbar-inverse .navbar-brand:focus, .accent-10 .first-run-title, .accent-10 .navbar-inverse .navbar-nav > li > a:hover, .accent-10 .navbar-inverse .navbar-nav > li > a:focus, .accent-10 .navbar-inverse .navbar-nav > li > a, .accent-10 .navbar-inverse .navbar-brand, .accent-10 .footer, .accent-10 .footer a, .accent-10 .panel-default .panel-heading, .accent-10 .active.list-group-item, .accent-10 .active.list-group-item:hover, .accent-10 .active.list-group-item:focus, .accent-10 .alert-all, .accent-10 .jumbotron h2, .accent-10 .navbar-inverse .navbar-nav > .open > a, .accent-10 .navbar-inverse .navbar-nav > .open > a:hover, .accent-10 .navbar-inverse .navbar-nav > .open > a:focus, .accent-10 .navbar-inverse .navbar-nav > .active > a, .accent-10 .navbar-inverse .navbar-nav > .active > a:hover, .accent-10 .navbar-inverse .navbar-nav > .active > a:focus, .accent-10 .user-card-title, .accent-10 .nav-tabs > li.active > a, .accent-10 .nav-tabs > li.active > a:hover, .accent-10 .nav-tabs > li.active > a:focus, .accent-10 .btn-primary, .accent-10 .btn-primary:hover, .accent-10 .btn-primary:focus, .accent-10 .btn-primary:active, .accent-10 .btn-primary.active, .accent-10 .btn-primary.disabled, .accent-10 [disabled].btn-primary, .accent-10 .nav > li > a, .accent-10 a.list-group-item:hover, .accent-10 .navbar-default .navbar-brand, .accent-10 .navbar-default .navbar-brand:focus, .accent-10 .navbar-default .navbar-brand:hover, .accent-10 .category-header, .accent-10 .new-item .label-default, .accent-10 .nav > li > a, .accent-10 a.list-group-item:hover, .accent-10 a:hover, .accent-10 a:active  {
+	color: #555;
+}
+
+.accent-10 .jumbotron .container h2 {
+	color: #fff;
+}
+
+.accent-10 .navbar-inverse .navbar-toggle, .accent-10 .navbar-inverse .navbar-toggle:hover, .accent-10 .navbar-inverse .navbar-toggle:focus {
+	background-color: #555;
+}
+
+.accent-10 a, .accent-10 a:focus, .accent-10 .pagination > li > a, .accent-10 .pagination > li > span {
+	color: #333;
+}
+
+.accent-10 .navbar-inverse .navbar-nav > .open > a, .accent-10 .navbar-inverse .navbar-nav > .open > a:hover, .accent-10 .navbar-inverse .navbar-nav > .open > a:focus, .accent-10 .navbar-inverse .navbar-nav > .active > a, .accent-10 .navbar-inverse .navbar-nav > .active > a:hover, .accent-10 .navbar-inverse .navbar-nav > .active > a:focus {
+	text-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+}
+
+.accent-10 a.btn.btn-primary, .accent-10 a.btn.btn-danger, .accent-10 a.btn.btn-warning, .accent-10 .profile-nav a.list-group-item.active:hover {
+	color: #333 !important;
+}
