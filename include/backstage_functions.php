@@ -19,7 +19,7 @@ function load_admin_nav($section, $page) {
 	elseif ($page == 'update')
 		$page_title = '<span class="fa fa-fw fa-cloud-upload"></span> '.$lang['Luna update'];
 	elseif ($page == 'about')
-		$page_title = '<span class="fa fa-fw fa-moon-o"></span> '.$lang['About Luna'];
+		$page_title = '<span class="luni luni-fw luni-logo"></span> '.$lang['About Luna'];
 
 	elseif ($page == 'board')
 		$page_title = '<span class="fa fa-fw fa-sort-amount-desc"></span> '.$lang['Board'];
@@ -99,7 +99,7 @@ function load_admin_nav($section, $page) {
 	if (!empty($plugins))
 	{
 ?>
-				<li class="dropdown <?php if ($section == 'extensions') echo 'active'; ?>">
+				<li class="dropdown<?php if ($section == ' extensions') echo 'active'; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<span class="fa fa-fw fa-cogs"></span> <?php echo $lang['Extensions'] ?> <span class="fa fa-fw fa-angle-down">
 					</a>
@@ -114,7 +114,7 @@ function load_admin_nav($section, $page) {
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown usermenu">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
 						<?php print(luna_htmlspecialchars($luna_user['username'])) ?> <?php echo draw_user_avatar($luna_user['id'], 'avatar'); ?> <span class="fa fa-fw fa-angle-down"></span>
 					</a>
 					<ul class="dropdown-menu">
@@ -146,7 +146,7 @@ function load_admin_nav($section, $page) {
 				<li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><span class="fa fa-fw fa-tachometer"></span><span class="hidden-xs"> <?php echo $lang['Backstage'] ?></span></a></li>
 				<li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-fw fa-info-circle"></span><span class="hidden-xs"> <?php echo $lang['System info'] ?></span></a></li>
 				<li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-fw fa-cloud-upload"></span><span class="hidden-xs"> <?php echo $lang['Update'] ?></span></a></li>
-				<li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="fa fa-fw fa-moon-o"></span><span class="hidden-xs"> <?php echo $lang['About'] ?></span></a></li>
+				<li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="luni luni-fw luni-logo"></span><span class="hidden-xs"> <?php echo $lang['About'] ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'content') { ?>
 			<ul class="nav nav-tabs" role="tablist">
