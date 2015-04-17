@@ -19,18 +19,14 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		// If the ID of the user to ban was provided through GET (a link from ../profile.php)
 		if (isset($_GET['add_ban'])) {
 			$user_id = intval($_GET['add_ban']);
-			if ($user_id < 2) {
+			if ($user_id < 2)
 				message_backstage($lang['Bad request'], false, '404 Not Found');
-				exit;
-			}
 
 			$result = $db->query('SELECT group_id, username, email FROM '.$db->prefix.'users WHERE id='.$user_id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
 				list($group_id, $ban_user, $ban_email) = $db->fetch_row($result);
-			else {
+			else
 				message_backstage($lang['No user ID message']);
-				exit;
-			}
 		} else { // Otherwise the username is in POST
 			$ban_user = luna_trim($_POST['new_ban_user']);
 
@@ -38,27 +34,21 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 				$result = $db->query('SELECT id, group_id, username, email FROM '.$db->prefix.'users WHERE username=\''.$db->escape($ban_user).'\' AND id>1') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result))
 					list($user_id, $group_id, $ban_user, $ban_email) = $db->fetch_row($result);
-				else {
+				else
 					message_backstage($lang['No user message']);
-					exit;
-				}
 			}
 		}
 
 		// Make sure we're not banning an admin or moderator
 		if (isset($group_id)) {
-			if ($group_id == FORUM_ADMIN) {
+			if ($group_id == FORUM_ADMIN)
 				message_backstage(sprintf($lang['User is admin message'], luna_htmlspecialchars($ban_user)));
-				exit;
-			}
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 			$is_moderator_group = $db->result($result);
 
-			if ($is_moderator_group) {
+			if ($is_moderator_group)
 				message_backstage(sprintf($lang['User is mod message'], luna_htmlspecialchars($ban_user)));
-				exit;
-			}
 		}
 
 		// If we have a $user_id, we can try to find the last known IP of that user
@@ -75,18 +65,14 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		$mode = 'add';
 	} else { // We are editing a ban
 		$ban_id = intval($_GET['edit_ban']);
-		if ($ban_id < 1) {
+		if ($ban_id < 1) 
 			message_backstage($lang['Bad request'], false, '404 Not Found');
-			exit;
-		}
 
 		$result = $db->query('SELECT username, ip, email, message, expire FROM '.$db->prefix.'bans WHERE id='.$ban_id) or error('Unable to fetch ban info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			list($ban_user, $ban_ip, $ban_email, $ban_message, $ban_expire) = $db->fetch_row($result);
-		else {
+		else
 			message_backstage($lang['Bad request'], false, '404 Not Found');
-			exit;
-		}
 
 		$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 		$ban_expire = ($ban_expire != '') ? gmdate('Y-m-d', $ban_expire + $diff) : '';
@@ -171,13 +157,10 @@ elseif (isset($_POST['add_edit_ban'])) {
 	$ban_message = luna_trim($_POST['ban_message']);
 	$ban_expire = luna_trim($_POST['ban_expire']);
 
-	if ($ban_user == '' && $ban_ip == '' && $ban_email == '') {
+	if ($ban_user == '' && $ban_ip == '' && $ban_email == '')
 		message_backstage($lang['Must enter message']);
-		exit;
-	} elseif (strtolower($ban_user) == 'guest') {
+	elseif (strtolower($ban_user) == 'guest')
 		message_backstage($lang['Cannot ban guest message']);
-		exit;
-	}
 
 	// Make sure we're not banning an admin or moderator
 	if (!empty($ban_user)) {
@@ -185,18 +168,14 @@ elseif (isset($_POST['add_edit_ban'])) {
 		if ($db->num_rows($result)) {
 			$group_id = $db->result($result);
 
-			if ($group_id == FORUM_ADMIN) {
+			if ($group_id == FORUM_ADMIN)
 				message_backstage(sprintf($lang['User is admin message'], luna_htmlspecialchars($ban_user)));
-				exit;
-			}
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 			$is_moderator_group = $db->result($result);
 
-			if ($is_moderator_group) {
+			if ($is_moderator_group)
 				message_backstage(sprintf($lang['User is mod message'], luna_htmlspecialchars($ban_user)));
-				exit;
-			}
 		}
 	}
 
@@ -213,10 +192,8 @@ elseif (isset($_POST['add_edit_ban'])) {
 				for ($c = 0; $c < count($octets); ++$c) {
 					$octets[$c] = ltrim($octets[$c], "0");
 
-					if ($c > 7 || (!empty($octets[$c]) && !ctype_xdigit($octets[$c])) || intval($octets[$c], 16) > 65535) {
+					if ($c > 7 || (!empty($octets[$c]) && !ctype_xdigit($octets[$c])) || intval($octets[$c], 16) > 65535)
 						message_backstage($lang['Invalid IP message']);
-						exit;
-					}
 				}
 
 				$cur_address = implode(':', $octets);
@@ -227,10 +204,8 @@ elseif (isset($_POST['add_edit_ban'])) {
 				for ($c = 0; $c < count($octets); ++$c) {
 					$octets[$c] = (strlen($octets[$c]) > 1) ? ltrim($octets[$c], "0") : $octets[$c];
 
-					if ($c > 3 || preg_match('%[^0-9]%', $octets[$c]) || intval($octets[$c]) > 255) {
+					if ($c > 3 || preg_match('%[^0-9]%', $octets[$c]) || intval($octets[$c]) > 255)
 						message_backstage($lang['Invalid IP message']);
-						exit;
-					}
 				}
 
 				$cur_address = implode('.', $octets);
@@ -243,27 +218,21 @@ elseif (isset($_POST['add_edit_ban'])) {
 
 	require FORUM_ROOT.'include/email.php';
 	if ($ban_email != '' && !is_valid_email($ban_email)) {
-		if (!preg_match('%^[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$%', $ban_email)) {
+		if (!preg_match('%^[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$%', $ban_email))
 			message_backstage($lang['Invalid e-mail message']);
-			exit;
-		}
 	}
 
 	if ($ban_expire != '' && $ban_expire != 'Never') {
 		$ban_expire = strtotime($ban_expire.' GMT');
 
-		if ($ban_expire == -1 || !$ban_expire) {
+		if ($ban_expire == -1 || !$ban_expire)
 			message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
-			exit;
-		}
 
 		$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 		$ban_expire -= $diff;
 
-		if ($ban_expire <= time()) {
+		if ($ban_expire <= time())
 			message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
-			exit;
-		}
 	} else
 		$ban_expire = 'NULL';
 
@@ -291,10 +260,8 @@ elseif (isset($_GET['del_ban'])) {
 	confirm_referrer('backstage/bans.php');
 	
 	$ban_id = intval($_GET['del_ban']);
-	if ($ban_id < 1) {
+	if ($ban_id < 1)
 		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
 
 	$db->query('DELETE FROM '.$db->prefix.'bans WHERE id='.$ban_id) or error('Unable to delete ban', __FILE__, __LINE__, $db->error());
 
@@ -328,10 +295,8 @@ elseif (isset($_GET['find_ban'])) {
 		$query_str[] = 'expire_after='.$expire_after;
 
 		$expire_after = strtotime($expire_after);
-		if ($expire_after === false || $expire_after == -1) {
+		if ($expire_after === false || $expire_after == -1)
 			message_backstage($lang['Invalid date message']);
-			exit;
-		}
 
 		$conditions[] = 'b.expire>'.$expire_after;
 	}
@@ -339,10 +304,8 @@ elseif (isset($_GET['find_ban'])) {
 		$query_str[] = 'expire_before='.$expire_before;
 
 		$expire_before = strtotime($expire_before);
-		if ($expire_before === false || $expire_before == -1) {
+		if ($expire_before === false || $expire_before == -1)
 			message_backstage($lang['Invalid date message']);
-			exit;
-		}
 
 		$conditions[] = 'b.expire<'.$expire_before;
 	}

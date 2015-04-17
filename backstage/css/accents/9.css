@@ -1,0 +1,24 @@
+/* Accent 9 - Red */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #ff4444;
+}
+
+.jumboheader {
+	background-color: #e63838;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #e63838;
+}
+
+.panel-default .panel-heading {
+	border-color: #ff4444;
+}
+
+.btn-primary {
+	border-color: #e63838;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #e63838;
+}

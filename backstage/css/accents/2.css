@@ -1,0 +1,24 @@
+/* Accent 2 - Blue */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #2788cb;
+}
+
+.jumboheader {
+	background-color: #1a79bc;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #136cab;
+}
+
+.panel-default .panel-heading {
+	border-color: #2788cb;
+}
+
+.btn-primary {
+	border-color: #0589de;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #136cab;
+}

@@ -107,50 +107,68 @@ if (!defined('FORUM'))
 			</div>
 			<div role="tabpanel" class="tab-pane" id="personalize">
 				<fieldset class="form-horizontal form-setting">
+<?php
+$accents = forum_list_accents('main');
+?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
-								<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color_scheme'] == '1') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="blue" value="1"<?php if ($luna_user['color_scheme'] == '1') echo ' checked' ?>>
+<?php
+		foreach ($accents as $temp) {
+			if ($luna_user['color_scheme'] == $temp)
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
+			else
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
+		}
+?>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Night mode</label>
+						<div class="col-sm-9">
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[adapt_time]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
+									Never use night mode
 								</label>
-								<label class="btn btn-primary color-accent accent-denim<?php if ($luna_user['color_scheme'] == '2') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="denim" value="2"<?php if ($luna_user['color_scheme'] == '2') echo ' checked' ?>>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[adapt_time]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
+									Always use night mode
 								</label>
-								<label class="btn btn-primary color-accent accent-luna<?php if ($luna_user['color_scheme'] == '3') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="luna" value="3"<?php if ($luna_user['color_scheme'] == '3') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-purple<?php if ($luna_user['color_scheme'] == '4') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="purple" value="4"<?php if ($luna_user['color_scheme'] == '4') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-green<?php if ($luna_user['color_scheme'] == '5') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="green" value="5"<?php if ($luna_user['color_scheme'] == '5') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-ao<?php if ($luna_user['color_scheme'] == '6') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="ao" value="6"<?php if ($luna_user['color_scheme'] == '6') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-yellow<?php if ($luna_user['color_scheme'] == '7') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="yellow" value="7"<?php if ($luna_user['color_scheme'] == '7') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-orange<?php if ($luna_user['color_scheme'] == '8') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="orange" value="8"<?php if ($luna_user['color_scheme'] == '8') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-red<?php if ($luna_user['color_scheme'] == '9') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="red" value="9"<?php if ($luna_user['color_scheme'] == '9') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-white<?php if ($luna_user['color_scheme'] == '10') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="white" value="10"<?php if ($luna_user['color_scheme'] == '10') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-grey<?php if ($luna_user['color_scheme'] == '11') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="grey" value="11"<?php if ($luna_user['color_scheme'] == '11') echo ' checked' ?>>
-								</label>
-								<label class="btn btn-primary color-accent accent-black<?php if ($luna_user['color_scheme'] == '12') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="black" value="12"<?php if ($luna_user['color_scheme'] == '12') echo ' checked' ?>>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
+									Enable night mode automaticaly
 								</label>
 							</div>
 						</div>
 					</div>
 <?php
+$accents = forum_list_accents('back');
+?>
+					<hr />
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Backstage<?php echo $lang['Color'] ?></label>
+						<div class="col-sm-9">
+							<div class="btn-group accent-group" data-toggle="buttons">
+<?php
+		foreach ($accents as $temp) {
+			if ($luna_user['accent'] == $temp)
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
+			else
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'"></label>';
+		}
+?>
+							</div>
+						</div>
+					</div>
+<?php
+
 $languages = forum_list_langs();
 
 // Only display the language selection box if there's more than one language available

@@ -1,0 +1,24 @@
+/* Accent 5 - Lime */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle, .btn-success {
+	background-color: #8bb805;
+}
+
+.navbar-default, .btn-success:hover {
+	background-color: #7ea703;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #779e01;
+}
+
+.panel-default .panel-heading {
+	border-color: #8bb805;
+}
+
+.btn-primary {
+	border-color: #7ea703;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #779e01;
+}
