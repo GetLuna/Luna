@@ -1,9 +1,9 @@
 /* Accent 2 - Blue */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #2788cb;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #1a79bc;
 }
 

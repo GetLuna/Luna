@@ -1,9 +1,9 @@
 /* Accent 4 - Purple */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #b679d4;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #a268bf;
 }
 

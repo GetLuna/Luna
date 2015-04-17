@@ -1,9 +1,9 @@
 /* Accent 3 - Luna */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #145198;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #0d4382;
 }
 

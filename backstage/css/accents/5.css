@@ -1,5 +1,5 @@
 /* Accent 5 - Lime */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle, .btn-success {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle, .btn-success {
 	background-color: #8bb805;
 }
 

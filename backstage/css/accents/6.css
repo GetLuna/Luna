@@ -1,9 +1,9 @@
 /* Accent 6 - Ao */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #08893e;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #047a36;
 }
 

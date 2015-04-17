@@ -1,24 +1,24 @@
 /* Accent 12 - Black */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
-	background-color: #555555;
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #666;
 }
 
-.navbar-default {
-	background-color: #444444;
+.jumboheader {
+	background-color: #555;
 }
 
 .panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-	background-color: #333333;
+	background-color: #444;
 }
 
 .panel-default .panel-heading {
-	border-color: #555555;
+	border-color: #666;
 }
 
 .btn-primary {
-	border-color: #444444;
+	border-color: #555;
 }
 
 .panel-primary > .panel-heading, .btn-primary:hover {
-	border-color: #333333;
+	border-color: #444;
 }

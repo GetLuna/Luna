@@ -1,9 +1,9 @@
 /* Accent 7 - Yellow */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #ffcb1a;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #ffb61a;
 }
 

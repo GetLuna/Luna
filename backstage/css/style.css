@@ -111,7 +111,8 @@ label .help-block {
 /* Navbars */
 .navbar-default {
 	background: #1f62b0;
-	border-bottom-color: rgba(255,255,255,.3);
+	border-bottom: none;
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.2) !important;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {

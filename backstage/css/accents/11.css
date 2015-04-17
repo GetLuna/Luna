@@ -1,9 +1,9 @@
 /* Accent 11 - Grey */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #afafaf;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #9e9e9e;
 }
 

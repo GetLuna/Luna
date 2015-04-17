@@ -1,9 +1,9 @@
 /* Accent 10 - White */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #eeeeee;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #dddddd;
 }
 

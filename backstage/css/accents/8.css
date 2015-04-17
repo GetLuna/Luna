@@ -1,9 +1,9 @@
 /* Accent 8 - Orange */
-.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #ff7521;
 }
 
-.navbar-default {
+.jumboheader {
 	background-color: #ff5a21;
 }
 
