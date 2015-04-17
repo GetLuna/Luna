@@ -15,6 +15,28 @@ function new_notification($user, $link, $message, $icon) {
 
 }
 
+function pending_notifications($user) {
+	global $db;
+
+	$user = intval($user);
+
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'notifications WHERE user_id='.$db->escape($user).' AND viewed=0') or error('Unable to fetch pending notifications', __FILE__, __LINE__, $db->error());
+	$pending = $db->result($result);
+
+	return $pending;
+}
+
+function pending_messages($user) {
+	global $db;
+
+	$user = intval($user);
+
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'messages WHERE owner='.$user.' AND show_message=1') or error('Unable to fetch pending messages', __FILE__, __LINE__, $db->error());
+	$pending = $db->result($result);
+
+	return $pending;
+}
+
 function required_fields() {
 	global $required_fields, $lang;
 

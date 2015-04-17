@@ -10,11 +10,12 @@ require FORUM_ROOT.'include/common.php';
 define( 'DOING_AJAX', true );
 
 // Load AJAX handlers
+require FORUM_ROOT . 'include/ajax_functions.php';
 require FORUM_ROOT . 'include/ajax_actions.php';
 
 $allowed_actions = array(
-	'get'  => array( 'foo' ),
-	'post' => array( 'foo' )
+	'get'  => array(),
+	'post' => array( 'heartbeat', 'check-notifications' )
 );
 
 // Register core Ajax calls.

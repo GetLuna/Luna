@@ -39,8 +39,8 @@ function luna_create_nonce( $action = -1 ) {
 
 	global $luna_user, $cookie_seed;
 
-	$user = $luna_user['id'];
-	$i    = luna_nonce_tick();
+	$uid = $luna_user['id'];
+	$i   = luna_nonce_tick();
 
 	return substr( luna_hash( $i . '|' . $action . '|' . $uid . '|' . $cookie_seed, 'nonce' ), -12, 10 );
 }
