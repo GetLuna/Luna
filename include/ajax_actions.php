@@ -34,11 +34,22 @@ function luna_ajax_check_notifications() {
 
 	$foo = isset( $_POST['foo'] ) && ! empty( $_POST['foo'] ) ? $_POST['foo'] : null;
 
-	$response = array();
 	if ( ! is_null( $foo ) ) {
 		$response = array( 'foo' => $foo );
 		luna_send_json_success( $response );
 	}
 
-	luna_send_json_error( $response );
+	luna_send_json_error();
+}
+
+function luna_ajax_fetch_notifications() {
+
+	global $luna_user;
+
+	$notifications = pending_notifications($luna_user['id'], false);
+	if ( ! empty( $notifications ) ) {
+		luna_send_json_success( $notifications );
+	}
+
+	luna_send_json_error();
 }

@@ -15,16 +15,26 @@ function new_notification($user, $link, $message, $icon) {
 
 }
 
-function pending_notifications($user) {
+function pending_notifications($user, $count = true) {
 	global $db;
 
 	$user = intval($user);
 
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'notifications WHERE user_id='.$db->escape($user).' AND viewed=0') or error('Unable to fetch pending notifications', __FILE__, __LINE__, $db->error());
-	$pending = $db->result($result);
+	if (false === $count) {
+		$pending = array();
+		$result = $db->query('SELECT id, user_id, message, icon, link, time FROM '.$db->prefix.'notifications WHERE user_id='.$db->escape($user).' AND viewed=0') or error('Unable to fetch pending notifications', __FILE__, __LINE__, $db->error());
+		while ($n = $db->fetch_assoc($result)) {
+			$pending[] = $n;
+		}
+	} else {
+		$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'notifications WHERE user_id='.$db->escape($user).' AND viewed=0') or error('Unable to fetch pending notifications', __FILE__, __LINE__, $db->error());
+		$pending = $db->result($result);
+	}
 
 	return $pending;
 }
+
+
 
 function pending_messages($user) {
 	global $db;

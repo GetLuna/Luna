@@ -13,16 +13,13 @@ define( 'DOING_AJAX', true );
 require FORUM_ROOT . 'include/ajax_functions.php';
 require FORUM_ROOT . 'include/ajax_actions.php';
 
-$allowed_actions = array(
-	'get'  => array(),
-	'post' => array( 'heartbeat', 'check-notifications' )
-);
+$allowed_actions = array( 'heartbeat', 'check-notifications', 'fetch-notifications' );
 
 // Register core Ajax calls.
-if ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $allowed_actions['get'] ) )
+if ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $allowed_actions ) )
 	$action = 'luna_ajax_' . str_replace( '-', '_', $_GET['action'] );
 
-if ( ! empty( $_POST['action'] ) && in_array( $_POST['action'], $allowed_actions['post'] ) )
+if ( ! empty( $_POST['action'] ) && in_array( $_POST['action'], $allowed_actions ) )
 	$action = 'luna_ajax_' . str_replace( '-', '_', $_POST['action'] );
 
 if ( ! is_null( $action ) && function_exists( $action ) ) {
