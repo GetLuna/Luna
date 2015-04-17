@@ -1,0 +1,39 @@
+/* Accent 10 - White */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #eeeeee;
+}
+
+.jumboheader {
+	background-color: #dddddd;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #cccccc;
+}
+
+.panel-default .panel-heading {
+	border-color: #eeeeee;
+}
+
+.btn-primary {
+	border-color: #dddddd;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #cccccc;
+}
+
+.panel-heading, .jumbotron .container h2, .nav-tabs > li:not(.active) > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
+	color: #555 !important;
+}
+
+.nav-tabs > li > a:hover, .nav > li > a:hover, .nav > li > a:focus {
+	color: #fff !important;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+	text-shadow: 0px 0px 5px 1px rgba(100,100,100,0.5);
+}
+
+
+

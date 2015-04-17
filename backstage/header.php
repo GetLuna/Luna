@@ -14,9 +14,15 @@ if (!defined('FORUM'))
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 
+$hour = date("g", time());
+if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
+	$body_classes .= 'night';
+else
+	$body_classes .= 'normal';
+
 ?>
 <!DOCTYPE html>
-<html>
+<html class="<?php echo $body_classes ?>">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +30,7 @@ $p = isset($p) ? $p : null;
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/accents/<?php echo $luna_user['accent'] ?>.css" />
 		<link rel="stylesheet" type="text/css" href="../include/css/lunicons.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />

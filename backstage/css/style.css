@@ -111,7 +111,8 @@ label .help-block {
 /* Navbars */
 .navbar-default {
 	background: #1f62b0;
-	border-bottom-color: rgba(255,255,255,.3);
+	border-bottom: none;
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.2) !important;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
@@ -673,4 +674,133 @@ h3.panel-title {
 .well.form-box input[type="text"] {
 	box-shadow: none;
 	border-color: #ddd;
+}
+
+/* Night mode */
+.night body, html.night, .night .nav-tabs > li.active > a, .night .nav-tabs > li.active > a:hover, .night .nav-tabs > li.active > a:focus {
+	background-color: #333;
+	color: #ddd;
+}
+
+.night .nav-tabs > li.active > a, .night .nav-tabs > li.active > a:hover, .night .nav-tabs > li.active > a:focus {
+	border-color: #333;
+}
+
+.night .nav-tabs > li > a:hover, .night .nav > li > a:hover, .night .nav > li > a:focus {
+    border-color: #444;
+    background-color: #444;
+}
+
+.night .container-main {
+	background: #444;
+	box-shadow: 0 0 30px #222;
+}
+
+.night .first-run-content {
+	background: #555;
+}
+
+.night hr {
+	border-top-color: #555;
+}
+
+.night .accent-group .btn {
+	border-color: #444 !important;
+}
+
+.night .accent-group .btn:hover, .night .accent-group .btn:focus, .night .accent-group .btn:active, .night .accent-group .active.btn {
+	border-color: #666 !important;
+}
+
+.night .nav-tabs {
+	border-color: #555;
+}
+
+.night .panel {
+	border-color: #555;
+	background-color: #444;
+}
+
+.night .table * {
+	border-color: #3d3d3d;
+}
+
+.night .table > tbody > tr.active > td, .night .table > tbody > tr.active > th, .night .table > tbody > tr > td.active, .night .table > tbody > tr > th.active, .night .table > tfoot > tr.active > td, .night .table > tfoot > tr.active > th, .night .table > tfoot > tr > td.active, .night .table > tfoot > tr > th.active, .night .table > thead > tr.active > td, .night .table > thead > tr.active > th, .night .table > thead > tr > td.active, .night .table > thead > tr > th.active {
+	background-color: #404040;
+}
+
+.night .table-striped > tbody > tr:nth-of-type(2n+1) {
+	background: #3f3f3f;
+}
+
+.night .panel-footer {
+	border-color: #555;
+	background-color: #3d3d3d;
+}
+
+.night .list-group-item {
+	border-color: #555;
+	background-color: #444;
+	color: #fff;
+}
+
+.night .list-group-item:hover {
+	background-color: #3a3a3a;
+}
+
+.night #search .panel-body, .night .user-entry {
+	background-color: #555;
+}
+
+.night .list-group-forum a.list-group-item {
+	border-color: #3f3f3f;
+}
+
+.night .label-default {
+	background-color: #333;
+}
+
+.night .comment .panel-default {
+	background-color: #3b3b3b;
+}
+
+.night .list-group-topic .list-group-item {
+	border-color: #3e3e3e;
+	background-color: #404040;
+}
+
+.night .panel-editor .btn-default {
+	background-color: #444;
+}
+
+.night .textarea-toolbar .btn-group, .night .textarea-top, .night .textarea-bottom {
+	border-color: #555;
+}
+
+.night .panel-editor .btn-default {
+	color: #fff;
+}
+
+.night .input-group-addon {
+	border-color: #222;
+}
+
+.night .form-control {
+	background-color: #333;
+	color: #ddd;
+	border-color: #222;
+}
+
+.night .well {
+	background-color: #3d3d3d;
+	border-color: #333;
+}
+
+.night .btn-search {
+	background-color: #333;
+	color: #ddd;
+}
+
+.night .btn-search:hover {
+	background-color: #393939;
 }

@@ -21,10 +21,8 @@ if ($action == 'remove_install_file') {
 
 	if ($deleted)
 		redirect('backstage/index.php');
-	else {
+	else
 		message_backstage($lang['Delete install.php failed']);
-		exit;
-	}
 }
 
 $install_file_exists = is_file(FORUM_ROOT.'install.php');
