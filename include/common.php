@@ -37,6 +37,9 @@ if (defined('PUN'))
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
 
+// Load the security functions
+require FORUM_ROOT.'include/security.php';
+
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
 
