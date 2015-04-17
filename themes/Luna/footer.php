@@ -188,5 +188,8 @@ if (defined('FORUM_SHOW_QUERIES'))
 // Close the db connection (and free up any result data)
 $db->close();
 ?>
+		<script src="include/js/vendor/underscore-min.js"></script>
+		<script src="include/js/vendor/backbone-min.js"></script>
+		<script src="include/js/luna.js"></script>
 	</body>
 </html>
