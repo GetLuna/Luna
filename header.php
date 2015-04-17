@@ -41,11 +41,11 @@ if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_u
 	$num_new_pm = $db->result($result);
 	
 	if ($num_new_pm > 0)
-		$new_inbox = $num_new_pm.' ';
+		$new_inbox = '<span id="messages-number">'.$num_new_pm.'</span> ';
 	else
-		$new_inbox = '';
+		$new_inbox = '<span id="messages-number"></span>';
 
-	$inbox_menu_item = '<li><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>';
+	$inbox_menu_item = '<li id="inbox-menu-item"><a href="inbox.php">'.$new_inbox.'<span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> Inbox</span></a></li>';
 }
 
 // Check for new notifications
@@ -56,19 +56,19 @@ if ($luna_config['o_notification_flyout'] == 1) {
 		$notificon = '<span class="fa fa-fw fa-circle-o"></span>';
 		$ind_notification[] = '<li><a href="notifications.php">'.__('No new notifications', 'luna').'</a></li>';
 	} else {
-		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
-
-		$notification_result = get_user_notifications($luna_user['id'], 0, false, 10);
-		foreach ($notification_result as $notification) {
-			$time = format_time($notification->time, false, null, $luna_config['o_time_format'], true, true);
-			$ind_notification[] = '<li><a href="'.$notification->link.'"><span class="fa fa-fw luni luni-fw '.$notification->icon.'"></span> '.$notification->message.' <span class="timestamp pull-right">'.$time.'</span></a></li>';
+		$notificon = '<span id="notifications-number">'.$num_notifications.'</span> <span class="fa fa-fw fa-circle"></span>';
+		
+		$notification_result = $db->query('SELECT * FROM '.$db->prefix.'notifications WHERE user_id = '.$luna_user['id'].' AND viewed = 0 ORDER BY time DESC LIMIT 10') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+		while ($cur_notifi = $db->fetch_assoc($notification_result)) {
+			$notifitime = format_time($cur_notifi['time'], false, null, $luna_config['o_time_format'], true, true);
+			$ind_notification[] = '<li><a href="'.$cur_notifi['link'].'"><span class="fa fa-fw luni luni-fw '.$cur_notifi['icon'].'"></span> '.$cur_notifi['message'].' <span class="timestamp pull-right">'.$notifitime.'</span></a></li>';
 		}
 	}
 
 	$notifications = implode('<li class="divider"></li>', $ind_notification);
 	$notification_menu_item = '
-					<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> '.__('Notifications', 'luna').'</span></a>
+					<li id="notification-menu-item" class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> '.$lang['Notifications'].'</span></a>
 					<ul class="dropdown-menu notification-menu">
 						<li role="presentation" class="dropdown-header">'.__('Notifications', 'luna').'</li>
 						<li class="divider"></li>
@@ -81,9 +81,9 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	if ($num_notifications == '0')
 		$notificon = '<span class="fa fa-fw fa-circle-o"></span>';
 	else
-		$notificon = $num_notifications.' <span class="fa fa-fw fa-circle"></span>';
+		$notificon = '<span id="notifications-number">'.$num_notifications.'</span> <span class="fa fa-fw fa-circle"></span>';
 
-	$notification_menu_item = '<li><a href="notifications.php">'.$notificon.'<span class="visible-xs-inline"> '.__('Notifications', 'luna').'</span></a></li>';
+	$notification_menu_item = '<li id="notification-menu-item"><a href="notifications.php">'.$notificon.'<span class="visible-xs-inline"> '.$lang['Notifications'].'</span></a></li>';
 }
 
 // Generate navigation items

@@ -3,10 +3,12 @@ luna = {};
 luna.Backbone = Backbone;
 luna.$ = luna.Backbone.$;
 
+luna.runners = [];
+
 luna.ajax = {
 
 	settings: {
-		url: 'ajax.php'
+		url: window.ajaxurl || 'ajax.php'
 	},
 
 	/**
@@ -78,7 +80,12 @@ luna.ajax = {
 };
 
 luna.run = function() {
-	console.log( 'Hey!' );
+
+	luna.runners.map(function( runner ) {
+		if ( _.isFunction( runner.run ) ) {
+			return runner.run();
+		}
+	});
 };
 
 jQuery( document ).ready(function() {
