@@ -141,6 +141,29 @@ _.extend( notifications.View, {
 	Notifications: luna.Backbone.View.extend({
 
 		el: '.notification-menu',
+
+		template: luna.template( 'notification-menu' ),
+
+		/**
+		 * Initialize the View
+		 */
+		initialize: function( options ) {
+
+			/*this.parent = options.parent;
+			this.parent*/
+			this.collection.on( 'sync', this.render, this );
+		},
+
+		render: function() {
+
+			var data = this.collection.toJSON();
+			_.map( data, function( model ) {
+				model.time = model.time.getUTCHours() + ':' + model.time.getUTCMinutes()
+				return model;
+			});
+
+			this.$el.html( this.template( data ) );
+		},
 	})
 },
 {
@@ -161,9 +184,12 @@ _.extend( notifications.View, {
 
 			this.notifications = options.notifications || {};
 
-			// Fly out moode?
+			// Fly out mode?
 			if ( this.$( '.notification-menu' ).length ) {
-				this.submenu = notifications.View.Notifications;
+				this.submenu = new notifications.View.Notifications({
+					collection: this.notifications,
+					parent:     this
+				});;
 			}
 
 			_.bindAll( this, 'update' );
@@ -184,7 +210,7 @@ _.extend( notifications.View, {
 		 */
 		update: function( event, response, status, xhr ) {
 
-			if ( _.isUndefined( response.notifications ) || this.notifications.length ) {
+			if ( _.isUndefined( response.notifications ) || response.notifications === this.notifications.length ) {
 				return;
 			}
 

@@ -70,12 +70,16 @@ if ($luna_config['o_notification_flyout'] == 1) {
 	$notification_menu_item = '
 					<li id="notification-menu-item" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$notificon.'<span class="visible-xs-inline"> '.$lang['Notifications'].'</span></a>
-					<ul class="dropdown-menu notification-menu">
+					<script id="tmpl-notification-menu" type="text/html">
 						<li role="presentation" class="dropdown-header">'.$lang['Notifications'].'</li>
 						<li class="divider"></li>
-						'.$notifications.'
+						<# _.each( data, function( notification ) { #>
+						<li><a href="{{ notification.link }}"><span class="fa fa-fw luni luni-fw {{ notification.icon }}"></span> {{ notification.message }} <span class="timestamp pull-right">{{ notification.time }}</span></a></li>
 						<li class="divider"></li>
-						<li><a class="pull-right" href="notifications.php">'.$lang['More'].' <i class="fa fa-fw fa-arrow-right"></i></a></li>
+						<# } ); #>
+						<li class="dropdown-footer"><a class="pull-right" href="notifications.php">'.$lang['More'].' <i class="fa fa-fw fa-arrow-right"></i></a></li>
+					</script>
+					<ul class="dropdown-menu notification-menu">
 					</ul>
 				</li>';
 } else {
