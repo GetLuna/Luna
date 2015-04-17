@@ -2,8 +2,6 @@
 
 require ('header.php');
 
-$body_classes = 'accent-'.$luna_user['color_scheme'];
-
 ?>
 <!DOCTYPE html>
 <html>
