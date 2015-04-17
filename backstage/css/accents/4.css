@@ -1,0 +1,24 @@
+/* Accent 4 - Purple */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #b679d4;
+}
+
+.jumboheader {
+	background-color: #a268bf;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #8b54a7;
+}
+
+.panel-default .panel-heading {
+	border-color: #b679d4;
+}
+
+.btn-primary {
+	border-color: #a268bf;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #8b54a7;
+}

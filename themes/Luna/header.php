@@ -1,10 +1,15 @@
 <?php
-
 require ('header.php');
 
+$hour = date('G', time());
+
+if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
+	$body_classes .= ' night';
+else
+	$body_classes .= ' normal';
 ?>
 <!DOCTYPE html>
-<html>
+<html class="<?php echo $body_classes ?>">
 	<head>
 		<title><?php echo generate_page_title($page_title, $p) ?></title>
 		<meta charset="utf-8">
@@ -19,7 +24,6 @@ require ('header.php');
 <?php
 // Allow childs
 load_css();
-include ('themes/'.$luna_config['o_default_style'].'/style.php');
 
 if (!defined('FORUM_ALLOW_INDEX'))
 	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
@@ -27,6 +31,11 @@ if (!defined('FORUM_ALLOW_INDEX'))
 // Required fields check
 required_fields();
 ?>
+		<style>
+		.emoji {
+			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
+		}
+		</style>
 	</head>
 	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>

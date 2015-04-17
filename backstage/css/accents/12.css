@@ -1,0 +1,24 @@
+/* Accent 12 - Black */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #666;
+}
+
+.jumboheader {
+	background-color: #555;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #444;
+}
+
+.panel-default .panel-heading {
+	border-color: #666;
+}
+
+.btn-primary {
+	border-color: #555;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #444;
+}

@@ -1,0 +1,24 @@
+/* Accent 1 - ModernBB Blue */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #14a3ff;
+}
+
+.jumboheader {
+	background-color: #0b95ed;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #0589de;
+}
+
+.panel-default .panel-heading {
+	border-color: #14a3ff;
+}
+
+.btn-primary {
+	border-color: #0589de;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #0589de;
+}

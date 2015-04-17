@@ -1,4 +1,4 @@
-# Luna 1.0 "Aero"
+# Luna 1.1 "Bittersweet Shimmer" Preview
 
 ## About
 Luna is an open source board software app released under the GPLv3 license. The goal of this project is to be light and small, yet fully functional for a good board. Everything else is up to plugins. Luna is the successor to ModernBB, and allows users to upgrade from ModernBB 3.7 just as easy ModernBB-updates where.
