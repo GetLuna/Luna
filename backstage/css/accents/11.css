@@ -1,0 +1,24 @@
+/* Accent 11 - Grey */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #afafaf;
+}
+
+.jumboheader {
+	background-color: #9e9e9e;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #8e8e8e;
+}
+
+.panel-default .panel-heading {
+	border-color: #afafaf;
+}
+
+.btn-primary {
+	border-color: #9e9e9e;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #8e8e8e;
+}

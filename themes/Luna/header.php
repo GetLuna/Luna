@@ -1,8 +1,5 @@
 <?php
-
 require ('header.php');
-
-$body_classes = 'accent-'.$luna_user['color_scheme'];
 
 $hour = date('G', time());
 
@@ -10,7 +7,6 @@ if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour
 	$body_classes .= ' night';
 else
 	$body_classes .= ' normal';
-
 ?>
 <!DOCTYPE html>
 <html class="<?php echo $body_classes ?>">

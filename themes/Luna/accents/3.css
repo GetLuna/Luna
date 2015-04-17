@@ -1,36 +1,36 @@
 /* Accent 3 - Luna */
-.accent-3 .navbar-inverse, .accent-3 .footer, .accent-3 .alert-all, .accent-3 .modal-form .modal-header, .accent-3 .modal-form .modal-footer, .accent-3 .navbar-inverse .navbar-toggle .icon-bar, .accent-3 .btn-primary {
+.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary {
 	background-color: #145198;
 }
 
-.accent-3 .navbar-secondary, .accent-3 .first-run-profile, .accent-3 .footer .copyright, .accent-3 .panel-default .panel-heading, .accent-3 .nav-tabs > li > a:hover, .accent-3 .thread-jumbotron, .accent-3 .jumbotron, .accent-3 .user-card-profile, .accent-3 .pagination > .active > a, .accent-3 .pagination > .active > span, .accent-3 .pagination > .active > a:hover, .accent-3 .pagination > .active > span:hover, .accent-3 .pagination > .active > a:focus, .accent-3 .pagination > .active > span:focus, .accent-3 .btn-primary:hover, .accent-3 .btn-primary:focus, .accent-3 .btn-primary:active, .accent-3 .btn-primary.active, .accent-3 .btn-primary.disabled, .accent-3 [disabled].btn-primary, .accent-3 .category-header {
+.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header {
 	background-color: #0d4382;
 }
 
-.accent-3 .activity-header, .accent-3 .nav-tabs > li.active > a, .accent-3 .nav-tabs > li.active > a:hover, .accent-3 .nav-tabs > li.active > a:focus, .accent-3 .navbar-default, .accent-3 .new-item .label-default, .accent-3 a.list-group-item.active, .accent-3 a.list-group-item.active:hover, .accent-3 a.list-group-item.active:focus, .accent-3 .list-group-forum .list-group-item.active.new-item {
+.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
 	background-color: #0b3c75;
 }
 
-.accent-3 .list-group-forum a.list-group-item:hover, .accent-3 .list-group-topic .list-group-item:hover {
+.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
 	border-color: #145198;
 }
 
-.accent-3 .btn-primary {
+.btn-primary {
 	border-color: #0d4382;
 }
 
-.accent-3 .btn-primary:hover, .accent-3 .btn-primary:focus, .accent-3 .btn-primary:active, .accent-3 .btn-primary.active, .accent-3 .btn-primary.disabled, .accent-3 [disabled].btn-primary, .accent-3 .category-header, .accent-3 a.list-group-item.active, .accent-3 a.list-group-item.active:hover, .accent-3 a.list-group-item.active:focus, .accent-3 .list-group-forum .list-group-item.active.new-item {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
 	border-color: #0b3c75;
 }
 
-.accent-3 .col-sm-9 a, .accent-3 a:focus, .accent-3 .pagination > li > a, .accent-3 .pagination > li > span {
+.col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
 	color: #0d4382;
 }
 
-.accent-3 a.list-group-item:hover, .accent-3 a:hover, .accent-3 a:active {
+a.list-group-item:hover, a:hover, a:active {
 	color: #0b3c75;
 }
 
-.accent-3 .btn-primary {
+.btn-primary {
 	border-color: #0d4382;
 }

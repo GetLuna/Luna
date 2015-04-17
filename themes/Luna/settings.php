@@ -108,7 +108,7 @@ if (!defined('FORUM'))
 			<div role="tabpanel" class="tab-pane" id="personalize">
 				<fieldset class="form-horizontal form-setting">
 <?php
-$accents = forum_list_accents();
+$accents = forum_list_accents('main');
 ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
@@ -145,6 +145,25 @@ $accents = forum_list_accents();
 									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
 									Enable night mode automaticaly
 								</label>
+							</div>
+						</div>
+					</div>
+<?php
+$accents = forum_list_accents('back');
+?>
+					<hr />
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Backstage<?php echo $lang['Color'] ?></label>
+						<div class="col-sm-9">
+							<div class="btn-group accent-group" data-toggle="buttons">
+<?php
+		foreach ($accents as $temp) {
+			if ($luna_user['accent'] == $temp)
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
+			else
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'"></label>';
+		}
+?>
 							</div>
 						</div>
 					</div>

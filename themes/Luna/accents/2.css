@@ -1,32 +1,32 @@
 /* Accent 2 - Blue */
-.accent-2 .navbar-inverse, .accent-2 .footer, .accent-2 .alert-all, .accent-2 .modal-form .modal-header, .accent-2 .modal-form .modal-footer, .accent-2 .navbar-inverse .navbar-toggle .icon-bar, .accent-2 .btn-primary {
+.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary {
 	background-color: #2788cb;
 }
 
-.accent-2 .navbar-secondary, .accent-2 .first-run-profile, .accent-2 .footer .copyright, .accent-2 .panel-default .panel-heading, .accent-2 .nav-tabs > li > a:hover, .accent-2 .thread-jumbotron, .accent-2 .jumbotron, .accent-2 .user-card-profile, .accent-2 .pagination > .active > a, .accent-2 .pagination > .active > span, .accent-2 .pagination > .active > a:hover, .accent-2 .pagination > .active > span:hover, .accent-2 .pagination > .active > a:focus, .accent-2 .pagination > .active > span:focus, .accent-2 .btn-primary:hover, .accent-2 .btn-primary:focus, .accent-2 .btn-primary:active, .accent-2 .btn-primary.active, .accent-2 .btn-primary.disabled, .accent-2 [disabled].btn-primary, .accent-2 .category-header {
+.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header {
 	background-color: #1a79bc;
 }
 
-.accent-2 .activity-header, .accent-2 .nav-tabs > li.active > a, .accent-2 .nav-tabs > li.active > a:hover, .accent-2 .nav-tabs > li.active > a:focus, .accent-2 .navbar-default, .accent-2 .new-item .label-default, .accent-2 a.list-group-item.active, .accent-2 a.list-group-item.active:hover, .accent-2 a.list-group-item.active:focus, .accent-2 .list-group-forum .list-group-item.active.new-item {
+.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
 	background-color: #136cab;
 }
 
-.accent-2 .list-group-forum a.list-group-item:hover, .accent-2 .list-group-topic .list-group-item:hover {
+.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
 	border-color: #2788cb;
 }
 
-.accent-2 .btn-primary {
+.btn-primary {
 	border-color: #1a79bc;
 }
 
-.accent-2 .btn-primary:hover, .accent-2 .btn-primary:focus, .accent-2 .btn-primary:active, .accent-2 .btn-primary.active, .accent-2 .btn-primary.disabled, .accent-2 [disabled].btn-primary, .accent-2 .category-header, .accent-2 a.list-group-item.active, .accent-2 a.list-group-item.active:hover, .accent-2 a.list-group-item.active:focus, .accent-2 .list-group-forum .list-group-item.active.new-item {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
 	border-color: #136cab;
 }
 
-.accent-2 .col-sm-9 a, .accent-2 a:focus, .accent-2 .pagination > li > a, .accent-2 .pagination > li > span {
+.col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
 	color: #1a79bc;
 }
 
-.accent-2 a.list-group-item:hover, .accent-2 a:hover, .accent-2 a:active {
+a.list-group-item:hover, a:hover, a:active {
 	color: #136cab;
 }
