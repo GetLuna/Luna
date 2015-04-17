@@ -1,17 +1,17 @@
 /* Accent 7 - Yellow */
-.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary {
+.jumboheader, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #ffcb1a;
 }
 
-.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header {
+.navbar-default {
 	background-color: #ffb61a;
 }
 
-.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
 	background-color: #ffa11a;
 }
 
-.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
+.panel-default .panel-heading {
 	border-color: #ffcb1a;
 }
 
@@ -19,14 +19,6 @@
 	border-color: #ffb61a;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
+.panel-primary > .panel-heading, .btn-primary:hover {
 	border-color: #ffa11a;
-}
-
-.col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
-	color: #ffb61a;
-}
-
-a.list-group-item:hover, a:hover, a:active {
-	color: #ffa11a;
 }
