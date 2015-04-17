@@ -1,0 +1,32 @@
+/* Accent 6 - Ao */
+.accent-6 .navbar-inverse, .accent-6 .footer, .accent-6 .alert-all, .accent-6 .modal-form .modal-header, .accent-6 .modal-form .modal-footer, .accent-6 .navbar-inverse .navbar-toggle .icon-bar, .accent-6 .btn-primary {
+	background-color: #08893e;
+}
+
+.accent-6 .navbar-secondary, .accent-6 .first-run-profile, .accent-6 .footer .copyright, .accent-6 .panel-default .panel-heading, .accent-6 .nav-tabs > li > a:hover, .accent-6 .thread-jumbotron, .accent-6 .jumbotron, .accent-6 .user-card-profile, .accent-6 .pagination > .active > a, .accent-6 .pagination > .active > span, .accent-6 .pagination > .active > a:hover, .accent-6 .pagination > .active > span:hover, .accent-6 .pagination > .active > a:focus, .accent-6 .pagination > .active > span:focus, .accent-6 .btn-primary:hover, .accent-6 .btn-primary:focus, .accent-6 .btn-primary:active, .accent-6 .btn-primary.active, .accent-6 .btn-primary.disabled, .accent-6 [disabled].btn-primary, .accent-6 .category-header {
+	background-color: #047a36;
+}
+
+.accent-6 .activity-header, .accent-6 .nav-tabs > li.active > a, .accent-6 .nav-tabs > li.active > a:hover, .accent-6 .nav-tabs > li.active > a:focus, .accent-6 .navbar-default, .accent-6 .new-item .label-default, .accent-6 a.list-group-item.active, .accent-6 a.list-group-item.active:hover, .accent-6 a.list-group-item.active:focus, .accent-6 .list-group-forum .list-group-item.active.new-item {
+	background-color: #016a2d;
+}
+
+.accent-6 .list-group-forum a.list-group-item:hover, .accent-6 .list-group-topic .list-group-item:hover {
+	border-color: #08893e;
+}
+
+.accent-6 .btn-primary {
+	border-color: #047a36;
+}
+
+.accent-6 .btn-primary:hover, .accent-6 .btn-primary:focus, .accent-6 .btn-primary:active, .accent-6 .btn-primary.active, .accent-6 .btn-primary.disabled, .accent-6 [disabled].btn-primary, .accent-6 .category-header, .accent-6 a.list-group-item.active, .accent-6 a.list-group-item.active:hover, .accent-6 a.list-group-item.active:focus, .accent-6 .list-group-forum .list-group-item.active.new-item {
+	border-color: #016a2d;
+}
+
+.accent-6 .col-sm-9 a, .accent-6 a:focus, .accent-6 .pagination > li > a, .accent-6 .pagination > li > span {
+	color: #047a36;
+}
+
+.accent-6 a.list-group-item:hover, .accent-6 a:hover, .accent-6 a:active {
+	color: #016a2d;
+}
