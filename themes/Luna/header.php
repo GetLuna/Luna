@@ -61,9 +61,7 @@ required_fields();
 								</fieldset>
 							</form>
 							<?php endif; ?>
-							<ul class="nav navbar-nav navbar-right">
-								<?php echo $usermenu; ?>
-							</ul>
+							<?php draw_user_nav_menu(); ?>
 						</div>
 					</div>
 				</div>

@@ -1184,3 +1184,10 @@ function draw_mark_read($class, $page) {
 	if (!$luna_user['is_guest'])
 		echo '<a'.$classes.' href="'.$url.'">'.$lang['Mark as read'].'</a>';
 }
+
+function draw_user_nav_menu() {
+
+	$items = get_user_nav_menu_items();
+
+	require get_view_path('user-navmenu.php');
+}
