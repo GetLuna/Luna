@@ -1,9 +1,7 @@
 
-luna = {};
-luna.Backbone = Backbone;
-luna.$ = luna.Backbone.$;
+window.luna = window.luna || {};
 
-luna.runners = [];
+luna.$ = Backbone.$ || {};
 
 /**
  * luna.template( id )
@@ -102,6 +100,8 @@ luna.ajax = {
 		}).promise();
 	}
 };
+
+luna.runners = [];
 
 luna.run = function() {
 
