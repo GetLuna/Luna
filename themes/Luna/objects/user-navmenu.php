@@ -28,7 +28,7 @@ if (!empty($items['guest'])) {
 	$item = $items['guest'];
 ?>
 								<li id="navregister"<?php ((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : ''); ?>><a href="<?php echo $item['register']['url']; ?>"><?php echo $item['register']['title']; ?></a></li>
-								<li><a href="<?php echo $item['register']['url']; ?>" data-toggle="modal" data-target="#login-form"><?php echo $item['register']['title']; ?></a></li>
+								<li><a href="<?php echo $item['login']['url']; ?>" data-toggle="modal" data-target="#login-form"><?php echo $item['login']['title']; ?></a></li>
 <?php
 }
 else if (!empty($items['user'])) {
