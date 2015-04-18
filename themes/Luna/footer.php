@@ -187,15 +187,8 @@ if (defined('FORUM_SHOW_QUERIES'))
 
 // Close the db connection (and free up any result data)
 $db->close();
+
+require ('footer.php');
 ?>
-		<script src="include/js/vendor/underscore-min.js"></script>
-		<script src="include/js/vendor/backbone-min.js"></script>
-		<script src="include/js/luna.js"></script>
-		<script src="include/js/luna-heartbeat.js"></script>
-		<script src="include/js/luna-notifications.js"></script>
-		<script type="text/javascript">
-		heartbeatnonce = '<?php echo luna_create_nonce( 'heartbeat-nonce' ); ?>';
-		ajaxurl        = '<?php echo get_base_url() . '/ajax.php'; ?>';
-		</script>
 	</body>
 </html>
