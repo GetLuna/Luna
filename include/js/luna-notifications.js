@@ -172,7 +172,7 @@ _.extend( notifications.View, {
 	 */
 	Menu: luna.Backbone.View.extend({
 
-		el: '#notification-menu-item',
+		el: '#navnotification',
 
 		/**
 		 * Initialize the View
