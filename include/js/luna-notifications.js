@@ -197,7 +197,7 @@ _.extend( notifications.View, {
 			this.$document = $( document );
 			this.$document.on( 'heartbeat-tick', this.update );
 
-			this.notifications.on( 'sync', this.updateMenu, this );
+			this.notifications.on( 'sync', this.updateCounter, this );
 		},
 
 		/**
@@ -220,9 +220,13 @@ _.extend( notifications.View, {
 		/**
 		 * Update the menu when collection is synced.
 		 */
-		updateMenu: function() {
+		updateCounter: function() {
 
-			this.$( '#notifications-number' ).html( this.notifications.length );
+			var number = this.notifications.length || '',
+			     title = document.title.replace( /^\(\d\)\ /i, '' );
+
+			this.$( '#notifications-number' ).text( number );
+			document.title = '(' + number + ') ' + title;
 		}
 	})
 } );
