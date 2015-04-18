@@ -10,8 +10,13 @@ notifications = luna.notifications = {
 	 */
 	run: function() {
 
+		this.flyout = 'flyout' === luna.$( '#navnotification > a' ).attr( 'data-flyout' );
+
 		this.pending = new notifications.Model.Notifications;
-		this.view    = new notifications.View.Menu({ notifications: this.pending });
+		this.view    = new notifications.View.Menu({
+			flyout:        this.flyout,
+			notifications: this.pending
+		});
 	}
 
 };
@@ -32,7 +37,7 @@ _.extend( notifications.Model, {
 	 * @param    string    [link]    Notification Related URL
 	 * @param    string    [time]    Notification Time
 	 */
-	Notification: luna.Backbone.Model.extend({
+	Notification: Backbone.Model.extend({
 
 		defaults: {
 			id:      '',
@@ -72,7 +77,7 @@ _.extend( notifications.Model, {
 	 * 
 	 * Contains the notification's data
 	 */
-	Notifications: luna.Backbone.Collection.extend({
+	Notifications: Backbone.Collection.extend({
 
 		url: window.ajaxurl,
 
@@ -122,7 +127,7 @@ _.extend( notifications.Model, {
 
 				return luna.ajax.send( options );
 			} else {
-				return luna.Backbone.sync.apply( this, arguments );
+				return Backbone.sync.apply( this, arguments );
 			}
 		},
 	})
@@ -133,7 +138,49 @@ _.extend( notifications.View, {
 	/**
 	 * luna.notifications.View.Notification
 	 */
-	Notification: luna.Backbone.View.extend({}),
+	Notification: luna.Backbone.View.extend({
+
+		tagName: 'li',
+
+		template: luna.template( 'notification-menu-item' ),
+
+		/**
+		 * Convert notification time to a simpler HH:mm format
+		 */
+		prepare: function() {
+
+			if ( ! _.isUndefined( this.model ) && _.isFunction( this.model.toJSON ) ) {
+				var model = this.model.toJSON();
+				    model.time = model.time.getUTCHours() + ':' + model.time.getUTCMinutes()
+				return model;
+			} else {
+				return {};
+			}
+		},
+
+		/**
+		 * Override luna.Backbone.View.prototype.render to create an
+		 * additional divider LI after this.$el.
+		 */
+		render: function() {
+
+			var options;
+
+			if ( this.prepare )
+				options = this.prepare();
+
+			this.views.detach();
+
+			if ( this.template ) {
+				options = options || {};
+				this.trigger( 'prepare', options );
+				this.$el.html( this.template( options ) + '<li class="divider"></li>' );
+			}
+
+			this.views.render();
+			return this;
+		}
+	}),
 
 	/**
 	 * luna.notifications.View.Notifications
@@ -149,21 +196,18 @@ _.extend( notifications.View, {
 		 */
 		initialize: function( options ) {
 
-			/*this.parent = options.parent;
-			this.parent*/
-			this.collection.on( 'sync', this.render, this );
+			_.each( this.collection.models, this.addNotification, this );
+			this.listenTo( this.collection, 'add', this.addNotification );
 		},
 
-		render: function() {
+		/**
+		 * Add a new notification view at the end of the pile, just
+		 * before the "more" block
+		 */
+		addNotification: function( notification ) {
 
-			var data = this.collection.toJSON();
-			_.map( data, function( model ) {
-				model.time = model.time.getUTCHours() + ':' + model.time.getUTCMinutes()
-				return model;
-			});
-
-			this.$el.html( this.template( data ) );
-		},
+			this.views.add( new luna.notifications.View.Notification({ model: notification }), { at: -1 } );
+		}
 	})
 },
 {
@@ -183,13 +227,11 @@ _.extend( notifications.View, {
 		initialize: function( options ) {
 
 			this.notifications = options.notifications || {};
+			this.flyout        = options.flyout || false;
 
 			// Fly out mode?
-			if ( this.$( '.notification-menu' ).length ) {
-				this.submenu = new notifications.View.Notifications({
-					collection: this.notifications,
-					parent:     this
-				});;
+			if ( this.flyout ) {
+				this._createSubmenu();
 			}
 
 			_.bindAll( this, 'update' );
@@ -198,6 +240,16 @@ _.extend( notifications.View, {
 			this.$document.on( 'heartbeat-tick', this.update );
 
 			this.notifications.on( 'sync', this.updateCounter, this );
+		},
+
+		_createSubmenu: function() {
+
+			this.submenu = new notifications.View.Notifications({
+				collection: this.notifications,
+				parent:     this
+			});
+
+			this.views.add( this.submenu );
 		},
 
 		/**

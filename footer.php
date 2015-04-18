@@ -15,15 +15,17 @@ if (!defined('FORUM'))
 		<script id="tmpl-notification-menu" type="text/html">
 			<li role="presentation" class="dropdown-header"><?php echo $lang['Notifications']; ?></li>
 			<li class="divider"></li>
-			<# _.each( data, function( notification ) { #>
-			<li><a href="{{ notification.link }}"><span class="fa fa-fw luni luni-fw {{ notification.icon }}"></span> {{ notification.message }} <span class="timestamp pull-right">{{ notification.time }}</span></a></li>
-			<li class="divider"></li>
-			<# } ); #>
 			<li class="dropdown-footer"><a class="pull-right" href="notifications.php"><?php echo $lang['More']; ?> <i class="fa fa-fw fa-arrow-right"></i></a></li>
+		</script>
+		<script id="tmpl-notification-menu-item" type="text/html">
+			<a href="{{ data.link }}" class="notification-link"><span class="fa fa-fw luni luni-fw {{ data.icon }}"></span> {{ data.message }} <span class="timestamp pull-right">{{ data.time }}</span></a>
+			<a href="#" class="notification-action action-check" data-action="markread"><span class="fa fa-fw fa-check"></span></a>
+			<a href="#" class="notification-action action-delete" data-action="delete"><span class="fa fa-fw fa-trash"></span></a>
 		</script>
 
 		<script src="include/js/vendor/underscore-min.js"></script>
 		<script src="include/js/vendor/backbone-min.js"></script>
+		<script src="include/js/luna-backbone.js"></script>
 		<script src="include/js/luna.js"></script>
 		<script src="include/js/luna-heartbeat.js"></script>
 		<script src="include/js/luna-notifications.js"></script>
