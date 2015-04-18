@@ -50,36 +50,6 @@ function get_user_nav_menu_items() {
 
 	$items = array();
 
-	if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1') {
-		// Check for new messages
-		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
-		$num_new_pm = intval($db->result($result));
-
-		$items['inbox'] = array(
-			'url'   => 'inbox.php',
-			'title' => 'Inbox',
-			'num'   => $num_new_pm,
-		);
-	}
-
-	// Check for new notifications
-	$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
-	$num_notifications = intval($db->result($result));
-
-	$items['notifications'] = array(
-		'url'    => $luna_config['o_notification_flyout'] ? '#' : 'notifications.php',
-		'title'  => $num_notifications > 0 ? $lang['Notifications'] : $lang['No new notifications'],
-		'num'    => $num_notifications,
-		'flyout' => 1 == $luna_config['o_notification_flyout']
-	);
-
-	if ($luna_user['is_admmod']) {
-		$items['backstage'] = array(
-			'url'   => 'backstage/',
-			'title' => $lang['Backstage'],
-		);
-	}
-
 	if ($luna_user['is_guest']) {
 		$items['guest'] = array(
 			'register' => array(
@@ -93,6 +63,37 @@ function get_user_nav_menu_items() {
 		);
 	}
 	else {
+
+		if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1') {
+			// Check for new messages
+			$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
+			$num_new_pm = intval($db->result($result));
+
+			$items['inbox'] = array(
+				'url'   => 'inbox.php',
+				'title' => 'Inbox',
+				'num'   => $num_new_pm,
+			);
+		}
+
+		// Check for new notifications
+		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'notifications WHERE viewed = 0 AND user_id = '.$luna_user['id']) or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
+		$num_notifications = intval($db->result($result));
+
+		$items['notifications'] = array(
+			'url'    => $luna_config['o_notification_flyout'] ? '#' : 'notifications.php',
+			'title'  => $num_notifications > 0 ? $lang['Notifications'] : $lang['No new notifications'],
+			'num'    => $num_notifications,
+			'flyout' => 1 == $luna_config['o_notification_flyout']
+		);
+
+		if ($luna_user['is_admmod']) {
+			$items['backstage'] = array(
+				'url'   => 'backstage/',
+				'title' => $lang['Backstage'],
+			);
+		}
+
 		$items['user'] = array(
 			'profile'  => array(
 				'url'   => 'profile.php?id='.$luna_user['id'],
