@@ -5,6 +5,64 @@
  * License: http://opensource.org/licenses/MIT MIT
  */
 
+// Create a new notification
+function new_notification($user, $link, $message, $icon) {
+	global $db;
+	
+	$now = time();
+	
+	$db->query('INSERT INTO '.$db->prefix.'notifications (user_id, message, icon, link, time) VALUES('.$user.', \''.$message.'\', \''.$icon.'\', \''.$link.'\', '.$now.')') or error('Unable to add new notification', __FILE__, __LINE__, $db->error());
+
+}
+
+function read_notification($id, $user) {
+	global $db;
+
+	$id   = intval($id);
+	$user = intval($user);
+	
+	$result = $db->query('UPDATE '.$db->prefix.'notifications SET viewed=1 WHERE id='.$db->escape($id).' AND user_id='.$db->escape($user)) or error('Unable to lark notification as read', __FILE__, __LINE__, $db->error());
+}
+
+function delete_notification($id, $user) {
+	global $db;
+
+	$id   = intval($id);
+	$user = intval($user);
+	
+	$result = $db->query('DELETE FROM '.$db->prefix.'notifications WHERE id='.$db->escape($id).' AND user_id='.$db->escape($user)) or error('Unable to delete notification', __FILE__, __LINE__, $db->error());
+}
+
+function pending_notifications($user, $count = true) {
+	global $db;
+
+	$user = intval($user);
+
+	if (false === $count) {
+		$pending = array();
+		$result = $db->query('SELECT id, user_id, message, icon, link, time FROM '.$db->prefix.'notifications WHERE user_id='.$db->escape($user).' AND viewed=0') or error('Unable to fetch pending notifications', __FILE__, __LINE__, $db->error());
+		while ($n = $db->fetch_assoc($result)) {
+			$pending[] = $n;
+		}
+	} else {
+		$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'notifications WHERE user_id='.$db->escape($user).' AND viewed=0') or error('Unable to fetch pending notifications', __FILE__, __LINE__, $db->error());
+		$pending = $db->result($result);
+	}
+
+	return $pending;
+}
+
+function pending_messages($user) {
+	global $db;
+
+	$user = intval($user);
+
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'messages WHERE owner='.$user.' AND show_message=1') or error('Unable to fetch pending messages', __FILE__, __LINE__, $db->error());
+	$pending = $db->result($result);
+
+	return $pending;
+}
+
 function get_user_nav_menu_items() {
 	global $db, $luna_config, $luna_user, $lang;
 

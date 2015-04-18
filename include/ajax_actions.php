@@ -11,7 +11,6 @@ function luna_ajax_heartbeat() {
 		luna_send_json_error();
 
 	$response = array();
-
 	if ( false === luna_verify_nonce( $_POST['_nonce'], 'heartbeat-nonce' ) ) {
 		$response['nonces_expired'] = true;
 		luna_send_json( $response );
@@ -30,19 +29,16 @@ function luna_ajax_heartbeat() {
 	luna_send_json( $response );
 }
 
-function luna_ajax_check_notifications() {
-
-	$foo = isset( $_POST['foo'] ) && ! empty( $_POST['foo'] ) ? $_POST['foo'] : null;
-
-	if ( ! is_null( $foo ) ) {
-		$response = array( 'foo' => $foo );
-		luna_send_json_success( $response );
-	}
-
-	luna_send_json_error();
-}
-
 function luna_ajax_fetch_notifications() {
+
+	if ( empty( $_POST['_nonce'] ) )
+		luna_send_json_error( -1 );
+
+	$response = array();
+	if ( false === luna_verify_nonce( $_POST['_nonce'], 'fetch-notifications-nonce' ) ) {
+		$response['nonces_expired'] = true;
+		luna_send_json( $response );
+	}
 
 	global $luna_user;
 
@@ -52,4 +48,50 @@ function luna_ajax_fetch_notifications() {
 	}
 
 	luna_send_json_error();
+}
+
+function luna_ajax_read_notification() {
+
+	if ( empty( $_POST['_nonce'] ) )
+		luna_send_json_error( -1 );
+
+	$response = array();
+	if ( false === luna_verify_nonce( $_POST['_nonce'], 'read-notification-nonce' ) ) {
+		$response['nonces_expired'] = true;
+		luna_send_json( $response );
+	}
+
+	$id = ( isset( $_POST['id'] ) && ! empty( $_POST['id'] ) ? intval( $_POST['id'] ) : 0 );
+	if ( ! $id ) {
+		luna_send_json_error();
+	}
+
+	global $luna_user;
+
+	read_notification($id, $luna_user['id']);
+
+	luna_send_json_success();
+}
+
+function luna_ajax_trash_notification() {
+
+	if ( empty( $_POST['_nonce'] ) )
+		luna_send_json_error( -1 );
+
+	$response = array();
+	if ( false === luna_verify_nonce( $_POST['_nonce'], 'trash-notification-nonce' ) ) {
+		$response['nonces_expired'] = true;
+		luna_send_json( $response );
+	}
+
+	$id = ( isset( $_POST['id'] ) && ! empty( $_POST['id'] ) ? intval( $_POST['id'] ) : 0 );
+	if ( ! $id ) {
+		luna_send_json_error();
+	}
+
+	global $luna_user;
+
+	delete_notification($id, $luna_user['id']);
+
+	luna_send_json_success();
 }

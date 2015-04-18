@@ -46,6 +46,25 @@ _.extend( notifications.Model, {
 			icon:    '',
 			link:    '',
 			time:    '',
+			read:    false
+		},
+
+		url: window.ajaxurl,
+
+		/**
+		 * Initialize the model.
+		 */
+		initialize: function() {
+
+			this.on( 'change:read', this.read, this );
+		},
+
+		/**
+		 * Mark notification as read.
+		 */
+		read: function() {
+
+			this.sync( 'mark' );
 		},
 
 		/**
@@ -67,7 +86,62 @@ _.extend( notifications.Model, {
 			resp.time = new Date( resp.time * 1000 );
 
 			return resp;
-		}
+		},
+
+		/**
+		 * Override Backbone.sync()
+		 * 
+		 * @param    string    method
+		 * @param    object    Backbone.Collection
+		 * @param    object    options
+		 * 
+		 * @return   Promise
+		 */
+		sync: function( method, models, options ) {
+
+			var options = options || {},
+			       self = this;
+
+			if ( 'mark' === method ) {
+
+				_.extend( options, {
+					data: {
+						action: 'read-notification',
+						_nonce: _nonces.readNotif,
+						id:     this.get( 'id' )
+					},
+					success: function( response ) {
+						self.trigger( 'read' );
+					}
+				});
+
+				return luna.ajax.send( options );
+
+			} else if ( 'delete' === method ) {
+
+				_.extend( options, {
+					data: {
+						action: 'trash-notification',
+						_nonce: _nonces.trashNotif,
+						id:     this.get( 'id' )
+					},
+					beforeSend: function() {
+						self.trigger( 'destroying' );
+					},
+					success: function( response ) {
+						self.trigger( 'destroyed' );
+					},
+					error: function( response ) {
+						self.trigger( 'undestroyed' );
+					}
+				});
+
+				return luna.ajax.send( options );
+
+			} else {
+				return Backbone.sync.apply( this, arguments );
+			}
+		},
 
 	})
 },
@@ -122,6 +196,7 @@ _.extend( notifications.Model, {
 				_.extend( options, {
 					data: {
 						action: 'fetch-notifications',
+						_nonce: _nonces.fetchNotif
 					}
 				});
 
@@ -143,6 +218,37 @@ _.extend( notifications.View, {
 		tagName: 'li',
 
 		template: luna.template( 'notification-menu-item' ),
+
+		events: {
+			'click .notification-action': 'action'
+		},
+
+		/**
+		 * Initialize the View
+		 */
+		initialize: function() {
+
+			this.listenTo( this.model, 'destroying',  this.destroying );
+			this.listenTo( this.model, 'undestroyed', this.undestroy );
+			this.listenTo( this.model, 'destroyed',   this.remove );
+			this.listenTo( this.model, 'read',        this.remove );
+		},
+
+		/**
+		 * Colorize the notification while destroying.
+		 */
+		destroying: function() {
+
+			this.$el.addClass( 'bg-danger' );
+		},
+
+		/**
+		 * Destroy failed, uncolorize the notification
+		 */
+		undestroy: function() {
+
+			this.$el.removeClass( 'bg-danger' );
+		},
 
 		/**
 		 * Convert notification time to a simpler HH:mm format
@@ -179,6 +285,31 @@ _.extend( notifications.View, {
 
 			this.views.render();
 			return this;
+		},
+
+		/**
+		 * Find out what to do: mark as read or delete (or do nothing)?
+		 * 
+		 * @param    object    JS 'click' event
+		 */
+		action: function( event ) {
+
+			event.preventDefault();
+
+			var $elem = this.$( event.currentTarget ),
+			   action = $elem.attr( 'data-action' ) || false;
+
+			if ( ! action ) {
+				return;
+			}
+
+			if ( 'read' === action ) {
+				this.model.set({ read: true });
+			} else if ( 'delete' === action ) {
+				this.model.destroy();
+			}
+
+			event.stopPropagation();
 		}
 	}),
 
@@ -206,7 +337,7 @@ _.extend( notifications.View, {
 		 */
 		addNotification: function( notification ) {
 
-			this.views.add( new luna.notifications.View.Notification({ model: notification }), { at: -1 } );
+			this.views.add( new luna.notifications.View.Notification({ model: notification }), { at: 2 } );
 		}
 	})
 },
@@ -242,6 +373,9 @@ _.extend( notifications.View, {
 			this.notifications.on( 'sync', this.updateCounter, this );
 		},
 
+		/**
+		 * Create a subview for the real notifications menu (dropdown).
+		 */
 		_createSubmenu: function() {
 
 			this.submenu = new notifications.View.Notifications({

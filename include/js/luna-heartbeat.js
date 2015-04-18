@@ -78,7 +78,7 @@
 				action:   'heartbeat',
 				data:     heartbeat,
 				interval: options.interval / 1000,
-				_nonce:   window.heartbeatnonce || '',
+				_nonce:   window._nonces.heartbeat || '',
 			};
 
 			options.beating = true;
