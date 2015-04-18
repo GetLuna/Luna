@@ -15,6 +15,24 @@ function new_notification($user, $link, $message, $icon) {
 
 }
 
+function read_notification($id, $user) {
+	global $db;
+
+	$id   = intval($id);
+	$user = intval($user);
+	
+	$result = $db->query('UPDATE '.$db->prefix.'notifications SET viewed=1 WHERE id='.$db->escape($id).' AND user_id='.$db->escape($user)) or error('Unable to lark notification as read', __FILE__, __LINE__, $db->error());
+}
+
+function delete_notification($id, $user) {
+	global $db;
+
+	$id   = intval($id);
+	$user = intval($user);
+	
+	$result = $db->query('DELETE FROM '.$db->prefix.'notifications WHERE id='.$db->escape($id).' AND user_id='.$db->escape($user)) or error('Unable to delete notification', __FILE__, __LINE__, $db->error());
+}
+
 function pending_notifications($user, $count = true) {
 	global $db;
 

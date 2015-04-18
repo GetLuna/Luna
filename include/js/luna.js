@@ -98,7 +98,7 @@ luna.ajax = {
 				deferred.rejectWith( this, arguments );
 			});
 		}).promise();
-	}
+	},
 };
 
 luna.runners = [];

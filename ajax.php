@@ -13,7 +13,7 @@ define( 'DOING_AJAX', true );
 require FORUM_ROOT . 'include/ajax_functions.php';
 require FORUM_ROOT . 'include/ajax_actions.php';
 
-$allowed_actions = array( 'heartbeat', 'check-notifications', 'fetch-notifications' );
+$allowed_actions = array( 'heartbeat', 'fetch-notifications', 'read-notification', 'trash-notification' );
 
 // Register core Ajax calls.
 if ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $allowed_actions ) )
