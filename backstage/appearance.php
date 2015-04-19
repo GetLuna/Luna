@@ -16,6 +16,7 @@ if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/appearance.php', $lang['Bad HTTP Referer message']);
 	
 	$form = array(
+		'default_accent'		=> intval($_POST['form']['default_accent']),
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
 		'moderated_by'			=> isset($_POST['form']['moderated_by']) ? '1' : '0',
@@ -82,6 +83,24 @@ if (isset($_GET['saved']))
 		</div>
 		<div class="panel-body">
 			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
+					<div class="col-sm-9">
+						<div class="btn-group accent-group" data-toggle="buttons">
+<?php
+		$accents = forum_list_accents('main');
+
+		foreach ($accents as $temp) {
+			if ($luna_config['o_default_accent'] == $temp)
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
+			else
+				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[default_accent]" id="'.$temp.'" value="'.$temp.'"></label>';
+		}
+?>
+						</div>
+					</div>
+				</div>
+				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['User profile head'] ?></label>
 					<div class="col-sm-9">
