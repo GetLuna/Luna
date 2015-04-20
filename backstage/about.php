@@ -51,15 +51,23 @@ require 'header.php';
 				<a id="board"></a><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4></h4>
-						<p></p>
+						<h4>Night mode</h4>
+						<p>Reading in a dark environment can be a pain when the design of the website you're looking at is bright. And Luna's default design is bright. So we're introducing a "Night mode", which allows your users to make the interface darker permanent, or depending on the time of day. This also works for the Backstage.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Contact links</h4>
+						<p>When an user adds a Twitter, Facebook, Microsoft Account, e-mail, website or Google+ account to his profile, the add-ons in his profile are now clickable to give you and your users easy access to your user's accounts on these social networks.</p>
 					</div>
 				</div>
 				<a id="backstage"></a><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4></h4>
-						<p></p>
+						<h4>A personal touch</h4>
+						<p>When a theme supports more then one accent color, you can choose the default color your board should have. This applies to guests and new users.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Backstage accents</h4>
+						<p>Similar to the Mainstage design, you can now change the accent color of the Backstage. We also took the time to make a small update to the design.</p>
 					</div>
 				</div>
 				<a id="theme"></a><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3>
@@ -73,7 +81,7 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4289.</p>
+						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4381.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
