@@ -896,7 +896,10 @@ function draw_delete_form($id) {
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
 			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br /><?php echo $lang['Delete info'] ?></p>
-			<input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" />
+			<div class="btn-toolbar">
+				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
+				<input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" />
+			</div>
 		</form>
 <?php
 }
@@ -907,7 +910,10 @@ function draw_soft_delete_form($id) {
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
 			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br /><?php echo $lang['Soft delete info'] ?></p>
-			<input type="submit" class="btn btn-danger" name="soft_delete" value="<?php echo $lang['Soft delete'] ?>" />
+			<div class="btn-toolbar">
+				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
+				<input type="submit" class="btn btn-danger" name="soft_delete" value="<?php echo $lang['Soft delete'] ?>" />
+			</div>
 		</form>
 <?php
 }
@@ -918,7 +924,10 @@ function draw_soft_reset_form($id) {
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
 			<p><?php echo $lang['Revert soft delete'] ?></p>
-			<input type="submit" class="btn btn-primary" name="reset" value="<?php echo $lang['Reset post'] ?>" />
+			<div class="btn-toolbar">
+				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
+				<input type="submit" class="btn btn-primary" name="reset" value="<?php echo $lang['Reset post'] ?>" />
+			</div>
 		</form>
 <?php
 }
