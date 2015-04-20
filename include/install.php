@@ -1421,6 +1421,7 @@ class Installer {
 			'o_make_links'				=> 1,
 			'o_default_lang'			=> $default_lang,
 			'o_default_style'			=> $default_style,
+			'o_default_accent'			=> 3,
 			'o_default_user_group'		=> 4,
 			'o_topic_review'			=> 15,
 			'o_disp_topics_default'		=> 30,

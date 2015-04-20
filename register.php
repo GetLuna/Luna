@@ -105,7 +105,7 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 			$password_hash = luna_hash($password1);
 	
 			// Add the user
-			$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, registered, registration_ip, last_visit, timezone) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$luna_config['o_default_lang'].'\', \''.$luna_config['o_default_style'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', '.$luna_config['o_default_timezone'].')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'users (username, group_id, password, email, language, style, color_scheme, registered, registration_ip, last_visit, timezone) VALUES(\''.$db->escape($username).'\', '.$intial_group_id.', \''.$password_hash.'\', \''.$db->escape($email1).'\', \''.$luna_config['o_default_lang'].'\', \''.$luna_config['o_default_style'].'\', \''.$luna_config['o_default_accent'].'\', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.', '.$luna_config['o_default_timezone'].')') or error('Unable to create user', __FILE__, __LINE__, $db->error());
 			$new_uid = $db->insert_id();
 	
 			if ($luna_config['o_regs_verify'] == '0') {

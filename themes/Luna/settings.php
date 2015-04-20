@@ -107,14 +107,13 @@ if (!defined('FORUM'))
 			</div>
 			<div role="tabpanel" class="tab-pane" id="personalize">
 				<fieldset class="form-horizontal form-setting">
-<?php
-$accents = forum_list_accents('main');
-?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
 <?php
+		$accents = forum_list_accents('main');
+
 		foreach ($accents as $temp) {
 			if ($luna_user['color_scheme'] == $temp)
 				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
@@ -148,15 +147,14 @@ $accents = forum_list_accents('main');
 							</div>
 						</div>
 					</div>
-<?php
-$accents = forum_list_accents('back');
-?>
 					<hr />
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Backstage<?php echo $lang['Color'] ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
 <?php
+		$accents = forum_list_accents('back');
+
 		foreach ($accents as $temp) {
 			if ($luna_user['accent'] == $temp)
 				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';

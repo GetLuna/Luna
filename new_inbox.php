@@ -190,6 +190,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			$errors[] = sprintf($lang['No user'], luna_htmlspecialchars($destinataire));
 		$i++;
 	}
+
 	// Build IDs' & usernames' list : the end
 	$ids_list = implode(', ', $list_ids);
 	$usernames_list = implode(', ', $list_usernames);
@@ -224,8 +225,40 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if (empty($errors) && !isset($_POST['preview'])) { // Send message(s)	
 		$_SESSION['last_session_request'] = $now = time();
 		
-		if (empty($r) && empty($edit)) { // It's a new message
+	// Send message(s)	
+	if (empty($errors) && !isset($_POST['preview'])) {
+		$_SESSION['last_session_request'] = $now = time();
+		
+		if ($luna_config['o_pms_notification'] == '1') {
+			require_once FORUM_ROOT.'include/email.php';
+			
+			// Load the new_pm templates
+			$mail_tpl = trim($lang['new_pm.tpl']);
+			$mail_tpl_full = trim($lang['new_pm_full.tpl']);
+			
+			// The first row contains the subject
+			$first_crlf = strpos($mail_tpl, "\n");
+			$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
+			$mail_message = trim(substr($mail_tpl, $first_crlf));
+	
+			$mail_subject = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject);
+			$mail_message = str_replace('<sender>', $luna_user['username'], $mail_message);
+			$mail_message = str_replace('<board_mailer>', sprintf($lang['Mailer'], $luna_config['o_board_title']), $mail_message);
+			
+			// The first row contains the subject
+			$first_crlf_full = strpos($mail_tpl_full, "\n");
+			$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf_full-8));
+			$mail_message_full = trim(substr($mail_tpl_full, $first_crlf_full));
+			
+			$cleaned_message = bbcode2email($p_message, -1);
+	
+			$mail_subject_full = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject_full);
+			$mail_message_full = str_replace('<sender>', $luna_user['username'], $mail_message_full);
+			$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
+			$mail_message_full = str_replace('<board_mailer>', sprintf($lang['Mailer'], $luna_config['o_board_title']), $mail_message_full);
+		} if (empty($r) && empty($edit)) { // It's a new message
 			$result_shared = $db->query('SELECT last_shared_id FROM '.$db->prefix.'messages ORDER BY last_shared_id DESC LIMIT 1') or error('Unable to fetch last_shared_id', __FILE__, __LINE__, $db->error());
+
 			if (!$db->num_rows($result_shared))
 				$shared_id = '1';
 			else {
@@ -245,6 +278,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 				$new_mp = $db->insert_id();
 				$db->query('UPDATE '.$db->prefix.'messages SET last_post_id='.$new_mp.', last_post='.$now.', last_poster=\''.$db->escape($luna_user['username']).'\' WHERE shared_id='.$shared_id.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
 				$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms+1 WHERE id='.$dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+
 				// E-mail notification
 				if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) {
 					$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
@@ -263,6 +297,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 				message($lang['Bad request']);
 				
 			foreach ($destinataires as $dest) {
+			
 				$val_showed = '0';
 				
 				if ($dest['id'] == $luna_user['id'])
@@ -275,7 +310,10 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 					$db->query('UPDATE '.$db->prefix.'messages SET last_post_id='.$new_mp.', last_post='.$now.', last_poster=\''.$db->escape($luna_user['username']).'\' WHERE shared_id='.$r.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
 					if ($dest['id'] != $luna_user['id']) {
 						$db->query('UPDATE '.$db->prefix.'messages SET showed = 0 WHERE shared_id='.$r.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
-					} if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) { // E-mail notification
+					}
+
+					// E-mail notification
+					if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) {
 						$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
 						$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 						
@@ -284,42 +322,11 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 						else
 							luna_mail($dest['email'], $mail_subject, $mail_message);
 					}
+				}
+				$db->query('UPDATE '.$db->prefix.'users SET last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 			}
-			$db->query('UPDATE '.$db->prefix.'users SET last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
-		} if (!empty($edit) && !empty($tid)) { // It's an edit
-			// Check that $edit looks good
-			if ($edit <= '0')
-				message($lang['Bad request']);
-			
-			$result = $db->query('SELECT shared_id, owner, message FROM '.$db->prefix.'messages WHERE id='.$edit) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
-			
-			if (!$db->num_rows($result))
-				message($lang['Bad request']);
-				
-			while($edit_msg = $db->fetch_assoc($result)) {
-				// If you're not the owner of this message, why do you want to edit it?
-				if ($edit_msg['owner'] != $luna_user['id'] && !$luna_user['is_admmod'])
-					message($lang['No permission']);
-					
-				$message = $edit_msg['message'];
-				$shared_id_msg = $edit_msg['shared_id'];
-			}
-			
-			$result_msg = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE message=\''.$db->escape($message).'\' AND shared_id='.$shared_id_msg) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
-			
-			if (!$db->num_rows($result_msg))
-				message($lang['Bad request']);
-				
-			while($list_ids = $db->fetch_assoc($result_msg)) {		
-				$ids_edit[] = $list_ids['id'];
-			}
-			
-			$ids_edit = implode(',', $ids_edit);
-				
-			// Finally, edit the message - maybe this query is unsafe?
-			$db->query('UPDATE '.$db->prefix.'messages SET message=\''.$db->escape($p_message).'\' WHERE message=\''.$db->escape($message).'\' AND id IN ('.$ids_edit.')') or error('Unable to edit the message', __FILE__, __LINE__, $db->error());
-		}
 			redirect('inbox.php');
+		}
 	}
 } else {
 	// To user(s)

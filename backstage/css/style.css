@@ -587,55 +587,51 @@ h3.panel-title {
 	border: 3px solid #bbb;
 }
 
-.accent-blue {
+.accent-1 {
 	background-color: #14a3ff !important;
 }
 
-.accent-denim {
+.accent-2 {
 	background-color: #2788cb !important;
 }
 
-.accent-luna {
+.accent-3 {
 	background-color: #0d4382 !important;
 }
 
-.accent-green {
+.accent-4 {
 	background-color: #99cc00 !important;
 }
 
-.accent-ao {
+.accent-5 {
 	background-color: #047a36 !important;
 }
 
-.accent-yellow {
+.accent-6 {
 	background-color: #ffcd21 !important;
 }
 
-.accent-orange {
+.accent-7 {
 	background-color: #ff7521 !important;
 }
 
-.accent-red {
+.accent-8 {
 	background-color: #ff4444 !important;
 }
 
-.accent-purple {
+.accent-9 {
 	background-color: #c58be2 !important;
 }
 
-.accent-luna {
-	background-color: #0d4382 !important;
-}
-
-.accent-white {
+.accent-10 {
 	background-color: #ccc !important;
 }
 
-.accent-grey {
+.accent-11 {
 	background-color: #999 !important;
 }
 
-.accent-black {
+.accent-12 {
 	background-color: #444 !important;
 }
 
