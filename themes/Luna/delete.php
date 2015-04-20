@@ -6,10 +6,6 @@ if (!defined('FORUM'))
 
 ?>
 
-<div class="btn-group btn-breadcrumb">
-	<a class="btn btn-primary" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_post['subject']) ?></a>
-</div>
-
 <div class="panel panel-danger">
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php draw_delete_title(); ?></h3>
