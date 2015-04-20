@@ -272,8 +272,10 @@ h1, h2, h3, h4, h5, h6 {
 	color: #fff;
 }
 
-.footer .copyright .col-sm-2 {
-	width: 16.66%;
+@media (min-width: 768px) {
+	.footer .copyright .col-sm-2 {
+		width: 16.66%;
+	}
 }
 
 .footer a, .footer a:hover, .footer a:active, .footer a:focus {
