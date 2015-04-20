@@ -64,6 +64,16 @@ if ($luna_user['color_scheme'] == '1') { // ModernBB
 	background-color: <?php echo $secondary_color ?>;
 }
 
+@media screen and (max-width: 767px) {
+	.dropdown-menu .divider {
+		background-color: <?php echo $secondary_color ?> !important;
+	}
+}
+
+.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	background-color: <?php echo $secondary_color ?>;
+}
+
 .activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default {
 	background-color: <?php echo $tertiary_color ?>;
 }
