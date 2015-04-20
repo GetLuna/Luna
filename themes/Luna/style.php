@@ -56,7 +56,7 @@ if ($luna_user['color_scheme'] == '1') { // ModernBB
 
 ?>
 <style type="text/css">
-.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary {
+.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle .icon-bar, .navbar-default .navbar-toggle .icon-bar, .btn-primary {
 	background-color: <?php echo $primary_color ?>;
 }
 
@@ -88,8 +88,8 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	border-color: <?php echo $tertiary_color ?>;
 }
 
-.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
-	border-left-color: <?php echo $primary_color ?>;
+.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	border-color: <?php echo $primary_color ?>;
 }
 
 a, a:focus, .pagination > li > a, .pagination > li > span {
