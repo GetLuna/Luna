@@ -161,7 +161,9 @@ class LunaNonces {
 
 		$secret = $this->tick . '|' . $this->action . '|' . $this->user . '|' . $this->seed;
 
-		return substr( luna_hash( $secret, 'nonce' ), -12, 12 );
+		$this->nonce = substr( luna_hash( $secret, 'nonce' ), -12, 12 );
+
+		return $this->nonce;
 	}
 
 	/**
