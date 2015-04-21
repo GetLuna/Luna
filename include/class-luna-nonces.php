@@ -204,7 +204,7 @@ class LunaNonces {
 
 		$nonce = new LunaNonces( $action );
 
-		return $nonce->_create( $action );
+		return $nonce->_create();
 	}
 
 	/**
