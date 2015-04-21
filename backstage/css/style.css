@@ -253,8 +253,8 @@ h3.panel-title {
 	border: none;
 }
 
-.panel-default .panel-heading, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-color: #fff;
+.panel-default .panel-heading {
+	color: #fff;
 	background-color: #1f62b0;
 	border-bottom-color: #1f62b0;
 }

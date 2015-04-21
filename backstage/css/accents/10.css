@@ -1,5 +1,5 @@
 /* Accent 10 - White */
-.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
 	background-color: #eeeeee;
 }
 
@@ -11,7 +11,7 @@
 	background-color: #cccccc;
 }
 
-.panel-default .panel-heading, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+.panel-default .panel-heading {
 	border-color: #eeeeee;
 }
 
@@ -35,5 +35,9 @@
 	text-shadow: 0px 0px 5px 1px rgba(100,100,100,0.5);
 }
 
-
-
+@media all and (max-width:767px) {
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+		background-color: #eeeeee;
+		border-color: #eeeeee;
+	}
+}
