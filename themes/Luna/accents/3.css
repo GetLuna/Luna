@@ -33,6 +33,10 @@
 	color: #0d4382;
 }
 
+.night .col-sm-9 a:not(.navbar-brand), .night .col-sm-9 a:focus:not(.navbar-brand) {
+	color: #1d72d4;
+}
+
 a.list-group-item:hover, a:hover, a:active {
 	color: #0b3c75;
 }
