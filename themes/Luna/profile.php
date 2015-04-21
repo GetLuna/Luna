@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 	load_me_nav('profile');
 ?>
 </div>
-<div class="col-sm-9">
+<div class="profile col-sm-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php echo $lang['About user'] ?></h3>

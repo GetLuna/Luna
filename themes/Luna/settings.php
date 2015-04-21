@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 	load_me_nav('settings');
 ?>
 </div>
-<div class="col-sm-9">
+<div class="col-sm-9 profile">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
 	<h2 class="profile-settings-head"><?php echo $lang['Settings'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
