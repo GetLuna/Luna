@@ -235,6 +235,7 @@ $lang = array(
 
 'post'							=>	'post',
 'topic'							=>	'topic',
+'Topic'							=>	'Topic',
 'signature'						=>	'signature',
 
 // Language for frontend
@@ -1512,7 +1513,7 @@ To administer this account, please visit the following page:
 (Do not reply to this message)',
 
 // Email - welcome.tpl
-'welcome.tpl'		  =>
+'welcome.tpl'			=>
 'Subject: Welcome to <board_title>!
 
 Thank you for registering in the forums at <base_url>. Your account details are:
@@ -1521,6 +1522,37 @@ Username: <username>
 Password: <password>
 
 Login at <login_url> to activate the account.
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)',
+
+// Inbox - new_pm.tpl
+'new_pm.tpl'			=>
+'Subject: You received a new private message on <board_title>
+
+<sender> sent a private message to you.
+
+You can read this private message at this address: <pm_url>
+
+-- 
+<board_mailer>
+(Do not reply to this message)',
+
+// Inbox - new_pm_full.tpl
+'new_pm_full.tpl'		=>
+'Subject: You received a private message on <board_title>
+
+<sender> sent a private message to you.
+
+The message reads as follows:
+-----------------------------------------------------------------------
+
+<message>
+
+-----------------------------------------------------------------------
+
+You can read this private message at this address: <pm_url>
 
 --
 <board_mailer> Mailer

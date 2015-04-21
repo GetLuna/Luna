@@ -669,6 +669,10 @@ switch ($stage) {
 		// Since 1.1.4289: Add the adapt_time column to the users table
 		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
 
+		// Since 1.1.4381: Add o_default_accent feature
+		if (!array_key_exists('o_default_accent', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_default_accent\', \'3\')') or error('Unable to insert config value \'o_default_accent\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

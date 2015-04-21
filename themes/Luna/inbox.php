@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 	load_me_nav('inbox');
 ?>
 </div>
-<div class="col-sm-9">
+<div class="col-sm-9 profile">
 	<?php load_inbox_nav('inbox'); ?>
 	<p><span class="pages-label"><?php echo paginate($num_pages, $page, 'inbox.php?') ?></span></p>
 	<form method="post" action="inbox.php">

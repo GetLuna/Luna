@@ -765,7 +765,7 @@ if (isset($_POST['update_group_membership'])) {
 	$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.$lang['Change avatar'].'</a>';
 
 	$avatar_user = draw_user_avatar($id, 'visible-lg-inline');
-	$avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
+	$avatar_user_card = draw_user_avatar($id);
 	$avatar_set = check_avatar($id);
 	if ($avatar_user && $avatar_set)
 		$avatar_field .= ' <a class="btn btn-primary" href="settings.php?action=delete_avatar&amp;id='.$id.'">'.$lang['Delete avatar'].'</a>';

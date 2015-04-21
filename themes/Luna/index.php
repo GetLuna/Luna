@@ -6,7 +6,7 @@ if (!defined('FORUM'))
 
 if ($luna_user['first_run'] == '0') {
 ?>
-<div class="first-run panel panel-default hidden-xs hidden-sm">
+<div class="first-run panel panel-default hidden-xs">
 	<div class="row first-run-content">
 		<div class="col-md-4 col-sm-6 first-run-profile">
 			<h3 class="first-run-title"><?php echo sprintf($lang['Hi there'], luna_htmlspecialchars($luna_user['username'])) ?></h3>
@@ -80,7 +80,7 @@ if ($luna_user['first_run'] == '0') {
 			<?php } ?>
 		</div>
 	</div>
-	<div class="col-sm-9 hidden-xs">
+	<div class="col-sm-9 col-xs-12">
 <?php
 	// Announcement
 	if ($luna_config['o_announcement'] == '1')

@@ -60,7 +60,7 @@ $cur_index = 1;
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo $lang['Send to'] ?><span class="help-block"><?php printf($lang['Maximum names'], ($luna_config['o_pms_max_receiver']-1)) ?></span></label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="p_username" id="p_username" size="30" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" tabindex="<?php echo $cur_index++ ?>" />
+						<input class="form-control" type="text" name="p_username" id="p_username" size="30" value="<?php echo luna_htmlspecialchars($p_destinataire) ?>" tabindex="<?php echo $cur_index++ ?>" autofocus />
 					</div>
 				</div>
 				<div class="form-group">

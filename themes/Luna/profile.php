@@ -16,7 +16,12 @@ if (!defined('FORUM'))
 	load_me_nav('profile');
 ?>
 </div>
-<div class="col-sm-9">
+<div class="profile col-sm-9">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a href="profile.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-user"></span> <?php echo luna_htmlspecialchars($user['username']) ?></a>
+		</div>
+	</nav>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php echo $lang['About user'] ?></h3>
