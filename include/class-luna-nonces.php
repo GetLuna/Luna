@@ -70,7 +70,7 @@ class LunaNonces {
 	 * 
 	 * @param    string    $action Action name (optional)
 	 */
-	public function __construct( $action = 1 ) {
+	public function __construct($action = 1) {
 
 		$this->action = $action;
 
@@ -100,7 +100,7 @@ class LunaNonces {
 	 */
 	private function set_ticker() {
 
-		return ceil( time() / $this->ticker );
+		return ceil(time() / $this->ticker);
 	}
 
 	/**
@@ -117,8 +117,8 @@ class LunaNonces {
 		global $luna_user;
 
 		$user_id = -1;
-		if ( ! $luna_user['is_guest'] ) {
-			$user_id = intval( $luna_user['id'] );
+		if (!$luna_user['is_guest']) {
+			$user_id = intval($luna_user['id']);
 		}
 
 		return $user_id;
@@ -138,10 +138,10 @@ class LunaNonces {
 
 		global $cookie_seed;
 
-		if ( ! is_null( $cookie_seed ) ) {
+		if (!is_null($cookie_seed)) {
 			$seed = $cookie_seed;
 		} else {
-			throw new Exception( 'Error: seed not found. Building nonces is insecure without seed.' );
+			throw new Exception('Error: seed not found. Building nonces is insecure without seed.');
 		}
 
 		return $seed;
@@ -159,9 +159,9 @@ class LunaNonces {
 	 */
 	private function _create() {
 
-		$secret = $this->tick . '|' . $this->action . '|' . $this->user . '|' . $this->seed;
+		$secret = $this->tick.'|'.$this->action.'|'.$this->user.'|'.$this->seed;
 
-		$this->nonce = substr( luna_hash( $secret, 'nonce' ), -12, 12 );
+		$this->nonce = substr(luna_hash($secret, 'nonce'), -12, 12);
 
 		return $this->nonce;
 	}
@@ -178,11 +178,11 @@ class LunaNonces {
 	 * 
 	 * @return   boolean    Validation result
 	 */
-	private function _verify( $nonce ) {
+	private function _verify($nonce) {
 
-		$secret   = $this->tick . '|' . $this->action . '|' . $this->user . '|' . $this->seed;
+		$secret   = $this->tick.'|'.$this->action.'|'.$this->user.'|'.$this->seed;
 		$expected = $this->_create();
-		if ( $this->compare( $expected, $nonce ) ) {
+		if ($this->compare($expected, $nonce)) {
 			return true;
 		}
 
@@ -200,9 +200,9 @@ class LunaNonces {
 	 * 
 	 * @return   string    Newly created nonce
 	 */
-	public static function create( $action = -1 ) {
+	public static function create($action = -1) {
 
-		$nonce = new LunaNonces( $action );
+		$nonce = new LunaNonces($action);
 
 		return $nonce->_create();
 	}
@@ -219,14 +219,14 @@ class LunaNonces {
 	 * 
 	 * @return   boolean    Validation result
 	 */
-	public static function verify( $nonce, $action = -1 ) {
+	public static function verify($nonce, $action = -1) {
 
-		if ( empty( $nonce ) ) {
+		if (empty($nonce)) {
 			return false;
 		}
 
-		$check = new LunaNonces( $action );
-		$check->_verify( $nonce );
+		$check = new LunaNonces($action);
+		$check->_verify($nonce);
 
 		return $check;
 	}
@@ -241,16 +241,16 @@ class LunaNonces {
 	 * 
 	 * @return   boolean    Comparison result
 	 */
-	protected function compare( $a, $b ) {
+	protected function compare($a, $b) {
 
-		$a_length = strlen( $a );
-		if ( $a_length !== strlen( $b ) ) {
+		$a_length = strlen($a);
+		if ($a_length !== strlen($b)) {
 		    return false;
 		}
 		$result = 0;
 
-		for ( $i = 0; $i < $a_length; $i++ ) {
-			$result |= ord( $a[ $i ] ) ^ ord( $b[ $i ] );
+		for ($i = 0; $i < $a_length; $i++) {
+			$result |= ord($a[$i]) ^ ord($b[$i]);
 		}
 
 		return 0 === $result;
