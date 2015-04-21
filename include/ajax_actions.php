@@ -11,7 +11,7 @@ function luna_ajax_heartbeat() {
 		luna_send_json_error();
 
 	$response = array();
-	if ( false === luna_verify_nonce( $_POST['_nonce'], 'heartbeat-nonce' ) ) {
+	if ( false === LunaNonces::verify( $_POST['_nonce'], 'heartbeat-nonce' ) ) {
 		$response['nonces_expired'] = true;
 		luna_send_json( $response );
 	}
@@ -35,7 +35,7 @@ function luna_ajax_fetch_notifications() {
 		luna_send_json_error( -1 );
 
 	$response = array();
-	if ( false === luna_verify_nonce( $_POST['_nonce'], 'fetch-notifications-nonce' ) ) {
+	if ( false === LunaNonces::verify( $_POST['_nonce'], 'fetch-notifications-nonce' ) ) {
 		$response['nonces_expired'] = true;
 		luna_send_json( $response );
 	}
@@ -56,7 +56,7 @@ function luna_ajax_read_notification() {
 		luna_send_json_error( -1 );
 
 	$response = array();
-	if ( false === luna_verify_nonce( $_POST['_nonce'], 'read-notification-nonce' ) ) {
+	if ( false === LunaNonces::verify( $_POST['_nonce'], 'read-notification-nonce' ) ) {
 		$response['nonces_expired'] = true;
 		luna_send_json( $response );
 	}
@@ -79,7 +79,7 @@ function luna_ajax_trash_notification() {
 		luna_send_json_error( -1 );
 
 	$response = array();
-	if ( false === luna_verify_nonce( $_POST['_nonce'], 'trash-notification-nonce' ) ) {
+	if ( false === LunaNonces::verify( $_POST['_nonce'], 'trash-notification-nonce' ) ) {
 		$response['nonces_expired'] = true;
 		luna_send_json( $response );
 	}
