@@ -560,7 +560,7 @@ function generate_avatar_markup($user_id) {
 }
 
 // New version of the above
-function draw_user_avatar($user_id, $class) {
+function draw_user_avatar($user_id, $class = '') {
 	global $luna_config;
 
 	$filetypes = array('jpg', 'gif', 'png');

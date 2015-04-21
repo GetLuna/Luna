@@ -28,7 +28,7 @@ if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_pm'] == '0')
 require FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
 
 // User block
-$avatar_user_card = draw_user_avatar($luna_user['id'], 'visible-lg-block');
+$avatar_user_card = draw_user_avatar($luna_user['id']);
 
 // Page ?
 $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUEST['p']);

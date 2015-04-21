@@ -16,36 +16,19 @@ if (!defined('FORUM'))
 	load_me_nav('settings');
 ?>
 </div>
-<div class="col-sm-9 profile">
+<div class="col-sm-9">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#settings-nav">
-				<span class="sr-only"><?php echo $lang['Toggle navigation'] ?></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a href="settings.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-cogs"></span> <?php echo $lang['Settings'] ?></a>
-		</div>
-		<div class="collapse navbar-collapse" id="settings-nav">
-			<ul class="navbar-form navbar-right">
-				<div class="btn-compose">
-					<button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button>
-				</div>
-			</ul>
-		</div>
-	</nav>
+	<h2 class="profile-settings-head">Settings<span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
 	<div role="tabpanel">
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
-			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><?php echo $lang['Personalize'] ?></a></li>
-			<li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab"><?php echo $lang['Message'] ?></a></li>
-			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><?php echo $lang['Contact'] ?></a></li>
-			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab"><?php echo $lang['Threads'] ?></a></li>
-			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><?php echo $lang['Time'] ?></a></li>
+			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab">Personalize</a></li>
+			<li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab">Email</a></li>
+			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
+			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab">Threads</a></li>
+			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab">Time</a></li>
 			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-			<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><?php echo $lang['Admin'] ?></a></li>
+			<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">Admin</a></li>
 			<?php endif; ?>
 		</ul>
 		<div class="tab-content">
@@ -99,14 +82,14 @@ if (!defined('FORUM'))
 					</div>
 					<hr />
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo $lang['Avatar'] ?><span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
+						<label class="col-sm-3 control-label">Avatar<span class="help-block"><?php echo $lang['Avatar info'] ?></span></label>
 						<div class="col-sm-9">
 							<?php echo $avatar_user ?>
 							<?php echo $avatar_field ?>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo $lang['Signature'] ?><span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
+						<label class="col-sm-3 control-label">Signature<span class="help-block"><?php echo $lang['Signature info'] ?></span></label>
 						<div class="col-sm-9">
 							<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
 							<span class="help-block"><?php printf($lang['Sig max size'], forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></span>
@@ -128,62 +111,13 @@ if (!defined('FORUM'))
 						<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
-<?php
-		$accents = forum_list_accents('main');
-
-		foreach ($accents as $temp) {
-			if ($luna_user['color_scheme'] == $temp)
-				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
-			else
-				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
-		}
-?>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Night mode</label>
-						<div class="col-sm-9">
-							<div class="radio">
-								<label>
-									<input type="radio" name="form[adapt_time]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
-									Never use night mode
-								</label>
-							</div>
-							<div class="radio">
-								<label>
-									<input type="radio" name="form[adapt_time]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
-									Always use night mode
-								</label>
-							</div>
-							<div class="radio">
-								<label>
-									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
-									Enable night mode automaticaly
+								<label class="btn btn-primary color-accent accent-blue<?php if ($luna_user['color_scheme'] == '1') echo ' active' ?>">
+									<input type="radio" name="form[color_scheme]" id="blue" value="1"<?php if ($luna_user['color_scheme'] == '1') echo ' checked' ?>>
 								</label>
 							</div>
 						</div>
 					</div>
-					<hr />
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Backstage<?php echo $lang['Color'] ?></label>
-						<div class="col-sm-9">
-							<div class="btn-group accent-group" data-toggle="buttons">
 <?php
-		$accents = forum_list_accents('back');
-
-		foreach ($accents as $temp) {
-			if ($luna_user['accent'] == $temp)
-				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
-			else
-				echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'"></label>';
-		}
-?>
-							</div>
-						</div>
-					</div>
-<?php
-
 $languages = forum_list_langs();
 
 // Only display the language selection box if there's more than one language available
@@ -210,20 +144,6 @@ if (count($languages) > 1) {
 			</div>
 			<div role="tabpanel" class="tab-pane" id="email">
 				<fieldset class="form-horizontal form-setting">
-					<?php if ($luna_config['o_pms_enabled'] == 1) { ?>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo $lang['Inbox'] ?></label>
-						<div class="col-sm-9">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="form[use_pm]" value="1"<?php if ($user['use_pm'] == '1') echo ' checked' ?> />
-									<?php echo $lang['Use Inbox info'] ?>
-								</label>
-							</div>
-						</div>
-					</div>
-					<hr />
-					<?php } ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Email setting info'] ?></label>
 						<div class="col-sm-9">

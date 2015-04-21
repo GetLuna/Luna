@@ -35,7 +35,7 @@ $user_personality = array();
 $user_username = luna_htmlspecialchars($user['username']);
 $user_usertitle = get_title($user);
 $avatar_field = generate_avatar_markup($id);
-$avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
+$avatar_user_card = draw_user_avatar($id);
 
 $user_title_field = get_title($user);
 $user_personality[] = '<b>'.$lang['Title'].':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);

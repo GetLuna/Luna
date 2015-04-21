@@ -235,6 +235,7 @@ $lang = array(
 
 'post'							=>	'post',
 'topic'							=>	'topic',
+'Topic'							=>	'Topic',
 'signature'						=>	'signature',
 
 // Language for frontend

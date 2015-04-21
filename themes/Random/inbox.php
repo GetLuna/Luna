@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 	load_me_nav('inbox');
 ?>
 </div>
-<div class="col-sm-9 profile">
+<div class="col-sm-9">
 	<?php load_inbox_nav('inbox'); ?>
 	<p><span class="pages-label"><?php echo paginate($num_pages, $page, 'inbox.php?') ?></span></p>
 	<form method="post" action="inbox.php">
@@ -27,13 +27,12 @@ if (!defined('FORUM'))
 					<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php echo $lang['Mark as unread select'] ?></button>
                 </div>
                 <div class="btn-group">
-					<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></a>
-					<?php include load_page('inbox-delete-post.php'); ?>
+					<button type="submit" name="delete_multiple" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></button>
                 </div>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Inbox'] ?></h3>
+					<h3 class="panel-title">Inbox messages</h3>
 				</div>
 				<input type="hidden" name="box" value="0" />
 				<table class="table">
