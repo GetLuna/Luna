@@ -18,7 +18,24 @@ if (!defined('FORUM'))
 </div>
 <div class="col-sm-9 profile">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
-	<h2 class="profile-settings-head"><?php echo $lang['Settings'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#settings-nav">
+				<span class="sr-only"><?php echo $lang['Toggle navigation'] ?></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="settings.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-cogs"></span> <?php echo $lang['Settings'] ?></a>
+		</div>
+		<div class="collapse navbar-collapse" id="settings-nav">
+			<ul class="navbar-form navbar-right">
+				<div class="btn-compose">
+					<button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button>
+				</div>
+			</ul>
+		</div>
+	</nav>
 	<div role="tabpanel">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
