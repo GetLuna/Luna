@@ -1,5 +1,5 @@
 /* Accent 7 - Yellow */
-.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	background-color: #ffcb1a;
 }
 
@@ -11,7 +11,7 @@
 	background-color: #ffa11a;
 }
 
-.panel-default .panel-heading {
+.panel-default .panel-heading, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	border-color: #ffcb1a;
 }
 

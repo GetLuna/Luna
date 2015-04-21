@@ -1,5 +1,5 @@
 /* Accent 6 - Ao */
-.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	background-color: #08893e;
 }
 
@@ -11,7 +11,7 @@
 	background-color: #016a2d;
 }
 
-.panel-default .panel-heading {
+.panel-default .panel-heading, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 	border-color: #08893e;
 }
 

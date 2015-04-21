@@ -185,6 +185,12 @@ label .help-block {
 	margin-bottom: 17px;
 }
 
+@media all and (max-width:767px) {
+	.jumboheader {
+		margin-bottom: 0;
+	}
+}
+
 .jumboheader h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -247,8 +253,8 @@ h3.panel-title {
 	border: none;
 }
 
-.panel-default .panel-heading {
-	color: #fff;
+.panel-default .panel-heading, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+color: #fff;
 	background-color: #1f62b0;
 	border-bottom-color: #1f62b0;
 }
