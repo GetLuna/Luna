@@ -38,7 +38,7 @@ if (defined('PUN'))
 require FORUM_ROOT.'include/functions.php';
 
 // Load the security functions
-require FORUM_ROOT.'include/security.php';
+require FORUM_ROOT.'include/class-luna-nonces.php';
 
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';

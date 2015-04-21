@@ -31,10 +31,10 @@ if (!defined('FORUM'))
 		<script src="include/js/luna-notifications.js"></script>
 		<script type="text/javascript">
 			_nonces = {
-				heartbeat:  '<?php echo luna_create_nonce( 'heartbeat-nonce' ); ?>',
-				fetchNotif: '<?php echo luna_create_nonce( 'fetch-notifications-nonce' ); ?>',
-				trashNotif: '<?php echo luna_create_nonce( 'trash-notification-nonce' ); ?>',
-				readNotif:  '<?php echo luna_create_nonce( 'read-notification-nonce' ); ?>',
+				heartbeat:  '<?php echo LunaNonces::create( 'heartbeat-nonce' ); ?>',
+				fetchNotif: '<?php echo LunaNonces::create( 'fetch-notifications-nonce' ); ?>',
+				trashNotif: '<?php echo LunaNonces::create( 'trash-notification-nonce' ); ?>',
+				readNotif:  '<?php echo LunaNonces::create( 'read-notification-nonce' ); ?>',
 			};
 			ajaxurl = '<?php echo get_base_url() . '/ajax.php'; ?>';
 		</script>
