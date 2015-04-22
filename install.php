@@ -283,7 +283,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Server hostname', 'luna') ?><span class="help-block"><?php _e('Where's the server?', 'luna') ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Server hostname', 'luna') ?><span class="help-block"><?php _e('Where\'s the server?', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
 								</div>

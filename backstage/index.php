@@ -112,8 +112,8 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-sm-4">
-				<p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We're ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
-				<p><?php _e('If you're done, you can click on "Got it" in the upper right corner of this panel to disable this field.', 'luna') ?></p>
+				<p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
+				<p><?php _e('If you\'re done, you can click on "Got it" in the upper right corner of this panel to disable this field.', 'luna') ?></p>
 				<div class="list-group">
 					<a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
 				</div>

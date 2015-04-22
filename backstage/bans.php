@@ -42,13 +42,13 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		// Make sure we're not banning an admin or moderator
 		if (isset($group_id)) {
 			if ($group_id == FORUM_ADMIN)
-				message_backstage(sprintf(__('The user %s is an administrator and can't be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is an administrator and can\'t be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 			$is_moderator_group = $db->result($result);
 
 			if ($is_moderator_group)
-				message_backstage(sprintf(__('The user %s is a moderator and can't be banned. If you want to ban a moderator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is a moderator and can\'t be banned. If you want to ban a moderator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 		}
 
 		// If we have a $user_id, we can try to find the last known IP of that user
@@ -169,13 +169,13 @@ elseif (isset($_POST['add_edit_ban'])) {
 			$group_id = $db->result($result);
 
 			if ($group_id == FORUM_ADMIN)
-				message_backstage(sprintf(__('The user %s is an administrator and can't be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is an administrator and can\'t be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 			$is_moderator_group = $db->result($result);
 
 			if ($is_moderator_group)
-				message_backstage(sprintf(__('The user %s is a moderator and can't be banned. If you want to ban a moderator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is a moderator and can\'t be banned. If you want to ban a moderator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 		}
 	}
 

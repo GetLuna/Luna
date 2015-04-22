@@ -193,7 +193,7 @@ require 'header.php';
 		<div class="panel-body">
 			<input type="hidden" name="action" value="notiprune" />
 			<fieldset>
-				<p><?php printf(__('It's recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
+				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
 					<div class="col-sm-9">
@@ -223,7 +223,7 @@ require 'header.php';
 		<div class="panel-body">
 			<input type="hidden" name="action" value="prune" />
 			<fieldset>
-				<p><?php printf(__('It's recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
+				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a topic must be to be pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
@@ -281,7 +281,7 @@ require 'header.php';
 		</div>
 		<div class="panel-body">
 			<fieldset>
-				<p><?php printf(__('It's recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
+				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Prune by', 'luna') ?><span class="help-block"><?php _e('What should we count to prune?', 'luna') ?></span></label>
 					<div class="col-sm-9">

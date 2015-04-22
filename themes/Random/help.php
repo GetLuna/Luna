@@ -65,14 +65,14 @@ if (!defined('FORUM'))
 				<p><code>[quote=James]<?php _e('This is the text I want to quote.', 'luna') ?>[/quote]</code></p>
 				<p><?php _e('produces a quote box like this:', 'luna') ?></p>
 				<blockquote><footer><cite>James <?php _e('wrote', 'luna') ?></cite></footer><p><?php _e('This is the text I want to quote.', 'luna') ?></p></blockquote>
-				<p><?php _e('If you don't want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
+				<p><?php _e('If you don\'t want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="code">
 				<p><?php _e('When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.', 'luna') ?></p>
 				<p><code>[code]<?php _e('This is some code.', 'luna') ?>[/code]</code></p>
 				<p><?php _e('produces a code box like this:', 'luna') ?></p>
 				<pre><code><?php _e('This is some code.', 'luna') ?></code></pre>
-				<p><?php _e('You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can't be on the same line as <code>[code]</code>.', 'luna') ?></p>
+				<p><?php _e('You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>.', 'luna') ?></p>
 				<p><pre>
 [code]
 [[php]]	
@@ -143,7 +143,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 		<div class="tab-content">
 		  <div class="tab-pane active" id="forum">
                 <h3><?php _e('What do the labels in front of topic titles mean?', 'luna') ?></h3>
-                <p><?php _e('You'll see that some of the topics are labeled, different labels have different meanings.', 'luna') ?></p>
+                <p><?php _e('You\'ll see that some of the topics are labeled, different labels have different meanings.', 'luna') ?></p>
 				<table class="table">
                 	<thead>
                         <tr>
@@ -154,15 +154,15 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                     <tbody>
                         <tr>
                             <td><span class="label label-success"><?php _e('Sticky', 'luna') ?></span></td>
-                            <td><?php _e('Sticky topics are usually important topics which you should read. It's worth it to take a look there.', 'luna') ?></td>
+                            <td><?php _e('Sticky topics are usually important topics which you should read. It\'s worth it to take a look there.', 'luna') ?></td>
                         </tr>
                         <tr>
                             <td><span class="label label-danger"><?php _e('Closed', 'luna') ?></span></td>
-                            <td><?php _e('When a you see a closed label, it means you can't post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though.', 'luna') ?></td>
+                            <td><?php _e('When a you see a closed label, it means you can\'t post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though.', 'luna') ?></td>
                         </tr>
                         <tr>
                             <td><span class="label label-info"><?php _e('Moved', 'luna') ?></span></td>
-                            <td><?php _e('This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won't show any topic stats anymore.', 'luna') ?></td>
+                            <td><?php _e('This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won\'t show any topic stats anymore.', 'luna') ?></td>
                         </tr>
                         <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
                         <tr>
@@ -174,19 +174,19 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                 </table>
 				<h3><?php _e('Smilies, signatures, avatars and images are not visible?', 'luna') ?></h3>
 				<p><?php _e('You can change the behavior of the topic view in your profile settings. There you can enable smilies, signatures, avatars and images in posts, but they should be enabled by default unless your forum admin has disabled those features.', 'luna') ?></p>
-				<h3><?php _e('Why can't I see any topics or forums?', 'luna') ?></h3>
+				<h3><?php _e('Why can\'t I see any topics or forums?', 'luna') ?></h3>
 				<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="profile">
-				<h3><?php _e('Why can't I see any profiles?', 'luna') ?></h3>
+				<h3><?php _e('Why can\'t I see any profiles?', 'luna') ?></h3>
 				<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
-				<h3><?php _e('My profile doesn't contain as much as others?', 'luna') ?></h3>
+				<h3><?php _e('My profile doesn\'t contain as much as others?', 'luna') ?></h3>
 				<p><?php _e('You\'re profile will only display fields that are enabled and filled in on your profile personality page. You might want to see if you missed some fields.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="searching">
 				<h3><?php _e('Are there more options to search?', 'luna') ?></h3>
-				<p><?php _e('When you go to the search page, you'll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin.', 'luna') ?></p>
-				<h3><?php _e('Why can't search in more then 1 forum at once?', 'luna') ?></h3>
+				<p><?php _e('When you go to the search page, you\'ll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin.', 'luna') ?></p>
+				<h3><?php _e('Why can\'t search in more then 1 forum at once?', 'luna') ?></h3>
 				<p><?php _e('You might not have the correct permissions to do so, ask the forums administrator for more help.', 'luna') ?></p>
 			</div>
 		</div>
@@ -209,18 +209,18 @@ if ($luna_user['is_admmod']) {
 		<div class="tab-content">
 			<div class="tab-pane active" id="forums">
 				<h3><?php _e('How do I moderate a forum?', 'luna') ?></h3>
-				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once.', 'luna') ?></p>
+				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="topics">
 				<h3><?php _e('How do I moderate a topic?', 'luna') ?></h3>
-				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once.', 'luna') ?></p>
+				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once.', 'luna') ?></p>
 				<p><?php _e('Next to the "Moderate topic" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="users">
 				<h3><?php _e('How do I moderate an user?', 'luna') ?></h3>
-				<p><?php _e('Moderating options are available in the users profile. You can find the moderation options under "Administration" in the users profile menu. Those features aren't available for all moderators.', 'luna') ?></p>
+				<p><?php _e('Moderating options are available in the users profile. You can find the moderation options under "Administration" in the users profile menu. Those features aren\'t available for all moderators.', 'luna') ?></p>
 				<p><?php _e('The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions.', 'luna') ?></p>
-				<p><?php _e('Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better off with the advanced user management features in the Backstage.', 'luna') ?></p>
+				<p><?php _e('Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you\'re probably better off with the advanced user management features in the Backstage.', 'luna') ?></p>
 			</div>
 		</div>
 	</div>

@@ -150,7 +150,7 @@ if (isset($_GET['saved']))
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?><span class="help-block"><?php _e('What's this board about?', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?><span class="help-block"><?php _e('What\'s this board about?', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
 					</div>
@@ -271,7 +271,7 @@ if (isset($_GET['saved']))
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Online timeout', 'luna') ?><span class="help-block"><?php _e('Time before someone isn't online anymore', 'luna') ?></span>
+					<label class="col-sm-3 control-label"><?php _e('Online timeout', 'luna') ?><span class="help-block"><?php _e('Time before someone isn\'t online anymore', 'luna') ?></span>
 </label>
 					<div class="col-sm-9">
 						<div class="input-group">
@@ -310,7 +310,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Duration to cache feeds', 'luna') ?><span class="help-block"><?php _e('Reduce sources by caching feeds', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<select class="form-control" name="form[feed_ttl]">
-							<option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') echo ' selected'; ?>><?php _e('Don't cache', 'luna') ?></option>
+							<option value="0"<?php if ($luna_config['o_feed_ttl'] == '0') echo ' selected'; ?>><?php _e('Don\'t cache', 'luna') ?></option>
 <?php
 
 		$times = array(5, 15, 30, 60);

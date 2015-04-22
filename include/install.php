@@ -80,7 +80,7 @@ class Installer {
 		elseif (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
 			$alerts[] = __('Usernames may not be in the form of an IP address.', 'luna');
 		elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
-			$alerts[] = __('Usernames may not contain all the characters ', " and [ or ] at once.', 'luna');
+			$alerts[] = __('Usernames may not contain all the characters \', " and [ or ] at once.', 'luna');
 		elseif (preg_match('%(?:\[/?(?:b|u|i|h|colou?r|quote|code|img|url|email|list)\]|\[(?:code|quote|list)=)%i', $username))
 			$alerts[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses.', 'luna');
 	
@@ -100,11 +100,11 @@ class Installer {
 	
 		$languages = forum_list_langs();
 		if (!in_array($default_lang, $languages))
-			$alerts[] = __('The default language chosen doesn't seem to exist.', 'luna');
+			$alerts[] = __('The default language chosen doesn\'t seem to exist.', 'luna');
 	
 		$styles = forum_list_styles();
 		if (!in_array($default_style, $styles))
-			$alerts[] = __('The default style chosen doesn't seem to exist.', 'luna');
+			$alerts[] = __('The default style chosen doesn\'t seem to exist.', 'luna');
 			
 		return $alerts;
 	}
@@ -1448,7 +1448,7 @@ class Installer {
 			'o_webmaster_email'			=> $email,
 			'o_forum_subscriptions'		=> 1,
 			'o_topic_subscriptions'		=> 1,
-			'o_first_run_message'		=> __('Wow, it's great to have you here, welcome and thanks for joining us. We've set up your account and you're ready to go. Though we like to point out some actions you might want to do first.', 'luna'),
+			'o_first_run_message'		=> __('Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.', 'luna'),
 			'o_show_first_run'			=> 1,
 			'o_first_run_guests'		=> 1,
 			'o_first_run_backstage'		=> 0,

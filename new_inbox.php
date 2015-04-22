@@ -136,7 +136,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		
 	// Check users boxes
 	if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_pm_limit'])
-		$errors[] = __('Can't save message, your boxes are full.', 'luna');
+		$errors[] = __('Can\'t save message, your boxes are full.', 'luna');
 	
 	// Build receivers list
 	$p_destinataire = isset($_POST['p_username']) ? luna_trim($_POST['p_username']) : '';
@@ -187,7 +187,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			elseif ($destinataires[$i]['g_id'] > FORUM_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
 				$errors[] = sprintf(__('%s inbox is full, you can not send you message to this user.', 'luna'), luna_htmlspecialchars($destinataire));	
 		} else
-			$errors[] = sprintf(__('There's no user with the username "%s".', 'luna'), luna_htmlspecialchars($destinataire));
+			$errors[] = sprintf(__('There\'s no user with the username "%s".', 'luna'), luna_htmlspecialchars($destinataire));
 		$i++;
 	}
 

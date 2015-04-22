@@ -24,11 +24,11 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	} else { // We are editing a group
 		$group_id = intval($_GET['edit_group']);
 		if ($group_id < 1)
-			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
 		$result = $db->query('SELECT * FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch user group info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		$group = $db->fetch_assoc($result);
 
@@ -73,7 +73,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked' ?> tabindex="5" />
-								<?php echo __('In order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile.', 'luna') ?>
+								<?php echo __('In order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -351,7 +351,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 	<?php endif; endif; ?>
-	<?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo __('Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile.', 'luna') ?></p>
+	<?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo __('Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?></p>
 	<?php endif; ?>	
 			</fieldset>
 		</div>
@@ -438,12 +438,12 @@ elseif (isset($_POST['set_default_group'])) {
 
 	// Make sure it's not the admin or guest groups
 	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
-		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Make sure it's not a moderator group
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_id='.$group_id.' AND g_moderator=0') or error('Unable to check group moderator status', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
-		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$group_id.' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
@@ -463,7 +463,7 @@ elseif (isset($_GET['del_group'])) {
 	
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
-		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Make sure we don't remove the default group
 	if ($group_id == $luna_config['o_default_user_group'])

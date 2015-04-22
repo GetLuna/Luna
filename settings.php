@@ -421,7 +421,7 @@ To change your email address, please visit the following page:
 
 		luna_mail($new_email, $mail_subject, $mail_message);
 
-		message(__('An email has been sent to the specified address with instructions on how to activate the new email address. If it doesn't arrive you can contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
+		message(__('An email has been sent to the specified address with instructions on how to activate the new email address. If it doesn\'t arrive you can contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Change email address', 'luna'));
@@ -452,7 +452,7 @@ To change your email address, please visit the following page:
 			switch ($uploaded_file['error']) {
 				case 1: // UPLOAD_ERR_INI_SIZE
 				case 2: // UPLOAD_ERR_FORM_SIZE
-					message(__('The selected file was too large to upload. The server didn't allow the upload.', 'luna'));
+					message(__('The selected file was too large to upload. The server didn\'t allow the upload.', 'luna'));
 					break;
 
 				case 3: // UPLOAD_ERR_PARTIAL

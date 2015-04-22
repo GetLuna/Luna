@@ -142,7 +142,7 @@ if (isset($_GET['saved']))
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The emoticons and emojis are shown, don't go above 29 pixels when using normal emoticons', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The emoticons and emojis are shown, don\'t go above 29 pixels when using normal emoticons', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />

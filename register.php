@@ -231,7 +231,7 @@ Login at <login_url> to activate the account.
 	
 				luna_mail($email1, $mail_subject, $mail_message);
 	
-				message(__('Thank you for registering. Your password has been sent to the specified address. If it doesn't arrive you can contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
+				message(__('Thank you for registering. Your password has been sent to the specified address. If it doesn\'t arrive you can contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 			}
 	
 			luna_setcookie($new_uid, $password_hash, time() + $luna_config['o_timeout_visit']);

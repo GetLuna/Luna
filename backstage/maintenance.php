@@ -210,7 +210,7 @@ if (isset($_GET['cache_cleared']))
 		<div class="panel-body">
 			<input type="hidden" name="action" value="rebuild" />
 			<fieldset>
-				<p><?php _e('If you changes something about topics and posts in the database you should rebuild the search index. It's recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!', 'luna') ?></p>
+				<p><?php _e('If you changes something about topics and posts in the database you should rebuild the search index. It\'s recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!', 'luna') ?></p>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Posts per cycle', 'luna') ?><span class="help-block"><?php _e('Number of posts per pageview, this prevents a timeout, 300 recommended', 'luna') ?></span></label>
 					<div class="col-sm-9">
