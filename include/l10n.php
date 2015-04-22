@@ -46,23 +46,24 @@ function __($text, $domain = 'default') {
 	return luna_translate($text, $domain);
 }
 
+function _e($text, $domain = 'default') {
+	echo luna_translate($text, $domain);
+}
+
 function _n($single, $plural, $number, $domain = 'default') {
 
 	$translations = load_translations($domain);
 	$translation = $translations->translate_plural($single, $plural, $number);
 
 	return $translation;
-	//return ngettext($translation);
 }
 
 function luna_translate($text, $domain = 'default') {
 
 	$translations = load_translations($domain);
-	//print_r( $translations );
 	$translations = $translations->translate($text);
 
 	return $translations;
-	//return gettext($translations);
 }
 
 function load_translations($domain) {
