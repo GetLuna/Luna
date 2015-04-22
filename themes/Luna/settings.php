@@ -16,9 +16,26 @@ if (!defined('FORUM'))
 	load_me_nav('settings');
 ?>
 </div>
-<div class="col-sm-9">
+<div class="col-sm-9 profile">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
-	<h2 class="profile-settings-head"><?php echo $lang['Settings'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h2>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#settings-nav">
+				<span class="sr-only"><?php echo $lang['Toggle navigation'] ?></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="settings.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-cogs"></span> <?php echo $lang['Settings'] ?></a>
+		</div>
+		<div class="collapse navbar-collapse" id="settings-nav">
+			<ul class="navbar-form navbar-right">
+				<div class="btn-compose">
+					<button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button>
+				</div>
+			</ul>
+		</div>
+	</nav>
 	<div role="tabpanel">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
@@ -107,14 +124,13 @@ if (!defined('FORUM'))
 			</div>
 			<div role="tabpanel" class="tab-pane" id="personalize">
 				<fieldset class="form-horizontal form-setting">
-<?php
-$accents = forum_list_accents('main');
-?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
 <?php
+		$accents = forum_list_accents('main');
+
 		foreach ($accents as $temp) {
 			if ($luna_user['color_scheme'] == $temp)
 				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
@@ -148,15 +164,14 @@ $accents = forum_list_accents('main');
 							</div>
 						</div>
 					</div>
-<?php
-$accents = forum_list_accents('back');
-?>
 					<hr />
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Backstage<?php echo $lang['Color'] ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
 <?php
+		$accents = forum_list_accents('back');
+
 		foreach ($accents as $temp) {
 			if ($luna_user['accent'] == $temp)
 				echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[accent]" id="'.$temp.'" value="'.$temp.'" checked></label>';
@@ -304,11 +319,11 @@ if (count($languages) > 1) {
 			</div>
 			<div role="tabpanel" class="tab-pane" id="threads">
 				<fieldset class="form-horizontal form-setting">
-					<?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
+					<?php if ($luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php echo $lang['Post display'] ?></label>
 							<div class="col-sm-9">
-								<?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1'): ?>
+								<?php if ($luna_config['o_smilies_sig'] == '1'): ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />

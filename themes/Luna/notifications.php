@@ -15,8 +15,12 @@ if (!defined('FORUM'))
 	load_me_nav('notifications');
 ?>
 </div>
-<div class="col-sm-9">
-	<h2 class="profile-settings-head"><?php echo $lang['Notifications'] ?></h2>
+<div class="col-sm-9 profile">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a href="notifications.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-circle-o"></span> <?php echo $lang['Notifications'] ?></a>
+		</div>
+	</nav>
 	<div class="list-group">
 		<h3><?php echo $lang['New notifications'] ?><span class="pull-right"><a href="notifications.php?id=2&action=readnoti" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Mark as seen'] ?></a></span></h3>
 		<?php echo $not ?>

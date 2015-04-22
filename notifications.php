@@ -32,7 +32,7 @@ $user = $db->fetch_assoc($result);
 
 $user_username = luna_htmlspecialchars($user['username']);
 $avatar_field = generate_avatar_markup($id);
-$avatar_user_card = draw_user_avatar($id, 'visible-lg-block');
+$avatar_user_card = draw_user_avatar($id);
 
 if ($action == 'readnoti') {
 	$db->query('UPDATE '.$db->prefix.'notifications SET viewed = 1 WHERE user_id = '.$id.' AND viewed = 0') or error('Unable to update the notification status', __FILE__, __LINE__, $db->error());
