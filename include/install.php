@@ -1416,7 +1416,6 @@ class Installer {
 			'o_show_user_info'			=> 1,
 			'o_show_post_count'			=> 1,
 			'o_signatures'				=> 1,
-			'o_smilies'					=> 1,
 			'o_smilies_sig'				=> 1,
 			'o_make_links'				=> 1,
 			'o_default_lang'			=> $default_lang,
