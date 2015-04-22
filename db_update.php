@@ -53,6 +53,8 @@ require FORUM_ROOT.'include/general_functions.php';
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
 
+
+
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
 
@@ -112,6 +114,19 @@ $db->set_names('utf8');
 $result = $db->query('SELECT * FROM '.$db->prefix.'config') or error('Unable to fetch config.', __FILE__, __LINE__, $db->error());
 while ($cur_config_item = $db->fetch_row($result))
 	$luna_config[$cur_config_item[0]] = $cur_config_item[1];
+
+// Load l10n
+require_once FORUM_ROOT.'include/pomo/MO.php';
+require_once FORUM_ROOT.'include/l10n.php';
+
+/*if (isset($luna_user['language'])) {
+	$luna_locale = $luna_user['language'];
+} else {
+	$luna_locale = 'fr_FR';
+}*/
+$luna_locale = 'fr_FR';
+
+load_textdomain('luna', FORUM_ROOT.'lang/'.$luna_locale.'.mo');
 
 // Load language file
 $default_lang = $luna_config['o_default_lang'];
