@@ -6,20 +6,20 @@ if (!defined('FORUM'))
 
 if ($luna_user['first_run'] == '0') {
 ?>
-<div class="first-run panel panel-default hidden-xs">
+<div class="first-run panel panel-default">
 	<div class="row first-run-content">
-		<div class="col-md-4 col-sm-6 first-run-profile">
+		<div class="col-md-4 col-sm-6 col-xs-5 first-run-profile">
 			<h3 class="first-run-title"><?php echo sprintf($lang['Hi there'], luna_htmlspecialchars($luna_user['username'])) ?></h3>
 			<span class="first-run-avatar thumbnail">
 				<?php echo $user_avatar ?>
 			</span>
 		</div>
 		<?php if (!$luna_user['is_guest']) { ?>
-		<div class="col-md-4 hidden-sm">
+		<div class="col-md-4 hidden-sm hidden-xs">
 			<h3 class="first-run-forumtitle"><?php echo sprintf($lang['Welcome to'], $luna_config['o_board_title']) ?></h3>
 			<p><?php echo $luna_config['o_first_run_message']; ?></p>
 		</div>
-		<div class="col-md-4 col-sm-6">
+		<div class="col-md-4 col-sm-6 col-xs-7">
 			<div class="list-group first-run-list">
 				<a href="settings.php" class="list-group-item"><?php echo $lang['Extend profile'] ?></a>
 				<a href="help.php" class="list-group-item"><?php echo $lang['Get help'] ?></a>
