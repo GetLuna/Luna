@@ -47,10 +47,10 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
 							<div class="row">
 								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_users() ?></div>
+									<div class="statistic-item"><?php total_users(); ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo $lang['No of users'] ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'User', 'Users', 1, 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
@@ -60,7 +60,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_topics() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'Topic', 'Topics', 10, 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>

@@ -151,6 +151,19 @@ $forum_date_formats = array($luna_config['o_date_format'], 'Y-m-d', 'Y-d-m', 'd-
 $luna_user = array();
 check_cookie($luna_user);
 
+// Load l10n
+require_once FORUM_ROOT.'include/pomo/MO.php';
+require_once FORUM_ROOT.'include/l10n.php';
+
+/*if (isset($luna_user['language'])) {
+	$luna_locale = $luna_user['language'];
+} else {
+	$luna_locale = 'fr_FR';
+}*/
+$luna_locale = 'fr_FR';
+
+load_textdomain('luna', FORUM_ROOT.'lang/'.$luna_locale.'.mo');
+
 // Attempt to load the language file
 if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php'))
 	include FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';

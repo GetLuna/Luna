@@ -76,7 +76,7 @@ if ($id != 0) {
 		$result = $db->query('SELECT f.forum_name, f.moderators, f.num_topics, f.sort_by, f.color, fp.post_topics, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
-		message($lang['Bad request'], false, '404 Not Found');
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
 	$cur_forum = $db->fetch_assoc($result);
 	
