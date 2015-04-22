@@ -22,11 +22,11 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $type = isset($_GET['type']) ? $_GET['type'] : null;
 $id = $luna_user['id'];
 if ($id < 2)
-	message($lang['Bad request'], false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 $result = $db->query('SELECT u.username, u.email, u.title, u.realname, u.url, u.facebook, u.msn, u.twitter, u.google, u.location, u.signature, u.disp_topics, u.disp_posts, u.email_setting, u.notify_with_post, u.auto_notify, u.show_smilies, u.show_img, u.show_img_sig, u.show_avatars, u.show_sig, u.timezone, u.dst, u.language, u.style, u.num_posts, u.last_post, u.registered, u.registration_ip, u.admin_note, u.date_format, u.time_format, u.last_visit, u.color_scheme, u.accent, g.g_id, g.g_user_title, g.g_moderator FROM '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id WHERE u.id='.$id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
-	message($lang['Bad request'], false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 $user = $db->fetch_assoc($result);
 
@@ -51,7 +51,7 @@ $result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE vi
 $num_not_unseen = $db->result($result);
 
 if ($num_not_unseen == '0')
-	$ind_not[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">'.$lang['No new notifications'].'</a>';
+	$ind_not[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">'.__('No new notifications', 'luna').'</a>';
 else {
 	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 0 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
@@ -64,7 +64,7 @@ $result = $db->query('SELECT COUNT(id) FROM '.$db_prefix.'notifications WHERE vi
 $num_not_seen = $db->result($result);
 
 if ($num_not_seen == '0')
-	$ind_not_seen[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">'.$lang['No new notifications'].'</a>';
+	$ind_not_seen[] = '<a class="list-group-item disabled" href="notifications.php?id='.$id.'">'.__('No new notifications', 'luna').'</a>';
 else {
 	$result = $db->query('SELECT * FROM '.$db_prefix.'notifications WHERE viewed = 1 AND user_id = '.$id.' ORDER BY time DESC') or error ('Unable to load notifications', __FILE__, __LINE__, $db->error());
 	while ($cur_notifi = $db->fetch_assoc($result)) {
@@ -76,7 +76,7 @@ else {
 $not = implode('', $ind_not);
 $not_seen = implode('', $ind_not_seen);
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.$lang['Profile']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'me');
 require load_page('header.php');
 

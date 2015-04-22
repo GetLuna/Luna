@@ -196,7 +196,7 @@ update_users_online();
 
 // Check to see if we logged in without a cookie being set
 if ($luna_user['is_guest'] && isset($_GET['login']))
-	message($lang['No cookie']);
+	message(__('You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website.', 'luna'));
 
 // The maximum size of a post, in bytes, since the field is now MEDIUMTEXT this allows ~16MB but lets cap at 1MB...
 if (!defined('FORUM_MAX_POSTSIZE'))

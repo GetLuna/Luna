@@ -12,29 +12,29 @@ function load_me_nav($page = '') {
 ?>
 <div class="hidden-xs">
 	<div class="list-group">
-		<a class="<?php if ($page == 'profile') echo 'active'; ?> list-group-item" href="profile.php?id=<?php echo $id ?>"><?php echo $lang['Profile'] ?></a>
+		<a class="<?php if ($page == 'profile') echo 'active'; ?> list-group-item" href="profile.php?id=<?php echo $id ?>"><?php _e('Profile', 'luna') ?></a>
 	</div>
 	<?php if ($luna_user['id'] == $id && !$luna_user['is_guest'] || ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')) || ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1'))): ?>
 		<div class="list-group">
 			<?php if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1'): ?>
-				<a class="<?php if ($page == 'inbox') echo 'active'; ?> list-group-item" href="inbox.php"><?php echo $lang['Inbox'] ?></a>
+				<a class="<?php if ($page == 'inbox') echo 'active'; ?> list-group-item" href="inbox.php"><?php _e('Inbox', 'luna') ?></a>
 			<?php endif; ?>
-			<a class="<?php if ($page == 'notifications') echo 'active'; ?> list-group-item" href="notifications.php"><?php echo $lang['Notifications'] ?></a>
+			<a class="<?php if ($page == 'notifications') echo 'active'; ?> list-group-item" href="notifications.php"><?php _e('Notifications', 'luna') ?></a>
 		</div>
 		<div class="list-group">
-			<a class="<?php if ($page == 'settings') echo 'active'; ?> list-group-item" href="settings.php?id=<?php echo $id ?>"><?php echo $lang['Settings'] ?></a>
+			<a class="<?php if ($page == 'settings') echo 'active'; ?> list-group-item" href="settings.php?id=<?php echo $id ?>"><?php _e('Settings', 'luna') ?></a>
 		</div>
 <?php endif; ?>
 </div>
 
 <ul class="nav nav-tabs visible-xs-block">
-	<li class="<?php if ($page == 'profile') echo 'active'; ?>"><a href="profile.php?id=<?php echo $id ?>"><?php echo $lang['Profile'] ?></a></li>
+	<li class="<?php if ($page == 'profile') echo 'active'; ?>"><a href="profile.php?id=<?php echo $id ?>"><?php _e('Profile', 'luna') ?></a></li>
 <?php if ($luna_user['id'] == $id && !$luna_user['is_guest'] || ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')) || ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1'))): ?>
 	<?php if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1'): ?>
-		<li class="<?php if ($page == 'inbox') echo 'active'; ?>"><a href="inbox.php"><?php echo $lang['Inbox'] ?></a></li>
+		<li class="<?php if ($page == 'inbox') echo 'active'; ?>"><a href="inbox.php"><?php _e('Inbox', 'luna') ?></a></li>
 	<?php endif; ?>
-	<li class="<?php if ($page == 'notifications') echo 'active'; ?>"><a href="notifications.php"><?php echo $lang['Notifications'] ?></a></li>
-	<li class="<?php if ($page == 'settings') echo 'active'; ?>"><a href="settings.php?id=<?php echo $id ?>"><?php echo $lang['Settings'] ?></a></li>
+	<li class="<?php if ($page == 'notifications') echo 'active'; ?>"><a href="notifications.php"><?php _e('Notifications', 'luna') ?></a></li>
+	<li class="<?php if ($page == 'settings') echo 'active'; ?>"><a href="settings.php?id=<?php echo $id ?>"><?php _e('Settings', 'luna') ?></a></li>
 <?php endif; ?>
 </ul>
 <?php 

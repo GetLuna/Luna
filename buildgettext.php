@@ -3,13 +3,13 @@
 include 'lang/English/language.php';
 
 $files = array(
-	/*'backstage/about.php',
+	'backstage/about.php',
 	'backstage/appearance.php',
 	'backstage/bans.php',
 	'backstage/board.php',
-	'backstage/censoring.php',*/
+	'backstage/censoring.php',
 	'backstage/database.php',
-	/*'backstage/email.php',
+	'backstage/email.php',
 	'backstage/features.php',
 	'backstage/footer.php',
 	'backstage/groups.php',
@@ -203,7 +203,7 @@ $files = array(
 	'userlist.php',
 	'viewforum.php',
 	'viewinbox.php',
-	'viewtopic.php'*/
+	'viewtopic.php'
 );
 
 $matches = array();

@@ -446,7 +446,7 @@ function check_bans() {
 
 		if ($is_banned) {
 			$db->query('DELETE FROM '.$db->prefix.'online WHERE ident=\''.$db->escape($luna_user['username']).'\'') or error('Unable to delete from online list', __FILE__, __LINE__, $db->error());
-			message($lang['Ban message'].' '.(($cur_ban['expire'] != '') ? $lang['Ban message 2'].' '.strtolower(format_time($cur_ban['expire'], true)).'. ' : '').(($cur_ban['message'] != '') ? $lang['Ban message 3'].'<br /><br /><strong>'.luna_htmlspecialchars($cur_ban['message']).'</strong><br /><br />' : '<br /><br />').$lang['Ban message 4'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
+			message(__('You are banned from this forum.', 'luna').' '.(($cur_ban['expire'] != '') ? __('The ban expires at the end of', 'luna').' '.strtolower(format_time($cur_ban['expire'], true)).'. ' : '').(($cur_ban['message'] != '') ? __('The administrator or moderator that banned you left the following message:', 'luna').'<br /><br /><strong>'.luna_htmlspecialchars($cur_ban['message']).'</strong><br /><br />' : '<br /><br />').__('Please direct any inquiries to the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 		}
 	}
 
@@ -474,21 +474,21 @@ function check_username($username, $exclude_id = null) {
 
 	// Validate username
 	if (luna_strlen($username) < 2)
-		$errors[] = $lang['Username too short'];
+		$errors[] = __('Usernames must be at least 2 characters long. Please choose another (longer) username.', 'luna');
 	elseif (luna_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
-		$errors[] = $lang['Username too long'];
-	elseif (!strcasecmp($username, 'Guest') || !utf8_strcasecmp($username, $lang['Guest']))
-		$errors[] = $lang['Username guest'];
+		$errors[] = __('Usernames must not be more than 25 characters long. Please choose another (shorter) username.', 'luna');
+	elseif (!strcasecmp($username, 'Guest') || !utf8_strcasecmp($username, __('Guest', 'luna')))
+		$errors[] = __('The username guest is reserved. Please choose another username.', 'luna');
 	elseif (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
-		$errors[] = $lang['Username IP'];
+		$errors[] = __('Usernames may not be in the form of an IP address. Please choose another username.', 'luna');
 	elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
-		$errors[] = $lang['Username reserved chars'];
+		$errors[] = __('Usernames may not contain all the characters \', " and [ or ] at once. Please choose another username.', 'luna');
 	elseif (preg_match('%(?:\[/?(?:b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|\*|topic|post|forum|user)\]|\[(?:img|url|quote|list)=)%i', $username))
-		$errors[] = $lang['Username BBCode'];
+		$errors[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username.', 'luna');
 
 	// Check username for any censored words
 	if ($luna_config['o_censoring'] == '1' && censor_words($username) != $username)
-		$errors[] = $lang['Username censor'];
+		$errors[] = __('The username you entered contains one or more censored words. Please choose a different username.', 'luna');
 
 	// Check that the username (or a too similar username) is not already registered
 	$query = (!is_null($exclude_id)) ? ' AND id!='.$exclude_id : '';
@@ -497,13 +497,13 @@ function check_username($username, $exclude_id = null) {
 
 	if ($db->num_rows($result)) {
 		$busy = $db->result($result);
-		$errors[] = $lang['Username dupe 1'].' '.luna_htmlspecialchars($busy).'. '.$lang['Username dupe 2'];
+		$errors[] = __('Someone is already registered with the username', 'luna').' '.luna_htmlspecialchars($busy).'. '.__('The username you entered is too similar. The username must differ from that by at least one alphanumerical character (a-z or 0-9). Please choose a different username.', 'luna');
 	}
 
 	// Check username for any banned usernames
 	foreach ($luna_bans as $cur_ban) {
 		if ($cur_ban['username'] != '' && utf8_strtolower($username) == utf8_strtolower($cur_ban['username'])) {
-			$errors[] = $lang['Banned username'];
+			$errors[] = __('The username you entered is banned in this forum. Please choose another username.', 'luna');
 			break;
 		}
 	}
@@ -622,9 +622,9 @@ function generate_page_title($page_title, $p = null) {
 	$page_title = array_reverse($page_title);
 
 	if ($p > 1)
-		$page_title[0] .= ' ('.sprintf($lang['Page'], forum_number_format($p)).')';
+		$page_title[0] .= ' ('.sprintf(__('Page %s', 'luna'), forum_number_format($p)).')';
 
-	$crumbs = implode($lang['Title separator'], $page_title);
+	$crumbs = implode(__(' / ', 'luna'), $page_title);
 
 	return $crumbs;
 }
@@ -875,13 +875,13 @@ function get_title($user) {
 		$user_title = luna_htmlspecialchars($user['title']);
 	// If the user is banned
 	elseif (in_array(utf8_strtolower($user['username']), $ban_list))
-		$user_title = $lang['Banned'];
+		$user_title = __('Banned', 'luna');
 	// If the user group has a default user title
 	elseif ($user['g_user_title'] != '')
 		$user_title = luna_htmlspecialchars($user['g_user_title']);
 	// If the user is a guest
 	elseif ($user['g_id'] == FORUM_GUEST)
-		$user_title = $lang['Guest'];
+		$user_title = __('Guest', 'luna');
 	else {
 		// Are there any ranks?
 		if ($luna_config['o_ranks'] == '1' && !empty($luna_ranks)) {
@@ -893,7 +893,7 @@ function get_title($user) {
 
 		// If the user didn't "reach" any rank (or if ranks are disabled), we assign the default
 		if (!isset($user_title))
-			$user_title = $lang['Member'];
+			$user_title = __('Member', 'luna');
 	}
 
 	return $user_title;
@@ -928,7 +928,7 @@ function paginate($num_pages, $cur_page, $link) {
 			$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p=1">1</a></li>';
 
 			if ($cur_page > 5)
-				$pages[] = '<li class="disabled"><span class="spacer">'.$lang['Spacer'].'</span></li>';
+				$pages[] = '<li class="disabled"><span class="spacer">'.__('…', 'luna').'</span></li>';
 		}
 
 		// Don't ask me how the following works. It just does, OK? :-)
@@ -943,7 +943,7 @@ function paginate($num_pages, $cur_page, $link) {
 
 		if ($cur_page <= ($num_pages-3)) {
 			if ($cur_page != ($num_pages-3) && $cur_page != ($num_pages-4))
-				$pages[] = '<li class="disabled"><span class="spacer">'.$lang['Spacer'].'</span></li>';
+				$pages[] = '<li class="disabled"><span class="spacer">'.__('…', 'luna').'</span></li>';
 
 			$pages[] = '<li><a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a></li>';
 		}
@@ -979,7 +979,7 @@ function simple_paginate($num_pages, $cur_page, $link) {
 			$pages[] = '<a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p=1">1</a>';
 
 			if ($cur_page > 5)
-				$pages[] = '<span class="spacer">'.$lang['Spacer'].'</span>';
+				$pages[] = '<span class="spacer">'.__('…', 'luna').'</span>';
 		}
 
 		// Don't ask me how the following works. It just does, OK? :-)
@@ -994,7 +994,7 @@ function simple_paginate($num_pages, $cur_page, $link) {
 
 		if ($cur_page <= ($num_pages-3)) {
 			if ($cur_page != ($num_pages-3) && $cur_page != ($num_pages-4))
-				$pages[] = '<span class="spacer">'.$lang['Spacer'].'</span>';
+				$pages[] = '<span class="spacer">'.__('…', 'luna').'</span>';
 
 			$pages[] = '<a'.(empty($pages) ? ' class="item1"' : '').' href="'.$link.'&amp;p='.$num_pages.'">'.forum_number_format($num_pages).'</a>';
 		}
@@ -1015,14 +1015,14 @@ function message($message, $no_back_link = false, $http_status = null) {
 		header('HTTP/1.1 ' . $http_status);
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Info']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Info', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'index');
 	require load_page('header.php');
 
 ?>
 
 <div class="container">
-	<h2 style="margin-top: 60px;"><?php echo $lang['A situation'] ?></h2>
+	<h2 style="margin-top: 60px;"><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
 	<p><?php echo $message ?></p>
 </div>
 <?php
@@ -1042,7 +1042,7 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 	if(!is_null($http_status))
 		header('HTTP/1.1 ' . $http_status);
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Info']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Info', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('info', 'info');
@@ -1050,7 +1050,7 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Info'] ?></h3>
+		<h3 class="panel-title"><?php _e('Info', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<p><?php echo $message ?></p>
@@ -1089,7 +1089,7 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 	global $luna_config, $lang, $luna_user, $forum_date_formats, $forum_time_formats;
 
 	if ($timestamp == '')
-		return $lang['Never'];
+		return __('Never', 'luna');
 
 	$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 	$timestamp += $diff;
@@ -1107,9 +1107,9 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 
 	if(!$no_text) {
 		if ($date == $today)
-			$date = $lang['Today'];
+			$date = __('Today', 'luna');
 		elseif ($date == $yesterday)
-			$date = $lang['Yesterday'];
+			$date = __('Yesterday', 'luna');
 	}
 
 	if ($date_only)
@@ -1127,7 +1127,7 @@ function format_time($timestamp, $date_only = false, $date_format = null, $time_
 function forum_number_format($number, $decimals = 0) {
 	global $lang;
 
-	return is_numeric($number) ? number_format($number, $decimals, $lang['lang_decimal_point'], $lang['lang_thousands_sep']) : $number;
+	return is_numeric($number) ? number_format($number, $decimals, __('.', 'luna'), __(',', 'luna')) : $number;
 }
 
 
@@ -1164,7 +1164,7 @@ function confirm_referrer($scripts, $error_msg = false) {
 
 	// There is no referrer
 	if (empty($_SERVER['HTTP_REFERER']))
-		message($error_msg ? $error_msg : $lang['Bad referrer']);
+		message($error_msg ? $error_msg : __('Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that "Base URL" is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.', 'luna'));
 
 	$referrer = parse_url(strtolower($_SERVER['HTTP_REFERER']));
 	// Remove www subdomain if it exists
@@ -1184,7 +1184,7 @@ function confirm_referrer($scripts, $error_msg = false) {
 
 	// Check the host and path match. Ignore the scheme, port, etc.
 	if ($referrer['host'] != $valid_host || !in_array($referrer['path'], $valid_paths))
-		message($error_msg ? $error_msg : $lang['Bad referrer']);
+		message($error_msg ? $error_msg : __('Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that "Base URL" is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation.', 'luna'));
 }
 
 
@@ -1567,7 +1567,7 @@ function file_size($size) {
 	for ($i = 0; $size > 1024; $i++)
 		$size /= 1024;
 
-	return sprintf($lang['Size unit '.$units[$i]], round($size, 2));
+	return sprintf(__('Size unit %s', 'luna'), $units[ round($size, 2) ]);
 }
 
 
@@ -1965,13 +1965,13 @@ function display_saved_queries() {
 ?>
 <div class="debug panel panel-warning">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Debug table'] ?></h3>
+		<h3 class="panel-title"><?php _e('Debug information', 'luna') ?></h3>
 	</div>
 	<table class="table table-bordered table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="col-xs-1"><?php echo $lang['Query times'] ?></th>
-				<th class="col-xs-11"><?php echo $lang['Query'] ?></th>
+				<th class="col-xs-1"><?php _e('Time (s)', 'luna') ?></th>
+				<th class="col-xs-11"><?php _e('Query', 'luna') ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -1992,7 +1992,7 @@ function display_saved_queries() {
 
 ?>
 			<tr>
-				<td colspan="2"><?php printf($lang['Total query time'], $query_time_total.' s') ?></td>
+				<td colspan="2"><?php printf(__('Total query time: %s', 'luna'), $query_time_total.' s') ?></td>
 			</tr>
 		</tbody>
 	</table>

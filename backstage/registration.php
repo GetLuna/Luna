@@ -13,7 +13,7 @@ require FORUM_ROOT.'include/common.php';
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
-	confirm_referrer('backstage/registration.php', $lang['Bad HTTP Referer message']);
+	confirm_referrer('backstage/registration.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 	
 	$form = array(
 		'regs_allow'			=> isset($_POST['form']['regs_allow']) ? '1' : '0',
@@ -27,12 +27,12 @@ if (isset($_POST['form_sent'])) {
 	if ($form['rules_message'] != '')
 		$form['rules_message'] = luna_linebreaks($form['rules_message']);
 	else {
-		$form['rules_message'] = $lang['Enter rules here'];
+		$form['rules_message'] = __('Enter your rules here.', 'luna');
 		$form['rules'] = '0';
 	}
 
 	if ($form['default_email_setting'] < 0 || $form['default_email_setting'] > 2)
-		message_backstage($lang['Bad request'], false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	foreach ($form as $key => $input) {
 		// Only update values that have changed
@@ -56,94 +56,94 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/registration.php?saved=true');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Registration']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Registration', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('settings', 'registration');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
 ?>
 <form class="form-horizontal" method="post" action="registration.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Registration'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Registration', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 			<input type="hidden" name="form_sent" value="1" />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Allow new label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Allow new registrations', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[regs_allow]" value="1" <?php if ($luna_config['o_regs_allow'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Allow new help'] ?>
+								<?php _e('Allow new users to be made by people.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Verify label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Verify registrations', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[regs_verify]" value="1" <?php if ($luna_config['o_regs_verify'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Verify help'] ?>
+								<?php _e('Send a random password to users to verify their email address.  ', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Report new label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Report new registrations', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[regs_report]" value="1" <?php if ($luna_config['o_regs_report'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Report new help'] ?>
+								<?php _e('Notify people on the mailing list when new user registers.  ', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Use rules label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('User forum rules', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[rules]" value="1" <?php if ($luna_config['o_rules'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Use rules help'] ?>
+								<?php _e('Require users to agree with the rules. This will enable a "Rules" panel in Help.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Rules label'] ?><span class="help-block"><?php echo $lang['Rules help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Enter your rules here', 'luna') ?><span class="help-block"><?php _e('Enter rules or useful information, required when rules are enabled', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<textarea class="form-control" name="form[rules_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_rules_message']) ?></textarea>
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['E-mail default label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Default email setting', 'luna') ?></label>
 					<div class="col-sm-9">
-						<span class="help-block"><?php echo $lang['E-mail default help'] ?></span>
+						<span class="help-block"><?php _e('Default privacy setting for new registrations', 'luna') ?></span>
 						<div class="radio">
 							<label>
 								<input type="radio" name="form[default_email_setting]" id="form_default_email_setting_0" value="0"<?php if ($luna_config['o_default_email_setting'] == '0') echo ' checked' ?> />
-								<?php echo $lang['Display e-mail label'] ?>
+								<?php _e('Display email address to other users.', 'luna') ?>
 							</label>
 						</div>
 						<div class="radio">
 							<label>
 								<input type="radio" name="form[default_email_setting]" id="form_default_email_setting_1" value="1"<?php if ($luna_config['o_default_email_setting'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Hide allow form label'] ?>
+								<?php _e('Hide email address but allow form e-mail.', 'luna') ?>
 							</label>
 						</div>
 						<div class="radio">
 							<label>
 								<input type="radio" name="form[default_email_setting]" id="form_default_email_setting_2" value="2"<?php if ($luna_config['o_default_email_setting'] == '2') echo ' checked' ?> />
-								<?php echo $lang['Hide both label'] ?>
+								<?php _e('Hide email address and disallow form email.', 'luna') ?>
 							</label>
 						</div>
 					</div>

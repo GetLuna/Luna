@@ -8,7 +8,7 @@ if (!defined('FORUM'))
 </div>
 <div class="jumbotron" style="background:#999;">
 	<div class="container">
-		<h2><?php echo $lang['Register'] ?></h2>
+		<h2><?php _e('Register', 'luna') ?></h2>
 	</div>
 </div>
 <div class="container">

@@ -21,7 +21,7 @@ if (isset($_POST['add_word'])) {
 	$replace_with = luna_trim($_POST['new_replace_with']);
 
 	if ($search_for == '')
-		message_backstage($lang['Must enter word message']);
+		message_backstage(__('You must enter a word to censor.', 'luna'));
 
 	$db->query('INSERT INTO '.$db->prefix.'censoring (search_for, replace_with) VALUES (\''.$db->escape($search_for).'\', \''.$db->escape($replace_with).'\')') or error('Unable to add censor word', __FILE__, __LINE__, $db->error());
 
@@ -44,7 +44,7 @@ elseif (isset($_POST['update'])) {
 	$replace_with = luna_trim($_POST['replace_with'][$id]);
 
 	if ($search_for == '')
-		message_backstage($lang['Must enter word message']);
+		message_backstage(__('You must enter a word to censor.', 'luna'));
 
 	$db->query('UPDATE '.$db->prefix.'censoring SET search_for=\''.$db->escape($search_for).'\', replace_with=\''.$db->escape($replace_with).'\' WHERE id='.$id) or error('Unable to update censor word', __FILE__, __LINE__, $db->error());
 
@@ -74,7 +74,7 @@ elseif (isset($_POST['remove'])) {
 	redirect('backstage/censoring.php');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Censoring']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Censoring', 'luna'));
 $focus_element = array('censoring', 'new_search_for');
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
@@ -86,19 +86,19 @@ require 'header.php';
 		<form id="censoring" method="post" action="censoring.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Add word subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_word" tabindex="3"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add word', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_word" tabindex="3"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 					<fieldset>
 					<div class="panel-body">
-						<p><?php echo $lang['Add word info'] ?></p>
+						<p><?php _e('Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted.', 'luna') ?></p>
 					</div>
 					<table class="table">
 						<tbody>
 							<tr>
-								<td><input type="text" class="form-control" placeholder="<?php echo $lang['Censored word label'] ?>" name="new_search_for" maxlength="60" tabindex="1" /></td>
+								<td><input type="text" class="form-control" placeholder="<?php _e('Censored word', 'luna') ?>" name="new_search_for" maxlength="60" tabindex="1" /></td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control" placeholder="<?php echo $lang['Replacement label'] ?>" name="new_replace_with" maxlength="60" tabindex="2" /></td>
+								<td><input type="text" class="form-control" placeholder="<?php _e('Replacement word', 'luna') ?>" name="new_replace_with" maxlength="60" tabindex="2" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -109,16 +109,16 @@ require 'header.php';
 	<div class="col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Edit remove words'] ?></h3>
+				<h3 class="panel-title"><?php _e('Manage words', 'luna') ?></h3>
 			</div>
 			<form id="censoring" method="post" action="censoring.php">
 				<fieldset>
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th class="col-xs-4"><?php echo $lang['Censored word label'] ?></th>
-								<th class="col-xs-4"><?php echo $lang['Replacement label'] ?></th>
-								<th class="col-xs-4"><?php echo $lang['Action'] ?></th>
+								<th class="col-xs-4"><?php _e('Censored word', 'luna') ?></th>
+								<th class="col-xs-4"><?php _e('Replacement word', 'luna') ?></th>
+								<th class="col-xs-4"><?php _e('Action', 'luna') ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -138,15 +138,15 @@ if ($db->num_rows($result)) {
 								</td>
 								<td>
 									<div class="btn-group">
-										<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update'] ?></button>
-										<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button>
+										<button class="btn btn-primary" type="submit" name="update[<?php echo $cur_word['id'] ?>]"><span class="fa fa-fw fa-check"></span> <?php _e('Update', 'luna') ?></button>
+										<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_word['id'] ?>]"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
 									</div>
 								</td>
 								</tr>
 <?php
 	}
 } else
-	echo "\t\t\t\t\t\t\t".'<tr><td colspan="3">'.$lang['No words in list'].'</td></tr>'."\n";
+	echo "\t\t\t\t\t\t\t".'<tr><td colspan="3">'.__('No censor words in list.', 'luna').'</td></tr>'."\n";
 
 ?>
 						</tbody>
