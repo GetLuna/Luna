@@ -5,10 +5,10 @@ msgstr ""
 "Project-Id-Version: Luna 1.1\n"
 "Report-Msgid-Bugs-To: http://getluna.org\n"
 "POT-Creation-Date: 2015-04-22 16:22+0100\n"
-"PO-Revision-Date: 2015-04-22 16:27+0100\n"
+"PO-Revision-Date: 2015-04-22 16:24+0100\n"
 "Last-Translator: Charlie MERLAND <charlie@caercam.org>\n"
 "Language-Team: Luna\n"
-"Language: French\n"
+"Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -295,7 +295,7 @@ msgstr ""
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you are simply "
 "not allowed to hang around here."
-msgstr "Mauvaise requête."
+msgstr ""
 
 #: ../backstage/menu.php:58 ../backstage/board.php:101
 #: ../backstage/board.php:485
@@ -784,9 +784,8 @@ msgstr ""
 #: ../backstage/users.php:725 ../backstage/users.php:812
 #: ../backstage/users.php:892 ../backstage/tools.php:133
 #: ../include/draw_functions.php:955
-#, fuzzy
 msgid "Username"
-msgstr "Utilisateur"
+msgstr ""
 
 #: ../backstage/bans.php:100
 msgid "The username to ban"
@@ -1500,9 +1499,8 @@ msgid "In use"
 msgstr ""
 
 #: ../backstage/theme.php:132
-#, fuzzy
 msgid "Use"
-msgstr "Utilisateur"
+msgstr ""
 
 #: ../backstage/login.php:16 ../backstage/login.php:30
 msgid "Login"
@@ -2178,9 +2176,8 @@ msgstr ""
 #: ../backstage/users.php:272 ../backstage/users.php:410
 #: ../backstage/users.php:694 ../backstage/users.php:790
 #: ../include/backstage_functions.php:90
-#, fuzzy
 msgid "Users"
-msgstr "Utilisateur"
+msgstr ""
 
 #: ../backstage/users.php:51
 msgid "Last used"
@@ -2760,9 +2757,8 @@ msgstr ""
 
 #: ../backstage/index.php:214 ../include/draw_functions.php:366
 #: ../include/draw_functions.php:447
-#, fuzzy
 msgid "topics"
-msgstr "Discussion"
+msgstr ""
 
 #: ../backstage/index.php:215
 msgid "users"
@@ -2836,9 +2832,8 @@ msgid "Sort topics by"
 msgstr ""
 
 #: ../backstage/board.php:259
-#, fuzzy
 msgid "Topic start"
-msgstr "Discussion"
+msgstr ""
 
 #: ../backstage/board.php:260 ../include/draw_functions.php:1085
 msgid "Subject"
@@ -2963,11 +2958,10 @@ msgstr ""
 #: ../backstage/groups.php:27 ../backstage/groups.php:31
 #: ../backstage/groups.php:441 ../backstage/groups.php:446
 #: ../backstage/groups.php:466
-#, fuzzy
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you're simply "
 "not allowed to hang around here."
-msgstr "Mauvaise requête."
+msgstr ""
 
 #: ../backstage/groups.php:39 ../backstage/groups.php:57
 msgid "Group title"
@@ -3809,9 +3803,8 @@ msgid ""
 msgstr ""
 
 #: ../include/draw_functions.php:364 ../include/draw_functions.php:445
-#, fuzzy
 msgid "topic"
-msgstr "Discussion"
+msgstr ""
 
 #: ../include/draw_functions.php:369 ../include/draw_functions.php:450
 msgid "post"

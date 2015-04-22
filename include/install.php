@@ -139,7 +139,7 @@ class Installer {
 				break;
 	
 			default:
-				error(sprintf(__(''%s' is not a valid database type', 'luna'), luna_htmlspecialchars($db_type)));
+				error(sprintf(__('"%s" is not a valid database type', 'luna'), luna_htmlspecialchars($db_type)));
 		}
 	}
 	
@@ -197,7 +197,7 @@ class Installer {
 		// Make sure FluxBB isn't already installed
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE id=1');
 		if ($db->num_rows($result))
-		error(sprintf(__('A table called '%susers' is already present in the database '%s'. This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix', 'luna'), $db->prefix, $db_name));
+		error(sprintf(__('A table called "%susers" is already present in the database "%s". This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix', 'luna'), $db->prefix, $db_name));
 		
 		// Start a transaction
 		$db->start_transaction();
