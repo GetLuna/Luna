@@ -184,7 +184,7 @@ function get_user_notifications($user_id = null, $viewed = null, $count = false,
 		$where = ' WHERE user_id='.$user_id;
 	}
 
-	$orderby = ' ORDER BY time, viewed DESC';
+	$orderby = ' ORDER BY time DESC';
 
 	if ( false !== $limit ) {
 		$limit = (int) $limit;
