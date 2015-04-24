@@ -6,5 +6,5 @@ if (!defined('FORUM'))
 
 ?>
 
-<h2><?php echo $lang['Forum rules'] ?></h2>
+<h2><?php _e('Forum rules', 'luna') ?></h2>
 <?php draw_rules_form(); ?>

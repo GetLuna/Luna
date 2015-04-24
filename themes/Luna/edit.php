@@ -10,7 +10,7 @@ $jumbo_style = ' style="background:'.$cur_post['color'].';"';
 </div>
 <div class="jumbotron"<?php echo $jumbo_style ?>>
 	<div class="container">
-		<h2><?php printf($lang['Edit subject'], luna_htmlspecialchars($cur_post['subject'])) ?></h2><span class="pull-right"><a class="btn btn-danger" href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a></span>
+		<h2><?php printf(__('Edit "%s"', 'luna'), luna_htmlspecialchars($cur_post['subject'])) ?></h2><span class="pull-right"><a class="btn btn-danger" href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span>
 	</div>
 </div>
 <div class="container">

@@ -396,7 +396,7 @@ if (isset($_POST['backupstart'])) {
 	$backup_file_tmpname = ($_FILES['backup_file']['tmp_name'] != "none") ? $_FILES['backup_file']['tmp_name'] : "";
 	$backup_file_type = (!empty($_FILES['backup_file']['type'])) ? $_FILES['backup_file']['type'] : "";
 	if($backup_file_tmpname == "" || $backup_file_name == "")
-		message_backstage($lang['No file uploaded']);
+		message_backstage(__('No file was uploaded or the upload failed, the database was not restored.', 'luna'));
 
 	if( preg_match("/^(text\/[a-zA-Z]+)|(application\/(x\-)?gzip(\-compressed)?)|(application\/octet-stream)$/is", $backup_file_type) ) {
 		if( preg_match("/\.gz$/is",$backup_file_name) ) {
@@ -414,12 +414,12 @@ if (isset($_POST['backupstart'])) {
 					$sql_query .= gzgets($gz_ptr, 100000);
 				}
 			} else
-				message_backstage($lang['Not restored']);
+				message_backstage(__('Sorry the database could not be restored.', 'luna'));
 		} else {
 			$sql_query = fread(fopen($backup_file_tmpname, 'r'), filesize($backup_file_tmpname));
 		}
 	} else
-		message_backstage($lang['File format error']);
+		message_backstage(__('Error the file name or file format caused an error, the database was not restored.', 'luna'));
 
 	if ($sql_query != "") {
 		// Strip out sql comments
@@ -430,7 +430,7 @@ if (isset($_POST['backupstart'])) {
 		load_admin_nav('maintenance', 'database');
 ?>
 	<div>
-		<h2><?php echo $lang['Debug info'] ?></h2>
+		<h2><?php _e('Debug info', 'luna') ?></h2>
 		<p>
 <?php
 		}
@@ -444,7 +444,7 @@ if (isset($_POST['backupstart'])) {
 				}
 				$result = $db->query($sql);
 				if(!$result)
-					message_backstage($lang['Imported error']);
+					message_backstage(__('Error imported backup file, the database probably has not been restored.', 'luna'));
 			}
 		}
 		if(defined('FORUM_DEBUG')) {
@@ -456,16 +456,16 @@ if (isset($_POST['backupstart'])) {
 	}
 	if(defined('FORUM_DEBUG')) {
 ?>
-	<h2><?php echo $lang['Restore complete'] ?></h2>
+	<h2><?php _e('Restore complete', 'luna') ?></h2>
 <?php
 	} else
-		message_backstage($lang['Restore completed']);
+		message_backstage(__('Restore completed', 'luna'));
 } elseif (isset($_POST['repairall'])) {
 	// repair all tables
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql)) // This makes no sense, the board would be dead :P
-		message_backstage($lang['Failed repair']);
+		message_backstage(__('Tables error, repair failed.', 'luna'));
 	$tables = array();
 	$counter = 0;
 	while ($row = $db->fetch_assoc($result)) {
@@ -478,7 +478,7 @@ if (isset($_POST['backupstart'])) {
 	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'REPAIR TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
-			message_backstage($lang['Failed repair SQL']);
+			message_backstage(__('SQL error, repair failed.', 'luna'));
 	}
 
 	message_backstage('All tables repaired');
@@ -486,7 +486,7 @@ if (isset($_POST['backupstart'])) {
 	// Retrieve table list:
 	$sql = 'SHOW TABLE STATUS';
 	if (!$result = $db->query($sql)) // This makes no sense, the board would be dead :P
-		message_backstage($lang['Failed optimize']);
+		message_backstage(__('Tables error, optimize failed.', 'luna'));
 	$tables = array();
 	$counter = 0;
 	while ($row = $db->fetch_assoc($result)) {
@@ -499,14 +499,14 @@ if (isset($_POST['backupstart'])) {
 	for ($i = 1; $i <= $tablecount; $i++) {
 		$sql = 'OPTIMIZE TABLE ' . $tables[$i];
 		if (!$result = $db->query($sql))
-			message_backstage($lang['Failed optimize SQL']);
+			message_backstage(__('SQL error, optimize failed.', 'luna'));
 	}
 
 	message_backstage('All tables optimized');
 } else {
 	
 	$action = isset($_GET['action']) ? $_GET['action'] : null;
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Database']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Database', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('maintenance', 'database');
@@ -514,38 +514,38 @@ if (isset($_POST['backupstart'])) {
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Backup options'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="backupstart"><span class="fa fa-fw fa-floppy-o"></span> <?php echo $lang['Start backup'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Backup', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="backupstart"><span class="fa fa-fw fa-floppy-o"></span> <?php _e('Start backup', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
-				<p><?php echo $lang['Backup info 1'] ?></p>
+				<p><?php _e('If your server supports it, you may also gzip-compress the file to reduce its size.', 'luna') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Backup type'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Backup type', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="backup_type" value="full" checked />
-							<?php echo $lang['Full'] ?>
+							<?php _e('Full', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="backup_type" value="structure" />
-							<?php echo $lang['Structure only'] ?>
+							<?php _e('Structure only', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="backup_type" value="data" />
-							<?php echo $lang['Data only'] ?>
+							<?php _e('Data only', 'luna') ?>
 						</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Gzip compression'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Gzip compression', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="gzipcompress" value="1" />
-							<?php echo $lang['Yes'] ?>
+							<?php _e('Yes', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="gzipcompress" value="0" checked />
-							<?php echo $lang['No'] ?>
+							<?php _e('No', 'luna') ?>
 						</label>
 					</div>
 				</div>
@@ -556,11 +556,11 @@ if (isset($_POST['backupstart'])) {
 <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Restore options'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="restore_start"><span class="fa fa-fw fa-reply"></span> <?php echo $lang['Start restore'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Restore', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="restore_start"><span class="fa fa-fw fa-reply"></span> <?php _e('Start restore', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
-				<p><?php echo $lang['Restore info 1'] ?></p>
+				<p><?php _e('This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete.', 'luna') ?></p>
 				<input type="file" name="backup_file" />
 			</fieldset>
 		</div>
@@ -569,16 +569,16 @@ if (isset($_POST['backupstart'])) {
 <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Additional functions'] ?></h3>
+			<h3 class="panel-title"><?php _e('Additional functions', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
-			<p><?php echo $lang['Additional info 1'] ?></p>
+			<p><?php _e('Additional features to help run a database, optimize and repair both do what they say.', 'luna') ?></p>
 		</div>
 		<div class="panel-footer">
 			<fieldset>
 				<span class="btn-group">
-					<button class="btn btn-primary" type="submit" name="repairall"><span class="fa fa-fw fa-wrench"></span> <?php echo $lang['Repair all tables'] ?></button>
-					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php echo $lang['Optimize all tables'] ?></button>
+					<button class="btn btn-primary" type="submit" name="repairall"><span class="fa fa-fw fa-wrench"></span> <?php _e('Repair all tables', 'luna') ?></button>
+					<button class="btn btn-primary" type="submit" name="optimizeall"><span class="fa fa-fw fa-heartbeat"></span> <?php _e('Optimize all tables', 'luna') ?></button>
 				</span>
 			</fieldset>
 		</div>

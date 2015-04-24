@@ -20,13 +20,13 @@ $footer_style = isset($footer_style) ? $footer_style : NULL;
 
 // Generate the feed links
 if ($footer_style == 'index') {
-	$feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS active topics feed'] : $lang['Atom active topics feed'];
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS active topics feed', 'luna') : __('Atom active topics feed', 'luna');
 	$feed_id = '';
 } elseif ($footer_style == 'viewforum') {
-	$feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS forum feed'] : $lang['Atom forum feed'];
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS forum feed', 'luna') : __('Atom forum feed', 'luna');
 	$feed_id = '&fid='.$forum_id;
 } elseif ($footer_style == 'viewtopic') {
-	$feed_lang = ($luna_config['o_feed_type'] == '1') ? $lang['RSS topic feed'] : $lang['Atom topic feed'];
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS topic feed', 'luna') : __('Atom topic feed', 'luna');
 	$feed_id = '&tid='.$id;
 }
 
@@ -47,10 +47,10 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 						<div class="col-md-4 col-sm-6 col-xs-12 statistics">
 							<div class="row">
 								<div class="col-xs-6">
-									<div class="statistic-item"><?php total_users() ?></div>
+									<div class="statistic-item"><?php total_users(); ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo $lang['No of users'] ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'User', 'Users', 1, 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
@@ -60,7 +60,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_topics() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo $lang['No of topics'] ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'Topic', 'Topics', 10, 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_posts() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo $lang['No of posts'] ?></div>
+									<div class="statistic-item-stat"><?php _e('Posts', 'luna') ?></div>
 								</div>
 							</div>
 						</div>
@@ -80,7 +80,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php newest_user() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo $lang['Newest user'] ?></div>
+									<div class="statistic-item-stat"><?php _e('Newest user', 'luna') ?></div>
 								</div>
 							</div>
 						</div>
@@ -94,7 +94,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 										<?php if ($luna_config['o_users_online']) { ?>
 										<div class="dropup">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<?php echo $lang['Users online'] ?> <span class="fa fa-fw fa-angle-up"></span>
+												<?php _e('Users online', 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
 												<span class="sr-only">Toggle Dropdown</span>
 											</a>
 											<ul class="dropdown-menu" role="menu">
@@ -102,7 +102,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 											</ul>
 										</div>
 										<?php } else
-											echo $lang['Users online']; ?>
+											_e('Users online', 'luna'); ?>
 									</div>
 								</div>
 							</div>
@@ -113,7 +113,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php guests_online() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo $lang['Guests online'] ?></div>
+									<div class="statistic-item-stat"><?php _e('Guests online', 'luna') ?></div>
 								</div>
 							</div>
 						</div>
@@ -127,14 +127,14 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 <?php
 	if ($luna_config['o_show_copyright'] == '1') {
 		if ($luna_config['o_copyright_type'] == '0')
-			echo $lang['Copyright'].' &copy; '.date('Y').' &middot; '.$luna_config['o_board_title'];
+			echo __('Copyright', 'luna').' &copy; '.date('Y').' &middot; '.$luna_config['o_board_title'];
 		if ($luna_config['o_copyright_type'] == '1')
 			echo $luna_config['o_custom_copyright'];
 	}
 ?>
 							</div>
 							<div class="col-sm-2 col-xs-12"><?php if ($luna_config['o_back_to_top'] == '1'): ?><div class="text-center"><a href="#"><span class="fa fa-fw fa-chevron-up"></span></a></div><?php endif; ?></div>
-							<div class="col-sm-5 col-xs-12"><span class="pull-right" id="poweredby"><?php printf($lang['Powered by'], ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
+							<div class="col-sm-5 col-xs-12"><span class="pull-right" id="poweredby"><?php printf(__('Powered by %s', 'luna'), ' <a href="http://getluna.org/">Luna '.$luna_config['o_cur_version'].'</a>') ?></span></div>
 						</div>
 					</div>
 				</div>
@@ -143,10 +143,10 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 <?php if (($luna_config['o_cookie_bar'] == 1) && ($luna_user['is_guest']) && (!isset($_COOKIE['LunaCookieBar']))) { ?>
 		<div class="navbar navbar-inverse navbar-fixed-bottom cookie-bar">
 			<div class="container">
-				<p class="navbar-text"><?php echo $lang['Cookie info'] ?></p>
+				<p class="navbar-text"><?php _e('We use cookies to give you the best experience on this board.', 'luna') ?></p>
 				<form class="navbar-form navbar-right">
 					<div class="form-group">
-						<div class="btn-toolbar"><a class="btn btn-link" href="http://getluna.org/docs/cookies.php"><?php echo $lang['More info'] ?></a><a class="btn btn-default" href="index.php?action=disable_cookiebar"><?php echo $lang['Do not show again'] ?></a></div>
+						<div class="btn-toolbar"><a class="btn btn-link" href="http://getluna.org/docs/cookies.php"><?php _e('More info', 'luna') ?></a><a class="btn btn-default" href="index.php?action=disable_cookiebar"><?php _e('Don\'t show again', 'luna') ?></a></div>
 					</div>
 				</form>
 			</div>
@@ -164,13 +164,13 @@ if (defined('FORUM_DEBUG')) {
 
 	// Calculate script generation time
 	$time_diff = sprintf('%.3f', get_microtime() - $luna_start);
-	echo sprintf($lang['Querytime'], $time_diff, $db->get_num_queries());
+	echo sprintf(__('Generated in %1$s seconds, %2$s queries executed', 'luna'), $time_diff, $db->get_num_queries());
 
 	if (function_exists('memory_get_usage')) {
-		echo ' - '.sprintf($lang['Memory usage'], file_size(memory_get_usage()));
+		echo ' - '.sprintf(__('Memory usage: %1$s', 'luna'), file_size(memory_get_usage()));
 
 		if (function_exists('memory_get_peak_usage'))
-			echo ' '.sprintf($lang['Peak usage'], file_size(memory_get_peak_usage()));
+			echo ' '.sprintf(__('(Peak: %1$s)', 'luna'), file_size(memory_get_peak_usage()));
 	}
 
 	echo ' ]</p>'."\n";
