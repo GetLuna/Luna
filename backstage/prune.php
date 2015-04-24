@@ -302,7 +302,7 @@ require 'header.php';
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Maximum number of posts', 'luna') ?><span class="help-block"><?php _e('How many posts do you require before an users isn't pruned', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Maximum number of posts', 'luna') ?><span class="help-block"><?php _e('How many posts do you require before an users isn\'t pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="posts" value="1"  tabindex="1" />
 					</div>
