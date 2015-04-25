@@ -50,7 +50,7 @@ required_fields();
 									<fieldset>
 										<input type="hidden" name="action" value="search" />
 										<div class="input-group">
-											<input class="form-control" type="text" name="keywords" placeholder="Search in posts" maxlength="100" />
+											<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in posts', 'luna') ?>" maxlength="100" />
 											<span class="input-group-btn">
 												<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s" />
 													<span class="fa fa-fw fa-search"></span>
@@ -95,7 +95,7 @@ if (!$luna_user['is_guest']) {
 	}
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.__('Show new posts', 'luna').'">New</a>';
+		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.__('Show new posts', 'luna').'">'.__('New', 'luna').'</a>';
 	}
 }
 
