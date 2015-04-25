@@ -90,7 +90,3 @@ function load_translations($domain) {
 
 	return $l10n[$domain];
 }
-
-
-
-
