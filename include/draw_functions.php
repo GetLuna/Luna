@@ -294,17 +294,8 @@ function draw_topics_list() {
 			else
 				$subject_multipage = null;
 	
-			if (forum_number_format($cur_topic['num_replies']) == '1') {
-				$replies_label = __('reply', 'luna');
-			} else {
-				$replies_label = __('replies', 'luna');
-			}
-	
-			if (forum_number_format($cur_topic['num_views']) == '1') {
-				$views_label = __('view', 'luna');
-			} else {
-				$views_label = __('views', 'luna');
-			}
+			$replies_label = _n('reply', 'replies', $cur_topic['num_replies'], 'luna');
+			$views_label = _n('view', 'views', $cur_topic['num_views'], 'luna');
 	
 			require get_view_path('topic.php');
 	
@@ -360,15 +351,8 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
 		
-			if (forum_number_format($cur_forum['num_posts']) == '1')
-				$topics_label = __('topic', 'luna');
-			else
-				$topics_label = __('topics', 'luna');
-		
-			if (forum_number_format($cur_forum['num_topics']) == '1')
-				$posts_label = __('post', 'luna');
-			else
-				$posts_label = __('posts', 'luna');
+			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
+			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
 			if ($id == $cur_forum['fid'])
 				$item_status .= ' active';
@@ -441,15 +425,8 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
 		
-			if (forum_number_format($cur_forum['num_posts']) == '1')
-				$topics_label = __('topic', 'luna');
-			else
-				$topics_label = __('topics', 'luna');
-		
-			if (forum_number_format($cur_forum['num_topics']) == '1')
-				$posts_label = __('post', 'luna');
-			else
-				$posts_label = __('posts', 'luna');
+			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
+			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
 			if ($id == $cur_forum['fid'])
 				$item_status .= ' active';
@@ -591,17 +568,8 @@ function draw_index_topics_list($section_id) {
 			else
 				$subject_multipage = null;
 	
-			if (forum_number_format($cur_topic['num_replies']) == '1') {
-				$replies_label = __('reply', 'luna');
-			} else {
-				$replies_label = __('replies', 'luna');
-			}
-	
-			if (forum_number_format($cur_topic['num_views']) == '1') {
-				$views_label = __('view', 'luna');
-			} else {
-				$views_label = __('views', 'luna');
-			}
+			$replies_label = _n('reply', 'replies', $cur_topic['num_replies'], 'luna');
+			$views_label = _n('view', 'views', $cur_topic['num_views'], 'luna');
 	
 			require get_view_path('topic.php');
 	
@@ -654,7 +622,7 @@ function draw_topic_list() {
 				}
 	
 				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'.__('Posts:', 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+					$user_info[] = '<dd><span>'._n('Post:', 'Posts:', $cur_post['num_posts'], 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
