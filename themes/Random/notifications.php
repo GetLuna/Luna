@@ -16,11 +16,11 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9">
-	<h2 class="profile-settings-head"><?php echo $lang['Notifications'] ?></h2>
+	<h2 class="profile-settings-head"><?php _e('Notifications', 'luna') ?></h2>
 	<div class="list-group">
-		<h3><?php echo $lang['New notifications'] ?><span class="pull-right"><a href="notifications.php?id=2&action=readnoti" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> Mark as seen</a></span></h3>
+		<h3><?php _e('New notifications', 'luna'); ?><span class="pull-right"><a href="notifications.php?id=2&action=readnoti" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as seen', 'luna'); ?></a></span></h3>
 <?php if (empty($unviewed_notifications)) { ?>
-		<a class="list-group-item disabled" href="notifications.php?id=<?php echo $id; ?>"><?php echo $lang['No new notifications']; ?></a>
+		<a class="list-group-item disabled" href="notifications.php?id=<?php echo $id; ?>"><?php 'No new notifications', 'luna'); ?></a>
 <?php
 } else {
 	foreach ($unviewed_notifications as $notification) {
@@ -31,9 +31,9 @@ if (!defined('FORUM'))
 	}
 }
 ?>
-		<h3><?php echo $lang['Seen notifications'] ?><span class="pull-right"><a href="notifications.php?id=2&action=delnoti" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> Delete notifications</a></span></h3>
+		<h3><?php _e('Seen notifications', 'luna'); ?><span class="pull-right"><a href="notifications.php?id=2&action=delnoti" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete notifications', 'luna'); ?></a></span></h3>
 <?php if (empty($viewed_notifications)) { ?>
-		<a class="list-group-item disabled" href="notifications.php?id=<?php echo $id; ?>"><?php echo $lang['No new notifications']; ?></a>
+		<a class="list-group-item disabled" href="notifications.php?id=<?php echo $id; ?>"><?php _e('No new notifications', 'luna'); ?></a>
 <?php
 } else {
 	foreach ($viewed_notifications as $notification) {

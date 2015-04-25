@@ -19,9 +19,9 @@ if (isset($_POST['add_item'])) {
 	$item_url = luna_trim($_POST['url']);
 
 	if ($item_name == '')
-		message_backstage($lang['Must add title']);
+		message_backstage(__('You must give your menu item a title.', 'luna'));
 	elseif ($item_url == '')
-		message_backstage($lang['Must add URL']);
+		message_backstage(__('You must give your menu item an URL.', 'luna'));
 
 	$db->query('INSERT INTO '.$db->prefix.'menu (url, name, disp_position, visible, sys_entry) VALUES(\''.$db->escape($item_url).'\', \''.$db->escape($item_name).'\', 0, 1, 0)') or error('Unable to add new menu item', __FILE__, __LINE__, $db->error());
 
@@ -31,7 +31,7 @@ if (isset($_POST['add_item'])) {
 	
 	$item_id = intval($_GET['del_item']);
 	if ($item_id < 4)
-		message_backstage($lang['Bad request'], false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	$db->query('DELETE FROM '.$db->prefix.'menu WHERE id='.$item_id) or error('Unable to delete menu item', __FILE__, __LINE__, $db->error());
 
@@ -41,7 +41,7 @@ if (isset($_POST['add_item'])) {
 	
 	$menu_items = $_POST['item'];
 	if (empty($menu_items))
-		message_backstage($lang['Bad request'], false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	foreach ($menu_items as $item_id => $cur_item) {
 		$cur_item['url'] = luna_trim($cur_item['url']);
@@ -51,11 +51,11 @@ if (isset($_POST['add_item'])) {
 			$cur_item['visible'] = 0;
 		
 		if ($cur_item['name'] == '')
-			message_backstage($lang['Must add title']);
+			message_backstage(__('You must give your menu item a title.', 'luna'));
 		elseif ($cur_item['url'] == '')
-			message_backstage($lang['Must add URL']);
+			message_backstage(__('You must give your menu item an URL.', 'luna'));
 		elseif ($cur_item['order'] == '' || preg_match('%[^0-9]%', $cur_item['order']))
-			message_backstage($lang['Must enter integer message']);
+			message_backstage(__('Position must be a positive integer value.', 'luna'));
 		else
 			$db->query('UPDATE '.$db->prefix.'menu SET url=\''.$db->escape($cur_item['url']).'\', name=\''.$db->escape($cur_item['name']).'\', disp_position='.$cur_item['order'].', visible=\''.$cur_item['visible'].'\' WHERE id='.intval($item_id)) or error('Unable to update menu', __FILE__, __LINE__, $db->error());
 	}
@@ -75,18 +75,18 @@ load_admin_nav('settings', 'menu');
 			<fieldset>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['New menu item'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+						<h3 class="panel-title"><?php _e('New menu item', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_item"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 					</div>
 					<table class="table">
 						<tbody>
 							<tr>
 								<td>
-									<input type="text" class="form-control" name="name" placeholder="<?php echo $lang['Name'] ?>" value="" />
+									<input type="text" class="form-control" name="name" placeholder="<?php _e('Name', 'luna') ?>" value="" />
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<input type="text" class="form-control" name="url" placeholder="<?php echo $lang['URL'] ?>" value="" />
+									<input type="text" class="form-control" name="url" placeholder="<?php _e('URL', 'luna') ?>" value="" />
 								</td>
 							</tr>
 						</tbody>
@@ -99,16 +99,16 @@ load_admin_nav('settings', 'menu');
 		<form method="post" action="menu.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Menu'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Menu', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 				</div>
 				<table class="table">
 					<thead>
 						<tr>
-							<th><?php echo $lang['Name'] ?></th>
-							<th><?php echo $lang['URL'] ?></th>
-							<th class="col-xs-1"><?php echo $lang['Position'] ?></th>
-							<th class="col-xs-1"><?php echo $lang['Show'] ?></th>
-							<th class="col-xs-1"><?php echo $lang['Delete'] ?></th>
+							<th><?php _e('Name', 'luna') ?></th>
+							<th><?php _e('URL', 'luna') ?></th>
+							<th class="col-xs-1"><?php _e('Position', 'luna') ?></th>
+							<th class="col-xs-1"><?php _e('Show', 'luna') ?></th>
+							<th class="col-xs-1"><?php _e('Delete', 'luna') ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -132,9 +132,9 @@ if ($db->num_rows($result)) {
 							<td>
 <?php
 if ($cur_item['sys_entry'] == 0)
-	echo '<a href="menu.php?del_item='.$cur_item['id'].'" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> '.$lang['Delete'].'</a>';
+	echo '<a href="menu.php?del_item='.$cur_item['id'].'" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> '.__('Delete', 'luna').'</a>';
 else
-	echo '<a class="btn btn-danger" disabled="disabled"><span class="fa fa-fw fa-trash"></span> '.$lang['Delete'].'</a>';
+	echo '<a class="btn btn-danger" disabled="disabled"><span class="fa fa-fw fa-trash"></span> '.__('Delete', 'luna').'</a>';
 ?>
 							</td>
 						</tr>

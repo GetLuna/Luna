@@ -50,7 +50,7 @@ required_fields();
 									<fieldset>
 										<input type="hidden" name="action" value="search" />
 										<div class="input-group">
-											<input class="form-control" type="text" name="keywords" placeholder="Search in posts" maxlength="100" />
+											<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in posts', 'luna') ?>" maxlength="100" />
 											<span class="input-group-btn">
 												<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s" />
 													<span class="fa fa-fw fa-search"></span>
@@ -87,22 +87,22 @@ if (!$luna_user['is_guest']) {
 			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
 
 			if ($db->result($result_header))
-				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.$lang['New reports'].'</a></strong></span></li>';
+				$page_statusinfo[] = '<li class="reportlink"><span><strong><a href="backstage/reports.php">'.__('New reports', 'luna').'</a></strong></span></li>';
 		}
 
 		if ($luna_config['o_maintenance'] == '1')
-			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/settings.php#maintenance">'.$lang['Maintenance mode enabled'].'</a></strong></span></li>';
+			$page_statusinfo[] = '<li class="maintenancelink"><span><strong><a href="backstage/settings.php#maintenance">'.__('Maintenance mode enabled', 'luna').'</a></strong></span></li>';
 	}
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new posts'].'">New</a>';
+		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.__('Show new posts', 'luna').'">'.__('New', 'luna').'</a>';
 	}
 }
 
 // Quick searches
 if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">Active</a>';
-	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">Unanswered</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.__('Show active topics', 'luna').'">'.__('Active', 'luna').'</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.__('Show unanswered topics', 'luna').'">'.__('Unanswered', 'luna').'</a>';
 }
 
 ?><div class="page-status"><?php

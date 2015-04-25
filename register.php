@@ -17,10 +17,10 @@ if (!$luna_user['is_guest']) {
 }
 
 if ($luna_config['o_regs_allow'] == '0')
-	message($lang['No new regs']);
+	message(__('This forum is not accepting new registrations.', 'luna'));
 
 if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['form_sent'])) {
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register'], $lang['Forum rules']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Register', 'luna'), __('Forum rules', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require load_page('header.php');
 
@@ -37,7 +37,7 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE registration_ip=\''.$db->escape(get_remote_address()).'\' AND registered>'.(time() - 3600)) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	
 		if ($db->num_rows($result))
-			message($lang['Registration flood']);
+			message(__('A new user was registered with the same IP address as you within the last hour. To prevent registration flooding, at least an hour has to pass between registrations from the same IP. Sorry for the inconvenience.', 'luna'));
 	
 	
 		$username = luna_trim($_POST['req_user']);
@@ -57,22 +57,22 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 		check_username($username);
 	
 		if (luna_strlen($password1) < 6)
-			$errors[] = $lang['Pass too short'];
+			$errors[] = __('Passwords must be at least 6 characters long. Please choose another (longer) password.', 'luna');
 		elseif ($password1 != $password2)
-			$errors[] = $lang['Pass not match'];
+			$errors[] = __('Passwords do not match.', 'luna');
 	
 		// Validate email
 		require FORUM_ROOT.'include/email.php';
 	
 		if (!is_valid_email($email1))
-			$errors[] = $lang['Invalid email'];
+			$errors[] = __('The email address you entered is invalid.', 'luna');
 		elseif ($luna_config['o_regs_verify'] == '1' && $email1 != $email2)
-			$errors[] = $lang['Email not match'];
+			$errors[] = __('Email addresses do not match.', 'luna');
 	
 		// Check if it's a banned email address
 		if (is_banned_email($email1)) {
 			if ($luna_config['p_allow_banned_email'] == '0')
-				$errors[] = $lang['Banned email'];
+				$errors[] = __('The email address you entered is banned in this forum. Please choose another email address.', 'luna');
 	
 			$banned_email = true; // Used later when we send an alert email
 		} else
@@ -84,7 +84,7 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 		$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE email=\''.$db->escape($email1).'\'') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result)) {
 			if ($luna_config['p_allow_dupe_email'] == '0')
-				$errors[] = $lang['Dupe email'];
+				$errors[] = __('Someone else is already registered with that email address. Please choose another email address.', 'luna');
 	
 			while ($cur_dupe = $db->fetch_assoc($result))
 				$dupe_list[] = $cur_dupe['username'];
@@ -93,7 +93,7 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 		$req_username = empty($username) ? luna_trim($_POST['req_username']) : $username;
 		if (!empty($_POST['req_username'])) {
 			// Since we found a spammer, lets report the bastard!
-			message($lang['Spam catch'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
+			message(__('Unfortunately it looks like your request is spam. If you feel this is a mistake, please direct any inquiries to the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 		}
 	
 		// Did everything go according to plan?
@@ -121,7 +121,15 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 				// If we previously found out that the email was banned
 				if ($banned_email) {
 					// Load the "banned email register" template
-					$mail_tpl = trim($lang['banned_email_register.tpl']);
+					$mail_tpl = trim(__('Subject: Alert - Banned email detected
+
+User "<username>" registered with banned email address: <email>
+
+User profile: <profile_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 	
 					// The first row contains the subject
 					$first_crlf = strpos($mail_tpl, "\n");
@@ -140,7 +148,15 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 				// If we previously found out that the email was a dupe
 				if (!empty($dupe_list)) {
 					// Load the "dupe email register" template
-					$mail_tpl = trim($lang['dupe_email_register.tpl']);
+					$mail_tpl = trim(__('Subject: Alert - Duplicate email detected
+
+User "<username>" registered with an email address that also belongs to: <dupe_list>
+
+User profile: <profile_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 	
 					// The first row contains the subject
 					$first_crlf = strpos($mail_tpl, "\n");
@@ -158,7 +174,18 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 				// Should we alert people on the admin mailing list that a new user has registered?
 				if ($luna_config['o_regs_report'] == '1') {
 					// Load the "new user" template
-					$mail_tpl = trim($lang['new_user.tpl']);
+					$mail_tpl = trim(__('Subject: Alert - New registration
+
+User "<username>" registered in the forums at <base_url>
+
+User profile: <profile_url>
+
+To administer this account, please visit the following page:
+<admin_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 	
 					// The first row contains the subject
 					$first_crlf = strpos($mail_tpl, "\n");
@@ -177,7 +204,18 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 			// Must the user verify the registration or do we log him/her in right now?
 			if ($luna_config['o_regs_verify'] == '1') {
 				// Load the "welcome" template
-				$mail_tpl = trim($lang['welcome.tpl']);
+				$mail_tpl = trim(__('Subject: Welcome to <board_title>!
+
+Thank you for registering in the forums at <base_url>. Your account details are:
+
+Username: <username>
+Password: <password>
+
+Login at <login_url> to activate the account.
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 	
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -193,7 +231,7 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 	
 				luna_mail($email1, $mail_subject, $mail_message);
 	
-				message($lang['Reg email'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
+				message(__('Thank you for registering. Your password has been sent to the specified address. If it doesn\'t arrive you can contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 			}
 	
 			luna_setcookie($new_uid, $password_hash, time() + $luna_config['o_timeout_visit']);
@@ -202,8 +240,8 @@ if ($luna_config['o_rules'] == '1' && !isset($_GET['agree']) && !isset($_POST['f
 		}
 	}
 	
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Register']);
-	$required_fields = array('req_user' => $lang['Username'], 'req_password1' => $lang['Password'], 'req_password2' => $lang['Confirm password'], 'req_email1' => $lang['Email'], 'req_email2' => $lang['Email'].' 2');
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Register', 'luna'));
+	$required_fields = array('req_user' => __('Username', 'luna'), 'req_password1' => __('Password', 'luna'), 'req_password2' => __('Confirm password', 'luna'), 'req_email1' => __('Email', 'luna'), 'req_email2' => __('Email', 'luna').' 2');
 	$focus_element = array('register', 'req_user');
 	define('FORUM_ACTIVE_PAGE', 'register');
 	require load_page('header.php');

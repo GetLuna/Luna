@@ -20,13 +20,13 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		if (isset($_GET['add_ban'])) {
 			$user_id = intval($_GET['add_ban']);
 			if ($user_id < 2)
-				message_backstage($lang['Bad request'], false, '404 Not Found');
+				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 			$result = $db->query('SELECT group_id, username, email FROM '.$db->prefix.'users WHERE id='.$user_id) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
 				list($group_id, $ban_user, $ban_email) = $db->fetch_row($result);
 			else
-				message_backstage($lang['No user ID message']);
+				message_backstage(__('No user by that ID registered.', 'luna'));
 		} else { // Otherwise the username is in POST
 			$ban_user = luna_trim($_POST['new_ban_user']);
 
@@ -35,20 +35,20 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 				if ($db->num_rows($result))
 					list($user_id, $group_id, $ban_user, $ban_email) = $db->fetch_row($result);
 				else
-					message_backstage($lang['No user message']);
+					message_backstage(__('No user by that username registered. If you want to add a ban not tied to a specific username just leave the username blank.', 'luna'));
 			}
 		}
 
 		// Make sure we're not banning an admin or moderator
 		if (isset($group_id)) {
 			if ($group_id == FORUM_ADMIN)
-				message_backstage(sprintf($lang['User is admin message'], luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is an administrator and can\'t be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 			$is_moderator_group = $db->result($result);
 
 			if ($is_moderator_group)
-				message_backstage(sprintf($lang['User is mod message'], luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is a moderator and can\'t be banned. If you want to ban a moderator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 		}
 
 		// If we have a $user_id, we can try to find the last known IP of that user
@@ -66,13 +66,13 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 	} else { // We are editing a ban
 		$ban_id = intval($_GET['edit_ban']);
 		if ($ban_id < 1) 
-			message_backstage($lang['Bad request'], false, '404 Not Found');
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		$result = $db->query('SELECT username, ip, email, message, expire FROM '.$db->prefix.'bans WHERE id='.$ban_id) or error('Unable to fetch ban info', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
 			list($ban_user, $ban_ip, $ban_email, $ban_message, $ban_expire) = $db->fetch_row($result);
 		else
-			message_backstage($lang['Bad request'], false, '404 Not Found');
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 		$ban_expire = ($ban_expire != '') ? gmdate('Y-m-d', $ban_expire + $diff) : '';
@@ -80,7 +80,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 		$mode = 'edit';
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans2', 'ban_user');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -90,26 +90,26 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 <form class="form-horizontal" id="bans2" method="post" action="bans.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Ban advanced subhead'] ?></h3>
+			<h3 class="panel-title"><?php _e('Supplement ban with IP and email', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="mode" value="<?php echo $mode ?>" />
 	<?php if ($mode == 'edit'): ?>				<input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" />
 	<?php endif; ?>				<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Username'] ?><span class="help-block"><?php echo $lang['Username help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('The username to ban', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="ban_user" maxlength="25" value="<?php if (isset($ban_user)) echo luna_htmlspecialchars($ban_user); ?>" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['IP label'] ?><span class="help-block"><?php echo $lang['IP help'] ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.$lang['IP help link'], '<a href="users.php?ip_stats='.$user_id.'">'.$lang['here'].'</a>') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('IP address/IP-ranges', 'luna') ?><span class="help-block"><?php _e('The IP you wish to ban, separate addresses with spaces', 'luna') ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.__('Click %s to see IP statistics for this user.', 'luna'), '<a href="users.php?ip_stats='.$user_id.'">'.__('here', 'luna').'</a>') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="ban_ip" maxlength="255" value="<?php if (isset($ban_ip)) echo luna_htmlspecialchars($ban_ip); ?>" tabindex="2" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Email'] ?><span class="help-block"><?php echo $lang['E-mail help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?><span class="help-block"><?php _e('The email or email domain you wish to ban', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="ban_email" maxlength="80" value="<?php if (isset($ban_email)) echo luna_htmlspecialchars($ban_email); ?>" tabindex="3" />
 					</div>
@@ -119,27 +119,27 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Message expiry subhead'] ?></h3>
+			<h3 class="panel-title"><?php _e('Ban message and expiry', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Ban message label'] ?><span class="help-block"><?php echo $lang['Ban message help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Ban message', 'luna') ?><span class="help-block"><?php _e('A message for banned users', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="ban_message" maxlength="255" value="<?php if (isset($ban_message)) echo luna_htmlspecialchars($ban_message); ?>" tabindex="4" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Expire date label'] ?><span class="help-block"><?php echo $lang['Expire date help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Expire date', 'luna') ?><span class="help-block"><?php _e('When does the ban expire, blank for manually', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="ban_expire" maxlength="10" placeholder="<?php echo $lang['Date help'] ?>" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
+						<input type="text" class="form-control" name="ban_expire" maxlength="10" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" value="<?php if (isset($ban_expire)) echo $ban_expire; ?>" tabindex="5" />
 					</div>
 				</div>
 			</fieldset>
 		</div>
 	</div>
 	<div class="alert alert-danger">
-		<input class="btn btn-danger" type="submit" name="add_edit_ban" value="<?php echo $lang['Ban'] ?>" tabindex="6" />
+		<input class="btn btn-danger" type="submit" name="add_edit_ban" value="<?php _e('Ban', 'luna') ?>" tabindex="6" />
 	</div>
 </form>
 <?php
@@ -158,9 +158,9 @@ elseif (isset($_POST['add_edit_ban'])) {
 	$ban_expire = luna_trim($_POST['ban_expire']);
 
 	if ($ban_user == '' && $ban_ip == '' && $ban_email == '')
-		message_backstage($lang['Must enter message']);
+		message_backstage(__('You must enter either a username, an IP address or an email address (at least).', 'luna'));
 	elseif (strtolower($ban_user) == 'guest')
-		message_backstage($lang['Cannot ban guest message']);
+		message_backstage(__('The guest user cannot be banned.', 'luna'));
 
 	// Make sure we're not banning an admin or moderator
 	if (!empty($ban_user)) {
@@ -169,13 +169,13 @@ elseif (isset($_POST['add_edit_ban'])) {
 			$group_id = $db->result($result);
 
 			if ($group_id == FORUM_ADMIN)
-				message_backstage(sprintf($lang['User is admin message'], luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is an administrator and can\'t be banned. If you want to ban an administrator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 
 			$result = $db->query('SELECT g_moderator FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 			$is_moderator_group = $db->result($result);
 
 			if ($is_moderator_group)
-				message_backstage(sprintf($lang['User is mod message'], luna_htmlspecialchars($ban_user)));
+				message_backstage(sprintf(__('The user %s is a moderator and can\'t be banned. If you want to ban a moderator, you must first demote him/her.', 'luna'), luna_htmlspecialchars($ban_user)));
 		}
 	}
 
@@ -193,7 +193,7 @@ elseif (isset($_POST['add_edit_ban'])) {
 					$octets[$c] = ltrim($octets[$c], "0");
 
 					if ($c > 7 || (!empty($octets[$c]) && !ctype_xdigit($octets[$c])) || intval($octets[$c], 16) > 65535)
-						message_backstage($lang['Invalid IP message']);
+						message_backstage(__('You entered an invalid IP/IP-range.', 'luna'));
 				}
 
 				$cur_address = implode(':', $octets);
@@ -205,7 +205,7 @@ elseif (isset($_POST['add_edit_ban'])) {
 					$octets[$c] = (strlen($octets[$c]) > 1) ? ltrim($octets[$c], "0") : $octets[$c];
 
 					if ($c > 3 || preg_match('%[^0-9]%', $octets[$c]) || intval($octets[$c]) > 255)
-						message_backstage($lang['Invalid IP message']);
+						message_backstage(__('You entered an invalid IP/IP-range.', 'luna'));
 				}
 
 				$cur_address = implode('.', $octets);
@@ -219,20 +219,20 @@ elseif (isset($_POST['add_edit_ban'])) {
 	require FORUM_ROOT.'include/email.php';
 	if ($ban_email != '' && !is_valid_email($ban_email)) {
 		if (!preg_match('%^[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$%', $ban_email))
-			message_backstage($lang['Invalid e-mail message']);
+			message_backstage(__('The email address (e.g. user@domain.com) or partial email address domain (e.g. domain.com) you entered is invalid.', 'luna'));
 	}
 
 	if ($ban_expire != '' && $ban_expire != 'Never') {
 		$ban_expire = strtotime($ban_expire.' GMT');
 
 		if ($ban_expire == -1 || !$ban_expire)
-			message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
+			message_backstage(__('You entered an invalid expire date.', 'luna').' '.__('The format should be YYYY-MM-DD and the date must be at least one day in the future.', 'luna'));
 
 		$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
 		$ban_expire -= $diff;
 
 		if ($ban_expire <= time())
-			message_backstage($lang['Invalid date message'].' '.$lang['Invalid date reasons']);
+			message_backstage(__('You entered an invalid expire date.', 'luna').' '.__('The format should be YYYY-MM-DD and the date must be at least one day in the future.', 'luna'));
 	} else
 		$ban_expire = 'NULL';
 
@@ -261,7 +261,7 @@ elseif (isset($_GET['del_ban'])) {
 	
 	$ban_id = intval($_GET['del_ban']);
 	if ($ban_id < 1)
-		message_backstage($lang['Bad request'], false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	$db->query('DELETE FROM '.$db->prefix.'bans WHERE id='.$ban_id) or error('Unable to delete ban', __FILE__, __LINE__, $db->error());
 
@@ -296,7 +296,7 @@ elseif (isset($_GET['find_ban'])) {
 
 		$expire_after = strtotime($expire_after);
 		if ($expire_after === false || $expire_after == -1)
-			message_backstage($lang['Invalid date message']);
+			message_backstage(__('You entered an invalid expire date.', 'luna'));
 
 		$conditions[] = 'b.expire>'.$expire_after;
 	}
@@ -305,7 +305,7 @@ elseif (isset($_GET['find_ban'])) {
 
 		$expire_before = strtotime($expire_before);
 		if ($expire_before === false || $expire_before == -1)
-			message_backstage($lang['Invalid date message']);
+			message_backstage(__('You entered an invalid expire date.', 'luna'));
 
 		$conditions[] = 'b.expire<'.$expire_before;
 	}
@@ -331,7 +331,7 @@ elseif (isset($_GET['find_ban'])) {
 	// Generate paging links
 	$paging_links = paginate($num_pages, $p, 'bans.php?find_ban=&amp;'.implode('&amp;', $query_str));
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans'], $lang['Results head']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'), __('Search Results', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'bans');
@@ -339,7 +339,7 @@ elseif (isset($_GET['find_ban'])) {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Results head'] ?></h3>
+		<h3 class="panel-title"><?php _e('Search Results', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<?php echo $paging_links ?>
@@ -347,13 +347,13 @@ elseif (isset($_GET['find_ban'])) {
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th><?php echo $lang['Username'] ?></th>
-				<th><?php echo $lang['Email'] ?></th>
-				<th><?php echo $lang['Results IP address head'] ?></th>
-				<th><?php echo $lang['Results expire head'] ?></th>
-				<th><?php echo $lang['Message'] ?></th>
-				<th><?php echo $lang['Results banned by head'] ?></th>
-				<th><?php echo $lang['Actions'] ?></th>
+				<th><?php _e('Username', 'luna') ?></th>
+				<th><?php _e('Email', 'luna') ?></th>
+				<th><?php _e('IP/IP-ranges', 'luna') ?></th>
+				<th><?php _e('Expires', 'luna') ?></th>
+				<th><?php _e('Message', 'luna') ?></th>
+				<th><?php _e('Banned by', 'luna') ?></th>
+				<th><?php _e('Actions', 'luna') ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -363,7 +363,7 @@ elseif (isset($_GET['find_ban'])) {
 	if ($db->num_rows($result)) {
 		while ($ban_data = $db->fetch_assoc($result)) {
 
-			$actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'">'.$lang['Edit'].'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'">'.$lang['Remove'].'</a></div>';
+			$actions = '<div class="btn-group"><a class="btn btn-primary" href="bans.php?edit_ban='.$ban_data['id'].'">'.__('Edit', 'luna').'</a><a class="btn btn-danger" href="bans.php?del_ban='.$ban_data['id'].'">'.__('Remove', 'luna').'</a></div>';
 			$expire = format_time($ban_data['expire'], true);
 
 ?>
@@ -373,14 +373,14 @@ elseif (isset($_GET['find_ban'])) {
 				<td class="tc3"><?php echo ($ban_data['ip'] != '') ? luna_htmlspecialchars($ban_data['ip']) : '&#160;' ?></td>
 				<td class="tc4"><?php echo $expire ?></td>
 				<td class="tc5"><?php echo ($ban_data['message'] != '') ? luna_htmlspecialchars($ban_data['message']) : '&#160;' ?></td>
-				<td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : $lang['Unknown'] ?></td>
+				<td class="tc6"><?php echo ($ban_data['ban_creator_username'] != '') ? '<a href="../profile.php?id='.$ban_data['ban_creator'].'">'.luna_htmlspecialchars($ban_data['ban_creator_username']).'</a>' : __('Unknown', 'luna') ?></td>
 				<td class="tcr"><?php echo $actions ?></td>
 			</tr>
 <?php
 
 		}
 	} else
-		echo "\t\t\t\t".'<tr><td class="tcl" colspan="7">'.$lang['No match'].'</td></tr>'."\n";
+		echo "\t\t\t\t".'<tr><td class="tcl" colspan="7">'.__('No match', 'luna').'</td></tr>'."\n";
 
 ?>
 		</tbody>
@@ -394,7 +394,7 @@ elseif (isset($_GET['find_ban'])) {
 	require 'footer.php';
 } else {
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Bans']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans', 'new_ban_user');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -403,7 +403,7 @@ elseif (isset($_GET['find_ban'])) {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['New ban head'] ?></h3>
+		<h3 class="panel-title"><?php _e('Add ban', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<form id="bans" method="post" action="bans.php?action=more">
@@ -411,10 +411,10 @@ elseif (isset($_GET['find_ban'])) {
 				<div class="input-group">
 					<input type="text" class="form-control" name="new_ban_user" maxlength="25" tabindex="1" />
 					<span class="input-group-btn">
-						<button class="btn btn-danger" type="submit" name="add_ban" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button>
+						<button class="btn btn-danger" type="submit" name="add_ban" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button>
 					</span>
 				</div>
-				<span class="help-block"><?php echo $lang['Username advanced help'] ?></span>
+				<span class="help-block"><?php _e('The username you want to ban. If you want to ban a specific IP/IP-range or email, leave it blank.', 'luna') ?></span>
 			</fieldset>
 		</form>
 	</div>
@@ -422,47 +422,47 @@ elseif (isset($_GET['find_ban'])) {
 <form id="find_bans" method="get" action="bans.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Ban search head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_ban"><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Ban search', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="find_ban"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h3>
 		</div>
 		<fieldset>
 			<div class="panel-body">
-				<p><?php echo $lang['Ban search info'] ?></p>
+				<p><?php _e('Search for bans in the database. You can enter one or more terms to search for. Wildcards in the form of asterisks (*) are accepted. To show all bans leave all fields empty.', 'luna') ?></p>
 			</div>
 			<table class="table">
 				<tr>
-					<th><?php echo $lang['Username'] ?></th>
+					<th><?php _e('Username', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="form[username]" maxlength="25" tabindex="4" /></td>
-					<th><?php echo $lang['IP label'] ?></th>
+					<th><?php _e('IP address/IP-ranges', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="form[ip]" maxlength="255" tabindex="5" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['Email'] ?></th>
+					<th><?php _e('Email', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="form[email]" maxlength="80" tabindex="6" /></td>
-					<th><?php echo $lang['Message'] ?></th>
+					<th><?php _e('Message', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="form[message]" maxlength="255" tabindex="7" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['Expire after label'] ?></th>
-					<td><input type="text" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php echo $lang['Date help'] ?>" /></td>
-					<th><?php echo $lang['Expire before label'] ?></th>
-					<td><input type="text" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php echo $lang['Date help'] ?>" /></td>
+					<th><?php _e('Expire after', 'luna') ?></th>
+					<td><input type="text" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
+					<th><?php _e('Expire before', 'luna') ?></th>
+					<td><input type="text" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
 				</tr>
 				<tr>
-					<th><?php echo $lang['Order by label'] ?></th>
+					<th><?php _e('Order by', 'luna') ?></th>
 					<td colspan="3">
 						<div class="row">
 							<div class="col-sm-6">
 								<select class="form-control" name="order_by" tabindex="10">
-									<option value="username" selected><?php echo $lang['Username'] ?></option>
-									<option value="ip"><?php echo $lang['Order by ip'] ?></option>
-									<option value="email"><?php echo $lang['Email'] ?></option>
-									<option value="expire"><?php echo $lang['Order by expire'] ?></option>
+									<option value="username" selected><?php _e('Username', 'luna') ?></option>
+									<option value="ip"><?php _e('IP', 'luna') ?></option>
+									<option value="email"><?php _e('Email', 'luna') ?></option>
+									<option value="expire"><?php _e('Expire date', 'luna') ?></option>
 								</select>
 							</div>
 							<div class="col-sm-6">
 								<select class="form-control" name="direction" tabindex="11">
-									<option value="ASC" selected><?php echo $lang['Ascending'] ?></option>
-									<option value="DESC"><?php echo $lang['Descending'] ?></option>
+									<option value="ASC" selected><?php _e('Ascending', 'luna') ?></option>
+									<option value="DESC"><?php _e('Descending', 'luna') ?></option>
 								</select>
 							</div>
 						</div>
