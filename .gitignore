@@ -160,7 +160,8 @@ pip-log.txt
 .tox
 
 #Translations
-#*.mo
+lang/luna.mo
+*.pot
 
 #Mr Developer
 .mr.developer.cfg
@@ -178,4 +179,3 @@ config.php
 img/avatars/
 install/
 edge/
-lang/luna.mo
