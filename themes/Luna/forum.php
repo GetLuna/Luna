@@ -4,11 +4,9 @@
 if (!defined('FORUM'))
 	exit;
 
-$jumbo_style = ' style="background:'.$cur_forum['color'].';"';
-
 ?>
 </div>
-<div class="jumbotron"<?php echo $jumbo_style ?>>
+<div class="jumbotron">
 	<div class="container">
 		<h2 class="forum-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right"><?php echo $post_link ?><?php echo $paging_links ?></span>
 		<div class="forum-desc"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></div>

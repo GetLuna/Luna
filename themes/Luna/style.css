@@ -449,9 +449,9 @@ a.list-group-item-cat:hover .forum-description {
 
 /* Forumview */
 h2.forum-title {
-	margin: 10px 0 5px;
 	color: #fff !important;
 	display: inline-block;
+	margin-bottom: -12px;
 }
 
 h2.forum-title .btn {
@@ -459,7 +459,7 @@ h2.forum-title .btn {
 }
 
 .forum-desc {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .forumview {
