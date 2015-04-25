@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.1\n"
 "Report-Msgid-Bugs-To: http://getluna.org\n"
-"POT-Creation-Date: 2015-04-24 15:59+0100\n"
-"PO-Revision-Date: 2015-04-24 15:59+0100\n"
+"POT-Creation-Date: 2015-04-25 02:36+0100\n"
+"PO-Revision-Date: 2015-04-25 02:40+0100\n"
 "Last-Translator: Charlie MERLAND <charlie@caercam.org>\n"
 "Language-Team: Luna\n"
 "Language: English\n"
@@ -293,7 +293,7 @@ msgstr ""
 #: ../backstage/board.php:36 ../backstage/board.php:110
 #: ../backstage/board.php:128 ../backstage/board.php:170
 #: ../backstage/board.php:394 ../backstage/board.php:475
-#: ../backstage/ranks.php:49 ../include/draw_functions.php:469
+#: ../backstage/ranks.php:49 ../include/draw_functions.php:446
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you are simply "
 "not allowed to hang around here."
@@ -345,8 +345,8 @@ msgstr ""
 #: ../backstage/moderate.php:904 ../backstage/users.php:434
 #: ../backstage/users.php:714 ../backstage/users.php:776
 #: ../backstage/groups.php:508 ../backstage/groups.php:644
-#: ../include/draw_functions.php:717 ../include/draw_functions.php:738
-#: ../include/draw_functions.php:901
+#: ../include/draw_functions.php:685 ../include/draw_functions.php:706
+#: ../include/draw_functions.php:869
 msgid "Delete"
 msgstr ""
 
@@ -669,13 +669,13 @@ msgstr ""
 msgid "Prune sticky topics"
 msgstr ""
 
-#: ../backstage/prune.php:238 ../backstage/database.php:544
-#: ../backstage/users.php:558
+#: ../backstage/prune.php:238 ../backstage/prune.php:315
+#: ../backstage/database.php:544 ../backstage/users.php:558
 msgid "Yes"
 msgstr ""
 
-#: ../backstage/prune.php:242 ../backstage/database.php:548
-#: ../backstage/users.php:562
+#: ../backstage/prune.php:242 ../backstage/prune.php:318
+#: ../backstage/database.php:548 ../backstage/users.php:562
 msgid "No"
 msgstr ""
 
@@ -720,7 +720,27 @@ msgid "Maximum number of posts"
 msgstr ""
 
 #: ../backstage/prune.php:305
-msgid "How many posts do you require before an users isn"
+msgid "How many posts do you require before an users isn't pruned"
+msgstr ""
+
+#: ../backstage/prune.php:311
+msgid "Delete admins and mods"
+msgstr ""
+
+#: ../backstage/prune.php:323
+msgid "User status"
+msgstr ""
+
+#: ../backstage/prune.php:327
+msgid "Delete any"
+msgstr ""
+
+#: ../backstage/prune.php:331
+msgid "Delete only verified"
+msgstr ""
+
+#: ../backstage/prune.php:335
+msgid "Delete only unverified"
 msgstr ""
 
 #: ../backstage/loader.php:24 ../backstage/moderate.php:20
@@ -785,7 +805,7 @@ msgstr ""
 #: ../backstage/login.php:21 ../backstage/users.php:121
 #: ../backstage/users.php:725 ../backstage/users.php:812
 #: ../backstage/users.php:892 ../backstage/tools.php:133
-#: ../include/draw_functions.php:955
+#: ../include/draw_functions.php:923
 msgid "Username"
 msgstr ""
 
@@ -815,10 +835,10 @@ msgstr ""
 #: ../backstage/settings.php:343 ../backstage/users.php:122
 #: ../backstage/users.php:726 ../backstage/users.php:893
 #: ../backstage/tools.php:139 ../include/backstage_functions.php:55
-#: ../include/backstage_functions.php:173 ../include/draw_functions.php:661
-#: ../include/draw_functions.php:663 ../include/draw_functions.php:693
-#: ../include/draw_functions.php:816 ../include/draw_functions.php:818
-#: ../include/draw_functions.php:844 ../include/draw_functions.php:976
+#: ../include/backstage_functions.php:173 ../include/draw_functions.php:629
+#: ../include/draw_functions.php:631 ../include/draw_functions.php:661
+#: ../include/draw_functions.php:784 ../include/draw_functions.php:786
+#: ../include/draw_functions.php:812 ../include/draw_functions.php:944
 msgid "Email"
 msgstr ""
 
@@ -925,8 +945,8 @@ msgid "Actions"
 msgstr ""
 
 #: ../backstage/bans.php:366 ../backstage/board.php:620
-#: ../backstage/groups.php:639 ../include/draw_functions.php:725
-#: ../include/draw_functions.php:743
+#: ../backstage/groups.php:639 ../include/draw_functions.php:693
+#: ../include/draw_functions.php:711
 msgid "Edit"
 msgstr ""
 
@@ -1329,37 +1349,37 @@ msgstr ""
 #: ../backstage/moderate.php:834 ../backstage/moderate.php:850
 #: ../backstage/moderate.php:854 ../backstage/moderate.php:856
 #: ../include/draw_functions.php:247 ../include/draw_functions.php:249
-#: ../include/draw_functions.php:264 ../include/draw_functions.php:382
-#: ../include/draw_functions.php:384 ../include/draw_functions.php:545
-#: ../include/draw_functions.php:547 ../include/draw_functions.php:562
-#: ../include/draw_functions.php:1039 ../include/draw_functions.php:1070
-#: ../include/draw_functions.php:1072
+#: ../include/draw_functions.php:264 ../include/draw_functions.php:366
+#: ../include/draw_functions.php:368 ../include/draw_functions.php:522
+#: ../include/draw_functions.php:524 ../include/draw_functions.php:539
+#: ../include/draw_functions.php:1007 ../include/draw_functions.php:1038
+#: ../include/draw_functions.php:1040
 msgid "by"
 msgstr ""
 
 #: ../backstage/moderate.php:846 ../include/draw_functions.php:260
-#: ../include/draw_functions.php:558 ../include/draw_functions.php:1043
+#: ../include/draw_functions.php:535 ../include/draw_functions.php:1011
 msgid "Sticky"
 msgstr ""
 
 #: ../backstage/moderate.php:851 ../include/draw_functions.php:267
-#: ../include/draw_functions.php:565
+#: ../include/draw_functions.php:542
 msgid "Moved"
 msgstr ""
 
 #: ../backstage/moderate.php:857 ../include/draw_functions.php:270
-#: ../include/draw_functions.php:568 ../include/draw_functions.php:1047
+#: ../include/draw_functions.php:545 ../include/draw_functions.php:1015
 msgid "Closed"
 msgstr ""
 
 #: ../backstage/moderate.php:865 ../include/draw_functions.php:284
-#: ../include/draw_functions.php:581 ../include/draw_functions.php:1055
+#: ../include/draw_functions.php:558 ../include/draw_functions.php:1023
 msgid "Go to the first new post in this topic."
 msgstr ""
 
 #: ../backstage/moderate.php:865 ../include/draw_functions.php:284
-#: ../include/draw_functions.php:354 ../include/draw_functions.php:435
-#: ../include/draw_functions.php:581 ../include/draw_functions.php:1055
+#: ../include/draw_functions.php:345 ../include/draw_functions.php:419
+#: ../include/draw_functions.php:558 ../include/draw_functions.php:1023
 msgid "New posts"
 msgstr ""
 
@@ -1509,7 +1529,7 @@ msgid "Login"
 msgstr ""
 
 #: ../backstage/login.php:24 ../backstage/tools.php:145
-#: ../include/draw_functions.php:962
+#: ../include/draw_functions.php:930
 msgid "Password"
 msgstr ""
 
@@ -2350,8 +2370,8 @@ msgstr ""
 msgid "Real name"
 msgstr ""
 
-#: ../backstage/users.php:824 ../include/draw_functions.php:669
-#: ../include/draw_functions.php:826
+#: ../backstage/users.php:824 ../include/draw_functions.php:637
+#: ../include/draw_functions.php:794
 msgid "Website"
 msgstr ""
 
@@ -2484,7 +2504,7 @@ msgstr ""
 msgid "Post #%s"
 msgstr ""
 
-#: ../backstage/reports.php:85 ../include/draw_functions.php:1194
+#: ../backstage/reports.php:85 ../include/draw_functions.php:1162
 msgid "Mark as read"
 msgstr ""
 
@@ -2796,19 +2816,25 @@ msgstr ""
 msgid "Create new backup"
 msgstr ""
 
-#: ../backstage/index.php:213 ../include/draw_functions.php:371
-#: ../include/draw_functions.php:452
-msgid "posts"
-msgstr ""
+#: ../backstage/index.php:213 ../include/draw_functions.php:355
+#: ../include/draw_functions.php:429
+msgid "post"
+msgid_plural "posts"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../backstage/index.php:214 ../include/draw_functions.php:366
-#: ../include/draw_functions.php:447
-msgid "topics"
-msgstr ""
+#: ../backstage/index.php:214 ../include/draw_functions.php:354
+#: ../include/draw_functions.php:428
+msgid "topic"
+msgid_plural "topics"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../backstage/index.php:215
-msgid "users"
-msgstr ""
+msgid "user"
+msgid_plural "users"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../backstage/index.php:229
 #, php-format
@@ -2881,7 +2907,7 @@ msgstr ""
 msgid "Topic start"
 msgstr ""
 
-#: ../backstage/board.php:260 ../include/draw_functions.php:1085
+#: ../backstage/board.php:260 ../include/draw_functions.php:1053
 msgid "Subject"
 msgstr ""
 
@@ -3510,7 +3536,7 @@ msgstr ""
 msgid "We've got us a situation here."
 msgstr ""
 
-#: ../include/functions.php:1090 ../include/draw_functions.php:386
+#: ../include/functions.php:1090 ../include/draw_functions.php:370
 msgid "Never"
 msgstr ""
 
@@ -3701,8 +3727,8 @@ msgstr ""
 msgid "Superscript"
 msgstr ""
 
-#: ../include/draw_functions.php:97 ../include/draw_functions.php:729
-#: ../include/draw_functions.php:745 ../include/draw_functions.php:849
+#: ../include/draw_functions.php:97 ../include/draw_functions.php:697
+#: ../include/draw_functions.php:713 ../include/draw_functions.php:817
 msgid "Quote"
 msgstr ""
 
@@ -3798,184 +3824,178 @@ msgstr ""
 msgid "Start typing..."
 msgstr ""
 
-#: ../include/draw_functions.php:171 ../include/draw_functions.php:1116
+#: ../include/draw_functions.php:171 ../include/draw_functions.php:1084
 msgid "Submit"
 msgstr ""
 
-#: ../include/draw_functions.php:298 ../include/draw_functions.php:595
+#: ../include/draw_functions.php:297 ../include/draw_functions.php:571
 msgid "reply"
-msgstr ""
+msgid_plural "replies"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../include/draw_functions.php:300 ../include/draw_functions.php:597
-msgid "replies"
-msgstr ""
-
-#: ../include/draw_functions.php:304 ../include/draw_functions.php:601
+#: ../include/draw_functions.php:298 ../include/draw_functions.php:572
 msgid "view"
-msgstr ""
+msgid_plural "views"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../include/draw_functions.php:306 ../include/draw_functions.php:603
-msgid "views"
-msgstr ""
-
-#: ../include/draw_functions.php:314 ../include/draw_functions.php:611
+#: ../include/draw_functions.php:305 ../include/draw_functions.php:579
 #, php-format
 msgid ""
 "There are no topics in this forum yet, but you can <a href=\"post.php?fid=%s"
 "\">start the first one</a>."
 msgstr ""
 
-#: ../include/draw_functions.php:364 ../include/draw_functions.php:445
-msgid "topic"
-msgstr ""
-
-#: ../include/draw_functions.php:369 ../include/draw_functions.php:450
-msgid "post"
-msgstr ""
-
-#: ../include/draw_functions.php:397
+#: ../include/draw_functions.php:381
 msgid "Board is empty."
 msgstr ""
 
-#: ../include/draw_functions.php:613
+#: ../include/draw_functions.php:581
 msgid "The board is empty; select a forum and create a topic to begin."
 msgstr ""
 
-#: ../include/draw_functions.php:653 ../include/draw_functions.php:806
+#: ../include/draw_functions.php:621 ../include/draw_functions.php:774
 msgid "From:"
 msgstr ""
 
-#: ../include/draw_functions.php:657 ../include/draw_functions.php:812
-msgid "Posts:"
-msgstr ""
+#: ../include/draw_functions.php:625
+msgid "Post:"
+msgid_plural "Posts:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../include/draw_functions.php:674 ../include/draw_functions.php:690
-#: ../include/draw_functions.php:831 ../include/draw_functions.php:841
+#: ../include/draw_functions.php:642 ../include/draw_functions.php:658
+#: ../include/draw_functions.php:799 ../include/draw_functions.php:809
 msgid "IP log"
 msgstr ""
 
-#: ../include/draw_functions.php:681 ../include/draw_functions.php:834
+#: ../include/draw_functions.php:649 ../include/draw_functions.php:802
 msgid "Note:"
 msgstr ""
 
-#: ../include/draw_functions.php:708 ../include/draw_functions.php:710
-#: ../include/draw_functions.php:733 ../include/draw_functions.php:735
+#: ../include/draw_functions.php:676 ../include/draw_functions.php:678
+#: ../include/draw_functions.php:701 ../include/draw_functions.php:703
 msgid "Report"
 msgstr ""
 
-#: ../include/draw_functions.php:720 ../include/draw_functions.php:740
-#: ../include/draw_functions.php:915
+#: ../include/draw_functions.php:688 ../include/draw_functions.php:708
+#: ../include/draw_functions.php:883
 msgid "Soft delete"
 msgstr ""
 
-#: ../include/draw_functions.php:722 ../include/draw_functions.php:742
+#: ../include/draw_functions.php:690 ../include/draw_functions.php:710
 msgid "Soft reset"
 msgstr ""
 
-#: ../include/draw_functions.php:791
+#: ../include/draw_functions.php:759
 msgid "Online:"
 msgstr ""
 
-#: ../include/draw_functions.php:791
+#: ../include/draw_functions.php:759
 msgid "Offline"
 msgstr ""
 
-#: ../include/draw_functions.php:809
+#: ../include/draw_functions.php:777
 msgid "Registered since"
 msgstr ""
 
-#: ../include/draw_functions.php:822
+#: ../include/draw_functions.php:780
+msgid "Posts:"
+msgstr ""
+
+#: ../include/draw_functions.php:790
 msgid "PM"
 msgstr ""
 
-#: ../include/draw_functions.php:890
+#: ../include/draw_functions.php:858
 msgid "Your search returned no hits."
 msgstr ""
 
-#: ../include/draw_functions.php:898 ../include/draw_functions.php:912
+#: ../include/draw_functions.php:866 ../include/draw_functions.php:880
 msgid ""
 "Warning! This is the first post in the topic, the whole topic will be "
 "permanently deleted."
 msgstr ""
 
-#: ../include/draw_functions.php:898
+#: ../include/draw_functions.php:866
 msgid ""
 "The post you have chosen to delete is set out below for you to review before "
 "proceeding."
 msgstr ""
 
-#: ../include/draw_functions.php:900 ../include/draw_functions.php:914
-#: ../include/draw_functions.php:928
+#: ../include/draw_functions.php:868 ../include/draw_functions.php:882
+#: ../include/draw_functions.php:896
 msgid "Cancel"
 msgstr ""
 
-#: ../include/draw_functions.php:912
+#: ../include/draw_functions.php:880
 msgid ""
 "The post you have chosen to delete is set out below for you to review before "
 "proceeding. Deleting this post is not permanent. If you want to delete a "
 "post permanently, please use delete instead."
 msgstr ""
 
-#: ../include/draw_functions.php:926
+#: ../include/draw_functions.php:894
 msgid ""
 "This post has been soft deleted. We'll enable it again with a click on the "
 "button."
 msgstr ""
 
-#: ../include/draw_functions.php:929
+#: ../include/draw_functions.php:897
 msgid "Reset post"
 msgstr ""
 
-#: ../include/draw_functions.php:938
+#: ../include/draw_functions.php:906
 #, php-format
 msgid "Topic started by %s - %s"
 msgstr ""
 
-#: ../include/draw_functions.php:938
+#: ../include/draw_functions.php:906
 #, php-format
 msgid "Reply by %s - %s"
 msgstr ""
 
-#: ../include/draw_functions.php:948
+#: ../include/draw_functions.php:916
 msgid "Enter the requested data"
 msgstr ""
 
-#: ../include/draw_functions.php:948
+#: ../include/draw_functions.php:916
 msgid "Register"
 msgstr ""
 
-#: ../include/draw_functions.php:953
+#: ../include/draw_functions.php:921
 msgid "If you are human please leave this field blank!"
 msgstr ""
 
-#: ../include/draw_functions.php:955
+#: ../include/draw_functions.php:923
 msgid "Enter a username between 2 and 25 characters long"
 msgstr ""
 
-#: ../include/draw_functions.php:962
+#: ../include/draw_functions.php:930
 msgid "Passwords must be at least 6 characters long and are case sensitive"
 msgstr ""
 
-#: ../include/draw_functions.php:976
+#: ../include/draw_functions.php:944
 msgid "Your password will be sent to this address, make sure it's valid"
 msgstr ""
 
-#: ../include/draw_functions.php:1006
+#: ../include/draw_functions.php:974
 msgid "You must agree to the following in order to register"
 msgstr ""
 
-#: ../include/draw_functions.php:1014
+#: ../include/draw_functions.php:982
 msgid "Agree"
 msgstr ""
 
-#: ../include/draw_functions.php:1093
+#: ../include/draw_functions.php:1061
 msgid "Send"
 msgstr ""
 
-#: ../include/draw_functions.php:1109
+#: ../include/draw_functions.php:1077
 msgid "Tell us why you are reporting this."
 msgstr ""
 
-#: ../include/draw_functions.php:1131 ../include/draw_functions.php:1159
+#: ../include/draw_functions.php:1099 ../include/draw_functions.php:1127
 msgid "Forum"
 msgstr ""
