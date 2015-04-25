@@ -23,8 +23,8 @@ if ($luna_user['first_run'] == '0') {
 			<div class="list-group first-run-list">
 				<a href="settings.php" class="list-group-item"><?php _e('Extend your details', 'luna') ?></a>
 				<a href="help.php" class="list-group-item"><?php _e('Get help', 'luna') ?></a>
-				<a href="search.php" class="list-group-item">Search the board</a>
-				<a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active"><?php _e('Don\'t show again', 'luna') ?></a>
+				<a href="search.php" class="list-group-item"><?php _e('Search the board', 'luna' ) ?></a>
+				<a href="index.php?action=do_not_show&amp;id=<?php echo $luna_user['id'] ?>" class="list-group-item active"><?php _e('Don\'t show again', 'luna') ?></a>
 			</div>
 		</div>
 		<?php } else { ?>
@@ -65,7 +65,7 @@ if ($luna_user['first_run'] == '0') {
 <div class="container">
 	<div class="panel panel-default panel-stats">
 		<div class="panel-heading">
-			<h3 class="panel-title">Board statistics</h3>
+			<h3 class="panel-title"><?php _e('Board statistics', 'luna' ) ?></h3>
 		</div>
 		<div class="panel-body">
 			<div class="row stats">
@@ -75,7 +75,7 @@ if ($luna_user['first_run'] == '0') {
 							<div class="statistic-item"><?php total_users() ?></div>
 						</div>
 						<div class="col-xs-6">
-							<div class="statistic-item-stat"><?php _e('Users', 'luna') ?></div>
+							<div class="statistic-item-stat"><?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?></div>
 						</div>
 					</div>
 				</div>
@@ -85,7 +85,7 @@ if ($luna_user['first_run'] == '0') {
 							<div class="statistic-item"><?php total_topics() ?></div>
 						</div>
 						<div class="col-xs-6">
-							<div class="statistic-item-stat"><?php _e('Topics', 'luna') ?></div>
+							<div class="statistic-item-stat"><?php echo _n( 'Topic', 'Topics', get_total_topics(), 'luna' ) ?></div>
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@ if ($luna_user['first_run'] == '0') {
 							<div class="statistic-item"><?php total_posts() ?></div>
 						</div>
 						<div class="col-xs-6">
-							<div class="statistic-item-stat"><?php _e('Posts', 'luna') ?></div>
+							<div class="statistic-item-stat"><?php echo _n('Post', 'Posts', get_total_posts(), 'luna') ?></div>
 						</div>
 					</div>
 				</div>
@@ -118,7 +118,7 @@ if ($luna_user['first_run'] == '0') {
 							<div class="statistic-item-stat">
 								<div class="dropup">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-										<?php _e('Users online', 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
+										<?php echo _n('User online', 'Users online', num_users_online(), 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
 										<span class="sr-only">Toggle Dropdown</span>
 									</a>
 									<ul class="dropdown-menu" role="menu">
@@ -135,7 +135,7 @@ if ($luna_user['first_run'] == '0') {
 							<div class="statistic-item"><?php guests_online() ?></div>
 						</div>
 						<div class="col-xs-6">
-							<div class="statistic-item-stat"><?php _e('Guests online', 'luna') ?></div>
+							<div class="statistic-item-stat"><?php echo _n('Guest online', 'Guests online', num_guests_online(), 'luna') ?></div>
 						</div>
 					</div>
 				</div>

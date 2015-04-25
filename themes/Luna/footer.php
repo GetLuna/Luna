@@ -50,7 +50,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_users(); ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n( 'User', 'Users', 1, 'luna' ) ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
@@ -60,7 +60,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_topics() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n( 'Topic', 'Topics', 10, 'luna' ) ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'Topic', 'Topics', get_total_topics(), 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_posts() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php _e('Posts', 'luna') ?></div>
+									<div class="statistic-item-stat"><?php echo _n('Post', 'Posts', get_total_posts(), 'luna') ?></div>
 								</div>
 							</div>
 						</div>
@@ -94,7 +94,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 										<?php if ($luna_config['o_users_online']) { ?>
 										<div class="dropup">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												<?php _e('Users online', 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
+												<?php echo _n('User online', 'Users online', num_users_online(), 'luna') ?> <span class="fa fa-fw fa-angle-up"></span>
 												<span class="sr-only">Toggle Dropdown</span>
 											</a>
 											<ul class="dropdown-menu" role="menu">
@@ -102,7 +102,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 											</ul>
 										</div>
 										<?php } else
-											_e('Users online', 'luna'); ?>
+											echo _n('User online', 'Users online', num_users_online(), 'luna'); ?>
 									</div>
 								</div>
 							</div>
@@ -113,7 +113,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php guests_online() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php _e('Guests online', 'luna') ?></div>
+									<div class="statistic-item-stat"><?php echo _n('Guest online', 'Guests online', num_guests_online(), 'luna') ?></div>
 								</div>
 							</div>
 						</div>

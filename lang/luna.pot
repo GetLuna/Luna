@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Luna 1.1\n"
 "Report-Msgid-Bugs-To: http://getluna.org\n"
 "POT-Creation-Date: 2015-04-25 02:36+0100\n"
-"PO-Revision-Date: 2015-04-25 02:36+0100\n"
+"PO-Revision-Date: 2015-04-25 08:50+0100\n"
 "Last-Translator: Charlie MERLAND <charlie@caercam.org>\n"
 "Language-Team: Luna\n"
 "Language: English\n"
@@ -19,6 +19,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ../backstage\n"
 "X-Poedit-SearchPath-1: ../include\n"
+"X-Poedit-SearchPath-2: ../themes\n"
 
 #: ../backstage/features.php:16 ../backstage/registration.php:16
 #: ../backstage/email.php:16 ../backstage/settings.php:17

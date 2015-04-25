@@ -24,22 +24,35 @@ if (!defined('FORUM_USERS_INFO_LOADED')) {
 $result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
 list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->fetch_row($result));
 
-function total_users() {
+
+function get_total_users() {
 	global $stats;
 
-	printf(forum_number_format($stats['total_users']));
+	return sprintf(forum_number_format($stats['total_users']));
+}
+
+function get_total_topics() {
+	global $stats;
+
+	return sprintf(forum_number_format($stats['total_topics']));
+}
+
+function get_total_posts() {
+	global $stats;
+
+	return sprintf(forum_number_format($stats['total_posts']));
+}
+
+function total_users() {
+	echo get_total_users();
 }
 
 function total_topics() {
-	global $stats;
-
-	printf(forum_number_format($stats['total_topics']));
+	echo get_total_topics();
 }
 
 function total_posts() {
-	global $stats;
-
-	printf(forum_number_format($stats['total_posts']));
+	echo get_total_posts();
 }
 
 function newest_user() {
