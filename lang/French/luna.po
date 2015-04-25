@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Luna 1.1\n"
 "Report-Msgid-Bugs-To: http://getluna.org\n"
-"POT-Creation-Date: 2015-04-24 15:59+0100\n"
-"PO-Revision-Date: 2015-04-24 20:09+0100\n"
+"POT-Creation-Date: 2015-04-25 02:36+0100\n"
+"PO-Revision-Date: 2015-04-25 02:39+0100\n"
 "Last-Translator: Charlie MERLAND <charlie@caercam.org>\n"
 "Language-Team: Luna\n"
 "Language: French\n"
@@ -315,7 +315,7 @@ msgstr "Vous devez saisir une adresse pour votre nouvel élément."
 #: ../backstage/board.php:36 ../backstage/board.php:110
 #: ../backstage/board.php:128 ../backstage/board.php:170
 #: ../backstage/board.php:394 ../backstage/board.php:475
-#: ../backstage/ranks.php:49 ../include/draw_functions.php:469
+#: ../backstage/ranks.php:49 ../include/draw_functions.php:446
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you are simply "
 "not allowed to hang around here."
@@ -367,8 +367,8 @@ msgstr "Afficher"
 #: ../backstage/moderate.php:904 ../backstage/users.php:434
 #: ../backstage/users.php:714 ../backstage/users.php:776
 #: ../backstage/groups.php:508 ../backstage/groups.php:644
-#: ../include/draw_functions.php:717 ../include/draw_functions.php:738
-#: ../include/draw_functions.php:901
+#: ../include/draw_functions.php:685 ../include/draw_functions.php:706
+#: ../include/draw_functions.php:869
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -713,13 +713,13 @@ msgstr "L'ancienneté d'une discussion pour qu'elle puisse être supprimée."
 msgid "Prune sticky topics"
 msgstr "Supprimer les discussions épinglées"
 
-#: ../backstage/prune.php:238 ../backstage/database.php:544
-#: ../backstage/users.php:558
+#: ../backstage/prune.php:238 ../backstage/prune.php:315
+#: ../backstage/database.php:544 ../backstage/users.php:558
 msgid "Yes"
 msgstr "Oui"
 
-#: ../backstage/prune.php:242 ../backstage/database.php:548
-#: ../backstage/users.php:562
+#: ../backstage/prune.php:242 ../backstage/prune.php:318
+#: ../backstage/database.php:548 ../backstage/users.php:562
 msgid "No"
 msgstr "Non"
 
@@ -764,8 +764,28 @@ msgid "Maximum number of posts"
 msgstr "Nombre maximum de messages"
 
 #: ../backstage/prune.php:305
-msgid "How many posts do you require before an users isn"
-msgstr "Seuil au-delà duquel un utilisateur ne sera pas élagué"
+msgid "How many posts do you require before an users isn't pruned"
+msgstr "Nombre de messages au-delà duquel un utilisateur ne sera pas élagué"
+
+#: ../backstage/prune.php:311
+msgid "Delete admins and mods"
+msgstr "Supprimer administrateurs et modérateurs"
+
+#: ../backstage/prune.php:323
+msgid "User status"
+msgstr "Statut des utilisateurs"
+
+#: ../backstage/prune.php:327
+msgid "Delete any"
+msgstr "Tout supprimer"
+
+#: ../backstage/prune.php:331
+msgid "Delete only verified"
+msgstr "Utilisateurs vérifiés uniquement"
+
+#: ../backstage/prune.php:335
+msgid "Delete only unverified"
+msgstr "Non vérifiés uniquement"
 
 #: ../backstage/loader.php:24 ../backstage/moderate.php:20
 #: ../backstage/moderate.php:70 ../backstage/moderate.php:648
@@ -837,7 +857,7 @@ msgstr "Bannissement supplémentaire par IP et courriel"
 #: ../backstage/login.php:21 ../backstage/users.php:121
 #: ../backstage/users.php:725 ../backstage/users.php:812
 #: ../backstage/users.php:892 ../backstage/tools.php:133
-#: ../include/draw_functions.php:955
+#: ../include/draw_functions.php:923
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -869,10 +889,10 @@ msgstr "ici"
 #: ../backstage/settings.php:343 ../backstage/users.php:122
 #: ../backstage/users.php:726 ../backstage/users.php:893
 #: ../backstage/tools.php:139 ../include/backstage_functions.php:55
-#: ../include/backstage_functions.php:173 ../include/draw_functions.php:661
-#: ../include/draw_functions.php:663 ../include/draw_functions.php:693
-#: ../include/draw_functions.php:816 ../include/draw_functions.php:818
-#: ../include/draw_functions.php:844 ../include/draw_functions.php:976
+#: ../include/backstage_functions.php:173 ../include/draw_functions.php:629
+#: ../include/draw_functions.php:631 ../include/draw_functions.php:661
+#: ../include/draw_functions.php:784 ../include/draw_functions.php:786
+#: ../include/draw_functions.php:812 ../include/draw_functions.php:944
 msgid "Email"
 msgstr "Courriel"
 
@@ -988,8 +1008,8 @@ msgid "Actions"
 msgstr "Actions"
 
 #: ../backstage/bans.php:366 ../backstage/board.php:620
-#: ../backstage/groups.php:639 ../include/draw_functions.php:725
-#: ../include/draw_functions.php:743
+#: ../backstage/groups.php:639 ../include/draw_functions.php:693
+#: ../include/draw_functions.php:711
 msgid "Edit"
 msgstr "Modifier"
 
@@ -1432,37 +1452,37 @@ msgstr "Modération de « %s »"
 #: ../backstage/moderate.php:834 ../backstage/moderate.php:850
 #: ../backstage/moderate.php:854 ../backstage/moderate.php:856
 #: ../include/draw_functions.php:247 ../include/draw_functions.php:249
-#: ../include/draw_functions.php:264 ../include/draw_functions.php:382
-#: ../include/draw_functions.php:384 ../include/draw_functions.php:545
-#: ../include/draw_functions.php:547 ../include/draw_functions.php:562
-#: ../include/draw_functions.php:1039 ../include/draw_functions.php:1070
-#: ../include/draw_functions.php:1072
+#: ../include/draw_functions.php:264 ../include/draw_functions.php:366
+#: ../include/draw_functions.php:368 ../include/draw_functions.php:522
+#: ../include/draw_functions.php:524 ../include/draw_functions.php:539
+#: ../include/draw_functions.php:1007 ../include/draw_functions.php:1038
+#: ../include/draw_functions.php:1040
 msgid "by"
 msgstr "par"
 
 #: ../backstage/moderate.php:846 ../include/draw_functions.php:260
-#: ../include/draw_functions.php:558 ../include/draw_functions.php:1043
+#: ../include/draw_functions.php:535 ../include/draw_functions.php:1011
 msgid "Sticky"
 msgstr "Épinglé"
 
 #: ../backstage/moderate.php:851 ../include/draw_functions.php:267
-#: ../include/draw_functions.php:565
+#: ../include/draw_functions.php:542
 msgid "Moved"
 msgstr "Déplacé"
 
 #: ../backstage/moderate.php:857 ../include/draw_functions.php:270
-#: ../include/draw_functions.php:568 ../include/draw_functions.php:1047
+#: ../include/draw_functions.php:545 ../include/draw_functions.php:1015
 msgid "Closed"
 msgstr "Fermé"
 
 #: ../backstage/moderate.php:865 ../include/draw_functions.php:284
-#: ../include/draw_functions.php:581 ../include/draw_functions.php:1055
+#: ../include/draw_functions.php:558 ../include/draw_functions.php:1023
 msgid "Go to the first new post in this topic."
 msgstr "Aller au premier nouveau message de cette discussion."
 
 #: ../backstage/moderate.php:865 ../include/draw_functions.php:284
-#: ../include/draw_functions.php:354 ../include/draw_functions.php:435
-#: ../include/draw_functions.php:581 ../include/draw_functions.php:1055
+#: ../include/draw_functions.php:345 ../include/draw_functions.php:419
+#: ../include/draw_functions.php:558 ../include/draw_functions.php:1023
 msgid "New posts"
 msgstr "Nouveaux messages"
 
@@ -1628,7 +1648,7 @@ msgid "Login"
 msgstr "Connexion"
 
 #: ../backstage/login.php:24 ../backstage/tools.php:145
-#: ../include/draw_functions.php:962
+#: ../include/draw_functions.php:930
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -2463,22 +2483,30 @@ msgid ""
 "delete the posts made by this user, the posts can only be deleted manually "
 "at a later time."
 msgstr ""
+"Attention ! Les utilisateurs et/ou messages supprimés ne peuvent être "
+"récupérés. Si vous choisissez de ne pas supprimer les messages d'un "
+"utilisateur, les messages pourront uniquement être supprimés manuellement "
+"plus tard."
 
 #: ../backstage/users.php:428
 msgid "Delete any posts and topics this user has made"
-msgstr ""
+msgstr "Supprimer tous les messages ou discussions de cet utilisateur."
 
 #: ../backstage/users.php:465
 msgid ""
 "Administrators cannot be banned. In order to ban administrators, you must "
 "first move them to a different user group."
 msgstr ""
+"Les administrateurs ne peuvent être bannis. Pour bannir des administrateurs, "
+"vous devez d'abord les déplacer vers un autre groupe d'utilisateurs."
 
 #: ../backstage/users.php:470
 msgid ""
 "Moderators cannot be banned. In order to ban moderators, you must first move "
 "them to a different user group."
 msgstr ""
+"Les modérateurs ne peuvent être bannis. Pour bannir des modérateurs, vous "
+"devez d'abord les déplacer vers un autre groupe d'utilisateurs."
 
 #: ../backstage/users.php:534 ../backstage/groups.php:115
 msgid "Ban users"
@@ -2493,10 +2521,14 @@ msgid ""
 "Also ban the IP addresses of the banned users to make registering a new "
 "account more difficult for them."
 msgstr ""
+"Bannir également les adresses IP des utilisateurs bannis pour leur rendre "
+"une nouvelle création de compte plus difficile."
 
 #: ../backstage/users.php:598
 msgid "You entered a non-numeric value into a numeric only column."
 msgstr ""
+"Vous avez indiqué une valeur non numérique dans une colonne n'acceptant que "
+"des valeurs numériques."
 
 #: ../backstage/users.php:606 ../backstage/users.php:615
 #: ../backstage/users.php:624 ../backstage/users.php:633
@@ -2529,6 +2561,10 @@ msgid ""
 "Enter a username to search for and/or a user group to filter by. Use the "
 "wildcard character * for partial matches."
 msgstr ""
+"Saisissez un nom d'utilisateur pour le rechercher et/ou un groupe "
+"d'utilisateurs pour filtrer les résultats. Le champ « Nom d'utilisateur » "
+"peut rester vide. Utilisez le joker * pour des recherches sur une partie du "
+"nom."
 
 #: ../backstage/users.php:814
 msgid "Email address"
@@ -2542,8 +2578,8 @@ msgstr "Titre"
 msgid "Real name"
 msgstr "Nom réel"
 
-#: ../backstage/users.php:824 ../include/draw_functions.php:669
-#: ../include/draw_functions.php:826
+#: ../backstage/users.php:824 ../include/draw_functions.php:637
+#: ../include/draw_functions.php:794
 msgid "Website"
 msgstr "Site Internet"
 
@@ -2676,7 +2712,7 @@ msgstr "Supprimé"
 msgid "Post #%s"
 msgstr "Message #%s"
 
-#: ../backstage/reports.php:85 ../include/draw_functions.php:1194
+#: ../backstage/reports.php:85 ../include/draw_functions.php:1162
 msgid "Mark as read"
 msgstr "Marquer comme lu"
 
@@ -2686,7 +2722,7 @@ msgstr "Il n'y a pas de nouveau signalement"
 
 #: ../backstage/reports.php:108
 msgid "10 last read reports"
-msgstr ""
+msgstr "Les dix derniers signalement lus"
 
 #: ../backstage/reports.php:114
 msgid "Marked as read by"
@@ -2694,45 +2730,53 @@ msgstr "Marqué comme lu par"
 
 #: ../backstage/reports.php:152
 msgid "There are no read reports."
-msgstr ""
+msgstr "Aucun signalements lus."
 
 #: ../backstage/tools.php:37 ../include/functions.php:477
 msgid ""
 "Usernames must be at least 2 characters long. Please choose another (longer) "
 "username."
 msgstr ""
+"Les noms d'utilisateurs doivent comporter au moins 2 caractères. Essayez un "
+"nom plus long."
 
 #: ../backstage/tools.php:39
 msgid ""
 "Passwords must be at least 6 characters long. Please choose another (longer) "
 "password."
 msgstr ""
+"Les mots de passe doivent comporter au moins 6 caractères. Essayez un mot de "
+"passe plus long."
 
 #: ../backstage/tools.php:41 ../include/functions.php:481
 msgid "The username guest is reserved. Please choose another username."
-msgstr ""
+msgstr "Le nom d'utilisateur invité est réservé. Merci d'en choisir un autre."
 
 #: ../backstage/tools.php:43 ../include/functions.php:483
 msgid ""
 "Usernames may not be in the form of an IP address. Please choose another "
 "username."
-msgstr ""
+msgstr "Les noms d'utilisateurs ne doivent pas ressembler à une adresse IP."
 
 #: ../backstage/tools.php:45 ../include/functions.php:485
 msgid ""
 "Usernames may not contain all the characters ', \" and [ or ] at once. "
 "Please choose another username."
 msgstr ""
+"Les noms d'utilisateurs ne doivent pas comporter tous les caractères ', \" "
+"et [ ou ] en même temps."
 
 #: ../backstage/tools.php:47 ../include/functions.php:487
 msgid ""
 "Usernames may not contain any of the text formatting tags (BBCode) that the "
 "forum uses. Please choose another username."
 msgstr ""
+"Les noms d'utilisateurs ne doivent pas comporter de balises de formatage de "
+"texte (BBCode) utilisés par les forums."
 
 #: ../backstage/tools.php:54 ../include/functions.php:500
 msgid "Someone is already registered with the username"
-msgstr ""
+msgstr "Il existe déjà une personne inscrite avec ce nom d'utilisateur."
 
 #: ../backstage/tools.php:54 ../include/functions.php:500
 msgid ""
@@ -2740,6 +2784,9 @@ msgid ""
 "by at least one alphanumerical character (a-z or 0-9). Please choose a "
 "different username."
 msgstr ""
+"Ce nom d'utilisateur est trop ressemblant. Il doit différer par au moins un "
+"caractère alpha-numérique (a-z ou 0-9). Veuillez essayer un autre nom "
+"d'utilisateur."
 
 #: ../backstage/tools.php:78
 msgid ""
@@ -2757,15 +2804,27 @@ msgid ""
 "<board_mailer> Mailer\n"
 "(Do not reply to this message)"
 msgstr ""
+"Bienvenue sur <board_title> !\n"
+"\n"
+"Merci de vous être inscrit sur <base_url>. Voici les détails de votre "
+"compte :\n"
+"\n"
+"Nom d'utilisateur : <username>\n"
+"Mot de passe : <password>\n"
+"\n"
+"Identifiez-vous sur <login_url> pour valider votre compte.\n"
+"\n"
+"--\n"
+"<board_mailer> Mailer\n"
+"(Ne pas répondre à ce message)"
 
 #: ../backstage/tools.php:121
-#, fuzzy
 msgid "User created"
-msgstr "Nom d'utilisateur"
+msgstr "Utilisateur créé"
 
 #: ../backstage/tools.php:123
 msgid "Failed to create user, no password was given."
-msgstr ""
+msgstr "L'utilisateur n'a pu être créé : aucun mot de passe n'a été saisi."
 
 #: ../backstage/tools.php:128
 msgid "Add user"
@@ -2776,55 +2835,58 @@ msgid ""
 "Generate a random password, this will be emailed to the above address. When "
 "checked, leave \"Password\" empty."
 msgstr ""
+"Générer un mot de passe aléatoire qui vous sera envoyé à l'adresse ci-"
+"dessus. Dans ce cas, laissez vide le champ « mot de passe »."
 
 #: ../backstage/footer.php:20
 #, php-format
 msgid "Generated in %1$s seconds, %2$s queries executed"
-msgstr ""
+msgstr "Généré en %1$s secondes, %2$s requêtes exécutées"
 
 #: ../backstage/footer.php:23
 #, php-format
 msgid "Memory usage: %1$s"
-msgstr ""
+msgstr "Mémoire utilisée : %1$s"
 
 #: ../backstage/footer.php:26
 #, php-format
 msgid "(Peak: %1$s)"
-msgstr ""
+msgstr "(Pic : %1$s)"
 
 #: ../backstage/censoring.php:24 ../backstage/censoring.php:47
 msgid "You must enter a word to censor."
-msgstr ""
+msgstr "Vous devez indiquer un mot à censurer."
 
 #: ../backstage/censoring.php:89
 msgid "Add word"
-msgstr ""
+msgstr "Ajouter un mot"
 
 #: ../backstage/censoring.php:93
 msgid ""
 "Enter a word that you want to censor and the replacement text for this word. "
 "Wildcards are accepted."
 msgstr ""
+"Indiquez un mot à censurer et son remplacement. Les jokers sont acceptés."
 
 #: ../backstage/censoring.php:98 ../backstage/censoring.php:119
 msgid "Censored word"
-msgstr ""
+msgstr "Mot censuré"
 
 #: ../backstage/censoring.php:101 ../backstage/censoring.php:120
 msgid "Replacement word"
-msgstr ""
+msgstr "Mot de remplacement"
 
 #: ../backstage/censoring.php:112
 msgid "Manage words"
-msgstr ""
+msgstr "Censurer des mots."
 
 #: ../backstage/censoring.php:149
 msgid "No censor words in list."
-msgstr ""
+msgstr "ucun mot censuré pour le moment."
 
 #: ../backstage/update.php:83
 msgid "Update ring"
-msgstr ""
+msgstr "Niveau de mise à jour"
 
 #: ../backstage/update.php:90
 msgid "Slow"
@@ -2836,23 +2898,23 @@ msgstr "Normal"
 
 #: ../backstage/update.php:92 ../include/draw_functions.php:170
 msgid "Preview"
-msgstr ""
+msgstr "Prévisualisation"
 
 #: ../backstage/update.php:93
 msgid "Nightly"
-msgstr ""
+msgstr "Nocturne"
 
 #: ../backstage/update.php:106
 msgid "Luna software updates"
-msgstr ""
+msgstr "Mises à jour de Luna"
 
 #: ../backstage/update.php:106
 msgid "Check for updates"
-msgstr ""
+msgstr "Vérifier les mises à jour"
 
 #: ../backstage/update.php:112
 msgid "A new version is available!"
-msgstr ""
+msgstr "Une nouvelle version est disponible !"
 
 #: ../backstage/update.php:113
 #, php-format
@@ -2861,27 +2923,33 @@ msgid ""
 "latest version of Luna, as it contains not only new features, improvements "
 "and bugfixes, but also the latest security updates."
 msgstr ""
+"Une nouvelle version, Luna %s, a été mise en ligne. Utiliser la dernière "
+"version de Luna est une bonne idée afin de profiter des dernières "
+"fonctionnalités, améliorations et correctifs, mais aussi les dernières mises "
+"à jour de sécurité."
 
 #: ../backstage/update.php:115
 #, php-format
 msgid "Download v%s"
-msgstr ""
+msgstr "Télécharger la version v%s"
 
 #: ../backstage/update.php:116
 msgid "Changelog"
-msgstr ""
+msgstr "Historique"
 
 #: ../backstage/update.php:121
 msgid "You're using the latest version of Luna!"
-msgstr ""
+msgstr "Vous utilisez la dernière version de Luna !"
 
 #: ../backstage/update.php:122
 msgid "You're on our latest release! Nothing to worry about."
-msgstr ""
+msgstr "Vous êtes à jour ! Pas d'inquiétude."
 
 #: ../backstage/update.php:126
 msgid "You're using a development version of Luna. Be sure to stay up-to-date."
 msgstr ""
+"Vous utilisez une version de développement de Luna. Prenez soin de rester à "
+"jour."
 
 #: ../backstage/update.php:127
 msgid ""
@@ -2890,6 +2958,10 @@ msgid ""
 "getluna.org/lunareleases.php\">our website</a>. New builds can contain new "
 "features, improved features, and/or bugfixes."
 msgstr ""
+"Nous publions régulièrement des mises à jours pour Luna ; vous pouvez suivre "
+"les publications sur le <a href=\"http://getluna.org/lunareleases.php\">site "
+"officiel</a>. Les nouvelles versions apportent de nouvelles fonctionnalités, "
+"des améliorations ou des correctifs de bogues et de sécurité."
 
 #: ../backstage/update.php:128
 msgid ""
@@ -2897,10 +2969,15 @@ msgid ""
 "release. We can't tell you if there is a new preview available. You'll have "
 "to find out for yourself."
 msgstr ""
+"Pour le moment, vous semblez être en avance sur la dernière version ; "
+"impossible de vous dire s'il existe une mise à jour disponible à ce stade. À "
+"vous de voir !"
 
 #: ../backstage/index.php:25
 msgid "Could not remove install.php. Please do so by hand."
 msgstr ""
+"Impossible de supprimer le fichier install.php, vous devrez procéder "
+"manuellement."
 
 #: ../backstage/index.php:82
 msgid "Index"
@@ -2911,22 +2988,24 @@ msgid ""
 "The config file is writeable at this moment, you might want to set the CHMOD "
 "to 640 or 644."
 msgstr ""
+"Le fichier de configuration est actuellement accessible en écriture, vous "
+"devriez corriger cela en CHMOD 640 ou 644."
 
 #: ../backstage/index.php:96
 msgid "The file install.php still exists, but should be removed."
-msgstr ""
+msgstr "Le fichier install.php existe et devrait être supprimé."
 
 #: ../backstage/index.php:96
 msgid "Delete it"
-msgstr ""
+msgstr "Supprimer"
 
 #: ../backstage/index.php:103
 msgid "Welcome to Luna"
-msgstr ""
+msgstr "Bienvenue sur Luna"
 
 #: ../backstage/index.php:107
 msgid "Got it"
-msgstr ""
+msgstr "J'ai compris"
 
 #: ../backstage/index.php:115
 msgid ""
@@ -2934,157 +3013,171 @@ msgid ""
 "We're ready to go now, but there might be a couple of settings you might "
 "want to change. So let us help you with that first!"
 msgstr ""
+"Bienvenu « backstage » ! Ici vous pouvez gérer votre nouveau forum. Il est "
+"fonctionnel en l'état, mais il y a sans doute certains réglages que vous "
+"pourriez vouloir modifier. Commençons par là !"
 
 #: ../backstage/index.php:116
 msgid ""
 "If you're done, you can click on \"Got it\" in the upper right corner of "
 "this panel to disable this field."
 msgstr ""
+"Si vous en avez terminé, vous pouvez cliquer sur « J'ai compris » dans le "
+"coin supérieur droit de ce panneau."
 
 #: ../backstage/index.php:118
 msgid "What's new"
-msgstr ""
+msgstr "Quoi de neuf"
 
 #: ../backstage/index.php:123
 msgid "Create new sections"
-msgstr ""
+msgstr "Créer de nouvelles sections"
 
 #: ../backstage/index.php:124
 msgid "Censor words"
-msgstr ""
+msgstr "Censurer des mots"
 
 #: ../backstage/index.php:125
 msgid "Add more groups"
-msgstr ""
+msgstr "Ajouter des groupes"
 
 #: ../backstage/index.php:126
 msgid "Add additional ranks"
-msgstr ""
+msgstr "Ajouter des rangs"
 
 #: ../backstage/index.php:131
 msgid "Customize the menu"
-msgstr ""
+msgstr "Personnaliser le menu"
 
 #: ../backstage/index.php:132
 msgid "Change the appearance"
-msgstr ""
+msgstr "Modifier l'apparence"
 
 #: ../backstage/index.php:133
 msgid "Alter functionality"
-msgstr ""
+msgstr "Configurer les fonctionnalités"
 
 #: ../backstage/index.php:134
 msgid "Change settings"
-msgstr ""
+msgstr "Modifier les réglages"
 
 #: ../backstage/index.php:147
 msgid "View all"
-msgstr ""
+msgstr "Voir tout"
 
 #: ../backstage/index.php:198
 msgid "Back-up"
-msgstr ""
+msgstr "Sauvegarde"
 
 #: ../backstage/index.php:201
 msgid "Create new backup"
-msgstr ""
+msgstr "Créer une sauvegarde"
 
-#: ../backstage/index.php:213 ../include/draw_functions.php:371
-#: ../include/draw_functions.php:452
-msgid "posts"
-msgstr ""
+#: ../backstage/index.php:213 ../include/draw_functions.php:355
+#: ../include/draw_functions.php:429
+msgid "post"
+msgid_plural "posts"
+msgstr[0] "message"
+msgstr[1] "messages"
 
-#: ../backstage/index.php:214 ../include/draw_functions.php:366
-#: ../include/draw_functions.php:447
-msgid "topics"
-msgstr "Discussions"
+#: ../backstage/index.php:214 ../include/draw_functions.php:354
+#: ../include/draw_functions.php:428
+msgid "topic"
+msgid_plural "topics"
+msgstr[0] "discussion"
+msgstr[1] "discussions"
 
 #: ../backstage/index.php:215
-msgid "users"
-msgstr ""
+msgid "user"
+msgid_plural "users"
+msgstr[0] "utilisateur"
+msgstr[1] "utilisateurs"
 
 #: ../backstage/index.php:229
 #, php-format
 msgid "Luna v%s is available, %s!"
-msgstr ""
+msgstr "Luna v%s est disponible, %s !"
 
 #: ../backstage/index.php:229
 msgid "update now"
-msgstr ""
+msgstr "mettre à jour maintenant"
 
 #: ../backstage/index.php:240
 msgid "Admin notes"
-msgstr ""
+msgstr "Notes d'administration"
 
 #: ../backstage/index.php:243
 msgid "Add a note..."
-msgstr ""
+msgstr "Ajouter une note"
 
 #: ../backstage/board.php:67 ../backstage/board.php:181
 msgid "Forums"
-msgstr ""
+msgstr "Forums"
 
 #: ../backstage/board.php:77
 msgid "Confirm delete forum"
-msgstr ""
+msgstr "Confirmer la suppression du forum"
 
 #: ../backstage/board.php:80
 #, php-format
 msgid "Are you sure that you want to delete the forum <strong>%s</strong>?"
 msgstr ""
+"Êtes-vous certain(e) de vouloir supprimer le forum <strong>%s</strong> ?"
 
 #: ../backstage/board.php:80
 msgid "Warning! Deleting a forum will delete all posts (if any) in that forum!"
 msgstr ""
+"Attention ! Supprimer un forum effacera également tous les messages qu'il "
+"contient !"
 
 #: ../backstage/board.php:125 ../backstage/board.php:381
 #: ../backstage/board.php:482
 msgid "You must enter a name"
-msgstr ""
+msgstr "Vous devez indiquer un nom"
 
 #: ../backstage/board.php:190
 msgid "Edit forum details"
-msgstr ""
+msgstr "Modifier les détails du forum"
 
 #: ../backstage/board.php:195
 msgid "Forum name"
-msgstr ""
+msgstr "Titre"
 
 #: ../backstage/board.php:201
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: ../backstage/board.php:207
 msgid "Parent section"
-msgstr ""
+msgstr "Parent"
 
 #: ../backstage/board.php:210
 msgid "No parent forum selected"
-msgstr ""
+msgstr "Aucun parent sélectionné"
 
 #: ../backstage/board.php:239
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
 #: ../backstage/board.php:255
 msgid "Sort topics by"
-msgstr ""
+msgstr "Classer les discussions part"
 
 #: ../backstage/board.php:259
 msgid "Topic start"
 msgstr "Début de la discussion"
 
-#: ../backstage/board.php:260 ../include/draw_functions.php:1085
+#: ../backstage/board.php:260 ../include/draw_functions.php:1053
 msgid "Subject"
-msgstr ""
+msgstr "Sujet"
 
 #: ../backstage/board.php:265
 msgid "Forum color"
-msgstr ""
+msgstr "Couleur"
 
 #: ../backstage/board.php:312
 msgid "Edit group permissions"
-msgstr ""
+msgstr "Modifier les permissions"
 
 #: ../backstage/board.php:316
 msgid ""
@@ -3093,141 +3186,153 @@ msgid ""
 "that differ from the default permissions for the user group are marked red. "
 "Some permissions are disabled under some conditions."
 msgstr ""
+"Vous pouvez régler ici les permissions spécifiques à ce forum pour les "
+"différents groupes. Les administrateurs disposent en permanence de toutes "
+"les permissions ; les réglages qui différent des permissions accordées par "
+"défaut aux groupes sont marquées en rouge. Certaines permissions peuvent "
+"être désactivées dans certaines conditions."
 
 #: ../backstage/board.php:316 ../backstage/groups.php:38
 #: ../backstage/groups.php:492 ../backstage/groups.php:520
 #: ../backstage/groups.php:561
 msgid "User groups"
-msgstr ""
+msgstr "Groupes"
 
 #: ../backstage/board.php:317
 msgid "Revert to default"
-msgstr ""
+msgstr "Réinitialiser"
 
 #: ../backstage/board.php:323
 msgid "Read forum"
-msgstr ""
+msgstr "Lire le forum"
 
 #: ../backstage/board.php:324 ../backstage/groups.php:207
 msgid "Post replies"
-msgstr ""
+msgstr "Publier des messages"
 
 #: ../backstage/board.php:325 ../backstage/groups.php:218
 msgid "Post topics"
-msgstr ""
+msgstr "Créer des discussions"
 
 #: ../backstage/board.php:435
 msgid "Categories"
-msgstr ""
+msgstr "Catégories"
 
 #: ../backstage/board.php:446
 msgid "Confirm delete category"
-msgstr ""
+msgstr "Confirmer la suppression de la catégorie"
 
 #: ../backstage/board.php:449
 #, php-format
 msgid "Are you sure that you want to delete the category <strong>%s</strong>?"
 msgstr ""
+"Êtes-vous certain(e) de vouloir supprimer la catégorie <strong>%s</strong> ?"
 
 #: ../backstage/board.php:449
 msgid ""
 "Deleting a category will delete all forums and posts (if any) in this "
 "category!"
 msgstr ""
+"Supprimer une catégorie effacera également tous les forums et les messages "
+"qu'elle contient !"
 
 #: ../backstage/board.php:493 ../include/backstage_functions.php:25
 #: ../include/backstage_functions.php:153
 msgid "Board"
-msgstr ""
+msgstr "Forum"
 
 #: ../backstage/board.php:510
 msgid "Add forum"
-msgstr ""
+msgstr "Créer un forum"
 
 #: ../backstage/board.php:539
 msgid "Add categories"
-msgstr ""
+msgstr "Créer une catégorie"
 
 #: ../backstage/board.php:556
 msgid "Delete categories"
-msgstr ""
+msgstr "Supprimer les catégories"
 
 #: ../backstage/board.php:592
 msgid "Edit forum"
-msgstr ""
+msgstr "Modifier le forum"
 
 #: ../backstage/board.php:638
 msgid "Edit categories"
-msgstr ""
+msgstr "Modifier les catégories"
 
 #: ../backstage/ranks.php:25 ../backstage/ranks.php:58
 msgid "Minimum posts must be a positive integer value."
-msgstr ""
+msgstr "Le nombre minimal de messages doit être un nombre entier."
 
 #: ../backstage/ranks.php:30 ../backstage/ranks.php:62
 #, php-format
 msgid "There is already a rank with a minimum posts value of %s."
-msgstr ""
+msgstr "Il existe déjà un rang avec pour minimum de messages la valeur %s."
 
 #: ../backstage/ranks.php:95
 #, php-format
 msgid "<strong>User ranks is disabled in %s.</strong>"
-msgstr ""
+msgstr "<strong>Rangs désactivés dans %s.</strong>"
 
 #: ../backstage/ranks.php:103
 msgid "Add rank"
-msgstr ""
+msgstr "Créer un rang"
 
 #: ../backstage/ranks.php:109 ../backstage/ranks.php:136
 msgid "Rank title"
-msgstr ""
+msgstr "Titre"
 
 #: ../backstage/ranks.php:112 ../backstage/ranks.php:137
 msgid "Minimum posts"
-msgstr ""
+msgstr "Nombre minimal de messages"
 
 #: ../backstage/ranks.php:124
 msgid "Manage ranks"
-msgstr ""
+msgstr "Gérer les rangs"
 
 #: ../backstage/ranks.php:159
 msgid "No ranks in list"
-msgstr ""
+msgstr "Aucun rang dans la liste"
 
 #: ../backstage/groups.php:27 ../backstage/groups.php:31
 #: ../backstage/groups.php:441 ../backstage/groups.php:446
 #: ../backstage/groups.php:466
-#, fuzzy
 msgid ""
 "Bad request. The link you followed is incorrect, outdated or you're simply "
 "not allowed to hang around here."
-msgstr "Mauvaise requête."
+msgstr ""
+"Mauvaise requête. Le lien que vous avez suivi est erroné, périmé, ou vous "
+"n'êtes simplement pas supposé vous trouvez ici."
 
 #: ../backstage/groups.php:39 ../backstage/groups.php:57
 msgid "Group title"
-msgstr ""
+msgstr "Titre du groupe"
 
 #: ../backstage/groups.php:48
 msgid "Setup group options and permissions"
-msgstr ""
+msgstr "Options et permissions de groupe"
 
 #: ../backstage/groups.php:55
 msgid ""
 "Below options and permissions are the default permissions for the user "
 "group. These options apply if no forum specific permissions are in effect."
 msgstr ""
+"Ci-dessous se trouvent les options et permissions par défaut pour ce groupe "
+"d'utilisateurs. Ces réglages s'appliqueront si aucun réglage spécifique "
+"n'est défini par forum."
 
 #: ../backstage/groups.php:63
 msgid "User title"
-msgstr ""
+msgstr "Titre de l'utilisateur"
 
 #: ../backstage/groups.php:63
 msgid "The title will override the user rank"
-msgstr ""
+msgstr "Le titre remplacera le rang"
 
 #: ../backstage/groups.php:71
 msgid "Moderator privileges"
-msgstr ""
+msgstr "Privilèges des modérateurs"
 
 #: ../backstage/groups.php:76
 msgid ""
@@ -3235,173 +3340,203 @@ msgid ""
 "moderate one or more forums. This is done via the user administration page "
 "of the user's profile."
 msgstr ""
+"Pour avoir accès aux privilèges administrateurs, les utilisateurs doivent "
+"être affectés à la modération d'un ou plusieurs forums. Gérez ceci à partir "
+"de la section d'administration du profil de l'utilisateur."
 
 #: ../backstage/groups.php:82
 msgid "Edit user profiles"
-msgstr ""
+msgstr "Éditer les profils"
 
 #: ../backstage/groups.php:87
 msgid "If moderator privileges are enabled, allow users to edit user profiles."
 msgstr ""
+"Si les privilèges modérateurs sont activés, autorise les modérateurs à "
+"éditer les profils des autres utilisateurs."
 
 #: ../backstage/groups.php:93
 msgid "Rename users"
-msgstr ""
+msgstr "Renommer les utilisateurs"
 
 #: ../backstage/groups.php:98
 msgid "If moderator privileges are enabled, allow users to rename users."
 msgstr ""
+"Si les privilèges modérateurs sont activés, autorise les modérateurs à "
+"renommer les autres utilisateurs."
 
 #: ../backstage/groups.php:104
 msgid "Change passwords"
-msgstr ""
+msgstr "Modifier les mots de passe"
 
 #: ../backstage/groups.php:109
 msgid ""
 "If moderator privileges are enabled, allow users to change user passwords."
 msgstr ""
+"Si les privilèges modérateurs sont activés, autorise les modérateurs à "
+"modifier les mots de passes des autres utilisateurs."
 
 #: ../backstage/groups.php:120
 msgid "If moderator privileges are enabled, allow users to ban users."
 msgstr ""
+"Si les privilèges modérateurs sont activés, autorise les modérateurs à "
+"bannir les utilisateurs."
 
 #: ../backstage/groups.php:129
 msgid "Show deleted content"
-msgstr ""
+msgstr "Afficher les contenus supprimés"
 
 #: ../backstage/groups.php:134
 msgid "Allow users to view topics and posts that have been soft deleted."
-msgstr ""
+msgstr "Autoriser les modérateurs à voir les discussions et messages masqués."
 
 #: ../backstage/groups.php:140
 msgid "Soft delete posts"
-msgstr ""
+msgstr "Masquer les messages"
 
 #: ../backstage/groups.php:145
 msgid "Allow users to soft delete posts from all users."
-msgstr ""
+msgstr "Autoriser les modérateurs à masquer les messages d'autres utilisateurs"
 
 #: ../backstage/groups.php:151
 msgid "Soft delete topics"
-msgstr ""
+msgstr "Masquer les discussions"
 
 #: ../backstage/groups.php:156
 msgid "Allow users to soft delete topics from all users."
 msgstr ""
+"Autoriser les modérateurs à masquer les discussions d'autres utilisateurs."
 
 #: ../backstage/groups.php:170
 msgid "Allow users to send messages with Inbox."
-msgstr ""
+msgstr "Autoriser les utilisateurs à envoyer des messages privés."
 
 #: ../backstage/groups.php:179
 msgid ""
 "The maximum amount of messages a user in this group can have in his Inbox. 0 "
 "is no limit."
 msgstr ""
+"Le nombre maximal de messages qu'un utilisateur puisse conserver dans sa "
+"boite de réception. 0 pour aucune limite."
 
 #: ../backstage/groups.php:185
 msgid "Read board"
-msgstr ""
+msgstr "Lire le forum"
 
 #: ../backstage/groups.php:190
 msgid "If this is disabled, users will only be able to login and logout."
 msgstr ""
+"Si désactivé, les utilisateurs pourront uniquement se connecter et se "
+"déconnecter."
 
 #: ../backstage/groups.php:196
 msgid "View user information"
-msgstr ""
+msgstr "Informations utilisateurs"
 
 #: ../backstage/groups.php:201
 msgid "Allow users to view the user list and user profiles."
 msgstr ""
+"Autoriser les utilisateurs à afficher la liste des utilisateurs et consulter "
+"les profils des autres utilisateurs."
 
 #: ../backstage/groups.php:212
 msgid "Allow users to post replies in topics."
-msgstr ""
+msgstr "Autoriser les utilisateurs à répondre aux discussions."
 
 #: ../backstage/groups.php:223
 msgid "Allow users to post new topics."
-msgstr ""
+msgstr "Autoriser les utilisateurs à créer de nouvelles discussions."
 
 #: ../backstage/groups.php:231
 msgid "Edit posts"
-msgstr ""
+msgstr "Édition des messages"
 
 #: ../backstage/groups.php:236
 msgid "Allow users to edit their own posts."
-msgstr ""
+msgstr "Autoriser les utilisateurs à modifier leurs propres messages."
 
 #: ../backstage/groups.php:247
 msgid "Allow users to delete their own posts."
-msgstr ""
+msgstr "Autoriser les utilisateurs à supprimer leurs propres messages."
 
 #: ../backstage/groups.php:258
 msgid "Allow users to delete their own topics (including any replies)."
 msgstr ""
+"Autoriser les utilisateurs à supprimer leurs propres discussions (et les "
+"réponses avec)."
 
 #: ../backstage/groups.php:267
 msgid "Set own user title"
-msgstr ""
+msgstr "Titre personnalisé"
 
 #: ../backstage/groups.php:272
 msgid "Allow users to set their own user title."
-msgstr ""
+msgstr "Autoriser les utilisateurs à modifier eux-mêmes leur titre."
 
 #: ../backstage/groups.php:280
 msgid "Use search"
-msgstr ""
+msgstr "Recherche"
 
 #: ../backstage/groups.php:285
 msgid "Allow users to use the search feature."
-msgstr ""
+msgstr "Autoriser les utilisateurs à utiliser l'outil de recherche."
 
 #: ../backstage/groups.php:291
 msgid "Search user list"
-msgstr ""
+msgstr "Recherche d'utilisateurs"
 
 #: ../backstage/groups.php:296
 msgid "Allow users to search for other users in the user list."
 msgstr ""
+"Autoriser les utilisateurs à rechercher d'autres utilisateurs dans la liste."
 
 #: ../backstage/groups.php:304
 msgid "Send e-mails"
-msgstr ""
+msgstr "Envoyer des courriels"
 
 #: ../backstage/groups.php:309
 msgid "Allow users to send e-mails to other users."
 msgstr ""
+"Autoriser les utilisateurs à envoyer des courriels à d'autres utilisateurs."
 
 #: ../backstage/groups.php:317
 msgid "Post flood interval"
-msgstr ""
+msgstr "Interval de messages"
 
 #: ../backstage/groups.php:317
 msgid "Time users have to wait between posts"
 msgstr ""
+"Période durant laquelle les utilisateurs doivent patienter avant de publier "
+"un nouveau message."
 
 #: ../backstage/groups.php:326
 msgid "Search flood interval"
-msgstr ""
+msgstr "Interval de recherches"
 
 #: ../backstage/groups.php:326
 msgid "Time users have to wait between searches"
 msgstr ""
+"Période durant laquelle les utilisateurs doivent patienter avant de lancer "
+"une nouvelle recherche."
 
 #: ../backstage/groups.php:336
 msgid "Email flood interval"
-msgstr ""
+msgstr "Interval de courriels"
 
 #: ../backstage/groups.php:336
 msgid "Time users have to wait between emails"
 msgstr ""
+"Période durant laquelle les utilisateurs doivent patienter avant d'envoyer "
+"un nouveau courriel."
 
 #: ../backstage/groups.php:345
 msgid "Report flood interval"
-msgstr ""
+msgstr "Interval de signalements"
 
 #: ../backstage/groups.php:345
 msgid "Time users have to wait between reports"
 msgstr ""
+"Période durant laquelle les utilisateurs doivent patienter avant d'envoyer "
+"un nouveau signalement."
 
 #: ../backstage/groups.php:354
 msgid ""
@@ -3409,30 +3544,38 @@ msgid ""
 "be assigned to moderate one or more forums. This is done via the user "
 "administration page of the user's profile."
 msgstr ""
+"Notez que pour avoir accès aux privilèges administrateurs, les utilisateurs "
+"doivent être affectés à la modération d'un ou plusieurs forums. Gérez ceci à "
+"partir de la section d'administration du profil de l'utilisateur."
 
 #: ../backstage/groups.php:412 ../backstage/groups.php:424
 #, php-format
 msgid "There is already a group with the title <strong>%s</strong>."
-msgstr ""
+msgstr "Il existe déjà un groupe nommé <strong>%s</strong>."
 
 #: ../backstage/groups.php:470
 msgid ""
 "The default group cannot be removed. In order to delete this group, you must "
 "first setup a different group as the default."
 msgstr ""
+"Le groupe par défaut ne peut être supprimé. Pour supprimer ce groupe vous "
+"devez d'abord choisir un autre groupe comme groupe par défaut."
 
 #: ../backstage/groups.php:501
 #, php-format
 msgid "Are you sure that you want to delete the group <strong>%s</strong>?"
 msgstr ""
+"Êtes-vous certain(e) de vouloir supprimer le groupe <strong>%s</strong> ?"
 
 #: ../backstage/groups.php:505
 msgid "<b>Warning:</b> After you deleted a group you cannot restore it."
 msgstr ""
+"<strong>Attention :</strong> une fois supprimé, vous ne pouvez plus "
+"restaurer un groupe."
 
 #: ../backstage/groups.php:527 ../backstage/groups.php:551
 msgid "Delete group"
-msgstr ""
+msgstr "Supprimer le groupe"
 
 #: ../backstage/groups.php:532
 #, php-format
@@ -3440,30 +3583,33 @@ msgid ""
 "The group <strong>%s</strong> currently has <strong>%s</strong> members. "
 "Please select a group to which these members will be assigned upon deletion."
 msgstr ""
+"Le groupe <strong>%s</strong> contient actuellement <strong>%s</strong> "
+"membres. Veuillez sélectionner un groupe vers auquel ces membres seront "
+"réassignés après suppression."
 
 #: ../backstage/groups.php:533
 msgid "Move users to"
-msgstr ""
+msgstr "Déplacer les utilisateurs vers"
 
 #: ../backstage/groups.php:572
 msgid "Add new group"
-msgstr ""
+msgstr "Créer un nouveau groupe"
 
 #: ../backstage/groups.php:576
 msgid "Select a group the new group will be based on."
-msgstr ""
+msgstr "Choisir un groupe sur lequel baser le nouveau groupe."
 
 #: ../backstage/groups.php:597
 msgid "Set default group"
-msgstr ""
+msgstr "Groupe par défaut"
 
 #: ../backstage/groups.php:602
 msgid "The default group in which new users will be placed."
-msgstr ""
+msgstr "Le groupe dans lequel les utilisateurs seront ajoutés par défaut."
 
 #: ../backstage/groups.php:625
 msgid "Manage groups"
-msgstr ""
+msgstr "Gérer les groupes"
 
 #: ../include/parser.php:53 ../include/parser.php:109
 msgid ""
@@ -3471,101 +3617,110 @@ msgid ""
 "happened because e.g. the innermost quote was discarded because of the "
 "maximum quote depth level."
 msgstr ""
+"Il semble que votre message ne contienne que du BBCode. Il est possible que "
+"cela se produise parce qu'une citation a été nettoyée car dépassant la "
+"profondeur limite."
 
 #: ../include/parser.php:63
 msgid ""
 "The quote, code, list, video, and heading BBCodes are not allowed in "
 "signatures."
 msgstr ""
+"Les BBCodes quote, code, list, video et heading ne sont pas autorisés dans "
+"les signatures."
 
 #: ../include/parser.php:75
 msgid "Your list was too long to parse, please make it smaller!"
-msgstr ""
+msgstr "Votre liste est trop longue à traiter, merci de la réduire !"
 
 #: ../include/parser.php:306
 #, php-format
 msgid "[%s] tag had an empty attribute section"
-msgstr ""
+msgstr "Le tag [%s] comporte une section d'attribut vide."
 
 #: ../include/parser.php:355 ../include/parser.php:456
 #, php-format
 msgid "[%1$s] was opened within [%2$s], this is not allowed"
-msgstr ""
+msgstr "[%1$s] a été ouvert dans [%2$s], ce qui n'est pas autorisé."
 
 #: ../include/parser.php:364 ../include/parser.php:421
 #, php-format
 msgid "[/%1$s] was found without a matching [%1$s]"
-msgstr ""
+msgstr "[/%1$s] a été trouvé, mais pas son camarade [%1$s]"
 
 #: ../include/parser.php:390 ../include/parser.php:508
 #: ../include/parser.php:515
 #, php-format
 msgid "[%1$s] was found without a matching [/%1$s]"
-msgstr ""
+msgstr "[%1$s] a été trouvé, mais sans son camarade [/%1$s]"
 
 #: ../include/parser.php:471
 #, php-format
 msgid "[%s] was opened within itself, this is not allowed"
-msgstr ""
+msgstr "[%s] a été inclu dans lui-même, ce qui n'est pas autorisé"
 
 #: ../include/parser.php:596
 msgid "image"
-msgstr ""
+msgstr "image"
 
 #: ../include/install.php:74
 msgid "Usernames must be at least 2 characters long."
-msgstr ""
+msgstr "Les noms d'utilisateurs doivent comporter au moins 2 caractères."
 
 #: ../include/install.php:76
 msgid "Usernames must not be more than 25 characters long."
-msgstr ""
+msgstr "Les noms d'utilisateurs ne doivent pas dépasser 25 caractères."
 
 #: ../include/install.php:78
 msgid "The username guest is reserved."
-msgstr ""
+msgstr "Le nom d'utilisateur invité est réservé."
 
 #: ../include/install.php:80
 msgid "Usernames may not be in the form of an IP address."
-msgstr ""
+msgstr "Les noms d'utilisateurs ne doivent pas ressembler à une adresse IP."
 
 #: ../include/install.php:82
 msgid "Usernames may not contain all the characters ', \" and [ or ] at once."
 msgstr ""
+"Les noms d'utilisateurs ne doivent pas comporter tous les caractères ', \" "
+"et [ ou ] en même temps."
 
 #: ../include/install.php:84
 msgid ""
 "Usernames may not contain any of the text formatting tags (BBCode) that the "
 "forum uses."
 msgstr ""
+"Les noms d'utilisateurs ne doivent pas comporter de balises de formatage de "
+"texte (BBCode) utilisés par les forums."
 
 #: ../include/install.php:87
 msgid "Passwords must be at least 6 characters long."
-msgstr ""
+msgstr "Les mots de passe doivent comporter au moins 6 caractères."
 
 #: ../include/install.php:89
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Les mots de passe ne correspondent pas."
 
 #: ../include/install.php:95
 msgid "The administrator email address you entered is invalid."
-msgstr ""
+msgstr "Le courriel administrateur saisi est invalide."
 
 #: ../include/install.php:98
 msgid "You must enter a board title."
-msgstr ""
+msgstr "Vous devez indiquer un titre pour le forum."
 
 #: ../include/install.php:102
 msgid "The default language chosen doesn't seem to exist."
-msgstr ""
+msgstr "Le language par défaut n'a pas l'air d'exister."
 
 #: ../include/install.php:106
 msgid "The default style chosen doesn't seem to exist."
-msgstr ""
+msgstr "Le style par défaut n'a pas l'air d'exister."
 
 #: ../include/install.php:140
 #, php-format
 msgid "\"%s\" is not a valid database type"
-msgstr ""
+msgstr "« %s » n'est pas un type de base de données valide."
 
 #: ../include/install.php:154 ../include/install.php:160
 #, php-format
@@ -3574,16 +3729,21 @@ msgid ""
 "run properly. You must upgrade your %1$s installation before you can "
 "continue."
 msgstr ""
+"Vous utilisez %1$s version %2$s. Luna %3$s requiert au moins  %1$s %4$s pour "
+"fonctionner correctement. Vous devez mettre à jour votre %1$s installation "
+"avant de poursuivre."
 
 #: ../include/install.php:165 ../include/install.php:182
 msgid "The table prefix "
-msgstr ""
+msgstr "Le préfixe des tables"
 
 #: ../include/install.php:174
 msgid ""
 "InnoDB does not seem to be enabled. Please choose a database layer that does "
 "not have InnoDB support, or enable InnoDB on your MySQL server"
 msgstr ""
+"InnoDB ne semble pas activé. Veuillez sélectionner un type de base de "
+"données qui n'inclut pas InnoDB, ou activez InnoDB sur votre serveur."
 
 #: ../include/install.php:196
 #, php-format
@@ -3594,14 +3754,19 @@ msgid ""
 "If you want to install multiple copies of Luna in the same database, you "
 "must choose a different table prefix"
 msgstr ""
+"Une table nommée « %susers » est déjà présente dans la base de données « %s "
+"». Cela pourrait signifier que Luna est déjà installé ou qu'une autre "
+"application utilise le nom d'une ou plusieures tables nécessaires à Luna. Si "
+"vous souhaitez installer plusieurs copies de Luna dans la même base de "
+"données, vous devez choisir un préfixe de table différent."
 
 #: ../include/install.php:1408
 msgid "H:i"
-msgstr ""
+msgstr "H:i"
 
 #: ../include/install.php:1409
 msgid "j M Y"
-msgstr ""
+msgstr "j M Y"
 
 #: ../include/install.php:1447
 msgid ""
@@ -3609,120 +3774,130 @@ msgid ""
 "set up your account and you're ready to go. Though we like to point out some "
 "actions you might want to do first."
 msgstr ""
+"Wow, c'est une joie de vous accueilir parmi nous, merci ! Votre compte est "
+"prêt, mais voici tout d'abord quelques points à soumettre à votre attention."
 
 #: ../include/install.php:1461
 msgid "Announcement"
-msgstr ""
+msgstr "Annonce"
 
 #: ../include/install.php:1463
 msgid "Rules"
-msgstr ""
+msgstr "Règles"
 
 #: ../include/install.php:1533
 msgid "Administrators"
-msgstr ""
+msgstr "Administrateurs"
 
 #: ../include/install.php:1533
 msgid "Administrator"
-msgstr ""
+msgstr "Administrateur"
 
 #: ../include/install.php:1535
 msgid "Moderators"
-msgstr ""
+msgstr "Modérateurs"
 
 #: ../include/install.php:1535
 msgid "Moderator"
-msgstr ""
+msgstr "Modérateur"
 
 #: ../include/install.php:1539
 msgid "Members"
-msgstr ""
+msgstr "Membres"
 
 #: ../include/install.php:1568
 msgid "New member"
-msgstr ""
+msgstr "Nouveau membre"
 
 #: ../include/install.php:1571 ../include/functions.php:896
 msgid "Member"
-msgstr ""
+msgstr "Membre"
 
 #: ../include/functions.php:449
 msgid "You are banned from this forum."
-msgstr ""
+msgstr "Vous êtes banni de ce forum."
 
 #: ../include/functions.php:449
 msgid "The ban expires at the end of"
-msgstr ""
+msgstr "Le bannissement expire à la fin du"
 
 #: ../include/functions.php:449
 msgid ""
 "The administrator or moderator that banned you left the following message:"
 msgstr ""
+"L'administrateur ou le modérateur qui vous a banni envoie le message "
+"suivant :"
 
 #: ../include/functions.php:449
 msgid "Please direct any inquiries to the forum administrator at"
-msgstr ""
+msgstr "Pour toute question, contactez l'administrateur à "
 
 #: ../include/functions.php:479
 msgid ""
 "Usernames must not be more than 25 characters long. Please choose another "
 "(shorter) username."
 msgstr ""
+"Les noms d'utilisateur ne doivent pas comporter plus de 25 caractères. "
+"Veuillez choisir un autre nom d'utilisateur."
 
 #: ../include/functions.php:491
 msgid ""
 "The username you entered contains one or more censored words. Please choose "
 "a different username."
 msgstr ""
+"Le nom d'utilisateur que vous avez saisi contient des mots interdits. "
+"Veuillez choisir un autre nom d'utilisateur."
 
 #: ../include/functions.php:506
 msgid ""
 "The username you entered is banned in this forum. Please choose another "
 "username."
 msgstr ""
+"Le nom d'utilisateur que vous avez indiqué est banni. Veuillez choisir un "
+"autre nom d'utilisateur."
 
 #: ../include/functions.php:625
 #, php-format
 msgid "Page %s"
-msgstr ""
+msgstr "Page %s"
 
 #: ../include/functions.php:627
 msgid " / "
-msgstr ""
+msgstr " / "
 
 #: ../include/functions.php:930 ../include/functions.php:945
 #: ../include/functions.php:980 ../include/functions.php:995
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #: ../include/functions.php:1016 ../include/functions.php:1043
 #: ../include/functions.php:1051 ../include/backstage_functions.php:69
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../include/functions.php:1023
 msgid "We've got us a situation here."
-msgstr ""
+msgstr "Houston, on a un problème."
 
-#: ../include/functions.php:1090 ../include/draw_functions.php:386
+#: ../include/functions.php:1090 ../include/draw_functions.php:370
 msgid "Never"
-msgstr ""
+msgstr "Jamais"
 
 #: ../include/functions.php:1108
 msgid "Today"
-msgstr ""
+msgstr "Aujourd'hui"
 
 #: ../include/functions.php:1110
 msgid "Yesterday"
-msgstr ""
+msgstr "Hier"
 
 #: ../include/functions.php:1127
 msgid "."
-msgstr ""
+msgstr "."
 
 #: ../include/functions.php:1127
 msgid ","
-msgstr ""
+msgstr ","
 
 #: ../include/functions.php:1164 ../include/functions.php:1184
 msgid ""
@@ -3741,29 +3916,29 @@ msgstr ""
 #: ../include/functions.php:1566
 #, php-format
 msgid "Size unit %s"
-msgstr ""
+msgstr "Unité de taille %s"
 
 #: ../include/functions.php:1964
 msgid "Debug information"
-msgstr ""
+msgstr "Informations de débogage"
 
 #: ../include/functions.php:1969
 msgid "Time (s)"
-msgstr ""
+msgstr "Temps (s)"
 
 #: ../include/functions.php:1970
 msgid "Query"
-msgstr ""
+msgstr "Requête"
 
 #: ../include/functions.php:1991
 #, php-format
 msgid "Total query time: %s"
-msgstr ""
+msgstr "Temps total d'exécution de la requête : %s"
 
 #: ../include/email.php:199
 #, php-format
 msgid "%s Mailer"
-msgstr ""
+msgstr "%s Courriel automatique"
 
 #: ../include/common.php:190
 msgid ""
@@ -3778,406 +3953,428 @@ msgstr ""
 #: ../include/backstage_functions.php:18
 #: ../include/backstage_functions.php:147
 msgid "System info"
-msgstr ""
+msgstr "Informations système"
 
 #: ../include/backstage_functions.php:20
 msgid "Luna software update"
-msgstr ""
+msgstr "Mise à jour de Luna"
 
 #: ../include/backstage_functions.php:22
 msgid "About Luna"
-msgstr ""
+msgstr "À propos de Luna"
 
 #: ../include/backstage_functions.php:36
 #: ../include/backstage_functions.php:161
 msgid "Tools"
-msgstr ""
+msgstr "Outils"
 
 #: ../include/backstage_functions.php:40
 #: ../include/backstage_functions.php:163
 msgid "Groups"
-msgstr ""
+msgstr "Groupes"
 
 #: ../include/backstage_functions.php:47 ../include/backstage_functions.php:91
 #: ../include/backstage_functions.php:122
 #: ../include/backstage_functions.php:169 ../include/me_functions.php:25
 #: ../include/me_functions.php:37
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: ../include/backstage_functions.php:59
 #: ../include/backstage_functions.php:175
 msgid "Theme"
-msgstr ""
+msgstr "Thème"
 
 #: ../include/backstage_functions.php:66
 msgid "Database management"
-msgstr ""
+msgstr "Base de données"
 
 #: ../include/backstage_functions.php:89
 msgid "Content"
-msgstr ""
+msgstr "Contenu"
 
 #: ../include/backstage_functions.php:104
 msgid "Extensions"
-msgstr ""
+msgstr "Extensions"
 
 #: ../include/backstage_functions.php:121 ../include/me_functions.php:15
 #: ../include/me_functions.php:31
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: ../include/backstage_functions.php:124
 msgid "Help"
-msgstr ""
+msgstr "Aide"
 
 #: ../include/backstage_functions.php:125
 msgid "Support"
-msgstr ""
+msgstr "Support"
 
 #: ../include/backstage_functions.php:127
 msgid "Logout"
-msgstr ""
+msgstr "Déconnexion"
 
 #: ../include/backstage_functions.php:149
 msgid "About"
-msgstr ""
+msgstr "À propos"
 
 #: ../include/statistic_functions.php:83
 msgid "No users online"
-msgstr ""
+msgstr "Aucun utilisateur en ligne"
 
 #: ../include/inbox_functions.php:16
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Activer le menu"
 
 #: ../include/inbox_functions.php:37
 msgid "Reply"
-msgstr ""
+msgstr "Répondre"
 
 #: ../include/inbox_functions.php:39
 msgid "Compose"
-msgstr ""
+msgstr "Écrire"
 
 #: ../include/draw_functions.php:16
 msgid "Post errors"
-msgstr ""
+msgstr "Erreurs du message"
 
 #: ../include/draw_functions.php:41
 msgid "Post preview"
-msgstr ""
+msgstr "Prévisualisation"
 
 #: ../include/draw_functions.php:66
 msgid "Pin topic"
-msgstr ""
+msgstr "Épingler"
 
 #: ../include/draw_functions.php:75
 msgid "Mute edit"
-msgstr ""
+msgstr "Édition muette"
 
 #: ../include/draw_functions.php:86
 msgid "Bold"
-msgstr ""
+msgstr "Gras"
 
 #: ../include/draw_functions.php:87
 msgid "Underline"
-msgstr ""
+msgstr "Souligné"
 
 #: ../include/draw_functions.php:88
 msgid "Italic"
-msgstr ""
+msgstr "Italique"
 
 #: ../include/draw_functions.php:89
 msgid "Strike"
-msgstr ""
+msgstr "Barré"
 
 #: ../include/draw_functions.php:92
 msgid "Heading"
-msgstr ""
+msgstr "Titre"
 
 #: ../include/draw_functions.php:93
 msgid "Subscript"
-msgstr ""
+msgstr "Indice"
 
 #: ../include/draw_functions.php:94
 msgid "Superscript"
-msgstr ""
+msgstr "Exposant"
 
-#: ../include/draw_functions.php:97 ../include/draw_functions.php:729
-#: ../include/draw_functions.php:745 ../include/draw_functions.php:849
+#: ../include/draw_functions.php:97 ../include/draw_functions.php:697
+#: ../include/draw_functions.php:713 ../include/draw_functions.php:817
 msgid "Quote"
-msgstr ""
+msgstr "Citation"
 
 #: ../include/draw_functions.php:98
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: ../include/draw_functions.php:99
 msgid "Inline code"
-msgstr ""
+msgstr "Code en ligne"
 
 #: ../include/draw_functions.php:103
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 #: ../include/draw_functions.php:104
 msgid "Video"
-msgstr ""
+msgstr "Vidéo"
 
 #: ../include/draw_functions.php:107
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: ../include/draw_functions.php:108
 msgid "List item"
-msgstr ""
+msgstr "Élément de liste"
 
 #: ../include/draw_functions.php:117 ../include/draw_functions.php:140
 msgid "Smile"
-msgstr ""
+msgstr "Émoticône"
 
 #: ../include/draw_functions.php:118 ../include/draw_functions.php:141
 msgid "Neutral"
-msgstr ""
+msgstr "Neutre"
 
 #: ../include/draw_functions.php:119 ../include/draw_functions.php:142
 msgid "Sad"
-msgstr ""
+msgstr "Triste"
 
 #: ../include/draw_functions.php:120 ../include/draw_functions.php:143
 msgid "Big smile"
-msgstr ""
+msgstr "Grand sourire"
 
 #: ../include/draw_functions.php:121 ../include/draw_functions.php:144
 msgid "Yikes"
-msgstr ""
+msgstr "Woaw !"
 
 #: ../include/draw_functions.php:122 ../include/draw_functions.php:145
 msgid "Wink"
-msgstr ""
+msgstr "Clin d'œil"
 
 #: ../include/draw_functions.php:123 ../include/draw_functions.php:146
 msgid "Hmmm"
-msgstr ""
+msgstr "Hmmm"
 
 #: ../include/draw_functions.php:124 ../include/draw_functions.php:147
 msgid "Tongue"
-msgstr ""
+msgstr "Langue"
 
 #: ../include/draw_functions.php:125 ../include/draw_functions.php:148
 msgid "Happy"
-msgstr ""
+msgstr "Heureux"
 
 #: ../include/draw_functions.php:126 ../include/draw_functions.php:149
 msgid "Angry"
-msgstr ""
+msgstr "En colère"
 
 #: ../include/draw_functions.php:127 ../include/draw_functions.php:150
 msgid "Roll eye"
-msgstr ""
+msgstr "Roulement d'yeux"
 
 #: ../include/draw_functions.php:128 ../include/draw_functions.php:151
 msgid "Cool"
-msgstr ""
+msgstr "Cool"
 
 #: ../include/draw_functions.php:129 ../include/draw_functions.php:152
 msgid "Happy cry"
-msgstr ""
+msgstr "Pleurs de joie"
 
 #: ../include/draw_functions.php:130 ../include/draw_functions.php:153
 msgid "Angel"
-msgstr ""
+msgstr "Ange"
 
 #: ../include/draw_functions.php:131 ../include/draw_functions.php:154
 msgid "Oh yeah"
-msgstr ""
+msgstr "Oh yeah"
 
 #: ../include/draw_functions.php:137
 msgid "Smilies"
-msgstr ""
+msgstr "Émoticônes"
 
 #: ../include/draw_functions.php:160
 msgid "Start typing..."
-msgstr ""
+msgstr "Commencez à rédiger…"
 
-#: ../include/draw_functions.php:171 ../include/draw_functions.php:1116
+#: ../include/draw_functions.php:171 ../include/draw_functions.php:1084
 msgid "Submit"
-msgstr ""
+msgstr "Envoyer"
 
-#: ../include/draw_functions.php:298 ../include/draw_functions.php:595
+#: ../include/draw_functions.php:297 ../include/draw_functions.php:571
 msgid "reply"
-msgstr ""
+msgid_plural "replies"
+msgstr[0] "réponse"
+msgstr[1] "réponses"
 
-#: ../include/draw_functions.php:300 ../include/draw_functions.php:597
-msgid "replies"
-msgstr ""
-
-#: ../include/draw_functions.php:304 ../include/draw_functions.php:601
+#: ../include/draw_functions.php:298 ../include/draw_functions.php:572
 msgid "view"
-msgstr ""
+msgid_plural "views"
+msgstr[0] "vue"
+msgstr[1] "vues"
 
-#: ../include/draw_functions.php:306 ../include/draw_functions.php:603
-msgid "views"
-msgstr ""
-
-#: ../include/draw_functions.php:314 ../include/draw_functions.php:611
+#: ../include/draw_functions.php:305 ../include/draw_functions.php:579
 #, php-format
 msgid ""
 "There are no topics in this forum yet, but you can <a href=\"post.php?fid=%s"
 "\">start the first one</a>."
 msgstr ""
+"Il n'y a aucune discussion dans ce forum pour le moment, mais vous pouvez <a "
+"href=\"post.php?fid=%s\">lancer la première</a>."
 
-#: ../include/draw_functions.php:364 ../include/draw_functions.php:445
-msgid "topic"
-msgstr "Discussion"
-
-#: ../include/draw_functions.php:369 ../include/draw_functions.php:450
-msgid "post"
-msgstr ""
-
-#: ../include/draw_functions.php:397
+#: ../include/draw_functions.php:381
 msgid "Board is empty."
-msgstr ""
+msgstr "Le forum est vide."
 
-#: ../include/draw_functions.php:613
+#: ../include/draw_functions.php:581
 msgid "The board is empty; select a forum and create a topic to begin."
 msgstr ""
+"Le forum est vide ; sélectionnez un forum et créez une discussion pour "
+"commencer."
 
-#: ../include/draw_functions.php:653 ../include/draw_functions.php:806
+#: ../include/draw_functions.php:621 ../include/draw_functions.php:774
 msgid "From:"
-msgstr ""
+msgstr "De :"
 
-#: ../include/draw_functions.php:657 ../include/draw_functions.php:812
-msgid "Posts:"
-msgstr ""
+#: ../include/draw_functions.php:625
+msgid "Post:"
+msgid_plural "Posts:"
+msgstr[0] "Message :"
+msgstr[1] "Messages :"
 
-#: ../include/draw_functions.php:674 ../include/draw_functions.php:690
-#: ../include/draw_functions.php:831 ../include/draw_functions.php:841
+#: ../include/draw_functions.php:642 ../include/draw_functions.php:658
+#: ../include/draw_functions.php:799 ../include/draw_functions.php:809
 msgid "IP log"
-msgstr ""
+msgstr "IP de connexion"
 
-#: ../include/draw_functions.php:681 ../include/draw_functions.php:834
+#: ../include/draw_functions.php:649 ../include/draw_functions.php:802
 msgid "Note:"
-msgstr ""
+msgstr "Note :"
 
-#: ../include/draw_functions.php:708 ../include/draw_functions.php:710
-#: ../include/draw_functions.php:733 ../include/draw_functions.php:735
+#: ../include/draw_functions.php:676 ../include/draw_functions.php:678
+#: ../include/draw_functions.php:701 ../include/draw_functions.php:703
 msgid "Report"
-msgstr ""
+msgstr "Signaler"
 
-#: ../include/draw_functions.php:720 ../include/draw_functions.php:740
-#: ../include/draw_functions.php:915
+#: ../include/draw_functions.php:688 ../include/draw_functions.php:708
+#: ../include/draw_functions.php:883
 msgid "Soft delete"
-msgstr ""
+msgstr "Masquer"
 
-#: ../include/draw_functions.php:722 ../include/draw_functions.php:742
+#: ../include/draw_functions.php:690 ../include/draw_functions.php:710
 msgid "Soft reset"
-msgstr ""
+msgstr "Restaurer"
 
-#: ../include/draw_functions.php:791
+#: ../include/draw_functions.php:759
 msgid "Online:"
-msgstr ""
+msgstr "Connecté :"
 
-#: ../include/draw_functions.php:791
+#: ../include/draw_functions.php:759
 msgid "Offline"
-msgstr ""
+msgstr "Hors ligne"
 
-#: ../include/draw_functions.php:809
+#: ../include/draw_functions.php:777
 msgid "Registered since"
-msgstr ""
+msgstr "Inscrit depuis"
 
-#: ../include/draw_functions.php:822
+#: ../include/draw_functions.php:780
+msgid "Posts:"
+msgstr "Message :"
+
+#: ../include/draw_functions.php:790
 msgid "PM"
-msgstr ""
+msgstr "MP"
 
-#: ../include/draw_functions.php:890
+#: ../include/draw_functions.php:858
 msgid "Your search returned no hits."
-msgstr ""
+msgstr "Votre recherche n'a renvoyé aucun résultat."
 
-#: ../include/draw_functions.php:898 ../include/draw_functions.php:912
+#: ../include/draw_functions.php:866 ../include/draw_functions.php:880
 msgid ""
 "Warning! This is the first post in the topic, the whole topic will be "
 "permanently deleted."
 msgstr ""
+"Attention ! Ce message est le premier de la discussion, la discussion "
+"entière sera supprimée de manière permanente."
 
-#: ../include/draw_functions.php:898
+#: ../include/draw_functions.php:866
 msgid ""
 "The post you have chosen to delete is set out below for you to review before "
 "proceeding."
-msgstr ""
+msgstr "Voici le message que vous avez choisi de supprimer."
 
-#: ../include/draw_functions.php:900 ../include/draw_functions.php:914
-#: ../include/draw_functions.php:928
+#: ../include/draw_functions.php:868 ../include/draw_functions.php:882
+#: ../include/draw_functions.php:896
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
-#: ../include/draw_functions.php:912
+#: ../include/draw_functions.php:880
 msgid ""
 "The post you have chosen to delete is set out below for you to review before "
 "proceeding. Deleting this post is not permanent. If you want to delete a "
 "post permanently, please use delete instead."
 msgstr ""
+"Voici le message que vous avez choisi de supprimer. Cette suppression n'est "
+"pas permanente ; si vous souhaitez supprimer définitivement ce message, "
+"utilisez la suppression simple."
 
-#: ../include/draw_functions.php:926
+#: ../include/draw_functions.php:894
 msgid ""
 "This post has been soft deleted. We'll enable it again with a click on the "
 "button."
-msgstr ""
+msgstr "Ce message a été masqué. Il sera de nouveau visible une fois restauré."
 
-#: ../include/draw_functions.php:929
+#: ../include/draw_functions.php:897
 msgid "Reset post"
-msgstr ""
+msgstr "Restaurer"
 
-#: ../include/draw_functions.php:938
+#: ../include/draw_functions.php:906
 #, php-format
 msgid "Topic started by %s - %s"
-msgstr ""
+msgstr "Discussion lancée par %s - %s"
 
-#: ../include/draw_functions.php:938
+#: ../include/draw_functions.php:906
 #, php-format
 msgid "Reply by %s - %s"
-msgstr ""
+msgstr "Réponse par %s - %s"
 
-#: ../include/draw_functions.php:948
+#: ../include/draw_functions.php:916
 msgid "Enter the requested data"
-msgstr ""
+msgstr "Complétez les données"
 
-#: ../include/draw_functions.php:948
+#: ../include/draw_functions.php:916
 msgid "Register"
-msgstr ""
+msgstr "Inscription"
 
-#: ../include/draw_functions.php:953
+#: ../include/draw_functions.php:921
 msgid "If you are human please leave this field blank!"
-msgstr ""
+msgstr "Si vous êtes un humain, laissez ce champ vide !"
 
-#: ../include/draw_functions.php:955
+#: ../include/draw_functions.php:923
 msgid "Enter a username between 2 and 25 characters long"
 msgstr ""
+"Veuillez saisir un nom d'utilisateur comportant entre 2 et 25 caractères."
 
-#: ../include/draw_functions.php:962
+#: ../include/draw_functions.php:930
 msgid "Passwords must be at least 6 characters long and are case sensitive"
 msgstr ""
+"Les mots de passe doivent comporter au minimum 6 caractères et sont "
+"sensibles à la casse."
 
-#: ../include/draw_functions.php:976
+#: ../include/draw_functions.php:944
 msgid "Your password will be sent to this address, make sure it's valid"
 msgstr ""
+"Votre mot de passe vous sera envoyé à cette adresse, soyez certain(e) "
+"qu'elle est valide."
 
-#: ../include/draw_functions.php:1006
+#: ../include/draw_functions.php:974
 msgid "You must agree to the following in order to register"
 msgstr ""
+"Vous devez accepter les conditions d'utilisation suivantes pour vous "
+"inscrire sur ces forums."
 
-#: ../include/draw_functions.php:1014
+#: ../include/draw_functions.php:982
 msgid "Agree"
 msgstr "Accepter"
 
-#: ../include/draw_functions.php:1093
+#: ../include/draw_functions.php:1061
 msgid "Send"
 msgstr "Envoyer"
 
-#: ../include/draw_functions.php:1109
+#: ../include/draw_functions.php:1077
 msgid "Tell us why you are reporting this."
-msgstr ""
+msgstr "Dites-nous pourquoi vous signalez ceci."
 
-#: ../include/draw_functions.php:1131 ../include/draw_functions.php:1159
+#: ../include/draw_functions.php:1099 ../include/draw_functions.php:1127
 msgid "Forum"
 msgstr "Forum"
+
+#~ msgid "replies"
+#~ msgstr "réponses"
+
+#~ msgid "views"
+#~ msgstr "vues"
+
+#~ msgid "topics"
+#~ msgstr "Discussions"
+
+#~ msgid "posts"
+#~ msgstr "messages"
