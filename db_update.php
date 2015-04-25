@@ -153,7 +153,7 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 
 // Check style
 $default_style = $luna_config['o_default_style'];
-if (!file_exists(FORUM_ROOT.'theme/'.$default_style.'/style.css'))
+if (!file_exists(FORUM_ROOT.'themes/'.$default_style.'/style.css'))
 	$default_style = 'Luna';
 
 // Empty all output buffers and stop buffering
@@ -233,7 +233,7 @@ switch ($stage) {
 			break;
 
 		// Change the default style if the old doesn't exist anymore
-		if ($luna_config['o_default_style'] != $default_style)
+		if (!file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 
 		// Since 3.5-beta: Remove obsolete o_antispam_api permission from config table

@@ -72,7 +72,7 @@ if (isset($_REQUEST['markread'])) {
 	$idlist = array_values($_POST['selected_messages']);
 	$idlist = array_map('intval', $idlist);
 	$idlist = implode(',', array_values($idlist));
-	$number = explode(',', $_POST['messages']);
+	$number = explode(',', $_POST['selected_messages']);
 	$number = array_map('intval', $number);
 	$number = count($number);
 
