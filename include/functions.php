@@ -2112,8 +2112,7 @@ function delete_all($path) {
 //
 // Validate the given redirect URL, use the fallback otherwise
 //
-function validate_redirect($redirect_url, $fallback_url)
-{
+function validate_redirect($redirect_url, $fallback_url) {
 	$referrer = parse_url(strtolower($redirect_url));
 	
 	// Make sure the host component exists  
@@ -2144,11 +2143,7 @@ function validate_redirect($redirect_url, $fallback_url)
 		return $fallback_url;
 }
 
-//
 // Fetch online users
-//
-
-//  Number of users online
 function num_users_online() {
 	global $db;
 
@@ -2167,8 +2162,7 @@ function num_guests_online() {
 }
 
 // Get forum_id by post_id
-function get_forum_id($post_id)
-{
+function get_forum_id($post_id) {
 	global $db;
 
 	$result_fid = $db->query('SELECT t.forum_id FROM '.$db->prefix.'posts as p INNER JOIN '.$db->prefix.'topics as t ON p.topic_id = t.id WHERE p.id='.intval($post_id), true) or error('Unable to fetch forum id', __FILE__, __LINE__, $db->error());
