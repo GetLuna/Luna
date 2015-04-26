@@ -22,7 +22,7 @@ if ($action == 'rebuild') {
 
 	// Check per page is > 0
 	if ($per_page < 1)
-		message_backstage($lang['Posts must be integer message']);
+		message_backstage(__('Posts per cycle must be a positive integer value.', 'luna'));
 
 	@set_time_limit(0);
 
@@ -47,7 +47,7 @@ if ($action == 'rebuild') {
 		}
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Rebuilding search index']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Rebuilding search index', 'luna'));
 
 ?>
 <!DOCTYPE html>
@@ -69,7 +69,7 @@ if ($action == 'rebuild') {
 		</style>
 	</head>
 	<body>
-		<h1><?php echo $lang['Rebuilding index info'] ?></h1>
+		<h1><?php _e('Rebuilding index. This might be a good time to put on some coffee :-)', 'luna') ?></h1>
 		<hr />
 <?php
 
@@ -82,7 +82,7 @@ if ($action == 'rebuild') {
 
 	$end_at = 0;
 	while ($cur_item = $db->fetch_assoc($result)) {
-		echo '<p><span>'.sprintf($lang['Processing post'], $cur_item['id']).'</span></p>'."\n";
+		echo '<p><span>'.sprintf(__('Processing post <strong>%s</strong> …', 'luna'), $cur_item['id']).'</span></p>'."\n";
 
 		if ($cur_item['id'] == $cur_item['first_post_id'])
 			update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
@@ -103,7 +103,7 @@ if ($action == 'rebuild') {
 	$db->end_transaction();
 	$db->close();
 
-	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf($lang['Javascript redirect failed'], '<a href="maintenance.php'.$query_str.'">'.$lang['Click here'].'</a>').'</p>');
+	exit('<script type="text/javascript">window.location="maintenance.php'.$query_str.'"</script><hr /><p>'.sprintf(__('JavaScript redirect unsuccessful. %s to continue …', 'luna'), '<a href="maintenance.php'.$query_str.'">'.__('Click here', 'luna').'</a>').'</p>');
 }
 
 // Get the first post ID from the db
@@ -122,7 +122,7 @@ if (isset($_POST['form_sent'])) {
 	if ($form['maintenance_message'] != '')
 		$form['maintenance_message'] = luna_linebreaks($form['maintenance_message']);
 	else {
-		$form['maintenance_message'] = $lang['Default maintenance message'];
+		$form['maintenance_message'] = __('The forums are temporarily down for maintenance. Please try again in a few minutes.', 'luna');
 		$form['maintenance'] = '0';
 	}
 
@@ -155,31 +155,31 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/maintenance.php?saved=true');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('maintenance', 'maintenance');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
+	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
 if (isset($_GET['cache_cleared']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Cache cleared'].'</h4></div>';
+	echo '<div class="alert alert-success"><h4>'.__('The cache files have been removed.', 'luna').'</h4></div>';
 ?>
 <form class="form-horizontal" method="post" action="maintenance.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title" id="maintenance"><?php echo $lang['Maintenance'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title" id="maintenance"><?php _e('Maintenance', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="form_sent" value="1" />
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Maintenance'] ?><span class="help-block"><?php echo $lang['Maintenance message help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Maintenance', 'luna') ?><span class="help-block"><?php _e('The message to tell users about the maintenance', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[maintenance]" value="1" <?php if ($luna_config['o_maintenance'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Maintenance mode help'] ?>
+								<?php _e('Enable to activate maintenance mode, the board will only be available for admins. Do not log out when this feature is active!', 'luna') ?>
 							</label>
 						</div>
 						<textarea class="form-control" name="form[maintenance_message]" rows="10"><?php echo luna_htmlspecialchars($luna_config['o_maintenance_message']) ?></textarea>
@@ -191,13 +191,13 @@ if (isset($_GET['cache_cleared']))
 </form>
 <div class="panel panel-default form-horizontal">
 	<div class="panel-heading">
-		<h3 class="panel-title" id="cache"><?php echo $lang['Cache'] ?></h3>
+		<h3 class="panel-title" id="cache"><?php _e('Cache', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<div class="form-group">
-			<label class="col-sm-3 control-label"><?php echo $lang['Cache'] ?><span class="help-block"><?php echo $lang['Cache info'] ?></span></label>
+			<label class="col-sm-3 control-label"><?php _e('Cache', 'luna') ?><span class="help-block"><?php _e('Remove all cache files so the database has to return up-to-date values', 'luna') ?></span></label>
 			<div class="col-sm-9">
-				<a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Clear cache'] ?></a>
+				<a href="maintenance.php?cache_cleared=true" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Clear cache', 'luna') ?></a>
 			</div>
 		</div>
 	</div>
@@ -205,36 +205,36 @@ if (isset($_GET['cache_cleared']))
 <form class="form-horizontal" method="get" action="maintenance.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Rebuild index subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fa fa-fw fa-repeat"></span> <?php echo $lang['Rebuild index'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Rebuild search index', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="rebuild_index"?><span class="fa fa-fw fa-repeat"></span> <?php _e('Rebuild index', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="rebuild" />
 			<fieldset>
-				<p><?php echo $lang['Rebuild index info'] ?></p>
+				<p><?php _e('If you changes something about topics and posts in the database you should rebuild the search index. It\'s recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!', 'luna') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Posts per cycle label'] ?><span class="help-block"><?php echo $lang['Posts per cycle help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Posts per cycle', 'luna') ?><span class="help-block"><?php _e('Number of posts per pageview, this prevents a timeout, 300 recommended', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Starting post label'] ?><span class="help-block"><?php echo $lang['Starting post help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Starting post ID', 'luna') ?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Empty index label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Empty index', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="i_empty_index" value="1" tabindex="3" checked />
-								<?php echo $lang['Empty index help'] ?></label>
+								<?php _e('Select this if you want the search index to be emptied before rebuilding (see below).', 'luna') ?></label>
 							</label>
 						</div>
 					</div>
 				</div>
-				<p><?php echo $lang['Rebuild completed info'] ?></p>
+				<p><?php _e('Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last post ID and enter that ID+1 in "Starting post ID" if you want to continue (Uncheck "Empty index").', 'luna') ?></p>
 			</fieldset>
 		</div>
 	</div>

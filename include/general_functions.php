@@ -6,7 +6,7 @@
  */
 
 function required_fields() {
-	global $required_fields, $lang;
+	global $required_fields;
 
 	if (isset($required_fields)) {
 	// Output JavaScript to validate form (make sure required fields are filled out)
@@ -29,7 +29,7 @@ function required_fields() {
 			for (var i = 0; i < the_form.length; ++i) {
 				var elem = the_form.elements[i];
 				if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type))) {
-					alert('"' + required_fields[elem.name] + '" <?php echo $lang['required field'] ?>');
+					alert('"' + required_fields[elem.name] + '" <?php _e('is a required field in this form.', 'luna') ?>');
 					elem.focus();
 					return false;
 				}

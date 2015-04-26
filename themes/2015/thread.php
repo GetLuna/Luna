@@ -14,30 +14,30 @@ if (!defined('FORUM'))
 		<hr />
 		<div class="list-group list-group-forum">
 			<?php if ($cur_topic['is_subscribed']) { ?>
-				<a class="list-group-item" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star-o"></span> <?php echo $lang['Unsubscribe'] ?></a>
+				<a class="list-group-item" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star-o"></span> <?php _e('Unsubscribe', 'luna') ?></a>
 			<?php } else { ?>
-				<a class="list-group-item" href="misc.php?action=subscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star"></span> <?php echo $lang['Subscribe'] ?></a>
+				<a class="list-group-item" href="misc.php?action=subscribe&amp;tid=<?php echo $id ?>"><span class="fa fa-fw fa-star"></span> <?php _e('Subscribe', 'luna') ?></a>
 			<?php } ?>
 		</div>
 		<?php } ?>
 		<?php if ($is_admmod): ?>
 		<hr />
 		<div class="list-group list-group-forum">
-			<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Moderate topic'] ?></a>
+			<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate topic', 'luna') ?></a>
 			<?php if($num_pages > 1) { ?>
-				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&action=all"><span class="fa fa-fw fa-list"></span> <?php echo $lang['All'] ?></a>
+				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&action=all"><span class="fa fa-fw fa-list"></span> <?php _e('Show all posts', 'luna') ?></a>
 			<?php } ?>
-			<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&move_topics=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php echo $lang['Move topic'] ?></a>
+			<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&move_topics=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move topic', 'luna') ?></a>
 			<?php if ($cur_topic['closed'] == '1') { ?>
-				<a class="list-group-item list-group-disabled" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&open=<?php echo $id ?>"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Open topic'] ?></a>
+				<a class="list-group-item list-group-disabled" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&open=<?php echo $id ?>"><span class="fa fa-fw fa-check"></span> <?php _e('Open topic', 'luna') ?></a>
 			<?php } else { ?>
-				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&close=<?php echo $id ?>"><span class="fa fa-fw fa-times"></span> <?php echo $lang['Close topic'] ?></a>
+				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&close=<?php echo $id ?>"><span class="fa fa-fw fa-times"></span> <?php _e('Close topic', 'luna') ?></a>
 			<?php } ?>
 			
 			<?php if ($cur_topic['sticky'] == '1') { ?>
-				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&unstick=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php echo $lang['Unstick topic'] ?></a>
+				<a class="list-group-item list-group-enabled" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&unstick=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Unstick topic', 'luna') ?></a>
 			<?php } else { ?>
-				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&stick=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php echo $lang['Stick topic'] ?></a>
+				<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&stick=<?php echo $id ?>"><span class="fa fa-fw fa-thumb-tack"></span> <?php _e('Stick topic', 'luna') ?></a>
 			<?php } ?>
 		</div>
 		<?php endif; ?>

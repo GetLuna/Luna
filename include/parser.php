@@ -43,14 +43,14 @@ $re_list = '%\[list(?:=([1*]))?+\]((?:[^\[]*+(?:(?!\[list(?:=[1*])?+\]|\[/list\]
 // Make sure all BBCodes are lower case and do a little cleanup
 //
 function preparse_bbcode($text, &$errors, $is_signature = false) {
-	global $luna_config, $lang, $re_list;
+	global $luna_config, $re_list;
 
 	// Remove empty tags
 	while (($new_text = strip_empty_bbcode($text)) !== false) {
 		if ($new_text != $text) {
 			$text = $new_text;
 			if ($new_text == '') {
-				$errors[] = $lang['Empty after strip'];
+				$errors[] = __('It seems your post consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level.', 'luna');
 				return '';
 			}
 		} else
@@ -58,10 +58,9 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 	}
 
 	if ($is_signature) {
-		global $lang;
 
 		if (preg_match('%\[/?(?:quote|code|video|list|h)\b[^\]]*\]%i', $text))
-			$errors[] = $lang['Signature unallowed'];
+			$errors[] = __('The quote, code, list, video, and heading BBCodes are not allowed in signatures.', 'luna');
 	}
 
 	// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
@@ -73,7 +72,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 
 	// If the regex failed
 	if (is_null($temp))
-		$errors[] = $lang['BBCode list size error'];
+		$errors[] = __('Your list was too long to parse, please make it smaller!', 'luna');
 	else
 		$text = str_replace('*'."\0".']', '*]', $temp);
 
@@ -107,7 +106,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 		if ($new_text != $text) {
 			$text = $new_text;
 			if ($new_text == '') {
-				$errors[] = $lang['Empty after strip'];
+				$errors[] = __('It seems your post consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level.', 'luna');
 				break;
 			}
 		} else
@@ -161,7 +160,7 @@ function strip_empty_bbcode($text) {
 // Check the structure of bbcode tags and fix simple mistakes where possible
 //
 function preparse_tags($text, &$errors, $is_signature = false) {
-	global $lang, $luna_config;
+	global $luna_config;
 
 	// Start off by making some arrays of bbcode tags and what we need to do with each one
 
@@ -304,7 +303,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 			// We have an argument for the tag which we don't want to make lowercase
 			if (strlen(substr($current, $equalpos)) == 2) {
 				// Empty tag argument
-				$errors[] = sprintf($lang['BBCode error empty attribute'], $current_tag);
+				$errors[] = sprintf(__('[%s] tag had an empty attribute section', 'luna'), $current_tag);
 				return false;
 			}
 			$current = strtolower(substr($current, 0, $equalpos)).substr($current, $equalpos);
@@ -353,7 +352,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 
 		// Check the current tag is allowed here
 		if (!in_array($current_tag, $limit_bbcode) && $current_tag != $open_tags[$opened_tag]) {
-			$errors[] = sprintf($lang['BBCode error invalid nesting'], $current_tag, $open_tags[$opened_tag]);
+			$errors[] = sprintf(__('[%1$s] was opened within [%2$s], this is not allowed', 'luna'), $current_tag, $open_tags[$opened_tag]);
 			return false;
 		}
 
@@ -362,7 +361,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 			if ($opened_tag == 0 || !in_array($current_tag, $open_tags)) {
 				// We tried to close a tag which is not open
 				if (in_array($current_tag, $tags_opened)) {
-					$errors[] = sprintf($lang['BBCode error no opening tag'], $current_tag);
+					$errors[] = sprintf(__('[/%1$s] was found without a matching [%1$s]', 'luna'), $current_tag);
 					return false;
 				}
 			} else {
@@ -388,7 +387,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 
 								if (!in_array($temp_tag, $tags_fix)) {
 									// We couldn't fix nesting
-									$errors[] = sprintf($lang['BBCode error no closing tag'], array_pop($temp_opened));
+									$errors[] = sprintf(__('[%1$s] was found without a matching [/%1$s]', 'luna'), array_pop($temp_opened));
 									return false;
 								}
 								array_push($temp_opened, $temp_tag);
@@ -419,7 +418,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 							break;
 						} else {
 							// We couldn't fix nesting
-							$errors[] = sprintf($lang['BBCode error no opening tag'], $current_tag);
+							$errors[] = sprintf(__('[/%1$s] was found without a matching [%1$s]', 'luna'), $current_tag);
 							return false;
 						}
 					} elseif (in_array($open_tags[$opened_tag], $tags_closed))
@@ -454,7 +453,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 
 			if (in_array($current_tag, $tags_block) && !in_array($open_tags[$opened_tag], $tags_block) && $opened_tag != 0) {
 				// We tried to open a block tag within a non-block tag
-				$errors[] = sprintf($lang['BBCode error invalid nesting'], $current_tag, $open_tags[$opened_tag]);
+				$errors[] = sprintf(__('[%1$s] was opened within [%2$s], this is not allowed', 'luna'), $current_tag, $open_tags[$opened_tag]);
 				return false;
 			}
 
@@ -469,7 +468,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 			// Deal with nested tags
 			if (in_array($current_tag, $open_tags) && !in_array($current_tag, array_keys($tags_nested))) {
 				// We nested a tag we shouldn't
-				$errors[] = sprintf($lang['BBCode error invalid self-nesting'], $current_tag);
+				$errors[] = sprintf(__('[%s] was opened within itself, this is not allowed', 'luna'), $current_tag);
 				return false;
 			} elseif (in_array($current_tag, array_keys($tags_nested))) {
 				// We are allowed to nest this tag
@@ -506,14 +505,14 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 	foreach ($tags_closed as $check) {
 		if (in_array($check, $open_tags)) {
 			// We left an important tag open
-			$errors[] = sprintf($lang['BBCode error no closing tag'], $check);
+			$errors[] = sprintf(__('[%1$s] was found without a matching [/%1$s]', 'luna'), $check);
 			return false;
 		}
 	}
 
 	if ($current_ignore) {
 		// We left an ignore tag open
-		$errors[] = sprintf($lang['BBCode error no closing tag'], $current_ignore);
+		$errors[] = sprintf(__('[%1$s] was found without a matching [/%1$s]', 'luna'), $current_ignore);
 		return false;
 	}
 
@@ -525,7 +524,7 @@ function preparse_tags($text, &$errors, $is_signature = false) {
 // Preparse the contents of [list] bbcode
 //
 function preparse_list_tag($content, $type = '*') {
-	global $lang, $re_list;
+	global $re_list;
 
 	if (strlen($type) != 1)
 		$type = '*';
@@ -589,12 +588,12 @@ function handle_url_tag($url, $link = '', $bbcode = false) {
 // Turns an URL from the [img] tag into an <img> tag or a <a href...> tag
 //
 function handle_img_tag($url, $is_signature = false, $alt = null) {
-	global $lang, $luna_user;
+	global $luna_user;
 
 	if (is_null($alt))
 		$alt = basename($url);
 
-	$img_tag = '<a href="'.$url.'" rel="nofollow">&lt;'.$lang['Image link'].' - '.$alt.'&gt;</a>';
+	$img_tag = '<a href="'.$url.'" rel="nofollow">&lt;'.__('image', 'luna').' - '.$alt.'&gt;</a>';
 
 	if ($is_signature && $luna_user['show_img_sig'] != '0')
 		$img_tag = '<img class="sigimage img-responsive" src="'.$url.'" alt="'.$alt.'" />';
@@ -633,11 +632,11 @@ function handle_list_tag($content, $type = '*') {
 // Convert BBCodes to their HTML equivalent
 //
 function do_bbcode($text, $is_signature = false) {
-	global $lang, $luna_user, $luna_config, $re_list;
+	global $luna_user, $luna_config, $re_list;
 
 	if (strpos($text, '[quote') !== false) {
 		$text = preg_replace('%\[quote\]\s*%', '</p><blockquote><p>', $text);
-		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)(.*?)\\1\]%s', create_function('$matches', 'global $lang; return "<blockquote><footer><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".$lang[\'wrote\']."</cite></footer><p>";'), $text);
+		$text = preg_replace_callback('%\[quote=(&quot;|&\#039;|"|\'|)(.*?)\\1\]%s', create_function('$matches', 'return "<blockquote><footer><cite>".str_replace(array(\'[\', \'\\"\'), array(\'&#91;\', \'"\'), $matches[2])." ".__(\'wrote\',\'luna\')."</cite></footer><p>";'), $text);
 		$text = preg_replace('%\s*\[\/quote\]%S', '</p></blockquote><p>', $text);
 	}
 	if (!$is_signature) {
@@ -811,7 +810,7 @@ function do_smilies($text) {
 // Parse message text
 //
 function parse_message($text) {
-	global $luna_config, $lang, $luna_user;
+	global $luna_config, $luna_user;
 
 	if ($luna_config['o_censoring'] == '1')
 		$text = censor_words($text);
@@ -902,7 +901,7 @@ function clean_paragraphs($text) {
 // Parse signature text
 //
 function parse_signature($text) {
-	global $luna_config, $lang, $luna_user;
+	global $luna_config, $luna_user;
 
 	if ($luna_config['o_censoring'] == '1')
 		$text = censor_words($text);

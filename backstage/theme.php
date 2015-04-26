@@ -30,19 +30,19 @@ if (isset($_GET['default_style'])) {
 	redirect('backstage/theme.php?saved=true');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Style']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Style', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('settings', 'theme');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
 ?>
 <div class="row">
 	<div class="col-md-3">
 		<div class="panel panel-default panel-current">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Current theme'] ?></h3>
+				<h3 class="panel-title"><?php _e('Current theme', 'luna') ?></h3>
 			</div>
 <?php
 
@@ -60,7 +60,7 @@ $theme_info = new SimpleXMLElement($xmlstr);
 	<div class="col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php printf($lang['Theme settings for'], $luna_config['o_default_style'].' '.$theme_info->version) ?></h3>
+				<h3 class="panel-title"><?php printf(__('Theme settings for %s', 'luna'), $luna_config['o_default_style'].' '.$theme_info->version) ?></h3>
 			</div>
 			<div class="panel-body">
 <?php
@@ -68,7 +68,7 @@ $theme_info = new SimpleXMLElement($xmlstr);
 if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 	include FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php';
 } else {
-	echo $lang['No settings'];
+	_e('This theme has no settings available...', 'luna');
 }
 
 ?>
@@ -79,10 +79,10 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 <form class="form-horizontal" method="post" action="permissions.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Default style'] ?></h3>
+			<h3 class="panel-title"><?php _e('Default style', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
-			<p><?php echo $lang['Available themes'] ?></p>
+			<p><?php _e('Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above.', 'luna') ?></p>
 			<fieldset>
 				<div class="row">
 <?php
@@ -97,7 +97,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<h4 class="modal-title"><?php printf($lang['About style'], $theme_info->name) ?></h4>
+										<h4 class="modal-title"><?php printf(__('About %s', 'luna'), $theme_info->name) ?></h4>
 									</div>
 									<div class="modal-body">
 										<div class="row">
@@ -105,16 +105,16 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 												<img class="img-responsive" src="../themes/<?php echo $temp ?>/screenshot.png" />
 											</div>
 											<div class="col-sm-4">
-												<h2><?php echo $theme_info->name; ?> <small><?php printf($lang['version'], $theme_info->version) ?></small></h2>
+												<h2><?php echo $theme_info->name; ?> <small><?php printf(__('version %s', 'luna'), $theme_info->version) ?></small></h2>
 												<h4><?php echo $theme_info->developer; ?></h4>
 												<p><?php echo $theme_info->description; ?></p>
 											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
-										<span class="pull-left"><?php printf($lang['Released on'], $theme_info->date) ?></span>
+										<span class="pull-left"><?php printf(__('Released on %s', 'luna'), $theme_info->date) ?></span>
 										<span class="pull-right">
-											<?php printf($lang['Designed for'], $theme_info->minversion, $theme_info->maxversion); ?>
+											<?php printf(__('Designed for Luna %s to %s', 'luna'), $theme_info->minversion, $theme_info->maxversion); ?>
 										</span>
 									</div>
 								</div>
@@ -127,9 +127,9 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 								<div class="btn-group pull-right">
 									<?php
 										if ($luna_config['o_default_style'] == $theme_info->name)
-											echo '<a class="btn btn-primary disabled">'.$lang['In use'].'</a>';
+											echo '<a class="btn btn-primary disabled">'.__('In use', 'luna').'</a>';
 										else
-											echo '<a class="btn btn-primary" href="theme.php?default_style='.$theme_info->name.'">'.$lang['Use'].'</a>';
+											echo '<a class="btn btn-primary" href="theme.php?default_style='.$theme_info->name.'">'.__('Use', 'luna').'</a>';
 										
 										echo '<a class="btn btn-primary" data-toggle="modal" href="#" data-target="#'.$temp.'"><span class="fa fa-fw fa-info-circle"></span></a>';
 									?>

@@ -31,7 +31,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 if (isset($_POST['form_sent'])) {
-	confirm_referrer('backstage/update.php', $lang['Bad HTTP Referer message']);
+	confirm_referrer('backstage/update.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.floatval($_POST['form']['update_ring']).' WHERE conf_name=\'o_update_ring\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
@@ -65,13 +65,13 @@ if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 
 	require FORUM_CACHE_DIR.'cache_update.php';
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Update']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Update', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'update');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
+	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
 ?>
 <div class="row">
 	<div class="col-sm-4 col-md-3">
@@ -80,17 +80,17 @@ if (isset($_GET['saved']))
 			<fieldset>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['Update ring'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+						<h3 class="panel-title"><?php _e('Update ring', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 					</div>
 					<table class="table">
 						<tbody>
 							<tr>
 								<td>
 									<select class="form-control" id="update_ring" name="form[update_ring]" tabindex="1">
-										<option value="0" <?php if ($luna_config['o_update_ring'] == 0) { echo 'selected'; } ?>><?php echo $lang['Slow'] ?></option>
-										<option value="1" <?php if ($luna_config['o_update_ring'] == 1) { echo 'selected'; } ?>><?php echo $lang['Normal'] ?></option>
-										<option value="2" <?php if ($luna_config['o_update_ring'] == 2) { echo 'selected'; } ?>><?php echo $lang['Preview'] ?></option>
-										<option value="3" <?php if ($luna_config['o_update_ring'] == 3) { echo 'selected'; } ?>><?php echo $lang['Nightly'] ?></option>
+										<option value="0" <?php if ($luna_config['o_update_ring'] == 0) { echo 'selected'; } ?>><?php _e('Slow', 'luna') ?></option>
+										<option value="1" <?php if ($luna_config['o_update_ring'] == 1) { echo 'selected'; } ?>><?php _e('Normal', 'luna') ?></option>
+										<option value="2" <?php if ($luna_config['o_update_ring'] == 2) { echo 'selected'; } ?>><?php _e('Preview', 'luna') ?></option>
+										<option value="3" <?php if ($luna_config['o_update_ring'] == 3) { echo 'selected'; } ?>><?php _e('Nightly', 'luna') ?></option>
 									</select>
 								</td>
 							</tr>
@@ -103,29 +103,29 @@ if (isset($_GET['saved']))
 	<div class="col-sm-8 col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Luna updates'] ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php echo $lang['Check for updates'] ?></a></span></h3>
+				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span></h3>
 			</div>
 			<div class="panel-body">
 <?php
 	if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 ?>
-				<h3><?php echo $lang['New version'] ?></h3>
-				<p><?php printf($lang['New version info'], $update_cache) ?></p>
+				<h3><?php _e('A new version is available!', 'luna') ?></h3>
+				<p><?php printf(__('A new version, Luna %s has been released. It\'s a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates.', 'luna'), $update_cache) ?></p>
 				<div class="btn-group">
-					<a href="http://modernbb.be/cnt/get.php?id=4" class="btn btn-primary"><?php echo sprintf($lang['Download'], $update_cache) ?></a>
-					<a href="http://getluna.org/changelog.php" class="btn btn-primary"><?php echo $lang['Changelog'] ?></a>
+					<a href="http://modernbb.be/cnt/get.php?id=4" class="btn btn-primary"><?php echo sprintf(__('Download v%s', 'luna'), $update_cache) ?></a>
+					<a href="http://getluna.org/changelog.php" class="btn btn-primary"><?php _e('Changelog', 'luna') ?></a>
 				</div>
 <?php
 	} elseif (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'eq')) {
 ?>
-				<h3><?php echo $lang['Latest version'] ?></h3>
-				<p><?php echo $lang['Latest version info'] ?></p>
+				<h3><?php _e('You\'re using the latest version of Luna!', 'luna') ?></h3>
+				<p><?php _e('You\'re on our latest release! Nothing to worry about.', 'luna') ?></p>
 <?php
 	} else {
 ?>
-				<h3><?php echo $lang['Preview version'] ?></h3>
-				<p><?php echo $lang['Preview version info 1'] ?></p>
-				<p><?php echo $lang['Preview version info 2'] ?></p>
+				<h3><?php _e('You\'re using a development version of Luna. Be sure to stay up-to-date.', 'luna') ?></h3>
+				<p><?php _e('We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href="http://getluna.org/lunareleases.php">our website</a>. New builds can contain new features, improved features, and/or bugfixes.', 'luna') ?></p>
+				<p><?php _e('At this point, we can only tell you that a new you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.', 'luna') ?></p>
 <?php
 	}
 ?>

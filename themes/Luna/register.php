@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
-		<a href="register.php" class="navbar-brand"><span class="fa fa-fw fa-user"></span> <?php echo $lang['Register'] ?></a>
+		<a href="register.php" class="navbar-brand"><span class="fa fa-fw fa-user"></span> <?php _e('Register', 'luna') ?></a>
 	</div>
 </nav>
 <?php draw_error_panel($errors); ?>

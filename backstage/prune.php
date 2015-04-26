@@ -60,7 +60,7 @@ if ($action == 'prune') {
 
 	$prune_days = luna_trim($_POST['req_prune_days']);
 	if ($prune_days == '' || preg_match('%[^0-9]%', $prune_days))
-		message_backstage($lang['Days must be integer message']);
+		message_backstage(__('Days to prune must be a positive integer value.', 'luna'));
 
 	$prune_date = time() - ($prune_days * 86400);
 
@@ -78,15 +78,15 @@ if ($action == 'prune') {
 		$result = $db->query('SELECT forum_name FROM '.$db->prefix.'forums WHERE id='.$prune_from) or error('Unable to fetch forum name', __FILE__, __LINE__, $db->error());
 		$forum = '"'.luna_htmlspecialchars($db->result($result)).'"';
 	} else
-		$forum = $lang['All forums'];
+		$forum = __('All forums', 'luna');
 
 	$result = $db->query($sql) or error('Unable to fetch topic prune count', __FILE__, __LINE__, $db->error());
 	$num_topics = $db->result($result);
 
 	if (!$num_topics)
-		message_backstage(sprintf($lang['No old topics message'], $prune_days));
+		message_backstage(sprintf(__('There are no topics that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Prune']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Prune', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('maintenance', 'prune');
@@ -94,7 +94,7 @@ if ($action == 'prune') {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Prune'] ?></h3>
+		<h3 class="panel-title"><?php _e('Prune', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<form method="post" action="prune.php">
@@ -103,12 +103,12 @@ if ($action == 'prune') {
 			<input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
 			<input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
 			<fieldset>
-				<h3><?php echo $lang['Confirm prune subhead'] ?></h3>
-				<p><?php printf($lang['Confirm prune info'], $prune_days, $forum, forum_number_format($num_topics)) ?></p>
-				<p class="warntext"><?php echo $lang['Confirm prune warn'] ?></p>
+				<h3><?php _e('Confirm prune posts', 'luna') ?></h3>
+				<p><?php printf(__('Are you sure that you want to prune all topics older than %s days from %s (%s topics).', 'luna'), $prune_days, $forum, forum_number_format($num_topics)) ?></p>
+				<p class="warntext"><?php _e('WARNING! Pruning posts deletes them permanently.', 'luna') ?></p>
 			</fieldset>
 			<div class="btn-group">
-				<input class="btn btn-primary" type="submit" name="prune_comply" value="<?php echo $lang['Prune'] ?>" />
+				<input class="btn btn-primary" type="submit" name="prune_comply" value="<?php _e('Prune', 'luna') ?>" />
 			</div>
 		</form>
 	</div>
@@ -132,7 +132,7 @@ if (isset($_POST['notiprune'])) {
 
 	$db->query('DELETE FROM '.$db->prefix.'notifications'.$type) or error('Unable to delete notifications', __FILE__, __LINE__, $db->error());
 	
-	message_backstage($lang['Prune complete notifications']);
+	message_backstage(__('Pruning complete. Notifications pruned.', 'luna'));
 }
 
 if (isset($_POST['userprune'])) {
@@ -170,7 +170,7 @@ if (isset($_POST['userprune'])) {
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
-	message_backstage($lang['Pruned users']);
+	message_backstage(__('Pruning complete, all users pruned that matched the requirements have been pruned.', 'luna'));
 }
 
 
@@ -179,7 +179,7 @@ $result = $db->query('SELECT id FROM '.$db->prefix.'posts ORDER BY id ASC LIMIT 
 if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Maintenance']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('maintenance', 'prune');
@@ -188,26 +188,26 @@ require 'header.php';
 <form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Prune notifications'] ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Prune notifications', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="notiprune" />
 			<fieldset>
-				<p><?php printf($lang['Prune info'], '<a href="maintenance.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Type'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_type" value="0" tabindex="6" />
-							<?php echo $lang['All notifications'] ?>
+							<?php _e('All notifications', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_type" value="1" checked />
-							<?php echo $lang['Seen notifications'] ?>
+							<?php _e('Seen notifications', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_type" value="2" />
-							<?php echo $lang['New notifications'] ?>
+							<?php _e('New notifications', 'luna') ?>
 						</label>
 					</div>
 				</div>
@@ -218,36 +218,36 @@ require 'header.php';
 <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Prune subhead'] ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Prune old posts', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="prune" />
 			<fieldset>
-				<p><?php printf($lang['Prune info'], '<a href="maintenance.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Days old label'] ?><span class="help-block"><?php echo $lang['Days old help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a topic must be to be pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Prune sticky label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Prune sticky topics', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_sticky" value="1" tabindex="6" checked />
-							<?php echo $lang['Yes'] ?>
+							<?php _e('Yes', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_sticky" value="0" />
-							<?php echo $lang['No'] ?>
+							<?php _e('No', 'luna') ?>
 						</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Prune from label'] ?><span class="help-block"><?php echo $lang['Prune from help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Prune from forum', 'luna') ?><span class="help-block"><?php _e('What shall we prune?', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<select class="form-control" name="prune_from" tabindex="7">
-							<option value="all"><?php echo $lang['All forums'] ?></option>
+							<option value="all"><?php _e('All forums', 'luna') ?></option>
 <?php
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -277,62 +277,62 @@ require 'header.php';
 <form class="form-horizontal" id="userprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Prune users head'] ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fa fa-fw fa-recycle"></span> <?php echo $lang['Prune'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Prune users', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="userprune" tabindex="2"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
-				<p><?php printf($lang['Prune info'], '<a href="maintenance.php#maintenance">'.$lang['Maintenance mode'].'</a>') ?></p>
+				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Prune by'] ?><span class="help-block"><?php echo $lang['Prune by info'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Prune by', 'luna') ?><span class="help-block"><?php _e('What should we count to prune?', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="1" checked />
-							<?php echo $lang['Registered date'] ?>
+							<?php _e('Registered date', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="prune_by" value="0" />
-							<?php echo $lang['Last login'] ?>
+							<?php _e('Last login', 'luna') ?>
 						</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Minimum days'] ?><span class="help-block"><?php echo $lang['Minimum days info'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Minimum days since registration/last login', 'luna') ?><span class="help-block"><?php _e('The minimum amount of days since event specified above', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="days" value="28" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Maximum posts'] ?><span class="help-block"><?php echo $lang['Maximum posts info'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Maximum number of posts', 'luna') ?><span class="help-block"><?php _e('How many posts do you require before an users isn\'t pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="posts" value="1"  tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Delete admins'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Delete admins and mods', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="admods_delete" value="1" />
-							<?php echo $lang['Yes'] ?>
+							<?php _e('Yes', 'luna') ?>
 						</label>
 							<label class="radio-inline"><input type="radio" name="admods_delete" value="0" checked />
-							<?php echo $lang['No'] ?>
+							<?php _e('No', 'luna') ?>
 						</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['User status'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('User status', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="verified" value="1" />
-							<?php echo $lang['Delete any'] ?>
+							<?php _e('Delete any', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="verified" value="0" checked />
-							<?php echo $lang['Delete only verified'] ?>
+							<?php _e('Delete only verified', 'luna') ?>
 						</label>
 						<label class="radio-inline">
 							<input type="radio" name="verified" value="2" />
-							<?php echo $lang['Delete only unverified'] ?>
+							<?php _e('Delete only unverified', 'luna') ?>
 						</label>
 					</div>
 				</div>

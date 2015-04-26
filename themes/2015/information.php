@@ -19,7 +19,7 @@ $xmlstr = <<<XML
 	<version>1.0 Preview</version>
 	<minversion>1.1 Preview 1</minversion>
 	<maxversion>1.1 Preview 1</maxversion>
-	<description>2015 is a brand new theme for Luna designed as part of the Luna core during all releases that get released in 2015.</description>
+	<description>2015</description>
 </style>
 XML;
 ?>

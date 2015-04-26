@@ -16,11 +16,11 @@ if (!defined('FORUM'))
 	<div class="row forumview">
 		<div class="col-sm-3">
 			<div class="list-group list-group-forum">
-				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Back to index'] ?></a>
+				<a class="list-group-item" href="index.php"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Back to index', 'luna') ?></a>
 			</div>
 			<hr />
 			<?php if ((is_subforum($id) && $id != '0')): ?>
-				<h5 class="list-group-head"><?php echo $lang['Subforums'] ?></h5>
+				<h5 class="list-group-head"><?php _e('Subforums', 'luna') ?></h5>
 				<div class="list-group list-group-forum">
 					<?php draw_subforum_list('viewforum.php', 'forum.php') ?>
 				</div>
@@ -29,7 +29,7 @@ if (!defined('FORUM'))
 			<div class="list-group list-group-forum">
 				<?php draw_mark_read('list-group-item', 'forumview') ?>
 				<?php if ($id != '0' && $is_admmod) { ?>
-					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Moderate forum'] ?></a>
+					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate forum', 'luna') ?></a>
 				<?php } ?>
 			</div>
 		</div>
