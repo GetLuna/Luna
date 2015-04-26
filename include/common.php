@@ -151,11 +151,15 @@ $forum_date_formats = array($luna_config['o_date_format'], 'Y-m-d', 'Y-d-m', 'd-
 $luna_user = array();
 check_cookie($luna_user);
 
+// Load l10n
+require_once FORUM_ROOT.'include/pomo/MO.php';
+require_once FORUM_ROOT.'include/l10n.php';
+
 // Attempt to load the language file
-if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php'))
-	include FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
-elseif (file_exists(FORUM_ROOT.'lang/English/language.php'))
-	include FORUM_ROOT.'lang/English/language.php';
+if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/luna.mo'))
+	load_textdomain('luna', FORUM_ROOT.'lang/'.$luna_user['language'].'/luna.mo');
+elseif (file_exists(FORUM_ROOT.'lang/English/luna.mo'))
+	load_textdomain('luna', FORUM_ROOT.'lang/English/luna.mo');
 else
 	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
 
@@ -183,7 +187,7 @@ update_users_online();
 
 // Check to see if we logged in without a cookie being set
 if ($luna_user['is_guest'] && isset($_GET['login']))
-	message($lang['No cookie']);
+	message(__('You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website.', 'luna'));
 
 // The maximum size of a post, in bytes, since the field is now MEDIUMTEXT this allows ~16MB but lets cap at 1MB...
 if (!defined('FORUM_MAX_POSTSIZE'))
@@ -200,3 +204,5 @@ if (!defined('FORUM_MAX_COOKIE_SIZE'))
 require FORUM_ROOT.'include/general_functions.php';
 require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/statistic_functions.php';
+
+require FORUM_ROOT.'include/notifications.php';

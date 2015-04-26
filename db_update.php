@@ -53,6 +53,8 @@ require FORUM_ROOT.'include/general_functions.php';
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
 
+
+
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
 
@@ -113,13 +115,16 @@ $result = $db->query('SELECT * FROM '.$db->prefix.'config') or error('Unable to 
 while ($cur_config_item = $db->fetch_row($result))
 	$luna_config[$cur_config_item[0]] = $cur_config_item[1];
 
+// Load l10n
+require_once FORUM_ROOT.'include/pomo/MO.php';
+require_once FORUM_ROOT.'include/l10n.php';
+
 // Load language file
 $default_lang = $luna_config['o_default_lang'];
-
-if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/language.php'))
+if (!file_exists(FORUM_ROOT.'lang/'.$default_lang.'/luna.mo'))
 	$default_lang = 'English';
 
-require FORUM_ROOT.'lang/'.$default_lang.'/language.php';
+load_textdomain('luna', FORUM_ROOT.'lang/'.$default_lang.'/luna.mo');
 
 // Do some DB type specific checks
 $mysql = false;
@@ -130,7 +135,7 @@ switch ($db_type) {
 	case 'mysqli_innodb':
 		$mysql_info = $db->get_version();
 		if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
-			error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
+			error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
 
 		$mysql = true;
 		break;
@@ -138,7 +143,7 @@ switch ($db_type) {
 	case 'pgsql':
 		$pgsql_info = $db->get_version();
 		if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
-			error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+			error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
 
 		break;
 }
@@ -148,12 +153,12 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION &&
 		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION &&
 		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '>=')) {
-	error($lang['No update error']);
+	error(__('Your forum is already as up-to-date as this script can make it', 'luna'));
 }
 
 // Check style
 $default_style = $luna_config['o_default_style'];
-if (!file_exists(FORUM_ROOT.'theme/'.$default_style.'/style.css'))
+if (!file_exists(FORUM_ROOT.'themes/'.$default_style.'/style.css'))
 	$default_style = 'Luna';
 
 // Empty all output buffers and stop buffering
@@ -170,20 +175,20 @@ if (empty($stage)) {
 		// Deal with newlines, tabs and multiple spaces
 		$pattern = array("\t", '  ', '  ');
 		$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
-		$message = str_replace($pattern, $replace, $lang['Down']);
+		$message = str_replace($pattern, $replace, __('The forums are temporarily down for maintenance. Please try again in a few minutes.', 'luna'));
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title><?php echo $lang['Maintenance'] ?></title>
+		<title><?php _e('Maintenance', 'luna') ?></title>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="alert alert-info">
-			<h3><?php echo $lang['Maintenance'] ?></h3>
+			<h3><?php _e('Maintenance', 'luna') ?></h3>
 		</div>
 	</body>
 </html>
@@ -196,7 +201,7 @@ if (empty($stage)) {
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Luna &middot; <?php echo $lang['Update'] ?></title>
+		<title>Luna &middot; <?php _e('Update', 'luna') ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="robots" content="noindex, nofollow">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -208,7 +213,7 @@ if (empty($stage)) {
 			<form id="install" method="post" action="db_update.php">
 				<input type="hidden" name="stage" value="start" />
 				<div class="form-group">
-					<input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php echo $lang['Start update'] ?>" />
+					<input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php _e('Start update', 'luna') ?>" />
 				</div>
 			</form>
 		</div>
@@ -233,7 +238,7 @@ switch ($stage) {
 			break;
 
 		// Change the default style if the old doesn't exist anymore
-		if ($luna_config['o_default_style'] != $default_style)
+		if (!file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 
 		// Since 3.5-beta: Remove obsolete o_antispam_api permission from config table
@@ -691,7 +696,7 @@ switch ($stage) {
 		$temp = array();
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
-			echo sprintf($lang['Preparsing item'], $lang['post'], $cur_item['id']).'<br />'."\n";
+			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('post', 'luna'), $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'posts SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
@@ -724,7 +729,7 @@ switch ($stage) {
 		$temp = array();
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
-			echo sprintf($lang['Preparsing item'], $lang['signature'], $cur_item['id']).'<br />'."\n";
+			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('signature', 'luna'), $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'users SET signature = \''.$db->escape(preparse_bbcode($cur_item['signature'], $temp, true)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
@@ -776,7 +781,7 @@ switch ($stage) {
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
-			echo sprintf($lang['Rebuilding index item'], $lang['post'], $cur_item['id']).'<br />'."\n";
+			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('post', 'luna'), $cur_item['id']).'<br />'."\n";
 
 			if ($cur_item['id'] == $cur_item['first_post_id'])
 				update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);

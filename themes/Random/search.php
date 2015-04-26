@@ -7,11 +7,11 @@ if (!defined('FORUM'))
 ?>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
-		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></a>
+		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></a>
 	</div>
 	<div class="collapse navbar-collapse hidden-xs" id="search-nav">
 		<ul class="navbar-form navbar-right">
-			<a class="btn btn-default" href="search.php?section=advanced"><?php echo $lang['Advanced'] ?></a>
+			<a class="btn btn-default" href="search.php?section=advanced"><?php _e('Advanced', 'luna') ?></a>
 		</ul>
 	</div>
 </nav>
@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 		<div class="panel-body">
 			<fieldset>
 				<input type="hidden" name="action" value="search" />
-				<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php echo $lang['Search'] ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php echo $lang['Search'] ?></button></span></div>
+				<div class="input-group"><input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search', 'luna') ?>" maxlength="100" /><span class="input-group-btn"><button class="btn btn-primary" type="submit" name="search" accesskey="s" /><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></div>
 			</fieldset>
 		</div>
 	</div>

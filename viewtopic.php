@@ -11,19 +11,19 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
-	message($lang['No view'], false, '403 Forbidden');
+	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $pid = isset($_GET['pid']) ? intval($_GET['pid']) : 0;
 if ($id < 1 && $pid < 1)
-	message($lang['Bad request'], false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 // If a post ID is specified we determine topic ID and page number so we can redirect to the correct message
 if ($pid) {
 	$result = $db->query('SELECT topic_id, posted FROM '.$db->prefix.'posts WHERE id='.$pid) or error('Unable to fetch topic ID', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
-		message($lang['Bad request'], false, '404 Not Found');
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	list($id, $posted) = $db->fetch_row($result);
 
@@ -74,7 +74,7 @@ else
 	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
-	message($lang['Bad request'], false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 $cur_topic = $db->fetch_assoc($result);
 
@@ -86,14 +86,14 @@ $admin_ids = get_admin_ids();
 
 if ($cur_topic['closed'] == '0') {
 	if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)
-		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a>'."\n";
+		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.__('Post reply', 'luna').'</a>'."\n";
 	else
 		$post_link = '';
 } else {
-	$post_link = '<a class="btn disabled btn-warning btn-post pull-right">'.$lang['Topic closed'].'</a>';
+	$post_link = '<a class="btn disabled btn-warning btn-post pull-right">'.__('Topic closed', 'luna').'</a>';
 
 	if ($is_admmod)
-		$post_link .= '<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.$lang['Post reply'].'</a>';
+		$post_link .= '<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.__('Post reply', 'luna').'</a>';
 
 	$post_link = $post_link."\n";
 }
@@ -118,11 +118,11 @@ $paging_links = paginate($num_pages, $p, 'viewtopic.php?id='.$id);
 
 $quickpost = false;
 if (($cur_topic['post_replies'] == '1' || ($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1')) && ($cur_topic['closed'] == '0' || $is_admmod)) {
-	$required_fields = array('req_message' => $lang['Message']);
+	$required_fields = array('req_message' => __('Message', 'luna'));
 	if ($luna_user['is_guest']) {
-		$required_fields['req_username'] = $lang['Guest name'];
+		$required_fields['req_username'] = __('Name', 'luna');
 		if ($luna_config['p_force_guest_email'] == '1')
-			$required_fields['req_email'] = $lang['Email'];
+			$required_fields['req_email'] = __('Email', 'luna');
 	}
 
 	$quickpost = true;
@@ -132,17 +132,17 @@ if ($luna_config['o_censoring'] == '1')
 	$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 if ($luna_config['o_feed_type'] == '1')
-	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.$lang['RSS topic feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=rss" title="'.__('RSS topic feed', 'luna').'" />');
 elseif ($luna_config['o_feed_type'] == '2')
-	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.$lang['Atom topic feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;tid='.$id.'&amp;type=atom" title="'.__('Atom topic feed', 'luna').'" />');
 
 $topic_actions = array();
 
 if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') {
 	if ($cur_topic['is_subscribed'])
-		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.$lang['Unsubscribe'].'</a>';
+		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.__('Unsubscribe', 'luna').'</a>';
 	else
-		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.'">'.$lang['Subscribe'].'</a>';
+		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.'">'.__('Subscribe', 'luna').'</a>';
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));

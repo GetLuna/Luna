@@ -66,51 +66,49 @@ class Installer {
 	}
 	
 	public static function validate_config($username, $password1, $password2, $email, $title, $default_lang, $default_style) {
-		global $lang;
 
 		$alerts = array();
 
 		// Validate username and passwords
 		if (luna_strlen($username) < 2)
-			$alerts[] = $lang['Username 1'];
+			$alerts[] = __('Usernames must be at least 2 characters long.', 'luna');
 		elseif (luna_strlen($username) > 25) // This usually doesn't happen since the form element only accepts 25 characters
-			$alerts[] = $lang['Username 2'];
+			$alerts[] = __('Usernames must not be more than 25 characters long.', 'luna');
 		elseif (!strcasecmp($username, 'Guest'))
-			$alerts[] = $lang['Username 3'];
+			$alerts[] = __('The username guest is reserved.', 'luna');
 		elseif (preg_match('%[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}%', $username) || preg_match('%((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))%', $username))
-			$alerts[] = $lang['Username 4'];
+			$alerts[] = __('Usernames may not be in the form of an IP address.', 'luna');
 		elseif ((strpos($username, '[') !== false || strpos($username, ']') !== false) && strpos($username, '\'') !== false && strpos($username, '"') !== false)
-			$alerts[] = $lang['Username 5'];
+			$alerts[] = __('Usernames may not contain all the characters \', " and [ or ] at once.', 'luna');
 		elseif (preg_match('%(?:\[/?(?:b|u|i|h|colou?r|quote|code|img|url|email|list)\]|\[(?:code|quote|list)=)%i', $username))
-			$alerts[] = $lang['Username 6'];
+			$alerts[] = __('Usernames may not contain any of the text formatting tags (BBCode) that the forum uses.', 'luna');
 	
 		if (luna_strlen($password1) < 4)
-			$alerts[] = $lang['Short password'];
+			$alerts[] = __('Passwords must be at least 6 characters long.', 'luna');
 		elseif ($password1 != $password2)
-			$alerts[] = $lang['Passwords not match'];
+			$alerts[] = __('Passwords do not match.', 'luna');
 	
 		// Validate email
 		require FORUM_ROOT.'include/email.php';
 	
 		if (!is_valid_email($email))
-			$alerts[] = $lang['Wrong email'];
+			$alerts[] = __('The administrator email address you entered is invalid.', 'luna');
 	
 		if ($title == '')
-			$alerts[] = $lang['No board title'];
+			$alerts[] = __('You must enter a board title.', 'luna');
 	
 		$languages = forum_list_langs();
 		if (!in_array($default_lang, $languages))
-			$alerts[] = $lang['Error default language'];
+			$alerts[] = __('The default language chosen doesn\'t seem to exist.', 'luna');
 	
 		$styles = forum_list_styles();
 		if (!in_array($default_style, $styles))
-			$alerts[] = $lang['Error default style'];
+			$alerts[] = __('The default style chosen doesn\'t seem to exist.', 'luna');
 			
 		return $alerts;
 	}
 	
 	private static function load_database_driver($db_type) {
-		global $lang;
 		
 		// Load the appropriate DB layer class
 		switch ($db_type) {
@@ -139,12 +137,11 @@ class Installer {
 				break;
 	
 			default:
-				error(sprintf($lang['DB type not valid'], luna_htmlspecialchars($db_type)));
+				error(sprintf(__('"%s" is not a valid database type', 'luna'), luna_htmlspecialchars($db_type)));
 		}
 	}
 	
 	private static function validate_database_version($db_type, $db) {
-		global $lang;
 		
 		// Do some DB type specific checks
 		switch ($db_type) {
@@ -154,18 +151,18 @@ class Installer {
 			case 'mysqli_innodb':
 				$mysql_info = $db->get_version();
 				if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
-					error(sprintf($lang['You are running error'], 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
+					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
 				break;
 	
 			case 'pgsql':
 				$pgsql_info = $db->get_version();
 				if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
-					error(sprintf($lang['You are running error'], 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
 				break;
 	
 			case 'sqlite':
 				if (strtolower($db_prefix) == 'sqlite_')
-					error($lang['Prefix reserved']);
+					error(__('The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please choose a different prefix', 'luna'));
 				break;
 		}
 
@@ -174,16 +171,15 @@ class Installer {
 			$result = $db->query('SHOW VARIABLES LIKE \'have_innodb\'');
 			list (, $result) = $db->fetch_row($result);
 			if ((strtoupper($result) != 'YES'))
-				error($lang['InnoDB off']);
+				error(__('InnoDB does not seem to be enabled. Please choose a database layer that does not have InnoDB support, or enable InnoDB on your MySQL server', 'luna'));
 		}
 	}
 	
 	public static function create_database($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix, $title, $description, $default_lang, $default_style, $email, $avatars, $base_url) {
-		global $lang;
 
 		// Validate prefix
 		if (strlen($db_prefix) > 0 && (!preg_match('%^[a-zA-Z_][a-zA-Z0-9_]*$%', $db_prefix) || strlen($db_prefix) > 40))
-		error(sprintf($lang['Table prefix error'], $db->prefix));
+		error(sprintf(__('The table prefix '%s' contains illegal characters or is too long. The prefix may contain the letters a to z, any numbers and the underscore character. They must however not start with a number. The maximum length is 40 characters. Please choose a different prefix', 'luna'), $db->prefix));
 		
 		// Load the appropriate DB layer class
 		Installer::load_database_driver($db_type);
@@ -197,7 +193,7 @@ class Installer {
 		// Make sure FluxBB isn't already installed
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'users WHERE id=1');
 		if ($db->num_rows($result))
-		error(sprintf($lang['Existing table error'], $db->prefix, $db_name));
+		error(sprintf(__('A table called "%susers" is already present in the database "%s". This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix', 'luna'), $db->prefix, $db_name));
 		
 		// Start a transaction
 		$db->start_transaction();
@@ -1409,14 +1405,13 @@ class Installer {
 			'o_board_title'				=> $title,
 			'o_board_desc'				=> $description,
 			'o_default_timezone'		=> 0,
-			'o_time_format'				=> $lang['lang_time'],
-			'o_date_format'				=> $lang['lang_date'],
+			'o_time_format'				=> __('H:i', 'luna'),
+			'o_date_format'				=> __('j M Y', 'luna'),
 			'o_timeout_visit'			=> 1800,
 			'o_timeout_online'			=> 300,
 			'o_show_user_info'			=> 1,
 			'o_show_post_count'			=> 1,
 			'o_signatures'				=> 1,
-			'o_smilies'					=> 1,
 			'o_smilies_sig'				=> 1,
 			'o_make_links'				=> 1,
 			'o_default_lang'			=> $default_lang,
@@ -1449,7 +1444,7 @@ class Installer {
 			'o_webmaster_email'			=> $email,
 			'o_forum_subscriptions'		=> 1,
 			'o_topic_subscriptions'		=> 1,
-			'o_first_run_message'		=> $lang['First run message'],
+			'o_first_run_message'		=> __('Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.', 'luna'),
 			'o_show_first_run'			=> 1,
 			'o_first_run_guests'		=> 1,
 			'o_first_run_backstage'		=> 0,
@@ -1463,11 +1458,11 @@ class Installer {
 			'o_video_height'			=> 360,
 			'o_enable_advanced_search'	=> 1,
 			'o_announcement'			=> 0,
-			'o_announcement_message'	=> $lang['Announcement'],
+			'o_announcement_message'	=> __('Announcement', 'luna'),
 			'o_rules'					=> 0,
-			'o_rules_message'			=> $lang['Rules'],
+			'o_rules_message'			=> __('Rules', 'luna'),
 			'o_maintenance'				=> 0,
-			'o_maintenance_message'		=> $lang['Maintenance message'],
+			'o_maintenance_message'		=> __('The forums are temporarily down for maintenance. Please try again in a few minutes.', 'luna'),
 			'o_default_dst'				=> 0,
 			'o_feed_type'				=> 2,
 			'o_feed_ttl'				=> 0,
@@ -1511,14 +1506,14 @@ class Installer {
 	}
 	
 	public static function insert_default_users($username, $password, $email, $language, $style) {
-		global $db, $db_type, $lang;
+		global $db, $db_type;
 		
 		$now = time();
 		
 		$db->start_transaction();
 
 		// Insert guest and first admin user
-		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\', \''.$db->escape($lang['Guest']).'\')')
+		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email) VALUES(3, \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\', \''.$db->escape(__('Guest', 'luna')).'\')')
 			or error('Unable to add guest user. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	
 		$db->query('INSERT INTO '.$db->prefix.'users (group_id, username, password, email, language, style, num_posts, last_post, registered, registration_ip, last_visit) VALUES(1, \''.$db->escape($username).'\', \''.luna_hash($password).'\', \''.$email.'\', \''.$db->escape($language).'\', \''.$db->escape($style).'\', 1, '.$now.', '.$now.', \''.$db->escape(get_remote_address()).'\', '.$now.')')
@@ -1528,26 +1523,26 @@ class Installer {
 	}
 	
 	public static function insert_default_groups() {
-		global $db, $db_type, $lang;
+		global $db, $db_type;
 		
 		$now = time();
 		
 		$db->start_transaction();
 
 		// Insert the first 4 groups
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape($lang['Administrators']).'\', \''.$db->escape($lang['Administrator']).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '1, ' : '').'\''.$db->escape(__('Administrators', 'luna')).'\', \''.$db->escape(__('Administrator', 'luna')).'\', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape($lang['Moderators']).'\', \''.$db->escape($lang['Moderator']).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '2, ' : '').'\''.$db->escape(__('Moderators', 'luna')).'\', \''.$db->escape(__('Moderator', 'luna')).'\', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape($lang['Guests']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '3, ' : '').'\''.$db->escape(__('Guests', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 60, 30, 0, 0, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape($lang['Members']).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
+		$db->query('INSERT INTO '.$db->prefix.'groups ('.($db_type != 'pgsql' ? 'g_id, ' : '').'g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES('.($db_type != 'pgsql' ? '4, ' : '').'\''.$db->escape(__('Members', 'luna')).'\', NULL, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 60, 30, 60, 60, 0, 0, 0)') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		
 		$db->end_transaction();
 	}
 	
 	public static function instert_default_menu() {
-		global $db, $lang;
+		global $db;
 		
 		$db->start_transaction();
 
@@ -1564,16 +1559,16 @@ class Installer {
 	}
 	
 	public static function insert_default_data() {
-		global $db, $db_type, $lang;
+		global $db, $db_type;
 		
 		$now = time();
 		
 		$db->start_transaction();
 
-		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['New member']).'\', 0)')
+		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('New member', 'luna')).'\', 0)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 	
-		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($lang['Member']).'\', 10)')
+		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
 		require FORUM_ROOT.'include/general_functions.php';		

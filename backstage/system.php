@@ -20,7 +20,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN) {
 	// Is phpinfo() a disabled function?
 	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
-		message_backstage($lang['PHPinfo disabled message']);
+		message_backstage(__('The PHP function phpinfo() has been disabled on this server.', 'luna'));
 
 	phpinfo();
 	exit;
@@ -41,11 +41,11 @@ if (@file_exists('/proc/loadavg') && is_readable('/proc/loadavg')) {
 		$load_averages = '';
 
 	$load_averages = @explode(' ', $load_averages);
-	$server_load = isset($load_averages[2]) ? $load_averages[0].' '.$load_averages[1].' '.$load_averages[2] : $lang['Not available'];
+	$server_load = isset($load_averages[2]) ? $load_averages[0].' '.$load_averages[1].' '.$load_averages[2] : __('Not available', 'luna');
 } elseif (!in_array(PHP_OS, array('WINNT', 'WIN32')) && preg_match('%averages?: ([0-9\.]+),?\s+([0-9\.]+),?\s+([0-9\.]+)%i', @exec('uptime'), $load_averages))
 	$server_load = $load_averages[1].' '.$load_averages[2].' '.$load_averages[3];
 else
-	$server_load = $lang['Not available'];
+	$server_load = __('Not available', 'luna');
 
 
 // Get number of current visitors
@@ -70,22 +70,22 @@ if ($db_type == 'mysql' || $db_type == 'mysqli' || $db_type == 'mysql_innodb' ||
 
 // Check for the existence of various PHP opcode caches/optimizers
 if (function_exists('mmcache'))
-	$php_accelerator = '<a href="http://'.$lang['Turck MMCache link'].'">'.$lang['Turck MMCache'].'</a>';
+	$php_accelerator = '<a href="http://'.__('turck-mmcache.sourceforge.net/', 'luna').'">'.__('Turck MMCache', 'luna').'</a>';
 elseif (isset($_PHPA))
-	$php_accelerator = '<a href="http://'.$lang['ionCube PHP Accelerator link'].'">'.$lang['ionCube PHP Accelerator'].'</a>';
+	$php_accelerator = '<a href="http://'.__('www.php-accelerator.co.uk/', 'luna').'">'.__('ionCube PHP Accelerator', 'luna').'</a>';
 elseif (ini_get('apc.enabled'))
-	$php_accelerator ='<a href="http://'.$lang['Alternative PHP Cache (APC) link'].'">'.$lang['Alternative PHP Cache (APC)'].'</a>';
+	$php_accelerator ='<a href="http://'.__('www.php.net/apc/', 'luna').'">'.__('Alternative PHP Cache (APC)', 'luna').'</a>';
 elseif (ini_get('zend_optimizer.optimization_level'))
-	$php_accelerator = '<a href="http://'.$lang['Zend Optimizer link'].'">'.$lang['Zend Optimizer'].'</a>';
+	$php_accelerator = '<a href="http://'.__('www.zend.com/products/guard/zend-optimizer/', 'luna').'">'.__('Zend Optimizer', 'luna').'</a>';
 elseif (ini_get('eaccelerator.enable'))
-	$php_accelerator = '<a href="http://'.$lang['eAccelerator link'].'">'.$lang['eAccelerator'].'</a>';
+	$php_accelerator = '<a href="http://'.__('www.eaccelerator.net/', 'luna').'">'.__('eAccelerator', 'luna').'</a>';
 elseif (ini_get('xcache.cacher'))
-	$php_accelerator = '<a href="http://'.$lang['XCache link'].'">'.$lang['XCache'].'</a>';
+	$php_accelerator = '<a href="http://'.__('xcache.lighttpd.net/', 'luna').'">'.__('XCache', 'luna').'</a>';
 else
-	$php_accelerator = $lang['NA'];
+	$php_accelerator = __('N/A', 'luna');
 
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Server statistics']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Server statistics', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('backstage', 'stats');
@@ -93,34 +93,34 @@ load_admin_nav('backstage', 'stats');
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Version information'] ?></h3>
+		<h3 class="panel-title"><?php _e('Luna version information', 'luna') ?></h3>
 	</div>
 	<table class="table">
 		<thead>
 			<tr>
 				<th class="col-md-3"></th>
-				<th class="col-md-3"><?php echo $lang['Version'] ?></th>
+				<th class="col-md-3"><?php _e('Version', 'luna') ?></th>
 				<th class="col-md-3"></th>
-				<th class="col-md-3"><?php echo $lang['Version'] ?></th>
+				<th class="col-md-3"><?php _e('Version', 'luna') ?></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td><?php echo $lang['Software version'] ?></td>
+				<td><?php _e('Software version', 'luna') ?></td>
 				<td><?php echo $luna_config['o_cur_version']; ?></td>
-				<td><?php echo $lang['Bootstrap version'] ?></td>
+				<td><?php _e('Bootstrap version', 'luna') ?></td>
 				<td>3.3.4</td>
 			</tr>
 			<tr>
-				<td><?php echo $lang['Core version'] ?></td>
+				<td><?php _e('Core version', 'luna') ?></td>
 				<td><?php echo $luna_config['o_core_version']; ?></td>
-				<td><?php echo $lang['Font Awesome version'] ?></td>
+				<td><?php _e('Font Awesome version', 'luna') ?></td>
 				<td>4.3.0</td>
 			</tr>
 			<tr>
-				<td><?php echo $lang['Database version'] ?></td>
+				<td><?php _e('Database version', 'luna') ?></td>
 				<td><?php echo $luna_config['o_database_revision']; ?></td>
-				<td><?php echo $lang['jQuery version'] ?></td>
+				<td><?php _e('jQuery version', 'luna') ?></td>
 				<td>2.1.3</td>
 			</tr>
 		</tbody>
@@ -128,32 +128,32 @@ load_admin_nav('backstage', 'stats');
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Server statistics head'] ?></h3>
+		<h3 class="panel-title"><?php _e('Server statistics', 'luna') ?></h3>
 	</div>
 	<table class="table">
 		<thead>
 			<tr>
-				<th class="col-md-4"><?php echo $lang['Server load label'] ?></th>
+				<th class="col-md-4"><?php _e('Server load', 'luna') ?></th>
 				<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
-				<th class="col-md-4"><?php echo $lang['Environment label'] ?></th>
-				<th class="col-md-4"><?php echo $lang['Database'] ?></th>
+				<th class="col-md-4"><?php _e('Environment', 'luna') ?></th>
+				<th class="col-md-4"><?php _e('Database', 'luna') ?></th>
 				<?php endif; ?>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td><?php printf($lang['Server load data']."\n", $server_load, $num_online) ?></td>
+				<td><?php printf(__('%s - %s user(s) online', 'luna')."\n", $server_load, $num_online) ?></td>
 				<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
 				<td>
-					<?php printf($lang['Environment data OS'], PHP_OS) ?><br />
-					<?php printf($lang['Environment data version'], phpversion(), '<a href="system.php?action=phpinfo">'.$lang['Show info'].'</a>') ?><br />
-					<?php printf($lang['Environment data acc']."\n", $php_accelerator) ?>
+					<?php printf(__('Operating system: %s', 'luna'), PHP_OS) ?><br />
+					<?php printf(__('PHP: %s - %s', 'luna'), phpversion(), '<a href="system.php?action=phpinfo">'.__('Show info', 'luna').'</a>') ?><br />
+					<?php printf(__('Accelerator: %s', 'luna')."\n", $php_accelerator) ?>
 				</td>
 				<td>
 					<?php echo implode(' ', $db->get_version())."\n" ?>
 					<?php if (isset($total_records) && isset($total_size)): ?>
-					<br /><?php printf($lang['Database data rows']."\n", forum_number_format($total_records)) ?>
-					<br /><?php printf($lang['Database data size']."\n", $total_size) ?>
+					<br /><?php printf(__('Rows: %s', 'luna')."\n", forum_number_format($total_records)) ?>
+					<br /><?php printf(__('Size: %s', 'luna')."\n", $total_size) ?>
 					<?php endif; ?>
 				</td>
 				<?php endif; ?>
