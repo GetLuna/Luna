@@ -56,8 +56,18 @@ if ($luna_user['color_scheme'] == '1') { // ModernBB
 
 ?>
 <style type="text/css">
-.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary {
+.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle .icon-bar, .navbar-default .navbar-toggle .icon-bar, .btn-primary {
 	background-color: <?php echo $primary_color ?>;
+}
+
+.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	background-color: <?php echo $secondary_color ?>;
+}
+
+@media screen and (max-width: 767px) {
+	.dropdown-menu .divider {
+		background-color: <?php echo $secondary_color ?> !important;
+	}
 }
 
 .navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
@@ -78,8 +88,8 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	border-color: <?php echo $tertiary_color ?>;
 }
 
-.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
-	border-left-color: <?php echo $primary_color ?>;
+.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	border-color: <?php echo $primary_color ?>;
 }
 
 a, a:focus, .pagination > li > a, .pagination > li > span {
