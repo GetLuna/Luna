@@ -202,18 +202,18 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4275.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4318.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>276 bugs have been fixed.</p>
+						<p>278 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
 				</div>
 				<hr />
 				<a id="updates"></a><h3>Updates</h3>
-				<h4>Luna 1.0.1 &middot Build 4284</h4>
+				<h4>Luna 1.0.1 &middot Build 4297</h4>
 				<div class="row">
 					<div class="col-sm-6">
 						<p>
@@ -232,6 +232,25 @@ require 'header.php';
 							<span class="label label-primary">Update 1</span> Removes the beta tag from "About"<br />
 							<span class="label label-primary">Update 1</span> Small changes to the notification center for new icons<br />
 							<span class="label label-primary">Update 1</span> Fix "Do not show again" bug on the index
+						</p>
+					</div>
+				</div>
+				<h4>Luna 1.0.2 &middot Build 4318</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 2</span> Results when searching on topics are now unique<br />
+							<span class="label label-primary">Update 2</span> "Send to" now has focus when writing a message<br />
+							<span class="label label-primary">Update 2</span> Users now get a mail to notify for new messages<br />
+							<span class="label label-primary">Update 2</span> The installer has been updated
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 2</span> Visual improvements to secondary navbars<br />
+							<span class="label label-primary">Update 2</span> Visual improvements to dropdowns in mobile view<br />
+							<span class="label label-primary">Update 2</span> Fixes issue with undefined index in Inbox<br />
+							<span class="label label-primary">Update 2</span> Fixes issue that causes themes to reset when updating
 						</p>
 					</div>
 				</div>
