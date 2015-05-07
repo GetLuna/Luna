@@ -791,7 +791,7 @@ To change your email address, please visit the following page:
 
 	$avatar_field = '<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newavatar">'.__('Change avatar', 'luna').'</a>';
 
-	$avatar_user = draw_user_avatar($id, 'visible-lg-inline');
+	$avatar_user = draw_user_avatar($id, true, 'visible-lg-inline');
 	$avatar_user_card = draw_user_avatar($id);
 	$avatar_set = check_avatar($id);
 	if ($avatar_user && $avatar_set)

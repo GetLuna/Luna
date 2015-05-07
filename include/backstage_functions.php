@@ -115,7 +115,7 @@ function load_admin_nav($section, $page) {
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown usermenu">
 					<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
-						<span class="hidden-sm"><?php print(luna_htmlspecialchars($luna_user['username'])) ?> </span><?php echo draw_user_avatar($luna_user['id'], 'avatar'); ?> <span class="fa fa-fw fa-angle-down"></span>
+						<span class="hidden-sm"><?php print(luna_htmlspecialchars($luna_user['username'])) ?> </span><?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?> <span class="fa fa-fw fa-angle-down"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><?php _e('Profile', 'luna') ?></a></li>

@@ -560,11 +560,16 @@ function generate_avatar_markup($user_id) {
 }
 
 // New version of the above
-function draw_user_avatar($user_id, $class = '') {
+function draw_user_avatar($user_id, $responsive = true, $class = '') {
 	global $luna_config;
 
 	$filetypes = array('jpg', 'gif', 'png');
 	$avatar_markup = '';
+	
+	if ($responsive == true)
+		$responsive_class = 'img-responsive';
+	else
+		$responsive_class = '';
 	
 	if (!empty($class))
 		$class = ' '.$class;
@@ -575,10 +580,10 @@ function draw_user_avatar($user_id, $class = '') {
 		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
 		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path)) {
-			$avatar_markup = '<img class="img-responsive '.$class.'" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
+			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		} else {
-			$avatar_markup = '<img class="img-responsive '.$class.'" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
+			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
 		}
 	}
 

@@ -666,7 +666,7 @@ function draw_topic_list() {
 			if (isset($user_avatar_cache[$cur_post['poster_id']]))
 				$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
 			else
-				$user_avatar = draw_user_avatar($cur_post['poster_id'], 'thread-avatar');
+				$user_avatar = draw_user_avatar($cur_post['poster_id'], false, 'media-object media-avatar');
 		}
 	
 		// Generation post action array (quote, edit, delete etc.)
@@ -849,7 +849,7 @@ function draw_user_list() {
 	
 		while ($user_data = $db->fetch_assoc($result)) {
 			$user_title_field = get_title($user_data);
-			$user_avatar = draw_user_avatar($user_data['id'], 'media-object');
+			$user_avatar = draw_user_avatar($user_data['id'], true, 'media-object');
 	
 			require get_view_path('user.php');
 	

@@ -900,6 +900,15 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	padding-left: 0;
 }
 
+.media-avatar {
+	height: 40px;
+	width: auto;
+}
+
+.media-heading {
+	margin-top: 8px; 
+}
+
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;

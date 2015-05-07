@@ -27,7 +27,7 @@ header('X-Frame-Options: deny');
 $p = isset($p) ? $p : null;
 
 // Generate avatar
-$user_avatar = draw_user_avatar($luna_user['id'], 'avatar');
+$user_avatar = draw_user_avatar($luna_user['id'], true, 'avatar');
 
 // Navbar data
 $links = array();
