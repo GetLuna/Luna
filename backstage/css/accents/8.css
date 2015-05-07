@@ -22,3 +22,10 @@
 .panel-primary > .panel-heading, .btn-primary:hover {
 	border-color: #ff4021;
 }
+
+@media all and (max-width:767px) {
+	.nav-tabs > li.active > a {
+		background-color: #ff7521;
+		border-color: #ff7521;
+	}
+}

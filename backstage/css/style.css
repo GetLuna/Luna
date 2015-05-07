@@ -185,6 +185,12 @@ label .help-block {
 	margin-bottom: 17px;
 }
 
+@media all and (max-width:767px) {
+	.jumboheader {
+		margin-bottom: 0;
+	}
+}
+
 .jumboheader h2 {
 	margin-top: 15px;
 	margin-bottom: 15px;

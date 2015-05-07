@@ -113,23 +113,15 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 		<div class="row">
 			<div class="col-sm-4">
 				<p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
-				<p><?php _e('If you\'re done, you can click on "Got it" in the upper right corner of this panel to disable this field.', 'luna') ?></p>
+			</div>
+			<div class="col-sm-4">
 				<div class="list-group">
 					<a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="list-group">
 					<a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
-					<a href="censoring.php" class="list-group-item"><?php _e('Censor words', 'luna') ?></a>
-					<a href="groups.php" class="list-group-item"><?php _e('Add more groups', 'luna') ?></a>
-					<a href="ranks.php" class="list-group-item"><?php _e('Add additional ranks', 'luna') ?></a>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="list-group">
-					<a href="menu.php" class="list-group-item"><?php _e('Customize the menu', 'luna') ?></a>
-					<a href="theme.php" class="list-group-item"><?php _e('Change the appearance', 'luna') ?></a>
 					<a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
 					<a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
 				</div>

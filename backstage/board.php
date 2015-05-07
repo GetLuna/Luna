@@ -187,7 +187,11 @@ elseif (isset($_POST['update_positions'])) {
 <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
+<<<<<<< HEAD
+			<h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+=======
 			<h3 class="panel-title"><?php _e('Edit forum details', 'luna') ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php _e('Save', 'luna') ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+>>>>>>> lunadev
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -309,7 +313,11 @@ elseif (isset($_POST['update_positions'])) {
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
+<<<<<<< HEAD
+			<h3 class="panel-title"><?php echo $lang['Group permissions subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+=======
 			<h3 class="panel-title"><?php _e('Edit group permissions', 'luna') ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php _e('Save', 'luna') ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+>>>>>>> lunadev
 		</div>
 		<fieldset>
 			<div class="panel-body">
@@ -617,9 +625,13 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 ?>
 							<tr>
+<<<<<<< HEAD
+								<td class="col-xs-4"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php echo $lang['Edit'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></a></div></td>
+=======
 								<td class="col-xs-3"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e('Edit', 'luna') ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></a></div></td>
+>>>>>>> lunadev
 								<td class="col-xs-4"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-								<td class="col-xs-5"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+								<td class="col-xs-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 							</tr>
 <?php
 
