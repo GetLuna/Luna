@@ -854,17 +854,33 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-top: 10px;
 }
 
-.comment .panel-default {
+.comment .well-comment {
 	margin: 0;
-	margin-left: 5px;
 	border: none;
 	background-color: #f8f8f8;
 	margin-bottom: 5px;
 }
 
-.comment h3 {
-	margin-top: -6px;
-	margin-bottom: 0;
+.well-comment {
+	padding: 0;
+}
+
+.well-comment .media {
+	background: #eee;
+}
+
+.well-comment .well-content {
+	padding: 10px;
+}
+
+.media-avatar {
+	height: 50px;
+	width: auto;
+}
+
+.well .media-heading {
+	margin-top: 13px; 
+	margin-right: 10px;
 }
 
 .comment hr {
@@ -890,23 +906,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 #commentform > .panel {
 	margin-top: 10px;
-}
-
-.col-no-padding-right {
-	padding-right: 0;
-}
-
-.col-no-padding-left {
-	padding-left: 0;
-}
-
-.media-avatar {
-	height: 40px;
-	width: auto;
-}
-
-.media-heading {
-	margin-top: 8px; 
 }
 
 /* Table */
@@ -1238,6 +1237,10 @@ blockquote footer {
 	font-size: 16px;
 }
 
+:not(pre) > code[class*='language-'], pre[class*='language-'] {
+	border: none;
+}
+
 /* Update and login form */
 .form-update {
 	max-width: 330px;
@@ -1460,6 +1463,10 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 
 .night .label-default {
 	background-color: #333;
+}
+
+.night .well-comment .media {
+	background: #333;
 }
 
 .night .comment .panel-default {
