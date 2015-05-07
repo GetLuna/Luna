@@ -2888,38 +2888,12 @@ msgid ""
 "want to change. So let us help you with that first!"
 msgstr ""
 
-#: ../backstage/index.php:116
-msgid ""
-"If you're done, you can click on \"Got it\" in the upper right corner of "
-"this panel to disable this field."
-msgstr ""
-
 #: ../backstage/index.php:118
 msgid "What's new"
 msgstr ""
 
 #: ../backstage/index.php:123
 msgid "Create new sections"
-msgstr ""
-
-#: ../backstage/index.php:124
-msgid "Censor words"
-msgstr ""
-
-#: ../backstage/index.php:125
-msgid "Add more groups"
-msgstr ""
-
-#: ../backstage/index.php:126
-msgid "Add additional ranks"
-msgstr ""
-
-#: ../backstage/index.php:131
-msgid "Customize the menu"
-msgstr ""
-
-#: ../backstage/index.php:132
-msgid "Change the appearance"
 msgstr ""
 
 #: ../backstage/index.php:133
