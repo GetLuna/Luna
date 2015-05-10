@@ -1523,3 +1523,12 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 .night .btn-search:hover {
 	background-color: #393939;
 }
+
+.night .table > tbody > tr > td {
+	background-color: #444;
+	color: #fff;
+}
+
+.night .table > thead > tr > th {
+	border-color: #555;
+}
