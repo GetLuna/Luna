@@ -759,7 +759,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:focus {
 	border: none;
 	color: #fff !important;
-	background-color: #0d4382;
 }
 
 .nav-tabs > li > a:hover {
@@ -1523,4 +1522,13 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 
 .night .btn-search:hover {
 	background-color: #393939;
+}
+
+.night .table > tbody > tr > td {
+	background-color: #444;
+	color: #fff;
+}
+
+.night .table > thead > tr > th {
+	border-color: #555;
 }

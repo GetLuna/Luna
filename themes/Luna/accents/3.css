@@ -7,8 +7,8 @@
 	background-color: #0d4382;
 }
 
-.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
-	background-color: #0b3c75;
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
+	background-color: #0b3c75 !important;
 }
 
 @media screen and (max-width: 767px) {

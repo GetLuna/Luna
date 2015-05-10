@@ -7,7 +7,7 @@
 	background-color: #1a79bc;
 }
 
-.nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
 	background-color: #136cab;
 }
 
@@ -30,7 +30,7 @@
 }
 
 a.list-group-item:hover, .col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
-	color:#1a79bc;
+	color: #1a79bc;
 }
 
 a:hover, a:active {
