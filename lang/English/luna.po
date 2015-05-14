@@ -2150,6 +2150,42 @@ msgstr ""
 msgid "Announcements"
 msgstr ""
 
+#: ../backstage/settings.php:454
+msgid "Announcements title"
+msgstr ""
+
+#: ../backstage/settings.php:454
+msgid "You can leave this empty if there is no title"
+msgstr ""
+
+#: ../backstage/settings.php:460
+msgid "Announcements type"
+msgstr ""
+
+#: ../backstage/settings.php:463
+msgid "Default"
+msgstr ""
+
+#: ../backstage/settings.php:467
+msgid "Info"
+msgstr ""
+
+#: ../backstage/settings.php:471
+msgid "Success"
+msgstr ""
+
+#: ../backstage/settings.php:475
+msgid "Warning"
+msgstr ""
+
+#: ../backstage/settings.php:479
+msgid "Danger"
+msgstr ""
+
+#: ../backstage/settings.php:485
+msgid "Announcements message"
+msgstr ""
+
 #: ../backstage/settings.php:445
 msgid "Enable this to display the below message in the board."
 msgstr ""
