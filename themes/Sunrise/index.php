@@ -56,5 +56,14 @@ if ($luna_user['first_run'] == '0') {
 </div>
 <?php } ?>
 <div class="col-xs-12">
+<?php
+		// Announcement
+		if ($luna_config['o_announcement'] == '1') {
+?>
+			<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
+				<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
+				<?php echo $luna_config['o_announcement_message']; ?>
+			</div>
+	<?php } ?>
 	<?php draw_forum_list('viewforum.php', 'forum.php', 1, 'category.php', '</div></div>') ?>
 </div>
