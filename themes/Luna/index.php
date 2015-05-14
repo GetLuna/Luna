@@ -62,12 +62,12 @@ if ($luna_user['first_run'] == '0') {
 		<?php if ((is_subforum($id) && $id != '0')): ?>
 			<h5 class="list-group-head"><?php _e('Subforums', 'luna') ?></h5>
 			<div class="list-group list-group-forum">
-				<?php draw_subforum_list('index.php') ?>
+				<?php draw_subforum_list('viewforum.php') ?>
 			</div>
 			<hr />
 		<?php endif; ?>
 		<div class="list-group list-group-forum hidden-xs">
-			<?php draw_forum_list('index.php') ?>
+			<?php draw_forum_list('viewforum.php') ?>
 		</div>
 		<div class="list-group list-group-forum visible-xs-block">
 			<?php draw_forum_list('viewforum.php') ?>
