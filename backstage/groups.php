@@ -24,19 +24,19 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	} else { // We are editing a group
 		$group_id = intval($_GET['edit_group']);
 		if ($group_id < 1)
-			message_backstage($lang['Bad request'], false, '404 Not Found');
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
 		$result = $db->query('SELECT * FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch user group info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message_backstage($lang['Bad request'], false, '404 Not Found');
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		$group = $db->fetch_assoc($result);
 
 		$mode = 'edit';
 	}
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
-	$required_fields = array('req_title' => $lang['Group title label']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
+	$required_fields = array('req_title' => __('Group title', 'luna'));
 	$focus_element = array('groups2', 'req_title');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
@@ -45,22 +45,22 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Group settings subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_edit_group" value="<?php echo $lang['Save'] ?>" /></span></h3>
+			<h3 class="panel-title"><?php echo __('Setup group options and permissions', 'luna') ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_edit_group" value="<?php echo __('Save', 'luna') ?>" /></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="mode" value="<?php echo $mode ?>" />
 		<?php if ($mode == 'edit'): ?>					<input type="hidden" name="group_id" value="<?php echo $group_id ?>" />
 		<?php endif; ?><?php if ($mode == 'add'): ?>					<input type="hidden" name="base_group" value="<?php echo $base_group ?>" />
 		<?php endif; ?>					<fieldset>
-				<p><?php echo $lang['Group settings info'] ?></p>
+				<p><?php echo __('Below options and permissions are the default permissions for the user group. These options apply if no forum specific permissions are in effect.', 'luna') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Group title label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Group title', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="req_title" maxlength="50" value="<?php if ($mode == 'edit') echo luna_htmlspecialchars($group['g_title']); ?>" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['User title label'] ?><span class="help-block"><?php echo $lang['User title help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php echo __('User title', 'luna') ?><span class="help-block"><?php echo __('The title will override the user rank', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo luna_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
 					</div>
@@ -68,56 +68,56 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"> <?php echo $lang['Mod privileges label'] ?></label>
+					<label class="col-sm-3 control-label"> <?php echo __('Moderator privileges', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="moderator" value="1"<?php if ($group['g_moderator'] == '1') echo ' checked' ?> tabindex="5" />
-								<?php echo $lang['Mod privileges help'] ?>
+								<?php echo __('In order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Edit profile label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Edit user profiles', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="mod_edit_users" value="1"<?php if ($group['g_mod_edit_users'] == '1') echo ' checked' ?> tabindex="7" />
-								<?php echo $lang['Edit profile help'] ?>
+								<?php echo __('If moderator privileges are enabled, allow users to edit user profiles.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Rename users label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Rename users', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="mod_rename_users" value="1"<?php if ($group['g_mod_rename_users'] == '1') echo ' checked' ?> tabindex="9" />
-								<?php echo $lang['Rename users help'] ?>
+								<?php echo __('If moderator privileges are enabled, allow users to rename users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Change passwords label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Change passwords', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="mod_change_passwords" value="1"<?php if ($group['g_mod_change_passwords'] == '1') echo ' checked' ?> tabindex="11" />
-								<?php echo $lang['Change passwords help'] ?>
+								<?php echo __('If moderator privileges are enabled, allow users to change user passwords.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Ban users'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Ban users', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="mod_ban_users" value="1"<?php if ($group['g_mod_ban_users'] == '1') echo ' checked' ?> tabindex="13" />
-								<?php echo $lang['Ban users help'] ?>
+								<?php echo __('If moderator privileges are enabled, allow users to ban users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -126,34 +126,34 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Show deleted content'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Show deleted content', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="soft_delete_view" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Allow soft deleted'] ?>
+								<?php echo __('Allow users to view topics and posts that have been soft deleted.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Soft delete posts'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Soft delete posts', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="soft_delete_posts" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Allow post soft delete'] ?>
+								<?php echo __('Allow users to soft delete posts from all users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Soft delete topics'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Soft delete topics', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="soft_delete_topics" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Allow topic soft delete'] ?>
+								<?php echo __('Allow users to soft delete topics from all users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -162,65 +162,65 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Use Inbox'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Use Inbox', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="inbox_allow" value="1" <?php if ($group['g_pm'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Use Inbox info'] ?>
+								<?php echo __('Allow users to send messages with Inbox.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Inbox'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Inbox', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="inbox_limit" maxlength="5" value="<?php echo $group['g_pm_limit'] ?>" />
-						<p class="help-block"><?php echo $lang['Inbox messages'] ?></p>
+						<p class="help-block"><?php echo __('The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit.', 'luna') ?></p>
 					</div>
 				</div>
 	<?php endif; endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Read board label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Read board', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="read_board" value="1"<?php if ($group['g_read_board'] == '1') echo ' checked' ?> tabindex="15" />
-								<?php echo $lang['Read board help'] ?>
+								<?php echo __('If this is disabled, users will only be able to login and logout.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['View user info label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('View user information', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="view_users" value="1"<?php if ($group['g_view_users'] == '1') echo ' checked' ?> tabindex="17" />
-								<?php echo $lang['View user info help'] ?>
+								<?php echo __('Allow users to view the user list and user profiles.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Post replies label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Post replies', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked' ?> tabindex="19" />
-								<?php echo $lang['Post replies help'] ?>
+								<?php echo __('Allow users to post replies in topics.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Post topics label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Post topics', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked' ?> tabindex="21" />
-								<?php echo $lang['Post topics help'] ?>
+								<?php echo __('Allow users to post new topics.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -228,34 +228,34 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Edit posts label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Edit posts', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked' ?> tabindex="23" />
-								<?php echo $lang['Edit posts help'] ?>
+								<?php echo __('Allow users to edit their own posts.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Delete posts'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Delete posts', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked' ?> tabindex="25" />
-								<?php echo $lang['Delete posts help'] ?>
+								<?php echo __('Allow users to delete their own posts.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Delete topics'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Delete topics', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked' ?> tabindex="27" />
-								<?php echo $lang['Delete topics help'] ?>
+								<?php echo __('Allow users to delete their own topics (including any replies).', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -264,12 +264,12 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Set own title label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Set own user title', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="set_title" value="1"<?php if ($group['g_set_title'] == '1') echo ' checked' ?> tabindex="31" />
-								<?php echo $lang['Set own title help'] ?>
+								<?php echo __('Allow users to set their own user title.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -277,23 +277,23 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['User search label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Use search', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="search" value="1"<?php if ($group['g_search'] == '1') echo ' checked' ?> tabindex="33" />
-								<?php echo $lang['User search help'] ?>
+								<?php echo __('Allow users to use the search feature.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['User list search label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Search user list', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="search_users" value="1"<?php if ($group['g_search_users'] == '1') echo ' checked' ?> tabindex="35" />
-								<?php echo $lang['User list search help'] ?>
+								<?php echo __('Allow users to search for other users in the user list.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -301,12 +301,12 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Send e-mails label'] ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Send e-mails', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="send_email" value="1"<?php if ($group['g_send_email'] == '1') echo ' checked' ?> tabindex="37" />
-								<?php echo $lang['Send e-mails help'] ?>
+								<?php echo __('Allow users to send e-mails to other users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -314,44 +314,44 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Post flood label'] ?><span class="help-block"><?php echo $lang['Post flood help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php echo __('Post flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between posts', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="post_flood" maxlength="4" value="<?php echo $group['g_post_flood'] ?>" tabindex="35" />
-							<span class="input-group-addon"><?php echo $lang['seconds'] ?></span>
+							<span class="input-group-addon"><?php echo __('seconds', 'luna') ?></span>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Search flood label'] ?><span class="help-block"><?php echo $lang['Search flood help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php echo __('Search flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between searches', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="search_flood" maxlength="4" value="<?php echo $group['g_search_flood'] ?>" tabindex="36" />
-							<span class="input-group-addon"><?php echo $lang['seconds'] ?></span>
+							<span class="input-group-addon"><?php echo __('seconds', 'luna') ?></span>
 						</div>
 					</div>
 				</div>
 	<?php if ($group['g_id'] != FORUM_GUEST): ?>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['E-mail flood label'] ?><span class="help-block"><?php echo $lang['E-mail flood help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php echo __('Email flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between emails', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="email_flood" maxlength="4" value="<?php echo $group['g_email_flood'] ?>" tabindex="37" />
-							<span class="input-group-addon"><?php echo $lang['seconds'] ?></span>
+							<span class="input-group-addon"><?php echo __('seconds', 'luna') ?></span>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Report flood label'] ?><span class="help-block"><?php echo $lang['Report flood help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php echo __('Report flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between reports', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="report_flood" maxlength="4" value="<?php echo $group['g_report_flood'] ?>" tabindex="38" />
-							<span class="input-group-addon"><?php echo $lang['seconds'] ?></span>
+							<span class="input-group-addon"><?php echo __('seconds', 'luna') ?></span>
 						</div>
 					</div>
 				</div>
 	<?php endif; endif; ?>
-	<?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo $lang['Moderator info'] ?></p>
+	<?php if ($group['g_moderator'] == '1' ): ?>							<p class="warntext"><?php echo __('Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user\'s profile.', 'luna') ?></p>
 	<?php endif; ?>	
 			</fieldset>
 		</div>
@@ -402,14 +402,14 @@ elseif (isset($_POST['add_edit_group'])) {
 	}
 
 	if ($title == '')
-		message_backstage($lang['Must enter title message']);
+		message_backstage(__('You must enter a title.', 'luna'));
 
 	$user_title = ($user_title != '') ? '\''.$db->escape($user_title).'\'' : 'NULL';
 
 	if ($_POST['mode'] == 'add') {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\'') or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
-			message_backstage(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
+			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
 		$db->query('INSERT INTO '.$db->prefix.'groups (g_title, g_user_title, g_moderator, g_mod_edit_users, g_mod_rename_users, g_mod_change_passwords, g_mod_ban_users, g_read_board, g_view_users, g_post_replies, g_post_topics, g_edit_posts, g_delete_posts, g_delete_topics, g_set_title, g_search, g_search_users, g_send_email, g_post_flood, g_search_flood, g_email_flood, g_report_flood, g_pm, g_pm_limit, g_soft_delete_view, g_soft_delete_posts, g_soft_delete_topics) VALUES(\''.$db->escape($title).'\', '.$user_title.', '.$moderator.', '.$mod_edit_users.', '.$mod_rename_users.', '.$mod_change_passwords.', '.$mod_ban_users.', '.$read_board.', '.$view_users.', '.$post_replies.', '.$post_topics.', '.$edit_posts.', '.$delete_posts.', '.$delete_topics.', '.$set_title.', '.$search.', '.$search_users.', '.$send_email.', '.$post_flood.', '.$search_flood.', '.$email_flood.', '.$report_flood.', '.$inbox_allow.', '.$inbox_limit.', '.$soft_delete_view.', '.$soft_delete_posts.', '.$soft_delete_topics.')') or error('Unable to add group', __FILE__, __LINE__, $db->error());
 		$new_group_id = $db->insert_id();
@@ -421,7 +421,7 @@ elseif (isset($_POST['add_edit_group'])) {
 	} else {
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_title=\''.$db->escape($title).'\' AND g_id!='.intval($_POST['group_id'])) or error('Unable to check group title collision', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result))
-			message_backstage(sprintf($lang['Title already exists message'], luna_htmlspecialchars($title)));
+			message_backstage(sprintf(__('There is already a group with the title <strong>%s</strong>.', 'luna'), luna_htmlspecialchars($title)));
 
 		$db->query('UPDATE '.$db->prefix.'groups SET g_title=\''.$db->escape($title).'\', g_user_title='.$user_title.', g_moderator='.$moderator.', g_mod_edit_users='.$mod_edit_users.', g_mod_rename_users='.$mod_rename_users.', g_mod_change_passwords='.$mod_change_passwords.', g_mod_ban_users='.$mod_ban_users.', g_read_board='.$read_board.', g_view_users='.$view_users.', g_post_replies='.$post_replies.', g_post_topics='.$post_topics.', g_edit_posts='.$edit_posts.', g_delete_posts='.$delete_posts.', g_delete_topics='.$delete_topics.', g_set_title='.$set_title.', g_search='.$search.', g_search_users='.$search_users.', g_send_email='.$send_email.', g_post_flood='.$post_flood.', g_search_flood='.$search_flood.', g_email_flood='.$email_flood.', g_report_flood='.$report_flood.', g_pm='.$inbox_allow.', g_pm_limit='.$inbox_limit.', g_soft_delete_view='.$soft_delete_view.', g_soft_delete_posts='.$soft_delete_posts.', g_soft_delete_topics='.$soft_delete_topics.' WHERE g_id='.intval($_POST['group_id'])) or error('Unable to update group', __FILE__, __LINE__, $db->error());
 	}
@@ -438,12 +438,12 @@ elseif (isset($_POST['set_default_group'])) {
 
 	// Make sure it's not the admin or guest groups
 	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
-		message_backstage($lang['Bad request'], false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Make sure it's not a moderator group
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'groups WHERE g_id='.$group_id.' AND g_moderator=0') or error('Unable to check group moderator status', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
-		message_backstage($lang['Bad request'], false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$group_id.' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
@@ -463,11 +463,11 @@ elseif (isset($_GET['del_group'])) {
 	
 	$group_id = isset($_POST['group_to_delete']) ? intval($_POST['group_to_delete']) : intval($_GET['del_group']);
 	if ($group_id < 5)
-		message_backstage($lang['Bad request'], false, '404 Not Found');
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Make sure we don't remove the default group
 	if ($group_id == $luna_config['o_default_user_group'])
-		message_backstage($lang['Cannot remove default message']);
+		message_backstage(__('The default group cannot be removed. In order to delete this group, you must first setup a different group as the default.', 'luna'));
 
 	// Check if this group has any members
 	$result = $db->query('SELECT g.g_title, COUNT(u.id) FROM '.$db->prefix.'groups AS g INNER JOIN '.$db->prefix.'users AS u ON g.g_id=u.group_id WHERE g.g_id='.$group_id.' GROUP BY g.g_id, g_title') or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
@@ -489,7 +489,7 @@ elseif (isset($_GET['del_group'])) {
 			$result = $db->query('SELECT g_title FROM '.$db->prefix.'groups WHERE g_id='.$group_id) or error('Unable to fetch group title', __FILE__, __LINE__, $db->error());
 			$group_title = $db->result($result);
 
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
 			define('FORUM_ACTIVE_PAGE', 'admin');
 			require 'header.php';
 				load_admin_nav('users', 'groups');
@@ -498,14 +498,14 @@ elseif (isset($_GET['del_group'])) {
 <form method="post" action="groups.php?del_group=<?php echo $group_id ?>">
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php printf($lang['Confirm delete info'], luna_htmlspecialchars($group_title)) ?></h3>
+			<h3 class="panel-title"><?php printf(__('Are you sure that you want to delete the group <strong>%s</strong>?', 'luna'), luna_htmlspecialchars($group_title)) ?></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="group_to_delete" value="<?php echo $group_id ?>" />
-			<p><?php echo $lang['Confirm delete warn'] ?></p>
+			<p><?php echo __('<b>Warning:</b> After you deleted a group you cannot restore it.', 'luna') ?></p>
 		</div>
 		<div class="panel-footer">
-			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fa fa-fw fa-minus"></span> <?php echo $lang['Delete'] ?></button>
+			<button class="btn btn-danger" type="submit" name="del_group_comply" tabindex="1"><span class="fa fa-fw fa-minus"></span> <?php echo __('Delete', 'luna') ?></button>
 		</div>
 	</div>
 </form>
@@ -517,20 +517,20 @@ elseif (isset($_GET['del_group'])) {
 
 	list($group_title, $group_members) = $db->fetch_row($result);
 
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Delete group'] ?></h3>
+		<h3 class="panel-title"><?php echo __('Delete group', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<form id="groups" method="post" action="groups.php?del_group=<?php echo $group_id ?>">
 			<fieldset>
-				<p><?php printf($lang['Move users info'], luna_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
-				<label><?php echo $lang['Move users label'] ?>
+				<p><?php printf(__('The group <strong>%s</strong> currently has <strong>%s</strong> members. Please select a group to which these members will be assigned upon deletion.', 'luna'), luna_htmlspecialchars($group_title), forum_number_format($group_members)) ?></p>
+				<label><?php echo __('Move users to', 'luna') ?>
 					<select class="form-control" name="move_to_group">
 <?php
 
@@ -548,7 +548,7 @@ elseif (isset($_GET['del_group'])) {
 				</label>
 			</fieldset>
 			<p class="control-group">
-				<input class="btn btn-danger" type="submit" name="del_group" value="<?php echo $lang['Delete group'] ?>" />
+				<input class="btn btn-danger" type="submit" name="del_group" value="<?php echo __('Delete group', 'luna') ?>" />
 			</p>
 		</form>
 	</div>
@@ -558,7 +558,7 @@ elseif (isset($_GET['del_group'])) {
 	require 'footer.php';
 } else {
 	
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['User groups']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('users', 'groups');
@@ -569,11 +569,11 @@ elseif (isset($_GET['del_group'])) {
 		<div class="panel panel-default">
 			<form id="groups" method="post" action="groups.php">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Add group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+					<h3 class="panel-title"><?php echo __('Add new group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_group" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo __('Add', 'luna') ?></button></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
-						<span class="help-block"><?php echo $lang['Create new group'] ?></span>
+						<span class="help-block"><?php echo __('Select a group the new group will be based on.', 'luna') ?></span>
 						<select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
@@ -594,12 +594,12 @@ while ($cur_group = $db->fetch_assoc($result)) {
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Default group subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+				<h3 class="panel-title"><?php echo __('Set default group', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="set_default_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<form id="groups" method="post" action="groups.php">
 					<fieldset>
-						<span class="help-block"><?php echo $lang['Default group help'] ?></span>
+						<span class="help-block"><?php echo __('The default group in which new users will be placed.', 'luna') ?></span>
 						<select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
@@ -622,7 +622,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 	<div class="col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Existing groups head'] ?></h3>
+				<h3 class="panel-title"><?php echo __('Manage groups', 'luna') ?></h3>
 			</div>
 			<table class="table">
 				<tbody>
@@ -636,12 +636,12 @@ while ($cur_group = $db->fetch_assoc($result)) {
 ?>
 					<tr>
 						<td>
-						<a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php echo $lang['Edit'] ?></a>
+						<a class="btn btn-primary" href="groups.php?edit_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php echo __('Edit', 'luna') ?></a>
 						</td>
 						<td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
 						<td>
 							<?php if ($cur_group['g_id'] > FORUM_MEMBER) { ?>
-								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-minus"></span> <?php echo $lang['Delete'] ?></a>
+								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-minus"></span> <?php echo __('Delete', 'luna') ?></a>
 							<?php } ?>
 						</td>
 					</tr>

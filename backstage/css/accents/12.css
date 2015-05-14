@@ -22,3 +22,10 @@
 .panel-primary > .panel-heading, .btn-primary:hover {
 	border-color: #444;
 }
+
+@media all and (max-width:767px) {
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+		background-color: #666;
+		border-color: #666;
+	}
+}

@@ -3,12 +3,12 @@
 	background-color: #145198;
 }
 
-.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .nav-tabs > li > a:hover, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header {
+.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header {
 	background-color: #0d4382;
 }
 
-.activity-header, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
-	background-color: #0b3c75;
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
+	background-color: #0b3c75 !important;
 }
 
 @media screen and (max-width: 767px) {
@@ -29,18 +29,10 @@
 	border-color: #0b3c75;
 }
 
-.col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
+a.list-group-item:hover, .col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
 	color: #0d4382;
 }
 
-.night .col-sm-9 a:not(.navbar-brand), .night .col-sm-9 a:focus:not(.navbar-brand) {
-	color: #1d72d4;
-}
-
-a.list-group-item:hover, a:hover, a:active {
+a:hover, a:active {
 	color: #0b3c75;
-}
-
-.btn-primary {
-	border-color: #0d4382;
 }

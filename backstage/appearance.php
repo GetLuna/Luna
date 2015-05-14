@@ -13,7 +13,7 @@ require FORUM_ROOT.'include/common.php';
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
-	confirm_referrer('backstage/appearance.php', $lang['Bad HTTP Referer message']);
+	confirm_referrer('backstage/appearance.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));
 	
 	$form = array(
 		'default_accent'		=> intval($_POST['form']['default_accent']),
@@ -67,24 +67,24 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/appearance.php?saved=true');
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Appearance']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Appearance', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('settings', 'appearance');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
 ?>
 <form class="form-horizontal" method="post" action="appearance.php">
 	<input type="hidden" name="form_sent" value="1" />
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Display head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Display settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Color'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="btn-group accent-group" data-toggle="buttons">
 <?php
@@ -102,69 +102,69 @@ if (isset($_GET['saved']))
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['User profile head'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('User profile', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[show_user_info]" value="1" <?php if ($luna_config['o_show_user_info'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Info in posts help'] ?>
+								<?php _e('Show information about the poster under the username in topic view.', 'luna') ?>
 							</label>
 						</div>
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[show_post_count]" value="1" <?php if ($luna_config['o_show_post_count'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Post count help'] ?>
+								<?php _e('Show the number of posts a user has made in topic view, profile and user list.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Index panels head'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Index settings', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[moderated_by]" value="1" <?php if ($luna_config['o_moderated_by'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Moderated by help'] ?>
+								<?php _e('Show the "Moderated by" list when moderators are set on a per-forum base (requires theme support).', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Emoji'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Emoji', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[emoji]" value="1" <?php if ($luna_config['o_emoji'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Use emojis'] ?>
+								<?php _e('Use emojis instead of emoticons.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Smilie size'] ?><span class="help-block"><?php echo $lang['Smilie size info'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The emoticons and emojis are shown, don\'t go above 29 pixels when using normal emoticons', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
-							<span class="input-group-addon"><?php echo $lang['pixels'] ?></span>
+							<span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
 						</div>
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Topic review label'] ?><span class="help-block"><?php echo $lang['Topic review help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Topic review', 'luna') ?><span class="help-block"><?php _e('Maximum amount of posts showed when posting', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $luna_config['o_topic_review'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Topics per page'] ?><span class="help-block"><?php echo $lang['Topics per page help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Topics per page', 'luna') ?><span class="help-block"><?php _e('Default amount of topics per page', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $luna_config['o_disp_topics_default'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Posts per page label'] ?><span class="help-block"><?php echo $lang['Posts per page help'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Posts per page', 'luna') ?><span class="help-block"><?php _e('Default amount of posts per page', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $luna_config['o_disp_posts_default'] ?>" />
 					</div>
@@ -174,29 +174,29 @@ if (isset($_GET['saved']))
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Header settings'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Header settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Notifications'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Notifications', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Notification fly-out'] ?>
+								<?php _e('Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Search'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Search', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[header_search]" value="1" <?php if ($luna_config['o_header_search'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Search bar visible'] ?>
+								<?php _e('Show the search bar in the heading.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -206,59 +206,59 @@ if (isset($_GET['saved']))
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Footer settings'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Footer settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Statistics'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Statistics', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[board_statistics]" value="1" <?php if ($luna_config['o_board_statistics'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Show board statistics'] ?>
+								<?php _e('Show the board statistics.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Back to top'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Back to top', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[back_to_top]" value="1" <?php if ($luna_config['o_back_to_top'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Show back'] ?>
+								<?php _e('Show a "Back to top" link in the footer.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Copyright'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Copyright', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[show_copyright]" value="1" <?php if ($luna_config['o_show_copyright'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Show copyright notice'] ?>
+								<?php _e('Show the copyright notice in the footer.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Copyright content'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Copyright content', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="radio">
 							<label>
 								<input type="radio" name="form[copyright_type]" id="o_copyright_type_0" value="0"<?php if ($luna_config['o_copyright_type'] == '0') echo ' checked' ?> />
-								<?php echo $lang['Show default copyright'] ?>
+								<?php _e('Show default copyright', 'luna') ?>
 							</label>
 						</div>
 						<div class="radio">
 							<label>
 								<input type="radio" name="form[copyright_type]" id="o_copyright_type_1" value="1"<?php if ($luna_config['o_copyright_type'] == '1') echo ' checked' ?> />
-								<?php echo $lang['Show personalized'] ?>
+								<?php _e('Show personalized copyright notices:', 'luna') ?>
 							</label><br /><br />
-							<input type="text" class="form-control" name="form[custom_copyright]" placeholder="<?php echo $lang['Your copyright'] ?>" value="<?php echo luna_htmlspecialchars($luna_config['o_custom_copyright']) ?>" />
+							<input type="text" class="form-control" name="form[custom_copyright]" placeholder="<?php _e('Your copyright', 'luna') ?>" value="<?php echo luna_htmlspecialchars($luna_config['o_custom_copyright']) ?>" />
 						</div>
 					</div>
 				</div>

@@ -193,10 +193,10 @@ function bbcode2email($text, $wrap_length = 72) {
 // Wrapper for PHP's mail()
 //
 function luna_mail($to, $subject, $message, $reply_to_email = '', $reply_to_name = '') {
-	global $luna_config, $lang;
+	global $luna_config;
 
 	// Default sender/return address
-	$from_name = sprintf($lang['Mailer'], $luna_config['o_board_title']);
+	$from_name = sprintf(__('%s Mailer', 'luna'), $luna_config['o_board_title']);
 	$from_email = $luna_config['o_webmaster_email'];
 
 	// Do a little spring cleaning

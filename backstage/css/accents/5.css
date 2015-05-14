@@ -3,7 +3,7 @@
 	background-color: #8bb805;
 }
 
-.navbar-default, .btn-success:hover {
+.navbar-default, .btn-success:hover, .jumboheader {
 	background-color: #7ea703;
 }
 
@@ -21,4 +21,11 @@
 
 .panel-primary > .panel-heading, .btn-primary:hover {
 	border-color: #779e01;
+}
+
+@media all and (max-width:767px) {
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+		background-color: #8bb805;
+		border-color: #8bb805;
+	}
 }

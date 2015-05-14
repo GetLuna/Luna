@@ -449,9 +449,9 @@ a.list-group-item-cat:hover .forum-description {
 
 /* Forumview */
 h2.forum-title {
-	margin: 10px 0 5px;
 	color: #fff !important;
 	display: inline-block;
+	margin-bottom: -12px;
 }
 
 h2.forum-title .btn {
@@ -459,7 +459,7 @@ h2.forum-title .btn {
 }
 
 .forum-desc {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .forumview {
@@ -756,10 +756,9 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border: none;
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:focus {
 	border: none;
-	color: #fff;
-	background-color: #0d4382;
+	color: #fff !important;
 }
 
 .nav-tabs > li > a:hover {
@@ -854,17 +853,33 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-top: 10px;
 }
 
-.comment .panel-default {
+.comment .well-comment {
 	margin: 0;
-	margin-left: 5px;
 	border: none;
 	background-color: #f8f8f8;
 	margin-bottom: 5px;
 }
 
-.comment h3 {
-	margin-top: -6px;
-	margin-bottom: 0;
+.well-comment {
+	padding: 0;
+}
+
+.well-comment .media {
+	background: #eee;
+}
+
+.well-comment .well-content {
+	padding: 10px;
+}
+
+.media-avatar {
+	height: 50px;
+	width: auto;
+}
+
+.well .media-heading {
+	margin-top: 13px; 
+	margin-right: 10px;
 }
 
 .comment hr {
@@ -890,14 +905,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 #commentform > .panel {
 	margin-top: 10px;
-}
-
-.col-no-padding-right {
-	padding-right: 0;
-}
-
-.col-no-padding-left {
-	padding-left: 0;
 }
 
 /* Table */
@@ -969,7 +976,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 /* Labels */
 .label {
-	padding: 4px 7px;
+	padding: 4px 8px;
+}
+
+a.label {
+	color: #fff !important;
 }
 
 .label-primary {
@@ -1229,6 +1240,10 @@ blockquote footer {
 	font-size: 16px;
 }
 
+:not(pre) > code[class*='language-'], pre[class*='language-'] {
+	border: none;
+}
+
 /* Update and login form */
 .form-update {
 	max-width: 330px;
@@ -1432,13 +1447,20 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 }
 
 .night .list-group-item {
-	border-color: #555;
 	background-color: #444;
+}
+
+.night .list-group-item, .night .list-group-item.active, .night .list-group-item.active:hover {
+	border-color: #555;
 	color: #fff;
 }
 
 .night .list-group-item:hover {
-	background-color: #3f3f3f;
+	background-color: #404040;
+}
+
+.night a.list-group-item:hover, .night .col-sm-9 a, .night a:focus {
+	color: #fff;
 }
 
 .night #search .panel-body, .night .user-entry {
@@ -1453,6 +1475,10 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	background-color: #333;
 }
 
+.night .well-comment .media {
+	background: #333;
+}
+
 .night .comment .panel-default {
 	background-color: #3b3b3b;
 }
@@ -1460,6 +1486,10 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 .night .list-group-topic .list-group-item {
 	border-color: #3e3e3e;
 	background-color: #404040;
+}
+
+.night .list-group-topic .list-group-item:hover {
+	background-color: #3b3b3b !important;
 }
 
 .night .panel-editor .btn-default {
@@ -1496,4 +1526,13 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 
 .night .btn-search:hover {
 	background-color: #393939;
+}
+
+.night .table > tbody > tr > td {
+	background-color: #444;
+	color: #fff;
+}
+
+.night .table > thead > tr > th {
+	border-color: #555;
 }

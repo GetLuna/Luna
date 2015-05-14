@@ -68,10 +68,10 @@ $install_lang = isset($_REQUEST['install_lang']) ? luna_trim($_REQUEST['install_
 $install_lang = preg_replace('%[\.\\\/]%', '', $install_lang); 
 
 // If such a language pack doesn't exist, or isn't up-to-date enough to translate this page, default to English
-if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/language.php'))
+if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/luna.mo'))
 	$install_lang = Installer::DEFAULT_LANG;
 
-require FORUM_ROOT.'lang/'.$install_lang.'/language.php';
+require FORUM_ROOT.'lang/'.$install_lang.'/luna.mo';
 
 if (file_exists(FORUM_ROOT.'config.php')) {
 	// Check to see whether Luna is already installed
@@ -83,7 +83,7 @@ if (file_exists(FORUM_ROOT.'config.php')) {
 
 	// If FORUM is defined, config.php is probably valid and thus the software is installed
 	if (defined('FORUM'))
-		exit($lang['Already installed']);
+		exit(__('It seems like Luna is already installed. You should go <a href="index.php">here</a> instead.', 'luna'));
 }
 
 // Define FORUM because email.php requires it
@@ -95,7 +95,7 @@ if (!defined('FORUM_CACHE_DIR'))
 
 // Make sure we are running at least Version::MIN_PHP_VERSION
 if (!Installer::is_supported_php_version())
-	exit(sprintf($lang['You are running error'], 'PHP', PHP_VERSION, Version::FORUM_VERSION, Version::MIN_PHP_VERSION));
+	exit(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PHP', PHP_VERSION, Version::FORUM_VERSION, Version::MIN_PHP_VERSION));
 
 
 if (isset($_POST['generate_config'])) {
@@ -117,8 +117,8 @@ if (!isset($_POST['form_sent'])) {
 
 	$db_type = $db_name = $db_username = $db_prefix = $username = $email = '';
 	$db_host = 'localhost';
-	$title = $lang['My Luna Forum'];
-	$description = $lang['Description'];
+	$title = __('My Luna Forum', 'luna');
+	$description = __('You can do anything', 'luna');
 	$default_lang = $install_lang;
 	$default_style = Installer::DEFAULT_STYLE;
 } else {
@@ -147,18 +147,18 @@ if (!isset($_POST['form_sent'])) {
 
 // Check if the cache directory is writable
 if (!forum_is_writable(FORUM_CACHE_DIR))
-	$alerts[] = sprintf($lang['Alert cache'], FORUM_CACHE_DIR);
+	$alerts[] = sprintf(__('<strong>The cache directory is currently not writable!</strong> In order for Luna to function properly, the directory <em>%s</em> must be writable by PHP. Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), FORUM_CACHE_DIR);
 
 // Check if default avatar directory is writable
 if (!forum_is_writable(FORUM_ROOT.'img/avatars/'))
-	$alerts[] = sprintf($lang['Alert avatar'], FORUM_ROOT.'img/avatars/');
+	$alerts[] = sprintf(__('<strong>The avatar directory is currently not writable!</strong> If you want users to be able to upload their own avatar images you must see to it that the directory <em>%s</em> is writable by PHP. You can later choose to save avatar images in a different directory (see Admin/Options). Use chmod to set the appropriate directory permissions. If in doubt, chmod to 0777.', 'luna'), FORUM_ROOT.'img/avatars/');
 
 if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	// Determine available database extensions
 	$db_extensions = Installer::determine_database_extensions();
 
 	if (empty($db_extensions))
-		error($lang['No DB extensions']);
+		error(__('PHP needs to have support for either MySQL or SQLite to run Luna to be installed. Non is available, though', 'luna'));
 
 	// Fetch a list of installed languages
 	$languages = forum_list_langs();
@@ -168,28 +168,28 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><?php echo $lang['Luna Installation'] ?></title>
+		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<script type="text/javascript">
 		/* <![CDATA[ */
 		function process_form(the_form) {
 			var required_fields = {
-				"req_db_type": "<?php echo $lang['Database type'] ?>",
-				"req_db_host": "<?php echo $lang['Database server hostname'] ?>",
-				"req_db_name": "<?php echo $lang['Database name'] ?>",
-				"req_username": "<?php echo $lang['Administrator username'] ?>",
-				"req_password1": "<?php echo $lang['Administrator password 1'] ?>",
-				"req_password2": "<?php echo $lang['Administrator password 2'] ?>",
-				"req_email": "<?php echo $lang['Administrator email'] ?>",
-				"req_title": "<?php echo $lang['Board title'] ?>",
-				"req_base_url": "<?php echo $lang['Base URL'] ?>",
+				"req_db_type": "<?php _e('Type', 'luna') ?>",
+				"req_db_host": "<?php _e('Server hostname', 'luna') ?>",
+				"req_db_name": "<?php _e('Name', 'luna') ?>",
+				"req_username": "<?php _e('Username', 'luna') ?>",
+				"req_password1": "<?php _e('Administrator password 1', 'luna') ?>",
+				"req_password2": "<?php _e('Administrator password 2', 'luna') ?>",
+				"req_email": "<?php _e('Email', 'luna') ?>",
+				"req_title": "<?php _e('Board title', 'luna') ?>",
+				"req_base_url": "<?php _e('No trailing slash', 'luna') ?>",
 			};
 			if (document.all || document.getElementById) {
 				for (var i = 0; i < the_form.length; ++i) {
 					var elem = the_form.elements[i];
 					if (elem.name && required_fields[elem.name] && !elem.value && elem.type && (/^(?:text(?:area)?|password|file)$/i.test(elem.type))) {
-						alert('"' + required_fields[elem.name] + '" <?php echo $lang['Required field'] ?>');
+						alert('"' + required_fields[elem.name] + '" <?php _e('is a required field in this form.', 'luna') ?>');
 						elem.focus();
 						return false;
 					}
@@ -207,17 +207,17 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;" onunload="">
 		<div class="container">
-			<h1 class="background-title"><?php echo sprintf($lang['Install'], Version::FORUM_VERSION) ?></h1>
+			<h1 class="background-title"><?php echo sprintf(__('Install Luna %s', 'luna'), Version::FORUM_VERSION) ?></h1>
 			<?php if (count($languages) > 1): ?>
 			<form  class="form-horizontal" id="install" method="post" action="install.php">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['Choose install language'] ?></h3>
+						<h3 class="panel-title"><?php _e('Choose the install script language', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Install language'] ?><span class="help-block"><?php echo $lang['Choose install language info'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Install language', 'luna') ?><span class="help-block"><?php _e('The language used for this install script. The default language used for the board itself can be set below.', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="install_lang">
 <?php
@@ -236,7 +236,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 						</fieldset>
 					</div>
 					<div class="panel-footer">
-						<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Change language'] ?>" />
+						<input type="submit" class="btn btn-primary" name="start" value="<?php _e('Change language', 'luna') ?>" />
 					</div>
 				</div>
 			</form>
@@ -244,7 +244,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 <?php if (!empty($alerts)): ?>
 			<div class="panel panel-warning">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Errors'] ?></h3>
+					<h3 class="panel-title"><?php _e('The following errors need to be corrected:', 'luna') ?></h3>
 				</div>
 				<div class="panel-body">
 					<div class="forminfo error-info">
@@ -261,12 +261,12 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				<div><input type="hidden" name="form_sent" value="1" /><input type="hidden" name="install_lang" value="<?php echo luna_htmlspecialchars($install_lang) ?>" /></div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['Database setup'] ?></h3>
+						<h3 class="panel-title"><?php _e('Database setup', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Database type'] ?><span class="help-block"><?php echo $lang['Info 1'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?><span class="help-block"><?php _e('What database do you want to use?', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<select class="form-control" name="req_db_type">
 <?php
@@ -283,31 +283,31 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Database server hostname'] ?><span class="help-block"><?php echo $lang['Info 2'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Server hostname', 'luna') ?><span class="help-block"><?php _e('Where\'s the server?', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="req_db_host" value="<?php echo luna_htmlspecialchars($db_host) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Database name'] ?><span class="help-block"><?php echo $lang['Info 3'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Name', 'luna') ?><span class="help-block"><?php _e('The database name', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<input id="req_db_name" type="text" class="form-control" name="req_db_name" value="<?php echo luna_htmlspecialchars($db_name) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Database username'] ?><span class="help-block"><?php echo $lang['Info 4'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('Your database username', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="db_username" value="<?php echo luna_htmlspecialchars($db_username) ?>" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Database password'] ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input type="password" class="form-control" name="db_password" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Table prefix'] ?><span class="help-block"><?php echo $lang['Info 5'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Table prefix', 'luna') ?><span class="help-block"><?php _e('Set for more Luna installation in this database', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<input id="db_prefix" type="text" class="form-control" name="db_prefix" value="<?php echo luna_htmlspecialchars($db_prefix) ?>" maxlength="30" />
 								</div>
@@ -317,18 +317,18 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['Administration setup'] ?></h3>
+						<h3 class="panel-title"><?php _e('Administration setup', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Administrator username'] ?><span class="help-block"><?php echo $lang['Info 6'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('2 to 25 characters long', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<input type="text" class="form-control" name="req_username" value="<?php echo luna_htmlspecialchars($username) ?>" maxlength="25" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Info 7'] ?></span></label>
+								<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?><span class="help-block"><?php _e('At least 6 characters long', 'luna') ?></span></label>
 								<div class="col-sm-9">
 									<div class="row">
 										<div class="col-sm-6">
@@ -341,7 +341,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Administrator email'] ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input id="req_email" type="text" class="form-control" name="req_email" value="<?php echo luna_htmlspecialchars($email) ?>" maxlength="80" />
 								</div>
@@ -351,30 +351,30 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['Board setup'] ?></h3>
+						<h3 class="panel-title"><?php _e('Board setup', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Board title'] ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Board title', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input id="req_title" type="text" class="form-control" name="req_title" value="<?php echo luna_htmlspecialchars($title) ?>" maxlength="255" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Board description'] ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?></label>
 								<div class="col-sm-9">
 									<input id="desc" type="text" class="form-control" name="desc" value="<?php echo luna_htmlspecialchars($description) ?>" maxlength="255" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Base URL label'] ?><span class="help-block"><?php echo $lang['Base URL'] ?><span></label>
+								<label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?><span class="help-block"><?php _e('No trailing slash', 'luna') ?><span></label>
 								<div class="col-sm-9">
 									<input id="req_base_url" type="text" class="form-control" name="req_base_url" value="<?php echo luna_htmlspecialchars($base_url) ?>" maxlength="100" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Default language'] ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Default language', 'luna') ?></label>
 								<div class="col-sm-9">
 									<select id="req_default_lang" class="form-control" name="req_default_lang">
 <?php
@@ -392,7 +392,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php echo $lang['Default style'] ?></label>
+								<label class="col-sm-3 control-label"><?php _e('Default style', 'luna') ?></label>
 								<div class="col-sm-9">
 									<select id="req_default_style" class="form-control" name="req_default_style">
 <?php
@@ -412,7 +412,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 						</fieldset>
 					</div>
 					<div class="panel-footer">
-						<input type="submit" class="btn btn-primary" name="start" value="<?php echo $lang['Start install'] ?>" />
+						<input type="submit" class="btn btn-primary" name="start" value="<?php _e('Start install', 'luna') ?>" />
 					</div>
 				</div>
 			</form>
@@ -438,7 +438,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 
 	// Check if we disabled uploading avatars because file_uploads was disabled
 	if (!$avatars)
-		$alerts[] = $lang['Alert upload'];
+		$alerts[] = __('<strong>File uploads appear to be disallowed on this server!</strong> If you want users to be able to upload their own avatar images you must enable the file_uploads configuration setting in PHP. Once file uploads have been enabled, avatar uploads can be enabled in Administration/Options/Features.', 'luna');
 
 	// Generate the config.php file data
 	$config = Installer::generate_config_file($db_type, $db_host, $db_name, $db_username, $db_password, $db_prefix);
@@ -461,7 +461,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><?php echo $lang['Luna Installation'] ?></title>
+		<title><?php _e('Luna Installation', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 	</head>
@@ -469,18 +469,18 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 		<div class="container">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Luna Installation'] ?></h3>
+					<h3 class="panel-title"><?php _e('Luna Installation', 'luna') ?></h3>
 				</div>
 				<div class="panel-body">
-					<p><?php echo $lang['Luna has been installed'] ?></p>
+					<p><?php _e('Luna has been installed. To finalize the installation please follow the instructions below.', 'luna') ?></p>
 <?php
 
 if (!$written) {
 
 ?>
 					<form  class="form-horizontal" method="post" action="install.php">
-						<p><?php echo $lang['Info 8'] ?></p>
-						<p><?php echo $lang['Info 9'] ?></p>
+						<p><?php _e('To finalize the installation, you need to click on the button below to download a file called config.php. You then need to upload this file to the root directory of your Luna installation.', 'luna') ?></p>
+						<p><?php _e('Once you have uploaded config.php, Luna will be fully installed! At that point, you may <a href="index.php">go to the forum index</a>.', 'luna') ?></p>
 						<input type="hidden" name="generate_config" value="1" />
 						<input type="hidden" name="db_type" value="<?php echo $db_type; ?>" />
 						<input type="hidden" name="db_host" value="<?php echo $db_host; ?>" />
@@ -499,7 +499,7 @@ foreach ($alerts as $cur_alert)
 								</ul>
 							</div>
 <?php endif; ?>						</div>
-						<input type="submit" class="btn btn-primary" value="<?php echo $lang['Download config.php file'] ?>" />
+						<input type="submit" class="btn btn-primary" value="<?php _e('Download config.php file', 'luna') ?>" />
 					</form>
 
 <?php
@@ -507,7 +507,7 @@ foreach ($alerts as $cur_alert)
 } else {
 
 ?>
-					<p><?php echo $lang['Luna fully installed'] ?></p>
+					<p><?php _e('Luna has been fully installed! You may now <a href="index.php">go to the forum index</a>.', 'luna') ?></p>
 <?php
 
 }

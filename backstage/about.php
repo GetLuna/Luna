@@ -13,7 +13,7 @@ require FORUM_ROOT.'include/common.php';
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Update']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Update', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'about');
@@ -30,6 +30,7 @@ require 'header.php';
 				<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
 				<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
 				<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
+				<a href="#dev" class="list-group-item"><span class="fa fa-fw fa-terminal"></span> Developers</a>
 				<a href="#others" class="list-group-item">Other improvements and notes</a>
 				<a href="#updates" class="list-group-item">Updates</a>
 			</div>
@@ -75,6 +76,13 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>Theme Engine 6.1</h4>
 						<p>After the major revamp from Aero, Bittersweet Shimmer continues to improve our themes with a more simplified system, better support for accents, night mode and so much more.</p>
+					</div>
+				</div>
+				<a id="dev"></a><h3><span class="fa fa-fw fa-terminal"></span> Developers</h3>
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Notification API</h4>
+						<p>We're introducing a brand new Notification API. This API will allow you to create new notification more easly from different locations. You can read all about it in the <a href="http://getluna.org/docs/notification.php">documentation</a>.</p>
 					</div>
 				</div>
 				<a id="others"></a><h3>Other improvements and notes</h3>
