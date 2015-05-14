@@ -559,10 +559,8 @@ function draw_index_topics_list() {
 			require get_view_path('topic.php');
 	
 		}
-	
-		echo '<h3 class="nothing">'.__('The board is empty; select a forum and create a topic to begin.', 'luna').'</h3>';
-	}
-	
+	} else
+		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a topic to begin.', 'luna').'</h3>';
 }
 
 function draw_topic_list() {

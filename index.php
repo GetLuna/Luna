@@ -13,8 +13,6 @@ require FORUM_ROOT.'include/common.php';
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
 
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
 // Get list of forums and topics with new posts since last visit
 if (!$luna_user['is_guest']) {
 	$result = $db->query('SELECT f.id, f.last_post FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.last_post>'.$luna_user['last_visit']) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());

@@ -4003,7 +4003,7 @@ msgid "Board is empty."
 msgstr ""
 
 #: ../include/draw_functions.php:581
-msgid "The board is empty; select a forum and create a topic to begin."
+msgid "The board is empty, select a forum and create a topic to begin."
 msgstr ""
 
 #: ../include/draw_functions.php:621 ../include/draw_functions.php:774
