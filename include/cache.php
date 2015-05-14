@@ -44,9 +44,14 @@ function generate_update_cache() {
 		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/preview/version.txt'));
 	elseif ($luna_config['o_update_ring'] == 3)
 		$output = trim(@file_get_contents('https://raw.githubusercontent.com/GetLuna/Luna/nightly/version.txt'));
+		
+	if (file_exists('https://raw.githubusercontent.com/GetLuna/Luna/'.$luna_config['o_code_name'].'/drop.md'))
+		$support = 'none';
+	else
+		$support = 'available';
 
 	// Output version as PHP code
-	$content = '<?php'."\n\n".'define(\'FORUM_UPDATE_LOADED\', 1);'."\n\n".'$update_cache = '.var_export($output, true).';'."\n".'$last_check_time = '.time().';'."\n\n".'?>';
+	$content = '<?php'."\n\n".'define(\'FORUM_UPDATE_LOADED\', 1);'."\n\n".'$update_cache = '.var_export($output, true).';'."\n".'$supported = \''.$support.'\';'."\n".'$last_check_time = '.time().';'."\n\n".'?>';
 	fluxbb_write_cache_file('cache_update.php', $content);
 }
 
