@@ -521,7 +521,7 @@ function draw_index_topics_list($section_id) {
 				else
 					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 					
-				$forum_name = '&middot; <span class="byuser">'.__('in', 'luna').' <span class="label label-default" style="background-color: '.$forum_data['color'].'">'.luna_htmlspecialchars($forum_data['forum_name']).'</span></span>';
+				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$forum_data['id'].'" style="background-color: '.$forum_data['color'].'">'.luna_htmlspecialchars($forum_data['forum_name']).'</a></span>';
 			} else {
 				$last_poster = '';
 				$topic_id = $cur_topic['moved_to'];

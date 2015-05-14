@@ -979,6 +979,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	padding: 4px 7px;
 }
 
+a.label {
+	color: #fff !important;
+}
+
 .label-primary {
 	background: #e8e8e8;
 	color: #8e8e8e;
