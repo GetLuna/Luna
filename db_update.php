@@ -53,8 +53,6 @@ require FORUM_ROOT.'include/general_functions.php';
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
 
-
-
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
 
@@ -677,6 +675,14 @@ switch ($stage) {
 		// Since 1.1.4381: Add o_default_accent feature
 		if (!array_key_exists('o_default_accent', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_default_accent\', \'3\')') or error('Unable to insert config value \'o_default_accent\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.1.4504: Add o_announcement_title feature
+		if (!array_key_exists('o_announcement_title', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_announcement_title\', \'\')') or error('Unable to insert config value \'o_announcement_title\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.1.4504: Add o_announcement_type feature
+		if (!array_key_exists('o_announcement_type', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_announcement_type\', \'info\')') or error('Unable to insert config value \'o_announcement_type\'', __FILE__, __LINE__, $db->error());
 
 		break;
 

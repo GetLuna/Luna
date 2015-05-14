@@ -1459,6 +1459,8 @@ class Installer {
 			'o_enable_advanced_search'	=> 1,
 			'o_announcement'			=> 0,
 			'o_announcement_message'	=> __('Announcement', 'luna'),
+			'o_announcement_title'		=> NULL,
+			'o_announcement_type'		=> 'ifno',
 			'o_rules'					=> 0,
 			'o_rules_message'			=> __('Rules', 'luna'),
 			'o_maintenance'				=> 0,
