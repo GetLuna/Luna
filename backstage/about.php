@@ -202,11 +202,11 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4318.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4324.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>278 bugs have been fixed.</p>
+						<p>284 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>5 security issue has been fixed.</p>
 					</div>
@@ -251,6 +251,22 @@ require 'header.php';
 							<span class="label label-primary">Update 2</span> Visual improvements to dropdowns in mobile view<br />
 							<span class="label label-primary">Update 2</span> Fixes issue with undefined index in Inbox<br />
 							<span class="label label-primary">Update 2</span> Fixes issue that causes themes to reset when updating
+						</p>
+					</div>
+				</div>
+				<h4>Luna 1.0.3 &middot Build 4324</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 3</span> Warning when Slow Ring is out-of-date<br />
+							<span class="label label-primary">Update 3</span> Fix bug when canceling quotes<br />
+							<span class="label label-primary">Update 3</span> Change behavior of login redirect
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 3</span> Fix inconsitent icon usage in Backstage<br />
+							<span class="label label-primary">Update 3</span> Update placement of button in user settings
 						</p>
 					</div>
 				</div>
