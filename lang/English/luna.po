@@ -5,15 +5,15 @@ msgstr ""
 "Project-Id-Version: Luna 1.1\n"
 "Report-Msgid-Bugs-To: http://getluna.org\n"
 "POT-Creation-Date: 2015-04-25 10:47+0100\n"
-"PO-Revision-Date: 2015-04-25 10:48+0100\n"
+"PO-Revision-Date: 2015-05-12 16:34+0100\n"
 "Last-Translator: Charlie MERLAND <charlie@caercam.org>\n"
 "Language-Team: Luna\n"
-"Language: English\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../backstage/features.php:16 ../backstage/registration.php:16
@@ -1393,6 +1393,10 @@ msgstr ""
 #: ../include/draw_functions.php:1040 ../themes/Luna/inbox.php:71
 #: ../themes/Random/inbox.php:70
 msgid "by"
+msgstr ""
+
+#: ../include/draw_functions.php:526
+msgid "in"
 msgstr ""
 
 #: ../backstage/moderate.php:846 ../include/draw_functions.php:260
