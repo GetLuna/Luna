@@ -1410,6 +1410,10 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	color: #fff !important;
 }
 
+.modal-backdrop.in {
+	opacity: .8;
+}
+
 /* Night mode */
 .night body, html.night {
 	background-color: #333;
