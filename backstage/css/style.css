@@ -688,7 +688,7 @@ h3.panel-title {
 	border-color: #333;
 }
 
-.night .nav-tabs > li > a:hover, .night .nav > li > a:hover, .night .nav > li > a:focus {
+.night .nav-tabs > li > a:hover {
     border-color: #444;
     background-color: #444;
 }
