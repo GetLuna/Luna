@@ -3017,7 +3017,7 @@ msgid "You must enter a name"
 msgstr ""
 
 #: ../backstage/board.php:190
-msgid "Edit forum details"
+msgid "Forum details"
 msgstr ""
 
 #: ../backstage/board.php:195
@@ -3060,7 +3060,7 @@ msgid "Forum color"
 msgstr ""
 
 #: ../backstage/board.php:312
-msgid "Edit group permissions"
+msgid "Group permissions"
 msgstr ""
 
 #: ../backstage/board.php:316
@@ -4991,10 +4991,6 @@ msgid_plural "Posts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../themes/Random/objects/section-info.php:13
-msgid "Recent activity"
-msgstr ""
-
 #: ../themes/Luna/footer.php:83 ../themes/Random/index.php:108
 msgid "Newest user"
 msgstr ""
@@ -5070,7 +5066,7 @@ msgstr ""
 
 #: ../themes/Luna/objects/section-info.php:16
 #: ../themes/Random/objects/section-info.php:13
-msgid "We're showing everything"
+msgid "Recent activity"
 msgstr ""
 
 #: ../themes/Random/inbox-delete-post.php:20
