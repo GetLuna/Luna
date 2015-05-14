@@ -201,7 +201,7 @@ elseif (isset($_POST['update_positions'])) {
 <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -323,7 +323,7 @@ elseif (isset($_POST['update_positions'])) {
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Group permissions subhead'] ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="save" value="<?php echo $lang['Save'] ?>" tabindex="<?php echo $cur_index++ ?>" /></span></h3>
+			<h3 class="panel-title"><?php echo $lang['Group permissions subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
 		</div>
 		<fieldset>
 			<div class="panel-body">
