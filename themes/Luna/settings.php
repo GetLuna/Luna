@@ -286,11 +286,11 @@ if (count($languages) > 1) {
 			</div>
 			<div role="tabpanel" class="tab-pane" id="threads">
 				<fieldset class="form-horizontal form-setting">
-					<?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
+					<?php if ($luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php echo $lang['Post display'] ?></label>
 							<div class="col-sm-9">
-								<?php if ($luna_config['o_smilies'] == '1' || $luna_config['o_smilies_sig'] == '1'): ?>
+								<?php if ($luna_config['o_smilies_sig'] == '1'): ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_smilies]" value="1"<?php if ($user['show_smilies'] == '1') echo ' checked' ?> />
@@ -485,7 +485,7 @@ if (count($languages) > 1) {
 					<hr />
 					<?php if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) { ?>
 						<div class="form-group">
-							<label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update forums'] ?></button></label>
+							<label class="col-sm-3 control-label"><?php echo $lang['Set mods legend'] ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Update forums'] ?></button></label>
 							<div class="col-sm-9">
 								<p><?php echo $lang['Moderator in info'] ?></p>
 <?php

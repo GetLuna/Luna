@@ -162,6 +162,10 @@ h1, h2, h3, h4, h5, h6 {
 		border: none;
 		box-shadow: none;
 	}
+	
+	.dropdown-menu > li > a {
+		color: #fff !important;
+	}
 }
 
 .navbar-inverse {
@@ -258,11 +262,11 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 7px 12px !important;
 }
 
-.navbar-inverse .navbar-toggle {
-	border: none;
+.navbar-default .navbar-toggle, .navbar-inverse .navbar-toggle {
+	border: #fff;
 }
 
-.navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+.navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, .navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background-color: #fff;
 }
 
