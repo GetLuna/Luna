@@ -48,6 +48,7 @@ if (!defined('FORUM_DEBUG'))
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
+require FORUM_ROOT.'include/notifications.php';
 require FORUM_ROOT.'include/general_functions.php';
 
 // Load UTF-8 functions
