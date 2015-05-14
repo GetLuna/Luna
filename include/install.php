@@ -162,7 +162,7 @@ class Installer {
 	
 			case 'sqlite':
 				if (strtolower($db_prefix) == 'sqlite_')
-					error(__('The table prefix 'sqlite_' is reserved for use by the SQLite engine. Please choose a different prefix', 'luna'));
+					error(__('The table prefix \'sqlite_\' is reserved for use by the SQLite engine. Please choose a different prefix', 'luna'));
 				break;
 		}
 
@@ -179,7 +179,7 @@ class Installer {
 
 		// Validate prefix
 		if (strlen($db_prefix) > 0 && (!preg_match('%^[a-zA-Z_][a-zA-Z0-9_]*$%', $db_prefix) || strlen($db_prefix) > 40))
-		error(sprintf(__('The table prefix '%s' contains illegal characters or is too long. The prefix may contain the letters a to z, any numbers and the underscore character. They must however not start with a number. The maximum length is 40 characters. Please choose a different prefix', 'luna'), $db->prefix));
+		error(sprintf(__('The table prefix \'%s\' contains illegal characters or is too long. The prefix may contain the letters a to z, any numbers and the underscore character. They must however not start with a number. The maximum length is 40 characters. Please choose a different prefix', 'luna'), $db->prefix));
 		
 		// Load the appropriate DB layer class
 		Installer::load_database_driver($db_type);
