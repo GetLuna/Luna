@@ -45,7 +45,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 <form class="form-horizontal" id="groups2" method="post" action="groups.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo __('Setup group options and permissions', 'luna') ?><span class="pull-right"><input class="btn btn-primary" type="submit" name="add_edit_group" value="<?php echo __('Save', 'luna') ?>" /></span></h3>
+			<h3 class="panel-title"><?php echo __('Setup group options and permissions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_edit_group"><span class="fa fa-fw fa-check"></span> <?php echo __('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="mode" value="<?php echo $mode ?>" />
