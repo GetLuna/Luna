@@ -83,8 +83,14 @@ if ($luna_user['first_run'] == '0') {
 	<div class="col-sm-9 col-xs-12">
 <?php
 	// Announcement
-	if ($luna_config['o_announcement'] == '1')
-		echo '<div class="alert alert-info announcement"><div>'.$luna_config['o_announcement_message'].'</div></div>';
+	if ($luna_config['o_announcement'] == '1') {
+?>
+		<div class="alert alert-<?php echo $luna_config['o_announcement_type']; ?> announcement">
+			<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
+			<?php echo $luna_config['o_announcement_message']; ?>
+		</div>
+<?php
+	}
 
 	draw_section_info($id);
 
