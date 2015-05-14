@@ -4991,6 +4991,10 @@ msgid_plural "Posts"
 msgstr[0] ""
 msgstr[1] ""
 
+#: ../themes/Random/objects/section-info.php:13
+msgid "Recent activity"
+msgstr ""
+
 #: ../themes/Luna/footer.php:83 ../themes/Random/index.php:108
 msgid "Newest user"
 msgstr ""
