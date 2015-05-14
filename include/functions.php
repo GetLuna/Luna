@@ -2142,7 +2142,7 @@ function validate_redirect($redirect_url, $fallback_url) {
 	if (!isset($valid['path']))
 		$valid['path'] = '';
 
-	if ($referrer['host'] == $valid['host'] && preg_match('%^'.preg_quote($valid['path'], '%').'/(.*?)\.php%i', $referrer['path']))
+	if ($referrer['host'] == $valid['host'] && preg_match('%^'.preg_quote($valid['path'], '%').'/(.*?)\.php%i', $referrer['path']) && (strpos($redirect_url, 'login.php') === false))
 		return $redirect_url;
 	else
 		return $fallback_url;

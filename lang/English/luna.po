@@ -2835,6 +2835,18 @@ msgstr ""
 msgid "Nightly"
 msgstr ""
 
+#: ../backstage/update.php:90
+msgid "Slow"
+msgstr ""
+
+#: ../backstage/update.php:107
+msgid "End of life"
+msgstr ""
+
+#: ../backstage/update.php:110
+msgid "You\'ve selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch."
+msgstr ""
+
 #: ../backstage/update.php:106
 msgid "Luna software updates"
 msgstr ""

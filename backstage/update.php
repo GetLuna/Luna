@@ -101,6 +101,16 @@ if (isset($_GET['saved']))
 		</form>
 	</div>
 	<div class="col-sm-8 col-md-9">
+<?php if (($luna_config['o_update_ring'] == '0') && $supported == 'none') { ?>
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php _e('End of life', 'luna') ?></h3>
+			</div>
+			<div class="panel-body">
+				<p><?php _e('End of life warning', 'luna') ?></p>
+			</div>
+		</div>
+<?php } ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span></h3>
