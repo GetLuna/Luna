@@ -8,7 +8,7 @@ if (!defined('FORUM'))
 <div class="row topicview">
 	<div class="col-sm-3">
 		<div class="list-group list-group-forum list-group-manage">
-			<a class="list-group-item" href="index.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+			<a class="list-group-item" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 		</div>
 		<?php if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') { ?>
 		<hr />
