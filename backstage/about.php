@@ -89,11 +89,33 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Packages</h4>
+<<<<<<< HEAD
 						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4381.</p>
+=======
+						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.4.<br />
+						<b>Lunicons</b> version 0.0.0 has been added.<br />
+						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
+						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
+						<b>PrismJS</b> has been added.<br />
+						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4329.</p>
+>>>>>>> aero
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
 						<p>0 bugs have been fixed.</p>
+					</div>
+				</div>
+				<h4>Luna 1.0.4 &middot Build 4329</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 4</span> jQuery has been updated to version 2.1.4
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 4</span> The "Black" color scheme is now called "Dark grey"
+						</p>
 					</div>
 				</div>
 			</div>

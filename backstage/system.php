@@ -121,7 +121,7 @@ load_admin_nav('backstage', 'stats');
 				<td><?php _e('Database version', 'luna') ?></td>
 				<td><?php echo $luna_config['o_database_revision']; ?></td>
 				<td><?php _e('jQuery version', 'luna') ?></td>
-				<td>2.1.3</td>
+				<td>2.1.4</td>
 			</tr>
 		</tbody>
 	</table>
