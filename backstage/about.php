@@ -200,7 +200,7 @@ require 'header.php';
 						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.4.<br />
 						<b>Lunicons</b> version 0.0.0 has been added.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
-						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.3.<br />
+						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
 						<b>PrismJS</b> has been added.<br />
 						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4324.</p>
 					</div>
