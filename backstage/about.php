@@ -202,7 +202,7 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4324.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4329.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
@@ -267,6 +267,19 @@ require 'header.php';
 						<p>
 							<span class="label label-primary">Update 3</span> Fix inconsitent icon usage in Backstage<br />
 							<span class="label label-primary">Update 3</span> Update placement of button in user settings
+						</p>
+					</div>
+				</div>
+				<h4>Luna 1.0.4 &middot Build 4329</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 4</span> jQuery has been updated to version 2.1.4
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 4</span> The "Black" color scheme is now called "Dark grey"
 						</p>
 					</div>
 				</div>
