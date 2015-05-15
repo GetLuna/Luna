@@ -312,8 +312,8 @@ elseif (isset($_POST['update_positions'])) {
 							<label class="btn btn-primary color-accent accent-grey<?php if ($cur_forum['color'] == '#999999') echo ' active' ?>">
 								<input type="radio" name="color" id="grey" value="#999999"<?php if ($cur_forum['color'] == '#999999') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-black<?php if ($cur_forum['color'] == '#444444') echo ' active' ?>">
-								<input type="radio" name="color" id="black" value="#444444"<?php if ($cur_forum['color'] == '#444444') echo ' checked' ?>>
+							<label class="btn btn-primary color-accent accent-darkgrey<?php if ($cur_forum['color'] == '#444444') echo ' active' ?>">
+								<input type="radio" name="color" id="darkgrey" value="#444444"<?php if ($cur_forum['color'] == '#444444') echo ' checked' ?>>
 							</label>
 						</div>
 					</div>

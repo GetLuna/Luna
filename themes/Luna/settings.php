@@ -144,8 +144,8 @@ if (!defined('FORUM'))
 								<label class="btn btn-primary color-accent accent-grey<?php if ($luna_user['color_scheme'] == '11') echo ' active' ?>">
 									<input type="radio" name="form[color_scheme]" id="grey" value="11"<?php if ($luna_user['color_scheme'] == '11') echo ' checked' ?>>
 								</label>
-								<label class="btn btn-primary color-accent accent-black<?php if ($luna_user['color_scheme'] == '12') echo ' active' ?>">
-									<input type="radio" name="form[color_scheme]" id="black" value="12"<?php if ($luna_user['color_scheme'] == '12') echo ' checked' ?>>
+								<label class="btn btn-primary color-accent accent-darkgrey<?php if ($luna_user['color_scheme'] == '12') echo ' active' ?>">
+									<input type="radio" name="form[color_scheme]" id="darkgrey" value="12"<?php if ($luna_user['color_scheme'] == '12') echo ' checked' ?>>
 								</label>
 							</div>
 						</div>
