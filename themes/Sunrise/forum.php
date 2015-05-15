@@ -24,7 +24,7 @@ $jumbo_style = 'style="background:'.$cur_forum['color'].';"';
 			<?php if ((is_subforum($id) && $id != '0')): ?>
 				<h5 class="list-group-head"><?php _e('Subforums', 'luna') ?></h5>
 				<div class="list-group list-group-forum">
-					<?php draw_subforum_list('viewforum.php', 'subforum.php') ?>
+					<?php draw_subforum_list('subforum.php') ?>
 				</div>
 				<hr />
 			<?php endif; ?>

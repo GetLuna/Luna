@@ -10,6 +10,6 @@ if ($section_head == '1') {
 </div>
 <?php } else { ?>
 <div class="alert alert-info alert-section alert-all">
-	<h3><?php _e('We\'re showing everything', 'luna') ?></h3>
+	<h3><?php _e('Recent activity', 'luna') ?></h3>
 </div>
 <?php } ?>

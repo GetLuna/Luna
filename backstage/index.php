@@ -97,6 +97,12 @@ if ($install_file_exists) : ?>
 </div>
 <?php endif;
 
+if (($luna_config['o_update_ring'] == '0') && $supported == 'none') { ?>
+<div class="alert alert-danger">
+	<p><?php _e('End of life warning', 'luna') ?></p>
+</div>
+<?php }
+
 if ($luna_config['o_first_run_backstage'] == 0) { ?>
 <div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">

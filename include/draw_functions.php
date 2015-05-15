@@ -307,7 +307,7 @@ function draw_topics_list() {
 	
 }
 
-function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags = '') {
+function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags = '') {
 	global $db, $luna_config, $luna_user, $id, $new_topics;
 	
 	// Print the categories and forums
@@ -382,7 +382,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 	}
 }
 
-function draw_subforum_list($page, $object_name = 'forum.php') {
+function draw_subforum_list($object_name = 'forum.php') {
 	global $db, $luna_config, $luna_user, $id, $new_topics;
 	
 	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
@@ -454,14 +454,11 @@ function draw_section_info($current_id) {
 	require get_view_path('section-info.php');
 }
 
-function draw_index_topics_list($section_id) {
+function draw_index_topics_list() {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
 	
 	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	if ($section_id != 0)
-		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$section_id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
-	else
-		$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 AND moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 AND moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
@@ -471,28 +468,16 @@ function draw_index_topics_list($section_id) {
 
 		// Fetch list of topics to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
-			if ($luna_user['g_soft_delete_view']) {
-				// When not showing a posted label
-				if ($section_id != 0)
-					$sql_order = 'sticky DESC, '.$sort_by.', id DESC';
-				else
-					$sql_order = 'last_post DESC';
-			} else
+			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft, forum_id FROM '.$db->prefix.'topics WHERE '.$sql_soft.'id IN('.implode(',', $topic_ids).') ORDER BY '.$sql_order;
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft, forum_id FROM '.$db->prefix.'topics WHERE '.$sql_soft.'id IN('.implode(',', $topic_ids).') ORDER BY last_post DESC';
 
 		} else {
-			if ($luna_user['g_soft_delete_view']) {
-				// When showing a posted label
-				if ($section_id != 0)
-					$sql_order = 't.sticky DESC, t.'.$sort_by.', t.id DESC';
-				else
-					$sql_order = 't.last_post DESC';
-			} else
+			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft, t.forum_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY '.$sql_order;
+			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft, t.forum_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
@@ -574,13 +559,8 @@ function draw_index_topics_list($section_id) {
 			require get_view_path('topic.php');
 	
 		}
-	
-	} elseif ($section_id != 0) {
-		'<h3 class="nothing">'.printf(__('There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id).'</h3>';
-	} else {
-		echo '<h3 class="nothing">'.__('The board is empty; select a forum and create a topic to begin.', 'luna').'</h3>';
-	}
-	
+	} else
+		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a topic to begin.', 'luna').'</h3>';
 }
 
 function draw_topic_list() {

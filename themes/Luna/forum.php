@@ -22,7 +22,7 @@ if (!defined('FORUM'))
 			<?php if ((is_subforum($id) && $id != '0')): ?>
 				<h5 class="list-group-head"><?php _e('Subforums', 'luna') ?></h5>
 				<div class="list-group list-group-forum">
-					<?php draw_subforum_list('viewforum.php', 'forum.php') ?>
+					<?php draw_subforum_list('forum.php') ?>
 				</div>
 				<hr />
 			<?php endif; ?>

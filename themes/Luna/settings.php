@@ -38,14 +38,14 @@ if (!defined('FORUM'))
 	</nav>
 	<div role="tabpanel">
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php _e('Profile', 'luna') ?></a></li>
-			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><?php _e('Personalize', 'luna') ?></a></li>
-			<li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab"><?php _e('Message', 'luna') ?></a></li>
-			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><?php _e('Contact', 'luna') ?></a></li>
-			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab"><?php _e('Threads', 'luna') ?></a></li>
-			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><?php _e('Time', 'luna') ?></a></li>
+			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="fa fa-fw fa-user"></span><span class="hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
+			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> <?php _e('Personalize', 'luna') ?></span></a></li>
+			<li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab"><span class="fa fa-fw fa-envelope-o"></span><span class="hidden-xs"> <?php _e('Message', 'luna') ?></span></a></li>
+			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><span class="fa fa-fw fa-share-alt"></span><span class="hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
+			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab"><span class="fa fa-fw fa-list"></span><span class="hidden-xs"> <?php _e('Threads', 'luna') ?></span></a></li>
+			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><span class="fa fa-fw fa-clock-o"></span><span class="hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
 			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-			<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><?php _e('Admin', 'luna') ?></a></li>
+				<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><span class="fa fa-fw fa-dashboard"></span><span class="hidden-xs"> <?php _e('Admin', 'luna') ?></span></a></li>
 			<?php endif; ?>
 		</ul>
 		<div class="tab-content">
@@ -159,7 +159,6 @@ if (!defined('FORUM'))
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
-									Enable night mode automaticaly
 								</label>
 							</div>
 						</div>
@@ -518,7 +517,7 @@ if (count($languages) > 1) {
 					<hr />
 					<?php if ($user['g_moderator'] == '1' || $user['g_id'] == FORUM_ADMIN) { ?>
 						<div class="form-group">
-							<label class="col-sm-3 control-label"><?php _e('Set moderator access', 'luna') ?><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
+							<label class="col-sm-3 control-label"><?php _e('Set moderator access', 'luna') ?><br /><button type="submit" class="btn btn-primary" name="update_forums"><span class="fa fa-fw fa-check"></span> <?php _e('Update forums', 'luna') ?></button></label>
 							<div class="col-sm-9">
 								<p><?php _e('Choose which forums this user should be allowed to moderate. Note: This only applies to moderators. Administrators always have full permissions in all forums.', 'luna') ?></p>
 <?php

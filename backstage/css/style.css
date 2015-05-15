@@ -606,27 +606,27 @@ h3.panel-title {
 }
 
 .accent-4 {
-	background-color: #99cc00 !important;
+	background-color: #c58be2 !important;
 }
 
 .accent-5 {
-	background-color: #047a36 !important;
+	background-color: #99cc00 !important;
 }
 
 .accent-6 {
-	background-color: #ffcd21 !important;
+	background-color: #047a36 !important;
 }
 
 .accent-7 {
-	background-color: #ff7521 !important;
+	background-color: #ffcd21 !important;
 }
 
 .accent-8 {
-	background-color: #ff4444 !important;
+	background-color: #ff7521 !important;
 }
 
 .accent-9 {
-	background-color: #c58be2 !important;
+	background-color: #ff4444 !important;
 }
 
 .accent-10 {
@@ -688,7 +688,7 @@ h3.panel-title {
 	border-color: #333;
 }
 
-.night .nav-tabs > li > a:hover, .night .nav > li > a:hover, .night .nav > li > a:focus {
+.night .nav-tabs > li > a:hover {
     border-color: #444;
     background-color: #444;
 }

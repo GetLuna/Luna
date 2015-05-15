@@ -1,5 +1,5 @@
 /* Accent 9 - Red */
-.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-default .navbar-toggle .icon-bar, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary {
+.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-default .navbar-toggle .icon-bar, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary, .modal-backdrop {
 	background-color: #ff4444;
 }
 
