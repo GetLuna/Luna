@@ -44,7 +44,7 @@ if ($luna_user['color_scheme'] == '1') { // ModernBB
 	$primary_color = '#afafaf';
 	$secondary_color = '#9e9e9e';
 	$tertiary_color = '#8e8e8e';
-} elseif ($luna_user['color_scheme'] == '12') { // Black
+} elseif ($luna_user['color_scheme'] == '12') { // darkgrey
 	$primary_color = '#555555';
 	$secondary_color = '#444444';
 	$tertiary_color = '#333333';
