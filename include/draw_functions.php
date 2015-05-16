@@ -492,8 +492,8 @@ function draw_index_topics_list() {
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			if (luna_strlen($cur_topic['subject']) > 43)
-				$subject = utf8_substr($cur_topic['subject'], 0, 40).'...';
+			if (luna_strlen($cur_topic['subject']) > 53)
+				$subject = utf8_substr($cur_topic['subject'], 0, 50).'...';
 			else
 				$subject = luna_htmlspecialchars($cur_topic['subject']);
 			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
