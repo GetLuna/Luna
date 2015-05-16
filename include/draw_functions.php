@@ -481,6 +481,18 @@ function draw_index_topics_list() {
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+
+		// Load cached forums
+		if (file_exists(FORUM_CACHE_DIR.'cache_forums.php'))
+			include FORUM_CACHE_DIR.'cache_forums.php';
+		
+		if (!defined('FORUM_LIST_LOADED')) {
+			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+				require FORUM_ROOT.'include/cache.php';
+		
+			generate_forum_cache();
+			require FORUM_CACHE_DIR.'cache_forums.php';
+		}
 	
 		$topic_count = 0;
 		while ($cur_topic = $db->fetch_assoc($result)) {
@@ -505,8 +517,10 @@ function draw_index_topics_list() {
 					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
 					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
-					
-				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$forum_data['id'].'" style="background-color: '.$forum_data['color'].'">'.luna_htmlspecialchars($forum_data['forum_name']).'</a></span>';
+				
+				$fid = $cur_topic['forum_id'] - 1;
+				
+				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_topic['forum_id'].'" style="background-color: '.$luna_forums[$fid]['color'].'">'.luna_htmlspecialchars($luna_forums[$fid]['forum_name']).'</a></span>';
 			} else {
 				$last_poster = '';
 				$topic_id = $cur_topic['moved_to'];
