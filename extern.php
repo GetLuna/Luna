@@ -408,7 +408,7 @@ if ($action == 'feed') {
 					require FORUM_ROOT.'include/cache.php';
 
 				$content = '<?php'."\n\n".'$feed = '.var_export($feed, true).';'."\n\n".'$cache_expire = '.($now + ($luna_config['o_feed_ttl'] * 60)).';'."\n\n".'?>';
-				fluxbb_write_cache_file('cache_'.$cache_id.'.php', $content);
+				luna_write_cache_file('cache_'.$cache_id.'.php', $content);
 			}
 		}
 
