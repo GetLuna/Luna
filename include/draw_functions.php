@@ -515,9 +515,14 @@ function draw_index_topics_list() {
 				else
 					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 				
-				$fid = $cur_topic['forum_id'] - 1;
+				foreach ($luna_forums as $cur_forum) {
+					if ($cur_topic['forum_id'] == $cur_forum['id']) {
+						$forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
+						$forum_color = $cur_forum['color'];
+					}
+				}
 				
-				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_topic['forum_id'].'" style="background-color: '.$luna_forums[$fid]['color'].'">'.luna_htmlspecialchars($luna_forums[$fid]['forum_name']).'</a></span>';
+				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_topic['forum_id'].'" style="background: '.$forum_color.';">'.$forum_name.'</a></span>';
 			} else {
 				$last_poster = '';
 				$topic_id = $cur_topic['moved_to'];
