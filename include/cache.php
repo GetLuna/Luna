@@ -95,6 +95,25 @@ function generate_ranks_cache() {
 
 
 //
+// Generate the ranks cache PHP script
+//
+function generate_forum_cache() {
+	global $db;
+
+	// Get the forum list from the DB
+	$result = $db->query('SELECT * FROM '.$db->prefix.'forums ORDER BY id', true) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
+
+	$output = array();
+	while ($cur_forum = $db->fetch_assoc($result))
+		$output[] = $cur_forum;
+
+	// Output ranks list as PHP code
+	$content = '<?php'."\n\n".'define(\'FORUM_LIST_LOADED\', 1);'."\n\n".'$luna_forum = '.var_export($output, true).';'."\n\n".'?>';
+	fluxbb_write_cache_file('cache_forums.php', $content);
+}
+
+
+//
 // Generate the censoring cache PHP script
 //
 function generate_censoring_cache() {
