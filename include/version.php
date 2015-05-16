@@ -10,7 +10,7 @@ class Version {
 	const FORUM_VERSION = '1.1-alpha';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '1.1.4558';
+	const FORUM_CORE_VERSION = '1.1.4570';
 
 	// The Luna Core code name
 	const FORUM_CODE_NAME = 'bittersweetshimmer';
