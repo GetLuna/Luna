@@ -497,9 +497,6 @@ function draw_index_topics_list() {
 		$topic_count = 0;
 		while ($cur_topic = $db->fetch_assoc($result)) {
 			
-			$forum_label_data = $db->query('SELECT id, forum_name, color FROM '.$db->prefix.'forums WHERE id = '.$cur_topic['forum_id']) or error('Unable to fetch forum data', __FILE__, __LINE__, $db->error());
-			$forum_data = $db->fetch_assoc($forum_label_data);
-			
 			++$topic_count;
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
