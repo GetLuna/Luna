@@ -49,8 +49,8 @@ $latest = $update->checkUpdate();
 if ($latest !== false) {
 	if ($latest > $update->currentVersion) {
 		//Install new update
-		printf(__('We found version %s', 'luna'), $update->latestVersionName);
-		echo _e('Updating Luna...', 'luna').'<br>';
+		printf(__('We found version %s', 'luna'), $update->latestVersionName).'<br />';
+		echo _e('Updating Luna...', 'luna').'<br />';
 		if ($update->update())
 			echo _e('Update successful!', 'luna');
 		else
