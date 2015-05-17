@@ -898,7 +898,7 @@ function draw_delete_form($id) {
 			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br /><?php echo $lang['Delete info'] ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
-				<input type="submit" class="btn btn-danger" name="delete" value="<?php echo $lang['Delete'] ?>" />
+				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></button>
 			</div>
 		</form>
 <?php
@@ -912,7 +912,7 @@ function draw_soft_delete_form($id) {
 			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br /><?php echo $lang['Soft delete info'] ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
-				<input type="submit" class="btn btn-danger" name="soft_delete" value="<?php echo $lang['Soft delete'] ?>" />
+				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Soft delete'] ?></button>
 			</div>
 		</form>
 <?php
@@ -926,7 +926,7 @@ function draw_soft_reset_form($id) {
 			<p><?php echo $lang['Revert soft delete'] ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
-				<input type="submit" class="btn btn-primary" name="reset" value="<?php echo $lang['Reset post'] ?>" />
+				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php echo $lang['Reset post'] ?></button>
 			</div>
 		</form>
 <?php
