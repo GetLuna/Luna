@@ -27,6 +27,16 @@ require FORUM_ROOT.'include/install.php';
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
 
+// Load l10n
+require_once FORUM_ROOT.'include/pomo/MO.php';
+require_once FORUM_ROOT.'include/l10n.php';
+
+// Attempt to load the language file
+if (file_exists(FORUM_ROOT.'lang/English/luna.mo'))
+	load_textdomain('luna', FORUM_ROOT.'lang/English/luna.mo');
+else
+	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
+
 // Strip out "bad" UTF-8 characters
 forum_remove_bad_characters();
 
