@@ -3,8 +3,8 @@
 // Set the script max execution time
 ini_set('max_execution_time', 60);
 
-define('UPDATE_DIR_TEMP', dirname(__FILE__).'/temp');
-define('UPDATE_DIR_INSTALL', dirname(__FILE__).'/../');
+define('UPDATE_DIR_TEMP', dirname(__FILE__).'/../temp');
+define('UPDATE_DIR_INSTALL', dirname(__FILE__).'/../../');
 
 class AutoUpdate {
 	// Enable logging
