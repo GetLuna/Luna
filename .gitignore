@@ -171,11 +171,13 @@ lang/luna.mo
 
 
 #############
-## ModernBB files
+## Luna files
 #############
 
+backstage/.updatelog
 cache/
 config.php
+edge/
 img/avatars/
 install/
-edge/
+temp/
