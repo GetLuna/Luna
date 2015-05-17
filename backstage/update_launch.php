@@ -41,7 +41,7 @@ require 'header.php';
 	<div class="col-xs-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Luna one-click update</h3>
+				<h3 class="panel-title"><?php _e('Luna one-click update', 'luna') ?></h3>
 			</div>
 			<div class="panel-body">
 <?php
@@ -49,23 +49,16 @@ $latest = $update->checkUpdate();
 if ($latest !== false) {
 	if ($latest > $update->currentVersion) {
 		//Install new update
-		echo "New version: ".$update->latestVersionName."<br>";
-		echo "Installing Luna...<br>";
-		if ($update->update()) {
-			echo "Update successful!";
-		}
-		else {
-			echo "Update failed!";
-		}
-		
-	}
-	else {
-		echo "Current version is up to date";
-	}
-}
-else {
+		printf(__('We found version %s', 'luna'), $update->latestVersionName);
+		echo _e('Updating Luna...', 'luna').'<br>';
+		if ($update->update())
+			echo _e('Update successful!', 'luna');
+		else
+			echo _e('Update failed!', 'luna');
+	} else
+		echo _e('You\'re using the latest version of Luna!', 'luna');
+} else
 	echo $update->getLastError();
-}
 ?>
 			</div>
 		</div>
