@@ -107,7 +107,7 @@ if (isset($_GET['saved']))
 				<h3 class="panel-title"><?php _e('End of life', 'luna') ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php _e('End of life warning', 'luna') ?></p>
+				<p><?php _e('You\'ve selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch.', 'luna') ?></p>
 			</div>
 		</div>
 <?php } ?>
