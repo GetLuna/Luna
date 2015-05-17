@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Luna 1.1\n"
 "Report-Msgid-Bugs-To: http://getluna.org\n"
 "POT-Creation-Date: 2015-04-25 10:47+0100\n"
-"PO-Revision-Date: 2015-05-12 16:34+0100\n"
+"PO-Revision-Date: 2015-05-17 11:19+0100\n"
 "Last-Translator: Charlie MERLAND <charlie@caercam.org>\n"
 "Language-Team: Luna\n"
 "Language: en\n"
@@ -19,11 +19,7 @@ msgstr ""
 #: ../backstage/features.php:16 ../backstage/registration.php:16
 #: ../backstage/email.php:16 ../backstage/settings.php:17
 #: ../backstage/appearance.php:16 ../backstage/update.php:34
-msgid ""
-"Bad HTTP_REFERER. If you have moved these forums from one location to "
-"another or switched domains, you need to update the Base URL manually in the "
-"database (look for o_base_url in the config table) and then clear the cache "
-"by deleting all .php files in the /cache directory."
+msgid "Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory."
 msgstr ""
 
 #: ../backstage/features.php:64 ../backstage/registration.php:59
@@ -125,8 +121,7 @@ msgid "User features"
 msgstr ""
 
 #: ../backstage/features.php:109
-msgid ""
-"Display info on the index page about users currently browsing the board."
+msgid "Display info on the index page about users currently browsing the board."
 msgstr ""
 
 #: ../backstage/features.php:115
@@ -202,8 +197,7 @@ msgid "Show the first run panel when an user logs in for the first time."
 msgstr ""
 
 #: ../backstage/features.php:192
-msgid ""
-"Show the first run panel to guests with login field and registration button."
+msgid "Show the first run panel to guests with login field and registration button."
 msgstr ""
 
 #: ../backstage/features.php:198
@@ -211,8 +205,7 @@ msgid "Welcome text"
 msgstr ""
 
 #: ../backstage/features.php:198
-msgid ""
-"The introduction to the forum displayed in the middle of the first run panel"
+msgid "The introduction to the forum displayed in the middle of the first run panel"
 msgstr ""
 
 #: ../backstage/features.php:208 ../backstage/permissions.php:67
@@ -267,11 +260,7 @@ msgid "Advanced"
 msgstr ""
 
 #: ../backstage/features.php:271
-msgid ""
-"Gzip output sent to the browser. This will reduce bandwidth usage, but use "
-"some more CPU. This feature requires that PHP is configured with zlib. If "
-"you already have one of the Apache modules (mod_gzip/mod_deflate) set up to "
-"compress PHP scripts, disable this feature."
+msgid "Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature."
 msgstr ""
 
 #: ../backstage/menu.php:22 ../backstage/menu.php:54
@@ -304,9 +293,7 @@ msgstr ""
 #: ../backstage/board.php:128 ../backstage/board.php:170
 #: ../backstage/board.php:394 ../backstage/board.php:475
 #: ../backstage/ranks.php:49 ../include/draw_functions.php:446
-msgid ""
-"Bad request. The link you followed is incorrect, outdated or you are simply "
-"not allowed to hang around here."
+msgid "Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here."
 msgstr ""
 
 #: ../backstage/menu.php:58 ../backstage/board.php:101
@@ -405,9 +392,7 @@ msgid "User forum rules"
 msgstr ""
 
 #: ../backstage/registration.php:115
-msgid ""
-"Require users to agree with the rules. This will enable a \"Rules\" panel in "
-"Help."
+msgid "Require users to agree with the rules. This will enable a \"Rules\" panel in Help."
 msgstr ""
 
 #: ../backstage/registration.php:121
@@ -592,9 +577,7 @@ msgstr ""
 
 #: ../backstage/prune.php:87
 #, php-format
-msgid ""
-"There are no topics that are %s days old. Please decrease the value of "
-"\"Days old\" and try again."
+msgid "There are no topics that are %s days old. Please decrease the value of \"Days old\" and try again."
 msgstr ""
 
 #: ../backstage/prune.php:89 ../backstage/prune.php:97
@@ -611,9 +594,7 @@ msgstr ""
 
 #: ../backstage/prune.php:107
 #, php-format
-msgid ""
-"Are you sure that you want to prune all topics older than %s days from %s "
-"(%s topics)."
+msgid "Are you sure that you want to prune all topics older than %s days from %s (%s topics)."
 msgstr ""
 
 #: ../backstage/prune.php:108
@@ -625,9 +606,7 @@ msgid "Pruning complete. Notifications pruned."
 msgstr ""
 
 #: ../backstage/prune.php:173
-msgid ""
-"Pruning complete, all users pruned that matched the requirements have been "
-"pruned."
+msgid "Pruning complete, all users pruned that matched the requirements have been pruned."
 msgstr ""
 
 #: ../backstage/prune.php:182 ../backstage/maintenance.php:158
@@ -789,23 +768,17 @@ msgid "No user by that ID registered."
 msgstr ""
 
 #: ../backstage/bans.php:38
-msgid ""
-"No user by that username registered. If you want to add a ban not tied to a "
-"specific username just leave the username blank."
+msgid "No user by that username registered. If you want to add a ban not tied to a specific username just leave the username blank."
 msgstr ""
 
 #: ../backstage/bans.php:45 ../backstage/bans.php:172
 #, php-format
-msgid ""
-"The user %s is an administrator and can't be banned. If you want to ban an "
-"administrator, you must first demote him/her."
+msgid "The user %s is an administrator and can't be banned. If you want to ban an administrator, you must first demote him/her."
 msgstr ""
 
 #: ../backstage/bans.php:51 ../backstage/bans.php:178
 #, php-format
-msgid ""
-"The user %s is a moderator and can't be banned. If you want to ban a "
-"moderator, you must first demote him/her."
+msgid "The user %s is a moderator and can't be banned. If you want to ban a moderator, you must first demote him/her."
 msgstr ""
 
 #: ../backstage/bans.php:83 ../backstage/bans.php:334
@@ -909,9 +882,7 @@ msgid "Ban"
 msgstr ""
 
 #: ../backstage/bans.php:161
-msgid ""
-"You must enter either a username, an IP address or an email address (at "
-"least)."
+msgid "You must enter either a username, an IP address or an email address (at least)."
 msgstr ""
 
 #: ../backstage/bans.php:163
@@ -923,9 +894,7 @@ msgid "You entered an invalid IP/IP-range."
 msgstr ""
 
 #: ../backstage/bans.php:222
-msgid ""
-"The email address (e.g. user@domain.com) or partial email address domain (e."
-"g. domain.com) you entered is invalid."
+msgid "The email address (e.g. user@domain.com) or partial email address domain (e.g. domain.com) you entered is invalid."
 msgstr ""
 
 #: ../backstage/bans.php:229 ../backstage/bans.php:235
@@ -936,9 +905,7 @@ msgstr ""
 
 #: ../backstage/bans.php:229 ../backstage/bans.php:235
 #: ../backstage/users.php:481 ../backstage/users.php:487
-msgid ""
-"The format should be YYYY-MM-DD and the date must be at least one day in the "
-"future."
+msgid "The format should be YYYY-MM-DD and the date must be at least one day in the future."
 msgstr ""
 
 #: ../backstage/bans.php:334 ../backstage/bans.php:342
@@ -999,9 +966,7 @@ msgid "Add ban"
 msgstr ""
 
 #: ../backstage/bans.php:417
-msgid ""
-"The username you want to ban. If you want to ban a specific IP/IP-range or "
-"email, leave it blank."
+msgid "The username you want to ban. If you want to ban a specific IP/IP-range or email, leave it blank."
 msgstr ""
 
 #: ../backstage/bans.php:425
@@ -1009,10 +974,7 @@ msgid "Ban search"
 msgstr ""
 
 #: ../backstage/bans.php:429
-msgid ""
-"Search for bans in the database. You can enter one or more terms to search "
-"for. Wildcards in the form of asterisks (*) are accepted. To show all bans "
-"leave all fields empty."
+msgid "Search for bans in the database. You can enter one or more terms to search for. Wildcards in the form of asterisks (*) are accepted. To show all bans leave all fields empty."
 msgstr ""
 
 #: ../backstage/bans.php:445
@@ -1044,8 +1006,7 @@ msgid "Descending"
 msgstr ""
 
 #: ../backstage/email.php:36 ../backstage/settings.php:86
-msgid ""
-"You need to enter the SMTP password twice exactly the same to change it."
+msgid "You need to enter the SMTP password twice exactly the same to change it."
 msgstr ""
 
 #: ../backstage/email.php:61 ../backstage/settings.php:130
@@ -1114,19 +1075,15 @@ msgid "Password and confirmation for SMTP server, only when required"
 msgstr ""
 
 #: ../backstage/email.php:143
-msgid ""
-"Check this if you want to change or delete the currently stored password."
+msgid "Check this if you want to change or delete the currently stored password."
 msgstr ""
 
 #: ../backstage/email.php:161
-msgid ""
-"Encrypts the connection to the SMTP server using SSL, only when required and "
-"supported."
+msgid "Encrypts the connection to the SMTP server using SSL, only when required and supported."
 msgstr ""
 
 #: ../backstage/database.php:399
-msgid ""
-"No file was uploaded or the upload failed, the database was not restored."
+msgid "No file was uploaded or the upload failed, the database was not restored."
 msgstr ""
 
 #: ../backstage/database.php:417
@@ -1134,9 +1091,7 @@ msgid "Sorry the database could not be restored."
 msgstr ""
 
 #: ../backstage/database.php:422
-msgid ""
-"Error the file name or file format caused an error, the database was not "
-"restored."
+msgid "Error the file name or file format caused an error, the database was not restored."
 msgstr ""
 
 #: ../backstage/database.php:433
@@ -1144,8 +1099,7 @@ msgid "Debug info"
 msgstr ""
 
 #: ../backstage/database.php:447
-msgid ""
-"Error imported backup file, the database probably has not been restored."
+msgid "Error imported backup file, the database probably has not been restored."
 msgstr ""
 
 #: ../backstage/database.php:459
@@ -1181,9 +1135,7 @@ msgid "Start backup"
 msgstr ""
 
 #: ../backstage/database.php:521
-msgid ""
-"If your server supports it, you may also gzip-compress the file to reduce "
-"its size."
+msgid "If your server supports it, you may also gzip-compress the file to reduce its size."
 msgstr ""
 
 #: ../backstage/database.php:523
@@ -1215,12 +1167,7 @@ msgid "Start restore"
 msgstr ""
 
 #: ../backstage/database.php:563
-msgid ""
-"This will perform a full restore of all Luna tables from a saved file. If "
-"your server supports it, you may upload a gzip-compressed text file and it "
-"will automatically be decompressed. This will overwrite any existing data. "
-"The restore may take a long time to process, so please do not move from this "
-"page until it is complete."
+msgid "This will perform a full restore of all Luna tables from a saved file. If your server supports it, you may upload a gzip-compressed text file and it will automatically be decompressed. This will overwrite any existing data. The restore may take a long time to process, so please do not move from this page until it is complete."
 msgstr ""
 
 #: ../backstage/database.php:572
@@ -1228,9 +1175,7 @@ msgid "Additional functions"
 msgstr ""
 
 #: ../backstage/database.php:575
-msgid ""
-"Additional features to help run a database, optimize and repair both do what "
-"they say."
+msgid "Additional features to help run a database, optimize and repair both do what they say."
 msgstr ""
 
 #: ../backstage/database.php:580
@@ -1271,9 +1216,7 @@ msgid "Moderate content"
 msgstr ""
 
 #: ../backstage/moderate.php:55
-msgid ""
-"Visit a forum or topic and choose \"Moderate\" in the moderator bar to "
-"moderate content."
+msgid "Visit a forum or topic and choose \"Moderate\" in the moderator bar to moderate content."
 msgstr ""
 
 #: ../backstage/moderate.php:93 ../backstage/moderate.php:155
@@ -1502,15 +1445,11 @@ msgid "Maximum amount of lines a signature can have"
 msgstr ""
 
 #: ../backstage/permissions.php:158
-msgid ""
-"Allow users to use a banned email address, mailing list will be warned when "
-"this happens."
+msgid "Allow users to use a banned email address, mailing list will be warned when this happens."
 msgstr ""
 
 #: ../backstage/permissions.php:164
-msgid ""
-"Allow users to use an email address that is already used, mailing list will "
-"be warned when this happens."
+msgid "Allow users to use an email address that is already used, mailing list will be warned when this happens."
 msgstr ""
 
 #: ../backstage/theme.php:33
@@ -1535,10 +1474,7 @@ msgid "Default style"
 msgstr ""
 
 #: ../backstage/theme.php:85
-msgid ""
-"Here are all themes we could find in the <code>/themes/</code>-folder of "
-"your Luna installation. You can choose them to become default here, we set, "
-"theme options will appear above."
+msgid "Here are all themes we could find in the <code>/themes/</code>-folder of your Luna installation. You can choose them to become default here, we set, theme options will appear above."
 msgstr ""
 
 #: ../backstage/theme.php:100
@@ -1630,9 +1566,7 @@ msgid "Click here"
 msgstr ""
 
 #: ../backstage/maintenance.php:125 ../include/install.php:1465
-msgid ""
-"The forums are temporarily down for maintenance. Please try again in a few "
-"minutes."
+msgid "The forums are temporarily down for maintenance. Please try again in a few minutes."
 msgstr ""
 
 #: ../backstage/maintenance.php:166
@@ -1644,9 +1578,7 @@ msgid "The message to tell users about the maintenance"
 msgstr ""
 
 #: ../backstage/maintenance.php:182
-msgid ""
-"Enable to activate maintenance mode, the board will only be available for "
-"admins. Do not log out when this feature is active!"
+msgid "Enable to activate maintenance mode, the board will only be available for admins. Do not log out when this feature is active!"
 msgstr ""
 
 #: ../backstage/maintenance.php:194 ../backstage/maintenance.php:198
@@ -1670,11 +1602,7 @@ msgid "Rebuild index"
 msgstr ""
 
 #: ../backstage/maintenance.php:213
-msgid ""
-"If you changes something about topics and posts in the database you should "
-"rebuild the search index. It's recommended to activate maintenance mode "
-"during rebuilding. This can take a while and can increase the server load "
-"during the process!"
+msgid "If you changes something about topics and posts in the database you should rebuild the search index. It's recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!"
 msgstr ""
 
 #: ../backstage/maintenance.php:215
@@ -1698,17 +1626,11 @@ msgid "Empty index"
 msgstr ""
 
 #: ../backstage/maintenance.php:232
-msgid ""
-"Select this if you want the search index to be emptied before rebuilding "
-"(see below)."
+msgid "Select this if you want the search index to be emptied before rebuilding (see below)."
 msgstr ""
 
 #: ../backstage/maintenance.php:237
-msgid ""
-"Be sure to enable JavaScript during the rebuild (to start a new cycle "
-"automatically). When you have to abort the rebuilding, remember the last "
-"post ID and enter that ID+1 in \"Starting post ID\" if you want to continue "
-"(Uncheck \"Empty index\")."
+msgid "Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last post ID and enter that ID+1 in \"Starting post ID\" if you want to continue (Uncheck \"Empty index\")."
 msgstr ""
 
 #: ../backstage/settings.php:45 ../backstage/ranks.php:22
@@ -1717,10 +1639,7 @@ msgid "You must enter a title."
 msgstr ""
 
 #: ../backstage/settings.php:54
-msgid ""
-"Your installation does not support automatic conversion of internationalized "
-"domain names. As your base URL contains special characters, you "
-"<strong>must</strong> use an online converter."
+msgid "Your installation does not support automatic conversion of internationalized domain names. As your base URL contains special characters, you <strong>must</strong> use an online converter."
 msgstr ""
 
 #: ../backstage/settings.php:92
@@ -1728,9 +1647,7 @@ msgid "Enter your announcement here."
 msgstr ""
 
 #: ../backstage/settings.php:106
-msgid ""
-"The value of \"Timeout online\" must be smaller than the value of \"Timeout "
-"visit\"."
+msgid "The value of \"Timeout online\" must be smaller than the value of \"Timeout visit\"."
 msgstr ""
 
 #: ../backstage/settings.php:141
@@ -2083,9 +2000,7 @@ msgid "Mailing list"
 msgstr ""
 
 #: ../backstage/settings.php:352
-msgid ""
-"A comma separated list of subscribers who get e-mails when new reports are "
-"made"
+msgid "A comma separated list of subscribers who get e-mails when new reports are made"
 msgstr ""
 
 #: ../backstage/settings.php:362 ../backstage/settings.php:367
@@ -2118,9 +2033,7 @@ msgid "Upload directory"
 msgstr ""
 
 #: ../backstage/settings.php:398
-msgid ""
-"Where avatars will be stored relative to Lunas root, write permission "
-"required"
+msgid "Where avatars will be stored relative to Lunas root, write permission required"
 msgstr ""
 
 #: ../backstage/settings.php:404
@@ -2162,11 +2075,15 @@ msgstr ""
 msgid "Announcements type"
 msgstr ""
 
-#: ../backstage/settings.php:463
+#: ../backstage/settings.php:463 ../themes/Luna/settings.php:446
+#: ../themes/Luna/settings.php:464 ../themes/Random/settings.php:366
+#: ../themes/Random/settings.php:384
 msgid "Default"
 msgstr ""
 
-#: ../backstage/settings.php:467
+#: ../backstage/settings.php:467 ../include/functions.php:1016
+#: ../include/functions.php:1043 ../include/functions.php:1051
+#: ../include/backstage_functions.php:69
 msgid "Info"
 msgstr ""
 
@@ -2213,9 +2130,7 @@ msgid "Show information about the poster under the username in topic view."
 msgstr ""
 
 #: ../backstage/appearance.php:116
-msgid ""
-"Show the number of posts a user has made in topic view, profile and user "
-"list."
+msgid "Show the number of posts a user has made in topic view, profile and user list."
 msgstr ""
 
 #: ../backstage/appearance.php:122
@@ -2223,9 +2138,7 @@ msgid "Index settings"
 msgstr ""
 
 #: ../backstage/appearance.php:127
-msgid ""
-"Show the \"Moderated by\" list when moderators are set on a per-forum base "
-"(requires theme support)."
+msgid "Show the \"Moderated by\" list when moderators are set on a per-forum base (requires theme support)."
 msgstr ""
 
 #: ../backstage/appearance.php:134
@@ -2241,9 +2154,7 @@ msgid "Smilie size"
 msgstr ""
 
 #: ../backstage/appearance.php:145
-msgid ""
-"The emoticons and emojis are shown, don't go above 29 pixels when using "
-"normal emoticons"
+msgid "The emoticons and emojis are shown, don't go above 29 pixels when using normal emoticons"
 msgstr ""
 
 #: ../backstage/appearance.php:155
@@ -2283,9 +2194,7 @@ msgid "Notifications"
 msgstr ""
 
 #: ../backstage/appearance.php:187
-msgid ""
-"Show a fly-out when clicking the notification icon instead of going to the "
-"notification page. Disableing this feature might improve performance."
+msgid "Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance."
 msgstr ""
 
 #: ../backstage/appearance.php:199
@@ -2401,10 +2310,7 @@ msgid "No users selected."
 msgstr ""
 
 #: ../backstage/users.php:216
-msgid ""
-"For security reasons, you are not allowed to move multiple administrators to "
-"another group. If you want to move these administrators, you can do so on "
-"their respective user profiles."
+msgid "For security reasons, you are not allowed to move multiple administrators to another group. If you want to move these administrators, you can do so on their respective user profiles."
 msgstr ""
 
 #: ../backstage/users.php:228
@@ -2424,9 +2330,7 @@ msgid "Select a new user group"
 msgstr ""
 
 #: ../backstage/users.php:330
-msgid ""
-"Administrators cannot be deleted. In order to delete administrators, you "
-"must first move them to a different user group."
+msgid "Administrators cannot be deleted. In order to delete administrators, you must first move them to a different user group."
 msgstr ""
 
 #: ../backstage/users.php:410 ../backstage/users.php:419
@@ -2435,10 +2339,7 @@ msgstr ""
 
 #: ../backstage/users.php:424 ../themes/Luna/me-delete.php:16
 #: ../themes/Random/me-delete.php:16
-msgid ""
-"Warning! Deleted users and/or posts cannot be restored. If you choose not to "
-"delete the posts made by this user, the posts can only be deleted manually "
-"at a later time."
+msgid "Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by this user, the posts can only be deleted manually at a later time."
 msgstr ""
 
 #: ../backstage/users.php:428 ../themes/Luna/me-delete.php:20
@@ -2447,15 +2348,11 @@ msgid "Delete any posts and topics this user has made"
 msgstr ""
 
 #: ../backstage/users.php:465
-msgid ""
-"Administrators cannot be banned. In order to ban administrators, you must "
-"first move them to a different user group."
+msgid "Administrators cannot be banned. In order to ban administrators, you must first move them to a different user group."
 msgstr ""
 
 #: ../backstage/users.php:470
-msgid ""
-"Moderators cannot be banned. In order to ban moderators, you must first move "
-"them to a different user group."
+msgid "Moderators cannot be banned. In order to ban moderators, you must first move them to a different user group."
 msgstr ""
 
 #: ../backstage/users.php:534 ../backstage/groups.php:115
@@ -2467,9 +2364,7 @@ msgid "Ban IP addresses"
 msgstr ""
 
 #: ../backstage/users.php:564
-msgid ""
-"Also ban the IP addresses of the banned users to make registering a new "
-"account more difficult for them."
+msgid "Also ban the IP addresses of the banned users to make registering a new account more difficult for them."
 msgstr ""
 
 #: ../backstage/users.php:598
@@ -2503,9 +2398,7 @@ msgid "User search"
 msgstr ""
 
 #: ../backstage/users.php:808
-msgid ""
-"Enter a username to search for and/or a user group to filter by. Use the "
-"wildcard character * for partial matches."
+msgid "Enter a username to search for and/or a user group to filter by. Use the wildcard character * for partial matches."
 msgstr ""
 
 #: ../backstage/users.php:814
@@ -2688,15 +2581,11 @@ msgid "There are no read reports."
 msgstr ""
 
 #: ../backstage/tools.php:37 ../include/functions.php:477
-msgid ""
-"Usernames must be at least 2 characters long. Please choose another (longer) "
-"username."
+msgid "Usernames must be at least 2 characters long. Please choose another (longer) username."
 msgstr ""
 
 #: ../backstage/tools.php:39
-msgid ""
-"Passwords must be at least 6 characters long. Please choose another (longer) "
-"password."
+msgid "Passwords must be at least 6 characters long. Please choose another (longer) password."
 msgstr ""
 
 #: ../backstage/tools.php:41 ../include/functions.php:481
@@ -2704,21 +2593,15 @@ msgid "The username guest is reserved. Please choose another username."
 msgstr ""
 
 #: ../backstage/tools.php:43 ../include/functions.php:483
-msgid ""
-"Usernames may not be in the form of an IP address. Please choose another "
-"username."
+msgid "Usernames may not be in the form of an IP address. Please choose another username."
 msgstr ""
 
 #: ../backstage/tools.php:45 ../include/functions.php:485
-msgid ""
-"Usernames may not contain all the characters ', \" and [ or ] at once. "
-"Please choose another username."
+msgid "Usernames may not contain all the characters ', \" and [ or ] at once. Please choose another username."
 msgstr ""
 
 #: ../backstage/tools.php:47 ../include/functions.php:487
-msgid ""
-"Usernames may not contain any of the text formatting tags (BBCode) that the "
-"forum uses. Please choose another username."
+msgid "Usernames may not contain any of the text formatting tags (BBCode) that the forum uses. Please choose another username."
 msgstr ""
 
 #: ../backstage/tools.php:54 ../include/functions.php:500
@@ -2726,18 +2609,14 @@ msgid "Someone is already registered with the username"
 msgstr ""
 
 #: ../backstage/tools.php:54 ../include/functions.php:500
-msgid ""
-"The username you entered is too similar. The username must differ from that "
-"by at least one alphanumerical character (a-z or 0-9). Please choose a "
-"different username."
+msgid "The username you entered is too similar. The username must differ from that by at least one alphanumerical character (a-z or 0-9). Please choose a different username."
 msgstr ""
 
 #: ../backstage/tools.php:78
 msgid ""
 "Subject: Welcome to <board_title>!\n"
 "\n"
-"Thank you for registering in the forums at <base_url>. Your account details "
-"are:\n"
+"Thank you for registering in the forums at <base_url>. Your account details are:\n"
 "\n"
 "Username: <username>\n"
 "Password: <password>\n"
@@ -2762,9 +2641,7 @@ msgid "Add user"
 msgstr ""
 
 #: ../backstage/tools.php:151
-msgid ""
-"Generate a random password, this will be emailed to the above address. When "
-"checked, leave \"Password\" empty."
+msgid "Generate a random password, this will be emailed to the above address. When checked, leave \"Password\" empty."
 msgstr ""
 
 #: ../backstage/footer.php:20 ../themes/Luna/footer.php:167
@@ -2794,9 +2671,7 @@ msgid "Add word"
 msgstr ""
 
 #: ../backstage/censoring.php:93
-msgid ""
-"Enter a word that you want to censor and the replacement text for this word. "
-"Wildcards are accepted."
+msgid "Enter a word that you want to censor and the replacement text for this word. Wildcards are accepted."
 msgstr ""
 
 #: ../backstage/censoring.php:98 ../backstage/censoring.php:119
@@ -2835,72 +2710,58 @@ msgstr ""
 msgid "Nightly"
 msgstr ""
 
-#: ../backstage/update.php:90
-msgid "Slow"
-msgstr ""
-
 #: ../backstage/update.php:107
 msgid "End of life"
 msgstr ""
 
 #: ../backstage/update.php:110
-msgid "You\'ve selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch."
+msgid "You've selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch."
 msgstr ""
 
-#: ../backstage/update.php:106
+#: ../backstage/update.php:116
 msgid "Luna software updates"
 msgstr ""
 
-#: ../backstage/update.php:106
+#: ../backstage/update.php:116
 msgid "Check for updates"
 msgstr ""
 
-#: ../backstage/update.php:112
+#: ../backstage/update.php:122
 msgid "A new version is available!"
 msgstr ""
 
-#: ../backstage/update.php:113
+#: ../backstage/update.php:123
 #, php-format
-msgid ""
-"A new version, Luna %s has been released. It's a good idea to update to the "
-"latest version of Luna, as it contains not only new features, improvements "
-"and bugfixes, but also the latest security updates."
+msgid "A new version, Luna %s has been released. It's a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates."
 msgstr ""
 
-#: ../backstage/update.php:115
+#: ../backstage/update.php:125
 #, php-format
 msgid "Download v%s"
 msgstr ""
 
-#: ../backstage/update.php:116
+#: ../backstage/update.php:126
 msgid "Changelog"
 msgstr ""
 
-#: ../backstage/update.php:121
+#: ../backstage/update.php:131
 msgid "You're using the latest version of Luna!"
 msgstr ""
 
-#: ../backstage/update.php:122
+#: ../backstage/update.php:132
 msgid "You're on our latest release! Nothing to worry about."
 msgstr ""
 
-#: ../backstage/update.php:126
+#: ../backstage/update.php:136
 msgid "You're using a development version of Luna. Be sure to stay up-to-date."
 msgstr ""
 
-#: ../backstage/update.php:127
-msgid ""
-"We release every now and then a new build for Luna, one more stable then the "
-"other, for you to check out. You can keep track of this at <a href=\"http://"
-"getluna.org/lunareleases.php\">our website</a>. New builds can contain new "
-"features, improved features, and/or bugfixes."
+#: ../backstage/update.php:137
+msgid "We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href=\"http://getluna.org/lunareleases.php\">our website</a>. New builds can contain new features, improved features, and/or bugfixes."
 msgstr ""
 
-#: ../backstage/update.php:128
-msgid ""
-"At this point, we can only tell you that a new you're beyond the latest "
-"release. We can't tell you if there is a new preview available. You'll have "
-"to find out for yourself."
+#: ../backstage/update.php:138
+msgid "At this point, we can only tell you that a new you're beyond the latest release. We can't tell you if there is a new preview available. You'll have to find out for yourself."
 msgstr ""
 
 #: ../backstage/index.php:25
@@ -2912,9 +2773,7 @@ msgid "Index"
 msgstr ""
 
 #: ../backstage/index.php:91
-msgid ""
-"The config file is writeable at this moment, you might want to set the CHMOD "
-"to 640 or 644."
+msgid "The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644."
 msgstr ""
 
 #: ../backstage/index.php:96
@@ -2934,10 +2793,7 @@ msgid "Got it"
 msgstr ""
 
 #: ../backstage/index.php:115
-msgid ""
-"Welcome to the Backstage. Here, you can manage your newly set up board. "
-"We're ready to go now, but there might be a couple of settings you might "
-"want to change. So let us help you with that first!"
+msgid "Welcome to the Backstage. Here, you can manage your newly set up board. We're ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!"
 msgstr ""
 
 #: ../backstage/index.php:118
@@ -3076,11 +2932,7 @@ msgid "Group permissions"
 msgstr ""
 
 #: ../backstage/board.php:316
-msgid ""
-"Here you can set the forum specific permissions for the different user "
-"groups. Administrators always have full permissions. Permission settings "
-"that differ from the default permissions for the user group are marked red. "
-"Some permissions are disabled under some conditions."
+msgid "Here you can set the forum specific permissions for the different user groups. Administrators always have full permissions. Permission settings that differ from the default permissions for the user group are marked red. Some permissions are disabled under some conditions."
 msgstr ""
 
 #: ../backstage/board.php:316 ../backstage/groups.php:38
@@ -3119,9 +2971,7 @@ msgid "Are you sure that you want to delete the category <strong>%s</strong>?"
 msgstr ""
 
 #: ../backstage/board.php:449
-msgid ""
-"Deleting a category will delete all forums and posts (if any) in this "
-"category!"
+msgid "Deleting a category will delete all forums and posts (if any) in this category!"
 msgstr ""
 
 #: ../backstage/board.php:493 ../include/backstage_functions.php:25
@@ -3186,9 +3036,7 @@ msgstr ""
 #: ../backstage/groups.php:27 ../backstage/groups.php:31
 #: ../backstage/groups.php:441 ../backstage/groups.php:446
 #: ../backstage/groups.php:466
-msgid ""
-"Bad request. The link you followed is incorrect, outdated or you're simply "
-"not allowed to hang around here."
+msgid "Bad request. The link you followed is incorrect, outdated or you're simply not allowed to hang around here."
 msgstr ""
 
 #: ../backstage/groups.php:39 ../backstage/groups.php:57
@@ -3200,9 +3048,7 @@ msgid "Setup group options and permissions"
 msgstr ""
 
 #: ../backstage/groups.php:55
-msgid ""
-"Below options and permissions are the default permissions for the user "
-"group. These options apply if no forum specific permissions are in effect."
+msgid "Below options and permissions are the default permissions for the user group. These options apply if no forum specific permissions are in effect."
 msgstr ""
 
 #: ../backstage/groups.php:63
@@ -3218,10 +3064,7 @@ msgid "Moderator privileges"
 msgstr ""
 
 #: ../backstage/groups.php:76
-msgid ""
-"In order for a user to have moderator abilities, they must be assigned to "
-"moderate one or more forums. This is done via the user administration page "
-"of the user's profile."
+msgid "In order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile."
 msgstr ""
 
 #: ../backstage/groups.php:82
@@ -3245,8 +3088,7 @@ msgid "Change passwords"
 msgstr ""
 
 #: ../backstage/groups.php:109
-msgid ""
-"If moderator privileges are enabled, allow users to change user passwords."
+msgid "If moderator privileges are enabled, allow users to change user passwords."
 msgstr ""
 
 #: ../backstage/groups.php:120
@@ -3282,9 +3124,7 @@ msgid "Allow users to send messages with Inbox."
 msgstr ""
 
 #: ../backstage/groups.php:179
-msgid ""
-"The maximum amount of messages a user in this group can have in his Inbox. 0 "
-"is no limit."
+msgid "The maximum amount of messages a user in this group can have in his Inbox. 0 is no limit."
 msgstr ""
 
 #: ../backstage/groups.php:185
@@ -3392,10 +3232,7 @@ msgid "Time users have to wait between reports"
 msgstr ""
 
 #: ../backstage/groups.php:354
-msgid ""
-"Please note that in order for a user to have moderator abilities, they must "
-"be assigned to moderate one or more forums. This is done via the user "
-"administration page of the user's profile."
+msgid "Please note that in order for a user to have moderator abilities, they must be assigned to moderate one or more forums. This is done via the user administration page of the user's profile."
 msgstr ""
 
 #: ../backstage/groups.php:412 ../backstage/groups.php:424
@@ -3404,9 +3241,7 @@ msgid "There is already a group with the title <strong>%s</strong>."
 msgstr ""
 
 #: ../backstage/groups.php:470
-msgid ""
-"The default group cannot be removed. In order to delete this group, you must "
-"first setup a different group as the default."
+msgid "The default group cannot be removed. In order to delete this group, you must first setup a different group as the default."
 msgstr ""
 
 #: ../backstage/groups.php:501
@@ -3424,9 +3259,7 @@ msgstr ""
 
 #: ../backstage/groups.php:532
 #, php-format
-msgid ""
-"The group <strong>%s</strong> currently has <strong>%s</strong> members. "
-"Please select a group to which these members will be assigned upon deletion."
+msgid "The group <strong>%s</strong> currently has <strong>%s</strong> members. Please select a group to which these members will be assigned upon deletion."
 msgstr ""
 
 #: ../backstage/groups.php:533
@@ -3454,16 +3287,11 @@ msgid "Manage groups"
 msgstr ""
 
 #: ../include/parser.php:53 ../include/parser.php:109
-msgid ""
-"It seems your post consisted of empty BBCodes only. It is possible that this "
-"happened because e.g. the innermost quote was discarded because of the "
-"maximum quote depth level."
+msgid "It seems your post consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level."
 msgstr ""
 
 #: ../include/parser.php:63
-msgid ""
-"The quote, code, list, video, and heading BBCodes are not allowed in "
-"signatures."
+msgid "The quote, code, list, video, and heading BBCodes are not allowed in signatures."
 msgstr ""
 
 #: ../include/parser.php:75
@@ -3521,9 +3349,7 @@ msgid "Usernames may not contain all the characters ', \" and [ or ] at once."
 msgstr ""
 
 #: ../include/install.php:84
-msgid ""
-"Usernames may not contain any of the text formatting tags (BBCode) that the "
-"forum uses."
+msgid "Usernames may not contain any of the text formatting tags (BBCode) that the forum uses."
 msgstr ""
 
 #: ../include/install.php:87
@@ -3557,10 +3383,7 @@ msgstr ""
 
 #: ../include/install.php:154 ../include/install.php:160
 #, php-format
-msgid ""
-"You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to "
-"run properly. You must upgrade your %1$s installation before you can "
-"continue."
+msgid "You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue."
 msgstr ""
 
 #: ../include/install.php:165 ../include/install.php:182
@@ -3568,19 +3391,12 @@ msgid "The table prefix "
 msgstr ""
 
 #: ../include/install.php:174
-msgid ""
-"InnoDB does not seem to be enabled. Please choose a database layer that does "
-"not have InnoDB support, or enable InnoDB on your MySQL server"
+msgid "InnoDB does not seem to be enabled. Please choose a database layer that does not have InnoDB support, or enable InnoDB on your MySQL server"
 msgstr ""
 
 #: ../include/install.php:196
 #, php-format
-msgid ""
-"A table called \"%susers\" is already present in the database \"%s\". This "
-"could mean that Luna is already installed or that another piece of software "
-"is installed and is occupying one or more of the table names Luna requires. "
-"If you want to install multiple copies of Luna in the same database, you "
-"must choose a different table prefix"
+msgid "A table called \"%susers\" is already present in the database \"%s\". This could mean that Luna is already installed or that another piece of software is installed and is occupying one or more of the table names Luna requires. If you want to install multiple copies of Luna in the same database, you must choose a different table prefix"
 msgstr ""
 
 #: ../include/install.php:1408
@@ -3592,10 +3408,7 @@ msgid "j M Y"
 msgstr ""
 
 #: ../include/install.php:1447
-msgid ""
-"Wow, it's great to have you here, welcome and thanks for joining us. We've "
-"set up your account and you're ready to go. Though we like to point out some "
-"actions you might want to do first."
+msgid "Wow, it's great to have you here, welcome and thanks for joining us. We've set up your account and you're ready to go. Though we like to point out some actions you might want to do first."
 msgstr ""
 
 #: ../include/install.php:1461
@@ -3643,8 +3456,7 @@ msgid "The ban expires at the end of"
 msgstr ""
 
 #: ../include/functions.php:449
-msgid ""
-"The administrator or moderator that banned you left the following message:"
+msgid "The administrator or moderator that banned you left the following message:"
 msgstr ""
 
 #: ../include/functions.php:449
@@ -3652,21 +3464,15 @@ msgid "Please direct any inquiries to the forum administrator at"
 msgstr ""
 
 #: ../include/functions.php:479
-msgid ""
-"Usernames must not be more than 25 characters long. Please choose another "
-"(shorter) username."
+msgid "Usernames must not be more than 25 characters long. Please choose another (shorter) username."
 msgstr ""
 
 #: ../include/functions.php:491
-msgid ""
-"The username you entered contains one or more censored words. Please choose "
-"a different username."
+msgid "The username you entered contains one or more censored words. Please choose a different username."
 msgstr ""
 
 #: ../include/functions.php:506
-msgid ""
-"The username you entered is banned in this forum. Please choose another "
-"username."
+msgid "The username you entered is banned in this forum. Please choose another username."
 msgstr ""
 
 #: ../include/functions.php:625
@@ -3681,11 +3487,6 @@ msgstr ""
 #: ../include/functions.php:930 ../include/functions.php:945
 #: ../include/functions.php:980 ../include/functions.php:995
 msgid "…"
-msgstr ""
-
-#: ../include/functions.php:1016 ../include/functions.php:1043
-#: ../include/functions.php:1051 ../include/backstage_functions.php:69
-msgid "Info"
 msgstr ""
 
 #: ../include/functions.php:1023
@@ -3713,12 +3514,7 @@ msgid ","
 msgstr ""
 
 #: ../include/functions.php:1164 ../include/functions.php:1184
-msgid ""
-"Bad HTTP_REFERER. You were referred to this page from an unauthorized "
-"source. If the problem persists please make sure that \"Base URL\" is "
-"correctly set in Admin/Options and that you are visiting the forum by "
-"navigating to that URL. More information regarding the referrer check can be "
-"found in the Luna documentation."
+msgid "Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that \"Base URL\" is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the Luna documentation."
 msgstr ""
 
 #: ../include/functions.php:1566
@@ -3749,10 +3545,7 @@ msgid "%s Mailer"
 msgstr ""
 
 #: ../include/common.php:190
-msgid ""
-"You appear to have logged in successfully, however a cookie has not been "
-"set. Please check your settings and if applicable, enable cookies for this "
-"website."
+msgid "You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website."
 msgstr ""
 
 #: ../include/backstage_functions.php:18
@@ -4005,9 +3798,7 @@ msgstr[1] ""
 
 #: ../include/draw_functions.php:305 ../include/draw_functions.php:579
 #, php-format
-msgid ""
-"There are no topics in this forum yet, but you can <a href=\"post.php?fid=%s"
-"\">start the first one</a>."
+msgid "There are no topics in this forum yet, but you can <a href=\"post.php?fid=%s\">start the first one</a>."
 msgstr ""
 
 #: ../include/draw_functions.php:381
@@ -4076,15 +3867,11 @@ msgid "Your search returned no hits."
 msgstr ""
 
 #: ../include/draw_functions.php:866 ../include/draw_functions.php:880
-msgid ""
-"Warning! This is the first post in the topic, the whole topic will be "
-"permanently deleted."
+msgid "Warning! This is the first post in the topic, the whole topic will be permanently deleted."
 msgstr ""
 
 #: ../include/draw_functions.php:866
-msgid ""
-"The post you have chosen to delete is set out below for you to review before "
-"proceeding."
+msgid "The post you have chosen to delete is set out below for you to review before proceeding."
 msgstr ""
 
 #: ../include/draw_functions.php:868 ../include/draw_functions.php:882
@@ -4095,16 +3882,11 @@ msgid "Cancel"
 msgstr ""
 
 #: ../include/draw_functions.php:880
-msgid ""
-"The post you have chosen to delete is set out below for you to review before "
-"proceeding. Deleting this post is not permanent. If you want to delete a "
-"post permanently, please use delete instead."
+msgid "The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead."
 msgstr ""
 
 #: ../include/draw_functions.php:894
-msgid ""
-"This post has been soft deleted. We'll enable it again with a click on the "
-"button."
+msgid "This post has been soft deleted. We'll enable it again with a click on the button."
 msgstr ""
 
 #: ../include/draw_functions.php:897
@@ -4305,11 +4087,7 @@ msgid "Forum rules"
 msgstr ""
 
 #: ../themes/Luna/help.php:28 ../themes/Random/help.php:28
-msgid ""
-"BBCode is a collection of tags that are used to change the look of text in "
-"this forum. Below you can find all the available BBCodes and how to use "
-"them. Administrators have the ability to disable BBCode. You can tell if "
-"BBCode is disabled whenever you post a message or edit your signature."
+msgid "BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature."
 msgstr ""
 
 #: ../themes/Luna/help.php:30 ../themes/Random/help.php:30
@@ -4393,9 +4171,7 @@ msgid "Heading text"
 msgstr ""
 
 #: ../themes/Luna/help.php:52 ../themes/Random/help.php:52
-msgid ""
-"You can create links to other locations or to email addresses using the "
-"following tags:"
+msgid "You can create links to other locations or to email addresses using the following tags:"
 msgstr ""
 
 #: ../themes/Luna/help.php:56 ../themes/Random/help.php:56
@@ -4403,10 +4179,7 @@ msgid "My email address"
 msgstr ""
 
 #: ../themes/Luna/help.php:57 ../themes/Random/help.php:57
-msgid ""
-"If you want to display an image you can use the img tag. The text appearing "
-"after the \"=\" sign in the opening tag is used for the alt attribute and "
-"should be included whenever possible."
+msgid "If you want to display an image you can use the img tag. The text appearing after the \"=\" sign in the opening tag is used for the alt attribute and should be included whenever possible."
 msgstr ""
 
 #: ../themes/Luna/help.php:58 ../themes/Random/help.php:58
@@ -4414,9 +4187,7 @@ msgid "Luna BBCode Test"
 msgstr ""
 
 #: ../themes/Luna/help.php:60 ../themes/Random/help.php:60
-msgid ""
-"Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode "
-"below, you can embed one of those services videos."
+msgid "Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos."
 msgstr ""
 
 #: ../themes/Luna/help.php:61 ../themes/Random/help.php:61
@@ -4441,17 +4212,11 @@ msgid "wrote"
 msgstr ""
 
 #: ../themes/Luna/help.php:68 ../themes/Random/help.php:68
-msgid ""
-"If you don't want to quote anyone in particular, you can use the quote tag "
-"without specifying a name. If a username contains the characters [ or ] you "
-"can enclose it in quote marks."
+msgid "If you don't want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks."
 msgstr ""
 
 #: ../themes/Luna/help.php:71 ../themes/Random/help.php:71
-msgid ""
-"When displaying source code you should make sure that you use the code tag. "
-"Text displayed with the code tag will use a monospaced font and will not be "
-"affected by other tags."
+msgid "When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags."
 msgstr ""
 
 #: ../themes/Luna/help.php:72 ../themes/Luna/help.php:74
@@ -4467,16 +4232,11 @@ msgid "produces a code box like this:"
 msgstr ""
 
 #: ../themes/Luna/help.php:75 ../themes/Random/help.php:75
-msgid ""
-"You can also use syntax highlighting for markup, CSS, PHP and JavaScript. "
-"The language has to be noted on the first line inside the codetag and can't "
-"be on the same line as <code>[code]</code>."
+msgid "You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can't be on the same line as <code>[code]</code>."
 msgstr ""
 
 #: ../themes/Luna/help.php:93 ../themes/Random/help.php:94
-msgid ""
-"To create a list you can use the list tag. You can create 2 types of lists "
-"using the list tag."
+msgid "To create a list you can use the list tag. You can create 2 types of lists using the list tag."
 msgstr ""
 
 #: ../themes/Luna/help.php:94 ../themes/Luna/help.php:97
@@ -4509,9 +4269,7 @@ msgid "produces a numbered list."
 msgstr ""
 
 #: ../themes/Luna/help.php:106 ../themes/Random/help.php:107
-msgid ""
-"If enabled, the forum can convert a series of smilies to graphical "
-"representations. The following smilies you can use are:"
+msgid "If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:"
 msgstr ""
 
 #: ../themes/Luna/help.php:122 ../themes/Luna/help.php:124
@@ -4537,9 +4295,7 @@ msgid "What do the labels in front of topic titles mean?"
 msgstr ""
 
 #: ../themes/Luna/help.php:147 ../themes/Random/help.php:146
-msgid ""
-"You'll see that some of the topics are labeled, different labels have "
-"different meanings."
+msgid "You'll see that some of the topics are labeled, different labels have different meanings."
 msgstr ""
 
 #: ../themes/Luna/help.php:151 ../themes/Random/help.php:150
@@ -4551,23 +4307,15 @@ msgid "Explanation"
 msgstr ""
 
 #: ../themes/Luna/help.php:158 ../themes/Random/help.php:157
-msgid ""
-"Sticky topics are usually important topics which you should read. It's worth "
-"it to take a look there."
+msgid "Sticky topics are usually important topics which you should read. It's worth it to take a look there."
 msgstr ""
 
 #: ../themes/Luna/help.php:162 ../themes/Random/help.php:161
-msgid ""
-"When a you see a closed label, it means you can't post on that topic any "
-"more, unless you have a permission that overwrites this. The topic is still "
-"available to read, though."
+msgid "When a you see a closed label, it means you can't post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though."
 msgstr ""
 
 #: ../themes/Luna/help.php:166 ../themes/Random/help.php:165
-msgid ""
-"This topic has been moved to another forum. Admins and moderators can choose "
-"to show this notification, or simply not show it. The original forum where "
-"this topic was located in, won't show any topic stats anymore."
+msgid "This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won't show any topic stats anymore."
 msgstr ""
 
 #: ../themes/Luna/help.php:171 ../themes/Random/help.php:170
@@ -4579,11 +4327,7 @@ msgid "Smilies, signatures, avatars and images are not visible?"
 msgstr ""
 
 #: ../themes/Luna/help.php:177 ../themes/Random/help.php:176
-msgid ""
-"You can change the behavior of the topic view in your profile settings. "
-"There you can enable smilies, signatures, avatars and images in posts, but "
-"they should be enabled by default unless your forum admin has disabled those "
-"features."
+msgid "You can change the behavior of the topic view in your profile settings. There you can enable smilies, signatures, avatars and images in posts, but they should be enabled by default unless your forum admin has disabled those features."
 msgstr ""
 
 #: ../themes/Luna/help.php:178 ../themes/Random/help.php:177
@@ -4592,9 +4336,7 @@ msgstr ""
 
 #: ../themes/Luna/help.php:179 ../themes/Luna/help.php:183
 #: ../themes/Random/help.php:178 ../themes/Random/help.php:182
-msgid ""
-"You might not have the correct permissions to do so, ask the forum "
-"administrator for more help."
+msgid "You might not have the correct permissions to do so, ask the forum administrator for more help."
 msgstr ""
 
 #: ../themes/Luna/help.php:182 ../themes/Random/help.php:181
@@ -4606,10 +4348,7 @@ msgid "My profile doesn't contain as much as others?"
 msgstr ""
 
 #: ../themes/Luna/help.php:185 ../themes/Random/help.php:184
-msgid ""
-"You're profile will only display fields that are enabled and filled in on "
-"your profile personality page. You might want to see if you missed some "
-"fields."
+msgid "You're profile will only display fields that are enabled and filled in on your profile personality page. You might want to see if you missed some fields."
 msgstr ""
 
 #: ../themes/Luna/help.php:188 ../themes/Random/help.php:187
@@ -4617,11 +4356,7 @@ msgid "Are there more options to search?"
 msgstr ""
 
 #: ../themes/Luna/help.php:189 ../themes/Random/help.php:188
-msgid ""
-"When you go to the search page, you'll find yourself on a page with 1 search "
-"box. Below that search box there is a link to Advanced search, here you can "
-"find more search options! This feature may not be available on your device, "
-"if disabled by the forum admin."
+msgid "When you go to the search page, you'll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin."
 msgstr ""
 
 #: ../themes/Luna/help.php:190 ../themes/Random/help.php:189
@@ -4629,9 +4364,7 @@ msgid "Why can't search in more then 1 forum at once?"
 msgstr ""
 
 #: ../themes/Luna/help.php:191 ../themes/Random/help.php:190
-msgid ""
-"You might not have the correct permissions to do so, ask the forums "
-"administrator for more help."
+msgid "You might not have the correct permissions to do so, ask the forums administrator for more help."
 msgstr ""
 
 #: ../themes/Luna/help.php:201 ../themes/Random/help.php:200
@@ -4639,9 +4372,7 @@ msgid "Moderating"
 msgstr ""
 
 #: ../themes/Luna/help.php:204 ../themes/Random/help.php:203
-msgid ""
-"Admins and moderators need help sometimes, too! The basics of moderating are "
-"explained here."
+msgid "Admins and moderators need help sometimes, too! The basics of moderating are explained here."
 msgstr ""
 
 #: ../themes/Luna/help.php:212 ../themes/Random/help.php:211
@@ -4649,11 +4380,7 @@ msgid "How do I moderate a forum?"
 msgstr ""
 
 #: ../themes/Luna/help.php:213 ../themes/Random/help.php:212
-msgid ""
-"The moderation options are available at the bottom of the page. Those "
-"features aren't available for all moderators. When you click this button, "
-"you will be send to a page where you can manage the current forum. From "
-"there, you can move, delete, merge, close and open multiple topics at once."
+msgid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once."
 msgstr ""
 
 #: ../themes/Luna/help.php:216 ../themes/Random/help.php:215
@@ -4661,19 +4388,11 @@ msgid "How do I moderate a topic?"
 msgstr ""
 
 #: ../themes/Luna/help.php:217 ../themes/Random/help.php:216
-msgid ""
-"The moderation options are available at the bottom of the page. Those "
-"features aren't available for all moderators. When you click this button, "
-"you will be send to a page where you can manage the current topic. From "
-"there, you can select multiple post to delete or split from the current "
-"topic at once."
+msgid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once."
 msgstr ""
 
 #: ../themes/Luna/help.php:218 ../themes/Random/help.php:217
-msgid ""
-"Next to the \"Moderate topic\" button, you can find options to move, open or "
-"close the topic. You can also make it a sticky topic from there, or unstick "
-"it."
+msgid "Next to the \"Moderate topic\" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it."
 msgstr ""
 
 #: ../themes/Luna/help.php:221 ../themes/Random/help.php:220
@@ -4681,26 +4400,15 @@ msgid "How do I moderate an user?"
 msgstr ""
 
 #: ../themes/Luna/help.php:222 ../themes/Random/help.php:221
-msgid ""
-"Moderating options are available in the users profile. You can find the "
-"moderation options under \"Administration\" in the users profile menu. Those "
-"features aren't available for all moderators."
+msgid "Moderating options are available in the users profile. You can find the moderation options under \"Administration\" in the users profile menu. Those features aren't available for all moderators."
 msgstr ""
 
 #: ../themes/Luna/help.php:223 ../themes/Random/help.php:222
-msgid ""
-"The Administration page allow you to check if the user has an admin note, "
-"and you can also change that note if required. You can also change the post "
-"count of the user. At this page, the user can also be given moderator "
-"permissions on a per-forum base, though the user must have a moderator "
-"account to be able to actually use those permissions."
+msgid "The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions."
 msgstr ""
 
 #: ../themes/Luna/help.php:224 ../themes/Random/help.php:223
-msgid ""
-"Finally, you can ban or delete a user from his profile. If you want to ban "
-"and/or delete multiple users at once, you're probably better off with the "
-"advanced user management features in the Backstage."
+msgid "Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better off with the advanced user management features in the Backstage."
 msgstr ""
 
 #: ../themes/Luna/post.php:14 ../themes/Random/post.php:14
@@ -4776,9 +4484,7 @@ msgid "Hide your email address and disallow form email."
 msgstr ""
 
 #: ../themes/Luna/settings.php:257 ../themes/Random/settings.php:177
-msgid ""
-"Include a plain text version of new posts in subscription notification "
-"emails."
+msgid "Include a plain text version of new posts in subscription notification emails."
 msgstr ""
 
 #: ../themes/Luna/settings.php:263 ../themes/Random/settings.php:183
@@ -4813,11 +4519,6 @@ msgstr ""
 msgid "Time zone"
 msgstr ""
 
-#: ../themes/Luna/settings.php:446 ../themes/Luna/settings.php:464
-#: ../themes/Random/settings.php:366 ../themes/Random/settings.php:384
-msgid "Default"
-msgstr ""
-
 #: ../themes/Luna/settings.php:478 ../themes/Luna/settings.php:512
 #: ../themes/Random/settings.php:398 ../themes/Random/settings.php:432
 msgid "Delete or ban user"
@@ -4845,10 +4546,7 @@ msgid "Update forums"
 msgstr ""
 
 #: ../themes/Luna/settings.php:523 ../themes/Random/settings.php:443
-msgid ""
-"Choose which forums this user should be allowed to moderate. Note: This only "
-"applies to moderators. Administrators always have full permissions in all "
-"forums."
+msgid "Choose which forums this user should be allowed to moderate. Note: This only applies to moderators. Administrators always have full permissions in all forums."
 msgstr ""
 
 #: ../themes/Luna/users.php:22 ../themes/Random/users.php:22
@@ -4872,9 +4570,7 @@ msgid "New email"
 msgstr ""
 
 #: ../themes/Luna/me-modals.php:13 ../themes/Random/me-modals.php:13
-msgid ""
-"An email will be sent to your new address with an activation link. You must "
-"click the link in the email you receive to activate the new address."
+msgid "An email will be sent to your new address with an activation link. You must click the link in the email you receive to activate the new address."
 msgstr ""
 
 #: ../themes/Luna/me-modals.php:35 ../themes/Random/me-modals.php:35
@@ -4894,9 +4590,7 @@ msgid "Change avatar"
 msgstr ""
 
 #: ../themes/Luna/me-modals.php:62 ../themes/Random/me-modals.php:62
-msgid ""
-"An avatar is a small image that will be displayed under your username in "
-"your posts. It must not be any bigger than"
+msgid "An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than"
 msgstr ""
 
 #: ../themes/Luna/me-modals.php:66 ../themes/Random/me-modals.php:66
@@ -5082,9 +4776,7 @@ msgid "Recent activity"
 msgstr ""
 
 #: ../themes/Random/inbox-delete-post.php:20
-msgid ""
-"The topic will be deleted from your inbox, but it will stays in the others "
-"receivers"
+msgid "The topic will be deleted from your inbox, but it will stays in the others receivers"
 msgstr ""
 
 #: ../themes/Random/inbox-new.php:18
