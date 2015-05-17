@@ -13,7 +13,7 @@ require FORUM_ROOT.'include/common.php';
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
 
-require('update_class.php');
+require(FORUM_ROOT.'include/class/luna_update.php');
 
 $update = new AutoUpdate(true);
 $update->currentVersion = Version::LUNA_CORE_REVISION; //Must be an integer - you can't compare strings
