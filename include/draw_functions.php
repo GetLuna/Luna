@@ -862,7 +862,7 @@ function draw_delete_form($id) {
 			<p><?php echo ($is_topic_post) ? '<strong>'.__('Warning! This is the first post in the topic, the whole topic will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The post you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<input type="submit" class="btn btn-danger" name="delete" value="<?php _e('Delete', 'luna') ?>" />
+				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -876,7 +876,7 @@ function draw_soft_delete_form($id) {
 			<p><?php echo ($is_topic_post) ? '<strong>'.__('Warning! This is the first post in the topic, the whole topic will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<input type="submit" class="btn btn-danger" name="soft_delete" value="<?php _e('Soft delete', 'luna') ?>" />
+				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Soft delete', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -890,7 +890,7 @@ function draw_soft_reset_form($id) {
 			<p><?php _e('This post has been soft deleted. We\'ll enable it again with a click on the button.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<input type="submit" class="btn btn-primary" name="reset" value="<?php _e('Reset post', 'luna') ?>" />
+				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Reset post', 'luna') ?></button>
 			</div>
 		</form>
 <?php
