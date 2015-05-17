@@ -16,7 +16,7 @@ if (!$luna_user['is_admmod'])
 require('update_class.php');
 
 $update = new AutoUpdate(true);
-$update->currentVersion = 0; //Must be an integer - you can't compare strings
+$update->currentVersion = Version::LUNA_CORE_REVISION; //Must be an integer - you can't compare strings
 $update->updateUrl = 'https://raw.githubusercontent.com/GetLuna/UpdateService/master'; //Replace with your server update directory
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
