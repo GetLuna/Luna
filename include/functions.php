@@ -621,10 +621,6 @@ function check_avatar($user_id) {
 function generate_page_title($page_title, $p = null) {
 	global $luna_config;
 
-	// Load l10n
-	require_once FORUM_ROOT.'include/pomo/MO.php';
-	require_once FORUM_ROOT.'include/l10n.php';
-
 	if (!is_array($page_title))
 		$page_title = array($page_title);
 
