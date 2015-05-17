@@ -107,7 +107,7 @@ if (isset($_GET['saved']))
 				<h3 class="panel-title"><?php _e('End of life', 'luna') ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php _e('End of life warning', 'luna') ?></p>
+				<p><?php _e('You\'ve selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch.', 'luna') ?></p>
 			</div>
 		</div>
 <?php } ?>
@@ -122,8 +122,11 @@ if (isset($_GET['saved']))
 				<h3><?php _e('A new version is available!', 'luna') ?></h3>
 				<p><?php printf(__('A new version, Luna %s has been released. It\'s a good idea to update to the latest version of Luna, as it contains not only new features, improvements and bugfixes, but also the latest security updates.', 'luna'), $update_cache) ?></p>
 				<div class="btn-group">
-					<a href="http://modernbb.be/cnt/get.php?id=4" class="btn btn-primary"><?php echo sprintf(__('Download v%s', 'luna'), $update_cache) ?></a>
+					<a href="update_launch.php" class="btn btn-primary">Install update</a>
 					<a href="http://getluna.org/changelog.php" class="btn btn-primary"><?php _e('Changelog', 'luna') ?></a>
+				</div>
+				<div class="btn-group">
+					<a href="http://modernbb.be/cnt/get.php?id=4" class="btn btn-default"><?php echo sprintf(__('Download v%s', 'luna'), $update_cache) ?></a>
 				</div>
 <?php
 	} elseif (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'eq')) {
@@ -135,7 +138,10 @@ if (isset($_GET['saved']))
 ?>
 				<h3><?php _e('You\'re using a development version of Luna. Be sure to stay up-to-date.', 'luna') ?></h3>
 				<p><?php _e('We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href="http://getluna.org/lunareleases.php">our website</a>. New builds can contain new features, improved features, and/or bugfixes.', 'luna') ?></p>
-				<p><?php _e('At this point, we can only tell you that a new you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.', 'luna') ?></p>
+				<p><?php _e('At this point, we can only tell you that you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.', 'luna') ?></p>
+				<div class="btn-group">
+					<a href="update_launch.php" class="btn btn-primary">Install update</a>
+				</div>
 <?php
 	}
 ?>
