@@ -1336,10 +1336,11 @@ function maintenance_message() {
 	// Send the Content-type header in case the web server is setup to send something else
 	header('Content-type: text/html; charset=utf-8');
 
-	// Deal with newlines, tabs and multiple spaces
-	$message = $luna_config['o_maintenance_message'];
+	// Include functions
+	require FORUM_ROOT.'include/draw_functions.php';
 
-	require load_page('maintenance.php');
+	// Show the page
+	draw_wall_error($luna_config['o_maintenance_message'], NULL, __('Maintenance', 'luna'));
 
 	// End the transaction
 	$db->end_transaction();
