@@ -1166,7 +1166,7 @@ function draw_wall_error($description, $action = NULL, $title = NULL) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna', 'luna') ?></title>
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="include/css/system.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo FORUM_ROOT ?>include/css/system.css" />
 	</head>
 	<body class="wall">
 		<h1><?php if ($title != NULL) { echo $title; } else { echo 'Luna'; } ?></h1>
