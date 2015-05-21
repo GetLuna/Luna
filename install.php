@@ -67,12 +67,17 @@ $install_lang = isset($_REQUEST['install_lang']) ? luna_trim($_REQUEST['install_
 // Make sure we got a valid language string 
 $install_lang = preg_replace('%[\.\\\/]%', '', $install_lang); 
 
-// If such a language pack doesn't exist, or isn't up-to-date enough to translate this page, default to English
-if (!file_exists(FORUM_ROOT.'lang/'.$install_lang.'/luna.mo'))
-	$install_lang = Installer::DEFAULT_LANG;
+// Load l10n
+require_once FORUM_ROOT.'include/pomo/MO.php';
+require_once FORUM_ROOT.'include/l10n.php';
 
-require FORUM_ROOT.'lang/'.$install_lang.'/luna.mo';
+// Attempt to load the language file
+if (file_exists(FORUM_ROOT.'lang/English/luna.mo'))
+	load_textdomain('luna', FORUM_ROOT.'lang/English/luna.mo');
+else
+	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
 
+// If a config file is in place
 if (file_exists(FORUM_ROOT.'config.php')) {
 	// Check to see whether Luna is already installed
 	include FORUM_ROOT.'config.php';
