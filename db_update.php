@@ -49,6 +49,7 @@ if (!defined('FORUM_DEBUG'))
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
 require FORUM_ROOT.'include/notifications.php';
+require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/general_functions.php';
 
 // Load UTF-8 functions
@@ -152,7 +153,8 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION &&
 		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION &&
 		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '>=')) {
-	error(__('Your forum is already as up-to-date as this script can make it', 'luna'));
+	draw_wall_error(__('Your forum is already as up-to-date as this script can make it.', 'luna'), '<a class="btn btn-default" href="index.php">Continue</a>', __('Let\'s get started', 'luna'));
+	exit;
 }
 
 // Check style
