@@ -17,6 +17,7 @@ header('Content-type: text/html; charset=utf-8');
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
+require FORUM_ROOT.'include/draw_functions.php';
 
 // Load Version class
 require FORUM_ROOT.'include/version.php';
@@ -88,7 +89,8 @@ if (file_exists(FORUM_ROOT.'config.php')) {
 
 	// If FORUM is defined, config.php is probably valid and thus the software is installed
 	if (defined('FORUM'))
-		exit(__('It seems like Luna is already installed. You should go <a href="index.php">here</a> instead.', 'luna'));
+		draw_wall_error(__('It seems like Luna is already installed.', 'luna'), '<a class="btn btn-default" href="index.php">Continue</a>');
+		exit;
 }
 
 // Define FORUM because email.php requires it

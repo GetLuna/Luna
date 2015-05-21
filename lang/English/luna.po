@@ -3380,6 +3380,10 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr ""
 
+#: ../include/install.php:92
+msgid "It seems like Luna is already installed."
+msgstr ""
+
 #: ../include/install.php:95
 msgid "The administrator email address you entered is invalid."
 msgstr ""

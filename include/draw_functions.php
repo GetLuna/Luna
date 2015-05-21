@@ -1157,3 +1157,22 @@ function draw_mark_read($class, $page) {
 	if (!$luna_user['is_guest'])
 		echo '<a'.$classes.' href="'.$url.'">'.__('Mark as read', 'luna').'</a>';
 }
+
+function draw_wall_error($description, $action = NULL, $title = NULL) {
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title><?php _e('Luna', 'luna') ?></title>
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="include/css/system.css" />
+	</head>
+	<body class="wall">
+		<h1><?php if ($title != NULL) { echo $title; } else { echo 'Luna'; } ?></h1>
+		<p><?php echo $description; ?></p>
+		<p><?php echo $action; ?></p>
+	</body>
+</html>
+<?php
+}

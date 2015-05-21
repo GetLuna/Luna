@@ -1,0 +1,27 @@
+/*
+ * Copyright Studio 384 and Luna Group
+ * Bootstrap Template: 	Trent
+ * Version:				1.1
+ * Based on:			Trent v1.3 (http://studio384.be/trent.php)
+ * Since:				1.1
+ * Bootstrap:			3.3.4
+ */
+
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300);
+ 
+body {
+	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
+	background-color: #136cab;
+	color: #fff;
+	text-align: center;
+	margin-top: 15%;
+}
+ 
+h1 {
+	font-family: "Segoe UI Light", "Open Sans", Helvetica, Arial, sans-serif;
+	font-weight: 100;
+}
+
+.btn {
+	border: none;
+}
