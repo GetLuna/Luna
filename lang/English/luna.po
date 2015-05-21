@@ -263,6 +263,14 @@ msgstr ""
 msgid "Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature."
 msgstr ""
 
+#: ../db_update.php:155
+msgid "Your forum is already as up-to-date as this script can make it."
+msgstr ""
+
+#: ../db_update.php:216
+msgid "Start update"
+msgstr ""
+
 #: ../backstage/menu.php:22 ../backstage/menu.php:54
 msgid "You must give your menu item a title."
 msgstr ""
@@ -614,7 +622,8 @@ msgstr ""
 #: ../include/backstage_functions.php:62 ../include/backstage_functions.php:92
 #: ../include/backstage_functions.php:179 ../themes/Luna/maintenance.php:10
 #: ../themes/Luna/maintenance.php:16 ../themes/Random/maintenance.php:10
-#: ../themes/Random/maintenance.php:16
+#: ../themes/Random/maintenance.php:16 ../db_update.php:185
+#: ../db_update.php:191
 msgid "Maintenance"
 msgstr ""
 
@@ -1566,6 +1575,7 @@ msgid "Click here"
 msgstr ""
 
 #: ../backstage/maintenance.php:125 ../include/install.php:1465
+#: ../db_update.php:178
 msgid "The forums are temporarily down for maintenance. Please try again in a few minutes."
 msgstr ""
 
@@ -3382,6 +3392,10 @@ msgstr ""
 
 #: ../include/install.php:92
 msgid "It seems like Luna is already installed."
+msgstr ""
+
+#: ../include/install.php:92
+msgid "Let's get started"
 msgstr ""
 
 #: ../include/install.php:95
