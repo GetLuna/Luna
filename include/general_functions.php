@@ -17,7 +17,7 @@ function pending_messages($user) {
 }
 
 function get_user_nav_menu_items() {
-	global $db, $luna_config, $luna_user, $lang;
+	global $db, $luna_config, $luna_user;
 
 	$items = array();
 
@@ -25,11 +25,11 @@ function get_user_nav_menu_items() {
 		$items['guest'] = array(
 			'register' => array(
 				'url'   => 'register.php',
-				'title' => $lang['Register'],
+				'title' => __('Register', 'luna'),
 			),
 			'login' => array(
 				'url'   => '#',
-				'title' => $lang['Login'],
+				'title' => __('Login', 'luna'),
 			)
 		);
 	} else {
@@ -37,7 +37,7 @@ function get_user_nav_menu_items() {
 		if ($luna_user['is_admmod']) {
 			$items['backstage'] = array(
 				'url'   => 'backstage/',
-				'title' => $lang['Backstage'],
+				'title' => __('Backstage', 'luna'),
 			);
 		}
 
@@ -47,7 +47,7 @@ function get_user_nav_menu_items() {
 
 		$items['notifications'] = array(
 			'url'    => $luna_config['o_notification_flyout'] ? '#' : 'notifications.php',
-			'title'  => $num_notifications > 0 ? $lang['Notifications'] : $lang['No new notifications'],
+			'title'  => $num_notifications > 0 ? __('Notifications', 'luna') : __('No new notifications', 'luna'),
 			'num'    => $num_notifications,
 			'flyout' => 1 == $luna_config['o_notification_flyout']
 		);
@@ -67,19 +67,19 @@ function get_user_nav_menu_items() {
 		$items['user'] = array(
 			'profile'  => array(
 				'url'   => 'profile.php?id='.$luna_user['id'],
-				'title' => $lang['Profile'],
+				'title' => __('Profile', 'luna'),
 			),
 			'settings' => array(
 				'url'   => 'settings.php',
-				'title' => $lang['Settings'],
+				'title' => __('Settings', 'luna'),
 			),
 			'help'     => array(
 				'url'   => 'help.php',
-				'title' => $lang['Help'],
+				'title' => __('Help', 'luna'),
 			),
 			'logout'   => array(
 				'url'   => 'login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())),
-				'title' => $lang['Logout'],
+				'title' => __('Logout', 'luna'),
 			)
 		);
 	}
