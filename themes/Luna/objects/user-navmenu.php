@@ -1,13 +1,13 @@
 
 							<ul id="navmenu" class="nav navbar-nav navbar-right">
 <?php
-if( !empty($items['inbox']) ) {
-	$item = $items['inbox'];
+if (!empty($items['backstage'])) {
+	$item = $items['backstage'];
 ?>
-								<li id="navinbox"><a href="<?php echo $item['url']; ?>"><?php if ($item['num']) echo $item['num']; ?> <span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a></li>
+								<li id="navbackstage"><a href="<?php echo $item['url']; ?>"><span class="fa fa-fw fa-tachometer"></span><span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a></li>
 <?php
 }
-if( !empty($items['notifications']) ) {
+if(!empty($items['notifications'])) {
 	$item = $items['notifications'];
 ?>
 								<li id="navnotification" class="dropdown">
@@ -18,20 +18,20 @@ if( !empty($items['notifications']) ) {
 								</li>
 <?php
 }
-if (!empty($items['backstage'])) {
-	$item = $items['backstage'];
+if(!empty($items['inbox'])) {
+	$item = $items['inbox'];
 ?>
-								<li id="navbackstage"><a href="<?php echo $item['url']; ?>"><span class="fa fa-fw fa-tachometer"></span><span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a></li>
+								<li id="navinbox"><a href="<?php echo $item['url']; ?>"><?php if ($item['num']) echo $item['num']; ?> <span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a></li>
 <?php
 }
+
 if (!empty($items['guest'])) {
 	$item = $items['guest'];
 ?>
 								<li id="navregister"<?php ((FORUM_ACTIVE_PAGE == 'register') ? ' class="active"' : ''); ?>><a href="<?php echo $item['register']['url']; ?>"><?php echo $item['register']['title']; ?></a></li>
 								<li><a href="<?php echo $item['login']['url']; ?>" data-toggle="modal" data-target="#login-form"><?php echo $item['login']['title']; ?></a></li>
 <?php
-}
-else if (!empty($items['user'])) {
+} else if (!empty($items['user'])) {
 	$item = $items['user'];
 ?>
 								<li id="navprofile" class="dropdown">

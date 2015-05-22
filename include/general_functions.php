@@ -35,15 +35,10 @@ function get_user_nav_menu_items() {
 	}
 	else {
 
-		if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1') {
-			// Check for new messages
-			$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
-			$num_new_pm = intval($db->result($result));
-
-			$items['inbox'] = array(
-				'url'   => 'inbox.php',
-				'title' => 'Inbox',
-				'num'   => $num_new_pm,
+		if ($luna_user['is_admmod']) {
+			$items['backstage'] = array(
+				'url'   => 'backstage/',
+				'title' => $lang['Backstage'],
 			);
 		}
 
@@ -58,10 +53,15 @@ function get_user_nav_menu_items() {
 			'flyout' => 1 == $luna_config['o_notification_flyout']
 		);
 
-		if ($luna_user['is_admmod']) {
-			$items['backstage'] = array(
-				'url'   => 'backstage/',
-				'title' => $lang['Backstage'],
+		if ($luna_config['o_pms_enabled'] == '1' && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1') {
+			// Check for new messages
+			$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'messages WHERE showed=0 AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to check the availibility of new messages', __FILE__, __LINE__, $db->error());
+			$num_new_pm = intval($db->result($result));
+
+			$items['inbox'] = array(
+				'url'   => 'inbox.php',
+				'title' => 'Inbox',
+				'num'   => $num_new_pm,
 			);
 		}
 
