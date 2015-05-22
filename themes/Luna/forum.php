@@ -27,6 +27,10 @@ if (!defined('FORUM'))
 				<hr />
 			<?php endif; ?>
 			<div class="list-group list-group-forum">
+				<?php draw_forum_list() ?>
+			</div>
+			<hr />
+			<div class="list-group list-group-forum">
 				<?php draw_mark_read('list-group-item', 'forumview') ?>
 				<?php if ($id != '0' && $is_admmod) { ?>
 					<a class="list-group-item" href="backstage/moderate.php?fid=<?php echo $forum_id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate forum', 'luna') ?></a>
