@@ -19,7 +19,7 @@ if (!defined('FORUM'))
 		</script>
 		<script id="tmpl-notification-menu-item" type="text/html">
 			<a href="{{ data.link }}" class="notification-link"><span class="fa fa-fw {{ data.icon }}"></span> {{ data.message }} <span class="timestamp pull-right">{{ data.time }}</span></a>
-			<a href="#" class="notification-action action-check" data-action="mark"><span class="fa fa-fw fa-check"></span></a>
+			<a href="#" class="notification-action action-check" data-action="read"><span class="fa fa-fw fa-check"></span></a>
 			<a href="#" class="notification-action action-delete" data-action="delete"><span class="fa fa-fw fa-trash"></span></a>
 		</script>
 
