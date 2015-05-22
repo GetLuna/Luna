@@ -5,7 +5,7 @@
 		var $document = $( document ),
 		      $window = $( window ),
 		      options = {
-				interval: 10,
+				interval: 60,
 				ticked:   0,
 				beat:     0,
 	

@@ -17,7 +17,7 @@ function luna_ajax_heartbeat() {
 	}
 
 	global $luna_user;
-	$notifications = pending_notifications($luna_user['id']);
+	$notifications = get_user_unviewed_notifications($luna_user['id']);
 	$messages      = pending_messages($luna_user['id']);
 
 	// Send the current time according to the server
@@ -42,7 +42,7 @@ function luna_ajax_fetch_notifications() {
 
 	global $luna_user;
 
-	$notifications = pending_notifications($luna_user['id'], false);
+	$notifications = get_user_unviewed_notifications($luna_user['id']);
 	if (!empty($notifications)) {
 		luna_send_json_success($notifications);
 	}
