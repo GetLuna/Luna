@@ -19,7 +19,7 @@ else
 		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
 		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script src="include/js/prism.js"></script>
+		<script src="include/js/vendor/prism.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 // Allow childs
@@ -70,9 +70,7 @@ required_fields();
 								</fieldset>
 							</form>
 							<?php endif; ?>
-							<ul class="nav navbar-nav navbar-right">
-								<?php echo $usermenu; ?>
-							</ul>
+							<?php draw_user_nav_menu(); ?>
 						</div>
 					</div>
 				</div>
