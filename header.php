@@ -26,6 +26,9 @@ header('X-Frame-Options: deny');
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 
+// Generate user avatar
+$user_avatar = draw_user_avatar($luna_user['id'], true, 'avatar');
+
 // Navbar data
 $links = array();
 $menu_title = $luna_config['o_board_title'];
