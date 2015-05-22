@@ -32,8 +32,7 @@ function get_user_nav_menu_items() {
 				'title' => $lang['Login'],
 			)
 		);
-	}
-	else {
+	} else {
 
 		if ($luna_user['is_admmod']) {
 			$items['backstage'] = array(
