@@ -302,7 +302,9 @@ function draw_topics_list() {
 		}
 	
 	} else {
-		'<h3 class="nothing">'.printf(__('There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id).'</h3>';
+		echo '<h3 class="nothing">';
+		printf(__('There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
+		echo '</h3>';
 	}
 	
 }
