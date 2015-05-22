@@ -1157,7 +1157,6 @@ function draw_mark_read($class, $page) {
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 
 	if (!$luna_user['is_guest'])
-
 		echo '<a'.$classes.' href="'.$url.'">'.__('Mark as read', 'luna').'</a>';
 }
 
