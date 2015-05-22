@@ -42,7 +42,7 @@ function luna_ajax_fetch_notifications() {
 
 	global $luna_user;
 
-	$notifications = pending_notifications($luna_user['id'], false);
+	$notifications = get_user_unviewed_notifications($luna_user['id'], false);
 	if (!empty($notifications)) {
 		luna_send_json_success($notifications);
 	}

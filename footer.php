@@ -13,9 +13,9 @@ if (!defined('FORUM'))
 
 ?>
 		<script id="tmpl-notification-menu" type="text/html">
-			<li role="presentation" class="dropdown-header"><?php echo $lang['Notifications']; ?></li>
+			<li role="presentation" class="dropdown-header"><?php _e( 'Notifications', 'luna' ); ?></li>
 			<li class="divider"></li>
-			<li class="dropdown-footer"><a class="pull-right" href="notifications.php"><?php echo $lang['More']; ?> <i class="fa fa-fw fa-arrow-right"></i></a></li>
+			<li class="dropdown-footer"><a class="pull-right" href="notifications.php"><?php _e( 'More', 'luna' ); ?> <i class="fa fa-fw fa-arrow-right"></i></a></li>
 		</script>
 		<script id="tmpl-notification-menu-item" type="text/html">
 			<a href="{{ data.link }}" class="notification-link"><span class="fa fa-fw luni luni-fw {{ data.icon }}"></span> {{ data.message }} <span class="timestamp pull-right">{{ data.time }}</span></a>
