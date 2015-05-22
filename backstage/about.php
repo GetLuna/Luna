@@ -26,7 +26,6 @@ require 'header.php';
 				<h3 class="panel-title">Navigation</h3>
 			</div>
 			<div class="list-group">
-				<a href="#brand" class="list-group-item"><span class="fa fa-fw fa-bold"></span> Editor</a>
 				<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
 				<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
 				<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
@@ -42,13 +41,6 @@ require 'header.php';
 				<h3 class="panel-title">About Luna 1.1 Bittersweet Shimmer</h3>
 			</div>
 			<div class="panel-body panel-about">
-				<a id="brand"></a><h3><span class="fa fa-fw fa-bold"></span> Editor</h3>
-				<div class="row">
-					<div class="col-sm-6">
-						<h4>WYSIWYG</h4>
-						<p>We've had our previous editor for a while, but it was time for a massive upgrade. Bittersweet Shimmer introduces a WYSIWYG editor, helping you to make posts easier.</p>
-					</div>
-				</div>
 				<a id="board"></a><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3>
 				<div class="row">
 					<div class="col-sm-6">
@@ -57,11 +49,19 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Contact links</h4>
-						<p>When an user adds a Twitter, Facebook, Microsoft Account, e-mail, website or Google+ account to his profile, the add-ons in his profile are now clickable to give you and your users easy access to your user's accounts on these social networks.</p>
+						<p>When an user adds a Twitter, Facebook, Microsoft Account, e-mail, website or Google+ account to his/here profile, the add-ons in his/here profile are now clickable to give you and your users easy access to your user's accounts on these social networks.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Notifications 2.0</h4>
+						<p>The notification system, new since Luna 1.0, has received a major revamp. The new system checks every minute for new notifications. It also allows you to mark a notification as readed or remove it completely right from the fly-out.</p>
 					</div>
 				</div>
 				<a id="backstage"></a><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3>
 				<div class="row">
+					<div class="col-sm-12">
+						<h4>Update whenever, wherever</h4>
+						<p>You know when you're somewhere else, without access to your FTP, and yet, you want to update your board to the latest and greatest version of Luna? Well, that's not a problem anymore. Luna now has a build-in one-click update system so you can update right from the Backstage.</p>
+					</div>
 					<div class="col-sm-6">
 						<h4>A personal touch</h4>
 						<p>When a theme supports more then one accent color, you can choose the default color your board should have. This applies to guests and new users.</p>
@@ -70,11 +70,23 @@ require 'header.php';
 						<h4>Backstage accents</h4>
 						<p>Similar to the Mainstage design, you can now change the accent color of the Backstage. We also took the time to make a small update to the design.</p>
 					</div>
+					<div class="col-sm-6">
+						<h4>Announcements 2.0</h4>
+						<p>Announcements have been improved with a couple of new options. When a theme supports it, you can choose between 5 styles for the announcement to be displayed in. Further, you can now set a title to announcements.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Errors 2.0</h4>
+						<p>Some errors, mostly the ones your users could run upon or the ones that simply don't need to be a problem, have been revamped to look better and give you a direct action to solve the issue, or just continue if possible.</p>
+					</div>
 				</div>
 				<a id="theme"></a><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Theme Engine 6.1</h4>
+						<h4>Luna/Sunrise 1.1</h4>
+						<p>We've refined our default themes based on user feedback and they look better then ever. Luna and Sunrise have been optimized to support the newest features from Luna 1.1.</p>
+					</div>
+					<div class="col-sm-6">
+						<h4>Theme Engine <s>2.0</s> 6.1</h4>
 						<p>After the major revamp from Aero, Bittersweet Shimmer continues to improve our themes with a more simplified system, better support for accents, night mode and so much more.</p>
 					</div>
 				</div>
@@ -84,16 +96,25 @@ require 'header.php';
 						<h4>Notification API</h4>
 						<p>We're introducing a brand new Notification API. This API will allow you to create new notification more easly from different locations. You can read all about it in the <a href="http://getluna.org/docs/notification.php">documentation</a>.</p>
 					</div>
+					<div class="col-sm-6">
+						<h4>Langauge 2.0</h4>
+						<p>This new version of Luna introduces a new way to translate Luna, you can now use applications like Poedit to translate Luna more easly. This means that previous translations won't work at all, and we're sorry for that, but it is for the better.</p>
+					</div>
 				</div>
 				<a id="others"></a><h3>Other improvements and notes</h3>
 				<div class="row">
+					<div class="col-sm-12">
+						<h4>And a lot of other small changes</h4>
+						<p>However, since Luna 1.1 has its focus on refinements, there are also a lot of other small improvements all over the board (no pun intended). This includes better performance, more developer options, small visual changes and fixes, and so much more.</p>
+					</div>
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4381.</p>
+						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4656.<br />
+						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>0 bugs have been fixed.</p>
+						<p>2 bugs have been fixed.</p>
 					</div>
 				</div>
 			</div>
