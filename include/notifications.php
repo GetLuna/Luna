@@ -14,7 +14,7 @@ require FORUM_ROOT.'include/class/luna_notification.php';
  * 
  * @return   int    Notification ID on success, 0 on fail
  */
-function new_notification($user, $message, $link = '', $icon = '') {
+function new_notification($user, $link = '', $message, $icon = '') {
 
 	return LunaNotification::add($user, $message, $link, $icon);
 }
