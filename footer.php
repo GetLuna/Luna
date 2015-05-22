@@ -13,13 +13,13 @@ if (!defined('FORUM'))
 
 ?>
 		<script id="tmpl-notification-menu" type="text/html">
-			<li role="presentation" class="dropdown-header"><?php _e( 'Notifications', 'luna' ); ?></li>
+			<li role="presentation" class="dropdown-header no-hover"><?php _e( 'Notifications', 'luna' ); ?></li>
 			<li class="divider"></li>
 			<li class="dropdown-footer"><a class="pull-right" href="notifications.php"><?php _e( 'More', 'luna' ); ?> <i class="fa fa-fw fa-arrow-right"></i></a></li>
 		</script>
 		<script id="tmpl-notification-menu-item" type="text/html">
-			<a href="{{ data.link }}" class="notification-link"><span class="fa fa-fw luni luni-fw {{ data.icon }}"></span> {{ data.message }} <span class="timestamp pull-right">{{ data.time }}</span></a>
-			<a href="#" class="notification-action action-check" data-action="read"><span class="fa fa-fw fa-check"></span></a>
+			<a href="{{ data.link }}" class="notification-link"><span class="fa fa-fw {{ data.icon }}"></span> {{ data.message }} <span class="timestamp pull-right">{{ data.time }}</span></a>
+			<a href="#" class="notification-action action-check" data-action="mark"><span class="fa fa-fw fa-check"></span></a>
 			<a href="#" class="notification-action action-delete" data-action="delete"><span class="fa fa-fw fa-trash"></span></a>
 		</script>
 

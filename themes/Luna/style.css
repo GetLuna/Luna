@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 	right: 42px;
 }
 
-.notification-menu li a:hover {
+.notification-menu li:not(.no-hover):hover, .notification-menu li:hover a {
 	background: #f5f5f5;
 }
 

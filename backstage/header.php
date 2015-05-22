@@ -31,7 +31,6 @@ else
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/accents/<?php echo $luna_user['accent'] ?>.css" />
-		<link rel="stylesheet" type="text/css" href="../include/css/lunicons.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
 		<title><?php _e('Backstage', 'luna') ?></title>

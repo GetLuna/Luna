@@ -29,7 +29,7 @@ if (!defined('FORUM'))
 } else {
 	foreach ($unviewed_notifications as $notification) {
 ?>
-		<a class="list-group-item" href="<?php echo $notification->link; ?>"><span class="fa fa-fw luni luni-fw <?php echo $notification->icon; ?>"></span>&nbsp; <?php echo $notification->message; ?><span class="timestamp pull-right"><?php echo format_time($notification->time, false, null, $luna_config['o_time_format'], true, true); ?></span></a>
+		<a class="list-group-item" href="<?php echo $notification->link; ?>"><span class="fa fa-fw <?php echo $notification->icon; ?>"></span>&nbsp; <?php echo $notification->message; ?><span class="timestamp pull-right"><?php echo format_time($notification->time, false, null, $luna_config['o_time_format'], true, true); ?></span></a>
 
 <?php
 	}
@@ -42,7 +42,7 @@ if (!defined('FORUM'))
 } else {
 	foreach ($viewed_notifications as $notification) {
 ?>
-		<a class="list-group-item" href="<?php echo $notification->link; ?>"><span class="fa fa-fw luni luni-fw <?php echo $notification->icon; ?>"></span>&nbsp; <?php echo $notification->message; ?><span class="timestamp pull-right"><?php echo format_time($notification->time, false, null, $luna_config['o_time_format'], true, true); ?></span></a>
+		<a class="list-group-item" href="<?php echo $notification->link; ?>"><span class="fa fa-fw <?php echo $notification->icon; ?>"></span>&nbsp; <?php echo $notification->message; ?><span class="timestamp pull-right"><?php echo format_time($notification->time, false, null, $luna_config['o_time_format'], true, true); ?></span></a>
 
 <?php
 	}

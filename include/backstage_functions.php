@@ -19,7 +19,7 @@ function load_admin_nav($section, $page) {
 	elseif ($page == 'update')
 		$page_title = '<span class="fa fa-fw fa-cloud-upload"></span> '.__('Luna software update', 'luna');
 	elseif ($page == 'about')
-		$page_title = '<span class="luni luni-fw luni-logo"></span> '.__('About Luna', 'luna');
+		$page_title = '<span class="fa fa-fw fa-moon-o"></span> '.__('About Luna', 'luna');
 
 	elseif ($page == 'board')
 		$page_title = '<span class="fa fa-fw fa-sort-amount-desc"></span> '.__('Board', 'luna');
@@ -146,7 +146,7 @@ function load_admin_nav($section, $page) {
 				<li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><span class="fa fa-fw fa-tachometer"></span><span class="hidden-xs"> <?php _e('Backstage', 'luna') ?></span></a></li>
 				<li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-fw fa-info-circle"></span><span class="hidden-xs"> <?php _e('System info', 'luna') ?></span></a></li>
 				<li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-fw fa-cloud-upload"></span><span class="hidden-xs"> <?php _e('Update', 'luna') ?></span></a></li>
-				<li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="luni luni-fw luni-logo"></span><span class="hidden-xs"> <?php _e('About', 'luna') ?></span></a></li>
+				<li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="fa fa-fw fa-moon-o"></span><span class="hidden-xs"> <?php _e('About', 'luna') ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'content') { ?>
 			<ul class="nav nav-tabs" role="tablist">
