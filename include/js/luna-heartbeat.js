@@ -1,7 +1,10 @@
 
 ( function( $, window ) {
 
-	var heartbeat = function() {
+	
+	var luna = window.luna = window.luna || {};
+
+	luna.heartbeat = function() {
 		var $document = $( document ),
 		      $window = $( window ),
 		      options = {
@@ -103,9 +106,8 @@
 
 		startBeating();
 	}
-
-	window.luna = window.luna || {};
-	window.luna.heartbeat = new heartbeat();
+	
+	luna.pulse = new luna.heartbeat();
 
 }( jQuery, window ) );
 
