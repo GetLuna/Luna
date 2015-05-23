@@ -111,7 +111,8 @@ _.extend( notifications.Model, {
 						id:     this.get( 'id' )
 					},
 					success: function( response ) {
-						self.trigger( 'read' );
+						// The model should self destruct, but don't actually destroy data on the server
+						self.trigger( 'destroy', self, self.collection, {} );
 					}
 				});
 
@@ -190,6 +191,9 @@ _.extend( notifications.Model, {
 		 */
 		sync: function( method, models, options ) {
 
+			var options = options || {},
+			       self = this;
+
 			if ( 'read' === method ) {
 
 				var options = options || {};
@@ -197,6 +201,9 @@ _.extend( notifications.Model, {
 					data: {
 						action: 'fetch-notifications',
 						_nonce: _nonces.fetchNotif
+					},
+					error: function( response ) {
+						self.trigger( 'empty' );
 					}
 				});
 
@@ -231,7 +238,7 @@ _.extend( notifications.View, {
 			this.listenTo( this.model, 'destroying',  this._destroying );
 			this.listenTo( this.model, 'undestroyed', this._undestroy );
 			this.listenTo( this.model, 'destroyed',   this._remove );
-			this.listenTo( this.model, 'read',        this._remove );
+			this.listenTo( this.model, 'destroy',     this._remove );
 		},
 
 		/**
@@ -250,6 +257,10 @@ _.extend( notifications.View, {
 			this.$el.removeClass( 'bg-danger' );
 		},
 
+		/**
+		 * Remove the notification view and reload the collection to be
+		 * sure and re-render the main view.
+		 */
 		_remove: function() {
 
 			this.remove();
@@ -329,13 +340,15 @@ _.extend( notifications.View, {
 
 		template: luna.template( 'notification-menu' ),
 
+		_empty: true,
+
 		/**
 		 * Initialize the View
 		 */
 		initialize: function( options ) {
 
-			_.each( this.collection.models, this.addNotification, this );
 			this.listenTo( this.collection, 'add', this.addNotification );
+			this.listenTo( this.collection, 'empty', this.render);
 		},
 
 		/**
@@ -344,7 +357,34 @@ _.extend( notifications.View, {
 		 */
 		addNotification: function( notification ) {
 
-			this.views.add( new luna.notifications.View.Notification({ model: notification }), { at: 2 } );
+			if ( this._empty ) {
+				this.$( '.notification-empty' ).next( '.divider' ).remove();
+				this.$( '.notification-empty' ).remove();
+				this._empty = false;
+			}
+
+			var view = new luna.notifications.View.Notification({ model: notification });
+			notification.view = view;
+
+			this.views.add( view, { at: 2 } );
+		},
+
+		/**
+		 * Render the view.
+		 * 
+		 * @since    1.1
+		 * 
+		 * @return   Return itself to allow chaining.
+		 */
+		render: function() {
+
+			if ( ! this.collection.length ) {
+				this._empty = true;
+			}
+
+			this.$el.html( this.template() );
+
+			return this;
 		}
 	})
 },
@@ -355,6 +395,8 @@ _.extend( notifications.View, {
 	Menu: luna.Backbone.View.extend({
 
 		el: '#navnotification',
+
+		template: luna.template( 'notification-nav' ),
 
 		/**
 		 * Initialize the View
@@ -377,7 +419,7 @@ _.extend( notifications.View, {
 			this.$document = $( document );
 			this.$document.on( 'heartbeat-tick', this.update );
 
-			this.notifications.on( 'sync', this.updateCounter, this );
+			this.notifications.on( 'add remove', this.render, this );
 		},
 
 		/**
@@ -411,15 +453,20 @@ _.extend( notifications.View, {
 		},
 
 		/**
-		 * Update the menu when collection is synced.
+		 * Render part of the view.
+		 * 
+		 * We should override the complete view to avoid messing with
+		 * Bootstrap on handling the flyout dropdown.
+		 * 
+		 * @since    1.1
+		 * 
+		 * @return   Return itself to allow chaining.
 		 */
-		updateCounter: function() {
+		render: function() {
 
-			var number = this.notifications.length || '',
-			     title = document.title.replace( /^\(\d\)\ /i, '' );
+			this.$( 'a[data-flyout]' ).html( this.template({ number: this.notifications.length || '' } ) );
 
-			this.$( '#notifications-number' ).text( number );
-			document.title = '(' + number + ') ' + title;
+			return this;
 		}
 	})
 } );
