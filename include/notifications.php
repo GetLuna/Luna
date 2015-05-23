@@ -34,6 +34,20 @@ function delete_notification($id) {
 }
 
 /**
+ * Mark a specific notification as viewed.
+ * 
+ * @since    1.1
+ * 
+ * @param    int    Notification ID
+ * 
+ * @return   boolean
+ */
+function read_notification($id) {
+
+	return LunaNotification::read($id);
+}
+
+/**
  * Get a specific notification.
  * 
  * Simple standalone function to avoid calling the class.
