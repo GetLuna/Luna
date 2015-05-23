@@ -398,6 +398,10 @@ _.extend( notifications.View, {
 
 		template: luna.template( 'notification-nav' ),
 
+		events: {
+			'click a[data-flyout]': '_refresh'
+		},
+
 		/**
 		 * Initialize the View
 		 * 
@@ -436,6 +440,20 @@ _.extend( notifications.View, {
 		},
 
 		/**
+		 * Refetch the collection when opening the flyout.
+		 * 
+		 * @param    object    JS 'click' Event
+		 */
+		_refresh: function( event ) {
+
+			if ( this.$el.hasClass( 'open' ) ) {
+				return;
+			}
+
+			this.update( event, { notifications: -1 } );
+		},
+
+		/**
 		 * Update the collection on heartbeat.
 		 * 
 		 * @param    object    Event
@@ -457,8 +475,6 @@ _.extend( notifications.View, {
 		 * 
 		 * We should override the complete view to avoid messing with
 		 * Bootstrap on handling the flyout dropdown.
-		 * 
-		 * @since    1.1
 		 * 
 		 * @return   Return itself to allow chaining.
 		 */
