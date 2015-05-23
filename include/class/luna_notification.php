@@ -83,7 +83,13 @@ class LunaNotification {
 	 */
 	private function init() {
 
+		global $luna_user;
+
 		$this->time = time();
+
+		if (isset($luna_user['id']) && !empty($luna_user['id'])) {
+			$this->user_id = $luna_user['id'];
+		}
 	}
 
 	/**
@@ -130,10 +136,40 @@ class LunaNotification {
 			return false;
 		}
 
-		$id = (int) $this->id;
-		$id = $db->escape($id);
+		$id      = (int) $this->id;
+		$user_id = (int) $this->user_id;
+		$id      = $db->escape($id);
+		$user_id = $db->escape($user_id);
 
-		$db->query('DELETE FROM '.$db->prefix.'notifications WHERE id='.$id) or error('Unable to remove notifications', __FILE__, __LINE__, $db->error());
+		$db->query('DELETE FROM '.$db->prefix.'notifications WHERE id='.$id.' AND user_id='.$user_id) or error('Unable to remove notifications', __FILE__, __LINE__, $db->error());
+
+		return $db->affected_rows();
+	}
+
+	/**
+	 * Set a notification as viewed.
+	 * 
+	 * This method always returns true except when the notification does not
+	 * exist.
+	 * 
+	 * @since    1.1
+	 * 
+	 * @return   int|boolean
+	 */
+	private function viewed() {
+
+		global $db;
+
+		if (empty($this->id)) {
+			return false;
+		}
+
+		$id      = (int) $this->id;
+		$user_id = (int) $this->user_id;
+		$id      = $db->escape($id);
+		$user_id = $db->escape($user_id);
+
+		$db->query('UPDATE '.$db->prefix.'notifications SET viewed=1 WHERE id='.$id.' AND user_id='.$user_id) or error('Unable to mark notification as read', __FILE__, __LINE__, $db->error());
 
 		return $db->affected_rows();
 	}
@@ -185,6 +221,25 @@ class LunaNotification {
 		$notification = new LunaNotification($notification);
 
 		return $notification->create();
+	}
+
+	/**
+	 * Mark a specific notification as read. Static method.
+	 * 
+	 * @since    1.1
+	 * 
+	 * @param    int    $id Notification ID.
+	 * 
+	 * @return   boolean
+	 */
+	public static function read($id) {
+
+		$notification = LunaNotification::get_instance($id);
+		if (!$notification) {
+			return false;
+		}
+
+		return (boolean) $notification->viewed();
 	}
 
 	/**
