@@ -31,7 +31,6 @@ require 'header.php';
 				<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
 				<a href="#dev" class="list-group-item"><span class="fa fa-fw fa-terminal"></span> Developers</a>
 				<a href="#others" class="list-group-item">Other improvements and notes</a>
-				<a href="#updates" class="list-group-item">Updates</a>
 			</div>
 		</div>
 	</div>
@@ -97,7 +96,7 @@ require 'header.php';
 						<p>We're introducing a brand new Notification API. This API will allow you to create new notification more easly from different locations. You can read all about it in the <a href="http://getluna.org/docs/notification.php">documentation</a>.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Langauge 2.0</h4>
+						<h4>Language 2.0</h4>
 						<p>This new version of Luna introduces a new way to translate Luna, you can now use applications like Poedit to translate Luna more easly. This means that previous translations won't work at all, and we're sorry for that, but it is for the better.</p>
 					</div>
 				</div>
