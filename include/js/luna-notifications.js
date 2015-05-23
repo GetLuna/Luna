@@ -228,16 +228,16 @@ _.extend( notifications.View, {
 		 */
 		initialize: function() {
 
-			this.listenTo( this.model, 'destroying',  this.destroying );
-			this.listenTo( this.model, 'undestroyed', this.undestroy );
-			this.listenTo( this.model, 'destroyed',   this.remove );
-			this.listenTo( this.model, 'read',        this.remove );
+			this.listenTo( this.model, 'destroying',  this._destroying );
+			this.listenTo( this.model, 'undestroyed', this._undestroy );
+			this.listenTo( this.model, 'destroyed',   this._remove );
+			this.listenTo( this.model, 'read',        this._remove );
 		},
 
 		/**
 		 * Colorize the notification while destroying.
 		 */
-		destroying: function() {
+		_destroying: function() {
 
 			this.$el.addClass( 'bg-danger' );
 		},
@@ -245,9 +245,16 @@ _.extend( notifications.View, {
 		/**
 		 * Destroy failed, uncolorize the notification
 		 */
-		undestroy: function() {
+		_undestroy: function() {
 
 			this.$el.removeClass( 'bg-danger' );
+		},
+
+		_remove: function() {
+
+			this.remove();
+
+			this.model.collection.fetch();
 		},
 
 		/**
