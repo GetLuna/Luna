@@ -401,7 +401,7 @@ class Installer {
 				'color'			=> array(
 					'datatype'		=> 'VARCHAR(25)',
 					'allow_null'	=> false,
-					'default'		=> '\'#0d4382\''
+					'default'		=> '\'#2788cb\''
 				),
 				'parent_id'		=> array(
 					'datatype'		=> 'INT',
@@ -1276,7 +1276,7 @@ class Installer {
 				'color_scheme'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '3'
+					'default'		=> '2'
 				),
 				'adapt_time'		=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1286,7 +1286,7 @@ class Installer {
 				'accent'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '3'
+					'default'		=> '2'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),
