@@ -70,7 +70,6 @@ function load_admin_nav($section, $page) {
 		
 	else
 		$page_title = $page;
-
 ?>
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
 	<div class="container">
@@ -86,10 +85,14 @@ function load_admin_nav($section, $page) {
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="<?php if ($section == 'backstage') echo 'active'; ?>"><a href="index.php"><span class="fa fa-fw fa-dashboard"></span> <?php echo $lang['Backstage'] ?></a></li>
-				<li class="<?php if ($section == 'content') echo 'active'; ?>"><a href="board.php"><span class="fa fa-fw fa-file"></span> <?php echo $lang['Content'] ?></a></li>
+				<?php if ($is_admin) { ?>
+					<li class="<?php if ($section == 'content') echo 'active'; ?>"><a href="board.php"><span class="fa fa-fw fa-file"></span> <?php echo $lang['Content'] ?></a></li>
+				<?php } else { ?>
+					<li class="<?php if ($section == 'content') echo 'active'; ?>"><a href="reports.php"><span class="fa fa-fw fa-file"></span> <?php echo $lang['Content'] ?></a></li>
+				<?php } ?>
 				<li class="<?php if ($section == 'users') echo 'active'; ?>"><a href="users.php"><span class="fa fa-fw fa-users"></span> <?php echo $lang['Users'] ?></a></li>
-				<li class="<?php if ($section == 'settings') echo 'active'; ?>"><a href="settings.php"><span class="fa fa-fw fa-cog"></span> <?php echo $lang['Settings'] ?></a></li>
-				<li class="<?php if ($section == 'maintenance') echo 'active'; ?>"><a href="maintenance.php"><span class="fa fa-fw fa-coffee"></span> <?php echo $lang['Maintenance'] ?></a></li>	
+				<?php if ($is_admin) { ?><li class="<?php if ($section == 'settings') echo 'active'; ?>"><a href="settings.php"><span class="fa fa-fw fa-cog"></span> <?php echo $lang['Settings'] ?></a></li><?php } ?>
+				<?php if ($is_admin) { ?><li class="<?php if ($section == 'maintenance') echo 'active'; ?>"><a href="maintenance.php"><span class="fa fa-fw fa-coffee"></span> <?php echo $lang['Maintenance'] ?></a></li><?php } ?>
 <?php
 
 	// See if there are any plugins
@@ -144,24 +147,24 @@ function load_admin_nav($section, $page) {
 			<?php if ($section == 'backstage') { ?>
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'index') echo ' class="active"' ?>><a href="index.php"><span class="fa fa-fw fa-tachometer"></span><span class="hidden-xs"> <?php echo $lang['Backstage'] ?></span></a></li>
-				<li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-fw fa-info-circle"></span><span class="hidden-xs"> <?php echo $lang['System info'] ?></span></a></li>
-				<li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-fw fa-cloud-upload"></span><span class="hidden-xs"> <?php echo $lang['Update'] ?></span></a></li>
+				<?php if ($is_admin) { ?><li<?php if($page == 'stats') echo ' class="active"' ?>><a href="system.php"><span class="fa fa-fw fa-info-circle"></span><span class="hidden-xs"> <?php echo $lang['System info'] ?></span></a></li>
+				<li<?php if($page == 'update') echo ' class="active"' ?>><a href="update.php"><span class="fa fa-fw fa-cloud-upload"></span><span class="hidden-xs"> <?php echo $lang['Update'] ?></span></a></li><?php } ?>
 				<li class="pull-right<?php if($page == 'about') echo ' active' ?>"><a href="about.php"><span class="luni luni-fw luni-logo"></span><span class="hidden-xs"> <?php echo $lang['About'] ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'content') { ?>
 			<ul class="nav nav-tabs" role="tablist">
-				<li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-fw fa-sort-amount-desc"></span><span class="hidden-xs"> <?php echo $lang['Board'] ?></span></a></li>
+				<?php if ($is_admin) { ?><li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-fw fa-sort-amount-desc"></span><span class="hidden-xs"> <?php echo $lang['Board'] ?></span></a></li><?php } ?>
 				<li<?php if($page == 'moderate') echo ' class="active"' ?>><a href="moderate.php"><span class="fa fa-fw fa-tasks"></span><span class="hidden-xs"> <?php echo $lang['Moderate'] ?></span></a></li>
-				<li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><span class="fa fa-fw fa-eye-slash"></span><span class="hidden-xs"> <?php echo $lang['Censoring'] ?></span></a></li>
+				<?php if ($is_admin) { ?><li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><span class="fa fa-fw fa-eye-slash"></span><span class="hidden-xs"> <?php echo $lang['Censoring'] ?></span></a></li><?php } ?>
 				<li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><span class="fa fa-fw fa-exclamation-triangle"></span><span class="hidden-xs"> <?php echo $lang['Reports'] ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'users') { ?>
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'users') echo ' class="active"' ?>><a href="users.php"><span class="fa fa-fw fa-search"></span><span class="hidden-xs"> <?php echo $lang['Search'] ?></span></a></li>
-				<li<?php if($page == 'tools') echo ' class="active"' ?>><a href="tools.php"><span class="fa fa-fw fa-wrench"></span><span class="hidden-xs"> <?php echo $lang['Tools'] ?></span></a></li>
+				<?php if ($is_admin) { ?><li<?php if($page == 'tools') echo ' class="active"' ?>><a href="tools.php"><span class="fa fa-fw fa-wrench"></span><span class="hidden-xs"> <?php echo $lang['Tools'] ?></span></a></li>
 				<li<?php if($page == 'ranks') echo ' class="active"' ?>><a href="ranks.php"><span class="fa fa-fw fa-chevron-up"></span><span class="hidden-xs"> <?php echo $lang['Ranks'] ?></span></a></li>
 				<li<?php if($page == 'groups') echo ' class="active"' ?>><a href="groups.php"><span class="fa fa-fw fa-group"></span><span class="hidden-xs"> <?php echo $lang['Groups'] ?></span></a></li>
-				<li<?php if($page == 'permissions') echo ' class="active"' ?>><a href="permissions.php"><span class="fa fa-fw fa-check-circle"></span><span class="hidden-xs"> <?php echo $lang['Permissions'] ?></span></a></li>
+				<li<?php if($page == 'permissions') echo ' class="active"' ?>><a href="permissions.php"><span class="fa fa-fw fa-check-circle"></span><span class="hidden-xs"> <?php echo $lang['Permissions'] ?></span></a></li><?php } ?>
 				<li<?php if($page == 'bans') echo ' class="active"' ?>><a href="bans.php"><span class="fa fa-fw fa-ban"></span><span class="hidden-xs"> <?php echo $lang['Bans'] ?></span></a></li>
 			</ul>
 			<?php } if ($section == 'settings') { ?>
@@ -187,7 +190,6 @@ function load_admin_nav($section, $page) {
 <div class="content">
 	<div class="container">
 		<div class="row">
-
 <?php
 
 }
