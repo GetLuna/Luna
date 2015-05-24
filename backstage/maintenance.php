@@ -12,7 +12,7 @@ define('FORUM_DISABLE_BUFFERING', 1);
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$is_admin)
 	header("Location: login.php");
 $action = isset($_REQUEST['action']) ? luna_trim($_REQUEST['action']) : '';
 
