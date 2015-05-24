@@ -13,7 +13,7 @@ require FORUM_ROOT.'include/common.php';
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Update']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Update', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'about');
@@ -26,274 +26,94 @@ require 'header.php';
 				<h3 class="panel-title">Navigation</h3>
 			</div>
 			<div class="list-group">
-				<a href="#brand" class="list-group-item"><span class="luni luni-fw luni-logo"></span> New brand</a>
-				<a href="#users" class="list-group-item"><span class="fa fa-fw fa-user"></span> Users</a>
-				<a href="#inbox" class="list-group-item"><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</a>
 				<a href="#board" class="list-group-item"><span class="fa fa-fw fa-align-justify"></span> Board</a>
-				<a href="#management" class="list-group-item"><span class="fa fa-fw fa-coffee"></span> Management</a>
 				<a href="#backstage" class="list-group-item"><span class="fa fa-fw fa-dashboard"></span> Backstage</a>
 				<a href="#theme" class="list-group-item"><span class="fa fa-fw fa-paint-brush"></span> Themes</a>
+				<a href="#dev" class="list-group-item"><span class="fa fa-fw fa-terminal"></span> Developers</a>
 				<a href="#others" class="list-group-item">Other improvements and notes</a>
-				<a href="#updates" class="list-group-item">Updates</a>
 			</div>
 		</div>
 	</div>
 	<div class="col-sm-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.0 Aero</h3>
+				<h3 class="panel-title">About Luna 1.1 Bittersweet Shimmer</h3>
 			</div>
 			<div class="panel-body panel-about">
-				<a id="brand"></a><h3><span class="luni luni-fw luni-logo"></span>New brand</h3>
-				<img class="img-responsive" src="../img/about/brand.png" />
-				<p>Welcome to the first stable release of the third generation of our board software! This release officially rebrands ModernBB to Luna. We've also decided to use version 1.0 again, instead of 4.0. Now, this is everything but an interesting feature, so read on to the more awesome parts of our giant changelog:</p>
-				<a id="users"></a><h3><span class="fa fa-fw fa-user"></span> User features</h3>
-				<div class="row">
-					<div class="col-sm-6">
-						<h4>Settings</h4>
-						<p>Personality settings and board settings can now be saved all at once, these pages are also more to-the-point than ever before. The profile has been extended with a notification system, too!</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>A more fun design</h4>
-						<p>The design of the profile has been improved to give a little bit more color to your users' profile. They need to fill in most of the fields for it, though.</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>Make it yours</h4>
-						<p>As a user, you can now select your own color in the Me settings. When a theme is compatible with this feature, it can use this color throughout the board to reflect your preferences.</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>Notifications</h4>
-						<p>Comments on your thread? Stuff you have to know? Notifications will help you out. Luna now shows notifications in the main interface and under Me, we have a full view of notifications.</p>
-					</div>
-				</div>
-				<a id="inbox"></a><h3><span class="fa fa-fw fa-paper-plane-o"></span> Inbox</h3>
-				<img class="img-responsive" src="../img/about/inbox.png" />
-				<p>Inbox is the new private messaging system included in Luna. It allows user to connect to other users through Luna without the need to exchange an email address or any other personal data.</p>
 				<a id="board"></a><h3><span class="fa fa-fw fa-align-justify"></span> Board</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Sub sections</h4>
-						<p>Luna provides support for sub sections. You can add an unlimited amount of sections to a parent sections, making the structure more clear.</p>
+						<h4>Night mode</h4>
+						<p>Reading in a dark environment can be a pain when the design of the website you're looking at is bright. And Luna's default design is bright. So we're introducing a "Night mode", which allows your users to make the interface darker permanent, or depending on the time of day. This also works for the Backstage.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Section colors</h4>
-						<p>When you're setting up a section, you can give it a color to make it stand out of the crowd, which are the other sections, in this case.</p>
-					</div>
-				</div>
-				<h4>Emojis</h4>
-				<img class="img-responsive" src="../img/about/emoji.png" />
-				<p>The emoticons we introduced in ModernBB 2.0 have served well, but now, it's time to move on to the next generation: emojis. Unlike the regular emoticons, these icons don't take any bandwidth as they are a font and not an image, which makes them also ready for high DPI screens and improve performance. The Emojis also change according to your device. If you're using Windows or Windows Phone, they look like the emoticons shown above. Unlike emoticons, you can change the size of the emojis across your whole board (and they'll stay nice). Emojis will be, however, optional and are disabled by default due to old platforms like Windows 7 not completely supporting them.</p>
-				<div class="row">
-					<div class="col-sm-6">
-						<h4>Smarter editor</h4>
-						<img class="img-responsive" src="../img/about/editor.png" />
-						<p>The editor will act smarter than it did before now. When adding a list, for example, it will also add the first list item. For code boxes, it adds an additional white line.</p>
+						<h4>Contact links</h4>
+						<p>When an user adds a Twitter, Facebook, Microsoft Account, e-mail, website or Google+ account to his/here profile, the add-ons in his/here profile are now clickable to give you and your users easy access to your user's accounts on these social networks.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Sharing code</h4>
-						<img class="img-responsive" src="../img/about/syntax.png" />
-						<p>Do your users want to share some HTML, PHP, CSS or JavaScript? Well, Luna will show these languages nicely with a brand new syntax highlighter based on PrismJS.</p>
-					</div>
-				</div>
-				<a id="management"></a><h3><span class="fa fa-fw fa-coffee"></span> Management</h3>
-				<div class="row">
-					<div class="col-sm-6">
-						<h4>Mainstage independent</h4>
-						<p>The moderation tools are now part of the Backstage and thus no longer depending on the Mainstage. This makes the way they work more unified and theme developers don't need to worry about them, either. In the future, this will allow us to add new features more easily without disturbing theme developers.</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>Moderation tools</h4>
-						<p>The moderation tools have been improved with a brand new design and additional improvements. Most of the changes were done due to the move from Mainstage to Backstage, but they also contain (a lot of) usability improvements.</p>
-					</div>
-					<div class="col-sm-12">
-						<h4>Soft delete</h4>
-						<p>Ever had to delete a post but didn't want to delete it for ever? Now you don't have to anymore. Luna introduces soft delete support. Posts or topics will be hidden from user's view and only visible for admins and moderators. They'll be marked in a different color (similar to reported posts).</p>
+						<h4>Notifications 2.0</h4>
+						<p>The notification system, new since Luna 1.0, has received a major revamp. The new system checks every minute for new notifications. It also allows you to mark a notification as readed or remove it completely right from the fly-out.</p>
 					</div>
 				</div>
 				<a id="backstage"></a><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3>
-				<img class="img-responsive" src="../img/about/backstage.png" />
-				<p>The Backstage has been redesigned from scratch with an all new design and more focus on management. The Backstage has now more visual appeal due to icons. New features have jumped into the Backstage, like <i>Admin Notes</i> and more. However, we did remove the Backstage Accent feature. Sorry.</p>
 				<div class="row">
-					<div class="col-sm-6">
-						<h4>New menu management</h4>
-						<p>The old "Additional menu items" feature had to give its position up to our new, more advanced and easier to use "Menu" settings page under settings. Here, you can manage your boards menu easier than ever before.</p>
+					<div class="col-sm-12">
+						<h4>Update whenever, wherever</h4>
+						<p>You know when you're somewhere else, without access to your FTP, and yet, you want to update your board to the latest and greatest version of Luna? Well, that's not a problem anymore. Luna now has a build-in one-click update system so you can update right from the Backstage.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Admin Notes</h4>
-						<p>The redesigned Backstage index doesn't come with just a simple redesign, but with a new feature, we call "Admin notes". Here, admins can write down some important things to remember for the next time they visit.</p>
+						<h4>A personal touch</h4>
+						<p>When a theme supports more then one accent color, you can choose the default color your board should have. This applies to guests and new users.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Improved workflow</h4>
-						<p>You can now save ranks all at once instead of having to update them one by one. Other pages have got a redesign to bring a more uniform Backstage.</p>
+						<h4>Backstage accents</h4>
+						<p>Similar to the Mainstage design, you can now change the accent color of the Backstage. We also took the time to make a small update to the design.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Forum colors</h4>
-						<p>Forums can now be given a color, when the theme is compatible with this, the color can be used throughout the design to give the forum its own personality.</p>
+						<h4>Announcements 2.0</h4>
+						<p>Announcements have been improved with a couple of new options. When a theme supports it, you can choose between 5 styles for the announcement to be displayed in. Further, you can now set a title to announcements.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Ready for smallness...</h4>
-						<img class="img-responsive" src="../img/about/smallness.png" />
-						<p>While the Backstage from ModernBB was already responsive and ready for your phone, we've made improvements to make your experience even better.</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>...and ready for you</h4>
-						<img class="img-responsive" src="../img/about/backstagefirstrun.png" />
-						<p>New to Luna? We'll give you a hand with the important settings you need to get your community ready to kick off and grow beyond! Of course, you can remove it too.</p>
-					</div>
-					<div class="col-sm-5">
-						<h4>Backstage login</h4>
-						<p>Did your theme break the login form? No worries, there now is a login form build into the Backstage, so you can change the theme back or manage your forum through there.</p>
-					</div>
-					<div class="col-sm-7">
-						<h4>Maintenance options</h4>
-						<p>We're adding a couple of new maintenance options to Luna under the new category "Maintenance" in the Backstage. You can find the contents from the Maintenance-page that used to be under Settings here, but also manage your database and other features to clean up a bit.</p>
+						<h4>Errors 2.0</h4>
+						<p>Some errors, mostly the ones your users could run upon or the ones that simply don't need to be a problem, have been revamped to look better and give you a direct action to solve the issue, or just continue if possible.</p>
 					</div>
 				</div>
 				<a id="theme"></a><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Theme Engine 6</h4>
-						<p>Luna includes, what we like to call "Theme Engine 6", which is the successor to ModernBB 3.6' "Style Engine 5.2". The new core of Luna allows extended customization, without losing the ability to upgrade.</p>
+						<h4>Luna/Sunrise 1.1</h4>
+						<p>We've refined our default themes based on user feedback and they look better then ever. Luna and Sunrise have been optimized to support the newest features from Luna 1.1.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>New developer tools</h4>
-						<p>The possibilities for developing your own theme have been extended drastically! You can do whatever you want now. Luna won't force you to use Bootstrap anymore, as the choice is now up to you.</p>
-					</div>
-					<div class="col-sm-6">
-						<h4>Child themes</h4>
-						<p>Luna comes with support for child-themes. Thanks to this, themes can be based upon one another without the need to hae duplicated files for 2 themes. Luna's own Luna (parent) and Sunrise (child) themes are an example of this new behavior.</p>
+						<h4>Theme Engine <s>2.0</s> 6.1</h4>
+						<p>After the major revamp from Aero, Bittersweet Shimmer continues to improve our themes with a more simplified system, better support for accents, night mode and so much more.</p>
 					</div>
 				</div>
-				<h4>Luna</h4>
-				<img class="img-responsive" src="../img/about/sunrise.png" />
-				<p>Due to the new Theme Engine, we had to rebuild our styles anyway, so why not throw in something new and fresh? That's why you're now free to use our brand new default theme, Luna, which will replace Random. Luna uses new features from Luna to show off its capabilities. For example, Luna doesn't replace just Random, but also Awesome, Kind, Luna (the theme from ModernBB that is), Pinkie, Magic, Radical, Happy and Shy. In 1 theme, you get 12 different colorschemes available to you and your users.</p>
+				<a id="dev"></a><h3><span class="fa fa-fw fa-terminal"></span> Developers</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Revamped index</h4>
-						<p>The index has been redesigned to replace not only the original index, but also the forum view. This is a Luna-thing, and thus, other themes can use the classic Index > Forum > Topic structure. Luna provides this all on one page, though. Also taking a step down from categories.</p>
+						<h4>Notification API</h4>
+						<p>We're introducing a brand new Notification API. This API will allow you to create new notification more easly from different locations. You can read all about it in the <a href="http://getluna.org/docs/notification.php">documentation</a>.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Fresh ideas</h4>
-						<p>Luna will give you a refreshed experience from the ground up. Because not just the index has been redone, every page has. The result is a beautiful native experience that uses all power Luna has to provide. And as it is a first version, expect more in later updates.</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<h4>Sunrise</h4>
-						<p>Sunrise is a theme based on Luna, however, it uses a more classic view on forum software. This is a nice team if you want to kick off with a fresh design, yet like the old way of working with forum software better.</p>
+						<h4>Language 2.0</h4>
+						<p>This new version of Luna introduces a new way to translate Luna, you can now use applications like Poedit to translate Luna more easly. This means that previous translations won't work at all, and we're sorry for that, but it is for the better.</p>
 					</div>
 				</div>
 				<a id="others"></a><h3>Other improvements and notes</h3>
 				<div class="row">
-					<div class="col-sm-6">
-						<h4>Installation</h4>
-						<p>We've revamped the code behind the installer to be more modern (using fancy PHP 5 stuff like classes), while you won't notice a lot in these changes, it is a step forward.</p>
+					<div class="col-sm-12">
+						<h4>And a lot of other small changes</h4>
+						<p>However, since Luna 1.1 has its focus on refinements, there are also a lot of other small improvements all over the board (no pun intended). This includes better performance, more developer options, small visual changes and fixes, and so much more.</p>
 					</div>
-					<div class="col-sm-6">
-						<h4>Security first</h4>
-						<p>Not only does Luna come with security fixes, it also has some features to warn you for possible security threaths like the <code>install.php</code> file after installation and a writeabe <code>config.php</code>.</p>
-					</div>
-				</div>
-				<div class="row">
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.4.<br />
-						<b>Lunicons</b> version 0.0.0 has been added.<br />
-						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
-						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
-						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4329.</p>
+						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4664.<br />
+						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>284 bugs have been fixed.</p>
-						<h4>Security fixes</h4>
-						<p>5 security issue has been fixed.</p>
-					</div>
-				</div>
-				<hr />
-				<a id="updates"></a><h3>Updates</h3>
-				<h4>Luna 1.0.1 &middot Build 4297</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 1</span> Lunicons v0.0.0 has been added<br />
-							<span class="label label-primary">Update 1</span> A design flaw in the editor has been fixed<br />
-							<span class="label label-primary">Update 1</span> Emoticons now have tooltips<br />
-							<span class="label label-primary">Update 1</span> The index now shows the 30 latest active topics<br />
-							<span class="label label-primary">Update 1</span> Fix for Backstage menu when extensions are added<br />
-							<span class="label label-primary">Update 1</span> Improved mail form usability, updated tab order
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 1</span> An update to CDNs has been made for SSL support<br />
-							<span class="label label-primary">Update 1</span> Remove an obsolete query from the update script<br />
-							<span class="label label-primary">Update 1</span> Removes the beta tag from "About"<br />
-							<span class="label label-primary">Update 1</span> Small changes to the notification center for new icons<br />
-							<span class="label label-primary">Update 1</span> Fix "Do not show again" bug on the index
-						</p>
-					</div>
-				</div>
-				<h4>Luna 1.0.2 &middot Build 4318</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 2</span> Results when searching on topics are now unique<br />
-							<span class="label label-primary">Update 2</span> "Send to" now has focus when writing a message<br />
-							<span class="label label-primary">Update 2</span> Users now get a mail to notify for new messages<br />
-							<span class="label label-primary">Update 2</span> The installer has been updated
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 2</span> Visual improvements to secondary navbars<br />
-							<span class="label label-primary">Update 2</span> Visual improvements to dropdowns in mobile view<br />
-							<span class="label label-primary">Update 2</span> Fixes issue with undefined index in Inbox<br />
-							<span class="label label-primary">Update 2</span> Fixes issue that causes themes to reset when updating
-						</p>
-					</div>
-				</div>
-				<h4>Luna 1.0.3 &middot Build 4324</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 3</span> Warning when Slow Ring is out-of-date<br />
-							<span class="label label-primary">Update 3</span> Fix bug when canceling quotes<br />
-							<span class="label label-primary">Update 3</span> Change behavior of login redirect
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 3</span> Fix inconsitent icon usage in Backstage<br />
-							<span class="label label-primary">Update 3</span> Update placement of button in user settings
-						</p>
-					</div>
-				</div>
-				<h4>Luna 1.0.4 &middot Build 4329</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 4</span> jQuery has been updated to version 2.1.4
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 4</span> The "Black" color scheme is now called "Dark grey"
-						</p>
-					</div>
-				</div>
-				<h4>Luna 1.0.5 &middot Build 4332</h4>
-				<div class="row">
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 5</span> Fixes issues when posting a new post
-						</p>
-					</div>
-					<div class="col-sm-6">
-						<p>
-							<span class="label label-primary">Update 5</span> Adds icons to (soft) delete interfaces
-						</p>
+						<p>2 bugs have been fixed.</p>
 					</div>
 				</div>
 			</div>

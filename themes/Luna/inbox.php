@@ -16,34 +16,34 @@ if (!defined('FORUM'))
 	load_me_nav('inbox');
 ?>
 </div>
-<div class="col-sm-9">
+<div class="col-sm-9 profile">
 	<?php load_inbox_nav('inbox'); ?>
 	<p><span class="pages-label"><?php echo paginate($num_pages, $page, 'inbox.php?') ?></span></p>
 	<form method="post" action="inbox.php">
 		<fieldset>
             <div class="btn-toolbar">
             	<div class="btn-group">
-					<button type="submit" name="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Mark as read select'] ?></button>
-					<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php echo $lang['Mark as unread select'] ?></button>
+					<button type="submit" name="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as read', 'luna') ?></button>
+					<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php _e('Mark as unread', 'luna') ?></button>
                 </div>
                 <div class="btn-group">
-					<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></a>
+					<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
 					<?php include load_page('inbox-delete-post.php'); ?>
                 </div>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Inbox'] ?></h3>
+					<h3 class="panel-title"><?php _e('Inbox', 'luna') ?></h3>
 				</div>
 				<input type="hidden" name="box" value="0" />
 				<table class="table">
 					<thead>
 						<tr>
-							<th><?php echo $lang['Messages'] ?></th>
-							<th><?php echo $lang['Sender'] ?></th>
-							<th><?php echo $lang['Receiver'] ?></th>
-							<th><?php echo $lang['Last post'] ?></th>
-							<th><label style="display: inline; white-space: nowrap;"><?php echo $lang['Select'] ?> <input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></label></th>
+							<th><?php _e('Messages', 'luna') ?></th>
+							<th><?php _e('Sender', 'luna') ?></th>
+							<th><?php _e('Receiver(s)', 'luna') ?></th>
+							<th><?php _e('Last post', 'luna') ?></th>
+							<th><label style="display: inline; white-space: nowrap;"><?php _e('Select', 'luna') ?> <input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></label></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -68,7 +68,7 @@ if ($db->num_rows($result)) {
 					   '</a>';
 		}
 		
-		$last_post = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
+		$last_post = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
 ?>
 						<tr class="<?php echo $item_status ?>">
 							<td>
@@ -88,7 +88,7 @@ if ($db->num_rows($result)) {
 			if ($luna_user['g_view_users'] == '1') {
 				$ids_list = explode(', ', $cur_mess['receiver_id']);
 				$sender_list = explode(', ', $cur_mess['receiver']);
-				$sender_list = str_replace('Deleted', $lang['Deleted'], $sender_list);
+				$sender_list = str_replace('Deleted', __('Deleted', 'luna'), $sender_list);
 				
 				for($i = '0'; $i < count($ids_list); $i++){
 				echo '<a href="profile.php?id='.$ids_list[$i].'">'.luna_htmlspecialchars($sender_list[$i]).'</a>';
@@ -106,7 +106,7 @@ if ($db->num_rows($result)) {
 <?php
 	}
 } else
-	echo "\t".'<tr><td colspan="4">'.$lang['No messages'].'</td></tr>'."\n";
+	echo "\t".'<tr><td colspan="4">'.__('No messages', 'luna').'</td></tr>'."\n";
 ?>
 					</tbody>
 				</table>

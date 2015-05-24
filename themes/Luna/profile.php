@@ -16,10 +16,15 @@ if (!defined('FORUM'))
 	load_me_nav('profile');
 ?>
 </div>
-<div class="col-sm-9">
+<div class="profile col-sm-9">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a href="profile.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-user"></span> <?php echo luna_htmlspecialchars($user['username']) ?></a>
+		</div>
+	</nav>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['About user'] ?></h3>
+			<h3 class="panel-title"><?php _e('About user', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
 			<?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_personality)."\n" ?>
@@ -28,7 +33,7 @@ if (!defined('FORUM'))
 <?php if (!empty($user_messaging)): ?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Contact']; ?></h3>
+			<h3 class="panel-title"><?php _e('Contact', 'luna'); ?></h3>
 		</div>
 		<div class="panel-body">
 			<p><?php echo implode("\n\t\t\t\t\t\t\t".'<br />', $user_messaging)."\n" ?></p>
@@ -42,7 +47,7 @@ if ($luna_config['o_signatures'] == '1') {
 ?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Signature']; ?></h3>
+			<h3 class="panel-title"><?php _e('Signature', 'luna'); ?></h3>
 		</div>
 		<div class="panel-body">
 			<?php echo $user_signature ?>

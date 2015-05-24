@@ -11,9 +11,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
-	message($lang['No view'], false, '403 Forbidden');
-
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
 
 // Get list of forums and topics with new posts since last visit
 if (!$luna_user['is_guest']) {
@@ -44,9 +42,9 @@ if (!$luna_user['is_guest']) {
 }
 
 if ($luna_config['o_feed_type'] == '1')
-	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;type=rss" title="'.$lang['RSS active topics feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;type=rss" title="'.__('RSS active topics feed', 'luna').'" />');
 elseif ($luna_config['o_feed_type'] == '2')
-	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;type=atom" title="'.$lang['Atom active topics feed'].'" />');
+	$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;type=atom" title="'.__('Atom active topics feed', 'luna').'" />');
 
 $forum_actions = array();
 
@@ -76,7 +74,7 @@ if ($id != 0) {
 		$result = $db->query('SELECT f.forum_name, f.moderators, f.num_topics, f.sort_by, f.color, fp.post_topics, 0 AS is_subscribed FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
-		message($lang['Bad request'], false, '404 Not Found');
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
 	$cur_forum = $db->fetch_assoc($result);
 	
@@ -101,7 +99,7 @@ if ($id != 0) {
 	
 	// Can we or can we not post new topics?
 	if (($cur_forum['post_topics'] == '' && $luna_user['g_post_topics'] == '1') || $cur_forum['post_topics'] == '1' || $is_admmod)
-		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?fid='.$id.'">'.$lang['Post new topic'].'</a>'."\n";
+		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?fid='.$id.'">'.__('Post topic', 'luna').'</a>'."\n";
 	else
 		$post_link = '';
 	
@@ -119,21 +117,21 @@ if ($id != 0) {
 	$paging_links = paginate($num_pages, $p, 'index.php?id='.$id);
 	
 	if ($luna_config['o_feed_type'] == '1')
-		$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=rss" title="'.$lang['RSS forum feed'].'" />');
+		$page_head = array('feed' => '<link rel="alternate" type="application/rss+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=rss" title="'.__('RSS forum feed', 'luna').'" />');
 	elseif ($luna_config['o_feed_type'] == '2')
-		$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=atom" title="'.$lang['Atom forum feed'].'" />');
+		$page_head = array('feed' => '<link rel="alternate" type="application/atom+xml" href="extern.php?action=feed&amp;fid='.$id.'&amp;type=atom" title="'.__('Atom forum feed', 'luna').'" />');
 	
 	$forum_actions = array();
 	
 	if (!$luna_user['is_guest']) {
 		if ($luna_config['o_forum_subscriptions'] == '1') {
 			if ($cur_forum['is_subscribed'])
-				$forum_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.$lang['Unsubscribe'].'</a>';
+				$forum_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.__('Unsubscribe', 'luna').'</a>';
 			else
-				$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.'">'.$lang['Subscribe'].'</a>';
+				$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.'">'.__('Subscribe', 'luna').'</a>';
 		}
 	
-		$forum_actions[] = '<a href="misc.php?action=markforumread&amp;fid='.$id.'">'.$lang['Mark as read'].'</a>';
+		$forum_actions[] = '<a href="misc.php?action=markforumread&amp;fid='.$id.'">'.__('Mark as read', 'luna').'</a>';
 	}
 	
 	$forum_id = $id;

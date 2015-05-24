@@ -16,9 +16,9 @@ require FORUM_ROOT.'include/common.php';
 $section = isset($_GET['section']) ? $_GET['section'] : null;
 
 if ($luna_user['g_read_board'] == '0')
-	message($lang['No view'], false, '403 Forbidden');
+	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
 elseif ($luna_user['g_search'] == '0')
-	message($lang['No search permission'], false, '403 Forbidden');
+	message(__('You do not have permission to use the search feature.', 'luna'), false, '403 Forbidden');
 
 require FORUM_ROOT.'include/search_idx.php';
 
@@ -40,7 +40,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 	if (isset($_GET['search_id'])) {
 		$search_id = intval($_GET['search_id']);
 		if ($search_id < 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	}
 	// If it's a regular search (keywords and/or author)
 	elseif ($action == 'search') {
@@ -54,7 +54,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			$author = '';
 
 		if (!$keywords && !$author)
-			message($lang['No terms']);
+			message(__('You have to enter at least one keyword and/or an author to search for.', 'luna'));
 
 		if ($author)
 			$author = str_replace('*', '%', $author);
@@ -67,15 +67,15 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 	elseif ($action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions') {
 		$user_id = (isset($_GET['user_id'])) ? intval($_GET['user_id']) : $luna_user['id'];
 		if ($user_id < 2)
-			message($lang['Bad request'], false, '404 Not Found');
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		// Subscribed topics can only be viewed by admins, moderators and the users themselves
 		if ($action == 'show_subscriptions' && !$luna_user['is_admmod'] && $user_id != $luna_user['id'])
-			message($lang['No permission'], false, '403 Forbidden');
+			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 	} elseif ($action == 'show_recent')
 		$interval = isset($_GET['value']) ? intval($_GET['value']) : 86400;
 	elseif ($action != 'show_new' && $action != 'show_unanswered')
-		message($lang['Bad request'], false, '404 Not Found');
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// If a valid search_id was supplied we attempt to fetch the search results from the db
 	if (isset($search_id)) {
@@ -94,7 +94,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 			unset($temp);
 		} else
-			message($lang['No hits']);
+			message(__('Your search returned no hits.', 'luna'));
 	} else {
 		$keyword_results = $author_results = array();
 
@@ -104,7 +104,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		if (!empty($author) || !empty($keywords)) {
 			// Flood protection
 			if ($luna_user['last_search'] && (time() - $luna_user['last_search']) < $luna_user['g_search_flood'] && (time() - $luna_user['last_search']) >= 0)
-				message(sprintf($lang['Search flood'], $luna_user['g_search_flood'], $luna_user['g_search_flood'] - (time() - $luna_user['last_search'])));
+				message(sprintf(__('At least %s seconds have to pass between searches. Please wait %s seconds and try searching again.', 'luna'), $luna_user['g_search_flood'], $luna_user['g_search_flood'] - (time() - $luna_user['last_search'])));
 
 			if (!$luna_user['is_guest'])
 				$db->query('UPDATE '.$db->prefix.'users SET last_search='.time().' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
@@ -144,7 +144,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$keywords_array = split_words($keywords, false);
 
 				if (empty($keywords_array))
-					message($lang['No hits']);
+					message(__('Your search returned no hits.', 'luna'));
 
 				// Should we search in message body or topic subject specifically?
 				$search_in_cond = ($search_in) ? (($search_in > 0) ? ' AND m.subject_match = 0' : ' AND m.subject_match = 1') : '';
@@ -219,7 +219,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			}
 
 			// If it's a search for author name (and that author name isn't Guest)
-			if ($author && $author != 'guest' && $author != utf8_strtolower($lang['Guest'])) {
+			if ($author && $author != 'guest' && $author != utf8_strtolower(__('Guest', 'luna'))) {
 				switch ($db_type) {
 					case 'pgsql':
 						$result = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username ILIKE \''.$db->escape($author).'\'') or error('Unable to fetch users', __FILE__, __LINE__, $db->error());
@@ -266,7 +266,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 			$num_hits = count($search_ids);
 			if (!$num_hits)
-				message($lang['No hits']);
+				message(__('Your search returned no hits.', 'luna'));
 		} elseif ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered') {
 			$search_type = array('action', $action);
 			$show_as = 'topics';
@@ -277,13 +277,13 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			// If it's a search for new posts since last visit
 			if ($action == 'show_new') {
 				if ($luna_user['is_guest'])
-					message($lang['No permission'], false, '403 Forbidden');
+					message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.$luna_user['last_visit'].' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message($lang['No new posts']);
+					message(__('There are no topics with new posts since your last visit.', 'luna'));
 			}
 			// If it's a search for recent posts (in a certain time interval)
 			elseif ($action == 'show_recent') {
@@ -291,7 +291,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message($lang['No recent posts']);
+					message(__('No new posts have been made within the last 24 hours.', 'luna'));
 			}
 			// If it's a search for posts by a specific user ID
 			elseif ($action == 'show_user_posts') {
@@ -301,7 +301,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message($lang['No user posts']);
+					message(__('There are no posts by this user in this forum.', 'luna'));
 
 				// Pass on the user ID so that we can later know whose posts we're searching for
 				$search_type[2] = $user_id;
@@ -312,7 +312,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message($lang['No user topics']);
+					message(__('There are no topics by this user in this forum.', 'luna'));
 
 				// Pass on the user ID so that we can later know whose topics we're searching for
 				$search_type[2] = $user_id;
@@ -320,13 +320,13 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			// If it's a search for subscribed topics
 			elseif ($action == 'show_subscriptions') {
 				if ($luna_user['is_guest'])
-					message($lang['Bad request'], false, '404 Not Found');
+					message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$user_id.') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message($lang['No subscriptions']);
+					message(__('This user is currently not subscribed to any topics.', 'luna'));
 
 				// Pass on user ID so that we can later know whose subscriptions we're searching for
 				$search_type[2] = $user_id;
@@ -337,7 +337,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message($lang['No unanswered']);
+					message(__('There are no unanswered posts in this forum.', 'luna'));
 			}
 
 			$search_ids = array();
@@ -346,7 +346,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 			$db->free_result($result);
 		} else
-			message($lang['Bad request'], false, '404 Not Found');
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 
 		// Prune "old" search results
@@ -389,7 +389,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 	// If we're on the new posts search, display a "mark all as read" link
 	if (!$luna_user['is_guest'] && $search_type[0] == 'action' && $search_type[1] == 'show_new')
-		$forum_actions[] = '<a href="misc.php?action=markread">'.$lang['Mark as read'].'</a>';
+		$forum_actions[] = '<a href="misc.php?action=markread">'.__('Mark as read', 'luna').'</a>';
 
 	// Fetch results to display
 	if (!empty($search_ids)) {
@@ -435,13 +435,13 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 			$search_set[] = $row;
 
 		$crumbs_text = array();
-		$crumbs_text['show_as'] = $lang['Search'];
+		$crumbs_text['show_as'] = __('Search', 'luna');
 
 		if ($search_type[0] == 'action') {
 			if ($search_type[1] == 'show_user_topics')
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$search_type[2].'">'.sprintf($lang['Quick search show_user_topics'], luna_htmlspecialchars($search_set[0]['poster'])).'</a>';
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$search_type[2].'">'.sprintf(__('Topics by %s', 'luna'), luna_htmlspecialchars($search_set[0]['poster'])).'</a>';
 			elseif ($search_type[1] == 'show_user_posts')
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$search_type[2].'">'.sprintf($lang['Quick search show_user_posts'], luna_htmlspecialchars($search_set[0]['pposter'])).'</a>';
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$search_type[2].'">'.sprintf(__('Posts by %s', 'luna'), luna_htmlspecialchars($search_set[0]['pposter'])).'</a>';
 			elseif ($search_type[1] == 'show_subscriptions') {
 				// Fetch username of subscriber
 				$subscriber_id = $search_type[2];
@@ -450,29 +450,29 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				if ($db->num_rows($result))
 					$subscriber_name = $db->result($result);
 				else
-					message($lang['Bad request'], false, '404 Not Found');
+					message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$subscriber_id.'">'.sprintf($lang['Quick search show_subscriptions'], luna_htmlspecialchars($subscriber_name)).'</a>';
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_subscriptions&amp;user_id='.$subscriber_id.'">'.sprintf(__('Subscribed by %s', 'luna'), luna_htmlspecialchars($subscriber_name)).'</a>';
 			} else
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action='.$search_type[1].'">'.$lang['Quick search '.$search_type[1]].'</a>';
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action='.$search_type[1].'">'.sprintf(__('Quick search %s', 'luna'), $search_type[1]).'</a>';
 		} else {
 			$keywords = $author = '';
 
 			if ($search_type[0] == 'both') {
 				list ($keywords, $author) = $search_type[1];
-				$crumbs_text['search_type'] = sprintf($lang['By both show as '.$show_as], luna_htmlspecialchars($keywords), luna_htmlspecialchars($author));
+				$crumbs_text['search_type'] = sprintf(sprintf('By both show as %s', $show_as), luna_htmlspecialchars($keywords), luna_htmlspecialchars($author));
 			} elseif ($search_type[0] == 'keywords') {
 				$keywords = $search_type[1];
-				$crumbs_text['search_type'] = sprintf($lang['By keywords show as '.$show_as], luna_htmlspecialchars($keywords));
+				$crumbs_text['search_type'] = sprintf(sprintf('By keywords show as %s', $show_as), luna_htmlspecialchars($keywords));
 			} elseif ($search_type[0] == 'author') {
 				$author = $search_type[1];
-				$crumbs_text['search_type'] = sprintf($lang['By user show as '.$show_as], luna_htmlspecialchars($author));
+				$crumbs_text['search_type'] = sprintf(sprintf('By user show as %s', $show_as), luna_htmlspecialchars($author));
 			}
 
 			$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=search&amp;keywords='.urlencode($keywords).'&amp;author='.urlencode($author).'&amp;forums='.$search_type[2].'&amp;search_in='.$search_type[3].'&amp;sort_by='.$sort_by.'&amp;sort_dir='.$sort_dir.'&amp;show_as='.$show_as.'">'.$crumbs_text['search_type'].'</a>';
 		}
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search results']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search results', 'luna'));
 		define('FORUM_ACTIVE_PAGE', 'search');
 
 		if ($show_as == 'topics') {
@@ -491,13 +491,13 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		require load_page('search-results.php');
 		require load_page('footer.php');
 	} else
-		message($lang['No hits']);
+		message(__('Your search returned no hits.', 'luna'));
 } else
 	$search_id = '';
 
 if (!$search_id) {
 	if (!$section || $section == 'simple') {
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search', 'luna'));
 		$focus_element = array('search', 'keywords');
 		define('FORUM_ACTIVE_PAGE', 'search');
 		require load_page('header.php');
@@ -507,9 +507,9 @@ if (!$search_id) {
 		require load_page('footer.php');
 	} else {
 		if ($luna_config['o_enable_advanced_search'] == 0) {
-			message($lang['No permission'], false, '403 Forbidden');
+			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 		} else {
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Search']);
+			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search', 'luna'));
 			$focus_element = array('search', 'keywords');
 			define('FORUM_ACTIVE_PAGE', 'search');
 			require load_page('header.php');

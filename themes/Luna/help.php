@@ -7,13 +7,13 @@ if (!defined('FORUM'))
 ?>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
-		<a href="help.php" class="navbar-brand"><span class="fa fa-fw fa-info-circle"></span> <?php echo $lang['Help'] ?></a>
+		<a href="help.php" class="navbar-brand"><span class="fa fa-fw fa-info-circle"></span> <?php _e('Help', 'luna') ?></a>
 	</div>
 </nav>
 <?php if ($luna_config['o_rules'] == '1') { ?>
 <div class="panel panel-default">
 	<div id="rules-block" class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Forum rules'] ?></h3>
+		<h3 class="panel-title"><?php _e('Forum rules', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<?php echo $luna_config['o_rules_message'] ?>
@@ -22,57 +22,57 @@ if (!defined('FORUM'))
 <?php } ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['BBCode'] ?></h3>
+		<h3 class="panel-title"><?php _e('BBCode', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
-		<p><a id="bbcode"></a><?php echo $lang['BBCode info'] ?></p>
+		<p><a id="bbcode"></a><?php _e('BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature.', 'luna') ?></p>
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#text" data-toggle="tab"><?php echo $lang['Text style'] ?></a></li>
-			<li><a href="#links" data-toggle="tab"><?php echo $lang['Multimedia'] ?></a></li>
-			<li><a href="#quotes" data-toggle="tab"><?php echo $lang['Quotes'] ?></a></li>
-			<li><a href="#code" data-toggle="tab"><?php echo $lang['Code'] ?></a></li>
-			<li><a href="#lists" data-toggle="tab"><?php echo $lang['Lists'] ?></a></li>
-			<li><a href="#smilies" data-toggle="tab"><?php echo $lang['Smilies'] ?></a></li>
+			<li class="active"><a href="#text" data-toggle="tab"><?php _e('Text style', 'luna') ?></a></li>
+			<li><a href="#links" data-toggle="tab"><?php _e('Multimedia', 'luna') ?></a></li>
+			<li><a href="#quotes" data-toggle="tab"><?php _e('Quotes', 'luna') ?></a></li>
+			<li><a href="#code" data-toggle="tab"><?php _e('Code', 'luna') ?></a></li>
+			<li><a href="#lists" data-toggle="tab"><?php _e('Lists', 'luna') ?></a></li>
+			<li><a href="#smilies" data-toggle="tab"><?php _e('Smilies', 'luna') ?></a></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="text">
-				<p><?php echo $lang['Text style info'] ?></p>
-				<p><code>[b]<?php echo $lang['Bold text'] ?>[/b]</code> <?php echo $lang['produces'] ?> <strong><?php echo $lang['Bold text'] ?></strong></p>
-				<p><code>[u]<?php echo $lang['Underlined text'] ?>[/u]</code> <?php echo $lang['produces'] ?> <span class="bbu"><?php echo $lang['Underlined text'] ?></span></p>
-				<p><code>[i]<?php echo $lang['Italic text'] ?>[/i]</code> <?php echo $lang['produces'] ?> <em><?php echo $lang['Italic text'] ?></em></p>
-				<p><code>[s]<?php echo $lang['Strike-through text'] ?>[/s]</code> <?php echo $lang['produces'] ?> <span class="bbs"><?php echo $lang['Strike-through text'] ?></span></p>
-				<p><code>[ins]<?php echo $lang['Inserted text'] ?>[/ins]</code> <?php echo $lang['produces'] ?> <ins><?php echo $lang['Inserted text'] ?></ins></p>
-				<p><code>[color=#FF0000]<?php echo $lang['Red text'] ?>[/color]</code> <?php echo $lang['produces'] ?> <span style="color: #ff0000"><?php echo $lang['Red text'] ?></span></p>
-				<p><code>[color=blue]<?php echo $lang['Blue text'] ?>[/color]</code> <?php echo $lang['produces'] ?> <span style="color: blue"><?php echo $lang['Blue text'] ?></span></p>
-				<p><code>[sub]<?php echo $lang['Sub text'] ?>[/sub]</code> <?php echo $lang['produces'] ?> <sub><?php echo $lang['Sub text'] ?></sub></p>
-				<p><code>[sup]<?php echo $lang['Sup text'] ?>[/sup]</code> <?php echo $lang['produces'] ?> <sup><?php echo $lang['Sup text'] ?></sup></p>
-				<p><code>[h]<?php echo $lang['Heading text'] ?>[/h]</code> <?php echo $lang['produces'] ?></p> <h4><?php echo $lang['Heading text'] ?></h4>
+				<p><?php _e('The following tags change the appearance of text:', 'luna') ?></p>
+				<p><code>[b]<?php _e('Bold text', 'luna') ?>[/b]</code> <?php _e('produces', 'luna') ?> <strong><?php _e('Bold text', 'luna') ?></strong></p>
+				<p><code>[u]<?php _e('Underlined text', 'luna') ?>[/u]</code> <?php _e('produces', 'luna') ?> <span class="bbu"><?php _e('Underlined text', 'luna') ?></span></p>
+				<p><code>[i]<?php _e('Italic text', 'luna') ?>[/i]</code> <?php _e('produces', 'luna') ?> <em><?php _e('Italic text', 'luna') ?></em></p>
+				<p><code>[s]<?php _e('Strike-through text', 'luna') ?>[/s]</code> <?php _e('produces', 'luna') ?> <span class="bbs"><?php _e('Strike-through text', 'luna') ?></span></p>
+				<p><code>[ins]<?php _e('Inserted text', 'luna') ?>[/ins]</code> <?php _e('produces', 'luna') ?> <ins><?php _e('Inserted text', 'luna') ?></ins></p>
+				<p><code>[color=#FF0000]<?php _e('Red text', 'luna') ?>[/color]</code> <?php _e('produces', 'luna') ?> <span style="color: #ff0000"><?php _e('Red text', 'luna') ?></span></p>
+				<p><code>[color=blue]<?php _e('Blue text', 'luna') ?>[/color]</code> <?php _e('produces', 'luna') ?> <span style="color: blue"><?php _e('Blue text', 'luna') ?></span></p>
+				<p><code>[sub]<?php _e('Subscript text', 'luna') ?>[/sub]</code> <?php _e('produces', 'luna') ?> <sub><?php _e('Subscript text', 'luna') ?></sub></p>
+				<p><code>[sup]<?php _e('Superscript text', 'luna') ?>[/sup]</code> <?php _e('produces', 'luna') ?> <sup><?php _e('Superscript text', 'luna') ?></sup></p>
+				<p><code>[h]<?php _e('Heading text', 'luna') ?>[/h]</code> <?php _e('produces', 'luna') ?></p> <h4><?php _e('Heading text', 'luna') ?></h4>
 			</div>
 			<div class="tab-pane" id="links">
-				<p><?php echo $lang['Links info'] ?></p>
-				<p><code>[url=<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>]<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?></a></p>
-				<p><code>[url]<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>[/url]</code> <?php echo $lang['produces'] ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/') ?></a></p>
-				<p><code>[email]myname@example.com[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com">myname@example.com</a></p>
-				<p><code>[email=myname@example.com]<?php echo $lang['My email address'] ?>[/email]</code> <?php echo $lang['produces'] ?> <a href="mailto:myname@example.com"><?php echo $lang['My email address'] ?></a></p>
-				<p><a id="img"></a><?php echo $lang['Images info'] ?></p>
-				<p><code>[img=<?php echo $lang['Luna bbcode test'] ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php echo $lang['produces'] ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php echo $lang['Luna bbcode test'] ?>" /></p>
+				<p><?php _e('You can create links to other locations or to email addresses using the following tags:', 'luna') ?></p>
+				<p><code>[url=<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>]<?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?>[/url]</code> <?php _e('produces', 'luna') ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars($luna_config['o_board_title']) ?></a></p>
+				<p><code>[url]<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>[/url]</code> <?php _e('produces', 'luna') ?> <a href="<?php echo luna_htmlspecialchars(get_base_url(true).'/') ?>"><?php echo luna_htmlspecialchars(get_base_url(true).'/') ?></a></p>
+				<p><code>[email]myname@example.com[/email]</code> <?php _e('produces', 'luna') ?> <a href="mailto:myname@example.com">myname@example.com</a></p>
+				<p><code>[email=myname@example.com]<?php _e('My email address', 'luna') ?>[/email]</code> <?php _e('produces', 'luna') ?> <a href="mailto:myname@example.com"><?php _e('My email address', 'luna') ?></a></p>
+				<p><a id="img"></a><?php _e('If you want to display an image you can use the img tag. The text appearing after the "=" sign in the opening tag is used for the alt attribute and should be included whenever possible.', 'luna') ?></p>
+				<p><code>[img=<?php _e('Luna BBCode Test', 'luna') ?>]<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png[/img]</code> <?php _e('produces', 'luna') ?> <img style="height: 21px" src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/test.png" alt="<?php _e('Luna BBCode Test', 'luna') ?>" /></p>
 				<br />
-				<p><?php echo $lang['Video info'] ?></p>
-				<p><code>[video][url]<?php echo $lang['Video link'] ?>[/url][/video]</code>
+				<p><?php _e('Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos.', 'luna') ?></p>
+				<p><code>[video][url]<?php _e('Put the link to the video here', 'luna') ?>[/url][/video]</code>
 			</div>
 			<div class="tab-pane" id="quotes">
-				<p><?php echo $lang['Quotes info'] ?></p>
-				<p><code>[quote=James]<?php echo $lang['Quote text'] ?>[/quote]</code></p>
-				<p><?php echo $lang['produces quote box'] ?></p>
-				<blockquote><footer><cite>James <?php echo $lang['wrote'] ?></cite></footer><p><?php echo $lang['Quote text'] ?></p></blockquote>
-				<p><?php echo $lang['Quotes info 2'] ?></p>
+				<p><?php _e('If you want to quote someone, you should use the quote tag.', 'luna') ?></p>
+				<p><code>[quote=James]<?php _e('This is the text I want to quote.', 'luna') ?>[/quote]</code></p>
+				<p><?php _e('produces a quote box like this:', 'luna') ?></p>
+				<blockquote><footer><cite>James <?php _e('wrote', 'luna') ?></cite></footer><p><?php _e('This is the text I want to quote.', 'luna') ?></p></blockquote>
+				<p><?php _e('If you don\'t want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="code">
-				<p><?php echo $lang['Code info'] ?></p>
-				<p><code>[code]<?php echo $lang['Code text'] ?>[/code]</code></p>
-				<p><?php echo $lang['produces code box'] ?></p>
-				<pre><code><?php echo $lang['Code text'] ?></code></pre>
-				<p><?php echo $lang['Syntax info'] ?></p>
+				<p><?php _e('When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags.', 'luna') ?></p>
+				<p><code>[code]<?php _e('This is some code.', 'luna') ?>[/code]</code></p>
+				<p><?php _e('produces a code box like this:', 'luna') ?></p>
+				<pre><code><?php _e('This is some code.', 'luna') ?></code></pre>
+				<p><?php _e('You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>.', 'luna') ?></p>
 				<pre>
 [code]
 [[php]]	
@@ -82,28 +82,28 @@ if ($db->num_rows($result) > 0)
 			$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;';
 [/code]
 				</pre>
-				<p><?php echo $lang['produces code box'] ?></p>
+				<p><?php _e('produces a code box like this:', 'luna') ?></p>
 				<div class="codebox"><pre><code class="language-php">if ($db->num_rows($result) > 0)
 	while ($cur_item = $db->fetch_assoc($result))
 		if ($cur_item['visible'] == '1')
 			$links[] = '&lt;li&gt;&lt;a href="'.$cur_item['url'].'"&gt;'.$cur_item['name'].'&lt;/a&gt;&lt;/li&gt;'; </code></pre></div>
-				<p><code>[c]<?php echo $lang['Code text'] ?>[/c]</code> <?php echo $lang['produces code box'] ?> <code><?php echo $lang['Code text'] ?></code></p>
+				<p><code>[c]<?php _e('This is some code.', 'luna') ?>[/c]</code> <?php _e('produces a code box like this:', 'luna') ?> <code><?php _e('This is some code.', 'luna') ?></code></p>
 			</div>
 			<div class="tab-pane" id="lists">
-				<p><a id="list"></a><?php echo $lang['List info'] ?></p>
-				<p><code>[list][*]<?php echo $lang['List text 1'] ?>[/*][*]<?php echo $lang['List text 2'] ?>[/*][*]<?php echo $lang['List text 3'] ?>[/*][/list]</code>
-				<br /><span><?php echo $lang['produces list'] ?></span></p>
+				<p><a id="list"></a><?php _e('To create a list you can use the list tag. You can create 2 types of lists using the list tag.', 'luna') ?></p>
+				<p><code>[list][*]<?php _e('Example list item 1.', 'luna') ?>[/*][*]<?php _e('Example list item 2.', 'luna') ?>[/*][*]<?php _e('Example list item 3.', 'luna') ?>[/*][/list]</code>
+				<br /><span><?php _e('produces a bulleted list.', 'luna') ?></span></p>
 				<div class="postmsg">
-					<ul><li><p><?php echo $lang['List text 1'] ?></p></li><li><p><?php echo $lang['List text 2'] ?></p></li><li><p><?php echo $lang['List text 3'] ?></p></li></ul>
+					<ul><li><p><?php _e('Example list item 1.', 'luna') ?></p></li><li><p><?php _e('Example list item 2.', 'luna') ?></p></li><li><p><?php _e('Example list item 3.', 'luna') ?></p></li></ul>
 				</div>
-				<p><code>[list=1][*]<?php echo $lang['List text 1'] ?>[/*][*]<?php echo $lang['List text 2'] ?>[/*][*]<?php echo $lang['List text 3'] ?>[/*][/list]</code>
-				<br /><span><?php echo $lang['produces decimal list'] ?></span></p>
+				<p><code>[list=1][*]<?php _e('Example list item 1.', 'luna') ?>[/*][*]<?php _e('Example list item 2.', 'luna') ?>[/*][*]<?php _e('Example list item 3.', 'luna') ?>[/*][/list]</code>
+				<br /><span><?php _e('produces a numbered list.', 'luna') ?></span></p>
 				<div class="postmsg">
-					<ol class="decimal"><li><p><?php echo $lang['List text 1'] ?></p></li><li><p><?php echo $lang['List text 2'] ?></p></li><li><p><?php echo $lang['List text 3'] ?></p></li></ol>
+					<ol class="decimal"><li><p><?php _e('Example list item 1.', 'luna') ?></p></li><li><p><?php _e('Example list item 2.', 'luna') ?></p></li><li><p><?php _e('Example list item 3.', 'luna') ?></p></li></ol>
 				</div>
 			</div>
 			<div class="tab-pane" id="smilies">
-				<p><a id="emoticons"></a><?php echo $lang['Smilies info'] ?></p>
+				<p><a id="emoticons"></a><?php _e('If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:', 'luna') ?></p>
 				<div class="row">
 <?php
 
@@ -119,9 +119,9 @@ foreach ($smilies as $smiley_text => $smiley_img)
 
 foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 	if ($luna_config['o_emoji'] == 1)
-		echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <span class="emoji">'.$smiley_img.'</span></p></div>'."\n";
+		echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.__('and', 'luna').' <code>', $smiley_texts).'</code> <span>'.__('produces', 'luna').'</span> <span class="emoji">'.$smiley_img.'</span></p></div>'."\n";
 	else
-		echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.$lang['and'].' <code>', $smiley_texts).'</code> <span>'.$lang['produces'].'</span> <img src="'.luna_htmlspecialchars(get_base_url(true)).'/img/smilies/'.$smiley_img.'" width="'.$luna_config['o_emoji_size'].'" height="'.$luna_config['o_emoji_size'].'" alt="'.$smiley_texts[0].'" /></p></div>'."\n";
+		echo "\t\t".'<div class="col-sm-3"><p><code>'.implode('</code> '.__('and', 'luna').' <code>', $smiley_texts).'</code> <span>'.__('produces', 'luna').'</span> <img src="'.luna_htmlspecialchars(get_base_url(true)).'/img/smilies/'.$smiley_img.'" width="'.$luna_config['o_emoji_size'].'" height="'.$luna_config['o_emoji_size'].'" alt="'.$smiley_texts[0].'" /></p></div>'."\n";
 }
 
 ?>
@@ -132,63 +132,63 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['General use'] ?></h3>
+		<h3 class="panel-title"><?php _e('General use', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
-		<p><?php echo $lang['General use info'] ?></p>
+		<p><?php _e('Explains some of the basics on how to work with this forum software.', 'luna') ?></p>
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#forum" data-toggle="tab"><?php echo $lang['Forums and topics'] ?></a></li>
-			<li><a href="#profile" data-toggle="tab"><?php echo $lang['Profile'] ?></a></li>
-			<li><a href="#searching" data-toggle="tab"><?php echo $lang['Search'] ?></a></li>
+			<li class="active"><a href="#forum" data-toggle="tab"><?php _e('Forums and topics', 'luna') ?></a></li>
+			<li><a href="#profile" data-toggle="tab"><?php _e('Profile', 'luna') ?></a></li>
+			<li><a href="#searching" data-toggle="tab"><?php _e('Search', 'luna') ?></a></li>
 		</ul>
 		<div class="tab-content">
 		  <div class="tab-pane active" id="forum">
-                <h3><?php echo $lang['Labels question'] ?></h3>
-                <p><?php echo $lang['Labels info'] ?></p>
+                <h3><?php _e('What do the labels in front of topic titles mean?', 'luna') ?></h3>
+                <p><?php _e('You\'ll see that some of the topics are labeled, different labels have different meanings.', 'luna') ?></p>
 				<table class="table">
                 	<thead>
                         <tr>
-                            <th><?php echo $lang['Label'] ?></th>
-                            <th><?php echo $lang['Explanation'] ?></th>
+                            <th><?php _e('Label', 'luna') ?></th>
+                            <th><?php _e('Explanation', 'luna') ?></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="label label-success"><?php echo $lang['Sticky'] ?></span></td>
-                            <td><?php echo $lang['Sticky explanation'] ?></td>
+                            <td><span class="label label-success"><?php _e('Sticky', 'luna') ?></span></td>
+                            <td><?php _e('Sticky topics are usually important topics which you should read. It\'s worth it to take a look there.', 'luna') ?></td>
                         </tr>
                         <tr>
-                            <td><span class="label label-danger"><?php echo $lang['Closed'] ?></span></td>
-                            <td><?php echo $lang['Closed explanation'] ?></td>
+                            <td><span class="label label-danger"><?php _e('Closed', 'luna') ?></span></td>
+                            <td><?php _e('When a you see a closed label, it means you can\'t post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though.', 'luna') ?></td>
                         </tr>
                         <tr>
-                            <td><span class="label label-info"><?php echo $lang['Moved'] ?></span></td>
-                            <td><?php echo $lang['Moved explanation'] ?></td>
+                            <td><span class="label label-info"><?php _e('Moved', 'luna') ?></span></td>
+                            <td><?php _e('This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won\'t show any topic stats anymore.', 'luna') ?></td>
                         </tr>
                         <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
                         <tr>
                             <td>&middot;</td>
-                            <td><?php echo $lang['Posted explanation'] ?></td>
+                            <td><?php _e('This little dot appears when you have made a post in this topic.', 'luna') ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>
                 </table>
-				<h3><?php echo $lang['Content question'] ?></h3>
-				<p><?php echo $lang['Content answer'] ?></p>
-				<h3><?php echo $lang['Topics question'] ?></h3>
-				<p><?php echo $lang['Topics answer'] ?></p>
+				<h3><?php _e('Smilies, signatures, avatars and images are not visible?', 'luna') ?></h3>
+				<p><?php _e('You can change the behavior of the topic view in your profile settings. There you can enable smilies, signatures, avatars and images in posts, but they should be enabled by default unless your forum admin has disabled those features.', 'luna') ?></p>
+				<h3><?php _e('Why can\'t I see any topics or forums?', 'luna') ?></h3>
+				<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="profile">
-				<h3><?php echo $lang['Profile question'] ?></h3>
-				<p><?php echo $lang['Profile answer'] ?></p>
-				<h3><?php echo $lang['Information question'] ?></h3>
-				<p><?php echo $lang['Information answer'] ?></p>
+				<h3><?php _e('Why can\'t I see any profiles?', 'luna') ?></h3>
+				<p><?php _e('You might not have the correct permissions to do so, ask the forum administrator for more help.', 'luna') ?></p>
+				<h3><?php _e('My profile doesn\'t contain as much as others?', 'luna') ?></h3>
+				<p><?php _e('You\'re profile will only display fields that are enabled and filled in on your profile personality page. You might want to see if you missed some fields.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="searching">
-				<h3><?php echo $lang['Advanced search question'] ?></h3>
-				<p><?php echo $lang['Advanced search answer'] ?></p>
-				<h3><?php echo $lang['More search question'] ?></h3>
-				<p><?php echo $lang['More search answer'] ?></p>
+				<h3><?php _e('Are there more options to search?', 'luna') ?></h3>
+				<p><?php _e('When you go to the search page, you\'ll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin.', 'luna') ?></p>
+				<h3><?php _e('Why can\'t search in more then 1 forum at once?', 'luna') ?></h3>
+				<p><?php _e('You might not have the correct permissions to do so, ask the forums administrator for more help.', 'luna') ?></p>
 			</div>
 		</div>
 	</div>
@@ -198,30 +198,30 @@ if ($luna_user['is_admmod']) {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Moderating'] ?></h3>
+		<h3 class="panel-title"><?php _e('Moderating', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
-		<p><?php echo $lang['Moderating info'] ?></p>
+		<p><?php _e('Admins and moderators need help sometimes, too! The basics of moderating are explained here.', 'luna') ?></p>
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#forums" data-toggle="tab"><?php echo $lang['Forums'] ?></a></li>
-			<li><a href="#topics" data-toggle="tab"><?php echo $lang['Topics'] ?></a></li>
-			<li><a href="#users" data-toggle="tab"><?php echo $lang['Users'] ?></a></li>
+			<li class="active"><a href="#forums" data-toggle="tab"><?php _e('Forums', 'luna') ?></a></li>
+			<li><a href="#topics" data-toggle="tab"><?php _e('Topics', 'luna') ?></a></li>
+			<li><a href="#users" data-toggle="tab"><?php _e('Users', 'luna') ?></a></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane active" id="forums">
-				<h3><?php echo $lang['Moderate forum question'] ?></h3>
-				<p><?php echo $lang['Moderate forum answer'] ?></p>
+				<h3><?php _e('How do I moderate a forum?', 'luna') ?></h3>
+				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="topics">
-				<h3><?php echo $lang['Moderate topic question'] ?></h3>
-				<p><?php echo $lang['Moderate topic answer 1'] ?></p>
-				<p><?php echo $lang['Moderate topic answer 2'] ?></p>
+				<h3><?php _e('How do I moderate a topic?', 'luna') ?></h3>
+				<p><?php _e('The moderation options are available at the bottom of the page. Those features aren\'t available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once.', 'luna') ?></p>
+				<p><?php _e('Next to the "Moderate topic" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it.', 'luna') ?></p>
 			</div>
 			<div class="tab-pane" id="users">
-				<h3><?php echo $lang['Moderate user question'] ?></h3>
-				<p><?php echo $lang['Moderate user answer 1'] ?></p>
-				<p><?php echo $lang['Moderate user answer 2'] ?></p>
-				<p><?php echo $lang['Moderate user answer 3'] ?></p>
+				<h3><?php _e('How do I moderate an user?', 'luna') ?></h3>
+				<p><?php _e('Moderating options are available in the users profile. You can find the moderation options under "Administration" in the users profile menu. Those features aren\'t available for all moderators.', 'luna') ?></p>
+				<p><?php _e('The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions.', 'luna') ?></p>
+				<p><?php _e('Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you\'re probably better off with the advanced user management features in the Backstage.', 'luna') ?></p>
 			</div>
 		</div>
 	</div>

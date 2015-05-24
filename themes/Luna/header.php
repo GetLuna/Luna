@@ -1,10 +1,15 @@
 <?php
-
 require ('header.php');
 
+$hour = date('G', time());
+
+if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
+	$body_classes = 'night';
+else
+	$body_classes = 'normal';
 ?>
 <!DOCTYPE html>
-<html>
+<html class="<?php echo $body_classes ?>">
 	<head>
 		<title><?php echo generate_page_title($page_title, $p) ?></title>
 		<meta charset="utf-8">
@@ -14,12 +19,11 @@ require ('header.php');
 		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
 		<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script src="include/js/prism.js"></script>
+		<script src="include/js/vendor/prism.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 // Allow childs
 load_css();
-include ('themes/'.$luna_config['o_default_style'].'/style.php');
 
 if (!defined('FORUM_ALLOW_INDEX'))
 	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
@@ -27,6 +31,11 @@ if (!defined('FORUM_ALLOW_INDEX'))
 // Required fields check
 required_fields();
 ?>
+		<style>
+		.emoji {
+			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
+		}
+		</style>
 	</head>
 	<body>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
@@ -50,7 +59,7 @@ required_fields();
 									<input type="hidden" name="action" value="search" />
 									<div class="form-group">
 										<div class="input-group">
-											<input class="form-control" type="text" name="keywords" placeholder="<?php echo $lang['Search in posts'] ?>" maxlength="100" />
+											<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in posts', 'luna') ?>" maxlength="100" />
 											<span class="input-group-btn">
 												<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s">
 													<span class="fa fa-fw fa-search"></span>
@@ -61,9 +70,7 @@ required_fields();
 								</fieldset>
 							</form>
 							<?php endif; ?>
-							<ul class="nav navbar-nav navbar-right">
-								<?php echo $usermenu; ?>
-							</ul>
+							<?php draw_user_nav_menu(); ?>
 						</div>
 					</div>
 				</div>

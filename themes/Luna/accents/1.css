@@ -1,0 +1,44 @@
+/* Accent 1 - ModernBB Blue */
+.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-default .navbar-toggle .icon-bar, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary, .modal-backdrop {
+	background-color: #14a3ff;
+}
+
+.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header {
+	background-color: #0b95ed;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item  {
+	background-color: #0589de;
+}
+
+@media screen and (max-width: 767px) {
+	.dropdown-menu .divider {
+		background-color: #0589de !important;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.dropdown-menu .divider {
+		background-color: #0589de !important;
+	}
+}
+
+.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
+	border-color: #14a3ff;
+}
+
+.btn-primary {
+	border-color: #0b95ed;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
+	border-color: #0589de;
+}
+
+a.list-group-item:hover, a.list-group-item:hover, a.list-group-item:hover, .col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
+	color:#0b95ed;
+}
+
+a:hover, a:active {
+	color: #0589de;
+}

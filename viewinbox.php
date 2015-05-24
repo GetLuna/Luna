@@ -15,18 +15,15 @@ $inbox = 1;
 
 // No guest here !
 if ($luna_user['is_guest'])
-	message($lang['No permission']);
+	message(__('You do not have permission to access this page.', 'luna'));
 	
 // User enable PM ?
 if (!$luna_user['use_pm'] == '1')
-	message($lang['No permission']);
+	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
 if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_pm'] == '0')
-	message($lang['No permission']);
-
-// Load the additionals language files
-require FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
+	message(__('You do not have permission to access this page.', 'luna'));
 
 // Get the message's and topic's id
 $mid = isset($_REQUEST['mid']) ? intval($_REQUEST['mid']) : '0';
@@ -41,7 +38,7 @@ $delete_all = isset($_POST['delete_all']) ? '1' : '0';
 if ($pid) {
 	$result = $db->query('SELECT shared_id FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 
 	$id = $db->result($result);
 
@@ -72,7 +69,7 @@ $start_from = $luna_user['disp_posts'] * ($page - 1);
 	
 // Check that $mid looks good
 if ($mid <= 0)
-	message($lang['Bad request']);
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 
 // Action ?
 $action = ((isset($_REQUEST['action']) && ($_REQUEST['action'] == 'delete')) ? $_REQUEST['action'] : '');
@@ -84,7 +81,7 @@ if ($action == 'delete') {
 	
 	if (isset($_POST['delete_comply'])) {
 		if ($topic_msg > '1' || $topic_msg < '0')
-			message($lang['Bad request']);
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		
 		if ($topic_msg == '0') {
 			if ($luna_user['is_admmod']) {
@@ -92,7 +89,7 @@ if ($action == 'delete') {
 					$result_msg = $db->query('SELECT message FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 			
 					if (!$db->num_rows($result_msg))
-						message($lang['Bad request']);
+						message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 						
 					$delete_msg = $db->fetch_assoc($result_msg);
 						
@@ -100,7 +97,7 @@ if ($action == 'delete') {
 					$result_ids = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE message=\''.$db->escape($delete_msg).'\'') or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 					
 					if (!$db->num_rows($result_ids))
-						message($lang['Bad request']);
+						message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 					
 					$ids_msg[] = $db->result($result_ids);
 					
@@ -113,7 +110,7 @@ if ($action == 'delete') {
 				$owner = $db->result($result);
 				
 				if($owner != $luna_user['id']) // Double check : hackers are everywhere =)
-					message($lang['No permission']);
+					message(__('You do not have permission to access this page.', 'luna'));
 					
 				$db->query('DELETE FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 			}
@@ -123,7 +120,7 @@ if ($action == 'delete') {
 					$result_ids = $db->query('SELECT DISTINCT owner FROM '.$db->prefix.'messages WHERE shared_id='.$tid) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 					
 					if (!$db->num_rows($result_ids))
-						message($lang['Bad request']);
+						message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 					
 					while ($user_ids = $db->fetch_assoc($result_ids)) {
 						$ids_users[] = $user_ids['owner'];
@@ -143,7 +140,7 @@ if ($action == 'delete') {
 				$owner = $db->result($result);
 				
 				if($owner != $luna_user['id']) // Double check : hackers are everywhere =)
-					message($lang['No permission']);
+					message(__('You do not have permission to access this page.', 'luna'));
 					
 				$db->query('DELETE FROM '.$db->prefix.'messages WHERE id='.$mid) or error('Unable to delete the message', __FILE__, __LINE__, $db->error());
 				$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms-1 WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
@@ -153,7 +150,7 @@ if ($action == 'delete') {
 		// Redirect
 		redirect('inbox.php');
 	} else {
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Delete message']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Delete message', 'luna'));
 		
 		define('FORUM_ACTIVE_PAGE', 'pm');
 		require load_page('header.php');
@@ -163,7 +160,7 @@ if ($action == 'delete') {
 		$cur_delete = $db->fetch_assoc($result);
 		
 		if($cur_delete['owner'] != $luna_user['id'] && !$luna_user['is_admmod'])
-			message($lang['No permission']);
+			message(__('You do not have permission to access this page.', 'luna'));
 
 		$cur_delete['message'] = parse_message($cur_delete['message']);
 
@@ -178,7 +175,7 @@ if ($action == 'delete') {
 	$result_receivers = $db->query('SELECT DISTINCT receiver, owner, sender_id FROM '.$db->prefix.'messages WHERE shared_id='.$tid) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result_receivers))
-			message($lang['Bad request']);
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 			
 	$owner = array();
 			
@@ -188,26 +185,26 @@ if ($action == 'delete') {
 		$uid = $receiver['sender_id'];
 	}
 	
-	$r_usernames = str_replace('Deleted', $lang['Deleted'], $r_usernames);
+	$r_usernames = str_replace('Deleted', __('Deleted', 'luna'), $r_usernames);
 	
 	$result = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND show_message=1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 	
 	$p_subject = $db->result($result);
 	
-	$messageh2 = luna_htmlspecialchars($p_subject).' '.$lang['With'].' '.luna_htmlspecialchars($r_usernames);
+	$messageh2 = luna_htmlspecialchars($p_subject).' '.__('with', 'luna').' '.luna_htmlspecialchars($r_usernames);
 	
-	$required_fields = array('req_message' => $lang['Message']);
+	$required_fields = array('req_message' => __('Message', 'luna'));
 	
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['View']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Private Messages', 'luna'), __('View a private discussion', 'luna'));
 	
 	define('FORUM_ACTIVE_PAGE', 'pm');
 	require load_page('header.php');
 	
 	if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
-		message($lang['No permission']);
+		message(__('You do not have permission to access this page.', 'luna'));
 		
 		$post_count = '0'; // Keep track of post numbers
 		
@@ -217,9 +214,9 @@ if ($action == 'delete') {
 	$result = $db->query('SELECT m.id AS mid, m.shared_id, m.subject, m.sender_ip, m.message, m.hide_smilies, m.posted, m.showed, m.sender, m.sender_id, u.id, u.group_id AS g_id, g.g_user_title, u.username, u.registered, u.email, u.title, u.url, u.location, u.email_setting, u.num_posts, u.admin_note, u.signature, u.use_pm, o.user_id AS is_online FROM '.$db->prefix.'messages AS m, '.$db->prefix.'users AS u LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.idle=0) LEFT JOIN '.$db->prefix.'groups AS g ON (u.group_id=g.g_id) WHERE u.id=m.sender_id AND m.shared_id='.$tid.' AND m.owner='.$luna_user['id'].' ORDER BY m.posted LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to get the message and the informations of the user', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		
-	$reply_link = '<a href="new_inbox.php?reply='.$tid.'">'.$lang['Reply'].'</a>';
+	$reply_link = '<a href="new_inbox.php?reply='.$tid.'">'.__('Reply', 'luna').'</a>';
 
 	$paging_links = paginate($num_pages, $page, 'viewinbox.php?tid='.$tid.'&amp;mid='.$mid);
 

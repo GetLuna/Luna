@@ -18,13 +18,17 @@ if (isset($_POST['add_forum'])) {
 	
 	$forum_name = luna_trim($_POST['new_forum']); 
 	$add_to_cat = intval($_POST['add_to_cat']);
-	if ($add_to_cat < 1) {
-		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
+	if ($add_to_cat < 1)
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	$db->query('INSERT INTO '.$db->prefix.'forums (forum_name, cat_id) VALUES(\''.$db->escape($forum_name).'\', '.$add_to_cat.')') or error('Unable to create forum', __FILE__, __LINE__, $db->error());
 	$new_fid = $db->insert_id();
+
+	// Regenerate the forum cache
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+	
+	generate_forum_cache();
 
 	redirect('backstage/board.php?edit_forum='.$new_fid);
 }
@@ -34,10 +38,8 @@ elseif (isset($_GET['del_forum'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$forum_id = intval($_GET['del_forum']);
-	if ($forum_id < 1) {
-		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
+	if ($forum_id < 1)
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	if (isset($_POST['del_forum_comply'])) { // Delete a forum with all posts
 		@set_time_limit(0);
@@ -63,12 +65,18 @@ elseif (isset($_GET['del_forum'])) {
 		// Delete any subscriptions for this forum
 		$db->query('DELETE FROM '.$db->prefix.'forum_subscriptions WHERE forum_id='.$forum_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
+		// Regenerate the forum cache
+		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+			require FORUM_ROOT.'include/cache.php';
+		
+		generate_forum_cache();
+
 		redirect('backstage/board.php?saved=true');
 	} else { // If the user hasn't confirmed the delete
 		$result = $db->query('SELECT forum_name FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 		$forum_name = luna_htmlspecialchars($db->result($result));
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Forums']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Forums', 'luna'));
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 	load_admin_nav('content', 'board');
@@ -78,13 +86,13 @@ elseif (isset($_GET['del_forum'])) {
 	<fieldset>
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Confirm delete head'] ?></h3>
+				<h3 class="panel-title"><?php _e('Confirm delete forum', 'luna') ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php printf($lang['Confirm delete forum info'], $forum_name) ?> <?php echo $lang['Confirm delete forum'] ?></p>
+				<p><?php printf(__('Are you sure that you want to delete the forum <strong>%s</strong>?', 'luna'), $forum_name) ?> <?php _e('Warning! Deleting a forum will delete all posts (if any) in that forum!', 'luna') ?></p>
 			</div>
 			<div class="panel-footer">
-				<button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button>
+				<button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
 			</div>
 		</div>
 	</fieldset>
@@ -101,21 +109,23 @@ elseif (isset($_POST['update_positions'])) {
 	
 	foreach ($_POST['position'] as $forum_id => $disp_position) {
 		$disp_position = trim($disp_position);
-		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position)) {
-			message_backstage($lang['Post must be integer message']);
-			exit;
-		}
+		if ($disp_position == '' || preg_match('%[^0-9]%', $disp_position))
+			message_backstage(__('Position must be a positive integer value.', 'luna'));
 
 		$db->query('UPDATE '.$db->prefix.'forums SET disp_position='.$disp_position.' WHERE id='.intval($forum_id)) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 	}
+	
+	// Regenerate the forum cache
+	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+		require FORUM_ROOT.'include/cache.php';
+	
+	generate_forum_cache();
 
 	redirect('backstage/board.php?saved=true');
 } elseif (isset($_GET['edit_forum'])) {
 	$forum_id = intval($_GET['edit_forum']);
-	if ($forum_id < 1) {
-		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
+	if ($forum_id < 1)
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Update group permissions for $forum_id
 	if (isset($_POST['save'])) {
@@ -129,15 +139,11 @@ elseif (isset($_POST['update_positions'])) {
 		$sort_by = intval($_POST['sort_by']);
 		$color = luna_trim($_POST['color']);
 
-		if ($forum_name == '') {
-			message_backstage($lang['Must enter name message']);
-			exit;
-		}
+		if ($forum_name == '')
+			message_backstage(__('You must enter a name', 'luna'));
 
-		if ($cat_id < 1) {
-			message_backstage($lang['Bad request'], false, '404 Not Found');
-			exit;
-		}
+		if ($cat_id < 1)
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 
@@ -166,11 +172,23 @@ elseif (isset($_POST['update_positions'])) {
 			}
 		}
 
+		// Regenerate the forum cache
+		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+			require FORUM_ROOT.'include/cache.php';
+		
+		generate_forum_cache();
+
 		redirect('backstage/board.php?saved=true');
 	} elseif (isset($_POST['revert_perms'])) {
 		confirm_referrer('backstage/board.php');
 	
 		$db->query('DELETE FROM '.$db->prefix.'forum_perms WHERE forum_id='.$forum_id) or error('Unable to delete group forum permissions', __FILE__, __LINE__, $db->error());
+
+		// Regenerate the forum cache
+		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+			require FORUM_ROOT.'include/cache.php';
+		
+		generate_forum_cache();
 
 		redirect('backstage/board.php?edit_forum='.$forum_id);
 	}
@@ -178,10 +196,8 @@ elseif (isset($_POST['update_positions'])) {
 	// Fetch forum info
 	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, color FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
-	if (!$db->num_rows($result)) {
-		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
+	if (!$db->num_rows($result))
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	$cur_forum = $db->fetch_assoc($result);
 
@@ -192,7 +208,7 @@ elseif (isset($_POST['update_positions'])) {
 	
 	$cur_index = 7;
 	
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Forums']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Forums', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'board');
@@ -201,27 +217,27 @@ elseif (isset($_POST['update_positions'])) {
 <form id="edit_forum" class="form-horizontal" method="post" action="board.php?edit_forum=<?php echo $forum_id ?>">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Edit details subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Forum details', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Forum name label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Forum name', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="forum_name" maxlength="80" value="<?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?>" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Forum description label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Description', 'luna') ?></label>
 					<div class="col-sm-9">
 						<textarea class="form-control" name="forum_desc" rows="3" tabindex="2"><?php echo luna_htmlspecialchars($cur_forum['forum_desc']) ?></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Parent section'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Parent section', 'luna') ?></label>
 					<div class="col-sm-9">
 						<select name="parent_id" class="form-control">
-							<option value="0"><?php echo $lang['No parent'] ?></option>
+							<option value="0"><?php _e('No parent forum selected', 'luna') ?></option>
 <?php
 
 	if (!in_array($cur_forum['id'],$parent_forums)) {
@@ -250,7 +266,7 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Category label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Category', 'luna') ?></label>
 					<div class="col-sm-9">
 						<select class="form-control" name="cat_id" tabindex="3">
 <?php
@@ -266,54 +282,54 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Sort by label'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Sort topics by', 'luna') ?></label>
 					<div class="col-sm-9">
 						<select class="form-control" name="sort_by" tabindex="4">
-							<option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected' ?>><?php echo $lang['Last post'] ?></option>
-							<option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php echo $lang['Topic start'] ?></option>
-							<option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected' ?>><?php echo $lang['Subject'] ?></option>
+							<option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected' ?>><?php _e('Last post', 'luna') ?></option>
+							<option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php _e('Topic start', 'luna') ?></option>
+							<option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected' ?>><?php _e('Subject', 'luna') ?></option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Forum color'] ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Forum color', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="btn-group accent-group" data-toggle="buttons">
-							<label class="btn btn-primary color-accent accent-blue<?php if ($cur_forum['color'] == '#14a3ff') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-1<?php if ($cur_forum['color'] == '#14a3ff') echo ' active' ?>">
 								<input type="radio" name="color" id="blue" value="#14a3ff"<?php if ($cur_forum['color'] == '#14a3ff') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-denim<?php if ($cur_forum['color'] == '#2788cb') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-2<?php if ($cur_forum['color'] == '#2788cb') echo ' active' ?>">
 								<input type="radio" name="color" id="denim" value="#2788cb"<?php if ($cur_forum['color'] == '#2788cb') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-luna<?php if ($cur_forum['color'] == '#0d4382') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-3<?php if ($cur_forum['color'] == '#0d4382') echo ' active' ?>">
 								<input type="radio" name="color" id="luna" value="#0d4382"<?php if ($cur_forum['color'] == '#0d4382') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-purple<?php if ($cur_forum['color'] == '#c58be2') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-4<?php if ($cur_forum['color'] == '#c58be2') echo ' active' ?>">
 								<input type="radio" name="color" id="purple" value="#c58be2"<?php if ($cur_forum['color'] == '#c58be2') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-green<?php if ($cur_forum['color'] == '#99cc00') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-5<?php if ($cur_forum['color'] == '#99cc00') echo ' active' ?>">
 								<input type="radio" name="color" id="green" value="#99cc00"<?php if ($cur_forum['color'] == '#99cc00') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-ao<?php if ($cur_forum['color'] == '#047a36') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-6<?php if ($cur_forum['color'] == '#047a36') echo ' active' ?>">
 								<input type="radio" name="color" id="ao" value="#047a36"<?php if ($cur_forum['color'] == '#047a36') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-yellow<?php if ($cur_forum['color'] == '#ffcd21') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-7<?php if ($cur_forum['color'] == '#ffcd21') echo ' active' ?>">
 								<input type="radio" name="color" id="yellow" value="#ffcd21"<?php if ($cur_forum['color'] == '#ffcd21') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-orange<?php if ($cur_forum['color'] == '#ff7521') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-8<?php if ($cur_forum['color'] == '#ff7521') echo ' active' ?>">
 								<input type="radio" name="color" id="orange" value="#ff7521"<?php if ($cur_forum['color'] == '#ff7521') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-red<?php if ($cur_forum['color'] == '#ff4444') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-9<?php if ($cur_forum['color'] == '#ff4444') echo ' active' ?>">
 								<input type="radio" name="color" id="red" value="#ff4444"<?php if ($cur_forum['color'] == '#ff4444') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-white<?php if ($cur_forum['color'] == '#cccccc') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-10<?php if ($cur_forum['color'] == '#cccccc') echo ' active' ?>">
 								<input type="radio" name="color" id="white" value="#cccccc"<?php if ($cur_forum['color'] == '#cccccc') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-grey<?php if ($cur_forum['color'] == '#999999') echo ' active' ?>">
+							<label class="btn btn-primary color-accent accent-11<?php if ($cur_forum['color'] == '#999999') echo ' active' ?>">
 								<input type="radio" name="color" id="grey" value="#999999"<?php if ($cur_forum['color'] == '#999999') echo ' checked' ?>>
 							</label>
-							<label class="btn btn-primary color-accent accent-darkgrey<?php if ($cur_forum['color'] == '#444444') echo ' active' ?>">
-								<input type="radio" name="color" id="darkgrey" value="#444444"<?php if ($cur_forum['color'] == '#444444') echo ' checked' ?>>
+							<label class="btn btn-primary color-accent accent-12<?php if ($cur_forum['color'] == '#444444') echo ' active' ?>">
+								<input type="radio" name="color" id="black" value="#444444"<?php if ($cur_forum['color'] == '#444444') echo ' checked' ?>>
 							</label>
 						</div>
 					</div>
@@ -323,20 +339,20 @@ elseif (isset($_POST['update_positions'])) {
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Group permissions subhead'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Group permissions', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<fieldset>
 			<div class="panel-body">
-				<p><?php printf($lang['Group permissions info'], '<a href="groups.php">'.$lang['User groups'].'</a>') ?></p>
-				<div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php echo $lang['Revert to default'] ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
+				<p><?php printf(__('Here you can set the forum specific permissions for the different user groups. Administrators always have full permissions. Permission settings that differ from the default permissions for the user group are marked red. Some permissions are disabled under some conditions.', 'luna'), '<a href="groups.php">'.__('User groups', 'luna').'</a>') ?></p>
+				<div><input class="btn btn-warning pull-right" type="submit" name="revert_perms" value="<?php _e('Revert to default', 'luna') ?>" tabindex="<?php echo $cur_index++ ?>" /></div>
 			</div>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>&#160;</th>
-						<th><?php echo $lang['Read forum label'] ?></th>
-						<th><?php echo $lang['Post replies label'] ?></th>
-						<th><?php echo $lang['Post topics label'] ?></th>
+						<th><?php _e('Read forum', 'luna') ?></th>
+						<th><?php _e('Post replies', 'luna') ?></th>
+						<th><?php _e('Post topics', 'luna') ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -391,10 +407,8 @@ elseif (isset($_POST['add_cat'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$new_cat_name = luna_trim($_POST['new_cat_name']);
-	if ($new_cat_name == '') {
-		message_backstage($lang['Must enter name message']);
-		exit;
-	}
+	if ($new_cat_name == '')
+		message_backstage(__('You must enter a name', 'luna'));
 
 	$db->query('INSERT INTO '.$db->prefix.'categories (cat_name) VALUES(\''.$db->escape($new_cat_name).'\')') or error('Unable to create category', __FILE__, __LINE__, $db->error());
 
@@ -406,10 +420,8 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	confirm_referrer('backstage/board.php');
 	
 	$cat_to_delete = intval($_POST['cat_to_delete']);
-	if ($cat_to_delete < 1) {
-		message_backstage($lang['Bad request'], false, '404 Not Found');
-		exit;
-	}
+	if ($cat_to_delete < 1)
+		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	if (isset($_POST['del_cat_comply'])) { // Delete a category with all forums and posts
 		@set_time_limit(0);
@@ -450,7 +462,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		$result = $db->query('SELECT cat_name FROM '.$db->prefix.'categories WHERE id='.$cat_to_delete) or error('Unable to fetch category info', __FILE__, __LINE__, $db->error());
 		$cat_name = $db->result($result);
 
-		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Categories']);
+		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Categories', 'luna'));
 		define('FORUM_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 	load_admin_nav('content', 'board');
@@ -461,13 +473,13 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	<fieldset>
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Confirm delete cat head'] ?></h3>
+				<h3 class="panel-title"><?php _e('Confirm delete category', 'luna') ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php printf($lang['Confirm delete cat info'], $cat_name) ?> <?php echo $lang['Delete category warn'] ?></p>
+				<p><?php printf(__('Are you sure that you want to delete the category <strong>%s</strong>?', 'luna'), $cat_name) ?> <?php _e('Deleting a category will delete all forums and posts (if any) in this category!', 'luna') ?></p>
 			</div>
 			<div class="panel-footer">
-				<button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button>
+				<button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
 			</div>
 		</div>
 	</fieldset>
@@ -489,24 +501,18 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		confirm_referrer('backstage/board.php');
 		
 		$categories = $_POST['cat'];
-		if (empty($categories)) {
-			message_backstage($lang['Bad request'], false, '404 Not Found');
-			exit;
-		}
+		if (empty($categories))
+			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 	
 		foreach ($categories as $cat_id => $cur_cat) {
 			$cur_cat['name'] = luna_trim($cur_cat['name']);
 			$cur_cat['order'] = luna_trim($cur_cat['order']);
 	
-			if ($cur_cat['name'] == '') {
-				message_backstage($lang['Must enter name message']);
-				exit;
-			}
+			if ($cur_cat['name'] == '')
+				message_backstage(__('You must enter a name', 'luna'));
 	
-			if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order'])) {
-				message_backstage($lang['Must enter integer message']);
-				exit;
-			}
+			if ($cur_cat['order'] == '' || preg_match('%[^0-9]%', $cur_cat['order']))
+				message_backstage(__('Position must be a positive integer value.', 'luna'));
 	
 			$db->query('UPDATE '.$db->prefix.'categories SET cat_name=\''.$db->escape($cur_cat['name']).'\', disp_position='.$cur_cat['order'].' WHERE id='.intval($cat_id)) or error('Unable to update category', __FILE__, __LINE__, $db->error());
 		}
@@ -514,13 +520,13 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		redirect('backstage/board.php?saved=true');
 	}
 	
-	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Board']);
+	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Board', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('content', 'board');
 	
 	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>'
+		echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
 ?>
 <div class="row">
 	<div class="col-lg-4">
@@ -531,7 +537,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 ?>
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Add forum'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_forum" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add forum', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_forum" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">
@@ -547,7 +553,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 								</td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="<?php echo $lang['Name'] ?>" required="required" /></td>
+								<td><input type="text" class="form-control" name="new_forum" maxlength="80" placeholder="<?php _e('Name', 'luna') ?>" required="required" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -560,13 +566,13 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Add categories head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_cat" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Add'] ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Add categories', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="add_cat" tabindex="2"><span class="fa fa-fw fa-plus"></span> <?php _e('Add', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">
 						<tbody>
 							<tr>
-								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="<?php echo $lang['Name'] ?>" tabindex="1" /></td>
+								<td><input type="text" class="form-control" name="new_cat_name" maxlength="80" placeholder="<?php _e('Name', 'luna') ?>" tabindex="1" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -577,7 +583,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Delete categories head'] ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat" tabindex="4"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Delete categories', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="del_cat" tabindex="4"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">
@@ -613,7 +619,7 @@ if ($db->num_rows($result) > 0) {
 		<form id="edforum" method="post" action="board.php?action=edit">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Edit forum head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_positions"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Edit forum', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update_positions"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 <?php
@@ -641,9 +647,9 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 ?>
 							<tr>
-								<td class="col-xs-3"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php echo $lang['Edit'] ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Remove'] ?></a></div></td>
+								<td class="col-xs-4"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e('Edit', 'luna') ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></a></div></td>
 								<td class="col-xs-4"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-								<td class="col-xs-5"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+								<td class="col-xs-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 							</tr>
 <?php
 
@@ -659,14 +665,14 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 		<form method="post" action="board.php">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $lang['Edit categories head'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+					<h3 class="panel-title"><?php _e('Edit categories', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 				</div>
 				<fieldset>
 					<table class="table">
 						<thead>
 							<tr>
-								<th class="col-xs-5"><?php echo $lang['Category name label'] ?></th>
-								<th class="col-xs-7"><?php echo $lang['Category position label'] ?></th>
+								<th class="col-xs-5"><?php _e('Name', 'luna') ?></th>
+								<th class="col-xs-7"><?php _e('Position', 'luna') ?></th>
 							</tr>
 						</thead>
 						<tbody>

@@ -7,13 +7,13 @@
 
 // Show errors that occured when there are errors
 function draw_error_panel($errors) {
-	global $lang, $cur_error;
+	global $cur_error;
 
 	if (!empty($errors)) {
 ?>
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Post errors'] ?></h3>
+			<h3 class="panel-title"><?php _e('Post errors', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
 <?php
@@ -29,7 +29,7 @@ function draw_error_panel($errors) {
 
 // Show the preview panel
 function draw_preview_panel($message) {
-	global $lang, $hide_smilies, $message;
+	global $hide_smilies, $message;
 
 	if (!empty($message)) {
 		require_once FORUM_ROOT.'include/parser.php';
@@ -38,7 +38,7 @@ function draw_preview_panel($message) {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Post preview'] ?></h3>
+		<h3 class="panel-title"><?php _e('Post preview', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<?php echo $preview_message ?>
@@ -50,7 +50,7 @@ function draw_preview_panel($message) {
 
 // Show the editor panel
 function draw_editor($height) {
-	global $lang, $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message, $luna_config, $cur_index, $p_message;
+	global $orig_message, $quote, $fid, $is_admmod, $can_edit_subject, $cur_post, $message, $luna_config, $cur_index, $p_message;
 	
 	$pin_btn = $silence_btn = '';
 
@@ -63,7 +63,7 @@ function draw_editor($height) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.$lang['Pin topic'].'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
+		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin topic', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
 
 	if (FORUM_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
@@ -72,7 +72,7 @@ function draw_editor($height) {
 		}
 	
 		if ($is_admmod)
-			$silence_btn = '<div class="btn-group" data-toggle="buttons" title="'.$lang['Mute edit'].'"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
+			$silence_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Mute edit', 'luna').'"><label class="btn btn-success'.$silence_active.'"><input type="checkbox" name="silent" value="1" tabindex="-1"'.$silence_status.' /><span class="fa fa-fw fa-microphone-slash"></span></label></div>';
 	}
 
 ?>
@@ -83,29 +83,29 @@ function draw_editor($height) {
 			<?php echo $pin_btn ?>
 			<?php echo $silence_btn ?>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php echo $lang['Bold']; ?>" tabindex="-1"><span class="fa fa-fw fa-bold fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php echo $lang['Underline']; ?>" tabindex="-1"><span class="fa fa-fw fa-underline fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php echo $lang['Italic']; ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php echo $lang['Strike']; ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','b');" title="<?php _e('Bold', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-bold fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','u');" title="<?php _e('Underline', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-underline fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','i');" title="<?php _e('Italic', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-italic fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','s');" title="<?php _e('Strike', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-strikethrough fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php echo $lang['Heading']; ?>" tabindex="-1"><span class="fa fa-fw fa-header fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php echo $lang['Subscript']; ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php echo $lang['Superscript']; ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','h');" title="<?php _e('Heading', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-header fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sub');" title="<?php _e('Subscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-subscript fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','sup');" title="<?php _e('Superscript', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-superscript fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php echo $lang['Quote']; ?>" tabindex="-1"><span class="fa fa-fw fa-quote-left fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php echo $lang['Code']; ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span></a>
-				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php echo $lang['Inline code']; ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','quote');" title="<?php _e('Quote', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-quote-left fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('code','code');" title="<?php _e('Code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-code fa-fw"></span></a>
+				<a class="btn btn-default btn-editor hidden-md hidden-sm hidden-xs" href="javascript:void(0);" onclick="AddTag('inline','c');" title="<?php _e('Inline code', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-file-code-o fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php echo $lang['URL']; ?>" tabindex="-1"><span class="fa fa-fw fa-link fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php echo $lang['Image']; ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php echo $lang['Video']; ?>" tabindex="-1"><span class="fa fa-fw fa-play-circle fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','url');" title="<?php _e('URL', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-link fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','img');" title="<?php _e('Image', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-image fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','video');" title="<?php _e('Video', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-play-circle fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php echo $lang['List']; ?>" tabindex="-1"><span class="fa fa-fw fa-list-ul fa-fw"></span></a>
-				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php echo $lang['List item']; ?>" tabindex="-1"><span class="fa fa-fw fa-asterisk fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('list', 'list');" title="<?php _e('List', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-list-ul fa-fw"></span></a>
+				<a class="btn btn-default btn-editor" href="javascript:void(0);" onclick="AddTag('inline','*');" title="<?php _e('List item', 'luna'); ?>" tabindex="-1"><span class="fa fa-fw fa-asterisk fa-fw"></span></a>
 			</div>
 			<div class="btn-group">
 <?php if ($luna_config['o_emoji'] == 1) { ?>
@@ -114,50 +114,50 @@ function draw_editor($height) {
 						<span class="fa fa-fw text-emoji emoji-ed">&#x263a;</span>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right dropdown-emoji" role="menu">
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Smile']; ?>" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed">&#x263a;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Neutral']; ?>" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed">&#x1f611;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Sad']; ?>" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed">&#x1f629;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Big smile']; ?>" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed">&#x1f604;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Yikes']; ?>" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed">&#x1f632;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Wink']; ?>" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed">&#x1f609;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Hmmm']; ?>" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed">&#x1f612;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Tongue']; ?>" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed">&#x1f60b;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Happy']; ?>" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed">&#x1f600;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Angry']; ?>" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed">&#x1f620;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Roll eye']; ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Cool']; ?>" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed">&#x1f60e;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Happy cry']; ?>" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed">&#x1f605;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Angel']; ?>" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed">&#x1f607;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php echo $lang['Oh yeah']; ?>" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed">&#x1f60f;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed">&#x263a;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed">&#x1f611;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed">&#x1f629;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed">&#x1f604;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed">&#x1f632;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed">&#x1f609;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed">&#x1f612;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed">&#x1f60b;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed">&#x1f600;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed">&#x1f620;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed">&#x1f60e;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed">&#x1f605;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed">&#x1f607;</span></a></li>
+						<li><a href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed">&#x1f60f;</span></a></li>
 					</ul>
 				</div>
 <?php } else { ?>
 				<div class="btn-group">
 					<a class="btn btn-default btn-editor emoticon-ed dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt="<?php echo $lang['Smilies'] ?>" width="15" height="15" />
+						<img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt="<?php _e('Smilies', 'luna') ?>" width="15" height="15" />
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right dropdown-emoticon" role="menu">
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Smile']; ?>" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Neutral']; ?>" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Sad']; ?>" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Big smile']; ?>" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Yikes']; ?>" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Wink']; ?>" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Hmmm']; ?>" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Tongue']; ?>" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Happy']; ?>" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Angry']; ?>" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Roll eye']; ?>" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Cool']; ?>" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Happy cry']; ?>" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Angel']; ?>" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php echo $lang['Oh yeah']; ?>" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
+						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
 					</ul>
 				</div>
 <?php } ?>
 			</div>
 		</div>
-		<textarea class="form-control textarea"  placeholder="<?php echo $lang['Start typing'] ?>" name="req_message" id="post_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
+		<textarea class="form-control textarea"  placeholder="<?php _e('Start typing...', 'luna') ?>" name="req_message" id="post_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
 			if (FORUM_ACTIVE_PAGE == 'post')
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			elseif (FORUM_ACTIVE_PAGE == 'edit')
@@ -167,8 +167,8 @@ function draw_editor($height) {
 		?></textarea>
 		<div class="btn-toolbar textarea-toolbar textarea-bottom">
 			<div class="btn-group pull-right">
-				<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Preview'] ?></button>
-				<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-plus"></span> <?php echo $lang['Submit'] ?></button>
+				<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
+				<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
 			</div>
 		</div>
 	</fieldset>
@@ -196,7 +196,7 @@ function AddTag(type, tag) {
 }
 
 function draw_topics_list() {
-	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $lang, $db_type, $tracked_topics;
+	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics;
 	
 	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
@@ -213,16 +213,16 @@ function draw_topics_list() {
 		// Fetch list of topics to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
 			// When not showing a posted label
-			if ($luna_user['is_admmod'])
-				$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
-			else
-				$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE soft = 0 AND id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
+			if (!$luna_user['is_admmod'])
+				$sql_addition = 'soft = 0 AND ';
+
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE '.$sql_addition.'id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
 		} else {
 			// When showing a posted label
-			if ($luna_user['g_soft_delete_view'])
-				$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
-			else
-				$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.soft = 0 AND t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
+			if (!$luna_user['g_soft_delete_view'])
+				$sql_addition = 't.soft = 0 AND ';
+
+			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
@@ -244,9 +244,9 @@ function draw_topics_list() {
 				$topic_id = $cur_topic['id'];
 
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_poster = '<span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
-					$last_poster = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
 			} else {
 				$last_poster = '';
 				$topic_id = $cur_topic['moved_to'];
@@ -257,17 +257,17 @@ function draw_topics_list() {
 	
 			if ($cur_topic['sticky'] == '1') {
 				$item_status .= ' sticky-item';
-				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
+				$status_text[] = '<span class="label label-success">'.__('Sticky', 'luna').'</span>';
 			}
 
 			$url = 'viewtopic.php?id='.$topic_id;
-			$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
+				$status_text[] = '<span class="label label-info">'.__('Moved', 'luna').'</span>';
 				$item_status .= ' moved-item';
 			} elseif ($cur_topic['closed'] == '1') {
-				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
+				$status_text[] = '<span class="label label-danger">'.__('Closed', 'luna').'</span>';
 				$item_status .= ' closed-item';
 			}
 	
@@ -281,7 +281,7 @@ function draw_topics_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new post in this topic.', 'luna').'">'.__('New posts', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 
@@ -294,30 +294,23 @@ function draw_topics_list() {
 			else
 				$subject_multipage = null;
 	
-			if (forum_number_format($cur_topic['num_replies']) == '1') {
-				$replies_label = $lang['reply'];
-			} else {
-				$replies_label = $lang['replies'];
-			}
-	
-			if (forum_number_format($cur_topic['num_views']) == '1') {
-				$views_label = $lang['view'];
-			} else {
-				$views_label = $lang['views'];
-			}
+			$replies_label = _n('reply', 'replies', $cur_topic['num_replies'], 'luna');
+			$views_label = _n('view', 'views', $cur_topic['num_views'], 'luna');
 	
 			require get_view_path('topic.php');
 	
 		}
 	
 	} else {
-		'<h3 class="nothing">'.printf($lang['No threads'], $id).'</h3>';
+		echo '<h3 class="nothing">';
+		printf(__('There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
+		echo '</h3>';
 	}
 	
 }
 
-function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags = '') {
-	global $lang, $db, $luna_config, $luna_user, $id, $new_topics;
+function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_object_name = 'category.php', $close_tags = '') {
+	global $db, $luna_config, $luna_user, $id, $new_topics;
 	
 	// Print the categories and forums
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
@@ -351,7 +344,7 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 			// Are there new posts since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New posts', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -360,15 +353,8 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
 		
-			if (forum_number_format($cur_forum['num_posts']) == '1')
-				$topics_label = $lang['topic'];
-			else
-				$topics_label = $lang['topics'];
-		
-			if (forum_number_format($cur_forum['num_topics']) == '1')
-				$posts_label = $lang['post'];
-			else
-				$posts_label = $lang['posts'];
+			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
+			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
 			if ($id == $cur_forum['fid'])
 				$item_status .= ' active';
@@ -379,11 +365,11 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 					$cur_forum['subject'] = utf8_substr($cur_forum['subject'], 0, 50).'...';
 		
 					if ($luna_user['g_view_users'] == '1' && $cur_forum['last_poster_id'] > '1')
-						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
+						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_forum['last_poster_id'].'">'.luna_htmlspecialchars($cur_forum['username']).'</a></span>';
 					else
-						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
+						$last_post = '<a href="viewtopic.php?pid='.$cur_forum['last_post_id'].'#p'.$cur_forum['last_post_id'].'">'.luna_htmlspecialchars($cur_forum['subject']).'</a><br /><span class="bytime  hidden-xs">'.format_time($cur_forum['last_post']).' </span><span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_forum['username']).'</span>';
 			} else
-				$last_post = $lang['Never'];
+				$last_post = __('Never', 'luna');
 		
 			require get_view_path($forum_object_name);
 		}
@@ -394,12 +380,12 @@ function draw_forum_list($page, $forum_object_name = 'forum.php', $use_cat = 0, 
 		if ($cur_category > 0)
 			echo $close_tags;
 		else
-			echo '<div class="no-board"><p>'.$lang['Empty board'].'</p></div>';
+			echo '<div class="no-board"><p>'.__('Board is empty.', 'luna').'</p></div>';
 	}
 }
 
-function draw_subforum_list($page, $object_name = 'forum.php') {
-	global $lang, $db, $luna_config, $luna_user, $id, $new_topics;
+function draw_subforum_list($object_name = 'forum.php') {
+	global $db, $luna_config, $luna_user, $id, $new_topics;
 	
 	$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
 	$cur_parent = $db->fetch_assoc($result);
@@ -432,7 +418,7 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 			// Are there new posts since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.$lang['New posts'].'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New posts', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -441,15 +427,8 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
 		
-			if (forum_number_format($cur_forum['num_posts']) == '1')
-				$topics_label = $lang['topic'];
-			else
-				$topics_label = $lang['topics'];
-		
-			if (forum_number_format($cur_forum['num_topics']) == '1')
-				$posts_label = $lang['post'];
-			else
-				$posts_label = $lang['posts'];
+			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
+			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
 			if ($id == $cur_forum['fid'])
 				$item_status .= ' active';
@@ -460,13 +439,13 @@ function draw_subforum_list($page, $object_name = 'forum.php') {
 }
 
 function draw_section_info($current_id) {
-	global $lang, $result, $db, $luna_config, $cur_section, $luna_user, $cur_posting, $cur_forum;
+	global $result, $db, $luna_config, $cur_section, $luna_user, $cur_posting, $cur_forum;
 
 	if ($current_id != 0) {
 		$result = $db->query('SELECT * FROM '.$db->prefix.'forums where id = '.$current_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 		
 		if (!$db->num_rows($result))
-			message($lang['Bad request'], false, '404 Not Found');
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 		
 		$cur_section = $db->fetch_assoc($result);
 
@@ -477,14 +456,11 @@ function draw_section_info($current_id) {
 	require get_view_path('section-info.php');
 }
 
-function draw_index_topics_list($section_id) {
-	global $luna_user, $luna_config, $db, $start_from, $id, $lang, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
+function draw_index_topics_list() {
+	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
 	
 	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	if ($section_id != 0)
-		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$section_id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
-	else
-		$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 AND moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 AND moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
@@ -494,46 +470,41 @@ function draw_index_topics_list($section_id) {
 
 		// Fetch list of topics to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
-			if ($luna_user['g_soft_delete_view']) {
-				// When not showing a posted label
-				if ($section_id != 0)
-					$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
-				else
-					$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topic_ids).') ORDER BY last_post DESC';
-			} else {
-				// When not showing a posted label
-				if ($section_id != 0)
-					$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE soft = 0 AND id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
-				else
-					$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE soft = 0 AND id IN('.implode(',', $topic_ids).') ORDER BY last_post DESC';
-			}
+			if (!$luna_user['g_soft_delete_view'])
+				$sql_soft = 'soft = 0 AND ';
+
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft, forum_id FROM '.$db->prefix.'topics WHERE '.$sql_soft.'id IN('.implode(',', $topic_ids).') ORDER BY last_post DESC';
+
 		} else {
-			if ($luna_user['g_soft_delete_view']) {
-				// When showing a posted label
-				if ($section_id != 0)
-					$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
-				else
-					$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
-			} else {
-				// When showing a posted label
-				if ($section_id != 0)
-					$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.soft = 0 AND t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
-				else
-					$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE t.soft = 0 AND t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
-			}
+			if (!$luna_user['g_soft_delete_view'])
+				$sql_soft = 't.soft = 0 AND ';
+
+			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft, t.forum_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
+
+		// Load cached forums
+		if (file_exists(FORUM_CACHE_DIR.'cache_forums.php'))
+			include FORUM_CACHE_DIR.'cache_forums.php';
+		
+		if (!defined('FORUM_LIST_LOADED')) {
+			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
+				require FORUM_ROOT.'include/cache.php';
+		
+			generate_forum_cache();
+			require FORUM_CACHE_DIR.'cache_forums.php';
+		}
 	
 		$topic_count = 0;
 		while ($cur_topic = $db->fetch_assoc($result)) {
-	
+			
 			++$topic_count;
 			$status_text = array();
 			$item_status = ($topic_count % 2 == 0) ? 'roweven' : 'rowodd';
 			$icon_type = 'icon';
-			if (luna_strlen($cur_topic['subject']) > 43)
-				$subject = utf8_substr($cur_topic['subject'], 0, 40).'...';
+			if (luna_strlen($cur_topic['subject']) > 53)
+				$subject = utf8_substr($cur_topic['subject'], 0, 50).'...';
 			else
 				$subject = luna_htmlspecialchars($cur_topic['subject']);
 			$last_post_date = '<a href="viewtopic.php?pid='.$cur_topic['last_post_id'].'#p'.$cur_topic['last_post_id'].'">'.format_time($cur_topic['last_post']).'</a>';
@@ -542,9 +513,18 @@ function draw_index_topics_list($section_id) {
 				$topic_id = $cur_topic['id'];
 
 				if ($luna_user['g_view_users'] == '1' && $cur_topic['last_poster_id'] > '1')
-					$last_poster = '<span class="byuser">'.$lang['by'].' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' <a href="profile.php?id='.$cur_topic['last_poster_id'].'">'.luna_htmlspecialchars($cur_topic['last_poster']).'</a></span>';
 				else
-					$last_poster = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
+					$last_poster = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['last_poster']).'</span>';
+				
+				foreach ($luna_forums as $cur_forum) {
+					if ($cur_topic['forum_id'] == $cur_forum['id']) {
+						$forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
+						$forum_color = $cur_forum['color'];
+					}
+				}
+				
+				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_topic['forum_id'].'" style="background: '.$forum_color.';">'.$forum_name.'</a></span>';
 			} else {
 				$last_poster = '';
 				$topic_id = $cur_topic['moved_to'];
@@ -555,17 +535,17 @@ function draw_index_topics_list($section_id) {
 	
 			if ($cur_topic['sticky'] == '1') {
 				$item_status .= ' sticky-item';
-				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
+				$status_text[] = '<span class="label label-success">'.__('Sticky', 'luna').'</span>';
 			}
 
 			$url = 'viewtopic.php?id='.$topic_id;
-			$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$status_text[] = '<span class="label label-info">'.$lang['Moved'].'</span>';
+				$status_text[] = '<span class="label label-info">'.__('Moved', 'luna').'</span>';
 				$item_status .= ' moved-item';
 			} elseif ($cur_topic['closed'] == '1') {
-				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
+				$status_text[] = '<span class="label label-danger">'.__('Closed', 'luna').'</span>';
 				$item_status .= ' closed-item';
 			}
 	
@@ -578,7 +558,7 @@ function draw_index_topics_list($section_id) {
 			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new post in this topic.', 'luna').'">'.__('New posts', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 	
@@ -591,32 +571,18 @@ function draw_index_topics_list($section_id) {
 			else
 				$subject_multipage = null;
 	
-			if (forum_number_format($cur_topic['num_replies']) == '1') {
-				$replies_label = $lang['reply'];
-			} else {
-				$replies_label = $lang['replies'];
-			}
-	
-			if (forum_number_format($cur_topic['num_views']) == '1') {
-				$views_label = $lang['view'];
-			} else {
-				$views_label = $lang['views'];
-			}
+			$replies_label = _n('reply', 'replies', $cur_topic['num_replies'], 'luna');
+			$views_label = _n('view', 'views', $cur_topic['num_views'], 'luna');
 	
 			require get_view_path('topic.php');
 	
 		}
-	
-	} elseif ($section_id != 0) {
-		'<h3 class="nothing">'.printf($lang['No threads'], $id).'</h3>';
-	} else {
-		echo '<h3 class="nothing">'.$lang['No threads board'].'</h3>';
-	}
-	
+	} else
+		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a topic to begin.', 'luna').'</h3>';
 }
 
 function draw_topic_list() {
-	global $lang, $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic;
+	global $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic;
 
 	// Retrieve the posts (and their respective poster/online status)
 	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -650,35 +616,35 @@ function draw_topic_list() {
 					if ($luna_config['o_censoring'] == '1')
 						$cur_post['location'] = censor_words($cur_post['location']);
 	
-					$user_info[] = '<dd><span>'.$lang['From'].' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
+					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
 				}
 	
 				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'.$lang['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+					$user_info[] = '<dd><span>'._n('Post:', 'Posts:', $cur_post['num_posts'], 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_post['email']).'">'.$lang['Email'].'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="mailto:'.luna_htmlspecialchars($cur_post['email']).'">'.__('Email', 'luna').'</a>';
 				elseif ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_post['poster_id'].'">'.$lang['Email'].'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="misc.php?email='.$cur_post['poster_id'].'">'.__('Email', 'luna').'</a>';
 	
 				if ($cur_post['url'] != '') {
 					if ($luna_config['o_censoring'] == '1')
 						$cur_post['url'] = censor_words($cur_post['url']);
 	
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.luna_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.$lang['Website'].'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="'.luna_htmlspecialchars($cur_post['url']).'" rel="nofollow">'.__('Website', 'luna').'</a>';
 				}
 	
 	
 				if ($luna_user['is_admmod']) {
-					$user_actions[] = '<a class="btn btn-primary btn-xs" href="backstage/moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a>';
+					$user_actions[] = '<a class="btn btn-primary btn-xs" href="backstage/moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.__('IP log', 'luna').'</a>';
 				}
 			}
 	
 	
 			if ($luna_user['is_admmod']) {
 				if ($cur_post['admin_note'] != '')
-					$user_info[] = '<dd><span>'.$lang['Note'].' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 			}
 		}
 		// If the poster is a guest (or a user that has been deleted)
@@ -687,10 +653,10 @@ function draw_topic_list() {
 			$user_title = get_title($cur_post);
 	
 			if ($luna_user['is_admmod'])
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.$lang['IP address logged'].'</a></span></dd>';
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['id'].'" title="'.luna_htmlspecialchars($cur_post['poster_ip']).'">'.__('IP log', 'luna').'</a></span></dd>';
 	
 			if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-				$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_post['poster_email']).'">'.$lang['Email'].'</a></span>';
+				$user_actions[] = '<span class="email"><a href="mailto:'.luna_htmlspecialchars($cur_post['poster_email']).'">'.__('Email', 'luna').'</a></span>';
 		}
 	
 		// Get us the avatar
@@ -698,51 +664,51 @@ function draw_topic_list() {
 			if (isset($user_avatar_cache[$cur_post['poster_id']]))
 				$user_avatar = $user_avatar_cache[$cur_post['poster_id']];
 			else
-				$user_avatar = draw_user_avatar($cur_post['poster_id'], 'thread-avatar');
+				$user_avatar = draw_user_avatar($cur_post['poster_id'], false, 'media-object media-avatar');
 		}
 	
 		// Generation post action array (quote, edit, delete etc.)
 		if (!$is_admmod) {
 			if (!$luna_user['is_guest']) {
 				if ($cur_post['marked'] == false) {
-					$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+					$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 				} else {
-					$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+					$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 				}
 			}
 	
 			if ($cur_topic['closed'] == 0) {
 				if ($cur_post['poster_id'] == $luna_user['id']) {
 					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == 1))
-						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.$lang['Delete'].'</a>';
+						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_posts'] == 1)) {
 						if ($cur_post['soft'] == 0)
-							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.$lang['Soft delete'].'</a>';
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 						else
-							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.$lang['Soft reset'].'</a>';
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
 					}
 					if ($luna_user['g_edit_posts'] == 1)
-						$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
+						$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
 				}
 	
 				if (($cur_topic['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_topic['post_replies'] == 1)
-					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 			}
 		} else {
 			if ($cur_post['marked'] == false) {
-				$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 			} else {
-				$post_actions[] = '<a class="reported" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.$lang['Report'].'</a>';
+				$post_actions[] = '<a class="reported" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 			}
 			if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
-				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.$lang['Delete'].'</a>';
+				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 				if ($cur_post['soft'] == 0)
-					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.$lang['Soft delete'].'</a>';
+					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 				else
-					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.$lang['Soft reset'].'</a>';
-				$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.$lang['Edit'].'</a>';
+					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
+				$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
 			}
-			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.$lang['Quote'].'</a>';
+			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 		}
 	
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
@@ -764,7 +730,7 @@ function draw_topic_list() {
 }
 
 function draw_response_list() {
-	global $lang, $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $inbox;
+	global $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $inbox;
 
 	while ($cur_post = $db->fetch_assoc($result)) {	
 		$post_count++;
@@ -788,7 +754,7 @@ function draw_response_list() {
 				$user_title = censor_words($user_title);
 	
 			// Format the online indicator
-			$is_online = ($cur_post['is_online'] == $cur_post['sender_id']) ? '<strong>'.$lang['Online'].'</strong>' : '<span>'.$lang['Offline'].'</span>';
+			$is_online = ($cur_post['is_online'] == $cur_post['sender_id']) ? '<strong>'.__('Online:', 'luna').'</strong>' : '<span>'.__('Offline', 'luna').'</span>';
 	
 			if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
 				if (isset($user_avatar_cache[$cur_post['sender_id']]))
@@ -803,50 +769,50 @@ function draw_response_list() {
 					if ($luna_config['o_censoring'] == '1')
 						$cur_post['location'] = censor_words($cur_post['location']);
 	
-					$user_info[] = '<dd><span>'.$lang['From'].' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
+					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
 				}
 	
-				$user_info[] = '<dd><span>'.$lang['Registered'].' '.format_time($cur_post['registered'], true).'</span></dd>';
+				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_post['registered'], true).'</span></dd>';
 	
 				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'.$lang['Posts'].' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+					$user_info[] = '<dd><span>'.__('Posts:', 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
-					$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['email'].'">'.$lang['Email'].'</a></span>';
+					$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['email'].'">'.__('Email', 'luna').'</a></span>';
 				elseif ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_post['sender_id'].'">'.$lang['Email'].'</a></span>';
+					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_post['sender_id'].'">'.__('Email', 'luna').'</a></span>';
 					
 				if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_post['use_pm'] == '1') {
 					$pid = isset($cur_post['sender_id']) ? $cur_post['sender_id'] : $cur_post['sender_id'];
-					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.$lang['PM'].'</a></span>';
+					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.__('PM', 'luna').'</a></span>';
 				}
 	
 				if ($cur_post['url'] != '')
-					$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_post['url']).'">'.$lang['Website'].'</a></span>';
+					$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_post['url']).'">'.__('Website', 'luna').'</a></span>';
 					
 			}
 	
 			if ($luna_user['is_admmod']) {
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_ip'].'" title="'.$cur_post['sender_ip'].'">'.$lang['IP address logged'].'</a></span></dd>';
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_ip'].'" title="'.$cur_post['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
 	
 				if ($cur_post['admin_note'] != '')
-					$user_info[] = '<dd><span>'.$lang['Note'].' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 			}
 		} else { // If the poster is a guest (or a user that has been deleted)
 			$username = luna_htmlspecialchars($cur_post['username']);
 			$user_title = get_title($cur_post);
 	
 			if ($luna_user['is_admmod'])
-				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_id'].'" title="'.$cur_post['sender_ip'].'">'.$lang['IP address logged'].'</a></span></dd>';
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_id'].'" title="'.$cur_post['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
 	
 			if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
-				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['poster_email'].'">'.$lang['Email'].'</a></span>';
+				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['poster_email'].'">'.__('Email', 'luna').'</a></span>';
 		}
 		
 		$username_quickreply = luna_htmlspecialchars($cur_post['username']);
 
-		$post_actions[] = '<a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.$lang['Quote'].'</a>';
+		$post_actions[] = '<a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.__('Quote', 'luna').'</a>';
 
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
 		$cur_post['message'] = parse_message($cur_post['message']);
@@ -866,7 +832,7 @@ function draw_response_list() {
 }
 
 function draw_user_list() {
-	global $db, $lang, $where_sql, $sort_query, $start_from;
+	global $db, $where_sql, $sort_query, $start_from;
 	
 	// Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.FORUM_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_query.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
@@ -881,85 +847,85 @@ function draw_user_list() {
 	
 		while ($user_data = $db->fetch_assoc($result)) {
 			$user_title_field = get_title($user_data);
-			$user_avatar = draw_user_avatar($user_data['id'], 'media-object');
+			$user_avatar = draw_user_avatar($user_data['id'], true, 'media-object');
 	
 			require get_view_path('user.php');
 	
 		}
 	} else
-		echo '<p>'.$lang['No hits'].'</p>';
+		echo '<p>'.__('Your search returned no hits.', 'luna').'</p>';
 }
 
 function draw_delete_form($id) {
-	global $is_topic_post, $lang;
+	global $is_topic_post;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
-			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br /><?php echo $lang['Delete info'] ?></p>
+			<p><?php echo ($is_topic_post) ? '<strong>'.__('Warning! This is the first post in the topic, the whole topic will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The post you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
-				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Delete'] ?></button>
+				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 			</div>
 		</form>
 <?php
 }
 
 function draw_soft_delete_form($id) {
-	global $is_topic_post, $lang;
+	global $is_topic_post;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
-			<p><?php echo ($is_topic_post) ? '<strong>'.$lang['Topic warning'].'</strong>' : '' ?><br /><?php echo $lang['Soft delete info'] ?></p>
+			<p><?php echo ($is_topic_post) ? '<strong>'.__('Warning! This is the first post in the topic, the whole topic will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
-				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php echo $lang['Soft delete'] ?></button>
+				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Soft delete', 'luna') ?></button>
 			</div>
 		</form>
 <?php
 }
 
 function draw_soft_reset_form($id) {
-	global $is_topic_post, $lang;
+	global $is_topic_post;
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
-			<p><?php echo $lang['Revert soft delete'] ?></p>
+			<p><?php _e('This post has been soft deleted. We\'ll enable it again with a click on the button.', 'luna') ?></p>
 			<div class="btn-toolbar">
-				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo $lang['Cancel'] ?></a>
-				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php echo $lang['Reset post'] ?></button>
+				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Reset post', 'luna') ?></button>
 			</div>
 		</form>
 <?php
 }
 
 function draw_delete_title() {
-	global $is_topic_post, $lang, $cur_post;
+	global $is_topic_post, $cur_post;
 
-	printf($is_topic_post ? $lang['Topic by'] : $lang['Reply by'], '<strong>'.luna_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted']));
+	printf($is_topic_post ? __('Topic started by %s - %s', 'luna') : __('Reply by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted']));
 }
 
 function draw_registration_form() {
-	global $lang, $luna_config;
+	global $luna_config;
 ?>
 
 <form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Register legend'] ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="register" value="<?php echo $lang['Register'] ?>" /></span></h3>
+			<h3 class="panel-title"><?php _e('Enter the requested data', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="register" value="<?php _e('Register', 'luna') ?>" /></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
 				<input type="hidden" name="form_sent" value="1" />
-				<label class="required hidden"><?php echo $lang['If human'] ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
+				<label class="required hidden"><?php _e('If you are human please leave this field blank!', 'luna') ?><input type="text" class="form-control" name="req_username" value="" maxlength="25" /></label>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Username'] ?><span class="help-block"><?php echo $lang['Username legend'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('Enter a username between 2 and 25 characters long', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="req_user" value="<?php if (isset($_POST['req_user'])) echo luna_htmlspecialchars($_POST['req_user']); ?>" maxlength="25" />
 					</div>
 				</div>
 <?php if ($luna_config['o_regs_verify'] == '0'): ?>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Password'] ?><span class="help-block"><?php echo $lang['Pass info'] ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Password', 'luna') ?><span class="help-block"><?php _e('Passwords must be at least 6 characters long and are case sensitive', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="row">
 							<div class="col-sm-6">
@@ -973,7 +939,7 @@ function draw_registration_form() {
 				</div>
 <?php endif; ?>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo $lang['Email'] ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php echo $lang['Email help info'] ?></span><?php endif; ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Email', 'luna') ?><?php if ($luna_config['o_regs_verify'] == '1'): ?><span class="help-block"><?php _e('Your password will be sent to this address, make sure it\'s valid', 'luna') ?></span><?php endif; ?></label>
 					<div class="col-sm-9">
 						<?php if ($luna_config['o_regs_verify'] == '1'): ?>
 						<div class="row">
@@ -997,13 +963,13 @@ function draw_registration_form() {
 }
 
 function draw_rules_form() {
-	global $lang, $luna_config;
+	global $luna_config;
 ?>
 
 <form method="get" action="register.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Rules legend'] ?></h3>
+			<h3 class="panel-title"><?php _e('You must agree to the following in order to register', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -1011,7 +977,7 @@ function draw_rules_form() {
 			</fieldset>
 		</div>
 		<div class="panel-footer">
-			<div class="btn-group"><input type="submit" class="btn btn-primary" name="agree" value="<?php echo $lang['Agree'] ?>" /></div>
+			<div class="btn-group"><input type="submit" class="btn btn-primary" name="agree" value="<?php _e('Agree', 'luna') ?>" /></div>
 		</div>
 	</div>
 </form>
@@ -1019,7 +985,7 @@ function draw_rules_form() {
 }
 
 function draw_search_results() {
-	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $lang, $cur_topic, $subject_status, $last_post_date, $tracked_topics, $start_from;
+	global $search_set, $cur_search, $luna_user, $luna_config, $topic_count, $cur_topic, $subject_status, $last_post_date, $tracked_topics, $start_from;
 
 	foreach ($search_set as $cur_search) {
 		$forum = '<a href="viewforum.php?id='.$cur_search['forum_id'].'">'.luna_htmlspecialchars($cur_search['forum_name']).'</a>';
@@ -1036,15 +1002,15 @@ function draw_search_results() {
 			$icon_type = 'icon';
 			
 			$subject = '<a href="viewtopic.php?id='.$cur_search['tid'].'#p'.$cur_search['pid'].'">'.luna_htmlspecialchars($cur_search['subject']).'</a>';
-			$by = '<span class="byuser">'.$lang['by'].' '.luna_htmlspecialchars($cur_search['poster']).'</span>';
+			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_search['poster']).'</span>';
 			
 			if ($cur_search['sticky'] == '1') {
 				$item_status .= ' sticky-item';
-				$status_text[] = '<span class="label label-success">'.$lang['Sticky'].'</span>';
+				$status_text[] = '<span class="label label-success">'.__('Sticky', 'luna').'</span>';
 			}
 			
 			if ($cur_search['closed'] != '0') {
-				$status_text[] = '<span class="label label-danger">'.$lang['Closed'].'</span>';
+				$status_text[] = '<span class="label label-danger">'.__('Closed', 'luna').'</span>';
 				$item_status .= ' closed-item';
 			}
 			
@@ -1052,7 +1018,7 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.$lang['New posts info'].'">'.$lang['New posts'].'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new post in this topic.', 'luna').'">'.__('New posts', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 			
@@ -1067,9 +1033,9 @@ function draw_search_results() {
 				$subject_multipage = null;
 			
 			if ($cur_search['last_poster_id'] > '1' && $luna_user['g_view_users'] == '1')
-				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].'</span> <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
+				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> <a href="profile.php?id='.$cur_search['last_poster_id'].'">'.luna_htmlspecialchars($cur_search['last_poster']).'</a>';
 			else
-				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.$lang['by'].'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
+				$last_poster = '<a href="viewtopic.php?pid='.$cur_search['last_post_id'].'#p'.$cur_search['last_post_id'].'">'.format_time($cur_search['last_post']).'</a> <span class="byuser">'.__('by', 'luna').'</span> '.luna_htmlspecialchars($cur_search['last_poster']);
 
 			require get_view_path('search-topic.php');
 		// }
@@ -1078,11 +1044,11 @@ function draw_search_results() {
 }
 
 function draw_mail_form($recipient_id) {
-	global $lang, $recipient_id, $redirect_url, $cur_index;
+	global $recipient_id, $redirect_url, $cur_index;
 ?>
 
 <form id="email" method="post" action="misc.php?email=<?php echo $recipient_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-	<input class="info-textfield form-control" placeholder="<?php echo $lang['Subject'] ?>" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" autofocus />
+	<input class="info-textfield form-control" placeholder="<?php _e('Subject', 'luna') ?>" type="text" name="req_subject" maxlength="70" tabindex="<?php echo $cur_index++ ?>" autofocus />
 	<div class="panel panel-default panel-editor">
 		<fieldset class="postfield">
 			<input type="hidden" name="form_sent" value="1" />
@@ -1090,7 +1056,7 @@ function draw_mail_form($recipient_id) {
 			<textarea name="req_message" class="form-control textarea" rows="10" tabindex="<?php echo $cur_index++ ?>"></textarea>
 			<div class="btn-toolbar textarea-toolbar textarea-bottom">
 				<div class="btn-group pull-right">
-					<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-envelope-o"></span> <?php echo $lang['Send'] ?></button>
+					<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-envelope-o"></span> <?php _e('Send', 'luna') ?></button>
 				</div>
 			</div>
 		</fieldset>
@@ -1100,20 +1066,20 @@ function draw_mail_form($recipient_id) {
 }
 
 function draw_report_form($post_id) {
-	global $lang, $post_id;
+	global $post_id;
 ?>
 
 <form id="report" method="post" action="misc.php?report=<?php echo $post_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php echo $lang['Report reason'] ?></h3>
+			<h3 class="panel-title"><?php _e('Tell us why you are reporting this.', 'luna') ?></h3>
 		</div>
 		<fieldset>
 			<input type="hidden" name="form_sent" value="1" />
 			<textarea class="form-control textarea" name="req_reason" rows="5"></textarea>
 		</fieldset>
 		<div class="panel-footer">
-			<input type="submit" class="btn btn-primary" name="submit" value="<?php echo $lang['Submit'] ?>" accesskey="s" />
+			<input type="submit" class="btn btn-primary" name="submit" value="<?php _e('Submit', 'luna') ?>" accesskey="s" />
 		</div>
 	</div>
 </form>
@@ -1122,13 +1088,13 @@ function draw_report_form($post_id) {
 
 
 function draw_search_forum_list() {
-	global $db, $luna_config, $luna_user, $lang;
+	global $db, $luna_config, $luna_user;
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 	// We either show a list of forums of which multiple can be selected
 	if ($luna_config['o_search_all_forums'] == '1' || $luna_user['is_admmod']) {
-		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.$lang['Forum'].'</b>'."\n";
+		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><div class="conl multiselect"><b>'.__('Forum', 'luna').'</b>'."\n";
 		echo "\t\t\t\t\t\t".'<br />'."\n";
 		echo "\t\t\t\t\t\t".'<div>'."\n";
 	
@@ -1156,7 +1122,7 @@ function draw_search_forum_list() {
 	}
 	// ... or a simple select list for one forum only
 	else {
-		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.$lang['Forum']."\n";
+		echo "\t\t\t\t\t\t".'<div class="col-xs-4"><label class="conl">'.__('Forum', 'luna')."\n";
 		echo "\t\t\t\t\t\t".'<br />'."\n";
 		echo "\t\t\t\t\t\t".'<select id="forum" name="forum">'."\n";
 	
@@ -1180,7 +1146,7 @@ function draw_search_forum_list() {
 }
 
 function draw_mark_read($class, $page) {
-	global $lang, $luna_user, $id;
+	global $luna_user, $id;
 	
 	if (!empty($class))
 		$classes = ' class="'.$class.'"';
@@ -1191,5 +1157,32 @@ function draw_mark_read($class, $page) {
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 
 	if (!$luna_user['is_guest'])
-		echo '<a'.$classes.' href="'.$url.'">'.$lang['Mark as read'].'</a>';
+		echo '<a'.$classes.' href="'.$url.'">'.__('Mark as read', 'luna').'</a>';
+}
+
+function draw_wall_error($description, $action = NULL, $title = NULL) {
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title><?php _e('Luna', 'luna') ?></title>
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo FORUM_ROOT ?>include/css/system.css" />
+	</head>
+	<body class="wall">
+		<h1><?php if ($title != NULL) { echo $title; } else { echo 'Luna'; } ?></h1>
+		<p><?php echo $description; ?></p>
+		<p><?php echo $action; ?></p>
+	</body>
+</html>
+<?php
+}
+
+function draw_user_nav_menu() {
+	global $luna_user;
+
+	$items = get_user_nav_menu_items();
+
+	require get_view_path('user-navmenu.php');
 }

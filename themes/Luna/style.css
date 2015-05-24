@@ -157,6 +157,48 @@ h1, h2, h3, h4, h5, h6 {
 	color: #aaa;
 }
 
+.notification-menu li {
+	position: relative;
+}
+
+.notification-menu li .notification-action {
+	color: #999;
+	display: none;
+	padding: 9px 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 32px;
+}
+
+.notification-menu li .notification-action.action-check {
+	right: 10px;
+}
+
+.notification-menu li .notification-action.action-delete {
+	right: 42px;
+}
+
+.notification-menu li:not(.no-hover):hover, .notification-menu li:hover a {
+	background: #f5f5f5;
+}
+
+.notification-menu li:hover .notification-action {
+	display: block;
+}
+
+.notification-menu li:hover .notification-link {
+	opacity: 0.8;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 328px;
+}
+
+.notification-menu li:hover .notification-link .timestamp {
+	display: none;
+}
+
 @media screen and (max-width: 767px) {
 	.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
 		border: none;
@@ -276,6 +318,12 @@ h1, h2, h3, h4, h5, h6 {
 	color: #fff;
 }
 
+@media (min-width: 768px) {
+	.footer .copyright .col-sm-2 {
+		width: 16.66%;
+	}
+}
+
 .footer a, .footer a:hover, .footer a:active, .footer a:focus {
 	color: #fff;
 	text-decoration: none;
@@ -368,6 +416,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 7px;
 }
 
+a.list-group-item.active:hover {
+	color: #fff !important;
+}
+
 .list-group-forum .list-group-item:not(:first-child) {
 	border-top-color: #ccc !important;
 }
@@ -439,9 +491,9 @@ a.list-group-item-cat:hover .forum-description {
 
 /* Forumview */
 h2.forum-title {
-	margin: 10px 0 5px;
 	color: #fff !important;
 	display: inline-block;
+	margin-bottom: -12px;
 }
 
 h2.forum-title .btn {
@@ -449,7 +501,7 @@ h2.forum-title .btn {
 }
 
 .forum-desc {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .forumview {
@@ -693,6 +745,13 @@ nav .progress {
 }
 
 /* Profile */
+@media (max-width: 767px) {
+	.profile.col-sm-9 {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
 .profile-nav {
 	padding-left: 0;
 	padding-right: 0;
@@ -739,10 +798,9 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border: none;
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:focus {
 	border: none;
-	color: #fff;
-	background-color: #0d4382;
+	color: #fff !important;
 }
 
 .nav-tabs > li > a:hover {
@@ -837,17 +895,33 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-top: 10px;
 }
 
-.comment .panel-default {
+.comment .well-comment {
 	margin: 0;
-	margin-left: 5px;
 	border: none;
 	background-color: #f8f8f8;
 	margin-bottom: 5px;
 }
 
-.comment h3 {
-	margin-top: -6px;
-	margin-bottom: 0;
+.well-comment {
+	padding: 0;
+}
+
+.well-comment .media {
+	background: #eee;
+}
+
+.well-comment .well-content {
+	padding: 10px;
+}
+
+.media-avatar {
+	height: 50px;
+	width: auto;
+}
+
+.well .media-heading {
+	margin-top: 13px; 
+	margin-right: 10px;
 }
 
 .comment hr {
@@ -873,14 +947,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 #commentform > .panel {
 	margin-top: 10px;
-}
-
-.col-no-padding-right {
-	padding-right: 0;
-}
-
-.col-no-padding-left {
-	padding-left: 0;
 }
 
 /* Table */
@@ -952,7 +1018,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 /* Labels */
 .label {
-	padding: 4px 7px;
+	padding: 4px 8px;
+}
+
+a.label {
+	color: #fff !important;
 }
 
 .label-primary {
@@ -1212,6 +1282,10 @@ blockquote footer {
 	font-size: 16px;
 }
 
+:not(pre) > code[class*='language-'], pre[class*='language-'] {
+	border: none;
+}
+
 /* Update and login form */
 .form-update {
 	max-width: 330px;
@@ -1295,62 +1369,58 @@ blockquote footer {
 
 .accent-group .btn {
 	box-shadow: none;
-	border: 3px solid #fff;
+	border: 3px solid #fff !important;
 }
 
 .accent-group .btn:hover, .accent-group .btn:focus, .accent-group .btn:active, .accent-group .active.btn {
-	border: 3px solid #bbb;
+	border: 3px solid #bbb !important;
 }
 
-.accent-blue {
+.btn-primary.color-accent.accent-1 {
 	background-color: #14a3ff !important;
 }
 
-.accent-denim {
+.btn-primary.color-accent.accent-2 {
 	background-color: #2788cb !important;
 }
 
-.accent-luna {
+.btn-primary.color-accent.accent-3 {
 	background-color: #0d4382 !important;
 }
 
-.accent-green {
-	background-color: #8bb805 !important;
-}
-
-.accent-ao {
-	background-color: #047a36 !important;
-}
-
-.accent-yellow {
-	background-color: #ffcd21 !important;
-}
-
-.accent-orange {
-	background-color: #ff7521 !important;
-}
-
-.accent-red {
-	background-color: #ff4444 !important;
-}
-
-.accent-purple {
+.btn-primary.color-accent.accent-4 {
 	background-color: #c58be2 !important;
 }
 
-.accent-luna {
-	background-color: #0d4382 !important;
+.btn-primary.color-accent.accent-5 {
+	background-color: #8bb805 !important;
 }
 
-.accent-white {
+.btn-primary.color-accent.accent-6{
+	background-color: #047a36 !important;
+}
+
+.btn-primary.color-accent.accent-7 {
+	background-color: #ffcd21 !important;
+}
+
+.btn-primary.color-accent.accent-8 {
+	background-color: #ff7521 !important;
+}
+
+.btn-primary.color-accent.accent-9 {
+	background-color: #ff4444 !important;
+}
+
+.btn-primary.color-accent.accent-10 {
 	background-color: #ccc !important;
 }
 
-.accent-grey {
+.btn-primary.color-accent.accent-11 {
 	background-color: #999 !important;
 }
 
-.accent-darkgrey {
+.btn-primary.color-accent.accent-12 {
 	background-color: #444 !important;
 }
 
@@ -1375,4 +1445,140 @@ blockquote footer {
 		margin-bottom: 0;
 		padding: 0 15px;
 	}
+}
+
+/* Accents */
+a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-group-item.active:hover {
+	color: #fff !important;
+}
+
+.modal-backdrop.in {
+	opacity: .8;
+}
+
+/* Night mode */
+.night body, html.night {
+	background-color: #333;
+	color: #ddd;
+}
+
+.night .container-main {
+	background: #444;
+	box-shadow: 0 0 30px #222;
+}
+
+.night .first-run-content {
+	background: #555;
+}
+
+.night hr {
+	border-top-color: #555;
+}
+
+.night .accent-group .btn {
+	border-color: #444 !important;
+}
+
+.night .accent-group .btn:hover, .night .accent-group .btn:focus, .night .accent-group .btn:active, .night .accent-group .active.btn {
+	border-color: #666 !important;
+}
+
+.night .nav-tabs {
+	border-color: #555;
+}
+
+.night .panel-default {
+	border-color: #555;
+	background-color: #444;
+}
+
+.night .list-group-item {
+	background-color: #444;
+}
+
+.night .list-group-item, .night .list-group-item.active, .night .list-group-item.active:hover {
+	border-color: #555;
+	color: #fff;
+}
+
+.night .list-group-item:hover {
+	background-color: #404040;
+}
+
+.night a.list-group-item:hover, .night .col-sm-9 a, .night a:focus {
+	color: #fff;
+}
+
+.night #search .panel-body, .night .user-entry {
+	background-color: #555;
+}
+
+.night .list-group-forum a.list-group-item {
+	border-color: #3f3f3f;
+}
+
+.night .label-default {
+	background-color: #333;
+}
+
+.night .well-comment .media {
+	background: #333;
+}
+
+.night .comment .panel-default {
+	background-color: #3b3b3b;
+}
+
+.night .list-group-topic .list-group-item {
+	border-color: #3e3e3e;
+	background-color: #404040;
+}
+
+.night .list-group-topic .list-group-item:hover {
+	background-color: #3b3b3b !important;
+}
+
+.night .panel-editor .btn-default {
+	background-color: #444;
+}
+
+.night .textarea-toolbar .btn-group, .night .textarea-top, .night .textarea-bottom {
+	border-color: #555;
+}
+
+.night .panel-editor .btn-default {
+	color: #fff;
+}
+
+.night .input-group-addon {
+	border-color: #222;
+}
+
+.night .form-control {
+	background-color: #333;
+	color: #ddd;
+	border-color: #222;
+}
+
+.night .well {
+	background-color: #3d3d3d;
+	border-color: #333;
+}
+
+.night .btn-search {
+	background-color: #333;
+	color: #ddd;
+}
+
+.night .btn-search:hover {
+	background-color: #393939;
+}
+
+.night .table > tbody > tr > td {
+	background-color: #444;
+	color: #fff;
+}
+
+.night .table > thead > tr > th {
+	border-color: #555;
 }
