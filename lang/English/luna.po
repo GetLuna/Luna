@@ -271,6 +271,10 @@ msgstr ""
 msgid "Start update"
 msgstr ""
 
+#: ../search.php:57
+msgid "You have to enter at least one keyword and/or an author to search for."
+msgstr ""
+
 #: ../backstage/menu.php:22 ../backstage/menu.php:54
 msgid "You must give your menu item a title."
 msgstr ""
@@ -2074,7 +2078,7 @@ msgid "Announcements"
 msgstr ""
 
 #: ../backstage/settings.php:454
-msgid "Announcements title"
+msgid "Announcement title"
 msgstr ""
 
 #: ../backstage/settings.php:454
@@ -2082,7 +2086,7 @@ msgid "You can leave this empty if there is no title"
 msgstr ""
 
 #: ../backstage/settings.php:460
-msgid "Announcements type"
+msgid "Announcement type"
 msgstr ""
 
 #: ../backstage/settings.php:463 ../themes/Luna/settings.php:446
@@ -2110,7 +2114,7 @@ msgid "Danger"
 msgstr ""
 
 #: ../backstage/settings.php:485
-msgid "Announcements message"
+msgid "Announcement message"
 msgstr ""
 
 #: ../backstage/settings.php:445
@@ -4005,6 +4009,30 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: ../themes/Luna/profile.php:54
+msgid "Show topics"
+msgstr ""
+
+#: ../themes/Luna/profile.php:55
+msgid "Show posts"
+msgstr ""
+
+#: ../themes/Luna/profile.php:58
+msgid "Show subscriptions"
+msgstr ""
+
+#: ../themes/Luna/profile.php:83 ../profile.php:574
+msgid "Send email"
+msgstr ""
+
+#: ../settings.php:800
+msgid "Upload avatar"
+msgstr ""
+
+#: ../settings.php:805
+msgid "No signature currently stored in profile."
+msgstr ""
+
 #: ../themes/Luna/inbox-new.php:48 ../themes/Random/inbox-new.php:50
 msgid "Write message"
 msgstr ""
@@ -4501,6 +4529,26 @@ msgstr ""
 msgid "Signature preview"
 msgstr ""
 
+#: ../themes/Luna/settings.php:145
+msgid "Night mode"
+msgstr ""
+
+#: ../themes/Luna/settings.php:150
+msgid "Never use night mode"
+msgstr ""
+
+#: ../themes/Luna/settings.php:156
+msgid "Always use night mode"
+msgstr ""
+
+#: ../themes/Luna/settings.php:162
+msgid "Enable night mode automatically"
+msgstr ""
+
+#: ../themes/Luna/settings.php:196
+msgid "Backstage accent"
+msgstr ""
+
 #: ../themes/Luna/settings.php:194 ../themes/Random/settings.php:128
 msgid "Language"
 msgstr ""
@@ -4655,6 +4703,11 @@ msgstr ""
 msgid "No messages"
 msgstr ""
 
+#: ../themes/Luna/viewtopic.php:52 ../themes/Luna/index.php:102
+#:  ../thees/Luna/post.php:525
+msgid "Post topic"
+msgstr ""
+
 #: ../themes/Luna/forum.php:21 ../themes/Sunrise/forum.php:21
 msgid "Back to index"
 msgstr ""
@@ -4806,6 +4859,11 @@ msgstr ""
 #: ../themes/Luna/objects/comment.php:8
 #, php-format
 msgid "By %s"
+msgstr ""
+
+#: ../themes/Luna/objects/comment.php:8
+#, php-format
+msgid "on"
 msgstr ""
 
 #: ../themes/Luna/objects/section-info.php:16

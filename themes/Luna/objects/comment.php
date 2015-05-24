@@ -5,7 +5,7 @@
 				<?php echo $user_avatar; ?>
 			</div>
 			<div class="media-body">
-				<h4 class="media-heading"><?php printf(__('By %s', 'luna'), $username) ?><small> on <a class="posttime" href="<?php if (!isset($inbox)) { echo 'viewtopic.php?pid='.$cur_post['id'].'#p'.$cur_post['id']; } else { echo 'viewinbox.php?tid='.$cur_post['shared_id'].'&mid='.$cur_post['mid']; } ?>"><?php echo format_time($cur_post['posted']) ?></a></small></h4>
+				<h4 class="media-heading"><?php printf(__('By %s', 'luna'), $username) ?><small> <?php __('on', 'luna') ?> <a class="posttime" href="<?php if (!isset($inbox)) { echo 'viewtopic.php?pid='.$cur_post['id'].'#p'.$cur_post['id']; } else { echo 'viewinbox.php?tid='.$cur_post['shared_id'].'&mid='.$cur_post['mid']; } ?>"><?php echo format_time($cur_post['posted']) ?></a></small></h4>
 			</div>
 		</div>
 		<div class="well-content">
