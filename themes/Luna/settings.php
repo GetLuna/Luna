@@ -159,6 +159,7 @@ if (!defined('FORUM'))
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
+									Enable night mode automatical
 								</label>
 							</div>
 						</div>
