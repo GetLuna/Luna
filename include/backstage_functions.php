@@ -191,3 +191,11 @@ function load_admin_nav($section, $page) {
 <?php
 
 }
+
+function check_is_admin() {
+	global $luna_user;
+
+	$is_admin = $luna_user['g_id'] == FORUM_ADMIN ? true : false;
+	
+	return $is_admin;
+}

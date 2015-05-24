@@ -31,7 +31,7 @@ $p = isset($p) ? $p : null;
 	</head>
 	<body>
 <?php
-include FORUM_ROOT.'include/backstage_functions.php';
+require_once FORUM_ROOT.'include/backstage_functions.php';
 
 if (isset($required_fields)) {
 	// Output JavaScript to validate form (make sure required fields are filled out)
