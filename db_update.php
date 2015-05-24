@@ -645,7 +645,7 @@ switch ($stage) {
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji\', \'0\')') or error('Unable to insert config value \'o_emoji\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.4.3861: Add the color_scheme column to the users table
-		$db->add_field('users', 'color_scheme', 'INT(25)', false, '3') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
 
 		// Since 0.4.3861: Drop the color column to the users table
 		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
@@ -659,7 +659,7 @@ switch ($stage) {
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_update_ring\', \'1\')') or error('Unable to insert config value \'o_update_ring\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.9.4156: Add the color column to the forums table
-		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#0d4382\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
 
 		// Since 0.9.4191: Remove obsolete o_quickpost permission from config table
 		if (array_key_exists('o_admin_notes', $luna_config))
