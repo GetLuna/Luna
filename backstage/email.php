@@ -10,7 +10,7 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$is_admin)
 	header("Location: login.php");
 if (isset($_POST['form_sent'])) {
 	confirm_referrer('backstage/email.php', __('Bad HTTP_REFERER. If you have moved these forums from one location to another or switched domains, you need to update the Base URL manually in the database (look for o_base_url in the config table) and then clear the cache by deleting all .php files in the /cache directory.', 'luna'));

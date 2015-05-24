@@ -8,9 +8,8 @@
 define('FORUM_ROOT', '../');
 require '../include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$is_admin)
 	header("Location: login.php");
-
 // Add a new item
 if (isset($_POST['add_item'])) {
 	confirm_referrer('backstage/menu.php');

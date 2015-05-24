@@ -401,7 +401,7 @@ class Installer {
 				'color'			=> array(
 					'datatype'		=> 'VARCHAR(25)',
 					'allow_null'	=> false,
-					'default'		=> '\'#0d4382\''
+					'default'		=> '\'#2788cb\''
 				),
 				'parent_id'		=> array(
 					'datatype'		=> 'INT',
@@ -1276,7 +1276,7 @@ class Installer {
 				'color_scheme'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '3'
+					'default'		=> '2'
 				),
 				'adapt_time'		=> array(
 					'datatype'		=> 'TINYINT(1)',
@@ -1286,7 +1286,7 @@ class Installer {
 				'accent'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
-					'default'		=> '3'
+					'default'		=> '2'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),
@@ -1416,7 +1416,7 @@ class Installer {
 			'o_make_links'				=> 1,
 			'o_default_lang'			=> $default_lang,
 			'o_default_style'			=> $default_style,
-			'o_default_accent'			=> 3,
+			'o_default_accent'			=> 2,
 			'o_default_user_group'		=> 4,
 			'o_topic_review'			=> 15,
 			'o_disp_topics_default'		=> 30,
