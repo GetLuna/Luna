@@ -18,7 +18,7 @@ $xmlstr = <<<XML
 	<date>24 May 2015</date>
 	<version>1.1 Preview</version>
 	<minversion>1.1 Preview 1</minversion>
-	<maxversion>1.1 Preview 1</maxversion>
+	<maxversion>1.1 Preview 1.1</maxversion>
 	<description>Sunset is a variant upon Luna, featuring a more classic design.</description>
 	<parent_theme>Luna</parent_theme>
 </style>
