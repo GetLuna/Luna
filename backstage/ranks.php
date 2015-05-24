@@ -10,9 +10,8 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$is_admin)
 	header("Location: login.php");
-
 // Add a rank
 if (isset($_POST['add_rank'])) {
 	$rank = luna_trim($_POST['new_rank']);

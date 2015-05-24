@@ -204,6 +204,10 @@ if (!defined('FORUM_SEARCH_MAX_WORD'))
 if (!defined('FORUM_MAX_COOKIE_SIZE'))
 	define('FORUM_MAX_COOKIE_SIZE', 4048);
 
+// Are we admins?
+require_once FORUM_ROOT.'include/backstage_functions.php';
+$is_admin = check_is_admin();
+
 require FORUM_ROOT.'include/general_functions.php';
 require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/statistic_functions.php';

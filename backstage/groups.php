@@ -10,7 +10,7 @@
 define('FORUM_ROOT', '../');
 require FORUM_ROOT.'include/common.php';
 
-if (!$luna_user['is_admmod'])
+if (!$is_admin)
 	header("Location: login.php");
 // Add/edit a group (stage 1)
 if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
