@@ -112,8 +112,10 @@ require 'header.php';
 						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">
-						<h4>Bugfixes</h4>
+						<h4>Bug fixes</h4>
 						<p>2 bugs have been fixed.</p>
+						<h4>Security fixes</h4>
+						<p>1 security issue has been fixed.</p>
 					</div>
 				</div>
 			</div>
