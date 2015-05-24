@@ -202,13 +202,13 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4329.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4339.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
 						<p>284 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
-						<p>5 security issue has been fixed.</p>
+						<p>6 security issue has been fixed.</p>
 					</div>
 				</div>
 				<hr />
@@ -293,6 +293,19 @@ require 'header.php';
 					<div class="col-sm-6">
 						<p>
 							<span class="label label-primary">Update 5</span> Adds icons to (soft) delete interfaces
+						</p>
+					</div>
+				</div>
+				<h4>Luna 1.0.6 &middot Build 4339</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 6</span> Fixes security bug in the Backstage
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 6</span> Luna Brand May 2015 update
 						</p>
 					</div>
 				</div>
