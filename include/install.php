@@ -1041,6 +1041,11 @@ class Installer {
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'
+				),
+				'solved'		=> array(
+					'datatype'		=> 'INT(10) UNSIGNED',
+					'allow_null'	=> true,
+					'default'		=> NULL
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),
