@@ -1,12 +1,7 @@
 <?php
 require ('header.php');
 
-$hour = date('G', time());
-
-if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
-	$body_classes = 'night';
-else
-	$body_classes = 'normal';
+check_night_mode();
 ?>
 <!DOCTYPE html>
 <html class="<?php echo $body_classes ?>">

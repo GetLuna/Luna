@@ -1,12 +1,7 @@
 <?php
 require ('header.php');
 
-$hour = date('G', time());
-
-if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
-	$body_classes .= ' night';
-else
-	$body_classes .= ' normal';
+check_night_mode();
 ?>
 <!DOCTYPE html>
 <html class="<?php echo $body_classes ?>">
@@ -17,7 +12,7 @@ else
 		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
 		<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script src="include/js/prism.js"></script>
+		<script src="include/js/vendor/prism.js"></script>
 		<style>
 		.emoji {
 			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;

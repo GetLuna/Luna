@@ -2093,7 +2093,7 @@ function load_css() {
 }
 
 //
-// Get the styles that are required
+// Get the meta tags that are required
 //
 function load_meta() {
 	global $id, $page_title, $p;
@@ -2116,6 +2116,22 @@ function load_meta() {
 
 	// Required fields check
 	required_fields();
+}
+
+//
+// Check wheter or not to enable night mode
+//
+function check_night_mode() {
+	global $luna_user;
+
+	$hour = date('G', time());
+	
+	if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
+		$body_classes .= ' night';
+	else
+		$body_classes .= ' normal';
+
+	return $body_classes;
 }
 
 //
