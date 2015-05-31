@@ -11,24 +11,13 @@ else
 <!DOCTYPE html>
 <html class="<?php echo $body_classes ?>">
 	<head>
-		<title><?php echo generate_page_title($page_title, $p) ?></title>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<?php load_meta(); ?>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
 		<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<script src="include/js/prism.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php
-// Allow childs
-load_css();
-load_meta();
-
-// Required fields check
-required_fields();
-?>
 		<style>
 		.emoji {
 			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
