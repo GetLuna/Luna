@@ -1409,6 +1409,7 @@ class Installer {
 			'o_parser_revision'			=> Version::FORUM_PARSER_VERSION,
 			'o_board_title'				=> $title,
 			'o_board_desc'				=> $description,
+			'o_board_tags'				=> NULL,
 			'o_default_timezone'		=> 0,
 			'o_time_format'				=> __('H:i', 'luna'),
 			'o_date_format'				=> __('j M Y', 'luna'),

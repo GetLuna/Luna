@@ -23,7 +23,7 @@ require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/version.php';
 
 // Load Installer class
-require FORUM_ROOT.'include/install.php';
+require FORUM_ROOT.'include/class/luna_install.php';
 
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
