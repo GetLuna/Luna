@@ -24,9 +24,7 @@ else
 <?php
 // Allow childs
 load_css();
-
-if (!defined('FORUM_ALLOW_INDEX'))
-	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
+load_meta();
 
 // Required fields check
 required_fields();

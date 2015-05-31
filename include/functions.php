@@ -2093,6 +2093,20 @@ function load_css() {
 }
 
 //
+// Get the styles that are required
+//
+function load_meta() {
+	global $id;
+	
+	if (!defined('FORUM_ALLOW_INDEX'))
+		echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
+	if (defined('FORUM_CANONICAL_TAG_TOPIC'))
+		echo '<link rel="canonical" href="/viewtopic.php?id='.$id.'" />';
+	if (defined('FORUM_CANONICAL_TAG_FORUM'))
+		echo '<link rel="canonical" href="/viewforum.php?id='.$id.'" />';
+}
+
+//
 // Delete all content in a folder
 //
 function delete_all($path) {

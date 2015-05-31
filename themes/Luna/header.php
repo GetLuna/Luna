@@ -24,13 +24,7 @@ else
 <?php
 // Allow childs
 load_css();
-
-if (!defined('FORUM_ALLOW_INDEX'))
-	echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
-if (defined('FORUM_CANONICAL_TAG_TOPIC'))
-	echo '<link rel="canonical" href="/viewtopic.php?id='.$id.'" />';
-if (defined('FORUM_CANONICAL_TAG_FORUM'))
-	echo '<link rel="canonical" href="/viewforum.php?id='.$id.'" />';
+load_meta();
 
 // Required fields check
 required_fields();
