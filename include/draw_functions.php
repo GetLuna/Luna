@@ -438,24 +438,6 @@ function draw_subforum_list($object_name = 'forum.php') {
 	}
 }
 
-function draw_section_info($current_id) {
-	global $result, $db, $luna_config, $cur_section, $luna_user, $cur_posting, $cur_forum;
-
-	if ($current_id != 0) {
-		$result = $db->query('SELECT * FROM '.$db->prefix.'forums where id = '.$current_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
-		
-		if (!$db->num_rows($result))
-			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
-		
-		$cur_section = $db->fetch_assoc($result);
-
-		$section_head = '1';
-	} else
-		$section_head = '2';
-
-	require get_view_path('section-info.php');
-}
-
 function draw_index_topics_list() {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
 	
