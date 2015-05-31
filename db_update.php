@@ -690,6 +690,10 @@ switch ($stage) {
 		// Since 1.1.4682: Add the solved column to the topics table
 		$db->add_field('topics', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 
+		// Since 1.1.4688: Add o_board_tags feature
+		if (!array_key_exists('o_board_tags', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_board_tags\', \'\')') or error('Unable to insert config value \'o_board_tags\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
