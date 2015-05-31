@@ -18,6 +18,7 @@ if (isset($_POST['form_sent'])) {
 	$form = array(
 		'board_title'			=> luna_trim($_POST['form']['board_title']),
 		'board_desc'			=> luna_trim($_POST['form']['board_desc']),
+		'board_tags'			=> luna_trim($_POST['form']['board_tags']),
 		'base_url'				=> luna_trim($_POST['form']['base_url']),
 		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
 		'default_dst'			=> isset($_POST['form']['default_dst']) ? '1' : '0',
@@ -154,6 +155,12 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?><span class="help-block"><?php _e('What\'s this board about?', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Board tags', 'luna') ?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna') ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
 					</div>
 				</div>
 				<div class="form-group">

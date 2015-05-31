@@ -2096,7 +2096,7 @@ function load_css() {
 // Get the meta tags that are required
 //
 function load_meta() {
-	global $id, $page_title, $p;
+	global $id, $page_title, $p, $luna_config;
 
 	// We need these tags no matter what
 	echo '<title>'.generate_page_title($page_title, $p).'</title>'."\n";
@@ -2107,6 +2107,8 @@ function load_meta() {
 	// Allow childs
 	load_css();
 	
+	if (!empty($luna_config['o_board_tags']))
+		echo '<meta name="keywords" content="'.$luna_config['o_board_tags'].'">'."\n";
 	if (!defined('FORUM_ALLOW_INDEX'))
 		echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
 	if (defined('FORUM_CANONICAL_TAG_TOPIC'))

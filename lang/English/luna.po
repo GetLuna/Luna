@@ -1680,6 +1680,14 @@ msgstr ""
 msgid "What's this board about?"
 msgstr ""
 
+#: ../backstage/settings.php:161
+msgid "Board tags"
+msgstr ""
+
+#: ../backstage/settings.php:161
+msgid "Add some words that describe your board, separated by a comma"
+msgstr ""
+
 #: ../backstage/settings.php:159
 msgid "Board URL"
 msgstr ""
