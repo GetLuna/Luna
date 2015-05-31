@@ -1,6 +1,6 @@
 <div class="row forum-entry">
 	<div class="col-sm-6 col-xs-6">
-		<a href="<?php echo $page ?>?id=<?php echo $cur_forum['fid'] ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a><br />
+		<strong><a href="<?php echo $page ?>?id=<?php echo $cur_forum['fid'] ?>"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></a></strong><br />
 		<?php echo $forum_desc ?>
 	</div>
 	<div class="col-sm-1 hidden-xs text-center">
