@@ -351,7 +351,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		
 			if ($cur_forum['forum_desc'] != '')
-				$forum_desc = '<div class="forum-description">'.luna_htmlspecialchars($cur_forum['forum_desc']).'</div>';
+				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
 			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
 			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
