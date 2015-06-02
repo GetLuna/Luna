@@ -2786,26 +2786,6 @@ msgstr ""
 msgid "At this point, we can only tell you that a new you're beyond the latest release. We can't tell you if there is a new preview available. You'll have to find out for yourself."
 msgstr ""
 
-#: ../backstage/update_launch.php:44
-msgid "Luna one-click update"
-msgstr ""
-
-#: ../backstage/update_launch.php:52
-msgid "We found version %s"
-msgstr ""
-
-#: ../backstage/update_launch.php:53
-msgid "Updating Luna"
-msgstr ""
-
-#: ../backstage/update_launch.php:55
-msgid "Update successful!"
-msgstr ""
-
-#: ../backstage/update_launch.php:57
-msgid "Update failed!"
-msgstr ""
-
 #: ../backstage/index.php:25
 msgid "Could not remove install.php. Please do so by hand."
 msgstr ""
