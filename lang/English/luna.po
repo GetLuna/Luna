@@ -4122,6 +4122,10 @@ msgstr ""
 msgid "Forgotten password"
 msgstr ""
 
+#: ../themes/Luna/login.php:102
+msgid "The email address you entered is invalid"
+msgstr ""
+
 #: ../themes/Luna/login.php:35 ../themes/Random/login.php:34
 msgid "Request password"
 msgstr ""
@@ -4719,6 +4723,10 @@ msgstr ""
 msgid "Edit \"%s\""
 msgstr ""
 
+#: ../themes/Luna/footer.php:23
+msgid "More"
+msgstr ""
+
 #: ../themes/Luna/notifications.php:25 ../themes/Random/notifications.php:21
 msgid "Mark as seen"
 msgstr ""
@@ -4901,4 +4909,32 @@ msgstr ""
 
 #: ../themes/Random/index.php:68
 msgid "Board statistics"
+msgstr ""
+
+#: ../inbox.php:43
+msgid "You must select some messages"
+msgstr ""
+
+#: ../settings.php:100
+msgid "Administrators cannot be deleted. In order to delete this user, you must first move him/her to a different user group."
+msgstr ""
+
+#: ../settings.php:455
+msgid "The selected file was too large to upload. The server didn't allow the upload."
+msgstr ""
+
+#: ../settings.php:556
+msgid "Unverified"
+msgstr ""
+
+#: ../settings.php:653
+msgid "The website URL you entered is invalid."
+msgstr ""
+
+#: ../settings.php:679
+msgid "Signatures cannot be longer than %1$s characters. Please reduce your signature by %2$s characters."
+msgstr ""
+
+#: ../search.php:329
+msgid "This user is currently not subscribed to any topics."
 msgstr ""
