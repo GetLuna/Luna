@@ -1437,6 +1437,10 @@ blockquote footer {
 	background: #393939;
 }
 
+.cookie-bar .navbar-text, .cookie-bar .btn-link {
+	color: #fff !important;
+}
+
 .cookie-bar .navbar-form {
 	border-top: none;
 	border-bottom: none;
