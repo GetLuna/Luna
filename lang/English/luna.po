@@ -2038,6 +2038,14 @@ msgstr ""
 msgid "Show a bar with information about cookies at the bottom of the page."
 msgstr ""
 
+#: backstage/settings.php:387
+msgid "Cookie bar URL"
+msgstr ""
+
+#: backstage/settings.php:387
+msgid "Use your own URL for cookie information, by default, we provide our own page"
+msgstr ""
+
 #: backstage/settings.php:382
 msgid "Avatars"
 msgstr ""

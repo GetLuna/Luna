@@ -32,6 +32,7 @@ if (isset($_POST['form_sent'])) {
 		'report_method'			=> intval($_POST['form']['report_method']),
 		'mailing_list'			=> luna_trim($_POST['form']['mailing_list']),
 		'cookie_bar'			=> isset($_POST['form']['cookie_bar']) ? '1' : '0',
+		'cookie_bar_url'		=> luna_trim($_POST['form']['cookie_bar_url']),
 		'avatars'				=> isset($_POST['form']['avatars']) ? '1' : '0',
 		'avatars_dir'			=> luna_trim($_POST['form']['avatars_dir']),
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
@@ -380,6 +381,12 @@ if (isset($_GET['saved']))
 								<?php _e('Show a bar with information about cookies at the bottom of the page.', 'luna') ?>
 							</label>
 						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Cookie bar URL', 'luna') ?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna') ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[cookie_bar_url]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_cookie_bar_url']) ?>" />
 					</div>
 				</div>
 			</fieldset>
