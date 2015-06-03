@@ -328,6 +328,17 @@ switch ($stage) {
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 
 		// Legacy support: ModernBB 1.6, 1.7, 2.0, 2.1, 2.2, 2.3, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 and 3.8
+		// Since 2.0-beta.1: Add the marked column to the posts table
+		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
+		if (array_key_exists('o_quickjump', $pun_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
+
+		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
+		if (array_key_exists('o_show_dot', $pun_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
+
 		// Since 3.5-beta: Remove obsolete o_antispam_api permission from config table
 		if (array_key_exists('o_antispam_api', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_antispam_api\'') or error('Unable to remove config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
