@@ -3975,7 +3975,7 @@ msgid "Send"
 msgstr ""
 
 #: include/draw_functions.php:1077
-msgid "Tell us why you are reporting this."
+msgid "Tell us why you are reporting this"
 msgstr ""
 
 #: include/draw_functions.php:1099 include/draw_functions.php:1127

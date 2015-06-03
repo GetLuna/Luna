@@ -1051,17 +1051,28 @@ function draw_report_form($post_id) {
 	global $post_id;
 ?>
 
-<form id="report" method="post" action="misc.php?report=<?php echo $post_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+<form class="form-horizontal" id="report" method="post" action="misc.php?report=<?php echo $post_id ?>" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Tell us why you are reporting this.', 'luna') ?></h3>
+			<h3 class="panel-title"><?php _e('Report', 'luna') ?></h3>
 		</div>
-		<fieldset>
-			<input type="hidden" name="form_sent" value="1" />
-			<textarea class="form-control textarea" name="req_reason" rows="5"></textarea>
-		</fieldset>
-		<div class="panel-footer">
-			<input type="submit" class="btn btn-primary" name="submit" value="<?php _e('Submit', 'luna') ?>" accesskey="s" />
+		<div class="panel-body">
+			<fieldset>
+				<input type="hidden" name="form_sent" value="1" />
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Tell us why you are reporting this', 'luna') ?></label>
+					<div class="col-sm-9">
+						<textarea class="form-control" name="req_reason" rows="5"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
+						<a href="viewtopic.php?pid=<?php echo $post_id ?>#p<?php echo $post_id ?>" class="btn btn-default"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
+						<button type="submit" class="btn btn-primary" name="submit" accesskey="s"><span class="fa fa-fw fa-check"></span> <?php _e('Submit', 'luna') ?></button>
+					</div>
+				</div>
+			</fieldset>
 		</div>
 	</div>
 </form>
