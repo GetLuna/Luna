@@ -875,6 +875,10 @@ switch ($stage) {
 		if (!array_key_exists('o_board_tags', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_board_tags\', \'\')') or error('Unable to insert config value \'o_board_tags\'', __FILE__, __LINE__, $db->error());
 
+		// Since 1.1.4704: Add o_cookie_bar_url feature
+		if (!array_key_exists('o_cookie_bar_url', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar_url\', \'http;//getluna.org/docs/cookies.php\')') or error('Unable to insert config value \'o_cookie_bar_url\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

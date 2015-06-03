@@ -1475,6 +1475,7 @@ class Installer {
 			'o_feed_type'				=> 2,
 			'o_feed_ttl'				=> 0,
 			'o_cookie_bar'				=> 0,
+			'o_cookie_bar_url'			=> 'http;//getluna.org/docs/cookies.php',
 			'o_moderated_by'			=> 1,
 			'o_admin_note'				=> '',
 			'o_pms_enabled'				=> 1,
