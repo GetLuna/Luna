@@ -242,7 +242,7 @@ switch ($stage) {
 		if (!file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$db->escape($default_style).'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style config', __FILE__, __LINE__, $db->error());
 			
-		// Legacy support: FluxBB 1.4 and 1.5
+		// Legacy support: FluxBB 1.4
 		// Make the message field MEDIUMTEXT to allow proper conversion of 65535 character posts to UTF-8
 		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
@@ -295,6 +295,37 @@ switch ($stage) {
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
 		if ($db_type == 'mysql' || $db_type == 'mysqli')
 			$db->query('ALTER TABLE '.$db->prefix.'online ENGINE = MyISAM') or error('Unable to change engine type of online table to MyISAM', __FILE__, __LINE__, $db->error());
+			
+		// Legacy support: FluxBB 1.5
+		$db->drop_field($db->prefix.'groups', 'g_promote_min_posts', 'INT(10) UNSIGNED', false, 0, 'g_user_title') or error('Unable to drop g_promote_min_posts field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'groups', 'g_promote_next_group', 'INT(10) UNSIGNED', false, 0, 'g_promote_min_posts') or error('Unable to drop g_promote_next_group field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'groups', 'g_post_links', 'TINYINT(1)', false, 0, 'g_delete_topics') or error('Unable to drop g_post_links field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'groups', 'g_mod_promote_users', 'TINYINT(1)', false, 0, 'g_mod_ban_users') or error('Unable to drop g_mod_ban_users field', __FILE__, __LINE__, $db->error());
+		if (!$db->table_exists('search_cache')) {
+			$schema = array(
+				'FIELDS'		=> array(
+					'id'			=> array(
+						'datatype'		=> 'SERIAL',
+						'allow_null'	=> false
+					),
+					'rank'			=> array(
+						'datatype'		=> 'VARCHAR(50)',
+						'allow_null'	=> false,
+						'default'		=> '\'\''
+					),
+					'min_posts'		=> array(
+						'datatype'		=> 'MEDIUMINT(8) UNSIGNED',
+						'allow_null'	=> false,
+						'default'		=> '0'
+					)
+				),
+				'PRIMARY KEY'	=> array('id')
+			);
+		
+			$db->create_table('ranks', $schema) or error('Unable to create ranks table', __FILE__, __LINE__, $db->error());
+		}
+		if (!array_key_exists('o_ranks', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 
 		// Legacy support: ModernBB 1.6, 1.7, 2.0, 2.1, 2.2, 2.3, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 and 3.8
 		// Since 3.5-beta: Remove obsolete o_antispam_api permission from config table
