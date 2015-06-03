@@ -247,7 +247,7 @@ switch ($stage) {
 		$db->alter_field('posts', 'message', 'MEDIUMTEXT', true) or error('Unable to alter message field', __FILE__, __LINE__, $db->error());
 
 		// Insert new config option o_feed_ttl
-		if (!array_key_exists('o_feed_ttl', $pun_config))
+		if (!array_key_exists('o_feed_ttl', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_feed_ttl\', \'0\')') or error('Unable to insert config value \'o_feed_ttl\'', __FILE__, __LINE__, $db->error());
 
 		// Add the last_report_sent column to the users table and the g_report_flood column to the groups table
@@ -285,11 +285,11 @@ switch ($stage) {
 		}
 
 		// Insert new config option o_forum_subscriptions
-		if (!array_key_exists('o_forum_subscriptions', $pun_config))
+		if (!array_key_exists('o_forum_subscriptions', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_forum_subscriptions\', \'1\')') or error('Unable to insert config value \'o_forum_subscriptions\'', __FILE__, __LINE__, $db->error());
 
 		// Rename config option o_subscriptions to o_topic_subscriptions
-		if (!array_key_exists('o_topic_subscriptions', $pun_config))
+		if (!array_key_exists('o_topic_subscriptions', $luna_config))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_topic_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
 
 		// For MySQL(i) without InnoDB, change the engine of the online table (for performance reasons)
@@ -332,11 +332,11 @@ switch ($stage) {
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
 
 		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
-		if (array_key_exists('o_quickjump', $pun_config))
+		if (array_key_exists('o_quickjump', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
 
 		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
-		if (array_key_exists('o_show_dot', $pun_config))
+		if (array_key_exists('o_show_dot', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
 
 		// Since 3.2-alpha: Add the first_run column to the users table
@@ -365,20 +365,6 @@ switch ($stage) {
 		// Since 3.3-alpha: Add o_enable_advanced_search
 		if (!array_key_exists('o_enable_advanced_search', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_enable_advanced_search\', \'1\')') or error('Unable to insert config value \'o_enable_advanced_search\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.3-beta: Add last_poster_id field for each forums
-		$db->add_field('forums', 'last_poster_id', 'INT(10)', true, NULL, 'last_poster') or error('Unable to add forums.last_poster_id column', __FILE__, __LINE__, $db->error());
-
-		$result_forums = $db->query('SELECT id, last_poster FROM '.$db->prefix.'forums') or error('Unable to fetch forums list', __FILE__, __LINE__, $db->error());
-		while ($cur_forum = $db->fetch_assoc( $result_forums )) {
-			if (!is_null($cur_forum['last_poster'])) {
-				$result_poster_id = $db->query('SELECT id FROM '.$db->prefix.'users WHERE username="'.$db->escape( $cur_forum['last_poster'] ).'"') or error('Unable to fetch topic subject', __FILE__, __LINE__, $db->error());
-				if ($db->num_rows($result_poster_id)) {
-					$poster_id = $db->result($result_poster_id);
-					$db->query('UPDATE '.$db->prefix.'forums SET last_poster_id='.$db->escape($poster_id).' WHERE id='.$cur_forum['id']) or error('Unable to update last topic', __FILE__, __LINE__, $db->error());
-				}
-			}
-		}
 
 		// Since 3.3-beta: Drop the backstage_style column from the forums table
 		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
