@@ -874,19 +874,27 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	padding-bottom: 8px;
 }
 
-.marked .panel-body {
+.marked .well-content {
 	background-color: #fff1eb;
 }
 
-.marked .panel-body hr {
+.marked .well .media {
+	background-color: #ffe2d5;
+}
+
+.marked .well hr {
 	border-top: 1px solid #ffc8b3;
 }
 
-.soft .panel-body {
+.soft .well-content {
 	background-color: #fffbe7;
 }
 
-.soft .panel-body hr {
+.soft .well .media {
+	background-color: #fff6c9;
+}
+
+.soft .well hr {
 	border-top: 1px solid #fbeb91;
 }
 
