@@ -863,7 +863,7 @@ switch ($stage) {
 
 		// Since 1.1.4704: Add o_cookie_bar_url feature
 		if (!array_key_exists('o_cookie_bar_url', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar_url\', \'http;//getluna.org/docs/cookies.php\')') or error('Unable to insert config value \'o_cookie_bar_url\'', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar_url\', \'http://getluna.org/docs/cookies.php\')') or error('Unable to insert config value \'o_cookie_bar_url\'', __FILE__, __LINE__, $db->error());
 
 		break;
 
