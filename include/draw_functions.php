@@ -563,7 +563,7 @@ function draw_index_topics_list() {
 		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a topic to begin.', 'luna').'</h3>';
 }
 
-function draw_topic_list() {
+function draw_comment_list() {
 	global $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic;
 
 	// Retrieve the posts (and their respective poster/online status)
