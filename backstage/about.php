@@ -57,10 +57,6 @@ require 'header.php';
 				</div>
 				<a id="backstage"></a><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3>
 				<div class="row">
-					<div class="col-sm-12">
-						<h4>Update whenever, wherever</h4>
-						<p>You know when you're somewhere else, without access to your FTP, and yet, you want to update your board to the latest and greatest version of Luna? Well, that's not a problem anymore. Luna now has a build-in one-click update system so you can update right from the Backstage.</p>
-					</div>
 					<div class="col-sm-6">
 						<h4>A personal touch</h4>
 						<p>When a theme supports more then one accent color, you can choose the default color your board should have. This applies to guests and new users.</p>
