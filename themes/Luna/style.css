@@ -610,10 +610,6 @@ h2.forum-title .btn {
 }
 
 @media screen and (max-width: 767px) {
-	.first-run-content {
-		padding-right: 15px;
-	}
-
 	.first-run-profile {
 		margin-top: -15px;
 	}
@@ -625,6 +621,7 @@ h2.forum-title .btn {
 	.first-run-list {
 		margin-left: 0;
 		margin-right: 0;
+		margin-top: 15px;
 	}
 
 	.first-run-login {
