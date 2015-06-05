@@ -6,19 +6,11 @@
  * @license GPL
  */
 
-namespace POMO;
-
 require_once dirname(__FILE__) . '/Streams/Reader.php';
 require_once dirname(__FILE__) . '/Streams/FileReader.php';
 require_once dirname(__FILE__) . '/Translations/NOOPTranslations.php';
 require_once dirname(__FILE__) . '/Translations/GettextTranslations.php';
 require_once dirname(__FILE__) . '/Translations/EntryTranslations.php';
-
-use POMO\Streams\Reader;
-use POMO\Streams\FileReader;
-use POMO\Translations\NOOPTranslations;
-use POMO\Translations\GettextTranslations;
-use POMO\Translations\EntryTranslations;
 
 /**
  * Class for working with MO files

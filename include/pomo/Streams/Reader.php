@@ -6,8 +6,6 @@
  * @license GPL
  */
 
-namespace POMO\Streams;
-
 /**
  * Classes, which help reading streams of data from files.
  *

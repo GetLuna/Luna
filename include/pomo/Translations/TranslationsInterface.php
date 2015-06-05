@@ -6,8 +6,6 @@
  * @license GPL
  */
 
-namespace POMO\Translations;
-
 /**
  * Translations Interface that all POMO Translators must implement
  *
