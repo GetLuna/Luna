@@ -32,7 +32,7 @@ if (!function_exists('version_compare') || version_compare(PHP_VERSION, Version:
 if (file_exists(FORUM_ROOT.'config.php'))
 	include FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN, from FluxBB 1.5 and Luna 1.6
+// This fixes incorrect defined PUN, from FluxBB 1.5 and ModernBB 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 
@@ -160,7 +160,7 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 // Check style
 $default_style = $luna_config['o_default_style'];
 if (!file_exists(FORUM_ROOT.'themes/'.$default_style.'/style.css'))
-	$default_style = 'Luna';
+	$default_style = 'Fifteen';
 
 // Empty all output buffers and stop buffering
 while (@ob_end_clean());
@@ -1016,7 +1016,7 @@ switch ($stage) {
 
 		// Check the default style still exists!
 		if (!file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/style.css'))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Luna\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
+			$db->query('UPDATE '.$db->prefix.'config SET conf_value = \'Fifteen\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 
 		// This feels like a good time to synchronize the forums
 		$result = $db->query('SELECT id FROM '.$db->prefix.'forums') or error('Unable to fetch forum IDs', __FILE__, __LINE__, $db->error());

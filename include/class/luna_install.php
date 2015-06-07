@@ -10,7 +10,7 @@
 class Installer {
 	
 	const DEFAULT_LANG = 'English';
-	const DEFAULT_STYLE = 'Luna';
+	const DEFAULT_STYLE = 'Fifteen';
 	
 	public static function is_supported_php_version() {
 		return function_exists('version_compare') && version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '>=');

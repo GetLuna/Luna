@@ -30,7 +30,7 @@ if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch') {
 if (file_exists(FORUM_ROOT.'config.php'))
 	require FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN in PunBB/FluxBB 1.2, 1.4 and 1.5 and Luna 1.6
+// This fixes incorrect defined PUN in PunBB/FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 

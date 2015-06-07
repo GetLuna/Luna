@@ -83,7 +83,7 @@ if (file_exists(FORUM_ROOT.'config.php')) {
 	// Check to see whether Luna is already installed
 	include FORUM_ROOT.'config.php';
 
-	// This fixes incorrect defined PUN, FluxBB 1.4 and 1.5 and Luna 1.6
+	// This fixes incorrect defined PUN, FluxBB 1.4 and 1.5 and ModernBB 1.6
 	if (defined('PUN'))
 		define('FORUM', PUN);
 
