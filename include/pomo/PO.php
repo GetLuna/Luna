@@ -6,11 +6,6 @@
  * @license GPL
  */
 
-namespace POMO;
-
-use POMO\Translations\GettextTranslations;
-use POMO\Translations\EntryTranslations;
-
 ini_set('auto_detect_line_endings', 1);
 
 /**
@@ -56,7 +51,7 @@ class PO extends GettextTranslations
     {
         //TODO: sorting
         return implode("\n\n", array_map(
-            array(__NAMESPACE__.'\PO', 'export_entry'),
+            array(__CLASS__, 'export_entry'),
             $this->entries)
         );
     }
@@ -167,7 +162,7 @@ class PO extends GettextTranslations
     {
         $escapes = array('t' => "\t", 'n' => "\n", '\\' => '\\');
         $lines = array_map('trim', explode("\n", $string));
-        $lines = array_map(array(__NAMESPACE__.'\PO', 'trim_quotes'), $lines);
+        $lines = array_map(array(__CLASS__, 'trim_quotes'), $lines);
         $unpoified = '';
         $previous_is_backslash = false;
         foreach ($lines as $line) {

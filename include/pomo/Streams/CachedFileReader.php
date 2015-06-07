@@ -6,8 +6,6 @@
  * @license GPL
  */
 
-namespace POMO\Streams;
-
 /**
  * Reads the contents of the file in the beginning.
  *

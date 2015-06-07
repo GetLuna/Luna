@@ -6,8 +6,6 @@
  * @license GPL
  */
 
-namespace POMO\Translations;
-
 require_once dirname(__FILE__) . '/Translations.php';
 
 /**

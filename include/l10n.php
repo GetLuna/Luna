@@ -1,8 +1,5 @@
 <?php
 
-use POMO\MO;
-use POMO\Translations\NOOPTranslations;
-
 function get_locale() {
 
 	global $luna_user;
