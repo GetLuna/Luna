@@ -1,7 +1,7 @@
 <?php
 require ('header.php');
 
-check_night_mode();
+$body_classes = check_night_mode();
 ?>
 <!DOCTYPE html>
 <html class="<?php echo $body_classes ?>"><head>
