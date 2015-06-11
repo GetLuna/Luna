@@ -653,7 +653,7 @@ function draw_comment_list() {
 		if (!$is_admmod) {
 			if (!$luna_user['is_guest']) {
 				if ($cur_post['marked'] == false) {
-					$post_actions[] = '<a class="btn btn-default btn-xs" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
+					$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 				} else {
 					$post_actions[] = '<a class="btn btn-danger btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 				}
@@ -662,39 +662,35 @@ function draw_comment_list() {
 			if ($cur_topic['closed'] == 0) {
 				if ($cur_post['poster_id'] == $luna_user['id']) {
 					if ((($start_from + $post_count) == 1 && $luna_user['g_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_delete_posts'] == 1))
-						$post_actions[] = '<a class="btn btn-default btn-xs" href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
+						$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 					if ((($start_from + $post_count) == 1 && $luna_user['g_soft_delete_topics'] == 1) || (($start_from + $post_count) > 1 && $luna_user['g_soft_delete_posts'] == 1)) {
 						if ($cur_post['soft'] == 0)
-							$post_actions[] = '<a class="btn btn-default btn-xs" href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 						else
-							$post_actions[] = '<a class="btn btn-default btn-xs" href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
+							$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
 					}
 					if ($luna_user['g_edit_posts'] == 1)
-						$post_actions[] = '<a class="btn btn-default btn-xs" href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
+						$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
 				}
 	
 				if (($cur_topic['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_topic['post_replies'] == 1)
-					$post_actions[] = '<a class="btn btn-default btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
+					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 			}
-			
-			if ($luna_user['username'] == $started_by)
-				$post_actions[] = '<a class="btn btn-default btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Answer', 'luna').'</a>';
 		} else {
 			if ($cur_post['marked'] == false)
-				$post_actions[] = '<a class="btn btn-default btn-xs" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
+				$post_actions[] = '<a href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 			else
-				$post_actions[] = '<a class="btn btn-default btn-xs" disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
+				$post_actions[] = '<a disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 
 			if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
-				$post_actions[] = '<a class="btn btn-default btn-xs" href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
+				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 				if ($cur_post['soft'] == 0)
-					$post_actions[] = '<a class="btn btn-default btn-xs" href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
+					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
 				else
-					$post_actions[] = '<a class="btn btn-default btn-xs" href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
-				$post_actions[] = '<a class="btn btn-default btn-xs" href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
+					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=reset">'.__('Soft reset', 'luna').'</a>';
+				$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
 			}
-			$post_actions[] = '<a class="btn btn-default btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
-			$post_actions[] = '<a class="btn btn-default btn-xs" href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Answer', 'luna').'</a>';
+			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 		}
 	
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
