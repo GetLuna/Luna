@@ -77,7 +77,7 @@ require 'header.php';
 				<a id="theme"></a><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Luna/Sunrise 1.1</h4>
+						<h4>Fifteen/Sunrise 1.1</h4>
 						<p>We've refined our default themes based on user feedback and they look better then ever. Luna and Sunrise have been optimized to support the newest features from Luna 1.1.</p>
 					</div>
 					<div class="col-sm-6">
@@ -104,7 +104,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4679.<br />
+						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4719.<br />
 						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">
