@@ -451,6 +451,7 @@ function draw_index_topics_list() {
 			$topic_ids[] = $cur_topic_id;
 
 		// Fetch list of topics to display on this page
+		$sql_soft = NULL;
 		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 'soft = 0 AND ';

@@ -2124,7 +2124,7 @@ function load_meta() {
 // Check wheter or not to enable night mode
 //
 function check_night_mode() {
-	global $luna_user;
+	global $luna_user, $body_classes;
 
 	$hour = date('G', time());
 	
