@@ -610,10 +610,6 @@ h2.forum-title .btn {
 }
 
 @media screen and (max-width: 767px) {
-	.first-run-content {
-		padding-right: 15px;
-	}
-
 	.first-run-profile {
 		margin-top: -15px;
 	}
@@ -625,6 +621,7 @@ h2.forum-title .btn {
 	.first-run-list {
 		margin-left: 0;
 		margin-right: 0;
+		margin-top: 15px;
 	}
 
 	.first-run-login {
@@ -874,19 +871,27 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	padding-bottom: 8px;
 }
 
-.marked .panel-body {
+.marked .well-content {
 	background-color: #fff1eb;
 }
 
-.marked .panel-body hr {
+.marked .well .media {
+	background-color: #ffe2d5;
+}
+
+.marked .well hr {
 	border-top: 1px solid #ffc8b3;
 }
 
-.soft .panel-body {
+.soft .well-content {
 	background-color: #fffbe7;
 }
 
-.soft .panel-body hr {
+.soft .well .media {
+	background-color: #fff6c9;
+}
+
+.soft .well hr {
 	border-top: 1px solid #fbeb91;
 }
 
@@ -1427,6 +1432,10 @@ blockquote footer {
 /* Cookie bar */
 .cookie-bar {
 	background: #393939;
+}
+
+.cookie-bar .navbar-text, .cookie-bar .btn-link {
+	color: #fff !important;
 }
 
 .cookie-bar .navbar-form {

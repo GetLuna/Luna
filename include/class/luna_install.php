@@ -10,7 +10,7 @@
 class Installer {
 	
 	const DEFAULT_LANG = 'English';
-	const DEFAULT_STYLE = 'Luna';
+	const DEFAULT_STYLE = 'Fifteen';
 	
 	public static function is_supported_php_version() {
 		return function_exists('version_compare') && version_compare(PHP_VERSION, Version::MIN_PHP_VERSION, '>=');
@@ -1041,6 +1041,11 @@ class Installer {
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
 					'default'		=> '0'
+				),
+				'solved'		=> array(
+					'datatype'		=> 'INT(10) UNSIGNED',
+					'allow_null'	=> true,
+					'default'		=> NULL
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),
@@ -1404,6 +1409,7 @@ class Installer {
 			'o_parser_revision'			=> Version::FORUM_PARSER_VERSION,
 			'o_board_title'				=> $title,
 			'o_board_desc'				=> $description,
+			'o_board_tags'				=> NULL,
 			'o_default_timezone'		=> 0,
 			'o_time_format'				=> __('H:i', 'luna'),
 			'o_date_format'				=> __('j M Y', 'luna'),
@@ -1469,6 +1475,7 @@ class Installer {
 			'o_feed_type'				=> 2,
 			'o_feed_ttl'				=> 0,
 			'o_cookie_bar'				=> 0,
+			'o_cookie_bar_url'			=> 'http://getluna.org/docs/cookies.php',
 			'o_moderated_by'			=> 1,
 			'o_admin_note'				=> '',
 			'o_pms_enabled'				=> 1,

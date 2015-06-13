@@ -6,8 +6,6 @@
  * @license GPL
  */
 
-namespace POMO\Translations;
-
 /**
  * Contains EntryTranslations class
  * EntryTranslations class encapsulates a translatable string

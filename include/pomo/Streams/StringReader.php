@@ -6,8 +6,6 @@
  * @license GPL
  */
 
-namespace POMO\Streams;
-
 /**
  * Provides file-like methods for manipulating a string instead
  * of a physical file.

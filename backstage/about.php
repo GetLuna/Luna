@@ -57,10 +57,6 @@ require 'header.php';
 				</div>
 				<a id="backstage"></a><h3><span class="fa fa-fw fa-dashboard"></span> Backstage</h3>
 				<div class="row">
-					<div class="col-sm-12">
-						<h4>Update whenever, wherever</h4>
-						<p>You know when you're somewhere else, without access to your FTP, and yet, you want to update your board to the latest and greatest version of Luna? Well, that's not a problem anymore. Luna now has a build-in one-click update system so you can update right from the Backstage.</p>
-					</div>
 					<div class="col-sm-6">
 						<h4>A personal touch</h4>
 						<p>When a theme supports more then one accent color, you can choose the default color your board should have. This applies to guests and new users.</p>
@@ -81,7 +77,7 @@ require 'header.php';
 				<a id="theme"></a><h3><span class="fa fa-fw fa-paint-brush"></span> Themes</h3>
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Luna/Sunrise 1.1</h4>
+						<h4>Fifteen/Sunrise 1.1</h4>
 						<p>We've refined our default themes based on user feedback and they look better then ever. Luna and Sunrise have been optimized to support the newest features from Luna 1.1.</p>
 					</div>
 					<div class="col-sm-6">
@@ -108,7 +104,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4679.<br />
+						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4719.<br />
 						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">

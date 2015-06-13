@@ -18,6 +18,7 @@ if (isset($_POST['form_sent'])) {
 	$form = array(
 		'board_title'			=> luna_trim($_POST['form']['board_title']),
 		'board_desc'			=> luna_trim($_POST['form']['board_desc']),
+		'board_tags'			=> luna_trim($_POST['form']['board_tags']),
 		'base_url'				=> luna_trim($_POST['form']['base_url']),
 		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
 		'default_dst'			=> isset($_POST['form']['default_dst']) ? '1' : '0',
@@ -31,6 +32,7 @@ if (isset($_POST['form_sent'])) {
 		'report_method'			=> intval($_POST['form']['report_method']),
 		'mailing_list'			=> luna_trim($_POST['form']['mailing_list']),
 		'cookie_bar'			=> isset($_POST['form']['cookie_bar']) ? '1' : '0',
+		'cookie_bar_url'		=> luna_trim($_POST['form']['cookie_bar_url']),
 		'avatars'				=> isset($_POST['form']['avatars']) ? '1' : '0',
 		'avatars_dir'			=> luna_trim($_POST['form']['avatars_dir']),
 		'avatars_width'			=> (intval($_POST['form']['avatars_width']) > 0) ? intval($_POST['form']['avatars_width']) : 1,
@@ -154,6 +156,12 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?><span class="help-block"><?php _e('What\'s this board about?', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Board tags', 'luna') ?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna') ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -373,6 +381,12 @@ if (isset($_GET['saved']))
 								<?php _e('Show a bar with information about cookies at the bottom of the page.', 'luna') ?>
 							</label>
 						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Cookie bar URL', 'luna') ?><span class="help-block"><?php _e('Use your own URL for cookie information, by default, we provide our own page', 'luna') ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[cookie_bar_url]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_cookie_bar_url']) ?>" />
 					</div>
 				</div>
 			</fieldset>

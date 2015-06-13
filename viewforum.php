@@ -9,6 +9,7 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
+define('FORUM_CANONICAL_TAG_FORUM', 1);
 
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
