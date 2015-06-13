@@ -24,7 +24,7 @@ class Version {
 	const FORUM_SI_VERSION = '2.0';
 
 	// Luna system requirements
-	const MIN_PHP_VERSION = '5.1.0';
+	const MIN_PHP_VERSION = '5.2.0';
 	const MIN_MYSQL_VERSION = '5.0.0';
 	const MIN_PGSQL_VERSION = '8.0.0';
 }
