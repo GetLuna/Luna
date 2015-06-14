@@ -526,6 +526,12 @@ h2.forum-title .btn {
 	max-width: 300px;
 }
 
+@media screen and (max-width: 767px) {
+	.modal-dialog {
+		margin: 30px auto;
+	}
+}
+
 #newpass .modal-xs, #newmail .modal-xs, #newpass .modal-xs {
 	max-width: 500px;
 }
