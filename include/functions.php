@@ -2023,7 +2023,7 @@ function get_view_path($object) {
 function load_page($page) {
 	global $luna_user, $luna_config;
 	
-	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
+	include FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 	
 	if (($theme_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
