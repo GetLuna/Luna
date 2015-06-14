@@ -29,14 +29,14 @@ if ($luna_user['first_run'] == '0') {
 		</div>
 		<?php } else { ?>
 		<?php $redirect_url = check_url(); ?>
-		<div class="col-md-4 hidden-sm">
+		<div class="col-md-4 hidden-sm hidden-xs">
 			<h3 class="first-run-forumtitle"><?php echo sprintf(__('Welcome to %s', 'luna'), $luna_config['o_board_title']) ?></h3>
 			<div class="list-group first-run-list">
 				<a href="register.php" class="list-group-item"><?php _e('Register', 'luna') ?></a>
 				<a href="#" data-toggle="modal" data-target="#reqpass" class="list-group-item"><?php _e('Forgotten password', 'luna') ?></a>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6">
+		<div class="col-md-4 col-sm-6 col-xs-7">
 			<form class="form form-first-run" id="login" method="post" action="login.php?action=in" onsubmit="return process_form(this)">
 				<fieldset>
 					<h3><?php _e('Login', 'luna') ?></h3>
