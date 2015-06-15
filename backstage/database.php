@@ -334,7 +334,7 @@ switch($db_type) {
 // Start actual db stuff
 if (isset($_POST['backupstart'])) {
 	// Output sql dump
-	$tables = array('bans', 'categories', 'censoring', 'config', 'forums', 'forum_perms', 'forum_subscriptions', 'groups', 'menu', 'messages', 'notifications', 'online', 'posts', 'ranks', 'reports', 'search_cache', 'search_matches', 'search_words', 'topics', 'topic_subscriptions', 'users');
+	$tables = array('bans', 'categories', 'censoring', 'config', 'forums', 'forum_perms', 'forum_subscriptions', 'groups', 'menu', 'online', 'posts', 'ranks', 'reports', 'search_cache', 'search_matches', 'search_words', 'topics', 'topic_subscriptions', 'users');
 	$backup_type = (isset($_POST['backup_type'])) ? $_POST['backup_type'] : ( (isset($HTTP_GET_VARS['backup_type'])) ? $HTTP_GET_VARS['backup_type'] : "" );
 	$gzipcompress = (!empty($_POST['gzipcompress'])) ? $_POST['gzipcompress'] : ( (!empty($HTTP_GET_VARS['gzipcompress'])) ? $HTTP_GET_VARS['gzipcompress'] : 0 );
 	$drop = (!empty($_POST['drop'])) ? intval($_POST['drop']) : ( (!empty($HTTP_GET_VARS['drop'])) ? intval($HTTP_GET_VARS['drop']) : 0 );

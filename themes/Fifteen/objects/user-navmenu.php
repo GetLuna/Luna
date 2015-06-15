@@ -7,23 +7,6 @@ if (!empty($items['backstage'])) {
 								<li id="navbackstage"><a href="<?php echo $item['url']; ?>"><span class="fa fa-fw fa-tachometer"></span><span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a></li>
 <?php
 }
-if(!empty($items['notifications'])) {
-	$item = $items['notifications'];
-?>
-								<li id="navnotification" class="dropdown">
-									<a href="<?php echo $item['url']; ?>"<?php if ($item['flyout']) { ?> data-flyout="flyout" class="dropdown-toggle" data-toggle="dropdown"<?php } ?>><?php if (!$item['num']) { ?><span class="fa fa-fw fa-circle-o"></span><?php } else { ?><span id="notifications-number"><?php if ($item['num']) echo $item['num']; ?></span> <span class="fa fa-fw fa-circle"></span><?php } ?> <span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a>
-<?php if ($item['flyout']) { ?>
-									<ul class="dropdown-menu notification-menu"></ul>
-<?php } ?>
-								</li>
-<?php
-}
-if(!empty($items['inbox'])) {
-	$item = $items['inbox'];
-?>
-								<li id="navinbox"><a href="<?php echo $item['url']; ?>"><?php if ($item['num']) echo $item['num']; ?> <span class="fa fa-fw fa-paper-plane-o"></span><span class="visible-xs-inline"> <?php echo $item['title']; ?></span></a></li>
-<?php
-}
 
 if (!empty($items['guest'])) {
 	$item = $items['guest'];

@@ -600,49 +600,6 @@ class Installer {
 	
 	
 		$schema = array(
-			'FIELDS'			=> array(
-				'id'				=> array(
-					'datatype'			=> 'SERIAL',
-					'allow_null'		=> false
-				),
-				'user_id'			=> array(
-					'datatype'			=> 'INT(10)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'message'			=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'icon'				=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'link'			=> array(
-					'datatype'			=> 'VARCHAR(255)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'time'				=> array(
-					'datatype'			=> 'INT(11)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-				'viewed'			=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'		=> false,
-					'default'			=> '0'
-				),
-			),
-			'PRIMARY KEY'		=> array('id'),
-		);
-		
-		$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
-	
-	
-		$schema = array(
 			'FIELDS'		=> array(
 				'user_id'		=> array(
 					'datatype'		=> 'INT(10) UNSIGNED',
@@ -1268,11 +1225,6 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'num_pms'	=> array(
-					'datatype'		=> 'INT(10) UNSIGNED',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
 				'first_run'		=> array(
 					'datatype'		=> 'TINYINT(1)',
 					'allow_null'	=> false,
@@ -1478,10 +1430,6 @@ class Installer {
 			'o_cookie_bar_url'			=> 'http://getluna.org/docs/cookies.php',
 			'o_moderated_by'			=> 1,
 			'o_admin_note'				=> '',
-			'o_pms_enabled'				=> 1,
-			'o_pms_mess_per_page'		=> 10,
-			'o_pms_max_receiver'		=> 5,
-			'o_pms_notification'		=> 1,
 			'o_emoji'					=> 0,
 			'o_emoji_size'				=> 16,
 			'o_back_to_top'				=> 1,
@@ -1490,7 +1438,6 @@ class Installer {
 			'o_custom_copyright'		=> NULL,
 			'o_header_search'			=> 1,
 			'o_board_statistics'		=> 1,
-			'o_notification_flyout'		=> 1,
 			'o_update_ring'				=> 1,
 			'p_message_img_tag'			=> 1,
 			'p_message_all_caps'		=> 1,
@@ -1579,9 +1526,6 @@ class Installer {
 	
 		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
-
-		require FORUM_ROOT.'include/notifications.php';		
-		new_notification('2', 'backstage/about.php', 'Welcome to Luna, discover the possibilities!', 'fa-moon-o');
 		
 		$db->end_transaction();
 	}

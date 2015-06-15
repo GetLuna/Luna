@@ -37,9 +37,6 @@ if (defined('PUN'))
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
 
-// Load the security functions
-require FORUM_ROOT.'include/class/luna_nonces.php';
-
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
 
@@ -211,5 +208,3 @@ $is_admin = check_is_admin();
 require FORUM_ROOT.'include/general_functions.php';
 require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/statistic_functions.php';
-
-require FORUM_ROOT.'include/notifications.php';

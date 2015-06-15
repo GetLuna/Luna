@@ -34,9 +34,6 @@ if (isset($_POST['form_sent'])) {
 		'gzip'							=> isset($_POST['form']['gzip']) ? '1' : '0',
 		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
 		'enable_advanced_search'		=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
-		'pms_enabled'					=> isset($_POST['form']['pms_enabled']) ? '1' : '0',
-		'pms_notification'				=> isset($_POST['form']['pms_notification']) ? '1' : '0',
-		'pms_max_receiver'				=> (intval($_POST['form']['pms_max_receiver']) > 0) ? intval($_POST['form']['pms_max_receiver']) : 5
 	);
 
 	foreach ($form as $key => $input) {
@@ -138,33 +135,6 @@ if (isset($_GET['saved']))
 								<?php _e('Allow search only in 1 forum at a time.', 'luna') ?>
 							</label>
 						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Inbox', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="form_sent" value="1" />
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Use Inbox', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[pms_enabled]" value="1" <?php if ($luna_config['o_pms_enabled'] == '1') echo ' checked' ?> />
-								<?php _e('Allow users to use Inbox.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Receivers', 'luna') ?><span class="help-block"><?php _e('The number of receivers an Inbox message can have.', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[pms_max_receiver]" maxlength="5" value="<?php echo $luna_config['o_pms_max_receiver'] ?>" />
 					</div>
 				</div>
 			</fieldset>

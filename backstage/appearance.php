@@ -27,7 +27,6 @@ if (isset($_POST['form_sent'])) {
 		'disp_posts_default'	=> intval($_POST['form']['disp_posts_default']),
 		'board_statistics'		=> isset($_POST['form']['board_statistics']) ? '1' : '0',
 		'back_to_top'			=> isset($_POST['form']['back_to_top']) ? '1' : '0',
-		'notification_flyout'	=> isset($_POST['form']['notification_flyout']) ? '1' : '0',
 		'header_search'			=> isset($_POST['form']['header_search']) ? '1' : '0',
 		'show_copyright'		=> isset($_POST['form']['show_copyright']) ? '1' : '0',
 		'copyright_type'		=> intval($_POST['form']['copyright_type']),
@@ -178,18 +177,6 @@ if (isset($_GET['saved']))
 		</div>
 		<div class="panel-body">
 			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Notifications', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[notification_flyout]" value="1" <?php if ($luna_config['o_notification_flyout'] == '1') echo ' checked' ?> />
-								<?php _e('Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Search', 'luna') ?></label>
 					<div class="col-sm-9">

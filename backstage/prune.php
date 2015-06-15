@@ -122,19 +122,6 @@ if ($action == 'prune') {
 if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 	require FORUM_ROOT.'include/cache.php';
 
-if (isset($_POST['notiprune'])) {
-	if ($_POST['prune_type'] == 1)
-		$type = ' WHERE viewed = 1';
-	elseif ($_POST['prune_type'] == 2)
-		$type = ' WHERE viewed = 0';
-	else
-		$type = '';
-
-	$db->query('DELETE FROM '.$db->prefix.'notifications'.$type) or error('Unable to delete notifications', __FILE__, __LINE__, $db->error());
-	
-	message_backstage(__('Pruning complete. Notifications pruned.', 'luna'));
-}
-
 if (isset($_POST['userprune'])) {
 	// Make sure something something was entered
 	if ((trim($_POST['days']) == '') || trim($_POST['posts']) == '')
@@ -185,36 +172,6 @@ require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 ?>
 
-<form class="form-horizontal" id="notiprune" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Prune notifications', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="notiprune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="action" value="notiprune" />
-			<fieldset>
-				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
-					<div class="col-sm-9">
-						<label class="radio-inline">
-							<input type="radio" name="prune_type" value="0" tabindex="6" />
-							<?php _e('All notifications', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="prune_type" value="1" checked />
-							<?php _e('Seen notifications', 'luna') ?>
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="prune_type" value="2" />
-							<?php _e('New notifications', 'luna') ?>
-						</label>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-</form>
 <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">

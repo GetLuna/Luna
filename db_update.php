@@ -48,7 +48,6 @@ if (!defined('FORUM_DEBUG'))
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
-require FORUM_ROOT.'include/notifications.php';
 require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/general_functions.php';
 
@@ -537,142 +536,6 @@ switch ($stage) {
 		if (array_key_exists('o_quickpost', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickpost\'') or error('Unable to remove config value \'o_quickpost\'', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.3250: Add the messages table
-		if (!$db->table_exists('messages')) {
-			$schema = array(
-				'FIELDS'			=> array(
-					'id'				=> array(
-						'datatype'		=> 'SERIAL',
-						'allow_null'	=> false
-					),
-					'shared_id'		=> array(
-						'datatype'		=> 'INT(10)',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'last_shared_id'	=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'last_post'			=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> true,
-						'default'			=> '0'
-					),
-					'last_post_id'		=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> true,
-						'default'			=> '0'
-					),
-					'last_poster'		=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'owner'				=> array(
-						'datatype'			=> 'INTEGER',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'subject'			=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false
-					),
-					'message'			=> array(
-						'datatype'			=> 'MEDIUMTEXT',
-						'allow_null'		=> false
-					),
-					'hide_smilies'	=> array(
-						'datatype'		=> 'TINYINT(1)',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'show_message'	=> array(
-						'datatype'		=> 'TINYINT(1)',
-						'allow_null'	=> false,
-						'default'		=> '0'
-					),
-					'sender'	=> array(
-						'datatype'		=> 'VARCHAR(200)',
-						'allow_null'	=> false
-					),
-					'receiver'	=> array(
-						'datatype'		=> 'VARCHAR(200)',
-						'allow_null'	=> true
-					),
-					'sender_id'	=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'receiver_id'	=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> true,
-						'default'			=> '0'
-					),
-					'sender_ip'	=> array(
-						'datatype'			=> 'VARCHAR(39)',
-						'allow_null'		=> true
-					),
-					'posted'	=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-					),
-					'showed'	=> array(
-						'datatype'			=> 'TINYINT(1)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					)
-				),
-				'PRIMARY KEY'		=> array('id'),
-			);
-			
-			$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
-		}
-
-		// Since 0.0.3263: Add the g_pm column to the groups table
-		$db->add_field('groups', 'g_pm', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_pm" to table "groups"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the g_pm_limit column to the groups table
-		$db->add_field('groups', 'g_pm_limit', 'INT', false, '20', 'g_pm') or error('Unable to add column "g_pm_limit" to table "groups"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the use_pm column to the users table
-		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the notify_pm column to the users table
-		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the notify_pm_full column to the users table
-		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the num_pms column to the users table
-		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_enabled feature
-		if (!array_key_exists('o_pms_enabled', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_enabled\', \'1\')') or error('Unable to insert config value \'o_pms_enabled\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_mess_per_page feature
-		if (!array_key_exists('o_pms_mess_per_page', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_mess_per_page\', \'10\')') or error('Unable to insert config value \'o_pms_mess_per_page\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_max_receiver feature
-		if (!array_key_exists('o_pms_max_receiver', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_max_receiver\', \'5\')') or error('Unable to insert config value \'o_pms_max_receiver\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_notification feature
-		if (!array_key_exists('o_pms_notification', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_notification\', \'1\')') or error('Unable to insert config value \'o_pms_notification\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.1.3283: Remove obsolete o_private_message permission from config table
-		if (array_key_exists('o_private_message', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_private_message\'') or error('Unable to remove config value \'o_private_message\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.1.3300: Remove obsolete o_user_menu_sidebar permission from config table
-		if (array_key_exists('o_user_menu_sidebar', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_user_menu_sidebar\'') or error('Unable to remove config value \'o_user_menu_sidebar\'', __FILE__, __LINE__, $db->error());
-
 		// Since 0.1.3301: Set sys_entry to 0 for Backstage
 		$db->query('UPDATE '.$db->prefix.'menu SET sys_entry = \'0\' WHERE id = \'4\'') or error('Unable to reset Backstage menu item', __FILE__, __LINE__, $db->error());
 
@@ -683,58 +546,6 @@ switch ($stage) {
 		// Since 0.2.3414: Remove obsolete o_forum_new_style permission from config table
 		if (array_key_exists('o_forum_new_style', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_forum_new_style\'') or error('Unable to remove config value \'o_forum_new_style\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3415: Remove obsolete o_notifications permission from config table
-		if (array_key_exists('o_notifications', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_notifications\'') or error('Unable to remove config value \'o_notifications\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3423: Add the messages table
-		if (!$db->table_exists('notifications')) {
-			$schema = array(
-				'FIELDS'			=> array(
-					'id'				=> array(
-						'datatype'			=> 'SERIAL',
-						'allow_null'		=> false
-					),
-					'user_id'			=> array(
-						'datatype'			=> 'INT(10)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'message'			=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'icon'				=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'link'			=> array(
-						'datatype'			=> 'VARCHAR(255)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'time'				=> array(
-						'datatype'			=> 'INT(11)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-					'viewed'			=> array(
-						'datatype'		=> 'TINYINT(1)',
-						'allow_null'		=> false,
-						'default'			=> '0'
-					),
-				),
-				'PRIMARY KEY'		=> array('id'),
-			);
-			
-			$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
-		}
-
-		// Since 0.2.3425: Drop the color column from the notifications table
-		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
 		// Since 0.2.3459: Add o_first_run_backstage feature
 		if (!array_key_exists('o_first_run_backstage', $luna_config))
@@ -771,22 +582,6 @@ switch ($stage) {
 		// Since 0.2.3562: Add o_board_statistics feature
 		if (!array_key_exists('o_board_statistics', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_board_statistics\', \'1\')') or error('Unable to insert config value \'o_board_statistics\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3563: Add o_notification_flyout feature
-		if (!array_key_exists('o_notification_flyout', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_notification_flyout\', \'1\')') or error('Unable to insert config value \'o_notification_flyout\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.3.3721: Remove reading_list table
-		if ($db->table_exists('reading_list'))
-			$db->drop_table('reading_list') or error('Unable to drop reading_list table', __FILE__, __LINE__, $db->error());
-
-		// Since 0.3.3724: Remove sending_lists table
-		if ($db->table_exists('sending_lists'))
-			$db->drop_table('sending_lists') or error('Unable to drop sending_lists table', __FILE__, __LINE__, $db->error());
-
-		// Since 0.3.3734: Remove contacts table
-		if ($db->table_exists('contacts'))
-			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
 		// Since 0.3.3752: Add the soft column to the posts table
 		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
@@ -991,10 +786,6 @@ switch ($stage) {
 
 	// Show results page
 	case 'finish':
-		
-		// Give a "Success" notifcation
-		if ($luna_config['o_cur_version'] != Version::FORUM_VERSION)
-			new_notification('2', 'backstage/index.php', 'Luna has been updated to '.Version::FORUM_VERSION, 'fa-cloud-upload');
 
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
