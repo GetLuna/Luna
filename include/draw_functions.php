@@ -162,6 +162,8 @@ function draw_editor($height) {
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
 			elseif (FORUM_ACTIVE_PAGE == 'edit')
 				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
+			elseif (FORUM_ACTIVE_PAGE == 'new-inbox')
+				echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
 		?></textarea>
 		<div class="btn-toolbar textarea-toolbar textarea-bottom">
 			<div class="btn-group pull-right">
@@ -708,6 +710,108 @@ function draw_comment_list() {
 		require get_view_path('comment.php');
 	}
 
+}
+
+function draw_response_list() {
+	global $result, $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $inbox;
+
+	while ($cur_post = $db->fetch_assoc($result)) {	
+		$post_count++;
+		$user_avatar = '';
+		$user_info = array();
+		$user_contacts = array();
+		$post_actions = array();
+		$is_online = '';
+		$signature = '';
+		
+		// If the poster is a registered user
+		if ($cur_post['id']) {
+			if ($luna_user['g_view_users'] == '1')
+				$username = '<a href="profile.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
+			else
+				$username = luna_htmlspecialchars($cur_post['sender']);
+				
+			$user_title = get_title($cur_post);
+	
+			if ($luna_config['o_censoring'] == '1')
+				$user_title = censor_words($user_title);
+	
+			// Format the online indicator
+			$is_online = ($cur_post['is_online'] == $cur_post['sender_id']) ? '<strong>'.__('Online:', 'luna').'</strong>' : '<span>'.__('Offline', 'luna').'</span>';
+	
+			if ($luna_config['o_avatars'] == '1' && $luna_user['show_avatars'] != '0') {
+				if (isset($user_avatar_cache[$cur_post['sender_id']]))
+					$user_avatar = $user_avatar_cache[$cur_post['sender_id']];
+				else
+					$user_avatar = $user_avatar_cache[$cur_post['sender_id']] = generate_avatar_markup($cur_post['sender_id']);
+			}
+	
+			// We only show location, register date, post count and the contact links if "Show user info" is enabled
+			if ($luna_config['o_show_user_info'] == '1') {
+				if ($cur_post['location'] != '') {
+					if ($luna_config['o_censoring'] == '1')
+						$cur_post['location'] = censor_words($cur_post['location']);
+	
+					$user_info[] = '<dd><span>'.__('From:', 'luna').' '.luna_htmlspecialchars($cur_post['location']).'</span></dd>';
+				}
+	
+				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_post['registered'], true).'</span></dd>';
+	
+				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
+					$user_info[] = '<dd><span>'.__('Posts:', 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+	
+				// Now let's deal with the contact links (Email and URL)
+				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
+					$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['email'].'">'.__('Email', 'luna').'</a></span>';
+				elseif ($cur_post['email_setting'] == '1' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+					$user_contacts[] = '<span class="email"><a href="misc.php?email='.$cur_post['sender_id'].'">'.__('Email', 'luna').'</a></span>';
+					
+				if ($luna_config['o_pms_enabled'] == '1' && !$luna_user['is_guest'] && $luna_user['g_pm'] == '1' && $luna_user['use_pm'] == '1' && $cur_post['use_pm'] == '1') {
+					$pid = isset($cur_post['sender_id']) ? $cur_post['sender_id'] : $cur_post['sender_id'];
+					$user_contacts[] = '<span class="email"><a href="new_inbox.php?uid='.$pid.'">'.__('PM', 'luna').'</a></span>';
+				}
+	
+				if ($cur_post['url'] != '')
+					$user_contacts[] = '<span class="website"><a href="'.luna_htmlspecialchars($cur_post['url']).'">'.__('Website', 'luna').'</a></span>';
+					
+			}
+	
+			if ($luna_user['is_admmod']) {
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_ip'].'" title="'.$cur_post['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
+	
+				if ($cur_post['admin_note'] != '')
+					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
+			}
+		} else { // If the poster is a guest (or a user that has been deleted)
+			$username = luna_htmlspecialchars($cur_post['username']);
+			$user_title = get_title($cur_post);
+	
+			if ($luna_user['is_admmod'])
+				$user_info[] = '<dd><span><a href="backstage/moderate.php?get_host='.$cur_post['sender_id'].'" title="'.$cur_post['sender_ip'].'">'.__('IP log', 'luna').'</a></span></dd>';
+	
+			if ($luna_config['o_show_user_info'] == '1' && $cur_post['poster_email'] != '' && !$luna_user['is_guest'] && $luna_user['g_send_email'] == '1')
+				$user_contacts[] = '<span class="email"><a href="mailto:'.$cur_post['poster_email'].'">'.__('Email', 'luna').'</a></span>';
+		}
+		
+		$username_quickreply = luna_htmlspecialchars($cur_post['username']);
+
+		$post_actions[] = '<a href="new_inbox.php?reply='.$cur_post['shared_id'].'&amp;quote='.$cur_post['mid'].'">'.__('Quote', 'luna').'</a>';
+
+		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
+		$cur_post['message'] = parse_message($cur_post['message']);
+	
+		// Do signature parsing/caching
+		if ($luna_config['o_signatures'] == '1' && $cur_post['signature'] != '' && $luna_user['show_sig'] != '0') {
+			if (isset($signature_cache[$cur_post['id']]))
+				$signature = $signature_cache[$cur_post['id']];
+			else {
+				$signature = parse_signature($cur_post['signature']);
+				$signature_cache[$cur_post['id']] = $signature;
+			}
+		}
+	
+		require get_view_path('comment.php');
+	}
 }
 
 function draw_user_list() {
