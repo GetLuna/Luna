@@ -504,6 +504,15 @@ h2.forum-title .btn {
 	margin-bottom: 5px;
 }
 
+.forum-desc a {
+	color: rgba(255, 255, 255, .7);
+}
+
+.forum-desc a:hover {
+	color: rgba(255, 255, 255, 1);
+	text-decoration: none;
+}
+
 .forumview {
 	margin-top: 10px;
 }
@@ -515,6 +524,12 @@ h2.forum-title .btn {
 /* Modal forms */
 #login-form .modal-xs, #delete-form .modal-xs {
 	max-width: 300px;
+}
+
+@media screen and (max-width: 767px) {
+	.modal-dialog {
+		margin: 30px auto;
+	}
 }
 
 #newpass .modal-xs, #newmail .modal-xs, #newpass .modal-xs {
@@ -1339,7 +1354,12 @@ blockquote footer {
 
 .form .btn-login {
 	margin-top: -35px;
-	margin-right: 15px;
+}
+
+@media screen and (min-width: 768px) {
+	.form .btn-login {
+		margin-right: 15px;
+	}
 }
 
 .form .btn-update {
