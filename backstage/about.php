@@ -197,7 +197,7 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.4.<br />
+						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.5.<br />
 						<b>Lunicons</b> version 0.0.0 has been added.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
