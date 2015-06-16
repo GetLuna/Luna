@@ -100,16 +100,16 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-12">
 						<h4>And a lot of other small changes</h4>
-						<p>However, since Luna 1.1 has its focus on refinements, there are also a lot of other small improvements all over the board (no pun intended). This includes better performance, more developer options, small visual changes and fixes, and so much more.</p>
+						<p>However, since Luna 1.1 has its focus on refinements, there are also a lot of other small improvements all over the board (no pun intended). This includes better performance, more developer options, small visual changes and fixes, PHP 7 support, and so much more.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4719.<br />
+						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4735.<br />
 						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bug fixes</h4>
-						<p>2 bugs have been fixed.</p>
+						<p>13 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>1 security issue has been fixed.</p>
 					</div>
