@@ -184,7 +184,7 @@ if (empty($stage)) {
 	<head>
 		<meta charset="utf-8">
 		<title><?php _e('Maintenance', 'luna') ?></title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
@@ -205,7 +205,7 @@ if (empty($stage)) {
 		<title>Luna &middot; <?php _e('Update', 'luna') ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="robots" content="noindex, nofollow">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">

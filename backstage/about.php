@@ -105,6 +105,7 @@ require 'header.php';
 					<div class="col-sm-6">
 						<h4>Packages</h4>
 						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4735.<br />
+						<b>Bootstrap</b> has been updated from version 3.3.4 to 3.3.5.<br />
 						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">
