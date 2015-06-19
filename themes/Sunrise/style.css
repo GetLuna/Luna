@@ -29,6 +29,11 @@
 	background-color: #f8f8f8;
 }
 
+.row.forum-entry.new-item {
+	border-left-color: #e3e3e3;
+	background-color: #f3f3f3;
+}
+
 .forum-desc {
 	color: #fff;
 }
