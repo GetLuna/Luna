@@ -7,10 +7,10 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const FORUM_VERSION = '1.0.5';
+	const FORUM_VERSION = '1.0.7-dev';
 
 	// The Luna Core version
-	const FORUM_CORE_VERSION = '1.0.4332';
+	const FORUM_CORE_VERSION = '1.0.4348';
 	
 	// The Luna Core code name
 	const FORUM_CODE_NAME = 'aero';

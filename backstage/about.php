@@ -197,18 +197,18 @@ require 'header.php';
 				<div class="row">
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.4.<br />
+						<p><b>Bootstrap</b> has been updated from version 3.2.0 to 3.3.5.<br />
 						<b>Lunicons</b> version 0.0.0 has been added.<br />
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4329.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4348.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>284 bugs have been fixed.</p>
+						<p>285 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
-						<p>5 security issue has been fixed.</p>
+						<p>6 security issue has been fixed.</p>
 					</div>
 				</div>
 				<hr />
@@ -293,6 +293,37 @@ require 'header.php';
 					<div class="col-sm-6">
 						<p>
 							<span class="label label-primary">Update 5</span> Adds icons to (soft) delete interfaces
+						</p>
+					</div>
+				</div>
+				<h4>Luna 1.0.6 &middot Build 4339</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 6</span> Fixes security bug in the Backstage
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 6</span> Luna Brand May 2015 update
+						</p>
+					</div>
+				</div>
+				<h4>Luna 1.0.7 &middot Build 4348</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 7</span> Support for PHP 7 has been added<br />
+							<span class="label label-primary">Update 7</span> The forum moderation interface has been improved<br />
+							<span class="label label-primary">Update 7</span> Luna now supports SQLite 3<br />
+							<span class="label label-primary">Update 7</span> Post counts now decreases when posts are removed
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 7</span> Bootstrap has been update to version 3.3.5<br />
+							<span class="label label-primary">Update 7</span> The login modal is now centered on small screens<br />
+							<span class="label label-primary">Update 7</span> 1 additional bug fix
 						</p>
 					</div>
 				</div>

@@ -109,7 +109,7 @@ if (isset($_POST['delete'])) {
 		redirect('viewforum.php?id='.$cur_post['fid']);
 	} else {
 		// Delete just this one post
-		delete_post($id, $cur_post['tid']);
+		delete_post($id, $cur_post['tid'], $cur_post['poster_id']);
 		update_forum($cur_post['fid']);
 
 		// Redirect towards the previous post

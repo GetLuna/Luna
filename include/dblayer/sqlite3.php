@@ -7,10 +7,9 @@
  * License: http://opensource.org/licenses/MIT MIT
  */
 
-// Make sure we have built in support for SQLite
-if (!function_exists('sqlite_open'))
-	exit('This PHP environment doesn\'t have SQLite support built in. SQLite support is required if you want to use a SQLite database to run this forum. Consult the PHP documentation for further assistance.');
-
+// Make sure we have built in support for SQLite3
+if (!class_exists('SQLite3'))
+	exit('This PHP environment doesn\'t have SQLite3 support built in. SQLite3 support is required if you want to use a SQLite3 database to run this forum. Consult the PHP documentation for further assistance.');
 
 class DBLayer {
 	var $prefix;
@@ -18,6 +17,7 @@ class DBLayer {
 	var $query_result;
 	var $in_transaction = 0;
 
+	var $last_query;
 	var $saved_queries = array();
 	var $num_queries = 0;
 
@@ -31,7 +31,7 @@ class DBLayer {
 	);
 
 
-	function __construct($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {
+	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {
 		// Prepend $db_name with the path to the forum root directory
 		$db_name = FORUM_ROOT.$db_name;
 
@@ -50,13 +50,10 @@ class DBLayer {
 		if (!forum_is_writable($db_name))
 			error('Unable to open database \''.$db_name.'\' for writing. Permission denied', __FILE__, __LINE__);
 
-		if ($p_connect)
-			$this->link_id = @sqlite_popen($db_name, 0666, $sqlite_error);
-		else
-			$this->link_id = @sqlite_open($db_name, 0666, $sqlite_error);
+		@$this->link_id = new SQLite3($db_name, SQLITE3_OPEN_READWRITE);
 
 		if (!$this->link_id)
-			error('Unable to open database \''.$db_name.'\'. SQLite reported: '.$sqlite_error, __FILE__, __LINE__);
+			error('Unable to open database \''.$db_name.'\'.', __FILE__, __LINE__);
 		else
 			return $this->link_id;
 	}
@@ -65,30 +62,32 @@ class DBLayer {
 	function start_transaction() {
 		++$this->in_transaction;
 
-		return (@sqlite_query($this->link_id, 'BEGIN')) ? true : false;
+		return ($this->link_id->exec('BEGIN TRANSACTION')) ? true : false;
 	}
 
 
 	function end_transaction() {
 		--$this->in_transaction;
 
-		if (@sqlite_query($this->link_id, 'COMMIT'))
+		if ($this->link_id->exec('COMMIT'))
 			return true;
 		else {
-			@sqlite_query($this->link_id, 'ROLLBACK');
+			$this->link_id->exec('ROLLBACK');
 			return false;
 		}
 	}
 
 
 	function query($sql, $unbuffered = false) {
+		if (strlen($sql) > 140000)
+			exit('Insane query. Aborting.');
+
+		$this->last_query = $sql;
+
 		if (defined('FORUM_SHOW_QUERIES'))
 			$q_start = get_microtime();
 
-		if ($unbuffered)
-			$this->query_result = @sqlite_unbuffered_query($this->link_id, $sql);
-		else
-			$this->query_result = @sqlite_query($this->link_id, $sql);
+		$this->query_result = $this->link_id->query($sql);
 
 		if ($this->query_result) {
 			if (defined('FORUM_SHOW_QUERIES'))
@@ -97,15 +96,16 @@ class DBLayer {
 			++$this->num_queries;
 
 			return $this->query_result;
-		} else {
+		}
+		else {
 			if (defined('FORUM_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, 0);
 
-			$this->error_no = @sqlite_last_error($this->link_id);
-			$this->error_msg = @sqlite_error_string($this->error_no);
+			$this->error_no = $this->link_id->lastErrorCode();
+			$this->error_msg = $this->link_id->lastErrorMsg();
 
 			if ($this->in_transaction)
-				@sqlite_query($this->link_id, 'ROLLBACK');
+				$this->link_id->exec('ROLLBACK');
 
 			--$this->in_transaction;
 
@@ -116,22 +116,29 @@ class DBLayer {
 
 	function result($query_id = 0, $row = 0, $col = 0) {
 		if ($query_id) {
-			if ($row !== 0 && @sqlite_seek($query_id, $row) === false)
-				return false;
+			$result_rows = array();
+			while ($cur_result_row = @$query_id->fetchArray(SQLITE3_NUM))
+				$result_rows[] = $cur_result_row;
 
-			$cur_row = @sqlite_current($query_id);
-			if ($cur_row === false)
-				return false;
+			$cur_row = $result_rows[$row];  
+			if (!empty($result_rows) && array_key_exists($row, $result_rows))  
+				$cur_row = $result_rows[$row];  
+    
+			return $cur_row[$col];  
 
-			return $cur_row[$col];
-		} else
+			if (isset($cur_row))  
+				return $cur_row[$col];  
+			else  
+				return false;  
+		}
+		else
 			return false;
 	}
 
 
 	function fetch_assoc($query_id = 0) {
 		if ($query_id) {
-			$cur_row = @sqlite_fetch_array($query_id, SQLITE_ASSOC);
+			$cur_row = @$query_id->fetchArray(SQLITE3_ASSOC);
 			if ($cur_row) {
 				// Horrible hack to get rid of table names and table aliases from the array keys
 				foreach ($cur_row as $key => $value) {
@@ -145,28 +152,36 @@ class DBLayer {
 			}
 
 			return $cur_row;
-		} else
+		}
+		else
 			return false;
 	}
 
 
 	function fetch_row($query_id = 0) {
-		return ($query_id) ? @sqlite_fetch_array($query_id, SQLITE_NUM) : false;
+		return ($query_id) ? @$query_id->fetchArray(SQLITE3_NUM) : false;
 	}
 
 
 	function num_rows($query_id = 0) {
-		return ($query_id) ? @sqlite_num_rows($query_id) : false;
+		if ($query_id && preg_match ('/\bSELECT\b/i', $this->last_query)) {
+			$num_rows_query = preg_replace ('/\bSELECT\b(.*)\bFROM\b/imsU', 'SELECT COUNT(*) FROM', $this->last_query);
+			$result = $this->query($num_rows_query);
+
+			return intval($this->result($result));
+		}
+		else
+			return false;
 	}
 
 
 	function affected_rows() {
-		return ($this->link_id) ? @sqlite_changes($this->link_id) : false;
+		return ($this->query_result) ? $this->link_id->changes() : false;
 	}
 
 
 	function insert_id() {
-		return ($this->link_id) ? @sqlite_last_insert_rowid($this->link_id) : false;
+		return ($this->link_id) ? $this->link_id->lastInsertRowID() : false;
 	}
 
 
@@ -181,12 +196,16 @@ class DBLayer {
 
 
 	function free_result($query_id = false) {
+		if ($query_id) {
+			@$query_id->finalize();
+		}
+
 		return true;
 	}
 
 
 	function escape($str) {
-		return is_array($str) ? '' : sqlite_escape_string($str);
+		return is_array($str) ? '' : $this->link_id->escapeString($str);
 	}
 
 
@@ -205,11 +224,12 @@ class DBLayer {
 				if (defined('FORUM_SHOW_QUERIES'))
 					$this->saved_queries[] = array('COMMIT', 0);
 
-				@sqlite_query($this->link_id, 'COMMIT');
+				$this->link_id->exec('COMMIT');
 			}
 
-			return @sqlite_close($this->link_id);
-		} else
+			return @$this->link_id->close();
+		}
+		else
 			return false;
 	}
 
@@ -225,31 +245,49 @@ class DBLayer {
 
 
 	function get_version() {
+		$info = SQLite3::version();
+
 		return array(
-			'name'		=> 'SQLite',
-			'version'	=> sqlite_libversion()
+			'name'		=> 'SQLite3',
+			'version'	=> $info['versionString']
 		);
 	}
 
 
 	function table_exists($table_name, $no_prefix = false) {
-		$result = $this->query('SELECT 1 FROM sqlite_master WHERE name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\' AND type=\'table\'');
-		return $this->num_rows($result) > 0;
+		$result = $this->query('SELECT COUNT(type) FROM sqlite_master WHERE name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\' AND type=\'table\'');
+		$table_exists = (intval($this->result($result)) > 0);
+
+		// Free results for DROP
+		if ($result instanceof Sqlite3Result) {
+			$this->free_result($result);
+		}
+
+		return $table_exists;
 	}
 
 
 	function field_exists($table_name, $field_name, $no_prefix = false) {
 		$result = $this->query('SELECT sql FROM sqlite_master WHERE name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\' AND type=\'table\'');
-		if (!$this->num_rows($result))
+		$sql = $this->result($result);
+
+		if (is_null($sql) || $sql === false)
 			return false;
 
-		return preg_match('%[\r\n]'.preg_quote($field_name, '%').' %', $this->result($result));
+		return (preg_match('%[\r\n]'.preg_quote($field_name).' %', $sql) === 1);
 	}
 
 
 	function index_exists($table_name, $index_name, $no_prefix = false) {
-		$result = $this->query('SELECT 1 FROM sqlite_master WHERE tbl_name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\' AND name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'_'.$this->escape($index_name).'\' AND type=\'index\'');
-		return $this->num_rows($result) > 0;
+		$result = $this->query('SELECT COUNT(type) FROM sqlite_master WHERE tbl_name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\' AND name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'_'.$this->escape($index_name).'\' AND type=\'index\'');
+		$index_exists = (intval($this->result($result)) > 0);
+
+		// Free results for DROP
+		if ($result instanceof Sqlite3Result) {
+			$this->free_result($result);
+		}
+
+		return $index_exists;
 	}
 
 
@@ -312,10 +350,10 @@ class DBLayer {
 		if (!$this->table_exists($old_table, $no_prefix))
 			return false;
 		// If the table names are the same
-		elseif ($old_table == $new_table)
+		else if ($old_table == $new_table)
 			return true;
 		// If the new table already exists
-		elseif ($this->table_exists($new_table, $no_prefix))
+		else if ($this->table_exists($new_table, $no_prefix))
 			return false;
 
 		$table = $this->get_table_info($old_table, $no_prefix);
@@ -334,10 +372,11 @@ class DBLayer {
 		}
 
 		// Copy content across
-		$result &= $this->query('INSERT INTO '.($no_prefix ? '' : $this->prefix).$this->escape($new_name).' SELECT * FROM '.($no_prefix ? '' : $this->prefix).$this->escape($old_name)) ? true : false;
+		$result &= $this->query('INSERT INTO '.($no_prefix ? '' : $this->prefix).$this->escape($new_table).' SELECT * FROM '.($no_prefix ? '' : $this->prefix).$this->escape($old_table)) ? true : false;
 
-		// Drop old table
-		$result &= $this->drop_table($table_name, $no_prefix);
+		// Drop the old table if the new one exists
+		if ($this->table_exists($new_table, $no_prefix))
+			$result &= $this->drop_table($old_table, $no_prefix);
 
 		return $result;
 	}
@@ -346,13 +385,11 @@ class DBLayer {
 	function get_table_info($table_name, $no_prefix = false) {
 		// Grab table info
 		$result = $this->query('SELECT sql FROM sqlite_master WHERE tbl_name = \''.($no_prefix ? '' : $this->prefix).$this->escape($table_name).'\' ORDER BY type DESC') or error('Unable to fetch table information', __FILE__, __LINE__, $this->error());
-		$num_rows = $this->num_rows($result);
-
-		if ($num_rows == 0)
-			return;
 
 		$table = array();
 		$table['indices'] = array();
+		$num_rows = 0;
+
 		while ($cur_index = $this->fetch_assoc($result)) {
 			if (empty($cur_index['sql']))
 				continue;
@@ -361,7 +398,14 @@ class DBLayer {
 				$table['sql'] = $cur_index['sql'];
 			else
 				$table['indices'][] = $cur_index['sql'];
+
+			++$num_rows;
 		}
+
+		// Check for empty
+		if ($num_rows < 1)
+			return;
+
 
 		// Work out the columns in the table currently
 		$table_lines = explode("\n", $table['sql']);
@@ -370,11 +414,11 @@ class DBLayer {
 			$table_line = trim($table_line, " \t\n\r,"); // trim spaces, tabs, newlines, and commas
 			if (substr($table_line, 0, 12) == 'CREATE TABLE')
 				continue;
-			elseif (substr($table_line, 0, 11) == 'PRIMARY KEY')
+			else if (substr($table_line, 0, 11) == 'PRIMARY KEY')
 				$table['primary_key'] = $table_line;
-			elseif (substr($table_line, 0, 6) == 'UNIQUE')
+			else if (substr($table_line, 0, 6) == 'UNIQUE')
 				$table['unique'] = $table_line;
-			elseif (substr($table_line, 0, strpos($table_line, ' ')) != '')
+			else if (substr($table_line, 0, strpos($table_line, ' ')) != '')
 				$table['columns'][substr($table_line, 0, strpos($table_line, ' '))] = trim(substr($table_line, strpos($table_line, ' ')));
 		}
 
@@ -418,9 +462,9 @@ class DBLayer {
 		// Out of bounds checks
 		if ($offset > count($table['columns']))
 			$offset = count($table['columns']);
-		elseif ($offset < 0)
+		else if ($offset < 0)
 			$offset = 0;
-	
+
 		if (!is_null($field_name) && $field_name !== '')
 			$table['columns'] = array_merge(array_slice($table['columns'], 0, $offset), array($field_name => $query), array_slice($table['columns'], $offset));
 
