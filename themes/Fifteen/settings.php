@@ -164,6 +164,7 @@ if (!defined('FORUM'))
 							</div>
 						</div>
 					</div>
+<?php if ($luna_user['is_admmod']) { ?>
 					<hr />
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Backstage accent', 'luna') ?></label>
@@ -183,6 +184,7 @@ if (!defined('FORUM'))
 						</div>
 					</div>
 <?php
+}
 
 $languages = forum_list_langs();
 
