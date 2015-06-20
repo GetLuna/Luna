@@ -13,18 +13,15 @@ require FORUM_ROOT.'include/email.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
-	message($lang['No permission']);
+	message(__('You do not have permission to access this page.', 'luna'));
 	
 // User enable PM ?
 if (!$luna_user['use_pm'] == '1')
-	message($lang['No permission']);
+	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
 if (!$luna_config['o_pms_enabled'] == '1' || $luna_user['g_pm'] == '0')
-	message($lang['No permission']);
-
-// Load the additionals language files
-require FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
+	message(__('You do not have permission to access this page.', 'luna'));
 
 $p_destinataire = '';
 $p_contact = '';
@@ -47,13 +44,13 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	$result = $db->query('SELECT DISTINCT owner, receiver FROM '.$db->prefix.'messages WHERE shared_id='.$r) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		
 	$p_ids = array();
 		
 	while ($arry_dests = $db->fetch_assoc($result)) {	
 		if ($arry_dests['receiver'] == '0')
-			message($lang['Bad request']);
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 			
 		$p_ids[] = $arry_dests['owner'];
 	}
@@ -66,14 +63,14 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	$result_subject = $db->query('SELECT subject FROM '.$db->prefix.'messages WHERE shared_id='.$r.' AND show_message=1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result_subject))
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 
 	$p_subject = $db->result($result_subject);
 	
 	$result_username = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id IN ('.$p_ids.')') or error('Unable to find the owners of the message', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result_username))
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		
 	$p_destinataire = array();
 	
@@ -88,7 +85,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		$result = $db->query('SELECT sender, message FROM '.$db->prefix.'messages WHERE id='.$q.' AND owner='.$luna_user['id']) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
 			
 		if (!$db->num_rows($result))
-			message($lang['Bad request']);
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 			
 		$re_message = $db->fetch_assoc($result);
 		
@@ -101,18 +98,18 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	
 	// Check that $edit looks good
 	if ($edit <= 0)
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 	
 	$result = $db->query('SELECT sender_id, message, receiver FROM '.$db->prefix.'messages WHERE id='.$edit) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		
 	$edit_msg = $db->fetch_assoc($result);
 	
 	// If you're not the owner of this message, why do you want to edit it?
 	if ($edit_msg['sender_id'] != $luna_user['id'] && !$luna_user['is_admmod'] || $edit_msg['receiver'] == '0' && !$luna_user['is_admmod'])
-		message($lang['No permission']);
+		message(__('You do not have permission to access this page.', 'luna'));
 
 	// Insert the message
 	$p_message = censor_words($edit_msg['message']);
@@ -124,7 +121,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	
 	// Make sure form_user is correct
 	if ($_POST['form_user'] != $luna_user['username'])
-		message($lang['Bad request']);
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 	
 	// Flood protection by Newman
 	if (!isset($_SESSION))
@@ -132,11 +129,11 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
 	if (isset($_SESION['last_session_request']))
 		if(!$edit && !isset($_POST['preview']) && $_SESSION['last_session_request'] > time() - $luna_user['g_post_flood'])
-			$errors[] = sprintf( $lang['Flood'], $luna_user['g_post_flood'] );
+			$errors[] = sprintf( __('At least % seconds have to pass between sends. Please wait a little while and try send the message again.', 'luna'), $luna_user['g_post_flood'] );
 		
 	// Check users boxes
 	if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod'] && $luna_user['num_pms'] >= $luna_user['g_pm_limit'])
-		$errors[] = $lang['Sender full'];
+		$errors[] = __('Can\'t save message, your boxes are full.', 'luna');
 	
 	// Build receivers list
 	$p_destinataire = isset($_POST['p_username']) ? luna_trim($_POST['p_username']) : '';
@@ -157,9 +154,9 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	}
 
 	 if (count($dest_list) < '1' && $edit == '0')
-		$errors[] = $lang['Must receiver'];
+		$errors[] = __('You must give at least one receiver', 'luna');
 		elseif (count($dest_list) > $luna_config['o_pms_max_receiver'])
-		$errors[] = sprintf($lang['Too many receiver'], $luna_config['o_pms_max_receiver']-1);
+		$errors[] = sprintf(__('You can send a message at the same time only to %s receivers maximum.', 'luna'), $luna_config['o_pms_max_receiver']-1);
 
 	$destinataires = array(); $i = '0';
 	$list_ids = array();
@@ -176,20 +173,21 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			if (!empty($r)) {
 				$result = $db->query('SELECT 1 FROM '.$db->prefix.'messages WHERE shared_id='.$r.' AND show_message=1 AND owner='.$destinataires[$i]['id']) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
 				if (!$db->num_rows($result))
-					$errors[] = sprintf($lang['User left'], luna_htmlspecialchars($destinataire));
+					$errors[] = sprintf(__('%s has left the conversation.', 'luna'), luna_htmlspecialchars($destinataire));
 			}
 			// Begin to build usernames' list
 			$list_usernames[] = $destinataires[$i]['username'];
 			// Receivers enable PM ?
 			if (!$destinataires[$i]['use_pm'] == '1' || !$destinataires[$i]['g_pm'] == '1')
-				$errors[] = sprintf($lang['User disable PM'], luna_htmlspecialchars($destinataire));			
+				$errors[] = sprintf(__('%s disabled the private messages.', 'luna'), luna_htmlspecialchars($destinataire));			
 			// Check receivers boxes
 			elseif ($destinataires[$i]['g_id'] > FORUM_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
-				$errors[] = sprintf($lang['Dest full'], luna_htmlspecialchars($destinataire));	
+				$errors[] = sprintf(__('%s inbox is full, you can not send you message to this user.', 'luna'), luna_htmlspecialchars($destinataire));	
 		} else
-			$errors[] = sprintf($lang['No user'], luna_htmlspecialchars($destinataire));
+			$errors[] = sprintf(__('There\'s no user with the username "%s".', 'luna'), luna_htmlspecialchars($destinataire));
 		$i++;
 	}
+
 	// Build IDs' & usernames' list : the end
 	$ids_list = implode(', ', $list_ids);
 	$usernames_list = implode(', ', $list_usernames);
@@ -198,9 +196,9 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	$p_subject = luna_trim($_POST['req_subject']);
 	
 	if ($p_subject == '' && $edit == '0')
-		$errors[] = $lang['No subject'];
+		$errors[] = __('Topics must contain a subject.', 'luna');
 	elseif (luna_strlen($p_subject) > '70')
-		$errors[] = $lang['Too long subject'];
+		$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
 	elseif ($luna_config['p_subject_all_caps'] == '0' && strtoupper($p_subject) == $p_subject && $luna_user['is_admmod'])
 		$p_subject = ucwords(strtolower($p_subject));
 
@@ -209,11 +207,11 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
 	// Check message
 	if ($p_message == '')
-		$errors[] = $lang['No message'];
+		$errors[] = __('You must enter a message.', 'luna');
 
 	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 	elseif (strlen($p_message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
+		$errors[] = sprintf(__('Posts cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
 		$p_message = ucwords(strtolower($p_message));
 
@@ -224,8 +222,63 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if (empty($errors) && !isset($_POST['preview'])) { // Send message(s)	
 		$_SESSION['last_session_request'] = $now = time();
 		
-		if (empty($r) && empty($edit)) { // It's a new message
+	// Send message(s)	
+	if (empty($errors) && !isset($_POST['preview'])) {
+		$_SESSION['last_session_request'] = $now = time();
+		
+		if ($luna_config['o_pms_notification'] == '1') {
+			require_once FORUM_ROOT.'include/email.php';
+			
+			// Load the new_pm templates
+			$mail_tpl = trim(__('Subject: You received a new private message on <board_title>
+
+<sender> sent a private message to you.
+
+You can read this private message at this address: <pm_url>
+
+-- 
+<board_mailer>
+(Do not reply to this message)', 'luna'));
+			$mail_tpl_full = trim(__('Subject: You received a private message on <board_title>
+
+<sender> sent a private message to you.
+
+The message reads as follows:
+-----------------------------------------------------------------------
+
+<message>
+
+-----------------------------------------------------------------------
+
+You can read this private message at this address: <pm_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
+			
+			// The first row contains the subject
+			$first_crlf = strpos($mail_tpl, "\n");
+			$mail_subject = trim(substr($mail_tpl, 8, $first_crlf-8));
+			$mail_message = trim(substr($mail_tpl, $first_crlf));
+	
+			$mail_subject = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject);
+			$mail_message = str_replace('<sender>', $luna_user['username'], $mail_message);
+			$mail_message = str_replace('<board_mailer>', sprintf(__('%s Mailer', 'luna'), $luna_config['o_board_title']), $mail_message);
+			
+			// The first row contains the subject
+			$first_crlf_full = strpos($mail_tpl_full, "\n");
+			$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf_full-8));
+			$mail_message_full = trim(substr($mail_tpl_full, $first_crlf_full));
+			
+			$cleaned_message = bbcode2email($p_message, -1);
+	
+			$mail_subject_full = str_replace('<board_title>', $luna_config['o_board_title'], $mail_subject_full);
+			$mail_message_full = str_replace('<sender>', $luna_user['username'], $mail_message_full);
+			$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
+			$mail_message_full = str_replace('<board_mailer>', sprintf(__('%s Mailer', 'luna'), $luna_config['o_board_title']), $mail_message_full);
+		} if (empty($r) && empty($edit)) { // It's a new message
 			$result_shared = $db->query('SELECT last_shared_id FROM '.$db->prefix.'messages ORDER BY last_shared_id DESC LIMIT 1') or error('Unable to fetch last_shared_id', __FILE__, __LINE__, $db->error());
+
 			if (!$db->num_rows($result_shared))
 				$shared_id = '1';
 			else {
@@ -245,6 +298,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 				$new_mp = $db->insert_id();
 				$db->query('UPDATE '.$db->prefix.'messages SET last_post_id='.$new_mp.', last_post='.$now.', last_poster=\''.$db->escape($luna_user['username']).'\' WHERE shared_id='.$shared_id.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
 				$db->query('UPDATE '.$db->prefix.'users SET num_pms=num_pms+1 WHERE id='.$dest['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
+
 				// E-mail notification
 				if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) {
 					$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$shared_id.'&mid='.$new_mp.'&box=inbox', $mail_message);
@@ -260,9 +314,10 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		} if (!empty($r)) { // It's a reply or a reply with a quote
 			// Check that $edit looks good
 			if ($r <= '0')
-				message($lang['Bad request']);
+				message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 				
 			foreach ($destinataires as $dest) {
+			
 				$val_showed = '0';
 				
 				if ($dest['id'] == $luna_user['id'])
@@ -275,7 +330,10 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 					$db->query('UPDATE '.$db->prefix.'messages SET last_post_id='.$new_mp.', last_post='.$now.', last_poster=\''.$db->escape($luna_user['username']).'\' WHERE shared_id='.$r.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
 					if ($dest['id'] != $luna_user['id']) {
 						$db->query('UPDATE '.$db->prefix.'messages SET showed = 0 WHERE shared_id='.$r.' AND show_message=1 AND owner='.$dest['id']) or error('Unable to update the message.', __FILE__, __LINE__, $db->error());
-					} if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) { // E-mail notification
+					}
+
+					// E-mail notification
+					if ($luna_config['o_pms_notification'] == '1' && $dest['notify_pm'] == '1' && $dest['id'] != $luna_user['id']) {
 						$mail_message = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message);
 						$mail_message_full = str_replace('<pm_url>', $luna_config['o_base_url'].'/viewinbox.php?tid='.$r.'&mid='.$new_mp.'&box=inbox', $mail_message_full);
 						
@@ -284,42 +342,11 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 						else
 							luna_mail($dest['email'], $mail_subject, $mail_message);
 					}
+				}
+				$db->query('UPDATE '.$db->prefix.'users SET last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 			}
-			$db->query('UPDATE '.$db->prefix.'users SET last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
-		} if (!empty($edit) && !empty($tid)) { // It's an edit
-			// Check that $edit looks good
-			if ($edit <= '0')
-				message($lang['Bad request']);
-			
-			$result = $db->query('SELECT shared_id, owner, message FROM '.$db->prefix.'messages WHERE id='.$edit) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
-			
-			if (!$db->num_rows($result))
-				message($lang['Bad request']);
-				
-			while($edit_msg = $db->fetch_assoc($result)) {
-				// If you're not the owner of this message, why do you want to edit it?
-				if ($edit_msg['owner'] != $luna_user['id'] && !$luna_user['is_admmod'])
-					message($lang['No permission']);
-					
-				$message = $edit_msg['message'];
-				$shared_id_msg = $edit_msg['shared_id'];
-			}
-			
-			$result_msg = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE message=\''.$db->escape($message).'\' AND shared_id='.$shared_id_msg) or error('Unable to get the informations of the message', __FILE__, __LINE__, $db->error());
-			
-			if (!$db->num_rows($result_msg))
-				message($lang['Bad request']);
-				
-			while($list_ids = $db->fetch_assoc($result_msg)) {		
-				$ids_edit[] = $list_ids['id'];
-			}
-			
-			$ids_edit = implode(',', $ids_edit);
-				
-			// Finally, edit the message - maybe this query is unsafe?
-			$db->query('UPDATE '.$db->prefix.'messages SET message=\''.$db->escape($p_message).'\' WHERE message=\''.$db->escape($message).'\' AND id IN ('.$ids_edit.')') or error('Unable to edit the message', __FILE__, __LINE__, $db->error());
-		}
 			redirect('inbox.php');
+		}
 	}
 } else {
 	// To user(s)
@@ -334,7 +361,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE id='.$user_id) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
 			
 			if (!$db->num_rows($result))
-				message($lang['Bad request']);
+				message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 			
 			$arry_dests[] = $db->result($result);
 		}
@@ -347,7 +374,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		$result = $db->query('SELECT receivers FROM '.$db->prefix.'sending_lists WHERE user_id='.$luna_user['id'].' AND id='.$id) or error('Unable to find the informations of the message', __FILE__, __LINE__, $db->error());
 		
 		if (!$db->num_rows($result))
-			message($lang['Bad request']);
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
 		
 		$arry_dests = unserialize($db->result($result));
 			
@@ -355,13 +382,13 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	}
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Send a message']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Private Messages', 'luna'), __('Send a message', 'luna'));
 
-$required_fields = array('req_message' => $lang['Message']);
+$required_fields = array('req_message' => __('Message', 'luna'));
 $focus_element = array('post');
 
 if ($r == '0' && $q == '0' && $edit == '0') {
-	$required_fields['req_subject'] = $lang['Subject'];
+	$required_fields['req_subject'] = __('Subject', 'luna');
 	$focus_element[] = 'p_username';
 } else
 	$focus_element[] = 'req_message';

@@ -7,16 +7,15 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const FORUM_VERSION = '1.0.1';
+	const FORUM_VERSION = '1.1.0';
+	const FORUM_CORE_VERSION = '1.1.4746';
+	const LUNA_CORE_REVISION = 101;
 
-	// The Luna Core version
-	const FORUM_CORE_VERSION = '1.0.4297';
-	
 	// The Luna Core code name
-	const FORUM_CODE_NAME = 'aero';
+	const FORUM_CODE_NAME = 'bittersweetshimmer';
 
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = '87.64';
+	const FORUM_DB_VERSION = '88.10';
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const FORUM_PARSER_VERSION = '11.1.3';
@@ -25,7 +24,7 @@ class Version {
 	const FORUM_SI_VERSION = '2.0';
 
 	// Luna system requirements
-	const MIN_PHP_VERSION = '5.1.0';
+	const MIN_PHP_VERSION = '5.2.0';
 	const MIN_MYSQL_VERSION = '5.0.0';
 	const MIN_PGSQL_VERSION = '8.0.0';
 }

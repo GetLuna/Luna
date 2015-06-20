@@ -14,21 +14,18 @@ require FORUM_ROOT.'include/me_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
-	message($lang['No permission']);
+	message(__('You do not have permission to access this page.', 'luna'));
 
 // User enable PM ?
 if (!$luna_user['use_pm'] == '1')
-	message($lang['No permission']);
+	message(__('You do not have permission to access this page.', 'luna'));
 
 // Are we allowed to use this ?
 if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_pm'] == '0')
-	message($lang['No permission']);
-
-// Load the additionals language files
-require FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
+	message(__('You do not have permission to access this page.', 'luna'));
 
 // User block
-$avatar_user_card = draw_user_avatar($luna_user['id'], 'visible-lg-block');
+$avatar_user_card = draw_user_avatar($luna_user['id']);
 
 // Page ?
 $page = (!isset($_REQUEST['p']) || $_REQUEST['p'] <= '1') ? '1' : intval($_REQUEST['p']);
@@ -43,7 +40,7 @@ if (isset($_REQUEST['markread'])) {
 	confirm_referrer('inbox.php');
 
 	if (empty($_POST['selected_messages']))
-		message($lang['Must select']);
+		message(__('You must select some messages', 'luna'));
 		
 	$idlist = array_values($_POST['selected_messages']);
 	$idlist = array_map('intval', $idlist);
@@ -55,7 +52,7 @@ if (isset($_REQUEST['markread'])) {
 	confirm_referrer('inbox.php');
 
 	if (empty($_POST['selected_messages']))
-		message($lang['Must select']);
+		message(__('You must select some messages', 'luna'));
 		
 	$idlist = array_values($_POST['selected_messages']);
 	$idlist = array_map('intval', $idlist);
@@ -67,12 +64,12 @@ if (isset($_REQUEST['markread'])) {
 	confirm_referrer('inbox.php');
 
 	if (empty($_POST['selected_messages']))
-		message($lang['Must select']);
+		message(__('You must select some messages', 'luna'));
 
 	$idlist = array_values($_POST['selected_messages']);
 	$idlist = array_map('intval', $idlist);
 	$idlist = implode(',', array_values($idlist));
-	$number = explode(',', $_POST['messages']);
+	$number = explode(',', $_POST['selected_messages']);
 	$number = array_map('intval', $number);
 	$number = count($number);
 
@@ -93,7 +90,7 @@ $start_from = intval($luna_config['o_pms_mess_per_page'])*($page-1);
 $limit = $start_from.','.$luna_config['o_pms_mess_per_page'];
 
 // Start building page
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Private Messages'], $lang['Inbox']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Private Messages', 'luna'), __('Inbox', 'luna'));
 
 define('FORUM_ACTIVE_PAGE', 'pm');
 require load_page('header.php');

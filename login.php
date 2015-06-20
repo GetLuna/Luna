@@ -36,7 +36,7 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 	}
 
 	if (!$authorized)
-		message($lang['Wrong user/pass'].' <a data-toggle="modal" data-target="#reqpass" data-dismiss="modal">'.$lang['Forgotten pass'].'</a>.');
+		message(__('Wrong username and/or password.', 'luna').' <a data-toggle="modal" data-target="#reqpass" data-dismiss="modal">'.__('Forgotten password', 'luna').'</a>.');
 
 	// Update the status if this is the first time the user logged in
 	if ($cur_user['group_id'] == FORUM_UNVERIFIED) {
@@ -99,7 +99,7 @@ elseif ($action == 'forget' || $action == 'forget_2') {
 		// Validate the email address
 		$email = strtolower(luna_trim($_POST['req_email']));
 		if (!is_valid_email($email)) {
-			message($lang['Invalid email']);
+			message(__('The email address you entered is invalid.', 'luna'));
 			exit;
 		}
 
@@ -109,7 +109,20 @@ elseif ($action == 'forget' || $action == 'forget_2') {
 
 			if ($db->num_rows($result)) {
 				// Load the "activate password" template
-				$mail_tpl = trim($lang['activate_password.tpl']);
+				$mail_tpl = trim(__('Subject: New password requested
+
+Hello <username>,
+
+You have requested to have a new password assigned to your account in the discussion forum at <base_url>. If you did not request this or if you do not want to change your password you should just ignore this message. Only if you visit the activation page below will your password be changed.
+
+Your new password is: <new_password>
+
+To change your password, please visit the following page:
+<activation_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 
 				// The first row contains the subject
 				$first_crlf = strpos($mail_tpl, "\n");
@@ -123,7 +136,7 @@ elseif ($action == 'forget' || $action == 'forget_2') {
 				// Loop through users we found
 				while ($cur_hit = $db->fetch_assoc($result)) {
 					if ($cur_hit['last_email_sent'] != '' && (time() - $cur_hit['last_email_sent']) < 3600 && (time() - $cur_hit['last_email_sent']) >= 0)
-						message(sprintf($lang['Password request flood'], intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
+						message(sprintf(__('This account has already requested a password reset in the past hour. Please wait %s minutes before requesting a new password again.', 'luna'), intval((3600 - (time() - $cur_hit['last_email_sent'])) / 60)), true);
 
 					// Generate a new password and a new password activation code
 					$new_password = random_pass(12);
@@ -139,10 +152,10 @@ elseif ($action == 'forget' || $action == 'forget_2') {
 					luna_mail($email, $mail_subject, $cur_mail_message);
 				}
 
-				message($lang['Forget mail'].' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
+				message(__('An email has been sent to the specified address with instructions on how to change your password. If it does not arrive you can contact the forum administrator at', 'luna').' <a href="mailto:'.luna_htmlspecialchars($luna_config['o_admin_email']).'">'.luna_htmlspecialchars($luna_config['o_admin_email']).'</a>.', true);
 			}
 			else
-				message($lang['No email match'].' '.htmlspecialchars($email).'.');
+				message(__('There is no user registered with the email address', 'luna').' '.htmlspecialchars($email).'.');
 		}
 	}
 }

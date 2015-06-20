@@ -1,0 +1,31 @@
+/* Accent 7 - Yellow */
+.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+	background-color: #ffcb1a;
+}
+
+.jumboheader {
+	background-color: #ffb61a;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #ffa11a;
+}
+
+.panel-default .panel-heading {
+	border-color: #ffcb1a;
+}
+
+.btn-primary {
+	border-color: #ffb61a;
+}
+
+.panel-primary > .panel-heading, .btn-primary:hover {
+	border-color: #ffa11a;
+}
+
+@media all and (max-width:767px) {
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+		background-color: #ffcb1a;
+		border-color: #ffcb1a;
+	}
+}

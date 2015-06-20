@@ -11,21 +11,21 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
-	message($lang['No view'], false, '403 Forbidden');
+	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
 
 $tid = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
 $fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
 if ($tid < 1 && $fid < 1 || $tid > 0 && $fid > 0)
-	message($lang['Bad request'], false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 // Fetch some info about the topic and/or the forum
 if ($tid)
-	$result = $db->query('SELECT f.id, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics, t.subject, t.closed, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics, t.subject, t.closed, s.user_id AS is_subscribed, t.id AS tid FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT f.id, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
-	message($lang['Bad request'], false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 $cur_posting = $db->fetch_assoc($result);
 $is_subscribed = $tid && $cur_posting['is_subscribed'];
@@ -42,7 +42,7 @@ if ((($tid && (($cur_posting['post_replies'] == '' && $luna_user['g_post_replies
 	($fid && (($cur_posting['post_topics'] == '' && $luna_user['g_post_topics'] == '0') || $cur_posting['post_topics'] == '0')) ||
 	(isset($cur_posting['closed']) && $cur_posting['closed'] == '1')) &&
 	!$is_admmod)
-	message($lang['No permission'], false, '403 Forbidden');
+	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Start with a clean slate
 $errors = array();
@@ -51,7 +51,7 @@ $errors = array();
 if (isset($_POST['form_sent'])) {
 	// Flood protection
 	if (!isset($_POST['preview']) && $luna_user['last_post'] != '' && (time() - $luna_user['last_post']) < $luna_user['g_post_flood'])
-		$errors[] = sprintf($lang['Flood start'], $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
+		$errors[] = sprintf(__('At least %s seconds have to pass between posts. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
 
 	// Make sure they got here from the site
 	confirm_referrer(array('post.php', 'viewtopic.php'));
@@ -64,13 +64,13 @@ if (isset($_POST['form_sent'])) {
 			$censored_subject = luna_trim(censor_words($subject));
 
 		if ($subject == '')
-			$errors[] = $lang['No subject'];
+			$errors[] = __('Topics must contain a subject.', 'luna');
 		elseif ($luna_config['o_censoring'] == '1' && $censored_subject == '')
-			$errors[] = $lang['No subject after censoring'];
+			$errors[] = __('Topics must contain a subject. After applying censoring filters, your subject was empty.', 'luna');
 		elseif (luna_strlen($subject) > 70)
-			$errors[] = $lang['Too long subject'];
+			$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
 		elseif ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
-			$errors[] = $lang['All caps subject'];
+			$errors[] = __('Subjects cannot contain only capital letters.', 'luna');
 	}
 
 	// If the user is logged in we get the username and email from $luna_user
@@ -91,13 +91,13 @@ if (isset($_POST['form_sent'])) {
 		if ($luna_config['p_force_guest_email'] == '1' || $email != '') {
 			require FORUM_ROOT.'include/email.php';
 			if (!is_valid_email($email))
-				$errors[] = $lang['Invalid email'];
+				$errors[] = __('The email address you entered is invalid.', 'luna');
 
 			// Check if it's a banned email address
 			// we should only check guests because members' addresses are already verified
 			if ($luna_user['is_guest'] && is_banned_email($email)) {
 				if ($luna_config['p_allow_banned_email'] == '0')
-					$errors[] = $lang['Banned email'];
+					$errors[] = __('The email address you entered is banned in this forum. Please choose another email address.', 'luna');
 
 				$banned_email = true; // Used later when we send an alert email
 			}
@@ -109,9 +109,9 @@ if (isset($_POST['form_sent'])) {
 
 	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
 	if (strlen($message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf($lang['Too long message'], forum_number_format(FORUM_MAX_POSTSIZE));
+		$errors[] = sprintf(__('Posts cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
-		$errors[] = $lang['All caps message'];
+		$errors[] = __('Posts cannot contain only capital letters.', 'luna');
 
 	// Validate BBCode syntax
 	require FORUM_ROOT.'include/parser.php';
@@ -119,13 +119,13 @@ if (isset($_POST['form_sent'])) {
 
 	if (empty($errors)) {
 		if ($message == '')
-			$errors[] = $lang['No message'];
+			$errors[] = __('You must enter a message.', 'luna');
 		elseif ($luna_config['o_censoring'] == '1') {
 			// Censor message to see if that causes problems
 			$censored_message = luna_trim(censor_words($message));
 
 			if ($censored_message == '')
-				$errors[] = $lang['No message after censoring'];
+				$errors[] = __('You must enter a message. After applying censoring filters, your message was empty.', 'luna');
 		}
 	}
 
@@ -175,7 +175,7 @@ if (isset($_POST['form_sent'])) {
 
 			update_search_index('post', $new_pid, $message);
 
-			update_forum($cur_posting['id']);
+			update_forum($cur_posting['fid']);
 
 			// Should we send out notifications?
 			if ($luna_config['o_topic_subscriptions'] == '1') {
@@ -184,7 +184,7 @@ if (isset($_POST['form_sent'])) {
 				$previous_post_time = $db->result($result);
 
 				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result)) {
 					require_once FORUM_ROOT.'include/email.php';
 
@@ -203,10 +203,37 @@ if (isset($_POST['form_sent'])) {
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
 								// Load the "new reply" template
-								$mail_tpl = trim($lang['new_reply.tpl']);
+								$mail_tpl = trim(__('Subject: Reply to topic: "<topic_subject>"
+
+<replier> has replied to the topic "<topic_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
+
+The post is located at <post_url>
+
+You can unsubscribe by going to <unsubscribe_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 
 								// Load the "new reply full" template (with post included)
-								$mail_tpl_full = trim($lang['new_reply_full.tpl']);
+								$mail_tpl_full = trim(__('Subject: Reply to topic: "<topic_subject>"
+
+<replier> has replied to the topic "<topic_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
+
+The post is located at <post_url>
+
+The message reads as follows:
+-----------------------------------------------------------------------
+
+<message>
+
+-----------------------------------------------------------------------
+
+You can unsubscribe by going to <unsubscribe_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 
 								// The first row contains the subject (it also starts with "Subject:")
 								$first_crlf = strpos($mail_tpl, "\n");
@@ -288,7 +315,7 @@ if (isset($_POST['form_sent'])) {
 			// Should we send out notifications?
 			if ($luna_config['o_forum_subscriptions'] == '1') {
 				// Get any subscribed users that should be notified (banned users are excluded)
-				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['id'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['id'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['fid'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result)) {
 					require_once FORUM_ROOT.'include/email.php';
 
@@ -304,10 +331,37 @@ if (isset($_POST['form_sent'])) {
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
 								// Load the "new topic" template
-								$mail_tpl = trim($lang['new_topic.tpl']);
+								$mail_tpl = trim(__('Subject: New topic in forum: "<forum_name>"
+
+<poster> has posted a new topic "<topic_subject>" in the forum "<forum_name>", to which you are subscribed.
+
+The topic is located at <topic_url>
+
+You can unsubscribe by going to <unsubscribe_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 
 								// Load the "new topic full" template (with post included)
-								$mail_tpl_full = trim($lang['new_topic_full.tpl']);
+								$mail_tpl_full = trim(__('Subject: New topic in forum: "<forum_name>"
+
+<poster> has posted a new topic "<topic_subject>" in the forum "<forum_name>", to which you are subscribed.
+
+The topic is located at <topic_url>
+
+The message reads as follows:
+-----------------------------------------------------------------------
+
+<message>
+
+-----------------------------------------------------------------------
+
+You can unsubscribe by going to <unsubscribe_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 
 								// The first row contains the subject (it also starts with "Subject:")
 								$first_crlf = strpos($mail_tpl, "\n");
@@ -323,7 +377,7 @@ if (isset($_POST['form_sent'])) {
 								$mail_message = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_message);
 								$mail_message = str_replace('<poster>', $username, $mail_message);
 								$mail_message = str_replace('<topic_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message);
-								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['id'], $mail_message);
+								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['fid'], $mail_message);
 								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 								$mail_subject_full = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_subject_full);
@@ -332,7 +386,7 @@ if (isset($_POST['form_sent'])) {
 								$mail_message_full = str_replace('<poster>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
 								$mail_message_full = str_replace('<topic_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message_full);
-								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['id'], $mail_message_full);
+								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['fid'], $mail_message_full);
 								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
 								$notification_emails[$cur_subscriber['language']][0] = $mail_subject;
@@ -360,7 +414,15 @@ if (isset($_POST['form_sent'])) {
 		// If we previously found out that the email was banned
 		if ($luna_user['is_guest'] && $banned_email && $luna_config['o_mailing_list'] != '') {
 			// Load the "banned email post" template
-			$mail_tpl = trim($lang['banned_email_post.tpl']);
+			$mail_tpl = trim(__('Subject: Alert - Banned email detected
+
+User "<username>" posted with banned email address: <email>
+
+Post URL: <post_url>
+
+--
+<board_mailer> Mailer
+(Do not reply to this message)', 'luna'));
 
 			// The first row contains the subject
 			$first_crlf = strpos($mail_tpl, "\n");
@@ -393,18 +455,18 @@ if (isset($_POST['form_sent'])) {
 
 // If a topic ID was specified in the url (it's a reply)
 if ($tid) {
-	$action = $lang['Post a reply'];
+	$action = __('Post a reply', 'luna');
 	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
 
 	// If a quote ID was specified in the url
 	if (isset($_GET['qid'])) {
 		$qid = intval($_GET['qid']);
 		if ($qid < 1)
-			message($lang['Bad request'], false, '404 Not Found');
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		$result = $db->query('SELECT poster, message FROM '.$db->prefix.'posts WHERE id='.$qid.' AND topic_id='.$tid) or error('Unable to fetch quote info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
-			message($lang['Bad request'], false, '404 Not Found');
+			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		list($q_poster, $q_message) = $db->fetch_row($result);
 
@@ -460,20 +522,20 @@ if ($tid) {
 }
 // If a forum ID was specified in the url (new topic)
 elseif ($fid) {
-	$action = $lang['Post new topic'];
+	$action = __('Post topic', 'luna');
 	$form = '<form id="post" method="post" action="post.php?action=post&amp;fid='.$fid.'" onsubmit="return process_form(this)">';
 } else
-	message($lang['Bad request'], false, '404 Not Found');
+	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $action);
-$required_fields = array('req_email' => $lang['Email'], 'req_subject' => $lang['Subject'], 'req_message' => $lang['Message']);
+$required_fields = array('req_email' => __('Email', 'luna'), 'req_subject' => __('Subject', 'luna'), 'req_message' => __('Message', 'luna'));
 $focus_element = array('post');
 
 if (!$luna_user['is_guest'])
 	$focus_element[] = ($fid) ? 'req_subject' : 'req_message';
 else {
-	$required_fields['req_username'] = $lang['Guest name'];
+	$required_fields['req_username'] = __('Name', 'luna');
 	$focus_element[] = 'req_username';
 }
 

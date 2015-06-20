@@ -22,7 +22,7 @@ if ($action == 'remove_install_file') {
 	if ($deleted)
 		redirect('backstage/index.php');
 	else
-		message_backstage($lang['Delete install.php failed']);
+		message_backstage(__('Could not remove install.php. Please do so by hand.', 'luna'));
 }
 
 $install_file_exists = is_file(FORUM_ROOT.'install.php');
@@ -79,32 +79,38 @@ if ($stats['total_topics'] == 0)
 	$stats['total_topics'] == '0';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Index']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Index', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'index');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
+	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
 
 if(is_writable(FORUM_ROOT.'config.php')): ?>
-<div class="alert alert-warning"><?php echo $lang['Config warning'] ?></div>
+<div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
 <?php endif;
 
 if ($install_file_exists) : ?>
 <div class="alert alert-warning">
-	<p><?php echo $lang['Install file exists'] ?> <span class="pull-right"><a href="index.php?action=remove_install_file"><?php echo $lang['Delete install file'] ?></a></span></p>
+	<p><?php _e('The file install.php still exists, but should be removed.', 'luna') ?> <span class="pull-right"><a href="index.php?action=remove_install_file"><?php _e('Delete it', 'luna') ?></a></span></p>
 </div>
 <?php endif;
+
+if (($luna_config['o_update_ring'] == '0') && $supported == 'none') { ?>
+<div class="alert alert-danger">
+	<p><?php _e('End of life warning', 'luna') ?></p>
+</div>
+<?php }
 
 if ($luna_config['o_first_run_backstage'] == 0) { ?>
 <div class="panel panel-primary hidden-xs">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Welcome to Luna'] ?>
+		<h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
 			<span class="pull-right">
 				<form class="form-horizontal" method="post" action="index.php">
 					<input type="hidden" name="first_run_disable" value="1" />
-					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Got it'] ?></button>
+					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
 				</form>
 			</span>
 		</h3>
@@ -112,26 +118,18 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-sm-4">
-				<p><?php echo $lang['Welcome to Luna info 1'] ?></p>
-				<p><?php echo $lang['Welcome to Luna info 2'] ?></p>
+				<p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
+			</div>
+			<div class="col-sm-4">
 				<div class="list-group">
-					<a href="about.php" class="list-group-item"><?php echo $lang['What\'s new'] ?></a>
+					<a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
+					<a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="list-group">
-					<a href="board.php" class="list-group-item"><?php echo $lang['Create new sections'] ?></a>
-					<a href="censoring.php" class="list-group-item"><?php echo $lang['Censor words'] ?></a>
-					<a href="groups.php" class="list-group-item"><?php echo $lang['Add more groups'] ?></a>
-					<a href="ranks.php" class="list-group-item"><?php echo $lang['Add additional ranks'] ?></a>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="list-group">
-					<a href="menu.php" class="list-group-item"><?php echo $lang['Customize the menu'] ?></a>
-					<a href="theme.php" class="list-group-item"><?php echo $lang['Change the appearance'] ?></a>
-					<a href="features.php" class="list-group-item"><?php echo $lang['Alter functionality'] ?></a>
-					<a href="settings.php" class="list-group-item"><?php echo $lang['Change settings'] ?></a>
+					<a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
+					<a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
 				</div>
 			</div>
 		</div>
@@ -144,14 +142,14 @@ if ($luna_config['o_first_run_backstage'] == 0) { ?>
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['New reports head'] ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['View all'] ?></a></span></h3>
+						<h3 class="panel-title"><?php _e('New reports', 'luna') ?><span class="pull-right"><a class="btn btn-primary" href="reports.php"><span class="fa fa-fw fa-eye"></span> <?php _e('View all', 'luna') ?></a></span></h3>
 					</div>
 					<table class="table">
 						<thead>
 							<tr>
-								<th class="col-lg-3"><?php echo $lang['Reported by'] ?></th>
-								<th class="col-lg-3"><?php echo $lang['Date and time'] ?></th>
-								<th class="col-lg-6"><?php echo $lang['Message'] ?></th>
+								<th class="col-lg-3"><?php _e('Reported by', 'luna') ?></th>
+								<th class="col-lg-3"><?php _e('Date and time', 'luna') ?></th>
+								<th class="col-lg-6"><?php _e('Message', 'luna') ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -161,11 +159,11 @@ $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.crea
 
 if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {
-		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
-		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
-		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : '<span>»&#160;'.$lang['Deleted'].'</span>';
+		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : __('Deleted user', 'luna');
+		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
+		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : '<span>»&#160;'.__('Deleted', 'luna').'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
-		$post_id = ($cur_report['pid'] != '') ? '<span><a href="viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf($lang['Post ID'], $cur_report['pid']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
+		$post_id = ($cur_report['pid'] != '') ? '<span><a href="viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Post #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
@@ -181,7 +179,7 @@ if ($db->num_rows($result)) {
 
 ?>
 								<tr>
-									<td colspan="4"><?php echo $lang['No new reports'] ?></td>
+									<td colspan="4"><?php _e('There are no new reports.', 'luna') ?></td>
 								</tr>
 <?php
 
@@ -195,24 +193,24 @@ if ($db->num_rows($result)) {
 			<div class="col-lg-5">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['Backup head'] ?></h3>
+						<h3 class="panel-title"><?php _e('Back-up', 'luna') ?></h3>
 					</div>
 					<div class="panel-body">
-						<a class="btn btn-block btn-primary" href="database.php"><?php echo $lang['Backup button'] ?></a>
+						<a class="btn btn-block btn-primary" href="database.php"><?php _e('Create new backup', 'luna') ?></a>
 					</div>
 				 </div>
 			</div>
 			<div class="col-lg-7">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><?php echo $lang['Statistics head'] ?></h3>
+						<h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
 					</div>
 					<table class="table">
 						<thead>
 							<tr>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo $lang['posts'] ?></h4></td>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo $lang['topics'] ?></h4></td>
-								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo $lang['users'] ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_posts'])) ?></b><br /><?php echo _n('post', 'posts', $stats['total_posts'], 'luna') ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_topics'])) ?></b><br /><?php echo _n('topic', 'topics', $stats['total_topics'], 'luna') ?></h4></td>
+								<td style="text-align:center;"><h4><b><?php printf(forum_number_format($stats['total_users'])) ?></b><br /><?php echo _n('user', 'users', $stats['total_users'], 'luna') ?></h4></td>
 							</tr>
 						</thead>
 					</table>
@@ -226,7 +224,7 @@ if ($db->num_rows($result)) {
 if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 		<div class="alert alert-info">
-			<h4><?php echo sprintf($lang['Available'], $update_cache, '<a href="update.php">'.$lang['update now'].'</a>') ?></h4>
+			<h4><?php echo sprintf(__('Luna v%s is available, %s!', 'luna'), $update_cache, '<a href="update.php">'.__('update now', 'luna').'</a>') ?></h4>
 		</div>
 <?php
 }
@@ -237,10 +235,10 @@ if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 					<input type="hidden" name="form_sent" value="1" />
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title"><?php echo $lang['Admin notes'] ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php echo $lang['Save'] ?></button></span></h3>
+							<h3 class="panel-title"><?php _e('Admin notes', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 						</div>
 						<div class="panel-body">
-							<textarea class="form-control" name="form[admin_note]" placeholder="<?php echo $lang['Add a note...'] ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
+							<textarea class="form-control" name="form[admin_note]" placeholder="<?php _e('Add a note...', 'luna') ?>" accesskey="n" rows="10"><?php echo $luna_config['o_admin_note'] ?></textarea>
 						</div>
 					</div>
 				</form>

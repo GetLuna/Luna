@@ -11,9 +11,9 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
-	message($lang['No view'], false, '403 Forbidden');
+	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
 elseif ($luna_user['g_view_users'] == '0')
-	message($lang['No permission'], false, '403 Forbidden');
+	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Determine if we are allowed to view post counts
 $show_post_count = ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod']) ? true : false;
@@ -50,7 +50,7 @@ $num_pages = ceil($num_users / 50);
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
 $start_from = 50 * ($p - 1);
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['User list']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('User list', 'luna'));
 if ($luna_user['g_search_users'] == '1')
 	$focus_element = array('userlist', 'username');
 
