@@ -160,7 +160,8 @@ pip-log.txt
 .tox
 
 #Translations
-*.mo
+lang/luna.mo
+*.pot
 
 #Mr Developer
 .mr.developer.cfg
@@ -170,12 +171,13 @@ pip-log.txt
 
 
 #############
-## ModernBB files
+## Luna files
 #############
 
+backstage/.updatelog
 cache/
 config.php
+edge/
 img/avatars/
 install/
-edge/
-themes/Random
+temp/

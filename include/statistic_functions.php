@@ -24,26 +24,39 @@ if (!defined('FORUM_USERS_INFO_LOADED')) {
 $result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
 list($stats['total_topics'], $stats['total_posts']) = array_map('intval', $db->fetch_row($result));
 
-function total_users() {
-	global $lang, $stats;
 
-	printf(forum_number_format($stats['total_users']));
+function get_total_users() {
+	global $stats;
+
+	return sprintf(forum_number_format($stats['total_users']));
+}
+
+function get_total_topics() {
+	global $stats;
+
+	return sprintf(forum_number_format($stats['total_topics']));
+}
+
+function get_total_posts() {
+	global $stats;
+
+	return sprintf(forum_number_format($stats['total_posts']));
+}
+
+function total_users() {
+	echo get_total_users();
 }
 
 function total_topics() {
-	global $lang, $stats;
-
-	printf(forum_number_format($stats['total_topics']));
+	echo get_total_topics();
 }
 
 function total_posts() {
-	global $lang, $stats;
-
-	printf(forum_number_format($stats['total_posts']));
+	echo get_total_posts();
 }
 
 function newest_user() {
-	global $lang, $stats, $luna_user;
+	global $stats, $luna_user;
 
 	if ($luna_user['g_view_users'] == '1')
 		$stats['newest_user'] = '<a href="profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>';
@@ -54,19 +67,17 @@ function newest_user() {
 }
 
 function users_online() {
-	global $lang;
 
 	printf(forum_number_format(num_users_online()));
 }
 
 function guests_online() {
-	global $lang;
 
 	printf(forum_number_format(num_guests_online()));
 }
 
 function online_list() {
-	global $lang, $luna_config, $db, $luna_user;
+	global $luna_config, $db, $luna_user;
 
 	if ($luna_config['o_users_online'] == '1') {
 	
@@ -82,6 +93,6 @@ function online_list() {
 					echo "\n\t\t\t\t".'<li>'.luna_htmlspecialchars($luna_user_online['ident']).'</li>';
 			}
 		} else
-			echo '<li><a>'.$lang['No users online'].'</a></li>';
+			echo '<li><a>'.__('No users online', 'luna').'</a></li>';
 	}
 }

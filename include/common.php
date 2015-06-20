@@ -30,12 +30,15 @@ if (isset($_SERVER['HTTP_X_MOZ']) && $_SERVER['HTTP_X_MOZ'] == 'prefetch') {
 if (file_exists(FORUM_ROOT.'config.php'))
 	require FORUM_ROOT.'config.php';
 
-// This fixes incorrect defined PUN in PunBB/FluxBB 1.2, 1.4 and 1.5 and Luna 1.6
+// This fixes incorrect defined PUN in PunBB/FluxBB 1.2, 1.4 and 1.5 and ModernBB 1.6
 if (defined('PUN'))
 	define('FORUM', PUN);
 
 // Load the functions script
 require FORUM_ROOT.'include/functions.php';
+
+// Load the security functions
+require FORUM_ROOT.'include/class/luna_nonces.php';
 
 // Load UTF-8 functions
 require FORUM_ROOT.'include/utf8/utf8.php';
@@ -151,11 +154,15 @@ $forum_date_formats = array($luna_config['o_date_format'], 'Y-m-d', 'Y-d-m', 'd-
 $luna_user = array();
 check_cookie($luna_user);
 
+// Load l10n
+require_once FORUM_ROOT.'include/pomo/MO.php';
+require_once FORUM_ROOT.'include/l10n.php';
+
 // Attempt to load the language file
-if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php'))
-	include FORUM_ROOT.'lang/'.$luna_user['language'].'/language.php';
-elseif (file_exists(FORUM_ROOT.'lang/English/language.php'))
-	include FORUM_ROOT.'lang/English/language.php';
+if (file_exists(FORUM_ROOT.'lang/'.$luna_user['language'].'/luna.mo'))
+	load_textdomain('luna', FORUM_ROOT.'lang/'.$luna_user['language'].'/luna.mo');
+elseif (file_exists(FORUM_ROOT.'lang/English/luna.mo'))
+	load_textdomain('luna', FORUM_ROOT.'lang/English/luna.mo');
 else
 	error('There is no valid language pack \''.luna_htmlspecialchars($luna_user['language']).'\' installed. Please reinstall a language of that name');
 
@@ -183,7 +190,7 @@ update_users_online();
 
 // Check to see if we logged in without a cookie being set
 if ($luna_user['is_guest'] && isset($_GET['login']))
-	message($lang['No cookie']);
+	message(__('You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website.', 'luna'));
 
 // The maximum size of a post, in bytes, since the field is now MEDIUMTEXT this allows ~16MB but lets cap at 1MB...
 if (!defined('FORUM_MAX_POSTSIZE'))
@@ -197,6 +204,12 @@ if (!defined('FORUM_SEARCH_MAX_WORD'))
 if (!defined('FORUM_MAX_COOKIE_SIZE'))
 	define('FORUM_MAX_COOKIE_SIZE', 4048);
 
+// Are we admins?
+require_once FORUM_ROOT.'include/backstage_functions.php';
+$is_admin = check_is_admin();
+
 require FORUM_ROOT.'include/general_functions.php';
 require FORUM_ROOT.'include/draw_functions.php';
 require FORUM_ROOT.'include/statistic_functions.php';
+
+require FORUM_ROOT.'include/notifications.php';

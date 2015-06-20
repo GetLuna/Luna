@@ -17,13 +17,13 @@ if (defined('FORUM_DEBUG')) {
 
 	// Calculate script generation time
 	$time_diff = sprintf('%.3f', get_microtime() - $luna_start);
-	echo sprintf($lang['Querytime'], $time_diff, $db->get_num_queries());
+	echo sprintf(__('Generated in %1$s seconds, %2$s queries executed', 'luna'), $time_diff, $db->get_num_queries());
 
 	if (function_exists('memory_get_usage')) {
-		echo ' - '.sprintf($lang['Memory usage'], file_size(memory_get_usage()));
+		echo ' - '.sprintf(__('Memory usage: %1$s', 'luna'), file_size(memory_get_usage()));
 
 		if (function_exists('memory_get_peak_usage'))
-			echo ' '.sprintf($lang['Peak usage'], file_size(memory_get_peak_usage()));
+			echo ' '.sprintf(__('(Peak: %1$s)', 'luna'), file_size(memory_get_peak_usage()));
 	}
 
 	echo ' ]</p>'."\n";

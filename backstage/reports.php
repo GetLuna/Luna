@@ -39,7 +39,7 @@ if (isset($_POST['zap_id'])) {
 }
 
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), $lang['Admin'], $lang['Reports']);
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Reports', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('content', 'reports');
@@ -47,17 +47,17 @@ require 'header.php';
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['New reports head'] ?></h3>
+		<h3 class="panel-title"><?php _e('New reports', 'luna') ?></h3>
 	</div>
 	<form method="post" action="reports.php?action=zap">
 		<fieldset>
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="col-xs-2"><?php echo $lang['Reported by'] ?></th>
-						<th class="col-xs-2"><?php echo $lang['Date and time'] ?></th>
-						<th class="col-xs-6"><?php echo $lang['Message'] ?></th>
-						<th class="col-xs-2"><?php echo $lang['Actions'] ?></th>
+						<th class="col-xs-2"><?php _e('Reported by', 'luna') ?></th>
+						<th class="col-xs-2"><?php _e('Date and time', 'luna') ?></th>
+						<th class="col-xs-6"><?php _e('Message', 'luna') ?></th>
+						<th class="col-xs-2"><?php _e('Actions', 'luna') ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -67,11 +67,11 @@ $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.crea
 
 if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {
-		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
-		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
-		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.$lang['Deleted'].'</span>';
+		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : __('Deleted user', 'luna');
+		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
+		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.__('Deleted', 'luna').'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
-		$post_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf($lang['Post ID'], $cur_report['pid']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
+		$post_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Post #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
@@ -82,7 +82,7 @@ if ($db->num_rows($result)) {
 							<div class="breadcrumb"><?php echo implode(' ', $report_location) ?></div>
 							<?php echo $post ?>
 						</td>
-						<td><button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fa fa-fw fa-eye"></span> <?php echo $lang['Zap'] ?></button></td>
+						<td><button class="btn btn-primary" type="submit" name="zap_id[<?php echo $cur_report['id'] ?>]"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as read', 'luna') ?></button></td>
 					</tr>
 <?php
 
@@ -91,7 +91,7 @@ if ($db->num_rows($result)) {
 
 ?>
 					<tr>
-						<td colspan="4"><?php echo $lang['No new reports'] ?></td>
+						<td colspan="4"><?php _e('There are no new reports.', 'luna') ?></td>
 					</tr>
 <?php
 
@@ -105,15 +105,15 @@ if ($db->num_rows($result)) {
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php echo $lang['Last 10 head'] ?></h3>
+		<h3 class="panel-title"><?php _e('10 last read reports', 'luna') ?></h3>
 	</div>
 	<table class="table">
 		<thead>
 			<tr>
-				<th class="col-xs-2"><?php echo $lang['Reported by'] ?></th>
-				<th class="col-xs-2"><?php echo $lang['Readed by'] ?></th>
-				<th class="col-xs-2"><?php echo $lang['Date and time'] ?></th>
-				<th class="col-xs-6"><?php echo $lang['Message'] ?></th>
+				<th class="col-xs-2"><?php _e('Reported by', 'luna') ?></th>
+				<th class="col-xs-2"><?php _e('Marked as read by', 'luna') ?></th>
+				<th class="col-xs-2"><?php _e('Date and time', 'luna') ?></th>
+				<th class="col-xs-6"><?php _e('Message', 'luna') ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -123,13 +123,13 @@ $result = $db->query('SELECT r.id, r.topic_id, r.forum_id, r.reported_by, r.mess
 
 if ($db->num_rows($result)) {
 	while ($cur_report = $db->fetch_assoc($result)) {
-		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : $lang['Deleted user'];
-		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.$lang['Deleted'].'</span>';
-		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.$lang['Deleted'].'</span>';
+		$reporter = ($cur_report['reporter'] != '') ? '<a href="../profile.php?id='.$cur_report['reported_by'].'">'.luna_htmlspecialchars($cur_report['reporter']).'</a>' : __('Deleted user', 'luna');
+		$forum = ($cur_report['forum_name'] != '') ? '<span><a href="../viewforum.php?id='.$cur_report['forum_id'].'">'.luna_htmlspecialchars($cur_report['forum_name']).'</a></span>' : '<span>'.__('Deleted', 'luna').'</span>';
+		$topic = ($cur_report['subject'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?id='.$cur_report['topic_id'].'">'.luna_htmlspecialchars($cur_report['subject']).'</a></span>' : ' <span class="divider">/</span><span>'.__('Deleted', 'luna').'</span>';
 		$post = str_replace("\n", '<br />', luna_htmlspecialchars($cur_report['message']));
-		$post_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf($lang['Post ID'], $cur_report['pid']).'</a></span>' : '<span> <span class="divider">/</span> '.$lang['Deleted'].'</span>';
-		$zapped_by = ($cur_report['zapped_by'] != '') ? '<a href="../profile.php?id='.$cur_report['zapped_by_id'].'">'.luna_htmlspecialchars($cur_report['zapped_by']).'</a>' : $lang['NA'];
-		$zapped_by = ($cur_report['zapped_by'] != '') ? '<strong>'.luna_htmlspecialchars($cur_report['zapped_by']).'</strong>' : $lang['NA'];
+		$post_id = ($cur_report['pid'] != '') ? '<span> <span class="divider">/</span> <a href="../viewtopic.php?pid='.$cur_report['pid'].'#p'.$cur_report['pid'].'">'.sprintf(__('Post #%s', 'luna'), $cur_report['pid']).'</a></span>' : '<span> <span class="divider">/</span> '.__('Deleted', 'luna').'</span>';
+		$zapped_by = ($cur_report['zapped_by'] != '') ? '<a href="../profile.php?id='.$cur_report['zapped_by_id'].'">'.luna_htmlspecialchars($cur_report['zapped_by']).'</a>' : __('N/A', 'luna');
+		$zapped_by = ($cur_report['zapped_by'] != '') ? '<strong>'.luna_htmlspecialchars($cur_report['zapped_by']).'</strong>' : __('N/A', 'luna');
 		$report_location = array($forum, $topic, $post_id);
 
 ?>
@@ -149,7 +149,7 @@ if ($db->num_rows($result)) {
 
 ?>
 			<tr>
-				<td colspan="4"><?php echo $lang['No zapped reports'] ?></td>
+				<td colspan="4"><?php _e('There are no read reports.', 'luna') ?></td>
 			</tr>
 <?php
 
