@@ -110,7 +110,7 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Bug fixes</h4>
-						<p>13 bugs have been fixed.</p>
+						<p>14 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>1 security issue has been fixed.</p>
 					</div>
