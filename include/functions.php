@@ -1424,7 +1424,7 @@ function error($message, $file = null, $line = null, $db_error = false) {
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<?php $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), 'Error') ?>
-		<title><?php echo generate_page_title($page_title) ?></title>
+		<title>Luna error</title>
 		<style type="text/css">
 			body { margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px; }
 			h2 { margin: 0; color: #00a5f5; font-size: 26px; padding: 0 4px; font-weight: 100; }
