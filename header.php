@@ -21,7 +21,8 @@ header('Pragma: no-cache'); // For HTTP/1.0 compatibility
 header('Content-type: text/html; charset=utf-8');
 
 // Prevent site from being embedded in a frame 
-header('X-Frame-Options: deny'); 
+$frame_options = defined('FORUM_FRAME_OPTIONS') ? FORUM_FRAME_OPTIONS : 'deny';
+header('X-Frame-Options: '.$frame_options);
 
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
