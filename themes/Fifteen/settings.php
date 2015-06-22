@@ -145,24 +145,24 @@ if (!defined('FORUM'))
 					<hr />
 <?php } if ($luna_config['o_allow_night_mode'] == '1') { ?>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Night mode</label>
+						<label class="col-sm-3 control-label"><?php _e('Night mode', 'luna') ?></label>
 						<div class="col-sm-9">
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="0"<?php if ($user['adapt_time'] == '0') echo ' checked' ?> />
-									Never use night mode
+									<?php _e('Never use night mode.', 'luna') ?>
 								</label>
 							</div>
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="1"<?php if ($user['adapt_time'] == '1') echo ' checked' ?> />
-									Always use night mode
+									<?php _e('Always use night mode.', 'luna') ?>
 								</label>
 							</div>
 							<div class="radio">
 								<label>
 									<input type="radio" name="form[adapt_time]" value="2"<?php if ($user['adapt_time'] == '2') echo ' checked' ?> />
-									Enable night mode automatically
+									<?php _e('Enable night mode automatically.', 'luna') ?>
 								</label>
 							</div>
 						</div>
