@@ -373,7 +373,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			@set_time_limit(0);
 
 			// Find all posts made by this user
-			$result = $db->query('SELECT p.id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT p.id, p.poster_id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_post = $db->fetch_assoc($result)) {
 					// Determine whether this post is the "topic post" or not
@@ -382,7 +382,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 					if ($db->result($result2) == $cur_post['id'])
 						delete_topic($cur_post['topic_id']);
 					else
-						delete_post($cur_post['id'], $cur_post['topic_id']);
+						delete_post($cur_post['id'], $cur_post['topic_id'], $cur_post['poster_id']);
 
 					update_forum($cur_post['forum_id']);
 				}

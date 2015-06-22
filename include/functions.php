@@ -753,6 +753,8 @@ function delete_topic($topic_id, $type) {
 	// Make sure we have a list of post IDs
 	if ($post_ids != '') {
 		if ($type == "hard") {
+			decrease_post_counts($post_ids);
+
 			strip_search_index($post_ids);
 			// Delete posts in topic
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
@@ -774,7 +776,7 @@ function delete_topic($topic_id, $type) {
 //
 // Delete a single post
 //
-function delete_post($post_id, $topic_id) {
+function delete_post($post_id, $topic_id, $poster_id) {
 	global $db;
 
 	$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id.' ORDER BY id DESC LIMIT 2') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -783,6 +785,10 @@ function delete_post($post_id, $topic_id) {
 
 	// Delete the post
 	$db->query('DELETE FROM '.$db->prefix.'posts WHERE id='.$post_id) or error('Unable to delete post', __FILE__, __LINE__, $db->error());
+
+	// Decrement user post count if the user is a registered user
+	if ($poster_id > 1)
+		$db->query('UPDATE '.$db->prefix.'users SET num_posts=num_posts-1 WHERE id='.$poster_id.' AND num_posts>0') or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 
 	strip_search_index($post_id);
 
@@ -1418,7 +1424,7 @@ function error($message, $file = null, $line = null, $db_error = false) {
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<?php $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), 'Error') ?>
-		<title><?php echo generate_page_title($page_title) ?></title>
+		<title>Luna error</title>
 		<style type="text/css">
 			body { margin: 10% 20% auto 20%; font: 14px "Segoe UI Light", "Segoe UI", Verdana, Arial, Helvetica, sans-serif; letter-spacing: 1px; }
 			h2 { margin: 0; color: #00a5f5; font-size: 26px; padding: 0 4px; font-weight: 100; }
@@ -2079,7 +2085,7 @@ function load_css() {
 		
 		// Also load a color scheme
 		if (file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css')) {
-			if ($luna_user['is_guest'])
+			if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
 				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 			else
 				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
@@ -2091,7 +2097,7 @@ function load_css() {
 
 	// And load its color scheme
 	if (file_exists('themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css')) {
-		if ($luna_user['is_guest'])
+		if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
 			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 		else
 			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
@@ -2130,11 +2136,11 @@ function load_meta() {
 // Check wheter or not to enable night mode
 //
 function check_night_mode() {
-	global $luna_user, $body_classes;
+	global $luna_user, $body_classes, $luna_config;
 
 	$hour = date('G', time());
 	
-	if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
+	if (($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19)))) && $luna_config['o_allow_night_mode'] == '1')
 		$body_classes .= ' night';
 	else
 		$body_classes .= ' normal';
@@ -2229,4 +2235,24 @@ function get_forum_id($post_id) {
 		return $row[0];
 	else
 		return false;
+}
+
+// Decrease user post counts (used before deleting posts)
+function decrease_post_counts($post_ids) {
+	global $db;
+
+	// Count the post counts for each user to be subtracted
+	$user_posts = array();
+	$result = $db->query('SELECT poster_id FROM '.$db->prefix.'posts WHERE id IN('.$post_ids.') AND poster_id>1') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+	while ($row = $db->fetch_assoc($result))
+	{
+		if (!isset($user_posts[$row['poster_id']]))
+			$user_posts[$row['poster_id']] = 1;
+		else
+			++$user_posts[$row['poster_id']];
+	}
+
+	// Decrease the post counts
+	foreach($user_posts as $user_id => $subtract)
+		$db->query('UPDATE '.$db->prefix.'users SET num_posts = CASE WHEN num_posts>='.$subtract.' THEN num_posts-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 }
