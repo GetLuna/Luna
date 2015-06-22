@@ -4,7 +4,7 @@
  * Version:				1.0
  * Based on:			Trent v1.3 (http://studio384.be/trent.php)
  * Since:				0.0.40.2900
- * Bootstrap:			3.3.4
+ * Bootstrap:			3.3.5
  */
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400,300);
@@ -561,21 +561,38 @@ h3.panel-title {
 }
 
 /* Moderate */
-.topic-moderate-entry {
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
-}
-
-.topic-moderate-entry:first-child {
-	border-top: 1px solid #ddd;
-}
-
 .jumbotron-moderate-forum {
 	padding: 5px 15px 15px 15px !important;
+	margin-bottom: 0;
 }
 
-.btn-margin-top {
-	margin-top: 10px;
+.list-group-topic {
+	margin-bottom: 0;
+}
+
+.list-group-topic .list-group-item {
+	border: none;
+	border-left: 5px solid #f8f8f8;
+	background-color: #fbfbfb;
+	margin-top: 2px;
+}
+
+.list-group-topic .list-group-item.new-item {
+	border-left: 5px solid #e3e3e3;
+	background-color: #f3f3f3;
+}
+
+.list-group-topic .list-group-item:hover {
+	border-left-color: #e8e8e8;
+	background-color: #f8f8f8;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.moderate-pagination {
+	margin-top: 20px !important;
 }
 
 /* Color choise */

@@ -7,7 +7,7 @@
 	background-color: #dddddd;
 }
 
-.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	background-color: #cccccc;
 }
 
@@ -19,7 +19,7 @@
 	border-color: #dddddd;
 }
 
-.panel-primary > .panel-heading, .btn-primary:hover {
+.panel-primary > .panel-heading, .btn-primary:hover, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	border-color: #cccccc;
 }
 

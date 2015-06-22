@@ -17,6 +17,8 @@ if (isset($_POST['form_sent'])) {
 	
 	$form = array(
 		'default_accent'		=> intval($_POST['form']['default_accent']),
+		'allow_accent_color'	=> isset($_POST['form']['allow_accent_color']) ? '1' : '0',
+		'allow_night_mode'		=> isset($_POST['form']['allow_night_mode']) ? '1' : '0',
 		'show_user_info'		=> isset($_POST['form']['show_user_info']) ? '1' : '0',
 		'show_post_count'		=> isset($_POST['form']['show_post_count']) ? '1' : '0',
 		'moderated_by'			=> isset($_POST['form']['moderated_by']) ? '1' : '0',
@@ -83,6 +85,24 @@ if (isset($_GET['saved']))
 		</div>
 		<div class="panel-body">
 			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Theme settings', 'luna') ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[allow_accent_color]" value="1" <?php if ($luna_config['o_allow_accent_color'] == '1') echo ' checked' ?> />
+								<?php _e('Allow users to set their own accent color.', 'luna') ?>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="form[allow_night_mode]" value="1" <?php if ($luna_config['o_allow_night_mode'] == '1') echo ' checked' ?> />
+								<?php _e('Allow users to change the night mode settings.', 'luna') ?>
+							</label>
+						</div>
+					</div>
+				</div>
+				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
 					<div class="col-sm-9">
