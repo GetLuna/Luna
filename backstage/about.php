@@ -202,11 +202,11 @@ require 'header.php';
 						<b>Font Awesome</b> has been updated from version 4.1.0 to 4.3.0.<br />
 						<b>jQuery</b> has been updated from version 2.1.1 to 2.1.4.<br />
 						<b>PrismJS</b> has been added.<br />
-						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4348.</p>
+						<b>Core</b> has been updated from version 0.0.37.2592 to 1.0.4352.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bugfixes</h4>
-						<p>285 bugs have been fixed.</p>
+						<p>286 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>6 security issue has been fixed.</p>
 					</div>
@@ -323,7 +323,7 @@ require 'header.php';
 						<p>
 							<span class="label label-primary">Update 7</span> Bootstrap has been update to version 3.3.5<br />
 							<span class="label label-primary">Update 7</span> The login modal is now centered on small screens<br />
-							<span class="label label-primary">Update 7</span> 1 additional bug fix
+							<span class="label label-primary">Update 7</span> 2 additional bug fixes
 						</p>
 					</div>
 				</div>
