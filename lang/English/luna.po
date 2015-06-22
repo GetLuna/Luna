@@ -45,7 +45,7 @@ msgstr ""
 #: backstage/board.php:493 backstage/ranks.php:86
 #: backstage/groups.php:38 backstage/groups.php:492
 #: backstage/groups.php:520 backstage/groups.php:561
-#: include/functions.php:1043 themes/Luna/settings.php:48
+#: include/functions.php:1043 themes/Fifteen/settings.php:48
 msgid "Admin"
 msgstr ""
 
@@ -86,10 +86,8 @@ msgstr ""
 #: backstage/board.php:312 backstage/board.php:592
 #: backstage/board.php:638 backstage/ranks.php:124
 #: backstage/groups.php:48 backstage/groups.php:597
-#: themes/Luna/settings.php:34 themes/Luna/settings.php:504
-#: themes/Luna/me-modals.php:17 themes/Luna/me-modals.php:43
-#: themes/Random/settings.php:21 themes/Random/settings.php:424
-#: themes/Random/me-modals.php:17 themes/Random/me-modals.php:43
+#: themes/Fifteen/settings.php:34 themes/Fifteen/settings.php:504
+#: themes/Fifteen/me-modals.php:17 themes/Fifteen/me-modals.php:43
 msgid "Save"
 msgstr ""
 
@@ -143,13 +141,10 @@ msgstr ""
 #: backstage/appearance.php:194 backstage/users.php:804
 #: include/backstage_functions.php:34
 #: include/backstage_functions.php:160
-#: themes/Luna/search-advanced.php:12 themes/Luna/search-advanced.php:16
-#: themes/Luna/help.php:142 themes/Luna/users.php:29
-#: themes/Luna/search-results.php:10 themes/Luna/search.php:10
-#: themes/Luna/search.php:23 themes/Random/search-advanced.php:12
-#: themes/Random/search-advanced.php:16 themes/Random/help.php:141
-#: themes/Random/users.php:29 themes/Random/search-results.php:10
-#: themes/Random/search.php:10 themes/Random/search.php:23
+#: themes/Fifteen/search-advanced.php:12 themes/Fifteen/search-advanced.php:16
+#: themes/Fifteen/help.php:142 themes/Fifteen/users.php:29
+#: themes/Fifteen/search-results.php:10 themes/Fifteen/search.php:10
+#: themes/Fifteen/search.php:23
 msgid "Search"
 msgstr ""
 
@@ -163,8 +158,8 @@ msgstr ""
 
 #: backstage/features.php:148 backstage/groups.php:176
 #: include/inbox_functions.php:21 include/me_functions.php:20
-#: include/me_functions.php:34 themes/Luna/inbox-delete-post.php:13
-#: themes/Luna/settings.php:215 themes/Luna/inbox.php:36
+#: include/me_functions.php:34 themes/Fifteen/inbox-delete-post.php:13
+#: themes/Fifteen/settings.php:215 themes/Fifteen/inbox.php:36
 msgid "Inbox"
 msgstr ""
 
@@ -209,8 +204,7 @@ msgid "The introduction to the forum displayed in the middle of the first run pa
 msgstr ""
 
 #: backstage/features.php:208 backstage/permissions.php:67
-#: backstage/permissions.php:115 themes/Luna/help.php:25
-#: themes/Random/help.php:25
+#: backstage/permissions.php:115 themes/Fifteen/help.php:25
 msgid "BBCode"
 msgstr ""
 
@@ -255,7 +249,7 @@ msgid "Width of an embedded video"
 msgstr ""
 
 #: backstage/features.php:260 backstage/features.php:266
-#: themes/Luna/search.php:14 themes/Random/search.php:14
+#: themes/Fifteen/search.php:14
 msgid "Advanced"
 msgstr ""
 
@@ -326,8 +320,8 @@ msgstr ""
 
 #: backstage/menu.php:84 backstage/menu.php:107
 #: backstage/board.php:526 backstage/board.php:545
-#: backstage/board.php:644 themes/Luna/thread.php:58
-#: themes/Luna/post.php:33 themes/Random/post.php:34
+#: backstage/board.php:644 themes/Fifteen/thread.php:58
+#: themes/Fifteen/post.php:33
 msgid "Name"
 msgstr ""
 
@@ -356,11 +350,9 @@ msgstr ""
 #: backstage/users.php:714 backstage/users.php:776
 #: backstage/groups.php:508 backstage/groups.php:644
 #: include/draw_functions.php:685 include/draw_functions.php:706
-#: include/draw_functions.php:869 themes/Luna/inbox-delete-post.php:17
-#: themes/Luna/inbox-delete.php:12 themes/Luna/inbox.php:30
-#: themes/Luna/me-delete.php:13 themes/Random/inbox-delete-post.php:11
-#: themes/Random/inbox-delete.php:12 themes/Random/inbox.php:30
-#: themes/Random/me-delete.php:13
+#: include/draw_functions.php:869 themes/Fifteen/inbox-delete-post.php:17
+#: themes/Fifteen/inbox-delete.php:12 themes/Fifteen/inbox.php:30
+#: themes/Fifteen/me-delete.php:13
 msgid "Delete"
 msgstr ""
 
@@ -624,9 +616,8 @@ msgstr ""
 #: backstage/prune.php:182 backstage/maintenance.php:158
 #: backstage/maintenance.php:171 backstage/maintenance.php:177
 #: include/backstage_functions.php:62 include/backstage_functions.php:92
-#: include/backstage_functions.php:179 themes/Luna/maintenance.php:10
-#: themes/Luna/maintenance.php:16 themes/Random/maintenance.php:10
-#: themes/Random/maintenance.php:16 db_update.php:185
+#: include/backstage_functions.php:179 themes/Fifteen/maintenance.php:10
+#: themes/Fifteen/maintenance.php:16 db_update.php:185
 #: db_update.php:191
 msgid "Maintenance"
 msgstr ""
@@ -654,13 +645,11 @@ msgstr ""
 msgid "All notifications"
 msgstr ""
 
-#: backstage/prune.php:206 themes/Luna/notifications.php:38
-#: themes/Random/notifications.php:34
+#: backstage/prune.php:206 themes/Fifteen/notifications.php:38
 msgid "Seen notifications"
 msgstr ""
 
-#: backstage/prune.php:210 themes/Luna/notifications.php:25
-#: themes/Random/notifications.php:21
+#: backstage/prune.php:210 themes/Fifteen/notifications.php:25
 msgid "New notifications"
 msgstr ""
 
@@ -810,10 +799,8 @@ msgstr ""
 #: backstage/login.php:21 backstage/users.php:121
 #: backstage/users.php:725 backstage/users.php:812
 #: backstage/users.php:892 backstage/tools.php:133
-#: include/draw_functions.php:923 themes/Luna/login.php:13
-#: themes/Luna/settings.php:56 themes/Luna/index.php:46
-#: themes/Random/login.php:12 themes/Random/settings.php:39
-#: themes/Random/users.php:42 themes/Random/index.php:44
+#: include/draw_functions.php:923 themes/Fifteen/login.php:13
+#: themes/Fifteen/settings.php:56 themes/Fifteen/index.php:46
 #: themes/Sunrise/index.php:44
 msgid "Username"
 msgstr ""
@@ -848,11 +835,9 @@ msgstr ""
 #: include/draw_functions.php:631 include/draw_functions.php:661
 #: include/draw_functions.php:784 include/draw_functions.php:786
 #: include/draw_functions.php:812 include/draw_functions.php:944
-#: themes/Luna/thread.php:55 themes/Luna/thread.php:59
-#: themes/Luna/login.php:42 themes/Luna/post.php:34
-#: themes/Luna/settings.php:70 themes/Random/login.php:41
-#: themes/Random/post.php:30 themes/Random/post.php:35
-#: themes/Random/settings.php:53
+#: themes/Fifteen/thread.php:55 themes/Fifteen/thread.php:59
+#: themes/Fifteen/login.php:42 themes/Fifteen/post.php:34
+#: themes/Fifteen/settings.php:70
 msgid "Email"
 msgstr ""
 
@@ -938,8 +923,8 @@ msgstr ""
 
 #: backstage/bans.php:354 backstage/bans.php:441
 #: backstage/reports.php:59 backstage/reports.php:116
-#: backstage/index.php:154 themes/Luna/inbox-new.php:74
-#: themes/Luna/settings.php:43 themes/Random/inbox-new.php:75
+#: backstage/index.php:154 themes/Fifteen/inbox-new.php:74
+#: themes/Fifteen/settings.php:43
 msgid "Message"
 msgstr ""
 
@@ -1007,14 +992,12 @@ msgid "IP"
 msgstr ""
 
 #: backstage/bans.php:464 backstage/users.php:899
-#: themes/Luna/search-advanced.php:39
-#: themes/Random/search-advanced.php:39
+#: themes/Fifteen/search-advanced.php:39
 msgid "Ascending"
 msgstr ""
 
 #: backstage/bans.php:465 backstage/users.php:900
-#: themes/Luna/search-advanced.php:38
-#: themes/Random/search-advanced.php:38
+#: themes/Fifteen/search-advanced.php:38
 msgid "Descending"
 msgstr ""
 
@@ -1047,7 +1030,7 @@ msgid "The email where the boards mails will be addressed from"
 msgstr ""
 
 #: backstage/email.php:93 backstage/email.php:99
-#: themes/Luna/settings.php:252 themes/Random/settings.php:172
+#: themes/Fifteen/settings.php:252
 msgid "Subscriptions"
 msgstr ""
 
@@ -1274,13 +1257,12 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
-#: backstage/moderate.php:368 themes/Luna/objects/comment.php:11
-#: themes/Random/objects/comment.php:24
+#: backstage/moderate.php:368 themes/Fifteen/objects/comment.php:11
 msgid "Last edited by"
 msgstr ""
 
 #: backstage/moderate.php:371 backstage/users.php:731
-#: themes/Luna/inbox.php:46 themes/Random/inbox.php:45
+#: themes/Fifteen/inbox.php:46
 msgid "Select"
 msgstr ""
 
@@ -1297,8 +1279,8 @@ msgstr ""
 msgid "There are no forums into which you can move topics."
 msgstr ""
 
-#: backstage/moderate.php:479 themes/Luna/thread.php:30
-#: themes/Random/thread.php:30 themes/Sunrise/thread.php:30
+#: backstage/moderate.php:479 themes/Fifteen/thread.php:30
+#: themes/Sunrise/thread.php:30
 msgid "Move topic"
 msgstr ""
 
@@ -1346,8 +1328,7 @@ msgstr ""
 #: include/draw_functions.php:368 include/draw_functions.php:522
 #: include/draw_functions.php:524 include/draw_functions.php:539
 #: include/draw_functions.php:1007 include/draw_functions.php:1038
-#: include/draw_functions.php:1040 themes/Luna/inbox.php:71
-#: themes/Random/inbox.php:70
+#: include/draw_functions.php:1040 themes/Fifteen/inbox.php:71
 msgid "by"
 msgstr ""
 
@@ -1357,19 +1338,18 @@ msgstr ""
 
 #: backstage/moderate.php:846 include/draw_functions.php:260
 #: include/draw_functions.php:535 include/draw_functions.php:1011
-#: themes/Luna/help.php:157 themes/Random/help.php:156
+#: themes/Fifteen/help.php:157
 msgid "Sticky"
 msgstr ""
 
 #: backstage/moderate.php:851 include/draw_functions.php:267
-#: include/draw_functions.php:542 themes/Luna/help.php:165
-#: themes/Random/help.php:164
+#: include/draw_functions.php:542 themes/Fifteen/help.php:165
 msgid "Moved"
 msgstr ""
 
 #: backstage/moderate.php:857 include/draw_functions.php:270
 #: include/draw_functions.php:545 include/draw_functions.php:1015
-#: themes/Luna/help.php:161 themes/Random/help.php:160
+#: themes/Fifteen/help.php:161
 msgid "Closed"
 msgstr ""
 
@@ -1519,26 +1499,21 @@ msgid "Use"
 msgstr ""
 
 #: backstage/login.php:16 backstage/login.php:30
-#: themes/Luna/login.php:6 themes/Luna/login.php:20
-#: themes/Luna/index.php:42 themes/Luna/index.php:51
-#: themes/Random/login.php:5 themes/Random/login.php:19
-#: themes/Random/index.php:41 themes/Random/index.php:49
+#: themes/Fifteen/login.php:6 themes/Fifteen/login.php:20
+#: themes/Fifteen/index.php:42 themes/Fifteen/index.php:51
 #: themes/Sunrise/index.php:41 themes/Sunrise/index.php:49
 msgid "Login"
 msgstr ""
 
 #: backstage/login.php:24 backstage/tools.php:145
-#: include/draw_functions.php:930 themes/Luna/login.php:14
-#: themes/Luna/settings.php:63 themes/Luna/me-modals.php:12
-#: themes/Luna/index.php:47 themes/Random/login.php:13
-#: themes/Random/settings.php:46 themes/Random/me-modals.php:12
-#: themes/Random/index.php:45 themes/Sunrise/index.php:45
+#: include/draw_functions.php:930 themes/Fifteen/login.php:14
+#: themes/Fifteen/settings.php:63 themes/Fifteen/me-modals.php:12
+#: themes/Fifteen/index.php:47 themes/Sunrise/index.php:45
 msgid "Password"
 msgstr ""
 
-#: backstage/login.php:27 themes/Luna/login.php:17
-#: themes/Luna/index.php:49 themes/Random/login.php:16
-#: themes/Random/index.php:47 themes/Sunrise/index.php:47
+#: backstage/login.php:27 themes/Fifteen/login.php:17
+#: themes/Fifteen/index.php:49 themes/Sunrise/index.php:47
 msgid "Remember me"
 msgstr ""
 
@@ -1704,8 +1679,7 @@ msgstr ""
 msgid "Time and timeouts"
 msgstr ""
 
-#: backstage/settings.php:199 themes/Luna/settings.php:436
-#: themes/Random/settings.php:356
+#: backstage/settings.php:199 themes/Fifteen/settings.php:436
 msgid "Time format"
 msgstr ""
 
@@ -1718,8 +1692,7 @@ msgstr ""
 msgid "PHP manual"
 msgstr ""
 
-#: backstage/settings.php:205 themes/Luna/settings.php:454
-#: themes/Random/settings.php:374
+#: backstage/settings.php:205 themes/Fifteen/settings.php:454
 msgid "Date format"
 msgstr ""
 
@@ -1727,208 +1700,167 @@ msgstr ""
 msgid "Default time zone"
 msgstr ""
 
-#: backstage/settings.php:214 themes/Luna/settings.php:386
-#: themes/Random/settings.php:306
+#: backstage/settings.php:214 themes/Fifteen/settings.php:386
 msgid "(UTC-12:00) International Date Line West"
 msgstr ""
 
-#: backstage/settings.php:215 themes/Luna/settings.php:387
-#: themes/Random/settings.php:307
+#: backstage/settings.php:215 themes/Fifteen/settings.php:387
 msgid "(UTC-11:00) Niue, Samoa"
 msgstr ""
 
-#: backstage/settings.php:216 themes/Luna/settings.php:388
-#: themes/Random/settings.php:308
+#: backstage/settings.php:216 themes/Fifteen/settings.php:388
 msgid "(UTC-10:00) Hawaii-Aleutian, Cook Island"
 msgstr ""
 
-#: backstage/settings.php:217 themes/Luna/settings.php:389
-#: themes/Random/settings.php:309
+#: backstage/settings.php:217 themes/Fifteen/settings.php:389
 msgid "(UTC-09:30) Marquesas Islands"
 msgstr ""
 
-#: backstage/settings.php:218 themes/Luna/settings.php:390
-#: themes/Random/settings.php:310
+#: backstage/settings.php:218 themes/Fifteen/settings.php:390
 msgid "(UTC-09:00) Alaska, Gambier Island"
 msgstr ""
 
-#: backstage/settings.php:219 themes/Luna/settings.php:391
-#: themes/Random/settings.php:311
+#: backstage/settings.php:219 themes/Fifteen/settings.php:391
 msgid "(UTC-08:30) Pitcairn Islands"
 msgstr ""
 
-#: backstage/settings.php:220 themes/Luna/settings.php:392
-#: themes/Random/settings.php:312
+#: backstage/settings.php:220 themes/Fifteen/settings.php:392
 msgid "(UTC-08:00) Pacific"
 msgstr ""
 
-#: backstage/settings.php:221 themes/Luna/settings.php:393
-#: themes/Random/settings.php:313
+#: backstage/settings.php:221 themes/Fifteen/settings.php:393
 msgid "(UTC-07:00) Mountain"
 msgstr ""
 
-#: backstage/settings.php:222 themes/Luna/settings.php:394
-#: themes/Random/settings.php:314
+#: backstage/settings.php:222 themes/Fifteen/settings.php:394
 msgid "(UTC-06:00) Central"
 msgstr ""
 
-#: backstage/settings.php:223 themes/Luna/settings.php:395
-#: themes/Random/settings.php:315
+#: backstage/settings.php:223 themes/Fifteen/settings.php:395
 msgid "(UTC-05:00) Eastern"
 msgstr ""
 
-#: backstage/settings.php:224 themes/Luna/settings.php:396
-#: themes/Random/settings.php:316
+#: backstage/settings.php:224 themes/Fifteen/settings.php:396
 msgid "(UTC-04:00) Atlantic"
 msgstr ""
 
-#: backstage/settings.php:225 themes/Luna/settings.php:397
-#: themes/Random/settings.php:317
+#: backstage/settings.php:225 themes/Fifteen/settings.php:397
 msgid "(UTC-03:30) Newfoundland"
 msgstr ""
 
-#: backstage/settings.php:226 themes/Luna/settings.php:398
-#: themes/Random/settings.php:318
+#: backstage/settings.php:226 themes/Fifteen/settings.php:398
 msgid "(UTC-03:00) Amazon, Central Greenland"
 msgstr ""
 
-#: backstage/settings.php:227 themes/Luna/settings.php:399
-#: themes/Random/settings.php:319
+#: backstage/settings.php:227 themes/Fifteen/settings.php:399
 msgid "(UTC-02:00) Mid-Atlantic"
 msgstr ""
 
-#: backstage/settings.php:228 themes/Luna/settings.php:400
-#: themes/Random/settings.php:320
+#: backstage/settings.php:228 themes/Fifteen/settings.php:400
 msgid "(UTC-01:00) Azores, Cape Verde, Eastern Greenland"
 msgstr ""
 
-#: backstage/settings.php:229 themes/Luna/settings.php:401
-#: themes/Random/settings.php:321
+#: backstage/settings.php:229 themes/Fifteen/settings.php:401
 msgid "(UTC) Western European, Greenwich"
 msgstr ""
 
-#: backstage/settings.php:230 themes/Luna/settings.php:402
-#: themes/Random/settings.php:322
+#: backstage/settings.php:230 themes/Fifteen/settings.php:402
 msgid "(UTC+01:00) Central European, West African"
 msgstr ""
 
-#: backstage/settings.php:231 themes/Luna/settings.php:403
-#: themes/Random/settings.php:323
+#: backstage/settings.php:231 themes/Fifteen/settings.php:403
 msgid "(UTC+02:00) Eastern European, Central African"
 msgstr ""
 
-#: backstage/settings.php:232 themes/Luna/settings.php:404
-#: themes/Random/settings.php:324
+#: backstage/settings.php:232 themes/Fifteen/settings.php:404
 msgid "(UTC+03:00) Eastern African"
 msgstr ""
 
-#: backstage/settings.php:233 themes/Luna/settings.php:405
-#: themes/Random/settings.php:325
+#: backstage/settings.php:233 themes/Fifteen/settings.php:405
 msgid "(UTC+03:30) Iran"
 msgstr ""
 
-#: backstage/settings.php:234 themes/Luna/settings.php:406
-#: themes/Random/settings.php:326
+#: backstage/settings.php:234 themes/Fifteen/settings.php:406
 msgid "(UTC+04:00) Moscow, Gulf, Samara"
 msgstr ""
 
-#: backstage/settings.php:235 themes/Luna/settings.php:407
-#: themes/Random/settings.php:327
+#: backstage/settings.php:235 themes/Fifteen/settings.php:407
 msgid "(UTC+04:30) Afghanistan"
 msgstr ""
 
-#: backstage/settings.php:236 themes/Luna/settings.php:408
-#: themes/Random/settings.php:328
+#: backstage/settings.php:236 themes/Fifteen/settings.php:408
 msgid "(UTC+05:00) Pakistan"
 msgstr ""
 
-#: backstage/settings.php:237 themes/Luna/settings.php:409
-#: themes/Random/settings.php:329
+#: backstage/settings.php:237 themes/Fifteen/settings.php:409
 msgid "(UTC+05:30) India, Sri Lanka"
 msgstr ""
 
-#: backstage/settings.php:238 themes/Luna/settings.php:410
-#: themes/Random/settings.php:330
+#: backstage/settings.php:238 themes/Fifteen/settings.php:410
 msgid "(UTC+05:45) Nepal"
 msgstr ""
 
-#: backstage/settings.php:239 themes/Luna/settings.php:411
-#: themes/Random/settings.php:331
+#: backstage/settings.php:239 themes/Fifteen/settings.php:411
 msgid "(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg"
 msgstr ""
 
-#: backstage/settings.php:240 themes/Luna/settings.php:412
-#: themes/Random/settings.php:332
+#: backstage/settings.php:240 themes/Fifteen/settings.php:412
 msgid "(UTC+06:30) Cocos Islands, Myanmar"
 msgstr ""
 
-#: backstage/settings.php:241 themes/Luna/settings.php:413
-#: themes/Random/settings.php:333
+#: backstage/settings.php:241 themes/Fifteen/settings.php:413
 msgid "(UTC+07:00) Indochina, Novosibirsk"
 msgstr ""
 
-#: backstage/settings.php:242 themes/Luna/settings.php:414
-#: themes/Random/settings.php:334
+#: backstage/settings.php:242 themes/Fifteen/settings.php:414
 msgid "(UTC+08:00) Greater China, Australian Western, Krasnoyarsk"
 msgstr ""
 
-#: backstage/settings.php:243 themes/Luna/settings.php:415
-#: themes/Random/settings.php:335
+#: backstage/settings.php:243 themes/Fifteen/settings.php:415
 msgid "(UTC+08:45) Southeastern Western Australia"
 msgstr ""
 
-#: backstage/settings.php:244 themes/Luna/settings.php:416
-#: themes/Random/settings.php:336
+#: backstage/settings.php:244 themes/Fifteen/settings.php:416
 msgid "(UTC+09:00) Japan, Korea, Chita, Irkutsk"
 msgstr ""
 
-#: backstage/settings.php:245 themes/Luna/settings.php:417
-#: themes/Random/settings.php:337
+#: backstage/settings.php:245 themes/Fifteen/settings.php:417
 msgid "(UTC+09:30) Australian Central"
 msgstr ""
 
-#: backstage/settings.php:246 themes/Luna/settings.php:418
-#: themes/Random/settings.php:338
+#: backstage/settings.php:246 themes/Fifteen/settings.php:418
 msgid "(UTC+10:00) Australian Eastern"
 msgstr ""
 
-#: backstage/settings.php:247 themes/Luna/settings.php:419
-#: themes/Random/settings.php:339
+#: backstage/settings.php:247 themes/Fifteen/settings.php:419
 msgid "(UTC+10:30) Lord Howe"
 msgstr ""
 
-#: backstage/settings.php:248 themes/Luna/settings.php:420
-#: themes/Random/settings.php:340
+#: backstage/settings.php:248 themes/Fifteen/settings.php:420
 msgid "(UTC+11:00) Solomon Island, Vladivostok"
 msgstr ""
 
-#: backstage/settings.php:249 themes/Luna/settings.php:421
-#: themes/Random/settings.php:341
+#: backstage/settings.php:249 themes/Fifteen/settings.php:421
 msgid "(UTC+11:30) Norfolk Island"
 msgstr ""
 
-#: backstage/settings.php:250 themes/Luna/settings.php:422
-#: themes/Random/settings.php:342
+#: backstage/settings.php:250 themes/Fifteen/settings.php:422
 msgid "(UTC+12:00) New Zealand, Fiji, Magadan"
 msgstr ""
 
-#: backstage/settings.php:251 themes/Luna/settings.php:423
-#: themes/Random/settings.php:343
+#: backstage/settings.php:251 themes/Fifteen/settings.php:423
 msgid "(UTC+12:45) Chatham Islands"
 msgstr ""
 
-#: backstage/settings.php:252 themes/Luna/settings.php:424
-#: themes/Random/settings.php:344
+#: backstage/settings.php:252 themes/Fifteen/settings.php:424
 msgid "(UTC+13:00) Tonga, Phoenix Islands, Kamchatka"
 msgstr ""
 
-#: backstage/settings.php:253 themes/Luna/settings.php:425
-#: themes/Random/settings.php:345
+#: backstage/settings.php:253 themes/Fifteen/settings.php:425
 msgid "(UTC+14:00) Line Islands"
 msgstr ""
 
-#: backstage/settings.php:258 themes/Luna/settings.php:430
-#: themes/Random/settings.php:350
+#: backstage/settings.php:258 themes/Fifteen/settings.php:430
 msgid "Advance time by 1 hour for daylight saving."
 msgstr ""
 
@@ -2029,8 +1961,7 @@ msgstr ""
 msgid "Cookie bar"
 msgstr ""
 
-#: backstage/settings.php:367 themes/Luna/footer.php:149
-#: themes/Random/footer.php:68
+#: backstage/settings.php:367 themes/Fifteen/footer.php:149
 msgid "More info"
 msgstr ""
 
@@ -2071,8 +2002,7 @@ msgid "Max width"
 msgstr ""
 
 #: backstage/settings.php:408 backstage/settings.php:417
-#: backstage/appearance.php:149 themes/Luna/me-modals.php:62
-#: themes/Random/me-modals.php:62
+#: backstage/appearance.php:149 themes/Fifteen/me-modals.php:62
 msgid "pixels"
 msgstr ""
 
@@ -2084,8 +2014,7 @@ msgstr ""
 msgid "Max size"
 msgstr ""
 
-#: backstage/settings.php:426 themes/Luna/me-modals.php:62
-#: themes/Random/me-modals.php:62
+#: backstage/settings.php:426 themes/Fifteen/me-modals.php:62
 msgid "bytes"
 msgstr ""
 
@@ -2105,9 +2034,8 @@ msgstr ""
 msgid "Announcement type"
 msgstr ""
 
-#: backstage/settings.php:463 themes/Luna/settings.php:446
-#: themes/Luna/settings.php:464 themes/Random/settings.php:366
-#: themes/Random/settings.php:384
+#: backstage/settings.php:463 themes/Fifteen/settings.php:446
+#: themes/Fifteen/settings.php:464
 msgid "Default"
 msgstr ""
 
@@ -2146,8 +2074,20 @@ msgstr ""
 msgid "Display settings"
 msgstr ""
 
-#: backstage/appearance.php:87 themes/Luna/settings.php:128
-#: themes/Luna/settings.php:169 themes/Random/settings.php:111
+#: backstage/appearance.php:89
+msgid "Theme settings"
+msgstr ""
+
+#: backstage/appearance.php:94
+msgid "Allow users to set their own accent color."
+msgstr ""
+
+#: backstage/appearance.php:100
+msgid "Allow users to change the night mode settings."
+msgstr ""
+
+#: backstage/appearance.php:87 themes/Fifteen/settings.php:128
+#: themes/Fifteen/settings.php:169
 msgid "Color"
 msgstr ""
 
@@ -2195,8 +2135,7 @@ msgstr ""
 msgid "Maximum amount of posts showed when posting"
 msgstr ""
 
-#: backstage/appearance.php:161 themes/Luna/settings.php:367
-#: themes/Random/settings.php:287
+#: backstage/appearance.php:161 themes/Fifteen/settings.php:367
 msgid "Topics per page"
 msgstr ""
 
@@ -2204,8 +2143,7 @@ msgstr ""
 msgid "Default amount of topics per page"
 msgstr ""
 
-#: backstage/appearance.php:167 themes/Luna/settings.php:373
-#: themes/Random/settings.php:293
+#: backstage/appearance.php:167 themes/Fifteen/settings.php:373
 msgid "Posts per page"
 msgstr ""
 
@@ -2218,8 +2156,7 @@ msgid "Header settings"
 msgstr ""
 
 #: backstage/appearance.php:182 include/me_functions.php:22
-#: include/me_functions.php:36 themes/Luna/notifications.php:21
-#: themes/Random/notifications.php:19
+#: include/me_functions.php:36 themes/Fifteen/notifications.php:21
 msgid "Notifications"
 msgstr ""
 
@@ -2251,7 +2188,7 @@ msgstr ""
 msgid "Show a \"Back to top\" link in the footer."
 msgstr ""
 
-#: backstage/appearance.php:237 themes/Luna/footer.php:130
+#: backstage/appearance.php:237 themes/Fifteen/footer.php:130
 msgid "Copyright"
 msgstr ""
 
@@ -2279,8 +2216,7 @@ msgstr ""
 #: backstage/users.php:272 backstage/users.php:410
 #: backstage/users.php:694 backstage/users.php:790
 #: backstage/tools.php:113 include/backstage_functions.php:90
-#: themes/Luna/help.php:208 themes/Luna/users.php:16
-#: themes/Random/help.php:207 themes/Random/users.php:16
+#: themes/Fifteen/help.php:208 themes/Fifteen/users.php:16
 msgid "Users"
 msgstr ""
 
@@ -2314,15 +2250,12 @@ msgstr ""
 
 #: backstage/users.php:124 backstage/users.php:152
 #: backstage/users.php:728 backstage/users.php:747
-#: themes/Luna/search-advanced.php:43 themes/Luna/settings.php:549
-#: themes/Random/search-advanced.php:43 themes/Random/settings.php:469
-#: themes/Random/users.php:43
+#: themes/Fifteen/search-advanced.php:43 themes/Fifteen/settings.php:549
 msgid "Posts"
 msgstr ""
 
 #: backstage/users.php:125 backstage/users.php:729
-#: backstage/users.php:861 themes/Luna/settings.php:556
-#: themes/Random/settings.php:476
+#: backstage/users.php:861 themes/Fifteen/settings.php:556
 msgid "Admin note"
 msgstr ""
 
@@ -2367,13 +2300,11 @@ msgstr ""
 msgid "Delete users"
 msgstr ""
 
-#: backstage/users.php:424 themes/Luna/me-delete.php:16
-#: themes/Random/me-delete.php:16
+#: backstage/users.php:424 themes/Fifteen/me-delete.php:16
 msgid "Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by this user, the posts can only be deleted manually at a later time."
 msgstr ""
 
-#: backstage/users.php:428 themes/Luna/me-delete.php:20
-#: themes/Random/me-delete.php:20
+#: backstage/users.php:428 themes/Fifteen/me-delete.php:20
 msgid "Delete any posts and topics this user has made"
 msgstr ""
 
@@ -2435,49 +2366,41 @@ msgstr ""
 msgid "Email address"
 msgstr ""
 
-#: backstage/users.php:818 themes/Luna/settings.php:88
-#: themes/Random/settings.php:71
+#: backstage/users.php:818 themes/Fifteen/settings.php:88
 msgid "Title"
 msgstr ""
 
-#: backstage/users.php:820 themes/Luna/settings.php:81
-#: themes/Random/settings.php:64
+#: backstage/users.php:820 themes/Fifteen/settings.php:81
 msgid "Real name"
 msgstr ""
 
 #: backstage/users.php:824 include/draw_functions.php:637
-#: include/draw_functions.php:794 themes/Luna/settings.php:273
-#: themes/Random/settings.php:193
+#: include/draw_functions.php:794 themes/Fifteen/settings.php:273
 msgid "Website"
 msgstr ""
 
-#: backstage/users.php:826 themes/Luna/settings.php:292
-#: themes/Random/settings.php:212
+#: backstage/users.php:826 themes/Fifteen/settings.php:292
 msgid "Facebook"
 msgstr ""
 
-#: backstage/users.php:830 themes/Luna/settings.php:283
-#: themes/Random/settings.php:203
+#: backstage/users.php:830 themes/Fifteen/settings.php:283
 msgid "Microsoft Account"
 msgstr ""
 
-#: backstage/users.php:832 themes/Luna/settings.php:301
-#: themes/Random/settings.php:221
+#: backstage/users.php:832 themes/Fifteen/settings.php:301
 msgid "Twitter"
 msgstr ""
 
-#: backstage/users.php:836 themes/Luna/settings.php:310
-#: themes/Random/settings.php:230
+#: backstage/users.php:836 themes/Fifteen/settings.php:310
 msgid "Google+"
 msgstr ""
 
-#: backstage/users.php:838 themes/Luna/settings.php:95
-#: themes/Random/settings.php:78
+#: backstage/users.php:838 themes/Fifteen/settings.php:95
 msgid "Location"
 msgstr ""
 
-#: backstage/users.php:842 themes/Luna/profile.php:50
-#: themes/Luna/settings.php:109 themes/Random/profile.php:45
+#: backstage/users.php:842 themes/Fifteen/profile.php:50
+#: themes/Fifteen/settings.php:109
 msgid "Signature"
 msgstr ""
 
@@ -2530,7 +2453,7 @@ msgid "Number of posts"
 msgstr ""
 
 #: backstage/users.php:895 backstage/board.php:258
-#: themes/Luna/inbox.php:45 themes/Random/inbox.php:44
+#: themes/Fifteen/inbox.php:45
 msgid "Last post"
 msgstr ""
 
@@ -2538,7 +2461,7 @@ msgstr ""
 msgid "Last visit"
 msgstr ""
 
-#: backstage/users.php:897 themes/Random/users.php:44
+#: backstage/users.php:897
 msgid "Registered"
 msgstr ""
 
@@ -2555,7 +2478,6 @@ msgid "The IP address to search for in the post database."
 msgstr ""
 
 #: backstage/reports.php:50 backstage/index.php:147
-#: themes/Random/header.php:90
 msgid "New reports"
 msgstr ""
 
@@ -2578,8 +2500,7 @@ msgstr ""
 #: backstage/reports.php:74 backstage/reports.php:127
 #: backstage/reports.php:128 backstage/reports.php:130
 #: backstage/index.php:165 backstage/index.php:166
-#: backstage/index.php:168 themes/Luna/inbox.php:91
-#: themes/Random/inbox.php:90
+#: backstage/index.php:168 themes/Fifteen/inbox.php:91
 msgid "Deleted"
 msgstr ""
 
@@ -2590,7 +2511,7 @@ msgid "Post #%s"
 msgstr ""
 
 #: backstage/reports.php:85 include/draw_functions.php:1162
-#: themes/Luna/inbox.php:26 themes/Random/inbox.php:26
+#: themes/Fifteen/inbox.php:26
 msgid "Mark as read"
 msgstr ""
 
@@ -2674,20 +2595,17 @@ msgstr ""
 msgid "Generate a random password, this will be emailed to the above address. When checked, leave \"Password\" empty."
 msgstr ""
 
-#: backstage/footer.php:20 themes/Luna/footer.php:167
-#: themes/Random/footer.php:86
+#: backstage/footer.php:20 themes/Fifteen/footer.php:167
 #, php-format
 msgid "Generated in %1$s seconds, %2$s queries executed"
 msgstr ""
 
-#: backstage/footer.php:23 themes/Luna/footer.php:170
-#: themes/Random/footer.php:89
+#: backstage/footer.php:23 themes/Fifteen/footer.php:170
 #, php-format
 msgid "Memory usage: %1$s"
 msgstr ""
 
-#: backstage/footer.php:26 themes/Luna/footer.php:173
-#: themes/Random/footer.php:92
+#: backstage/footer.php:26 themes/Fifteen/footer.php:173
 #, php-format
 msgid "(Peak: %1$s)"
 msgstr ""
@@ -2892,7 +2810,7 @@ msgid "Add a note..."
 msgstr ""
 
 #: backstage/board.php:67 backstage/board.php:181
-#: themes/Luna/help.php:206 themes/Random/help.php:205
+#: themes/Fifteen/help.php:206
 msgid "Forums"
 msgstr ""
 
@@ -2947,9 +2865,8 @@ msgid "Topic start"
 msgstr ""
 
 #: backstage/board.php:260 include/draw_functions.php:1053
-#: themes/Luna/inbox-new.php:67 themes/Luna/search-advanced.php:34
-#: themes/Luna/post.php:40 themes/Random/inbox-new.php:69
-#: themes/Random/search-advanced.php:34 themes/Random/post.php:41
+#: themes/Fifteen/inbox-new.php:67 themes/Fifteen/search-advanced.php:34
+#: themes/Fifteen/post.php:40
 msgid "Subject"
 msgstr ""
 
@@ -3149,7 +3066,7 @@ msgstr ""
 msgid "Allow users to soft delete topics from all users."
 msgstr ""
 
-#: backstage/groups.php:170 themes/Luna/settings.php:220
+#: backstage/groups.php:170 themes/Fifteen/settings.php:220
 msgid "Allow users to send messages with Inbox."
 msgstr ""
 
@@ -3612,7 +3529,7 @@ msgstr ""
 #: include/backstage_functions.php:47 include/backstage_functions.php:91
 #: include/backstage_functions.php:122
 #: include/backstage_functions.php:169 include/me_functions.php:25
-#: include/me_functions.php:37 themes/Luna/settings.php:29
+#: include/me_functions.php:37 themes/Fifteen/settings.php:29
 msgid "Settings"
 msgstr ""
 
@@ -3634,12 +3551,12 @@ msgid "Extensions"
 msgstr ""
 
 #: include/backstage_functions.php:121 include/me_functions.php:15
-#: include/me_functions.php:31 themes/Luna/help.php:141
-#: themes/Luna/settings.php:41 themes/Random/help.php:140
+#: include/me_functions.php:31 themes/Fifteen/help.php:141
+#: themes/Fifteen/settings.php:41
 msgid "Profile"
 msgstr ""
 
-#: include/backstage_functions.php:124 themes/Luna/help.php:10
+#: include/backstage_functions.php:124 themes/Fifteen/help.php:10
 msgid "Help"
 msgstr ""
 
@@ -3659,8 +3576,8 @@ msgstr ""
 msgid "No users online"
 msgstr ""
 
-#: include/inbox_functions.php:16 themes/Luna/settings.php:24
-#: themes/Luna/users.php:11
+#: include/inbox_functions.php:16 themes/Fifteen/settings.php:24
+#: themes/Fifteen/users.php:11
 msgid "Toggle navigation"
 msgstr ""
 
@@ -3672,13 +3589,11 @@ msgstr ""
 msgid "Compose"
 msgstr ""
 
-#: include/draw_functions.php:16 themes/Luna/inbox-new.php:14
-#: themes/Random/inbox-new.php:15
+#: include/draw_functions.php:16 themes/Fifteen/inbox-new.php:14
 msgid "Post errors"
 msgstr ""
 
-#: include/draw_functions.php:41 themes/Luna/inbox-new.php:32
-#: themes/Random/inbox-new.php:34
+#: include/draw_functions.php:41 themes/Fifteen/inbox-new.php:32
 msgid "Post preview"
 msgstr ""
 
@@ -3723,8 +3638,7 @@ msgstr ""
 msgid "Quote"
 msgstr ""
 
-#: include/draw_functions.php:98 themes/Luna/help.php:33
-#: themes/Random/help.php:33
+#: include/draw_functions.php:98 themes/Fifteen/help.php:33
 msgid "Code"
 msgstr ""
 
@@ -3808,8 +3722,7 @@ msgstr ""
 msgid "Oh yeah"
 msgstr ""
 
-#: include/draw_functions.php:137 themes/Luna/help.php:35
-#: themes/Random/help.php:35
+#: include/draw_functions.php:137 themes/Fifteen/help.php:35
 msgid "Smilies"
 msgstr ""
 
@@ -3818,7 +3731,7 @@ msgid "Start typing..."
 msgstr ""
 
 #: include/draw_functions.php:171 include/draw_functions.php:1084
-#: themes/Luna/login.php:44 themes/Random/login.php:43
+#: themes/Fifteen/login.php:44
 msgid "Submit"
 msgstr ""
 
@@ -3913,9 +3826,9 @@ msgid "The post you have chosen to delete is set out below for you to review bef
 msgstr ""
 
 #: include/draw_functions.php:868 include/draw_functions.php:882
-#: include/draw_functions.php:896 themes/Luna/inbox-delete-post.php:18
-#: themes/Luna/post.php:14 themes/Luna/post.php:16
-#: themes/Luna/edit.php:13
+#: include/draw_functions.php:896 themes/Fifteen/inbox-delete-post.php:18
+#: themes/Fifteen/post.php:14 themes/Fifteen/post.php:16
+#: themes/Fifteen/edit.php:13
 msgid "Cancel"
 msgstr ""
 
@@ -3931,12 +3844,12 @@ msgstr ""
 msgid "Reset post"
 msgstr ""
 
-#: include/draw_functions.php:906 themes/Random/inbox-delete-post.php:11
+#: include/draw_functions.php:906
 #, php-format
 msgid "Topic started by %s - %s"
 msgstr ""
 
-#: include/draw_functions.php:906 themes/Random/inbox-delete-post.php:11
+#: include/draw_functions.php:906
 #, php-format
 msgid "Reply by %s - %s"
 msgstr ""
@@ -3945,11 +3858,9 @@ msgstr ""
 msgid "Enter the requested data"
 msgstr ""
 
-#: include/draw_functions.php:916 themes/Luna/register.php:10
-#: themes/Luna/login.php:21 themes/Luna/login.php:26
-#: themes/Luna/index.php:35 themes/Random/register.php:11
-#: themes/Random/login.php:25 themes/Random/index.php:34
-#: themes/Sunrise/index.php:34
+#: include/draw_functions.php:916 themes/Fifteen/register.php:10
+#: themes/Fifteen/login.php:21 themes/Fifteen/login.php:26
+#: themes/Fifteen/index.php:35 themes/Sunrise/index.php:34
 msgid "Register"
 msgstr ""
 
@@ -3961,8 +3872,7 @@ msgstr ""
 msgid "Enter a username between 2 and 25 characters long"
 msgstr ""
 
-#: include/draw_functions.php:930 themes/Luna/me-modals.php:39
-#: themes/Random/me-modals.php:39
+#: include/draw_functions.php:930 themes/Fifteen/me-modals.php:39
 msgid "Passwords must be at least 6 characters long and are case sensitive"
 msgstr ""
 
@@ -3987,37 +3897,35 @@ msgid "Tell us why you are reporting this"
 msgstr ""
 
 #: include/draw_functions.php:1099 include/draw_functions.php:1127
-#: themes/Luna/search-advanced.php:35
-#: themes/Random/search-advanced.php:35
+#: themes/Fifteen/search-advanced.php:35
 msgid "Forum"
 msgstr ""
 
-#: themes/Luna/inbox-delete-post.php:16
+#: themes/Fifteen/inbox-delete-post.php:16
 msgid "Are you sure that you want to delete the message(s) from your inbox??"
 msgstr ""
 
-#: themes/Luna/profile.php:27 themes/Random/profile.php:22
+#: themes/Fifteen/profile.php:27
 msgid "About user"
 msgstr ""
 
-#: themes/Luna/profile.php:36 themes/Luna/settings.php:44
-#: themes/Random/profile.php:31
+#: themes/Fifteen/profile.php:36 themes/Fifteen/settings.php:44
 msgid "Contact"
 msgstr ""
 
-#: themes/Luna/profile.php:54
+#: themes/Fifteen/profile.php:54
 msgid "Show topics"
 msgstr ""
 
-#: themes/Luna/profile.php:55
+#: themes/Fifteen/profile.php:55
 msgid "Show posts"
 msgstr ""
 
-#: themes/Luna/profile.php:58
+#: themes/Fifteen/profile.php:58
 msgid "Show subscriptions"
 msgstr ""
 
-#: themes/Luna/profile.php:83 profile.php:574
+#: themes/Fifteen/profile.php:83 profile.php:574
 msgid "Send email"
 msgstr ""
 
@@ -4029,894 +3937,799 @@ msgstr ""
 msgid "No signature currently stored in profile."
 msgstr ""
 
-#: themes/Luna/inbox-new.php:48 themes/Random/inbox-new.php:50
+#: themes/Fifteen/inbox-new.php:48
 msgid "Write message"
 msgstr ""
 
-#: themes/Luna/inbox-new.php:61 themes/Random/inbox-new.php:63
+#: themes/Fifteen/inbox-new.php:61
 msgid "Send to"
 msgstr ""
 
-#: themes/Luna/inbox-new.php:61
+#: themes/Fifteen/inbox-new.php:61
 #, php-format
 msgid "Separate names with commas, maximum %s names"
 msgstr ""
 
-#: themes/Luna/thread.php:17 themes/Sunrise/thread.php:17
+#: themes/Fifteen/thread.php:17 themes/Sunrise/thread.php:17
 msgid "Unsubscribe"
 msgstr ""
 
-#: themes/Luna/thread.php:19 themes/Sunrise/thread.php:19
+#: themes/Fifteen/thread.php:19 themes/Sunrise/thread.php:19
 msgid "Subscribe"
 msgstr ""
 
-#: themes/Luna/thread.php:26 themes/Random/thread.php:26
-#: themes/Sunrise/thread.php:26
+#: themes/Fifteen/thread.php:26 themes/Sunrise/thread.php:26
 msgid "Moderate topic"
 msgstr ""
 
-#: themes/Luna/thread.php:28 themes/Random/thread.php:28
-#: themes/Sunrise/thread.php:28
+#: themes/Fifteen/thread.php:28 themes/Sunrise/thread.php:28
 msgid "Show all posts"
 msgstr ""
 
-#: themes/Luna/thread.php:32 themes/Random/thread.php:34
-#: themes/Sunrise/thread.php:32
+#: themes/Fifteen/thread.php:32 themes/Sunrise/thread.php:32
 msgid "Open topic"
 msgstr ""
 
-#: themes/Luna/thread.php:34 themes/Random/thread.php:36
-#: themes/Sunrise/thread.php:34
+#: themes/Fifteen/thread.php:34  themes/Sunrise/thread.php:34
 msgid "Close topic"
 msgstr ""
 
-#: themes/Luna/thread.php:38 themes/Random/thread.php:40
-#: themes/Sunrise/thread.php:38
+#: themes/Fifteen/thread.php:38 themes/Sunrise/thread.php:38
 msgid "Unstick topic"
 msgstr ""
 
-#: themes/Luna/thread.php:40 themes/Random/thread.php:42
-#: themes/Sunrise/thread.php:40
+#: themes/Fifteen/thread.php:40 themes/Sunrise/thread.php:40
 msgid "Stick topic"
 msgstr ""
 
-#: themes/Luna/inbox-delete.php:12 themes/Random/inbox-delete.php:12
+#: themes/Fifteen/inbox-delete.php:12
 msgid "Confirm deletion"
 msgstr ""
 
-#: themes/Luna/inbox-delete.php:18 themes/Random/inbox-delete.php:18
+#: themes/Fifteen/inbox-delete.php:18
 msgid "Are you sure you want to delete the selected messages?"
 msgstr ""
 
-#: themes/Luna/search-advanced.php:24
-#: themes/Random/search-advanced.php:24
+#: themes/Fifteen/search-advanced.php:24
 msgid "Keyword"
 msgstr ""
 
-#: themes/Luna/search-advanced.php:25 themes/Luna/search-advanced.php:33
-#: themes/Random/search-advanced.php:25
-#: themes/Random/search-advanced.php:33
+#: themes/Fifteen/search-advanced.php:25 themes/Fifteen/search-advanced.php:33
 msgid "Author"
 msgstr ""
 
-#: themes/Luna/search-advanced.php:27
-#: themes/Random/search-advanced.php:27
+#: themes/Fifteen/search-advanced.php:27
 msgid "Message text and topic subject"
 msgstr ""
 
-#: themes/Luna/search-advanced.php:28
-#: themes/Random/search-advanced.php:28
+#: themes/Fifteen/search-advanced.php:28
 msgid "Message text only"
 msgstr ""
 
-#: themes/Luna/search-advanced.php:29
-#: themes/Random/search-advanced.php:29
+#: themes/Fifteen/search-advanced.php:29
 msgid "Topic subject only"
 msgstr ""
 
-#: themes/Luna/search-advanced.php:32
-#: themes/Random/search-advanced.php:32
+#: themes/Fifteen/search-advanced.php:32
 msgid "Post time"
 msgstr ""
 
-#: themes/Luna/search-advanced.php:42 themes/Luna/help.php:207
-#: themes/Random/search-advanced.php:42 themes/Random/help.php:206
+#: themes/Fifteen/search-advanced.php:42 themes/Fifteen/help.php:207
 msgid "Topics"
 msgstr ""
 
-#: themes/Luna/login.php:26 themes/Luna/index.php:36
-#: themes/Random/login.php:25 themes/Random/index.php:35
+#: themes/Fifteen/login.php:26 themes/Fifteen/index.php:36
 #: themes/Sunrise/index.php:35
 msgid "Forgotten password"
 msgstr ""
 
-#: themes/Luna/login.php:102
+#: themes/Fifteen/login.php:102
 msgid "The email address you entered is invalid"
 msgstr ""
 
-#: themes/Luna/login.php:35 themes/Random/login.php:34
+#: themes/Fifteen/login.php:35
 msgid "Request password"
 msgstr ""
 
-#: themes/Luna/login.php:51
+#: themes/Fifteen/login.php:51
 msgid "Back"
 msgstr ""
 
-#: themes/Luna/header.php:62 themes/Random/header.php:53
-#: themes/Sunrise/header.php:62
+#: themes/Fifteen/header.php:62 themes/Sunrise/header.php:62
 msgid "Search in posts"
 msgstr ""
 
-#: themes/Luna/help.php:16 themes/Luna/rules.php:9
-#: themes/Random/help.php:16 themes/Random/rules.php:9
+#: themes/Fifteen/help.php:16 themes/Fifteen/rules.php:9
 msgid "Forum rules"
 msgstr ""
 
-#: themes/Luna/help.php:28 themes/Random/help.php:28
+#: themes/Fifteen/help.php:28
 msgid "BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature."
 msgstr ""
 
-#: themes/Luna/help.php:30 themes/Random/help.php:30
+#: themes/Fifteen/help.php:30
 msgid "Text style"
 msgstr ""
 
-#: themes/Luna/help.php:31 themes/Random/help.php:31
+#: themes/Fifteen/help.php:31
 msgid "Multimedia"
 msgstr ""
 
-#: themes/Luna/help.php:32 themes/Random/help.php:32
+#: themes/Fifteen/help.php:32
 msgid "Quotes"
 msgstr ""
 
-#: themes/Luna/help.php:34 themes/Random/help.php:34
+#: themes/Fifteen/help.php:34
 msgid "Lists"
 msgstr ""
 
-#: themes/Luna/help.php:39 themes/Random/help.php:39
+#: themes/Fifteen/help.php:39
 msgid "The following tags change the appearance of text:"
 msgstr ""
 
-#: themes/Luna/help.php:40 themes/Random/help.php:40
+#: themes/Fifteen/help.php:40
 msgid "Bold text"
 msgstr ""
 
-#: themes/Luna/help.php:40 themes/Luna/help.php:41
-#: themes/Luna/help.php:42 themes/Luna/help.php:43
-#: themes/Luna/help.php:44 themes/Luna/help.php:45
-#: themes/Luna/help.php:46 themes/Luna/help.php:47
-#: themes/Luna/help.php:48 themes/Luna/help.php:49
-#: themes/Luna/help.php:53 themes/Luna/help.php:54
-#: themes/Luna/help.php:55 themes/Luna/help.php:56
-#: themes/Luna/help.php:58 themes/Luna/help.php:122
-#: themes/Luna/help.php:124 themes/Random/help.php:40
-#: themes/Random/help.php:41 themes/Random/help.php:42
-#: themes/Random/help.php:43 themes/Random/help.php:44
-#: themes/Random/help.php:45 themes/Random/help.php:46
-#: themes/Random/help.php:47 themes/Random/help.php:48
-#: themes/Random/help.php:49 themes/Random/help.php:53
-#: themes/Random/help.php:54 themes/Random/help.php:55
-#: themes/Random/help.php:56 themes/Random/help.php:58
-#: themes/Random/help.php:121 themes/Random/help.php:123
+#: themes/Fifteen/help.php:40 themes/Fifteen/help.php:41
+#: themes/Fifteen/help.php:42 themes/Fifteen/help.php:43
+#: themes/Fifteen/help.php:44 themes/Fifteen/help.php:45
+#: themes/Fifteen/help.php:46 themes/Fifteen/help.php:47
+#: themes/Fifteen/help.php:48 themes/Fifteen/help.php:49
+#: themes/Fifteen/help.php:53 themes/Fifteen/help.php:54
+#: themes/Fifteen/help.php:55 themes/Fifteen/help.php:56
+#: themes/Fifteen/help.php:58 themes/Fifteen/help.php:122
+#: themes/Fifteen/help.php:124
 msgid "produces"
 msgstr ""
 
-#: themes/Luna/help.php:41 themes/Random/help.php:41
+#: themes/Fifteen/help.php:41
 msgid "Underlined text"
 msgstr ""
 
-#: themes/Luna/help.php:42 themes/Random/help.php:42
+#: themes/Fifteen/help.php:42
 msgid "Italic text"
 msgstr ""
 
-#: themes/Luna/help.php:43 themes/Random/help.php:43
+#: themes/Fifteen/help.php:43
 msgid "Strike-through text"
 msgstr ""
 
-#: themes/Luna/help.php:44 themes/Random/help.php:44
+#: themes/Fifteen/help.php:44
 msgid "Inserted text"
 msgstr ""
 
-#: themes/Luna/help.php:45 themes/Random/help.php:45
+#: themes/Fifteen/help.php:45
 msgid "Red text"
 msgstr ""
 
-#: themes/Luna/help.php:46 themes/Random/help.php:46
+#: themes/Fifteen/help.php:46
 msgid "Blue text"
 msgstr ""
 
-#: themes/Luna/help.php:47 themes/Random/help.php:47
+#: themes/Fifteen/help.php:47
 msgid "Subscript text"
 msgstr ""
 
-#: themes/Luna/help.php:48 themes/Random/help.php:48
+#: themes/Fifteen/help.php:48
 msgid "Superscript text"
 msgstr ""
 
-#: themes/Luna/help.php:49 themes/Random/help.php:49
+#: themes/Fifteen/help.php:49
 msgid "Heading text"
 msgstr ""
 
-#: themes/Luna/help.php:52 themes/Random/help.php:52
+#: themes/Fifteen/help.php:52
 msgid "You can create links to other locations or to email addresses using the following tags:"
 msgstr ""
 
-#: themes/Luna/help.php:56 themes/Random/help.php:56
+#: themes/Fifteen/help.php:56
 msgid "My email address"
 msgstr ""
 
-#: themes/Luna/help.php:57 themes/Random/help.php:57
+#: themes/Fifteen/help.php:57
 msgid "If you want to display an image you can use the img tag. The text appearing after the \"=\" sign in the opening tag is used for the alt attribute and should be included whenever possible."
 msgstr ""
 
-#: themes/Luna/help.php:58 themes/Random/help.php:58
+#: themes/Fifteen/help.php:58
 msgid "Luna BBCode Test"
 msgstr ""
 
-#: themes/Luna/help.php:60 themes/Random/help.php:60
+#: themes/Fifteen/help.php:60
 msgid "Luna supports embedding from DailyMotion, Vimeo and YouTube. With the BBCode below, you can embed one of those services videos."
 msgstr ""
 
-#: themes/Luna/help.php:61 themes/Random/help.php:61
+#: themes/Fifteen/help.php:61
 msgid "Put the link to the video here"
 msgstr ""
 
-#: themes/Luna/help.php:64 themes/Random/help.php:64
+#: themes/Fifteen/help.php:64
 msgid "If you want to quote someone, you should use the quote tag."
 msgstr ""
 
-#: themes/Luna/help.php:65 themes/Luna/help.php:67
-#: themes/Random/help.php:65 themes/Random/help.php:67
+#: themes/Fifteen/help.php:65 themes/Fifteen/help.php:67
 msgid "This is the text I want to quote."
 msgstr ""
 
-#: themes/Luna/help.php:66 themes/Random/help.php:66
+#: themes/Fifteen/help.php:66
 msgid "produces a quote box like this:"
 msgstr ""
 
-#: themes/Luna/help.php:67 themes/Random/help.php:67
+#: themes/Fifteen/help.php:67
 msgid "wrote"
 msgstr ""
 
-#: themes/Luna/help.php:68 themes/Random/help.php:68
+#: themes/Fifteen/help.php:68
 msgid "If you don't want to quote anyone in particular, you can use the quote tag without specifying a name. If a username contains the characters [ or ] you can enclose it in quote marks."
 msgstr ""
 
-#: themes/Luna/help.php:71 themes/Random/help.php:71
+#: themes/Fifteen/help.php:71
 msgid "When displaying source code you should make sure that you use the code tag. Text displayed with the code tag will use a monospaced font and will not be affected by other tags."
 msgstr ""
 
-#: themes/Luna/help.php:72 themes/Luna/help.php:74
-#: themes/Luna/help.php:90 themes/Random/help.php:72
-#: themes/Random/help.php:74 themes/Random/help.php:91
+#: themes/Fifteen/help.php:72 themes/Fifteen/help.php:74
+#: themes/Fifteen/help.php:90
 msgid "This is some code."
 msgstr ""
 
-#: themes/Luna/help.php:73 themes/Luna/help.php:85
-#: themes/Luna/help.php:90 themes/Random/help.php:73
-#: themes/Random/help.php:85 themes/Random/help.php:91
+#: themes/Fifteen/help.php:73 themes/Fifteen/help.php:85
+#: themes/Fifteen/help.php:90
 msgid "produces a code box like this:"
 msgstr ""
 
-#: themes/Luna/help.php:75 themes/Random/help.php:75
+#: themes/Fifteen/help.php:75
 msgid "You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can't be on the same line as <code>[code]</code>."
 msgstr ""
 
-#: themes/Luna/help.php:93 themes/Random/help.php:94
+#: themes/Fifteen/help.php:93
 msgid "To create a list you can use the list tag. You can create 2 types of lists using the list tag."
 msgstr ""
 
-#: themes/Luna/help.php:94 themes/Luna/help.php:97
-#: themes/Luna/help.php:99 themes/Luna/help.php:102
-#: themes/Random/help.php:95 themes/Random/help.php:98
-#: themes/Random/help.php:100 themes/Random/help.php:103
+#: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
+#: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
 msgid "Example list item 1."
 msgstr ""
 
-#: themes/Luna/help.php:94 themes/Luna/help.php:97
-#: themes/Luna/help.php:99 themes/Luna/help.php:102
-#: themes/Random/help.php:95 themes/Random/help.php:98
-#: themes/Random/help.php:100 themes/Random/help.php:103
+#: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
+#: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
 msgid "Example list item 2."
 msgstr ""
 
-#: themes/Luna/help.php:94 themes/Luna/help.php:97
-#: themes/Luna/help.php:99 themes/Luna/help.php:102
-#: themes/Random/help.php:95 themes/Random/help.php:98
-#: themes/Random/help.php:100 themes/Random/help.php:103
+#: themes/Fifteen/help.php:94 themes/Fifteen/help.php:97
+#: themes/Fifteen/help.php:99 themes/Fifteen/help.php:102
 msgid "Example list item 3."
 msgstr ""
 
-#: themes/Luna/help.php:95 themes/Random/help.php:96
+#: themes/Fifteen/help.php:95
 msgid "produces a bulleted list."
 msgstr ""
 
-#: themes/Luna/help.php:100 themes/Random/help.php:101
+#: themes/Fifteen/help.php:100
 msgid "produces a numbered list."
 msgstr ""
 
-#: themes/Luna/help.php:106 themes/Random/help.php:107
+#: themes/Fifteen/help.php:106
 msgid "If enabled, the forum can convert a series of smilies to graphical representations. The following smilies you can use are:"
 msgstr ""
 
-#: themes/Luna/help.php:122 themes/Luna/help.php:124
-#: themes/Luna/me-modals.php:62 themes/Random/help.php:121
-#: themes/Random/help.php:123 themes/Random/me-modals.php:62
+#: themes/Fifteen/help.php:122 themes/Fifteen/help.php:124
+#: themes/Fifteen/me-modals.php:62
 msgid "and"
 msgstr ""
 
-#: themes/Luna/help.php:135 themes/Random/help.php:134
+#: themes/Fifteen/help.php:135
 msgid "General use"
 msgstr ""
 
-#: themes/Luna/help.php:138 themes/Random/help.php:137
+#: themes/Fifteen/help.php:138
 msgid "Explains some of the basics on how to work with this forum software."
 msgstr ""
 
-#: themes/Luna/help.php:140 themes/Random/help.php:139
+#: themes/Fifteen/help.php:140
 msgid "Forums and topics"
 msgstr ""
 
-#: themes/Luna/help.php:146 themes/Random/help.php:145
+#: themes/Fifteen/help.php:146
 msgid "What do the labels in front of topic titles mean?"
 msgstr ""
 
-#: themes/Luna/help.php:147 themes/Random/help.php:146
+#: themes/Fifteen/help.php:147
 msgid "You'll see that some of the topics are labeled, different labels have different meanings."
 msgstr ""
 
-#: themes/Luna/help.php:151 themes/Random/help.php:150
+#: themes/Fifteen/help.php:151
 msgid "Label"
 msgstr ""
 
-#: themes/Luna/help.php:152 themes/Random/help.php:151
+#: themes/Fifteen/help.php:152
 msgid "Explanation"
 msgstr ""
 
-#: themes/Luna/help.php:158 themes/Random/help.php:157
+#: themes/Fifteen/help.php:158
 msgid "Sticky topics are usually important topics which you should read. It's worth it to take a look there."
 msgstr ""
 
-#: themes/Luna/help.php:162 themes/Random/help.php:161
+#: themes/Fifteen/help.php:162
 msgid "When a you see a closed label, it means you can't post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though."
 msgstr ""
 
-#: themes/Luna/help.php:166 themes/Random/help.php:165
+#: themes/Fifteen/help.php:166
 msgid "This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won't show any topic stats anymore."
 msgstr ""
 
-#: themes/Luna/help.php:171 themes/Random/help.php:170
+#: themes/Fifteen/help.php:171
 msgid "This little dot appears when you have made a post in this topic."
 msgstr ""
 
-#: themes/Luna/help.php:176 themes/Random/help.php:175
+#: themes/Fifteen/help.php:176
 msgid "Smilies, signatures, avatars and images are not visible?"
 msgstr ""
 
-#: themes/Luna/help.php:177 themes/Random/help.php:176
+#: themes/Fifteen/help.php:177
 msgid "You can change the behavior of the topic view in your profile settings. There you can enable smilies, signatures, avatars and images in posts, but they should be enabled by default unless your forum admin has disabled those features."
 msgstr ""
 
-#: themes/Luna/help.php:178 themes/Random/help.php:177
+#: themes/Fifteen/help.php:178
 msgid "Why can't I see any topics or forums?"
 msgstr ""
 
-#: themes/Luna/help.php:179 themes/Luna/help.php:183
-#: themes/Random/help.php:178 themes/Random/help.php:182
+#: themes/Fifteen/help.php:179 themes/Fifteen/help.php:183
 msgid "You might not have the correct permissions to do so, ask the forum administrator for more help."
 msgstr ""
 
-#: themes/Luna/help.php:182 themes/Random/help.php:181
+#: themes/Fifteen/help.php:182
 msgid "Why can't I see any profiles?"
 msgstr ""
 
-#: themes/Luna/help.php:184 themes/Random/help.php:183
+#: themes/Fifteen/help.php:184
 msgid "My profile doesn't contain as much as others?"
 msgstr ""
 
-#: themes/Luna/help.php:185 themes/Random/help.php:184
+#: themes/Fifteen/help.php:185
 msgid "You're profile will only display fields that are enabled and filled in on your profile personality page. You might want to see if you missed some fields."
 msgstr ""
 
-#: themes/Luna/help.php:188 themes/Random/help.php:187
+#: themes/Fifteen/help.php:188
 msgid "Are there more options to search?"
 msgstr ""
 
-#: themes/Luna/help.php:189 themes/Random/help.php:188
+#: themes/Fifteen/help.php:189
 msgid "When you go to the search page, you'll find yourself on a page with 1 search box. Below that search box there is a link to Advanced search, here you can find more search options! This feature may not be available on your device, if disabled by the forum admin."
 msgstr ""
 
-#: themes/Luna/help.php:190 themes/Random/help.php:189
+#: themes/Fifteen/help.php:190
 msgid "Why can't search in more then 1 forum at once?"
 msgstr ""
 
-#: themes/Luna/help.php:191 themes/Random/help.php:190
+#: themes/Fifteen/help.php:191
 msgid "You might not have the correct permissions to do so, ask the forums administrator for more help."
 msgstr ""
 
-#: themes/Luna/help.php:201 themes/Random/help.php:200
+#: themes/Fifteen/help.php:201
 msgid "Moderating"
 msgstr ""
 
-#: themes/Luna/help.php:204 themes/Random/help.php:203
+#: themes/Fifteen/help.php:204
 msgid "Admins and moderators need help sometimes, too! The basics of moderating are explained here."
 msgstr ""
 
-#: themes/Luna/help.php:212 themes/Random/help.php:211
+#: themes/Fifteen/help.php:212
 msgid "How do I moderate a forum?"
 msgstr ""
 
-#: themes/Luna/help.php:213 themes/Random/help.php:212
+#: themes/Fifteen/help.php:213
 msgid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once."
 msgstr ""
 
-#: themes/Luna/help.php:216 themes/Random/help.php:215
+#: themes/Fifteen/help.php:216
 msgid "How do I moderate a topic?"
 msgstr ""
 
-#: themes/Luna/help.php:217 themes/Random/help.php:216
+#: themes/Fifteen/help.php:217
 msgid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once."
 msgstr ""
 
-#: themes/Luna/help.php:218 themes/Random/help.php:217
+#: themes/Fifteen/help.php:218
 msgid "Next to the \"Moderate topic\" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it."
 msgstr ""
 
-#: themes/Luna/help.php:221 themes/Random/help.php:220
+#: themes/Fifteen/help.php:221
 msgid "How do I moderate an user?"
 msgstr ""
 
-#: themes/Luna/help.php:222 themes/Random/help.php:221
+#: themes/Fifteen/help.php:222
 msgid "Moderating options are available in the users profile. You can find the moderation options under \"Administration\" in the users profile menu. Those features aren't available for all moderators."
 msgstr ""
 
-#: themes/Luna/help.php:223 themes/Random/help.php:222
+#: themes/Fifteen/help.php:223
 msgid "The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions."
 msgstr ""
 
-#: themes/Luna/help.php:224 themes/Random/help.php:223
+#: themes/Fifteen/help.php:224
 msgid "Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better off with the advanced user management features in the Backstage."
 msgstr ""
 
-#: themes/Luna/post.php:14 themes/Random/post.php:14
+#: themes/Fifteen/post.php:14
 #, php-format
 msgid "New topic in \"%s\""
 msgstr ""
 
-#: themes/Luna/post.php:16 themes/Random/post.php:16
+#: themes/Fifteen/post.php:16
 #, php-format
 msgid "New comment in \"%s\""
 msgstr ""
 
-#: themes/Luna/settings.php:42
+#: themes/Fifteen/settings.php:42
 msgid "Personalize"
 msgstr ""
 
-#: themes/Luna/settings.php:45
+#: themes/Fifteen/settings.php:45
 msgid "Threads"
 msgstr ""
 
-#: themes/Luna/settings.php:46
+#: themes/Fifteen/settings.php:46
 msgid "Time"
 msgstr ""
 
-#: themes/Luna/settings.php:65 themes/Luna/me-modals.php:28
-#: themes/Random/settings.php:48 themes/Random/me-modals.php:28
+#: themes/Fifteen/settings.php:65 themes/Fifteen/me-modals.php:28
 msgid "Change password"
 msgstr ""
 
-#: themes/Luna/settings.php:88 themes/Random/settings.php:71
+#: themes/Fifteen/settings.php:88
 msgid "Leave blank to use default"
 msgstr ""
 
-#: themes/Luna/settings.php:102
+#: themes/Fifteen/settings.php:102
 msgid "Avatar"
 msgstr ""
 
-#: themes/Luna/settings.php:102 themes/Random/settings.php:85
+#: themes/Fifteen/settings.php:102
 msgid "Upload an image to represent you"
 msgstr ""
 
-#: themes/Luna/settings.php:109 themes/Random/settings.php:92
+#: themes/Fifteen/settings.php:109
 msgid "Write a small piece to attach to every post you make"
 msgstr ""
 
-#: themes/Luna/settings.php:112 themes/Random/settings.php:95
+#: themes/Fifteen/settings.php:112
 #, php-format
 msgid "Max length: %s characters / Max lines: %s"
 msgstr ""
 
-#: themes/Luna/settings.php:116 themes/Random/settings.php:99
+#: themes/Fifteen/settings.php:116
 msgid "Signature preview"
 msgstr ""
 
-#: themes/Luna/settings.php:145
+#: themes/Fifteen/settings.php:145
 msgid "Night mode"
 msgstr ""
 
-#: themes/Luna/settings.php:150
-msgid "Never use night mode"
+#: themes/Fifteen/settings.php:150
+msgid "Never use night mode."
 msgstr ""
 
-#: themes/Luna/settings.php:156
-msgid "Always use night mode"
+#: themes/Fifteen/settings.php:156
+msgid "Always use night mode."
 msgstr ""
 
-#: themes/Luna/settings.php:162
-msgid "Enable night mode automatically"
+#: themes/Fifteen/settings.php:162
+msgid "Enable night mode automatically."
 msgstr ""
 
-#: themes/Luna/settings.php:196
+#: themes/Fifteen/settings.php:196
 msgid "Backstage accent"
 msgstr ""
 
-#: themes/Luna/settings.php:194 themes/Random/settings.php:128
+#: themes/Fifteen/settings.php:194
 msgid "Language"
 msgstr ""
 
-#: themes/Luna/settings.php:228 themes/Random/settings.php:148
+#: themes/Fifteen/settings.php:228
 msgid "Email settings"
 msgstr ""
 
-#: themes/Luna/settings.php:233 themes/Random/settings.php:153
+#: themes/Fifteen/settings.php:233
 msgid "Display your email address."
 msgstr ""
 
-#: themes/Luna/settings.php:239 themes/Random/settings.php:159
+#: themes/Fifteen/settings.php:239
 msgid "Hide your email address but allow form email."
 msgstr ""
 
-#: themes/Luna/settings.php:245 themes/Random/settings.php:165
+#: themes/Fifteen/settings.php:245
 msgid "Hide your email address and disallow form email."
 msgstr ""
 
-#: themes/Luna/settings.php:257 themes/Random/settings.php:177
+#: themes/Fifteen/settings.php:257
 msgid "Include a plain text version of new posts in subscription notification emails."
 msgstr ""
 
-#: themes/Luna/settings.php:263 themes/Random/settings.php:183
+#: themes/Fifteen/settings.php:263
 msgid "Automatically subscribe to every topic you post in."
 msgstr ""
 
-#: themes/Luna/settings.php:324 themes/Random/settings.php:244
+#: themes/Fifteen/settings.php:324
 msgid "Post display"
 msgstr ""
 
-#: themes/Luna/settings.php:330 themes/Random/settings.php:250
+#: themes/Fifteen/settings.php:330
 msgid "Show smilies as graphic icons."
 msgstr ""
 
-#: themes/Luna/settings.php:337 themes/Random/settings.php:257
+#: themes/Fifteen/settings.php:337
 msgid "Show user signatures."
 msgstr ""
 
-#: themes/Luna/settings.php:344 themes/Random/settings.php:264
+#: themes/Fifteen/settings.php:344
 msgid "Show user avatars in posts."
 msgstr ""
 
-#: themes/Luna/settings.php:351 themes/Random/settings.php:271
+#: themes/Fifteen/settings.php:351
 msgid "Show images in posts."
 msgstr ""
 
-#: themes/Luna/settings.php:358 themes/Random/settings.php:278
+#: themes/Fifteen/settings.php:358
 msgid "Show images in user signatures."
 msgstr ""
 
-#: themes/Luna/settings.php:383 themes/Random/settings.php:303
+#: themes/Fifteen/settings.php:383
 msgid "Time zone"
 msgstr ""
 
-#: themes/Luna/settings.php:478 themes/Luna/settings.php:512
-#: themes/Random/settings.php:398 themes/Random/settings.php:432
+#: themes/Fifteen/settings.php:478 themes/Fifteen/settings.php:512
 msgid "Delete or ban user"
 msgstr ""
 
-#: themes/Luna/settings.php:480 themes/Luna/settings.php:515
-#: themes/Random/settings.php:400 themes/Random/settings.php:435
+#: themes/Fifteen/settings.php:480 themes/Fifteen/settings.php:515
 msgid "Ban user"
 msgstr ""
 
-#: themes/Luna/settings.php:486 themes/Random/settings.php:406
+#: themes/Fifteen/settings.php:486
 msgid "Choose user group"
 msgstr ""
 
-#: themes/Luna/settings.php:514 themes/Random/settings.php:434
+#: themes/Fifteen/settings.php:514
 msgid "Delete user"
 msgstr ""
 
-#: themes/Luna/settings.php:521 themes/Random/settings.php:441
+#: themes/Fifteen/settings.php:521
 msgid "Set moderator access"
 msgstr ""
 
-#: themes/Luna/settings.php:521 themes/Random/settings.php:441
+#: themes/Fifteen/settings.php:521
 msgid "Update forums"
 msgstr ""
 
-#: themes/Luna/settings.php:523 themes/Random/settings.php:443
+#: themes/Fifteen/settings.php:523
 msgid "Choose which forums this user should be allowed to moderate. Note: This only applies to moderators. Administrators always have full permissions in all forums."
 msgstr ""
 
-#: themes/Luna/users.php:22 themes/Random/users.php:22
+#: themes/Fifteen/users.php:22
 msgid "Sort by username"
 msgstr ""
 
-#: themes/Luna/users.php:23 themes/Random/users.php:23
+#: themes/Fifteen/users.php:23
 msgid "Sort by registration date"
 msgstr ""
 
-#: themes/Luna/users.php:24 themes/Random/users.php:24
+#: themes/Fifteen/users.php:24
 msgid "Sort by number of posts"
 msgstr ""
 
-#: themes/Luna/me-modals.php:5 themes/Random/me-modals.php:5
+#: themes/Fifteen/me-modals.php:5
 msgid "Change email address"
 msgstr ""
 
-#: themes/Luna/me-modals.php:11 themes/Random/me-modals.php:11
+#: themes/Fifteen/me-modals.php:11
 msgid "New email"
 msgstr ""
 
-#: themes/Luna/me-modals.php:13 themes/Random/me-modals.php:13
+#: themes/Fifteen/me-modals.php:13
 msgid "An email will be sent to your new address with an activation link. You must click the link in the email you receive to activate the new address."
 msgstr ""
 
-#: themes/Luna/me-modals.php:35 themes/Random/me-modals.php:35
+#: themes/Fifteen/me-modals.php:35
 msgid "Old password"
 msgstr ""
 
-#: themes/Luna/me-modals.php:37 themes/Random/me-modals.php:37
+#: themes/Fifteen/me-modals.php:37
 msgid "New password"
 msgstr ""
 
-#: themes/Luna/me-modals.php:38 themes/Random/me-modals.php:38
+#: themes/Fifteen/me-modals.php:38
 msgid "Confirm new password"
 msgstr ""
 
-#: themes/Luna/me-modals.php:54 themes/Random/me-modals.php:54
+#: themes/Fifteen/me-modals.php:54
 msgid "Change avatar"
 msgstr ""
 
-#: themes/Luna/me-modals.php:62 themes/Random/me-modals.php:62
+#: themes/Fifteen/me-modals.php:62
 msgid "An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than"
 msgstr ""
 
-#: themes/Luna/me-modals.php:66 themes/Random/me-modals.php:66
+#: themes/Fifteen/me-modals.php:66
 msgid "Upload"
 msgstr ""
 
-#: themes/Luna/inbox.php:27 themes/Random/inbox.php:27
+#: themes/Fifteen/inbox.php:27
 msgid "Mark as unread"
 msgstr ""
 
-#: themes/Luna/inbox.php:42 themes/Random/inbox.php:41
+#: themes/Fifteen/inbox.php:42
 msgid "Messages"
 msgstr ""
 
-#: themes/Luna/inbox.php:43 themes/Random/inbox.php:42
+#: themes/Fifteen/inbox.php:43
 msgid "Sender"
 msgstr ""
 
-#: themes/Luna/inbox.php:44 themes/Random/inbox.php:43
+#: themes/Fifteen/inbox.php:44
 msgid "Receiver(s)"
 msgstr ""
 
-#: themes/Luna/inbox.php:109 themes/Random/inbox.php:108
+#: themes/Fifteen/inbox.php:109
 msgid "No messages"
 msgstr ""
 
-#: themes/Luna/viewtopic.php:52 themes/Luna/index.php:102
-#:  thees/Luna/post.php:525
+#: themes/Fifteen/viewtopic.php:52 themes/Fifteen/index.php:102
+#: themes/Fifteen/post.php:525
 msgid "Post topic"
 msgstr ""
 
-#: themes/Luna/forum.php:21 themes/Sunrise/forum.php:21
+#: themes/Fifteen/forum.php:21 themes/Sunrise/forum.php:21
 msgid "Back to index"
 msgstr ""
 
-#: themes/Luna/forum.php:25 themes/Luna/index.php:63
-#: themes/Random/forum.php:29 themes/Sunrise/forum.php:25
+#: themes/Fifteen/forum.php:25 themes/Fifteen/index.php:63
+#: themes/Sunrise/forum.php:25
 msgid "Subforums"
 msgstr ""
 
-#: themes/Luna/forum.php:34 themes/Luna/index.php:79
-#: themes/Random/forum.php:46 themes/Sunrise/forum.php:34
+#: themes/Fifteen/forum.php:34 themes/Fifteen/index.php:79
+#: themes/Sunrise/forum.php:34
 msgid "Moderate forum"
 msgstr ""
 
-#: themes/Luna/me-delete.php:13 themes/Random/me-delete.php:13
+#: themes/Fifteen/me-delete.php:13
 msgid "Please confirm that you want to delete the user"
 msgstr ""
 
-#: themes/Luna/edit.php:13
+#: themes/Fifteen/edit.php:13
 #, php-format
 msgid "Edit \"%s\""
 msgstr ""
 
-#: themes/Luna/footer.php:23
+#: themes/Fifteen/footer.php:23
 msgid "More"
 msgstr ""
 
-#: themes/Luna/notifications.php:25 themes/Random/notifications.php:21
+#: themes/Fifteen/notifications.php:25
 msgid "Mark as seen"
 msgstr ""
 
-#: themes/Luna/notifications.php:27 themes/Luna/notifications.php:40
-#: themes/Random/notifications.php:36
+#: themes/Fifteen/notifications.php:27 themes/Fifteen/notifications.php:40
 msgid "No new notifications"
 msgstr ""
 
-#: themes/Luna/notifications.php:38 themes/Random/notifications.php:34
+#: themes/Fifteen/notifications.php:38
 msgid "Delete notifications"
 msgstr ""
 
-#: themes/Luna/footer.php:23 themes/Random/footer.php:23
+#: themes/Fifteen/footer.php:23
 msgid "RSS active topics feed"
 msgstr ""
 
-#: themes/Luna/footer.php:23 themes/Random/footer.php:23
+#: themes/Fifteen/footer.php:23
 msgid "Atom active topics feed"
 msgstr ""
 
-#: themes/Luna/footer.php:26 themes/Random/footer.php:26
+#: themes/Fifteen/footer.php:26
 msgid "RSS forum feed"
 msgstr ""
 
-#: themes/Luna/footer.php:26 themes/Random/footer.php:26
+#: themes/Fifteen/footer.php:26
 msgid "Atom forum feed"
 msgstr ""
 
-#: themes/Luna/footer.php:29 themes/Random/footer.php:29
+#: themes/Fifteen/footer.php:29
 msgid "RSS topic feed"
 msgstr ""
 
-#: themes/Luna/footer.php:29 themes/Random/footer.php:29
+#: themes/Fifteen/footer.php:29
 msgid "Atom topic feed"
 msgstr ""
 
-#: themes/Luna/footer.php:53 themes/Random/index.php:78
+#: themes/Fifteen/footer.php:53
 msgid "User"
 msgid_plural "Users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: themes/Luna/footer.php:63 themes/Random/forum.php:40
-#: themes/Random/index.php:88
+#: themes/Fifteen/footer.php:63
 msgid "Topic"
 msgid_plural "Topics"
 msgstr[0] ""
 msgstr[1] ""
 
-#: themes/Luna/footer.php:73 themes/Luna/objects/section-info.php:10
-#: themes/Random/index.php:98 themes/Random/objects/section-info.php:8
+#: themes/Fifteen/footer.php:73 themes/Fifteen/objects/section-info.php:10
 msgid "Post"
 msgid_plural "Posts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: themes/Luna/footer.php:83 themes/Random/index.php:108
+#: themes/Fifteen/footer.php:83
 msgid "Newest user"
 msgstr ""
 
-#: themes/Luna/footer.php:97 themes/Luna/footer.php:105
-#: themes/Random/index.php:121
-msgid "User online"
+#: themes/Fifteen/footer.php:97 themes/Fifteen/footer.php:105
 msgid_plural "Users online"
 msgstr[0] ""
 msgstr[1] ""
 
-#: themes/Luna/footer.php:116 themes/Random/index.php:138
+#: themes/Fifteen/footer.php:116
 msgid "Guest online"
 msgid_plural "Guests online"
 msgstr[0] ""
 msgstr[1] ""
 
-#: themes/Luna/footer.php:137 themes/Random/footer.php:59
+#: themes/Fifteen/footer.php:137
 #, php-format
 msgid "Powered by %s"
 msgstr ""
 
-#: themes/Luna/footer.php:146 themes/Random/footer.php:65
+#: themes/Fifteen/footer.php:146
 msgid "We use cookies to give you the best experience on this board."
 msgstr ""
 
-#: themes/Luna/footer.php:149 themes/Luna/index.php:27
-#: themes/Random/footer.php:68 themes/Random/index.php:27
+#: themes/Fifteen/footer.php:149 themes/Fifteen/index.php:27
 #: themes/Sunrise/index.php:27
 msgid "Don't show again"
 msgstr ""
 
-#: themes/Luna/index.php:12 themes/Random/index.php:12
-#: themes/Sunrise/index.php:12
+#: themes/Fifteen/index.php:12 themes/Sunrise/index.php:12
 #, php-format
 msgid "Hi there, %s"
 msgstr ""
 
-#: themes/Luna/index.php:19 themes/Luna/index.php:33
-#: themes/Random/index.php:19 themes/Random/index.php:32
+#: themes/Fifteen/index.php:19 themes/Fifteen/index.php:33
 #: themes/Sunrise/index.php:19 themes/Sunrise/index.php:32
 #, php-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: themes/Luna/index.php:24 themes/Random/index.php:24
-#: themes/Sunrise/index.php:24
+#: themes/Fifteen/index.php:24 themes/Sunrise/index.php:24
 msgid "Extend your details"
 msgstr ""
 
-#: themes/Luna/index.php:25 themes/Random/index.php:25
-#: themes/Sunrise/index.php:25
+#: themes/Fifteen/index.php:25 themes/Sunrise/index.php:25
 msgid "Get help"
 msgstr ""
 
-#: themes/Luna/index.php:26 themes/Random/index.php:26
-#: themes/Sunrise/index.php:26
+#: themes/Fifteen/index.php:26 themes/Sunrise/index.php:26
 msgid "Search the board"
 msgstr ""
 
-#: themes/Luna/mail.php:11 themes/Random/mail.php:8
+#: themes/Fifteen/mail.php:11
 msgid "Send email to"
 msgstr ""
 
-#: themes/Luna/objects/user.php:16
+#: themes/Fifteen/objects/user.php:16
 msgid "posts since"
 msgstr ""
 
-#: themes/Luna/objects/comment.php:8
+#: themes/Fifteen/objects/comment.php:8
 #, php-format
 msgid "By %s"
 msgstr ""
 
-#: themes/Luna/objects/comment.php:8
+#: themes/Fifteen/objects/comment.php:8
 #, php-format
 msgid "on"
 msgstr ""
 
-#: themes/Luna/objects/section-info.php:16
-#: themes/Random/objects/section-info.php:13
+#: themes/Fifteen/objects/section-info.php:16
 msgid "Recent activity"
-msgstr ""
-
-#: themes/Random/inbox-delete-post.php:20
-msgid "The topic will be deleted from your inbox, but it will stays in the others receivers"
-msgstr ""
-
-#: themes/Random/inbox-new.php:18
-msgid "Post errors info"
-msgstr ""
-
-#: themes/Random/header.php:94
-msgid "Maintenance mode enabled"
-msgstr ""
-
-#: themes/Random/header.php:98
-msgid "Show new posts"
-msgstr ""
-
-#: themes/Random/header.php:98
-msgid "New"
-msgstr ""
-
-#: themes/Random/header.php:104
-msgid "Show active topics"
-msgstr ""
-
-#: themes/Random/header.php:104
-msgid "Active"
-msgstr ""
-
-#: themes/Random/header.php:105
-msgid "Show unanswered topics"
-msgstr ""
-
-#: themes/Random/header.php:105
-msgid "Unanswered"
-msgstr ""
-
-#: themes/Random/inbox.php:35
-msgid "Inbox messages"
-msgstr ""
-
-#: themes/Random/index.php:68
-msgid "Board statistics"
 msgstr ""
 
 #: inbox.php:43

@@ -104,14 +104,35 @@ require 'header.php';
 					</div>
 					<div class="col-sm-6">
 						<h4>Packages</h4>
-						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4746.<br />
+						<p><b>Core</b> has been updated from version 1.0.4275 to 1.1.4768.<br />
+						<b>Bootstrap</b> has been updated from version 3.3.4 to 3.3.5.<br />
 						<b>Lunicons</b> version 0.0.1 has been removed.</p>
 					</div>
 					<div class="col-sm-6">
 						<h4>Bug fixes</h4>
-						<p>13 bugs have been fixed.</p>
+						<p>16 bugs have been fixed.</p>
 						<h4>Security fixes</h4>
 						<p>1 security issue has been fixed.</p>
+					</div>
+				</div>
+				<h4>Luna 1.1.1 &middot Build 4768</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 1</span> The forum moderation interface has been improved<br />
+							<span class="label label-primary">Update 1</span> Luna now supports SQLite 3<br />
+							<span class="label label-primary">Update 1</span> Post counts now decreases when posts are removed<br />
+							<span class="label label-primary">Update 1</span> You can now disable night mode system wide<br />
+							<span class="label label-primary">Update 1</span> The language files have been cleaned up
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 1</span> Bootstrap has been update to version 3.3.5<br />
+							<span class="label label-primary">Update 1</span> The login modal is now centered on small screens<br />
+							<span class="label label-primary">Update 1</span> You can now accent colors mode system wide<br />
+							<span class="label label-primary">Update 1</span> 3 additional bug fixes
+						</p>
 					</div>
 				</div>
 			</div>

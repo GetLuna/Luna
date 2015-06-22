@@ -104,6 +104,8 @@ if (isset($_GET['tid'])) {
 
 			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+			
+			decrease_post_counts($posts);
 
 			// Delete the posts
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
@@ -662,8 +664,10 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 			$post_ids .= ($post_ids != '') ? ','.$row[0] : $row[0];
 
 		// We have to check that we actually have a list of post IDs since we could be deleting just a redirect topic
-		if ($post_ids != '')
+		if ($post_ids != '') {
+			decrease_post_counts($post_ids);
 			strip_search_index($post_ids);
+		}
 
 		// Delete posts
 		$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
@@ -802,10 +806,10 @@ elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['
 			<h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
 		</div>
 		<div class="jumbotron jumbotron-moderate-forum">
-			<h2><?php printf(__('Moderating "%s"', 'luna'), luna_htmlspecialchars($cur_forum['forum_name'])) ?></h2><span class="pull-right"><?php echo $paging_links ?></span>
+			<h2 class="inline-block"><?php printf(__('Moderating "%s"', 'luna'), luna_htmlspecialchars($cur_forum['forum_name'])) ?></h2><span class="pull-right moderate-pagination"><?php echo $paging_links ?></span>
 		</div>
-		<div class="panel-body">
-			<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
+			<div class="panel-body">
 <?php
 
 
@@ -823,6 +827,9 @@ if ($db->num_rows($result)) {
 
 	$button_status = '';
 	$topic_count = 0;
+?>
+				<div class="list-group list-group-topic">
+<?php
 	while ($cur_topic = $db->fetch_assoc($result)) {
 
 		++$topic_count;
@@ -883,30 +890,40 @@ if ($db->num_rows($result)) {
 		}
 
 ?>
-			<div class="topic-entry-list">
-				<div class="topic-moderate-entry <?php echo $item_status ?>">
-					<input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" /> <span class="hidden-xs hidden-sm hidden-md hidden-lg"><?php echo forum_number_format($topic_count + $start_from) ?></span><?php echo $subject ?> &middot; <span class="text-muted"><?php echo $last_post ?></span><span class="pull-right label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span>
-				</div>
-			</div>
+					<div class="list-group-item <?php echo $item_status ?><?php if ($cur_topic['soft'] == true) echo ' soft'; ?>">
+						<input type="checkbox" name="topics[<?php echo $cur_topic['id'] ?>]" value="1" />
+						<span class="hidden-xs hidden-sm hidden-md hidden-lg">
+							<?php echo forum_number_format($topic_count + $start_from) ?>
+						</span>
+						<?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject ?></a> <?php echo $subject_new_posts ?> <?php echo $by ?> <?php echo $subject_multipage ?>
+						<?php if ($cur_topic['moved_to'] == 0) { ?>
+							<span class="text-muted"> &middot; 
+								<span class="text-muted"><?php echo $last_post ?></span> &middot; 
+								<?php if ($cur_topic['moved_to'] == 0) { ?><span class="label label-default"><?php echo forum_number_format($cur_topic['num_replies']) ?></span><?php } ?>
+							</span>
+						<?php } ?>
+					</div>
 <?php
 
 	}
+	?></div><?php
 } else {
 	$colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
 	$button_status = ' disabled="disabled"';
 	echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.__('Forum is empty.', 'luna').'</td></tr>'."\n";
 }
 
-?>	
-				<div class="pull-right btn-margin-top">
+?>
+				</div>
+				<div class="panel-footer">
 					<div class="btn-group">
-						<input type="submit" class="btn btn-primary" name="move_topics" value="<?php _e('Move', 'luna') ?>"<?php echo $button_status ?> />
-						<input type="submit" class="btn btn-primary" name="delete_topics" value="<?php _e('Delete', 'luna') ?>"<?php echo $button_status ?> />
-						<input type="submit" class="btn btn-primary" name="merge_topics" value="<?php _e('Merge', 'luna') ?>"<?php echo $button_status ?> />
+						<button type="submit" class="btn btn-primary" name="move_topics"<?php echo $button_status ?>><span class="fa fa-fw fa-reply"></span> <?php _e('Move', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="delete_topics"<?php echo $button_status ?>><span class="fa fa-fw fa-trash-o"></span> <?php _e('Delete', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="merge_topics"<?php echo $button_status ?>><span class="fa fa-fw fa-compress"></span> <?php _e('Merge', 'luna') ?></button>
 					</div>
 					<div class="btn-group">
-						<input type="submit" class="btn btn-primary" name="open" value="<?php _e('Open', 'luna') ?>"<?php echo $button_status ?> />
-						<input type="submit" class="btn btn-primary" name="close" value="<?php _e('Close', 'luna') ?>"<?php echo $button_status ?> />
+						<button type="submit" class="btn btn-primary" name="open"<?php echo $button_status ?>><span class="fa fa-fw fa-check"></span> <?php _e('Open', 'luna') ?></button>
+						<button type="submit" class="btn btn-primary" name="close"<?php echo $button_status ?>><span class="fa fa-fw fa-times"></span> <?php _e('Close', 'luna') ?></button>
 					</div>
 				</div>
 			</form>

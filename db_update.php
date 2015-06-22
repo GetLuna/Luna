@@ -184,7 +184,7 @@ if (empty($stage)) {
 	<head>
 		<meta charset="utf-8">
 		<title><?php _e('Maintenance', 'luna') ?></title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
@@ -205,7 +205,7 @@ if (empty($stage)) {
 		<title>Luna &middot; <?php _e('Update', 'luna') ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="robots" content="noindex, nofollow">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body onload="document.getElementById('install').start.disabled=false;">
@@ -864,6 +864,14 @@ switch ($stage) {
 		// Since 1.1.4704: Add o_cookie_bar_url feature
 		if (!array_key_exists('o_cookie_bar_url', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar_url\', \'http://getluna.org/docs/cookies.php\')') or error('Unable to insert config value \'o_cookie_bar_url\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.1.4765: Add o_allow_accent_color feature
+		if (!array_key_exists('o_allow_accent_color', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_allow_accent_color\', \'1\')') or error('Unable to insert config value \'o_allow_accent_color\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.1.4765: Add o_allow_night_mode feature
+		if (!array_key_exists('o_allow_night_mode', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_allow_night_mode\', \'1\')') or error('Unable to insert config value \'o_allow_night_mode\'', __FILE__, __LINE__, $db->error());
 
 		break;
 
