@@ -309,7 +309,7 @@ require 'header.php';
 						</p>
 					</div>
 				</div>
-				<h4>Luna 1.0.7 &middot Build 4348</h4>
+				<h4>Luna 1.0.7 &middot Build 4352</h4>
 				<div class="row">
 					<div class="col-sm-6">
 						<p>
