@@ -8,14 +8,14 @@
 class Version {
 	// See http://getluna.org/docs/version.php for more info
 	const FORUM_VERSION = '1.1.1-dev';
-	const FORUM_CORE_VERSION = '1.1.4755';
+	const FORUM_CORE_VERSION = '1.1.4765';
 	const LUNA_CORE_REVISION = 101;
 
 	// The Luna Core code name
 	const FORUM_CODE_NAME = 'bittersweetshimmer';
 
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = '88.10';
+	const FORUM_DB_VERSION = '88.15';
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const FORUM_PARSER_VERSION = '11.1.3';

@@ -865,6 +865,14 @@ switch ($stage) {
 		if (!array_key_exists('o_cookie_bar_url', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar_url\', \'http://getluna.org/docs/cookies.php\')') or error('Unable to insert config value \'o_cookie_bar_url\'', __FILE__, __LINE__, $db->error());
 
+		// Since 1.1.4765: Add o_allow_accent_color feature
+		if (!array_key_exists('o_allow_accent_color', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_allow_accent_color\', \'1\')') or error('Unable to insert config value \'o_allow_accent_color\'', __FILE__, __LINE__, $db->error());
+
+		// Since 1.1.4765: Add o_allow_night_mode feature
+		if (!array_key_exists('o_allow_night_mode', $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_allow_night_mode\', \'1\')') or error('Unable to insert config value \'o_allow_night_mode\'', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts

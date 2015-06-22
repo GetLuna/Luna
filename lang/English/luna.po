@@ -2146,6 +2146,18 @@ msgstr ""
 msgid "Display settings"
 msgstr ""
 
+#: backstage/appearance.php:89
+msgid "Theme settings"
+msgstr ""
+
+#: backstage/appearance.php:94
+msgid "Allow users to set their own accent color."
+msgstr ""
+
+#: backstage/appearance.php:100
+msgid "Allow users to change the night mode settings."
+msgstr ""
+
 #: backstage/appearance.php:87 themes/Luna/settings.php:128
 #: themes/Luna/settings.php:169 themes/Random/settings.php:111
 msgid "Color"

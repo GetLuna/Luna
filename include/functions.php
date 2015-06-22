@@ -2085,7 +2085,7 @@ function load_css() {
 		
 		// Also load a color scheme
 		if (file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css')) {
-			if ($luna_user['is_guest'])
+			if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
 				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 			else
 				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
@@ -2097,7 +2097,7 @@ function load_css() {
 
 	// And load its color scheme
 	if (file_exists('themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css')) {
-		if ($luna_user['is_guest'])
+		if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
 			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 		else
 			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css" />'."\n";
@@ -2136,11 +2136,11 @@ function load_meta() {
 // Check wheter or not to enable night mode
 //
 function check_night_mode() {
-	global $luna_user, $body_classes;
+	global $luna_user, $body_classes, $luna_config;
 
 	$hour = date('G', time());
 	
-	if ($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19))))
+	if (($luna_user['adapt_time'] == 1 || (($luna_user['adapt_time'] == 2) && (($hour <= 7) || ($hour >= 19)))) && $luna_config['o_allow_night_mode'] == '1')
 		$body_classes .= ' night';
 	else
 		$body_classes .= ' normal';
