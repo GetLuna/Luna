@@ -194,6 +194,12 @@ function AddTag(type, tag) {
 
 	document.getElementById('post_field').focus();
 }
+window.onbeforeunload = function() {
+    if ( document.getElementById('post_field').value ) {
+	// Don't translate this; we can't change the confirm text anyway.
+	return 'Unsaved changes!';
+    }
+}
 </script>
 <?php
 }
