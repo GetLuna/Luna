@@ -17,9 +17,13 @@ $body_classes = check_night_mode();
 		.emoji {
 			font-size: <?php echo $luna_config['o_emoji_size'] ?>px;
 		}
+		body.js .hide-if-js, body.no-js .hide-if-no-js {
+			display: none !important;
+		}
 		</style>
 	</head>
-	<body>
+	<body class="no-js">
+		<script type="text/javascript">document.body.className = document.body.className.replace( 'no-js', 'js' );</script>
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
 		<div class="container container-main" id="main">
 			<div id="header">

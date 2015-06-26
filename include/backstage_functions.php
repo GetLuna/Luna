@@ -115,10 +115,13 @@ function load_admin_nav($section, $page) {
 				</li>
 <?php } ?>
 			</ul>
+<?php
+$logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address()));
+?>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown usermenu">
-					<a href="#" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
-						<span class="hidden-sm"><?php print(luna_htmlspecialchars($luna_user['username'])) ?> </span><?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?> <span class="fa fa-fw fa-angle-down"></span>
+					<a href="../profile.php?id=<?php echo $luna_user['id'] ?>" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
+						<span class="hidden-sm"><?php print(luna_htmlspecialchars($luna_user['username'])) ?> </span><?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?> <span class="fa fa-fw fa-angle-down hide-if-no-js"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><?php _e('Profile', 'luna') ?></a></li>
@@ -127,8 +130,13 @@ function load_admin_nav($section, $page) {
 						<li><a href="../help.php"><?php _e('Help', 'luna') ?></a></li>
 						<li><a href="http://getluna.org"><?php _e('Support', 'luna') ?></a></li>
 						<li class="divider"></li>
-						<li><a href="../login.php?action=out&amp;id=<?php echo ''.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())) ?>"><?php _e('Logout', 'luna') ?></a></li>
+						<li><a href="<?php echo $logout_url; ?>"><?php _e('Logout', 'luna') ?></a></li>
 					</ul>
+				</li>
+				<li id="navlogout" class="hide-if-js">
+					<a href="<?php echo $logout_url; ?>" title="<?php echo $item['logout']['title']; ?>">
+						<span class="fa fa-fw fa-sign-out"></span>
+					</a>
 				</li>
 			</ul>
 		</div>

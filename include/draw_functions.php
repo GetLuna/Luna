@@ -79,7 +79,10 @@ function draw_editor($height) {
 <div class="panel panel-default panel-editor">
 	<fieldset class="postfield">
 		<input type="hidden" name="form_sent" value="1" />
-		<div class="btn-toolbar textarea-toolbar textarea-top">
+		<div class="alert alert-warning hide-if-js" role="alert">
+			<p><?php _e('The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though.', 'luna' ); ?></p>
+		</div>
+		<div class="btn-toolbar textarea-toolbar textarea-top hide-if-no-js">
 			<?php echo $pin_btn ?>
 			<?php echo $silence_btn ?>
 			<div class="btn-group">
