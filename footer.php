@@ -44,5 +44,5 @@ if (!defined('FORUM'))
 			ajaxurl = '<?php echo get_base_url().'/ajax.php'; ?>';
 			l10n = {
 				no_notification: '<?php _e('No new notifications', 'luna'); ?>'
-			}
+			};
 		</script>

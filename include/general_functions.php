@@ -46,7 +46,7 @@ function get_user_nav_menu_items() {
 		$num_notifications = intval($db->result($result));
 
 		$items['notifications'] = array(
-			'url'    => $luna_config['o_notification_flyout'] ? '#' : 'notifications.php',
+			'url'    => 'notifications.php',
 			'title'  => $num_notifications > 0 ? __('Notifications', 'luna') : __('No new notifications', 'luna'),
 			'num'    => $num_notifications,
 			'flyout' => 1 == $luna_config['o_notification_flyout']

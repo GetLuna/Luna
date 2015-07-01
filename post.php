@@ -456,7 +456,7 @@ Post URL: <post_url>
 // If a topic ID was specified in the url (it's a reply)
 if ($tid) {
 	$action = __('Post a reply', 'luna');
-	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'" onsubmit="this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
+	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
 
 	// If a quote ID was specified in the url
 	if (isset($_GET['qid'])) {
@@ -523,7 +523,7 @@ if ($tid) {
 // If a forum ID was specified in the url (new topic)
 elseif ($fid) {
 	$action = __('Post topic', 'luna');
-	$form = '<form id="post" method="post" action="post.php?action=post&amp;fid='.$fid.'" onsubmit="return process_form(this)">';
+	$form = '<form id="post" method="post" action="post.php?action=post&amp;fid='.$fid.'" onsubmit="window.onbeforeunload=null;return process_form(this)">';
 } else
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 

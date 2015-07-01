@@ -34,8 +34,14 @@ else
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="ROBOTS" content="NOINDEX, FOLLOW" />
 		<title><?php _e('Backstage', 'luna') ?></title>
+		<style>
+		body.js .hide-if-js, body.no-js .hide-if-no-js {
+			display: none !important;
+		}
+		</style>
 	</head>
-	<body>
+	<body class="no-js">
+		<script type="text/javascript">document.body.className = document.body.className.replace( 'no-js', 'js' );</script>
 <?php
 require_once FORUM_ROOT.'include/backstage_functions.php';
 

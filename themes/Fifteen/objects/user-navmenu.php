@@ -35,7 +35,7 @@ if (!empty($items['guest'])) {
 	$item = $items['user'];
 ?>
 								<li id="navprofile" class="dropdown">
-									<a href="#" class="dropdown-toggle avatar-item" data-toggle="dropdown"><?php echo luna_htmlspecialchars($luna_user['username']); ?> <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?> <span class="fa fa-fw fa-angle-down"></span></a>
+									<a href="<?php echo $item['profile']['url']; ?>" class="dropdown-toggle avatar-item" data-toggle="dropdown"><?php echo luna_htmlspecialchars($luna_user['username']); ?> <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?> <span class="fa fa-fw fa-angle-down hide-if-no-js"></span></a>
 									<ul class="dropdown-menu">
 										<li><a href="<?php echo $item['profile']['url']; ?>"><?php echo $item['profile']['title']; ?></a></li>
 										<li><a href="<?php echo $item['settings']['url']; ?>"><?php echo $item['settings']['title']; ?></a></li>
@@ -44,6 +44,11 @@ if (!empty($items['guest'])) {
 										<li class="divider"></li>
 										<li><a href="<?php echo $item['logout']['url']; ?>"><?php echo $item['logout']['title']; ?></a></li>
 									</ul>
+								</li>
+								<li id="navlogout" class="hide-if-js">
+									<a href="<?php echo $item['logout']['url']; ?>" title="<?php echo $item['logout']['title']; ?>">
+										<span class="fa fa-fw fa-sign-out"></span>
+									</a>
 								</li>
 <?php } ?>
 							</ul>

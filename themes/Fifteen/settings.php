@@ -4,6 +4,13 @@
 if (!defined('FORUM'))
 	exit;
 
+$sections = array( 'profile', 'personalize', 'email', 'contact', 'threads', 'time', 'admin' );
+if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
+	$section = luna_htmlspecialchars( $_GET['section'] );
+} else {
+	$section = 'profile';
+}
+
 ?>
 <div class="col-sm-3 profile-nav">
 	<div class="user-card-profile">
@@ -37,19 +44,19 @@ if (!defined('FORUM'))
 		</div>
 	</nav>
 	<div role="tabpanel">
-		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="fa fa-fw fa-user"></span><span class="hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
-			<li role="presentation"><a href="#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> <?php _e('Personalize', 'luna') ?></span></a></li>
-			<li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab"><span class="fa fa-fw fa-envelope-o"></span><span class="hidden-xs"> <?php _e('Message', 'luna') ?></span></a></li>
-			<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><span class="fa fa-fw fa-share-alt"></span><span class="hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
-			<li role="presentation"><a href="#threads" aria-controls="threads" role="tab" data-toggle="tab"><span class="fa fa-fw fa-list"></span><span class="hidden-xs"> <?php _e('Threads', 'luna') ?></span></a></li>
-			<li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab"><span class="fa fa-fw fa-clock-o"></span><span class="hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
+		<ul id="profilenav" class="nav nav-tabs" role="tablist">
+			<li role="presentation"<?php if ( 'profile' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=profile#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="fa fa-fw fa-user"></span><span class="hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>
+			<li role="presentation"<?php if ( 'personalize' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=personalize#personalize" aria-controls="personalize" role="tab" data-toggle="tab"><span class="fa fa-fw fa-paint-brush"></span><span class="hidden-xs"> <?php _e('Personalize', 'luna') ?></span></a></li>
+			<li role="presentation"<?php if ( 'email' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=email#email" aria-controls="email" role="tab" data-toggle="tab"><span class="fa fa-fw fa-envelope-o"></span><span class="hidden-xs"> <?php _e('Message', 'luna') ?></span></a></li>
+			<li role="presentation"<?php if ( 'contact' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=contact#contact" aria-controls="contact" role="tab" data-toggle="tab"><span class="fa fa-fw fa-share-alt"></span><span class="hidden-xs"> <?php _e('Contact', 'luna') ?></span></a></li>
+			<li role="presentation"<?php if ( 'threads' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=threads#threads" aria-controls="threads" role="tab" data-toggle="tab"><span class="fa fa-fw fa-list"></span><span class="hidden-xs"> <?php _e('Threads', 'luna') ?></span></a></li>
+			<li role="presentation"<?php if ( 'time' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=time#time" aria-controls="time" role="tab" data-toggle="tab"><span class="fa fa-fw fa-clock-o"></span><span class="hidden-xs"> <?php _e('Time', 'luna') ?></span></a></li>
 			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-				<li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab"><span class="fa fa-fw fa-dashboard"></span><span class="hidden-xs"> <?php _e('Admin', 'luna') ?></span></a></li>
+				<li role="presentation"<?php if ( 'admin' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=admin#admin" aria-controls="admin" role="tab" data-toggle="tab"><span class="fa fa-fw fa-dashboard"></span><span class="hidden-xs"> <?php _e('Admin', 'luna') ?></span></a></li>
 			<?php endif; ?>
 		</ul>
 		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane active" id="profile">
+			<div role="tabpanel" class="tab-pane<?php if ( 'profile' === $section ) { ?> active<?php } ?>" id="profile">
 				<fieldset class="form-horizontal form-setting">
 					<input type="hidden" name="form_sent" value="1" />
 					<div class="form-group">
@@ -122,7 +129,7 @@ if (!defined('FORUM'))
 					</div>
 				</fieldset>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="personalize">
+			<div role="tabpanel" class="tab-pane<?php if ( 'personalize' === $section ) { ?> active<?php } ?>" id="personalize">
 				<fieldset class="form-horizontal form-setting">
 <?php if ($luna_config['o_allow_accent_color'] == '1') { ?>
 					<div class="form-group">
@@ -213,7 +220,7 @@ if (count($languages) > 1) {
 <?php } ?>
 				</fieldset>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="email">
+			<div role="tabpanel" class="tab-pane<?php if ( 'email' === $section ) { ?> active<?php } ?>" id="email">
 				<fieldset class="form-horizontal form-setting">
 					<?php if ($luna_config['o_pms_enabled'] == 1) { ?>
 					<div class="form-group">
@@ -272,7 +279,7 @@ if (count($languages) > 1) {
 					</div>
 				</fieldset>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="contact">
+			<div role="tabpanel" class="tab-pane<?php if ( 'contact' === $section ) { ?> active<?php } ?>" id="contact">
 				<fieldset class="form-horizontal form-setting">
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>
@@ -322,7 +329,7 @@ if (count($languages) > 1) {
 					</div>
 				</fieldset>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="threads">
+			<div role="tabpanel" class="tab-pane<?php if ( 'threads' === $section ) { ?> active<?php } ?>" id="threads">
 				<fieldset class="form-horizontal form-setting">
 					<?php if ($luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
 						<div class="form-group">
@@ -382,7 +389,7 @@ if (count($languages) > 1) {
 					</div>
 				</fieldset>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="time">
+			<div role="tabpanel" class="tab-pane<?php if ( 'time' === $section ) { ?> active<?php } ?>" id="time">
 				<fieldset class="form-horizontal form-setting">
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Time zone', 'luna') ?></label>
@@ -476,7 +483,7 @@ if (count($languages) > 1) {
 				</fieldset>
 			</div>
 			<?php if ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1')): ?>
-			<div role="tabpanel" class="tab-pane" id="admin">
+			<div role="tabpanel" class="tab-pane<?php if ( 'admin' === $section ) { ?> active<?php } ?>" id="admin">
 				<fieldset class="form-horizontal form-setting">
 					<?php if ($luna_user['g_moderator'] == '1') { ?>
 						<div class="form-group">
