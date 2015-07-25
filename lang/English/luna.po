@@ -4178,7 +4178,7 @@ msgid "produces a code box like this:"
 msgstr ""
 
 #: themes/Fifteen/help.php:75
-msgid "You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can't be on the same line as <code>[code]</code>."
+msgid "You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>."
 msgstr ""
 
 #: themes/Fifteen/help.php:93

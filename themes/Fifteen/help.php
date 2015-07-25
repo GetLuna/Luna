@@ -72,7 +72,7 @@ if (!defined('FORUM'))
 				<p><code>[code]<?php _e('This is some code.', 'luna') ?>[/code]</code></p>
 				<p><?php _e('produces a code box like this:', 'luna') ?></p>
 				<pre><code><?php _e('This is some code.', 'luna') ?></code></pre>
-				<p><?php _e('You can also use syntax highlighting for markup, CSS, PHP and JavaScript. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>.', 'luna') ?></p>
+				<p><?php _e('You can also use syntax highlighting for C, C#, C++, HTML, Java, JavaScript, Markdown, Pascal, PHP, Python, SQL, XHTML and XML. The language has to be noted on the first line inside the codetag and can\'t be on the same line as <code>[code]</code>.', 'luna') ?></p>
 				<pre>
 [code]
 [[php]]	
