@@ -2135,7 +2135,7 @@ function load_meta() {
 //
 // Check wheter or not to enable night mode
 //
-function check_night_mode() {
+function check_style_mode() {
 	global $luna_user, $body_classes, $luna_config;
 
 	$hour = date('G', time());
@@ -2144,6 +2144,9 @@ function check_night_mode() {
 		$body_classes .= ' night';
 	else
 		$body_classes .= ' normal';
+	
+	if ($luna_user['enforce_accent'] == 1)
+		$body_classes .= ' enforce';
 
 	return $body_classes;
 }

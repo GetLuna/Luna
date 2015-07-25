@@ -7,10 +7,14 @@
 
 html {
     overflow-y: scroll;
+	background-color: #e8e8e8;
+}
+
+body {
+	background-color: transparent;
 }
 
 body, html {
-	background-color: #e8e8e8;
 	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	min-height: 100%;
 }
@@ -94,6 +98,10 @@ h1, h2, h3, h4, h5, h6 {
 	background: #fff;
 	box-shadow: 0 0 30px #aaa;
 	padding: 0;
+}
+
+.enforce .container-main {
+	box-shadow: 0 0 30px rgba(0,0,0,.3);
 }
 
 @media screen and (min-width: 1500px) {
