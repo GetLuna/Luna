@@ -1,4 +1,4 @@
-/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+php */
+/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+c+csharp+cpp+java+markdown+pascal+php+python+sql */
 /**
  * okaidia theme for JavaScript, CSS and HTML
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
@@ -93,7 +93,8 @@ pre[class*="language-"] {
 }
 
 .token.atrule,
-.token.attr-value {
+.token.attr-value,
+.token.function {
 	color: #e6db74;
 }
 
@@ -106,10 +107,15 @@ pre[class*="language-"] {
 	color: #fd971f;
 }
 
-.token.important {
+.token.important,
+.token.bold {
 	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
 }
 
 .token.entity {
 	cursor: help;
 }
+
