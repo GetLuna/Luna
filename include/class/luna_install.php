@@ -1300,6 +1300,11 @@ class Installer {
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
 					'default'		=> '2'
+				),
+				'enforce_accent'	=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '0'
 				)
 			),
 			'PRIMARY KEY'	=> array('id'),

@@ -873,6 +873,9 @@ switch ($stage) {
 		if (!array_key_exists('o_allow_night_mode', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_allow_night_mode\', \'1\')') or error('Unable to insert config value \'o_allow_night_mode\'', __FILE__, __LINE__, $db->error());
 
+		// Since 1.2.4777: Add the enforce_accent column to the users table
+		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
+
 		break;
 
 	// Preparse posts
