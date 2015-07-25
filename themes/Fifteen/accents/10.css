@@ -1,5 +1,5 @@
 /* Accent 10 - White */
-.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-default .navbar-toggle .icon-bar, .navbar-inverse .navbar-toggle .icon-bar, .btn-primary, .modal-backdrop {
+.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus, .btn-primary, .modal-backdrop {
 	background-color: #eee;
 }
 
@@ -46,7 +46,7 @@ a:hover, a:active {
 	color: #fff;
 }
 
-.navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+.navbar-default .navbar-toggle .icon-bar, .navbar-inverse .navbar-toggle .icon-bar {
 	background-color: #555;
 }
 
