@@ -153,7 +153,7 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION &&
 		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION &&
 		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '>=')) {
-	draw_wall_error(__('Your forum is already as up-to-date as this script can make it.', 'luna'), '<a class="btn btn-default" href="index.php">Continue</a>', __('Let\'s get started', 'luna'));
+	draw_wall_error(__('Your forum is already as up-to-date as this script can make it.', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">Continue</a>', __('Let\'s get started', 'luna'));
 	exit;
 }
 
@@ -996,7 +996,6 @@ switch ($stage) {
 
 		break;
 
-
 	// Show results page
 	case 'finish':
 		
@@ -1047,4 +1046,3 @@ $db->close();
 
 if ($query_str != '')
 	exit('<script type="text/javascript">window.location="db_update.php'.$query_str.'"</script><noscript><meta http-equiv="refresh" content="0;url=db_update.php'.$query_str.'" /></noscript>');
-
