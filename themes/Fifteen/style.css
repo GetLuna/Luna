@@ -372,48 +372,6 @@ h1, h2, h3, h4, h5, h6 {
 	padding-right: 15px;
 }
 
-.forum-entry .col-sm-3 {
-	text-align: right;
-}
-
-@media all and (max-width: 767px) {
-	.forum-entry .col-sm-4 {
-		text-align: center;
-	}
-}
-
-.forum-entry .col-sm-4 h4 {
-	margin-top: 7px;
-	font-size: 25px;
-}
-
-.forum-entry .col-sm-4 .help-block {
-	font-weight: 400;
-	letter-spacing: 0.5px;
-	font-size: 85%;
-	margin-bottom: 0;
-}
-
-.forum-entry .list-group {
-	margin-bottom: 0;
-}
-
-.forum-entry .list-group-item {
-	margin-top: 1px;
-	padding: 6px 10px;
-}
-
-@media all and (max-width: 400px) {
-	.forum-entry .list-group-item .pull-right {
-		display: none;
-	}
-}
-
-.hr-forum-entry hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
 /* Sidebar */
 .col-sm-3 hr {
 	margin-top: 10px;
