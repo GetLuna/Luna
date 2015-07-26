@@ -8,7 +8,7 @@
 class Version {
 	// See http://getluna.org/docs/version.php for more info
 	const FORUM_VERSION = '1.2-alpha';
-	const FORUM_CORE_VERSION = '1.2.4777';
+	const FORUM_CORE_VERSION = '1.2.4788';
 	const LUNA_CORE_REVISION = 104;
 
 	// The Luna Core code name

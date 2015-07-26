@@ -258,7 +258,19 @@ msgid "Gzip output sent to the browser. This will reduce bandwidth usage, but us
 msgstr ""
 
 #: db_update.php:155
-msgid "Your forum is already as up-to-date as this script can make it."
+msgid "Continue"
+msgstr ""
+
+#: db_update.php:155
+msgid "Your forum is already as up-to-date as this script can make it"
+msgstr ""
+
+#: db_update.php:155
+msgid "Update Luna"
+msgstr ""
+
+#: db_update.php:155
+msgid "There is an update ready to be installed"
 msgstr ""
 
 #: db_update.php:216
@@ -3311,8 +3323,12 @@ msgstr ""
 msgid "It seems like Luna is already installed."
 msgstr ""
 
-#: include/install.php:92
+#: include/db_update.php:
 msgid "Let's get started"
+msgstr ""
+
+#: include/install.php:
+msgid "We're done here"
 msgstr ""
 
 #: include/install.php:95

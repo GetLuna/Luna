@@ -153,7 +153,7 @@ if (isset($luna_config['o_database_revision']) && $luna_config['o_database_revis
 		isset($luna_config['o_searchindex_revision']) && $luna_config['o_searchindex_revision'] >= Version::FORUM_SI_VERSION &&
 		isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION &&
 		array_key_exists('o_core_version', $luna_config) && version_compare($luna_config['o_core_version'], Version::FORUM_CORE_VERSION, '>=')) {
-	draw_wall_error(__('Your forum is already as up-to-date as this script can make it.', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">Continue</a>', __('Let\'s get started', 'luna'));
+	draw_wall_error(__('Your forum is already as up-to-date as this script can make it', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">'.__('Continue', 'luna').'</a>', __('Let\'s get started', 'luna'));
 	exit;
 }
 
@@ -177,51 +177,10 @@ if (empty($stage)) {
 		$pattern = array("\t", '  ', '  ');
 		$replace = array('&#160; &#160; ', '&#160; ', ' &#160;');
 		$message = str_replace($pattern, $replace, __('The forums are temporarily down for maintenance. Please try again in a few minutes.', 'luna'));
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title><?php _e('Maintenance', 'luna') ?></title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
-	</head>
-	<body>
-		<div class="alert alert-info">
-			<h3><?php _e('Maintenance', 'luna') ?></h3>
-		</div>
-	</body>
-</html>
-<?php
-
+		
+		draw_wall_error($message, NULL, __('Maintenance', 'luna'));
 	} else {
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Luna &middot; <?php _e('Update', 'luna') ?></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="robots" content="noindex, nofollow">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link href="backstage/css/style.css" type="text/css" rel="stylesheet">
-	</head>
-	<body onload="document.getElementById('install').start.disabled=false;">
-		<div class="well form-box">
-			<h3 class="form-title">Luna</h3>
-			<form id="install" method="post" action="db_update.php">
-				<input type="hidden" name="stage" value="start" />
-				<div class="form-group">
-					<input class="btn btn-primary btn-block btn-update" type="submit" name="start" value="<?php _e('Start update', 'luna') ?>" />
-				</div>
-			</form>
-		</div>
-	</body>
-</html>
-<?php
-
+		draw_wall_error(__('There is an update ready to be installed', 'luna'), '<form id="install" method="post" action="db_update.php"><input type="hidden" name="stage" value="start" /><input class="btn btn-default btn-lg" type="submit" name="start" value="'. __('Start update', 'luna').'" /></form>', __('Update Luna', 'luna'));
 	}
 	$db->end_transaction();
 	$db->close();

@@ -89,7 +89,7 @@ if (file_exists(FORUM_ROOT.'config.php')) {
 
 	// If FORUM is defined, config.php is probably valid and thus the software is installed
 	if (defined('FORUM'))
-		draw_wall_error(__('It seems like Luna is already installed.', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">Continue</a>', __('Let\'s get started', 'luna'));
+		draw_wall_error(__('It seems like Luna is already installed.', 'luna'), '<a class="btn btn-default btn-lg" href="index.php">'.__('Continue', 'luna').'</a>', __('We\'re done here', 'luna'));
 		exit;
 }
 
