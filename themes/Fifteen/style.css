@@ -726,8 +726,11 @@ nav .progress {
 @media (max-width: 767px) {
 	.profile.col-sm-9 {
 		padding-left: 0;
-		padding-right: 0;
 	}
+}
+
+.profile.col-sm-9 {
+	padding-right: 0;
 }
 
 .profile-nav {
