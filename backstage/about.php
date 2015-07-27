@@ -327,6 +327,18 @@ require 'header.php';
 						</p>
 					</div>
 				</div>
+				<h4>Luna 1.0.8 &middot Build 43xx</h4>
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							<span class="label label-primary">Update 8</span> Bootstrap 3.3.5 is now used everywhere
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p>
+						</p>
+					</div>
+				</div>
 			</div>
 			<div class="panel-footer">
 				<p>Luna is developed by the <a href="http://getluna.org/">Luna Group</a>. Copyright 2013-2015. Released under the GPLv3 license.</p>
