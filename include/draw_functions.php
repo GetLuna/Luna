@@ -1170,7 +1170,7 @@ function draw_wall_error($description, $action = NULL, $title = NULL) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php _e('Luna', 'luna') ?></title>
-		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="include/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="include/css/system.css" />
 	</head>
 	<body class="wall">

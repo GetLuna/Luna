@@ -37,7 +37,7 @@ $db->end_transaction();
 			</div>
 		</div>
 		<script src="../include/js/vendor/jquery.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="../include/js/vendor/bootstrap.min.js"></script>
 	</body>
 </html>
 <?php
