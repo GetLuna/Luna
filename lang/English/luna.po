@@ -2173,7 +2173,7 @@ msgid "Notifications"
 msgstr ""
 
 #: backstage/appearance.php:187
-msgid "Show a fly-out when clicking the notification icon instead of going to the notification page. Disableing this feature might improve performance."
+msgid "Show a fly-out when clicking the notification icon instead of going to the notification page. Disabling this feature might improve performance."
 msgstr ""
 
 #: backstage/appearance.php:199
