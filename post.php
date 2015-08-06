@@ -54,7 +54,9 @@ if (isset($_POST['form_sent'])) {
 		$errors[] = sprintf(__('At least %s seconds have to pass between posts. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
 
 	// Make sure they got here from the site
-	confirm_referrer(array('post.php', 'viewtopic.php'));
+	if (($fid && (!isset($_POST['_luna_nonce_post_topic']) || !LunaNonces::verify($_POST['_luna_nonce_post_topic'],'post-reply'))) ||
+	   (!$fid && (!isset($_POST['_luna_nonce_post_reply']) || !LunaNonces::verify($_POST['_luna_nonce_post_reply'],'post-reply'))))
+		message(__('Are you sure you want to do this?', 'luna'));
 
 	// If it's a new topic
 	if ($fid) {
