@@ -28,6 +28,16 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<p class="meta"><span class="release-version">1.1.2</span></p><h2>Bittersweet Shimmer Update 2</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>The Slow ring is no longer available</li>
+							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>If the Nightly ring is selected, Luna won't check for updates automaticaly</li>
+							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>The extended changelog has been removed</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Bootstrap has been updated to version 3.3.5 everywhere</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Error walls now have a style again</li>
+						</ul>
+					</div>
+					<div class="container">
 						<p class="meta"><span class="release-version">1.1.1</span></p><h2>Bittersweet Shimmer Update</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>SQLite 3 support</li>
