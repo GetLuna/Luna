@@ -822,6 +822,95 @@ h3.panel-title {
   border-color: #cccccc;
 }
 
+/* Release notes */
+.release-notes h2 {
+    line-height: 1.4;
+    border-bottom: 1px solid #e0e0e0;
+	font-size: 30px;
+	font-weight: 100;
+}
+
+.release-notes {
+    text-align: center;
+}
+
+.release-notes .container {
+    max-width: 720px;
+    text-align: left;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.release-notes .meta {
+    float: right;
+    color: #808080;
+    margin-top: 2.6em !important;
+}
+
+.release-version {
+    margin-left: 12px;
+}
+
+.release-notes ul {
+    margin-bottom: 20px;
+}
+
+.release-notes li {
+    padding-left: 100px;
+    margin: 0 0 12px;
+}
+
+.change-label-container {
+    float: left;
+    margin-left: -100px;
+    width: 80px;
+    text-align: right;
+}
+
+.change-label {
+    font-style: normal;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-block;
+    text-transform: uppercase;
+	background-color: #fff;
+	border-width: 2px;
+	border-style: solid;
+	font-weight: 700;
+}
+
+.change-fixed {
+    border-color: #00a0d2;
+    color: #00a0d2;
+}
+
+.change-new {
+    border-color: #64b450;
+    color: #64b450;
+}
+
+.change-improved {
+    border-color: #826eb4;
+    color: #826eb4;
+}
+
+.change-removed {
+    border-color: #dc3232;
+    color: #dc3232;
+}
+
+.change-system {
+    border-color: #ffb900;
+    color: #ffb900;
+}
+
+.change-note {
+    border-color: #f56e28;
+    color: #f56e28;
+}
 
 /* Night mode */
 .night body, html.night, .night .nav-tabs > li.active > a, .night .nav-tabs > li.active > a:hover, .night .nav-tabs > li.active > a:focus {
