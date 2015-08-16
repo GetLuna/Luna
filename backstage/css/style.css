@@ -775,6 +775,16 @@ ol, ul {
     color: #dc3232;
 }
 
+.change-system {
+    border-color: #ffb900;
+    color: #ffb900;
+}
+
+.change-note {
+    border-color: #f56e28;
+    color: #f56e28;
+}
+
 /* Night mode */
 .night body, html.night, .night .nav-tabs > li.active > a, .night .nav-tabs > li.active > a:hover, .night .nav-tabs > li.active > a:focus {
 	background-color: #333;

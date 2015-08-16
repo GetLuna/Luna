@@ -40,7 +40,7 @@ require 'header.php';
 					<div class="container">
 						<p class="meta"><span class="release-version">1.1.1</span></p><h2>Bittersweet Shimmer Update</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>SQLite 3 support</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>SQLite 3 support</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The moderation interface has been redesigned</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>You can now disable the night mode system</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Removing posts will cause the postcount to decrease</li>
@@ -55,6 +55,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Night mode</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Backstage now supports accents</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Translations now use gettext</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>PHP 7 support</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>You can now click on contact links</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen and Sunrise 1.1</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Notifications are now real-time</li>
