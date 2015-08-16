@@ -86,7 +86,6 @@ if (isset($_GET['saved']))
 							<tr>
 								<td>
 									<select class="form-control" id="update_ring" name="form[update_ring]" tabindex="1">
-										<option value="0" <?php if ($luna_config['o_update_ring'] == 0) { echo 'selected'; } ?>><?php echo $lang['Slow'] ?></option>
 										<option value="1" <?php if ($luna_config['o_update_ring'] == 1) { echo 'selected'; } ?>><?php echo $lang['Normal'] ?></option>
 										<option value="2" <?php if ($luna_config['o_update_ring'] == 2) { echo 'selected'; } ?>><?php echo $lang['Preview'] ?></option>
 										<option value="3" <?php if ($luna_config['o_update_ring'] == 3) { echo 'selected'; } ?>><?php echo $lang['Nightly'] ?></option>
@@ -100,22 +99,13 @@ if (isset($_GET['saved']))
 		</form>
 	</div>
 	<div class="col-sm-8 col-md-9">
-<?php if (($luna_config['o_update_ring'] == '0') && $supported == 'none') { ?>
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['End of life'] ?></h3>
-			</div>
-			<div class="panel-body">
-				<p><?php echo $lang['End of life warning'] ?></p>
-			</div>
-		</div>
-<?php } ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo $lang['Luna updates'] ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php echo $lang['Check for updates'] ?></a></span></h3>
+				<h3 class="panel-title"><?php echo $lang['Luna updates'] ?><?php if ($luna_config['o_update_ring'] != 3) { ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php echo $lang['Check for updates'] ?></a></span><?php } ?></h3>
 			</div>
 			<div class="panel-body">
-<?php
+<?php 
+if ($luna_config['o_update_ring'] != 3) {
 	if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 				<h3><?php echo $lang['New version'] ?></h3>
@@ -137,7 +127,14 @@ if (isset($_GET['saved']))
 				<p><?php echo $lang['Preview version info 2'] ?></p>
 <?php
 	}
+} else {
 ?>
+				<h3><?php echo $lang['Nightly version'] ?></h3>
+				<p><?php printf($lang['Nightly version info'], $update_cache) ?></p>
+				<div class="btn-group">
+					<a href="http://modernbb.be/cnt/get.php?id=4" class="btn btn-primary"><?php echo $lang['Download no version'] ?></a>
+				</div>
+<?php } ?>
 			</div>
 		</div>
 	</div>
