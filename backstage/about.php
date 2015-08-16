@@ -39,8 +39,8 @@ require 'header.php';
 					<div class="container">
 						<p class="meta"><span class="release-version">1.0.7</span></p><h2>Aero Update 7</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>SQLite 3 support</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>PHP 7 support</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>SQLite 3 support</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>PHP 7 support</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The moderation interface has been redesigned</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Removing posts will cause the postcount to decrease</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Bootstrap has been updated to 3.3.5</li>
