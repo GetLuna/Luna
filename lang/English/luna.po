@@ -4553,7 +4553,7 @@ msgid "Change avatar"
 msgstr ""
 
 #: themes/Fifteen/me-modals.php:62
-msgid "An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than"
+msgid "An avatar is a small image that will be displayed under your username in your posts. It has to be smaller than %s by %s pixels and %s bytes."
 msgstr ""
 
 #: themes/Fifteen/me-modals.php:66
