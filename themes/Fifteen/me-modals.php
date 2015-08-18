@@ -59,7 +59,7 @@
 						<input type="hidden" name="form_sent" value="1" />
 						<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $luna_config['o_avatars_size'] ?>" />
 						<input name="req_file" type="file" />
-						<span class="help-block"><?php _e('An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than', 'luna').' '.$luna_config['o_avatars_width'].' x '.$luna_config['o_avatars_height'].' '.__('pixels', 'luna').' '.__('and', 'luna').' '.forum_number_format($luna_config['o_avatars_size']).' '.__('bytes', 'luna').' ('.file_size($luna_config['o_avatars_size']).').' ?></span>
+						<span class="help-block"><?php printf(__('An avatar is a small image that will be displayed under your username in your posts. It has to be smaller than %s by %s pixels and %s bytes.', 'luna'), $luna_config['o_avatars_width'], $luna_config['o_avatars_height'], forum_number_format($luna_config['o_avatars_size'])) ?>
 					</fieldset>
 				</div>
 				<div class="modal-footer">
