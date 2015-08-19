@@ -168,10 +168,19 @@ function draw_editor($height) {
 			elseif (FORUM_ACTIVE_PAGE == 'new-inbox')
 				echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
 		?></textarea>
+		<?php
+			if (FORUM_ACTIVE_PAGE == 'edit')
+				$action = 'edit-post';
+			elseif (FORUM_ACTIVE_PAGE == 'new-inbox')
+				$action = 'post-message';
+			else
+				$action = ($fid ? 'post-topic' : 'post-reply');
+			LunaNonces::field($action);
+		?>
 		<div class="btn-toolbar textarea-toolbar textarea-bottom">
 			<div class="btn-group pull-right">
-				<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
-				<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
+				<button class="btn btn-with-text btn-default" type="submit" name="preview" accesskey="p" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-eye"></span> <?php _e('Preview', 'luna') ?></button>
+				<button class="btn btn-with-text btn-primary" type="submit" name="submit" accesskey="s" tabindex="<?php echo $cur_index++ ?>" onclick="window.onbeforeunload=null"><span class="fa fa-fw fa-plus"></span> <?php _e('Submit', 'luna') ?></button>
 			</div>
 		</div>
 	</fieldset>

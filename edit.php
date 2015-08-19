@@ -52,7 +52,8 @@ $errors = array();
 
 if (isset($_POST['form_sent'])) {
 	// Make sure they got here from the site
-	confirm_referrer('edit.php');
+	if (!isset($_POST['_luna_nonce_edit_post']) || !LunaNonces::verify($_POST['_luna_nonce_edit_post'],'edit-post'))
+		message(__('Are you sure you want to do this?', 'luna'));
 
 	// If it's a topic it must contain a subject
 	if ($can_edit_subject) {
