@@ -35,6 +35,8 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>The extended changelog has been removed</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Bootstrap has been updated to version 3.3.5 everywhere</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Error walls now have a style again</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a corrupt translation for the "Upload avatar" modal</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes an issue that caused config.php to be recognized incorrectly</li>
 						</ul>
 					</div>
 					<div class="container">
