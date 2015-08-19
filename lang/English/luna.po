@@ -2642,10 +2642,6 @@ msgstr ""
 msgid "Update ring"
 msgstr ""
 
-#: backstage/update.php:90
-msgid "Slow"
-msgstr ""
-
 #: backstage/update.php:91
 msgid "Normal"
 msgstr ""
@@ -2656,14 +2652,6 @@ msgstr ""
 
 #: backstage/update.php:93
 msgid "Nightly"
-msgstr ""
-
-#: backstage/update.php:107
-msgid "End of life"
-msgstr ""
-
-#: backstage/update.php:110
-msgid "You've selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch."
 msgstr ""
 
 #: backstage/update.php:116
@@ -2710,6 +2698,10 @@ msgstr ""
 
 #: backstage/update.php:138
 msgid "At this point, we can only tell you that a new you're beyond the latest release. We can't tell you if there is a new preview available. You'll have to find out for yourself."
+msgstr ""
+
+#: backstage/update.php:138
+msgid "Download"
 msgstr ""
 
 #: backstage/index.php:25
@@ -4545,7 +4537,7 @@ msgid "Change avatar"
 msgstr ""
 
 #: themes/Fifteen/me-modals.php:62
-msgid "An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than"
+msgid "An avatar is a small image that will be displayed under your username in your posts. It has to be smaller than %s by %s pixels and %s bytes."
 msgstr ""
 
 #: themes/Fifteen/me-modals.php:66
