@@ -169,7 +169,7 @@ if (!isset($_POST['form_sent']) || !empty($alerts)) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php echo $lang['Luna Installation'] ?></title>
-		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 		<script type="text/javascript">
 		/* <![CDATA[ */
@@ -462,7 +462,7 @@ echo "\t\t\t\t\t\t".$cur_alert.'<br />'."\n";
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php echo $lang['Luna Installation'] ?></title>
-		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="backstage/css/style.css" />
 	</head>
 	<body>

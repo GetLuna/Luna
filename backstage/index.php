@@ -89,7 +89,7 @@ require 'header.php';
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success"><h4>'.$lang['Settings saved'].'</h4></div>';
 
-if(is_writable(FORUM_ROOT.'config.php')): ?>
+if(substr(sprintf('%o', fileperms(FORUM_ROOT.'config.php')), -4) > '644'): ?>
 <div class="alert alert-warning"><?php echo $lang['Config warning'] ?></div>
 <?php endif;
 
@@ -98,12 +98,6 @@ if ($install_file_exists) : ?>
 	<p><?php echo $lang['Install file exists'] ?> <span class="pull-right"><a href="index.php?action=remove_install_file"><?php echo $lang['Delete install file'] ?></a></span></p>
 </div>
 <?php endif;
-
-if (($luna_config['o_update_ring'] == '0') && $supported == 'none') { ?>
-<div class="alert alert-danger">
-	<p><?php echo $lang['End of life warning'] ?></p>
-</div>
-<?php }
 
 if ($luna_config['o_first_run_backstage'] == 0) { ?>
 <div class="panel panel-primary hidden-xs">

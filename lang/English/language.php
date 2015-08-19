@@ -1237,6 +1237,7 @@ $lang = array(
 'Available'				=>	'Luna v%s is available, %s!',
 'update now'			=>	'update now',
 'Download'				=>	'Download v%s',
+'Download no version'	=>	'Download',
 'Changelog'				=>	'Changelog',
 
 // General actions and more
@@ -1737,7 +1738,6 @@ You can read this private message at this address: <pm_url>
 'In use'				=>	'In use',
 
 'Update ring'			=>	'Update ring',
-'Slow'					=>	'Slow',
 'Normal'				=>	'Normal',
 'Preview'				=>	'Preview',
 'Nightly'				=>	'Nightly',
@@ -1748,8 +1748,8 @@ You can read this private message at this address: <pm_url>
 'Preview version'		=>	'You\'re using a development version of Luna. Be sure to stay up-to-date.',
 'Preview version info 1'=>	'We release every now and then a new build for Luna, one more stable then the other, for you to check out. You can keep track of this at <a href="http://getluna.org/lunareleases.php">our website</a>. New builds can contain new features, improved features, and/or bugfixes.',
 'Preview version info 2'=>	'At this point, we can only tell you that a new you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.',
-'End of life'			=>	'End of life',
-'End of life warning'	=>	'You\'ve selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch.',
+'Nightly version'		=>	'You\'re using a development version of Luna. Be sure to stay up-to-date.',
+'Nightly version info'	=>	'You are using the nightly ring. We do not provide "Check for update"-support for the nightly ring, so you\'ll have to download new versions on your own and find out wheter or not they are updated.',
     
 // Theme languages
 'Back to index'         =>  'Back to index',
