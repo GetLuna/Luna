@@ -11,6 +11,9 @@
 if (!defined('FORUM'))
 	exit;
 
+// Send the Content-type header in case the web server is setup to send something else
+header('Content-type: text/html; charset=utf-8');
+
 // Define $p if it's not set to avoid a PHP notice
 $p = isset($p) ? $p : null;
 

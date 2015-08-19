@@ -87,7 +87,6 @@ if (isset($_GET['saved']))
 							<tr>
 								<td>
 									<select class="form-control" id="update_ring" name="form[update_ring]" tabindex="1">
-										<option value="0" <?php if ($luna_config['o_update_ring'] == 0) { echo 'selected'; } ?>><?php _e('Slow', 'luna') ?></option>
 										<option value="1" <?php if ($luna_config['o_update_ring'] == 1) { echo 'selected'; } ?>><?php _e('Normal', 'luna') ?></option>
 										<option value="2" <?php if ($luna_config['o_update_ring'] == 2) { echo 'selected'; } ?>><?php _e('Preview', 'luna') ?></option>
 										<option value="3" <?php if ($luna_config['o_update_ring'] == 3) { echo 'selected'; } ?>><?php _e('Nightly', 'luna') ?></option>
@@ -101,22 +100,13 @@ if (isset($_GET['saved']))
 		</form>
 	</div>
 	<div class="col-sm-8 col-md-9">
-<?php if (($luna_config['o_update_ring'] == '0') && $supported == 'none') { ?>
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('End of life', 'luna') ?></h3>
-			</div>
-			<div class="panel-body">
-				<p><?php _e('You\'ve selected to download updates only from the current branch, however, support for this branch has been dropped. Please check for updates in the Normal branch.', 'luna') ?></p>
-			</div>
-		</div>
-<?php } ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span></h3>
+				<h3 class="panel-title"><?php _e('Luna software updates', 'luna') ?><?php if ($luna_config['o_update_ring'] != 3) { ?><span class="pull-right"><a href="update.php?action=check_update" class="btn btn-primary"><span class="fa fa-fw fa-refresh"></span> <?php _e('Check for updates', 'luna') ?></a></span><?php } ?></h3>
 			</div>
 			<div class="panel-body">
-<?php
+<?php 
+if ($luna_config['o_update_ring'] != 3) {
 	if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 				<h3><?php _e('A new version is available!', 'luna') ?></h3>
@@ -138,7 +128,14 @@ if (isset($_GET['saved']))
 				<p><?php _e('At this point, we can only tell you that a new you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.', 'luna') ?></p>
 <?php
 	}
+} else {
 ?>
+				<h3><?php _e('You\'re using a development version of Luna. Be sure to stay up-to-date.', 'luna') ?></h3>
+				<p><?php _e('At this point, we can only tell you that a new you\'re beyond the latest release. We can\'t tell you if there is a new preview available. You\'ll have to find out for yourself.', 'luna') ?></p>
+				<div class="btn-group">
+					<a href="http://modernbb.be/cnt/get.php?id=4" class="btn btn-primary"><?php _e('Download', 'luna') ?></a>
+				</div>
+<?php } ?>
 			</div>
 		</div>
 	</div>

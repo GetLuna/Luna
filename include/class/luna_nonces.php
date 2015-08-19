@@ -167,6 +167,29 @@ class LunaNonces {
 	}
 
 	/**
+	 * Output a nonce field.
+	 * 
+	 * Create a HTML <INPUT> field to store the nonce. If no name is set for
+	 * the field, generate a default one based on the action.
+	 * 
+	 * @since    1.1
+	 * 
+	 * @param    string     $action Nonce action
+	 * @param    string     $name Name of the field
+	 * 
+	 * @return   void
+	 */
+	private function _field($name = null) {
+
+		$nonce = $this->_create();
+		if ( is_null( $name ) ) {
+			$name = '_luna_nonce_' . str_replace( '-', '_', strtolower( $this->action ) );
+		}
+
+		echo '<input type="hidden" name="' . $name . '" value="' . $nonce . '"/>';
+	}
+
+	/**
 	 * Check a nonce validity.
 	 * 
 	 * Create a temporary valid nonce, match it against the submitted nonce
@@ -229,6 +252,24 @@ class LunaNonces {
 		$check->_verify($nonce);
 
 		return $check;
+	}
+
+	/**
+	 * Output a nonce field.
+	 * 
+	 * This method is static and can be called publicly.
+	 * 
+	 * @since    1.1
+	 * 
+	 * @param    string     $action Nonce action
+	 * @param    string     $name Name of the field
+	 * 
+	 * @return   void
+	 */
+	public static function field($action = -1, $name = null) {
+
+		$nonce = new LunaNonces($action);
+		$nonce = $nonce->_field($name);
 	}
 
 	/**
