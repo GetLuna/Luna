@@ -20,7 +20,8 @@ Starting with Luna 1.1, you can upgrade from a whole lot more versions of Modern
  - **ModernBB support**:
   - **ModernBB 1**: all versions supported
   - **ModernBB 2**: all versions supported, excluding ModernBB 2.3-builds
-  - **ModernBB 3**: all versions supported
+  - **ModernBB 3**: all versions supported, excluding ModernBB 3.8-builds
+  - **ModernBB 4**: all versions supported
  - **Luna support**:
   - All versions supported
 
