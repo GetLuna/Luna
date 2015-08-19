@@ -7,7 +7,7 @@ $xmlstr = <<<XML
 
 /*
  * Copyright (C) 2014-2015 Studio 384
- * Licensed under GPLv3 (http://getluna.org/license.php)
+ * Licensed under MIT
  */
 -->
 
@@ -15,10 +15,10 @@ $xmlstr = <<<XML
 	<id>fifteen</id>
 	<name>Fifteen</name>
 	<developer>Studio 384</developer>
-	<date>22 June 2015</date>
-	<version>1.1.1</version>
+	<date>19 August 2015</date>
+	<version>1.1.2</version>
 	<minversion>1.1.0</minversion>
-	<maxversion>1.1.1</maxversion>
+	<maxversion>1.1.2</maxversion>
 	<description>Fifteen is the default theme of the Luna software for 2015, this modern, fresh, yet colorfull design makes your board an unique piece!</description>
 </style>
 XML;
