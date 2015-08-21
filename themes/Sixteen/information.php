@@ -12,14 +12,14 @@ $xmlstr = <<<XML
 -->
 
 <style engine="1.0">
-	<id>lands</id>
-	<name>Lands</name>
+	<id>sixteen</id>
+	<name>Sixteen</name>
 	<developer>Studio 384</developer>
-	<date>26 July 2015</date>
+	<date>21 August 2015</date>
 	<version>1.0.0</version>
 	<minversion>1.2.0</minversion>
 	<maxversion>1.2.0</maxversion>
-	<description>Lands</description>
+	<description>Sixteen is the 2016 default theme for Luna. It looks quiet amazing, we say so ourselves.</description>
 </style>
 XML;
 ?>
