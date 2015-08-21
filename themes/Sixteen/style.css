@@ -1,10 +1,6 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800);
 
 /* General fixes */
-* {
-	border-radius: 0 !important;
-}
-
 html {
     overflow-y: scroll;
 	background-color: #e8e8e8;
@@ -15,7 +11,7 @@ body {
 }
 
 body, html {
-	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
 	min-height: 100%;
 }
 
@@ -57,8 +53,8 @@ h2 {
 
 /* Text */
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Segoe UI Light", "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-weight: 300;
 }
 
 .text-center {
@@ -221,7 +217,8 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-inverse {
 	border: none;
 	margin-bottom: 0;
-	background-color: #2788cb;
+	background: #1895c0;
+	background: linear-gradient(to top, #2dafc7, #1895c0);
 }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
@@ -380,9 +377,13 @@ h1, h2, h3, h4, h5, h6 {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin-top: 0;
-	margin-bottom: 7px;
-	border-left: 5px solid #f8f8f8;
-	background-color: #fbfbfb;
+	margin-bottom: 0;
+	border: 1px solid #ddd;
+	border-top-width: 0;
+}
+
+.forum-entry:last-child {
+	margin-bottom: 10px;
 }
 
 .forum-entry:hover {
@@ -443,7 +444,8 @@ a.list-group-item.active:hover {
 h5.list-group-head {
 	text-transform: uppercase;
 	margin-left: 20px;
-	font-family: "Segoe UI Semibold";
+	font-family: "Open Sans";
+	font-weight: 600;
 }
 
 a.list-group-item-cat h4 {
@@ -576,12 +578,12 @@ h2.forum-title .btn {
 
 /* First run */
 .first-run {
-	border: none;
+	border: 1px solid #ddd;
+	border-width: 0 1px 1px 1px;
 	margin-top: 0 !important;
 }
 
 .first-run-content {
-	background: #eee;
 	margin-left: 0;
 	margin-right: 0;
 }
@@ -591,7 +593,8 @@ h2.forum-title .btn {
 }
 
 .first-run-profile {
-	background: #1a79bc;
+	background: #1895c0;
+	background: linear-gradient(to top, #44ccd0, #2dafc7);
 	padding-bottom: 16px;
 }
 
@@ -799,30 +802,39 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Me */
-.nav-tabs.activity-tab {
-	border: none;
+.nav-tabs {
+	border-bottom: 2px solid #ddd;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+	border-width: 0;
 }
 
 .nav-tabs > li > a {
 	border: none;
+	color: #666;
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:focus {
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
 	border: none;
-	color: #fff !important;
+	color: #2dafc7 !important;
+	background: transparent;
 }
 
-.nav-tabs > li > a:hover {
-	border: none;
-	color: #fff;
-	background-color: #0d4382;
+.nav-tabs > li > a::after {
+	content: "";
+	background: #2dafc7;
+	height: 2px;
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	bottom: -1px;
+	transition: all 250ms ease 0s;
+	transform: scale(0);
 }
 
-.activity-header {
-	margin-top: 0;
-	padding: 10px 10px 15px;
-	color: #fff;
-	background-color: #0d4382;
+.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
+	transform: scale(1);
 }
 
 /* Inbox */
@@ -1070,7 +1082,8 @@ a.label {
 /* Alerts */
 .alert-section {
 	color: #fff;
-	border: none;
+	border-radius: 3px 3px 0 0;
+	margin-bottom: 0;
 }
 
 .alert-section .btn {
