@@ -13,7 +13,6 @@ if (!defined('FORUM'))
 
 ?>
 		</div>
-		<div class="container">
 <?php
 // If no footer style has been specified, we use the default (only copyright/debug info)
 $footer_style = isset($footer_style) ? $footer_style : NULL;
