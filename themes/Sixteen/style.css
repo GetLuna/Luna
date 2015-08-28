@@ -203,31 +203,6 @@ hr {
 	text-align: center;
 }
 
-@media screen and (max-width: 767px) {
-	.first-run-content {
-		padding-right: 15px;
-	}
-
-	.first-run-profile {
-		margin-top: -15px;
-		border-bottom-left-radius: 0;
-		border-top-right-radius: 3px;
-	}
-
-	.first-run-title {
-		padding-top: 15px;
-	}
-
-	.first-run-list {
-		margin-left: 0;
-		margin-right: 0;
-	}
-
-	.first-run-login {
-		margin-right: 0;
-	}
-}
-
 /* Welcome box and header */
 #header .container p {
 	border-bottom-style: dotted;
