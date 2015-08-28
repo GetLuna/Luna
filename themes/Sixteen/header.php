@@ -62,8 +62,8 @@ $body_classes = check_style_mode();
 			<div class="container">
 				<span class="hidden-xs">
 					<h1><?php echo $menu_title ?></h1>
-					<p><?php echo $luna_config['o_board_desc']; ?></p>
 				</span>
+				<p class="board-desc"><?php echo $luna_config['o_board_desc']; ?></p>
 				<?php echo $tpl_temp ?>
 			</div>
 		</div>

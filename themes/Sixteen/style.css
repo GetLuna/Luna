@@ -1192,7 +1192,7 @@ blockquote footer {
 		border-right: none;
 	}
 	
-	footer, #brddesc, #brdwelcome, h2, .row-nav {
+	footer, .board-desc, #brdwelcome, h2, .row-nav {
 		margin-left: 15px;
 		margin-right: 15px;
 	}
