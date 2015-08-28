@@ -345,18 +345,20 @@ hr {
 
 /* Profile */
 .profile-nav {
-	padding-left: 0;
-	padding-right: 0;
+	padding-top: 15px;
 }
 
-a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-item:focus {
-	background-color: #0073c4;
-	border-color: #0073c4;
-}
-
-.profile-h2 {
+.profile-nav .list-group {
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+.profile-nav .list-group-item:first-child {
+	border-top: none;
+}
+
+.profile-nav .list-group-item {
+	border-radius: 0;
 }
 
 /* Post messages */
@@ -891,7 +893,7 @@ textarea {
 	margin-bottom: 1px;
 }
 
-.profile, .topic {
+.topic {
 	margin-left: -15px;
 	margin-right: -15px;
 }
