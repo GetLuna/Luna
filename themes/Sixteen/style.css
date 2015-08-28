@@ -12,12 +12,8 @@ body, html {
 	margin-top: 10px;
 }
 
-footer {
-	padding-bottom: 15px;
-}
-
 footer .pull-right {
-	padding-bottom: 15px;
+	padding-bottom: 20px;
 }
 
 h1 {
@@ -67,6 +63,10 @@ h1, h2, h3, h4, h5, h6 {
 	#userlist .col-sm-12 {
 		margin-bottom: 10px;
 	}
+}
+
+hr {
+	border-color: #ddd;
 }
 
 /* Header */
