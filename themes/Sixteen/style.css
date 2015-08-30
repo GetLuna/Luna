@@ -361,6 +361,11 @@ hr {
 	border-radius: 0;
 }
 
+.profile-title {
+	margin-top: 15px;
+	margin-bottom: 16px;
+}
+
 /* Post messages */
 .bblinks {
 	padding-top: 5px;
