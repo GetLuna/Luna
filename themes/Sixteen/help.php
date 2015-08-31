@@ -154,7 +154,7 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="label label-warning"><?php _e('Sticky', 'luna') ?></span></td>
+                            <td><span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span></td>
                             <td><?php _e('Sticky topics are usually important topics which you should read. It\'s worth it to take a look there.', 'luna') ?></td>
                         </tr>
                         <tr>

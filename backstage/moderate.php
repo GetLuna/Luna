@@ -850,7 +850,7 @@ if ($db->num_rows($result)) {
 
 		if ($cur_topic['sticky'] == '1') {
 			$item_status .= ' isticky';
-			$status_text[] = '<span class="label label-warning">'.__('Sticky', 'luna').'</span>';
+			$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 		}
 
 		if ($cur_topic['moved_to'] != 0) {
