@@ -314,6 +314,12 @@ hr {
 	border: none;
 }
 
+.navbar .avatar {
+	display: inline;
+	margin-right: 0;
+	border-radius: 100px;
+}
+
 /* Toggle */
 .navbar-default .navbar-toggle {
 	border-color: #057ed4;
