@@ -2084,7 +2084,7 @@ function load_css() {
 		echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/style.css" />'."\n";
 		
 		// Also load a color scheme
-		if (file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css')) {
+		if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$theme_info->parent_theme.'/accents/'.$luna_config['o_default_accent'].'.css'))) {
 			if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
 				echo '<link rel="stylesheet" type="text/css" href="themes/'.$theme_info->parent_theme.'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 			else
@@ -2096,7 +2096,7 @@ function load_css() {
 	echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/style.css" />'."\n";
 
 	// And load its color scheme
-	if (file_exists('themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css')) {
+	if ((($luna_config['o_allow_accent_color'] == '1') && file_exists('themes/'.$luna_config['o_default_style'].'/accents/'.$luna_user['color_scheme'].'.css')) || (($luna_config['o_allow_accent_color'] == '0') && file_exists('themes/'.$luna_config['o_default_style'].'/accents/'.$luna_config['o_default_accent'].'.css'))) {
 		if ($luna_user['is_guest'] || $luna_config['o_allow_accent_color'] == '0')
 			echo '<link rel="stylesheet" type="text/css" href="themes/'.$luna_config['o_default_style'].'/accents/'.$luna_config['o_default_accent'].'.css" />'."\n";
 		else
