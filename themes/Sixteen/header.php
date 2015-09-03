@@ -10,7 +10,7 @@ $body_classes = check_style_mode();
 		<link rel="stylesheet" href="include/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="include/css/prism.css" />
 		<script src="include/js/vendor/jquery.js"></script>
-		<script src="inlcude/js/vendor/bootstrap.min.js"></script>
+		<script src="include/js/vendor/bootstrap.min.js"></script>
 		<script src="include/js/vendor/prism.js"></script>
 		<?php load_meta(); ?>
 		<style>
