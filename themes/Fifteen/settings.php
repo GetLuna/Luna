@@ -124,8 +124,7 @@ if (!defined('FORUM'))
 			</div>
 			<div role="tabpanel" class="tab-pane" id="personalize">
 				<fieldset class="form-horizontal form-setting">
-<?php if ($luna_config['o_allow_accent_color'] == '1') { ?>
-					<div class="form-group">
+					<div class="form-group<?php if ($luna_config['o_allow_accent_color'] == '0') { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
 						<label class="col-sm-3 control-label"><?php _e('Color', 'luna') ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
@@ -141,10 +140,9 @@ if (!defined('FORUM'))
 ?>
 							</div>
 						</div>
+						<hr />
 					</div>
-					<hr />
-<?php } if ($luna_config['o_allow_night_mode'] == '1') { ?>
-					<div class="form-group">
+					<div class="form-group<?php if ($luna_config['o_allow_night_mode'] == '0') { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
 						<label class="col-sm-3 control-label"><?php _e('Night mode', 'luna') ?></label>
 						<div class="col-sm-9">
 							<div class="radio">
@@ -168,8 +166,7 @@ if (!defined('FORUM'))
 						</div>
 					</div>
 					<hr />
-<?php } if ($luna_user['is_admmod']) { ?>
-					<div class="form-group">
+					<div class="form-group <?php if (!$luna_user['is_admmod']) { echo ' hidden-xs hidden-sm hidden-md hidden-lg'; } ?>">
 						<label class="col-sm-3 control-label"><?php _e('Backstage accent', 'luna') ?></label>
 						<div class="col-sm-9">
 							<div class="btn-group accent-group" data-toggle="buttons">
@@ -185,16 +182,15 @@ if (!defined('FORUM'))
 ?>
 							</div>
 						</div>
+						<hr />
 					</div>
 <?php
-}
 
 $languages = forum_list_langs();
 
 // Only display the language selection box if there's more than one language available
 if (count($languages) > 1) {
 ?>
-					<hr />
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Language', 'luna') ?></label>
 						<div class="col-sm-9">
