@@ -19,11 +19,7 @@ if (!defined('FORUM'))
 		</div>
 	</div>
 	<div class="profile col-sm-9">
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="navbar-header">
-				<a href="profile.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-user"></span> <?php echo luna_htmlspecialchars($user['username']) ?></a>
-			</div>
-		</nav>
+		<h2 class="profile-title"><?php echo luna_htmlspecialchars($user['username']) ?></h2>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php _e('About user', 'luna') ?></h3>

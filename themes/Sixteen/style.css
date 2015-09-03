@@ -505,6 +505,14 @@ hr {
 	width: 1.1em !important;
 }
 
+/* Tabs */
+.tab-pane {
+	padding: 15px;
+	background: #fff;
+	border: solid 1px #ddd;
+	border-top: none;
+}
+
 /* Table */
 .table > tbody > tr > td.user-data {
 	background-color: #f7f7f7;
