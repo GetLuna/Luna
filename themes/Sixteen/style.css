@@ -497,8 +497,16 @@ hr {
 .textarea-toolbar {
 	background: #eee;
 	margin: 0;
+}
+
+.textarea-toolbar.textarea-top {
 	padding: 6px 2px;
 	border-bottom: #ddd 1px solid;
+}
+
+.textarea-toolbar.textarea-bottom {
+	padding: 6px;
+	border-top: #ddd 1px solid;
 }
 
 .fa-fw {

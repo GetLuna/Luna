@@ -3,8 +3,9 @@
 // Make sure no one attempts to run this view directly.
 if (!defined('FORUM'))
 	exit;
-
-load_inbox_nav('send');
+?>
+<h2 class="forum-title"><?php _e('Inbox', 'luna') ?></h2>
+<?php
 
 // If there are errors, we display them
 if (!empty($errors)) {
