@@ -768,13 +768,7 @@ textarea {
 
 /* Userlist */
 .search-bar {
-	margin-bottom: 10px;
-}
-
-@media(max-width:991px) {
-	.search-bar, #userlist .col-sm-12 {
-		margin-bottom: 0;
-	}
+	margin-bottom: 15px;
 }
 
 .userlist {
