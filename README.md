@@ -8,11 +8,11 @@ Luna is an open source board software app released under the GPLv3 license. The 
  - PHP 5.2 or later
  - A database
   - MySQL 5.0 or later 
-  - SQLite 2
+  - SQLite 2 or later
   - PostgreSQL 8.0 or later
 
 ## Upgrade paths
-Starting with Luna 1.1, you can upgrade from a whole lot more versions of ModernBB (where you could only upgrade from ModernBB 3.7 with Luna 1.0). In fact, all versions of ModernBB are supported, and as a bonus, we also support upgrading from FluxBB 1.4.0 and onwards, for a fule list, see below:
+Starting with Luna 1.1, you can upgrade from a whole lot more versions of ModernBB (where you could only upgrade from ModernBB 3.7 with Luna 1.0). In fact, all versions of ModernBB are supported, and as a bonus, we also support upgrading from FluxBB 1.4.0 and onwards, for a full list, see below:
 
  - **FluxBB support**
   - **FluxBB 1.4**: 1.4.0 and higher
