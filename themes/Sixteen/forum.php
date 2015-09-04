@@ -15,7 +15,7 @@ if (!defined('FORUM'))
 				</div>
 			</div>
 			<div class="list-group list-group-forum">
-				<?php draw_subforum_list('forum.php') ?>
+				<?php draw_subforum_list('subforum.php') ?>
 			</div>
 		</div>
 		<hr />

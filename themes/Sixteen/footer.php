@@ -45,19 +45,19 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-2">
+								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 									<div class="statistic-item"><?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>: <strong><?php total_users(); ?></strong></div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 									<div class="statistic-item"><?php echo _n( 'Topic', 'Topics', get_total_topics(), 'luna' ) ?>: <strong><?php total_topics(); ?></strong></div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 									<div class="statistic-item"><?php echo _n( 'Post', 'Posts', get_total_posts(), 'luna' ) ?>: <strong><?php total_posts(); ?></strong></div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 									<div class="statistic-item"><?php _e('Newest user', 'luna') ?>: <strong><?php newest_user(); ?></strong></div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 									<div class="statistic-item">
 												<?php if ($luna_config['o_users_online']) { ?>
 												<div class="dropup">
@@ -72,7 +72,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 												<?php } else {
 													echo _n('User online', 'Users online', num_users_online(), 'luna').' <strong>'.users_online().'</strong>';  } ?></div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 									<div class="statistic-item"><?php _e('Guests online', 'luna') ?>: <strong><?php guests_online(); ?></strong></div>
 								</div>
 							</div>
