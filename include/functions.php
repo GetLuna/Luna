@@ -1073,7 +1073,7 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 //
 // Check if we have to show a list of subforums
 //
-function is_subforum($id) {
+function is_subforum($id, $self_subforum = '0') {
 	global $db;
 
 	$result = $db->query('SELECT count(*) FROM '.$db->prefix.'forums WHERE parent_id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
@@ -1083,7 +1083,7 @@ function is_subforum($id) {
 		$result = $db->query('SELECT parent_id FROM '.$db->prefix.'forums WHERE id='.$id) or error ('Unable to fetch information about the current forum', __FILE__, __LINE__, $db->error());
 		$forum_is_subforum = $db->result($result);
 		
-		if ($forum_is_subforum != '0')
+		if ($forum_is_subforum != '0' && $self_subforum == '0')
 			return true;
 		else
 			return false;

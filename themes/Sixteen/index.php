@@ -64,5 +64,8 @@ if ($luna_user['first_run'] == '0') {
 			<?php if (!empty($luna_config['o_announcement_title'])) { ?><h4><?php echo $luna_config['o_announcement_title']; ?></h4><?php } ?>
 			<?php echo $luna_config['o_announcement_message']; ?>
 		</div>
-<?php } ?>
-<?php draw_forum_list('forum.php', 1, 'category.php', '</div></div>') ?>
+<?php
+}
+
+draw_forum_list('forum.php', 1, 'category.php', '</div></div>');
+?>

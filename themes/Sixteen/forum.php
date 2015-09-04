@@ -7,6 +7,19 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="container">
+	<?php if ((is_subforum($id, '1') && $id != '0')): ?>
+		<div class="category-box subforum-box">
+			<div class="row category-header">
+				<div class="col-xs-12">
+					<?php _e('Subforums', 'luna') ?>
+				</div>
+			</div>
+			<div class="list-group list-group-forum">
+				<?php draw_subforum_list('forum.php') ?>
+			</div>
+		</div>
+		<hr />
+	<?php endif; ?>
 	<h2 class="forum-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
 	<div class="forum-navigation btn-toolbar">
 		<span class="btn-group">
@@ -22,23 +35,12 @@ if (!defined('FORUM'))
 			<?php echo $post_link ?><?php echo $paging_links ?>
 		</span>
 	</div>
-	<div class="row forumview">
-		<div class="col-sm-3">
-			<?php if ((is_subforum($id) && $id != '0')): ?>
-				<h5 class="list-group-head"><?php _e('Subforums', 'luna') ?></h5>
-				<div class="list-group list-group-forum">
-					<?php draw_subforum_list('subforum.php') ?>
-				</div>
-				<hr />
-			<?php endif; ?>
-		</div>
-		<div class="col-sm-9">
-			<div class="forum-box">
-				<div class="row forum-header">
-					<div class="col-xs-12"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></div>
-				</div>
-				<?php draw_topics_list(); ?>
+	<div class="forumview">
+		<div class="forum-box">
+			<div class="row forum-header">
+				<div class="col-xs-12"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></div>
 			</div>
+			<?php draw_topics_list(); ?>
 		</div>
 	</div>
 	<div class="forum-navigation btn-toolbar">

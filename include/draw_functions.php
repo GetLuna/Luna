@@ -320,9 +320,9 @@ function draw_topics_list() {
 		}
 	
 	} else {
-		echo '<h3 class="nothing">';
+		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
 		printf(__('There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
-		echo '</h3>';
+		echo '</h3></div></div>';
 	}
 	
 }

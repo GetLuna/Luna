@@ -24,6 +24,10 @@ h2 {
 	margin-top: 0;
 }
 
+h3.nothing {
+	margin: 0 0 5px 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Segoe UI Light", "Segoe UI", Arial;
 	font-weight: 100;
@@ -545,6 +549,10 @@ hr {
 	padding-left: 15px;
 	padding-right: 15px;
 	margin-bottom: 10px;
+}
+
+.subforum-box {
+	margin-top: 15px;
 }
 
 .forum-row, .topic-row {
