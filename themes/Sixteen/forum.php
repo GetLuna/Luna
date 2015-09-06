@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 		</div>
 		<hr />
 	<?php endif; ?>
-	<h2 class="forum-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
+	<h2 class="profile-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
 	<div class="forum-navigation btn-toolbar">
 		<span class="btn-group">
 			<a href="index.php" class="btn btn-primary"><span class="fa fa-fw fa-home"></span></a>
