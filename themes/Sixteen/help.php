@@ -5,11 +5,7 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<a href="help.php" class="navbar-brand"><span class="fa fa-fw fa-info-circle"></span> <?php _e('Help', 'luna') ?></a>
-	</div>
-</nav>
+<h2 class="profile-title"><?php _e('Help', 'luna') ?></h2>
 <?php if ($luna_config['o_rules'] == '1') { ?>
 <div class="panel panel-default">
 	<div id="rules-block" class="panel-heading">
