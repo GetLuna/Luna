@@ -72,7 +72,7 @@ function load_admin_nav($section, $page) {
 		$page_title = $page;
 ?>
 <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
-	<div class="container">
+	<div class="container navbar-container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
@@ -197,7 +197,6 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 </div>
 <div class="content">
 	<div class="container">
-		<div class="row">
 <?php
 
 }

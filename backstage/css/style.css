@@ -185,6 +185,18 @@ label .help-block {
 	margin-bottom: 17px;
 }
 
+.jumboheader .row {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+@media all and (max-width:767px) {
+	.container:not(.navbar-container) {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
 @media all and (max-width:767px) {
 	.jumboheader {
 		margin-bottom: 0;
