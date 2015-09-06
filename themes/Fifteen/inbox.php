@@ -39,11 +39,11 @@ if (!defined('FORUM'))
 				<table class="table">
 					<thead>
 						<tr>
+							<th style="width: 18px;"><input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></th>
 							<th><?php _e('Messages', 'luna') ?></th>
 							<th><?php _e('Sender', 'luna') ?></th>
 							<th><?php _e('Receiver(s)', 'luna') ?></th>
 							<th><?php _e('Last post', 'luna') ?></th>
-							<th><label style="display: inline; white-space: nowrap;"><?php _e('Select', 'luna') ?> <input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></label></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -71,6 +71,9 @@ if ($db->num_rows($result)) {
 		$last_post = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'&amp;pid='.$cur_mess['last_post_id'].'#p'.$cur_mess['last_post_id'].'">'.format_time($cur_mess['last_post']).'</a> <span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_mess['last_poster']).'</span>';
 ?>
 						<tr class="<?php echo $item_status ?>">
+							<td>
+								<input type="checkbox" name="selected_messages[]" value="<?php echo $cur_mess['shared_id'] ?>" />
+							</td>
 							<td>
 								<div class="<?php echo $icon_type ?>"></div>
 								<div><?php echo $subject ?></div>
@@ -101,7 +104,6 @@ if ($db->num_rows($result)) {
 		?>
 							</td>
 							<td><?php echo $last_post ?></td>
-							<td><input type="checkbox" name="selected_messages[]" value="<?php echo $cur_mess['shared_id'] ?>" /></td>
 						</tr>
 <?php
 	}

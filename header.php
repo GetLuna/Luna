@@ -30,6 +30,58 @@ $p = isset($p) ? $p : null;
 // Generate user avatar
 $user_avatar = draw_user_avatar($luna_user['id'], true, 'avatar');
 
+// Generate quick links
+$page_statusinfo = $page_topicsearches = array();
+
+if (!$luna_user['is_guest']) {
+	if (!empty($forum_actions))
+		$page_statusinfo[] = '<li>'.implode(' &middot; ', $forum_actions).'</li>';
+
+	if (!empty($topic_actions))
+		$page_statusinfo[] = '<li>'.implode(' &middot; ', $topic_actions).'</li>';
+
+	if ($luna_user['is_admmod']) 	{
+		if ($luna_config['o_report_method'] == '0' || $luna_config['o_report_method'] == '2') 		{
+			$result_header = $db->query('SELECT 1 FROM '.$db->prefix.'reports WHERE zapped IS NULL') or error('Unable to fetch reports info', __FILE__, __LINE__, $db->error());
+
+			if ($db->result($result_header))
+				$page_statusinfo[] = '<li class="reportlink"><strong><a href="backstage/reports.php">New reports</a></strong></li>';
+		}
+
+		if ($luna_config['o_maintenance'] == '1')
+			$page_statusinfo[] = '<li class="maintenancelink"><strong><a href="backstage/settings.php#maintenance">Maintenance mode is enabled</a></strong></li>';
+	}
+
+	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
+		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new posts'].'">New</a>';
+}
+
+// Quick searches
+if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
+	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">Active</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">Unanswered</a>';
+}
+
+// Generate all that jazz
+$tpl_temp = '<div id="brdwelcome">';
+
+// The status information
+if (is_array($page_statusinfo)) {
+	$tpl_temp .= "\n\t\t\t".'<ul class="conl">';
+	$tpl_temp .= "\n\t\t\t\t".implode("\n\t\t\t\t", $page_statusinfo);
+	$tpl_temp .= "\n\t\t\t".'</ul>';
+} else
+	$tpl_temp .= "\n\t\t\t".$page_statusinfo;
+
+// Generate quicklinks
+if (!empty($page_topicsearches)) {
+	$tpl_temp .= "\n\t\t\t".'<ul class="conr">';
+	$tpl_temp .= "\n\t\t\t\t".'<li>'.implode(' &middot; ', $page_topicsearches).'</li>';
+	$tpl_temp .= "\n\t\t\t".'</ul>';
+}
+
+$tpl_temp .= '</div>';
+
 // Navbar data
 $links = array();
 $menu_title = $luna_config['o_board_title'];

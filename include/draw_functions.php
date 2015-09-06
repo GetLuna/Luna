@@ -275,7 +275,7 @@ function draw_topics_list() {
 	
 			if ($cur_topic['sticky'] == '1') {
 				$item_status .= ' sticky-item';
-				$status_text[] = '<span class="label label-warning">'.__('Sticky', 'luna').'</span>';
+				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 
 			$url = 'viewtopic.php?id='.$topic_id;
@@ -320,9 +320,9 @@ function draw_topics_list() {
 		}
 	
 	} else {
-		echo '<h3 class="nothing">';
+		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
 		printf(__('There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
-		echo '</h3>';
+		echo '</h3></div></div>';
 	}
 	
 }
@@ -536,7 +536,7 @@ function draw_index_topics_list() {
 	
 			if ($cur_topic['sticky'] == '1') {
 				$item_status .= ' sticky-item';
-				$status_text[] = '<span class="label label-warning">'.__('Sticky', 'luna').'</span>';
+				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 
 			$url = 'viewtopic.php?id='.$topic_id;
@@ -1007,7 +1007,7 @@ function draw_search_results() {
 			
 			if ($cur_search['sticky'] == '1') {
 				$item_status .= ' sticky-item';
-				$status_text[] = '<span class="label label-warning">'.__('Sticky', 'luna').'</span>';
+				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 			
 			if ($cur_search['closed'] != '0') {

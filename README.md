@@ -1,33 +1,39 @@
-# Luna 1.1 "Bittersweet Shimmer"
+# Luna 1.2 "Cornflower Blue" Preview
 
 ## About
-Luna is an open source board software app released under the GPLv3 license. The goal of this project is to be light and small, yet fully functional for a good board. Everything else is up to plugins. Luna is the successor to ModernBB, and allows users to upgrade from FluxBB 1.4 just as easy ModernBB-updates where. For all supported upgrade paths, see below.
+Luna is an open source board software web app released under the GPLv3 license. Our vision is to bring you a small (in size) and light forum solution and to provide an experience that is both desktop-first and mobile-first, as manny seem to forget about the first one. Luna is the successor to ModernBB, one of the first forum software projects to provide a full featured build-in mobile experience without compromises.
+
+## New in Cornflower Blue
+- New default theme Sixteen
+- Updated Fifteen and Sunrise theme
+- Mark topics as solved
+- New personalisation options
+- Improved syntax highlighter
 
 ## Requirements
- - A webserver
- - PHP 5.2 or later
- - A database
-  - MySQL 5.0 or later 
-  - SQLite 2
-  - PostgreSQL 8.0 or later
+- A webserver with 3,14 MB free disk space
+- PHP 5.2 or later
+- A database running either
+ - MySQL 5.0 or later 
+ - SQLite 2 or later
+ - PostgreSQL 8.0 or later
+- Recommended but not required
+ - PHP accelerator such as APC or XCache
+ - PHP zlib module
 
 ## Upgrade paths
-Starting with Luna 1.1, you can upgrade from a whole lot more versions of ModernBB (where you could only upgrade from ModernBB 3.7 with Luna 1.0). In fact, all versions of ModernBB are supported, and as a bonus, we also support upgrading from FluxBB 1.4.0 and onwards, for a fule list, see below:
+Starting with Luna 1.1, you can upgrade from a whole lot more versions of ModernBB (where you could only upgrade from ModernBB 3.7 and 4.0 with Luna 1.0). In fact, all versions of ModernBB are supported, and as a bonus, we also support upgrading from FluxBB 1.4.0 and onwards. Luna 1.2 introduces update support for ModernBB 2.3-, 3.8- and 4.1-builds. For a full list, see below:
 
- - **FluxBB support**
-  - **FluxBB 1.4**: 1.4.0 and higher
-  - **FluxBB 1.5**: all versions supported
- - **ModernBB support**:
-  - **ModernBB 1**: all versions supported
-  - **ModernBB 2**: all versions supported, excluding ModernBB 2.3-builds
-  - **ModernBB 3**: all versions supported, excluding ModernBB 3.8-builds
-  - **ModernBB 4**: all versions supported
- - **Luna support**:
-  - All versions supported
-
-## Recommendations
- - Make use of a PHP accelerator such as APC or XCache
- - Make sure PHP has the zlib module installed to allow Luna to gzip output
+- **FluxBB support**
+ - **FluxBB 1.4**: 1.4.0 and higher (no support for upgrading from betas and RCs)
+ - **FluxBB 1.5**: all versions supported
+- **ModernBB support**:
+ - **ModernBB 1**: all versions supported
+ - **ModernBB 2**: all versions supported
+ - **ModernBB 3**: all versions supported
+ - **ModernBB 4**: all versions supported
+- **Luna support**:
+ - **Luna 1**: All versions supported
 
 ## Links
  - Homepage: http://getluna.org/
