@@ -154,6 +154,10 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                     </thead>
                     <tbody>
                         <tr>
+                            <td><span class="label label-success"><span class="fa fa-fw fa-check"></span></span></td>
+                            <td><?php _e('Topics marked with a check are topics that have been solved according to the author.', 'luna') ?></td>
+                        </tr>
+                        <tr>
                             <td><span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span></td>
                             <td><?php _e('Sticky topics are usually important topics which you should read. It\'s worth it to take a look there.', 'luna') ?></td>
                         </tr>
