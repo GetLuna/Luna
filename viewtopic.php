@@ -88,14 +88,14 @@ $admin_ids = get_admin_ids();
 
 if ($cur_topic['closed'] == '0') {
 	if (($cur_topic['post_replies'] == '' && $luna_user['g_post_replies'] == '1') || $cur_topic['post_replies'] == '1' || $is_admmod)
-		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.__('Post reply', 'luna').'</a>'."\n";
+		$post_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Post reply', 'luna').'</a>'."\n";
 	else
 		$post_link = '';
 } else {
-	$post_link = '<a class="btn disabled btn-warning btn-post pull-right">'.__('Topic closed', 'luna').'</a>';
+	$post_link = '<a class="btn disabled btn-danger btn-post">'.__('Topic closed', 'luna').'</a>';
 
 	if ($is_admmod)
-		$post_link .= '<a class="btn btn-primary btn-post pull-right" href="post.php?tid='.$id.'">'.__('Post reply', 'luna').'</a>';
+		$post_link .= '<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Post reply', 'luna').'</a>';
 
 	$post_link = $post_link."\n";
 }

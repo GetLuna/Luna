@@ -10,7 +10,7 @@ if (!defined('FORUM'))
 	<div class="forum-navigation btn-toolbar">
 		<span class="btn-group">
 			<a href="index.php" class="btn btn-primary"><span class="fa fa-fw fa-home"></span></a>
-			<a href="viewforum.php?id=<?php echo $fid ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+			<a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 			<a href="viewtopic.php?id=<?php echo $id ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
 		</span>
 		<span class="btn-group pull-right">
@@ -21,7 +21,7 @@ if (!defined('FORUM'))
 	<div class="forum-navigation btn-toolbar">
 		<span class="btn-group">
 			<a href="index.php" class="btn btn-primary"><span class="fa fa-fw fa-home"></span></a>
-			<a href="viewforum.php?id=<?php echo $fid ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
+			<a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
 			<a href="viewtopic.php?id=<?php echo $id ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></a>
 		</span>
 		<span class="btn-group pull-right">
