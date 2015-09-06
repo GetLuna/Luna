@@ -509,7 +509,6 @@ hr {
 .postfield textarea, .postfield textarea:focus {
 	border: none;
 	box-shadow: none;
-	height: 400px;
 }
 
 .quickpostfield input[type="text"], .postfield input[type="text"] {
