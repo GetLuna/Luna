@@ -8,17 +8,13 @@ $jumbo_style = ' style="background:'.$cur_posting['color'].';"';
 
 ?>
 </div>
-<div class="jumbotron"<?php echo $jumbo_style ?>>
-	<div class="container">
-		<?php if ($fid) { ?>
-			<h2><?php printf(__('New topic in "%s"', 'luna'), luna_htmlspecialchars($cur_posting['forum_name'])) ?></h2><span class="pull-right"><a class="btn btn-danger" href="index.php?id=<?php echo $cur_posting['fid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span>
-		<?php } else { ?>
-			<h2><?php printf(__('New comment in "%s"', 'luna'), luna_htmlspecialchars($cur_posting['subject'])) ?></h2><span class="pull-right"><a class="btn btn-danger" href="viewtopic.php?id=<?php echo $cur_posting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span>
-		<?php } ?>
-	</div>
-</div>
 <div class="container">
-<?php
+<?php if ($fid) { ?>
+	<h2 class="profile-title"><?php printf(__('New topic in "%s"', 'luna'), luna_htmlspecialchars($cur_posting['forum_name'])) ?><a class="btn btn-danger pull-right" href="index.php?id=<?php echo $cur_posting['fid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
+<?php } else { ?>
+	<h2 class="profile-title"><?php printf(__('New comment in "%s"', 'luna'), luna_htmlspecialchars($cur_posting['subject'])) ?><a class="btn btn-danger pull-right" href="viewtopic.php?id=<?php echo $cur_posting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
+<?php }
+
 if (isset($errors))
 	draw_error_panel($errors);
 if (isset($message))
