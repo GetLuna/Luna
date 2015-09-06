@@ -8,12 +8,8 @@ $jumbo_style = ' style="background:'.$cur_post['color'].';"';
 
 ?>
 </div>
-<div class="jumbotron"<?php echo $jumbo_style ?>>
-	<div class="container">
-		<h2><?php printf(__('Edit "%s"', 'luna'), luna_htmlspecialchars($cur_post['subject'])) ?></h2><span class="pull-right"><a class="btn btn-danger" href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></span>
-	</div>
-</div>
 <div class="container">
+	<h2 class="profile-title"><?php printf(__('Edit "%s"', 'luna'), luna_htmlspecialchars($cur_post['subject'])) ?><a class="btn btn-danger pull-right" href="viewtopic.php?id=<?php echo $cur_post['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
 <?php 
 if (isset($errors))
 	draw_error_panel($errors);
