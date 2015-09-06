@@ -7,16 +7,7 @@ if (!defined('FORUM'))
 ?>
 
 <form id="search" method="get" action="search.php?section=advanced">
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></a>
-		</div>
-		<div class="collapse navbar-collapse hidden-xs" id="search-nav">
-			<ul class="navbar-form navbar-right">
-				<input class="btn btn-primary" type="submit" name="search" value="<?php _e('Search', 'luna') ?>" accesskey="s" />
-			</ul>
-		</div>
-	</nav>
+	<h2 class="profile-title"><?php _e('Search', 'luna') ?><button class="btn btn-primary pull-right" type="submit" name="search" accesskey="s"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></h2>
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<fieldset class="form-inline">
