@@ -2,7 +2,7 @@
 	<div class="col-sm-6 col-xs-6">
 		<div class="<?php echo $icon_type ?>"><?php echo forum_number_format($topic_count + $start_from) ?></div>
 		<div class="tclcon">
-			<span class="middot">&middot; </span><a href="<?php echo $url ?>"><?php echo $subject."\n" ?></a><?php echo $by ?>
+			<span class="middot">&middot; </span> <?php echo $subject_status ?> <a href="<?php echo $url ?>"><?php echo $subject."\n" ?></a><?php echo $by ?>
 		</div>
 	</div>
 	<div class="col-sm-2 hidden-xs"><?php if (is_null($cur_topic['moved_to'])) { ?><b><?php echo forum_number_format($cur_topic['num_replies']) ?></b> <?php echo $replies_label ?><br /><b><?php echo forum_number_format($cur_topic['num_views']) ?></b> <?php echo $views_label ?><?php } ?></div>
