@@ -3,7 +3,7 @@
 		<div class="col-md-3">
 			<div class="profile-card">
 				<div class="profile-card-head">
-					<div class="user-avatar thumbnail <?php echo $is_online; ?>">
+					<div class="user-avatar <?php echo $is_online; ?>">
 						<?php echo $user_avatar ?>
 					</div>
 					<h2><?php echo $username ?></h2>

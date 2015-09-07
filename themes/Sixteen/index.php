@@ -10,8 +10,10 @@ if ($luna_user['first_run'] == '0') {
 	<div class="row first-run-content">
 		<div class="col-md-4 col-sm-6 col-xs-5 first-run-profile">
 			<h3 class="first-run-title"><span class="hidden-xs"><?php echo sprintf(__('Hi there, %s', 'luna'), luna_htmlspecialchars($luna_user['username'])) ?></span><span class="visible-xs-block"><?php echo luna_htmlspecialchars($luna_user['username']) ?></span></h3>
-			<span class="first-run-avatar thumbnail">
+			<span class="first-run-avatar">
+				<div class="user-avatar">
 				<?php echo $user_avatar ?>
+				</div>
 			</span>
 		</div>
 		<?php if (!$luna_user['is_guest']) { ?>

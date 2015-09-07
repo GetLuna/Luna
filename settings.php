@@ -807,6 +807,9 @@ To change your email address, please visit the following page:
 		$signature_preview = $parsed_signature;
 	else
 		$signature_preview = __('No signature currently stored in profile.', 'luna');
+	
+	$user_username = luna_htmlspecialchars($user['username']);
+	$user_usertitle = get_title($user);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Profile', 'luna'), __('Settings', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'me');

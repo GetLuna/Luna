@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 	<div class="col-sm-3 profile-nav">
 		<div class="profile-card">
 			<div class="profile-card-head">
-				<div class="user-avatar thumbnail">
+				<div class="user-avatar">
 					<?php echo $avatar_user_card; ?>
 				</div>
 				<h2><?php echo $user_username; ?></h2>
