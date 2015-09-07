@@ -80,8 +80,12 @@ hr {
 	color: #fff;
 }
 
-#header a {
+#header .board-head a {
 	color: #fff;
+}
+
+#header h1 {
+	margin-top: 12px;
 }
 
 #header a:hover {
@@ -89,37 +93,8 @@ hr {
 	text-decoration: none;
 }
 
-#header .dropdown-menu a, #header .dropdown-menu a:hover {
-	color: #000;
-}
-
-@media screen and (max-width: 767px) {
-	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, #header .dropdown-menu > li > a {
-		color: #fff;
-	}
-
-	#header .dropdown-menu > li > a:hover, #header .dropdown-menu > li > a:focus {
-		background: #47a9f5;
-	}
-
-	.dropdown-menu .divider {
-		background-color: #0068b0;
-	}
-
-	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-		border: none;
-		box-shadow: none;
-	}
-}
-
 .announcement a {
 	text-decoration: underline;
-}
-
-@media screen and (min-width: 768px) {
-	.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-		background: #0073c4;
-	}
 }
 
 .avatar-item .avatar {
@@ -226,6 +201,12 @@ hr {
 	padding-bottom: 12px;
 }
 
+@media screen and (max-width: 767px) {
+	#header .container p {
+		margin-top: 10px;
+	}
+}
+
 #brdwelcome .conl, #brdwelcome .conr, #brdwelcome p, #brdwelcome li {
 	display: inline;
 	padding: 0;
@@ -291,61 +272,95 @@ hr {
 }
 
 /* Navbar */
-.nav-inner {
-	max-width: 1140px;
-	margin: 0 auto;
-}
-
 .navbar {
 	border: none;
-	background: #057ed4;
-}
-  
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #0073c4;
+	margin-bottom: 0;
 }
 
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	background-color: #0073c4;
-	color: #fff;
-}
-
-.navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret, .navbar-default .navbar-nav > .dropdown > a .caret {
-	border-top-color: #fff;
-	border-bottom-color: #fff;
-}
-
-.navbar-right > .dropdown, :last-child.navbar-right.navbar-nav {
-	margin-right: 0;
-}
-
-@media (min-width: 768px) {
-	.navbar-toggle {
-		display: none;
+@media screen and (min-width:768px) {
+	.navbar-default {
+		background: rgba(255, 255, 255, .1);
 	}
+
+	.navbar-brand {
+		color: rgba(255, 255, 255, .7) !important;
+	}
+	
+	.navbar-brand:hover {
+		color: rgba(255, 255, 255, 1) !important;
+	}
+}
+
+@media screen and (max-width:767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: rgba(255, 255, 255, .7) !important;
+	}
+	
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+		color: rgba(255, 255, 255, 1) !important;
+	}
+
+	.navbar-default .navbar-nav .open .dropdown-menu .divider {
+		background: rgba(255, 255, 255, .1);
+	}
+}
+
+.dropdown-header {
+	text-transform: uppercase;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: rgba(255, 255, 255, .7);
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+	color: rgba(255, 255, 255, 1);
+	background: none;
+}	
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+	color: rgba(255, 255, 255, 1);
+	background: rgba(255, 255, 255, .1);
+}
+
+.navbar-default .navbar-toggle {
+	border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+	background: transparent;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 	border: none;
 }
 
+.dropdown-menu {
+	background: rgba(0, 0, 0, .8);
+	border: none;
+}
+	
+.dropdown-header {
+	color: #fff;
+}
+	
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+	color: rgba(255, 255, 255, .8);
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:active, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	color: #fff;
+	background: rgba(255, 255, 255, .1);
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu .divider {
+	background: rgba(0, 0, 0, .2);
+}
+
 .navbar .avatar {
 	display: inline;
 	margin-right: 0;
 	border-radius: 100px;
-}
-
-/* Toggle */
-.navbar-default .navbar-toggle {
-	border-color: #057ed4;
-}
-
-.navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	background-color: #057ed4;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-	background-color: #fff;
 }
 
 /* Notification fly-out */

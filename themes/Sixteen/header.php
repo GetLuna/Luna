@@ -27,7 +27,7 @@ $body_classes = check_style_mode();
 		<?php if ($luna_user['is_guest']): require load_page('login.php'); endif; ?>
 		<div id="header">
 			<div class="navbar navbar-default navbar-transparent navbar-static-top">
-				<div class="nav-inner">
+				<div class="container">
 					<a class="navbar-brand" href="index.php"><?php echo $menu_title ?></a>
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-primary-collapse">
@@ -59,7 +59,7 @@ $body_classes = check_style_mode();
 					</div>
 				</div>
 			</div>
-			<div class="container">
+			<div class="container board-head">
 				<span class="hidden-xs">
 					<h1><?php echo $menu_title ?></h1>
 				</span>
