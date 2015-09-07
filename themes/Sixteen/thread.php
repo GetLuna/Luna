@@ -40,9 +40,9 @@ if (!defined('FORUM'))
 			<div class="btn-group">
 				<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&move_topics=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move', 'luna') ?></a>
 				<?php if ($cur_topic['closed'] == '1') { ?>
-					<a class="btn btn-success" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&open=<?php echo $id ?>"><span class="fa fa-fw fa-check"></span> <?php _e('Open', 'luna') ?></a>
+					<a class="btn btn-success" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&open=<?php echo $id ?>"><span class="fa fa-fw fa-unlock"></span> <?php _e('Open', 'luna') ?></a>
 				<?php } else { ?>
-					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&close=<?php echo $id ?>"><span class="fa fa-fw fa-times"></span> <?php _e('Close', 'luna') ?></a>
+					<a class="btn btn-danger" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&close=<?php echo $id ?>"><span class="fa fa-fw fa-lock"></span> <?php _e('Close', 'luna') ?></a>
 				<?php } ?>
 				
 				<?php if ($cur_topic['sticky'] == '1') { ?>

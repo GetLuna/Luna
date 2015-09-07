@@ -92,7 +92,7 @@ if ($cur_topic['closed'] == '0') {
 	else
 		$post_link = '';
 } else {
-	$post_link = '<a class="btn disabled btn-danger btn-post">'.__('Topic closed', 'luna').'</a>';
+	$post_link = '<a class="btn disabled btn-danger btn-post"><span class="fa fa-fw fa-lock"></span></a>';
 
 	if ($is_admmod)
 		$post_link .= '<a class="btn btn-primary btn-post" href="post.php?tid='.$id.'">'.__('Post reply', 'luna').'</a>';
