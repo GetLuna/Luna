@@ -1,3 +1,10 @@
+/*
+ * Sixteen 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ */
+
 /* General fixes */
 body, html {
 	background-color: #f2f2f2;
@@ -75,8 +82,8 @@ hr {
 
 /* Header */
 #header {
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: #b14bbd;
+	background: linear-gradient(to bottom left, #b14bbd 0%, #ee545e 100%);
 	color: #fff;
 }
 
@@ -141,6 +148,7 @@ hr {
 /* First run */
 .first-run-content {
 	padding-left: 15px;
+	color: #fff;
 }
 
 .first-run-content h3 {
@@ -148,8 +156,6 @@ hr {
 }
 
 .first-run-profile {
-	background: #057ed4;
-	background: linear-gradient(to bottom left, #057ed4, #10c1f0);
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	padding-bottom: 16px;
@@ -183,6 +189,25 @@ hr {
 
 .first-run-list {
 	margin: 15px;
+}
+
+.first-run-list .list-group-item {
+	background: rgba(255, 255, 255, .2);
+	color: #fff;
+	border-color: transparent;
+	margin-bottom: 1px;
+	padding: 9px 15px;
+	border-radius: 0;
+}
+
+.first-run-list a.list-group-item:focus, .first-run-list a.list-group-item:hover {
+	background: rgba(255, 255, 255, .4);
+	color: #fff;
+}
+
+.first-run-list .list-group-item.active:focus, .first-run-list .list-group-item.active:hover {
+	background: rgba(255, 177, 178, .6);
+	border-color: transparent;
 }
 
 .first-run-login {
