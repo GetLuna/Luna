@@ -15,7 +15,7 @@ if ($luna_user['first_run'] == '0') {
 			</span>
 		</div>
 		<?php if (!$luna_user['is_guest']) { ?>
-		<div class="col-md-4 hidden-sm hidden-xs">
+		<div class="col-md-4 hidden-sm hidden-xs first-run-intro text-center">
 			<h3 class="first-run-forumtitle"><?php echo sprintf(__('Welcome to %s', 'luna'), $luna_config['o_board_title']) ?></h3>
 			<p><?php echo $luna_config['o_first_run_message']; ?></p>
 		</div>
@@ -29,7 +29,7 @@ if ($luna_user['first_run'] == '0') {
 		</div>
 		<?php } else { ?>
 		<?php $redirect_url = check_url(); ?>
-		<div class="col-md-4 hidden-sm hidden-xs">
+		<div class="col-md-4 hidden-sm hidden-xs first-run-actions">
 			<h3 class="first-run-forumtitle"><?php echo sprintf(__('Welcome to %s', 'luna'), $luna_config['o_board_title']) ?></h3>
 			<div class="list-group first-run-list">
 				<a href="register.php" class="list-group-item"><?php _e('Register', 'luna') ?></a>
