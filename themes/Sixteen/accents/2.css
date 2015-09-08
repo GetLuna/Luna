@@ -1,0 +1,16 @@
+/*
+ * Sixteen Blue 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ */
+
+#header {
+	background: #057ed4;
+	background: linear-gradient(to right, #057ed4, #10c1f0);
+}
+
+.first-run.panel {
+	background: #057ed4;
+	background: linear-gradient(to bottom left, #057ed4, #10c1f0);
+}
