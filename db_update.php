@@ -778,7 +778,7 @@ switch ($stage) {
 
 		// Since 0.4.3902: Add o_code_name feature
 		if (!array_key_exists('o_code_name', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_code_name\', \''.Version::FORUM_CODE_NAME.'\')') or error('Unable to insert config value \'o_code_name\'', __FILE__, __LINE__, $db->error());
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_code_name\', \''.Version::LUNA_CODE_NAME.'\')') or error('Unable to insert config value \'o_code_name\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.4.3903: Add o_update_ring feature
 		if (!array_key_exists('o_update_ring', $luna_config))
@@ -968,7 +968,7 @@ switch ($stage) {
 		// We update the version numbers
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_VERSION.'\' WHERE conf_name = \'o_cur_version\'') or error('Unable to update version', __FILE__, __LINE__, $db->error());
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_CORE_VERSION.'\' WHERE conf_name = \'o_core_version\'') or error('Unable to update core version', __FILE__, __LINE__, $db->error());
-		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_CODE_NAME.'\' WHERE conf_name = \'o_code_name\'') or error('Unable to update code name', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::LUNA_CODE_NAME.'\' WHERE conf_name = \'o_code_name\'') or error('Unable to update code name', __FILE__, __LINE__, $db->error());
 
 		// And the database revision number
 		$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.Version::FORUM_DB_VERSION.'\' WHERE conf_name = \'o_database_revision\'') or error('Unable to update database revision number', __FILE__, __LINE__, $db->error());
