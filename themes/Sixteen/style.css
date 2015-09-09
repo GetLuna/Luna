@@ -85,6 +85,7 @@ hr {
 	background: #b14bbd;
 	background: linear-gradient(to bottom left, #b14bbd 0%, #ee545e 100%);
 	color: #fff;
+	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 #header .board-head a {
@@ -146,6 +147,12 @@ hr {
 }
 
 /* First run */
+.first-run {
+	border-radius: 0;
+	border: none;
+	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
+}
+
 .first-run-content {
 	padding-left: 15px;
 	color: #fff;
@@ -273,7 +280,7 @@ hr {
 /* Panels */
 .panel {
 	margin-bottom: 10px;
-	margin-top: 15px;
+	margin-top: 10px;
 }
 
 .panel-default .panel-heading {
