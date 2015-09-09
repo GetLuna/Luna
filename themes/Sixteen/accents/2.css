@@ -10,12 +10,7 @@
 	background: linear-gradient(to bottom left, #057ed4, #10c1f0);
 }
 
-.first-run.panel {
-	background: #057ed4;
-	background: linear-gradient(to top right, #057ed4, #10c1f0);
-}
-
-.profile-card-head {
+.first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
 	background: #057ed4;
 	background: linear-gradient(to top right, #057ed4, #10c1f0);
 }

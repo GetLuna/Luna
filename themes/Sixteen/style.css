@@ -424,12 +424,9 @@ hr {
 	border: none;
 }
 
-.dropdown-menu {
+.navbar-default .dropdown-menu {
 	background: rgba(0, 0, 0, .8);
 	border: none;
-}
-	
-.dropdown-header {
 	color: #fff;
 }
 
@@ -437,6 +434,68 @@ hr {
 	display: inline;
 	margin-right: 0;
 	border-radius: 100px;
+}
+
+/* Navs */
+.nav-tabs {
+	background: #b14bbd;
+	background: linear-gradient(to top right, #b14bbd, #ee545e);
+	border: none;
+	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
+}
+
+.no-background {
+	background: none !important;
+	box-shadow: none !important;
+}
+
+.nav-tab-info {
+	background: #b14bbd;
+	background: linear-gradient(to top right, #b14bbd, #ee545e);
+	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
+}
+
+.nav-tab-info .tab-pane {
+	box-shadow: none !important;
+}
+
+.nav-tab-info-block {
+	margin: 10px;
+	color: #fff;
+}
+
+.nav-tab-info-block h3 {
+	padding-top: 10px;
+}
+
+.nav-tabs li {
+	margin-top: 5px;
+}
+
+.nav-tabs li a {
+	color: #fff;
+	border-radius: 0;
+}
+
+.nav-tabs li:first-child {
+	margin-left: 5px;
+}
+
+.nav-tabs li:last-child {
+	margin-right: 5px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover {
+	background: rgba(255, 255, 255, .3);
+	color: #fff;
+	border-color: transparent;
+}
+
+.tab-pane {
+	border: none;
+	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
+	padding: 15px;
+	background: #fff;
 }
 
 /* Notification fly-out */
@@ -676,14 +735,6 @@ hr {
 
 .fa-fw {
 	width: 1.1em !important;
-}
-
-/* Tabs */
-.tab-pane {
-	padding: 15px;
-	background: #fff;
-	border: solid 1px #ddd;
-	border-top: none;
 }
 
 /* Table */
