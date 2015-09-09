@@ -1367,11 +1367,12 @@ blockquote footer {
 	}
 }
 
-/* Backstage Accent select */
-.backstage-accent {
+/* Backstage and Mainstage Accent select */
+.color-accent {
 	padding: 21px;
 	margin-left: 1px;
 	margin-right: 1px;
+	border-radius: 0;
 }
 
 .accent-group .btn-group > :first-child:not(.dropdown-toggle):not(:last-child).btn, .accent-group .btn-group > :last-child:not(:first-child).btn, .btn-group > :not(:first-child).dropdown-toggle {
@@ -1385,6 +1386,54 @@ blockquote footer {
 
 .accent-group .btn:hover, .accent-group .btn:focus, .accent-group .btn:active, .accent-group .active.btn {
 	border: 3px solid #bbb;
+}
+
+.btn-primary.color-accent.accent-1 {
+	background-color: #14a3ff !important;
+}
+
+.btn-primary.color-accent.accent-2 {
+	background-color: #2788cb !important;
+}
+
+.btn-primary.color-accent.accent-3 {
+	background-color: #0d4382 !important;
+}
+
+.btn-primary.color-accent.accent-4 {
+	background-color: #c58be2 !important;
+}
+
+.btn-primary.color-accent.accent-5 {
+	background-color: #8bb805 !important;
+}
+
+.btn-primary.color-accent.accent-6{
+	background-color: #047a36 !important;
+}
+
+.btn-primary.color-accent.accent-7 {
+	background-color: #ffcd21 !important;
+}
+
+.btn-primary.color-accent.accent-8 {
+	background-color: #ff7521 !important;
+}
+
+.btn-primary.color-accent.accent-9 {
+	background-color: #ff4444 !important;
+}
+
+.btn-primary.color-accent.accent-10 {
+	background-color: #ccc !important;
+}
+
+.btn-primary.color-accent.accent-11 {
+	background-color: #999 !important;
+}
+
+.btn-primary.color-accent.accent-12 {
+	background-color: #444 !important;
 }
 
 /* Cookie bar */

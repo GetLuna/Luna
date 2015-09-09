@@ -126,9 +126,9 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 		
 				foreach ($accents as $temp) {
 					if ($luna_user['color_scheme'] == $temp)
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
+						echo '<label class="btn btn-primary color-accent accent-sixteen-'.$temp.' active"><input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'" checked></label>';
 					else
-						echo '<label class="btn btn-primary color-accent accent-'.$temp.'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
+						echo '<label class="btn btn-primary color-accent accent-sixteen-'.$temp.'"> <input type="radio" name="form[color_scheme]" id="'.$temp.'" value="'.$temp.'"></label>';
 				}
 		?>
 									</div>
