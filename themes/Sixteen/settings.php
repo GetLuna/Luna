@@ -15,14 +15,14 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 <div class="row">
 	<div class="col-sm-3 profile-nav">
 		<div class="profile-card">
-			<div class="profile-card-head">
+			<div class="profile-card-head profile-card-nav">
 				<div class="user-avatar">
 					<?php echo $user_avatar ?>
 				</div>
 				<h2><?php echo $user_username; ?></h2>
 				<h3><?php echo $user_usertitle; ?></h3>
+				<?php load_me_nav('settings', 'list-group-transparent'); ?>
 			</div>
-			<?php load_me_nav('settings'); ?>
 		</div>
 	</div>
 	<div class="col-sm-9 profile">

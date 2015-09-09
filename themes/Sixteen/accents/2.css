@@ -7,10 +7,15 @@
 
 #header {
 	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+	background: linear-gradient(to bottom left, #057ed4, #10c1f0);
 }
 
 .first-run.panel {
 	background: #057ed4;
-	background: linear-gradient(to bottom left, #057ed4, #10c1f0);
+	background: linear-gradient(to top right, #057ed4, #10c1f0);
+}
+
+.profile-card-head {
+	background: #057ed4;
+	background: linear-gradient(to top right, #057ed4, #10c1f0);
 }

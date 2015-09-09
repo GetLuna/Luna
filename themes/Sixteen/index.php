@@ -20,18 +20,18 @@ if ($luna_user['first_run'] == '0') {
 			<p><?php echo $luna_config['o_first_run_message']; ?></p>
 		</div>
 		<div class="col-md-4 col-sm-6 col-xs-7">
-			<div class="list-group first-run-list">
+			<div class="list-group list-group-transparent first-run-list">
 				<a href="settings.php" class="list-group-item"><?php _e('Extend your details', 'luna') ?></a>
 				<a href="help.php" class="list-group-item"><?php _e('Get help', 'luna') ?></a>
 				<a href="search.php" class="list-group-item"><?php _e('Search the board', 'luna') ?></a>
-				<a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item active"><?php _e('Don\'t show again', 'luna') ?></a>
+				<a href="index.php?action=do_not_show&id=<?php echo $luna_user['id'] ?>" class="list-group-item list-group-item-danger active"><?php _e('Don\'t show again', 'luna') ?></a>
 			</div>
 		</div>
 		<?php } else { ?>
 		<?php $redirect_url = check_url(); ?>
-		<div class="col-md-4 hidden-sm hidden-xs first-run-actions">
+		<div class="col-md-4 hidden-sm hidden-xs first-run-actions text-center">
 			<h3 class="first-run-forumtitle"><?php echo sprintf(__('Welcome to %s', 'luna'), $luna_config['o_board_title']) ?></h3>
-			<div class="list-group first-run-list">
+			<div class="list-group list-group-transparent first-run-list">
 				<a href="register.php" class="list-group-item"><?php _e('Register', 'luna') ?></a>
 				<a href="#" data-toggle="modal" data-target="#reqpass" class="list-group-item"><?php _e('Forgotten password', 'luna') ?></a>
 			</div>
