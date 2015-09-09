@@ -14,3 +14,12 @@
 	background: #b14bbd;
 	background: linear-gradient(to top right, #b14bbd, #ee545e);
 }
+
+.panel-default .panel-heading {
+	background: #b14bbd;
+	background: linear-gradient(to right, #b14bbd, #ee545e);
+}
+
+.comment-arrow {
+	border-right-color: #b14bbd;
+}
