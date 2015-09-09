@@ -1388,6 +1388,26 @@ blockquote footer {
 	border: 3px solid #bbb;
 }
 
+.btn-primary.color-accent.accent-sixteen-1 {
+	background: #b14bbd;
+	background: linear-gradient(to bottom left, #b14bbd, #ee545e);
+}
+
+.btn-primary.color-accent.accent-sixteen-2 {
+	background: #057ed4;
+	background: linear-gradient(to bottom left, #057ed4, #10c1f0);
+}
+
+.btn-primary.color-accent.accent-sixteen-3 {
+	background: #14d192;
+	background: linear-gradient(to bottom left, #14d192, #239ead);
+}
+
+.btn-primary.color-accent.accent-sixteen-4 {
+	background: #e0532e;
+	background: linear-gradient(to bottom left, #e0532e, #e8bb1e);
+}
+
 .btn-primary.color-accent.accent-1 {
 	background-color: #14a3ff !important;
 }
