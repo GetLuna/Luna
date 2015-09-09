@@ -1610,9 +1610,9 @@ function forum_list_accents($stage) {
 	$accents = array();
 
 	if ($stage = 'main' && is_dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/'))
-		$d = dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/');
+		$d == dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/');
 	if ($stage = 'back')
-		$d = dir(FORUM_ROOT.'backstage/css/accents/');
+		$d == dir(FORUM_ROOT.'backstage/css/accents/');
 
 	while (($entry = $d->read()) !== false) {
 		if ($entry{0} == '.')
