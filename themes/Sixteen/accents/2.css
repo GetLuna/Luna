@@ -5,7 +5,7 @@
  * Based on Font Awesome 4.4.0
  */
 
-#header {
+#header, .editor {
 	background: #057ed4;
 	background: linear-gradient(to bottom left, #057ed4, #10c1f0);
 }

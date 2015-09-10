@@ -731,18 +731,18 @@ hr {
 }
 
 .textarea-toolbar {
-	background: #eee;
+	background: transparent;
 	margin: 0;
 }
 
 .textarea-toolbar.textarea-top {
 	padding: 6px 2px;
-	border-bottom: #ddd 1px solid;
 }
 
 .textarea-toolbar.textarea-bottom {
 	padding: 6px;
-	border-top: #ddd 1px solid;
+}
+
 .emoji, .emoji-ed {
 	font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", "Android Emoji", "NotoColorEmoji", "EmojiSymbols" !important;
 }
@@ -774,10 +774,33 @@ hr {
 .emoticon-ed-dropdown {
 	padding: 13px 18px 15px !important;
 }
+
+.textarea-toolbar .btn {
+	background: rgba(255, 255, 255, .3);
+	color: #fff;
+}
+
+.btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default, .open > .dropdown-toggle.btn-default:active, .open > .dropdown-toggle.btn-default:focus {
+	color: #fff;
+	background: rgba(255, 255, 255, .5);
+	border-color: transparent !important;
+	box-shadow: none;
+}
+
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+	margin-left: 0;
+}
+
+.textarea-toolbar .btn:hover {
+	background: rgba(255, 255, 255, .4);
 }
 
 .fa-fw {
 	width: 1.1em !important;
+}
+
+.form-control {
+	border-radius: 0;
 }
 
 /* Table */
@@ -847,20 +870,33 @@ hr {
 }
 
 /* Buttons */
-.btn-primary.active, .btn-warning.active, .btn-danger.active, .btn-success.active, .btn-info.active, .btn-inverse.active {
-	color: #ffffff;
+.btn {
+	border-radius: 0;
+	border-color: transparent;
 }
 
-.btn-primary {
+.btn-primary.active, .btn-warning.active, .btn-danger.active, .btn-success.active, .btn-info.active, .btn-inverse.active {
 	color: #fff;
-	background-color: #057ed4;
-	border-color: #0073c4;
+	border-color: transparent;
+}
+
+.btn-primary:hover, .btn-default:hover, .btn-warning:hover, .btn-danger:hover, .btn-success:hover, .btn-info:hover, .btn-inverse:hover {
+	border-color: transparent;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
 	color: #fff;
 	background-color: #0b8eeb;
-	border-color: #0073c4;
+	border-color: transparent;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .btn-default.disabled, .btn-default[disabled] {
+	border-color: transparent;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #057ed4;
 }
 
 .btn-primary:active, .btn-primary.active {
@@ -870,6 +906,10 @@ hr {
 .btn-post {
 	margin-top: 0;
 	margin-left: 5px;
+}
+
+.btn-group {
+	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .panel-title .btn {
