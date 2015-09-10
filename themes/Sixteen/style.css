@@ -743,6 +743,37 @@ hr {
 .textarea-toolbar.textarea-bottom {
 	padding: 6px;
 	border-top: #ddd 1px solid;
+.emoji, .emoji-ed {
+	font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", "Android Emoji", "NotoColorEmoji", "EmojiSymbols" !important;
+}
+
+.emoji-ed {
+	font-size: 16px;
+}
+
+.dropdown-emoji {
+	width: 226px;
+	border-radius: 0;
+}
+
+.dropdown-emoticon {
+	width: 206px;
+	border-radius: 0;
+}
+
+.dropdown-emoji > li, .dropdown-emoticon > li {
+	display: inline-block;
+	float: left;
+}
+
+.dropdown-emoji > .open > ul, .dropdown-emoticon > .open > ul {
+	display: inline-flex !important;
+	width: 230px;
+}
+
+.emoticon-ed-dropdown {
+	padding: 13px 18px 15px !important;
+}
 }
 
 .fa-fw {
