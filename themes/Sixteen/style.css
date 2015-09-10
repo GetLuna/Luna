@@ -870,7 +870,6 @@ hr {
 .btn-post {
 	margin-top: 0;
 	margin-left: 5px;
-	margin-bottom: 10px;
 }
 
 .panel-title .btn {
@@ -1108,6 +1107,10 @@ textarea {
 
 .profile-card h2 a, .profile-card h3, .profile-card h3 a, .topic .panel-heading h3 a {
 	color: #fff;
+}
+
+.forum-navigation-top {
+	margin-bottom: 10px;
 }
 
 .topic .panel, .topic .profile-card {
