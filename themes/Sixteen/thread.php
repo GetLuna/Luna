@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 <div class="topicview">
 	<h2 class="profile-title"><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
-	<div class="forum-navigation btn-toolbar">
+	<div class="forum-navigation forum-navigation-top btn-toolbar">
 		<span class="btn-group">
 			<a href="index.php" class="btn btn-primary"><span class="fa fa-fw fa-home"></span></a>
 			<a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
@@ -18,7 +18,7 @@ if (!defined('FORUM'))
 		</span>
 	</div>
 	<?php draw_comment_list(); ?>
-	<div class="forum-navigation btn-toolbar">
+	<div class="forum-navigation forum-navigation-bottom btn-toolbar">
 		<span class="btn-group">
 			<a href="index.php" class="btn btn-primary"><span class="fa fa-fw fa-home"></span></a>
 			<a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>" class="btn btn-primary"><?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
