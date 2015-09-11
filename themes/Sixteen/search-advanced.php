@@ -7,7 +7,7 @@ if (!defined('FORUM'))
 ?>
 
 <form id="search" method="get" action="search.php?section=advanced">
-	<h2 class="profile-title"><?php _e('Search', 'luna') ?><button class="btn btn-primary pull-right" type="submit" name="search" accesskey="s"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></h2>
+	<h2 class="profile-title"><?php _e('Search', 'luna') ?><span class="btn-group pull-right"><button class="btn btn-primary" type="submit" name="search" accesskey="s"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></button></span></h2>
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<fieldset class="form-inline">

@@ -5,7 +5,7 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<h2 class="profile-title"><?php _e('Search', 'luna') ?><a class="btn btn-default pull-right" href="search.php?section=advanced"><?php _e('Advanced', 'luna') ?></a></h2>
+<h2 class="profile-title"><?php _e('Search', 'luna') ?><span class="btn-group pull-right"><a class="btn btn-default" href="search.php?section=advanced"><?php _e('Advanced', 'luna') ?></a></span></h2>
 <form id="search" method="get" action="search.php?section=simple">
 	<div class="panel panel-default">
 		<div class="panel-body">
