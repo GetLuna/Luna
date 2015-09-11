@@ -3,6 +3,7 @@
  * Based on Trent 1.0
  * Based on Bootstrap 3.3.5
  * Based on Font Awesome 4.4.0
+ * #057ed4 #0c9fe3 #10c1f0
  */
 
 #header, .editor {
@@ -22,4 +23,12 @@
 
 .comment-arrow {
 	border-right-color: #057ed4;
+}
+
+.btn-primary {
+	background-color: #057ed4;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background-color: #0c9fe3;
 }

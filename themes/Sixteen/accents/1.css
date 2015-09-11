@@ -1,8 +1,9 @@
 /*
- * Sixteen Purple 1.0
+ * Sixteen Purple Orange 1.0
  * Based on Trent 1.0
  * Based on Bootstrap 3.3.5
  * Based on Font Awesome 4.4.0
+ * #b14bbd #d547a5 #ee545e
  */
 
 #header, .editor {
@@ -22,4 +23,12 @@
 
 .comment-arrow {
 	border-right-color: #b14bbd;
+}
+
+.btn-primary {
+	background-color: #b14bbd;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background-color: #d547a5;
 }
