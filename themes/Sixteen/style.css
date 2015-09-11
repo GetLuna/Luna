@@ -1531,6 +1531,10 @@ blockquote footer {
 	border-radius: 0;
 }
 
+.accent-group {
+	box-shadow: none;
+}
+
 .accent-group .btn-group > :first-child:not(.dropdown-toggle):not(:last-child).btn, .accent-group .btn-group > :last-child:not(:first-child).btn, .btn-group > :not(:first-child).dropdown-toggle {
 	border-radius: 0;
 }
