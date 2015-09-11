@@ -273,47 +273,42 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 					<div role="tabpanel" class="tab-pane<?php if ( 'contact' === $section ) { ?> active<?php } ?>" id="contact">
 						<fieldset class="form-horizontal form-setting">
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Website', 'luna') ?></label>
-								<div class="col-sm-9">
+								<div class="col-sm-12">
 									<div class="input-group input">
-										<span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span></span>
+										<span class="input-group-addon" id="website-addon"><span class="fa fa-fw fa-link"></span> <?php _e('Website', 'luna') ?></span>
 										<input id="website" type="text" class="form-control" name="form[url]" value="<?php echo luna_htmlspecialchars($user['url']) ?>" maxlength="80" aria-describedby="website-addon">
 									</div>
 								</div>
 							</div>
 							<hr />
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Microsoft Account', 'luna') ?></label>
-								<div class="col-sm-9">
+								<div class="col-sm-12">
 									<div class="input-group input">
-										<span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span></span>
+										<span class="input-group-addon" id="microsoft-addon"><span class="fa fa-fw fa-windows"></span> <?php _e('Microsoft Account', 'luna') ?></span>
 										<input id="microsoft" type="text" class="form-control" name="form[msn]" value="<?php echo luna_htmlspecialchars($user['msn']) ?>" maxlength="50" aria-describedby="microsoft-addon">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Facebook', 'luna') ?></label>
-								<div class="col-sm-9">
+								<div class="col-sm-12">
 									<div class="input-group">
-										<span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span></span>
+										<span class="input-group-addon" id="facebook-addon"><span class="fa fa-fw fa-facebook-square"></span> <?php _e('Facebook', 'luna') ?></span>
 										<input id="facebook" type="text" class="form-control" name="form[facebook]" value="<?php echo luna_htmlspecialchars($user['facebook']) ?>" maxlength="50" aria-describedby="facebook-addon">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Twitter', 'luna') ?></label>
-								<div class="col-sm-9">
+								<div class="col-sm-12">
 									<div class="input-group">
-										<span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span></span>
+										<span class="input-group-addon" id="twitter-addon"><span class="fa fa-fw fa-twitter"></span> <?php _e('Twitter', 'luna') ?></span>
 										<input id="twitter" type="text" class="form-control" name="form[twitter]" value="<?php echo luna_htmlspecialchars($user['twitter']) ?>" maxlength="50" aria-describedby="twitter-addon">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label"><?php _e('Google+', 'luna') ?></label>
-								<div class="col-sm-9">
+								<div class="col-sm-12">
 									<div class="input-group">
-										<span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span></span>
+										<span class="input-group-addon" id="google-addon"><span class="fa fa-fw fa-google-plus"></span> <?php _e('Google+', 'luna') ?></span>
 										<input id="google" type="text" class="form-control" name="form[google]" value="<?php echo luna_htmlspecialchars($user['google']) ?>" maxlength="50" aria-describedby="google-addon">
 									</div>
 								</div>

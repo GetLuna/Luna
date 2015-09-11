@@ -497,7 +497,7 @@ hr {
 	margin-right: 5px;
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover {
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
 	background: rgba(255, 255, 255, .3);
 	color: #fff;
 	border-color: transparent;
@@ -611,6 +611,37 @@ hr {
 
 .tab-pane .img-responsive {
 	border-radius: 999px;
+}
+
+/* Addons */
+#mail-addon, #website-addon, #microsoft-addon, #facebook-addon, #twitter-addon, #google-addon {
+	color: #fff;
+	border-radius: 0;
+	border-color: transparent;
+}
+
+#mail-addon {
+	background-color: #fdcd00;
+}
+
+#website-addon {
+	background-color: #00c48a;
+}
+
+#microsoft-addon {
+	background-color: #21c9ff;
+}
+
+#facebook-addon {
+	background-color: #4862a3;
+}
+
+#twitter-addon {
+	background-color: #00acee;
+}
+
+#google-addon {
+	background-color: #da4836;
 }
 
 /* Post messages */
