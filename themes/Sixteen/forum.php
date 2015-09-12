@@ -16,7 +16,7 @@ if (!defined('FORUM'))
 				<?php draw_subforum_list('subforum.php') ?>
 			</div>
 		</div>
-		<hr />
+		<hr class="subforum-devider" />
 	<?php endif; ?>
 	<h2 class="profile-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2>
 	<div class="forum-navigation btn-toolbar">

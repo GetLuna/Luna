@@ -222,6 +222,14 @@ hr {
 	margin-right: 15px;
 }
 
+.first-run .form-control {
+	margin-bottom: 1px;
+}
+
+.first-run .btn-login {
+	margin-right: 15px;
+}
+
 .first-run .active {
 	text-align: center;
 }
@@ -368,7 +376,7 @@ hr {
 	background: rgba(0, 0, 0, .2);
 }
 
-.navbar-default .navbar-form .form-control {
+.navbar-default .navbar-form .form-control, .first-run-login .form-control {
 	border: none !important;
 	background: rgba(255, 255, 255, .3);
 	color: #fff;
@@ -392,15 +400,15 @@ hr {
 	background: rgba(255, 255, 255, .5);
 }
 
-.navbar-default .navbar-form ::-webkit-input-placeholder {
+.navbar-default .navbar-form ::-webkit-input-placeholder, .first-run-login ::-webkit-input-placeholder {
    color: rgba(255, 255, 255, .6);
 }
 
-.navbar-default .navbar-form ::-moz-placeholder {
+.navbar-default .navbar-form ::-moz-placeholder, .first-run-login ::-moz-placeholder {
    color: rgba(255, 255, 255, .6);
 }
 
-.navbar-default .navbar-form :-ms-input-placeholder {  
+.navbar-default .navbar-form :-ms-input-placeholder, .first-run-login :-ms-input-placeholder {  
    color: rgba(255, 255, 255, .6);
 }
 
@@ -812,8 +820,8 @@ hr {
 }
 
 .btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default, .open > .dropdown-toggle.btn-default:active, .open > .dropdown-toggle.btn-default:focus {
-	color: #fff;
-	background: rgba(255, 255, 255, .5);
+	color: #fff !important;
+	background: rgba(255, 255, 255, .5) !important;
 	border-color: transparent !important;
 	box-shadow: none;
 }
@@ -1346,14 +1354,8 @@ textarea {
 }
 
 /* Forumview, index */
-.icon {
-	margin-top: 2px;
-	border-style: solid;
-	border-width: 8px;
-	float: left;
-	height: 0;
-	overflow: hidden;
-	width: 0;
+.subforum-devider {
+	margin-bottom: 10px;
 }
 
 /* Debug */
@@ -1362,19 +1364,6 @@ textarea {
 	border-width: 1px 0 0 0;
 	margin-top: 7px;
 	text-align: center;
-}
-
-/* Links */
-a {
-	color: #428bca;
-}
-
-a:hover, a:active {
-	color: #2a6496;
-}
-
-a.list-group-item:hover, a.list-group-item:active {
-	color: #555555;
 }
 
 /* BBCode */
@@ -1394,78 +1383,63 @@ blockquote footer {
 	font-size: 16px;
 }
 
-/* Update and login form */
-.form {
-	max-width: 330px;
-	margin: 60px auto 20px;
-	border-radius: 3px;
+/* Modal forms */
+#login-form .modal-xs, #delete-form .modal-xs {
+	max-width: 300px;
 }
 
-.form-first-run {
-	max-width: 100%;
-	margin: 0;
+@media screen and (max-width: 767px) {
+	.modal-dialog {
+		margin: 30px auto;
+	}
 }
 
-.form input[type="text"], .form input[type="password"] {
-	font-size: 14px;
-	margin-bottom: -1px;
-	padding: 7px 9px;
-	width: 100%;
+#newpass .modal-xs, #newmail .modal-xs, #newpass .modal-xs {
+	max-width: 500px;
 }
 
-.form-heading {
-	margin-bottom: 0px;
-	font-weight: 100;
-	background: #057ed4;
-	background: linear-gradient(to right, #057ed4, #10c1f0);
+.modal-form .modal-content {
+	border: none;
+	background: none;
+}
+
+.modal-form form {
+	margin-bottom: 0;
+}
+
+.modal-form .modal-header, .modal-form .modal-footer {
 	color: #fff;
-	padding: 20px;
-	border-top-right-radius: 3px;
-	border-top-left-radius: 3px;
+	background: #2788cb;
 }
 
-.form-content {
-	padding: 15px 18px 10px 20px;
+.modal-form#delete-form .modal-header, .modal-form#delete-form .modal-footer {
+	color: #fff;
+	background: #d9534f;
 }
 
-.form-first-run .form-content {
-	padding: 0;
-	padding-right: 15px;
+.modal-form .modal-title {
+	font-size: 30px;
 }
 
-.remember {
-	font-weight: 500 !important;
+.modal-form .modal-footer a {
+	color: #fff;
 }
 
-.form-text {
-	margin: 0;
-	padding: 20px;
+.modal-form .modal-footer a:hover {
+	color: #ccc;
+	text-decoration: none;
 }
 
-.form .btn-login {
-	margin-top: -65px;
-	margin-right: 5px;
+.modal-form .modal-body {
+	background: #e8e8e8;
 }
 
-.form .btn-update {
-	margin-top: 0 !important;
-	border-top: none;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+#login-form .form-control, #newmail .form-control, #newpass .form-control {
+	margin-bottom: 10px;
 }
 
-.form .actions, .form .remember {
-	margin-top: 10px;
-}
-
-.top-form {
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
-.bottom-form {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+.modal-form .form-control {
+	border: none;
 }
 
 #posterror {

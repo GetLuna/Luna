@@ -33,10 +33,12 @@ if (!defined('FORUM'))
 	</form>
 	<div class="btn-toolbar">
 		<?php if ($is_admmod): ?>
-			<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate', 'luna') ?></a>
-			<?php if($num_pages > 1) { ?>
-				<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&action=all"><span class="fa fa-fw fa-list"></span> <?php _e('Show all posts', 'luna') ?></a>
-			<?php } ?>
+			<div class="btn-group">
+				<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&p=<?php echo $p ?>"><span class="fa fa-fw fa-eye"></span> <?php _e('Moderate', 'luna') ?></a>
+				<?php if($num_pages > 1) { ?>
+					<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&tid=<?php echo $id ?>&action=all"><span class="fa fa-fw fa-list"></span> <?php _e('Show all posts', 'luna') ?></a>
+				<?php } ?>
+			</div>
 			<div class="btn-group">
 				<a class="btn btn-primary" href="backstage/moderate.php?fid=<?php echo $cur_topic['forum_id'] ?>&move_topics=<?php echo $id ?>"><span class="fa fa-fw fa-arrows-alt"></span> <?php _e('Move', 'luna') ?></a>
 				<?php if ($cur_topic['closed'] == '1') { ?>

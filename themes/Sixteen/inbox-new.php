@@ -4,7 +4,7 @@
 if (!defined('FORUM'))
 	exit;
 ?>
-<h2 class="forum-title"><?php _e('Inbox', 'luna') ?></h2>
+<h2 class="profile-title"><?php _e('Inbox', 'luna') ?></h2>
 <?php
 
 // If there are errors, we display them

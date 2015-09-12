@@ -66,12 +66,12 @@ if ($db->num_rows($result)) {
 		$item_status = 'roweven';
 		if ($cur_mess['showed'] == '0') {
 			$item_status .= ' inew';
-			$icon_type = 'icon icon-new';
+			$icon_type = '';
 			$subject = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
 					   '<strong>'.luna_htmlspecialchars($cur_mess['subject']).'</strong>'.
 					   '</a>';
 		} else {
-			$icon_type = 'icon';
+			$icon_type = '';
 			$subject = '<a href="viewinbox.php?tid='.$cur_mess['shared_id'].'&amp;mid='.$cur_mess['id'].'">'.
 					   luna_htmlspecialchars($cur_mess['subject']).
 					   '</a>';

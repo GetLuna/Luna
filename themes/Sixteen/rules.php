@@ -5,6 +5,5 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-
-<h2><?php _e('Forum rules', 'luna') ?></h2>
+<h2 class="profile-title"><?php _e('Forum rules', 'luna') ?></h2>
 <?php draw_rules_form(); ?>

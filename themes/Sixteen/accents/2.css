@@ -32,3 +32,13 @@
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
 	background-color: #0c9fe3;
 }
+
+.modal-form .modal-header {
+	background: #057ed4;
+	background: linear-gradient(to bottom left, #057ed4, #0c9fe3);
+}
+
+.modal-form .modal-footer {
+	background: #0c9fe3;
+	background: linear-gradient(to bottom left, #0c9fe3, #10c1f0);
+}
