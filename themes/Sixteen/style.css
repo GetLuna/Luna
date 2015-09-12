@@ -1184,6 +1184,7 @@ textarea {
 
 .topic .profile-card {
 	margin-top: 10px;
+	box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
 }
 
 .topic .panel-body {
@@ -1292,8 +1293,6 @@ textarea {
 .profile-card-body {
 	padding: 9px;
 	background-color: #fff;
-	border: #ddd 1px solid;
-	border-top: none;
 }
 
 .profile-card-body p {
