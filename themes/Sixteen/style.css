@@ -549,10 +549,6 @@ hr {
 	right: 42px;
 }
 
-.notification-menu li:not(.no-hover):hover, .notification-menu li:hover a {
-	background: #f5f5f5;
-}
-
 .notification-menu li:hover .notification-action {
 	display: block;
 }

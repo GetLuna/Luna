@@ -29,6 +29,10 @@
 	background-color: #057ed4;
 }
 
+.btn-primary:active {
+	background-color: #057ed4 !important;
+}
+
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
 	background-color: #0c9fe3;
 }
