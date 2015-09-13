@@ -7,9 +7,9 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const FORUM_VERSION = '1.2-alpha';
-	const FORUM_CORE_VERSION = '1.2.4913';
-	const LUNA_CORE_REVISION = '120a';
+	const FORUM_VERSION = '1.2-alpha.1';
+	const FORUM_CORE_VERSION = '1.2.4920';
+	const LUNA_CORE_REVISION = '120a1';
 
 	// The Luna Core code name
 	const LUNA_CODE_NAME = 'cornflowserblue';
