@@ -28,9 +28,19 @@ if (!defined('FORUM'))
 			<?php echo $post_link ?><?php echo $paging_links ?>
 		</span>
 	</div>
-	<form method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
-		<?php draw_editor('7'); ?>
-	</form>
+	<?php if ($quickpost): ?>
+		<form method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
+<?php
+		if ($luna_user['is_guest']) {
+			$email_label = ($luna_config['p_force_guest_email'] == '1') ? '<strong>'.__('Email', 'luna').'</strong>' : __('Email', 'luna');
+			$email_form_name = ($luna_config['p_force_guest_email'] == '1') ? 'req_email' : 'email';
+?>
+			<label class="required hidden"><?php _e('Name', 'luna') ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Name', 'luna') ?>" name="req_username" maxlength="25" tabindex="<?php echo $cur_index++ ?>" autofocus />
+			<label class="conl<?php echo ($luna_config['p_force_guest_email'] == '1') ? ' required' : '' ?> hidden"><?php echo $email_label ?></label><input class="info-textfield form-control" type="text" placeholder="<?php _e('Email', 'luna') ?>" name="<?php echo $email_form_name ?>" maxlength="80" tabindex="<?php echo $cur_index++ ?>" />
+<?php } ?>
+			<?php draw_editor('10'); ?>
+		</form>
+	<?php endif; ?>
 	<div class="btn-toolbar">
 		<?php if ($is_admmod): ?>
 			<div class="btn-group">
