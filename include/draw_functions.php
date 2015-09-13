@@ -77,7 +77,7 @@ function draw_editor($height) {
 
 ?>
 <div class="panel panel-default panel-editor">
-	<fieldset class="postfield">
+	<fieldset class="postfield editor">
 		<input type="hidden" name="form_sent" value="1" />
 		<div class="alert alert-warning hide-if-js" role="alert">
 			<p><?php _e('The Editor Toolbar requires JavaScript to be enabled. BBCode will still work, though.', 'luna' ); ?></p>
@@ -112,51 +112,47 @@ function draw_editor($height) {
 			</div>
 			<div class="btn-group">
 <?php if ($luna_config['o_emoji'] == 1) { ?>
-				<div class="btn-group">
-					<a class="btn btn-default btn-editor btn-emoji dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<span class="fa fa-fw text-emoji emoji-ed">&#x263a;</span>
-					</a>
-					<ul class="dropdown-menu dropdown-menu-right dropdown-emoji" role="menu">
-						<li><a href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed">&#x263a;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed">&#x1f611;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed">&#x1f629;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed">&#x1f604;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed">&#x1f632;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed">&#x1f609;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed">&#x1f612;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed">&#x1f60b;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed">&#x1f600;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed">&#x1f620;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed">&#x1f606;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed">&#x1f60e;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed">&#x1f605;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed">&#x1f607;</span></a></li>
-						<li><a href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed">&#x1f60f;</span></a></li>
-					</ul>
-				</div>
+				<a class="btn btn-default btn-editor btn-emoji dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					<span class="fa fa-fw text-emoji emoji-ed">&#x263a;</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-right dropdown-emoji" role="menu">
+					<li><a href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x263a;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f611;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f629;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f604;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f632;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f609;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f612;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f60b;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f600;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f620;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f606;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f60e;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f605;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f607;</span></a></li>
+					<li><a href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><span class="text-emoji emoji-ed emoji-ed-dropdown">&#x1f60f;</span></a></li>
+				</ul>
 <?php } else { ?>
-				<div class="btn-group">
-					<a class="btn btn-default btn-editor emoticon-ed dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt="<?php _e('Smilies', 'luna') ?>" width="15" height="15" />
-					</a>
-					<ul class="dropdown-menu dropdown-menu-right dropdown-emoticon" role="menu">
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
-						<li><a class="emoticon-ed" href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
-					</ul>
-				</div>
+				<a class="btn btn-default btn-editor emoticon-ed dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					<img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt="<?php _e('Smilies', 'luna') ?>" width="15" height="15" />
+				</a>
+				<ul class="dropdown-menu dropdown-menu-right dropdown-emoticon" role="menu">
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Smile', 'luna'); ?>" onclick="AddTag('emoji', ':)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/smile.png" alt=":)" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Neutral', 'luna'); ?>" onclick="AddTag('emoji', ':|');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/neutral.png" alt=":|" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Sad', 'luna'); ?>" onclick="AddTag('emoji', ':(');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/sad.png" alt=":(" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Big smile', 'luna'); ?>" onclick="AddTag('emoji', ':D');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/big_smile.png" alt=":D" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Yikes', 'luna'); ?>" onclick="AddTag('emoji', ':o');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/yikes.png" alt=":o" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Wink', 'luna'); ?>" onclick="AddTag('emoji', ';)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/wink.png" alt=";)" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Hmmm', 'luna'); ?>" onclick="AddTag('emoji', ':/');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/hmm.png" alt=":/" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Tongue', 'luna'); ?>" onclick="AddTag('emoji', ':P');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/tongue.png" alt=":P" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Happy', 'luna'); ?>" onclick="AddTag('emoji', '^.^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happy.png" alt="^.^" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Angry', 'luna'); ?>" onclick="AddTag('emoji', ':@');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angry.png" alt=":@" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Roll eye', 'luna'); ?>" onclick="AddTag('emoji', '%)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/roll.png" alt="%)" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Cool', 'luna'); ?>" onclick="AddTag('emoji', 'B:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/cool.png" alt="B:" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Happy cry', 'luna'); ?>" onclick="AddTag('emoji', ':hc:');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/happycry.png" alt=":hc:" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Angel', 'luna'); ?>" onclick="AddTag('emoji', '(a)');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/angel.png" alt="(a)" width="15" height="15" /></a></li>
+					<li><a class="emoticon-ed emoticon-ed-dropdown" href="javascript:void(0);" title="<?php _e('Oh yeah', 'luna'); ?>" onclick="AddTag('emoji', '^-^');"><img src="<?php echo luna_htmlspecialchars(get_base_url(true)) ?>/img/smilies/ohyeah.png" alt="^-^" width="15" height="15" /></a></li>
+				</ul>
 <?php } ?>
 			</div>
 		</div>
@@ -694,6 +690,9 @@ function draw_comment_list() {
 	
 				if (($cur_topic['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_topic['post_replies'] == 1)
 					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
+
+				if ($luna_user['username'] == $started_by)  
+					$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';  
 			}
 		} else {
 			if ($cur_post['marked'] == false)
@@ -710,6 +709,7 @@ function draw_comment_list() {
 				$post_actions[] = '<a href="edit.php?id='.$cur_post['id'].'">'.__('Edit', 'luna').'</a>';
 			}
 			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
+			$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';  
 		}
 	
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)

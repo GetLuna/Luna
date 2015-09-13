@@ -235,6 +235,30 @@ Reason: <reason>
 	require load_page('report.php');
 
 	require load_page('footer.php');
+} elseif (isset($_GET['answer'])) {
+	if ($luna_user['is_guest'])
+		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
+
+	$topic_id = intval($_GET['tid']);
+	$post_id = intval($_GET['answer']);
+	if ($post_id < 1 || $topic_id < 1)
+		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
+
+	if (isset($_POST['form_sent'])) {
+		// Make sure they got here from the site
+		confirm_referrer('misc.php');
+
+		$db->query('UPDATE '.$db->prefix.'topics SET solved = '.$post_id.' WHERE id= '.$topic_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
+
+		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
+	}
+
+	define('FORUM_ACTIVE_PAGE', 'misc');
+	require load_page('header.php');
+
+	require load_page('answer.php');
+
+	require load_page('footer.php');
 } elseif ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');

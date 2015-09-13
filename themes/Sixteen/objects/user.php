@@ -1,6 +1,6 @@
 <div class="row user-row">
 	<div class="col-sm-8 col-xs-9">
-		<span class="user-avatar thumbnail">
+		<span class="user-avatar">
 			<?php echo $user_avatar; ?>
 		</span>
 		<span class="userlist-name"><?php echo '<a href="profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?> <small><?php echo $user_title_field ?></small></span>

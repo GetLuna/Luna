@@ -31,6 +31,7 @@ if (!$db->num_rows($result))
 $user = $db->fetch_assoc($result);
 
 $user_username = luna_htmlspecialchars($user['username']);
+$user_usertitle = get_title($user);
 $avatar_field = generate_avatar_markup($id);
 $avatar_user_card = draw_user_avatar($id);
 

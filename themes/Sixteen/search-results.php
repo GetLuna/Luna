@@ -5,11 +5,7 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></a>
-	</div>
-</nav>
+<h2 class="profile-title"><?php _e('Search', 'luna') ?></h2>
 <?php echo $paging_links ?>
 <div class="list-group list-group-topic">
 	<?php draw_search_results(); ?>

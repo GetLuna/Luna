@@ -1,38 +1,48 @@
-/* Accent 3 - Luna */
-.navbar-inverse, .footer, .alert-all, .modal-form .modal-header, .modal-form .modal-footer, .navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus, .btn-primary, .modal-backdrop, .enforce {
-	background-color: #145198;
+/*
+ * Sixteen Green Blue 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ * #14d192 #1dc0ab #239ead
+ */
+
+#header, .editor {
+	background: #14d192;
+	background: linear-gradient(to bottom left, #14d192, #239ead);
 }
 
-.navbar-secondary, .first-run-profile, .footer .copyright, .panel-default .panel-heading, .thread-jumbotron, .jumbotron, .user-card-profile, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header {
-	background-color: #0d4382;
+.first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
+	background: #14d192;
+	background: linear-gradient(to top right, #14d192, #239ead);
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .navbar-default, .new-item .label-default, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
-	background-color: #0b3c75 !important;
+.panel-default .panel-heading {
+	background: #14d192;
+	background: linear-gradient(to right, #14d192, #239ead);
 }
 
-@media screen and (max-width: 767px) {
-	.dropdown-menu .divider {
-		background-color: #0b3c75 !important;
-	}
-}
-
-.list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
-	border-color: #145198;
+.comment-arrow {
+	border-right-color: #14d192;
 }
 
 .btn-primary {
-	border-color: #0d4382;
+	background-color: #14d192;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, [disabled].btn-primary, .category-header, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .list-group-forum .list-group-item.active.new-item {
-	border-color: #0b3c75;
+.btn-primary:active {
+	background-color: #14d192 !important;
 }
 
-a.list-group-item:hover, .col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
-	color: #0d4382;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background-color: #1dc0ab;
 }
 
-a:hover, a:active {
-	color: #0b3c75;
+.modal-form .modal-header {
+	background: #14d192;
+	background: linear-gradient(to bottom left, #14d192, #1dc0ab);
+}
+
+.modal-form .modal-footer {
+	background: #1dc0ab;
+	background: linear-gradient(to bottom left, #1dc0ab, #239ead);
 }

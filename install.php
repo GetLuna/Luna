@@ -124,7 +124,7 @@ if (!isset($_POST['form_sent'])) {
 
 	$db_type = $db_name = $db_username = $db_prefix = $username = $email = '';
 	$db_host = 'localhost';
-	$title = __('My Luna Forum', 'luna');
+	$title = Version::LUNA_CODE_NAME_SEM;
 	$description = __('You can do anything', 'luna');
 	$default_lang = $install_lang;
 	$default_style = Installer::DEFAULT_STYLE;

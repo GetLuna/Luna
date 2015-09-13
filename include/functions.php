@@ -1029,11 +1029,8 @@ function message($message, $no_back_link = false, $http_status = null) {
 	require load_page('header.php');
 
 ?>
-
-<div class="container">
-	<h2 style="margin-top: 60px;"><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
-	<p><?php echo $message ?></p>
-</div>
+<h2 class="profile-title"><?php _e('We\'ve got us a situation here.', 'luna') ?></h2>
+<p><?php echo $message ?></p>
 <?php
 	require load_page('footer.php');
 	
@@ -1609,9 +1606,9 @@ function forum_list_accents($stage) {
 
 	$accents = array();
 
-	if ($stage = 'main' && is_dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/'))
+	if ($stage == 'main' && is_dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/'))
 		$d = dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/');
-	if ($stage = 'back')
+	if ($stage == 'back')
 		$d = dir(FORUM_ROOT.'backstage/css/accents/');
 
 	while (($entry = $d->read()) !== false) {
