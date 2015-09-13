@@ -720,6 +720,14 @@ hr {
 	border-top: 1px solid #ffc8b3;
 }
 
+.answer .panel-body {
+	background-color: #e3f8cd;
+}
+
+.answer .panel-body hr {
+	border-top: 1px solid #c3dea5;
+}
+
 /* Quick post and post */
 .quickpostfield textarea, .quickpostfield textarea:focus {
 	border: none;
