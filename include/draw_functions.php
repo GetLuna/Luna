@@ -230,7 +230,7 @@ function draw_topics_list() {
 			if (!$luna_user['is_admmod'])
 				$sql_addition = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft FROM '.$db->prefix.'topics WHERE '.$sql_addition.'id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, solved AS answer, moved_to, soft FROM '.$db->prefix.'topics WHERE '.$sql_addition.'id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
 		} else {
 			// When showing a posted label
 			if (!$luna_user['g_soft_delete_view'])
