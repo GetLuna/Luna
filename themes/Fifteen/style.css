@@ -575,10 +575,13 @@ h2.forum-title .btn {
 .first-run-avatar {
 	background: none;
 	border: none;
+	margin-bottom: 0;
 }
 
 .first-run-avatar img {
 	border-radius: 3px;
+	max-height: 120px;
+	max-width: auto;
 }
 
 .first-run-login {
