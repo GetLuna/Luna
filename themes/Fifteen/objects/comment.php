@@ -1,4 +1,4 @@
-<div id="p<?php echo $cur_post['id'] ?>" class="comment <?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if (!isset($inbox)) { if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; if ($post_count == 1) echo ' onlypost'; if ($cur_post['marked'] == true) echo ' marked'; if ($cur_post['soft'] == true) echo ' soft'; } ?>">
+<div id="p<?php echo $cur_post['id'] ?>" class="comment <?php echo ($post_count % 2 == 0) ? ' roweven' : ' rowodd' ?><?php if (!isset($inbox)) { if ($cur_post['id'] == $cur_topic['first_post_id']) echo ' firstpost'; if ($post_count == 1) echo ' onlypost'; if ($cur_post['marked'] == true) echo ' marked'; if ($cur_post['soft'] == true) echo ' soft'; } ?><?php if ($cur_post['id'] == $cur_topic['answer']) echo ' answer'; ?>">
 	<div class="well well-comment">
 		<div class="media">
 			<div class="media-left">
