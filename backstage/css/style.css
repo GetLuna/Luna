@@ -165,15 +165,14 @@ label .help-block {
 	padding: 0;
 	border: 0;
 	margin: 0;
-	width: 30px;
-	height: 30px;
-	margin-right: 5px;
+	width: 40px;
+	height: 40px;
 	display: inline;
 }
 
 .navbar .dropdown-user {
-	padding-top: 10px !important;
-	padding-bottom: 10px !important;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
 }
 
 /* Heading - jumbotron and navtabs */

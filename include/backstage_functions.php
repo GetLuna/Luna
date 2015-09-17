@@ -121,7 +121,7 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown usermenu">
 					<a href="../profile.php?id=<?php echo $luna_user['id'] ?>" class="dropdown-toggle dropdown-user" data-toggle="dropdown">
-						<span class="hidden-sm"><?php print(luna_htmlspecialchars($luna_user['username'])) ?> </span><?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?> <span class="fa fa-fw fa-angle-down hide-if-no-js"></span>
+                        <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?><span class="hidden-lg hidden-md hidden-sm"> <?php echo luna_htmlspecialchars($luna_user['username']); ?></span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="../profile.php?id=<?php echo $luna_user['id'] ?>"><?php _e('Profile', 'luna') ?></a></li>
