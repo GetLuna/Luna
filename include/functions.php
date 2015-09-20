@@ -2256,3 +2256,15 @@ function decrease_post_counts($post_ids) {
 	foreach($user_posts as $user_id => $subtract)
 		$db->query('UPDATE '.$db->prefix.'users SET num_posts = CASE WHEN num_posts>='.$subtract.' THEN num_posts-'.$subtract.' ELSE 0 END WHERE id='.$user_id) or error('Unable to update user post count', __FILE__, __LINE__, $db->error());
 }
+
+// Create or delete configuration items
+function build_config($status, $config_key, $config_valua = NULL) {
+	global $luna_config;
+
+	if ($status == 1)
+		if (!array_key_exists($config_key, $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config ('.$config_key.', conf_value) VALUES (\''.$config_key.'\', \''.$config_valua.'\')') or error('Unable to insert config value \''.$config_key.'\'', __FILE__, __LINE__, $db->error());
+	else
+		if (array_key_exists($config_key, $luna_config))
+			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \''.$config_key.'\'') or error('Unable to remove config value \''.$config_key.'\'', __FILE__, __LINE__, $db->error());
+}
