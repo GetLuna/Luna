@@ -1603,11 +1603,19 @@ function forum_list_styles() {
 //
 function forum_list_accents($stage) {
 	global $luna_config;
+	
+	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
+	$theme_info = new SimpleXMLElement($xmlstr);
+
+	if (isset($theme_info->parent_theme))
+		$cur_theme = $theme_info->parent_theme;
+	else
+		$cur_theme = $luna_config['o_default_style'];
 
 	$accents = array();
 
-	if ($stage == 'main' && is_dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/'))
-		$d = dir(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/accents/');
+	if ($stage == 'main' && is_dir(FORUM_ROOT.'themes/'.$cur_theme.'/accents/'))
+		$d = dir(FORUM_ROOT.'themes/'.$cur_theme.'/accents/');
 	if ($stage == 'back')
 		$d = dir(FORUM_ROOT.'backstage/css/accents/');
 
