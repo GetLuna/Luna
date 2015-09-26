@@ -1,5 +1,7 @@
 # Luna 1.2 "Cornflower Blue" Preview
 
+[![Join the chat at https://gitter.im/GetLuna/Luna](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GetLuna/Luna?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## About
 Luna is an open source board software web app released under the GPLv3 license. Our vision is to bring you a small (in size) and light forum solution and to provide an experience that is both desktop-first and mobile-first, as manny seem to forget about the first one. Luna is the successor to ModernBB, one of the first forum software projects to provide a full featured build-in mobile experience without compromises.
 
