@@ -113,7 +113,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 
 	// Insert the message
 	$p_message = censor_words($edit_msg['message']);
-} if (isset($_POST['form_sent'])) { // The post button has been pressed
+} if (isset($_POST['form_sent'])) { // The comment button has been pressed
 	// Make sure they got here from the site
 	confirm_referrer(array('new_inbox.php', 'viewinbox.php'));
 	
@@ -196,7 +196,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	$p_subject = luna_trim($_POST['req_subject']);
 	
 	if ($p_subject == '' && $edit == '0')
-		$errors[] = __('Topics must contain a subject.', 'luna');
+		$errors[] = __('Threads must contain a subject.', 'luna');
 	elseif (luna_strlen($p_subject) > '70')
 		$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
 	elseif ($luna_config['p_subject_all_caps'] == '0' && strtoupper($p_subject) == $p_subject && $luna_user['is_admmod'])
@@ -209,9 +209,9 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if ($p_message == '')
 		$errors[] = __('You must enter a message.', 'luna');
 
-	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to FORUM_MAX_POSTSIZE bytes, not characters
 	elseif (strlen($p_message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Posts cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
 		$p_message = ucwords(strtolower($p_message));
 

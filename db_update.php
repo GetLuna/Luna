@@ -604,7 +604,7 @@ switch ($stage) {
 	case 'preparse_posts':
 		$query_str = '?stage=preparse_sigs';
 
-		// If we don't need to parse the posts, skip this stage
+		// If we don't need to parse the comments, skip this stage
 		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION)
 			break;
 
@@ -616,7 +616,7 @@ switch ($stage) {
 		$temp = array();
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
-			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('post', 'luna'), $cur_item['id']).'<br />'."\n";
+			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'posts SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
@@ -701,7 +701,7 @@ switch ($stage) {
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
-			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('post', 'luna'), $cur_item['id']).'<br />'."\n";
+			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
 
 			if ($cur_item['id'] == $cur_item['first_post_id'])
 				update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);

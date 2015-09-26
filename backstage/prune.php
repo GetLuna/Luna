@@ -64,7 +64,7 @@ if ($action == 'prune') {
 
 	$prune_date = time() - ($prune_days * 86400);
 
-	// Concatenate together the query for counting number of topics to prune
+	// Concatenate together the query for counting number of threads to prune
 	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'topics WHERE last_post<'.$prune_date.' AND moved_to IS NULL';
 
 	if ($prune_sticky == '0')
@@ -84,7 +84,7 @@ if ($action == 'prune') {
 	$num_topics = $db->result($result);
 
 	if (!$num_topics)
-		message_backstage(sprintf(__('There are no topics that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
+		message_backstage(sprintf(__('There are s that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Prune', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -103,9 +103,9 @@ if ($action == 'prune') {
 			<input type="hidden" name="prune_sticky" value="<?php echo $prune_sticky ?>" />
 			<input type="hidden" name="prune_from" value="<?php echo $prune_from ?>" />
 			<fieldset>
-				<h3><?php _e('Confirm prune posts', 'luna') ?></h3>
-				<p><?php printf(__('Are you sure that you want to prune all topics older than %s days from %s (%s topics).', 'luna'), $prune_days, $forum, forum_number_format($num_topics)) ?></p>
-				<p class="warntext"><?php _e('WARNING! Pruning posts deletes them permanently.', 'luna') ?></p>
+				<h3><?php _e('Confirm prune comments', 'luna') ?></h3>
+				<p><?php printf(__('Are you sure that you want to prune all comments older than %s days from %s (%s threads).', 'luna'), $prune_days, $forum, forum_number_format($num_topics)) ?></p>
+				<p class="warntext"><?php _e('Pruning comments deletes them permanently.', 'luna') ?></p>
 			</fieldset>
 			<div class="btn-group">
 				<input class="btn btn-primary" type="submit" name="prune_comply" value="<?php _e('Prune', 'luna') ?>" />
@@ -170,7 +170,7 @@ if (isset($_POST['userprune'])) {
 	generate_users_info_cache();
 
 	$users_pruned = count($user_ids);
-	message_backstage(__('Pruning complete, all users pruned that matched the requirements have been pruned.', 'luna'));
+	message_backstage(__('Pruning complete, all users that matched the requirements have been pruned.', 'luna'));
 }
 
 
@@ -218,20 +218,20 @@ require 'header.php';
 <form class="form-horizontal" method="post" action="prune.php" onsubmit="return process_form(this)">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Prune old posts', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Prune old comments', 'luna') ?><span class="pull-right"><button class="btn btn-primary" name="prune" tabindex="8"><span class="fa fa-fw fa-recycle"></span> <?php _e('Prune', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="action" value="prune" />
 			<fieldset>
 				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a topic must be to be pruned', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a thread must be to be pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Prune sticky topics', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Prune pinned threads', 'luna') ?></label>
 					<div class="col-sm-9">
 						<label class="radio-inline">
 							<input type="radio" name="prune_sticky" value="1" tabindex="6" checked />
@@ -244,7 +244,7 @@ require 'header.php';
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Prune from forum', 'luna') ?><span class="help-block"><?php _e('What shall we prune?', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Prune from', 'luna') ?></label>
 					<div class="col-sm-9">
 						<select class="form-control" name="prune_from" tabindex="7">
 							<option value="all"><?php _e('All forums', 'luna') ?></option>
@@ -302,7 +302,7 @@ require 'header.php';
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Maximum number of posts', 'luna') ?><span class="help-block"><?php _e('How many posts do you require before an users isn\'t pruned', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Maximum number of comments', 'luna') ?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="posts" value="1"  tabindex="1" />
 					</div>

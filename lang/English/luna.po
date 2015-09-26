@@ -51,10 +51,10 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
-msgid "Show information about the poster under the username in topic view."
+msgid "Show information about the commenter under the username in threads."
 msgstr ""
 
-msgid "Show the number of posts a user has made in topic view, profile and user list."
+msgid "Show the number of comments a user has made in threads, profile and the user list."
 msgstr ""
 
 msgid "Index settings"
@@ -78,22 +78,16 @@ msgstr ""
 msgid "pixels"
 msgstr ""
 
-msgid "Topic review"
+msgid "Thread review"
 msgstr ""
 
-msgid "Maximum amount of posts showed when posting"
+msgid "Maximum amount of comments showed when commenting"
 msgstr ""
 
-msgid "Topics per page"
+msgid "Threads per page"
 msgstr ""
 
-msgid "Default amount of topics per page"
-msgstr ""
-
-msgid "Posts per page"
-msgstr ""
-
-msgid "Default amount of posts per page"
+msgid "Comments per page"
 msgstr ""
 
 msgid "Header settings"
@@ -300,7 +294,7 @@ msgstr ""
 msgid "Are you sure that you want to delete the forum <strong>%s</strong>?"
 msgstr ""
 
-msgid "Warning! Deleting a forum will delete all posts (if any) in that forum!"
+msgid "Deleting a forum will delete all comments (if any) in that forum!"
 msgstr ""
 
 msgid "Position must be a positive integer value."
@@ -327,13 +321,13 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-msgid "Sort topics by"
+msgid "Sort threads by"
 msgstr ""
 
-msgid "Last post"
+msgid "Last comment"
 msgstr ""
 
-msgid "Topic start"
+msgid "Thread start"
 msgstr ""
 
 msgid "Subject"
@@ -357,10 +351,7 @@ msgstr ""
 msgid "Read forum"
 msgstr ""
 
-msgid "Post replies"
-msgstr ""
-
-msgid "Post topics"
+msgid "Comment"
 msgstr ""
 
 msgid "Categories"
@@ -372,7 +363,7 @@ msgstr ""
 msgid "Are you sure that you want to delete the category <strong>%s</strong>?"
 msgstr ""
 
-msgid "Deleting a category will delete all forums and posts (if any) in this category!"
+msgid "Deleting a category will delete all forums and comments (if any) in this category!"
 msgstr ""
 
 msgid "Board"
@@ -540,7 +531,7 @@ msgstr ""
 msgid "Enable users to subscribe to forums."
 msgstr ""
 
-msgid "Enable users to subscribe to topics."
+msgid "Enable users to subscribe to threads."
 msgstr ""
 
 msgid "SMTP settings"
@@ -576,16 +567,16 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-msgid "Topics and posts"
+msgid "Threads and comments"
 msgstr ""
 
-msgid "Censor words in posts. See %s for more info."
+msgid "Censor words in comments. See %s for more info."
 msgstr ""
 
-msgrid "Show the number of views for each topic."
+msgrid "Show the number of views for each thread."
 msgstr ""
 
-msgrid "Show a label in front of the topics where users have posted."
+msgrid "Show a label in front of the threads where users have commented."
 msgstr ""
 
 msgrid "User features"
@@ -594,7 +585,7 @@ msgstr ""
 msgrid "Display info on the index page about users currently browsing the board."
 msgstr ""
 
-msgrid "Allow users to attach a signature to their posts."
+msgrid "Allow users to attach a signature to their comments."
 msgstr ""
 
 msgrid "Use user ranks. See %s for more info."
@@ -741,19 +732,19 @@ msgstr ""
 msgrid "Show deleted content"
 msgstr ""
 
-msgrid "Allow users to view topics and posts that have been soft deleted."
+msgrid "Allow users to view threads and comments that have been soft deleted."
 msgstr ""
 
-msgrid "Soft delete posts"
+msgrid "Soft delete comments"
 msgstr ""
 
-msgrid "Allow users to soft delete posts from all users."
+msgrid "Allow users to soft delete comments from all users."
 msgstr ""
 
-msgrid "Soft delete topics"
+msgrid "Soft delete comments"
 msgstr ""
 
-msgrid "Allow users to soft delete topics from all users."
+msgrid "Allow users to soft delete threads from all users."
 msgstr ""
 
 msgrid "Allow users to send messages with Inbox."
@@ -774,28 +765,28 @@ msgstr ""
 msgrid "Allow users to view the user list and user profiles."
 msgstr ""
 
-msgrid "Allow users to post replies in topics."
+msgrid "Allow users to comment in threads."
 msgstr ""
 
-msgrid "Allow users to post new topics."
+msgrid "Allow users to create new threads."
 msgstr ""
 
-msgrid "Edit posts"
+msgrid "Edit comment"
 msgstr ""
 
-msgrid "Allow users to edit their own posts."
+msgrid "Allow users to edit their own comments."
 msgstr ""
 
-msgrid "Delete posts"
+msgrid "Delete comments"
 msgstr ""
 
-msgrid "Allow users to delete their own posts."
+msgrid "Allow users to delete their own comments."
 msgstr ""
 
-msgrid "Delete topics"
+msgrid "Delete threads"
 msgstr ""
 
-msgrid "Allow users to delete their own topics (including any replies)."
+msgrid "Allow users to delete their own threads (including any comments)."
 msgstr ""
 
 msgrid "Set own user title"
@@ -822,10 +813,10 @@ msgstr ""
 msgrid "Allow users to send e-mails to other users."
 msgstr ""
 
-msgrid "Post flood interval"
+msgrid "Comment flood interval"
 msgstr ""
 
-msgrid "Time users have to wait between posts"
+msgrid "Time users have to wait between comments"
 msgstr ""
 
 msgrid "seconds"
@@ -954,7 +945,7 @@ msgstr ""
 msgrid "Deleted"
 msgstr ""
 
-msgrid "Post #%s"
+msgrid "Comment #%s"
 msgstr ""
 
 msgrid "There are no new reports."
@@ -996,7 +987,7 @@ msgstr ""
 msgrid "Remember me"
 msgstr ""
 
-msgrid "Posts per cycle must be a positive integer value."
+msgrid "Comments per cycle must be a positive integer value."
 msgstr ""
 
 msgrid "Rebuilding search index"
@@ -1005,7 +996,7 @@ msgstr ""
 msgrid "Rebuilding index. This might be a good time to put on some coffee :-)"
 msgstr ""
 
-msgrid "Processing post <strong>%s</strong> …"
+msgrid "Processing comment <strong>%s</strong> …"
 msgstr ""
 
 msgrid "JavaScript redirect unsuccessful. %s to continue …"
@@ -1044,16 +1035,16 @@ msgstr ""
 msgrid "Rebuild index"
 msgstr ""
 
-msgrid "If you changes something about topics and posts in the database you should rebuild the search index. It's recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!"
+msgrid "If you changes something about threads and comments in the database you should rebuild the search index. It's recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!"
 msgstr ""
 
-msgrid "Posts per cycle"
+msgrid "Comments per cycle"
 msgstr ""
 
-msgrid "Number of posts per pageview, this prevents a timeout, 300 recommended"
+msgrid "Number of comments per pageview, this prevents a timeout, 300 recommended"
 msgstr ""
 
-msgrid "Starting post ID"
+msgrid "Starting comment ID"
 msgstr ""
 
 msgrid "The ID where to start, default is first ID found in database"
@@ -1065,7 +1056,7 @@ msgstr ""
 msgrid "Select this if you want the search index to be emptied before rebuilding (see below)."
 msgstr ""
 
-msgrid "Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last post ID and enter that ID+1 in \"Starting post ID\" if you want to continue (Uncheck \"Empty index\")."
+msgrid "Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in \"Starting comment ID\" if you want to continue (Uncheck \"Empty index\")."
 msgstr ""
 
 msgrid "You must give your menu item a title."
@@ -1101,22 +1092,22 @@ msgstr ""
 msgrid "Moderate content"
 msgstr ""
 
-msgrid "Visit a forum or topic and choose \"Moderate\" in the moderator bar to moderate content."
+msgrid "Visit a forum or thread and choose \"Moderate\" in the moderator bar to moderate content."
 msgstr ""
 
-msgrid "You must select at least one post for split/delete."
+msgrid "You must select at least one comment for split/delete."
 msgstr ""
 
-msgrid "Are you sure you want to delete the selected posts?"
+msgrid "Are you sure you want to delete the selected comments?"
 msgstr ""
 
-msgrid "Topics must contain a subject."
+msgrid "Threads must contain a subject."
 msgstr ""
 
 msgrid "Subjects cannot be longer than 70 characters."
 msgstr ""
 
-msgrid "Split posts"
+msgrid "Split comments"
 msgstr ""
 
 msgrid "Split"
@@ -1137,37 +1128,37 @@ msgstr ""
 msgrid "Select"
 msgstr ""
 
-msgrid "First post cannot be selected for split/delete."
+msgrid "First comment cannot be selected for split/delete."
 msgstr ""
 
-msgrid "You must select at least one topic for move/delete/open/close."
+msgrid "You must select at least one threads for move/delete/open/close."
 msgstr ""
 
-msgrid "There are no forums into which you can move topics."
+msgrid "There are no forums into which you can move threads."
 msgstr ""
 
-msgrid "Move topic"
+msgrid "Move thread"
 msgstr ""
 
-msgrid "Move topics"
+msgrid "Move threads"
 msgstr ""
 
 msgrid "Move"
 msgstr ""
 
-msgrid "Leave redirect topic(s)"
+msgrid "Leave redirect thread(s)"
 msgstr ""
 
-msgrid "You must select at least two topics for merge."
+msgrid "You must select at least two threads to merge."
 msgstr ""
 
-msgrid "Merge topics"
+msgrid "Merge threads"
 msgstr ""
 
 msgrid "Merge"
 msgstr ""
 
-msgrid "Are you sure you want to delete the selected topics?"
+msgrid "Are you sure you want to delete the selected threads?"
 msgstr ""
 
 msgrid "Moderating \"%s\""
@@ -1182,10 +1173,10 @@ msgstr ""
 msgrid "Closed"
 msgstr ""
 
-msgrid "Go to the first new post in this topic."
+msgrid "Go to the first new comment in this thread."
 msgstr ""
 
-msgrid "New posts"
+msgrid "New comments"
 msgstr ""
 
 msgrid "Forum is empty."
@@ -1200,10 +1191,10 @@ msgstr ""
 msgrid "Permissions"
 msgstr ""
 
-msgrid "Posting"
+msgrid "Commenting"
 msgstr ""
 
-msgrid "Allow the BBCode [img] tag in posts."
+msgrid "Allow the BBCode [img] tag in comments."
 msgstr ""
 
 msgrid "All caps"
@@ -1218,7 +1209,7 @@ msgstr ""
 msgrid "Guests"
 msgstr ""
 
-msgrid "Require guests to supply an email address when posting."
+msgrid "Require guests to supply an email address when commenting."
 msgstr ""
 
 msgrid "Signatures"
@@ -1257,25 +1248,25 @@ msgstr ""
 msgrid "All forums"
 msgstr ""
 
-msgrid "There are no topics that are %s days old. Please decrease the value of \"Days old\" and try again."
+msgrid "There are no threads that are %s days old. Please decrease the value of \"Days old\" and try again."
 msgstr ""
 
 msgrid "Prune"
 msgstr ""
 
-msgrid "Confirm prune posts"
+msgrid "Confirm prune comments"
 msgstr ""
 
-msgrid "Are you sure that you want to prune all topics older than %s days from %s (%s topics)."
+msgrid "Are you sure that you want to prune all comments older than %s days from %s (%s threads)."
 msgstr ""
 
-msgrid "WARNING! Pruning posts deletes them permanently."
+msgrid "Pruning comments deletes them permanently."
 msgstr ""
 
 msgrid "Pruning complete. Notifications pruned."
 msgstr ""
 
-msgrid "Pruning complete, all users pruned that matched the requirements have been pruned."
+msgrid "Pruning complete, all users that matched the requirements have been pruned."
 msgstr ""
 
 msgrid "Prune notifications"
@@ -1299,22 +1290,19 @@ msgstr ""
 msgrid "New notifications"
 msgstr ""
 
-msgrid "Prune old posts"
+msgrid "Prune old comments"
 msgstr ""
 
 msgrid "Days old"
 msgstr ""
 
-msgrid "The number of days old a topic must be to be pruned"
+msgrid "The number of days old a thread must be to be pruned"
 msgstr ""
 
-msgrid "Prune sticky topics"
+msgrid "Prune pinned threads"
 msgstr ""
 
-msgrid "Prune from forum"
-msgstr ""
-
-msgrid "What shall we prune?"
+msgrid "Prune from"
 msgstr ""
 
 msgrid "Prune users"
@@ -1338,10 +1326,10 @@ msgstr ""
 msgrid "The minimum amount of days since event specified above"
 msgstr ""
 
-msgrid "Maximum number of posts"
+msgrid "Maximum number of comments"
 msgstr ""
 
-msgrid "How many posts do you require before an users isn't pruned"
+msgrid "How many comments do you require before an users isn't pruned"
 msgstr ""
 
 msgrid "Delete admins and mods"
@@ -1359,10 +1347,10 @@ msgstr ""
 msgrid "Delete only unverified"
 msgstr ""
 
-msgrid "Minimum posts must be a positive integer value."
+msgrid "Minimum comments must be a positive integer value."
 msgstr ""
 
-msgrid "There is already a rank with a minimum posts value of %s."
+msgrid "There is already a rank with a minimum amount of %s comments."
 msgstr ""
 
 msgrid "<strong>User ranks is disabled in %s.</strong>"
@@ -1374,7 +1362,7 @@ msgstr ""
 msgrid "Rank title"
 msgstr ""
 
-msgrid "Minimum posts"
+msgrid "Minimum comments"
 msgstr ""
 
 msgrid "Manage ranks"
@@ -1992,7 +1980,7 @@ msgstr ""
 msgrid "Find more users for this ip"
 msgstr ""
 
-msgrid "There are currently no posts by that user in the forum."
+msgrid "There are currently no comments by that user in the forum."
 msgstr ""
 
 msgrid "The supplied IP address is not correctly formatted."
@@ -2001,7 +1989,7 @@ msgstr ""
 msgrid "Title/Status"
 msgstr ""
 
-msgrid "Posts"
+msgrid "Comments"
 msgstr ""
 
 msgrid "Admin note"
@@ -2037,10 +2025,10 @@ msgstr ""
 msgrid "Delete users"
 msgstr ""
 
-msgrid "Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by this user, the posts can only be deleted manually at a later time."
+msgrid "Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time."
 msgstr ""
 
-msgrid "Delete any posts and topics this user has made"
+msgrid "Delete all comments and threads this user has made"
 msgstr ""
 
 msgrid "Administrators cannot be banned. In order to ban administrators, you must first move them to a different user group."
@@ -2118,16 +2106,16 @@ msgstr ""
 msgrid "Unverified users"
 msgstr ""
 
-msgrid "Number of posts less than"
+msgrid "Number of comments less than"
 msgstr ""
 
-msgrid "Number of posts greater than"
+msgrid "Number of comments greater than"
 msgstr ""
 
-msgrid "Last post is before"
+msgrid "Last comment is before"
 msgstr ""
 
-msgrid "Last post is after"
+msgrid "Last comment is after"
 msgstr ""
 
 msgrid "Last visit is before"
@@ -2142,7 +2130,7 @@ msgstr ""
 msgrid "Registered after"
 msgstr ""
 
-msgrid "Number of posts"
+msgrid "Number of comments"
 msgstr ""
 
 msgrid "Last visit"
@@ -2157,7 +2145,7 @@ msgstr ""
 msgrid "Find IP address"
 msgstr ""
 
-msgrid "The IP address to search for in the post database."
+msgrid "The IP address to search for in the comment database."
 msgstr ""
 
 msgrid "You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue."
@@ -2184,7 +2172,7 @@ msgstr ""
 msgrid "Preparsing %1$s %2$s …"
 msgstr ""
 
-msgrid "post"
+msgrid "comment"
 msgstr ""
 
 msgrid "signature"
@@ -2196,22 +2184,22 @@ msgstr ""
 msgrid "You do not have permission to view this page."
 msgstr ""
 
-msgrid "Delete post"
+msgrid "Delete comment"
 msgstr ""
 
 msgrid "Are you sure you want to do this?"
 msgstr ""
 
-msgrid "Topics must contain a subject. After applying censoring filters, your subject was empty."
+msgrid "Threads must contain a subject. After applying censoring filters, your subject was empty."
 msgstr ""
 
 msgrid "Subjects cannot contain only capital letters."
 msgstr ""
 
-msgrid "Posts cannot be longer than %s bytes."
+msgrid "Comments cannot be longer than %s bytes."
 msgstr ""
 
-msgrid "Posts cannot contain only capital letters."
+msgrid "Comments cannot contain only capital letters."
 msgstr ""
 
 msgrid "You must enter a message."
@@ -2220,13 +2208,13 @@ msgstr ""
 msgrid "You must enter a message. After applying censoring filters, your message was empty."
 msgstr ""
 
-msgrid "Edit post"
+msgrid "Edit comment"
 msgstr ""
 
 msgrid " / "
 msgstr ""
 
-msgrid "The most recent posts in %s."
+msgrid "The most recent comments in %s."
 msgstr ""
 
 msgrid "Re: "
@@ -2235,7 +2223,7 @@ msgstr ""
 msgrid "en"
 msgstr ""
 
-msgrid "The most recent topics at %s."
+msgrid "The most recent threads at %s."
 msgstr ""
 
 msgrid "Guests online"
@@ -2247,7 +2235,7 @@ msgstr ""
 msgrid "Newest user"
 msgstr ""
 
-msgrid "Topics"
+msgrid "Threads"
 msgstr ""
 
 msgrid "No new notifications"
@@ -2397,13 +2385,13 @@ msgstr ""
 msgrid "You appear to have logged in successfully, however a cookie has not been set. Please check your settings and if applicable, enable cookies for this website."
 msgstr ""
 
-msgrid "Post errors"
+msgrid "Comment errors"
 msgstr ""
 
-msgrid "Post preview"
+msgrid "Comment preview"
 msgstr ""
 
-msgrid "Pin topic"
+msgrid "Pin thread"
 msgstr ""
 
 msgrid "Mute edit"
@@ -2508,22 +2496,22 @@ msgstr ""
 msgrid "Submit"
 msgstr ""
 
-msgrid "There are no topics in this forum yet, but you can <a href=\"post.php?fid=%s\">start the first one</a>."
+msgrid "There are no threads in this forum yet, but you can <a href=\"post.php?fid=%s\">start the first one</a>."
 msgstr ""
 
-msgrid "topic"
+msgrid "thread"
 msgstr ""
 
 msgrid "Never"
 msgstr ""
 
-msgrid "Board is empty."
+msgrid "There are no forums in this board yet."
 msgstr ""
 
 msgrid "in"
 msgstr ""
 
-msgrid "The board is empty, select a forum and create a topic to begin."
+msgrid "The board is empty, select a forum and create a thread to begin."
 msgstr ""
 
 msgrid "From:"
@@ -2559,7 +2547,7 @@ msgstr ""
 msgrid "Registered since"
 msgstr ""
 
-msgrid "Posts:"
+msgrid "Comments:"
 msgstr ""
 
 msgrid "PM"
@@ -2568,28 +2556,28 @@ msgstr ""
 msgrid "Your search returned no hits."
 msgstr ""
 
-msgrid "Warning! This is the first post in the topic, the whole topic will be permanently deleted."
+msgrid "This is the first comment in the thread, the whole thread will be permanently deleted."
 msgstr ""
 
-msgrid "The post you have chosen to delete is set out below for you to review before proceeding."
+msgrid "The comment you have chosen to delete is set out below for you to review before proceeding."
 msgstr ""
 
 msgrid "Cancel"
 msgstr ""
 
-msgrid "The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead."
+msgrid "The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead."
 msgstr ""
 
-msgrid "This post has been soft deleted. We'll enable it again with a click on the button."
+msgrid "This comment has been soft deleted. We'll enable it again with a click on the button."
 msgstr ""
 
-msgrid "Reset post"
+msgrid "Reset comment"
 msgstr ""
 
-msgrid "Topic started by %s - %s"
+msgrid "Thread started by %s - %s"
 msgstr ""
 
-msgrid "Reply by %s - %s"
+msgrid "Comment by %s - %s"
 msgstr ""
 
 msgrid "Enter the requested data"
@@ -2700,7 +2688,7 @@ msgstr ""
 msgrid "Compose"
 msgstr ""
 
-msgrid "It seems your post consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level."
+msgrid "It seems your comment consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level."
 msgstr ""
 
 msgrid "The quote, code, list, video, and heading BBCodes are not allowed in signatures."
@@ -2730,10 +2718,10 @@ msgstr ""
 msgrid "No users online"
 msgstr ""
 
-msgrid "RSS active topics feed"
+msgrid "RSS active threads feed"
 msgstr ""
 
-msgrid "Atom active topics feed"
+msgrid "Atom active threads feed"
 msgstr ""
 
 msgrid "It seems like Luna is already installed."
@@ -2889,10 +2877,10 @@ msgstr ""
 msgrid "At least %s seconds have to pass between reports. Please wait %s seconds and try sending again."
 msgstr ""
 
-msgrid "Subject: Report(<forum_id>) - \"<topic_subject>\"\n\nUser \"<username>\" has reported the following message: <post_url>\n\nReason: <reason>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgrid "Subject: Report(<forum_id>) - \"<thread_subject>\"\n\nUser \"<username>\" has reported the following message: <comment_url>\n\nReason: <reason>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
 msgstr ""
 
-msgrid "Report post"
+msgrid "Report comment"
 msgstr ""
 
 msgrid "Reason"
@@ -2904,7 +2892,7 @@ msgstr ""
 msgrid "You're already subscribed to this forum."
 msgstr ""
 
-msgrid "You're not subscribed to this topic."
+msgrid "You're not subscribed to this thread."
 msgstr ""
 
 msgrid "At least % seconds have to pass between sends. Please wait a little while and try send the message again."
@@ -2940,37 +2928,37 @@ msgstr ""
 msgrid "Send a message"
 msgstr ""
 
-msgrid "At least %s seconds have to pass between posts. Please wait %s seconds and try posting again."
+msgrid "At least %s seconds have to pass between comments. Please wait %s seconds and try commenting again."
 msgstr ""
 
 msgrid "The email address you entered is banned in this forum. Please choose another email address."
 msgstr ""
 
-msgrid "Subject: Reply to topic: \"<topic_subject>\"\n\n<replier> has replied to the topic \"<topic_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe post is located at <post_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgrid "Subject: Reply to thread: \"<thread_subject>\"\n\n<replier> has replied to the thread \"<thread_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe comment is located at <comment_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
 msgstr ""
 
-msgrid "Subject: Reply to topic: \"<topic_subject>\"\n\n<replier> has replied to the topic \"<topic_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe post is located at <post_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgrid "Subject: Reply to thread: \"<thread_subject>\"\n\n<replier> has replied to the thread \"<thread_subject>\" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.\n\nThe comment is located at <comment_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
 msgstr ""
 
-msgrid "Subject: New topic in forum: \"<forum_name>\"\n\n<poster> has posted a new topic \"<topic_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe topic is located at <topic_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgrid "Subject: New thread in forum: \"<forum_name>\"\n\n<commenter> has commented a new thread \"<thread_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe thread is located at <thread_url>\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
 msgstr ""
 
-msgrid "Subject: New topic in forum: \"<forum_name>\"\n\n<poster> has posted a new topic \"<topic_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe topic is located at <topic_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgrid "Subject: New thread in forum: \"<forum_name>\"\n\n<commenter> has commented a new thread \"<thread_subject>\" in the forum \"<forum_name>\", to which you are subscribed.\n\nThe thread is located at <thread_url>\n\nThe message reads as follows:\n-----------------------------------------------------------------------\n\n<message>\n\n-----------------------------------------------------------------------\n\nYou can unsubscribe by going to <unsubscribe_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
 msgstr ""
 
-msgrid "Subject: Alert - Banned email detected\n\nUser \"<username>\" posted with banned email address: <email>\n\nPost URL: <post_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
+msgrid "Subject: Alert - Banned email detected\n\nUser \"<username>\" commented with banned email address: <email>\n\nComment URL: <comment_url>\n\n--\n<board_mailer> Mailer\n(Do not reply to this message)"
 msgstr ""
 
-msgrid "Post a reply"
+msgrid "Add comment"
 msgstr ""
 
-msgrid "Post topic"
+msgrid "Create thread"
 msgstr ""
 
-msgrid "Show topics"
+msgrid "Show threads"
 msgstr ""
 
-msgrid "Show posts"
+msgrid "Show comments"
 msgstr ""
 
 msgrid "Show subscriptions"
@@ -3021,28 +3009,28 @@ msgstr ""
 msgrid "At least %s seconds have to pass between searches. Please wait %s seconds and try searching again."
 msgstr ""
 
-msgrid "There are no topics with new posts since your last visit."
+msgrid "There are no threads with new comments since your last visit."
 msgstr ""
 
-msgrid "No new posts have been made within the last 24 hours."
+msgrid "No new comments have been made within the last 24 hours."
 msgstr ""
 
-msgrid "There are no posts by this user in this forum."
+msgrid "There are no comments by this user in this forum."
 msgstr ""
 
-msgrid "There are no topics by this user in this forum."
+msgrid "There are no threads by this user in this forum."
 msgstr ""
 
-msgrid "This user is currently not subscribed to any topics."
+msgrid "This user is currently not subscribed to and threads."
 msgstr ""
 
-msgrid "There are no unanswered posts in this forum."
+msgrid "There are no unanswered comments in this forum."
 msgstr ""
 
-msgrid "Topics by %s"
+msgrid "Threads by %s"
 msgstr ""
 
-msgrid "Posts by %s"
+msgrid "Comments by %s"
 msgstr ""
 
 msgrid "Subscribed by %s"
@@ -3162,10 +3150,10 @@ msgstr ""
 msgrid "Atom forum feed"
 msgstr ""
 
-msgrid "RSS topic feed"
+msgrid "RSS thread feed"
 msgstr ""
 
-msgrid "Atom topic feed"
+msgrid "Atom thread feed"
 msgstr ""
 
 msgrid "Powered by %s"
@@ -3186,10 +3174,10 @@ msgstr ""
 msgrid "Moderate forum"
 msgstr ""
 
-msgrid "Search in posts"
+msgrid "Search in comments"
 msgstr ""
 
-msgrid "BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you post a message or edit your signature."
+msgrid "BBCode is a collection of tags that are used to change the look of text in this forum. Below you can find all the available BBCodes and how to use them. Administrators have the ability to disable BBCode. You can tell if BBCode is disabled whenever you comment a message or edit your signature."
 msgstr ""
 
 msgrid "Text style"
@@ -3315,13 +3303,13 @@ msgstr ""
 msgrid "Explains some of the basics on how to work with this forum software."
 msgstr ""
 
-msgrid "Forums and topics"
+msgrid "Forums and threads"
 msgstr ""
 
-msgrid "What do the labels in front of topic titles mean?"
+msgrid "What do the labels in front of thread titles mean?"
 msgstr ""
 
-msgrid "You'll see that some of the topics are labeled, different labels have different meanings."
+msgrid "You'll see that some of the threads are labeled, different labels have different meanings."
 msgstr ""
 
 msgrid "Label"
@@ -3330,28 +3318,28 @@ msgstr ""
 msgrid "Explanation"
 msgstr ""
 
-msgrid "Topics marked with a check are topics that have been solved according to the author."
+msgrid "Threads marked with a check are solved according to the author."
 msgstr ""
 
-msgrid "Sticky topics are usually important topics which you should read. It's worth it to take a look there."
+msgrid "Pinned threads are usually important to read. It's worth it to take a look there."
 msgstr ""
 
-msgrid "When a you see a closed label, it means you can't post on that topic any more, unless you have a permission that overwrites this. The topic is still available to read, though."
+msgrid "When a you see a closed label, it means you can't comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though."
 msgstr ""
 
-msgrid "This topic has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this topic was located in, won't show any topic stats anymore."
+msgrid "This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won't show and thread stats anymore."
 msgstr ""
 
-msgrid "This little dot appears when you have made a post in this topic."
+msgrid "This little dot appears when you have made a comment in this thread."
 msgstr ""
 
 msgrid "Smilies, signatures, avatars and images are not visible?"
 msgstr ""
 
-msgrid "You can change the behavior of the topic view in your profile settings. There you can enable smilies, signatures, avatars and images in posts, but they should be enabled by default unless your forum admin has disabled those features."
+msgrid "You can change the behavior of the thread view in your profile settings. There you can enable smilies, signatures, avatars and images in comments, but they should be enabled by default unless your forum admin has disabled those features."
 msgstr ""
 
-msgrid "Why can't I see any topics or forums?"
+msgrid "Why can't I see and threads or forums?"
 msgstr ""
 
 msgrid "You might not have the correct permissions to do so, ask the forum administrator for more help."
@@ -3387,16 +3375,16 @@ msgstr ""
 msgrid "How do I moderate a forum?"
 msgstr ""
 
-msgrid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple topics at once."
+msgrid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current forum. From there, you can move, delete, merge, close and open multiple threads at once."
 msgstr ""
 
-msgrid "How do I moderate a topic?"
+msgrid "How do I moderate a thread?"
 msgstr ""
 
-msgrid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current topic. From there, you can select multiple post to delete or split from the current topic at once."
+msgrid "The moderation options are available at the bottom of the page. Those features aren't available for all moderators. When you click this button, you will be send to a page where you can manage the current thread from there, you can select multiple comment to delete or split from the current thread at once."
 msgstr ""
 
-msgrid "Next to the \"Moderate topic\" button, you can find options to move, open or close the topic. You can also make it a sticky topic from there, or unstick it."
+msgrid "Next to the \"Moderate thread\" button, you can find options to move, open or close the thread. You can also pin the thread from there, or unpin it."
 msgstr ""
 
 msgrid "How do I moderate an user?"
@@ -3405,7 +3393,7 @@ msgstr ""
 msgrid "Moderating options are available in the users profile. You can find the moderation options under \"Administration\" in the users profile menu. Those features aren't available for all moderators."
 msgstr ""
 
-msgrid "The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the post count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions."
+msgrid "The Administration page allow you to check if the user has an admin note, and you can also change that note if required. You can also change the comment count of the user. At this page, the user can also be given moderator permissions on a per-forum base, though the user must have a moderator account to be able to actually use those permissions."
 msgstr ""
 
 msgrid "Finally, you can ban or delete a user from his profile. If you want to ban and/or delete multiple users at once, you're probably better off with the advanced user management features in the Backstage."
@@ -3486,7 +3474,7 @@ msgstr ""
 msgrid "Confirm new password"
 msgstr ""
 
-msgrid "An avatar is a small image that will be displayed under your username in your posts. It has to be smaller than %s by %s pixels and %s bytes."
+msgrid "An avatar is a small image that will be displayed under your username in your comments. It has to be smaller than %s by %s pixels and %s bytes."
 msgstr ""
 
 msgrid "Upload"
@@ -3504,10 +3492,10 @@ msgstr ""
 msgrid "on"
 msgstr ""
 
-msgrid "posts since"
+msgrid "comments since"
 msgstr ""
 
-msgrid "New topic in \"%s\""
+msgrid "New thread in \"%s\""
 msgstr ""
 
 msgrid "New comment in \"%s\""
@@ -3525,16 +3513,16 @@ msgstr ""
 msgrid "Author"
 msgstr ""
 
-msgrid "Message text and topic subject"
+msgrid "Message text and thread subject"
 msgstr ""
 
 msgrid "Message text only"
 msgstr ""
 
-msgrid "Topic subject only"
+msgrid "Thread subject only"
 msgstr ""
 
-msgrid "Post time"
+msgrid "Comment time"
 msgstr ""
 
 msgrid "Personalize"
@@ -3555,7 +3543,7 @@ msgstr ""
 msgid "Upload an image to represent you"
 msgstr ""
 
-msgid "Write a small piece to attach to every post you make"
+msgid "Write a small piece to attach to every comment you make"
 msgstr ""
 
 msgid "Max length: %s characters / Max lines: %s"
@@ -3597,13 +3585,13 @@ msgstr ""
 msgid "Hide your email address and disallow form email."
 msgstr ""
 
-msgid "Include a plain text version of new posts in subscription notification emails."
+msgid "Include a plain text version of new comments in subscription notification emails."
 msgstr ""
 
-msgid "Automatically subscribe to every topic you post in."
+msgid "Automatically subscribe to every thread you comment in."
 msgstr ""
 
-msgid "Post display"
+msgid "Comment display"
 msgstr ""
 
 msgid "Show smilies as graphic icons."
@@ -3612,10 +3600,10 @@ msgstr ""
 msgid "Show user signatures."
 msgstr ""
 
-msgid "Show user avatars in posts."
+msgid "Show user avatars in comments."
 msgstr ""
 
-msgid "Show images in posts."
+msgid "Show images in comments."
 msgstr ""
 
 msgid "Show images in user signatures."
@@ -3651,22 +3639,22 @@ msgstr ""
 msgid "Subscribe"
 msgstr ""
 
-msgid "Moderate topic"
+msgid "Moderate thread"
 msgstr ""
 
-msgid "Show all posts"
+msgid "Show all comments"
 msgstr ""
 
-msgid "Open topic"
+msgid "Open thread"
 msgstr ""
 
-msgid "Close topic"
+msgid "Close thread"
 msgstr ""
 
-msgid "Unstick topic"
+msgid "Unpin thread"
 msgstr ""
 
-msgid "Stick topic"
+msgid "Pin thread"
 msgstr ""
 
 msgid "Are you certain that this comment isn't the solution to your thread?"
@@ -3678,10 +3666,10 @@ msgstr ""
 msgid "Sort by registration date"
 msgstr ""
 
-msgid "Sort by number of posts"
+msgid "Sort by number of comments"
 msgstr ""
 
-msgid "An avatar is a small image that will be displayed under your username in your posts. It must not be any bigger than"
+msgid "An avatar is a small image that will be displayed under your username in your comments. It must not be any bigger than"
 msgstr ""
 
 msgid "Unpin"
@@ -3700,7 +3688,4 @@ msgid "with"
 msgstr ""
 
 msgid "View a private discussion"
-msgstr ""
-
-msgid "Post reply"
 msgstr ""

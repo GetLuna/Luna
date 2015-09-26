@@ -43,7 +43,7 @@ if (!defined('FORUM'))
 							<th><?php _e('Messages', 'luna') ?></th>
 							<th><?php _e('Sender', 'luna') ?></th>
 							<th><?php _e('Receiver(s)', 'luna') ?></th>
-							<th><?php _e('Last post', 'luna') ?></th>
+							<th><?php _e('Last comment', 'luna') ?></th>
 						</tr>
 					</thead>
 					<tbody>

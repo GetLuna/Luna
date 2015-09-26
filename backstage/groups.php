@@ -131,29 +131,29 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="soft_delete_view" value="1" <?php if ($group['g_soft_delete_view'] == '1') echo ' checked' ?> />
-								<?php echo __('Allow users to view topics and posts that have been soft deleted.', 'luna') ?>
+								<?php echo __('Allow users to view threads and comments that have been soft deleted.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Soft delete posts', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Soft delete comments', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="soft_delete_posts" value="1" <?php if ($group['g_soft_delete_posts'] == '1') echo ' checked' ?> />
-								<?php echo __('Allow users to soft delete posts from all users.', 'luna') ?>
+								<?php echo __('Allow users to soft delete comments from all users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Soft delete topics', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Soft delete comments', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="soft_delete_topics" value="1" <?php if ($group['g_soft_delete_topics'] == '1') echo ' checked' ?> />
-								<?php echo __('Allow users to soft delete topics from all users.', 'luna') ?>
+								<?php echo __('Allow users to soft delete threads from all users.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -204,23 +204,23 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Post replies', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Comment', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="post_replies" value="1"<?php if ($group['g_post_replies'] == '1') echo ' checked' ?> tabindex="19" />
-								<?php echo __('Allow users to post replies in topics.', 'luna') ?>
+								<?php echo __('Allow users to comment in threads.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Post topics', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Create threads', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="post_topics" value="1"<?php if ($group['g_post_topics'] == '1') echo ' checked' ?> tabindex="21" />
-								<?php echo __('Allow users to post new topics.', 'luna') ?>
+								<?php echo __('Allow users to create new threads.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -228,34 +228,34 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php if ($group['g_id'] != FORUM_GUEST): ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Edit posts', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Edit comment', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="edit_posts" value="1"<?php if ($group['g_edit_posts'] == '1') echo ' checked' ?> tabindex="23" />
-								<?php echo __('Allow users to edit their own posts.', 'luna') ?>
+								<?php echo __('Allow users to edit their own comments.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Delete posts', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Delete comments', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="delete_posts" value="1"<?php if ($group['g_delete_posts'] == '1') echo ' checked' ?> tabindex="25" />
-								<?php echo __('Allow users to delete their own posts.', 'luna') ?>
+								<?php echo __('Allow users to delete their own comments.', 'luna') ?>
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Delete topics', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php echo __('Delete threads', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="delete_topics" value="1"<?php if ($group['g_delete_topics'] == '1') echo ' checked' ?> tabindex="27" />
-								<?php echo __('Allow users to delete their own topics (including any replies).', 'luna') ?>
+								<?php echo __('Allow users to delete their own threads (including any comments).', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -314,7 +314,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	<?php endif; ?>
 				<hr />
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo __('Post flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between posts', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php echo __('Comment flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between comments', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
 							<input type="text" class="form-control" name="post_flood" maxlength="4" value="<?php echo $group['g_post_flood'] ?>" tabindex="35" />

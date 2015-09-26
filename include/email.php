@@ -57,7 +57,7 @@ function encode_mail_text($str) {
 
 
 //
-// Make a post email safe
+// Make a comment email safe
 //
 function bbcode2email($text, $wrap_length = 72) {
 	static $base_url;
@@ -136,7 +136,7 @@ function bbcode2email($text, $wrap_length = 72) {
 			$url_index++;
 		}
 
-		// Topic, post, forum and user URLs
+		// Thread, post, forum and user URLs
 		elseif (in_array($matches[1], array('topic', 'post', 'forum', 'user'))) {
 			$url = isset($shortcut_urls[$matches[1]]) ? $base_url.$shortcut_urls[$matches[1]] : '';
 

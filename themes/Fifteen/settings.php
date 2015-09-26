@@ -113,7 +113,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every post you make', 'luna') ?></span></label>
+						<label class="col-sm-3 control-label"><?php _e('Signature', 'luna') ?><span class="help-block"><?php _e('Write a small piece to attach to every comment you make', 'luna') ?></span></label>
 						<div class="col-sm-9">
 							<textarea class="form-control" name="signature" rows="4"><?php echo luna_htmlspecialchars($user['signature']) ?></textarea>
 							<span class="help-block"><?php printf(__('Max length: %s characters / Max lines: %s', 'luna'), forum_number_format($luna_config['p_sig_length']), $luna_config['p_sig_lines']) ?></span>
@@ -268,13 +268,13 @@ if (count($languages) > 1) {
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" name="form[notify_with_post]" value="1"<?php if ($user['notify_with_post'] == '1') echo ' checked' ?> />
-									<?php _e('Include a plain text version of new posts in subscription notification emails.', 'luna') ?>
+									<?php _e('Include a plain text version of new comments in subscription notification emails.', 'luna') ?>
 								</label>
 							</div>
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" name="form[auto_notify]" value="1"<?php if ($user['auto_notify'] == '1') echo ' checked' ?> />
-									<?php _e('Automatically subscribe to every topic you post in.', 'luna') ?>
+									<?php _e('Automatically subscribe to every thread you comment in.', 'luna') ?>
 								</label>
 							</div>
 						</div>
@@ -330,7 +330,7 @@ if (count($languages) > 1) {
 				<fieldset class="form-horizontal form-setting">
 					<?php if ($luna_config['o_smilies_sig'] == '1' || $luna_config['o_signatures'] == '1' || $luna_config['o_avatars'] == '1' || $luna_config['p_message_img_tag'] == '1'): ?>
 						<div class="form-group">
-							<label class="col-sm-3 control-label"><?php _e('Post display', 'luna') ?></label>
+							<label class="col-sm-3 control-label"><?php _e('Comment display', 'luna') ?></label>
 							<div class="col-sm-9">
 								<?php if ($luna_config['o_smilies_sig'] == '1'): ?>
 									<div class="checkbox">
@@ -350,14 +350,14 @@ if (count($languages) > 1) {
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_avatars]" value="1"<?php if ($user['show_avatars'] == '1') echo ' checked' ?> />
-											<?php _e('Show user avatars in posts.', 'luna') ?>
+											<?php _e('Show user avatars in comments.', 'luna') ?>
 										</label>
 									</div>
 								<?php endif; if ($luna_config['p_message_img_tag'] == '1'): ?>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="form[show_img]" value="1"<?php if ($user['show_img'] == '1') echo ' checked' ?> />
-											<?php _e('Show images in posts.', 'luna') ?>
+											<?php _e('Show images in comments.', 'luna') ?>
 										</label>
 									</div>
 								<?php endif; if ($luna_config['o_signatures'] == '1' && $luna_config['p_sig_img_tag'] == '1'): ?>
@@ -373,13 +373,13 @@ if (count($languages) > 1) {
 					<?php endif; ?>
 					<hr />
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php _e('Topics per page', 'luna') ?></label>
+						<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?></label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php _e('Posts per page', 'luna') ?></label>
+						<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?></label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" maxlength="3" />
 						</div>
@@ -555,7 +555,7 @@ if (count($languages) > 1) {
 					<?php } ?>
 					<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
 						<div class="form-group">
-							<label class="col-sm-3 control-label"><?php _e('Posts', 'luna') ?></label>
+							<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" name="num_posts" value="<?php echo $user['num_posts'] ?>" maxlength="8" />
 							</div>

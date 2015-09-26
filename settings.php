@@ -126,12 +126,12 @@ if (isset($_POST['update_group_membership'])) {
 		// Remove him/her from the online list (if they happen to be logged in)
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id='.$id) or error('Unable to remove user from online list', __FILE__, __LINE__, $db->error());
 
-		// Should we delete all posts made by this user?
+		// Should we delete all comments made by this user?
 		if (isset($_POST['delete_posts'])) {
 			require FORUM_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
-			// Find all posts made by this user
+			// Find all comments made by this user
 			$result = $db->query('SELECT p.id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id='.$id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_post = $db->fetch_assoc($result)) {
@@ -618,7 +618,7 @@ To change your email address, please visit the following page:
 		if ($luna_user['is_admmod']) {
 			$form['admin_note'] = luna_trim($_POST['admin_note']);
 	
-			// We only allow administrators to update the post count
+			// We only allow administrators to update the comment count
 			if ($luna_user['g_id'] == FORUM_ADMIN)
 				$form['num_posts'] = intval($_POST['num_posts']);
 		}

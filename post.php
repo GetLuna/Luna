@@ -18,7 +18,7 @@ $fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
 if ($tid < 1 && $fid < 1 || $tid > 0 && $fid > 0)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-// Fetch some info about the topic and/or the forum
+// Fetch some info about the thread and/or the forum
 if ($tid)
 	$result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics, t.subject, t.closed, s.user_id AS is_subscribed, t.id AS tid FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') LEFT JOIN '.$db->prefix.'topic_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$tid) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 else
@@ -51,14 +51,14 @@ $errors = array();
 if (isset($_POST['form_sent'])) {
 	// Flood protection
 	if (!isset($_POST['preview']) && $luna_user['last_post'] != '' && (time() - $luna_user['last_post']) < $luna_user['g_post_flood'])
-		$errors[] = sprintf(__('At least %s seconds have to pass between posts. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
+		$errors[] = sprintf(__('At least %s seconds have to pass between comments. Please wait %s seconds and try posting again.', 'luna'), $luna_user['g_post_flood'], $luna_user['g_post_flood'] - (time() - $luna_user['last_post']));
 
 	// Make sure they got here from the site
 	if (($fid && (!isset($_POST['_luna_nonce_post_topic']) || !LunaNonces::verify($_POST['_luna_nonce_post_topic'],'post-reply'))) ||
 	   (!$fid && (!isset($_POST['_luna_nonce_post_reply']) || !LunaNonces::verify($_POST['_luna_nonce_post_reply'],'post-reply'))))
 		message(__('Are you sure you want to do this?', 'luna'));
 
-	// If it's a new topic
+	// If it's a new thread
 	if ($fid) {
 		$subject = luna_trim($_POST['req_subject']);
 
@@ -66,9 +66,9 @@ if (isset($_POST['form_sent'])) {
 			$censored_subject = luna_trim(censor_words($subject));
 
 		if ($subject == '')
-			$errors[] = __('Topics must contain a subject.', 'luna');
+			$errors[] = __('Threads must contain a subject.', 'luna');
 		elseif ($luna_config['o_censoring'] == '1' && $censored_subject == '')
-			$errors[] = __('Topics must contain a subject. After applying censoring filters, your subject was empty.', 'luna');
+			$errors[] = __('Threads must contain a subject. After applying censoring filters, your subject was empty.', 'luna');
 		elseif (luna_strlen($subject) > 70)
 			$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
 		elseif ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
@@ -109,11 +109,11 @@ if (isset($_POST['form_sent'])) {
 	// Clean up message from POST
 	$orig_message = $message = luna_linebreaks(luna_trim($_POST['req_message']));
 
-	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to FORUM_MAX_POSTSIZE bytes, not characters
 	if (strlen($message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Posts cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
-		$errors[] = __('Posts cannot contain only capital letters.', 'luna');
+		$errors[] = __('Comments cannot contain only capital letters.', 'luna');
 
 	// Validate BBCode syntax
 	require FORUM_ROOT.'include/parser.php';
@@ -149,7 +149,7 @@ if (isset($_POST['form_sent'])) {
 			if (!$luna_user['is_guest']) {
 				$new_tid = $tid;
 
-				// Insert the new post
+				// Insert the new comment
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
 
@@ -161,7 +161,7 @@ if (isset($_POST['form_sent'])) {
 						$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE user_id='.$luna_user['id'].' AND topic_id='.$tid) or error('Unable to remove subscription', __FILE__, __LINE__, $db->error());
 				}
 			} else {
-				// It's a guest. Insert the new post
+				// It's a guest. Insert the new comment
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 				$new_pid = $db->insert_id();
@@ -181,7 +181,7 @@ if (isset($_POST['form_sent'])) {
 
 			// Should we send out notifications?
 			if ($luna_config['o_topic_subscriptions'] == '1') {
-				// Get the post time for the previous post in this topic
+				// Get the comment time for the previous post in this thread
 				$result = $db->query('SELECT posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT 1, 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 				$previous_post_time = $db->result($result);
 
@@ -205,11 +205,11 @@ if (isset($_POST['form_sent'])) {
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
 								// Load the "new reply" template
-								$mail_tpl = trim(__('Subject: Reply to topic: "<topic_subject>"
+								$mail_tpl = trim(__('Subject: Reply to thread: "<thread_subject>"
 
-<replier> has replied to the topic "<topic_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
+<replier> has replied to the thread "<thread_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
 
-The post is located at <post_url>
+The comment is located at <comment_url>
 
 You can unsubscribe by going to <unsubscribe_url>
 
@@ -218,11 +218,11 @@ You can unsubscribe by going to <unsubscribe_url>
 (Do not reply to this message)', 'luna'));
 
 								// Load the "new reply full" template (with post included)
-								$mail_tpl_full = trim(__('Subject: Reply to topic: "<topic_subject>"
+								$mail_tpl_full = trim(__('Subject: Reply to thread: "<thread_subject>"
 
-<replier> has replied to the topic "<topic_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
+<replier> has replied to the thread "<thread_subject>" to which you are subscribed. There may be more new replies, but this is the only notification you will receive until you visit the board again.
 
-The post is located at <post_url>
+The comment is located at <comment_url>
 
 The message reads as follows:
 -----------------------------------------------------------------------
@@ -246,18 +246,18 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_subject_full = trim(substr($mail_tpl_full, 8, $first_crlf-8));
 								$mail_message_full = trim(substr($mail_tpl_full, $first_crlf));
 
-								$mail_subject = str_replace('<topic_subject>', $cur_posting['subject'], $mail_subject);
-								$mail_message = str_replace('<topic_subject>', $cur_posting['subject'], $mail_message);
+								$mail_subject = str_replace('<thread_subject>', $cur_posting['subject'], $mail_subject);
+								$mail_message = str_replace('<thread_subject>', $cur_posting['subject'], $mail_message);
 								$mail_message = str_replace('<replier>', $username, $mail_message);
-								$mail_message = str_replace('<post_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
+								$mail_message = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
 								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message);
 								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-								$mail_subject_full = str_replace('<topic_subject>', $cur_posting['subject'], $mail_subject_full);
-								$mail_message_full = str_replace('<topic_subject>', $cur_posting['subject'], $mail_message_full);
+								$mail_subject_full = str_replace('<thread_subject>', $cur_posting['subject'], $mail_subject_full);
+								$mail_message_full = str_replace('<thread_subject>', $cur_posting['subject'], $mail_message_full);
 								$mail_message_full = str_replace('<replier>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
-								$mail_message_full = str_replace('<post_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message_full);
+								$mail_message_full = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message_full);
 								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&tid='.$tid, $mail_message_full);
 								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
@@ -282,14 +282,14 @@ You can unsubscribe by going to <unsubscribe_url>
 				}
 			}
 		}
-		// If it's a new topic
+		// If it's a new thread
 		elseif ($fid) {
 			if (!$luna_user['is_guest'])
 				$user_id_poster = $db->escape($id);
 			else
 				$user_id_poster = '1';
 
-			// Create the topic
+			// Create the thread
 			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, last_post, last_poster, last_poster_id, sticky, forum_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape($subject).'\', '.$now.', '.$now.', \''.$db->escape($username).'\', '.$user_id_poster.', '.$stick_topic.', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
@@ -298,16 +298,16 @@ You can unsubscribe by going to <unsubscribe_url>
 				if ($luna_config['o_topic_subscriptions'] == '1' && $subscribe)
 					$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) VALUES('.$luna_user['id'].' ,'.$new_tid.')') or error('Unable to add subscription', __FILE__, __LINE__, $db->error());
 
-				// Create the post ("topic post")
+				// Create the comment ("topic post")
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_id, poster_ip, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', '.$luna_user['id'].', \''.$db->escape(get_remote_address()).'\', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			} else {
-				// Create the post ("topic post")
+				// Create the comment ("topic post")
 				$email_sql = ($luna_config['p_force_guest_email'] == '1' || $email != '') ? '\''.$db->escape($email).'\'' : 'NULL';
 				$db->query('INSERT INTO '.$db->prefix.'posts (poster, poster_ip, poster_email, message, hide_smilies, posted, topic_id) VALUES(\''.$db->escape($username).'\', \''.$db->escape(get_remote_address()).'\', '.$email_sql.', \''.$db->escape($message).'\', '.$hide_smilies.', '.$now.', '.$new_tid.')') or error('Unable to create post', __FILE__, __LINE__, $db->error());
 			}
 			$new_pid = $db->insert_id();
 
-			// Update the topic with last_post_id
+			// Update the thread with last_post_id
 			$db->query('UPDATE '.$db->prefix.'topics SET last_post_id='.$new_pid.', first_post_id='.$new_pid.' WHERE id='.$new_tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 			update_search_index('post', $new_pid, $message, $subject);
@@ -332,12 +332,12 @@ You can unsubscribe by going to <unsubscribe_url>
 					while ($cur_subscriber = $db->fetch_assoc($result)) {
 						// Is the subscription email for $cur_subscriber['language'] cached or not?
 						if (!isset($notification_emails[$cur_subscriber['language']])) {
-								// Load the "new topic" template
-								$mail_tpl = trim(__('Subject: New topic in forum: "<forum_name>"
+								// Load the "new thread" template
+								$mail_tpl = trim(__('Subject: New thread in forum: "<forum_name>"
 
-<poster> has posted a new topic "<topic_subject>" in the forum "<forum_name>", to which you are subscribed.
+<commenter> has commented a new thread "<thread_subject>" in the forum "<forum_name>", to which you are subscribed.
 
-The topic is located at <topic_url>
+The thread is located at <thread_url>
 
 You can unsubscribe by going to <unsubscribe_url>
 
@@ -345,12 +345,12 @@ You can unsubscribe by going to <unsubscribe_url>
 <board_mailer> Mailer
 (Do not reply to this message)', 'luna'));
 
-								// Load the "new topic full" template (with post included)
-								$mail_tpl_full = trim(__('Subject: New topic in forum: "<forum_name>"
+								// Load the "new thread full" template (with post included)
+								$mail_tpl_full = trim(__('Subject: New thread in forum: "<forum_name>"
 
-<poster> has posted a new topic "<topic_subject>" in the forum "<forum_name>", to which you are subscribed.
+<commenter> has commented a new thread "<thread_subject>" in the forum "<forum_name>", to which you are subscribed.
 
-The topic is located at <topic_url>
+The thread is located at <thread_url>
 
 The message reads as follows:
 -----------------------------------------------------------------------
@@ -375,19 +375,19 @@ You can unsubscribe by going to <unsubscribe_url>
 								$mail_message_full = trim(substr($mail_tpl_full, $first_crlf));
 
 								$mail_subject = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_subject);
-								$mail_message = str_replace('<topic_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message);
+								$mail_message = str_replace('<thread_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message);
 								$mail_message = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_message);
-								$mail_message = str_replace('<poster>', $username, $mail_message);
-								$mail_message = str_replace('<topic_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message);
+								$mail_message = str_replace('<commenter>', $username, $mail_message);
+								$mail_message = str_replace('<thread_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message);
 								$mail_message = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['fid'], $mail_message);
 								$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 								$mail_subject_full = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_subject_full);
-								$mail_message_full = str_replace('<topic_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message_full);
+								$mail_message_full = str_replace('<thread_subject>', $luna_config['o_censoring'] == '1' ? $censored_subject : $subject, $mail_message_full);
 								$mail_message_full = str_replace('<forum_name>', $cur_posting['forum_name'], $mail_message_full);
-								$mail_message_full = str_replace('<poster>', $username, $mail_message_full);
+								$mail_message_full = str_replace('<commenter>', $username, $mail_message_full);
 								$mail_message_full = str_replace('<message>', $cleaned_message, $mail_message_full);
-								$mail_message_full = str_replace('<topic_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message_full);
+								$mail_message_full = str_replace('<thread_url>', get_base_url().'/viewtopic.php?id='.$new_tid, $mail_message_full);
 								$mail_message_full = str_replace('<unsubscribe_url>', get_base_url().'/misc.php?action=unsubscribe&fid='.$cur_posting['fid'], $mail_message_full);
 								$mail_message_full = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message_full);
 
@@ -418,9 +418,9 @@ You can unsubscribe by going to <unsubscribe_url>
 			// Load the "banned email post" template
 			$mail_tpl = trim(__('Subject: Alert - Banned email detected
 
-User "<username>" posted with banned email address: <email>
+User "<username>" commented with banned email address: <email>
 
-Post URL: <post_url>
+Comment URL: <comment_url>
 
 --
 <board_mailer> Mailer
@@ -433,13 +433,13 @@ Post URL: <post_url>
 
 			$mail_message = str_replace('<username>', $username, $mail_message);
 			$mail_message = str_replace('<email>', $email, $mail_message);
-			$mail_message = str_replace('<post_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
+			$mail_message = str_replace('<comment_url>', get_base_url().'/viewtopic.php?pid='.$new_pid.'#p'.$new_pid, $mail_message);
 			$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
 			luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 		}
 
-		// If the posting user is logged in, increment his/her post count
+		// If the commenting user is logged in, increment his/her post count
 		if (!$luna_user['is_guest']) {
 			$db->query('UPDATE '.$db->prefix.'users SET num_posts=num_posts+1, last_post='.$now.' WHERE id='.$luna_user['id']) or error('Unable to update user', __FILE__, __LINE__, $db->error());
 
@@ -455,9 +455,9 @@ Post URL: <post_url>
 }
 
 
-// If a topic ID was specified in the url (it's a reply)
+// If a thread ID was specified in the url (it's a reply)
 if ($tid) {
-	$action = __('Post a reply', 'luna');
+	$action = __('Add comment', 'luna');
 	$form = '<form id="post" method="post" action="post.php?action=post&amp;tid='.$tid.'" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">';
 
 	// If a quote ID was specified in the url
@@ -522,9 +522,9 @@ if ($tid) {
 		$quote = '[quote='.$q_poster.']'.$q_message.'[/quote]'."\n";
 	}
 }
-// If a forum ID was specified in the url (new topic)
+// If a forum ID was specified in the url (new thread)
 elseif ($fid) {
-	$action = __('Post topic', 'luna');
+	$action = __('Create thread', 'luna');
 	$form = '<form id="post" method="post" action="post.php?action=post&amp;fid='.$fid.'" onsubmit="window.onbeforeunload=null;return process_form(this)">';
 } else
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');

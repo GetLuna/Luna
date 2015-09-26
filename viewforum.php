@@ -48,9 +48,9 @@ switch ($cur_forum['sort_by']) {
 		break;
 }
 
-// Can we or can we not post new topics?
+// Can we or can we not post new threads?
 if (($cur_forum['post_topics'] == '' && $luna_user['g_post_topics'] == '1') || $cur_forum['post_topics'] == '1' || $is_admmod)
-	$post_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Post topic', 'luna').'</a>'."\n";
+	$post_link = "\t\t\t".'<a class="btn btn-primary btn-post" href="post.php?fid='.$id.'"><span class="fa fa-fw fa-plus"></span> '.__('Create thread', 'luna').'</a>'."\n";
 else
 	$post_link = '';
 
@@ -58,7 +58,7 @@ else
 if (!$luna_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
 
-// Determine the topic offset (based on $_GET['p'])
+// Determine the thread offset (based on $_GET['p'])
 $num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);
 
 $p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);

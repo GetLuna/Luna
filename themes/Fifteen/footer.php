@@ -20,13 +20,13 @@ $footer_style = isset($footer_style) ? $footer_style : NULL;
 
 // Generate the feed links
 if ($footer_style == 'index') {
-	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS active topics feed', 'luna') : __('Atom active topics feed', 'luna');
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS active thread feed', 'luna') : __('Atom active thread feed', 'luna');
 	$feed_id = '';
 } elseif ($footer_style == 'viewforum') {
 	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS forum feed', 'luna') : __('Atom forum feed', 'luna');
 	$feed_id = '&fid='.$forum_id;
 } elseif ($footer_style == 'viewtopic') {
-	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS topic feed', 'luna') : __('Atom topic feed', 'luna');
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS thread feed', 'luna') : __('Atom thread feed', 'luna');
 	$feed_id = '&tid='.$id;
 }
 
@@ -60,7 +60,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_topics() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n( 'Topic', 'Topics', get_total_topics(), 'luna' ) ?></div>
+									<div class="statistic-item-stat"><?php echo _n( 'Thread', 'Threads', get_total_topics(), 'luna' ) ?></div>
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php total_posts() ?></div>
 								</div>
 								<div class="col-xs-6">
-									<div class="statistic-item-stat"><?php echo _n('Post', 'Posts', get_total_posts(), 'luna') ?></div>
+									<div class="statistic-item-stat"><?php echo _n('Comment', 'Comments', get_total_posts(), 'luna') ?></div>
 								</div>
 							</div>
 						</div>

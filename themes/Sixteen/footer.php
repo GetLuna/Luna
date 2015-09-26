@@ -19,13 +19,13 @@ $footer_style = isset($footer_style) ? $footer_style : NULL;
 
 // Generate the feed links
 if ($footer_style == 'index') {
-	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS active topics feed', 'luna') : __('Atom active topics feed', 'luna');
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS active thread feed', 'luna') : __('Atom active thread feed', 'luna');
 	$feed_id = '';
 } elseif ($footer_style == 'viewforum') {
 	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS forum feed', 'luna') : __('Atom forum feed', 'luna');
 	$feed_id = '&fid='.$forum_id;
 } elseif ($footer_style == 'viewtopic') {
-	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS topic feed', 'luna') : __('Atom topic feed', 'luna');
+	$feed_lang = ($luna_config['o_feed_type'] == '1') ? __('RSS thread feed', 'luna') : __('Atom thread feed', 'luna');
 	$feed_id = '&tid='.$id;
 }
 
@@ -49,10 +49,10 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 									<div class="statistic-item"><?php echo _n( 'User', 'Users', get_total_users(), 'luna' ) ?>: <strong><?php total_users(); ?></strong></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item"><?php echo _n( 'Topic', 'Topics', get_total_topics(), 'luna' ) ?>: <strong><?php total_topics(); ?></strong></div>
+									<div class="statistic-item"><?php echo _n( 'Thread', 'Threads', get_total_topics(), 'luna' ) ?>: <strong><?php total_topics(); ?></strong></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-									<div class="statistic-item"><?php echo _n( 'Post', 'Posts', get_total_posts(), 'luna' ) ?>: <strong><?php total_posts(); ?></strong></div>
+									<div class="statistic-item"><?php echo _n( 'Comment', 'Comments', get_total_posts(), 'luna' ) ?>: <strong><?php total_posts(); ?></strong></div>
 								</div>
 								<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 									<div class="statistic-item"><?php _e('Newest user', 'luna') ?>: <strong><?php newest_user(); ?></strong></div>

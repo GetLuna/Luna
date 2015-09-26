@@ -10,7 +10,7 @@ $jumbo_style = ' style="background:'.$cur_posting['color'].';"';
 </div>
 <div class="container">
 <?php if ($fid) { ?>
-	<h2 class="profile-title"><?php printf(__('New topic in "%s"', 'luna'), luna_htmlspecialchars($cur_posting['forum_name'])) ?><a class="btn btn-danger pull-right" href="index.php?id=<?php echo $cur_posting['fid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
+	<h2 class="profile-title"><?php printf(__('New thread in "%s"', 'luna'), luna_htmlspecialchars($cur_posting['forum_name'])) ?><a class="btn btn-danger pull-right" href="index.php?id=<?php echo $cur_posting['fid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
 <?php } else { ?>
 	<h2 class="profile-title"><?php printf(__('New comment in "%s"', 'luna'), luna_htmlspecialchars($cur_posting['subject'])) ?><a class="btn btn-danger pull-right" href="viewtopic.php?id=<?php echo $cur_posting['tid'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a></h2>
 <?php }

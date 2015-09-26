@@ -13,7 +13,7 @@ function draw_error_panel($errors) {
 ?>
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Post errors', 'luna') ?></h3>
+			<h3 class="panel-title"><?php _e('Comment errors', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
 <?php
@@ -38,7 +38,7 @@ function draw_preview_panel($message) {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Post preview', 'luna') ?></h3>
+		<h3 class="panel-title"><?php _e('Comment preview', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<?php echo $preview_message ?>
@@ -63,7 +63,7 @@ function draw_editor($height) {
 	}
 
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
-		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin topic', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
+		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
 
 	if (FORUM_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
@@ -212,7 +212,7 @@ window.onbeforeunload = function() {
 function draw_topics_list() {
 	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics;
 	
-	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
+	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
 		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	else
@@ -224,15 +224,15 @@ function draw_topics_list() {
 		for ($i = 0; $cur_topic_id = $db->result($result, $i); $i++)
 			$topic_ids[] = $cur_topic_id;
 	
-		// Fetch list of topics to display on this page
+		// Fetch list of threads to display on this page
 		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
-			// When not showing a posted label
+			// When not showing a commented label
 			if (!$luna_user['is_admmod'])
 				$sql_addition = 'soft = 0 AND ';
 
 			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, solved AS answer, moved_to, soft FROM '.$db->prefix.'topics WHERE '.$sql_addition.'id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
 		} else {
-			// When showing a posted label
+			// When showing a commented label
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_addition = 't.soft = 0 AND ';
 
@@ -300,7 +300,7 @@ function draw_topics_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new post in this topic.', 'luna').'">'.__('New posts', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 
@@ -322,7 +322,7 @@ function draw_topics_list() {
 	
 	} else {
 		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
-		printf(__('There are no topics in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
+		printf(__('There are s in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
 		echo '</h3></div></div>';
 	}
 	
@@ -360,10 +360,10 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			$icon_type = 'icon';
 			$last_post = '';
 		
-			// Are there new posts since our last visit?
+			// Are there new comments since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New posts', 'luna').'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New comments', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -399,7 +399,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 		if ($cur_category > 0)
 			echo $close_tags;
 		else
-			echo '<div class="no-board"><p>'.__('Board is empty.', 'luna').'</p></div>';
+			echo '<div class="no-board"><p>'.__('There are no forums in this board yet.', 'luna').'</p></div>';
 	}
 }
 
@@ -434,10 +434,10 @@ function draw_subforum_list($object_name = 'forum.php') {
 			$icon_type = 'icon';
 			$last_post = '';
 		
-			// Are there new posts since our last visit?
+			// Are there new comments since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New posts', 'luna').'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New comments', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -460,7 +460,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 function draw_index_topics_list() {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
 	
-	// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
+	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 AND moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are topics in this forum
@@ -469,7 +469,7 @@ function draw_index_topics_list() {
 		for ($i = 0; $cur_topic_id = $db->result($result, $i); $i++)
 			$topic_ids[] = $cur_topic_id;
 
-		// Fetch list of topics to display on this page
+		// Fetch list of threads to display on this page
 		$sql_soft = NULL;
 		if ($luna_user['is_guest'] || $luna_config['o_has_posted'] == '0') {
 			if (!$luna_user['g_soft_delete_view'])
@@ -560,7 +560,7 @@ function draw_index_topics_list() {
 			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new post in this topic.', 'luna').'">'.__('New posts', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 	
@@ -580,13 +580,13 @@ function draw_index_topics_list() {
 	
 		}
 	} else
-		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a topic to begin.', 'luna').'</h3>';
+		echo '<h3 class="nothing">'.__('The board is empty, select a forum and create a thread to begin.', 'luna').'</h3>';
 }
 
 function draw_comment_list() {
 	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic, $started_by;
 
-	// Retrieve the posts (and their respective poster/online status)
+	// Retrieve the comments (and their respective poster/online status)
 	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	while ($cur_post = $db->fetch_assoc($result)) {
 		$post_count++;
@@ -597,7 +597,7 @@ function draw_comment_list() {
 		$is_online = '';
 		$signature = '';
 	
-		// If the poster is a registered user
+		// If the commenter is a registered user
 		if ($cur_post['poster_id'] > 1) {
 			if ($luna_user['g_view_users'] == '1')
 				$username = '<a href="profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['username']).'</a>';
@@ -622,7 +622,7 @@ function draw_comment_list() {
 				}
 	
 				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'._n('Post:', 'Posts:', $cur_post['num_posts'], 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+					$user_info[] = '<dd><span>'._n('Comment:', 'Comments:', $cur_post['num_posts'], 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
@@ -649,7 +649,7 @@ function draw_comment_list() {
 					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 			}
 		}
-		// If the poster is a guest (or a user that has been deleted)
+		// If the commenter is a guest (or a user that has been deleted)
 		else {
 			$username = luna_htmlspecialchars($cur_post['username']);
 			$user_title = get_title($cur_post);
@@ -755,7 +755,7 @@ function draw_response_list() {
 		$is_online = '';
 		$signature = '';
 		
-		// If the poster is a registered user
+		// If the commenter is a registered user
 		if ($cur_post['id']) {
 			if ($luna_user['g_view_users'] == '1')
 				$username = '<a href="profile.php?id='.$cur_post['sender_id'].'">'.luna_htmlspecialchars($cur_post['sender']).'</a>';
@@ -789,7 +789,7 @@ function draw_response_list() {
 				$user_info[] = '<dd><span>'.__('Registered since', 'luna').' '.format_time($cur_post['registered'], true).'</span></dd>';
 	
 				if ($luna_config['o_show_post_count'] == '1' || $luna_user['is_admmod'])
-					$user_info[] = '<dd><span>'.__('Posts:', 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
+					$user_info[] = '<dd><span>'.__('Comments:', 'luna').' '.forum_number_format($cur_post['num_posts']).'</span></dd>';
 	
 				// Now let's deal with the contact links (Email and URL)
 				if ((($cur_post['email_setting'] == '0' && !$luna_user['is_guest']) || $luna_user['is_admmod']) && $luna_user['g_send_email'] == '1')
@@ -813,7 +813,7 @@ function draw_response_list() {
 				if ($cur_post['admin_note'] != '')
 					$user_info[] = '<dd><span>'.__('Note:', 'luna').' <strong>'.luna_htmlspecialchars($cur_post['admin_note']).'</strong></span></dd>';
 			}
-		} else { // If the poster is a guest (or a user that has been deleted)
+		} else { // If the commenter is a guest (or a user that has been deleted)
 			$username = luna_htmlspecialchars($cur_post['username']);
 			$user_title = get_title($cur_post);
 	
@@ -875,7 +875,7 @@ function draw_delete_form($id) {
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>">
-			<p><?php echo ($is_topic_post) ? '<strong>'.__('Warning! This is the first post in the topic, the whole topic will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The post you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
+			<p><?php echo ($is_topic_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
@@ -889,7 +889,7 @@ function draw_soft_delete_form($id) {
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=soft">
-			<p><?php echo ($is_topic_post) ? '<strong>'.__('Warning! This is the first post in the topic, the whole topic will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The post you have chosen to delete is set out below for you to review before proceeding. Deleting this post is not permanent. If you want to delete a post permanently, please use delete instead.', 'luna') ?></p>
+			<p><?php echo ($is_topic_post) ? '<strong>'.__('This is the first comment in the thread, the whole thread will be permanently deleted.', 'luna').'</strong>' : '' ?><br /><?php _e('The comment you have chosen to delete is set out below for you to review before proceeding. Deleting this comment is not permanent. If you want to delete a comment permanently, please use delete instead.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
 				<button type="submit" class="btn btn-danger" name="soft_delete"><span class="fa fa-fw fa-trash"></span> <?php _e('Soft delete', 'luna') ?></button>
@@ -903,10 +903,10 @@ function draw_soft_reset_form($id) {
 
 ?>
 		<form method="post" action="delete.php?id=<?php echo $id ?>&action=reset">
-			<p><?php _e('This post has been soft deleted. We\'ll enable it again with a click on the button.', 'luna') ?></p>
+			<p><?php _e('This comment has been soft deleted. We\'ll enable it again with a click on the button.', 'luna') ?></p>
 			<div class="btn-toolbar">
 				<a class="btn btn-default" href="viewtopic.php?pid=<?php echo $id ?>#p<?php echo $id ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php _e('Cancel', 'luna') ?></a>
-				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Reset post', 'luna') ?></button>
+				<button type="submit" class="btn btn-primary" name="reset"><span class="fa fa-fw fa-undo"></span> <?php _e('Reset comment', 'luna') ?></button>
 			</div>
 		</form>
 <?php
@@ -915,7 +915,7 @@ function draw_soft_reset_form($id) {
 function draw_delete_title() {
 	global $is_topic_post, $cur_post;
 
-	printf($is_topic_post ? __('Topic started by %s - %s', 'luna') : __('Reply by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted']));
+	printf($is_topic_post ? __('Thread started by %s - %s', 'luna') : __('Comment by %s - %s', 'luna'), '<strong>'.luna_htmlspecialchars($cur_post['poster']).'</strong>', format_time($cur_post['posted']));
 }
 
 function draw_registration_form() {
@@ -1032,7 +1032,7 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new post in this topic.', 'luna').'">'.__('New posts', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 			

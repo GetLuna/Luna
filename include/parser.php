@@ -50,7 +50,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 		if ($new_text != $text) {
 			$text = $new_text;
 			if ($new_text == '') {
-				$errors[] = __('It seems your post consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level.', 'luna');
+				$errors[] = __('It seems your comment consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level.', 'luna');
 				return '';
 			}
 		} else
@@ -106,7 +106,7 @@ function preparse_bbcode($text, &$errors, $is_signature = false) {
 		if ($new_text != $text) {
 			$text = $new_text;
 			if ($new_text == '') {
-				$errors[] = __('It seems your post consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level.', 'luna');
+				$errors[] = __('It seems your comment consisted of empty BBCodes only. It is possible that this happened because e.g. the innermost quote was discarded because of the maximum quote depth level.', 'luna');
 				break;
 			}
 		} else

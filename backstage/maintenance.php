@@ -22,11 +22,11 @@ if ($action == 'rebuild') {
 
 	// Check per page is > 0
 	if ($per_page < 1)
-		message_backstage(__('Posts per cycle must be a positive integer value.', 'luna'));
+		message_backstage(__('Comments per cycle must be a positive integer value.', 'luna'));
 
 	@set_time_limit(0);
 
-	// If this is the first cycle of posts we empty the search index before we proceed
+	// If this is the first cycle of comments we empty the search index before we proceed
 	if (isset($_GET['i_empty_index'])) {
 		confirm_referrer('backstage/maintenance.php');
 	
@@ -82,7 +82,7 @@ if ($action == 'rebuild') {
 
 	$end_at = 0;
 	while ($cur_item = $db->fetch_assoc($result)) {
-		echo '<p><span>'.sprintf(__('Processing post <strong>%s</strong> …', 'luna'), $cur_item['id']).'</span></p>'."\n";
+		echo '<p><span>'.sprintf(__('Processing comment <strong>%s</strong> …', 'luna'), $cur_item['id']).'</span></p>'."\n";
 
 		if ($cur_item['id'] == $cur_item['first_post_id'])
 			update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);
@@ -210,15 +210,15 @@ if (isset($_GET['cache_cleared']))
 		<div class="panel-body">
 			<input type="hidden" name="action" value="rebuild" />
 			<fieldset>
-				<p><?php _e('If you changes something about topics and posts in the database you should rebuild the search index. It\'s recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!', 'luna') ?></p>
+				<p><?php _e('If you changes something about threads and comments in the database you should rebuild the search index. It\'s recommended to activate maintenance mode during rebuilding. This can take a while and can increase the server load during the process!', 'luna') ?></p>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Posts per cycle', 'luna') ?><span class="help-block"><?php _e('Number of posts per pageview, this prevents a timeout, 300 recommended', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Comments per cycle', 'luna') ?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Starting post ID', 'luna') ?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Starting comment ID', 'luna') ?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
 					</div>
@@ -234,7 +234,7 @@ if (isset($_GET['cache_cleared']))
 						</div>
 					</div>
 				</div>
-				<p><?php _e('Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last post ID and enter that ID+1 in "Starting post ID" if you want to continue (Uncheck "Empty index").', 'luna') ?></p>
+				<p><?php _e('Be sure to enable JavaScript during the rebuild (to start a new cycle automatically). When you have to abort the rebuilding, remember the last comment ID and enter that ID+1 in "Starting comment ID" if you want to continue (Uncheck "Empty index").', 'luna') ?></p>
 			</fieldset>
 		</div>
 	</div>
