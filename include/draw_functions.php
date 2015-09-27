@@ -283,10 +283,10 @@ function draw_topics_list() {
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$status_text[] = '<span class="label label-info">'.__('Moved', 'luna').'</span>';
+				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
 			} elseif ($cur_topic['closed'] == '1') {
-				$status_text[] = '<span class="label label-danger">'.__('Closed', 'luna').'</span>';
+				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
 	
@@ -549,10 +549,10 @@ function draw_index_topics_list() {
 			$by = '<span class="byuser">'.__('by', 'luna').' '.luna_htmlspecialchars($cur_topic['poster']).'</span>';
 	
 			if ($cur_topic['moved_to'] != 0) {
-				$status_text[] = '<span class="label label-info">'.__('Moved', 'luna').'</span>';
+				$status_text[] = '<span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span>';
 				$item_status .= ' moved-item';
 			} elseif ($cur_topic['closed'] == '1') {
-				$status_text[] = '<span class="label label-danger">'.__('Closed', 'luna').'</span>';
+				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
 	
@@ -1029,7 +1029,7 @@ function draw_search_results() {
 			}
 			
 			if ($cur_search['closed'] != '0') {
-				$status_text[] = '<span class="label label-danger">'.__('Closed', 'luna').'</span>';
+				$status_text[] = '<span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span>';
 				$item_status .= ' closed-item';
 			}
 			
