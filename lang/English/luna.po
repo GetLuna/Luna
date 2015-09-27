@@ -1296,6 +1296,9 @@ msgstr ""
 msgrid "Days old"
 msgstr ""
 
+msgrid "The number of days old a notification must be to be pruned"
+msgstr ""
+
 msgrid "The number of days old a thread must be to be pruned"
 msgstr ""
 

@@ -84,7 +84,7 @@ if ($action == 'prune') {
 	$num_topics = $db->result($result);
 
 	if (!$num_topics)
-		message_backstage(sprintf(__('There are s that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
+		message_backstage(sprintf(__('There are no threads that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Prune', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -124,13 +124,38 @@ if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
 
 if (isset($_POST['notiprune'])) {
 	if ($_POST['prune_type'] == 1)
-		$type = ' WHERE viewed = 1';
+		$type = ' AND viewed = 1';
 	elseif ($_POST['prune_type'] == 2)
-		$type = ' WHERE viewed = 0';
+		$type = ' AND viewed = 0';
 	else
 		$type = '';
 
-	$db->query('DELETE FROM '.$db->prefix.'notifications'.$type) or error('Unable to delete notifications', __FILE__, __LINE__, $db->error());
+	$prune_days = intval($_POST['prune_days']);
+	if ($prune_days != 0) {
+		$prune_date = ($prune_days) ? time() - ($prune_days * 86400) : -1;
+	
+		$prune_date_sql = ($prune_date != -1) ? ' WHERE time<'.$prune_date : '';
+	} else
+		$prune_date_sql = '';
+
+	// Fetch notifications to prune
+	$result = $db->query('SELECT id FROM '.$db->prefix.'notifications'.$prune_date_sql.$type, true) or error('Unable to fetch notification IDs', __FILE__, __LINE__, $db->error());
+
+	$notification_ids = '';
+	while ($row = $db->fetch_row($result))
+		$notification_ids .= (($notification_ids != '') ? ',' : '').$row[0];
+
+	if ($notification_ids != '') {
+		// Fetch posts to prune
+		$result = $db->query('SELECT id FROM '.$db->prefix.'notifications WHERE id IN('.$notification_ids.')', true) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+
+		$notification_ids = '';
+		while ($row = $db->fetch_row($result))
+			$notification_ids .= (($notification_ids != '') ? ',' : '').$row[0];
+
+		if ($notification_ids != '')
+			$db->query('DELETE FROM '.$db->prefix.'notifications WHERE id IN('.$notification_ids.')') or error('Unable to prune notifications', __FILE__, __LINE__, $db->error());
+	}
 	
 	message_backstage(__('Pruning complete. Notifications pruned.', 'luna'));
 }
@@ -194,6 +219,12 @@ require 'header.php';
 			<input type="hidden" name="action" value="notiprune" />
 			<fieldset>
 				<p><?php printf(__('It\'s recommended to activate %s during pruning.', 'luna'), '<a href="maintenance.php#maintenance">'.__('maintenance mode', 'luna').'</a>') ?></p>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a notification must be to be pruned', 'luna') ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="prune_days" maxlength="3" tabindex="5" />
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Type', 'luna') ?></label>
 					<div class="col-sm-9">
