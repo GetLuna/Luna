@@ -20,14 +20,21 @@ html {
 }
 
 body {
-	margin-top: 50px;
 	font-family: "Segoe UI", "Open Sans", Helvetica, Arial, sans-serif;
 	background-color: #444;
+	margin-top: 50px;
 }
 
 td,
 th {
 	vertical-align: middle !important;
+}
+
+@media all and (max-width:767px) {
+	.container:not(.navbar-container) {
+		padding-right: 0;
+		padding-left: 0;
+	}
 }
 
 /* Text */
@@ -73,9 +80,9 @@ h3 {
 }
 
 label .help-block {
-	font-weight: 400;
-	letter-spacing: 0.5px;
 	font-size: 85%;
+	font-weight: 400;
+	letter-spacing: .5px;
 }
 
 .panel-about #brand h3 {
@@ -88,15 +95,12 @@ label .help-block {
 }
 
 .panel-about h4 {
+	color: #1f62b0;
 	font-size: 24px !important;
 	margin-bottom: 3px;
-	color: #1f62b0;
 }
 
-.panel-about p {
-	line-height: 1.8;
-}
-
+.panel-about p,
 .change-list {
 	line-height: 1.8;
 }
@@ -125,7 +129,7 @@ label .help-block {
 .navbar-default {
 	background: #1f62b0;
 	border-bottom: none;
-	box-shadow: 0px 0px 20px rgba(0,0,0,0.2) !important;
+	box-shadow: 0 0 20px rgba(0,0,0,.2) !important;
 }
 
 .navbar-default .navbar-brand,
@@ -160,8 +164,8 @@ label .help-block {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
 	color: #fff;
+	text-shadow: 0 0 5px 1px rgba(255,255,255,.5);
 	background-color: transparent;
-	text-shadow: 0 0 5px 1px rgba(255, 255, 255, .5);
 }
 
 @media all and (max-width:767px) {
@@ -177,7 +181,6 @@ label .help-block {
 }
 
 .dropdown-menu {
-	border-width: 0 1px 1px;
 	padding: 0;
 }
 
@@ -191,23 +194,23 @@ label .help-block {
 }
 
 .avatar {
-	padding: 0;
-	border: 0;
 	margin: 0;
+	border: 0;
+	padding: 0;
 	width: 40px;
 	height: 40px;
 	display: inline;
 }
 
 .navbar .dropdown-user {
-	padding-top: 5px !important;
-	padding-bottom: 5px !important;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 /* Heading - jumbotron and navtabs */
 .jumboheader {
 	color: #fff;
-	background: #1f62b0;
+	background-color: #1f62b0;
 	padding-top: 0;
 	padding-bottom: 1px;
 	margin-bottom: 17px;
@@ -219,22 +222,15 @@ label .help-block {
 }
 
 @media all and (max-width:767px) {
-	.container:not(.navbar-container) {
-		padding-right: 0;
-		padding-left: 0;
-	}
-}
-
-@media all and (max-width:767px) {
 	.jumboheader {
 		margin-bottom: 0;
 	}
 }
 
 .jumboheader h2 {
+	font-family: "Segoe UI Light", "Open Sans";
 	margin-top: 15px;
 	margin-bottom: 15px;
-	font-family: "Segoe UI Light", "Open Sans";
 }
 
 .nav-tabs > li > a {
