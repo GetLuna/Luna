@@ -1,5 +1,11 @@
 /* Accent 4 - Purple */
-.navbar-default, .panel-default .panel-heading, .btn-primary, .btn-primary:focus, .btn-primary:active, .active.btn-primary, .open .btn-primary.dropdown-toggle {
+.navbar-default,
+.panel-default .panel-heading,
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.active.btn-primary,
+.open .btn-primary.dropdown-toggle {
 	background-color: #b679d4;
 }
 
@@ -7,7 +13,16 @@
 	background-color: #a268bf;
 }
 
-.panel-primary > .panel-heading, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+.panel-primary > .panel-heading,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
 	background-color: #8b54a7;
 }
 
@@ -19,12 +34,21 @@
 	border-color: #a268bf;
 }
 
-.panel-primary > .panel-heading, .btn-primary:hover, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+.panel-primary > .panel-heading,
+.btn-primary:hover,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
 	border-color: #8b54a7;
 }
 
 @media all and (max-width:767px) {
-	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	.nav-tabs > li.active > a,
+	.nav-tabs > li.active > a:hover,
+	.nav-tabs > li.active > a:focus {
 		background-color: #b679d4;
 		border-color: #b679d4;
 	}
