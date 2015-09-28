@@ -78,24 +78,24 @@ if (isset($_GET['saved']))
 			<input type="hidden" name="form_sent" value="1" />
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Topics and posts', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Threads and comments', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[censoring]" value="1" <?php if ($luna_config['o_censoring'] == '1') echo ' checked' ?> />
-								<?php printf(__('Censor words in posts. See %s for more info.', 'luna'), '<a href="censoring.php">'.__('Censoring', 'luna').'</a>') ?>
+								<?php printf(__('Censor words in comments. See %s for more info.', 'luna'), '<a href="censoring.php">'.__('Censoring', 'luna').'</a>') ?>
 							</label>
 						</div>   
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[topic_views]" value="1" <?php if ($luna_config['o_topic_views'] == '1') echo ' checked' ?> />
-								<?php _e('Show the number of views for each topic.', 'luna') ?>
+								<?php _e('Show the number of views for each thread.', 'luna') ?>
 							</label>
 						</div>  
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[has_posted]" value="1" <?php if ($luna_config['o_has_posted'] == '1') echo ' checked' ?> />
-								<?php _e('Show a label in front of the topics where users have posted.', 'luna') ?>
+								<?php _e('Show a label in front of the thread where users have commented.', 'luna') ?>
 							</label>
 						</div>					
 					</div>
@@ -112,7 +112,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[signatures]" value="1" <?php if ($luna_config['o_signatures'] == '1') echo ' checked' ?> />
-								<?php _e('Allow users to attach a signature to their posts.', 'luna') ?>
+								<?php _e('Allow users to attach a signature to their comments.', 'luna') ?>
 							</label>
 						</div>
 						<div class="checkbox">
@@ -210,7 +210,7 @@ if (isset($_GET['saved']))
 		<div class="panel-body">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Topics and posts', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Threads and comments', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>

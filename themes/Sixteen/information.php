@@ -15,11 +15,11 @@ $xmlstr = <<<XML
 	<id>sixteen</id>
 	<name>Sixteen</name>
 	<developer>Studio 384</developer>
-	<date>21 August 2015</date>
-	<version>1.0.0</version>
-	<minversion>1.2.0</minversion>
-	<maxversion>1.2.0</maxversion>
-	<description>Sixteen is the 2016 default theme for Luna. It looks quiet amazing, we say so ourselves.</description>
+	<date>13 September 2015</date>
+	<version>1.0 Preview</version>
+	<minversion>1.2 Preview 1</minversion>
+	<maxversion>1.2 Preview 1</maxversion>
+	<description>Sixteen is the 2016 default theme for Luna. It looks quiet amazing, if we can say so ourselves.</description>
 </style>
 XML;
 ?>

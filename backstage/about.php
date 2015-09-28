@@ -23,56 +23,23 @@ require 'header.php';
 	<div class="col-sm-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">About Luna 1.1 Bittersweet Shimmer</h3>
+				<h3 class="panel-title">About Luna 1.2 Cornflower Blue</h3>
 			</div>
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.1.3</span></p><h2>Bittersweet Shimmer Update 3</h2>
+						<p class="meta"><span class="release-version">1.2 Preview 1</span></p><h2>Cornflower Blue Preview 1</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved logic for load_css() function</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes accent resetting when saving profile and accents disabled</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes wrong link in "Forgotten password" mails</li>
-						</ul>
-					</div>
-					<div class="container">
-						<p class="meta"><span class="release-version">1.1.2</span></p><h2>Bittersweet Shimmer Update 2</h2>
-						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>The Slow ring is no longer available</li>
-							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>If the Nightly ring is selected, Luna won't check for updates automaticaly</li>
-							<li><div class="change-label-container"><em class="change-label change-removed">Removed</em></div>The extended changelog has been removed</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Bootstrap has been updated to version 3.3.5 everywhere</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Error walls now have a style again</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a corrupt translation for the "Upload avatar" modal</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes an issue that caused config.php to be recognized incorrectly</li>
-						</ul>
-					</div>
-					<div class="container">
-						<p class="meta"><span class="release-version">1.1.1</span></p><h2>Bittersweet Shimmer Update</h2>
-						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>SQLite 3 support</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>The moderation interface has been redesigned</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>You can now disable the night mode system</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Removing posts will cause the postcount to decrease</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>You can now force the accent color</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Bootstrap has been updated to 3.3.5</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sixteen is the new default theme</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark topics as solved</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now set any color as forum colors</li>
+							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for non-Latin characters</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Extended language support for syntax highlighter</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>New tools to clean up notifications</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improvements for non-Javascript usage</li>
+							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Updated and incorporated components</li>
+							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>Default avatar settings have been updated</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 3 bugs</li>
-						</ul>
-					</div>
-					<div class="container">
-						<p class="meta"><span class="release-version">1.1</span></p><h2>Bittersweet Shimmer</h2>
-						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Night mode</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Backstage now supports accents</li>
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Translations now use gettext</li>
-							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>PHP 7 support</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>You can now click on contact links</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Fifteen and Sunrise 1.1</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Notifications are now real-time</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>You can now force the accent color</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Announcements has been extended with many new features</li>
-							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Errors have been improved</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 13 bugs</li>
 						</ul>
 					</div>
 				</section>

@@ -40,10 +40,10 @@ $avatar_user_card = draw_user_avatar($id);
 $user_title_field = get_title($user);
 $user_personality[] = '<b>'.__('Title', 'luna').':</b> '.(($luna_config['o_censoring'] == '1') ? censor_words($user_title_field) : $user_title_field);
 
-$user_personality[] = '<b>'.__('Posts', 'luna').':</b> '.$posts_field = forum_number_format($user['num_posts']);
+$user_personality[] = '<b>'.__('Comments', 'luna').':</b> '.$posts_field = forum_number_format($user['num_posts']);
 
 if ($user['num_posts'] > 0)
-	$user_personality[] = '<b>'.__('Last post', 'luna').':</b> '.$last_post;
+	$user_personality[] = '<b>'.__('Last comment', 'luna').':</b> '.$last_post;
 
 $user_activity[] = '<b>'.__('Registered', 'luna').':</b> '.format_time($user['registered'], true);
 
@@ -61,8 +61,8 @@ $posts_field = '';
 if ($luna_user['g_search'] == '1') {
 	$quick_searches = array();
 	if ($user['num_posts'] > 0) {
-		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.__('Show topics', 'luna').'</a>';
-		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.__('Show posts', 'luna').'</a>';
+		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_topics&amp;user_id='.$id.'">'.__('Show threads', 'luna').'</a>';
+		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_user_posts&amp;user_id='.$id.'">'.__('Show comments', 'luna').'</a>';
 	}
 	if ($luna_user['is_admmod'] && $luna_config['o_topic_subscriptions'] == '1')
 		$quick_searches[] = '<a class="btn btn-primary btn-sm" href="search.php?action=show_subscriptions&amp;user_id='.$id.'">'.__('Show subscriptions', 'luna').'</a>';

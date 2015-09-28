@@ -11,7 +11,7 @@ if (!empty($errors)) {
 ?>
 <div class="panel panel-danger">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Post errors', 'luna') ?></h3>
+		<h3 class="panel-title"><?php _e('Comment errors', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 <?php
@@ -29,7 +29,7 @@ if (!empty($errors)) {
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Post preview', 'luna') ?></h3>
+		<h3 class="panel-title"><?php _e('Comment preview', 'luna') ?></h3>
 	</div>
 	<div class="panel-body">
 		<p><?php echo $preview_message."\n" ?></p>

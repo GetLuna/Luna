@@ -58,7 +58,7 @@ if (isset($_GET['saved']))
 <form class="form-horizontal" method="post" action="permissions.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Posting', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+			<h3 class="panel-title"><?php _e('Commenting', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="form_sent" value="1" />
@@ -69,7 +69,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[message_img_tag]" value="1" <?php if ($luna_config['p_message_img_tag'] == '1') echo ' checked' ?> />
-								<?php _e('Allow the BBCode [img] tag in posts.', 'luna') ?>
+								<?php _e('Allow the BBCode [img] tag in comments.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -97,7 +97,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[force_guest_email]" value="1" <?php if ($luna_config['p_force_guest_email'] == '1') echo ' checked' ?> />
-								<?php _e('Require guests to supply an email address when posting.', 'luna') ?>
+								<?php _e('Require guests to supply an email address when commenting.', 'luna') ?>
 							</label>
 						</div>
 					</div>
@@ -117,7 +117,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[sig_img_tag]" value="1" <?php if ($luna_config['p_sig_img_tag'] == '1') echo ' checked' ?> />
-								<?php _e('Allow the BBCode [img] tag in user signatures (not recommended).', 'luna') ?>
+								<?php _e('Allow the BBCode [img] tag in user signatures.', 'luna') ?>
 							</label>
 						</div>
 						<div class="checkbox">

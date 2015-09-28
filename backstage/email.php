@@ -107,7 +107,7 @@ if (isset($_GET['saved']))
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="form[topic_subscriptions]" value="1" <?php if ($luna_config['o_topic_subscriptions'] == '1') echo ' checked' ?> />
-								<?php _e('Enable users to subscribe to topics.', 'luna') ?>
+								<?php _e('Enable users to subscribe to threads.', 'luna') ?>
 							</label>
 						</div>
 					</div>

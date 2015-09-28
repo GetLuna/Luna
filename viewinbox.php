@@ -42,7 +42,7 @@ if ($pid) {
 
 	$id = $db->result($result);
 
-	// Determine on what page the post is located (depending on $luna_user['disp_posts'])
+	// Determine on what page the comment is located (depending on $luna_user['disp_posts'])
 	$result = $db->query('SELECT id FROM '.$db->prefix.'messages WHERE shared_id='.$id.' AND owner='.$luna_user['id'].' ORDER BY posted') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	$num_posts = $db->num_rows($result);
 
@@ -60,7 +60,7 @@ if ($pid) {
 $result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'messages WHERE shared_id='.$tid.' AND owner='.$luna_user['id']) or error('Unable to count the messages', __FILE__, __LINE__, $db->error());
 list($num_replies) = $db->fetch_row($result);
 
-// Determine the post offset (based on $_GET['p'])
+// Determine the comment offset (based on $_GET['p'])
 $num_pages = ceil($num_replies / $luna_user['disp_posts']);
 
 // Page ?
@@ -206,7 +206,7 @@ if ($action == 'delete') {
 	if(!in_array($luna_user['id'], $owner) && !$luna_user['is_admmod'])
 		message(__('You do not have permission to access this page.', 'luna'));
 		
-		$post_count = '0'; // Keep track of post numbers
+		$post_count = '0'; // Keep track of comment numbers
 		
 		if ($num_new_pm > '0')
 			$db->query('UPDATE '.$db->prefix.'messages SET showed=1 WHERE shared_id='.$tid.' AND show_message=1 AND owner='.$luna_user['id']) or error('Unable to update the status of the message', __FILE__, __LINE__, $db->error());

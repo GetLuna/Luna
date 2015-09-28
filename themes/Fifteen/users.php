@@ -21,7 +21,7 @@ if (!defined('FORUM'))
 				<select class="form-control hidden-xs" name="sort">
 					<option value="username"<?php if ($sort_by == 'username') echo ' selected' ?>><?php _e('Sort by username', 'luna') ?></option>
 					<option value="registered"<?php if ($sort_by == 'registered') echo ' selected' ?>><?php _e('Sort by registration date', 'luna') ?></option>
-					<option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected' ?>><?php _e('Sort by number of posts', 'luna') ?></option>
+					<option value="num_posts"<?php if ($sort_by == 'num_posts') echo ' selected' ?>><?php _e('Sort by number of comments', 'luna') ?></option>
 				</select>
 			</div>
 			<div class="form-group">

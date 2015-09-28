@@ -19,7 +19,7 @@ if (isset($_GET['get_host'])) {
 	if (!$luna_user['is_admmod'])
 		message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-	// Is get_host an IP address or a post ID?
+	// Is get_host an IP address or a comment ID?
 	if (@preg_match('%^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$%', $_GET['get_host']) || @preg_match('%^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$%', $_GET['get_host']))
 		$ip = $_GET['get_host'];
 	else {
@@ -52,7 +52,7 @@ if ($fid < 1) {
 			<h3 class="panel-title"><?php _e('Moderate content', 'luna') ?></h3>
 		</div>
 		<div class="panel-body">
-			<p><?php _e('Visit a forum or topic and choose "Moderate" in the moderator bar to moderate content.', 'luna') ?></p>
+			<p><?php _e('Visit a forum or thread and choose "Moderate" in the moderator bar to moderate content.', 'luna') ?></p>
 		</div>
 	</div>
 	<?php
@@ -73,13 +73,13 @@ if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] == '0' || !a
 if (!$luna_user['is_guest'])
 	$tracked_topics = get_tracked_topics();
 
-// All other topic moderation features require a topic ID in GET
+// All other topic moderation features require a thread ID in GET
 if (isset($_GET['tid'])) {
 	$tid = intval($_GET['tid']);
 	if ($tid < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	// Fetch some info about the topic
+	// Fetch some info about the thread
 	$result = $db->query('SELECT t.subject, t.num_replies, t.first_post_id, f.id AS forum_id, forum_name FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$fid.' AND t.id='.$tid.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -90,7 +90,7 @@ if (isset($_GET['tid'])) {
 	if (isset($_POST['delete_posts']) || isset($_POST['delete_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
-			message_backstage(__('You must select at least one post for split/delete.', 'luna'));
+			message_backstage(__('You must select at least one comment for split/delete.', 'luna'));
 
 		if (isset($_POST['delete_posts_comply'])) {
 			confirm_referrer('backstage/moderate.php');
@@ -98,7 +98,7 @@ if (isset($_GET['tid'])) {
 			if (@preg_match('%[^0-9,]%', $posts))
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-			// Verify that the post IDs are valid
+			// Verify that the comment IDs are valid
 			$admins_sql = ($luna_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
@@ -107,20 +107,20 @@ if (isset($_GET['tid'])) {
 			
 			decrease_post_counts($posts);
 
-			// Delete the posts
+			// Delete the comments
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
 
 			require FORUM_ROOT.'include/search_idx.php';
 			strip_search_index($posts);
 
-			// Get last_post, last_post_id, and last_poster for the topic after deletion
+			// Get last_post, last_post_id, and last_poster for the thread after deletion
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_post = $db->fetch_assoc($result);
 
 			// How many posts did we just delete?
 			$num_posts_deleted = substr_count($posts, ',') + 1;
 
-			// Update the topic
+			// Update the thread
 			$db->query('UPDATE '.$db->prefix.'topics SET last_post='.$last_post['posted'].', last_post_id='.$last_post['id'].', last_poster=\''.$db->escape($last_post['poster']).'\', num_replies=num_replies-'.$num_posts_deleted.' WHERE id='.$tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 			update_forum($fid);
@@ -137,12 +137,12 @@ if (isset($_GET['tid'])) {
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Delete posts', 'luna') ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="delete_posts_comply" value="<?php _e('Delete', 'luna') ?>" /></span></h3>
+					<h3 class="panel-title"><?php _e('Delete comments', 'luna') ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="delete_posts_comply" value="<?php _e('Delete', 'luna') ?>" /></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
 						<input type="hidden" name="posts" value="<?php echo implode(',', array_map('intval', array_keys($posts))) ?>" />
-						<p><?php _e('Are you sure you want to delete the selected posts?', 'luna') ?></p>
+						<p><?php _e('Are you sure you want to delete the selected comments?', 'luna') ?></p>
 					</fieldset>
 				</div>
 			</div>
@@ -154,7 +154,7 @@ if (isset($_GET['tid'])) {
 	} elseif (isset($_POST['split_posts']) || isset($_POST['split_posts_comply'])) {
 		$posts = isset($_POST['posts']) ? $_POST['posts'] : array();
 		if (empty($posts))
-			message_backstage(__('You must select at least one post for split/delete.', 'luna'));
+			message_backstage(__('You must select at least one comment for split/delete.', 'luna'));
 
 		if (isset($_POST['split_posts_comply'])) {
 			confirm_referrer('backstage/moderate.php');
@@ -169,7 +169,7 @@ if (isset($_GET['tid'])) {
 			// How many posts did we just split off?
 			$num_posts_splitted = substr_count($posts, ',') + 1;
 
-			// Verify that the post IDs are valid
+			// Verify that the comment IDs are valid
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result) != $num_posts_splitted)
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -183,7 +183,7 @@ if (isset($_GET['tid'])) {
 			$new_subject = isset($_POST['new_subject']) ? luna_trim($_POST['new_subject']) : '';
 
 			if ($new_subject == '')
-				message_backstage(__('Topics must contain a subject.', 'luna'));
+				message_backstage(__('Threads must contain a subject.', 'luna'));
 			 elseif (luna_strlen($new_subject) > 70)
 				message_backstage(__('Subjects cannot be longer than 70 characters.', 'luna'));
 
@@ -191,22 +191,22 @@ if (isset($_GET['tid'])) {
 			$result = $db->query('SELECT p.id, p.poster, p.posted FROM '.$db->prefix.'posts AS p WHERE id IN('.$posts.') ORDER BY p.id ASC LIMIT 1') or error('Unable to get first post', __FILE__, __LINE__, $db->error());
 			$first_post_data = $db->fetch_assoc($result);
 
-			// Create the new topic
-			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, first_post_id, forum_id) VALUES (\''.$db->escape($first_post_data['poster']).'\', \''.$db->escape($new_subject).'\', '.$first_post_data['posted'].', '.$first_post_data['id'].', '.$move_to_forum.')') or error('Unable to create new topic', __FILE__, __LINE__, $db->error());
+			// Create the new thread
+			$db->query('INSERT INTO '.$db->prefix.'topics (poster, subject, posted, first_post_id, forum_id) VALUES (\''.$db->escape($first_post_data['poster']).'\', \''.$db->escape($new_subject).'\', '.$first_post_data['posted'].', '.$first_post_data['id'].', '.$move_to_forum.')') or error('Unable to create new thread', __FILE__, __LINE__, $db->error());
 			$new_tid = $db->insert_id();
 
-			// Move the posts to the new topic
-			$db->query('UPDATE '.$db->prefix.'posts SET topic_id='.$new_tid.' WHERE id IN('.$posts.')') or error('Unable to move posts into new topic', __FILE__, __LINE__, $db->error());
+			// Move the comments to the new thread
+			$db->query('UPDATE '.$db->prefix.'posts SET topic_id='.$new_tid.' WHERE id IN('.$posts.')') or error('Unable to move posts into new thread', __FILE__, __LINE__, $db->error());
 
 			// Apply every subscription to both topics
 			$db->query('INSERT INTO '.$db->prefix.'topic_subscriptions (user_id, topic_id) SELECT user_id, '.$new_tid.' FROM '.$db->prefix.'topic_subscriptions WHERE topic_id='.$tid) or error('Unable to copy existing subscriptions', __FILE__, __LINE__, $db->error());
 
-			// Get last_post, last_post_id, and last_poster from the topic and update it
+			// Get last_post, last_post_id, and last_poster from the thread and update it
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_post_data = $db->fetch_assoc($result);
 			$db->query('UPDATE '.$db->prefix.'topics SET last_post='.$last_post_data['posted'].', last_post_id='.$last_post_data['id'].', last_poster=\''.$db->escape($last_post_data['poster']).'\', num_replies=num_replies-'.$num_posts_splitted.' WHERE id='.$tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
-			// Get last_post, last_post_id, and last_poster from the new topic and update it
+			// Get last_post, last_post_id, and last_poster from the new thread and update it
 			$result = $db->query('SELECT id, poster, posted FROM '.$db->prefix.'posts WHERE topic_id='.$new_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			$last_post_data = $db->fetch_assoc($result);
 			$db->query('UPDATE '.$db->prefix.'topics SET last_post='.$last_post_data['posted'].', last_post_id='.$last_post_data['id'].', last_poster=\''.$db->escape($last_post_data['poster']).'\', num_replies='.($num_posts_splitted-1).' WHERE id='.$new_tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
@@ -228,7 +228,7 @@ if (isset($_GET['tid'])) {
 		<form id="subject" class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Split posts', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php _e('Split', 'luna') ?>" /></span></h3>
+					<h3 class="panel-title"><?php _e('Split comments', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="split_posts_comply" value="<?php _e('Split', 'luna') ?>" /></span></h3>
 				</div>
 				<div class="panel-body">
 					<fieldset>
@@ -276,13 +276,13 @@ if (isset($_GET['tid'])) {
 
 	// Show the moderate posts view
 
-	// Used to disable the Move and Delete buttons if there are no replies to this topic
+	// Used to disable the Move and Delete buttons if there are no replies to this thread
 	$button_status = ($cur_topic['num_replies'] == 0) ? ' disabled="disabled"' : '';
 
 	if (isset($_GET['action']) && $_GET['action'] == 'all')
 		$luna_user['disp_posts'] = $cur_topic['num_replies'] + 1;
 
-	// Determine the post offset (based on $_GET['p'])
+	// Determine the comment offset (based on $_GET['p'])
 	$num_pages = ceil(($cur_topic['num_replies'] + 1) / $luna_user['disp_posts']);
 
 	$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
@@ -318,22 +318,22 @@ if (isset($_GET['tid'])) {
 
 	require FORUM_ROOT.'include/parser.php';
 
-	$post_count = 0; // Keep track of post numbers
+	$post_count = 0; // Keep track of comment numbers
 
-	// Retrieve a list of post IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
+	// Retrieve a list of comment IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$tid.' ORDER BY id LIMIT '.$start_from.','.$luna_user['disp_posts']) or error('Unable to fetch post IDs', __FILE__, __LINE__, $db->error());
 
 	$post_ids = array();
 	for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
 		$post_ids[] = $cur_post_id;
 
-	// Retrieve the posts (and their respective poster)
+	// Retrieve the comments (and their respective poster)
 	$result = $db->query('SELECT u.title, u.num_posts, g.g_id, g.g_user_title, p.id, p.poster, p.poster_id, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 
 	while ($cur_post = $db->fetch_assoc($result)) {
 		$post_count++;
 
-		// If the poster is a registered user
+		// If the commenter is a registered user
 		if ($cur_post['poster_id'] > 1) {
 			if ($luna_user['g_view_users'] == '1')
 				$poster = '<a href="../profile.php?id='.$cur_post['poster_id'].'">'.luna_htmlspecialchars($cur_post['poster']).'</a>';
@@ -347,7 +347,7 @@ if (isset($_GET['tid'])) {
 			if ($luna_config['o_censoring'] == '1')
 				$user_title = censor_words($user_title);
 		}
-		// If the poster is a guest (or a user that has been deleted)
+		// If the commenter is a guest (or a user that has been deleted)
 		else {
 			$poster = luna_htmlspecialchars($cur_post['poster']);
 			$user_title = __('Guest', 'luna');
@@ -370,7 +370,7 @@ if (isset($_GET['tid'])) {
 							<?php if ($cur_post['edited'] != '') echo "\t\t\t\t\t\t".'<p class="postedit"><em>'.__('Last edited by', 'luna').' '.luna_htmlspecialchars($cur_post['edited_by']).' ('.format_time($cur_post['edited']).')</em></p>'."\n"; ?>
 						</div>
 						<div class="panel-footer">
-							<?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First post cannot be selected for split/delete.', 'luna').'</p>' ?>
+							<?php echo ($cur_post['id'] != $cur_topic['first_post_id']) ? '<div class="checkbox" style="margin-top: 0;"><label><input type="checkbox" name="posts['.$cur_post['id'].']" value="1" /> '.__('Select', 'luna').'</label></div>' : '<p>'.__('First comment cannot be selected for split/delete.', 'luna').'</p>' ?>
 						</div>
 					</div>
 				</div>
@@ -415,7 +415,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		if (empty($topics) || $move_to_forum < 1)
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		// Verify that the topic IDs are valid
+		// Verify that the thread IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.implode(',',$topics).') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) != count($topics))
@@ -426,10 +426,10 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		if (!$db->num_rows($result))
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		// Delete any redirect topics if there are any (only if we moved/copied the topic back to where it was once moved from)
+		// Delete any redirect topics if there are any (only if we moved/copied the thread back to where it was once moved from)
 		$db->query('DELETE FROM '.$db->prefix.'topics WHERE forum_id='.$move_to_forum.' AND moved_to IN('.implode(',',$topics).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 
-		// Move the topic(s)
+		// Move the thread(s)
 		$db->query('UPDATE '.$db->prefix.'topics SET forum_id='.$move_to_forum.' WHERE id IN('.implode(',',$topics).')') or error('Unable to move topics', __FILE__, __LINE__, $db->error());
 
 		// Should we create redirect topics?
@@ -444,8 +444,8 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 			}
 		}
 
-		update_forum($fid); // Update the forum FROM which the topic was moved
-		update_forum($move_to_forum); // Update the forum TO which the topic was moved
+		update_forum($fid); // Update the forum FROM which the thread was moved
+		update_forum($move_to_forum); // Update the forum TO which the thread was moved
 
 		redirect('viewforum.php?id='.$move_to_forum);
 	}
@@ -453,7 +453,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 	if (isset($_POST['move_topics'])) {
 		$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 		if (empty($topics))
-			message_backstage(__('You must select at least one topic for move/delete/open/close.', 'luna'));
+			message_backstage(__('You must select at least one thread for move/delete/open/close.', 'luna'));
 
 		$topics = implode(',', array_map('intval', array_keys($topics)));
 		$action = 'multi';
@@ -467,7 +467,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 
 	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result) < 2)
-		message_backstage(__('There are no forums into which you can move topics.', 'luna'));
+		message_backstage(__('There are no forums into which you can move threads.', 'luna'));
 	
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
 	define('FORUM_ACTIVE_PAGE', 'admin');
@@ -478,7 +478,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 	<form class="form-horizontal" method="post" action="moderate.php?fid=<?php echo $fid ?>">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php echo ($action == 'single') ? __('Move topic', 'luna') : __('Move topics', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php _e('Move', 'luna') ?>" /></span></h3>
+				<h3 class="panel-title"><?php echo ($action == 'single') ? __('Move thread', 'luna') : __('Move threads', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="move_topics_to" value="<?php _e('Move', 'luna') ?>" /></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="topics" value="<?php echo $topics ?>" />
@@ -509,7 +509,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 							<div class="checkbox">
 								<label>
 									<input type="checkbox" name="with_redirect" value="1"<?php if ($action == 'single') echo ' checked' ?> />
-									<?php _e('Leave redirect topic(s)', 'luna') ?>
+									<?php _e('Leave redirect thread(s)', 'luna') ?>
 								</label>
 							</div>
 						</div>
@@ -534,14 +534,14 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 
 		$topics = explode(',', $_POST['topics']);
 		if (count($topics) < 2)
-			message_backstage(__('You must select at least two topics for merge.', 'luna'));
+			message_backstage(__('You must select at least two threads to merge.', 'luna'));
 
-		// Verify that the topic IDs are valid (redirect links will point to the merged topic after the merge)
+		// Verify that the thread IDs are valid (redirect links will point to the merged topic after the merge)
 		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid.' ORDER BY id ASC') or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 		if ($db->num_rows($result) != count($topics))
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		// The topic that we are merging into is the one with the smallest ID
+		// The thread that we are merging into is the one with the smallest ID
 		$merge_to_tid = $db->result($result);
 
 		// Make any redirect topics point to our new, merged topic
@@ -553,8 +553,8 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 
 		$db->query($query) or error('Unable to make redirection topics', __FILE__, __LINE__, $db->error());
 
-		// Merge the posts into the topic
-		$db->query('UPDATE '.$db->prefix.'posts SET topic_id='.$merge_to_tid.' WHERE topic_id IN('.implode(',', $topics).')') or error('Unable to merge the posts into the topic', __FILE__, __LINE__, $db->error());
+		// Merge the comments into the thread
+		$db->query('UPDATE '.$db->prefix.'posts SET topic_id='.$merge_to_tid.' WHERE topic_id IN('.implode(',', $topics).')') or error('Unable to merge the comments into the thread', __FILE__, __LINE__, $db->error());
 
 		// Update any subscriptions
 		$result = $db->query('SELECT DISTINCT user_id FROM '.$db->prefix.'topic_subscriptions WHERE topic_id IN ('.implode(',', $topics).')') or error('Unable to fetch subscriptions of merged topics', __FILE__, __LINE__, $db->error());
@@ -572,25 +572,25 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 		if (!isset($_POST['with_redirect']))
 			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $topics).') AND id != '.$merge_to_tid) or error('Unable to delete old topics', __FILE__, __LINE__, $db->error());
 
-		// Count number of replies in the topic
+		// Count number of replies in the thread
 		$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'posts WHERE topic_id='.$merge_to_tid) or error('Unable to fetch post count for topic', __FILE__, __LINE__, $db->error());
 		$num_replies = $db->result($result, 0) - 1;
 
 		// Get last_post, last_post_id and last_poster
-		$result = $db->query('SELECT posted, id, poster FROM '.$db->prefix.'posts WHERE topic_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last post info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT posted, id, poster FROM '.$db->prefix.'posts WHERE topic_id='.$merge_to_tid.' ORDER BY id DESC LIMIT 1') or error('Unable to get last comment info', __FILE__, __LINE__, $db->error());
 		list($last_post, $last_post_id, $last_poster) = $db->fetch_row($result);
 
 		// Update topic
 		$db->query('UPDATE '.$db->prefix.'topics SET num_replies='.$num_replies.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster=\''.$db->escape($last_poster).'\' WHERE id='.$merge_to_tid) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
-		// Update the forum FROM which the topic was moved and redirect
+		// Update the forum FROM which the thread was moved and redirect
 		update_forum($fid);
 		redirect('viewforum.php?id='.$fid);
 	}
 
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (count($topics) < 2)
-		message_backstage(__('You must select at least two topics for merge.', 'luna'));
+		message_backstage(__('You must select at least two threads to merge.', 'luna'));
 	else {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
 		define('FORUM_ACTIVE_PAGE', 'admin');
@@ -601,7 +601,7 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 		<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title"><?php _e('Merge topics', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php _e('Merge', 'luna') ?>" /></span></h3>
+					<h3 class="panel-title"><?php _e('Merge threads', 'luna') ?><span class="pull-right"><input type="submit" class="btn btn-primary" name="merge_topics_comply" value="<?php _e('Merge', 'luna') ?>" /></span></h3>
 				</div>
 				<div class="panel-body">
 					<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
@@ -609,7 +609,7 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" name="with_redirect" value="1" />
-								<?php _e('Leave redirect topic(s)', 'luna') ?>
+								<?php _e('Leave redirect thread(s)', 'luna') ?>
 							</label>
 						</div>
 					</fieldset>
@@ -627,7 +627,7 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply'])) {
 	$topics = isset($_POST['topics']) ? $_POST['topics'] : array();
 	if (empty($topics))
-		message_backstage(__('You must select at least one topic for move/delete/open/close.', 'luna'));
+		message_backstage(__('You must select at least one thread for move/delete/open/close.', 'luna'));
 
 	if (isset($_POST['delete_topics_comply'])) {
 		confirm_referrer('backstage/moderate.php');
@@ -637,39 +637,39 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 
 		require FORUM_ROOT.'include/search_idx.php';
 
-		// Verify that the topic IDs are valid
+		// Verify that the thread IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.$topics.') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 
 		if ($db->num_rows($result) != substr_count($topics, ',') + 1)
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		// Verify that the posts are not by admins
+		// Verify that the comments are not by admins
 		if ($luna_user['g_id'] != FORUM_ADMIN) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
 				message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 		}
 
-		// Delete the topics and any redirect topics
+		// Delete the threads and any redirect topics
 		$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.$topics.') OR moved_to IN('.$topics.')') or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
 
 		// Delete any subscriptions
 		$db->query('DELETE FROM '.$db->prefix.'topic_subscriptions WHERE topic_id IN('.$topics.')') or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
 
-		// Create a list of the post IDs in this topic and then strip the search index
+		// Create a list of the comment IDs in this thread and then strip the search index
 		$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 		$post_ids = '';
 		while ($row = $db->fetch_row($result))
 			$post_ids .= ($post_ids != '') ? ','.$row[0] : $row[0];
 
-		// We have to check that we actually have a list of post IDs since we could be deleting just a redirect topic
+		// We have to check that we actually have a list of comment IDs since we could be deleting just a redirect topic
 		if ($post_ids != '') {
 			decrease_post_counts($post_ids);
 			strip_search_index($post_ids);
 		}
 
-		// Delete posts
+		// Delete comments
 		$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
 
 		update_forum($fid);
@@ -686,12 +686,12 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 	<form method="post" action="moderate.php?fid=<?php echo $fid ?>">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title"><?php _e('Delete topics', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_topics_comply"><span class="fa fa-fw fa-minus"></span> <?php _e('Delete', 'luna') ?></button></span></h3>
+				<h3 class="panel-title"><?php _e('Delete threads', 'luna') ?><span class="pull-right"><button type="submit" class="btn btn-danger" name="delete_topics_comply"><span class="fa fa-fw fa-minus"></span> <?php _e('Delete', 'luna') ?></button></span></h3>
 			</div>
 			<div class="panel-body">
 				<input type="hidden" name="topics" value="<?php echo implode(',', array_map('intval', array_keys($topics))) ?>" />
 				<fieldset>
-					<p><?php _e('Are you sure you want to delete the selected topics?', 'luna') ?></p>
+					<p><?php _e('Are you sure you want to delete the selected threads?', 'luna') ?></p>
 				</fieldset>
 			</div>
 		</div>
@@ -706,15 +706,15 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 	$action = (isset($_REQUEST['open'])) ? 0 : 1;
 
-	// There could be an array of topic IDs in $_POST
+	// There could be an array of thread IDs in $_POST
 	if (isset($_POST['open']) || isset($_POST['close'])) {
 		confirm_referrer('backstage/moderate.php');
 
 		$topics = isset($_POST['topics']) ? @array_map('intval', @array_keys($_POST['topics'])) : array();
 		if (empty($topics))
-			message_backstage(__('You must select at least one topic for move/delete/open/close.', 'luna'));
+			message_backstage(__('You must select at least one thread for move/delete/open/close.', 'luna'));
 
-		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to close topics', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id IN('.implode(',', $topics).') AND forum_id='.$fid) or error('Unable to Close threads', __FILE__, __LINE__, $db->error());
 
 		redirect('backstage/moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
@@ -724,14 +724,14 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 		if ($topic_id < 1)
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to close topic', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'topics SET closed='.$action.' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to Close thread', __FILE__, __LINE__, $db->error());
 
 		redirect('viewtopic.php?id='.$topic_id);
 	}
 }
 
 
-// Stick a topic
+// Stick a thread
 elseif (isset($_GET['stick'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
@@ -739,13 +739,13 @@ elseif (isset($_GET['stick'])) {
 	if ($stick < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to stick topic', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'1\' WHERE id='.$stick.' AND forum_id='.$fid) or error('Unable to Pin thread', __FILE__, __LINE__, $db->error());
 
 	redirect('viewtopic.php?id='.$stick);
 }
 
 
-// Unstick a topic
+// Unstick a thread
 elseif (isset($_GET['unstick'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
 
@@ -753,7 +753,7 @@ elseif (isset($_GET['unstick'])) {
 	if ($unstick < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to unstick topic', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'topics SET sticky=\'0\' WHERE id='.$unstick.' AND forum_id='.$fid) or error('Unable to Unpin thread', __FILE__, __LINE__, $db->error());
 
 	redirect('viewtopic.php?id='.$unstick);
 } 
@@ -786,7 +786,7 @@ elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['
 			break;
 	}
 	
-	// Determine the topic offset (based on $_GET['p'])
+	// Determine the thread offset (based on $_GET['p'])
 	$num_pages = ceil($cur_forum['num_topics'] / $luna_user['disp_topics']);
 	
 	$p = (!isset($_GET['p']) || $_GET['p'] <= 1 || $_GET['p'] > $num_pages) ? 1 : intval($_GET['p']);
@@ -813,7 +813,7 @@ elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['
 <?php
 
 
-// Retrieve a list of topic IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
+// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 $result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$fid.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 
 // If there are topics in this forum
@@ -869,7 +869,7 @@ if ($db->num_rows($result)) {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
 			$subject = '<strong>'.$subject.'</strong>';
-			$subject_new_posts = '<span class="newtext">[ <a href="../viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new post in this topic.', 'luna').'">'.__('New posts', 'luna').'</a> ]</span>';
+			$subject_new_posts = '<span class="newtext">[ <a href="../viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
 		} else
 			$subject_new_posts = null;
 
@@ -883,7 +883,7 @@ if ($db->num_rows($result)) {
 		else
 			$subject_multipage = null;
 
-		// Should we show the "New posts" and/or the multipage links?
+		// Should we show the "New comments" and/or the multipage links?
 		if (!empty($subject_new_posts) || !empty($subject_multipage)) {
 			$subject .= !empty($subject_new_posts) ? ' '.$subject_new_posts : '';
 			$subject .= !empty($subject_multipage) ? ' '.$subject_multipage : '';
@@ -910,7 +910,7 @@ if ($db->num_rows($result)) {
 } else {
 	$colspan = ($luna_config['o_topic_views'] == '1') ? 5 : 4;
 	$button_status = ' disabled="disabled"';
-	echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.__('Forum is empty.', 'luna').'</td></tr>'."\n";
+	echo "\t\t\t\t\t".'<tr><td class="tcl" colspan="'.$colspan.'">'.__('This forum has s yet.', 'luna').'</td></tr>'."\n";
 }
 
 ?>

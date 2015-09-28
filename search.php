@@ -166,9 +166,9 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 								$where_cond = str_replace('*', '%', $cur_word);
 								$where_cond = ($search_in ? (($search_in > 0) ? 'p.message LIKE \'%'.$db->escape($where_cond).'%\'' : 't.subject LIKE \'%'.$db->escape($where_cond).'%\'') : 'p.message LIKE \'%'.$db->escape($where_cond).'%\' OR t.subject LIKE \'%'.$db->escape($where_cond).'%\'');
 
-								$result = $db->query('SELECT p.id AS post_id, p.topic_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE ('.$where_cond.') AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for posts', __FILE__, __LINE__, $db->error());
+								$result = $db->query('SELECT p.id AS post_id, p.topic_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE ('.$where_cond.') AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for comments', __FILE__, __LINE__, $db->error());
 							} else
-								$result = $db->query('SELECT m.post_id, p.topic_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'search_words AS w INNER JOIN '.$db->prefix.'search_matches AS m ON m.word_id = w.id INNER JOIN '.$db->prefix.'posts AS p ON p.id=m.post_id INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE w.word LIKE \''.$db->escape(str_replace('*', '%', $cur_word)).'\''.$search_in_cond.' AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for posts', __FILE__, __LINE__, $db->error());
+								$result = $db->query('SELECT m.post_id, p.topic_id, '.$sort_by_sql.' AS sort_by FROM '.$db->prefix.'search_words AS w INNER JOIN '.$db->prefix.'search_matches AS m ON m.word_id = w.id INNER JOIN '.$db->prefix.'posts AS p ON p.id=m.post_id INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE w.word LIKE \''.$db->escape(str_replace('*', '%', $cur_word)).'\''.$search_in_cond.' AND (fp.read_forum IS NULL OR fp.read_forum=1)'.$forum_sql, true) or error('Unable to search for comments', __FILE__, __LINE__, $db->error());
 
 							$row = array();
 							while ($temp = $db->fetch_assoc($result)) {
@@ -270,11 +270,11 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		} elseif ($action == 'show_new' || $action == 'show_recent' || $action == 'show_user_posts' || $action == 'show_user_topics' || $action == 'show_subscriptions' || $action == 'show_unanswered') {
 			$search_type = array('action', $action);
 			$show_as = 'topics';
-			// We want to sort things after last post
+			// We want to sort things after last comment
 			$sort_by = 0;
 			$sort_dir = 'DESC';
 
-			// If it's a search for new posts since last visit
+			// If it's a search for new comments since last visit
 			if ($action == 'show_new') {
 				if ($luna_user['is_guest'])
 					message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
@@ -283,17 +283,17 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('There are no topics with new posts since your last visit.', 'luna'));
+					message(__('There are no topics with new comments since your last visit.', 'luna'));
 			}
-			// If it's a search for recent posts (in a certain time interval)
+			// If it's a search for recent comments (in a certain time interval)
 			elseif ($action == 'show_recent') {
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.last_post>'.(time() - $interval).' AND t.moved_to IS NULL'.(isset($_GET['fid']) ? ' AND t.forum_id='.intval($_GET['fid']) : '').' ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('No new posts have been made within the last 24 hours.', 'luna'));
+					message(__('No new comments have been made within the last 24 hours.', 'luna'));
 			}
-			// If it's a search for posts by a specific user ID
+			// If it's a search for comments by a specific user ID
 			elseif ($action == 'show_user_posts') {
 				$show_as = 'posts';
 
@@ -301,7 +301,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('There are no posts by this user in this forum.', 'luna'));
+					message(__('There are no comments by this user in this forum.', 'luna'));
 
 				// Pass on the user ID so that we can later know whose posts we're searching for
 				$search_type[2] = $user_id;
@@ -326,18 +326,18 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('This user is currently not subscribed to any topics.', 'luna'));
+					message(__('This user is currently not subscribed to and threads.', 'luna'));
 
 				// Pass on user ID so that we can later know whose subscriptions we're searching for
 				$search_type[2] = $user_id;
 			}
-			// If it's a search for unanswered posts
+			// If it's a search for unanswered comments
 			else {
 				$result = $db->query('SELECT t.id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.num_replies=0 AND t.moved_to IS NULL ORDER BY t.last_post DESC') or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 				$num_hits = $db->num_rows($result);
 
 				if (!$num_hits)
-					message(__('There are no unanswered posts in this forum.', 'luna'));
+					message(__('There are no unanswered comments in this forum.', 'luna'));
 			}
 
 			$search_ids = array();
@@ -387,7 +387,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 	$forum_actions = array();
 
-	// If we're on the new posts search, display a "mark all as read" link
+	// If we're on the new comments search, display a "mark all as read" link
 	if (!$luna_user['is_guest'] && $search_type[0] == 'action' && $search_type[1] == 'show_new')
 		$forum_actions[] = '<a href="misc.php?action=markread">'.__('Mark as read', 'luna').'</a>';
 
@@ -411,7 +411,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 				break;
 		}
 
-		// Determine the topic or post offset (based on $_GET['p'])
+		// Determine the thread or comment offset (based on $_GET['p'])
 		$per_page = ($show_as == 'posts') ? $luna_user['disp_posts'] : $luna_user['disp_topics'];
 		$num_pages = ceil($num_hits / $per_page);
 
@@ -439,9 +439,9 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 
 		if ($search_type[0] == 'action') {
 			if ($search_type[1] == 'show_user_topics')
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$search_type[2].'">'.sprintf(__('Topics by %s', 'luna'), luna_htmlspecialchars($search_set[0]['poster'])).'</a>';
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_topics&amp;user_id='.$search_type[2].'">'.sprintf(__('Threads by %s', 'luna'), luna_htmlspecialchars($search_set[0]['poster'])).'</a>';
 			elseif ($search_type[1] == 'show_user_posts')
-				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$search_type[2].'">'.sprintf(__('Posts by %s', 'luna'), luna_htmlspecialchars($search_set[0]['pposter'])).'</a>';
+				$crumbs_text['search_type'] = '<a class="btn btn-primary" href="search.php?action=show_user_posts&amp;user_id='.$search_type[2].'">'.sprintf(__('Comments by %s', 'luna'), luna_htmlspecialchars($search_set[0]['pposter'])).'</a>';
 			elseif ($search_type[1] == 'show_subscriptions') {
 				// Fetch username of subscriber
 				$subscriber_id = $search_type[2];

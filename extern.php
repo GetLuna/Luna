@@ -23,7 +23,7 @@
   URL to the script. The different variables are: action (what to
   do), show (how many items to display), fid (the ID or IDs of
   the forum(s) to poll for topics), nfid (the ID or IDs of forums
-  that should be excluded), tid (the ID of the topic from which to
+  that should be excluded), tid (the ID of the thread from which to
   display posts) and type (output as HTML or RSS). The only
   mandatory variable is action. Possible/default values are:
 
@@ -269,7 +269,7 @@ if ($action == 'feed') {
 	if ($show < 1 || $show > 50)
 		$show = 15;
 
-	// Was a topic ID supplied?
+	// Was a thread ID supplied?
 	if (isset($_GET['tid'])) {
 		$tid = intval($_GET['tid']);
 
@@ -289,7 +289,7 @@ if ($action == 'feed') {
 		$feed = array(
 			'title' 		=>	$luna_config['o_board_title'].__(' / ', 'luna').$cur_topic['subject'],
 			'link'			=>	get_base_url(true).'/viewtopic.php?id='.$tid,
-			'description'		=>	sprintf(__('The most recent posts in %s.', 'luna'), $cur_topic['subject']),
+			'description'		=>	sprintf(__('The most recent comments in %s.', 'luna'), $cur_topic['subject']),
 			'items'			=>	array(),
 			'type'			=>	'posts'
 		);
@@ -367,7 +367,7 @@ if ($action == 'feed') {
 			$feed = array(
 				'title' 		=>	$luna_config['o_board_title'].$forum_name,
 				'link'			=>	'/index.php',
-				'description'	=>	sprintf(__('The most recent topics at %s.', 'luna'), $luna_config['o_board_title']),
+				'description'	=>	sprintf(__('The most recent threads at %s.', 'luna'), $luna_config['o_board_title']),
 				'items'			=>	array(),
 				'type'			=>	'topics'
 			);
@@ -490,8 +490,8 @@ elseif ($action == 'stats') {
 
 	echo sprintf(__('Users', 'luna'), forum_number_format($stats['total_users'])).'<br />'."\n";
 	echo sprintf(__('Newest user', 'luna'), (($luna_user['g_view_users'] == '1') ? '<a href="'.luna_htmlspecialchars(get_base_url(true)).'/profile.php?id='.$stats['last_user']['id'].'">'.luna_htmlspecialchars($stats['last_user']['username']).'</a>' : luna_htmlspecialchars($stats['last_user']['username']))).'<br />'."\n";
-	echo sprintf(__('Topics', 'luna'), forum_number_format($stats['total_topics'])).'<br />'."\n";
-	echo sprintf(__('Posts', 'luna'), forum_number_format($stats['total_posts'])).'<br />'."\n";
+	echo sprintf(__('Threads', 'luna'), forum_number_format($stats['total_topics'])).'<br />'."\n";
+	echo sprintf(__('Comments', 'luna'), forum_number_format($stats['total_posts'])).'<br />'."\n";
 
 	exit;
 }

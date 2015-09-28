@@ -35,7 +35,7 @@ if (!empty($items['guest'])) {
 	$item = $items['user'];
 ?>
 								<li id="navprofile" class="dropdown">
-									<a href="<?php echo $item['profile']['url']; ?>" class="dropdown-toggle avatar-item" data-toggle="dropdown"> <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?> <span class="fa fa-fw fa-angle-down hide-if-no-js"></span></a>
+									<a href="<?php echo $item['profile']['url']; ?>" class="dropdown-toggle avatar-item" data-toggle="dropdown"> <?php echo draw_user_avatar($luna_user['id'], true, 'avatar'); ?><span class="hidden-lg hidden-md hidden-sm"> <?php echo luna_htmlspecialchars($luna_user['username']); ?></span></a>
 									<ul class="dropdown-menu">
 										<li><a href="<?php echo $item['profile']['url']; ?>"><?php echo $item['profile']['title']; ?></a></li>
 										<li><a href="<?php echo $item['settings']['url']; ?>"><?php echo $item['settings']['title']; ?></a></li>

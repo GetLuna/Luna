@@ -19,7 +19,7 @@ if ($id < 1)
 
 $action = isset($_GET['action']) ? $_GET['action'] : 0;
 
-// Fetch some info about the post, the topic and the forum
+// Fetch some info about the comment, the thread and the forum
 $result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, fp.post_replies, fp.post_topics, t.id AS tid, t.subject, t.first_post_id, t.closed, p.posted, p.poster, p.poster_id, p.message, p.hide_smilies FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -54,7 +54,7 @@ if (isset($_POST['soft_delete'])) {
 	require FORUM_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post) {
-		// Delete the topic and all of its posts
+		// Delete the thread and all of its posts
 		delete_topic($cur_post['tid'], "soft");
 		update_forum($cur_post['fid']);
 
@@ -80,7 +80,7 @@ if (isset($_POST['reset'])) {
 	require FORUM_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post) {
-		// Reset the topic and all of its posts
+		// Reset the thread and all of its posts
 		delete_topic($cur_post['tid'], "reset");
 		update_forum($cur_post['fid']);
 
@@ -90,7 +90,7 @@ if (isset($_POST['reset'])) {
 		$db->query('UPDATE '.$db->prefix.'posts SET soft = 0 WHERE id='.$id) or error('Unable to soft delete post', __FILE__, __LINE__, $db->error());
 		update_forum($cur_post['fid']);
 
-		// Redirect towards the post
+		// Redirect towards the comment
 		redirect('viewtopic.php?pid='.$id.'#p'.$id);
 	}
 }
@@ -102,7 +102,7 @@ if (isset($_POST['delete'])) {
 	require FORUM_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post) {
-		// Delete the topic and all of its posts
+		// Delete the thread and all of its posts
 		delete_topic($cur_post['tid'], "hard");
 		update_forum($cur_post['fid']);
 
@@ -120,7 +120,7 @@ if (isset($_POST['delete'])) {
 	}
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Delete post', 'luna'));
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Delete comment', 'luna'));
 define ('FORUM_ACTIVE_PAGE', 'delete');
 
 require FORUM_ROOT.'include/parser.php';

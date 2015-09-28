@@ -286,130 +286,105 @@ switch ($stage) {
 		if (!array_key_exists('o_ranks', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_ranks\', \'1\')') or error('Unable to insert config value \'o_ranks\'', __FILE__, __LINE__, $db->error());
 
-		// Legacy support: ModernBB 1.6, 1.7, 2.0, 2.1, 2.2, 2.3, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 and 3.8
-		// Since 2.0-beta.1: Add the marked column to the posts table
+		// ModernBB 2.0 upgrade support
 		$db->add_field('posts', 'marked', 'TINYINT(1)', false, 0, null) or error('Unable to add marked field', __FILE__, __LINE__, $db->error());
+		build_config(0, 'o_quickjump');
+		build_config(0, 'o_show_dot');
 
-		// Since 2.0-beta.3: Remove obsolete o_quickjump permission from config table
-		if (array_key_exists('o_quickjump', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickjump\'') or error('Unable to remove config value \'o_quickjump\'', __FILE__, __LINE__, $db->error());
-
-		// Since 2.0-rc.1: Remove obsolete o_show_dot permission from config table
-		if (array_key_exists('o_show_dot', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-alpha: Add the first_run column to the users table
+		// ModernBB 3.2 upgrade support
 		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_first_run_guests', '1');
+		build_config(1, 'o_first_run_message');
+		build_config(1, 'o_has_posted', '1');
+		build_config(0, 'o_redirect_delay');
+		build_config(1, 'o_show_first_run', '1');
 
-		// Since 3.2-alpha: Insert new config option o_show_first_run
-		if (!array_key_exists('o_show_first_run', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_first_run\', \'1\')') or error('Unable to insert config value \'o_show_first_run\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-alpha: Insert new config option o_first_run_guests
-		if (!array_key_exists('o_first_run_guests', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_guests\', \'1\')') or error('Unable to insert config value \'o_first_run_guests\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-alpha: Insert new config option o_first_run_message
-		if (!array_key_exists('o_first_run_message', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_message\', \'\')') or error('Unable to insert config value \'o_first_run_message\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-alpha: Remove obsolete o_redirect_delay permission from config table
-		if (array_key_exists('o_redirect_delay', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_redirect_delay\'') or error('Unable to remove config value \'o_redirect_delay\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-beta: Add o_has_posted
-		if (!array_key_exists('o_has_posted', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_has_posted\', \'1\')') or error('Unable to insert config value \'o_has_posted\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.3-alpha: Add o_enable_advanced_search
-		if (!array_key_exists('o_enable_advanced_search', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_enable_advanced_search\', \'1\')') or error('Unable to insert config value \'o_enable_advanced_search\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.3-beta: Drop the backstage_style column from the forums table
+		// ModernBB 3.3 upgrade support
 		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_enable_advanced_search', '1');
 
-		// Since 3.4-rc: Insert new config option o_cookie_bar
-		if (!array_key_exists('o_cookie_bar', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar\', \'0\')') or error('Unable to insert config value \'o_cookie_bar\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4-rc: Insert new config option o_moderated_by
-		if (!array_key_exists('o_moderated_by', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_moderated_by\', \'1\')') or error('Unable to insert config value \'o_moderated_by\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4-rc: Make password field VARCHAR(256)
+		// ModernBB 3.4 upgrade support
 		$db->alter_field('users', 'password', 'VARCHAR(256)', true) or error('Unable to alter password field', __FILE__, __LINE__, $db->error());
+		build_config(1, 'o_cookie_bar', '0');
+		build_config(1, 'o_moderated_by', '1');
+		build_config(1, 'o_video_height', '640');
+		build_config(1, 'o_video_width', '360');
 
-		// Since 3.4-rc: Insert new config option video_width
-		if (!array_key_exists('o_video_width', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_video_width\', \'640\')') or error('Unable to insert config value \'o_video_width\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4-rc: Insert new config option video_height
-		if (!array_key_exists('o_video_height', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_video_height\', \'360\')') or error('Unable to insert config value \'o_video_height\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4.1: Drop the jabber column from the forums table
-		$db->drop_field('users', 'jabber') or error('Unable to drop jabber field', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4.1: Drop the icq column from the forums table
+		// ModernBB 3.4 Update 1 upgrade support
+		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'google', 'VARCHAR(30)', true, null) or error('Unable to add google field to user table', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'twitter', 'VARCHAR(30)', true, null) or error('Unable to add twitter field to user table', __FILE__, __LINE__, $db->error());
+		$db->drop_field('users', 'aim') or error('Unable to drop aim field from user table', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'icq') or error('Unable to drop icq field from user table', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4.1: Drop the yahoo column from the forums table
+		$db->drop_field('users', 'jabber') or error('Unable to drop jabber field', __FILE__, __LINE__, $db->error());
 		$db->drop_field('users', 'yahoo') or error('Unable to drop yahoo field from user table', __FILE__, __LINE__, $db->error());
 
-		// Since 3.4.1: Drop the aim column from the forums table
-		$db->drop_field('users', 'aim') or error('Unable to drop aim field from user table', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4.1: Add the facebook column to the users table
-		$db->add_field('users', 'facebook', 'VARCHAR(30)', true, null) or error('Unable to add facebook field to user table', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4.1: Add the twitter column to the users table
-		$db->add_field('users', 'twitter', 'VARCHAR(30)', true, null) or error('Unable to add twitter field to user table', __FILE__, __LINE__, $db->error());
-
-		// Since 3.4.1: Add the google column to the users table
-		$db->add_field('users', 'google', 'VARCHAR(30)', true, null) or error('Unable to add google field to user table', __FILE__, __LINE__, $db->error());
-
-		// Since 3.5-beta: Remove obsolete o_antispam_api permission from config table
-		if (array_key_exists('o_antispam_api', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_antispam_api\'') or error('Unable to remove config value \'o_antispam_api\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.5-beta: Add o_core_version
-		if (!array_key_exists('o_core_version', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_core_version\', \''.Version::FORUM_CORE_VERSION.'\')') or error('Unable to insert config value \'o_core_version\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.35.2488: Remove obsolete o_index_update_check permission from config table
-		if (array_key_exists('o_index_update_check', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_index_update_check\'') or error('Unable to remove config value \'o_index_update_check\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.37.2564: Add the parent_id column to the forums table
+		// ModernBB 3.5 upgrade support
 		$db->add_field('forums', 'parent_id', 'INT', true, 0) or error('Unable to add parent_id field', __FILE__, __LINE__, $db->error());
+		build_config(0, 'o_antispam_api');
+		build_config(1, 'o_core_version', Version::FORUM_CORE_VERSION);
+		build_config(0, 'o_index_update_check');
 
-		// Since 0.0.40.2944: Drop the redirect_url column to the forums table
+		// Luna 1.0 upgrade support
+		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_pm', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_pm" to table "groups"', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_pm_limit', 'INT', false, '20', 'g_pm') or error('Unable to add column "g_pm_limit" to table "groups"', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_soft_delete_posts', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_posts field', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_soft_delete_topics', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_topics field', __FILE__, __LINE__, $db->error());
+		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
+		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+		$db->add_field('topics', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'forums', 'redirect_url', 'VARCHAR(100)', true, 0) or error('Unable to drop redirect_url field', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2946: Drop the backstage_color column to the forums table
+		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 		$db->drop_field($db->prefix.'users', 'backstage_color', 'VARCHAR(25)', false, 0) or error('Unable to drop backstage_color field', __FILE__, __LINE__, $db->error());
+		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
 
-		// Since 0.0.40.2975: Remove obsolete o_header_title permission from config table
-		if (array_key_exists('o_header_title', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_header_title\'') or error('Unable to remove config value \'o_header_title\'', __FILE__, __LINE__, $db->error());
+		build_config(0, 'o_additional_navlinks');
+		build_config(1, 'o_admin_note');
+		build_config(0, 'o_admin_notes');
+		build_config(1, 'o_back_to_top', '1');
+		build_config(0, 'o_backstage_dark');
+		build_config(1, 'o_board_statistics', '1');
+		build_config(1, 'o_code_name', Version::LUNA_CODE_NAME);
+		build_config(1, 'o_copyright_type', '0');
+		build_config(1, 'o_custom_copyright');
+		build_config(1, 'o_emoji', '1');
+		build_config(1, 'o_emoji_size', '16');
+		build_config(1, 'o_first_run_backstage', '0');
+		build_config(0, 'o_forum_new_style');
+		build_config(0, 'o_header_desc');
+		build_config(1, 'o_header_search', '1');
+		build_config(0, 'o_header_title');
+		build_config(0, 'o_menu_title');
+		build_config(0, 'o_notifications');
+		build_config(1, 'o_notification_flyout', '1');
+		build_config(1, 'o_pms_enabled', '1');
+		build_config(1, 'o_pms_max_receiver', '5');
+		build_config(1, 'o_pms_mess_per_page', '10');
+		build_config(1, 'o_pms_notification', '1');
+		build_config(0, 'o_post_responsive');
+		build_config(0, 'o_private_message');
+		build_config(0, 'o_quickpost');
+		build_config(0, 'o_reading_list');
+		build_config(1, 'o_show_copyright', '1');
+		build_config(0, 'o_show_index');
+		build_config(0, 'o_show_rules');
+		build_config(0, 'o_show_search');
+		build_config(0, 'o_show_userlist');
+		build_config(0, 'o_show_version');
+		build_config(0, 'o_smilies');
+		build_config(1, 'o_update_ring', '1');
+		build_config(0, 'o_user_menu_sidebar');
+		build_config(0, 'p_message_bbcode');
 
-		// Since 0.0.40.2975: Remove obsolete o_header_desc permission from config table
-		if (array_key_exists('o_header_desc', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_header_desc\'') or error('Unable to remove config value \'o_header_desc\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2975: Remove obsolete o_menu_title permission from config table
-		if (array_key_exists('o_menu_title', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_menu_title\'') or error('Unable to remove config value \'o_menu_title\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2975: Remove obsolete o_show_version permission from config table
-		if (array_key_exists('o_show_version', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_version\'') or error('Unable to remove config value \'o_show_version\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2975: Remove obsolete o_show_index_stats permission from config table
-		if (array_key_exists('o_show_index_stats', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_index_stats\'') or error('Unable to remove config value \'o_show_index_stats\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2981: Add the menu table
+		// Add the menu table
 		if (!$db->table_exists('menu')) {
 			$schema = array(
 				'FIELDS'		=> array(
@@ -458,45 +433,7 @@ switch ($stage) {
 				or error('Unable to add Search menu item. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 		}
 
-		// Since 0.0.40.2985: Remove obsolete o_show_index permission from config table
-		if (array_key_exists('o_show_index', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_index\'') or error('Unable to remove config value \'o_show_index\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2985: Remove obsolete o_show_userlist permission from config table
-		if (array_key_exists('o_show_userlist', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_userlist\'') or error('Unable to remove config value \'o_show_userlist\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2985: Remove obsolete o_show_search permission from config table
-		if (array_key_exists('o_show_index', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_search\'') or error('Unable to remove config value \'o_show_search\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2985: Remove obsolete o_show_rules permission from config table
-		if (array_key_exists('o_show_rules', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_rules\'') or error('Unable to remove config value \'o_show_rules\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2989: Add o_admin_note
-		if (!array_key_exists('o_admin_note', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_admin_note\', NULL)') or error('Unable to insert config value \'o_admin_note\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.2985: Remove obsolete p_message_bbcode permission from config table
-		if (array_key_exists('p_message_bbcode', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'p_message_bbcode\'') or error('Unable to remove config value \'p_message_bbcode\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.40.3048: Remove obsolete o_additional_navlinks permission from config table
-		if (array_key_exists('o_additional_navlinks', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_additional_navlinks\'') or error('Unable to remove config value \'o_additional_navlinks\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3221: Drop the last_poster column to the forums table
-		$db->drop_field($db->prefix.'forums', 'last_poster', 'VARCHAR(200)', true) or error('Unable to drop last_poster field', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3221: Drop the last_topic column to the forums table
-		$db->drop_field($db->prefix.'forums', 'last_topic', 'VARCHAR(255)', false, 0) or error('Unable to drop last_topic field', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3247: Remove obsolete o_quickpost permission from config table
-		if (array_key_exists('o_quickpost', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_quickpost\'') or error('Unable to remove config value \'o_quickpost\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3250: Add the messages table
+		// Add the messages table
 		if (!$db->table_exists('messages')) {
 			$schema = array(
 				'FIELDS'			=> array(
@@ -590,64 +527,7 @@ switch ($stage) {
 			$db->create_table('messages', $schema) or error('Unable to create messages table', __FILE__, __LINE__, $db->error());
 		}
 
-		// Since 0.0.3263: Add the g_pm column to the groups table
-		$db->add_field('groups', 'g_pm', 'TINYINT(1)', false, '1', 'g_email_flood') or error('Unable to add column "g_pm" to table "groups"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the g_pm_limit column to the groups table
-		$db->add_field('groups', 'g_pm_limit', 'INT', false, '20', 'g_pm') or error('Unable to add column "g_pm_limit" to table "groups"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the use_pm column to the users table
-		$db->add_field('users', 'use_pm', 'TINYINT(1)', false, '1', 'activate_key') or error('Unable to add column "use_pm" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the notify_pm column to the users table
-		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the notify_pm_full column to the users table
-		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3263: Add the num_pms column to the users table
-		$db->add_field('users', 'num_pms', 'INT(10) UNSIGNED', false, '0', 'num_posts') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_enabled feature
-		if (!array_key_exists('o_pms_enabled', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_enabled\', \'1\')') or error('Unable to insert config value \'o_pms_enabled\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_mess_per_page feature
-		if (!array_key_exists('o_pms_mess_per_page', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_mess_per_page\', \'10\')') or error('Unable to insert config value \'o_pms_mess_per_page\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_max_receiver feature
-		if (!array_key_exists('o_pms_max_receiver', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_max_receiver\', \'5\')') or error('Unable to insert config value \'o_pms_max_receiver\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.0.3265: Add o_pms_notification feature
-		if (!array_key_exists('o_pms_notification', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_pms_notification\', \'1\')') or error('Unable to insert config value \'o_pms_notification\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.1.3283: Remove obsolete o_private_message permission from config table
-		if (array_key_exists('o_private_message', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_private_message\'') or error('Unable to remove config value \'o_private_message\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.1.3300: Remove obsolete o_user_menu_sidebar permission from config table
-		if (array_key_exists('o_user_menu_sidebar', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_user_menu_sidebar\'') or error('Unable to remove config value \'o_user_menu_sidebar\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.1.3301: Set sys_entry to 0 for Backstage
-		$db->query('UPDATE '.$db->prefix.'menu SET sys_entry = \'0\' WHERE id = \'4\'') or error('Unable to reset Backstage menu item', __FILE__, __LINE__, $db->error());
-
-		// Since 0.1.3320: Remove obsolete o_backstage_dark permission from config table
-		if (array_key_exists('o_backstage_dark', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_backstage_dark\'') or error('Unable to remove config value \'o_backstage_dark\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3414: Remove obsolete o_forum_new_style permission from config table
-		if (array_key_exists('o_forum_new_style', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_forum_new_style\'') or error('Unable to remove config value \'o_forum_new_style\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3415: Remove obsolete o_notifications permission from config table
-		if (array_key_exists('o_notifications', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_notifications\'') or error('Unable to remove config value \'o_notifications\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3423: Add the messages table
+		// Add the messages table
 		if (!$db->table_exists('notifications')) {
 			$schema = array(
 				'FIELDS'			=> array(
@@ -692,148 +572,31 @@ switch ($stage) {
 			$db->create_table('notifications', $schema) or error('Unable to create notifications table', __FILE__, __LINE__, $db->error());
 		}
 
-		// Since 0.2.3425: Drop the color column from the notifications table
-		$db->drop_field($db->prefix.'notifications', 'color', 'VARCHAR(255)', false, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3459: Add o_first_run_backstage feature
-		if (!array_key_exists('o_first_run_backstage', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_backstage\', \'0\')') or error('Unable to insert config value \'o_first_run_backstage\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3495: Add o_emoji_size feature
-		if (!array_key_exists('o_emoji_size', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji_size\', \'16\')') or error('Unable to insert config value \'o_emoji_size\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3495: Add o_back_to_top feature
-		if (!array_key_exists('o_back_to_top', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_back_to_top\', \'1\')') or error('Unable to insert config value \'o_back_to_top\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3495: Add o_show_copyright feature
-		if (!array_key_exists('o_show_copyright', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_copyright\', \'1\')') or error('Unable to insert config value \'o_show_copyright\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3495: Add o_copyright_type feature
-		if (!array_key_exists('o_copyright_type', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_copyright_type\', \'0\')') or error('Unable to insert config value \'o_copyright_type\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3495: Add o_copyright_type feature
-		if (!array_key_exists('o_custom_copyright', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_custom_copyright\', NULL)') or error('Unable to insert config value \'o_custom_copyright\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3558: Remove obsolete o_reading_list permission from config table
-		if (array_key_exists('o_reading_list', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_reading_list\'') or error('Unable to remove config value \'o_reading_list\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3561: Add o_header_search feature
-		if (!array_key_exists('o_header_search', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_header_search\', \'1\')') or error('Unable to insert config value \'o_header_search\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3562: Add o_board_statistics feature
-		if (!array_key_exists('o_board_statistics', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_board_statistics\', \'1\')') or error('Unable to insert config value \'o_board_statistics\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3563: Add o_notification_flyout feature
-		if (!array_key_exists('o_notification_flyout', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_notification_flyout\', \'1\')') or error('Unable to insert config value \'o_notification_flyout\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.3.3721: Remove reading_list table
+		// Remove reading_list table
 		if ($db->table_exists('reading_list'))
 			$db->drop_table('reading_list') or error('Unable to drop reading_list table', __FILE__, __LINE__, $db->error());
 
-		// Since 0.3.3724: Remove sending_lists table
+		// Remove sending_lists table
 		if ($db->table_exists('sending_lists'))
 			$db->drop_table('sending_lists') or error('Unable to drop sending_lists table', __FILE__, __LINE__, $db->error());
 
-		// Since 0.3.3734: Remove contacts table
+		// Remove contacts table
 		if ($db->table_exists('contacts'))
 			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
-		// Since 0.3.3752: Add the soft column to the posts table
-		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
-
-		// Since 0.3.3752: Add the soft column to the topics table
-		$db->add_field('topics', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
-		
-		// Since 0.3.3765: Add new g_soft_delete_view field to the groups table
-		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
-		
-		// Since 0.3.3765: Add new g_soft_delete_posts field to the groups table
-		$db->add_field('groups', 'g_soft_delete_posts', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_posts field', __FILE__, __LINE__, $db->error());
-		
-		// Since 0.3.3765: Add new g_soft_delete_topics field to the groups table
-		$db->add_field('groups', 'g_soft_delete_topics', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_topics field', __FILE__, __LINE__, $db->error());
-
-		// Since 0.3.3800: Remove obsolete o_post_responsive permission from config table
-		if (array_key_exists('o_post_responsive', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_post_responsive\'') or error('Unable to remove config value \'o_post_responsive\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.3.3814: Add o_emoji feature
-		if (!array_key_exists('o_emoji', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_emoji\', \'0\')') or error('Unable to insert config value \'o_emoji\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.4.3861: Add the color_scheme column to the users table
-		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.4.3861: Drop the color column to the users table
-		$db->drop_field($db->prefix.'users', 'color', 'VARCHAR(25)', true, 0) or error('Unable to drop color field', __FILE__, __LINE__, $db->error());
-
-		// Since 0.4.3902: Add o_code_name feature
-		if (!array_key_exists('o_code_name', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_code_name\', \''.Version::LUNA_CODE_NAME.'\')') or error('Unable to insert config value \'o_code_name\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.4.3903: Add o_update_ring feature
-		if (!array_key_exists('o_update_ring', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_update_ring\', \'1\')') or error('Unable to insert config value \'o_update_ring\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.9.4156: Add the color column to the forums table
-		$db->add_field('forums', 'color', 'VARCHAR(25)', false, '\'#2788cb\'') or error('Unable to add column "color" to table "forums"', __FILE__, __LINE__, $db->error());
-
-		// Since 0.9.4191: Remove obsolete o_quickpost permission from config table
-		if (array_key_exists('o_admin_notes', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_admin_notes\'') or error('Unable to remove config value \'o_admin_notes\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.9.4229: Remove obsolete o_smilies permission from config table
-		if (array_key_exists('o_smilies', $luna_config))
-			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_smilies\'') or error('Unable to remove config value \'o_smilies\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4286: Add the accent column to the users table
-		$db->add_field('users', 'accent', 'INT(10)', false, '2') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4289: Add the adapt_time column to the users table
-		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4381: Add o_default_accent feature
-		if (!array_key_exists('o_default_accent', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_default_accent\', \'2\')') or error('Unable to insert config value \'o_default_accent\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4504: Add o_announcement_title feature
-		if (!array_key_exists('o_announcement_title', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_announcement_title\', \'\')') or error('Unable to insert config value \'o_announcement_title\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4504: Add o_announcement_type feature
-		if (!array_key_exists('o_announcement_type', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_announcement_type\', \'info\')') or error('Unable to insert config value \'o_announcement_type\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4682: Add the solved column to the topics table
+		// Luna 1.1 upgrade support
 		$db->add_field('topics', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4688: Add o_board_tags feature
-		if (!array_key_exists('o_board_tags', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_board_tags\', \'\')') or error('Unable to insert config value \'o_board_tags\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4704: Add o_cookie_bar_url feature
-		if (!array_key_exists('o_cookie_bar_url', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_cookie_bar_url\', \'http://getluna.org/docs/cookies.php\')') or error('Unable to insert config value \'o_cookie_bar_url\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4765: Add o_allow_accent_color feature
-		if (!array_key_exists('o_allow_accent_color', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_allow_accent_color\', \'1\')') or error('Unable to insert config value \'o_allow_accent_color\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.1.4765: Add o_allow_night_mode feature
-		if (!array_key_exists('o_allow_night_mode', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_allow_night_mode\', \'1\')') or error('Unable to insert config value \'o_allow_night_mode\'', __FILE__, __LINE__, $db->error());
-
-		// Since 1.2.4777: Add the enforce_accent column to the users table
+		$db->add_field('users', 'accent', 'INT(10)', false, '2') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
+		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
+
+		build_config(1, 'o_allow_accent_color', '1');
+		build_config(1, 'o_allow_night_mode', '1');
+		build_config(1, 'o_announcement_title', '');
+		build_config(1, 'o_announcement_type', 'info');
+		build_config(1, 'o_board_tags', '');
+		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies.php');
+		build_config(1, 'o_default_accent', '2');
 
 		break;
 
@@ -841,7 +604,7 @@ switch ($stage) {
 	case 'preparse_posts':
 		$query_str = '?stage=preparse_sigs';
 
-		// If we don't need to parse the posts, skip this stage
+		// If we don't need to parse the comments, skip this stage
 		if (isset($luna_config['o_parser_revision']) && $luna_config['o_parser_revision'] >= Version::FORUM_PARSER_VERSION)
 			break;
 
@@ -853,7 +616,7 @@ switch ($stage) {
 		$temp = array();
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
-			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('post', 'luna'), $cur_item['id']).'<br />'."\n";
+			echo sprintf(__('Preparsing %1$s %2$s …', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
 			$db->query('UPDATE '.$db->prefix.'posts SET message = \''.$db->escape(preparse_bbcode($cur_item['message'], $temp)).'\' WHERE id = '.$cur_item['id']) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
 			$end_at = $cur_item['id'];
@@ -938,7 +701,7 @@ switch ($stage) {
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {
-			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('post', 'luna'), $cur_item['id']).'<br />'."\n";
+			echo sprintf(__('Rebuilding index for %1$s %2$s', 'luna'), __('comment', 'luna'), $cur_item['id']).'<br />'."\n";
 
 			if ($cur_item['id'] == $cur_item['first_post_id'])
 				update_search_index('post', $cur_item['id'], $cur_item['message'], $cur_item['subject']);

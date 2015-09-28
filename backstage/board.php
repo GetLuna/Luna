@@ -41,10 +41,10 @@ elseif (isset($_GET['del_forum'])) {
 	if ($forum_id < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	if (isset($_POST['del_forum_comply'])) { // Delete a forum with all posts
+	if (isset($_POST['del_forum_comply'])) { // Delete a forum with all comments
 		@set_time_limit(0);
 
-		// Prune all posts and topics
+		// Prune all comments and topics
 		prune($forum_id, 1, -1);
 
 		// Locate any "orphaned redirect topics" and delete them
@@ -89,7 +89,7 @@ elseif (isset($_GET['del_forum'])) {
 				<h3 class="panel-title"><?php _e('Confirm delete forum', 'luna') ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php printf(__('Are you sure that you want to delete the forum <strong>%s</strong>?', 'luna'), $forum_name) ?> <?php _e('Warning! Deleting a forum will delete all posts (if any) in that forum!', 'luna') ?></p>
+				<p><?php printf(__('Are you sure that you want to delete the forum <strong>%s</strong>?', 'luna'), $forum_name) ?> <?php _e('Deleting a forum will delete all comments (if any) in that forum!', 'luna') ?></p>
 			</div>
 			<div class="panel-footer">
 				<button class="btn btn-danger" type="submit" name="del_forum_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>
@@ -282,11 +282,11 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Sort topics by', 'luna') ?></label>
+					<label class="col-sm-3 control-label"><?php _e('Sort threads by', 'luna') ?></label>
 					<div class="col-sm-9">
 						<select class="form-control" name="sort_by" tabindex="4">
-							<option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected' ?>><?php _e('Last post', 'luna') ?></option>
-							<option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php _e('Topic start', 'luna') ?></option>
+							<option value="0"<?php if ($cur_forum['sort_by'] == '0') echo ' selected' ?>><?php _e('Last comment', 'luna') ?></option>
+							<option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php _e('Thread start', 'luna') ?></option>
 							<option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected' ?>><?php _e('Subject', 'luna') ?></option>
 						</select>
 					</div>
@@ -314,8 +314,8 @@ elseif (isset($_POST['update_positions'])) {
 					<tr>
 						<th>&#160;</th>
 						<th><?php _e('Read forum', 'luna') ?></th>
-						<th><?php _e('Post replies', 'luna') ?></th>
-						<th><?php _e('Post topics', 'luna') ?></th>
+						<th><?php _e('Comment', 'luna') ?></th>
+						<th><?php _e('Create threads', 'luna') ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -386,7 +386,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 	if ($cat_to_delete < 1)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-	if (isset($_POST['del_cat_comply'])) { // Delete a category with all forums and posts
+	if (isset($_POST['del_cat_comply'])) { // Delete a category with all forums and comments
 		@set_time_limit(0);
 
 		$result = $db->query('SELECT id FROM '.$db->prefix.'forums WHERE cat_id='.$cat_to_delete) or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
@@ -395,7 +395,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		for ($i = 0; $i < $num_forums; ++$i) {
 			$cur_forum = $db->result($result, $i);
 
-			// Prune all posts and topics
+			// Prune all comments and topics
 			prune($cur_forum, 1, -1);
 
 			// Delete the forum
@@ -439,7 +439,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 				<h3 class="panel-title"><?php _e('Confirm delete category', 'luna') ?></h3>
 			</div>
 			<div class="panel-body">
-				<p><?php printf(__('Are you sure that you want to delete the category <strong>%s</strong>?', 'luna'), $cat_name) ?> <?php _e('Deleting a category will delete all forums and posts (if any) in this category!', 'luna') ?></p>
+				<p><?php printf(__('Are you sure that you want to delete the category <strong>%s</strong>?', 'luna'), $cat_name) ?> <?php _e('Deleting a category will delete all forums and comments (if any) in this category!', 'luna') ?></p>
 			</div>
 			<div class="panel-footer">
 				<button class="btn btn-danger" type="submit" name="del_cat_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>

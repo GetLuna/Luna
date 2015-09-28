@@ -60,7 +60,7 @@ if (isset($_REQUEST['markread'])) {
 	
 	$db->query('UPDATE '.$db->prefix.'messages SET showed=0 WHERE shared_id IN ('.$idlist.') AND owner=\''.$luna_user['id'].'\' AND show_message=1') or error('Unable to update the status of the messages', __FILE__, __LINE__, $db->error());
 	redirect('inbox.php');
-} elseif (isset($_REQUEST['delete_multiple'])) { // Delete posts
+} elseif (isset($_REQUEST['delete_multiple'])) { // Delete comments
 	confirm_referrer('inbox.php');
 
 	if (empty($_POST['selected_messages']))

@@ -18,7 +18,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 1)
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-// Fetch some info about the post, the topic and the forum
+// Fetch some info about the comment, the thread and the forum
 $result = $db->query('SELECT f.id AS fid, f.forum_name, f.moderators, f.color, fp.post_replies, fp.post_topics, t.id AS tid, t.subject, t.posted, t.first_post_id, t.sticky, t.closed, p.poster, p.poster_id, p.message, p.hide_smilies FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -55,7 +55,7 @@ if (isset($_POST['form_sent'])) {
 	if (!isset($_POST['_luna_nonce_edit_post']) || !LunaNonces::verify($_POST['_luna_nonce_edit_post'],'edit-post'))
 		message(__('Are you sure you want to do this?', 'luna'));
 
-	// If it's a topic it must contain a subject
+	// If it's a thread it must contain a subject
 	if ($can_edit_subject) {
 		$subject = luna_trim($_POST['req_subject']);
 
@@ -63,9 +63,9 @@ if (isset($_POST['form_sent'])) {
 			$censored_subject = luna_trim(censor_words($subject));
 
 		if ($subject == '')
-			$errors[] = __('Topics must contain a subject.', 'luna');
+			$errors[] = __('Threads must contain a subject.', 'luna');
 		elseif ($luna_config['o_censoring'] == '1' && $censored_subject == '')
-			$errors[] = __('Topics must contain a subject. After applying censoring filters, your subject was empty.', 'luna');
+			$errors[] = __('Threads must contain a subject. After applying censoring filters, your subject was empty.', 'luna');
 		elseif (luna_strlen($subject) > 70)
 			$errors[] = __('Subjects cannot be longer than 70 characters.', 'luna');
 		elseif ($luna_config['p_subject_all_caps'] == '0' && is_all_uppercase($subject) && !$luna_user['is_admmod'])
@@ -75,11 +75,11 @@ if (isset($_POST['form_sent'])) {
 	// Clean up message from POST
 	$message = luna_linebreaks(luna_trim($_POST['req_message']));
 
-	// Here we use strlen() not luna_strlen() as we want to limit the post to FORUM_MAX_POSTSIZE bytes, not characters
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to FORUM_MAX_POSTSIZE bytes, not characters
 	if (strlen($message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Posts cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
-		$errors[] = __('Posts cannot contain only capital letters.', 'luna');
+		$errors[] = __('Comments cannot contain only capital letters.', 'luna');
 
 	// Validate BBCode syntax
 	require FORUM_ROOT.'include/parser.php';
@@ -112,7 +112,7 @@ if (isset($_POST['form_sent'])) {
 		require FORUM_ROOT.'include/search_idx.php';
 
 		if ($can_edit_subject) {
-			// Update the topic and any redirect topics
+			// Update the thread and any redirect topics
 			$db->query('UPDATE '.$db->prefix.'topics SET subject=\''.$db->escape($subject).'\', sticky='.$stick_topic.' WHERE id='.$cur_post['tid'].' OR moved_to='.$cur_post['tid']) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 			// We changed the subject, so we need to take that into account when we update the search words
@@ -120,14 +120,14 @@ if (isset($_POST['form_sent'])) {
 		} else
 			update_search_index('edit', $id, $message);
 
-		// Update the post
+		// Update the comment
 		$db->query('UPDATE '.$db->prefix.'posts SET message=\''.$db->escape($message).'\', hide_smilies='.$hide_smilies.$edited_sql.' WHERE id='.$id) or error('Unable to update post', __FILE__, __LINE__, $db->error());
 
 		redirect('viewtopic.php?pid='.$id.'#p'.$id);
 	}
 }
 
-$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Edit post', 'luna'));
+$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Edit comment', 'luna'));
 $required_fields = array('req_subject' => __('Subject', 'luna'), 'req_message' => __('Message', 'luna'));
 $focus_element = array('edit', 'req_message');
 define('FORUM_ACTIVE_PAGE', 'edit');

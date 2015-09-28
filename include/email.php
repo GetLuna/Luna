@@ -21,10 +21,39 @@ require FORUM_ROOT.'include/utf8/utils/ascii.php';
 // Validate an email address
 //
 function is_valid_email($email) {
-	if (strlen($email) > 80)
-		return false;
+	$is_valid = true;
+	$at_index = strrpos($email, "@");
 
-	return preg_match('%^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|("[^"]+"))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-zA-Z\d\-]+\.)+[a-zA-Z]{2,}))$%', $email);
+	if (is_bool($at_index) && !$at_index)
+		$is_valid = false;
+	else {
+		$domain = substr($email, $at_index+1);
+		$local = substr($email, 0, $at_index);
+		$local_length = strlen($local);
+		$domain_length = strlen($domain);
+		if ($local_length < 1 || $local_length > 64) // Local part lenght is to long
+			$is_valid = false;
+		else if ($domain_length < 1 || $domain_length > 255) // Domain lenght is to long
+			$is_valid = false;
+		else if ($local[0] == '.' || $local[$local_length-1] == '.') // If the local part starts or ends with a dot
+			$is_valid = false;
+		else if (preg_match('/\\.\\./', $local)) // No 2 dots after each other in the local part
+			$is_valid = false;
+		else if (preg_match('/\\.\\./', $domain)) // And not in the domain either
+			$is_valid = false;
+		else if (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain)) // No invalid characters
+			$is_valid = false;
+		else if (!preg_match('/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/', str_replace("\\\\", "", $local))) {
+			// Invalid characters, unless they are quoted
+			if (!preg_match('/^"(\\\\"|[^"])+"$/', str_replace("\\\\", "", $local)))
+				$is_valid = false;
+		}
+
+		if ($is_valid && !(checkdnsrr($domain, "MX") || checkdnsrr($domain, "A"))) // If the domain isn't found in DNS
+			$is_valid = false;
+	}
+
+	return $is_valid;
 }
 
 
@@ -57,7 +86,7 @@ function encode_mail_text($str) {
 
 
 //
-// Make a post email safe
+// Make a comment email safe
 //
 function bbcode2email($text, $wrap_length = 72) {
 	static $base_url;
@@ -136,7 +165,7 @@ function bbcode2email($text, $wrap_length = 72) {
 			$url_index++;
 		}
 
-		// Topic, post, forum and user URLs
+		// Thread, post, forum and user URLs
 		elseif (in_array($matches[1], array('topic', 'post', 'forum', 'user'))) {
 			$url = isset($shortcut_urls[$matches[1]]) ? $base_url.$shortcut_urls[$matches[1]] : '';
 

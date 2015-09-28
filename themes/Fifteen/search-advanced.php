@@ -24,12 +24,12 @@ if (!defined('FORUM'))
 				<input placeholder="<?php _e('Keyword', 'luna') ?>" class="form-control" type="text" name="keywords" maxlength="100" />
 				<input placeholder="<?php _e('Author', 'luna') ?>"  class="form-control" id="author" type="text" name="author" maxlength="25" />
 				<select class="form-control" id="search_in" name="search_in">
-					<option value="0"><?php _e('Message text and topic subject', 'luna') ?></option>
+					<option value="0"><?php _e('Message text and thread subject', 'luna') ?></option>
 					<option value="1"><?php _e('Message text only', 'luna') ?></option>
-					<option value="-1"><?php _e('Topic subject only', 'luna') ?></option>
+					<option value="-1"><?php _e('Thread subject only', 'luna') ?></option>
 				</select>
 				<select class="form-control" name="sort_by">
-					<option value="0"><?php _e('Post time', 'luna') ?></option>
+					<option value="0"><?php _e('Comment time', 'luna') ?></option>
 					<option value="1"><?php _e('Author', 'luna') ?></option>
 					<option value="2"><?php _e('Subject', 'luna') ?></option>
 					<option value="3"><?php _e('Forum', 'luna') ?></option>
@@ -39,8 +39,8 @@ if (!defined('FORUM'))
 					<option value="ASC"><?php _e('Ascending', 'luna') ?></option>
 				</select>
 				<select class="form-control" name="show_as">
-					<option value="topics"><?php _e('Topics', 'luna') ?></option>
-					<option value="posts"><?php _e('Posts', 'luna') ?></option>
+					<option value="topics"><?php _e('Threads', 'luna') ?></option>
+					<option value="posts"><?php _e('Comments', 'luna') ?></option>
 				</select>
 			</fieldset>
 			<fieldset>

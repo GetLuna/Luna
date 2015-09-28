@@ -160,7 +160,7 @@ function update_search_index($mode, $post_id, $message, $subject = null) {
 	// Remove any bbcode that we shouldn't index
 	$message = strip_bbcode($message);
 
-	// Split old and new post/subject to obtain array of 'words'
+	// Split old and new comment/subject to obtain array of 'words'
 	$words_message = split_words($message, true);
 	$words_subject = ($subject) ? split_words($subject, true) : array();
 
@@ -226,7 +226,7 @@ function update_search_index($mode, $post_id, $message, $subject = null) {
 		unset($new_words);
 	}
 
-	// Delete matches (only if editing a post)
+	// Delete matches (only if editing a comment)
 	foreach ($words['del'] as $match_in => $wordlist) {
 		$subject_match = ($match_in == 'subject') ? 1 : 0;
 

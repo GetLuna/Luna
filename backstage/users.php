@@ -71,7 +71,7 @@ if (isset($_GET['ip_stats'])) {
 
 		}
 	} else
-		echo "\t\t\t\t".'<tr><td colspan="4">'.__('There are currently no posts by that user in the forum.', 'luna').'</td></tr>'."\n";
+		echo "\t\t\t\t".'<tr><td colspan="4">'.__('There are currently no comments by that user in the forum.', 'luna').'</td></tr>'."\n";
 
 ?>
 		</tbody>
@@ -121,7 +121,7 @@ if (isset($_GET['ip_stats'])) {
 				<th><?php _e('Username', 'luna') ?></th>
 				<th><?php _e('Email', 'luna') ?></th>
 				<th><?php _e('Title/Status', 'luna') ?></th>
-				<th class="text-center"><?php _e('Posts', 'luna') ?></th>
+				<th class="text-center"><?php _e('Comments', 'luna') ?></th>
 				<th><?php _e('Admin note', 'luna') ?></th>
 				<th><?php _e('Actions', 'luna') ?></th>
 			</tr>
@@ -149,7 +149,7 @@ if (isset($_GET['ip_stats'])) {
 			if (isset($user_data[$cur_poster['poster_id']])) {
 				$user_title = get_title($user_data[$cur_poster['poster_id']]);
 
-			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('Posts', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data[$cur_poster['poster_id']]['id'].'">'.__('Comments', 'luna').'</a>';
 ?>
 			<tr>
 				<td><?php echo '<a href="../profile.php?id='.$user_data[$cur_poster['poster_id']]['id'].'">'.luna_htmlspecialchars($user_data[$cur_poster['poster_id']]['username']).'</a>' ?></td>
@@ -367,12 +367,12 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		// Remove them from the online list (if they happen to be logged in)
 		$db->query('DELETE FROM '.$db->prefix.'online WHERE user_id IN ('.implode(',', $user_ids).')') or error('Unable to remove users from online list', __FILE__, __LINE__, $db->error());
 
-		// Should we delete all posts made by these users?
+		// Should we delete all comments made by these users?
 		if (isset($_POST['delete_posts'])) {
 			require FORUM_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
-			// Find all posts made by this user
+			// Find all comments made by this user
 			$result = $db->query('SELECT p.id, p.poster_id, p.topic_id, t.forum_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id WHERE p.poster_id IN ('.implode(',', $user_ids).')') or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result)) {
 				while ($cur_post = $db->fetch_assoc($result)) {
@@ -421,11 +421,11 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		<div class="panel-body">
 			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
 			<fieldset>
-				<p><?php _e('Warning! Deleted users and/or posts cannot be restored. If you choose not to delete the posts made by this user, the posts can only be deleted manually at a later time.', 'luna') ?></p>
+				<p><?php _e('Deleted users and/or comments cannot be restored. If you choose not to delete the comments made by this user, the comments can only be deleted manually at a later time.', 'luna') ?></p>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="delete_posts" value="1" checked />
-						<?php _e('Delete any posts and topics this user has made', 'luna') ?>
+						<?php _e('Delete all comments and threads this user has made', 'luna') ?>
 					</label>
 				</div>
 			</fieldset>
@@ -496,7 +496,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		while ($cur_user = $db->fetch_assoc($result))
 			$user_info[$cur_user['id']] = array('username' => $cur_user['username'], 'email' => $cur_user['email'], 'ip' => $cur_user['registration_ip']);
 
-		// Overwrite the registration IP with one from the last post (if it exists)
+		// Overwrite the registration IP with one from the last comment (if it exists)
 		if ($ban_the_ip != 0) {
 			$result = $db->query('SELECT p.poster_id, p.poster_ip FROM '.$db->prefix.'posts AS p INNER JOIN (SELECT MAX(id) AS id FROM '.$db->prefix.'posts WHERE poster_id IN ('.implode(',', $user_ids).') GROUP BY poster_id) AS i ON p.id=i.id') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 			while ($cur_address = $db->fetch_assoc($result))
@@ -725,7 +725,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 					<th><?php _e('Username', 'luna') ?></th>
 					<th><?php _e('Email', 'luna') ?></th>
 					<th><?php _e('Title/Status', 'luna') ?></th>
-					<th class="text-center"><?php _e('Posts', 'luna') ?></th>
+					<th class="text-center"><?php _e('Comments', 'luna') ?></th>
 					<th><?php _e('Admin note', 'luna') ?></th>
 					<th><?php _e('Actions', 'luna') ?></th>
 		<?php if ($can_action): ?>					<th><?php _e('Select', 'luna') ?></th>
@@ -744,7 +744,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			if (($user_data['g_id'] == '' || $user_data['g_id'] == FORUM_UNVERIFIED) && $user_title != __('Banned', 'luna'))
 				$user_title = '<span class="warntext">'.__('Not verified', 'luna').'</span>';
 
-			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.__('Posts', 'luna').'</a>';
+			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.__('Comments', 'luna').'</a>';
 
 ?>
 				<tr>
@@ -862,15 +862,15 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 					<td colspan="3"><input type="text" class="form-control" name="form[admin_note]" maxlength="30" tabindex="13" /></td>
 				</tr>
 				<tr>
-					<th><?php _e('Number of posts less than', 'luna') ?></th>
+					<th><?php _e('Number of comments less than', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
-					<th><?php _e('Number of posts greater than', 'luna') ?></th>
+					<th><?php _e('Number of comments greater than', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
 				</tr>
 				<tr>
-					<th><?php _e('Last post is before', 'luna') ?></th>
+					<th><?php _e('Last comment is before', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="last_post_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
-					<th><?php _e('Last post is after', 'luna') ?></th>
+					<th><?php _e('Last comment is after', 'luna') ?></th>
 					<td><input type="text" class="form-control" name="last_post_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
 				<tr>
@@ -891,8 +891,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 						<select class="form-control" name="order_by" tabindex="22">
 							<option value="username" selected><?php _e('Username', 'luna') ?></option>
 							<option value="email"><?php _e('Email', 'luna') ?></option>
-							<option value="num_posts"><?php _e('Number of posts', 'luna') ?></option>
-							<option value="last_post"><?php _e('Last post', 'luna') ?></option>
+							<option value="num_posts"><?php _e('Number of comments', 'luna') ?></option>
+							<option value="last_post"><?php _e('Last comment', 'luna') ?></option>
 							<option value="last_visit"><?php _e('Last visit', 'luna') ?></option>
 							<option value="registered"><?php _e('Registered', 'luna') ?></option>
 						</select>&#160;&#160;&#160;<select class="form-control" name="direction" tabindex="23">
@@ -918,7 +918,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 						<button class="btn btn-primary" type="submit"><span class="fa fa-fw fa-search"></span> <?php _e('Find IP address', 'luna') ?></button>
 					</span>
 				</div>
-				<span class="help-block"><?php _e('The IP address to search for in the post database.', 'luna') ?></span>
+				<span class="help-block"><?php _e('The IP address to search for in the comment database.', 'luna') ?></span>
 			</fieldset>
 		</form>
 	</div>

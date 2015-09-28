@@ -45,7 +45,7 @@ $body_classes = check_style_mode();
 									<input type="hidden" name="action" value="search" />
 									<div class="form-group">
 										<div class="input-group">
-											<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in posts', 'luna') ?>" maxlength="100" />
+											<input class="form-control" type="text" name="keywords" placeholder="<?php _e('Search in comments', 'luna') ?>" maxlength="100" />
 											<span class="input-group-btn">
 												<button class="btn btn-default btn-search" type="submit" name="search" accesskey="s">
 													<span class="fa fa-fw fa-search"></span>

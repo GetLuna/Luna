@@ -42,10 +42,10 @@ $db->end_transaction();
 		<script src="../include/js/vendor/colours.min.js"></script>
 		<script language="javascript">
 			var flat_palette = [
-				"#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e",
-				"#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50",
-				"#f1c40f", "#e67e22", "#e74c3c", "#ecf0f1", "#95a5a6",
-				"#f39c12", "#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"
+				"#1abc9c", "#64b450", "#38a2eb", "#826eb4", "#555555",
+				"#16a085", "#338e1c", "#136cab", "#644e9c", "#333333",
+				"#ffb900", "#f56e28", "#dc3232", "#e87ece", "#dddddd",
+				"#f39c12", "#d35400", "#ab1515", "#b74b9c", "#999999",
 			];
 
 			$(document).ready(function(){

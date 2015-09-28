@@ -21,12 +21,12 @@ if (isset($_POST['add_rank'])) {
 		message_backstage(__('You must enter a title.', 'luna'));
 
 	if ($min_posts == '' || preg_match('%[^0-9]%', $min_posts))
-		message_backstage(__('Minimum posts must be a positive integer value.', 'luna'));
+		message_backstage(__('Minimum comments must be a positive integer value.', 'luna'));
 
 	// Make sure there isn't already a rank with the same min_posts value
 	$result = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE min_posts='.$min_posts) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
 	if ($db->num_rows($result))
-		message_backstage(sprintf(__('There is already a rank with a minimum posts value of %s.', 'luna'), $min_posts));
+		message_backstage(sprintf(__('There is already a rank with a minimum amount of %s comments.', 'luna'), $min_posts));
 
 	$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape($rank).'\', '.$min_posts.')') or error('Unable to add rank', __FILE__, __LINE__, $db->error());
 
@@ -54,11 +54,11 @@ elseif (isset($_POST['update'])) {
 		if ($cur_rank['rank'] == '')
 			message_backstage(__('You must enter a title.', 'luna'));
 		elseif ($cur_rank['min_posts'] == '' || preg_match('%[^0-9]%', $cur_rank['min_posts']))
-			message_backstage(__('Minimum posts must be a positive integer value.', 'luna'));
+			message_backstage(__('Minimum comments must be a positive integer value.', 'luna'));
 		else {
 			$rank_check = $db->query('SELECT 1 FROM '.$db->prefix.'ranks WHERE id!='.intval($item_id).' AND min_posts='.$cur_rank['min_posts']) or error('Unable to fetch rank info', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($rank_check) != 0)
-				message_backstage(sprintf(__('There is already a rank with a minimum posts value of %s.', 'luna'), $cur_rank['min_posts']));
+				message_backstage(sprintf(__('There is already a rank with a minimum amount of %s comments.', 'luna'), $cur_rank['min_posts']));
 		}
 
 		$db->query('UPDATE '.$db->prefix.'ranks SET rank=\''.$db->escape($cur_rank['rank']).'\', min_posts=\''.$cur_rank['min_posts'].'\' WHERE id='.intval($item_id)) or error('Unable to update ranks', __FILE__, __LINE__, $db->error());
@@ -108,7 +108,7 @@ if ($luna_config['o_ranks'] == 0) {
 								<td><input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna') ?>" maxlength="50" tabindex="1" /></td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control" name="new_min_posts" placeholder="<?php _e('Minimum posts', 'luna') ?>" maxlength="7" tabindex="2" /></td>
+								<td><input type="text" class="form-control" name="new_min_posts" placeholder="<?php _e('Minimum comments', 'luna') ?>" maxlength="7" tabindex="2" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -133,7 +133,7 @@ if ($db->num_rows($result)) {
 						<thead>
 							<tr>
 								<th><?php _e('Rank title', 'luna') ?></th>
-								<th class="col-lg-2"><?php _e('Minimum posts', 'luna') ?></th>
+								<th class="col-lg-2"><?php _e('Minimum comments', 'luna') ?></th>
 								<th><?php _e('Actions', 'luna') ?></th>
 							</tr>
 						</thead>

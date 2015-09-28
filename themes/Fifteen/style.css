@@ -283,10 +283,9 @@ h1, h2, h3, h4, h5, h6 {
 .avatar-item .avatar {
 	padding: 0;
 	border: 0;
-	margin: 5px 0;
-	width: 30px;
-	height: 30px;
-	margin-right: 5px;
+	margin: 0;
+	width: 40px;
+	height: 40px;
 }
 
 .avatar-item {
@@ -575,10 +574,13 @@ h2.forum-title .btn {
 .first-run-avatar {
 	background: none;
 	border: none;
+	margin-bottom: 0;
 }
 
 .first-run-avatar img {
 	border-radius: 3px;
+	max-height: 120px;
+	max-width: auto;
 }
 
 .first-run-login {
@@ -806,7 +808,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #fff;
 }
 
-/* Post messages */
+/* Comment messages */
 .bblinks {
 	padding-top: 5px;
 	float: right;
@@ -877,6 +879,18 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 
 .soft .well hr {
 	border-top: 1px solid #fbeb91;
+}
+
+.answer .well-content {
+	background-color: #f1fce6;
+}
+
+.answer .well .media {
+	background-color: #e3f8cd;
+}
+
+.answer .well hr {
+	border-top: 1px solid #c3dea5;
 }
 
 /* Threads */
@@ -1507,6 +1521,11 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	color: #fff;
 }
 
+.night .list-group-forum .list-group-item.new-item {
+	background-color: #3b3b3b;
+	border-color: #333;
+}
+
 .night #search .panel-body, .night .user-entry {
 	background-color: #555;
 }
@@ -1532,16 +1551,29 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	background-color: #404040;
 }
 
+.night .list-group-topic .list-group-item.new-item {
+	background-color: #3b3b3b;
+	border-color: #333;
+}
+
 .night .list-group-topic .list-group-item:hover {
-	background-color: #3b3b3b !important;
+	background-color: #3b3b3b;
 }
 
 .night .panel-editor .btn-default {
-	background-color: #444;
+	background-color: #333;
+}
+
+.night .panel-editor .btn-default:hover {
+	background-color: #3f3f3f;
 }
 
 .night .textarea-toolbar .btn-group, .night .textarea-top, .night .textarea-bottom {
 	border-color: #555;
+}
+
+.night .panel-default .editor {
+	background-color: #333;
 }
 
 .night .panel-editor .btn-default {
@@ -1579,4 +1611,40 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 
 .night .table > thead > tr > th {
 	border-color: #555;
+}
+
+.night .marked .well-content {
+	background-color: #6e4e40;
+}
+
+.night .marked .well .media {
+	background-color: #60301a;
+}
+
+.night .marked .well hr {
+	border-top: 1px solid #5f311e;
+}
+
+.night .soft .well-content {
+	background-color: #4e4b3b;
+}
+
+.night .soft .well .media {
+	background-color: #665e34;
+}
+
+.night .soft .well hr {
+	border-top: 1px solid #655a24;
+}
+
+.night .answer .well-content {
+	background-color: #3f4b34;
+}
+
+.night .answer .well .media {
+	background-color: #2e3d20;
+}
+
+.night .answer .well hr {
+	border-top: 1px solid #2e3d20;
 }
