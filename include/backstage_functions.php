@@ -162,7 +162,6 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 			<?php } if ($section == 'content') { ?>
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'board') echo ' class="active"' ?>><a href="board.php"><span class="fa fa-fw fa-sort-amount-desc"></span><span class="hidden-xs"> <?php _e('Board', 'luna') ?></span></a></li>
-				<li<?php if($page == 'moderate') echo ' class="active"' ?>><a href="moderate.php"><span class="fa fa-fw fa-tasks"></span><span class="hidden-xs"> <?php _e('Moderate', 'luna') ?></span></a></li>
 				<li<?php if($page == 'censoring') echo ' class="active"' ?>><a href="censoring.php"><span class="fa fa-fw fa-eye-slash"></span><span class="hidden-xs"> <?php _e('Censoring', 'luna') ?></span></a></li>
 				<li<?php if($page == 'reports') echo ' class="active"' ?>><a href="reports.php"><span class="fa fa-fw fa-exclamation-triangle"></span><span class="hidden-xs"> <?php _e('Reports', 'luna') ?></span></a></li>
 			</ul>
