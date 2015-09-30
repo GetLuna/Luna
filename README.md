@@ -10,7 +10,10 @@ Luna is an open source board software web app released under the GPLv3 license. 
 - Updated Fifteen and Sunrise theme
 - Mark topics as solved
 - New personalisation options
+- Improved user management experience
 - Improved syntax highlighter
+- Improved notification clean-up tools
+- Many improvements to some core files
 
 ## Requirements
 - A webserver with 3,14 MB free disk space
