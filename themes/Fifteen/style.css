@@ -311,6 +311,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 7px 12px !important;
 }
 
+.jumbotron .btn-search {
+	padding: 6px 12px !important;
+}
+
 .navbar-default .navbar-toggle, .navbar-inverse .navbar-toggle {
 	border: transparent;
 }
@@ -1199,15 +1203,12 @@ textarea {
 
 .jumbotron .btn {
 	border: none;
+	margin-top: 1px;
+	margin-bottom: 0;
 }
 
 .jumbotron .btn .fa {
 	margin: 4px 0;
-}
-
-.jumbotron .btn {
-	margin-top: 5px;
-	margin-bottom: -5px;
 }
 
 .jumbotron .input-group-btn .btn {
@@ -1216,7 +1217,7 @@ textarea {
 
 .jumbotron form {
 	margin-bottom: 0;
-	margin-top: 4px;
+	margin-top: -1px;
 }
 
 .jumbotron form .form-control {
@@ -1245,6 +1246,11 @@ textarea {
 .thread-jumbotron h2 {
 	margin: 0;
 	padding-top: 40px;
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+	padding-right: 0;
+	padding-left: 0;
 }
 
 /* Debug */
