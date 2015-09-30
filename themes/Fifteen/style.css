@@ -723,9 +723,22 @@ textarea.textarea, textarea.textarea:focus {
 }
 
 /* Inbox */
-nav .progress {
-	margin: 15px 10px;
-	background-color: #fff;
+.progress {
+	border: 1px solid #ddd;
+	margin: 15px 0;
+	height: 30px;
+}
+
+.progress-bar {
+	color: #fff;
+	line-height: 28px;
+}
+
+.progress-text {
+	background-color: rgba(0,0,0,.3);
+	padding: 0 3px 1px;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 /* Profile */

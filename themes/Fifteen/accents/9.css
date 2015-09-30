@@ -29,7 +29,7 @@
 	border-color: #d42f2f;
 }
 
-a.list-group-item:hover, .col-sm-9 a, a:focus, .pagination > li > a, .pagination > li > span {
+a.list-group-item:hover, a:focus, .pagination > li > a, .pagination > li > span {
 	color:#e63838;
 }
 

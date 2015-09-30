@@ -16,11 +16,7 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9 profile">
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<a href="notifications.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-circle-o"></span> <?php _e('Notifications', 'luna') ?></a>
-		</div>
-	</nav>
+	<h2><?php _e('Notifications', 'luna') ?></h2>
 	<div class="list-group">
 		<h3><?php _e('New notifications', 'luna'); ?><span class="pull-right"><a href="notifications.php?id=2&action=readnoti" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as seen', 'luna') ?></a></span></h3>
 <?php if (empty($unviewed_notifications)) { ?>
