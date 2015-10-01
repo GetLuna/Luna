@@ -16,7 +16,7 @@ Luna is an open source board software web app released under the GPLv3 license. 
 - Many improvements to some core files
 
 ## Requirements
-- A webserver with 3,14 MB free disk space
+- A webserver with 2,85 MB free disk space
 - PHP 5.2 or later
 - A database running either
  - MySQL 5.0 or later 
