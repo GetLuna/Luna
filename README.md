@@ -38,10 +38,11 @@ Luna 1.2 supports updating from all versions of FluxBB since 1.4.0, all versions
  - **ModernBB 3**: all versions supported
  - **ModernBB 4**: all versions supported
 - **Luna support**:
- - **Luna 1**: All versions supported
+ - **Luna 1**: all versions supported
 
 ## Links
  - Homepage: http://getluna.org/
  - Forums: http://forum.getluna.org/
+ - Chat: https://gitter.im/GetLuna/Luna
  - Documentation: http://getluna.org/docs/
  - Development: http://github.com/getluna/luna/
