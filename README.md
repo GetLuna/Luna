@@ -27,7 +27,7 @@ Luna is an open source board software web app released under the GPLv3 license. 
  - PHP zlib module
 
 ## Upgrade paths
-Starting with Luna 1.1, you can upgrade from a whole lot more versions of ModernBB (where you could only upgrade from ModernBB 3.7 and 4.0 with Luna 1.0). In fact, all versions of ModernBB are supported, and as a bonus, we also support upgrading from FluxBB 1.4.0 and onwards. Luna 1.2 introduces update support for ModernBB 2.3-, 3.8- and 4.1-builds. For a full list, see below:
+Luna 1.2 supports updating from all versions of FluxBB since 1.4.0, all versions of ModernBB and - of course - all previous Luna versions.
 
 - **FluxBB support**
  - **FluxBB 1.4**: 1.4.0 and higher (no support for upgrading from betas and RCs)
