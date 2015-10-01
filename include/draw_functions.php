@@ -322,7 +322,7 @@ function draw_topics_list() {
 	
 	} else {
 		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
-		printf(__('There are s in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
+		printf(__('There are no threads in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
 		echo '</h3></div></div>';
 	}
 	
