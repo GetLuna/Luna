@@ -1036,6 +1036,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	border: none;
 }
 
+.btn-toolbar-inbox {
+	margin-bottom: 10px;
+}
+
 /* Labels */
 .label {
 	padding: 4px 8px;

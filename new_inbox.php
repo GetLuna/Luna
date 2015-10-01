@@ -8,8 +8,9 @@
 
 define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/inbox_functions.php';
 require FORUM_ROOT.'include/email.php';
+require FORUM_ROOT.'include/inbox_functions.php';
+require FORUM_ROOT.'include/me_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest'])

@@ -17,7 +17,6 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9 profile">
-
 	<p><span class="pages-label"><?php echo paginate($num_pages, $page, 'inbox.php?') ?></span></p>
 	<form method="post" action="inbox.php">
 		<fieldset>

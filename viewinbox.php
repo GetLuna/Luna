@@ -10,6 +10,7 @@ define('FORUM_ROOT', dirname(__FILE__).'/');
 require FORUM_ROOT.'include/common.php';
 require FORUM_ROOT.'include/parser.php';
 require FORUM_ROOT.'include/inbox_functions.php';
+require FORUM_ROOT.'include/me_functions.php';
 
 $inbox = 1;
 
@@ -24,6 +25,9 @@ if (!$luna_user['use_pm'] == '1')
 // Are we allowed to use this ?
 if (!$luna_config['o_pms_enabled'] =='1' || $luna_user['g_pm'] == '0')
 	message(__('You do not have permission to access this page.', 'luna'));
+
+// User block
+$avatar_user_card = draw_user_avatar($luna_user['id']);
 
 // Get the message's and topic's id
 $mid = isset($_REQUEST['mid']) ? intval($_REQUEST['mid']) : '0';
