@@ -4674,6 +4674,7 @@ msgid "Newest user"
 msgstr ""
 
 #: themes/Fifteen/footer.php:97 themes/Fifteen/footer.php:105
+msgid "User online"
 msgid_plural "Users online"
 msgstr[0] ""
 msgstr[1] ""

@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
 		box-shadow: none;
 	}
 	
-	.dropdown-menu > li > a {
+	.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
 		color: #fff !important;
 	}
 }
@@ -1507,6 +1507,11 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	color: #fff;
 }
 
+.night .list-group-forum .list-group-item.new-item {
+	background-color: #3b3b3b;
+	border-color: #333;
+}
+
 .night #search .panel-body, .night .user-entry {
 	background-color: #555;
 }
@@ -1532,8 +1537,13 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 	background-color: #404040;
 }
 
+.night .list-group-topic .list-group-item.new-item {
+	background-color: #3b3b3b;
+	border-color: #333;
+}
+
 .night .list-group-topic .list-group-item:hover {
-	background-color: #3b3b3b !important;
+	background-color: #3b3b3b;
 }
 
 .night .panel-editor .btn-default {

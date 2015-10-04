@@ -28,6 +28,13 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<p class="meta"><span class="release-version">1.1.4</span></p><h2>Bittersweet Shimmer Update 4</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a bug with the accent function</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a security issue</li>
+						</ul>
+					</div>
+					<div class="container">
 						<p class="meta"><span class="release-version">1.1.3</span></p><h2>Bittersweet Shimmer Update 3</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved logic for load_css() function</li>
