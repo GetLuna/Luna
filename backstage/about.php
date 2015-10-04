@@ -28,6 +28,12 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
+						<p class="meta"><span class="release-version">1.0.10</span></p><h2>Aero Update 10</h2>
+						<ul class="changes">
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a security issue</li>
+						</ul>
+					</div>
+					<div class="container">
 						<p class="meta"><span class="release-version">1.0.9</span></p><h2>Aero Update 9</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes wrong link in "Forgotten password" mails</li>

@@ -1208,12 +1208,30 @@ function luna_hash($str) {
 	return sha1($str);
 }
 
-
 //
 // Compute a hash of $str with SHA512
 //
 function luna_sha2($str, $salt) {
 	return hash("sha512", $salt . hash("sha512", $str));
+}
+
+//
+// Compute a random hash used against CSRF attacks  
+// 
+function luna_csrf_token() {
+	global $luna_user;
+
+	return luna_hash($luna_user['id'].luna_hash(get_remote_address()));
+}
+
+//
+// Check if the CSRF hash is correct
+//
+function check_csrf($token) {
+	global $lang;
+
+	if (!isset($token) || $token != luna_csrf_token())
+	message($lang['Bad csrf hash'], false, '404 Not Found');
 }
 
 

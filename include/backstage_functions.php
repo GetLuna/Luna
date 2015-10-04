@@ -127,7 +127,7 @@ function load_admin_nav($section, $page) {
 						<li><a href="../help.php"><?php echo $lang['Help'] ?></a></li>
 						<li><a href="http://getluna.org"><?php echo $lang['Support'] ?></a></li>
 						<li class="divider"></li>
-						<li><a href="../login.php?action=out&amp;id=<?php echo ''.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())) ?>"><?php echo $lang['Logout'] ?></a></li>
+						<li><a href="../login.php?action=out&amp;id=<?php echo ''.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token() ?>"><?php echo $lang['Logout'] ?></a></li>
 					</ul>
 				</li>
 			</ul>

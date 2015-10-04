@@ -20,7 +20,9 @@ $cur_index = 1;
 if ($action == 'markread') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
-
+	
+	check_csrf($_GET['csrf_token']); 
+	
 	$db->query('UPDATE '.$db->prefix.'users SET last_visit='.$luna_user['logged'].' WHERE id='.$luna_user['id']) or error('Unable to update user last visit data', __FILE__, __LINE__, $db->error());
 
 	// Reset tracked topics
@@ -33,6 +35,8 @@ if ($action == 'markread') {
 elseif ($action == 'markforumread') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
+	
+	check_csrf($_GET['csrf_token']);
 
 	$fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
 	if ($fid < 1)
@@ -59,7 +63,6 @@ elseif ($action == 'markforumread') {
 
 	if ($email_setting == 2 && !$luna_user['is_admmod'])
 		message($lang['Form email disabled']);
-
 
 	if (isset($_POST['form_sent'])) {
 		confirm_referrer('misc.php');
@@ -218,6 +221,8 @@ elseif ($action == 'markforumread') {
 } elseif ($action == 'subscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
+	
+	check_csrf($_GET['csrf_token']);
 
 	$topic_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
 	$forum_id = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
@@ -262,6 +267,8 @@ elseif ($action == 'markforumread') {
 } elseif ($action == 'unsubscribe') {
 	if ($luna_user['is_guest'])
 		message($lang['No permission'], false, '403 Forbidden');
+	
+	check_csrf($_GET['csrf_token']);
 
 	$topic_id = isset($_GET['tid']) ? intval($_GET['tid']) : 0;
 	$forum_id = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
