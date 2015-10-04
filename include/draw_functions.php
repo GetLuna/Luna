@@ -372,8 +372,8 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
-			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
-			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
+			$topics_label = _n('topic', 'topics', $cur_forum['num_topics'], 'luna');
+			$posts_label = _n('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
 			if ($id == $cur_forum['fid'])
 				$item_status .= ' active';
@@ -1124,7 +1124,7 @@ function draw_mark_read($class, $page) {
 		$classes = ' class="'.$class.'"';
 		
 	if ($page == 'index')
-		$url = 'misc.php?action=markread';
+		$url = 'misc.php?action=markread&amp;csrf_token='.luna_csrf_token();
 	elseif ($page == 'forumview')
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 

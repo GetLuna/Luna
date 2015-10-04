@@ -78,7 +78,7 @@ function get_user_nav_menu_items() {
 				'title' => __('Help', 'luna'),
 			),
 			'logout'   => array(
-				'url'   => 'login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address())),
+				'url'   => 'login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token(),
 				'title' => __('Logout', 'luna'),
 			)
 		);
