@@ -1232,12 +1232,10 @@ function luna_csrf_token() {
 // Check if the CSRF hash is correct
 //
 function check_csrf($token) {
-	global $lang;
-
 	if (!isset($token) || $token != luna_csrf_token())
-	message($lang['Bad csrf hash'], false, '404 Not Found');
-}
+	message( __('Bad CSRF hash. You were referred to this page from an unauthorized source.', 'luna'), false, '404 Not Found');
 
+}
 
 //
 // Try to determine the correct remote IP-address
