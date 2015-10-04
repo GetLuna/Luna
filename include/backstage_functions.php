@@ -116,7 +116,7 @@ function load_admin_nav($section, $page) {
 <?php } ?>
 			</ul>
 <?php
-$logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_hash($luna_user['id'].luna_hash(get_remote_address()));
+$logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token();
 ?>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown usermenu">

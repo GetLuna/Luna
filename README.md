@@ -40,5 +40,6 @@ Starting with Luna 1.1, you can upgrade from a whole lot more versions of Modern
 ## Links
  - Homepage: http://getluna.org/
  - Forums: http://forum.getluna.org/
+ - Chat: https://gitter.im/GetLuna/Luna
  - Documentation: http://getluna.org/docs/
  - Development: http://github.com/getluna/luna/
