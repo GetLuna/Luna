@@ -719,6 +719,8 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 		redirect('backstage/moderate.php?fid='.$fid);
 	} else { // Or just one in $_GET
 		confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
+		
+		check_csrf($_GET['csrf_token']);
 
 		$topic_id = ($action) ? intval($_GET['close']) : intval($_GET['open']);
 		if ($topic_id < 1)
@@ -734,6 +736,8 @@ elseif (isset($_REQUEST['open']) || isset($_REQUEST['close'])) {
 // Stick a topic
 elseif (isset($_GET['stick'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
+	
+	check_csrf($_GET['csrf_token']);
 
 	$stick = intval($_GET['stick']);
 	if ($stick < 1)
@@ -748,6 +752,8 @@ elseif (isset($_GET['stick'])) {
 // Unstick a topic
 elseif (isset($_GET['unstick'])) {
 	confirm_referrer(array('viewtopic.php', 'backstage/moderate.php'));
+	
+	check_csrf($_GET['csrf_token']);
 
 	$unstick = intval($_GET['unstick']);
 	if ($unstick < 1)

@@ -1160,7 +1160,7 @@ function draw_mark_read($class, $page) {
 		$classes = ' class="'.$class.'"';
 		
 	if ($page == 'index')
-		$url = 'misc.php?action=markread';
+		$url = 'misc.php?action=markread&amp;csrf_token='.luna_csrf_token();
 	elseif ($page == 'forumview')
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 
