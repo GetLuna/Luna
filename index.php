@@ -126,14 +126,16 @@ if ($id != 0) {
 	$forum_actions = array();
 	
 	if (!$luna_user['is_guest']) {
+		$token_url = '&amp;csrf_token='.luna_csrf_token();
+		
 		if ($luna_config['o_forum_subscriptions'] == '1') {
 			if ($cur_forum['is_subscribed'])
-				$forum_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.'">'.$lang['Unsubscribe'].'</a>';
+				$forum_actions[] = '<a href="misc.php?action=unsubscribe&amp;fid='.$id.$token_url.'">'.$lang['Unsubscribe'].'</a>';
 			else
-				$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.'">'.$lang['Subscribe'].'</a>';
+				$forum_actions[] = '<a href="misc.php?action=subscribe&amp;fid='.$id.$token_url.'">'.$lang['Subscribe'].'</a>';
 		}
 	
-		$forum_actions[] = '<a href="misc.php?action=markforumread&amp;fid='.$id.'">'.$lang['Mark as read'].'</a>';
+		$forum_actions[] = '<a href="misc.php?action=markforumread&amp;fid='.$id.$token_url.'">'.$lang['Mark as read'].'</a>';
 	}
 	
 	$forum_id = $id;
