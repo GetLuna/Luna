@@ -141,10 +141,12 @@ elseif ($luna_config['o_feed_type'] == '2')
 $topic_actions = array();
 
 if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') {
+	$token_url = '&amp;csrf_token='.luna_csrf_token();
+
 	if ($cur_topic['is_subscribed'])
-		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.'">'.__('Unsubscribe', 'luna').'</a>';
+		$topic_actions[] = '<a href="misc.php?action=unsubscribe&amp;tid='.$id.$token_url.'">'.__('Unsubscribe', 'luna').'</a>';
 	else
-		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.'">'.__('Subscribe', 'luna').'</a>';
+		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
@@ -166,6 +168,8 @@ else
 $post_ids = array();
 for ($i = 0;$cur_post_id = $db->result($result, $i);$i++)
 	$post_ids[] = $cur_post_id;
+
+$token_url = '&amp;csrf_token='.luna_csrf_token();
 
 if (empty($post_ids))
 	error('The post table and topic table seem to be out of sync!', __FILE__, __LINE__);
