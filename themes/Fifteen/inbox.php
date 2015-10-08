@@ -62,7 +62,8 @@ $result = $db->query("SELECT * FROM ".$db->prefix."messages WHERE show_message=1
 // If there are messages in this folder.
 if ($db->num_rows($result)) {
 	while ($cur_mess = $db->fetch_assoc($result)) {
-		$item_status = 'roweven';
+		++$post_count;
+		$item_status = ($post_count % 2 == 0) ? 'roweven' : 'rowodd';
 		if ($cur_mess['showed'] == '0') {
 			$item_status .= ' inew';
 			$icon_type = 'icon icon-new';
