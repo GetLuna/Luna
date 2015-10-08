@@ -149,6 +149,10 @@ if (!$luna_user['is_guest'] && $luna_config['o_topic_subscriptions'] == '1') {
 		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
 }
 
+$result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'topics AS t ON (f.id = t.forum_id) WHERE t.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+
+$cur_forum = $db->fetch_assoc($result);
+
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_topic['forum_name']), luna_htmlspecialchars($cur_topic['subject']));
 if (!$pid)
 	define('FORUM_ALLOW_INDEX', 1);
