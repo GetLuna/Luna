@@ -114,7 +114,7 @@ load_admin_nav('backstage', 'stats');
 				<td><?php _e('Core version', 'luna') ?></td>
 				<td><?php echo $luna_config['o_core_version']; ?></td>
 				<td><?php _e('Font Awesome version', 'luna') ?></td>
-				<td>4.3.0</td>
+				<td>4.4.0</td>
 			</tr>
 			<tr>
 				<td><?php _e('Database version', 'luna') ?></td>

@@ -17,7 +17,6 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9 profile">
-	<?php load_inbox_nav('inbox'); ?>
 	<p><span class="pages-label"><?php echo paginate($num_pages, $page, 'inbox.php?') ?></span></p>
 	<form method="post" action="inbox.php">
 		<fieldset>
@@ -30,7 +29,16 @@ if (!defined('FORUM'))
 					<a href="#" data-toggle="modal" data-target="#delete-form" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></a>
 					<?php include load_page('inbox-delete-post.php'); ?>
                 </div>
+            	<div class="btn-group pull-right">
+					<a type="button" class="btn btn-success" href="new_inbox.php"><span class="fa fa-fw fa-pencil"></span> <?php _e('Compose', 'luna') ?></a>
+                </div>
 			</div>
+			<?php
+			if ($luna_user['g_pm_limit'] != '0' && !$luna_user['is_admmod']) {
+				$per_cent_box = ceil($luna_user['num_pms'] / $luna_user['g_pm_limit'] * '100');	
+				echo '<div class="progress"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'.$per_cent_box.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$per_cent_box.'%;"><span class="progress-text">'.$per_cent_box.'%</span></div></div>';
+			}
+			?>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php _e('Inbox', 'luna') ?></h3>

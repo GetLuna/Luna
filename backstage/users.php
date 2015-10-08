@@ -431,7 +431,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			</fieldset>
 		</div>
 		<div class="panel-footer">
-			<button class="btn btn-danger" type="submit" name="delete_users_comply"><span class="fa fa-fw fa-minus"></span> <?php _e('Delete', 'luna') ?></button>
+			<button class="btn btn-danger" type="submit" name="delete_users_comply"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 		</div>
 	</div>
 </form>
@@ -709,11 +709,11 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				<span class="btn-toolbar pull-right">
 					<div class="btn-group">
 						<?php if ($can_ban) : ?>
-						<input class="btn btn-danger" type="submit" name="ban_users" value="<?php _e('Ban', 'luna') ?>" />
+						<button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
 						<?php endif; if ($can_delete) : ?>
-						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-minus"></span> <?php _e('Delete', 'luna') ?></button>
+						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 						<?php endif; if ($can_move) : ?>
-						<input class="btn btn-primary" type="submit" name="move_users" value="<?php _e('Change group', 'luna') ?>" />
+						<button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
 						<?php endif; ?>
 					</div>
 				</span>
@@ -722,14 +722,13 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
+					<?php if ($can_action): ?><th style="width: 25px;"><input type="checkbox" id="checkall" /></th><?php endif; ?>
 					<th><?php _e('Username', 'luna') ?></th>
 					<th><?php _e('Email', 'luna') ?></th>
 					<th><?php _e('Title/Status', 'luna') ?></th>
 					<th class="text-center"><?php _e('Comments', 'luna') ?></th>
 					<th><?php _e('Admin note', 'luna') ?></th>
 					<th><?php _e('Actions', 'luna') ?></th>
-		<?php if ($can_action): ?>					<th><?php _e('Select', 'luna') ?></th>
-		<?php endif; ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -748,13 +747,12 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 ?>
 				<tr>
+					<?php if ($can_action): ?><td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td><?php endif; ?>
 					<td><?php echo '<a href="../profile.php?id='.$user_data['id'].'">'.luna_htmlspecialchars($user_data['username']).'</a>' ?></td>
 					<td><a href="mailto:<?php echo luna_htmlspecialchars($user_data['email']) ?>"><?php echo luna_htmlspecialchars($user_data['email']) ?></a></td>				 <td><?php echo $user_title ?></td>
 					<td class="text-center"><?php echo forum_number_format($user_data['num_posts']) ?></td>
 					<td><?php echo ($user_data['admin_note'] != '') ? luna_htmlspecialchars($user_data['admin_note']) : '&#160;' ?></td>
 					<td><?php echo $actions ?></td>
-		<?php if ($can_action): ?>					<td><input type="checkbox" name="users[<?php echo $user_data['id'] ?>]" value="1" /></td>
-		<?php endif; ?>
 				</tr>
 <?php
 
@@ -771,11 +769,11 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				<span class="btn-toolbar pull-right">
 					<div class="btn-group">
 						<?php if ($can_ban) : ?>
-						<input class="btn btn-danger" type="submit" name="ban_users" value="<?php _e('Ban', 'luna') ?>" />
+						<button class="btn btn-danger" type="submit" name="ban_users"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button>
 						<?php endif; if ($can_delete) : ?>
-						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-minus"></span> <?php _e('Delete', 'luna') ?></button>
+						<button class="btn btn-danger" type="submit" name="delete_users"><span class="fa fa-fw fa-trash"></span> <?php _e('Delete', 'luna') ?></button>
 						<?php endif; if ($can_move) : ?>
-						<input class="btn btn-primary" type="submit" name="move_users" value="<?php _e('Change group', 'luna') ?>" />
+						<button class="btn btn-primary" type="submit" name="move_users"><span class="fa fa-fw fa-exchange"></span> <?php _e('Change group', 'luna') ?></button>
 						<?php endif; ?>
 					</div>
 				</span>

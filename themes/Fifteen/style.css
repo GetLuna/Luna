@@ -226,7 +226,7 @@ h6 {
 		box-shadow: none;
 	}
 	
-	.dropdown-menu > li > a {
+	.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
 		color: #fff !important;
 	}
 }
@@ -756,9 +756,22 @@ textarea.textarea:focus {
 }
 
 /* Inbox */
-nav .progress {
-	margin: 15px 10px;
-	background-color: #fff;
+.progress {
+	border: 1px solid #ddd;
+	margin: 15px 0;
+	height: 30px;
+}
+
+.progress-bar {
+	color: #fff;
+	line-height: 28px;
+}
+
+.progress-text {
+	background-color: rgba(0,0,0,.3);
+	padding: 0 3px 1px;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 /* Profile */
@@ -1054,6 +1067,10 @@ a.active.list-group-item:focus {
 	margin-right: -15px;
 }
 
+.btn-toolbar-inbox {
+	margin-bottom: 10px;
+}
+
 /* Labels */
 .label {
 	padding: 4px 8px;
@@ -1235,15 +1252,12 @@ textarea {
 
 .jumbotron .btn {
 	border: none;
+	margin-top: 1px;
+	margin-bottom: 0;
 }
 
 .jumbotron .btn .fa {
 	margin: 4px 0;
-}
-
-.jumbotron .btn {
-	margin-top: 5px;
-	margin-bottom: -5px;
 }
 
 .jumbotron .input-group-btn .btn {
@@ -1251,8 +1265,8 @@ textarea {
 }
 
 .jumbotron form {
-	margin-top: 4px;
 	margin-bottom: 0;
+	margin-top: -1px;
 }
 
 .jumbotron form .form-control {
@@ -1287,6 +1301,12 @@ textarea {
 .thread-jumbotron h2 {
 	padding-top: 40px;
 	margin: 0;
+}
+
+.container .jumbotron,
+.container-fluid .jumbotron {
+	padding-right: 0;
+	padding-left: 0;
 }
 
 /* Debug */

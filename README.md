@@ -10,10 +10,13 @@ Luna is an open source board software web app released under the GPLv3 license. 
 - Updated Fifteen and Sunrise theme
 - Mark topics as solved
 - New personalisation options
+- Improved user management experience
 - Improved syntax highlighter
+- Improved notification clean-up tools
+- Many improvements to some core files
 
 ## Requirements
-- A webserver with 3,14 MB free disk space
+- A webserver with 2,85 MB free disk space
 - PHP 5.2 or later
 - A database running either
  - MySQL 5.0 or later 
@@ -24,7 +27,7 @@ Luna is an open source board software web app released under the GPLv3 license. 
  - PHP zlib module
 
 ## Upgrade paths
-Starting with Luna 1.1, you can upgrade from a whole lot more versions of ModernBB (where you could only upgrade from ModernBB 3.7 and 4.0 with Luna 1.0). In fact, all versions of ModernBB are supported, and as a bonus, we also support upgrading from FluxBB 1.4.0 and onwards. Luna 1.2 introduces update support for ModernBB 2.3-, 3.8- and 4.1-builds. For a full list, see below:
+Luna 1.2 supports updating from all versions of FluxBB since 1.4.0, all versions of ModernBB and - of course - all previous Luna versions.
 
 - **FluxBB support**
  - **FluxBB 1.4**: 1.4.0 and higher (no support for upgrading from betas and RCs)
@@ -35,10 +38,11 @@ Starting with Luna 1.1, you can upgrade from a whole lot more versions of Modern
  - **ModernBB 3**: all versions supported
  - **ModernBB 4**: all versions supported
 - **Luna support**:
- - **Luna 1**: All versions supported
+ - **Luna 1**: all versions supported
 
 ## Links
  - Homepage: http://getluna.org/
  - Forums: http://forum.getluna.org/
+ - Chat: https://gitter.im/GetLuna/Luna
  - Documentation: http://getluna.org/docs/
  - Development: http://github.com/getluna/luna/

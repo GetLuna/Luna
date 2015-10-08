@@ -25,24 +25,7 @@ if ( isset( $_GET['section'] ) && in_array( $_GET['section'], $sections ) ) {
 </div>
 <div class="col-sm-9 profile">
 <form id="profile-settings" method="post" action="settings.php?id=<?php echo $id ?>">
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#settings-nav">
-				<span class="sr-only"><?php _e('Toggle navigation', 'luna') ?></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a href="settings.php?id=<?php echo $id ?>" class="navbar-brand"><span class="fa fa-fw fa-cogs"></span> <?php _e('Settings', 'luna') ?></a>
-		</div>
-		<div class="collapse navbar-collapse" id="settings-nav">
-			<ul class="navbar-form navbar-right">
-				<div class="btn-compose">
-					<button class="btn btn-default" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button>
-				</div>
-			</ul>
-		</div>
-	</nav>
+	<h2><?php _e('Settings', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="update"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h2>
 	<div role="tabpanel">
 		<ul id="profilenav" class="nav nav-tabs" role="tablist">
 			<li role="presentation"<?php if ( 'profile' === $section ) { ?> class="active"<?php } ?>><a href="settings.php?id=<?php echo $id ?>&amp;section=profile#profile" aria-controls="profile" role="tab" data-toggle="tab"><span class="fa fa-fw fa-user"></span><span class="hidden-xs"> <?php _e('Profile', 'luna') ?></span></a></li>

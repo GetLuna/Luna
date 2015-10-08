@@ -4,8 +4,6 @@
 if (!defined('FORUM'))
 	exit;
 
-load_inbox_nav('send');
-
 // If there are errors, we display them
 if (!empty($errors)) {
 ?>
