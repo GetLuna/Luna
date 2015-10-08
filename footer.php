@@ -45,4 +45,20 @@ if (!defined('FORUM'))
 			l10n = {
 				no_notification: '<?php _e('No new notifications', 'luna'); ?>'
 			};
+				
+			// Make it possible to click anywhere within a row to select the checkbox
+			$('.table tr').click(function(event) {
+				if (event.target.type !== 'checkbox') {
+					$(':checkbox', this).trigger('click');
+				}
+			});
+			
+			// Highlight checked rows
+			$("input[type='checkbox']").change(function (e) {
+				if ($(this).is(":checked")) {
+					$(this).closest('tbody tr').addClass("active"); 
+				} else {
+					$(this).closest('tbody tr').removeClass("active");
+				}
+			});
 		</script>

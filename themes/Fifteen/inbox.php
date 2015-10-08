@@ -44,7 +44,7 @@ if (!defined('FORUM'))
 					<h3 class="panel-title"><?php _e('Inbox', 'luna') ?></h3>
 				</div>
 				<input type="hidden" name="box" value="0" />
-				<table class="table">
+				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
 							<th style="width: 18px;"><input type="checkbox" id="checkAllButon" value="1" onclick="checkAll('selected_messages[]','checkAllButon');" /></th>
