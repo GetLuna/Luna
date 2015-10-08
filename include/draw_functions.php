@@ -210,7 +210,7 @@ window.onbeforeunload = function() {
 }
 
 function draw_topics_list() {
-	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics;
+	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics, $cur_forum;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
@@ -274,7 +274,7 @@ function draw_topics_list() {
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 	
-			if (isset($cur_topic['answer'])) {
+			if (isset($cur_topic['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
