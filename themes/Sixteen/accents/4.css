@@ -1,0 +1,48 @@
+/*
+ * Sixteen Red Orange 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ * #e0532e #e06827 #e8bb1e
+ */
+
+#header, .editor {
+	background: #e0532e;
+	background: linear-gradient(to bottom left, #e0532e, #e8bb1e);
+}
+
+.first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
+	background: #e0532e;
+	background: linear-gradient(to top right, #e0532e, #e8bb1e);
+}
+
+.panel-default .panel-heading {
+	background: #e0532e;
+	background: linear-gradient(to right, #e0532e, #e8bb1e);
+}
+
+.comment-arrow {
+	border-right-color: #e0532e;
+}
+
+.btn-primary {
+	background-color: #e0532e;
+}
+
+.btn-primary:active {
+	background-color: #e0532e !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background-color: #e06827;
+}
+
+.modal-form .modal-header {
+	background: #e0532e;
+	background: linear-gradient(to bottom left, #e0532e, #e06827);
+}
+
+.modal-form .modal-footer {
+	background: #e06827;
+	background: linear-gradient(to bottom left, #e06827, #e8bb1e);
+}

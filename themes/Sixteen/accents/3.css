@@ -1,0 +1,48 @@
+/*
+ * Sixteen Green Blue 1.0
+ * Based on Trent 1.0
+ * Based on Bootstrap 3.3.5
+ * Based on Font Awesome 4.4.0
+ * #14d192 #1dc0ab #239ead
+ */
+
+#header, .editor {
+	background: #14d192;
+	background: linear-gradient(to bottom left, #14d192, #239ead);
+}
+
+.first-run.panel, .profile-card-head, .nav-tabs, .nav-tab-info {
+	background: #14d192;
+	background: linear-gradient(to top right, #14d192, #239ead);
+}
+
+.panel-default .panel-heading {
+	background: #14d192;
+	background: linear-gradient(to right, #14d192, #239ead);
+}
+
+.comment-arrow {
+	border-right-color: #14d192;
+}
+
+.btn-primary {
+	background-color: #14d192;
+}
+
+.btn-primary:active {
+	background-color: #14d192 !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background-color: #1dc0ab;
+}
+
+.modal-form .modal-header {
+	background: #14d192;
+	background: linear-gradient(to bottom left, #14d192, #1dc0ab);
+}
+
+.modal-form .modal-footer {
+	background: #1dc0ab;
+	background: linear-gradient(to bottom left, #1dc0ab, #239ead);
+}
