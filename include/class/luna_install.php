@@ -415,6 +415,11 @@ class Installer {
 					'datatype'		=> 'INT',
 					'allow_null'	=> true,
 					'default'		=> 0
+				),
+				'solved'		=> array(
+					'datatype'		=> 'TINYINT(1)',
+					'allow_null'	=> false,
+					'default'		=> '1'
 				)
 			),
 			'PRIMARY KEY'	=> array('id')
