@@ -28,9 +28,8 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.2 Preview 2</span></p><h2>Cornflower Blue Preview 2</h2>
+						<p class="meta"><span class="release-version">1.2 Preview 4</span></p><h2>Cornflower Blue Preview 4</h2>
 						<ul class="changes">
-							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Sixteen is the new default theme</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark topics as solved</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now set any color as forum colors</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>New tools to clean up notifications</li>
@@ -42,7 +41,7 @@ require 'header.php';
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Improved tabel in user management</li>
 							<li><div class="change-label-container"><em class="change-label change-improved">Improved</em></div>Updated and incorporated components</li>
 							<li><div class="change-label-container"><em class="change-label change-note">Changed</em></div>Default avatar settings have been updated for new installations</li>
-							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 9 bugs</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes 13 bugs</li>
 						</ul>
 					</div>
 				</section>
