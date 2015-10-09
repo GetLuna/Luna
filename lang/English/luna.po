@@ -43,6 +43,10 @@ msgstr ""
 msgid "Theme settings"
 msgstr ""
 
+msgid "Meta"
+msgstr ""
+
+msgid "Threads in this forum can be marked as solved."
 msgstr ""
 
 msgid "Allow users to change the night mode settings."
