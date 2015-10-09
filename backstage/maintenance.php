@@ -161,9 +161,9 @@ require 'header.php';
 	load_admin_nav('maintenance', 'maintenance');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
+	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 if (isset($_GET['cache_cleared']))
-	echo '<div class="alert alert-success"><h4>'.__('The cache files have been removed.', 'luna').'</h4></div>';
+	echo '<div class="alert alert-success">'.__('The cache files have been removed.', 'luna').'</div>';
 ?>
 <form class="form-horizontal" method="post" action="maintenance.php">
 	<div class="panel panel-default">

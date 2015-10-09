@@ -116,11 +116,11 @@ require 'header.php';
 load_admin_nav('users', 'tools');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
+	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 if (isset($_GET['user_created']))
-	echo '<div class="alert alert-success"><h4>'.__('User created', 'luna').'</h4></div>';
+	echo '<div class="alert alert-success">'.__('User created', 'luna').'</div>';
 if (isset($_GET['user_failed']))
-	echo '<div class="alert alert-danger"><h4>'.__('Failed to create user, no password was given.', 'luna').'</h4></div>';
+	echo '<div class="alert alert-danger">'.__('Failed to create user, no password was given.', 'luna').'</div>';
 ?>
 <form class="form-horizontal" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 	<div class="panel panel-default">

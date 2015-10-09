@@ -792,9 +792,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	load_admin_nav('users', 'users');
 
 	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
+		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 	if (isset($_GET['deleted']))
-		echo '<div class="alert alert-danger"><h4>'.__('The user has been deleted.', 'luna').'</h4></div>';
+		echo '<div class="alert alert-danger">'.__('The user has been deleted.', 'luna').'</div>';
 ?>
 <form id="find_user" method="get" action="users.php">
 	<div class="panel panel-default">
