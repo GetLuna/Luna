@@ -335,7 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	
 	.footer #poweredby {
-		text-align: right;
+		float: right;
 	}
 }
 
@@ -593,9 +593,8 @@ h2.forum-title .btn {
 
 .first-run-avatar img {
 	border-radius: 3px;
-	max-height: 120px;
-	max-width: 120px;
-	width: auto;
+	max-height: 128px;
+	max-width: auto;
 }
 
 .first-run-login {
