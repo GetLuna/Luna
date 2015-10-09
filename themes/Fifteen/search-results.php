@@ -8,7 +8,10 @@ if (!defined('FORUM'))
 </div>
 <div class="jumbotron">
 	<div class="container">
-		<h2 class="forum-title"><?php _e('Search', 'luna') ?></h2><span class="pull-right naviton"><?php echo $paging_links ?></span>
+		<h2 class="forum-title"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></h2>
+		<span class="pull-right naviton">
+			<?php echo $paging_links ?>
+		</span>
 	</div>
 </div>
 <div class="container">

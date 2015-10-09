@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 <div class="jumbotron">
 	<div class="container">
 		<h2 class="forum-title"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></h2>
-		<span class="pull-right">
+		<span class="pull-right naviton">
 			<a class="btn btn-default" href="search.php?section=advanced"><?php _e('Advanced', 'luna') ?></a>
 		</span>
 	</div>

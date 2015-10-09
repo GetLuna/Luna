@@ -873,6 +873,11 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	color: #fff;
 }
 
+.btn-toolbar-profile {
+	padding-top: 5px;
+	margin-bottom: 5px;
+}
+
 /* Comment messages */
 .bblinks {
 	padding-top: 5px;
