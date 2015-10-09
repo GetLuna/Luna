@@ -1183,7 +1183,7 @@ msgstr ""
 msgrid "Go to the first new comment in this thread."
 msgstr ""
 
-msgrid "New comments"
+msgrid "New"
 msgstr ""
 
 msgrid "Forum is empty."
