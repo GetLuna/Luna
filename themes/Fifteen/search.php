@@ -5,16 +5,16 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></a>
-	</div>
-	<div class="collapse navbar-collapse hidden-xs" id="search-nav">
-		<ul class="navbar-form navbar-right">
+</div>
+<div class="jumbotron">
+	<div class="container">
+		<h2 class="forum-title"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></h2>
+		<span class="pull-right">
 			<a class="btn btn-default" href="search.php?section=advanced"><?php _e('Advanced', 'luna') ?></a>
-		</ul>
+		</span>
 	</div>
-</nav>
+</div>
+<div class="container">
 <form id="search" method="get" action="search.php?section=simple">
 	<div class="panel panel-default">
 		<div class="panel-body">

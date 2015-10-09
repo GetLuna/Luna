@@ -588,7 +588,6 @@ switch ($stage) {
 		$db->add_field('topics', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'accent', 'INT(10)', false, '2') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
-		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
 
 		build_config(1, 'o_allow_accent_color', '1');
 		build_config(1, 'o_allow_night_mode', '1');
@@ -597,6 +596,10 @@ switch ($stage) {
 		build_config(1, 'o_board_tags', '');
 		build_config(1, 'o_cookie_bar_url', 'http://getluna.org/docs/cookies.php');
 		build_config(1, 'o_default_accent', '2');
+		
+		// Luna 1.2 upgrade support
+		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'solved', 'INT', true, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 
 		break;
 

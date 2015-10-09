@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
 		box-shadow: none;
 	}
 	
-	.dropdown-menu > li > a {
+	.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
 		color: #fff !important;
 	}
 }
@@ -311,6 +311,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 7px 12px !important;
 }
 
+.jumbotron .btn-search {
+	padding: 6px 12px !important;
+}
+
 .navbar-default .navbar-toggle, .navbar-inverse .navbar-toggle {
 	border: transparent;
 }
@@ -328,6 +332,16 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 768px) {
 	.footer .copyright .col-sm-2 {
 		width: 16.66%;
+	}
+	
+	.footer #poweredby {
+		float: right;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer #backtotop {
+		text-align: right;
 	}
 }
 
@@ -373,8 +387,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sidebar */
 .col-sm-3 hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .list-group {
@@ -579,7 +593,7 @@ h2.forum-title .btn {
 
 .first-run-avatar img {
 	border-radius: 3px;
-	max-height: 120px;
+	max-height: 128px;
 	max-width: auto;
 }
 
@@ -619,6 +633,11 @@ h2.forum-title .btn {
 }
 
 /* Editor */
+.panel.panel-editor {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 input[type="text"].info-textfield, input[type="text"].info-textfield:focus {
 	border: none;
 }
@@ -706,11 +725,25 @@ textarea.textarea, textarea.textarea:focus {
 	color: #fff;
 }
 
+/* Navitons and navitans */
+.naviton {
+	margin-top: 3px;
+}
+
+.navitan {
+	margin-bottom: 5px;
+}
+
 /* Pagination */
 .pagination {
 	margin: 0;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	display: inline;
+}
+
+.pagination > li > a, .pagination > li > span {
+	padding: 7px 13px;
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
@@ -719,9 +752,22 @@ textarea.textarea, textarea.textarea:focus {
 }
 
 /* Inbox */
-nav .progress {
-	margin: 15px 10px;
-	background-color: #fff;
+.progress {
+	border: 1px solid #ddd;
+	margin: 15px 0;
+	height: 30px;
+}
+
+.progress-bar {
+	color: #fff;
+	line-height: 28px;
+}
+
+.progress-text {
+	background-color: rgba(0,0,0,.3);
+	padding: 0 3px 1px;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 /* Profile */
@@ -894,8 +940,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Threads */
-.topicview {
-	margin-top: 10px;
+@media screen and (min-width: 768px) {
+	.topicview {
+		margin-top: 5px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.col-sm-12.thread-title {
+		padding: 0;
+	}
 }
 
 .comment .well-comment {
@@ -1007,7 +1061,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .btn-post {
-	margin-top: 0;
 	margin-left: 5px;
 	margin-bottom: 10px;
 }
@@ -1017,6 +1070,10 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	margin-right: -15px;
 	padding: 8px 14px 9px 14px;
 	border: none;
+}
+
+.btn-toolbar-inbox {
+	margin-bottom: 10px;
 }
 
 /* Labels */
@@ -1199,15 +1256,11 @@ textarea {
 
 .jumbotron .btn {
 	border: none;
+	margin-bottom: 0;
 }
 
 .jumbotron .btn .fa {
 	margin: 4px 0;
-}
-
-.jumbotron .btn {
-	margin-top: 5px;
-	margin-bottom: -5px;
 }
 
 .jumbotron .input-group-btn .btn {
@@ -1216,7 +1269,7 @@ textarea {
 
 .jumbotron form {
 	margin-bottom: 0;
-	margin-top: 4px;
+	margin-top: -1px;
 }
 
 .jumbotron form .form-control {
@@ -1237,7 +1290,7 @@ textarea {
 }
 
 .thread-jumbotron {
-	padding: 10px 15px 15px !important;
+	padding: 15px !important;
 	margin-bottom: 5px;
 	margin-top: 0;
 }
@@ -1245,6 +1298,11 @@ textarea {
 .thread-jumbotron h2 {
 	margin: 0;
 	padding-top: 40px;
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+	padding-right: 0;
+	padding-left: 0;
 }
 
 /* Debug */

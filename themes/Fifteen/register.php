@@ -5,11 +5,13 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<a href="register.php" class="navbar-brand"><span class="fa fa-fw fa-user"></span> <?php _e('Register', 'luna') ?></a>
+</div>
+<div class="jumbotron">
+	<div class="container">
+		<h2 class="forum-title"><span class="fa fa-fw fa-user"></span> <?php _e('Register', 'luna') ?></h2>
 	</div>
-</nav>
+</div>
+<div class="container">
 <?php draw_error_panel($errors); ?>
 <form class="form-horizontal" id="register" method="post" action="register.php?action=register" onsubmit="this.register.disabled=true;if(process_form(this)){return true;}else{this.register.disabled=false;return false;}">
 	<div class="panel panel-default">

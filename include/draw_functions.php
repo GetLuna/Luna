@@ -210,7 +210,7 @@ window.onbeforeunload = function() {
 }
 
 function draw_topics_list() {
-	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics;
+	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics, $cur_forum;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
@@ -274,7 +274,7 @@ function draw_topics_list() {
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 	
-			if (isset($cur_topic['answer'])) {
+			if (isset($cur_topic['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
@@ -322,7 +322,7 @@ function draw_topics_list() {
 	
 	} else {
 		echo '<div class="forum-row row"><div class="col-xs-12"><h3 class="nothing">';
-		printf(__('There are s in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
+		printf(__('There are no threads in this forum yet, but you can <a href="post.php?fid=%s">start the first one</a>.', 'luna'), $id);
 		echo '</h3></div></div>';
 	}
 	
@@ -372,8 +372,8 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			if ($cur_forum['forum_desc'] != '')
 				$forum_desc = '<div class="forum-description">'.$cur_forum['forum_desc'].'</div>';
 		
-			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
-			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
+			$topics_label = _n('topic', 'topics', $cur_forum['num_topics'], 'luna');
+			$posts_label = _n('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
 			if ($id == $cur_forum['fid'])
 				$item_status .= ' active';
@@ -589,7 +589,7 @@ function draw_index_topics_list() {
 }
 
 function draw_comment_list() {
-	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic, $started_by;
+	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic, $started_by, $cur_forum;
 
 	// Retrieve the comments (and their respective poster/online status)
 	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -701,11 +701,13 @@ function draw_comment_list() {
 				if (($cur_topic['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_topic['post_replies'] == 1)
 					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 
-				if ($luna_user['username'] == $started_by) {
-					if ($cur_post['id'] == $cur_topic['answer'])
-						$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
-					else
-						$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+				if ($cur_forum['solved'] == 1) {
+					if ($luna_user['username'] == $started_by) {
+						if ($cur_post['id'] == $cur_topic['answer'])
+							$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
+						else
+							$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+					}
 				}
 			}
 		} else {
@@ -724,10 +726,12 @@ function draw_comment_list() {
 			}
 			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 			
-			if ($cur_post['id'] == $cur_topic['answer'])
-				$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
-			else
-				$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+			if ($cur_forum['solved'] == 1) {
+				if ($cur_post['id'] == $cur_topic['answer'])
+					$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
+				else
+					$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+			}
 		}
 	
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
@@ -1124,7 +1128,7 @@ function draw_mark_read($class, $page) {
 		$classes = ' class="'.$class.'"';
 		
 	if ($page == 'index')
-		$url = 'misc.php?action=markread';
+		$url = 'misc.php?action=markread&amp;csrf_token='.luna_csrf_token();
 	elseif ($page == 'forumview')
 		$url = 'misc.php?action=markforumread&amp;fid='.$id;
 
