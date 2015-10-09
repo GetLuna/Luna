@@ -31,6 +31,9 @@ require 'header.php';
 						<p class="meta"><span class="release-version">1.1.4</span></p><h2>Bittersweet Shimmer Update 4</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a bug with the accent function</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issues with responsive and night mode in Fifteen and Sunrise</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issues with plural translations</li>
+							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes issues with Inbox not marking messages as read</li>
 							<li><div class="change-label-container"><em class="change-label change-fixed">Fixed</em></div>Fixes a security issue</li>
 						</ul>
 					</div>
