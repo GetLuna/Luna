@@ -63,6 +63,5 @@ if (!defined('FORUM'))
 				<?php draw_editor('10'); ?>
 			</form>
 		<?php endif; ?>
-		<div class="pull-right navitan"><?php echo $paging_links ?></div>
 	</div>
 </div>
