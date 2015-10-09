@@ -5,7 +5,7 @@
 
 /* Category header */
 .alert-all {
-	margin-bottom: 7px;
+	margin-bottom: 5px;
 }
 
 /* Forum */
@@ -18,7 +18,7 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin-top: 0;
-	margin-bottom: 7px;
+	margin-bottom: 5px;
 	border-left: 5px solid #f8f8f8;
 	background-color: #fbfbfb;
 }

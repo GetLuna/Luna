@@ -531,7 +531,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php _e('Ban', 'luna') ?>" tabindex="3" /></span></h3>
+			<h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
@@ -792,9 +792,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	load_admin_nav('users', 'users');
 
 	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
+		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 	if (isset($_GET['deleted']))
-		echo '<div class="alert alert-danger"><h4>'.__('The user has been deleted.', 'luna').'</h4></div>';
+		echo '<div class="alert alert-danger">'.__('The user has been deleted.', 'luna').'</div>';
 ?>
 <form id="find_user" method="get" action="users.php">
 	<div class="panel panel-default">

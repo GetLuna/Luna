@@ -17,10 +17,10 @@ if (!defined('FORUM'))
 ?>
 </div>
 <div class="col-sm-9 profile">
-	<p><span class="pages-label"><?php echo paginate($num_pages, $page, 'inbox.php?') ?></span></p>
+	<?php echo paginate($num_pages, $page, 'inbox.php?') ?>
 	<form method="post" action="inbox.php">
 		<fieldset>
-            <div class="btn-toolbar">
+            <div class="btn-toolbar btn-toolbar-profile">
             	<div class="btn-group">
 					<button type="submit" name="markread" class="btn btn-primary"><span class="fa fa-fw fa-eye"></span> <?php _e('Mark as read', 'luna') ?></button>
 					<button type="submit" name="markunread" class="btn btn-primary"><span class="fa fa-fw fa-eye-slash"></span> <?php _e('Mark as unread', 'luna') ?></button>

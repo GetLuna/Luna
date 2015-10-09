@@ -9,7 +9,7 @@ if (!defined('FORUM'))
 <div class="jumbotron">
 	<div class="container">
 		<h2 class="forum-title"><span class="fa fa-fw fa-users"></span> <?php _e('Users', 'luna') ?></h2>
-		<span class="pull-right">
+		<span class="pull-right naviton">
 			<form class="navbar-form navbar-right" id="userlist" method="get" action="userlist.php">
 				<div class="form-group">
 					<select class="form-control hidden-xs" name="sort">

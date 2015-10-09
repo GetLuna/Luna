@@ -5,12 +5,16 @@ if (!defined('FORUM'))
 	exit;
 
 ?>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<a href="search.php" class="navbar-brand"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></a>
-	</div>
-</nav>
-<?php echo $paging_links ?>
-<div class="list-group list-group-topic">
-	<?php draw_search_results(); ?>
 </div>
+<div class="jumbotron">
+	<div class="container">
+		<h2 class="forum-title"><span class="fa fa-fw fa-search"></span> <?php _e('Search', 'luna') ?></h2>
+		<span class="pull-right naviton">
+			<?php echo $paging_links ?>
+		</span>
+	</div>
+</div>
+<div class="container">
+	<div class="list-group forumview list-group-topic">
+		<?php draw_search_results(); ?>
+	</div>

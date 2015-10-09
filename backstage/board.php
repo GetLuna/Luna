@@ -501,7 +501,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		load_admin_nav('content', 'board');
 	
 	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
+		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
 <div class="row">
 	<div class="col-lg-4">

@@ -300,7 +300,7 @@ function draw_topics_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 
@@ -363,7 +363,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			// Are there new comments since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New comments', 'luna').'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -437,7 +437,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 			// Are there new comments since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New comments', 'luna').'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
 		
@@ -565,7 +565,7 @@ function draw_index_topics_list() {
 			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 	
@@ -983,7 +983,7 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 			
