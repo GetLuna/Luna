@@ -651,6 +651,7 @@ h2.forum-title .btn {
 .panel.panel-editor {
 	margin-top: 5px;
 	margin-bottom: 5px;
+	border: 1px #ddd solid;
 }
 
 input[type="text"].info-textfield, input[type="text"].info-textfield:focus {
