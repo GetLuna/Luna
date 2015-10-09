@@ -594,7 +594,8 @@ h2.forum-title .btn {
 .first-run-avatar img {
 	border-radius: 3px;
 	max-height: 120px;
-	max-width: auto;
+	max-width: 120px;
+	width: auto;
 }
 
 .first-run-login {
@@ -725,11 +726,25 @@ textarea.textarea, textarea.textarea:focus {
 	color: #fff;
 }
 
+/* Navitons and navitans */
+.naviton {
+	margin-top: 3px;
+}
+
+.navitan {
+	margin-bottom: 5px;
+}
+
 /* Pagination */
 .pagination {
 	margin: 0;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	display: inline;
+}
+
+.pagination > li > a, .pagination > li > span {
+	padding: 7px 13px;
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
@@ -1047,7 +1062,6 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 .btn-post {
-	margin-top: 0;
 	margin-left: 5px;
 	margin-bottom: 10px;
 }
@@ -1243,7 +1257,6 @@ textarea {
 
 .jumbotron .btn {
 	border: none;
-	margin-top: 1px;
 	margin-bottom: 0;
 }
 
@@ -1278,7 +1291,7 @@ textarea {
 }
 
 .thread-jumbotron {
-	padding: 10px 15px 15px !important;
+	padding: 15px !important;
 	margin-bottom: 5px;
 	margin-top: 0;
 }
