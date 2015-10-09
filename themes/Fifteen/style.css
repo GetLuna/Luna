@@ -159,6 +159,20 @@ h1, h2, h3, h4, h5, h6 {
 	white-space: normal;
 }
 
+@media screen and (max-width: 767px) {
+	.navbar-nav .open .dropdown-menu {
+		background-color: rgba(255,255,255,.1);
+	}
+	
+	.navbar-nav .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-menu .dropdown-header {
+		padding: 10px 15px 10px 25px;
+	}
+	
+	.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+		background-color: rgba(255,255,255,.1);
+	}
+}
+
 .dropdown-header {
 	font-size: 20px;
 }
