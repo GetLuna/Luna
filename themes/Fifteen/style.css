@@ -376,10 +376,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0;
 }
 
-.index {
-	margin-top: 10px;
-}
-
 .col-md-9 {
 	padding-left: 30px;
 	padding-right: 15px;
@@ -392,7 +388,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .list-group {
-	margin-bottom: 7px;
+	margin-bottom: 5px;
 }
 
 a.list-group-item.active:hover {
@@ -413,6 +409,10 @@ a.list-group-item.active:hover {
 	border-left: 5px solid #f8f8f8;
 	background-color: #fbfbfb;
 	margin-top: 2px;
+}
+
+.list-group-topic .list-group-item:first-child {
+	margin-top: 0 !important;
 }
 
 .list-group-topic .list-group-item.new-item {
@@ -493,7 +493,7 @@ h2.forum-title .btn {
 }
 
 .forumview {
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 .forum-desc {
@@ -593,8 +593,9 @@ h2.forum-title .btn {
 
 .first-run-avatar img {
 	border-radius: 3px;
-	max-height: 128px;
-	max-width: auto;
+	max-height: 120px;
+	max-width: 120px;
+	width: auto;
 }
 
 .first-run-login {
@@ -630,6 +631,20 @@ h2.forum-title .btn {
 	.first-run-list {
 		margin: 15px 0;
 	}
+}
+
+/* Announcement */
+.announcement {
+	border: none;
+	margin-bottom: 5px;
+}
+
+.alert.announcement {
+	padding: 10px;
+}
+
+.alert.announcement h4 {
+	margin-bottom: 7px;
 }
 
 /* Editor */
@@ -714,9 +729,12 @@ textarea.textarea, textarea.textarea:focus {
 }
 
 /* Panels */
+.panel:first-child {
+	margin-top: 5px;
+}
 .panel {
-	margin-bottom: 10px;
-	margin-top: 15px;
+	margin-bottom: 5px;
+	margin-top: 0;
 }
 
 .panel-default .panel-heading {
@@ -808,6 +826,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 	background: none;
 	border: none;
 	padding-bottom: 17px;
+	margin-bottom: 5px;
 }
 
 .profile-settings-head {
@@ -1114,6 +1133,7 @@ a.label {
 .alert-section {
 	color: #fff;
 	border: none;
+	margin-bottom: 5px;
 }
 
 .alert-section .btn {
@@ -1121,8 +1141,9 @@ a.label {
 }
 
 .alert-section h3 {
+	padding-top: 10px;
 	margin-top: 0;
-	margin-bottom: 4px;
+	margin-bottom: 0;
 }
 
 /* Forms */
