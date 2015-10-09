@@ -9,6 +9,9 @@ if (!defined('FORUM'))
 <div class="jumbotron">
 	<div class="container">
 		<h2 class="forum-title"><span class="fa fa-fw fa-info-circle"></span> <?php _e('Help', 'luna') ?></h2>
+		<span class="pull-right naviton">
+			<a class="btn btn-default" href="index.php"><?php _e('Index', 'luna') ?></a>
+		</span>
 	</div>
 </div>
 <div class="container">
@@ -164,11 +167,11 @@ foreach ($smiley_groups as $smiley_img => $smiley_texts) {
                             <td><?php _e('Pinned threads are usually important to read. It\'s worth it to take a look there.', 'luna') ?></td>
                         </tr>
                         <tr>
-                            <td><span class="label label-danger"><?php _e('Closed', 'luna') ?></span></td>
+                            <td><span class="label label-danger"><span class="fa fa-fw fa-lock"></span></span></td>
                             <td><?php _e('When a you see a closed label, it means you can\'t comment on that thread any more, unless you have a permission that overwrites this. The thread is still available to read, though.', 'luna') ?></td>
                         </tr>
                         <tr>
-                            <td><span class="label label-info"><?php _e('Moved', 'luna') ?></span></td>
+                            <td><span class="label label-info"><span class="fa fa-fw fa-arrows-alt"></span></span></td>
                             <td><?php _e('This thread has been moved to another forum. Admins and moderators can choose to show this notification, or simply not show it. The original forum where this thread was located in, won\'t show and thread stats anymore.', 'luna') ?></td>
                         </tr>
                         <?php if (!$luna_user['is_guest'] && $luna_config['o_has_posted'] == '1') { ?>
