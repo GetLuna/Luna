@@ -333,6 +333,16 @@ h1, h2, h3, h4, h5, h6 {
 	.footer .copyright .col-sm-2 {
 		width: 16.66%;
 	}
+	
+	.footer #poweredby {
+		text-align: right;
+	}
+}
+
+@media (max-width: 767px) {
+	.footer #backtotop {
+		text-align: right;
+	}
 }
 
 .footer a, .footer a:hover, .footer a:active, .footer a:focus {
@@ -377,8 +387,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sidebar */
 .col-sm-3 hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .list-group {
@@ -623,6 +633,11 @@ h2.forum-title .btn {
 }
 
 /* Editor */
+.panel.panel-editor {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 input[type="text"].info-textfield, input[type="text"].info-textfield:focus {
 	border: none;
 }
@@ -913,7 +928,7 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 /* Threads */
 @media screen and (min-width: 768px) {
 	.topicview {
-		margin-top: 10px;
+		margin-top: 5px;
 	}
 }
 
