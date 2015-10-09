@@ -911,8 +911,16 @@ a.active.list-group-item, a.active.list-group-item:hover, a.active.list-group-it
 }
 
 /* Threads */
-.topicview {
-	margin-top: 10px;
+@media screen and (min-width: 768px) {
+	.topicview {
+		margin-top: 10px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.col-sm-12.thread-title {
+		padding: 0;
+	}
 }
 
 .comment .well-comment {
