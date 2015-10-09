@@ -531,7 +531,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php _e('Ban', 'luna') ?>" tabindex="3" /></span></h3>
+			<h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
