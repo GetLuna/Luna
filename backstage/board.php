@@ -137,6 +137,7 @@ elseif (isset($_POST['update_positions'])) {
 		$parent_id = intval($_POST['parent_id']);
 		$cat_id = intval($_POST['cat_id']);
 		$sort_by = intval($_POST['sort_by']);
+		$icon = luna_trim($_POST['icon']);
 		$color = luna_trim($_POST['color']);
 		$solved = isset($_POST['solved']) ? '1' : '0';
 
@@ -148,7 +149,7 @@ elseif (isset($_POST['update_positions'])) {
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 
-		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', color=\''.$color.'\', solved='.$solved.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', icon=\''.$db->escape($icon).'\', color=\''.$color.'\', solved='.$solved.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old'])) {
@@ -195,7 +196,7 @@ elseif (isset($_POST['update_positions'])) {
 	}
 
 	// Fetch forum info
-	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, color, solved FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, icon, color, solved FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -290,6 +291,15 @@ elseif (isset($_POST['update_positions'])) {
 							<option value="1"<?php if ($cur_forum['sort_by'] == '1') echo ' selected' ?>><?php _e('Thread start', 'luna') ?></option>
 							<option value="2"<?php if ($cur_forum['sort_by'] == '2') echo ' selected' ?>><?php _e('Subject', 'luna') ?></option>
 						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Icon', 'luna') ?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__('Font Awesome icon guide', 'luna').'</a>') ?></span></label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<span class="input-group-addon">fa fa-fw fa-</span>
+							<input type="text" class="form-control" name="icon" maxlength="50" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" tabindex="1" />
+						</div>
 					</div>
 				</div>
 				<div class="form-group">

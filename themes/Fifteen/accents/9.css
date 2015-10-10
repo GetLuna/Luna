@@ -11,12 +11,6 @@
 	background-color: #d42f2f;
 }
 
-@media screen and (max-width: 767px) {
-	.dropdown-menu .divider {
-		background-color: #d42f2f !important;
-	}
-}
-
 .list-group-forum a.list-group-item:hover, .list-group-topic .list-group-item:hover {
 	border-color: #ff4444;
 }

@@ -7,16 +7,16 @@
 
 class Version {
 	// See http://getluna.org/docs/version.php for more info
-	const FORUM_VERSION = '1.2-alpha.4';
-	const FORUM_CORE_VERSION = '1.2.5005';
-	const LUNA_CORE_REVISION = '120a4';
+	const FORUM_VERSION = '1.2-alpha.5';
+	const FORUM_CORE_VERSION = '1.2.5014';
+	const LUNA_CORE_REVISION = '120a5';
 
 	// The Luna Core code name
 	const LUNA_CODE_NAME = 'cornflowserblue';
 	const LUNA_CODE_NAME_SEM = 'Cornflower Blue';
 
 	// The database version number, every change in the database requires this number to go one up
-	const FORUM_DB_VERSION = '89.05';
+	const FORUM_DB_VERSION = '89.10';
 
 	// The parser version number, every change to the parser requires this number to go one up
 	const FORUM_PARSER_VERSION = '11.2.0';

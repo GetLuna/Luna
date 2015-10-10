@@ -20,7 +20,7 @@ if (!defined('FORUM'))
 		<hr />
 		<div class="list-group list-group-forum">
 			<?php if ($cur_topic['is_subscribed']) { ?>
-				<a class="list-group-item" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-star-o"></span> <?php _e('Unsubscribe', 'luna') ?></a>
+				<a class="list-group-item list-group-enabled" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-star-o"></span> <?php _e('Unsubscribe', 'luna') ?></a>
 			<?php } else { ?>
 				<a class="list-group-item" href="misc.php?action=subscribe&amp;tid=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-star"></span> <?php _e('Subscribe', 'luna') ?></a>
 			<?php } ?>
@@ -63,6 +63,5 @@ if (!defined('FORUM'))
 				<?php draw_editor('10'); ?>
 			</form>
 		<?php endif; ?>
-		<div class="pull-right navitan"><?php echo $paging_links ?></div>
 	</div>
 </div>

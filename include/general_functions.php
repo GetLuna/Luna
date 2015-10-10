@@ -67,19 +67,19 @@ function get_user_nav_menu_items() {
 		$items['user'] = array(
 			'profile'  => array(
 				'url'   => 'profile.php?id='.$luna_user['id'],
-				'title' => __('Profile', 'luna'),
+				'title' => '<span class="fa fa-fw fa-user"></span> '.__('Profile', 'luna'),
 			),
 			'settings' => array(
 				'url'   => 'settings.php',
-				'title' => __('Settings', 'luna'),
+				'title' => '<span class="fa fa-fw fa-cogs"></span> '.__('Settings', 'luna'),
 			),
 			'help'     => array(
 				'url'   => 'help.php',
-				'title' => __('Help', 'luna'),
+				'title' => '<span class="fa fa-fw fa-info-circle"></span> '.__('Help', 'luna'),
 			),
 			'logout'   => array(
 				'url'   => 'login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_token='.luna_csrf_token(),
-				'title' => __('Logout', 'luna'),
+				'title' =>'<span class="fa fa-fw fa-sign-out"></span> '. __('Logout', 'luna'),
 			)
 		);
 	}
