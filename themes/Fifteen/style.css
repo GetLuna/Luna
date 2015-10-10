@@ -481,11 +481,23 @@ a.list-group-item-cat:hover .forum-description {
 }
 
 .list-group-enabled {
-	border-left-color: #95f4ac !important;
+	background-color: #e9ffbe;
+	border-left-color: #bfe96f !important;
+}
+
+.list-group-enabled:hover {
+	background-color: #d0f48d !important;
+	border-left-color: #afdf53 !important;
 }
 
 .list-group-disabled {
+	background-color: #fde2df;
 	border-left-color: #ef978e !important;
+}
+
+.list-group-disabled:hover {
+	background-color: #f5c9c5 !important;
+	border-left-color: #e58076 !important;
 }
 
 /* Forumview */
@@ -1760,4 +1772,24 @@ a.btn.btn-primary, a.btn.btn-danger, a.btn.btn-warning, .profile-nav a.list-grou
 
 .night .answer .well hr {
 	border-top: 1px solid #2e3d20;
+}
+
+.night .list-group-enabled {
+	background-color: #2e3d20;
+	border-left-color: #27301f !important;
+}
+
+.night .list-group-enabled:hover {
+	background-color: #27301f !important;
+	border-left-color: #22271e !important;
+}
+
+.night .list-group-disabled {
+	background-color: #60301a;
+	border-left-color: #4d3023 !important;
+}
+
+.night .list-group-disabled:hover {
+	background-color: #4d3023 !important;
+	border-left-color: #443027 !important;
 }
