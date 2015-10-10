@@ -28,11 +28,12 @@ require 'header.php';
 			<div class="panel-body">
 				<section class="release-notes">
 					<div class="container">
-						<p class="meta"><span class="release-version">1.2 Preview 4</span></p><h2>Cornflower Blue Preview 4</h2>
+						<p class="meta"><span class="release-version">1.2 Preview 5</span></p><h2>Cornflower Blue Preview 4</h2>
 						<ul class="changes">
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>Mark topics as solved</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now set any color as forum colors</li>
 							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>New tools to clean up notifications</li>
+							<li><div class="change-label-container"><em class="change-label change-new">New</em></div>You can now give your forums their own icon</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Support for non-Latin characters</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Improvements for non-Javascript usage</li>
 							<li><div class="change-label-container"><em class="change-label change-system">System</em></div>Some parts of the core have been rewritten</li>
