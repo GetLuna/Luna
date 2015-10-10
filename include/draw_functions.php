@@ -380,8 +380,12 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			$topics_label = _n('topic', 'topics', $cur_forum['num_topics'], 'luna');
 			$posts_label = _n('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
-			if ($id == $cur_forum['fid'])
+			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
+				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
+			} else {
+				$item_style = '';
+			}
 
 			// If there is a last_post/last_poster
 			if ($cur_forum['last_post'] != '') {
@@ -459,8 +463,12 @@ function draw_subforum_list($object_name = 'forum.php') {
 			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
 			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
-			if ($id == $cur_forum['fid'])
+			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
+				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
+			} else {
+				$item_style = '';
+			}
 		
 			require get_view_path($object_name);
 		}
