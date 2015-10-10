@@ -8,7 +8,7 @@ if (!defined('FORUM'))
 </div>
 <div class="jumbotron">
 	<div class="container">
-		<h2 class="forum-title"><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right naviton"><?php echo $paging_links ?><?php echo $post_link ?></span>
+		<h2 class="forum-title"><?php echo $faicon.luna_htmlspecialchars($cur_forum['forum_name']) ?></h2><span class="pull-right naviton"><?php echo $paging_links ?><?php echo $post_link ?></span>
 		<div class="forum-desc"><?php echo $cur_forum['forum_desc'] ?></div>
 	</div>
 </div>
