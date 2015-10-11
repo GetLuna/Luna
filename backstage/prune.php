@@ -227,7 +227,7 @@ require 'header.php';
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Days old', 'luna') ?><span class="help-block"><?php _e('The number of days old a thread must be to be pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
+						<input type="number" class="form-control" name="req_prune_days" maxlength="3" tabindex="5" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -298,13 +298,13 @@ require 'header.php';
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Minimum days since registration/last login', 'luna') ?><span class="help-block"><?php _e('The minimum amount of days since event specified above', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="days" value="28" tabindex="1" />
+						<input type="number" class="form-control" name="days" value="28" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Maximum number of comments', 'luna') ?><span class="help-block"><?php _e('How many comments do you require before an users isn\'t pruned', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="posts" value="1"  tabindex="1" />
+						<input type="number" class="form-control" name="posts" value="1"  tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">

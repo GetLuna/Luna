@@ -281,7 +281,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Visit timeout', 'luna') ?><span class="help-block"><?php _e('Time before a visit ends', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
+							<input type="number" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
 							<span class="input-group-addon"><?php _e('seconds', 'luna') ?></span>
 						</div>
 					</div>
@@ -291,7 +291,7 @@ if (isset($_GET['saved']))
 </label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
+							<input type="number" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
 							<span class="input-group-addon"><?php _e('seconds', 'luna') ?></span>
 						</div>
 					</div>
@@ -426,7 +426,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Max width', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
+							<input type="number" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
 							<span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
 						</div>
 					</div>
@@ -435,7 +435,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Max height', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
+							<input type="number" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
 							<span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
 						</div>
 					</div>
@@ -444,7 +444,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Max size', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
+							<input type="number" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
 							<span class="input-group-addon"><?php _e('bytes', 'luna') ?></span>
 						</div>
 					</div>
