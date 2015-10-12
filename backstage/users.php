@@ -692,7 +692,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
+	$page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
