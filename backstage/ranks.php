@@ -108,7 +108,7 @@ if ($luna_config['o_ranks'] == 0) {
 								<td><input type="text" class="form-control" name="new_rank" placeholder="<?php _e('Rank title', 'luna') ?>" maxlength="50" tabindex="1" /></td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control" name="new_min_posts" placeholder="<?php _e('Minimum comments', 'luna') ?>" maxlength="7" tabindex="2" /></td>
+								<td><input type="number" class="form-control" name="new_min_posts" placeholder="<?php _e('Minimum comments', 'luna') ?>" maxlength="7" tabindex="2" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -146,7 +146,7 @@ if ($db->num_rows($result)) {
 									<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][rank]" value="<?php echo luna_htmlspecialchars($cur_rank['rank']) ?>" maxlength="50" />
 								</td>
 								<td>
-									<input type="text" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_posts]" value="<?php echo $cur_rank['min_posts'] ?>" maxlength="7" />
+									<input type="number" class="form-control" name="rank[<?php echo $cur_rank['id'] ?>][min_posts]" value="<?php echo $cur_rank['min_posts'] ?>" maxlength="7" />
 								</td>
 								<td>
 									<button class="btn btn-danger" type="submit" name="remove[<?php echo $cur_rank['id'] ?>]"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></button>

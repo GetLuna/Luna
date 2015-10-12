@@ -692,7 +692,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
+	$page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
@@ -861,27 +861,27 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				</tr>
 				<tr>
 					<th><?php _e('Number of comments less than', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
+					<td><input type="number" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
 					<th><?php _e('Number of comments greater than', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
+					<td><input type="number" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last comment is before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_post_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
+					<td><input type="date" class="form-control" name="last_post_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
 					<th><?php _e('Last comment is after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_post_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
+					<td><input type="date" class="form-control" name="last_post_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last visit is before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_visit_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="18" /></td>
+					<td><input type="date" class="form-control" name="last_visit_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="18" /></td>
 					<th><?php _e('Last visit is after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_visit_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="19" /></td>
+					<td><input type="date" class="form-control" name="last_visit_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="19" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Registered before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="registered_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="20" /></td>
+					<td><input type="date" class="form-control" name="registered_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="20" /></td>
 					<th><?php _e('Registered after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="registered_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="21" /></td>
+					<td><input type="date" class="form-control" name="registered_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="21" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Order by', 'luna') ?></th>

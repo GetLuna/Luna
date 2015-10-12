@@ -618,7 +618,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-					<table class="table table-forums">
+					<table class="table table-hover table-forums">
 						<tbody>
 							<tr>
 								<th colspan="3" class="active">
@@ -632,9 +632,9 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 ?>
 							<tr>
-								<td class="col-xs-4"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e('Edit', 'luna') ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></a></div></td>
-								<td class="col-xs-4"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-								<td class="col-xs-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+								<td class="col-xs-6 col-sm-4"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e('Edit', 'luna') ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></a></div></td>
+								<td class="col-xs-4 col-sm-6"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+								<td class="col-xs-2 col-sm-2"><input type="number" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 							</tr>
 <?php
 
@@ -656,8 +656,8 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 					<table class="table">
 						<thead>
 							<tr>
-								<th class="col-xs-5"><?php _e('Name', 'luna') ?></th>
-								<th class="col-xs-7"><?php _e('Position', 'luna') ?></th>
+								<th class="col-xs-8"><?php _e('Name', 'luna') ?></th>
+								<th class="col-xs-4"><?php _e('Position', 'luna') ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -668,7 +668,7 @@ foreach ($cat_list as $cur_cat) {
 ?>
 							<tr>
 								<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo luna_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
-								<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
+								<td><input type="number" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
 							</tr>
 <?php
 

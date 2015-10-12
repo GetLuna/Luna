@@ -194,6 +194,14 @@ label .help-block {
 		padding-right: 0;
 		padding-left: 0;
 	}
+	
+	.row {
+		margin-right: 0;
+	}
+
+	.row .col-xs-1, .row .col-sm-1, .row .col-md-1, .row .col-lg-1, .row .col-xs-2, .row .col-sm-2, .row .col-md-2, .row .col-lg-2, .row .col-xs-3, .row .col-sm-3, .row .col-md-3, .row .col-lg-3, .row .col-xs-4, .row .col-sm-4, .row .col-md-4, .row .col-lg-4, .row .col-xs-5, .row .col-sm-5, .row .col-md-5, .row .col-lg-5, .row .col-xs-6, .row .col-sm-6, .row .col-md-6, .row .col-lg-6, .row .col-xs-7, .row .col-sm-7, .row .col-md-7, .row .col-lg-7, .row .col-xs-8, .row .col-sm-8, .row .col-md-8, .row .col-lg-8, .row .col-xs-9, .row .col-sm-9, .row .col-md-9, .row .col-lg-9, .row .col-xs-10, .row .col-sm-10, .row .col-md-10, .row .col-lg-10, .row .col-xs-11, .row .col-sm-11, .row .col-md-11, .row .col-lg-11, .row .col-xs-12, .row .col-sm-12, .row .col-md-12, .row .col-lg-12 {
+		padding-right: 0 !important;
+	}
 }
 
 @media all and (max-width:767px) {

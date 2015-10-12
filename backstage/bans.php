@@ -441,9 +441,9 @@ elseif (isset($_GET['find_ban'])) {
 				</tr>
 				<tr>
 					<th><?php _e('Expire after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
+					<td><input type="date" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
 					<th><?php _e('Expire before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
+					<td><input type="date" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Order by', 'luna') ?></th>

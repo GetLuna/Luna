@@ -131,13 +131,13 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Maximum signature length', 'luna') ?><span class="help-block"><?php _e('Maximum amount of characters a signature can have', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['p_sig_length'] ?>" />
+						<input type="number" class="form-control" name="form[sig_length]" maxlength="5" value="<?php echo $luna_config['p_sig_length'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Maximum signature lines', 'luna') ?><span class="help-block"><?php _e('Maximum amount of lines a signature can have', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['p_sig_lines'] ?>" />
+						<input type="number" class="form-control" name="form[sig_lines]" maxlength="3" value="<?php echo $luna_config['p_sig_lines'] ?>" />
 					</div>
 				</div>
 			</fieldset>
