@@ -6,6 +6,12 @@ if (!defined('FORUM'))
 
 ?>
 <div class="row topicview">
+	<div class="col-sm-12 thread-title">
+		<div class="jumbotron thread-jumbotron">
+			<span class="pull-right"><?php echo $paging_links ?></span>
+			<h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
+		</div>
+	</div>
 	<div class="col-sm-3">
 		<div class="list-group list-group-forum list-group-manage">
 			<a class="list-group-item" href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><span class="fa fa-fw fa-chevron-left"></span> <?php echo luna_htmlspecialchars($cur_topic['forum_name']) ?></a>
@@ -14,7 +20,7 @@ if (!defined('FORUM'))
 		<hr />
 		<div class="list-group list-group-forum">
 			<?php if ($cur_topic['is_subscribed']) { ?>
-				<a class="list-group-item" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-star-o"></span> <?php _e('Unsubscribe', 'luna') ?></a>
+				<a class="list-group-item list-group-enabled" href="misc.php?action=unsubscribe&amp;tid=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-star-o"></span> <?php _e('Unsubscribe', 'luna') ?></a>
 			<?php } else { ?>
 				<a class="list-group-item" href="misc.php?action=subscribe&amp;tid=<?php echo $id ?><?php echo $token_url ?>"><span class="fa fa-fw fa-star"></span> <?php _e('Subscribe', 'luna') ?></a>
 			<?php } ?>
@@ -43,10 +49,6 @@ if (!defined('FORUM'))
 		<?php endif; ?>
 	</div>
 	<div class="col-sm-9">
-		<div class="jumbotron thread-jumbotron">
-			<span class="pull-right"><?php echo $paging_links ?></span>
-			<h2><?php echo luna_htmlspecialchars($cur_topic['subject']) ?></h2>
-		</div>
 		<?php draw_comment_list(); ?>
 		<?php if ($quickpost): ?>
 			<form method="post" action="post.php?tid=<?php echo $id ?>" onsubmit="window.onbeforeunload=null;this.submit.disabled=true;if(process_form(this)){return true;}else{this.submit.disabled=false;return false;}">
@@ -61,6 +63,5 @@ if (!defined('FORUM'))
 				<?php draw_editor('10'); ?>
 			</form>
 		<?php endif; ?>
-		<div class="pull-right"><?php echo $paging_links ?></div>
 	</div>
 </div>

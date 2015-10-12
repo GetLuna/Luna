@@ -358,13 +358,13 @@ if (count($languages) > 1) {
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?></label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
+							<input type="number" class="form-control" name="form[disp_topics]" value="<?php echo $user['disp_topics'] ?>" maxlength="3" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?></label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" maxlength="3" />
+							<input type="number" class="form-control" name="form[disp_posts]" value="<?php echo $user['disp_posts'] ?>" maxlength="3" />
 						</div>
 					</div>
 				</fieldset>
@@ -540,7 +540,7 @@ if (count($languages) > 1) {
 						<div class="form-group">
 							<label class="col-sm-3 control-label"><?php _e('Comments', 'luna') ?></label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" name="num_posts" value="<?php echo $user['num_posts'] ?>" maxlength="8" />
+								<input type="number" class="form-control" name="num_posts" value="<?php echo $user['num_posts'] ?>" maxlength="8" />
 							</div>
 						</div>
 					<?php endif; if ($luna_user['is_admmod']): ?>

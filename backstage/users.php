@@ -531,7 +531,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 <form id="bans2" class="form-horizontal" name="confirm_ban_users" method="post" action="users.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><input class="btn btn-danger" type="submit" name="ban_users_comply" value="<?php _e('Ban', 'luna') ?>" tabindex="3" /></span></h3>
+			<h3 class="panel-title"><?php _e('Ban users', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="ban_users_comply" tabindex="3"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="users" value="<?php echo implode(',', $user_ids) ?>" />
@@ -692,7 +692,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	$page_head = array('js' => '<script type="text/javascript" src="common.js"></script>');
+	$page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
 	define('FORUM_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
@@ -792,9 +792,9 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	load_admin_nav('users', 'users');
 
 	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
+		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 	if (isset($_GET['deleted']))
-		echo '<div class="alert alert-danger"><h4>'.__('The user has been deleted.', 'luna').'</h4></div>';
+		echo '<div class="alert alert-danger">'.__('The user has been deleted.', 'luna').'</div>';
 ?>
 <form id="find_user" method="get" action="users.php">
 	<div class="panel panel-default">
@@ -861,27 +861,27 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 				</tr>
 				<tr>
 					<th><?php _e('Number of comments less than', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
+					<td><input type="number" class="form-control" name="posts_less" maxlength="8" tabindex="14" /></td>
 					<th><?php _e('Number of comments greater than', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
+					<td><input type="number" class="form-control" name="posts_greater" maxlength="8" tabindex="15" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last comment is before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_post_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
+					<td><input type="date" class="form-control" name="last_post_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="16" /></td>
 					<th><?php _e('Last comment is after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_post_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
+					<td><input type="date" class="form-control" name="last_post_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="17" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Last visit is before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_visit_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="18" /></td>
+					<td><input type="date" class="form-control" name="last_visit_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="18" /></td>
 					<th><?php _e('Last visit is after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="last_visit_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="19" /></td>
+					<td><input type="date" class="form-control" name="last_visit_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="19" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Registered before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="registered_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="20" /></td>
+					<td><input type="date" class="form-control" name="registered_before" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="20" /></td>
 					<th><?php _e('Registered after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="registered_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="21" /></td>
+					<td><input type="date" class="form-control" name="registered_after" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" maxlength="19" tabindex="21" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Order by', 'luna') ?></th>

@@ -90,12 +90,12 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 <form class="form-horizontal" id="bans2" method="post" action="bans.php">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Supplement ban with IP and email', 'luna') ?></h3>
+			<h3 class="panel-title"><?php _e('Ban range', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<input type="hidden" name="mode" value="<?php echo $mode ?>" />
-	<?php if ($mode == 'edit'): ?>				<input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" />
-	<?php endif; ?>				<fieldset>
+			<?php if ($mode == 'edit'): ?><input type="hidden" name="ban_id" value="<?php echo $ban_id ?>" /><?php endif; ?>
+			<fieldset>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Username', 'luna') ?><span class="help-block"><?php _e('The username to ban', 'luna') ?></span></label>
 					<div class="col-sm-9">
@@ -103,9 +103,10 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('IP address/IP-ranges', 'luna') ?><span class="help-block"><?php _e('The IP you wish to ban, separate addresses with spaces', 'luna') ?><?php if ($ban_user != '' && isset($user_id)) printf(' '.__('Click %s to see IP statistics for this user.', 'luna'), '<a href="users.php?ip_stats='.$user_id.'">'.__('here', 'luna').'</a>') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('IP address/IP-ranges', 'luna') ?><span class="help-block"><?php _e('The IP you wish to ban, separate addresses with spaces', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="ban_ip" maxlength="255" value="<?php if (isset($ban_ip)) echo luna_htmlspecialchars($ban_ip); ?>" tabindex="2" />
+						<?php if ($ban_user != '' && isset($user_id)) printf('<span class="help-block">'.__('Click %s to see IP statistics for this user.', 'luna').'</span>', '<a href="users.php?ip_stats='.$user_id.'">'.__('here', 'luna').'</a>') ?>
 					</div>
 				</div>
 				<div class="form-group">
@@ -119,7 +120,7 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Ban message and expiry', 'luna') ?></h3>
+			<h3 class="panel-title"><?php _e('Ban details', 'luna') ?><span class="pull-right"><button class="btn btn-danger" type="submit" name="add_edit_ban" tabindex="6"><span class="fa fa-fw fa-ban"></span> <?php _e('Ban', 'luna') ?></button></span></h3>
 		</div>
 		<div class="panel-body">
 			<fieldset>
@@ -137,9 +138,6 @@ if (isset($_REQUEST['add_ban']) || isset($_GET['edit_ban'])) {
 				</div>
 			</fieldset>
 		</div>
-	</div>
-	<div class="alert alert-danger">
-		<input class="btn btn-danger" type="submit" name="add_edit_ban" value="<?php _e('Ban', 'luna') ?>" tabindex="6" />
 	</div>
 </form>
 <?php
@@ -443,9 +441,9 @@ elseif (isset($_GET['find_ban'])) {
 				</tr>
 				<tr>
 					<th><?php _e('Expire after', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
+					<td><input type="date" class="form-control" name="expire_after" maxlength="10" tabindex="8" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
 					<th><?php _e('Expire before', 'luna') ?></th>
-					<td><input type="text" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
+					<td><input type="date" class="form-control" name="expire_before" maxlength="10" tabindex="9" placeholder="<?php _e('(yyyy-mm-dd)', 'luna') ?>" /></td>
 				</tr>
 				<tr>
 					<th><?php _e('Order by', 'luna') ?></th>

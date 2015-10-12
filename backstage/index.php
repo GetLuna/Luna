@@ -85,7 +85,7 @@ require 'header.php';
 	load_admin_nav('backstage', 'index');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
+	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 
 if(substr(sprintf('%o', fileperms(FORUM_ROOT.'config.php')), -4) > '644'): ?>
 <div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>

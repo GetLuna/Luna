@@ -43,6 +43,10 @@ msgstr ""
 msgid "Theme settings"
 msgstr ""
 
+msgid "Meta"
+msgstr ""
+
+msgid "Threads in this forum can be marked as solved."
 msgstr ""
 
 msgid "Allow users to change the night mode settings."
@@ -159,7 +163,7 @@ msgstr ""
 msgid "Bans"
 msgstr ""
 
-msgid "Supplement ban with IP and email"
+msgid "Ban range"
 msgstr ""
 
 msgid "Username"
@@ -186,7 +190,7 @@ msgstr ""
 msgid "The email or email domain you wish to ban"
 msgstr ""
 
-msgid "Ban message and expiry"
+msgid "Ban details"
 msgstr ""
 
 msgid "Ban message"
@@ -1179,7 +1183,7 @@ msgstr ""
 msgrid "Go to the first new comment in this thread."
 msgstr ""
 
-msgrid "New comments"
+msgrid "New"
 msgstr ""
 
 msgrid "Forum is empty."

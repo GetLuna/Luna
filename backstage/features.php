@@ -67,7 +67,7 @@ require 'header.php';
 load_admin_nav('settings', 'features');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
+	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
 <form class="form-horizontal" method="post" action="features.php">
 	<div class="panel panel-default">
@@ -164,7 +164,7 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Receivers', 'luna') ?><span class="help-block"><?php _e('The number of receivers an Inbox message can have.', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[pms_max_receiver]" maxlength="5" value="<?php echo $luna_config['o_pms_max_receiver'] ?>" />
+						<input type="number" class="form-control" name="form[pms_max_receiver]" maxlength="5" value="<?php echo $luna_config['o_pms_max_receiver'] ?>" />
 					</div>
 				</div>
 			</fieldset>
@@ -230,26 +230,26 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Indent size', 'luna') ?><span class="help-block"><?php _e('Amount of spaces that represent a tab', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
+						<input type="number" class="form-control" name="form[indent_num_spaces]" maxlength="3" value="<?php echo $luna_config['o_indent_num_spaces'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Maximum [quote] depth', 'luna') ?><span class="help-block"><?php _e('Maximum [quote] can be used in [quote]', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
+						<input type="number" class="form-control" name="form[quote_depth]" maxlength="3" value="<?php echo $luna_config['o_quote_depth'] ?>" />
 					</div>
 				</div>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Video height', 'luna') ?><span class="help-block"><?php _e('Height of an embedded video', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[video_width]" maxlength="4" value="<?php echo $luna_config['o_video_width'] ?>" />
+						<input type="number" class="form-control" name="form[video_width]" maxlength="4" value="<?php echo $luna_config['o_video_width'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Video width', 'luna') ?><span class="help-block"><?php _e('Width of an embedded video', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[video_height]" maxlength="4" value="<?php echo $luna_config['o_video_height'] ?>" />
+						<input type="number" class="form-control" name="form[video_height]" maxlength="4" value="<?php echo $luna_config['o_video_height'] ?>" />
 					</div>
 				</div>
 			</fieldset>

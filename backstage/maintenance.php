@@ -161,9 +161,9 @@ require 'header.php';
 	load_admin_nav('maintenance', 'maintenance');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>';
+	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 if (isset($_GET['cache_cleared']))
-	echo '<div class="alert alert-success"><h4>'.__('The cache files have been removed.', 'luna').'</h4></div>';
+	echo '<div class="alert alert-success">'.__('The cache files have been removed.', 'luna').'</div>';
 ?>
 <form class="form-horizontal" method="post" action="maintenance.php">
 	<div class="panel panel-default">
@@ -214,13 +214,13 @@ if (isset($_GET['cache_cleared']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Comments per cycle', 'luna') ?><span class="help-block"><?php _e('Number of comments per pageview, this prevents a timeout, 300 recommended', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
+						<input type="number" class="form-control" name="i_per_page" maxlength="7" value="300" tabindex="1" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Starting comment ID', 'luna') ?><span class="help-block"><?php _e('The ID where to start, default is first ID found in database', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
+						<input type="number" class="form-control" name="i_start_at" maxlength="7" value="<?php echo (isset($first_id)) ? $first_id : 0 ?>" tabindex="2" />
 					</div>
 				</div>
 				<div class="form-group">

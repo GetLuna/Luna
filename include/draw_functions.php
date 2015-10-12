@@ -210,7 +210,7 @@ window.onbeforeunload = function() {
 }
 
 function draw_topics_list() {
-	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics;
+	global $luna_user, $luna_config, $db, $sort_by, $start_from, $id, $db_type, $tracked_topics, $cur_forum;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
@@ -274,7 +274,7 @@ function draw_topics_list() {
 				$status_text[] = '<span class="label label-warning"><span class="fa fa-fw fa-thumb-tack"></span></span>';
 			}
 	
-			if (isset($cur_topic['answer'])) {
+			if (isset($cur_topic['answer']) && $cur_forum['solved'] == 1) {
 				$item_status .= ' solved-item';
 				$status_text[] = '<span class="label label-success"><span class="fa fa-fw fa-check"></span></span>';
 			}
@@ -300,7 +300,7 @@ function draw_topics_list() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 
@@ -332,7 +332,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 	global $db, $luna_config, $luna_user, $id, $new_topics;
 	
 	// Print the categories and forums
-	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 	$cur_category = 0;
 	$cat_count = 0;
@@ -363,9 +363,14 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			// Are there new comments since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New comments', 'luna').'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
+			
+			if ($cur_forum['icon'] != NULL)
+				$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+			else
+				$faicon = '';
 		
 			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		
@@ -375,8 +380,12 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 			$topics_label = _n('topic', 'topics', $cur_forum['num_topics'], 'luna');
 			$posts_label = _n('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
-			if ($id == $cur_forum['fid'])
+			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
+				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
+			} else {
+				$item_style = '';
+			}
 
 			// If there is a last_post/last_poster
 			if ($cur_forum['last_post'] != '') {
@@ -415,7 +424,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 		$subforum_parent_id = $cur_parent['parent_id'];
 	
 	// Print the categories and forums
-	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.parent_id='.$subforum_parent_id.' ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.parent_id='.$subforum_parent_id.' ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 	$cur_category = 0;
 	$cat_count = 0;
@@ -437,9 +446,14 @@ function draw_subforum_list($object_name = 'forum.php') {
 			// Are there new comments since our last visit?
 			if (isset($new_topics[$cur_forum['fid']])) {
 				$item_status .= ' new-item';
-				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New comments', 'luna').'</a> ]</span>';
+				$forum_field_new = '<span class="newtext">[ <a href="search.php?action=show_new&amp;fid='.$cur_forum['fid'].'">'.__('New', 'luna').'</a> ]</span>';
 				$icon_type = 'icon icon-new';
 			}
+			
+			if ($cur_forum['icon'] != NULL)
+				$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+			else
+				$faicon = '';
 		
 			$forum_field = '<a href="viewforum.php?id='.$cur_forum['fid'].'">'.luna_htmlspecialchars($cur_forum['forum_name']).'</a>'.(!empty($forum_field_new) ? ' '.$forum_field_new : '');
 		
@@ -449,8 +463,12 @@ function draw_subforum_list($object_name = 'forum.php') {
 			$topics_label = __('topic', 'topics', $cur_forum['num_topics'], 'luna');
 			$posts_label = __('post', 'posts', $cur_forum['num_posts'], 'luna');
 			
-			if ($id == $cur_forum['fid'])
+			if ($id == $cur_forum['fid']) {
 				$item_status .= ' active';
+				$item_style = ' style="background-color: '.$cur_forum['color'].'; border-color: '.$cur_forum['color'].';"';
+			} else {
+				$item_style = '';
+			}
 		
 			require get_view_path($object_name);
 		}
@@ -523,10 +541,14 @@ function draw_index_topics_list() {
 					if ($cur_topic['forum_id'] == $cur_forum['id']) {
 						$forum_name = luna_htmlspecialchars($cur_forum['forum_name']);
 						$forum_color = $cur_forum['color'];
+						if ($cur_forum['icon'] != NULL)
+							$faicon = '<span class="fa fa-fw fa-'.$cur_forum['icon'].'"></span> ';
+						else
+							$faicon = '';
 					}
 				}
 				
-				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_topic['forum_id'].'" style="background: '.$forum_color.';">'.$forum_name.'</a></span>';
+				$forum_name = '<span class="byuser">'.__('in', 'luna').' <a class="label label-default" href="viewforum.php?id='.$cur_topic['forum_id'].'" style="background: '.$forum_color.';">'.$faicon.$forum_name.'</a></span>';
 			} else {
 				$last_poster = '';
 				$topic_id = $cur_topic['moved_to'];
@@ -565,7 +587,7 @@ function draw_index_topics_list() {
 			if (!$luna_user['is_guest'] && $cur_topic['last_post'] > $luna_user['last_visit'] && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']) && (!isset($tracked_topics['forums'][$id]) || $tracked_topics['forums'][$id] < $cur_topic['last_post']) && is_null($cur_topic['moved_to'])) {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_topic['id'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 	
@@ -589,7 +611,7 @@ function draw_index_topics_list() {
 }
 
 function draw_comment_list() {
-	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic, $started_by;
+	global $db, $luna_config, $id, $post_ids, $is_admmod, $start_from, $post_count, $admin_ids, $luna_user, $cur_topic, $started_by, $cur_forum;
 
 	// Retrieve the comments (and their respective poster/online status)
 	$result = $db->query('SELECT u.email, u.title, u.url, u.location, u.signature, u.email_setting, u.num_posts, u.registered, u.admin_note, p.id, p.poster AS username, p.poster_id, p.poster_ip, p.poster_email, p.message, p.hide_smilies, p.posted, p.edited, p.edited_by, p.marked, p.soft, g.g_id, g.g_user_title, o.user_id AS is_online FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id INNER JOIN '.$db->prefix.'groups AS g ON g.g_id=u.group_id LEFT JOIN '.$db->prefix.'online AS o ON (o.user_id=u.id AND o.user_id!=1 AND o.idle=0) WHERE p.id IN ('.implode(',', $post_ids).') ORDER BY p.id', true) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
@@ -701,11 +723,13 @@ function draw_comment_list() {
 				if (($cur_topic['post_replies'] == 0 && $luna_user['g_post_replies'] == 1) || $cur_topic['post_replies'] == 1)
 					$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 
-				if ($luna_user['username'] == $started_by) {
-					if ($cur_post['id'] == $cur_topic['answer'])
-						$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
-					else
-						$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+				if ($cur_forum['solved'] == 1) {
+					if ($luna_user['username'] == $started_by) {
+						if ($cur_post['id'] == $cur_topic['answer'])
+							$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
+						else
+							$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+					}
 				}
 			}
 		} else {
@@ -724,10 +748,12 @@ function draw_comment_list() {
 			}
 			$post_actions[] = '<a href="post.php?tid='.$id.'&amp;qid='.$cur_post['id'].'">'.__('Quote', 'luna').'</a>';
 			
-			if ($cur_post['id'] == $cur_topic['answer'])
-				$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
-			else
-				$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+			if ($cur_forum['solved'] == 1) {
+				if ($cur_post['id'] == $cur_topic['answer'])
+					$post_actions[] = '<a href="misc.php?unanswer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Unsolved', 'luna').'</a>';
+				else
+					$post_actions[] = '<a href="misc.php?answer='.$cur_post['id'].'&amp;tid='.$id.'">'.__('Answer', 'luna').'</a>';
+			}
 		}
 	
 		// Perform the main parsing of the message (BBCode, smilies, censor words etc)
@@ -979,7 +1005,7 @@ function draw_search_results() {
 				$item_status .= ' new-item';
 				$icon_type = 'icon icon-new';
 				$subject = '<strong>'.$subject.'</strong>';
-				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New comments', 'luna').'</a> ]</span>';
+				$subject_new_posts = '<span class="newtext">[ <a href="viewtopic.php?id='.$cur_search['tid'].'&amp;action=new" title="'.__('Go to the first new comment in the thread.', 'luna').'">'.__('New', 'luna').'</a> ]</span>';
 			} else
 				$subject_new_posts = null;
 			

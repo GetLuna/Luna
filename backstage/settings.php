@@ -18,11 +18,11 @@ if (isset($_POST['form_sent'])) {
 	$form = array(
 		'board_title'			=> luna_trim($_POST['form']['board_title']),
 		'board_desc'			=> luna_trim($_POST['form']['board_desc']),
+		'default_lang'			=> luna_trim($_POST['form']['default_lang']),
 		'board_tags'			=> luna_trim($_POST['form']['board_tags']),
 		'base_url'				=> luna_trim($_POST['form']['base_url']),
 		'default_timezone'		=> floatval($_POST['form']['default_timezone']),
 		'default_dst'			=> isset($_POST['form']['default_dst']) ? '1' : '0',
-		'default_lang'			=> luna_trim($_POST['form']['default_lang']),
 		'time_format'			=> luna_trim($_POST['form']['time_format']),
 		'date_format'			=> luna_trim($_POST['form']['date_format']),
 		'timeout_visit'			=> (intval($_POST['form']['timeout_visit']) > 0) ? intval($_POST['form']['timeout_visit']) : 1,
@@ -130,13 +130,16 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/settings.php?saved=true');
 }
 
+$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
+$timestamp = time() + $diff;
+
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Global settings', 'luna'));
 define('FORUM_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('settings', 'settings');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
+	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
 <form class="form-horizontal" method="post" action="settings.php">
 	<div class="panel panel-default">
@@ -156,18 +159,6 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Board description', 'luna') ?><span class="help-block"><?php _e('What\'s this board about?', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[board_desc]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_desc']) ?>" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Board tags', 'luna') ?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna') ?></span></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?></label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -192,12 +183,28 @@ if (isset($_GET['saved']))
 			</fieldset>
 		</div>
 	</div>
-<?php
-
-	$diff = ($luna_user['timezone'] + $luna_user['dst']) * 3600;
-	$timestamp = time() + $diff;
-
-?>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title"><?php _e('Meta', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
+		</div>
+		<div class="panel-body">
+			<input type="hidden" name="form_sent" value="1" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Board tags', 'luna') ?><span class="help-block"><?php _e('Add some words that describe your board, separated by a comma', 'luna') ?></span></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[board_tags]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_board_tags']) ?>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Board URL', 'luna') ?></label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="form[base_url]" maxlength="100" value="<?php echo luna_htmlspecialchars($luna_config['o_base_url']) ?>" />
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title"><?php _e('Time and timeouts', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
@@ -274,7 +281,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Visit timeout', 'luna') ?><span class="help-block"><?php _e('Time before a visit ends', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
+							<input type="number" class="form-control" name="form[timeout_visit]" maxlength="5" value="<?php echo $luna_config['o_timeout_visit'] ?>" />
 							<span class="input-group-addon"><?php _e('seconds', 'luna') ?></span>
 						</div>
 					</div>
@@ -284,7 +291,7 @@ if (isset($_GET['saved']))
 </label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
+							<input type="number" class="form-control" name="form[timeout_online]" maxlength="5" value="<?php echo $luna_config['o_timeout_online'] ?>" />
 							<span class="input-group-addon"><?php _e('seconds', 'luna') ?></span>
 						</div>
 					</div>
@@ -419,7 +426,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Max width', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
+							<input type="number" class="form-control" name="form[avatars_width]" maxlength="5" value="<?php echo $luna_config['o_avatars_width'] ?>" />
 							<span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
 						</div>
 					</div>
@@ -428,7 +435,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Max height', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
+							<input type="number" class="form-control" name="form[avatars_height]" maxlength="5" value="<?php echo $luna_config['o_avatars_height'] ?>" />
 							<span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
 						</div>
 					</div>
@@ -437,7 +444,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Max size', 'luna') ?></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
+							<input type="number" class="form-control" name="form[avatars_size]" maxlength="6" value="<?php echo $luna_config['o_avatars_size'] ?>" />
 							<span class="input-group-addon"><?php _e('bytes', 'luna') ?></span>
 						</div>
 					</div>

@@ -75,7 +75,7 @@ require 'header.php';
 load_admin_nav('settings', 'appearance');
 
 if (isset($_GET['saved']))
-	echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
+	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
 <form class="form-horizontal" method="post" action="appearance.php">
 	<input type="hidden" name="form_sent" value="1" />
@@ -165,7 +165,7 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Smilie size', 'luna') ?><span class="help-block"><?php _e('The emoticons and emojis are shown, don\'t go above 29 pixels when using normal emoticons', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<div class="input-group">
-							<input type="text" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
+							<input type="number" class="form-control" name="form[emoji_size]" maxlength="2" value="<?php echo $luna_config['o_emoji_size'] ?>" />
 							<span class="input-group-addon"><?php _e('pixels', 'luna') ?></span>
 						</div>
 					</div>
@@ -174,19 +174,19 @@ if (isset($_GET['saved']))
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Thread review', 'luna') ?><span class="help-block"><?php _e('Maximum amount of comments showed when commenting', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $luna_config['o_topic_review'] ?>" />
+						<input type="number" class="form-control" name="form[topic_review]" maxlength="2" value="<?php echo $luna_config['o_topic_review'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?><span class="help-block"><?php _e('Default amount of Threads per page', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Threads per page', 'luna') ?><span class="help-block"><?php _e('Default amount of threads per page', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $luna_config['o_disp_topics_default'] ?>" />
+						<input type="number" class="form-control" name="form[disp_topics_default]" maxlength="2" value="<?php echo $luna_config['o_disp_topics_default'] ?>" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?><span class="help-block"><?php _e('Default amount of Comments per page', 'luna') ?></span></label>
+					<label class="col-sm-3 control-label"><?php _e('Comments per page', 'luna') ?><span class="help-block"><?php _e('Default amount of comments per page', 'luna') ?></span></label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $luna_config['o_disp_posts_default'] ?>" />
+						<input type="number" class="form-control" name="form[disp_posts_default]" maxlength="3" value="<?php echo $luna_config['o_disp_posts_default'] ?>" />
 					</div>
 				</div>
 			</fieldset>

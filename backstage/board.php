@@ -137,7 +137,9 @@ elseif (isset($_POST['update_positions'])) {
 		$parent_id = intval($_POST['parent_id']);
 		$cat_id = intval($_POST['cat_id']);
 		$sort_by = intval($_POST['sort_by']);
+		$icon = luna_trim($_POST['icon']);
 		$color = luna_trim($_POST['color']);
+		$solved = isset($_POST['solved']) ? '1' : '0';
 
 		if ($forum_name == '')
 			message_backstage(__('You must enter a name', 'luna'));
@@ -147,7 +149,7 @@ elseif (isset($_POST['update_positions'])) {
 
 		$forum_desc = ($forum_desc != '') ? '\''.$db->escape($forum_desc).'\'' : 'NULL';
 
-		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', color=\''.$color.'\' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', parent_id='.$parent_id.', sort_by='.$sort_by.', cat_id='.$cat_id.', icon=\''.$db->escape($icon).'\', color=\''.$color.'\', solved='.$solved.' WHERE id='.$forum_id) or error('Unable to update forum', __FILE__, __LINE__, $db->error());
 		
 		// Now let's deal with the permissions
 		if (isset($_POST['read_forum_old'])) {
@@ -194,7 +196,7 @@ elseif (isset($_POST['update_positions'])) {
 	}
 
 	// Fetch forum info
-	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, color FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT id, forum_name, forum_desc, parent_id, num_topics, sort_by, cat_id, icon, color, solved FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 	if (!$db->num_rows($result))
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -292,9 +294,29 @@ elseif (isset($_POST['update_positions'])) {
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Icon', 'luna') ?><span class="help-block"><?php printf(__('The Font Awesome icon you want to show next to the title, for a full overview, see the %s', 'luna'), '<a href="http://fortawesome.github.io/Font-Awesome/icons/">'.__('Font Awesome icon guide', 'luna').'</a>') ?></span></label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<span class="input-group-addon">fa fa-fw fa-</span>
+							<input type="text" class="form-control" name="icon" maxlength="50" value="<?php echo luna_htmlspecialchars($cur_forum['icon']) ?>" tabindex="1" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php _e('Forum color', 'luna') ?></label>
 					<div class="col-sm-9">
 						<input id="color" name="color" value="<?php echo $cur_forum['color'] ?>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"><?php _e('Solved', 'luna') ?></label>
+					<div class="col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="solved" value="1" <?php if ($cur_forum['solved'] == '1') echo ' checked' ?> />
+								<?php _e('Threads in this forum can be marked as solved.', 'luna') ?>
+							</label>
+						</div>
 					</div>
 				</div>
 			</fieldset>
@@ -489,7 +511,7 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		load_admin_nav('content', 'board');
 	
 	if (isset($_GET['saved']))
-		echo '<div class="alert alert-success"><h4>'.__('Your settings have been saved.', 'luna').'</h4></div>'
+		echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>'
 ?>
 <div class="row">
 	<div class="col-lg-4">
@@ -596,7 +618,7 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 			echo "\t\t\t\t\t\t\t".'</tbody>'."\n\t\t\t\t\t\t\t".'</table>'."\n";
 
 ?>
-					<table class="table table-forums">
+					<table class="table table-hover table-forums">
 						<tbody>
 							<tr>
 								<th colspan="3" class="active">
@@ -610,9 +632,9 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 
 ?>
 							<tr>
-								<td class="col-xs-4"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e('Edit', 'luna') ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></a></div></td>
-								<td class="col-xs-4"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
-								<td class="col-xs-4"><input type="text" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
+								<td class="col-xs-6 col-sm-4"><div class="btn-group"><a class="btn btn-primary" href="board.php?edit_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-pencil-square-o"></span> <?php _e('Edit', 'luna') ?></a><a class="btn btn-danger" href="board.php?del_forum=<?php echo $cur_forum['fid'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-trash"></span> <?php _e('Remove', 'luna') ?></a></div></td>
+								<td class="col-xs-4 col-sm-6"><strong><?php echo luna_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+								<td class="col-xs-2 col-sm-2"><input type="number" class="form-control" name="position[<?php echo $cur_forum['fid'] ?>]" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $cur_index++ ?>" /></td>
 							</tr>
 <?php
 
@@ -634,8 +656,8 @@ while ($cur_forum = $db->fetch_assoc($result)) {
 					<table class="table">
 						<thead>
 							<tr>
-								<th class="col-xs-5"><?php _e('Name', 'luna') ?></th>
-								<th class="col-xs-7"><?php _e('Position', 'luna') ?></th>
+								<th class="col-xs-8"><?php _e('Name', 'luna') ?></th>
+								<th class="col-xs-4"><?php _e('Position', 'luna') ?></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -646,7 +668,7 @@ foreach ($cat_list as $cur_cat) {
 ?>
 							<tr>
 								<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][name]" value="<?php echo luna_htmlspecialchars($cur_cat['cat_name']) ?>" maxlength="80" /></td>
-								<td><input type="text" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
+								<td><input type="number" class="form-control" name="cat[<?php echo $cur_cat['id'] ?>][order]" value="<?php echo $cur_cat['disp_position'] ?>" maxlength="3" /></td>
 							</tr>
 <?php
 

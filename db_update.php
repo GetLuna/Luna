@@ -599,6 +599,8 @@ switch ($stage) {
 		
 		// Luna 1.2 upgrade support
 		$db->add_field('users', 'enforce_accent', 'TINYINT(1)', false, 0) or error('Unable to add enforce_accent field', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'solved', 'TINYINT(1)', false, 1) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
+		$db->add_field('forums', 'icon', 'VARCHAR(50)', TRUE, NULL) or error('Unable to add icon field', __FILE__, __LINE__, $db->error());
 
 		break;
 
