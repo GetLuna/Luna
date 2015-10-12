@@ -7,10 +7,10 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 // Tell common.php that we don't want output buffering
-define('FORUM_DISABLE_BUFFERING', 1);
+define('LUNA_DISABLE_BUFFERING', 1);
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -75,7 +75,7 @@ if ($action == 'rebuild') {
 
 	$query_str = '';
 
-	require FORUM_ROOT.'include/search_idx.php';
+	require LUNA_ROOT.'include/search_idx.php';
 
 	// Fetch posts to process this cycle
 	$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id >= '.$start_at.' ORDER BY p.id ASC LIMIT '.$per_page) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
@@ -141,13 +141,13 @@ if (isset($_POST['form_sent'])) {
 	if ($action == 'clear_cache') {
 		confirm_referrer('backstage/maintenance.php');
 	
-		delete_all(FORUM_ROOT.'cache');
+		delete_all(LUNA_ROOT.'cache');
 		redirect('backstage/maitenance.php?cache_cleared=true');
 	}
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -156,7 +156,7 @@ if (isset($_POST['form_sent'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('maintenance', 'maintenance');
 

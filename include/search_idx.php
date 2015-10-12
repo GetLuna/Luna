@@ -17,7 +17,7 @@ if (!defined('FORUM'))
 
 
 // Make a regex that will match CJK or Hangul characters
-define('FORUM_CJK_HANGUL_REGEX', '['.
+define('LUNA_CJK_HANGUL_REGEX', '['.
 	'\x{1100}-\x{11FF}'.		// Hangul Jamo							1100-11FF		(http://www.fileformat.info/info/unicode/block/hangul_jamo/index.htm)
 	'\x{3130}-\x{318F}'.		// Hangul Compatibility Jamo			3130-318F		(http://www.fileformat.info/info/unicode/block/hangul_compatibility_jamo/index.htm)
 	'\x{AC00}-\x{D7AF}'.		// Hangul Syllables						AC00-D7AF		(http://www.fileformat.info/info/unicode/block/hangul_syllables/index.htm)
@@ -84,15 +84,15 @@ function validate_search_word($word, $idx) {
 		return !$idx;
 
 	if (!isset($stopwords)) {
-		if (file_exists(FORUM_CACHE_DIR.'cache_stopwords.php'))
-			include FORUM_CACHE_DIR.'cache_stopwords.php';
+		if (file_exists(LUNA_CACHE_DIR.'cache_stopwords.php'))
+			include LUNA_CACHE_DIR.'cache_stopwords.php';
 
-		if (!defined('FORUM_STOPWORDS_LOADED')) {
-			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-				require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_STOPWORDS_LOADED')) {
+			if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+				require LUNA_ROOT.'include/cache.php';
 
 			generate_stopwords_cache();
-			require FORUM_CACHE_DIR.'cache_stopwords.php';
+			require LUNA_CACHE_DIR.'cache_stopwords.php';
 		}
 	}
 
@@ -109,7 +109,7 @@ function validate_search_word($word, $idx) {
 
 	// Check the word is within the min/max length
 	$num_chars = luna_strlen($word);
-	return $num_chars >= FORUM_SEARCH_MIN_WORD && $num_chars <= FORUM_SEARCH_MAX_WORD;
+	return $num_chars >= LUNA_SEARCH_MIN_WORD && $num_chars <= LUNA_SEARCH_MAX_WORD;
 }
 
 
@@ -125,7 +125,7 @@ function is_keyword($word) {
 // Check if a given word is CJK or Hangul.
 //
 function is_cjk($word) {
-	return preg_match('%^'.FORUM_CJK_HANGUL_REGEX.'+$%u', $word) ? true : false;
+	return preg_match('%^'.LUNA_CJK_HANGUL_REGEX.'+$%u', $word) ? true : false;
 }
 
 

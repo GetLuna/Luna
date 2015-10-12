@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -38,7 +38,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
 	$required_fields = array('req_title' => __('Group title', 'luna'));
 	$focus_element = array('groups2', 'req_title');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'groups');
 ?>
@@ -65,7 +65,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						<input type="text" class="form-control" name="user_title" maxlength="50" value="<?php echo luna_htmlspecialchars($group['g_user_title']) ?>" tabindex="2" />
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
+	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): if ($mode != 'edit' || $luna_config['o_default_user_group'] != $group['g_id']): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"> <?php echo __('Moderator privileges', 'luna') ?></label>
@@ -123,7 +123,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 	<?php endif; endif; ?>
-	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Show deleted content', 'luna') ?></label>
@@ -159,7 +159,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 	<?php endif; endif; ?>
-	<?php if ($group['g_id'] != FORUM_ADMIN): if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_ADMIN): if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Use Inbox', 'luna') ?></label>
@@ -225,7 +225,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						</div>
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Edit comment', 'luna') ?></label>
@@ -261,7 +261,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 					</div>
 				</div>
 	<?php endif;
-	if ($group['g_id'] != FORUM_GUEST): ?>
+	if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Set own user title', 'luna') ?></label>
@@ -298,7 +298,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						</div>
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<hr />
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Send e-mails', 'luna') ?></label>
@@ -331,7 +331,7 @@ if (isset($_POST['add_group']) || isset($_GET['edit_group'])) {
 						</div>
 					</div>
 				</div>
-	<?php if ($group['g_id'] != FORUM_GUEST): ?>
+	<?php if ($group['g_id'] != LUNA_GUEST): ?>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Email flood interval', 'luna') ?><span class="help-block"><?php echo __('Time users have to wait between emails', 'luna') ?></span></label>
 					<div class="col-sm-9">
@@ -370,7 +370,7 @@ elseif (isset($_POST['add_edit_group'])) {
 	$title = luna_trim($_POST['req_title']);
 	$user_title = luna_trim($_POST['user_title']);
 
-	if ($_POST['group_id'] != FORUM_ADMIN) {
+	if ($_POST['group_id'] != LUNA_ADMIN) {
 		$moderator = isset($_POST['moderator']) ? '1' : '0';
 		$mod_edit_users = $moderator == '1' && isset($_POST['mod_edit_users']) ? '1' : '0';
 		$mod_rename_users = $moderator == '1' && isset($_POST['mod_rename_users']) ? '1' : '0';
@@ -437,7 +437,7 @@ elseif (isset($_POST['set_default_group'])) {
 	$group_id = intval($_POST['default_group']);
 
 	// Make sure it's not the admin or guest groups
-	if ($group_id == FORUM_ADMIN || $group_id == FORUM_GUEST)
+	if ($group_id == LUNA_ADMIN || $group_id == LUNA_GUEST)
 		message_backstage(__('Bad request. The link you followed is incorrect, outdated or you\'re simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 	// Make sure it's not a moderator group
@@ -448,8 +448,8 @@ elseif (isset($_POST['set_default_group'])) {
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$group_id.' WHERE conf_name=\'o_default_user_group\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 
@@ -490,7 +490,7 @@ elseif (isset($_GET['del_group'])) {
 			$group_title = $db->result($result);
 
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-			define('FORUM_ACTIVE_PAGE', 'admin');
+			define('LUNA_ACTIVE_PAGE', 'admin');
 			require 'header.php';
 				load_admin_nav('users', 'groups');
 
@@ -518,7 +518,7 @@ elseif (isset($_GET['del_group'])) {
 	list($group_title, $group_members) = $db->fetch_row($result);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 
 ?>
@@ -534,10 +534,10 @@ elseif (isset($_GET['del_group'])) {
 					<select class="form-control" name="move_to_group">
 <?php
 
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' AND g_id!='.$group_id.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_group = $db->fetch_assoc($result)) {
-		if ($cur_group['g_id'] == FORUM_MEMBER) // Pre-select the pre-defined Members group
+		if ($cur_group['g_id'] == LUNA_MEMBER) // Pre-select the pre-defined Members group
 			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'" selected>'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
 		else
 			echo "\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";
@@ -559,7 +559,7 @@ elseif (isset($_GET['del_group'])) {
 } else {
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('User groups', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 		load_admin_nav('users', 'groups');
 
@@ -577,7 +577,7 @@ elseif (isset($_GET['del_group'])) {
 						<select class="form-control" id="base_group" name="base_group" tabindex="1">
 <?php
 
-$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_ADMIN.' AND g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_ADMIN.' AND g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result)) {
 	if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
@@ -603,7 +603,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 						<select class="form-control" id="default_group" name="default_group" tabindex="3">
 <?php
 
-$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.FORUM_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id>'.LUNA_GUEST.' AND g_moderator=0 ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 while ($cur_group = $db->fetch_assoc($result)) {
 	if ($cur_group['g_id'] == $luna_config['o_default_user_group'])
@@ -640,7 +640,7 @@ while ($cur_group = $db->fetch_assoc($result)) {
 						</td>
 						<td class="col-lg-10"><?php echo luna_htmlspecialchars($cur_group['g_title']) ?></td>
 						<td>
-							<?php if ($cur_group['g_id'] > FORUM_MEMBER) { ?>
+							<?php if ($cur_group['g_id'] > LUNA_MEMBER) { ?>
 								<a class="btn btn-danger" href="groups.php?del_group=<?php echo $cur_group['g_id'] ?>" tabindex="<?php echo $cur_index++ ?>"><span class="fa fa-fw fa-minus"></span> <?php echo __('Delete', 'luna') ?></a>
 							<?php } ?>
 						</td>

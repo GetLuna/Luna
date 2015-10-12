@@ -24,7 +24,7 @@ if (!empty($errors)) {
 <?php
 
 } elseif (isset($_POST['preview'])) {
-	require_once FORUM_ROOT.'include/parser.php';
+	require_once LUNA_ROOT.'include/parser.php';
 	$preview_message = parse_message($p_message);
 
 ?>

@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -21,8 +21,8 @@ if (isset($_GET['default_style'])) {
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value = \''.$default_style.'\' WHERE conf_name = \'o_default_style\'') or error('Unable to update default style', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -31,7 +31,7 @@ if (isset($_GET['default_style'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Style', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('settings', 'theme');
 
@@ -47,7 +47,7 @@ if (isset($_GET['saved']))
 <?php
 
 $current_theme = $luna_config['o_default_style'];
-include FORUM_ROOT.'/themes/'.$current_theme.'/information.php';
+include LUNA_ROOT.'/themes/'.$current_theme.'/information.php';
 $theme_info = new SimpleXMLElement($xmlstr);
 
 ?>
@@ -65,8 +65,8 @@ $theme_info = new SimpleXMLElement($xmlstr);
 			<div class="panel-body">
 <?php
 
-if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
-	include FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php';
+if (file_exists(LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
+	include LUNA_ROOT.'/themes/'.$current_theme.'/theme_settings.php';
 } else {
 	_e('This theme has no settings available...', 'luna');
 }
@@ -90,7 +90,7 @@ if (file_exists(FORUM_ROOT.'/themes/'.$current_theme.'/theme_settings.php')) {
 
 		foreach ($styles as $temp) {
 ?>
-					<?php include FORUM_ROOT.'/themes/'.$temp.'/information.php'; $theme_info = new SimpleXMLElement($xmlstr); ?> 
+					<?php include LUNA_ROOT.'/themes/'.$temp.'/information.php'; $theme_info = new SimpleXMLElement($xmlstr); ?> 
 					<div class="col-xs-12 col-sm-6 col-md-4 style-entry">
 						<div class="modal fade" id="<?php echo $temp ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo $temp ?>" aria-hidden="true">
 							<div class="modal-dialog modal-lg">

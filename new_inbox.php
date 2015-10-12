@@ -6,11 +6,11 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/email.php';
-require FORUM_ROOT.'include/inbox_functions.php';
-require FORUM_ROOT.'include/me_functions.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
+require LUNA_ROOT.'include/email.php';
+require LUNA_ROOT.'include/inbox_functions.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
@@ -182,7 +182,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 			if (!$destinataires[$i]['use_pm'] == '1' || !$destinataires[$i]['g_pm'] == '1')
 				$errors[] = sprintf(__('%s disabled the private messages.', 'luna'), luna_htmlspecialchars($destinataire));			
 			// Check receivers boxes
-			elseif ($destinataires[$i]['g_id'] > FORUM_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
+			elseif ($destinataires[$i]['g_id'] > LUNA_GUEST && $destinataires[$i]['g_pm_limit'] != '0' && $destinataires[$i]['num_pms'] >= $destinataires[$i]['g_pm_limit'])
 				$errors[] = sprintf(__('%s inbox is full, you can not send you message to this user.', 'luna'), luna_htmlspecialchars($destinataire));	
 		} else
 			$errors[] = sprintf(__('There\'s no user with the username "%s".', 'luna'), luna_htmlspecialchars($destinataire));
@@ -210,14 +210,14 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 	if ($p_message == '')
 		$errors[] = __('You must enter a message.', 'luna');
 
-	// Here we use strlen() not luna_strlen() as we want to limit the comment to FORUM_MAX_POSTSIZE bytes, not characters
-	elseif (strlen($p_message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_POSTSIZE bytes, not characters
+	elseif (strlen($p_message) > LUNA_MAX_POSTSIZE)
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && strtoupper($p_message) == $p_message && $luna_user['is_admmod'])
 		$p_message = ucwords(strtolower($p_message));
 
 	// Validate BBCode syntax
-	require FORUM_ROOT.'include/parser.php';
+	require LUNA_ROOT.'include/parser.php';
 	$p_message = preparse_bbcode($p_message, $errors);
 	
 	if (empty($errors) && !isset($_POST['preview'])) { // Send message(s)	
@@ -228,7 +228,7 @@ if (!empty($r) && !isset($_POST['form_sent'])) { // It's a reply
 		$_SESSION['last_session_request'] = $now = time();
 		
 		if ($luna_config['o_pms_notification'] == '1') {
-			require_once FORUM_ROOT.'include/email.php';
+			require_once LUNA_ROOT.'include/email.php';
 			
 			// Load the new_pm templates
 			$mail_tpl = trim(__('Subject: You received a new private message on <board_title>
@@ -394,7 +394,7 @@ if ($r == '0' && $q == '0' && $edit == '0') {
 } else
 	$focus_element[] = 'req_message';
 
-define('FORUM_ACTIVE_PAGE', 'new-inbox');
+define('LUNA_ACTIVE_PAGE', 'new-inbox');
 require load_page('header.php');
 
 require load_page('inbox-new.php');

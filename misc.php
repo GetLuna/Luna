@@ -8,10 +8,10 @@
  */
 
 if (isset($_GET['action']))
-	define('FORUM_QUIET_VISIT', 1);
+	define('LUNA_QUIET_VISIT', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -75,8 +75,8 @@ elseif ($action == 'markforumread') {
 			message(__('You must enter a subject.', 'luna'));
 		elseif ($message == '')
 			message(__('You must enter a message.', 'luna'));
-		// Here we use strlen() not luna_strlen() as we want to limit the comment to FORUM_MAX_POSTSIZE bytes, not characters
-		elseif (strlen($message) > FORUM_MAX_POSTSIZE)
+		// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_POSTSIZE bytes, not characters
+		elseif (strlen($message) > LUNA_MAX_POSTSIZE)
 			message(__('Messages cannot be longer than 65535 characters (64 KB).', 'luna'));
 
 		if ($luna_user['last_email_sent'] != '' && (time() - $luna_user['last_email_sent']) < $luna_user['g_email_flood'] && (time() - $luna_user['last_email_sent']) >= 0)
@@ -108,7 +108,7 @@ The message reads as follows:
 		$mail_message = str_replace('<mail_message>', $message, $mail_message);
 		$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-		require_once FORUM_ROOT.'include/email.php';
+		require_once LUNA_ROOT.'include/email.php';
 
 		luna_mail($recipient_email, $mail_subject, $mail_message, $luna_user['email'], $luna_user['username']);
 
@@ -133,7 +133,7 @@ The message reads as follows:
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Send email to', 'luna').' '.luna_htmlspecialchars($recipient));
 	$required_fields = array('req_subject' => __('Subject', 'luna'), 'req_message' => __('Message', 'luna'));
 	$focus_element = array('email', 'req_subject');
-	define('FORUM_ACTIVE_PAGE', 'misc');
+	define('LUNA_ACTIVE_PAGE', 'misc');
 	require load_page('header.php');
 
 	require load_page('mail.php');
@@ -208,7 +208,7 @@ Reason: <reason>
 				$mail_message = str_replace('<reason>', $reason, $mail_message);
 				$mail_message = str_replace('<board_mailer>', $luna_config['o_board_title'], $mail_message);
 
-				require FORUM_ROOT.'include/email.php';
+				require LUNA_ROOT.'include/email.php';
 
 				luna_mail($luna_config['o_mailing_list'], $mail_subject, $mail_message);
 			}
@@ -232,7 +232,7 @@ Reason: <reason>
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Report comment', 'luna'));
 	$required_fields = array('req_reason' => __('Reason', 'luna'));
 	$focus_element = array('report', 'req_reason');
-	define('FORUM_ACTIVE_PAGE', 'misc');
+	define('LUNA_ACTIVE_PAGE', 'misc');
 	require load_page('header.php');
 
 	require load_page('report.php');
@@ -256,7 +256,7 @@ Reason: <reason>
 		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
 	}
 
-	define('FORUM_ACTIVE_PAGE', 'misc');
+	define('LUNA_ACTIVE_PAGE', 'misc');
 	require load_page('header.php');
 
 	require load_page('answer.php');
@@ -280,7 +280,7 @@ Reason: <reason>
 		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
 	}
 
-	define('FORUM_ACTIVE_PAGE', 'misc');
+	define('LUNA_ACTIVE_PAGE', 'misc');
 	require load_page('header.php');
 
 	require load_page('unsolved.php');

@@ -8,13 +8,13 @@
  */
 
 // Tell header.php to use the form template
-define('FORUM_FORM', 1);
+define('LUNA_FORM', 1);
 
 if (isset($_GET['action']))
-	define('FORUM_QUIET_VISIT', 1);
+	define('LUNA_QUIET_VISIT', 1);
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
@@ -39,12 +39,12 @@ if (isset($_POST['form_sent']) && $action == 'in') {
 		message(__('Wrong username and/or password.', 'luna').' <a data-toggle="modal" data-target="#reqpass" data-dismiss="modal">'.__('Forgotten password', 'luna').'</a>.');
 
 	// Update the status if this is the first time the user logged in
-	if ($cur_user['group_id'] == FORUM_UNVERIFIED) {
+	if ($cur_user['group_id'] == LUNA_UNVERIFIED) {
 		$db->query('UPDATE '.$db->prefix.'users SET group_id='.$luna_config['o_default_user_group'].' WHERE id='.$cur_user['id']) or error('Unable to update user status', __FILE__, __LINE__, $db->error());
 
 		// Regenerate the users info cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 	}
@@ -96,7 +96,7 @@ elseif ($action == 'forget' || $action == 'forget_2') {
 		// Start with a clean slate
 		$errors = array();
 
-		require FORUM_ROOT.'include/email.php';
+		require LUNA_ROOT.'include/email.php';
 
 		// Validate the email address
 		$email = strtolower(luna_trim($_POST['req_email']));

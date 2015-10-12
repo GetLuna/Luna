@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 
 if ($luna_user['g_read_board'] == '0')
@@ -27,7 +27,7 @@ $cur_post = $db->fetch_assoc($result);
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_post['moderators'] != '') ? unserialize($cur_post['moderators']) : array();
-$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
 $can_edit_subject = $id == $cur_post['first_post_id'];
 
@@ -43,7 +43,7 @@ if (($luna_user['g_edit_posts'] == '0' ||
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-if ($is_admmod && $luna_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
+if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Start with a clean slate
@@ -75,14 +75,14 @@ if (isset($_POST['form_sent'])) {
 	// Clean up message from POST
 	$message = luna_linebreaks(luna_trim($_POST['req_message']));
 
-	// Here we use strlen() not luna_strlen() as we want to limit the comment to FORUM_MAX_POSTSIZE bytes, not characters
-	if (strlen($message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_POSTSIZE bytes, not characters
+	if (strlen($message) > LUNA_MAX_POSTSIZE)
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = __('Comments cannot contain only capital letters.', 'luna');
 
 	// Validate BBCode syntax
-	require FORUM_ROOT.'include/parser.php';
+	require LUNA_ROOT.'include/parser.php';
 	$message = preparse_bbcode($message, $errors);
 
 	if (empty($errors)) {
@@ -109,7 +109,7 @@ if (isset($_POST['form_sent'])) {
 	if (empty($errors) && !isset($_POST['preview'])) {
 		$edited_sql = (!isset($_POST['silent']) || !$is_admmod) ? ', edited='.time().', edited_by=\''.$db->escape($luna_user['username']).'\'' : '';
 
-		require FORUM_ROOT.'include/search_idx.php';
+		require LUNA_ROOT.'include/search_idx.php';
 
 		if ($can_edit_subject) {
 			// Update the thread and any redirect topics
@@ -130,7 +130,7 @@ if (isset($_POST['form_sent'])) {
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Edit comment', 'luna'));
 $required_fields = array('req_subject' => __('Subject', 'luna'), 'req_message' => __('Message', 'luna'));
 $focus_element = array('edit', 'req_message');
-define('FORUM_ACTIVE_PAGE', 'edit');
+define('LUNA_ACTIVE_PAGE', 'edit');
 require load_page('header.php');
 
 $cur_index = 1;

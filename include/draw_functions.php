@@ -32,7 +32,7 @@ function draw_preview_panel($message) {
 	global $hide_smilies, $message;
 
 	if (!empty($message)) {
-		require_once FORUM_ROOT.'include/parser.php';
+		require_once LUNA_ROOT.'include/parser.php';
 		$preview_message = parse_message($message);
 	
 ?>
@@ -65,7 +65,7 @@ function draw_editor($height) {
 	if ($fid && $is_admmod || $can_edit_subject && $is_admmod)
 		$pin_btn = '<div class="btn-group" data-toggle="buttons" title="'.__('Pin thread', 'luna').'"><label class="btn btn-success'.$pin_active.'"><input type="checkbox" name="stick_topic" value="1" tabindex="-1"'.$pin_status.' /><span class="fa fa-fw fa-thumb-tack"></span></label></div>';
 
-	if (FORUM_ACTIVE_PAGE == 'edit') {
+	if (LUNA_ACTIVE_PAGE == 'edit') {
 		if ((isset($_POST['form_sent']) && isset($_POST['silent'])) || !isset($_POST['form_sent'])) {
 			$silence_status = ' checked';
 			$silence_active = ' active';
@@ -157,17 +157,17 @@ function draw_editor($height) {
 			</div>
 		</div>
 		<textarea class="form-control textarea"  placeholder="<?php _e('Start typing...', 'luna') ?>" name="req_message" id="post_field" rows="<?php echo $height ?>" tabindex="<?php echo $cur_index++ ?>"><?php
-			if (FORUM_ACTIVE_PAGE == 'post')
+			if (LUNA_ACTIVE_PAGE == 'post')
 				echo isset($_POST['req_message']) ? luna_htmlspecialchars($orig_message) : (isset($quote) ? $quote : '');
-			elseif (FORUM_ACTIVE_PAGE == 'edit')
+			elseif (LUNA_ACTIVE_PAGE == 'edit')
 				echo luna_htmlspecialchars(isset($_POST['req_message']) ? $message : $cur_post['message']);
-			elseif (FORUM_ACTIVE_PAGE == 'new-inbox')
+			elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
 				echo luna_htmlspecialchars(isset($p_message) ? $p_message : '');
 		?></textarea>
 		<?php
-			if (FORUM_ACTIVE_PAGE == 'edit')
+			if (LUNA_ACTIVE_PAGE == 'edit')
 				$action = 'edit-post';
-			elseif (FORUM_ACTIVE_PAGE == 'new-inbox')
+			elseif (LUNA_ACTIVE_PAGE == 'new-inbox')
 				$action = 'post-message';
 			else
 				$action = ($fid ? 'post-topic' : 'post-reply');
@@ -505,15 +505,15 @@ function draw_index_topics_list() {
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
 
 		// Load cached forums
-		if (file_exists(FORUM_CACHE_DIR.'cache_forums.php'))
-			include FORUM_CACHE_DIR.'cache_forums.php';
+		if (file_exists(LUNA_CACHE_DIR.'cache_forums.php'))
+			include LUNA_CACHE_DIR.'cache_forums.php';
 		
-		if (!defined('FORUM_LIST_LOADED')) {
-			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-				require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_LIST_LOADED')) {
+			if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+				require LUNA_ROOT.'include/cache.php';
 		
 			generate_forum_cache();
-			require FORUM_CACHE_DIR.'cache_forums.php';
+			require LUNA_CACHE_DIR.'cache_forums.php';
 		}
 	
 		$topic_count = 0;
@@ -738,7 +738,7 @@ function draw_comment_list() {
 			else
 				$post_actions[] = '<a disabled="disabled" href="misc.php?report='.$cur_post['id'].'">'.__('Report', 'luna').'</a>';
 
-			if ($luna_user['g_id'] == FORUM_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
+			if ($luna_user['g_id'] == LUNA_ADMIN || !in_array($cur_post['poster_id'], $admin_ids)) {
 				$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=delete">'.__('Delete', 'luna').'</a>';
 				if ($cur_post['soft'] == 0)
 					$post_actions[] = '<a href="delete.php?id='.$cur_post['id'].'&action=soft">'.__('Soft delete', 'luna').'</a>';
@@ -880,7 +880,7 @@ function draw_user_list() {
 	global $db, $where_sql, $sort_query, $start_from;
 	
 	// Retrieve a list of user IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.FORUM_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_query.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT u.id FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.LUNA_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '').' ORDER BY '.$sort_query.', u.id ASC LIMIT '.$start_from.', 50') or error('Unable to fetch user IDs', __FILE__, __LINE__, $db->error());
 	
 	if ($db->num_rows($result)) {
 		$user_ids = array();

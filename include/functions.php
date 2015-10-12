@@ -7,7 +7,7 @@
  * License: http://opensource.org/licenses/MIT MIT
  */
 
-include FORUM_ROOT.'include/srand.php';
+include LUNA_ROOT.'include/srand.php';
 
 //
 // Return current timestamp (with microseconds) as a float
@@ -64,11 +64,11 @@ function check_cookie(&$luna_user) {
 		luna_setcookie($luna_user['id'], $luna_user['password'], $expire);
 
 		// Set a default language if the user selected language no longer exists
-		if (!file_exists(FORUM_ROOT.'lang/'.$luna_user['language']))
+		if (!file_exists(LUNA_ROOT.'lang/'.$luna_user['language']))
 			$luna_user['language'] = $luna_config['o_default_lang'];
 
 		// Set a default style if the user selected style no longer exists
-		if (!file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/style.css'))
+		if (!file_exists(LUNA_ROOT.'themes/'.$luna_user['style'].'/style.css'))
 			$luna_user['style'] = $luna_config['o_default_style'];
 
 		if (!$luna_user['disp_topics'])
@@ -77,7 +77,7 @@ function check_cookie(&$luna_user) {
 			$luna_user['disp_posts'] = $luna_config['o_disp_posts_default'];
 
 		// Define this if you want this visit to affect the online list and the users last visit data
-		if (!defined('FORUM_QUIET_VISIT')) {
+		if (!defined('LUNA_QUIET_VISIT')) {
 			// Update the online list
 			if (!$luna_user['logged']) {
 				$luna_user['logged'] = $now;
@@ -119,7 +119,7 @@ function check_cookie(&$luna_user) {
 		}
 
 		$luna_user['is_guest'] = false;
-		$luna_user['is_admmod'] = $luna_user['g_id'] == FORUM_ADMIN || $luna_user['g_moderator'] == '1';
+		$luna_user['is_admmod'] = $luna_user['g_id'] == LUNA_ADMIN || $luna_user['g_moderator'] == '1';
 	} else
 		set_default_user();
 }
@@ -189,7 +189,7 @@ function prune($forum_id, $prune_sticky, $prune_date) {
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$post_ids.')') or error('Unable to prune posts', __FILE__, __LINE__, $db->error());
 
 			// We removed a bunch of comments, so now we have to update the search index
-			require_once FORUM_ROOT.'include/search_idx.php';
+			require_once LUNA_ROOT.'include/search_idx.php';
 			strip_search_index($post_ids);
 		}
 	}
@@ -224,7 +224,7 @@ function get_current_protocol() {
 		$protocol = 'https';
 
 	// If we are behind a reverse proxy try to decide which protocol it is using
-	if (defined('FORUM_BEHIND_REVERSE_PROXY')) {
+	if (defined('LUNA_BEHIND_REVERSE_PROXY')) {
 		// Check if we are behind a Microsoft based reverse proxy
 		if (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS']) != 'off')
 			$protocol = 'https';
@@ -260,15 +260,15 @@ function get_base_url($support_https = false) {
 // Fetch admin IDs
 //
 function get_admin_ids() {
-	if (file_exists(FORUM_CACHE_DIR.'cache_admins.php'))
-		include FORUM_CACHE_DIR.'cache_admins.php';
+	if (file_exists(LUNA_CACHE_DIR.'cache_admins.php'))
+		include LUNA_CACHE_DIR.'cache_admins.php';
 
-	if (!defined('FORUM_ADMINS_LOADED')) {
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_ADMINS_LOADED')) {
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_admins_cache();
-		require FORUM_CACHE_DIR.'cache_admins.php';
+		require LUNA_CACHE_DIR.'cache_admins.php';
 	}
 
 	return $luna_admins;
@@ -452,8 +452,8 @@ function check_bans() {
 
 	// If we removed any expired bans during our run-through, we need to regenerate the bans cache
 	if ($bans_altered) {
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_bans_cache();
 	}
@@ -467,7 +467,7 @@ function check_username($username, $exclude_id = null) {
 	global $db, $luna_config, $errors, $luna_bans;
 
 	// Include UTF-8 function
-	require_once FORUM_ROOT.'include/utf8/strcasecmp.php';
+	require_once LUNA_ROOT.'include/utf8/strcasecmp.php';
 
 	// Convert multiple whitespace characters into one (to prevent people from registering with indistinguishable usernames)
 	$username = preg_replace('%\s+%s', ' ', $username);
@@ -548,8 +548,8 @@ function generate_avatar_markup($user_id) {
 	foreach ($filetypes as $cur_type) {
 		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
-		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path)) {
-			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
+		if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
+			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		} else {
 			$avatar_markup = '<img class="img-responsive" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
@@ -579,8 +579,8 @@ function draw_user_avatar($user_id, $responsive = true, $class = '') {
 	foreach ($filetypes as $cur_type) {
 		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
-		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path)) {
-			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(FORUM_ROOT.$path)).'" '.$img_size[3].' alt="" />';
+		if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
+			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true).'/'.$path.'?m='.filemtime(LUNA_ROOT.$path)).'" '.$img_size[3].' alt="" />';
 			break;
 		} else {
 			$avatar_markup = '<img class="'.$responsive_class.$class.'" src="'.luna_htmlspecialchars(get_base_url(true)).'/img/avatars/placeholder.png" alt="" />';
@@ -603,7 +603,7 @@ function check_avatar($user_id) {
 	foreach ($filetypes as $cur_type) {
 		$path = $luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type;
 
-		if (file_exists(FORUM_ROOT.$path) && $img_size = getimagesize(FORUM_ROOT.$path)) {
+		if (file_exists(LUNA_ROOT.$path) && $img_size = getimagesize(LUNA_ROOT.$path)) {
 			$avatar_set = true;
 			break;
 		} else {
@@ -654,8 +654,8 @@ function set_tracked_topics($tracked_topics) {
 			$cookie_data .= 'f'.$id.'='.$timestamp.';';
 
 		// Enforce a byte size limit (4096 minus some space for the cookie name - defaults to 4048)
-		if (strlen($cookie_data) > FORUM_MAX_COOKIE_SIZE) {
-			$cookie_data = substr($cookie_data, 0, FORUM_MAX_COOKIE_SIZE);
+		if (strlen($cookie_data) > LUNA_MAX_COOKIE_SIZE) {
+			$cookie_data = substr($cookie_data, 0, LUNA_MAX_COOKIE_SIZE);
 			$cookie_data = substr($cookie_data, 0, strrpos($cookie_data, ';')).';';
 		}
 	}
@@ -675,7 +675,7 @@ function get_tracked_topics() {
 	if (!$cookie_data)
 		return array('topics' => array(), 'forums' => array());
 
-	if (strlen($cookie_data) > FORUM_MAX_COOKIE_SIZE)
+	if (strlen($cookie_data) > LUNA_MAX_COOKIE_SIZE)
 		return array('topics' => array(), 'forums' => array());
 
 	// Unserialize data from cookie
@@ -724,8 +724,8 @@ function delete_avatar($user_id) {
 
 	// Delete user avatar
 	foreach ($filetypes as $cur_type) {
-		if (file_exists(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type))
-			@unlink(FORUM_ROOT.$luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type);
+		if (file_exists(LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type))
+			@unlink(LUNA_ROOT.$luna_config['o_avatars_dir'].'/'.$user_id.'.'.$cur_type);
 	}
 }
 
@@ -814,10 +814,10 @@ function delete_post($post_id, $topic_id, $poster_id) {
 // Delete every .php file in the forum's cache directory
 //
 function forum_clear_cache() {
-	$d = dir(FORUM_CACHE_DIR);
+	$d = dir(LUNA_CACHE_DIR);
 	while (($entry = $d->read()) !== false) {
 		if (substr($entry, -4) == '.php')
-			@unlink(FORUM_CACHE_DIR.$entry);
+			@unlink(LUNA_CACHE_DIR.$entry);
 	}
 	$d->close();
 }
@@ -832,15 +832,15 @@ function censor_words($text) {
 
 	// If not already built in a previous call, build an array of censor words and their replacement text
 	if (!isset($search_for)) {
-		if (file_exists(FORUM_CACHE_DIR.'cache_censoring.php'))
-			include FORUM_CACHE_DIR.'cache_censoring.php';
+		if (file_exists(LUNA_CACHE_DIR.'cache_censoring.php'))
+			include LUNA_CACHE_DIR.'cache_censoring.php';
 
-		if (!defined('FORUM_CENSOR_LOADED')) {
-			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-				require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CENSOR_LOADED')) {
+			if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+				require LUNA_ROOT.'include/cache.php';
 
 			generate_censoring_cache();
-			require FORUM_CACHE_DIR.'cache_censoring.php';
+			require LUNA_CACHE_DIR.'cache_censoring.php';
 		}
 	}
 
@@ -868,16 +868,16 @@ function get_title($user) {
 	}
 
 	// If not already loaded in a previous call, load the cached ranks
-	if ($luna_config['o_ranks'] == '1' && !defined('FORUM_RANKS_LOADED')) {
-		if (file_exists(FORUM_CACHE_DIR.'cache_ranks.php'))
-			include FORUM_CACHE_DIR.'cache_ranks.php';
+	if ($luna_config['o_ranks'] == '1' && !defined('LUNA_RANKS_LOADED')) {
+		if (file_exists(LUNA_CACHE_DIR.'cache_ranks.php'))
+			include LUNA_CACHE_DIR.'cache_ranks.php';
 
-		if (!defined('FORUM_RANKS_LOADED')) {
-			if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-				require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_RANKS_LOADED')) {
+			if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+				require LUNA_ROOT.'include/cache.php';
 
 			generate_ranks_cache();
-			require FORUM_CACHE_DIR.'cache_ranks.php';
+			require LUNA_CACHE_DIR.'cache_ranks.php';
 		}
 	}
 
@@ -891,7 +891,7 @@ function get_title($user) {
 	elseif ($user['g_user_title'] != '')
 		$user_title = luna_htmlspecialchars($user['g_user_title']);
 	// If the user is a guest
-	elseif ($user['g_id'] == FORUM_GUEST)
+	elseif ($user['g_id'] == LUNA_GUEST)
 		$user_title = __('Guest', 'luna');
 	else {
 		// Are there any ranks?
@@ -1025,7 +1025,7 @@ function message($message, $no_back_link = false, $http_status = null) {
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Info', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'index');
+	define('LUNA_ACTIVE_PAGE', 'index');
 	require load_page('header.php');
 
 ?>
@@ -1049,7 +1049,7 @@ function message_backstage($message, $no_back_link = false, $http_status = null)
 		header('HTTP/1.1 ' . $http_status);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Info', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('info', 'info');
 
@@ -1241,7 +1241,7 @@ function get_remote_address() {
 	$remote_addr = $_SERVER['REMOTE_ADDR'];
 
 	// If we are behind a reverse proxy try to find the real users IP
-	if (defined('FORUM_BEHIND_REVERSE_PROXY')) {
+	if (defined('LUNA_BEHIND_REVERSE_PROXY')) {
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			// The general format of the field is:
 			// X-Forwarded-For: client1, proxy1, proxy2
@@ -1356,7 +1356,7 @@ function maintenance_message() {
 	header('Content-type: text/html; charset=utf-8');
 
 	// Include functions
-	require FORUM_ROOT.'include/draw_functions.php';
+	require LUNA_ROOT.'include/draw_functions.php';
 
 	// Show the page
 	draw_wall_error($luna_config['o_maintenance_message'], NULL, __('Maintenance', 'luna'));
@@ -1450,7 +1450,7 @@ function error($message, $file = null, $line = null, $db_error = false) {
 			<div>
 <?php
 
-	if (defined('FORUM_DEBUG') && !is_null($file) && !is_null($line)) {
+	if (defined('LUNA_DEBUG') && !is_null($file) && !is_null($line)) {
 		echo "\t\t".'<strong>File:</strong> '.$file.'<br />'."\n\t\t".'<strong>Line:</strong> '.$line.'<br /><br />'."\n\t\t".'<strong>Luna reported</strong>: '.$message."\n";
 
 		if ($db_error) {
@@ -1598,12 +1598,12 @@ function file_size($size) {
 function forum_list_styles() {
 	$styles = array();
 
-	$d = dir(FORUM_ROOT.'themes');
+	$d = dir(LUNA_ROOT.'themes');
 	while (($entry = $d->read()) !== false) {
 		if ($entry{0} == '.')
 			continue;
 
-		if (is_dir(FORUM_ROOT.'themes/'.$entry) && file_exists(FORUM_ROOT.'themes/'.$entry.'/style.css'))
+		if (is_dir(LUNA_ROOT.'themes/'.$entry) && file_exists(LUNA_ROOT.'themes/'.$entry.'/style.css'))
 			$styles[] = $entry;
 	}
 	$d->close();
@@ -1620,7 +1620,7 @@ function forum_list_styles() {
 function forum_list_accents($stage) {
 	global $luna_config;
 	
-	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
+	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 
 	if (isset($theme_info->parent_theme))
@@ -1630,10 +1630,10 @@ function forum_list_accents($stage) {
 
 	$accents = array();
 
-	if ($stage == 'main' && is_dir(FORUM_ROOT.'themes/'.$cur_theme.'/accents/'))
-		$d = dir(FORUM_ROOT.'themes/'.$cur_theme.'/accents/');
+	if ($stage == 'main' && is_dir(LUNA_ROOT.'themes/'.$cur_theme.'/accents/'))
+		$d = dir(LUNA_ROOT.'themes/'.$cur_theme.'/accents/');
 	if ($stage == 'back')
-		$d = dir(FORUM_ROOT.'backstage/css/accents/');
+		$d = dir(LUNA_ROOT.'backstage/css/accents/');
 
 	while (($entry = $d->read()) !== false) {
 		if ($entry{0} == '.')
@@ -1656,12 +1656,12 @@ function forum_list_accents($stage) {
 function forum_list_langs() {
 	$languages = array();
 
-	$d = dir(FORUM_ROOT.'lang');
+	$d = dir(LUNA_ROOT.'lang');
 	while (($entry = $d->read()) !== false) {
 		if ($entry{0} == '.')
 			continue;
 
-		if (is_dir(FORUM_ROOT.'lang/'.$entry) && file_exists(FORUM_ROOT.'lang/'.$entry.'/luna.mo'))
+		if (is_dir(LUNA_ROOT.'lang/'.$entry) && file_exists(LUNA_ROOT.'lang/'.$entry.'/luna.mo'))
 			$languages[] = $entry;
 	}
 	$d->close();
@@ -1676,7 +1676,7 @@ function forum_list_langs() {
 // Generate a cache ID based on the last modification time for all stopwords files
 //
 function generate_stopwords_cache_id() {
-	$files = glob(FORUM_ROOT.'lang/*/stopwords.txt');
+	$files = glob(LUNA_ROOT.'lang/*/stopwords.txt');
 	if ($files === false)
 		return 'cache_id_error';
 
@@ -1697,7 +1697,7 @@ function generate_stopwords_cache_id() {
 function forum_list_plugins($is_admin) {
 	$plugins = array();
 
-	$d = dir(FORUM_ROOT.'plugins');
+	$d = dir(LUNA_ROOT.'plugins');
 	while (($entry = $d->read()) !== false) {
 		if ($entry{0} == '.')
 			continue;
@@ -2054,10 +2054,10 @@ function dump() {
 function get_template_path($tpl_file) {
 	global $luna_user;
 
-	if (file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/templates/'.$tpl_file)) {
-		return FORUM_ROOT.'themes/'.$luna_user['style'].'/templates/'.$tpl_file;
+	if (file_exists(LUNA_ROOT.'themes/'.$luna_user['style'].'/templates/'.$tpl_file)) {
+		return LUNA_ROOT.'themes/'.$luna_user['style'].'/templates/'.$tpl_file;
 	} else {
-		return FORUM_ROOT.'themes/Core/templates/'.$tpl_file;
+		return LUNA_ROOT.'themes/Core/templates/'.$tpl_file;
 	}
 }
 
@@ -2067,13 +2067,13 @@ function get_template_path($tpl_file) {
 function get_view_path($object) {
 	global $luna_user, $luna_config;
 	
-	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
+	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 	
-	if (($theme_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object)))
-		return FORUM_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object;
+	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object)))
+		return LUNA_ROOT.'themes/'.$luna_user['style'].'/objects/'.$object;
 	else
-		return FORUM_ROOT.'themes/'.$theme_info->parent_theme.'/objects/'.$object;
+		return LUNA_ROOT.'themes/'.$theme_info->parent_theme.'/objects/'.$object;
 }
 
 //
@@ -2082,13 +2082,13 @@ function get_view_path($object) {
 function load_page($page) {
 	global $luna_user, $luna_config;
 	
-	include FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/information.php';
+	include LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 	
-	if (($theme_info->parent_theme == '') || (file_exists(FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
-		return FORUM_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page;
+	if (($theme_info->parent_theme == '') || (file_exists(LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page)))
+		return LUNA_ROOT.'themes/'.$luna_config['o_default_style'].'/'.$page;
 	else
-		return FORUM_ROOT.'themes/'.$theme_info->parent_theme.'/'.$page;
+		return LUNA_ROOT.'themes/'.$theme_info->parent_theme.'/'.$page;
 }
 
 //
@@ -2097,7 +2097,7 @@ function load_page($page) {
 function load_css() {
 	global $luna_config, $luna_user;
 	
-	include FORUM_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
+	include LUNA_ROOT.'/themes/'.$luna_config['o_default_style'].'/information.php';
 	$theme_info = new SimpleXMLElement($xmlstr);
 	
 	// If there is a parent theme, we need to load its CSS too
@@ -2142,11 +2142,11 @@ function load_meta() {
 	
 	if (!empty($luna_config['o_board_tags']))
 		echo '<meta name="keywords" content="'.$luna_config['o_board_tags'].'">'."\n";
-	if (!defined('FORUM_ALLOW_INDEX'))
+	if (!defined('LUNA_ALLOW_INDEX'))
 		echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW" />'."\n";
-	if (defined('FORUM_CANONICAL_TAG_TOPIC'))
+	if (defined('LUNA_CANONICAL_TAG_TOPIC'))
 		echo '<link rel="canonical" href="/viewtopic.php?id='.$id.'" />'."\n";
-	if (defined('FORUM_CANONICAL_TAG_FORUM'))
+	if (defined('LUNA_CANONICAL_TAG_FORUM'))
 		echo '<link rel="canonical" href="/viewforum.php?id='.$id.'" />'."\n";
 
 	// Required fields check

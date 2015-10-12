@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
@@ -42,7 +42,7 @@ if (isset($_GET['get_host'])) {
 $fid = isset($_GET['fid']) ? intval($_GET['fid']) : 0;
 if ($fid < 1) {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
 	
@@ -66,7 +66,7 @@ $result = $db->query('SELECT moderators FROM '.$db->prefix.'forums WHERE id='.$f
 $moderators = $db->result($result);
 $mods_array = ($moderators != '') ? unserialize($moderators) : array();
 
-if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] == '0' || !array_key_exists($luna_user['username'], $mods_array)))
+if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] == '0' || !array_key_exists($luna_user['username'], $mods_array)))
 	message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Get topic/forum tracking data
@@ -99,7 +99,7 @@ if (isset($_GET['tid'])) {
 				message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 			// Verify that the comment IDs are valid
-			$admins_sql = ($luna_user['g_id'] != FORUM_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
+			$admins_sql = ($luna_user['g_id'] != LUNA_ADMIN) ? ' AND poster_id NOT IN('.implode(',', get_admin_ids()).')' : '';
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE id IN('.$posts.') AND topic_id='.$tid.$admins_sql) or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 
 			if ($db->num_rows($result) != substr_count($posts, ',') + 1)
@@ -110,7 +110,7 @@ if (isset($_GET['tid'])) {
 			// Delete the comments
 			$db->query('DELETE FROM '.$db->prefix.'posts WHERE id IN('.$posts.')') or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
 
-			require FORUM_ROOT.'include/search_idx.php';
+			require LUNA_ROOT.'include/search_idx.php';
 			strip_search_index($posts);
 
 			// Get last_post, last_post_id, and last_poster for the thread after deletion
@@ -129,7 +129,7 @@ if (isset($_GET['tid'])) {
 		}
 		
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-		define('FORUM_ACTIVE_PAGE', 'admin');
+		define('LUNA_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
 		
@@ -220,7 +220,7 @@ if (isset($_GET['tid'])) {
 		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.post_topics IS NULL OR fp.post_topics=1) ORDER BY c.disp_position, c.id, f.disp_position') or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-		define('FORUM_ACTIVE_PAGE', 'admin');
+		define('LUNA_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
 		?>
@@ -295,7 +295,7 @@ if (isset($_GET['tid'])) {
 		$cur_topic['subject'] = censor_words($cur_topic['subject']);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
 	
@@ -316,7 +316,7 @@ if (isset($_GET['tid'])) {
 			<form method="post" action="moderate.php?fid=<?php echo $fid ?>&amp;tid=<?php echo $tid ?>">
 <?php
 
-	require FORUM_ROOT.'include/parser.php';
+	require LUNA_ROOT.'include/parser.php';
 
 	$post_count = 0; // Keep track of comment numbers
 
@@ -470,7 +470,7 @@ if (isset($_REQUEST['move_topics']) || isset($_POST['move_topics_to'])) {
 		message_backstage(__('There are no forums into which you can move threads.', 'luna'));
 	
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
 	?>
@@ -593,7 +593,7 @@ elseif (isset($_POST['merge_topics']) || isset($_POST['merge_topics_comply'])) {
 		message_backstage(__('You must select at least two threads to merge.', 'luna'));
 	else {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-		define('FORUM_ACTIVE_PAGE', 'admin');
+		define('LUNA_ACTIVE_PAGE', 'admin');
 		require 'header.php';
 		load_admin_nav('content', 'moderate');
 		?>
@@ -635,7 +635,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 		if (@preg_match('%[^0-9,]%', $topics))
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
-		require FORUM_ROOT.'include/search_idx.php';
+		require LUNA_ROOT.'include/search_idx.php';
 
 		// Verify that the thread IDs are valid
 		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics WHERE id IN('.$topics.') AND forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
@@ -644,7 +644,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 			message_backstage(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
 		// Verify that the comments are not by admins
-		if ($luna_user['g_id'] != FORUM_ADMIN) {
+		if ($luna_user['g_id'] != LUNA_ADMIN) {
 			$result = $db->query('SELECT 1 FROM '.$db->prefix.'posts WHERE topic_id IN('.$topics.') AND poster_id IN('.implode(',', get_admin_ids()).')') or error('Unable to check posts', __FILE__, __LINE__, $db->error());
 			if ($db->num_rows($result))
 				message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
@@ -678,7 +678,7 @@ elseif (isset($_POST['delete_topics']) || isset($_POST['delete_topics_comply']))
 	}
 	
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
 	?>
@@ -802,7 +802,7 @@ elseif (!isset($_GET['unstick']) && !isset($_GET['stick']) && !isset($_REQUEST['
 	$paging_links = paginate($num_pages, $p, 'moderate.php?fid='.$fid);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Moderate', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('content', 'moderate');
 	

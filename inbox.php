@@ -6,11 +6,11 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
-require FORUM_ROOT.'include/parser.php';
-require FORUM_ROOT.'include/inbox_functions.php';
-require FORUM_ROOT.'include/me_functions.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
+require LUNA_ROOT.'include/parser.php';
+require LUNA_ROOT.'include/inbox_functions.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 // No guest here !
 if ($luna_user['is_guest'])
@@ -101,7 +101,7 @@ $user = $db->fetch_assoc($result);
 $user_username = luna_htmlspecialchars($user['username']);
 $user_usertitle = get_title($user);
 
-define('FORUM_ACTIVE_PAGE', 'pm');
+define('LUNA_ACTIVE_PAGE', 'pm');
 require load_page('header.php');
 
 ?>

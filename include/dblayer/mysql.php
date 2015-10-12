@@ -43,7 +43,7 @@ class DBLayer {
 			error('Unable to connect to MySQL server. MySQL reported: '.mysql_error(), __FILE__, __LINE__);
 
 		// Setup the client-server character set (UTF-8)
-		if (!defined('FORUM_NO_SET_NAMES'))
+		if (!defined('LUNA_NO_SET_NAMES'))
 			$this->set_names('utf8');
 
 		return $this->link_id;
@@ -66,7 +66,7 @@ class DBLayer {
 
 
 	function query($sql, $unbuffered = false) {
-		if (defined('FORUM_SHOW_QUERIES'))
+		if (defined('LUNA_SHOW_QUERIES'))
 			$q_start = get_microtime();
 
 		if ($unbuffered)
@@ -75,14 +75,14 @@ class DBLayer {
 			$this->query_result = @mysql_query($sql, $this->link_id);
 
 		if ($this->query_result) {
-			if (defined('FORUM_SHOW_QUERIES'))
+			if (defined('LUNA_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, sprintf('%.5f', get_microtime() - $q_start));
 
 			++$this->num_queries;
 
 			return $this->query_result;
 		} else {
-			if (defined('FORUM_SHOW_QUERIES'))
+			if (defined('LUNA_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, 0);
 
 			$this->error_no = @mysql_errno($this->link_id);

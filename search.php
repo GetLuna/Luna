@@ -10,8 +10,8 @@
 // The contents of this file are very much inspired by the file search.php
 // from the phpBB Group forum software phpBB2 (http://www.phpbb.com)
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 $section = isset($_GET['section']) ? $_GET['section'] : null;
 
@@ -20,7 +20,7 @@ if ($luna_user['g_read_board'] == '0')
 elseif ($luna_user['g_search'] == '0')
 	message(__('You do not have permission to use the search feature.', 'luna'), false, '403 Forbidden');
 
-require FORUM_ROOT.'include/search_idx.php';
+require LUNA_ROOT.'include/search_idx.php';
 
 // Figure out what to do :-)
 if (isset($_GET['action']) || isset($_GET['search_id'])) {
@@ -47,7 +47,7 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		$keywords = (isset($_GET['keywords'])) ? utf8_strtolower(luna_trim($_GET['keywords'])) : null;
 		$author = (isset($_GET['author'])) ? utf8_strtolower(luna_trim($_GET['author'])) : null;
 
-		if (preg_match('%^[\*\%]+$%', $keywords) || (luna_strlen(str_replace(array('*', '%'), '', $keywords)) < FORUM_SEARCH_MIN_WORD && !is_cjk($keywords)))
+		if (preg_match('%^[\*\%]+$%', $keywords) || (luna_strlen(str_replace(array('*', '%'), '', $keywords)) < LUNA_SEARCH_MIN_WORD && !is_cjk($keywords)))
 			$keywords = '';
 
 		if (preg_match('%^[\*\%]+$%', $author) || luna_strlen(str_replace(array('*', '%'), '', $author)) < 2)
@@ -473,12 +473,12 @@ if (isset($_GET['action']) || isset($_GET['search_id'])) {
 		}
 
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search results', 'luna'));
-		define('FORUM_ACTIVE_PAGE', 'search');
+		define('LUNA_ACTIVE_PAGE', 'search');
 
 		if ($show_as == 'topics') {
 			$topic_count = 0;
 		} elseif ($show_as == 'posts') {
-			require FORUM_ROOT.'include/parser.php';
+			require LUNA_ROOT.'include/parser.php';
 
 			$post_count = 0;
 		}
@@ -499,7 +499,7 @@ if (!$search_id) {
 	if (!$section || $section == 'simple') {
 		$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search', 'luna'));
 		$focus_element = array('search', 'keywords');
-		define('FORUM_ACTIVE_PAGE', 'search');
+		define('LUNA_ACTIVE_PAGE', 'search');
 		require load_page('header.php');
 	
 		require load_page('search.php');
@@ -511,7 +511,7 @@ if (!$search_id) {
 		} else {
 			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search', 'luna'));
 			$focus_element = array('search', 'keywords');
-			define('FORUM_ACTIVE_PAGE', 'search');
+			define('LUNA_ACTIVE_PAGE', 'search');
 			require load_page('header.php');
 	
 			require load_page('search-advanced.php');

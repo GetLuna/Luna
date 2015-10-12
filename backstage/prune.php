@@ -7,10 +7,10 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 // Tell common.php that we don't want output buffering
-define('FORUM_DISABLE_BUFFERING', 1);
+define('LUNA_DISABLE_BUFFERING', 1);
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -87,7 +87,7 @@ if ($action == 'prune') {
 		message_backstage(sprintf(__('There are s that are %s days old. Please decrease the value of "Days old" and try again.', 'luna'), $prune_days));
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Prune', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 
@@ -119,8 +119,8 @@ if ($action == 'prune') {
 	exit;
 }
 
-if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-	require FORUM_ROOT.'include/cache.php';
+if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+	require LUNA_ROOT.'include/cache.php';
 
 if (isset($_POST['notiprune'])) {
 	if ($_POST['prune_type'] == 1)
@@ -180,7 +180,7 @@ if ($db->num_rows($result))
 	$first_id = $db->result($result);
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Maintenance', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('maintenance', 'prune');
 ?>

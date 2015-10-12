@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
@@ -32,7 +32,7 @@ $is_subscribed = $tid && $cur_posting['is_subscribed'];
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_posting['moderators'] != '') ? unserialize($cur_posting['moderators']) : array();
-$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
 if ($tid && $luna_config['o_censoring'] == '1')
 	$cur_posting['subject'] = censor_words($cur_posting['subject']);
@@ -91,7 +91,7 @@ if (isset($_POST['form_sent'])) {
 		check_username($username);
 
 		if ($luna_config['p_force_guest_email'] == '1' || $email != '') {
-			require FORUM_ROOT.'include/email.php';
+			require LUNA_ROOT.'include/email.php';
 			if (!is_valid_email($email))
 				$errors[] = __('The email address you entered is invalid.', 'luna');
 
@@ -109,14 +109,14 @@ if (isset($_POST['form_sent'])) {
 	// Clean up message from POST
 	$orig_message = $message = luna_linebreaks(luna_trim($_POST['req_message']));
 
-	// Here we use strlen() not luna_strlen() as we want to limit the comment to FORUM_MAX_POSTSIZE bytes, not characters
-	if (strlen($message) > FORUM_MAX_POSTSIZE)
-		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(FORUM_MAX_POSTSIZE));
+	// Here we use strlen() not luna_strlen() as we want to limit the comment to LUNA_MAX_POSTSIZE bytes, not characters
+	if (strlen($message) > LUNA_MAX_POSTSIZE)
+		$errors[] = sprintf(__('Comments cannot be longer than %s bytes.', 'luna'), forum_number_format(LUNA_MAX_POSTSIZE));
 	elseif ($luna_config['p_message_all_caps'] == '0' && is_all_uppercase($message) && !$luna_user['is_admmod'])
 		$errors[] = __('Comments cannot contain only capital letters.', 'luna');
 
 	// Validate BBCode syntax
-	require FORUM_ROOT.'include/parser.php';
+	require LUNA_ROOT.'include/parser.php';
 	$message = preparse_bbcode($message, $errors);
 
 	if (empty($errors)) {
@@ -142,7 +142,7 @@ if (isset($_POST['form_sent'])) {
 
 	// Did everything go according to plan?
 	if (empty($errors) && !isset($_POST['preview'])) {
-		require FORUM_ROOT.'include/search_idx.php';
+		require LUNA_ROOT.'include/search_idx.php';
 
 		// If it's a reply
 		if ($tid) {
@@ -188,7 +188,7 @@ if (isset($_POST['form_sent'])) {
 				// Get any subscribed users that should be notified (banned users are excluded)
 				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'topic_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'online AS o ON u.id=o.user_id LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND COALESCE(o.logged, u.last_visit)>'.$previous_post_time.' AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.topic_id='.$tid.' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result)) {
-					require_once FORUM_ROOT.'include/email.php';
+					require_once LUNA_ROOT.'include/email.php';
 
 					$notification_emails = array();
 
@@ -319,7 +319,7 @@ You can unsubscribe by going to <unsubscribe_url>
 				// Get any subscribed users that should be notified (banned users are excluded)
 				$result = $db->query('SELECT u.id, u.email, u.notify_with_post, u.language FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'forum_subscriptions AS s ON u.id=s.user_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id='.$cur_posting['fid'].' AND fp.group_id=u.group_id) LEFT JOIN '.$db->prefix.'bans AS b ON u.username=b.username WHERE b.username IS NULL AND (fp.read_forum IS NULL OR fp.read_forum=1) AND s.forum_id='.$cur_posting['fid'].' AND u.id!='.$luna_user['id']) or error('Unable to fetch subscription info', __FILE__, __LINE__, $db->error());
 				if ($db->num_rows($result)) {
-					require_once FORUM_ROOT.'include/email.php';
+					require_once LUNA_ROOT.'include/email.php';
 
 					$notification_emails = array();
 
@@ -542,7 +542,7 @@ else {
 }
 
 $cur_index = 1;
-define('FORUM_ACTIVE_PAGE', 'post');
+define('LUNA_ACTIVE_PAGE', 'post');
 require load_page('header.php');
 
 require load_page('post.php');

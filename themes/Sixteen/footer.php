@@ -120,7 +120,7 @@ if (($luna_config['o_feed_type'] == 1 || $luna_config['o_feed_type'] == 2) && (i
 }
 
 // Display debug info (if enabled/defined)
-if (defined('FORUM_DEBUG')) {
+if (defined('LUNA_DEBUG')) {
 	echo '<p id="debug">[ ';
 
 	// Calculate script generation time
@@ -142,7 +142,7 @@ if (defined('FORUM_DEBUG')) {
 $db->end_transaction();
 
 // Display executed queries (if enabled)
-if (defined('FORUM_SHOW_QUERIES'))
+if (defined('LUNA_SHOW_QUERIES'))
 	display_saved_queries();
 
 

@@ -33,7 +33,7 @@ class DBLayer {
 
 	function DBLayer($db_host, $db_username, $db_password, $db_name, $db_prefix, $p_connect) {
 		// Prepend $db_name with the path to the forum root directory
-		$db_name = FORUM_ROOT.$db_name;
+		$db_name = LUNA_ROOT.$db_name;
 
 		$this->prefix = $db_prefix;
 
@@ -89,13 +89,13 @@ class DBLayer {
 
 		$this->last_query = $sql;
 
-		if (defined('FORUM_SHOW_QUERIES'))
+		if (defined('LUNA_SHOW_QUERIES'))
 			$q_start = get_microtime();
 
 		$this->query_result = $this->link_id->query($sql);
 
 		if ($this->query_result) {
-			if (defined('FORUM_SHOW_QUERIES'))
+			if (defined('LUNA_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, sprintf('%.5f', get_microtime() - $q_start));
 
 			++$this->num_queries;
@@ -103,7 +103,7 @@ class DBLayer {
 			return $this->query_result;
 		}
 		else {
-			if (defined('FORUM_SHOW_QUERIES'))
+			if (defined('LUNA_SHOW_QUERIES'))
 				$this->saved_queries[] = array($sql, 0);
 
 			$this->error_no = $this->link_id->lastErrorCode();
@@ -226,7 +226,7 @@ class DBLayer {
 	function close() {
 		if ($this->link_id) {
 			if ($this->in_transaction) {
-				if (defined('FORUM_SHOW_QUERIES'))
+				if (defined('LUNA_SHOW_QUERIES'))
 					$this->saved_queries[] = array('COMMIT', 0);
 
 				$this->link_id->exec('COMMIT');

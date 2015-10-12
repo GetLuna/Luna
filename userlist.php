@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
@@ -41,7 +41,7 @@ if ($username != '')
 	$where_sql[] = 'u.username '.$like_command.' \''.$db->escape(str_replace('*', '%', $username)).'\'';
 
 // Fetch user count
-$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.FORUM_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '')) or error('Unable to fetch user list count', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT COUNT(id) FROM '.$db->prefix.'users AS u WHERE u.id>1 AND u.group_id!='.LUNA_UNVERIFIED.(!empty($where_sql) ? ' AND '.implode(' AND ', $where_sql) : '')) or error('Unable to fetch user list count', __FILE__, __LINE__, $db->error());
 $num_users = $db->result($result);
 
 // Determine the user offset (based on $_GET['p'])
@@ -57,8 +57,8 @@ if ($luna_user['g_search_users'] == '1')
 // Generate paging links
 $paging_links = paginate($num_pages, $p, 'userlist.php?username='.urlencode($username).'&amp;sort_by='.$sort_by);
 
-define('FORUM_ALLOW_INDEX', 1);
-define('FORUM_ACTIVE_PAGE', 'userlist');
+define('LUNA_ALLOW_INDEX', 1);
+define('LUNA_ACTIVE_PAGE', 'userlist');
 require load_page('header.php');
 
 require load_page('users.php');

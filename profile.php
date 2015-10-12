@@ -7,16 +7,16 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 // Load the me functions script
-require FORUM_ROOT.'include/me_functions.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 // Include UTF-8 function
-require FORUM_ROOT.'include/utf8/substr_replace.php';
-require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
-require FORUM_ROOT.'include/utf8/strcasecmp.php';
+require LUNA_ROOT.'include/utf8/substr_replace.php';
+require LUNA_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
+require LUNA_ROOT.'include/utf8/strcasecmp.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id < 2)
@@ -100,7 +100,7 @@ if ($user['google'] != '')
 $user_activity = array();
 
 if ($user['signature'] != '') {
-	require FORUM_ROOT.'include/parser.php';
+	require LUNA_ROOT.'include/parser.php';
 	$parsed_signature = parse_signature($user['signature']);
 }
 
@@ -115,7 +115,7 @@ if (($luna_config['o_signatures'] == '1') && (isset($parsed_signature)))
 
 // View or edit?
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'me');
+define('LUNA_ACTIVE_PAGE', 'me');
 require load_page('header.php');
 
 require load_page('profile.php');

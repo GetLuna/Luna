@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
@@ -17,7 +17,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 // Check if install.php is a thing
 if ($action == 'remove_install_file') {
-	$deleted = @unlink(FORUM_ROOT.'install.php');
+	$deleted = @unlink(LUNA_ROOT.'install.php');
 
 	if ($deleted)
 		redirect('backstage/index.php');
@@ -25,7 +25,7 @@ if ($action == 'remove_install_file') {
 		message_backstage(__('Could not remove install.php. Please do so by hand.', 'luna'));
 }
 
-$install_file_exists = is_file(FORUM_ROOT.'install.php');
+$install_file_exists = is_file(LUNA_ROOT.'install.php');
 
 if (isset($_POST['form_sent'])) {
 	confirm_referrer(array('backstage/index.php', 'backstage/'));
@@ -33,8 +33,8 @@ if (isset($_POST['form_sent'])) {
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.$db->escape(luna_htmlspecialchars($_POST['form']['admin_note'])).'\' WHERE conf_name=\'o_admin_note\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -48,8 +48,8 @@ if (isset($_POST['first_run_disable'])) {
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value=1 WHERE conf_name=\'o_first_run_backstage\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
 
 	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_config_cache();
 	clear_feed_cache();
@@ -58,15 +58,15 @@ if (isset($_POST['first_run_disable'])) {
 }
 
 // Collect some statistics from the database
-if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
-	include FORUM_CACHE_DIR.'cache_update.php';
+if (file_exists(LUNA_CACHE_DIR.'cache_update.php'))
+	include LUNA_CACHE_DIR.'cache_update.php';
 
-if ((!defined('FORUM_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+if ((!defined('LUNA_UPDATE_LOADED') || ($last_check_time > time() + (60 * 60 * 24)))) {
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_update_cache();
-	require FORUM_CACHE_DIR.'cache_update.php';
+	require LUNA_CACHE_DIR.'cache_update.php';
 }
 
 $result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
@@ -80,14 +80,14 @@ if ($stats['total_topics'] == 0)
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Index', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 	load_admin_nav('backstage', 'index');
 
 if (isset($_GET['saved']))
 	echo '<div class="alert alert-success">'.__('Your settings have been saved.', 'luna').'</div>';
 
-if(substr(sprintf('%o', fileperms(FORUM_ROOT.'config.php')), -4) > '644'): ?>
+if(substr(sprintf('%o', fileperms(LUNA_ROOT.'config.php')), -4) > '644'): ?>
 <div class="alert alert-warning"><?php _e('The config file is writeable at this moment, you might want to set the CHMOD to 640 or 644.', 'luna') ?></div>
 <?php endif;
 
@@ -215,7 +215,7 @@ if ($db->num_rows($result)) {
 	<div class="col-sm-4">
 <?php
 //Update checking
-if (version_compare(Version::FORUM_CORE_VERSION, $update_cache, 'lt')) {
+if (version_compare(Version::LUNA_CORE_VERSION, $update_cache, 'lt')) {
 ?>
 		<div class="alert alert-info">
 			<h4><?php echo sprintf(__('Luna v%s is available, %s!', 'luna'), $update_cache, '<a href="update.php">'.__('update now', 'luna').'</a>') ?></h4>

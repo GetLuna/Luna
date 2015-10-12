@@ -7,9 +7,9 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
-define('FORUM_CANONICAL_TAG_FORUM', 1);
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
+define('LUNA_CANONICAL_TAG_FORUM', 1);
 
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
@@ -31,7 +31,7 @@ $cur_forum = $db->fetch_assoc($result);
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
-$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
 switch ($cur_forum['sort_by']) {
 	case 0:
@@ -95,8 +95,8 @@ $forum_id = $id;
 $footer_style = 'viewforum';
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), luna_htmlspecialchars($cur_forum['forum_name']));
-define('FORUM_ALLOW_INDEX', 1);
-define('FORUM_ACTIVE_PAGE', 'viewforum');
+define('LUNA_ALLOW_INDEX', 1);
+define('LUNA_ACTIVE_PAGE', 'viewforum');
 require load_page('header.php');
 
 require load_page('forum.php');

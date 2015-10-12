@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 if ($luna_user['g_read_board'] == '0')
 	message(__('You do not have permission to view this page.', 'luna'), false, '403 Forbidden');
@@ -31,7 +31,7 @@ if ($luna_config['o_censoring'] == '1')
 
 // Sort out who the moderators are and if we are currently a moderator (or an admin)
 $mods_array = ($cur_post['moderators'] != '') ? unserialize($cur_post['moderators']) : array();
-$is_admmod = ($luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
+$is_admmod = ($luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && array_key_exists($luna_user['username'], $mods_array))) ? true : false;
 
 $is_topic_post = ($id == $cur_post['first_post_id']) ? true : false;
 
@@ -43,7 +43,7 @@ if (($luna_user['g_delete_posts'] == '0' ||
 	!$is_admmod)
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
-if ($is_admmod && $luna_user['g_id'] != FORUM_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
+if ($is_admmod && $luna_user['g_id'] != LUNA_ADMIN && in_array($cur_post['poster_id'], get_admin_ids()))
 	message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Soft delete posts
@@ -51,7 +51,7 @@ if (isset($_POST['soft_delete'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');
 
-	require FORUM_ROOT.'include/search_idx.php';
+	require LUNA_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post) {
 		// Delete the thread and all of its posts
@@ -77,7 +77,7 @@ if (isset($_POST['reset'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');
 
-	require FORUM_ROOT.'include/search_idx.php';
+	require LUNA_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post) {
 		// Reset the thread and all of its posts
@@ -99,7 +99,7 @@ if (isset($_POST['delete'])) {
 	// Make sure they got here from the site
 	confirm_referrer('delete.php');
 
-	require FORUM_ROOT.'include/search_idx.php';
+	require LUNA_ROOT.'include/search_idx.php';
 
 	if ($is_topic_post) {
 		// Delete the thread and all of its posts
@@ -121,9 +121,9 @@ if (isset($_POST['delete'])) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Delete comment', 'luna'));
-define ('FORUM_ACTIVE_PAGE', 'delete');
+define ('LUNA_ACTIVE_PAGE', 'delete');
 
-require FORUM_ROOT.'include/parser.php';
+require LUNA_ROOT.'include/parser.php';
 $cur_post['message'] = parse_message($cur_post['message']);
 
 require load_page('header.php');

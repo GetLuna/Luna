@@ -1,6 +1,6 @@
 <?php
 
-require FORUM_ROOT.'include/class/luna_notification.php';
+require LUNA_ROOT.'include/class/luna_notification.php';
 
 /**
  * Create a notification.

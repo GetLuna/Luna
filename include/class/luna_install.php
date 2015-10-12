@@ -92,7 +92,7 @@ class Installer {
 			$alerts[] = __('Passwords do not match.', 'luna');
 	
 		// Validate email
-		require FORUM_ROOT.'include/email.php';
+		require LUNA_ROOT.'include/email.php';
 	
 		if (!is_valid_email($email))
 			$alerts[] = __('The administrator email address you entered is invalid.', 'luna');
@@ -116,19 +116,19 @@ class Installer {
 		// Load the appropriate DB layer class
 		switch ($db_type) {
 			case 'mysql':
-				require FORUM_ROOT.'include/dblayer/mysql.php';
+				require LUNA_ROOT.'include/dblayer/mysql.php';
 				break;
 	
 			case 'mysql_innodb':
-				require FORUM_ROOT.'include/dblayer/mysql_innodb.php';
+				require LUNA_ROOT.'include/dblayer/mysql_innodb.php';
 				break;
 	
 			case 'mysqli':
-				require FORUM_ROOT.'include/dblayer/mysqli.php';
+				require LUNA_ROOT.'include/dblayer/mysqli.php';
 				break;
 	
 			case 'mysqli_innodb':
-				require FORUM_ROOT.'include/dblayer/mysqli_innodb.php';
+				require LUNA_ROOT.'include/dblayer/mysqli_innodb.php';
 				break;
 	
 			case 'pgsql':
@@ -136,11 +136,11 @@ class Installer {
 				break;
 	
 			case 'sqlite':
-				require FORUM_ROOT.'include/dblayer/sqlite.php';
+				require LUNA_ROOT.'include/dblayer/sqlite.php';
 				break;
 
 			case 'sqlite3':
-				require FORUM_ROOT.'include/dblayer/sqlite3.php';
+				require LUNA_ROOT.'include/dblayer/sqlite3.php';
 				break;
 	
 			default:
@@ -158,13 +158,13 @@ class Installer {
 			case 'mysqli_innodb':
 				$mysql_info = $db->get_version();
 				if (version_compare($mysql_info['version'], Version::MIN_MYSQL_VERSION, '<'))
-					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::FORUM_VERSION, Version::MIN_MYSQL_VERSION));
+					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'MySQL', $mysql_info['version'], Version::LUNA_VERSION, Version::MIN_MYSQL_VERSION));
 				break;
 	
 			case 'pgsql':
 				$pgsql_info = $db->get_version();
 				if (version_compare($pgsql_info['version'], Version::MIN_PGSQL_VERSION, '<'))
-					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::FORUM_VERSION, Version::MIN_PGSQL_VERSION));
+					error(sprintf(__('You are running %1$s version %2$s. Luna %3$s requires at least %1$s %4$s to run properly. You must upgrade your %1$s installation before you can continue.', 'luna'), 'PostgreSQL', $pgsql_info['version'], Version::LUNA_VERSION, Version::MIN_PGSQL_VERSION));
 				break;
 	
 			case 'sqlite':
@@ -1424,12 +1424,12 @@ class Installer {
 
 		// Insert config data
 		$luna_config = array(
-			'o_cur_version'				=> Version::FORUM_VERSION,
-			'o_core_version'			=> Version::FORUM_CORE_VERSION,
+			'o_cur_version'				=> Version::LUNA_VERSION,
+			'o_core_version'			=> Version::LUNA_CORE_VERSION,
 			'o_code_name'				=> Version::LUNA_CODE_NAME,
-			'o_database_revision'		=> Version::FORUM_DB_VERSION,
-			'o_searchindex_revision'	=> Version::FORUM_SI_VERSION,
-			'o_parser_revision'			=> Version::FORUM_PARSER_VERSION,
+			'o_database_revision'		=> Version::LUNA_DB_VERSION,
+			'o_searchindex_revision'	=> Version::LUNA_SI_VERSION,
+			'o_parser_revision'			=> Version::LUNA_PARSER_VERSION,
 			'o_board_title'				=> $title,
 			'o_board_desc'				=> $description,
 			'o_board_tags'				=> NULL,
@@ -1605,7 +1605,7 @@ class Installer {
 		$db->query('INSERT INTO '.$db->prefix.'ranks (rank, min_posts) VALUES(\''.$db->escape(__('Member', 'luna')).'\', 10)')
 			or error('Unable to insert into table '.$db->prefix.'ranks. Please check your configuration and try again', __FILE__, __LINE__, $db->error());
 
-		require FORUM_ROOT.'include/notifications.php';		
+		require LUNA_ROOT.'include/notifications.php';		
 		new_notification('2', 'backstage/about.php', 'Welcome to Luna, discover the possibilities!', 'fa-moon-o');
 		
 		$db->end_transaction();

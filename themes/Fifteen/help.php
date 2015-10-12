@@ -113,7 +113,7 @@ if ($db->num_rows($result) > 0)
 <?php
 
 // Display the smiley set
-require FORUM_ROOT.'include/parser.php';
+require LUNA_ROOT.'include/parser.php';
 
 $smilies = get_smilies();
 

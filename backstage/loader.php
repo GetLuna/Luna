@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
@@ -24,7 +24,7 @@ if ($luna_user['g_moderator'] == '1' && $prefix == 'AP')
 	message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 // Make sure the file actually exists
-if (!file_exists(FORUM_ROOT.'plugins/'.$plugin))
+if (!file_exists(LUNA_ROOT.'plugins/'.$plugin))
 	message_backstage(sprintf(__('There is no plugin called %s in the plugin directory.', 'luna'), $plugin));
 
 // Construct REQUEST_URI if it isn't set
@@ -32,14 +32,14 @@ if (!isset($_SERVER['REQUEST_URI']))
 	$_SERVER['REQUEST_URI'] = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').'?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '');
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), str_replace('_', ' ', substr($plugin, strpos($plugin, '_') + 1, -4)));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 
 // Attempt to load the plugin. We don't use @ here to suppress error messages,
 // because if we did and a parse error occurred in the plugin, we would only
 // get the "blank page of death"
-include FORUM_ROOT.'plugins/'.$plugin;
-if (!defined('FORUM_PLUGIN_LOADED'))
+include LUNA_ROOT.'plugins/'.$plugin;
+if (!defined('LUNA_PLUGIN_LOADED'))
 	message_backstage(sprintf(__('Loading of the plugin - <strong>%s</strong> - failed.', 'luna'), $plugin));
 
 // Output the clearer div

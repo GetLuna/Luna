@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$luna_user['is_admmod'])
 	header("Location: login.php");
@@ -32,7 +32,7 @@ if (isset($_GET['ip_stats'])) {
 	$paging_links = paginate($num_pages, $p, 'users.php?ip_stats='.$ip_stats );
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -103,7 +103,7 @@ if (isset($_GET['ip_stats'])) {
 	$paging_links = paginate($num_pages, $p, 'users.php?show_users='.$ip);
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -193,7 +193,7 @@ if (isset($_GET['ip_stats'])) {
 
 // Move multiple users to other user groups
 elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > LUNA_ADMIN)
 		message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
@@ -211,13 +211,13 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 		message_backstage(__('No users selected.', 'luna'));
 
 	// Are we trying to batch move any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.LUNA_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message_backstage(__('For security reasons, you are not allowed to move multiple administrators to another group. If you want to move these administrators, you can do so on their respective user profiles.', 'luna'));
 
 	// Fetch all user groups
 	$all_groups = array();
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id NOT IN ('.FORUM_GUEST.','.FORUM_ADMIN.') ORDER BY g_title ASC') or error('Unable to fetch groups', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id NOT IN ('.LUNA_GUEST.','.LUNA_ADMIN.') ORDER BY g_title ASC') or error('Unable to fetch groups', __FILE__, __LINE__, $db->error());
 	while ($row = $db->fetch_row($result))
 		$all_groups[$row[0]] = $row[1];
 
@@ -249,7 +249,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 				unset($user_groups[$cur_group['g_id']]);
 		}
 
-		if (!empty($user_groups) && $new_group != FORUM_ADMIN && $new_group_mod != '1') {
+		if (!empty($user_groups) && $new_group != LUNA_ADMIN && $new_group_mod != '1') {
 			// Fetch forum list and clean up their moderator list
 			$result = $db->query('SELECT id, moderators FROM '.$db->prefix.'forums') or error('Unable to fetch forum list', __FILE__, __LINE__, $db->error());
 			while ($cur_forum = $db->fetch_assoc($result)) {
@@ -270,7 +270,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Change user group', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -307,7 +307,7 @@ elseif (isset($_POST['move_users']) || isset($_POST['move_users_comply'])) {
 
 // Delete multiple users
 elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
-	if ($luna_user['g_id'] > FORUM_ADMIN)
+	if ($luna_user['g_id'] > LUNA_ADMIN)
 		message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
@@ -325,7 +325,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 		message_backstage(__('No users selected.', 'luna'));
 
 	// Are we trying to delete any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.LUNA_ADMIN) or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message_backstage(__('Administrators cannot be deleted. In order to delete administrators, you must first move them to a different user group.', 'luna'));
 
@@ -369,7 +369,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 
 		// Should we delete all comments made by these users?
 		if (isset($_POST['delete_posts'])) {
-			require FORUM_ROOT.'include/search_idx.php';
+			require LUNA_ROOT.'include/search_idx.php';
 			@set_time_limit(0);
 
 			// Find all comments made by this user
@@ -399,8 +399,8 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 			delete_avatar($user_id);
 
 		// Regenerate the users info cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
 
@@ -408,7 +408,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 	}
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Delete users', 'luna'));
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -442,7 +442,7 @@ elseif (isset($_POST['delete_users']) || isset($_POST['delete_users_comply'])) {
 
 // Ban multiple users
 elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
-	if ($luna_user['g_id'] != FORUM_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
+	if ($luna_user['g_id'] != LUNA_ADMIN && ($luna_user['g_moderator'] != '1' || $luna_user['g_mod_ban_users'] == '0'))
 		message_backstage(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 	confirm_referrer('backstage/users.php');
@@ -460,7 +460,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		message_backstage(__('No users selected.', 'luna'));
 
 	// Are we trying to ban any admins?
-	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.FORUM_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT COUNT(*) FROM '.$db->prefix.'users WHERE id IN ('.implode(',', $user_ids).') AND group_id='.LUNA_ADMIN) or error('Unable to fetch group info', __FILE__, __LINE__, $db->error());
 	if ($db->result($result) > 0)
 		message_backstage(__('Administrators cannot be banned. In order to ban administrators, you must first move them to a different user group.', 'luna'));
 
@@ -513,8 +513,8 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 		}
 
 		// Regenerate the bans cache
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_bans_cache();
 
@@ -523,7 +523,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Bans', 'luna'));
 	$focus_element = array('bans2', 'ban_message');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -687,13 +687,13 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 	$paging_links = paginate($num_pages, $p, 'users.php?find_user=&amp;'.implode('&amp;', $query_str));
 
 	// Some helper variables for permissions
-	$can_delete = $can_move = $luna_user['g_id'] == FORUM_ADMIN;
-	$can_ban = $luna_user['g_id'] == FORUM_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
+	$can_delete = $can_move = $luna_user['g_id'] == LUNA_ADMIN;
+	$can_ban = $luna_user['g_id'] == LUNA_ADMIN || ($luna_user['g_moderator'] == '1' && $luna_user['g_mod_ban_users'] == '1');
 	$can_action = ($can_delete || $can_ban || $can_move) && $num_users > 0;
 
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'), __('Search Results', 'luna'));
 	$page_head = array('js' => '<script type="text/javascript" src="../common.js"></script>');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -740,7 +740,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 			$user_title = get_title($user_data);
 
 			// This script is a special case in that we want to display "Not verified" for non-verified users
-			if (($user_data['g_id'] == '' || $user_data['g_id'] == FORUM_UNVERIFIED) && $user_title != __('Banned', 'luna'))
+			if (($user_data['g_id'] == '' || $user_data['g_id'] == LUNA_UNVERIFIED) && $user_title != __('Banned', 'luna'))
 				$user_title = '<span class="warntext">'.__('Not verified', 'luna').'</span>';
 
 			$actions = '<a href="users.php?ip_stats='.$user_data['id'].'">'.__('IP stats', 'luna').'</a> &middot; <a href="../search.php?action=show_user_posts&amp;user_id='.$user_data['id'].'">'.__('Comments', 'luna').'</a>';
@@ -787,7 +787,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 } else {
 	$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Users', 'luna'));
 	$focus_element = array('find_user', 'form[username]');
-	define('FORUM_ACTIVE_PAGE', 'admin');
+	define('LUNA_ACTIVE_PAGE', 'admin');
 	require 'header.php';
 	load_admin_nav('users', 'users');
 
@@ -846,7 +846,7 @@ elseif (isset($_POST['ban_users']) || isset($_POST['ban_users_comply'])) {
 							<option value="0"><?php _e('Unverified users', 'luna') ?></option>
 <?php
 
-	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.FORUM_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT g_id, g_title FROM '.$db->prefix.'groups WHERE g_id!='.LUNA_GUEST.' ORDER BY g_title') or error('Unable to fetch user group list', __FILE__, __LINE__, $db->error());
 
 	while ($cur_group = $db->fetch_assoc($result))
 		echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$cur_group['g_id'].'">'.luna_htmlspecialchars($cur_group['g_title']).'</option>'."\n";

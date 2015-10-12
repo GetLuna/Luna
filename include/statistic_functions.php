@@ -6,18 +6,18 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-if (!defined('FORUM_CACHE_DIR'))
-	define('FORUM_CACHE_DIR', FORUM_ROOT.'cache/');
+if (!defined('LUNA_CACHE_DIR'))
+	define('LUNA_CACHE_DIR', LUNA_ROOT.'cache/');
 	
-if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
-	include FORUM_CACHE_DIR.'cache_users_info.php';
+if (file_exists(LUNA_CACHE_DIR.'cache_users_info.php'))
+	include LUNA_CACHE_DIR.'cache_users_info.php';
 
-if (!defined('FORUM_USERS_INFO_LOADED')) {
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
+if (!defined('LUNA_USERS_INFO_LOADED')) {
+	if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+		require LUNA_ROOT.'include/cache.php';
 
 	generate_users_info_cache();
-	require FORUM_CACHE_DIR.'cache_users_info.php';
+	require LUNA_CACHE_DIR.'cache_users_info.php';
 }
 
 // Collect some statistics from the database

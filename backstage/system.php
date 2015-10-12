@@ -7,8 +7,8 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', '../');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', '../');
+require LUNA_ROOT.'include/common.php';
 
 if (!$is_admin)
 	header("Location: login.php");
@@ -16,7 +16,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 
 
 // Show phpinfo() output
-if ($action == 'phpinfo' && $luna_user['g_id'] == FORUM_ADMIN) {
+if ($action == 'phpinfo' && $luna_user['g_id'] == LUNA_ADMIN) {
 	// Is phpinfo() a disabled function?
 	if (strpos(strtolower((string) ini_get('disable_functions')), 'phpinfo') !== false)
 		message_backstage(__('The PHP function phpinfo() has been disabled on this server.', 'luna'));
@@ -85,7 +85,7 @@ else
 
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Admin', 'luna'), __('Server statistics', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'admin');
+define('LUNA_ACTIVE_PAGE', 'admin');
 require 'header.php';
 load_admin_nav('backstage', 'stats');
 
@@ -133,7 +133,7 @@ load_admin_nav('backstage', 'stats');
 		<thead>
 			<tr>
 				<th class="col-md-4"><?php _e('Server load', 'luna') ?></th>
-				<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
+				<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
 				<th class="col-md-4"><?php _e('Environment', 'luna') ?></th>
 				<th class="col-md-4"><?php _e('Database', 'luna') ?></th>
 				<?php endif; ?>
@@ -142,7 +142,7 @@ load_admin_nav('backstage', 'stats');
 		<tbody>
 			<tr>
 				<td><?php printf(__('%s - %s user(s) online', 'luna')."\n", $server_load, $num_online) ?></td>
-				<?php if ($luna_user['g_id'] == FORUM_ADMIN): ?>
+				<?php if ($luna_user['g_id'] == LUNA_ADMIN): ?>
 				<td>
 					<?php printf(__('Operating system: %s', 'luna'), PHP_OS) ?><br />
 					<?php printf(__('PHP: %s - %s', 'luna'), phpversion(), '<a href="system.php?action=phpinfo">'.__('Show info', 'luna').'</a>') ?><br />

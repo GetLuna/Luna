@@ -7,16 +7,16 @@
  * Licensed under GPLv3 (http://getluna.org/license.php)
  */
 
-define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 // Load the me functions script
-require FORUM_ROOT.'include/me_functions.php';
+require LUNA_ROOT.'include/me_functions.php';
 
 // Include UTF-8 function
-require FORUM_ROOT.'include/utf8/substr_replace.php';
-require FORUM_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
-require FORUM_ROOT.'include/utf8/strcasecmp.php';
+require LUNA_ROOT.'include/utf8/substr_replace.php';
+require LUNA_ROOT.'include/utf8/ucwords.php'; // utf8_ucwords needs utf8_substr_replace
+require LUNA_ROOT.'include/utf8/strcasecmp.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $type = isset($_GET['type']) ? $_GET['type'] : null;
@@ -62,7 +62,7 @@ if ($num_unviewed) {
 }
 
 $page_title = array(luna_htmlspecialchars($luna_config['o_board_title']).' / '.__('Profile', 'luna'));
-define('FORUM_ACTIVE_PAGE', 'me');
+define('LUNA_ACTIVE_PAGE', 'me');
 require load_page('header.php');
 
 require load_page('notifications.php');

@@ -149,7 +149,7 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 				<?php
 					echo $page_title;
 					if ($luna_config['o_update_ring'] > 1)
-						echo '<span class="pull-right" style="font-size: 70%;">Core '.Version::FORUM_CORE_VERSION.'</span>';
+						echo '<span class="pull-right" style="font-size: 70%;">Core '.Version::LUNA_CORE_VERSION.'</span>';
 				?>
 			</h2>
 			<?php if ($section == 'backstage') { ?>
@@ -203,7 +203,7 @@ $logout_url = '../login.php?action=out&amp;id='.$luna_user['id'].'&amp;csrf_toke
 function check_is_admin() {
 	global $luna_user;
 
-	$is_admin = $luna_user['g_id'] == FORUM_ADMIN ? true : false;
+	$is_admin = $luna_user['g_id'] == LUNA_ADMIN ? true : false;
 	
 	return $is_admin;
 }

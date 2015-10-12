@@ -55,15 +55,15 @@
 
 -----------------------------------------------------------------------------*/
 
-define('FORUM_QUIET_VISIT', 1);
+define('LUNA_QUIET_VISIT', 1);
 
-if (!defined('FORUM_ROOT'))
-	define('FORUM_ROOT', dirname(__FILE__).'/');
-require FORUM_ROOT.'include/common.php';
+if (!defined('LUNA_ROOT'))
+	define('LUNA_ROOT', dirname(__FILE__).'/');
+require LUNA_ROOT.'include/common.php';
 
 // The length at which topic subjects will be truncated (for HTML output)
-if (!defined('FORUM_EXTERN_MAX_SUBJECT_LENGTH'))
-	define('FORUM_EXTERN_MAX_SUBJECT_LENGTH', 30);
+if (!defined('LUNA_EXTERN_MAX_SUBJECT_LENGTH'))
+	define('LUNA_EXTERN_MAX_SUBJECT_LENGTH', 30);
 
 // If we're a guest and we've sent a username/pass, we can try to authenticate using those details
 if ($luna_user['is_guest'] && isset($_SERVER['PHP_AUTH_USER']))
@@ -247,8 +247,8 @@ function output_html($feed) {
 	header('Pragma: public');
 
 	foreach ($feed['items'] as $item) {
-		if (utf8_strlen($item['title']) > FORUM_EXTERN_MAX_SUBJECT_LENGTH)
-			$subject_truncated = luna_htmlspecialchars(luna_trim(utf8_substr($item['title'], 0, (FORUM_EXTERN_MAX_SUBJECT_LENGTH - 5)))).' …';
+		if (utf8_strlen($item['title']) > LUNA_EXTERN_MAX_SUBJECT_LENGTH)
+			$subject_truncated = luna_htmlspecialchars(luna_trim(utf8_substr($item['title'], 0, (LUNA_EXTERN_MAX_SUBJECT_LENGTH - 5)))).' …';
 		else
 			$subject_truncated = luna_htmlspecialchars($item['title']);
 
@@ -258,7 +258,7 @@ function output_html($feed) {
 
 // Show recent discussions
 if ($action == 'feed') {
-	require FORUM_ROOT.'include/parser.php';
+	require LUNA_ROOT.'include/parser.php';
 
 	// Determine what type of feed to output
 	$type = isset($_GET['type']) ? strtolower($_GET['type']) : 'html';
@@ -358,8 +358,8 @@ if ($action == 'feed') {
 			$cache_id = 'feed'.sha1($luna_user['g_id'].'|'.__('en', 'luna').'|'.($order_posted ? '1' : '0').($forum_name == '' ? '' : '|'.$fids[0]));
 
 		// Load cached feed
-		if (isset($cache_id) && file_exists(FORUM_CACHE_DIR.'cache_'.$cache_id.'.php'))
-			include FORUM_CACHE_DIR.'cache_'.$cache_id.'.php';
+		if (isset($cache_id) && file_exists(LUNA_CACHE_DIR.'cache_'.$cache_id.'.php'))
+			include LUNA_CACHE_DIR.'cache_'.$cache_id.'.php';
 
 		$now = time();
 		if (!isset($feed) || $cache_expire < $now) {
@@ -404,8 +404,8 @@ if ($action == 'feed') {
 
 			// Output feed as PHP code
 			if (isset($cache_id)) {
-				if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-					require FORUM_ROOT.'include/cache.php';
+				if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+					require LUNA_ROOT.'include/cache.php';
 
 				$content = '<?php'."\n\n".'$feed = '.var_export($feed, true).';'."\n\n".'$cache_expire = '.($now + ($luna_config['o_feed_ttl'] * 60)).';'."\n\n".'?>';
 				luna_write_cache_file('cache_'.$cache_id.'.php', $content);
@@ -468,15 +468,15 @@ elseif ($action == 'online' || $action == 'online_full') {
 // Show board statistics
 elseif ($action == 'stats') {
 	// Collect some statistics from the database
-	if (file_exists(FORUM_CACHE_DIR.'cache_users_info.php'))
-		include FORUM_CACHE_DIR.'cache_users_info.php';
+	if (file_exists(LUNA_CACHE_DIR.'cache_users_info.php'))
+		include LUNA_CACHE_DIR.'cache_users_info.php';
 
-	if (!defined('FORUM_USERS_INFO_LOADED')) {
-		if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-			require FORUM_ROOT.'include/cache.php';
+	if (!defined('LUNA_USERS_INFO_LOADED')) {
+		if (!defined('LUNA_CACHE_FUNCTIONS_LOADED'))
+			require LUNA_ROOT.'include/cache.php';
 
 		generate_users_info_cache();
-		require FORUM_CACHE_DIR.'cache_users_info.php';
+		require LUNA_CACHE_DIR.'cache_users_info.php';
 	}
 
 	$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Unable to fetch topic/post count', __FILE__, __LINE__, $db->error());
