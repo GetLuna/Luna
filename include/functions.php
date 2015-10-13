@@ -2285,11 +2285,14 @@ function decrease_post_counts($post_ids) {
 function build_config($status, $config_key, $config_valua = NULL) {
 	global $luna_config, $db;
 
-	if ($status == 1) {
-		if (!array_key_exists($config_key, $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\''.$config_key.'\', \''.$config_valua.'\')') or error('Unable to insert config value \''.$config_key.'\'', __FILE__, __LINE__, $db->error());
-	} else {
+	if ($status == 0) {
 		if (array_key_exists($config_key, $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \''.$config_key.'\'') or error('Unable to remove config value \''.$config_key.'\'', __FILE__, __LINE__, $db->error());
+	} elseif ($status == 1) {
+		if (!array_key_exists($config_key, $luna_config))
+			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\''.$config_key.'\', \''.$config_valua.'\')') or error('Unable to insert config value \''.$config_key.'\'', __FILE__, __LINE__, $db->error());
+	} elseif ($status == 2) {
+		if (!array_key_exists($config_key, $luna_config))
+			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\''.$config_key.'\' WHERE conf_name=\''.$config_valua.'\'') or error('Unable to rename config value \''.$config_valua.'\'', __FILE__, __LINE__, $db->error());
 	}
 }

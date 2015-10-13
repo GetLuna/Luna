@@ -601,21 +601,13 @@ switch ($stage) {
 		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		
 		build_config(0, 'o_topic_review');
-		
-		if (!array_key_exists('o_thread_subscriptions', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
-		if (!array_key_exists('o_thread_subscriptions', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_subscriptions\' WHERE conf_name=\'o_topic_subscriptions\'') or error('Unable to rename config value \'o_thread_subscriptions\'', __FILE__, __LINE__, $db->error());
-		if (!array_key_exists('o_disp_threads', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_disp_threads\' WHERE conf_name=\'o_disp_topics_default\'') or error('Unable to rename config value \'o_disp_topics_default\'', __FILE__, __LINE__, $db->error());
-		if (!array_key_exists('o_disp_comments', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_disp_comments\' WHERE conf_name=\'o_disp_posts_default\'') or error('Unable to rename config value \'o_disp_posts_default\'', __FILE__, __LINE__, $db->error());
-		if (!array_key_exists('o_thread_views', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_views\' WHERE conf_name=\'o_topic_views\'') or error('Unable to rename config value \'o_topic_views\'', __FILE__, __LINE__, $db->error());
-		if (!array_key_exists('o_show_comment_count', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_show_comment_count\' WHERE conf_name=\'o_show_post_count\'') or error('Unable to rename config value \'o_show_post_count\'', __FILE__, __LINE__, $db->error());
-		if (!array_key_exists('o_has_commented', $luna_config))
-			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_has_commented\' WHERE conf_name=\'o_has_posted\'') or error('Unable to rename config value \'o_has_posted\'', __FILE__, __LINE__, $db->error());
+		build_config(2, 'o_thread_subscriptions', 'o_subscriptions');
+		build_config(2, 'o_thread_subscriptions', 'o_topic_subscriptions');
+		build_config(2, 'o_disp_threads', 'o_disp_topics_default');
+		build_config(2, 'o_disp_comments', 'o_disp_posts_default');
+		build_config(2, 'o_thread_views', 'o_topic_views');
+		build_config(2, 'o_show_comment_count', 'o_show_post_count');
+		build_config(2, 'o_has_commented', 'o_has_posted');
 
 		break;
 
