@@ -70,9 +70,9 @@ if ($pid) {
 
 // Fetch some info about the thread
 if ($luna_user['is_guest'])
-	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.sticky, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.sticky, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 else
-	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.sticky, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.subject, t.poster, t.closed, t.num_replies, t.sticky, t.solved AS answer, t.first_post_id, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, s.user_id AS is_subscribed FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'thread_subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$luna_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 
 if (!$db->num_rows($result))
 	message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
@@ -149,7 +149,7 @@ if (!$luna_user['is_guest'] && $luna_config['o_thread_subscriptions'] == '1') {
 		$topic_actions[] = '<a href="misc.php?action=subscribe&amp;tid='.$id.$token_url.'">'.__('Subscribe', 'luna').'</a>';
 }
 
-$result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'topics AS t ON (f.id = t.forum_id) WHERE t.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT f.solved FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'threads AS t ON (f.id = t.forum_id) WHERE t.id='.$id) or error('Unable to fetch forum info', __FILE__, __LINE__, $db->error());
 
 $cur_forum = $db->fetch_assoc($result);
 
@@ -184,7 +184,7 @@ require load_page('thread.php');
 
 // Increment "num_views" for topic
 if ($luna_config['o_topic_views'] == '1')
-	$db->query('UPDATE '.$db->prefix.'topics SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
+	$db->query('UPDATE '.$db->prefix.'threads SET num_views=num_views+1 WHERE id='.$id) or error('Unable to update topic', __FILE__, __LINE__, $db->error());
 
 $forum_id = $cur_topic['forum_id'];
 $footer_style = 'viewtopic';

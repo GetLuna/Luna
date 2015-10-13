@@ -169,7 +169,7 @@ The message reads as follows:
 		$topic_id = $db->result($result);
 
 		// Get the subject and forum ID
-		$result = $db->query('SELECT subject, forum_id FROM '.$db->prefix.'topics WHERE id='.$topic_id) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT subject, forum_id FROM '.$db->prefix.'threads WHERE id='.$topic_id) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -220,7 +220,7 @@ Reason: <reason>
 	}
 
 	// Fetch some info about the comment, the thread and the forum
-	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT f.id AS fid, f.forum_name, t.id AS tid, t.subject FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.topic_id INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND p.id='.$post_id) or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	if (!$db->num_rows($result))
 		message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 
@@ -251,7 +251,7 @@ Reason: <reason>
 		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
-		$db->query('UPDATE '.$db->prefix.'topics SET solved = '.$post_id.' WHERE id= '.$topic_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET solved = '.$post_id.' WHERE id= '.$topic_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
 
 		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
 	}
@@ -275,7 +275,7 @@ Reason: <reason>
 		// Make sure they got here from the site
 		confirm_referrer('misc.php');
 
-		$db->query('UPDATE '.$db->prefix.'topics SET solved = null WHERE id = '.$answer_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'threads SET solved = null WHERE id = '.$answer_id) or error('Unable to update solved post', __FILE__, __LINE__, $db->error());
 
 		redirect('viewtopic.php?pid='.$post_id.'#p'.$post_id);
 	}
@@ -302,7 +302,7 @@ Reason: <reason>
 			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 
 		// Make sure the user can view the thread
-		$result = $db->query('SELECT 1 FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$topic_id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT 1 FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$topic_id.' AND t.moved_to IS NULL') or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result))
 			message(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'), false, '404 Not Found');
 

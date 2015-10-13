@@ -214,9 +214,9 @@ function draw_topics_list() {
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
 	if ($luna_user['g_soft_delete_view'])
-		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	else
-		$result = $db->query('SELECT id FROM '.$db->prefix.'topics WHERE soft = 0 AND forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT id FROM '.$db->prefix.'threads WHERE soft = 0 AND forum_id='.$id.' ORDER BY sticky DESC, '.$sort_by.', id DESC LIMIT '.$start_from.', '.$luna_user['disp_topics']) or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
@@ -230,13 +230,13 @@ function draw_topics_list() {
 			if (!$luna_user['is_admmod'])
 				$sql_addition = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, solved AS answer, moved_to, soft FROM '.$db->prefix.'topics WHERE '.$sql_addition.'id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, solved AS answer, moved_to, soft FROM '.$db->prefix.'threads WHERE '.$sql_addition.'id IN('.implode(',', $topic_ids).') ORDER BY sticky DESC, '.$sort_by.', id DESC';
 		} else {
 			// When showing a commented label
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_addition = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
+			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.solved AS answer, t.soft FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_addition.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.sticky DESC, t.'.$sort_by.', t.id DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());
@@ -332,7 +332,7 @@ function draw_forum_list($forum_object_name = 'forum.php', $use_cat = 0, $cat_ob
 	global $db, $luna_config, $luna_user, $id, $new_topics;
 	
 	// Print the categories and forums
-	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'threads AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 	$cur_category = 0;
 	$cat_count = 0;
@@ -424,7 +424,7 @@ function draw_subforum_list($object_name = 'forum.php') {
 		$subforum_parent_id = $cur_parent['parent_id'];
 	
 	// Print the categories and forums
-	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'topics AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.parent_id='.$subforum_parent_id.' ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.parent_id, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster_id, f.icon, f.color, u.username AS username, t.subject AS subject FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'users AS u ON f.last_poster_id=u.id LEFT JOIN '.$db->prefix.'threads AS t ON t.last_post_id=f.last_post_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.parent_id='.$subforum_parent_id.' ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Unable to fetch category/forum list', __FILE__, __LINE__, $db->error());
 
 	$cur_category = 0;
 	$cat_count = 0;
@@ -479,7 +479,7 @@ function draw_index_topics_list() {
 	global $luna_user, $luna_config, $db, $start_from, $id, $sort_by, $start_from, $db_type, $cur_topic, $tracked_topics;
 	
 	// Retrieve a list of thread IDs, LIMIT is (really) expensive so we only fetch the IDs here then later fetch the remaining data
-	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT t.id, t.moved_to FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL ORDER BY last_post DESC LIMIT 30') or error('Unable to fetch topic IDs', __FILE__, __LINE__, $db->error());
 	
 	// If there are topics in this forum
 	if ($db->num_rows($result)) {
@@ -493,13 +493,13 @@ function draw_index_topics_list() {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 'soft = 0 AND ';
 
-			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft, solved AS answer, forum_id FROM '.$db->prefix.'topics WHERE '.$sql_soft.'id IN('.implode(',', $topic_ids).') ORDER BY last_post DESC';
+			$sql = 'SELECT id, poster, subject, posted, last_post, last_post_id, last_poster, last_poster_id, num_views, num_replies, closed, sticky, moved_to, soft, solved AS answer, forum_id FROM '.$db->prefix.'threads WHERE '.$sql_soft.'id IN('.implode(',', $topic_ids).') ORDER BY last_post DESC';
 
 		} else {
 			if (!$luna_user['g_soft_delete_view'])
 				$sql_soft = 't.soft = 0 AND ';
 
-			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
+			$sql = 'SELECT p.poster_id AS has_posted, t.id, t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.last_poster_id, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, t.soft, t.solved AS answer, t.forum_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'posts AS p ON t.id=p.topic_id AND p.poster_id='.$luna_user['id'].' WHERE '.$sql_soft.'t.id IN('.implode(',', $topic_ids).') GROUP BY t.id'.($db_type == 'pgsql' ? ', t.subject, t.poster, t.posted, t.last_post, t.last_post_id, t.last_poster, t.num_views, t.num_replies, t.closed, t.sticky, t.moved_to, p.poster_id' : '').' ORDER BY t.last_post DESC';
 		}
 	
 		$result = $db->query($sql) or error('Unable to fetch topic list', __FILE__, __LINE__, $db->error());

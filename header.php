@@ -53,13 +53,13 @@ if (!$luna_user['is_guest']) {
 	}
 
 	if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1')
-		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.$lang['Show new comments'].'">New</a>';
+		$page_topicsearches[] = '<a href="search.php?action=show_new" title="'.__('New', 'luna').'">New</a>';
 }
 
 // Quick searches
 if ($luna_user['g_read_board'] == '1' && $luna_user['g_search'] == '1') {
-	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.$lang['Show active topics'].'">Active</a>';
-	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.$lang['Show unanswered topics'].'">Unanswered</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_recent" title="'.__('Active', 'luna').'">Active</a>';
+	$page_topicsearches[] = '<a href="search.php?action=show_unanswered" title="'.__('Unanswered', 'luna').'">Unanswered</a>';
 }
 
 // Generate all that jazz

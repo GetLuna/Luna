@@ -274,7 +274,7 @@ if ($action == 'feed') {
 		$tid = intval($_GET['tid']);
 
 		// Fetch topic subject
-		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT t.subject, t.first_post_id FROM '.$db->prefix.'threads AS t LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL AND t.id='.$tid) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 		if (!$db->num_rows($result)) {
 			http_authenticate_user();
 			exit(__('Bad request. The link you followed is incorrect, outdated or you are simply not allowed to hang around here.', 'luna'));
@@ -373,7 +373,7 @@ if ($action == 'feed') {
 			);
 
 			// Fetch $show topics
-			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
+			$result = $db->query('SELECT t.id, t.poster, t.subject, t.posted, t.last_post, t.last_poster, p.message, p.hide_smilies, u.email_setting, u.email, p.poster_id, p.poster_email FROM '.$db->prefix.'threads AS t INNER JOIN '.$db->prefix.'posts AS p ON p.id='.($order_posted ? 't.first_post_id' : 't.last_post_id').' INNER JOIN '.$db->prefix.'users AS u ON u.id=p.poster_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=t.forum_id AND fp.group_id='.$luna_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.moved_to IS NULL'.$forum_sql.' ORDER BY '.($order_posted ? 't.posted' : 't.last_post').' DESC LIMIT '.(isset($cache_id) ? 50 : $show)) or error('Unable to fetch topic info', __FILE__, __LINE__, $db->error());
 			while ($cur_topic = $db->fetch_assoc($result)) {
 				if ($luna_config['o_censoring'] == '1')
 					$cur_topic['subject'] = censor_words($cur_topic['subject']);

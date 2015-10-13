@@ -48,14 +48,14 @@ elseif (isset($_GET['del_forum'])) {
 		prune($forum_id, 1, -1);
 
 		// Locate any "orphaned redirect topics" and delete them
-		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'threads AS t1 LEFT JOIN '.$db->prefix.'threads AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
 		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
-			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
 		// Delete the forum and any forum specific group permissions
@@ -425,14 +425,14 @@ elseif (isset($_POST['del_cat']) || isset($_POST['del_cat_comply'])) {
 		}
 
 		// Locate any "orphaned redirect topics" and delete them
-		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'threads AS t1 LEFT JOIN '.$db->prefix.'threads AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
 		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
-			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
 		// Delete the category

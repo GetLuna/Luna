@@ -45,14 +45,14 @@ if ($action == 'prune') {
 		}
 
 		// Locate any "orphaned redirect topics" and delete them
-		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'topics AS t1 LEFT JOIN '.$db->prefix.'topics AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT t1.id FROM '.$db->prefix.'threads AS t1 LEFT JOIN '.$db->prefix.'threads AS t2 ON t1.moved_to=t2.id WHERE t2.id IS NULL AND t1.moved_to IS NOT NULL') or error('Unable to fetch redirect topics', __FILE__, __LINE__, $db->error());
 		$num_orphans = $db->num_rows($result);
 
 		if ($num_orphans) {
 			for ($i = 0; $i < $num_orphans; ++$i)
 				$orphans[] = $db->result($result, $i);
 
-			$db->query('DELETE FROM '.$db->prefix.'topics WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
+			$db->query('DELETE FROM '.$db->prefix.'threads WHERE id IN('.implode(',', $orphans).')') or error('Unable to delete redirect topics', __FILE__, __LINE__, $db->error());
 		}
 
 		redirect('backstage/prune.php');
@@ -65,7 +65,7 @@ if ($action == 'prune') {
 	$prune_date = time() - ($prune_days * 86400);
 
 	// Concatenate together the query for counting number of threads to prune
-	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'topics WHERE last_post<'.$prune_date.' AND moved_to IS NULL';
+	$sql = 'SELECT COUNT(id) FROM '.$db->prefix.'threads WHERE last_post<'.$prune_date.' AND moved_to IS NULL';
 
 	if ($prune_sticky == '0')
 		$sql .= ' AND sticky=0';

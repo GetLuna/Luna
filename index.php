@@ -30,7 +30,7 @@ if (!$luna_user['is_guest']) {
 			if (empty($tracked_topics['topics']))
 				$new_topics = $forums;
 			else {
-				$result = $db->query('SELECT forum_id, id, last_post FROM '.$db->prefix.'topics WHERE forum_id IN('.implode(',', array_keys($forums)).') AND last_post>'.$luna_user['last_visit'].' AND moved_to IS NULL') or error('Unable to fetch new threads', __FILE__, __LINE__, $db->error());
+				$result = $db->query('SELECT forum_id, id, last_post FROM '.$db->prefix.'threads WHERE forum_id IN('.implode(',', array_keys($forums)).') AND last_post>'.$luna_user['last_visit'].' AND moved_to IS NULL') or error('Unable to fetch new threads', __FILE__, __LINE__, $db->error());
 
 				while ($cur_topic = $db->fetch_assoc($result)) {
 					if (!isset($new_topics[$cur_topic['forum_id']]) && (!isset($tracked_topics['forums'][$cur_topic['forum_id']]) || $tracked_topics['forums'][$cur_topic['forum_id']] < $forums[$cur_topic['forum_id']]) && (!isset($tracked_topics['topics'][$cur_topic['id']]) || $tracked_topics['topics'][$cur_topic['id']] < $cur_topic['last_post']))

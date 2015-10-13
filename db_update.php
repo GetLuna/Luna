@@ -326,7 +326,6 @@ switch ($stage) {
 		$db->add_field('groups', 'g_soft_delete_topics', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_topics field', __FILE__, __LINE__, $db->error());
 		$db->add_field('groups', 'g_soft_delete_view', 'TINYINT(1)', false, 0, 'g_user_title') or error('Unable to add g_soft_delete_view field', __FILE__, __LINE__, $db->error());
 		$db->add_field('posts', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
-		$db->add_field('topics', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'color_scheme', 'INT(25)', false, '2') or error('Unable to add column "color_scheme" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm', 'TINYINT(1)', false, '1', 'use_pm') or error('Unable to add column "notify_pm" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'notify_pm_full', 'TINYINT(1)', false, '0', 'notify_with_post') or error('Unable to add column "num_pms" to table "users"', __FILE__, __LINE__, $db->error());
@@ -578,7 +577,6 @@ switch ($stage) {
 			$db->drop_table('contacts') or error('Unable to drop contacts table', __FILE__, __LINE__, $db->error());
 
 		// Luna 1.1 upgrade support
-		$db->add_field('topics', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'accent', 'INT(10)', false, '2') or error('Unable to add column "accent" to table "users"', __FILE__, __LINE__, $db->error());
 		$db->add_field('users', 'adapt_time', 'TINYINT(1)', false, '0') or error('Unable to add column "adapt_time" to table "users"', __FILE__, __LINE__, $db->error());
 
@@ -598,6 +596,9 @@ switch ($stage) {
 		// Luna 1.3 upgrade support
 		$db->rename_table('subscriptions', 'thread_subscriptions');
 		$db->rename_table('topic_subscriptions', 'thread_subscriptions');
+		$db->rename_table('topics', 'threads');
+		$db->add_field('threads', 'solved', 'INT(10) UNSIGNED', true) or error('Unable to add solved field', __FILE__, __LINE__, $db->error());
+		$db->add_field('threads', 'soft', 'TINYINT(1)', false, 0, null) or error('Unable to add soft field', __FILE__, __LINE__, $db->error());
 		if (!array_key_exists('o_thread_subscriptions', $luna_config))
 			$db->query('UPDATE '.$db->prefix.'config SET conf_name=\'o_thread_subscriptions\' WHERE conf_name=\'o_subscriptions\'') or error('Unable to rename config value \'o_subscriptions\'', __FILE__, __LINE__, $db->error());
 		if (!array_key_exists('o_thread_subscriptions', $luna_config))
@@ -702,7 +703,7 @@ switch ($stage) {
 		require LUNA_ROOT.'include/search_idx.php';
 
 		// Fetch posts to process this cycle
-		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON t.id=p.topic_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
+		$result = $db->query('SELECT p.id, p.message, t.subject, t.first_post_id FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'threads AS t ON t.id=p.topic_id WHERE p.id > '.$start_at.' ORDER BY p.id ASC LIMIT '.PER_PAGE) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
 
 		$end_at = 0;
 		while ($cur_item = $db->fetch_assoc($result)) {

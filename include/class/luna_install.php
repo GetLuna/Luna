@@ -1076,7 +1076,7 @@ class Installer {
 			)
 		);
 	
-		$db->create_table('topics', $schema) or error('Unable to create topics table', __FILE__, __LINE__, $db->error());
+		$db->create_table('threads', $schema) or error('Unable to create threads table', __FILE__, __LINE__, $db->error());
 	
 		$schema = array(
 			'FIELDS'		=> array(
